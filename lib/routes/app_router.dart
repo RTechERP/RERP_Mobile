@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 
-import '../features/auth/view/pages/login_page.dart';
+import '../features/auth/view/pages/login_screen_page.dart';
+import '../features/dashboard/view/dashboard_screen_page.dart';
 import '../features/splash/view/splash_screen_page.dart';
 
 class AppRouter {
@@ -13,7 +14,11 @@ class AppRouter {
       ),
       GoRoute(
         path: '/login',
-        builder: (context, state) => const LoginPage(),
+        builder: (context, state) => const LoginScreenPage(),
+      ),
+      GoRoute(
+        path: '/dashboard',
+        builder: (context, state) => const DashboardScreenPage(),
       ),
     ],
   );

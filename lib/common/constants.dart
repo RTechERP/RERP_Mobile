@@ -45,8 +45,6 @@ class Config {
   static const memCacheWidth = 150;
   static const minCacheHeight = 100;
   static const minCacheWidth = 100;
-  static const imgHOCRWidth = 1377.0;
-  static const imgHOCRHeight = 1933.0;
 }
 
 class SharedKeys {
@@ -59,7 +57,6 @@ class SharedKeys {
 class BlocMessages {
   static const appNotOpened = 'appNotOpened';
   static const notLoggedIn = 'notLoggedIn';
-  static const showTutorial = 'showTutorial';
   static const loggedIn = 'loggedIn';
   static const loginSuccess = 'loginSuccess';
 }

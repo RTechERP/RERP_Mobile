@@ -1,18 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../common/services/custom_toast.dart';
 import '../../../../common/utils/validators.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginScreenPage extends StatefulWidget {
+  const LoginScreenPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginScreenPage> createState() => _LoginScreenPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginScreenPageState extends State<LoginScreenPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -38,13 +37,13 @@ class _LoginPageState extends State<LoginPage> {
 
     if (!mounted) return;
 
-    CustomToast.showToast(
-      context: context,
-      gravity: ToastGravity.TOP,
-      child: Text('login_success'.tr()),
-    );
+    // CustomToast.showToast(
+    //   context: context,
+    //   gravity: ToastGravity.TOP,
+    //   child: Text('login_success'.tr()),
+    // );
 
-    // TODO: Navigator.pushReplacement(...)
+    context.go('/dashboard');
   }
 
   @override
