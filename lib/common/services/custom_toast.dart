@@ -154,4 +154,27 @@ class CustomToast {
       CustomToast.showToastNoContext(message: message);
     }
   }
+
+  static void showToastOnTop({
+    required BuildContext context,
+    required Widget child,
+    Duration fadeDuration = const Duration(milliseconds: 350),
+    Duration toastDuration = const Duration(seconds: 2),
+    bool ignorePointer = false,
+    bool isDismissable = false,
+    PositionedToastBuilder? positionedToastBuilder,
+    ToastGravity? gravity,
+  }) {
+    showToast(
+      context: context,
+      child: child,
+      fadeDuration: fadeDuration,
+      toastDuration: toastDuration,
+      ignorePointer: ignorePointer,
+      isDismissable: isDismissable,
+      positionedToastBuilder: positionedToastBuilder,
+      gravity: gravity,
+    );
+  }
+
 }

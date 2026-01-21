@@ -69,21 +69,21 @@ dependencies:
   flutter_native_splash: ^2.4.7
 
 flutter_native_splash:
-  color: "#000000"
-  image: assets/images/icons/logo.png
+  color: "#FFFFFF"
+  image: assets/images/icons/logo/splash.png
 
   android: true
   ios: true
 
   android_12:
-    image: assets/images/icons/logo.png
-    color: "#000000"
+    image: assets/images/icons/logo/splash.png
+    color: "#FFFFFF"
 
 
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: assets/images/icons/logo.png
+  image_path: assets/images/icons/logo/app_logo.png
 
 dev_dependencies:
   flutter_test:
@@ -102,10 +102,17 @@ flutter:
 
   uses-material-design: true
   assets:
+    # ENV
     - assets/env/.env.debug
     - assets/env/.env.staging
     - assets/env/.env.production
-    - assets/images/icons/logo.png
+
+    # Images
+    - assets/images/icons/logo/app_logo.png
+    - assets/images/icons/logo/splash.png
+
+    # Trans
+    - assets/trans/vi-VN.json
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

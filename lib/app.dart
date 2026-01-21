@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:rtc_erp/routes/app_router.dart';
 
@@ -9,6 +10,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      locale: context.locale,
+      supportedLocales: context.supportedLocales,
+      localizationsDelegates: context.localizationDelegates,
       title: 'RTC ERP',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(),

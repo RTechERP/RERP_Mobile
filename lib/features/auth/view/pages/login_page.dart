@@ -1,6 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../common/services/custom_toast.dart';
+import '../../../../common/utils/validators.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -37,8 +40,10 @@ class _LoginPageState extends State<LoginPage> {
 
     CustomToast.showToast(
       context: context,
-      child: Text('Đăng nhập thành công'),
+      gravity: ToastGravity.TOP,
+      child: Text('login_success'.tr()),
     );
+
     // TODO: Navigator.pushReplacement(...)
   }
 
@@ -56,8 +61,8 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   const Icon(Icons.lock_outline, size: 72),
                   const SizedBox(height: 16),
-                  const Text(
-                    'Đăng nhập',
+                  Text(
+                    'login'.tr(),
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
@@ -67,37 +72,26 @@ class _LoginPageState extends State<LoginPage> {
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
+                    decoration: InputDecoration(
+                      labelText: 'email'.tr(),
                       border: OutlineInputBorder(),
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Email không được để trống';
-                      }
-                      if (!value.contains('@')) {
-                        return 'Email không hợp lệ';
-                      }
-                      return null;
-                    },
+                    validator: AppValidator.email,
                   ),
+
                   const SizedBox(height: 16),
 
                   /// Password
                   TextFormField(
                     controller: _passwordController,
                     obscureText: true,
-                    decoration: const InputDecoration(
-                      labelText: 'Mật khẩu',
+                    decoration: InputDecoration(
+                      labelText: 'password'.tr(),
                       border: OutlineInputBorder(),
                     ),
-                    validator: (value) {
-                      if (value == null || value.length < 6) {
-                        return 'Mật khẩu tối thiểu 6 ký tự';
-                      }
-                      return null;
-                    },
+                    validator: AppValidator.password,
                   ),
+
                   const SizedBox(height: 24),
 
                   /// Login button
@@ -112,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                             height: 20,
                             child: CircularProgressIndicator(strokeWidth: 2),
                           )
-                        : const Text('Đăng nhập'),
+                        : Text('login'.tr()),
                   ),
                 ],
               ),
