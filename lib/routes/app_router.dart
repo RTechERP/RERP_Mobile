@@ -1,15 +1,19 @@
 import 'package:go_router/go_router.dart';
 
 import '../features/auth/view/pages/login_page.dart';
-import 'route_names.dart';
+import '../features/splash/view/splash_screen_page.dart';
 
 class AppRouter {
-  static final GoRouter router = GoRouter(
-    initialLocation: RouteNames.login,
+  static final router = GoRouter(
+    initialLocation: '/splash',
     routes: [
       GoRoute(
-        path: RouteNames.login,
-        builder: (_, __) => const LoginPage(),
+        path: '/splash',
+        builder: (context, state) => const SplashScreenPage(),
+      ),
+      GoRoute(
+        path: '/login',
+        builder: (context, state) => const LoginPage(),
       ),
     ],
   );
