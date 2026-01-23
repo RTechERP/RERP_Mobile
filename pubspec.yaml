@@ -71,20 +71,20 @@ dependencies:
 
 flutter_native_splash:
   color: "#FFFFFF"
-  image: assets/images/icons/logo/splash.png
+  image: assets/images/icons/logo/logo_splash.png
 
   android: true
   ios: true
 
   android_12:
-    image: assets/images/icons/logo/splash.png
+    image: assets/images/icons/logo/logo_splash.png
     color: "#FFFFFF"
 
 
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: assets/images/icons/logo/app_logo.png
+  image_path: assets/images/icons/logo/logo_app.png
 
 dev_dependencies:
   flutter_test:
@@ -109,8 +109,8 @@ flutter:
     - assets/env/.env.production
 
     # Images
-    - assets/images/icons/logo/app_logo.png
-    - assets/images/icons/logo/splash.png
+    - assets/images/icons/logo/logo_app.png
+    - assets/images/icons/logo/logo_splash.png
 
     # Trans
     - assets/trans/vi-VN.json
