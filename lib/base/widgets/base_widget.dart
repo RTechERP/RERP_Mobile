@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../common/local_data/index.dart';
-import '../common/utils/snack_bar_helper.dart';
-import '../di/injection.dart';
-import 'bloc/index.dart';
+import '../../common/local_data/index.dart';
+import '../../common/utils/snack_bar_helper.dart';
+import '../../di/injection.dart';
+import '../bloc/index.dart';
 
 abstract class BaseState<W extends StatefulWidget, E, S extends BaseBlocState,
 B extends BaseBloc<E, S>> extends State<W> with BaseMethodMixin<S> {

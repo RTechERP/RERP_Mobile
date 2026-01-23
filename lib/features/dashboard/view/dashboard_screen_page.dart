@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../common/utils/bottom_bar.dart';
+import '../../workplace/view/workplace.dart';
 
 class DashboardScreenPage extends StatefulWidget {
   const DashboardScreenPage({super.key});
@@ -22,12 +23,12 @@ class _DashboardScreenPageState extends State<DashboardScreenPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BottomBar(
+    return BottomBarDashboard(
       context: context,
       controller: _tabController,
       screens: [
         _MessageTab(),
-        _AttendanceTab(),
+        WorkPlace(),
         _HomeTab(),
         _ContactsTab(),
         _MoreTab(),
@@ -71,15 +72,6 @@ class _HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(body: Center(child: Text('Home')));
-  }
-}
-
-class _AttendanceTab extends StatelessWidget {
-  const _AttendanceTab();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('Attendance')));
   }
 }
 

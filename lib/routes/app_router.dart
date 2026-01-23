@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:rtc_erp/features/workplace/app/attendance/view/pages/attendance_screen_page.dart';
 
 import '../features/auth/view/pages/login_screen_page.dart';
 import '../features/dashboard/view/dashboard_screen_page.dart';
@@ -19,6 +20,10 @@ class AppRouter {
       GoRoute(
         path: '/dashboard',
         builder: (context, state) => const DashboardScreenPage(),
+      ),
+      GoRoute(
+        path: '/attendance',
+        builder: (context, state) => const AttendanceScreenPage(),
       ),
     ],
   );

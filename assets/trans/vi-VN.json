@@ -1,15 +1,51 @@
 {
-  "login": "Đăng nhập",
-  "login_success": "Đăng nhập thành công",
-  "email": "Tài khoản",
-  "password": "Mật khẩu",
+  "common": {
+    "ok": "Đã hiểu",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "expand": "Xem thêm",
+    "collapse": "Thu gọn",
+    "notification": "Thông báo",
+    "process": "Tính năng đang được phát triển!"
+  },
+  "auth": {
+    "login": "Đăng nhập",
+    "login_success": "Đăng nhập thành công",
+    "email": "Tài khoản",
+    "password": "Mật khẩu",
+    "profile": "Hồ sơ",
+    "logout": "Đăng xuất"
+  },
+
   "dashboard": {
     "feeds": "Bảng tin",
     "contacts": "Danh bạ",
     "reports": "Báo cáo",
     "chat": "Tin nhắn",
     "more": "Xem thêm",
-    "attendance": "Chấm công",
     "workplace": "Nơi làm việc"
+  },
+  "settings": {
+    "theme": "Giao diện",
+    "language": "Ngôn ngữ",
+    "settings": "Cài đặt",
+    "help": "Trợ giúp",
+    "about": "Thông tin"
+  },
+  "attendance": {
+    "timekeeping": "Chấm công",
+    "work": "Công việc"
+  },
+  "tab": {
+    "works": "Công việc",
+    "features": "Tính năng"
+  },
+  "features": {
+    "birthday": "Sinh nhật",
+    "profile": "Hồ sơ",
+    "salary": "Phiếu lương",
+    "bonus": "Phúc lợi",
+    "uniform": "Đồng phục",
+    "leave": "Nghỉ việc"
   }
 }

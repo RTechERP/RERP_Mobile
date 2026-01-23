@@ -2,21 +2,19 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   //interaction books
-  static const MaterialColor primaryColor = MaterialColor(
-    0xFF0072BB,
-    <int, Color>{
-      50: Color(0xFFE4F4FF),
-      100: Color(0xFFCDE7F8),
-      200: Color(0xFFB6DAF1),
-      300: Color(0xFFA0CDEB),
-      400: Color(0xFF89C0E4),
-      500: Color(0xFF5BA6D6),
-      600: Color(0xFF2E8CC9),
-      700: Color(0xFF0072BB),
-      800: Color(0xFF005B96),
-      900: Color(0xFF003B61),
-    },
-  );
+  static const MaterialColor primaryColor =
+      MaterialColor(0xFF0072BB, <int, Color>{
+        50: Color(0xFFE4F4FF),
+        100: Color(0xFFCDE7F8),
+        200: Color(0xFFB6DAF1),
+        300: Color(0xFFA0CDEB),
+        400: Color(0xFF89C0E4),
+        500: Color(0xFF5BA6D6),
+        600: Color(0xFF2E8CC9),
+        700: Color(0xFF0072BB),
+        800: Color(0xFF005B96),
+        900: Color(0xFF003B61),
+      });
 
   static const Color color8C96B1 = Color(0xff8C96B1);
   static const Color colorA3ABC0 = Color(0xffA3ABC0);
@@ -26,7 +24,7 @@ class AppColors {
   static const Color color41B339 = Color(0xff41B339);
   static const Color colorD92B46 = Color(0xffD92B46);
 
-  //weather app
+  static const Color primaryERP = Color(0xFFEF4723);
   static const Color primaryColor2 = Color(0xff000000);
   static const Color textColor = Color(0xffffffff);
   static const Color color0f1b2b = Color(0xff0f1b2b);
@@ -40,7 +38,6 @@ class AppColors {
   static const Color enableText = Color(0xff3F4254);
   static const Color neutralText = Color(0xff404C6D);
 
-  // static const Color white = Color(0xffFFFFFF);
   static const Color whiteBlue = Color(0xffF9FBFF);
   static const Color red = Colors.red;
   static const Color main = Color(0xff4267CD);
@@ -61,18 +58,18 @@ class AppColors {
   static const Color primaryA100 = Color(0xFFF8F8FF);
 
   static const MaterialColor secondaryColor =
-  MaterialColor(0xFFFFB909, <int, Color>{
-    50: Color(0xFFFFF8E6),
-    100: Color(0xFFFFF1CE),
-    200: Color(0xFFFFEAB5),
-    300: Color(0xFFFFE39D),
-    400: Color(0xFFFFD56B),
-    500: Color(0xFFFFC73A),
-    600: Color(0xFFFFB909),
-    700: Color(0xFFCC9407),
-    800: Color(0xFF996F05),
-    900: Color(0xFF684B03),
-  });
+      MaterialColor(0xFFFFB909, <int, Color>{
+        50: Color(0xFFFFF8E6),
+        100: Color(0xFFFFF1CE),
+        200: Color(0xFFFFEAB5),
+        300: Color(0xFFFFE39D),
+        400: Color(0xFFFFD56B),
+        500: Color(0xFFFFC73A),
+        600: Color(0xFFFFB909),
+        700: Color(0xFFCC9407),
+        800: Color(0xFF996F05),
+        900: Color(0xFF684B03),
+      });
 
   /// State Color.
   static const Color stateSuccessColor = Color(0xFF33B469);
@@ -132,48 +129,46 @@ class AppColors {
   static const Color iconColor = Color(0xFF555B7C);
   static const Color placeholder = Color(0xFFE8EAF3);
   static const Color redStreak = Color(0xFFFF4D4D);
-  static const LinearGradient skeleton = LinearGradient(colors: [
-    Color(0xFFE7E8EE),
-    Color(0xFFF7F7F8),
-  ]);
-  static const LinearGradient gradientOrangeA500 = LinearGradient(colors: [
-    Color(0xFFFFC800),
-    Color(0xFFFF9C09),
-  ]);
-  static const LinearGradient gradientRedA500 = LinearGradient(colors: [
-    Color(0xFFE6514A),
-    Color(0xFFE57536),
-  ]);
-  static const LinearGradient gradientBlueA500 = LinearGradient(colors: [
-    Color(0xFF98A2FF),
-    Color(0xFF4659FF),
-  ]);
-  static const LinearGradient gradientBlue = LinearGradient(colors: [
-    Color(0xFF428ECD),
-    Color(0xFF512167),
-  ]);
-  static const LinearGradient gradientPurple = LinearGradient(colors: [
-    Color(0xFFE359F9),
-    Color(0xFF5F2EEA),
-  ]);
+
+  static const LinearGradient gradientERP = LinearGradient(
+    colors: [Color(0xFFEF4723), Color(0xFFFF0000)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+  static const LinearGradient skeleton = LinearGradient(
+    colors: [Color(0xFFE7E8EE), Color(0xFFF7F7F8)],
+  );
+  static const LinearGradient gradientOrangeA500 = LinearGradient(
+    colors: [Color(0xFFFFC800), Color(0xFFFF9C09)],
+  );
+  static const LinearGradient gradientRedA500 = LinearGradient(
+    colors: [Color(0xFFE6514A), Color(0xFFE57536)],
+  );
+  static const LinearGradient gradientBlueA500 = LinearGradient(
+    colors: [Color(0xFF98A2FF), Color(0xFF4659FF)],
+  );
+  static const LinearGradient gradientBlue = LinearGradient(
+    colors: [Color(0xFF428ECD), Color(0xFF512167)],
+  );
+  static const LinearGradient gradientPurple = LinearGradient(
+    colors: [Color(0xFFE359F9), Color(0xFF5F2EEA)],
+  );
   static const LinearGradient gradientPurpleVertical = LinearGradient(
-    colors: [
-      Color(0xFFE359F9),
-      Color(0xFF5F2EEA),
-    ],
+    colors: [Color(0xFFE359F9), Color(0xFF5F2EEA)],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
-  static const LinearGradient gradientBlack = LinearGradient(colors: [
-    Color(0xFFE1E4E7),
-    Color(0xFFFFFFFF),
-    Color(0xFFFFFFFF),
-    Color(0xFFFFFFFF),
-  ]);
-  static const LinearGradient gradientAIBeta = LinearGradient(colors: [
-    Color(0xFF5D4BFF),
-    Color(0xFF8A0574),
-  ]);
+  static const LinearGradient gradientBlack = LinearGradient(
+    colors: [
+      Color(0xFFE1E4E7),
+      Color(0xFFFFFFFF),
+      Color(0xFFFFFFFF),
+      Color(0xFFFFFFFF),
+    ],
+  );
+  static const LinearGradient gradientAIBeta = LinearGradient(
+    colors: [Color(0xFF5D4BFF), Color(0xFF8A0574)],
+  );
   static const Color backgroundStreak = Color(0xFFFFF8F2);
 
   /// functional color palette
@@ -259,8 +254,10 @@ class AppColors {
   static const Color colorDED2FF = Color(0xffDED2FF);
   static const Color colorC1F9A6 = Color(0xffC1F9A6);
 
-  static ColorFilter? colorFilter =
-  const ColorFilter.mode(AppColors.text0072BB, BlendMode.srcIn);
+  static ColorFilter? colorFilter = const ColorFilter.mode(
+    AppColors.text0072BB,
+    BlendMode.srcIn,
+  );
 
   // Gray Color.
   static const MaterialColor grayColor = MaterialColor(0xFFA6A6B0, <int, Color>{
@@ -287,10 +284,7 @@ class AppColors {
 
   // Point Color
   static const LinearGradient pointCf = LinearGradient(
-    colors: [
-      Color(0xFF6366F1),
-      Color(0xFF3F0B98),
-    ],
+    colors: [Color(0xFF6366F1), Color(0xFF3F0B98)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );

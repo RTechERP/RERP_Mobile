@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 
+import '../../../../common/app_theme/index.dart';
 import '../../../../common/utils/validators.dart';
 
 class LoginScreenPage extends StatefulWidget {
@@ -48,7 +50,7 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BaseScaffold(
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -61,9 +63,9 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
                   const Icon(Icons.lock_outline, size: 72),
                   const SizedBox(height: 16),
                   Text(
-                    'login'.tr(),
+                    'auth.login'.tr(),
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style: AppStyles.s22h28w600,
                   ),
                   const SizedBox(height: 32),
 
@@ -72,7 +74,7 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      labelText: 'email'.tr(),
+                      labelText: 'auth.email'.tr(),
                       border: OutlineInputBorder(),
                     ),
                     validator: AppValidator.email,
@@ -85,7 +87,7 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
                     controller: _passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
-                      labelText: 'password'.tr(),
+                      labelText: 'auth.password'.tr(),
                       border: OutlineInputBorder(),
                     ),
                     validator: AppValidator.password,
@@ -105,7 +107,7 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
                             height: 20,
                             child: CircularProgressIndicator(strokeWidth: 2),
                           )
-                        : Text('login'.tr()),
+                        : Text('auth.login'.tr()),
                   ),
                 ],
               ),
