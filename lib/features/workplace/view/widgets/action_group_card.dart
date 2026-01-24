@@ -1,26 +1,26 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../common/app_theme/index.dart';
+import '../../../../common/models/index.dart';
 import '../../../../common/utils/dialog/index.dart';
 
 class ActionGroupCard extends StatefulWidget {
   final String title;
-  final List<ActionIconItem> actions;
-
-  final EdgeInsets outerPadding;
-  final EdgeInsets innerPadding;
+  final List<AppItem> items;
 
   final bool expandable;
   final int collapsedItemCount;
+  final EdgeInsets outerPadding;
+  final EdgeInsets innerPadding;
 
   const ActionGroupCard({
     super.key,
     required this.title,
-    required this.actions,
+    required this.items,
     this.expandable = false,
     this.collapsedItemCount = 11,
     this.outerPadding = const EdgeInsets.symmetric(horizontal: 16),
-    this.innerPadding = const EdgeInsets.fromLTRB(12, 12, 12,0),
+    this.innerPadding = const EdgeInsets.all(12),
   });
 
   @override
@@ -32,172 +32,147 @@ class _ActionGroupCardState extends State<ActionGroupCard> {
 
   @override
   Widget build(BuildContext context) {
-    final visibleActions = _buildVisibleActions();
+    final visibleItems = _buildVisibleItems();
 
-    return SafeArea(
-      bottom: false,
-      child: Padding(
-        padding: widget.outerPadding,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+    return Padding(
+      padding: widget.outerPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
             ),
-            const SizedBox(height: 8),
-            Container(
-              padding: widget.innerPadding,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: Colors.grey.shade300),
-              ),
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: visibleActions.length,
-                gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  crossAxisSpacing: 13,
-                  mainAxisSpacing: 13,
-                  childAspectRatio: 1,
-                ),
-                itemBuilder: (context, index) {
-                  final action = visibleActions[index];
-
-                  return GestureDetector(
-                    onTap: () => action.handleTap(context),
-                    child: _ActionGridItem(item: action),
-                  );
-                },
-              ),
+          ),
+          const SizedBox(height: 8),
+          Container(
+            padding: widget.innerPadding,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.grey.shade300),
             ),
-          ],
-        ),
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: visibleItems.length,
+              gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                crossAxisSpacing: 13,
+                mainAxisSpacing: 13,
+                childAspectRatio: 1,
+              ),
+              itemBuilder: (_, index) {
+                return _ActionGridItem(item: visibleItems[index]);
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  List<ActionIconItem> _buildVisibleActions() {
-    // ❗ Không cần toggle
+  /// ⭐ LOGIC EXPAND ĐÚNG – item thứ 12
+  List<AppItem> _buildVisibleItems() {
     if (!widget.expandable ||
-        widget.actions.length <= widget.collapsedItemCount) {
-      return widget.actions;
+        widget.items.length <= widget.collapsedItemCount) {
+      return widget.items;
     }
 
-    final List<ActionIconItem> items = _expanded
-        ? List.of(widget.actions)
-        : widget.actions.take(widget.collapsedItemCount).toList();
+    if (_expanded) {
+      return [
+        ...widget.items,
+        AppItem.toggle(
+          expanded: true,
+          onTap: () => setState(() => _expanded = false),
+        ),
+      ];
+    }
 
-    // ✅ CHỈ add toggle khi thực sự cần
-    items.add(
-      ActionIconItem.toggle(
-        expanded: _expanded,
-        onTap: () {
-          setState(() => _expanded = !_expanded);
-        },
+    return [
+      ...widget.items.take(widget.collapsedItemCount),
+      AppItem.toggle(
+        expanded: false,
+        onTap: () => setState(() => _expanded = true),
       ),
-    );
-
-    return items;
+    ];
   }
-
 }
 
+
+
 class _ActionGridItem extends StatelessWidget {
-  final ActionIconItem item;
+  final AppItem item;
 
   const _ActionGridItem({required this.item});
 
+  void _handleTap(BuildContext context) {
+    if (item.isProcessing) {
+      DialogService.showProcessing(context: context);
+      return;
+    }
+
+    item.onTap?.call();
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return InkWell(
       borderRadius: BorderRadius.circular(12),
-      onTap: item.onTap,
+      onTap: () => _handleTap(context),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              color: item.backgroundColor ?? Colors.grey.shade100,
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              item.icon,
-              size: item.iconSize,
-              color: item.iconColor,
-            ),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: item.isToggle
+                      ? Colors.grey.shade200
+                      : Colors.grey.shade100,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  item.icon,
+                  size: 22,
+                  color:item.isToggle
+                      ? Colors.black54
+                      : Colors.black,
+                ),
+              ),
+
+              /// ⭐ favorite (KHÔNG áp cho toggle)
+              if (item.isFavorite && !item.isToggle)
+                const Positioned(
+                  right: 0,
+                  top: 0,
+                  child: Icon(
+                    Icons.star,
+                    size: 14,
+                    color: Colors.orange,
+                  ),
+                ),
+            ],
           ),
-          if (item.label != null) ...[
-            const SizedBox(height: 6),
-            Text(
-              item.label!,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 12),
-              textAlign: TextAlign.center,
-            ),
-          ],
+          const SizedBox(height: 6),
+          Text(
+            item.name,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: AppStyles.caption1,
+          ),
         ],
       ),
     );
   }
 }
 
-
-class ActionIconItem {
-  final IconData icon;
-  final String? label;
-  final VoidCallback? onTap;
-  final Color iconColor;
-  final double iconSize;
-  final Color? backgroundColor;
-  final bool isToggle;
-
-  /// 👉 NEW
-  final bool isProcessing;
-
-  ActionIconItem({
-    required this.icon,
-    this.label,
-    this.onTap,
-    this.iconColor = Colors.black,
-    this.iconSize = 22,
-    this.backgroundColor,
-    this.isToggle = false,
-    this.isProcessing = false,
-  });
-
-  factory ActionIconItem.toggle({
-    required bool expanded,
-    required VoidCallback onTap,
-    bool isProcessing = false,
-  }) {
-    return ActionIconItem(
-      icon: expanded ? Icons.expand_less : Icons.expand_more,
-      label: expanded ? 'common.collapse'.tr() : 'common.expand'.tr(),
-      onTap: onTap,
-      backgroundColor: Colors.grey.shade200,
-      isToggle: true,
-      isProcessing: isProcessing,
-    );
-  }
-
-  /// 👉 tap handler dùng chung
-  void handleTap(BuildContext context) {
-    if (isProcessing) {
-      DialogService.showProcessing(context: context);
-      return;
-    }
-
-    onTap?.call();
-  }
-}
 

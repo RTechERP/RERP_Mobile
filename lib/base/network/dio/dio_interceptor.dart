@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class DioInterceptor extends Interceptor {
   @override
@@ -7,8 +6,8 @@ class DioInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final Map<String, dynamic> header = {};
-    final prefs = await SharedPreferences.getInstance();
+    // final Map<String, dynamic> header = {};
+    // final prefs = await SharedPreferences.getInstance();
     //
     // String? token = await AuthRepository.getToken();
     // if (true == token?.isNotEmpty) {

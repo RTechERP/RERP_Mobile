@@ -4,9 +4,11 @@ import "package:go_router/go_router.dart";
 import "package:rtc_erp/common/app_theme/app_colors.dart";
 import "package:rtc_erp/features/workplace/view/widgets/action_group_card.dart";
 import "package:rtc_erp/features/workplace/view/widgets/circle_icon_button.dart";
+import "package:rtc_erp/features/workplace/view/widgets/favorites_add.dart";
 import "package:rtc_erp/features/workplace/view/widgets/info_card.dart";
 
 import "../../../base/widgets/base_scaffold.dart";
+import "../../../common/models/index.dart";
 
 class WorkPlace extends StatelessWidget {
   const WorkPlace({super.key});
@@ -61,62 +63,78 @@ class WorkPlace extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(top: 16),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ActionGroupCard(
-                title: 'tab.works'.tr(),
-                expandable: true,
-                collapsedItemCount: 11,
-                actions: [
-                  ActionIconItem(
+          child: SafeArea(
+            child: Column(
+              children: [
+                FavoritesAdd(onTap: (){
+                  context.push('/favorites');
+                }),
+                const SizedBox(height: 16),
+            
+                ActionGroupCard(
+                  title: 'tab.works'.tr(),
+                  expandable: true,
+                  collapsedItemCount: 11,
+                  items: [
+                  AppItem(
+                    id: 'attendance',
+                    name: 'attendance.work'.tr(),
                     icon: Icons.assignment_outlined,
-                    label: 'attendance.timekeeping'.tr(),
                     onTap: () => context.push('/attendance'),
                   ),
-                  ActionIconItem(
+                  AppItem(
+                    id: 'timekeeping',
                     icon: Icons.notifications_outlined,
-                    label: 'attendance.work'.tr(),
-                    isProcessing: true,
+                    name: 'attendance.timekeeping'.tr(),
+                    onTap: () {},
                   ),
                 ],
-              ),
-              const SizedBox(height: 16),
-              ActionGroupCard(
-                title: 'tab.features'.tr(),
-                actions: [
-                  ActionIconItem(
-                    icon: Icons.assignment_outlined,
-                    label: 'features.birthday'.tr(),
-                    isProcessing: true,
-                  ),
-                  ActionIconItem(
-                    icon: Icons.notifications_none_outlined,
-                    label: 'features.profile'.tr(),
-                    isProcessing: true,
-                  ),
-                  ActionIconItem(
-                    icon: Icons.people_outline,
-                    label: 'features.salary'.tr(),
-                    isProcessing: true,
-                  ),
-                  ActionIconItem(
-                    icon: Icons.settings_outlined,
-                    label: 'features.bonus'.tr(),
-                    isProcessing: true,
-                  ),
-                  ActionIconItem(
-                    icon: Icons.bar_chart_outlined,
-                    label: 'features.uniform'.tr(),
-                    isProcessing: true,
-                  ),
-                  ActionIconItem(
-                    icon: Icons.bar_chart_outlined,
-                    label: 'features.leave'.tr(),
-                    isProcessing: true,
-                  ),
-                ],
-              ),
-            ],
+                ),
+                const SizedBox(height: 16),
+
+                ActionGroupCard(
+                  title: 'tab.features'.tr(),
+                  expandable: true,
+                  collapsedItemCount: 11,
+                  items: [
+                    AppItem(
+                      id: 'bonus',
+                      name: 'features.bonus'.tr(),
+                      icon: Icons.notifications_none_outlined,
+                      isProcessing: true,
+                    ),
+                    AppItem(
+                      id: 'bonus',
+                      name: 'features.bonus'.tr(),
+                      icon: Icons.notifications_none_outlined,
+                      isProcessing: true,
+                    ),
+                    AppItem(
+                      id: 'bonus',
+                      name: 'features.bonus'.tr(),
+                      icon: Icons.notifications_none_outlined,
+                      isProcessing: true,
+                    ),
+                    AppItem(
+                      id: 'bonus',
+                      name: 'features.bonus'.tr(),
+                      icon: Icons.notifications_none_outlined,
+                      isProcessing: true,
+                    ),
+                    AppItem(
+                      id: 'bonus',
+                      name: 'features.bonus'.tr(),
+                      icon: Icons.notifications_none_outlined,
+                      isProcessing: true,
+                    ),
+
+
+
+                  ],
+                ),
+
+              ],
+            ),
           ),
         ),
       ),
