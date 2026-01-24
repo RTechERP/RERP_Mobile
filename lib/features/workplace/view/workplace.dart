@@ -1,6 +1,7 @@
 import "package:easy_localization/easy_localization.dart";
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
+import "package:rtc_erp/common/app_theme/app_colors.dart";
 import "package:rtc_erp/features/workplace/view/widgets/action_group_card.dart";
 import "package:rtc_erp/features/workplace/view/widgets/circle_icon_button.dart";
 import "package:rtc_erp/features/workplace/view/widgets/info_card.dart";
@@ -19,7 +20,7 @@ class WorkPlace extends StatelessWidget {
 
       },
       appBar: AppBar(
-        // backgroundColor: AppColors.primaryERP,
+        backgroundColor: AppColors.white,
         title: InfoCard(
           avatarUrl: 'https://i.pravatar.cc/150',
           name: 'Nguyễn Văn A',

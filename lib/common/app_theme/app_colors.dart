@@ -50,6 +50,8 @@ class AppColors {
   static const Color borderColor = Color(0xFFEBEBF0);
   static const Color warning = Color(0xFFF0891A);
 
+  static const Color grey_bg = Color(0xFFECEEF0);
+
   /// primary
   static const Color primaryA500 = Color(0xFF5768FF);
   static const Color primaryA400 = Color(0xFF7987FF);

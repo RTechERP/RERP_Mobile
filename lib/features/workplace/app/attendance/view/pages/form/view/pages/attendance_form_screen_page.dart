@@ -2,10 +2,10 @@ import "package:easy_localization/easy_localization.dart";
 import "package:flutter/material.dart";
 import "package:rtc_erp/base/widgets/base_scaffold.dart";
 
-import "../../../../../../common/utils/navigation/navigation_utils.dart";
+import "../../../../../../../../../common/utils/navigation/navigation_utils.dart";
 
-class AttandanceWorkSheetScreenPage extends StatelessWidget {
-  const AttandanceWorkSheetScreenPage({super.key});
+class AttendanceFormScreenPage extends StatelessWidget {
+  const AttendanceFormScreenPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +17,11 @@ class AttandanceWorkSheetScreenPage extends StatelessWidget {
             onBack(context);
           },
         ),
-        title: Text('attendance.worksheet'.tr()),
+        title: Text('attendance.form'.tr()),
         centerTitle: true,
       ),
-      body:  Center(
-        child: Text('attendance.worksheet'.tr()),
+      body: Center(
+        child: Text('attendance.form'.tr()),
       ),
     );
   }

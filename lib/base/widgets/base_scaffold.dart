@@ -29,7 +29,7 @@ class BaseScaffold extends StatelessWidget {
     this.endDrawer,
     this.scaffoldKey,
     this.backgroundImage,
-    this.backgroundColor = AppColors.white,
+    this.backgroundColor = AppColors.grey_bg,
     this.resizeToAvoidBottomInset = true,
     this.extendBodyBehindAppBar = false,
     this.dismissKeyboardOnTap = true,

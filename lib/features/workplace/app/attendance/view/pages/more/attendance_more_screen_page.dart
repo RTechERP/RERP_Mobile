@@ -1,8 +1,8 @@
 import "package:easy_localization/easy_localization.dart";
 import "package:flutter/material.dart";
 
-import "../../../../../../base/widgets/base_scaffold.dart";
-import "../../../../../../common/utils/navigation/navigation_utils.dart";
+import "../../../../../../../base/widgets/base_scaffold.dart";
+import "../../../../../../../common/utils/navigation/navigation_utils.dart";
 
 class AttendanceMoreScreenPage extends StatelessWidget {
   const AttendanceMoreScreenPage({super.key});
