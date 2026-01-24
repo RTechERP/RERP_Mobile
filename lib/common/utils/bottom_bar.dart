@@ -51,6 +51,7 @@ class BottomBarAttendance extends StatelessWidget {
     this.backgroundColor = Colors.white,
     this.handleAndroidBackButtonPress = true,
     this.popAllScreensOnTapOfSelectedTab = true,
+    this.onItemSelected,
   });
 
   final BuildContext context;
@@ -65,6 +66,9 @@ class BottomBarAttendance extends StatelessWidget {
   final bool handleAndroidBackButtonPress;
   final bool popAllScreensOnTapOfSelectedTab;
 
+  /// ✅ callback đúng kiểu
+  final ValueChanged<int>? onItemSelected;
+
   @override
   Widget build(BuildContext _) {
     return PersistentTabView(
@@ -75,6 +79,7 @@ class BottomBarAttendance extends StatelessWidget {
       navBarStyle: navBarStyle,
       backgroundColor: backgroundColor,
       handleAndroidBackButtonPress: handleAndroidBackButtonPress,
+      onItemSelected: onItemSelected,
     );
   }
 }

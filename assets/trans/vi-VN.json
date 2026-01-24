@@ -34,7 +34,11 @@
   },
   "attendance": {
     "timekeeping": "Chấm công",
-    "work": "Công việc"
+    "work": "Công việc",
+    "overview": "Tổng quan",
+    "form": "Đơn từ",
+    "worksheet": "Bảng công",
+    "more": "Thêm"
   },
   "tab": {
     "works": "Công việc",

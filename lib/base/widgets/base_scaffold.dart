@@ -18,6 +18,9 @@ class BaseScaffold extends StatelessWidget {
   final Color backgroundColor;
   final String? backgroundImage;
 
+  /// 🔥 Pull to refresh
+  final Future<void> Function()? onRefresh;
+
   const BaseScaffold({
     super.key,
     this.appBar,
@@ -31,6 +34,7 @@ class BaseScaffold extends StatelessWidget {
     this.extendBodyBehindAppBar = false,
     this.dismissKeyboardOnTap = true,
     this.paddingTop = 0,
+    this.onRefresh,
   });
 
   @override
@@ -59,6 +63,14 @@ class BaseScaffold extends StatelessWidget {
       );
     }
 
+    /// 🔥 Wrap RefreshIndicator nếu có onRefresh
+    if (onRefresh != null) {
+      content = RefreshIndicator(
+        onRefresh: onRefresh!,
+        child: _ensureScrollable(content),
+      );
+    }
+
     return Scaffold(
       key: scaffoldKey,
       appBar: appBar,
@@ -68,6 +80,23 @@ class BaseScaffold extends StatelessWidget {
       backgroundColor: backgroundColor,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
+    );
+  }
+
+  /// ✅ Đảm bảo pull được kể cả khi body không scroll
+  Widget _ensureScrollable(Widget child) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: constraints.maxHeight,
+            ),
+            child: child,
+          ),
+        );
+      },
     );
   }
 }

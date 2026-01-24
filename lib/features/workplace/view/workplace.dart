@@ -13,6 +13,11 @@ class WorkPlace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
+      onRefresh: () async {
+
+        await Future.delayed(const Duration(seconds: 2));
+
+      },
       appBar: AppBar(
         // backgroundColor: AppColors.primaryERP,
         title: InfoCard(
@@ -65,7 +70,7 @@ class WorkPlace extends StatelessWidget {
                   ActionIconItem(
                     icon: Icons.assignment_outlined,
                     label: 'attendance.timekeeping'.tr(),
-                    onTap: () => context.go('/attendance'),
+                    onTap: () => context.push('/attendance'),
                   ),
                   ActionIconItem(
                     icon: Icons.notifications_outlined,

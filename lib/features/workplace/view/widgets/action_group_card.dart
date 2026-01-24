@@ -1,8 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../common/utils/dialog/base_dialog/base_dialog.dart';
-import '../../../../common/utils/navigation/navigation_utils.dart';
+import '../../../../common/utils/dialog/index.dart';
 
 class ActionGroupCard extends StatefulWidget {
   final String title;
@@ -194,14 +193,7 @@ class ActionIconItem {
   /// 👉 tap handler dùng chung
   void handleTap(BuildContext context) {
     if (isProcessing) {
-      BaseDialog.oneOptionDialog(
-       context: context,
-        title: 'common.notification'.tr(),
-        description: 'common.process'.tr(),
-        onTapFunc: (){
-         onBack(context);
-        },
-      );
+      DialogService.showProcessing(context: context);
       return;
     }
 
