@@ -32,17 +32,61 @@
     "help": "Trợ giúp",
     "about": "Thông tin"
   },
-  "attendance": {
-    "timekeeping": "Chấm công",
-    "work": "Công việc",
-    "overview": "Tổng quan",
-    "form": "Đơn từ",
-    "worksheet": "Bảng công",
-    "more": "Thêm"
-  },
   "tab": {
-    "works": "Công việc",
+    "applications": "Ứng dụng",
     "features": "Tính năng"
+  },
+  "applications": {
+    "all": "Tất cả",
+    "general_forms": "Biểu mẫu chung",
+    "summary_work": "Tổng hợp công",
+    "reg_work": "Đăng ký công",
+    "reg_general": "Đăng ký chung",
+    "report": "Báo cáo CV",
+    "week_plan": "Kế hoạch tuần",
+    "stock": "Tồn kho theo SP"
+  },
+  "general_forms": {
+
+  },
+  "summary_work": {
+    "leaving":"Đăng ký nghỉ",
+    "in_out": "Đi muộn - về sớm",
+    "wfh": "WFH",
+    "fingerprint": "Quên vân tay",
+    "overtime": "Làm thêm",
+    "overnight": "Làm đêm"
+  },
+  "reg_work": {
+    "lunch": "Cơm ca",
+    "leaving": "Đăng ký nghỉ",
+    "in_out": "Đi muộn - về sớm",
+    "overtime": "Làm thêm",
+    "overnight": "Làm đêm",
+    "work_trip": "Công tác",
+    "wfh": "WFH",
+    "missed": "Quên chấm công",
+    "sum_personal": "Tổng hợp cá nhân"
+  },
+  "reg_general": {
+    "meeting_room": "Phòng họp",
+    "booking_car":"Đặt xe",
+    "purchase": "Đề nghị thanh toán",
+    "special_purchase": "Đề nghị thanh toán ĐB",
+    "work_request": "Yêu cầu công việc",
+    "idea": "Đăng ký ý tưởng",
+    "contract": "Đăng ký hợp đồng",
+    "stationery": "VPP",
+    "work_category": "Hạng mục công việc",
+    "personal_asset": "Tài sản cá nhân",
+    "stamp": "Đăng ký đóng dấu"
+  },
+  "reports": {
+
+  },
+  "week_plan": {
+    "personal": "Cá nhân",
+    "summary": "Tổng hợp"
   },
   "features": {
     "birthday": "Sinh nhật",

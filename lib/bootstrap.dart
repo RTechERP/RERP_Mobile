@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'app.dart';
 import 'base/bloc/app_bloc_observer.dart';
@@ -12,6 +13,8 @@ Future<void> bootstrap(String envFile) async {
 
   Bloc.observer = const AppBlocObserver();
   await EasyLocalization.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('favorites');
 
   runApp(
     EasyLocalization(

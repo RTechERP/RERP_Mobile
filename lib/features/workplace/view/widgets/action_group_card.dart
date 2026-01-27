@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/app_theme/index.dart';
 import '../../../../common/models/index.dart';
-import '../../../../common/utils/dialog/index.dart';
+import '../../../../common/utils/action_icon_tile.dart';
 
 class ActionGroupCard extends StatefulWidget {
   final String title;
-  final List<AppItem> items;
+  final List<AppItemModel> items;
 
   final bool expandable;
   final int collapsedItemCount;
   final EdgeInsets outerPadding;
   final EdgeInsets innerPadding;
 
+  /// 👉 callback xử lý tap item
+  final ValueChanged<AppItemModel>? onItemTap;
   const ActionGroupCard({
     super.key,
     required this.title,
@@ -21,6 +23,7 @@ class ActionGroupCard extends StatefulWidget {
     this.collapsedItemCount = 11,
     this.outerPadding = const EdgeInsets.symmetric(horizontal: 16),
     this.innerPadding = const EdgeInsets.all(12),
+    this.onItemTap,
   });
 
   @override
@@ -41,10 +44,7 @@ class _ActionGroupCardState extends State<ActionGroupCard> {
         children: [
           Text(
             widget.title,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
           Container(
@@ -60,13 +60,30 @@ class _ActionGroupCardState extends State<ActionGroupCard> {
               itemCount: visibleItems.length,
               gridDelegate:
               const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
+                crossAxisCount: 3,
                 crossAxisSpacing: 13,
                 mainAxisSpacing: 13,
                 childAspectRatio: 1,
               ),
               itemBuilder: (_, index) {
-                return _ActionGridItem(item: visibleItems[index]);
+                final item = visibleItems[index];
+
+                if (item == null) {
+                  return _ToggleGridItem(
+                    expanded: _expanded,
+                    onTap: _toggleExpand,
+                  );
+                }
+
+                return ActionIconTile(
+                  icon: IconData(
+                    item.iconCodePoint ?? 0,
+                    fontFamily: 'MaterialIcons',
+                  ),
+                  title: item.name,
+                  onTap: () => widget.onItemTap?.call(item),
+                  textStyle: AppStyles.caption1,
+                );
               },
             ),
           ),
@@ -75,98 +92,58 @@ class _ActionGroupCardState extends State<ActionGroupCard> {
     );
   }
 
-  /// ⭐ LOGIC EXPAND ĐÚNG – item thứ 12
-  List<AppItem> _buildVisibleItems() {
+  void _toggleExpand() {
+    setState(() => _expanded = !_expanded);
+  }
+
+  List<AppItemModel?> _buildVisibleItems() {
     if (!widget.expandable ||
         widget.items.length <= widget.collapsedItemCount) {
       return widget.items;
     }
 
     if (_expanded) {
-      return [
-        ...widget.items,
-        AppItem.toggle(
-          expanded: true,
-          onTap: () => setState(() => _expanded = false),
-        ),
-      ];
+      return [...widget.items, null];
     }
 
     return [
       ...widget.items.take(widget.collapsedItemCount),
-      AppItem.toggle(
-        expanded: false,
-        onTap: () => setState(() => _expanded = true),
-      ),
+      null,
     ];
   }
 }
 
+class _ToggleGridItem extends StatelessWidget {
+  final bool expanded;
+  final VoidCallback onTap;
 
-
-class _ActionGridItem extends StatelessWidget {
-  final AppItem item;
-
-  const _ActionGridItem({required this.item});
-
-  void _handleTap(BuildContext context) {
-    if (item.isProcessing) {
-      DialogService.showProcessing(context: context);
-      return;
-    }
-
-    item.onTap?.call();
-  }
+  const _ToggleGridItem({
+    required this.expanded,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-
     return InkWell(
       borderRadius: BorderRadius.circular(12),
-      onTap: () => _handleTap(context),
+      onTap: onTap,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: item.isToggle
-                      ? Colors.grey.shade200
-                      : Colors.grey.shade100,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  item.icon,
-                  size: 22,
-                  color:item.isToggle
-                      ? Colors.black54
-                      : Colors.black,
-                ),
-              ),
-
-              /// ⭐ favorite (KHÔNG áp cho toggle)
-              if (item.isFavorite && !item.isToggle)
-                const Positioned(
-                  right: 0,
-                  top: 0,
-                  child: Icon(
-                    Icons.star,
-                    size: 14,
-                    color: Colors.orange,
-                  ),
-                ),
-            ],
+          Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade200,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              expanded ? Icons.expand_less : Icons.expand_more,
+            ),
           ),
           const SizedBox(height: 6),
           Text(
-            item.name,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.center,
+            expanded ? 'Thu gọn' : 'Xem thêm',
             style: AppStyles.caption1,
           ),
         ],
@@ -174,5 +151,3 @@ class _ActionGridItem extends StatelessWidget {
     );
   }
 }
-
-

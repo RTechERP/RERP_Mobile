@@ -1,6 +1,7 @@
 import "package:easy_localization/easy_localization.dart";
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
+
 import "package:rtc_erp/common/app_theme/app_colors.dart";
 import "package:rtc_erp/features/workplace/view/widgets/action_group_card.dart";
 import "package:rtc_erp/features/workplace/view/widgets/circle_icon_button.dart";
@@ -9,17 +10,21 @@ import "package:rtc_erp/features/workplace/view/widgets/info_card.dart";
 
 import "../../../base/widgets/base_scaffold.dart";
 import "../../../common/models/index.dart";
+import "../../../common/utils/dialog/index.dart";
 
-class WorkPlace extends StatelessWidget {
+class WorkPlace extends StatefulWidget {
   const WorkPlace({super.key});
 
+  @override
+  State<WorkPlace> createState() => _WorkPlaceState();
+}
+
+class _WorkPlaceState extends State<WorkPlace> {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
       onRefresh: () async {
-
         await Future.delayed(const Duration(seconds: 2));
-
       },
       appBar: AppBar(
         backgroundColor: AppColors.white,
@@ -66,73 +71,93 @@ class WorkPlace extends StatelessWidget {
           child: SafeArea(
             child: Column(
               children: [
-                FavoritesAdd(onTap: (){
-                  context.push('/favorites');
-                }),
+                FavoritesAdd(
+                  onAddTap: () => context.push('/favorites'),
+                ),
+
+
+
                 const SizedBox(height: 16),
-            
+
                 ActionGroupCard(
-                  title: 'tab.works'.tr(),
+                  onItemTap: (item) {
+                    final route = item.route;
+
+                    if (route == null || route.isEmpty) {
+                      DialogService.showProcessing(context: context);
+                      return;
+                    }
+
+                    context.push(route);
+                  },
+                  title: 'tab.applications'.tr(),
                   expandable: true,
                   collapsedItemCount: 11,
                   items: [
-                  AppItem(
-                    id: 'attendance',
-                    name: 'attendance.work'.tr(),
-                    icon: Icons.assignment_outlined,
-                    onTap: () => context.push('/attendance'),
-                  ),
-                  AppItem(
-                    id: 'timekeeping',
-                    icon: Icons.notifications_outlined,
-                    name: 'attendance.timekeeping'.tr(),
-                    onTap: () {},
-                  ),
-                ],
+                    AppItemModel(
+                      id: 'general_forms',
+                      name: 'applications.general_forms'.tr(),
+                      iconCodePoint: Icons.assignment_outlined.codePoint,
+                    ),
+                    AppItemModel(
+                      id: 'summary_work',
+                      iconCodePoint: Icons.content_paste_search_outlined.codePoint,
+                      name: 'applications.summary_work'.tr(),
+                    ),
+                    AppItemModel(
+                      id: 'reg_work',
+                      iconCodePoint: Icons.person_pin_outlined.codePoint,
+                      name: 'applications.reg_work'.tr(),
+                      route: '/regwork',
+                    ),
+                    AppItemModel(
+                      id: 'reg_general',
+                      iconCodePoint: Icons.dvr_outlined.codePoint,
+                      name: 'applications.reg_general'.tr(),
+                    ),
+                    AppItemModel(
+                      id: 'report',
+                      iconCodePoint: Icons.description_outlined.codePoint,
+                      name: 'applications.report'.tr(),
+                    ),
+                    AppItemModel(
+                      id: 'week_plan',
+                      iconCodePoint: Icons.newspaper_outlined.codePoint,
+                      name: 'applications.week_plan'.tr(),
+                    ),
+                    AppItemModel(
+                      id: 'stock',
+                      iconCodePoint: Icons.shopping_cart_outlined.codePoint,
+                      name: 'applications.stock'.tr(),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 16),
 
                 ActionGroupCard(
+                  onItemTap: (item) {
+                    final route = item.route;
+
+                    if (route == null || route.isEmpty) {
+                      DialogService.showProcessing(context: context);
+                      return;
+                    }
+
+                    context.push(route);
+                  },
                   title: 'tab.features'.tr(),
                   expandable: true,
                   collapsedItemCount: 11,
                   items: [
-                    AppItem(
-                      id: 'bonus',
-                      name: 'features.bonus'.tr(),
-                      icon: Icons.notifications_none_outlined,
-                      isProcessing: true,
+                    AppItemModel(
+                      id: 'process',
+                      name: 'common.process'.tr(),
+                      iconCodePoint:
+                          Icons.error_outline_outlined.codePoint,
                     ),
-                    AppItem(
-                      id: 'bonus',
-                      name: 'features.bonus'.tr(),
-                      icon: Icons.notifications_none_outlined,
-                      isProcessing: true,
-                    ),
-                    AppItem(
-                      id: 'bonus',
-                      name: 'features.bonus'.tr(),
-                      icon: Icons.notifications_none_outlined,
-                      isProcessing: true,
-                    ),
-                    AppItem(
-                      id: 'bonus',
-                      name: 'features.bonus'.tr(),
-                      icon: Icons.notifications_none_outlined,
-                      isProcessing: true,
-                    ),
-                    AppItem(
-                      id: 'bonus',
-                      name: 'features.bonus'.tr(),
-                      icon: Icons.notifications_none_outlined,
-                      isProcessing: true,
-                    ),
-
-
 
                   ],
                 ),
-
               ],
             ),
           ),
@@ -141,3 +166,85 @@ class WorkPlace extends StatelessWidget {
     );
   }
 }
+// class _FavoriteGrid extends StatelessWidget {
+//   final List<AppItemModel> items;
+//   final VoidCallback onAddTap;
+//
+//   const _FavoriteGrid({
+//     required this.items,
+//     required this.onAddTap,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(horizontal: 16),
+//       child: GridView.builder(
+//         shrinkWrap: true,
+//         physics: const NeverScrollableScrollPhysics(),
+//         itemCount: items.length + 1,
+//         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//           crossAxisCount: 4,
+//           mainAxisSpacing: 12,
+//           crossAxisSpacing: 12,
+//           childAspectRatio: 0.9,
+//         ),
+//         itemBuilder: (context, index) {
+//           if (index == items.length) {
+//             return _AddFavoriteItem(onTap: onAddTap);
+//           }
+//
+//           final item = items[index];
+//           return _ActionGridItem(
+//             item: item,
+//             onTap: () {
+//               final route = item.route;
+//               if (route == null || route.isEmpty) {
+//                 DialogService.showProcessing(context: context);
+//                 return;
+//               }
+//               context.push(route);
+//             },
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }
+//
+// class _AddFavoriteItem extends StatelessWidget {
+//   final VoidCallback onTap;
+//
+//   const _AddFavoriteItem({required this.onTap});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return InkWell(
+//       borderRadius: BorderRadius.circular(12),
+//       onTap: onTap,
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Container(
+//             width: 44,
+//             height: 44,
+//             decoration: BoxDecoration(
+//               shape: BoxShape.circle,
+//               border: Border.all(color: AppColors.primaryERP),
+//             ),
+//             child: Icon(
+//               Icons.add,
+//               color: AppColors.primaryERP,
+//             ),
+//           ),
+//           const SizedBox(height: 6),
+//           const Text(
+//             'Thêm',
+//             style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+//

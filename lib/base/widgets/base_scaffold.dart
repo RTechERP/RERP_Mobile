@@ -14,6 +14,8 @@ class BaseScaffold extends StatelessWidget {
   final bool extendBodyBehindAppBar;
   final bool dismissKeyboardOnTap;
 
+  final bool endDrawerEnableOpenDragGesture;
+
   final double paddingTop;
   final Color backgroundColor;
   final String? backgroundImage;
@@ -33,6 +35,7 @@ class BaseScaffold extends StatelessWidget {
     this.resizeToAvoidBottomInset = true,
     this.extendBodyBehindAppBar = false,
     this.dismissKeyboardOnTap = true,
+    this.endDrawerEnableOpenDragGesture = true,
     this.paddingTop = 0,
     this.onRefresh,
   });
@@ -80,6 +83,7 @@ class BaseScaffold extends StatelessWidget {
       backgroundColor: backgroundColor,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
+      endDrawerEnableOpenDragGesture: endDrawerEnableOpenDragGesture,
     );
   }
 
