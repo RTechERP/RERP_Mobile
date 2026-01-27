@@ -20,7 +20,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.event_busy_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
-      route: '/regwork/leaving',
+      route: '/regwork/leave',
     ),
 
     AppItemModel(

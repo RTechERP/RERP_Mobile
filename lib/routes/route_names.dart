@@ -22,6 +22,17 @@ class RouteNames {
 
   static const regworkLunchDetail = '/regwork/lunch/detail';
   static const regworkLunchAdd = '/regwork/lunch/add';
+
+  static const regworkLeave = '/regwork/leave';
+
+  static const regworkLeaveDetail = '/regwork/leave/detail';
+
+  static const regworkLeaveAdd = '/regwork/leave/add';
+
+  static const regworkLeaveEdit = '/regwork/leave/edit';
+
+  // Favorites'
+
   // Favorites
   static const favorites = '/favorites';
 
