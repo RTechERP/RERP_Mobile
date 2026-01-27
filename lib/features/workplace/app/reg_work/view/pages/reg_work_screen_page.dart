@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 
 import '../../../../../../common/app_registry/app_items_registry.dart';
+import '../../../../../../common/app_theme/index.dart';
 import '../../../../../../common/utils/dialog/index.dart';
-import '../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../view/widgets/action_group_card.dart';
 class RegWorkScreenPage extends StatelessWidget {
   const RegWorkScreenPage({super.key});
@@ -15,13 +15,11 @@ class RegWorkScreenPage extends StatelessWidget {
     final items = AppItemRegistry.regwork;
 
     return BaseScaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () => onBack(context),
+      appBar: AppBarCommon(
+        title: Text(
+          'applications.reg_work'.tr(),
+          style: AppStyles.headingTitle2,
         ),
-        title: Text('applications.reg_work'.tr()),
-        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 16),

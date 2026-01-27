@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/widgets/app_item_list.dart';
@@ -6,8 +7,8 @@ import 'package:rtc_erp/features/workplace/app/favorites/view/pages/widgets/tab_
 
 
 import '../../../../../../common/app_registry/app_items_registry.dart';
+import '../../../../../../common/app_theme/index.dart';
 import '../../../../../../common/models/index.dart';
-import '../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../data/datasource/service/favorites_service.dart';
 import '../model/favorite_tabs.dart';
 
@@ -51,30 +52,25 @@ class _FavoritesAddingScreenState extends State<FavoritesAddingScreen> {
       child: BaseScaffold(
         endDrawerEnableOpenDragGesture: false,
         endDrawer: const CatalogDrawer(),
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new),
-            onPressed: () => onBack(context),
-          ),
-          centerTitle: true,
-          title: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Thêm vào mục yêu thích',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              SizedBox(height: 2),
-              Text(
-                'Đã thêm (${_favoriteIds.length})',
-                style: const TextStyle(fontSize: 12),
-              ),
-            ],
-          ),
+        appBar: AppBarCommon(
+            title: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'favorites.title'.tr(),
+                  style: AppStyles.headingTitle2,
+                ),
+                SizedBox(height: 2),
+                Text(
+                  '${'favorites.added'.tr()}(${_favoriteIds.length})',
+                  style: const TextStyle(fontSize: 12),
+                ),
+              ],
+            ),
           actions: const [
-            Icon(Icons.search_outlined),
-            SizedBox(width: 8),
-          ],
+                Icon(Icons.search_outlined),
+                SizedBox(width: 8),
+          ]
         ),
         body: Column(
           children: [

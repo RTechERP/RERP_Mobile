@@ -96,5 +96,9 @@
     "bonus": "Phúc lợi",
     "uniform": "Đồng phục",
     "leave": "Nghỉ việc"
+  },
+  "favorites": {
+    "title": "Thêm vào mục yêu thích",
+    "added": "Đã thêm"
   }
 }
