@@ -16,19 +16,19 @@ extension AppTabX on AppTab {
   String get key {
     switch (this) {
       case AppTab.regWork:
-        return 'reg_work';
+        return 'applications.reg_work';
       case AppTab.summaryWork:
-        return 'summary_work';
+        return 'applications.summary_work';
       case AppTab.regGeneral:
-        return 'reg_general';
+        return 'applications.reg_general';
       case AppTab.weekPlan:
-        return 'week_plan';
+        return 'applications.week_plan';
       case AppTab.report:
-        return 'report';
+        return 'applications.report';
         case AppTab.generalForms:
-        return 'general_forms';
+        return 'applications.general_forms';
       case AppTab.all:
-        return 'all';
+        return 'applications.all';
     }
   }
 

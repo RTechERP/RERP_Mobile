@@ -66,7 +66,7 @@ class CatalogDrawer extends StatelessWidget {
                           children: [
                             Flexible(
                               child: Text(
-                                tab.name,
+                                tab.label,
                                 textAlign: TextAlign.center,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
