@@ -23,6 +23,8 @@ class BaseScaffold extends StatelessWidget {
   /// 🔥 Pull to refresh
   final Future<void> Function()? onRefresh;
 
+  final Widget? floatingActionButton;
+
   const BaseScaffold({
     super.key,
     this.appBar,
@@ -38,6 +40,7 @@ class BaseScaffold extends StatelessWidget {
     this.endDrawerEnableOpenDragGesture = true,
     this.paddingTop = 0,
     this.onRefresh,
+    this.floatingActionButton,
   });
 
   @override
@@ -84,6 +87,7 @@ class BaseScaffold extends StatelessWidget {
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
       endDrawerEnableOpenDragGesture: endDrawerEnableOpenDragGesture,
+      floatingActionButton: floatingActionButton,
     );
   }
 

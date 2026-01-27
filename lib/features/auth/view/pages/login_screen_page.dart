@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 
 import '../../../../common/app_theme/index.dart';
 import '../../../../common/constants/index.dart';
-import '../../../../common/utils/validators.dart';
 import '../widgets/login_button.dart';
 import '../widgets/login_input_field.dart';
 
@@ -19,7 +19,8 @@ class LoginScreenPage extends StatefulWidget {
 class _LoginScreenPageState extends State<LoginScreenPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormBuilderState>();
+
 
   bool _isLoading = false;
 
@@ -68,12 +69,12 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
           ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Form(
+            child: FormBuilder(
               key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Spacer(), // 👈 đẩy nội dung xuống giữa
+                  const Spacer(),
 
                   /// Logo
                   Center(
@@ -96,23 +97,22 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
                   const SizedBox(height: 32),
 
                   /// Email
-                  LoginInputField(
+                  LoginFormBuilderInput(
+                    name: 'email',
                     icon: Icons.person_outline,
-                    label: 'auth.email'.tr(),
-                    controller: _emailController,
+                    hint: 'auth.email'.tr(),
                     keyboardType: TextInputType.emailAddress,
-                    validator: AppValidator.email,
+
                   ),
 
                   const SizedBox(height: 12),
 
                   /// Password
-                  LoginInputField(
+                  LoginFormBuilderInput(
+                    name: 'password',
                     icon: Icons.lock_outline,
-                    label: 'auth.password'.tr(),
-                    controller: _passwordController,
+                    hint: 'auth.password'.tr(),
                     obscureText: true,
-                    validator: AppValidator.password,
                   ),
 
                   const SizedBox(height: 16),
@@ -126,11 +126,10 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
 
                   const SizedBox(height: 16),
 
-                  const Spacer(), // 👈 cân đối trên & dưới
+                  const Spacer(),
                 ],
               ),
-            )
-
+            ),
           ),
         ),
       ),

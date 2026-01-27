@@ -1,61 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class LoginInputField extends StatelessWidget {
+class LoginFormBuilderInput extends StatelessWidget {
+  final String name;
   final IconData icon;
-  final String label;
-  final TextEditingController controller;
-  final String? Function(String?)? validator;
+  final String hint;
   final bool obscureText;
   final TextInputType keyboardType;
+  final String? Function(String?)? validator;
 
-  const LoginInputField({
+  const LoginFormBuilderInput({
     super.key,
+    required this.name,
     required this.icon,
-    required this.label,
-    required this.controller,
-    this.validator,
+    required this.hint,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8), // 👈 chừa không gian cho glow
+      height: 48,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.blueAccent.withOpacity(0.15),
-          ),
-        ],
+        border: Border.all(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(25),
       ),
       child: Row(
         children: [
-          /// Icon
           Container(
             width: 48,
-            height: 48,
             alignment: Alignment.center,
-            decoration: BoxDecoration(
-              border: Border(
-                right: BorderSide(color: Colors.grey.shade300),
-              ),
-            ),
             child: Icon(icon, size: 20, color: Colors.grey.shade600),
           ),
-
-          /// Input
           Expanded(
-            child: TextFormField(
-              controller: controller,
-              validator: validator,
+            child: FormBuilderTextField(
+              name: name,
               obscureText: obscureText,
               keyboardType: keyboardType,
+              validator: validator,
               decoration: InputDecoration(
-                hintText: label,
+                hintText: hint,
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+                contentPadding:
+                const EdgeInsets.symmetric(horizontal: 12),
               ),
             ),
           ),

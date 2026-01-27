@@ -56,17 +56,19 @@ class CustomTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double radius = borderRadius ?? AppUICommons.largeRadius;
-    return InkWell(
-      onTap: buttonFn,
-      borderRadius: BorderRadius.circular(radius),
-      child: CustomAnimationWidget(
-        onAnimation: onAnimation,
-        minScale: minScaleAnimation ?? 0.96,
-        child: intrinsicWidth
-            ? IntrinsicWidth(
-          child: _contentButton(radius),
-        )
-            : _contentButton(radius),
+    return Material(
+      child: InkWell(
+        onTap: buttonFn,
+        borderRadius: BorderRadius.circular(radius),
+        child: CustomAnimationWidget(
+          onAnimation: onAnimation,
+          minScale: minScaleAnimation ?? 0.96,
+          child: intrinsicWidth
+              ? IntrinsicWidth(
+            child: _contentButton(radius),
+          )
+              : _contentButton(radius),
+        ),
       ),
     );
   }

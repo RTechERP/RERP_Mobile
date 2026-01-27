@@ -18,7 +18,10 @@ class RouteNames {
   static const weekplan = '/week_plan';
   static const stock = '/stock';
 
+  static const regworkLunch = '/regwork/lunch';
 
+  static const regworkLunchDetail = '/regwork/lunch/detail';
+  static const regworkLunchAdd = '/regwork/lunch/add';
   // Favorites
   static const favorites = '/favorites';
 

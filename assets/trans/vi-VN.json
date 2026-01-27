@@ -6,7 +6,8 @@
     "expand": "Xem thêm",
     "collapse": "Thu gọn",
     "notification": "Thông báo",
-    "process": "Tính năng đang được phát triển!"
+    "process": "Tính năng đang được phát triển!",
+    "done": "Đồng ý"
   },
   "auth": {
     "login": "Đăng nhập",
