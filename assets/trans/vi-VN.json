@@ -14,7 +14,8 @@
     "email": "Tài khoản",
     "password": "Mật khẩu",
     "profile": "Hồ sơ",
-    "logout": "Đăng xuất"
+    "logout": "Đăng xuất",
+    "rtc": "RTC"
   },
 
   "dashboard": {
