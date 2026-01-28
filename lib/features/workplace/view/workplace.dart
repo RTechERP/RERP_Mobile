@@ -2,7 +2,6 @@ import "package:easy_localization/easy_localization.dart";
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 
-import "package:rtc_erp/common/app_theme/app_colors.dart";
 import "package:rtc_erp/features/workplace/view/widgets/action_group_card.dart";
 import "package:rtc_erp/features/workplace/view/widgets/circle_icon_button.dart";
 import "package:rtc_erp/features/workplace/view/widgets/favorites_add.dart";
@@ -27,7 +26,10 @@ class _WorkPlaceState extends State<WorkPlace> {
         await Future.delayed(const Duration(seconds: 2));
       },
       appBar: AppBar(
-        backgroundColor: AppColors.white,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         title: InfoCard(
           avatarUrl: 'https://i.pravatar.cc/150',
           name: 'Nguyễn Văn A',
@@ -66,18 +68,15 @@ class _WorkPlaceState extends State<WorkPlace> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 16),
+        padding: const EdgeInsets.only(top: 12),
         child: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
           child: SafeArea(
             child: Column(
               children: [
-                FavoritesAdd(
-                  onAddTap: () => context.push('/favorites'),
-                ),
+                FavoritesAdd(onAddTap: () => context.push('/favorites')),
 
-
-
-                const SizedBox(height: 16),
+                const SizedBox(height: 8),
 
                 ActionGroupCard(
                   onItemTap: (item) {
@@ -101,7 +100,8 @@ class _WorkPlaceState extends State<WorkPlace> {
                     ),
                     AppItemModel(
                       id: 'summary_work',
-                      iconCodePoint: Icons.content_paste_search_outlined.codePoint,
+                      iconCodePoint:
+                          Icons.content_paste_search_outlined.codePoint,
                       name: 'applications.summary_work'.tr(),
                     ),
                     AppItemModel(
@@ -132,7 +132,7 @@ class _WorkPlaceState extends State<WorkPlace> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 8),
 
                 ActionGroupCard(
                   onItemTap: (item) {
@@ -152,10 +152,8 @@ class _WorkPlaceState extends State<WorkPlace> {
                     AppItemModel(
                       id: 'process',
                       name: 'common.process'.tr(),
-                      iconCodePoint:
-                          Icons.error_outline_outlined.codePoint,
+                      iconCodePoint: Icons.error_outline_outlined.codePoint,
                     ),
-
                   ],
                 ),
               ],
@@ -166,6 +164,7 @@ class _WorkPlaceState extends State<WorkPlace> {
     );
   }
 }
+
 // class _FavoriteGrid extends StatelessWidget {
 //   final List<AppItemModel> items;
 //   final VoidCallback onAddTap;

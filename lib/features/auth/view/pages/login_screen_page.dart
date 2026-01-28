@@ -1,13 +1,12 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 
 import '../../../../common/app_theme/index.dart';
 import '../../../../common/constants/index.dart';
-import '../widgets/login_button.dart';
-import '../widgets/login_input_field.dart';
+import '../../../../common/widgets/form/index.dart';
 
 class LoginScreenPage extends StatefulWidget {
   const LoginScreenPage({super.key});
@@ -17,123 +16,159 @@ class LoginScreenPage extends StatefulWidget {
 }
 
 class _LoginScreenPageState extends State<LoginScreenPage> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+
   final _formKey = GlobalKey<FormBuilderState>();
 
+  late final FocusNode _accountFocus;
+  late final FocusNode _passwordFocus;
 
-  bool _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _accountFocus = FocusNode();
+    _passwordFocus = FocusNode();
+  }
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
+    _accountFocus.dispose();
+    _passwordFocus.dispose();
     super.dispose();
-  }
-
-  Future<void> _login() async {
-    if (!_formKey.currentState!.validate()) return;
-
-    setState(() => _isLoading = true);
-
-    // 👉 Giả lập gọi API
-    await Future.delayed(const Duration(seconds: 2));
-
-    setState(() => _isLoading = false);
-
-    if (!mounted) return;
-
-    // CustomToast.showToast(
-    //   context: context,
-    //   gravity: ToastGravity.TOP,
-    //   child: Text('login_success'.tr()),
-    // );
-
-    context.go('/dashboard');
   }
 
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: const Color(0xFF294A8E), // Background xanh
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 45), // khoảng hở để thấy nền xanh
-          decoration: BoxDecoration(
-            color: Colors.white, // Form nền trắng đè lên
-            borderRadius: BorderRadius.circular(25),
+      body: Stack(
+        children: [
+          MediaQuery.removeViewInsets(
+            context: context,
+            removeBottom: true,
+            child: Stack(
+              children: const [
+                Positioned(top: -120, left: -140, child: _Circle(size: 230)),
+                Positioned(top: 150, left: 350, child: _Circle(size: 140)),
+              ],
+            ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: FormBuilder(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Spacer(),
 
-                  /// Logo
-                  Center(
-                    child: Image.asset(
-                      AppImages.logo_login,
-                      height: 220,
-                      width: 220,
+          Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 28),
+              physics: const ClampingScrollPhysics(),
+              child: FormBuilder(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 40),
+
+                    Image.asset(AppImages.logo_login, height: 220),
+
+                    const SizedBox(height: 16),
+
+                    const Text(
+                      'R-ERP',
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
 
-                  const SizedBox(height: 16),
+                    const SizedBox(height: 8),
 
-                  /// Title
-                  Text(
-                    'auth.rtc'.tr(),
-                    textAlign: TextAlign.center,
-                    style: AppStyles.headingTitle4,
-                  ),
 
-                  const SizedBox(height: 32),
+                    /// Account
+                    InputField(
+                      name: 'account',
+                      hint: 'Tài khoản',
+                      icon: Icons.person_outline,
+                      focusNode: _accountFocus,
+                      validator: FormBuilderValidators.required(
+                        errorText: 'Vui lòng nhập tài khoản',
+                      ),
+                      onSubmitted: (_) => _passwordFocus.requestFocus(),
+                    ),
 
-                  /// Email
-                  LoginFormBuilderInput(
-                    name: 'email',
-                    icon: Icons.person_outline,
-                    hint: 'auth.email'.tr(),
-                    keyboardType: TextInputType.emailAddress,
 
-                  ),
+                    const SizedBox(height: 8),
 
-                  const SizedBox(height: 12),
+                    /// Password
+                    InputField(
+                      name: 'password',
+                      hint: 'Mật khẩu',
+                      icon: Icons.lock_outline,
+                      focusNode: _passwordFocus,
+                      obscureText: true,
+                      textInputAction: TextInputAction.done,
+                      validator: FormBuilderValidators.required(
+                        errorText: 'Vui lòng nhập mật khẩu',
+                      ),
+                      onSubmitted: (_) => _passwordFocus.unfocus(),
+                    ),
 
-                  /// Password
-                  LoginFormBuilderInput(
-                    name: 'password',
-                    icon: Icons.lock_outline,
-                    hint: 'auth.password'.tr(),
-                    obscureText: true,
-                  ),
 
-                  const SizedBox(height: 16),
 
-                  /// Login button
-                  LoginButton(
-                    title: 'auth.login'.tr(),
-                    loading: _isLoading,
-                    onPressed: _login,
-                  ),
+                    const SizedBox(height: 18),
 
-                  const SizedBox(height: 16),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          final isValid = _formKey.currentState?.validate() ?? false;
 
-                  const Spacer(),
-                ],
+                          if (!isValid) return;
+
+                          // Nếu cần lấy data
+                          final values = _formKey.currentState!.value;
+
+                          context.push('/dashboard');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.primaryERPlight,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        child: const Text(
+                          'Đăng nhập',
+                          style: TextStyle(
+                            color: AppColors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                  ],
+                ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
+  }
+}
 
+class _Circle extends StatelessWidget {
+  final double size;
+
+  const _Circle({required this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        color: AppColors.primaryERPlight.withOpacity(0.25),
+        shape: BoxShape.circle,
+      ),
+    );
   }
 }

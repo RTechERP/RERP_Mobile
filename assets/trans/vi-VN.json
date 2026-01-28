@@ -61,7 +61,7 @@
   },
   "reg_work": {
     "lunch": "Cơm ca",
-    "leaving": "Đăng ký nghỉ",
+    "leave": "Đăng ký nghỉ",
     "in_out": "Đi muộn - về sớm",
     "overtime": "Làm thêm",
     "overnight": "Làm đêm",

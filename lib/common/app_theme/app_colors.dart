@@ -25,6 +25,8 @@ class AppColors {
   static const Color colorD92B46 = Color(0xffD92B46);
 
   static const Color primaryERP = Color(0xFFEF4723);
+  static const Color primaryERPlight = Color(0xFFFFA726);
+
   static const Color primaryColor2 = Color(0xff000000);
   static const Color textColor = Color(0xffffffff);
   static const Color color0f1b2b = Color(0xff0f1b2b);

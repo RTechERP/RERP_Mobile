@@ -30,6 +30,10 @@ class AppBarCommon extends StatelessWidget
       /// 🔥 CHÌA KHOÁ
       automaticallyImplyLeading: automaticallyImplyLeading,
 
+      elevation: 0,
+      scrolledUnderElevation: 0,
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
       /// 🔥 Chỉ custom back khi có onBackTap
       leading: (automaticallyImplyLeading && onBackTap != null)
           ? IconButton(
