@@ -35,6 +35,12 @@ class RouteNames {
 
   static const regworkInOutAdd = '/regwork/in_out/add';
 
+  static const regworkOvertime = '/regwork/overtime';
+
+  static const regworkOvertimeDetail = '/regwork/overtime/detail';
+
+  static const regworkOvertimeAdd = '/regwork/overtime/add';
+
   // Favorites
   static const favorites = '/favorites';
 

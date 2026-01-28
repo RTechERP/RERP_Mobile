@@ -15,6 +15,9 @@ import '../features/workplace/app/reg_work/view/pages/in_out/in_out_add_screen_p
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_detail_screen_page.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_screen_page.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/lunch_screen_page.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/overtime_add_screen_page.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/overtime_detail_screen_page.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/overtime_screen_page.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -72,19 +75,35 @@ class AppRouter {
       ),
 
       GoRoute(
-        path: '/regwork/inout',
+        path: '/regwork/in_out',
         builder: (context, state) => const InOutScreenPage(),
       ),
 
       GoRoute(
-        path: '/regwork/inout/detail',
+        path: '/regwork/in_out/detail',
         builder: (context, state) => const InOutDetailScreenPage(),
 
       ),
 
       GoRoute(
-        path: '/regwork/inout/add',
+        path: '/regwork/in_out/add',
         builder: (context, state) => const InOutAddScreenPage(),
+      ),
+
+      GoRoute(
+        path: '/regwork/overtime',
+        builder: (context, state) => const OvertimeScreenPage(),
+
+      ),
+
+      GoRoute(
+        path: '/regwork/overtime/detail',
+        builder: (context, state) => const OvertimeDetailScreenPage(),
+      ),
+
+      GoRoute(
+        path: '/regwork/overtime/add',
+        builder: (context, state) => const OvertimeAddScreenPage(),
       ),
 
       GoRoute(

@@ -7,15 +7,15 @@ import '../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../common/enums/index.dart';
 import '../../../../../../../common/utils/card/index.dart';
 
-class InOutScreenPage extends StatelessWidget {
-  const InOutScreenPage({super.key});
+class OvertimeScreenPage extends StatelessWidget {
+  const OvertimeScreenPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
       appBar: AppBarCommon(
         title: Text(
-          'reg_work.in_out'.tr(), // key mới
+          'reg_work.overtime'.tr(),
           style: AppStyles.headingTitle2,
         ),
         actions: const [
@@ -24,10 +24,10 @@ class InOutScreenPage extends StatelessWidget {
         ],
       ),
 
-      /// ===== FAB: tạo đơn ra/vào =====
+      /// ===== FAB: tạo đơn tăng ca =====
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.push('/regwork/in_out/add');
+          context.push('/regwork/overtime/add');
         },
         backgroundColor: AppColors.primaryERP,
         elevation: 6,
@@ -39,7 +39,7 @@ class InOutScreenPage extends StatelessWidget {
         ),
       ),
 
-      /// ===== DANH SÁCH ĐƠN RA/VÀO =====
+      /// ===== DANH SÁCH ĐƠN TĂNG CA =====
       body: AppCardList(
         children: [
           /// ===== PENDING =====
@@ -49,19 +49,19 @@ class InOutScreenPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
                 Text(
-                  'Loại: Quên check-in',
+                  'Loại tăng ca: Ngày thường',
                   style: TextStyle(fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: 4),
                 Text('Ngày: 27/01/2026'),
                 SizedBox(height: 4),
-                Text('Giờ: 08:05'),
+                Text('Thời gian: 18:00 - 21:00'),
                 SizedBox(height: 4),
-                Text('Lý do: Quên bấm máy'),
+                Text('Số giờ: 3'),
               ],
             ),
             onEdit: () {
-              debugPrint('Edit pending in-out');
+              debugPrint('Edit pending overtime');
             },
           ),
 
@@ -72,17 +72,19 @@ class InOutScreenPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
                 Text(
-                  'Loại: Quên check-out',
+                  'Loại tăng ca: Cuối tuần',
                   style: TextStyle(fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: 4),
                 Text('Ngày: 20/01/2026'),
                 SizedBox(height: 4),
-                Text('Giờ: 17:45'),
+                Text('Thời gian: 09:00 - 12:00'),
+                SizedBox(height: 4),
+                Text('Số giờ: 3'),
               ],
             ),
             onView: () {
-              debugPrint('View approved in-out');
+              debugPrint('View approved overtime');
             },
           ),
 
@@ -93,17 +95,19 @@ class InOutScreenPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
                 Text(
-                  'Loại: Điều chỉnh giờ vào',
+                  'Loại tăng ca: Ngày lễ',
                   style: TextStyle(fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: 4),
                 Text('Ngày: 12/01/2026'),
                 SizedBox(height: 4),
-                Text('Giờ: 08:30'),
+                Text('Thời gian: 18:30 - 22:00'),
+                SizedBox(height: 4),
+                Text('Số giờ: 3.5'),
               ],
             ),
             onView: () {
-              debugPrint('Cancelled in-out');
+              debugPrint('Cancelled overtime');
             },
           ),
 
@@ -114,17 +118,19 @@ class InOutScreenPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
                 Text(
-                  'Loại: Quên check-in',
+                  'Loại tăng ca: Ngày thường',
                   style: TextStyle(fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: 4),
                 Text('Ngày: 05/02/2026'),
                 SizedBox(height: 4),
-                Text('Giờ: 08:10'),
+                Text('Thời gian: 18:00 - 20:00'),
+                SizedBox(height: 4),
+                Text('Số giờ: 2'),
               ],
             ),
             onTap: () =>
-                context.push('/regwork/in_out/detail'),
+                context.push('/regwork/overtime/detail'),
           ),
         ],
       ),

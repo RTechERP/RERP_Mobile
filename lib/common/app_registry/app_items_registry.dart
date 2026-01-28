@@ -29,7 +29,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.swap_horiz_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
-      route: '/regwork/in-out',
+      route: '/regwork/in_out',
     ),
 
     AppItemModel(
