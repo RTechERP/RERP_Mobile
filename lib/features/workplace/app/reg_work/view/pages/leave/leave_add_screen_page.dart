@@ -86,13 +86,31 @@ class LeaveAddScreenPage extends StatelessWidget {
                         child: Column(
                           children: [
                             /// Loại nghỉ
-                            LeaveTypeDropdown(name: 'leaveType'),
+                            TypeDropDown<String>(
+                              name: 'regwork_leave_add_type',
+                              label: 'Loại nghỉ',
+                              icon: Icons.assignment_outlined,
+                              items: const [
+                                DropdownMenuItem(
+                                  value: 'annual',
+                                  child: Text('Nghỉ phép năm'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'unpaid',
+                                  child: Text('Nghỉ không lương'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'sick',
+                                  child: Text('Nghỉ bệnh'),
+                                ),
+                              ],
+                            ),
 
                             const SizedBox(height: 12),
 
                             /// Từ ngày
                             FormBuilderDateTimePicker(
-                              name: 'fromDate',
+                              name: 'regwork_leave_add_formDate',
                               inputType: InputType.date,
                               format: DateFormat('dd/MM/yyyy'),
                               decoration: formInputDecoration(
@@ -116,13 +134,10 @@ class LeaveAddScreenPage extends StatelessWidget {
                             //   ),
                             // ),
                             // const SizedBox(height: 12),
-                            FormBuilderDropdown<String>(
-                              name: 'leaveSession',
-                              decoration: formInputDecoration(
-                                context,
-                                label: 'Thời gian nghỉ',
-                                icon: Icons.access_time_outlined,
-                              ),
+                            TypeDropDown<String>(
+                              name: 'regwork_leave_add_leaveSession',
+                              label: 'Thời gian ',
+                              icon: Icons.access_time_outlined,
                               items: const [
                                 DropdownMenuItem(
                                   value: 'morning',
@@ -148,13 +163,10 @@ class LeaveAddScreenPage extends StatelessWidget {
                       FormCard(
                         title: 'Người kiểm duyệt',
 
-                        child: FormBuilderDropdown<String>(
-                          name: 'approver',
-                          decoration: formInputDecoration(
-                            context,
-                            label: 'Người kiểm duyệt',
-                            icon: Icons.supervisor_account_outlined,
-                          ),
+                        child: TypeDropDown<String>(
+                          name: 'regwork_leave_add_approver',
+                          label: 'Thời gian ',
+                          icon: Icons.supervisor_account_outlined,
                           items: const [
                             DropdownMenuItem(
                               value: 'manager',
@@ -171,23 +183,21 @@ class LeaveAddScreenPage extends StatelessWidget {
                           ],
                         ),
                       ),
-
                       const SizedBox(height: 8),
 
                       /// ===== GHI CHÚ =====
                       FormCard(
                         title: 'Lý do nghỉ',
-                        child: FormBuilderTextField(
-                          name: 'reason',
+                        child: InputField(
+                          nameForm: 'regwork',
+                          nameTextField: 'regwork_leave_add_reason',
+                          label: '',
+                          icon: Icons.note_alt_outlined,
                           maxLines: 5,
-                          decoration: formInputDecoration(
-                            context,
-                            label: 'Nhập lý do nghỉ',
-                          ),
                         ),
                       ),
-                      const SizedBox(height: 8),
 
+                      const SizedBox(height: 8),
                     ],
                   ),
                 ),

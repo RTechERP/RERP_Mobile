@@ -1,30 +1,55 @@
 import 'package:flutter/material.dart';
 
+import '../../app_theme/index.dart';
+
 InputDecoration formInputDecoration(
     BuildContext context, {
       required String label,
       IconData? icon,
+      bool hasError = false,
+      String? errorText,
     }) {
+  final error = Colors.redAccent;
+  final normal = AppColors.hintText;
+
+  OutlineInputBorder border(Color color) => OutlineInputBorder(
+    borderRadius: BorderRadius.circular(14),
+    borderSide: BorderSide(color: color, width: 1.4),
+  );
+
+
   return InputDecoration(
     labelText: label,
-    prefixIcon: Icon(icon),
-    filled: true,
-    fillColor: Colors.grey.shade100,
+    floatingLabelBehavior: FloatingLabelBehavior.auto,
 
-    contentPadding:
-    const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: BorderSide.none,
+    /// ICON đổi màu theo error
+    prefixIcon: Icon(
+      icon,
+      color: hasError ? error : normal,
     ),
 
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: BorderSide(
-        color: Theme.of(context).primaryColor,
-        width: 1.5,
-      ),
+    filled: true,
+    fillColor: AppColors.white,
+    border: border(normal),
+    enabledBorder: border(normal),
+    focusedBorder: border(normal),
+
+    /// BORDER khi error
+    errorBorder: border(error),
+    focusedErrorBorder: border(error),
+
+    /// ERROR TEXT (nếu bạn muốn hiển thị)
+    errorText: hasError ? errorText : null,
+    errorStyle: const TextStyle(
+      color: Colors.redAccent,
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      height: 1.2,
+    ),
+
+    contentPadding: const EdgeInsets.symmetric(
+      horizontal: 16,
+      vertical: 18,
     ),
   );
 }

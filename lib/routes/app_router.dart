@@ -3,7 +3,6 @@ import 'package:rtc_erp/features/workplace/app/attendance/view/pages/attendance_
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen_page.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_add_screen_page.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_detail_screen_page.dart';
-import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_edit_screen_page.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_screen_page.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/lunch_add_screen_page.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/lunch_detail_screen_page.dart';
@@ -67,11 +66,6 @@ class AppRouter {
       GoRoute(
         path: '/regwork/leave/add',
         builder: (context, state) => const LeaveAddScreenPage(),
-      ),
-
-      GoRoute(
-        path: '/regwork/leave/edit',
-        builder: (context, state) => const LeaveEditScreenPage(),
       ),
 
       GoRoute(

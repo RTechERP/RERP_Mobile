@@ -1,100 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+import 'form_input_decoration.dart';
+
 class InputField extends StatelessWidget {
-  final String name;
-  final String hint;
+  final String nameForm;
+  final String nameTextField;
+
+  final String label;
   final IconData icon;
+  final TextInputType? keyboardType;
   final FocusNode? focusNode;
   final bool obscureText;
   final TextInputAction textInputAction;
   final FormFieldValidator<String>? validator;
   final ValueChanged<String?>? onSubmitted;
-  final bool showError;
+
+  final int? maxLines;
+
+  final bool enabled;
 
   const InputField({
     super.key,
-    required this.name,
-    required this.hint,
+    required this.nameForm,
+    required this.nameTextField,
+    required this.label,
     required this.icon,
+    this.keyboardType,
     this.focusNode,
     this.obscureText = false,
     this.textInputAction = TextInputAction.next,
     this.validator,
     this.onSubmitted,
-    this.showError = true,
+    this.maxLines,
+    this.enabled = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return FormBuilderField<String>(
-      name: name,
+      name: nameForm,
       validator: validator,
+      enabled: enabled,
       builder: (field) {
-        final hasError = field.hasError && showError;
-        final hasValue =
-            field.value != null && field.value!.trim().isNotEmpty;
+        final value = field.value?.trim() ?? '';
+        final hasValue = value.isNotEmpty;
 
-        /// Nếu đã có giá trị → không hiện error
-        final showErrorUI = hasError && !hasValue;
+        /// 🔑 mấu chốt UX
+        final showError =
+            field.hasError && !hasValue;
 
-        final errorColor = Colors.redAccent;
-        final normalColor = Colors.grey;
+        final effectiveMaxLines =
+        obscureText ? 1 : (maxLines ?? 1);
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            /// ERROR TEXT (ở trên)
-            AnimatedSwitcher(
-              duration: const Duration(milliseconds: 200),
-              child: showErrorUI
-                  ? Padding(
-                padding: const EdgeInsets.only(left: 12, bottom: 6),
-                child: Text(
-                  field.errorText ?? '',
-                  style: const TextStyle(
-                    color: Colors.redAccent,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              )
-                  : const SizedBox.shrink(),
-            ),
 
-            /// INPUT
-            TextField(
-              focusNode: focusNode,
-              obscureText: obscureText,
-              textInputAction: textInputAction,
-              onChanged: field.didChange,
-              onSubmitted: onSubmitted,
-              style: TextStyle(
-                color: showErrorUI ? errorColor : Colors.black,
-              ),
-              decoration: InputDecoration(
-                hintText: hint,
-                hintStyle: TextStyle(
-                  color: showErrorUI
-                      ? errorColor.withOpacity(0.8)
-                      : normalColor,
-                ),
-                prefixIcon: Icon(
-                  icon,
-                  color: showErrorUI ? errorColor : normalColor,
-                ),
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(14),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-          ],
+        return FormBuilderTextField(
+          enabled: enabled,
+          name: nameTextField,
+          focusNode: focusNode,
+          obscureText: obscureText,
+          keyboardType: keyboardType,
+          textInputAction: textInputAction,
+          onSubmitted: onSubmitted,
+          onChanged: field.didChange,
+          maxLines: effectiveMaxLines,
+          decoration: formInputDecoration(
+            context,
+            label: label,
+            icon: icon,
+            hasError: showError,
+            errorText: field.errorText,
+          ),
+
         );
       },
     );
   }
 }
-

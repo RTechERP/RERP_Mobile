@@ -29,7 +29,6 @@ class RouteNames {
 
   static const regworkLeaveAdd = '/regwork/leave/add';
 
-  static const regworkLeaveEdit = '/regwork/leave/edit';
 
   // Favorites'
 

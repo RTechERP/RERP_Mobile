@@ -48,15 +48,14 @@ class LunchAddScreen extends StatelessWidget {
                               icon: Icons.calendar_today_outlined,
                             ),
                             const SizedBox(height: 12),
-                            FormBuilderTextField(
-                              name: 'quantity',
+                            InputField(
+                              nameForm: 'regwork',
+                              nameTextField: 'regwork_lunch_add_quantity',
                               keyboardType: TextInputType.number,
-                              decoration: formInputDecoration(
-                                context,
-                                label: 'Số lượng',
-                                icon: Icons.confirmation_number_outlined,
-                              ),
+                              label: 'Số lượng',
+                              icon: Icons.confirmation_number_outlined,
                             ),
+
                             const SizedBox(height: 8),
                             LocationRadioGroup(),
                           ],
@@ -65,15 +64,15 @@ class LunchAddScreen extends StatelessWidget {
 
                       const SizedBox(height: 8),
 
+
                       FormCard(
                         title: 'Ghi chú',
-                        child: FormBuilderTextField(
-                          name: 'note',
+                        child:  InputField(
+                          nameForm: 'regwork',
+                          nameTextField: 'regwork_lunch_add_note',
+                          label: 'Ghi chú',
+                          icon: Icons.note_alt_outlined,
                           maxLines: 5,
-                          decoration: formInputDecoration(
-                            context,
-                            label: 'Nhập ghi chú (nếu có)',
-                          ),
                         ),
                       ),
                     ],

@@ -76,38 +76,35 @@ class _LunchDetailScreenPageState extends State<LunchDetailScreenPage> {
                       icon: Icons.calendar_today_outlined,
                     ),
                     const SizedBox(height: 12),
-                    FormBuilderTextField(
-                      name: 'quantity',
+                    InputField(
                       enabled: _isEditing,
+                      nameForm: 'regwork',
+                      nameTextField: 'regwork_lunch_detail_quantity',
                       keyboardType: TextInputType.number,
-                      decoration: formInputDecoration(
-                        context,
-                        label: 'Số lượng',
-                        icon: Icons.confirmation_number_outlined,
-                      ),
+                      label: 'Số lượng',
+                      icon: Icons.confirmation_number_outlined,
                     ),
-                    const SizedBox(height: 16),
+
+                    const SizedBox(height: 8),
                     LocationRadioGroup(enabled: _isEditing),
                   ],
                 ),
               ),
 
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
 
               /// ===== CARD: GHI CHÚ =====
               FormCard(
                 title: 'Ghi chú',
-                child: FormBuilderTextField(
-                  name: 'note',
+                child:  InputField(
                   enabled: _isEditing,
-                  maxLines: 8,
-                  decoration: formInputDecoration(
-                    context,
-                    label: 'Nhập ghi chú (nếu có)',
-                  ),
+                  nameForm: 'regwork',
+                  nameTextField: 'regwork_lunch_detail_note',
+                  label: 'Ghi chú',
+                  icon: Icons.note_alt_outlined,
+                  maxLines: 5,
                 ),
               ),
-
               const Spacer(),
 
               _isEditing

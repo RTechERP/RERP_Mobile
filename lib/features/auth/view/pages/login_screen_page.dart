@@ -16,12 +16,10 @@ class LoginScreenPage extends StatefulWidget {
 }
 
 class _LoginScreenPageState extends State<LoginScreenPage> {
-
   final _formKey = GlobalKey<FormBuilderState>();
 
   late final FocusNode _accountFocus;
   late final FocusNode _passwordFocus;
-
 
   @override
   void initState() {
@@ -79,37 +77,34 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
 
                     const SizedBox(height: 8),
 
-
                     /// Account
                     InputField(
-                      name: 'account',
-                      hint: 'Tài khoản',
+                      nameForm: 'auth',
+                      nameTextField: 'auth_account',
+                      label: 'Tài khoản',
                       icon: Icons.person_outline,
                       focusNode: _accountFocus,
+                      textInputAction: TextInputAction.next,
                       validator: FormBuilderValidators.required(
                         errorText: 'Vui lòng nhập tài khoản',
                       ),
                       onSubmitted: (_) => _passwordFocus.requestFocus(),
                     ),
 
-
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 12),
 
                     /// Password
                     InputField(
-                      name: 'password',
-                      hint: 'Mật khẩu',
+                      nameForm: 'auth',
+                      nameTextField: 'auth_password',
+                      label: 'Mật khẩu',
                       icon: Icons.lock_outline,
-                      focusNode: _passwordFocus,
                       obscureText: true,
-                      textInputAction: TextInputAction.done,
+                      focusNode: _passwordFocus,
                       validator: FormBuilderValidators.required(
                         errorText: 'Vui lòng nhập mật khẩu',
                       ),
-                      onSubmitted: (_) => _passwordFocus.unfocus(),
                     ),
-
-
 
                     const SizedBox(height: 18),
 
@@ -118,7 +113,8 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
                       height: 48,
                       child: ElevatedButton(
                         onPressed: () {
-                          final isValid = _formKey.currentState?.validate() ?? false;
+                          final isValid =
+                              _formKey.currentState?.validate() ?? false;
 
                           if (!isValid) return;
 
@@ -143,7 +139,6 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),

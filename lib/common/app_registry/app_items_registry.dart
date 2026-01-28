@@ -16,7 +16,7 @@ class AppItemRegistry {
 
     AppItemModel(
       id: 'reg_work:leaving',
-      name: 'reg_work.leaving'.tr(),
+      name: 'reg_work.leave'.tr(),
       iconCodePoint: Icons.event_busy_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
