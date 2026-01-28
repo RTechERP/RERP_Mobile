@@ -5,3 +5,10 @@ enum ApprovalStatus {
 
   cancelled,
 }
+
+
+enum FormActionMode {
+  view,
+  edit,
+  add,
+}

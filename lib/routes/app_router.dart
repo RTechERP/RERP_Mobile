@@ -11,6 +11,9 @@ import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/reg_work_scre
 import '../features/auth/view/pages/login_screen_page.dart';
 import '../features/dashboard/view/dashboard_screen_page.dart';
 import '../features/splash/view/splash_screen_page.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/in_out_add_screen_page.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/in_out_detail_screen_page.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/in_out_screen_page.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/lunch_screen_page.dart';
 
 class AppRouter {
@@ -66,6 +69,22 @@ class AppRouter {
       GoRoute(
         path: '/regwork/leave/add',
         builder: (context, state) => const LeaveAddScreenPage(),
+      ),
+
+      GoRoute(
+        path: '/regwork/inout',
+        builder: (context, state) => const InOutScreenPage(),
+      ),
+
+      GoRoute(
+        path: '/regwork/inout/detail',
+        builder: (context, state) => const InOutDetailScreenPage(),
+
+      ),
+
+      GoRoute(
+        path: '/regwork/inout/add',
+        builder: (context, state) => const InOutAddScreenPage(),
       ),
 
       GoRoute(

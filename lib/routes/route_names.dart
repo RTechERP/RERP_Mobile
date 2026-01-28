@@ -29,8 +29,11 @@ class RouteNames {
 
   static const regworkLeaveAdd = '/regwork/leave/add';
 
+  static const regworkInOut = '/regwork/in_out';
 
-  // Favorites'
+  static const regworkInOutDetail = '/regwork/in_out/detail';
+
+  static const regworkInOutAdd = '/regwork/in_out/add';
 
   // Favorites
   static const favorites = '/favorites';

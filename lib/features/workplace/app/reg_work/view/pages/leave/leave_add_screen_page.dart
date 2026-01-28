@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../common/enums/index.dart';
 import '../../../../../../../common/widgets/form/index.dart';
 
 class LeaveAddScreenPage extends StatelessWidget {
@@ -204,31 +205,13 @@ class LeaveAddScreenPage extends StatelessWidget {
               ),
 
               /// ===== BUTTON CỐ ĐỊNH =====
-              SafeArea(
-                top: false,
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState?.saveAndValidate() ?? false) {
-                      final values = _formKey.currentState!.value;
-                      debugPrint(values.toString());
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryERP,
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    minimumSize: const Size.fromHeight(48),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                  ),
-                  child: const Text(
-                    'Gửi đơn',
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
+              FormActions(
+                mode: FormActionMode.add,
+                onSubmit: () {
+                  if (_formKey.currentState?.saveAndValidate() ?? false) {
+                    debugPrint(_formKey.currentState!.value.toString());
+                  }
+                },
               ),
             ],
           ),
