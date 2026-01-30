@@ -1,23 +1,22 @@
 import 'package:go_router/go_router.dart';
-import 'package:rtc_erp/features/workplace/app/attendance/view/pages/attendance_screen_page.dart';
-import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen_page.dart';
-import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_add_screen_page.dart';
-import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_detail_screen_page.dart';
-import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_screen_page.dart';
-import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/lunch_add_screen_page.dart';
-import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/lunch_detail_screen_page.dart';
-import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/reg_work_screen_page.dart';
+import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_add_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_detail_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/lunch_add_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/lunch_detail_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/reg_work_screen.dart';
 
-import '../features/auth/view/pages/login_screen_page.dart';
-import '../features/dashboard/view/dashboard_screen_page.dart';
-import '../features/splash/view/splash_screen_page.dart';
-import '../features/workplace/app/reg_work/view/pages/in_out/in_out_add_screen_page.dart';
-import '../features/workplace/app/reg_work/view/pages/in_out/in_out_detail_screen_page.dart';
-import '../features/workplace/app/reg_work/view/pages/in_out/in_out_screen_page.dart';
-import '../features/workplace/app/reg_work/view/pages/lunch/lunch_screen_page.dart';
-import '../features/workplace/app/reg_work/view/pages/overtime/overtime_add_screen_page.dart';
-import '../features/workplace/app/reg_work/view/pages/overtime/overtime_detail_screen_page.dart';
-import '../features/workplace/app/reg_work/view/pages/overtime/overtime_screen_page.dart';
+import '../features/auth/view/pages/login_screen.dart';
+import '../features/dashboard/view/dashboard_screen.dart';
+import '../features/splash/view/splash_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/in_out_add_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/in_out_detail_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/in_out_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/lunch/lunch_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/overtime_add_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/overtime_detail_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/overtime_screen.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -25,34 +24,29 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/splash',
-        builder: (context, state) => const SplashScreenPage(),
+        builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
         path: '/login',
-        builder: (context, state) => const LoginScreenPage(),
+        builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
         path: '/dashboard',
-        builder: (context, state) => const DashboardScreenPage(),
+        builder: (context, state) => const DashboardScreen(),
       ),
-      GoRoute(
-        path: '/attendance',
-        builder: (context, state) => const AttendanceScreenPage(),
-      ),
-
       GoRoute(
         path: '/regwork',
-        builder: (context, state) => const RegWorkScreenPage(),
+        builder: (context, state) => const RegWorkScreen(),
       ),
 
       GoRoute(
         path:'/regwork/lunch',
-        builder: (context, state) => const LunchScreenPage(),
+        builder: (context, state) => const LunchScreen(),
       ),
 
       GoRoute(
         path: '/regwork/lunch/detail',
-        builder: (context, state) => const LunchDetailScreenPage(),
+        builder: (context, state) => const LunchDetailScreen(),
       ),
 
       GoRoute(
