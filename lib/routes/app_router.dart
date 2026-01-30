@@ -6,6 +6,7 @@ import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_s
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/lunch_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/lunch_detail_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/reg_work_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/work_trip/work_trip_detail_screen.dart';
 
 import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
@@ -14,9 +15,17 @@ import '../features/workplace/app/reg_work/view/pages/in_out/in_out_add_screen.d
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/lunch_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/missed/missed_add_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/missed/missed_detail_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/missed/missed_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/overtime_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/overtime_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/overtime_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/wfh/wfh_add_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/wfh/wfh_detail_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/wfh/wfh_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/work_trip/work_trip_add_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/work_trip/work_trip_screen.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -26,10 +35,7 @@ class AppRouter {
         path: '/splash',
         builder: (context, state) => const SplashScreen(),
       ),
-      GoRoute(
-        path: '/login',
-        builder: (context, state) => const LoginScreen(),
-      ),
+      GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       GoRoute(
         path: '/dashboard',
         builder: (context, state) => const DashboardScreen(),
@@ -40,7 +46,7 @@ class AppRouter {
       ),
 
       GoRoute(
-        path:'/regwork/lunch',
+        path: '/regwork/lunch',
         builder: (context, state) => const LunchScreen(),
       ),
 
@@ -76,7 +82,6 @@ class AppRouter {
       GoRoute(
         path: '/regwork/in_out/detail',
         builder: (context, state) => const InOutDetailScreenPage(),
-
       ),
 
       GoRoute(
@@ -87,7 +92,6 @@ class AppRouter {
       GoRoute(
         path: '/regwork/overtime',
         builder: (context, state) => const OvertimeScreenPage(),
-
       ),
 
       GoRoute(
@@ -98,6 +102,52 @@ class AppRouter {
       GoRoute(
         path: '/regwork/overtime/add',
         builder: (context, state) => const OvertimeAddScreenPage(),
+      ),
+
+      GoRoute(
+        path: '/regwork/wfh',
+        builder: (context, state) => const WfhScreen(),
+      ),
+
+      GoRoute(
+        path: '/regwork/wfh/detail',
+        builder: (context, state) => const WfhDetailScreen(),
+      ),
+
+      GoRoute(
+        path: '/regwork/wfh/add',
+        builder: (context, state) => const WfhAddScreen(),
+      ),
+
+      GoRoute(
+        path: '/regwork/missed',
+        builder: (context, state) => const MissedScreen(),
+      ),
+
+      GoRoute(
+        path: '/regwork/missed/detail',
+        builder: (context, state) => const MissedDetailScreen(),
+      ),
+
+
+      GoRoute(
+        path: '/regwork/missed/add',
+        builder: (context, state) => const MissedAddScreen(),
+      ),
+
+      GoRoute(
+        path: '/regwork/work_trip',
+        builder: (context, state) => const WorkTripScreen(),
+      ),
+
+      GoRoute(
+        path: '/regwork/work_trip/add',
+        builder: (context, state) => const WorkTripAddScreen(),
+      ),
+
+      GoRoute(
+        path: '/regwork/work_trip/detail',
+        builder: (context, state) => const WorkTripDetailScreen(),
       ),
 
       GoRoute(

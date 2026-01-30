@@ -41,8 +41,17 @@ class RouteNames {
 
   static const regworkOvertimeAdd = '/regwork/overtime/add';
 
+  static const regworkWfh = '/regwork/wfh';
+
+  static const regworkWfhDetail = '/regwork/wfh/detail';
+  static const regworkWfhAdd = '/regwork/wfh/add';
+
+  static const regworkMissed = '/regwork/missed';
+
+  static const regworkMissedDetail = '/regwork/missed/detail';
+
+  static const regworkMissedAdd = '/regwork/missed/add';
+
   // Favorites
   static const favorites = '/favorites';
-
-
 }
