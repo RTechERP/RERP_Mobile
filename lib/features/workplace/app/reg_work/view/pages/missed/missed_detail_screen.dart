@@ -107,7 +107,9 @@ class _MissedDetailScreenState extends State<MissedDetailScreen> {
                               ],
                             )
                                 : const FormReadonlyField(
-                              value: 'Quên check-in',
+                              label: '',
+
+                              name: 'Quên check-in',
                               icon: Icons
                                   .fingerprint_outlined,
                             ),
@@ -126,7 +128,9 @@ class _MissedDetailScreenState extends State<MissedDetailScreen> {
                                   'dd/MM/yyyy'),
                             )
                                 : const FormReadonlyField(
-                              value: '27/01/2026',
+                              label: '',
+
+                              name: '27/01/2026',
                               icon: Icons
                                   .date_range_outlined,
                             ),

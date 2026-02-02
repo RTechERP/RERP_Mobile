@@ -56,7 +56,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.airport_shuttle_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
-      route: '/regwork/work-trip',
+      route: '/regwork/work_trip',
     ),
 
     AppItemModel(

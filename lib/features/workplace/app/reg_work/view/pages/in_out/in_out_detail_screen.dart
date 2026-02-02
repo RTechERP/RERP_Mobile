@@ -121,7 +121,9 @@ class _InOutDetailScreenPageState extends State<InOutDetailScreenPage> {
                               ],
                             )
                                 : const FormReadonlyField(
-                              value: 'Về sớm - Việc công ty',
+                              label: '',
+
+                              name: 'Về sớm - Việc công ty',
                               icon: Icons.swap_vert_outlined,
                             ),
 
@@ -138,7 +140,9 @@ class _InOutDetailScreenPageState extends State<InOutDetailScreenPage> {
                             )
 
                                 : const FormReadonlyField(
-                              value: '25/01/2026',
+                              label: '',
+
+                              name: '25/01/2026',
                               icon: Icons.date_range_outlined,
                             ),
 
@@ -158,7 +162,8 @@ class _InOutDetailScreenPageState extends State<InOutDetailScreenPage> {
 
                                   )
                                       : const FormReadonlyField(
-                                    value: '16:30',
+                                    label: '',
+                                    name: '16:30',
                                     icon: Icons.schedule_outlined,
                                   ),
                                 ),
@@ -174,7 +179,8 @@ class _InOutDetailScreenPageState extends State<InOutDetailScreenPage> {
                                   )
 
                                       : const FormReadonlyField(
-                                    value: '17:30',
+                                    label: '',
+                                    name: '17:30',
                                     icon: Icons.schedule_outlined,
                                   ),
                                 ),

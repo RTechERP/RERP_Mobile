@@ -44,7 +44,9 @@ class LunchAddScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             FormReadonlyField(
-                              value: DateFormat('dd/MM/yyyy')
+                              label: '',
+
+                              name: DateFormat('dd/MM/yyyy')
                                   .format(DateTime.now()),
                               icon: Icons.calendar_today_outlined,
                             ),

@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import '../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../common/enums/index.dart';
-import '../../../../../../../common/helpers/index.dart';
 import '../../../../../../../common/widgets/form/index.dart';
 
 class WfhDetailScreen extends StatefulWidget {
@@ -19,17 +18,20 @@ class _WfhDetailScreenState extends State<WfhDetailScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
   bool _isEditing = false;
 
-  late final FormControllerHelper _editController;
+  void _toggleEdit() {
+    setState(() => _isEditing = true);
+  }
 
+  void _cancelEdit() {
+    _formKey.currentState?.reset();
+    setState(() => _isEditing = false);
+  }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _editController = FormControllerHelper(
-      formKey: _formKey,
-      setEditing: (value) => setState(() => _isEditing = value),
-    );
+  void _save() {
+    if (_formKey.currentState?.saveAndValidate() ?? false) {
+      debugPrint(_formKey.currentState!.value.toString());
+      setState(() => _isEditing = false);
+    }
   }
 
   @override
@@ -42,13 +44,10 @@ class _WfhDetailScreenState extends State<WfhDetailScreen> {
           IconButton(
             icon: Icon(_isEditing ? Icons.close : Icons.create_outlined),
             onPressed: () {
-              _isEditing
-                  ? _editController.cancelEdit()
-                  : _editController.startEdit();
+              _isEditing ? _cancelEdit() : _toggleEdit();
             },
           ),
         ],
-
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -88,7 +87,9 @@ class _WfhDetailScreenState extends State<WfhDetailScreen> {
                                     ],
                                   )
                                 : const FormReadonlyField(
-                                    value: 'Cả ngày',
+                              label: '',
+
+                                    name: 'Cả ngày',
                                     icon: Icons.schedule_outlined,
                                   ),
 
@@ -104,7 +105,9 @@ class _WfhDetailScreenState extends State<WfhDetailScreen> {
                                     format: DateFormat('dd/MM/yyyy'),
                                   )
                                 : const FormReadonlyField(
-                                    value: '25/01/2026',
+                              label: '',
+
+                                    name: '25/01/2026',
                                     icon: Icons.date_range_outlined,
                                   ),
                           ],
@@ -151,7 +154,9 @@ class _WfhDetailScreenState extends State<WfhDetailScreen> {
                                 maxLines: 3,
                               )
                             : const FormReadonlyField(
-                                value: 'Nội dung',
+                          label: '',
+
+                                name: 'Nội dung',
                                 icon: Icons.content_paste,
                               ),
                       ),
@@ -178,14 +183,10 @@ class _WfhDetailScreenState extends State<WfhDetailScreen> {
               /// ===== ACTION =====
               FormActions(
                 mode: _isEditing ? FormActionMode.edit : FormActionMode.view,
-                onCancel: _editController.cancelEdit,
-                onSave: () => _editController.save(
-                  onSubmit: (values) {
-                    debugPrint(values.toString());
-                  },
-                ),
+                onView: () {},
+                onCancel: _cancelEdit,
+                onSave: _save,
               ),
-
             ],
           ),
         ),

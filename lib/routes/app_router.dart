@@ -18,6 +18,8 @@ import '../features/workplace/app/reg_work/view/pages/lunch/lunch_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/missed_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/missed_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/missed_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overnight/overnight_add_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overnight/overnight_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/overtime_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/overtime_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/overtime_screen.dart';
@@ -150,6 +152,20 @@ class AppRouter {
         builder: (context, state) => const WorkTripDetailScreen(),
       ),
 
+      GoRoute(
+        path: '/regwork/overnight',
+        builder: (context, state) => const OvernightScreen(),
+      ),
+
+      GoRoute(
+        path: '/regwork/overnight/detail',
+        builder: (context, state) => const OvertimeDetailScreenPage(),
+      ),
+
+      GoRoute(
+        path: '/regwork/overnight/add',
+        builder: (context, state) => const OvernightAddScreen(),
+      ),
       GoRoute(
         path: '/favorites',
         builder: (context, state) => const FavoritesAddingScreen(),

@@ -85,7 +85,9 @@ class _OvertimeDetailScreenPageState
                               ),
                             )
                                 : const FormReadonlyField(
-                              value: '27/01/2026',
+                              label: '',
+
+                              name: '27/01/2026',
                               icon: Icons
                                   .date_range_outlined,
                             ),
@@ -114,7 +116,9 @@ class _OvertimeDetailScreenPageState
                                     ),
                                   )
                                       : const FormReadonlyField(
-                                    value: '06:00 PM',
+                                    label: '',
+
+                                    name: '06:00 PM',
                                     icon: Icons
                                         .schedule_outlined,
                                   ),
@@ -139,7 +143,9 @@ class _OvertimeDetailScreenPageState
                                     ),
                                   )
                                       : const FormReadonlyField(
-                                    value: '09:00 PM',
+                                    label: '',
+
+                                    name: '09:00 PM',
                                     icon: Icons
                                         .schedule_outlined,
                                   ),
@@ -165,7 +171,8 @@ class _OvertimeDetailScreenPageState
                               ),
                             )
                                 : const FormReadonlyField(
-                              value: '3 giờ',
+                              label: '',
+                              name: '3 giờ',
                               icon: Icons
                                   .timelapse_outlined,
                             ),
@@ -199,7 +206,8 @@ class _OvertimeDetailScreenPageState
                               ],
                             )
                                 : const FormReadonlyField(
-                              value: 'Ngày thường',
+                              label: '',
+                              name: 'Ngày thường',
                               icon: Icons
                                   .category_outlined,
                             ),
@@ -236,7 +244,9 @@ class _OvertimeDetailScreenPageState
                               ],
                             )
                                 : const FormReadonlyField(
-                              value: 'Dự án A',
+                              label: '',
+
+                              name: 'Dự án A',
                               icon:
                               Icons.work_outline,
                             ),
@@ -269,7 +279,9 @@ class _OvertimeDetailScreenPageState
                               ],
                             )
                                 : const FormReadonlyField(
-                              value: 'Văn phòng',
+                              label: '',
+
+                              name: 'Văn phòng',
                               icon:
                               Icons.place_outlined,
                             ),
@@ -287,7 +299,9 @@ class _OvertimeDetailScreenPageState
                               AppColors.primaryERP,
                             )
                                 : const FormReadonlyField(
-                              value: 'Có',
+                              label: '',
+
+                              name: 'Có',
                               icon: Icons
                                   .check_circle_outline,
                             ),
@@ -311,7 +325,9 @@ class _OvertimeDetailScreenPageState
                               ),
                             )
                                 : const FormReadonlyField(
-                              value: 'xac_nhan_ot.pdf',
+                              label: '',
+
+                              name: 'xac_nhan_ot.pdf',
                               icon: Icons
                                   .attach_file_outlined,
                             ),
@@ -370,7 +386,9 @@ class _OvertimeDetailScreenPageState
                           ),
                         )
                             : const FormReadonlyField(
-                          value:
+                          label: '',
+
+                          name:
                           'Hoàn thành gấp deadline',
                           icon:
                           Icons.note_alt_outlined,

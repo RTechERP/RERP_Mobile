@@ -52,6 +52,12 @@ class RouteNames {
 
   static const regworkMissedAdd = '/regwork/missed/add';
 
+  static const regworkOvernight = '/regwork/overnight';
+
+  static const regworkOvernightDetail = '/regwork/overnight/detail';
+
+  static const regworkOvernightAdd = '/regwork/overnight/add';
+
   // Favorites
   static const favorites = '/favorites';
 }

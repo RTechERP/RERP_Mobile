@@ -73,7 +73,9 @@ class _LunchDetailScreenState extends State<LunchDetailScreen> {
                 child: Column(
                   children: [
                     FormReadonlyField(
-                      value: DateFormat('dd/MM/yyyy').format(DateTime.now()),
+                      label: '',
+
+                      name: DateFormat('dd/MM/yyyy').format(DateTime.now()),
                       icon: Icons.calendar_today_outlined,
                     ),
                     const SizedBox(height: 12),

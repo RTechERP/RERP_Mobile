@@ -79,7 +79,9 @@ class _LeaveDetailScreenPageState extends State<LeaveDetailScreenPage> {
                               ],
                             )
                                 : const FormReadonlyField(
-                              value: 'Nghỉ phép năm',
+                              label: '',
+
+                              name: 'Nghỉ phép năm',
                               icon: Icons.assignment_outlined,
                             ),
 
@@ -95,7 +97,9 @@ class _LeaveDetailScreenPageState extends State<LeaveDetailScreenPage> {
                             )
 
                                 : const FormReadonlyField(
-                              value: '25/01/2026',
+                              label: '',
+
+                              name: '25/01/2026',
                               icon: Icons.date_range_outlined,
                             ),
 
