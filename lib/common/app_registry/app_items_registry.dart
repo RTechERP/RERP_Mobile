@@ -248,7 +248,57 @@ class AppItemRegistry {
 
   static final List<AppItemModel> generalforms = [];
 
-  static final List<AppItemModel> reports = [];
+  static final List<AppItemModel> reports = [
+    /// ================= REPORT =================
+    AppItemModel(
+      id: 'report:sale',
+      name: 'report.sale'.tr(),
+      iconCodePoint: Icons.attach_money_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'report',
+      route: '/report/sale',
+    ),
+    AppItemModel(
+      id: 'report:ad',
+      name: 'report.ad'.tr(),
+      iconCodePoint: Icons.campaign_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'report',
+      route: '/report/ad',
+    ),
+    AppItemModel(
+      id: 'report:tech',
+      name: 'report.tech'.tr(),
+      iconCodePoint: Icons.engineering_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'report',
+      route: '/report/tech',
+    ),
+    AppItemModel(
+      id: 'report:hr',
+      name: 'report.hr'.tr(),
+      iconCodePoint: Icons.people_alt_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'report',
+      route: '/report/hr',
+    ),
+    AppItemModel(
+      id: 'report:marketing',
+      name: 'report.marketing'.tr(),
+      iconCodePoint: Icons.trending_up_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'report',
+      route: '/report/marketing',
+    ),
+    AppItemModel(
+      id: 'report:agv',
+      name: 'report.agv'.tr(),
+      iconCodePoint: Icons.precision_manufacturing_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'report',
+      route: '/report/agv',
+    ),
+  ];
 
   static final List<AppItemModel> weekplan = [
     /// ================= WEEK PLAN =================

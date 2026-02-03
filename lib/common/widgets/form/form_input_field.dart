@@ -20,6 +20,15 @@ class FormInputField extends StatelessWidget {
 
   final bool enabled;
 
+  final bool readOnly;
+  final VoidCallback? onTap;
+
+  final TextEditingController? controller;
+
+  final String? initialValue;
+
+  final ValueChanged<String?>? onChanged;
+
   const FormInputField({
     super.key,
     required this.nameForm,
@@ -34,11 +43,18 @@ class FormInputField extends StatelessWidget {
     this.onSubmitted,
     this.maxLines,
     this.enabled = true,
+    this.readOnly = false,
+    this.onTap,
+    this.controller,
+    this.initialValue,
+    this.onChanged
   });
 
   @override
   Widget build(BuildContext context) {
     return FormBuilderField<String>(
+      onChanged: onChanged,
+      initialValue: initialValue,
       name: nameForm,
       validator: validator,
       enabled: enabled,
@@ -55,6 +71,8 @@ class FormInputField extends StatelessWidget {
 
 
         return FormBuilderTextField(
+          readOnly: readOnly,
+          onTap: onTap,
           enabled: enabled,
           name: nameTextField,
           focusNode: focusNode,
@@ -71,6 +89,7 @@ class FormInputField extends StatelessWidget {
             hasError: showError,
             errorText: field.errorText,
           ),
+          controller: controller,
 
         );
       },

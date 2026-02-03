@@ -119,6 +119,7 @@ class _WorkPlaceScreenState extends State<WorkPlaceScreen> {
                       id: 'report',
                       iconCodePoint: Icons.description_outlined.codePoint,
                       name: 'applications.report'.tr(),
+                      route: '/report',
                     ),
                     AppItemModel(
                       id: 'week_plan',

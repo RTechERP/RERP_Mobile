@@ -6,10 +6,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'app.dart';
 import 'base/bloc/app_bloc_observer.dart';
 import 'common/app/app_initializer.dart';
-
 Future<void> bootstrap(String envFile) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await AppInitializer.init(envFile);
+  await AppInitializer.init(envFile); // 👈 đã inject bên trong
 
   Bloc.observer = const AppBlocObserver();
   await EasyLocalization.ensureInitialized();

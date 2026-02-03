@@ -58,6 +58,54 @@ class RouteNames {
 
   static const regworkOvernightAdd = '/regwork/overnight/add';
 
+  // Reports
+
+  ///*** Techinical Department ***///
+  static const reportITdepart = '/report/tech';
+  static const reportITdepartDetail = '/report/tech/detail';
+  static const reportITdepartAdd = '/report/tech/add';
+
+  ///***Sale Department***///
+  ///**** Admin Sale ****///
+  static const reportSaleAdmin = '/report/sale_admin';
+  static const reportSaledAdminDetail = '/report/sale_admin/detail';
+  static const reportSaleAdminAdd = '/report/sale_admin/add';
+
+  ///**** Sale Staff ****///
+  static const reportSaleStaff = '/report/sale_staff';
+  static const reportSaleStaffDetail = '/report/sale_staff/detail';
+  static const reportSaleStaffAdd = '/report/sale_staff/add';
+
+
+  ///*** Marketing Department ***///
+  static const reportMarketingdepart = '/report/marketing';
+  static const reportMarketingdepartDetail = '/report/marketing/detail';
+  static const reportMarketingdepartAdd = '/report/marketing/add';
+
+
+  ///*** HR Department ***///
+  ///**** Administration - IT ****///
+
+  static const reportHRAdmin = '/report/hr_admin';
+  static const reportHRAdminDetail = '/report/hr_admin/detail';
+  static const reportHRAdminAdd = '/report/hr_admin/add';
+
+  ///**** LXCP ****///
+  static const reportHRLXCP = '/report/hr_lxcp';
+  static const reportHRLXCPDetail = '/report/hr_lxcp/detail';
+  static const reportHRLXCPAdd = '/report/hr_lxcp/add';
+
+  ///*** AGV - Mechanical Department
+  static const reportAGVdepart = '/report/agv';
+  static const reportAGVdepartDetail = '/report/agv/detail';
+  static const reportAGVdepartAdd = '/report/agv/add';
+
+  ///*** Assembly - Deployment Department ***///
+  static const reportADdepart = '/report/ad';
+  static const reportADdepartDetail = '/report/ad/detail';
+  static const reportADdepartAdd = '/report/ad/add';
+
+
   // Favorites
   static const favorites = '/favorites';
 }

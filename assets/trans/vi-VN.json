@@ -83,8 +83,17 @@
     "personal_asset": "Tài sản cá nhân",
     "stamp": "Đăng ký đóng dấu"
   },
-  "reports": {
-
+  "report": {
+    "sale": "Phòng Sale",
+    "sale_admin": "Sale Admin",
+    "sale_staff": "Nhân viên sale",
+    "marketing": "Phòng Marketing",
+    "ad": "Phòng lắp ráp - triển khai dự án",
+    "tech": "Phòng kỹ thuật",
+    "agv": "Phòng AGV - Cơ ",
+    "hr": "Phòng nhân sự",
+    "thr": "Hành chính - IT",
+    "lxcp": "Lái xe - cắt phim"
   },
   "week_plan": {
     "personal": "Cá nhân",
