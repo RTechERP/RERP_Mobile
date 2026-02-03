@@ -10,7 +10,7 @@ class TechEvent with _$TechEvent {
     required String workId,
   }) = _RemoveWork;
 
-  const factory TechEvent.expandWork(int categoryIndex, int workIndex) =
+  const factory TechEvent.expandWork(int projectIndex, int workIndex) =
       _ExpandWork;
 
   const factory TechEvent.updateWork({
@@ -34,4 +34,18 @@ class TechEvent with _$TechEvent {
       _SelectProject;
 
   const factory TechEvent.expandProject(int projectIndex) = _ExpandProject;
+
+  /// ✅ BỔ SUNG 2 EVENT MỚI
+  const factory TechEvent.updateLocation({
+    required String type, // 'rtc' | 'other'
+    String? value,        // địa điểm nhập tay nếu other
+  }) = _UpdateLocation;
+
+  const factory TechEvent.updateExtraInfo({
+    String? issue,
+    String? solution,
+    String? blocking,
+    String? blockingReason,
+    String? nextPlan,
+  }) = _UpdateExtraInfo;
 }

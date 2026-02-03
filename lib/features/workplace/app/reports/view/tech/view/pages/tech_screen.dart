@@ -30,12 +30,19 @@ class TechScreen extends StatelessWidget {
             project: 'RTC1.26.002 - R-ERP Mobile',
             time: DateTime.now(),
             progress: 0.25,
+            onTap: () {
+              context.push('/report/tech/detail');
+          },
           ),
           AppCardReport(
             category: 'RTC 02.26.002_2',
             project: 'RTC1.26.002 - R-ERP Mobile',
             time: DateTime.now(),
             progress: 0.25,
+            onTap: () {
+              context.push('/report/tech/detail');
+            },
+
           ),
         ],
       ),

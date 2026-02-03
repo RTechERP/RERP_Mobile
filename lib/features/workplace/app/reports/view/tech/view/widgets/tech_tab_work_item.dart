@@ -10,86 +10,99 @@ class TechTabWorkItem extends StatelessWidget {
   final int projectIndex;
   final String title;
   final TechWork work;
-
-  final VoidCallback onDelete;
-  final VoidCallback onToggleExpand;
   final bool isExpanded;
+  final VoidCallback onToggleExpand;
+  final VoidCallback? onDelete;
+  final bool readonly;
+
+  /// 👇 DetailScreen bật flag này = luôn mở
+  final bool alwaysExpanded;
 
   const TechTabWorkItem({
     super.key,
+    required this.projectIndex,
     required this.title,
     required this.work,
-    required this.onDelete,
-    required this.onToggleExpand,
     required this.isExpanded,
-    required this.projectIndex,
+    required this.onToggleExpand,
+    this.onDelete,
+    this.readonly = false,
+    this.alwaysExpanded = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onToggleExpand,
+    final showExpanded = alwaysExpanded ? true : isExpanded;
+
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: alwaysExpanded ? null : onToggleExpand, // 👈 bấm cả card để expand
       child: FormCard(
         title: title,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.delete_outline_rounded, color: Colors.redAccent),
-            onPressed: onDelete,
-          ),
-          IconButton(
-            icon: Icon(
-              isExpanded
-                  ? Icons.keyboard_arrow_up_rounded
-                  : Icons.keyboard_arrow_down_rounded,
+          if (!alwaysExpanded)
+            IconButton(
+              icon: Icon(
+                showExpanded
+                    ? Icons.keyboard_arrow_up_rounded
+                    : Icons.keyboard_arrow_down_rounded,
+              ),
+              onPressed: onToggleExpand,
             ),
-            onPressed: onToggleExpand,
-          ),
         ],
-        child: isExpanded ? _buildContent(context) : const SizedBox.shrink(),
+        child: showExpanded
+            ? IgnorePointer(
+          ignoring: readonly, // 👈 chỉ khoá input
+          child: _buildContent(context),
+        )
+            : const SizedBox.shrink(),
       ),
     );
   }
 
   Widget _buildContent(BuildContext context) {
-    final fakeCategories = const ['Bugfix', 'Feature', 'Tối ưu hiệu năng', 'Nghiên cứu'];
+    final fakeCategories = const [
+      'Bugfix',
+      'Feature',
+      'Tối ưu hiệu năng',
+      'Nghiên cứu'
+    ];
 
     return Column(
       children: [
         /// ===== CATEGORY =====
-        Row(
-          children: [
-            Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  openSelectBottomSheet(
-                    context: context,
-                    title: 'Chọn hạng mục',
-                    items: fakeCategories,
-                    onSelected: (v) {
-                      context.read<TechBloc>().add(
-                        TechEvent.updateWork(
-                          projectIndex: projectIndex,
-                          workId: work.id,
-                          category: v,
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: AbsorbPointer(
-                  child: FormInputField(
-                    key: ValueKey('${work.id}_${work.category}'),
-                    nameForm: 'tech_add_category_${work.id}',
-                    nameTextField: 'category_${work.id}',
-                    label: work.category?.isNotEmpty == true ? work.category! : 'Hạng mục',
-                    readOnly: true,
-                    icon: Icons.category_outlined,
-                    initialValue: work.category ?? '',
+        GestureDetector(
+          onTap: readonly
+              ? null
+              : () {
+            openSelectBottomSheet(
+              context: context,
+              title: 'Chọn hạng mục',
+              items: fakeCategories,
+              onSelected: (v) {
+                context.read<TechBloc>().add(
+                  TechEvent.updateWork(
+                    projectIndex: projectIndex,
+                    workId: work.id,
+                    category: v,
                   ),
-                ),
-              ),
+                );
+              },
+            );
+          },
+          child: AbsorbPointer(
+            child: FormInputField(
+              key: ValueKey('${work.id}_${work.category}'),
+              nameForm: 'tech_add_category_${work.id}',
+              nameTextField: 'category_${work.id}',
+              label: work.category?.isNotEmpty == true
+                  ? work.category!
+                  : 'Hạng mục',
+              readOnly: true,
+              icon: Icons.category_outlined,
+              initialValue: work.category ?? '',
             ),
-          ],
+          ),
         ),
 
         const SizedBox(height: 8),
@@ -104,8 +117,11 @@ class TechTabWorkItem extends StatelessWidget {
                 nameTextField: 'total_${work.id}',
                 label: 'Tổng giờ',
                 keyboardType: TextInputType.number,
+                readOnly: readonly,
                 initialValue: work.totalHours,
-                onChanged: (v) {
+                onChanged: readonly
+                    ? null
+                    : (v) {
                   context.read<TechBloc>().add(
                     TechEvent.updateWork(
                       projectIndex: projectIndex,
@@ -124,8 +140,11 @@ class TechTabWorkItem extends StatelessWidget {
                 nameTextField: 'ot_${work.id}',
                 label: 'OT',
                 keyboardType: TextInputType.number,
+                readOnly: readonly,
                 initialValue: work.otHours,
-                onChanged: (v) {
+                onChanged: readonly
+                    ? null
+                    : (v) {
                   context.read<TechBloc>().add(
                     TechEvent.updateWork(
                       projectIndex: projectIndex,
@@ -148,8 +167,11 @@ class TechTabWorkItem extends StatelessWidget {
           nameTextField: 'percent_${work.id}',
           label: 'Tiến độ hoàn thành',
           keyboardType: TextInputType.number,
+          readOnly: readonly,
           initialValue: work.percent,
-          onChanged: (v) {
+          onChanged: readonly
+              ? null
+              : (v) {
             context.read<TechBloc>().add(
               TechEvent.updateWork(
                 projectIndex: projectIndex,
@@ -169,8 +191,11 @@ class TechTabWorkItem extends StatelessWidget {
           nameTextField: 'content_${work.id}',
           label: 'Nội dung công việc',
           maxLines: 3,
+          readOnly: readonly,
           initialValue: work.content,
-          onChanged: (v) {
+          onChanged: readonly
+              ? null
+              : (v) {
             context.read<TechBloc>().add(
               TechEvent.updateWork(
                 projectIndex: projectIndex,
@@ -190,8 +215,11 @@ class TechTabWorkItem extends StatelessWidget {
           nameTextField: 'result_${work.id}',
           label: 'Kết quả',
           maxLines: 3,
+          readOnly: readonly,
           initialValue: work.result,
-          onChanged: (v) {
+          onChanged: readonly
+              ? null
+              : (v) {
             context.read<TechBloc>().add(
               TechEvent.updateWork(
                 projectIndex: projectIndex,

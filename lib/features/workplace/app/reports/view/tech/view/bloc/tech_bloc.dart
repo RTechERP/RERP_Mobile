@@ -48,14 +48,43 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         removeWork: (projectIndex, workId) =>
             _onRemoveWork(projectIndex, workId, emit),
 
-        expandWork: (categoryIndex, workIndex) =>
-            _onExpandWork(categoryIndex, workIndex, emit),
+        expandWork: (projectIndex, workIndex) =>
+            _onExpandWork(projectIndex, workIndex, emit),
 
         updateDate: (date) => _onUpdateDate(date, emit),
         expandProject: (projectIndex) => _onExpandProject(projectIndex, emit),
+        updateLocation: (type, value) =>
+            _onUpdateLocation(type, value, emit),
+
+        updateExtraInfo: (issue, solution, blocking, blockingReason, nextPlan) =>
+            _onUpdateExtraInfo(
+              issue: issue,
+              solution: solution,
+              blocking: blocking,
+              blockingReason: blockingReason,
+              nextPlan: nextPlan,
+              emit: emit,
+            ),
       );
     });
   }
+
+  // _onInit(Emitter<TechState> emit) async {
+  //   emit(state.copyWith(status: BaseStateStatus.loading));
+  //
+  //   emit(
+  //     state.copyWith(
+  //       status: BaseStateStatus.success,
+  //       projects: [
+  //         TechProject(
+  //           id: _uuid.v4(),
+  //           categories: const [TechCategory()],
+  //         ),
+  //       ],
+  //       expandedProjectIndex: 0,
+  //     ),
+  //   );
+  // }
 
   _onInit(Emitter<TechState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
@@ -63,17 +92,93 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     emit(
       state.copyWith(
         status: BaseStateStatus.success,
+
+        /// ===== THÔNG TIN CHUNG =====
+        reportDate: DateTime(2026, 2, 3),
+        locationType: 'rtc',
+        location: 'VP RTC',
+        issue: 'API báo cáo thiếu field percent',
+        solution: 'FE tạm mock dữ liệu để demo',
+        blocking: 'Chưa có token môi trường staging',
+        blockingReason: 'DevOps chưa cấp quyền',
+        nextPlan: 'Hoàn thiện màn hình chi tiết báo cáo & review BE',
+
+        /// ===== PROJECT + CATEGORY + WORK =====
         projects: [
           TechProject(
             id: _uuid.v4(),
-            categories: const [TechCategory()],
+            name: 'ERP Nội bộ',
+            categories: [
+              TechCategory(
+                category: 'Frontend',
+                works: [
+                  TechWork(
+                    id: _uuid.v4(),
+                    category: 'Frontend',
+                    totalHours: '2',
+                    otHours: '0',
+                    percent: '80',
+                    content: 'Thiết kế UI màn hình báo cáo kỹ thuật',
+                    result: 'Hoàn thành layout chính',
+                    date: DateTime(2026, 2, 3),
+                  ),
+                  TechWork(
+                    id: _uuid.v4(),
+                    category: 'Frontend',
+                    totalHours: '1.5',
+                    otHours: '0',
+                    percent: '100',
+                    content: 'Tích hợp BLoC cho Tech Detail',
+                    result: 'Đã chạy ổn định',
+                    date: DateTime(2026, 2, 3),
+                  ),
+                ],
+              ),
+              TechCategory(
+                category: 'Backend',
+                works: [
+                  TechWork(
+                    id: _uuid.v4(),
+                    category: 'Backend',
+                    totalHours: '1',
+                    otHours: '0',
+                    percent: '70',
+                    content: 'Mock API báo cáo ngày',
+                    result: 'Đủ dữ liệu cho FE test',
+                    date: DateTime(2026, 2, 3),
+                  ),
+                ],
+              ),
+            ],
+          ),
+
+          TechProject(
+            id: _uuid.v4(),
+            name: 'App Kỹ thuật viên',
+            categories: [
+              TechCategory(
+                category: 'Bugfix',
+                works: [
+                  TechWork(
+                    id: _uuid.v4(),
+                    category: 'Bugfix',
+                    totalHours: '2',
+                    otHours: '0.5',
+                    percent: '60',
+                    content: 'Fix lỗi GPS không update realtime',
+                    result: 'Android OK, iOS pending',
+                    date: DateTime(2026, 2, 3),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
+
         expandedProjectIndex: 0,
       ),
     );
   }
-
   _onAddProject(Emitter<TechState> emit) {
     final newProjects = [
       ...state.projects,
@@ -174,24 +279,18 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     if (projectIndex < 0 || projectIndex >= state.projects.length) return;
 
     final works = state.projects[projectIndex].works;
+    if (workIndex < 0 || workIndex >= works.length) return;
 
-    if (workIndex < 0 || workIndex >= works.length) return; // 🛑 chặn crash
+    final isSame =
+        state.expandedProjectIndex == projectIndex &&
+            state.expandedWorkIndex == workIndex;
 
-    if (state.expandedProjectIndex == projectIndex &&
-        state.expandedWorkIndex == workIndex) {
-      emit(
-        state.copyWith(
-          expandedWorkIndex: null,
-        ),
-      );
-    } else {
-      emit(
-        state.copyWith(
-          expandedProjectIndex: projectIndex,
-          expandedWorkIndex: workIndex,
-        ),
-      );
-    }
+    emit(
+      state.copyWith(
+        expandedProjectIndex: isSame ? null : projectIndex,
+        expandedWorkIndex: isSame ? null : workIndex,
+      ),
+    );
   }
 
   _onUpdateWork(
@@ -239,6 +338,34 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       state.copyWith(
         expandedProjectIndex: projectIndex,
         expandedWorkIndex: null,
+      ),
+    );
+  }
+
+   _onUpdateLocation(String type, String? value, Emitter<TechState> emit) {
+    emit(
+      state.copyWith(
+        locationType: type,
+        location: type == 'rtc' ? 'VP RTC' : value,
+      ),
+    );
+  }
+
+  _onUpdateExtraInfo({
+    String? issue,
+    String? solution,
+    String? blocking,
+    String? blockingReason,
+    String? nextPlan,
+    required Emitter<TechState> emit,
+  }) {
+    emit(
+      state.copyWith(
+        issue: issue ?? state.issue,
+        solution: solution ?? state.solution,
+        blocking: blocking ?? state.blocking,
+        blockingReason: blockingReason ?? state.blockingReason,
+        nextPlan: nextPlan ?? state.nextPlan,
       ),
     );
   }

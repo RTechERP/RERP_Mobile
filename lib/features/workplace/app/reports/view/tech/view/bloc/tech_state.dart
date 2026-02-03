@@ -7,19 +7,44 @@ class TechState extends BaseBlocState {
 
   /// 📌 Chỉ cho phép expand 1 work tại 1 thời điểm
   final int? expandedWorkIndex;
-
   final int? expandedProjectIndex;
 
   final DateTime? reportDate;
+
+  final DateTime? createDate;
+
+  /// ===== LOCATION =====
+  final String locationType; // 'rtc' | 'other'
+  final String? location;
+
+  /// ===== EXTRA INFO =====
+  final String? issue;
+  final String? solution;
+  final String? blocking;
+  final String? blockingReason;
+
+  /// ===== NEXT PLAN =====
+  final String? nextPlan;
 
   const TechState({
     required super.status,
     super.message,
     this.categories = const [],
+    this.projects = const [],
     this.expandedWorkIndex,
     this.expandedProjectIndex,
     this.reportDate,
-    this.projects = const [],
+    this.createDate,
+
+    this.locationType = 'rtc',
+    this.location,
+
+    this.issue,
+    this.solution,
+    this.blocking,
+    this.blockingReason,
+
+    this.nextPlan,
   });
 
   factory TechState.init() => const TechState(
@@ -27,8 +52,17 @@ class TechState extends BaseBlocState {
     projects: [TechProject(id: '1')],
     categories: [TechCategory()],
     expandedWorkIndex: null,
-    reportDate: null,
     expandedProjectIndex: null,
+    reportDate: null,
+    createDate: null,
+
+    locationType: 'rtc',
+    location: 'VP RTC',
+    issue: null,
+    solution: null,
+    blocking: null,
+    blockingReason: null,
+    nextPlan: null,
   );
 
   @override
@@ -36,9 +70,17 @@ class TechState extends BaseBlocState {
     status,
     message,
     categories,
-    expandedWorkIndex,
-    reportDate,
     projects,
+    expandedWorkIndex,
     expandedProjectIndex,
+    reportDate,
+    createDate,
+    locationType,
+    location,
+    issue,
+    solution,
+    blocking,
+    blockingReason,
+    nextPlan,
   ];
 }

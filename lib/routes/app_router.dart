@@ -33,6 +33,7 @@ import '../features/workplace/app/reg_work/view/pages/work_trip/work_trip_screen
 import '../features/workplace/app/reports/view/report_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.dart';
+import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart';
 
 class AppRouter {
@@ -194,6 +195,10 @@ class AppRouter {
             path: '/report/tech/add',
             builder: (context, state) => const TechAddScreen(),
           ),
+          GoRoute(
+            path: '/report/tech/detail',
+            builder: (context, state) => const TechDetailScreen(),
+          )
         ],
       ),
       GoRoute(

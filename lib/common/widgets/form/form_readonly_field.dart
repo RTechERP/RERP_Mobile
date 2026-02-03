@@ -9,7 +9,6 @@ class FormReadonlyField extends StatelessWidget {
   final String? label;
   final IconData? icon;
   final String? hintText;
-
   final dynamic initialValue;
 
   const FormReadonlyField({
@@ -31,41 +30,41 @@ class FormReadonlyField extends StatelessWidget {
 
         String display;
         if (value is int) {
-          display = value.formatVND; // 🔥 FORMAT Ở ĐÂY
+          display = value.formatVND;
         } else if (value is num) {
           display = value.toInt().formatVND;
         } else {
-          display = value?.toString() ?? hintText ?? '--';
+          display = value?.toString() ?? '';
         }
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(label ?? '', style: AppStyles.hintText),
-            Container(
-              padding:
-              const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
+        return IgnorePointer(
+          ignoring: true, // 🔒 chặn toàn bộ interaction
+          child: TextFormField(
+            initialValue: display.isNotEmpty ? display : (hintText ?? ''),
+            readOnly: true, // 🔒 không cho sửa
+            decoration: InputDecoration(
+              labelText: label,                 // 👈 label nổi trên viền
+              hintText: hintText,
+              prefixIcon: icon != null
+                  ? Icon(icon, size: 20)
+                  : null,
+
+              filled: true,
+              fillColor: Colors.grey.shade100,
+
+              border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Row(
-                children: [
-                  if (icon != null)
-                    Icon(icon, size: 20, color: Colors.grey),
-                  if (icon != null) const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      display,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ],
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: AppColors.grayColor[30]!),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: AppColors.grayColor[30]!),
               ),
             ),
-          ],
+          ),
         );
       },
     );
