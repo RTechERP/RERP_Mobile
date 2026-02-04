@@ -39,6 +39,9 @@ import '../features/workplace/app/reports/view/hr/view/pages/hr_admin_detail_scr
 import '../features/workplace/app/reports/view/hr/view/pages/hr_admin_screen.dart';
 import '../features/workplace/app/reports/view/hr/view/pages/hr_lcxp_detail_screen.dart';
 import '../features/workplace/app/reports/view/hr/view/pages/hr_lxcp_screen.dart';
+import '../features/workplace/app/reports/view/marketing/view/pages/marketing_add_screen.dart';
+import '../features/workplace/app/reports/view/marketing/view/pages/marketing_detail_screen.dart';
+import '../features/workplace/app/reports/view/marketing/view/pages/marketing_screen.dart';
 import '../features/workplace/app/reports/view/report_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.dart';
@@ -253,6 +256,23 @@ class AppRouter {
           ),
         ],
       ),
+
+      GoRoute(
+        path: RouteNames.reportMarketingdepart,
+        builder: (context, state) => const MarketingScreen(),
+      ),
+      GoRoute(
+        path: RouteNames.reportMarketingdepartAdd,
+        builder: (context, state) => const MarketingAddScreen(),
+      ),
+
+      GoRoute(
+        path: RouteNames.reportMarketingdepartDetail,
+        builder: (context, state) => const MarketingDetailScreen(),
+      ),
+
+
+
       GoRoute(
         path: '/favorites',
         builder: (context, state) => const FavoritesAddingScreen(),

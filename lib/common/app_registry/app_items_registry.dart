@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../routes/route_names.dart';
 import '../constants/index.dart';
 import '../models/index.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -299,7 +300,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.trending_up_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'report',
-      route: '/report/marketing',
+      route: RouteNames.reportMarketingdepart,
     ),
     AppItemModel(
       id: 'report:agv',

@@ -8,3 +8,4 @@ export 'form_input_field.dart';
 export 'form_actions.dart';
 export 'form_date_time_picker.dart';
 export 'form_checkbox.dart';
+export 'form_file_picker.dart';
