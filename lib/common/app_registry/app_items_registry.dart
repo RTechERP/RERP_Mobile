@@ -280,7 +280,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.people_alt_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'report',
-      route: '/report/hr',
+      type: 'hr',
+      route: null,
     ),
     AppItemModel(
       id: 'report:marketing',

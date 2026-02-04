@@ -86,6 +86,16 @@ class LeaveAddScreenPage extends StatelessWidget {
                         title: 'Thông tin nghỉ phép',
                         child: Column(
                           children: [
+                            /// Thời gian nghỉ
+                            FormDateTimePicker(
+                              name: 'regwork_leave_detail_date',
+                              label: 'Ngày nghỉ',
+                              icon: Icons.date_range,
+                              inputType: InputType.date,
+                              format: DateFormat('dd/MM/yyyy'),
+                            ),
+                            const SizedBox(height: 12),
+
                             /// Loại nghỉ
                             FormTypeDropDown<String>(
                               name: 'regwork_leave_add_type',
@@ -164,7 +174,7 @@ class LeaveAddScreenPage extends StatelessWidget {
 
                         child: FormTypeDropDown<String>(
                           name: 'regwork_leave_add_approver',
-                          label: 'Thời gian ',
+                          label: 'Người kiểm duyệt',
                           icon: Icons.supervisor_account_outlined,
                           items: const [
                             DropdownMenuItem(

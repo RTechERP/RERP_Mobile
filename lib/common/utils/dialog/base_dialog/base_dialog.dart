@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../app_theme/index.dart';
 import '../../../common_ui.dart';
 import '../../../services/device_type_helper.dart';
+import '../../../widgets/buttons/custom_circle_button.dart';
 import '../../../widgets/buttons/custom_text_button.dart';
 import '../../../widgets/custom_animation_widget.dart';
 import '../../navigation/navigation_utils.dart';
@@ -16,7 +17,7 @@ class BaseDialog {
       spreadRadius: 8.h,
       blurRadius: 8.h,
       offset: const Offset(0, 4),
-    )
+    ),
   ];
 
   static Future<dynamic> baseDialog({
@@ -61,14 +62,16 @@ class BaseDialog {
                   borderRadius: BorderRadius.circular(AppUICommons.largeRadius),
                   child: Container(
                     width: double.maxFinite,
-                    padding: padding ??
+                    padding:
+                        padding ??
                         EdgeInsets.symmetric(
                           vertical: AppUICommons.mediumVerticalPadding,
                           horizontal: AppUICommons.mediumHorizontalPadding,
                         ),
                     decoration: BoxDecoration(
-                        color: AppColors.white,
-                        boxShadow: haveCancelBottomBtn ? boxShadow : null),
+                      color: AppColors.white,
+                      boxShadow: haveCancelBottomBtn ? boxShadow : null,
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
@@ -85,7 +88,7 @@ class BaseDialog {
                               description: description,
                               descriptionStyle: descriptionStyle,
                             ),
-                        if (buttonWidget != null) buttonWidget
+                        if (buttonWidget != null) buttonWidget,
                       ],
                     ),
                   ),
@@ -102,10 +105,12 @@ class BaseDialog {
                           child: Center(
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                  shape: BoxShape.circle,
-                                  boxShadow:
-                                  haveCancelBottomBtn ? boxShadow : null),
+                                color: Colors.transparent,
+                                shape: BoxShape.circle,
+                                boxShadow: haveCancelBottomBtn
+                                    ? boxShadow
+                                    : null,
+                              ),
                               child: Icon(
                                 size: 28.sp,
                                 Icons.cancel_rounded,
@@ -313,6 +318,83 @@ class BaseDialog {
     );
   }
 
+  static Future<dynamic> twoOptionHorizontalDialog({
+    required BuildContext context,
+    String? heading,
+    TextStyle? headingStyle,
+    Widget? image,
+    String? title,
+    TextStyle? titleStyle,
+    Widget? descriptionWidget,
+    String? description,
+    TextStyle? descriptionStyle,
+    Widget? displayIconAndText,
+
+    /// LEFT
+    required Future<Object?> Function()? leftButtonFunc,
+    String? contentLeftButton,
+    IconData? leftIcon,
+    Color? leftBgColor,
+    Color? leftIconColor,
+
+    /// RIGHT
+    required Future<Object?> Function()? rightButtonFunc,
+    String? contentRightButton,
+    IconData? rightIcon,
+    Color? rightBgColor,
+    Color? rightIconColor,
+
+    Border? colorBorder,
+    bool haveCancelBottomBtn = false,
+  }) {
+    return baseDialog(
+      context: context,
+      heading: heading,
+      headingStyle: headingStyle,
+      image: image,
+      title: title,
+      titleStyle: titleStyle,
+      description: description,
+      descriptionStyle: descriptionStyle,
+      descriptionWidget: descriptionWidget,
+      haveCancelBottomBtn: haveCancelBottomBtn,
+      buttonWidget: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          /// 🔵 LEFT
+          CustomCircleButton(
+            icon: leftIcon ?? Icons.admin_panel_settings_outlined,
+            label: contentLeftButton ?? '',
+            bgColor: leftBgColor ?? AppColors.grey_bg,
+            onTap: () async {
+              if (leftButtonFunc != null) {
+                await leftButtonFunc();
+              } else {
+                onBack(context);
+              }
+            },
+            // optional style
+            // boxShadow: AppUICommons.cardShadow,
+          ),
+
+          /// 🟢 RIGHT
+          CustomCircleButton(
+            icon: rightIcon ?? Icons.people_alt_outlined,
+            label: contentRightButton ?? '',
+            bgColor: rightBgColor ?? AppColors.main,
+            onTap: () async {
+              if (rightButtonFunc != null) {
+                await rightButtonFunc();
+              } else {
+                onBack(context);
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   static Widget _contentWidget({
     required BuildContext context,
     String? heading,
@@ -329,8 +411,9 @@ class BaseDialog {
       children: [
         if (heading != null)
           Padding(
-            padding:
-            EdgeInsets.only(bottom: AppUICommons.mediumVerticalSpacing),
+            padding: EdgeInsets.only(
+              bottom: AppUICommons.mediumVerticalSpacing,
+            ),
             child: Text(
               heading,
               textAlign: TextAlign.center,
@@ -339,8 +422,9 @@ class BaseDialog {
           ),
         if (image != null)
           Padding(
-            padding:
-            EdgeInsets.only(bottom: AppUICommons.mediumVerticalSpacing),
+            padding: EdgeInsets.only(
+              bottom: AppUICommons.mediumVerticalSpacing,
+            ),
             child: image,
           ),
         if (title != null)
@@ -354,13 +438,16 @@ class BaseDialog {
           ),
         if (description != null || descriptionWidget != null)
           Padding(
-            padding:
-            EdgeInsets.only(bottom: AppUICommons.largeHorizontalSpacing),
-            child: descriptionWidget ??
+            padding: EdgeInsets.only(
+              bottom: AppUICommons.largeHorizontalSpacing,
+            ),
+            child:
+                descriptionWidget ??
                 Text(
                   description ?? '',
                   textAlign: TextAlign.center,
-                  style: descriptionStyle ??
+                  style:
+                      descriptionStyle ??
                       AppStyles.body2.copyWith(
                         color: AppColors.textSecondaryColor,
                       ),

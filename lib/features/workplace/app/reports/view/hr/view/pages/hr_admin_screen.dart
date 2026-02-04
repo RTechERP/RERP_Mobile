@@ -1,23 +1,26 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 
+import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../common/utils/card/index.dart';
-class TechScreen extends StatelessWidget {
-  const TechScreen({super.key});
+import '../../../../../../../../routes/route_names.dart';
+
+class HrAdminScreen extends StatelessWidget {
+  const HrAdminScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
       appBar: AppBarCommon(
-        title: Text('report.tech'.tr(), style: AppStyles.headingTitle2),
+        title: Text('report.thr'.tr(), style: AppStyles.headingTitle2),
         onBackTap: () => context.pop(), // 👈 đảm bảo pop đúng GoRouter
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.push('/report/tech/add');
+          context.push(RouteNames.reportHRAdd, extra: HrType.admin);
         },
         backgroundColor: AppColors.primaryERP,
         elevation: 6,
@@ -27,23 +30,19 @@ class TechScreen extends StatelessWidget {
       body: AppCardList(
         children: [
           AppCardReport(
-            category: 'RTC 02.26.002_2',
-            project: 'RTC1.26.002 - R-ERP Mobile',
+            category: 'Tech',
             time: DateTime.now(),
-            progress: 0.25,
-            onTap: () {
-              context.push('/report/tech/detail');
-          },
+            employeeName: 'Trần Thị A',
+            position: 'Nhân viên',
+            showProgress: false,
+            onTap: () => context.push(RouteNames.reportHRAdminDetail),
           ),
           AppCardReport(
-            category: 'RTC 02.26.002_2',
-            project: 'RTC1.26.002 - R-ERP Mobile',
+            category: 'HR',
             time: DateTime.now(),
-            progress: 0.25,
-            onTap: () {
-              context.push('/report/tech/detail');
-            },
-
+            employeeName: 'Trần Thị B',
+            position: 'Nhân viên',
+            showProgress: false,
           ),
         ],
       ),

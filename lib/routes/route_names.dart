@@ -84,16 +84,16 @@ class RouteNames {
 
 
   ///*** HR Department ***///
+  static const reportHRAdd = '/report/hr/add';
+
   ///**** Administration - IT ****///
 
-  static const reportHRAdmin = '/report/hr_admin';
-  static const reportHRAdminDetail = '/report/hr_admin/detail';
-  static const reportHRAdminAdd = '/report/hr_admin/add';
+  static const reportHRAdmin = '/report/hr/admin';
+  static const reportHRAdminDetail = '/report/hr/admin/detail';
 
   ///**** LXCP ****///
-  static const reportHRLXCP = '/report/hr_lxcp';
-  static const reportHRLXCPDetail = '/report/hr_lxcp/detail';
-  static const reportHRLXCPAdd = '/report/hr_lxcp/add';
+  static const reportHRLXCP = '/report/hr/lxcp';
+  static const reportHRLXCPDetail = '/report/hr/lxcp/detail';
 
   ///*** AGV - Mechanical Department
   static const reportAGVdepart = '/report/agv';

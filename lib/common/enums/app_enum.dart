@@ -12,3 +12,6 @@ enum FormActionMode {
   edit,
   add,
 }
+
+
+enum HrType { admin,lxcp}

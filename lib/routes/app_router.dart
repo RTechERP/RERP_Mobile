@@ -8,7 +8,9 @@ import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/lunch_a
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/lunch_detail_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/reg_work_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/work_trip/work_trip_detail_screen.dart';
+import 'package:rtc_erp/routes/route_names.dart';
 
+import '../common/enums/index.dart';
 import '../di/injection.dart';
 import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
@@ -30,6 +32,12 @@ import '../features/workplace/app/reg_work/view/pages/wfh/wfh_detail_screen.dart
 import '../features/workplace/app/reg_work/view/pages/wfh/wfh_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/work_trip/work_trip_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/work_trip/work_trip_screen.dart';
+import '../features/workplace/app/reports/view/hr/view/bloc/hr_bloc.dart';
+import '../features/workplace/app/reports/view/hr/view/pages/hr_add_screen.dart';
+import '../features/workplace/app/reports/view/hr/view/pages/hr_admin_detail_screen.dart';
+import '../features/workplace/app/reports/view/hr/view/pages/hr_admin_screen.dart';
+import '../features/workplace/app/reports/view/hr/view/pages/hr_lcxp_detail_screen.dart';
+import '../features/workplace/app/reports/view/hr/view/pages/hr_lxcp_screen.dart';
 import '../features/workplace/app/reports/view/report_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.dart';
@@ -199,6 +207,41 @@ class AppRouter {
             path: '/report/tech/detail',
             builder: (context, state) => const TechDetailScreen(),
           )
+        ],
+      ),
+
+
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider<HrBloc>(
+            create: (context) => getIt<HrBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.reportHRAdmin,
+            builder: (context, state) => const HrAdminScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.reportHRLXCP,
+            builder: (context, state) => const HrLxcpScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.reportHRAdd,
+            builder: (context, state) {
+              final type = state.extra as HrType?;
+              return HrAddScreen(type: type);
+            },
+          ),
+          GoRoute(
+            path: RouteNames.reportHRAdminDetail,
+            builder: (context, state) => const HrAdminDetailScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.reportHRLXCPDetail,
+            builder: (context, state) => const HrHclxDetailScreen(),
+          ),
         ],
       ),
       GoRoute(

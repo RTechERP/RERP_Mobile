@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 
 class AppCardReport extends StatelessWidget {
-  final String project;
-  final String category;
-  final double progress; // 0.0 to 1.0
-  final DateTime time;
+  final String? project;
+  final String? category;
+  final double? progress; // 0.0 to 1.0
+  final DateTime? time;
+  final String? employeeName;
+  final String? position;
+  final bool showProgress;
   final VoidCallback? onTap;
 
   const AppCardReport({
     super.key,
-    required this.project,
-    required this.category,
-    required this.progress,
-    required this.time,
+    this.project,
+    this.category,
+    this.progress,
+    this.time,
+    this.employeeName,
+    this.position,
+    this.showProgress = true,
     this.onTap,
   });
 
-  String _formatTime(DateTime dt) {
+  String _formatTime(DateTime? dt) {
+    if (dt == null) return '--/--/---- --:--:--';
     String two(int n) => n.toString().padLeft(2, '0');
     return '${two(dt.day)}/${two(dt.month)}/${dt.year} '
         '${two(dt.hour)}:${two(dt.minute)}:${two(dt.second)}';
@@ -24,7 +31,6 @@ class AppCardReport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
@@ -46,54 +52,107 @@ class AppCardReport extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Hàng đầu: Badge dự án & Circle Progress
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.blue.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(8),
+              /// LEFT CONTENT
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    /// Badge category
+                    /// 🔰 CATEGORY + POSITION (BADGE TRÊN CÙNG)
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 6,
+                      children: [
+                        if (category?.isNotEmpty == true)
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: Colors.blue.withOpacity(0.12),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              category!,
+                              style: const TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ),
+
+                        if (position?.isNotEmpty == true)
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: Colors.orange.withOpacity(0.12), // 👈 màu khác category
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              position!,
+                              style: const TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.orange,
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
-                    child: Text(
-                      category,
-                      style: const TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.blue,
+                    const SizedBox(height: 6),
+
+
+                    if (employeeName?.isNotEmpty == true)
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.person_outline, size: 14, color: Colors.grey),
+                          const SizedBox(width: 4),
+                          Text(
+                            employeeName!,
+                            style: TextStyle(fontSize: 12, color: Colors.grey[700]),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
+                    const SizedBox(height: 6),
 
-                  // Tiêu đề báo cáo
-                  Text(
-                    project,
-                    style: const TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF1A1C1E),
-                    ),
-                    softWrap: true,      // cho phép xuống dòng
-                  ),
-                  const SizedBox(height: 6),
-
-                  // Thời gian
-                  Row(
-                    children: [
-                      const Icon(Icons.access_time_rounded, size: 14, color: Colors.grey),
-                      const SizedBox(width: 4),
+                    /// Project
+                    if (project?.isNotEmpty == true) ...[
                       Text(
-                        _formatTime(time),
-                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                        project!,
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1A1C1E),
+                        ),
+                        softWrap: true,
                       ),
+                      const SizedBox(height: 6),
                     ],
-                  ),
-                ],
-              ),
-              _CircleProgressSmall(progress: progress),
 
+                    const SizedBox(height: 6),
+
+                    /// Name + Position (Badge)
+
+
+                    /// Time
+                    Row(
+                      children: [
+                        const Icon(Icons.access_time_rounded, size: 14, color: Colors.grey),
+                        const SizedBox(width: 4),
+                        Text(
+                          _formatTime(time),
+                          style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+              /// RIGHT PROGRESS
+              if (showProgress)
+                _CircleProgressSmall(progress: progress),
             ],
           ),
         ),
@@ -102,19 +161,20 @@ class AppCardReport extends StatelessWidget {
   }
 }
 
-/// ================== CIRCLE PROGRESS (GÓC PHẢI TRÊN) ==================
+/// ================== CIRCLE PROGRESS ==================
 class _CircleProgressSmall extends StatelessWidget {
-  final double progress;
+  final double? progress;
 
-  const _CircleProgressSmall({required this.progress});
+  const _CircleProgressSmall({this.progress});
 
   @override
   Widget build(BuildContext context) {
-    final percent = (progress.clamp(0.0, 1.0) * 100).round();
+    final safeProgress = (progress ?? 0).clamp(0.0, 1.0);
+    final percent = (safeProgress * 100).round();
 
     return SizedBox(
-      width: 54,   // 36 * 1.5 = 54
-      height: 54,  // 36 * 1.5 = 54
+      width: 54,
+      height: 54,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -122,8 +182,8 @@ class _CircleProgressSmall extends StatelessWidget {
             width: 54,
             height: 54,
             child: CircularProgressIndicator(
-              value: progress.clamp(0.0, 1.0),
-              strokeWidth: 6, // 4 * 1.5 = 6
+              value: safeProgress,
+              strokeWidth: 6,
               backgroundColor: Colors.grey.shade200,
               valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
             ),
@@ -131,7 +191,7 @@ class _CircleProgressSmall extends StatelessWidget {
           Text(
             '$percent%',
             style: const TextStyle(
-              fontSize: 12, // 9 * 1.3 ~ 12 cho dễ đọc
+              fontSize: 12,
               fontWeight: FontWeight.bold,
             ),
           ),

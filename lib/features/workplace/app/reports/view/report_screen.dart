@@ -31,11 +31,18 @@ class ReportScreen extends StatelessWidget {
                   collapsedItemCount: 11,
                   items: items,
                   onItemTap: (item) {
+                    /// 👇 HR là case đặc biệt → show dialog chọn Admin / Lxcp
+                    if (item.type == 'hr') {
+                      DialogService.showSelectHr(context: context);
+                      return;
+                    }
+
                     final route = item.route;
                     if (route == null || route.isEmpty) {
                       DialogService.showProcessing(context: context);
                       return;
                     }
+
                     context.push(route);
                   },
                 ),
