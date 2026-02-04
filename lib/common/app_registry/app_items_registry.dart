@@ -275,7 +275,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.campaign_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'report',
-      route: '/report/ad',
+      route: RouteNames.reportADdepart,
     ),
     AppItemModel(
       id: 'report:tech',
