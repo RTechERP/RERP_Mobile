@@ -308,7 +308,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.precision_manufacturing_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'report',
-      route: '/report/agv',
+      route: RouteNames.reportAGVdepart,
     ),
   ];
 
