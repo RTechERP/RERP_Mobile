@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ActionIconTile extends StatelessWidget {
-  final IconData icon;
+  final IconData? icon;
+  final String? imageUrl; // 👈 thêm
   final String title;
   final VoidCallback? onTap;
 
@@ -15,11 +16,12 @@ class ActionIconTile extends StatelessWidget {
 
   const ActionIconTile({
     super.key,
-    required this.icon,
+    this.icon,
+    this.imageUrl,
     required this.title,
     this.onTap,
-    this.iconSize = 22,
-    this.circleSize = 44,
+    this.iconSize = 28,
+    this.circleSize = 48,
     this.iconColor,
     this.backgroundColor,
     this.textStyle,
@@ -43,11 +45,8 @@ class ActionIconTile extends StatelessWidget {
               shape: BoxShape.circle,
               color: backgroundColor ?? Colors.grey.shade100,
             ),
-            child: Icon(
-              icon,
-              size: iconSize,
-              color: iconColor ?? theme.iconTheme.color,
-            ),
+            alignment: Alignment.center,
+            child: _buildIcon(theme),
           ),
           const SizedBox(height: 6),
           Text(
@@ -59,6 +58,36 @@ class ActionIconTile extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildIcon(ThemeData theme) {
+    final path = imageUrl;
+
+    if (path != null && path.isNotEmpty) {
+      final double imageSize = circleSize * 0.75; // 👈 chỉnh tỷ lệ ở đây
+
+      return ClipOval(
+        child: Center(
+          child: Image.asset(
+            path,
+            width: imageSize,
+            height: imageSize,
+            fit: BoxFit.contain,
+            errorBuilder: (_, __, ___) => _fallbackIcon(theme),
+          ),
+        ),
+      );
+    }
+
+    return _fallbackIcon(theme);
+  }
+
+  Widget _fallbackIcon(ThemeData theme) {
+    return Icon(
+      icon ?? Icons.apps,
+      size: iconSize,
+      color: iconColor ?? theme.iconTheme.color,
     );
   }
 }

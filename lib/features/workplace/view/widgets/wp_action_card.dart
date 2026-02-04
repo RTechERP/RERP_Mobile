@@ -76,10 +76,13 @@ class _WpActionCardState extends State<WpActionCard> {
                 }
 
                 return ActionIconTile(
-                  icon: IconData(
+                  icon: item.imageUrl?.isNotEmpty == true
+                      ? null
+                      : IconData(
                     item.iconCodePoint ?? 0,
                     fontFamily: 'MaterialIcons',
                   ),
+                  imageUrl: item.imageUrl, // 👈 nếu có link ảnh sẽ dùng ảnh
                   title: item.name,
                   onTap: () => widget.onItemTap?.call(item),
                   textStyle: AppStyles.caption1,

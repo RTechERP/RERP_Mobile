@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/index.dart';
 import '../models/index.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -12,6 +13,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
       route: '/regwork/lunch',
+      imageUrl: AppImages.app_lunch,
     ),
 
     AppItemModel(
@@ -21,6 +23,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
       route: '/regwork/leave',
+      imageUrl: AppImages.app_leave,
     ),
 
     AppItemModel(
@@ -30,6 +33,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
       route: '/regwork/in_out',
+      imageUrl: AppImages.app_in_out,
     ),
 
     AppItemModel(
@@ -39,6 +43,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
       route: '/regwork/overtime',
+      imageUrl: AppImages.app_overtime,
     ),
 
     AppItemModel(
@@ -48,6 +53,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
       route: '/regwork/overnight',
+      imageUrl: AppImages.app_overnight,
     ),
 
     AppItemModel(
@@ -57,6 +63,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
       route: '/regwork/work_trip',
+      imageUrl: AppImages.app_work_trip,
     ),
 
     AppItemModel(
@@ -66,6 +73,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
       route: '/regwork/wfh',
+      imageUrl: AppImages.app_wfh,
     ),
 
     AppItemModel(
@@ -75,6 +83,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
       route: '/regwork/missed',
+      imageUrl: AppImages.app_missed,
     ),
 
     AppItemModel(
@@ -84,6 +93,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
       route: '/regwork/sum-personal',
+      imageUrl: AppImages.app_sum_personal,
     ),
   ];
 

@@ -110,5 +110,8 @@
   "favorites": {
     "title": "Thêm vào mục yêu thích",
     "added": "Đã thêm"
+  },
+  "dialog_service": {
+    "an_error_occurred_please_try_again": "Có lỗi xảy ra, vui lòng thử lại"
   }
 }

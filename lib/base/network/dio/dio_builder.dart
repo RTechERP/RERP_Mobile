@@ -9,7 +9,7 @@ import 'dio_interceptor.dart';
 
 class DioBuilder {
   Dio? dio;
-  String initBaseUrl = 'https://interactive-book-api.tecinus.vn/';
+  String initBaseUrl = 'http://10.20.30.149:8088';
   Dio getDio() {
     if (dio == null) {
       // bool canLog = false;

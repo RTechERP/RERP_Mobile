@@ -4,9 +4,14 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 
+import '../../../../base/bloc/index.dart';
+import '../../../../base/widgets/base_widget.dart';
 import '../../../../common/app_theme/index.dart';
+import '../../../../common/constants.dart';
 import '../../../../common/constants/index.dart';
+import '../../../../common/utils/dialog/index.dart';
 import '../../../../common/widgets/form/index.dart';
+import '../bloc/auth_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,7 +20,8 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState
+    extends BaseState<LoginScreen, AuthEvent, AuthState, AuthBloc> {
   final _formKey = GlobalKey<FormBuilderState>();
 
   late final FocusNode _accountFocus;
@@ -24,7 +30,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-
     _accountFocus = FocusNode();
     _passwordFocus = FocusNode();
   }
@@ -36,8 +41,33 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
+  /// ===== LISTEN STATE =====
   @override
-  Widget build(BuildContext context) {
+  void listener(BuildContext context, AuthState state) {
+    super.listener(context, state);
+
+    if (state.status == BaseStateStatus.loading) {
+      // DialogService.showLoadingDialog(context);
+    }
+
+    if (state.status == BaseStateStatus.failed) {
+      if (state.message == 'Tài khoản hoặc mật khẩu không chính xác!') {
+        DialogService.showToastFailed(
+          context: context,
+          mess: 'Tài khoản hoặc mật khẩu không chính xác!',
+        );
+      } else {
+        DialogService.showToastFailed(context: context);
+      }
+    }
+
+    if (state.message == BlocMessages.loginSuccess) {
+      context.go('/dashboard');
+    }
+  }
+
+  @override
+  Widget renderUI(BuildContext context) {
     return BaseScaffold(
       body: Stack(
         children: [
@@ -62,11 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const SizedBox(height: 40),
-
                     Image.asset(AppImages.logo_login, height: 220),
-
                     const SizedBox(height: 16),
-
                     const Text(
                       'R-ERP',
                       style: TextStyle(
@@ -74,10 +101,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     const SizedBox(height: 8),
 
-                    /// Account
+                    /// ===== ACCOUNT =====
                     FormInputField(
                       nameForm: 'auth',
                       nameTextField: 'auth_account',
@@ -93,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     const SizedBox(height: 12),
 
-                    /// Password
+                    /// ===== PASSWORD =====
                     FormInputField(
                       nameForm: 'auth',
                       nameTextField: 'auth_password',
@@ -108,21 +134,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     const SizedBox(height: 18),
 
+                    /// ===== SUBMIT =====
                     SizedBox(
                       width: double.infinity,
                       height: 48,
                       child: ElevatedButton(
-                        onPressed: () {
-                          final isValid =
-                              _formKey.currentState?.validate() ?? false;
-
-                          if (!isValid) return;
-
-                          // Nếu cần lấy data
-                          final values = _formKey.currentState!.value;
-
-                          context.push('/dashboard');
-                        },
+                        onPressed: _onSubmitLogin,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primaryERPlight,
                           shape: RoundedRectangleBorder(
@@ -144,9 +161,29 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
+
+          /// ===== LOADING OVERLAY =====
+          blocBuilder((context, state) {
+            if (state.status == BaseStateStatus.loading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            return const SizedBox.shrink();
+          }, buildWhen: (p, n) => p.status != n.status),
         ],
       ),
     );
+  }
+
+  /// ===== SUBMIT LOGIN =====
+  void _onSubmitLogin() {
+    final isValid = _formKey.currentState?.saveAndValidate() ?? false;
+    if (!isValid) return;
+
+    final values = _formKey.currentState!.value;
+    final loginName = values['auth_account'] as String;
+    final password = values['auth_password'] as String;
+
+    bloc.add(AuthEvent.login(loginName, password));
   }
 }
 

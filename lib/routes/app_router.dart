@@ -12,6 +12,7 @@ import 'package:rtc_erp/routes/route_names.dart';
 
 import '../common/enums/index.dart';
 import '../di/injection.dart';
+import '../features/auth/view/bloc/auth_bloc.dart';
 import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
 import '../features/splash/view/splash_screen.dart';
@@ -52,7 +53,15 @@ class AppRouter {
         path: '/splash',
         builder: (context, state) => const SplashScreen(),
       ),
-      GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
+      GoRoute(
+        path: RouteNames.login,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (_) => getIt<AuthBloc>()..add(const AuthEvent.init()),
+            child: const LoginScreen(),
+          );
+        },
+      ),
       GoRoute(
         path: '/dashboard',
         builder: (context, state) => const DashboardScreen(),

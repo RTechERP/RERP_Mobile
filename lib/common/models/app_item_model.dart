@@ -21,6 +21,7 @@ class AppItemModel with _$AppItemModel {
     String? iconFontPackage,
     String? route,
     DateTime? favoriteAt,
+    String? imageUrl,
   }) = _AppItemModel;
 
   factory AppItemModel.fromJson(Map<String, dynamic> json) =>
@@ -40,6 +41,7 @@ class AppItemModel with _$AppItemModel {
       favoriteAt: map['favoriteAt'] != null
           ? DateTime.parse(map['favoriteAt'])
           : null,
+      imageUrl: map['imageUrl'] as String?,
     );
   }
 

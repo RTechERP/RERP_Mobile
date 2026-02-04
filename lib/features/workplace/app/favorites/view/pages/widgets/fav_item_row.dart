@@ -20,7 +20,7 @@ class FavItemRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final willCheck = !isFavorite; // 👈 sắp CHECK hay UNCHECK
+    final willCheck = !isFavorite;
 
     return InkWell(
       borderRadius: BorderRadius.circular(12),
@@ -33,13 +33,7 @@ class FavItemRow extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(
-              IconData(
-                item.iconCodePoint ?? 0,
-                fontFamily: item.iconFontFamily, // 🔥 BẮT BUỘC
-              ),
-              size: 28,
-            ),
+            _buildIcon(context),
 
             const SizedBox(width: 12),
 
@@ -53,28 +47,14 @@ class FavItemRow extends StatelessWidget {
             LikeButton(
               isLiked: isFavorite,
               size: 28,
-
-              /// 🔥 CHỈ CÓ HIỆU ỨNG KHI CHECK
-              bubblesColor: willCheck
-                  ? const BubblesColor(
-                dotPrimaryColor: Colors.green,
-                dotSecondaryColor: Colors.lightGreen,
-              )
-                  : const BubblesColor(
+              bubblesColor: const BubblesColor(
                 dotPrimaryColor: Colors.green,
                 dotSecondaryColor: Colors.lightGreen,
               ),
-
-              circleColor: willCheck
-                  ? const CircleColor(
-                start: Colors.transparent,
-                end: Colors.transparent,
-              )
-                  : const CircleColor(
+              circleColor: const CircleColor(
                 start: Colors.transparent,
                 end: Colors.transparent,
               ),
-
               likeBuilder: (liked) {
                 return Icon(
                   liked
@@ -83,7 +63,6 @@ class FavItemRow extends StatelessWidget {
                   color: liked ? Colors.green : Colors.grey,
                 );
               },
-
               onTap: (liked) async {
                 _toggle();
                 return !liked;
@@ -94,5 +73,59 @@ class FavItemRow extends StatelessWidget {
       ),
     );
   }
-}
 
+  /// ===== ICON / IMAGE (thu gọn ảnh ở giữa circle) =====
+  Widget _buildIcon(BuildContext context) {
+    final theme = Theme.of(context);
+    final imagePath = item.imageUrl; // field ảnh trong AppItemModel
+
+    const double circleSize = 48;   // kích thước vòng tròn
+    const double imageSize = circleSize * 0.75;    // 👈 thu nhỏ ảnh bên trong
+
+    if (imagePath != null && imagePath.isNotEmpty) {
+      return Container(
+        width: circleSize,
+        height: circleSize,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.grey.shade100,
+        ),
+        alignment: Alignment.center,
+        child: ClipOval(
+          child: Image.asset(
+            imagePath,
+            width: imageSize,
+            height: imageSize,
+            fit: BoxFit.contain, // 👈 không crop, giữ nguyên hình
+            errorBuilder: (_, __, ___) => _fallbackIcon(theme),
+          ),
+        ),
+      );
+    }
+
+    return _fallbackIcon(theme);
+  }
+
+  Widget _fallbackIcon(ThemeData theme) {
+    const double circleSize = 40;
+    const double iconSize = 22;
+
+    return Container(
+      width: circleSize,
+      height: circleSize,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.grey.shade100,
+      ),
+      alignment: Alignment.center,
+      child: Icon(
+        IconData(
+          item.iconCodePoint ?? 0,
+          fontFamily: item.iconFontFamily,
+        ),
+        size: iconSize,
+        color: theme.iconTheme.color,
+      ),
+    );
+  }
+}
