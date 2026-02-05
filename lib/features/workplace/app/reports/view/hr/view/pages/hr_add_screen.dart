@@ -9,7 +9,7 @@ import '../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 
 class HrAddScreen extends StatelessWidget {
-  final HrType? type;
+  final DepartmentType? type;
 
   const HrAddScreen({super.key, this.type});
 
@@ -26,9 +26,9 @@ class HrAddScreen extends StatelessWidget {
 
   Widget _buildBody() {
     switch (type) {
-      case HrType.admin:
+      case DepartmentType.hr_admin:
         return const _HrAddAdminView();
-      case HrType.lxcp:
+      case DepartmentType.hr_lxcp:
         return const _HrAddLxcpView();
       default:
         return const Center(child: Text('Chưa xác định loại HR'));

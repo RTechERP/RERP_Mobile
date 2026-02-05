@@ -19,7 +19,7 @@ class HrLxcpScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.push(RouteNames.reportHRAdd, extra: HrType.lxcp);
+          context.push(RouteNames.reportHRAdd, extra: DepartmentType.hr_lxcp);
         },
         backgroundColor: AppColors.primaryERP,
         elevation: 6,

@@ -49,6 +49,12 @@ import '../features/workplace/app/reports/view/marketing/view/pages/marketing_ad
 import '../features/workplace/app/reports/view/marketing/view/pages/marketing_detail_screen.dart';
 import '../features/workplace/app/reports/view/marketing/view/pages/marketing_screen.dart';
 import '../features/workplace/app/reports/view/report_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/sale_admin_add_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/sale_admin_detail_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/sale_admin_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/sale_staff_add_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/sale_staff_detail_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/sale_staff_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
@@ -164,7 +170,6 @@ class AppRouter {
         builder: (context, state) => const MissedDetailScreen(),
       ),
 
-
       GoRoute(
         path: '/regwork/missed/add',
         builder: (context, state) => const MissedAddScreen(),
@@ -200,11 +205,13 @@ class AppRouter {
         builder: (context, state) => const OvernightAddScreen(),
       ),
 
+      /// Report Route
       GoRoute(
         path: '/report',
         builder: (context, state) => const ReportScreen(),
       ),
 
+      /// Tech Route
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider(
@@ -224,11 +231,11 @@ class AppRouter {
           GoRoute(
             path: '/report/tech/detail',
             builder: (context, state) => const TechDetailScreen(),
-          )
+          ),
         ],
       ),
 
-
+      /// Hr Route
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider<HrBloc>(
@@ -248,7 +255,7 @@ class AppRouter {
           GoRoute(
             path: RouteNames.reportHRAdd,
             builder: (context, state) {
-              final type = state.extra as HrType?;
+              final type = state.extra as DepartmentType?;
               return HrAddScreen(type: type);
             },
           ),
@@ -263,6 +270,7 @@ class AppRouter {
         ],
       ),
 
+      /// Marketing Route
       GoRoute(
         path: RouteNames.reportMarketingdepart,
         builder: (context, state) => const MarketingScreen(),
@@ -277,7 +285,7 @@ class AppRouter {
         builder: (context, state) => const MarketingDetailScreen(),
       ),
 
-
+      /// Assembly - Project Implementation Route
       GoRoute(
         path: RouteNames.reportADdepart,
         builder: (context, state) => const AdScreen(),
@@ -293,11 +301,11 @@ class AppRouter {
         builder: (context, state) => const AdDetailScreen(),
       ),
 
+      /// AGV Route
       GoRoute(
         path: RouteNames.reportAGVdepart,
         builder: (context, state) => const AgvScreen(),
       ),
-
 
       GoRoute(
         path: RouteNames.reportAGVdepartAdd,
@@ -309,6 +317,36 @@ class AppRouter {
         builder: (context, state) => const AgvDetailScreen(),
       ),
 
+      /// Sale Route
+      GoRoute(
+        path: RouteNames.reportSaleAdmin,
+        builder: (context, state) => const SaleAdminScreen(),
+      ),
+
+      GoRoute(
+        path: RouteNames.reportSaleStaff,
+        builder: (context, state) => const SaleStaffScreen(),
+      ),
+
+      GoRoute(
+        path: RouteNames.reportSaleStaffAdd,
+        builder: (context, state) => const SaleStaffAddScreen(),
+      ),
+
+      GoRoute(
+        path: RouteNames.reportSaleAdminAdd,
+        builder: (context, state) => const SaleAdminAddScreen(),
+      ),
+
+      GoRoute(
+        path: RouteNames.reportSaleStaffDetail,
+        builder: (context, state) => const SaleStaffDetailScreen(),
+      ),
+
+      GoRoute(
+        path: RouteNames.reportSaledAdminDetail,
+        builder: (context, state) => const SaleAdminDetailScreen(),
+      ),
 
       GoRoute(
         path: '/favorites',

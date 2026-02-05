@@ -267,7 +267,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.attach_money_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'report',
-      route: '/report/sale',
+      type: 'sale',
+      route: null,
     ),
     AppItemModel(
       id: 'report:ad',

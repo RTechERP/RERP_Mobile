@@ -14,4 +14,5 @@ enum FormActionMode {
 }
 
 
-enum HrType { admin,lxcp}
+enum DepartmentType { hr_admin,hr_lxcp, sale_admin, sale_staff}
+
