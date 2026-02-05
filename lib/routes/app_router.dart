@@ -10,12 +10,12 @@ import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/reg_work_scre
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/work_trip/work_trip_detail_screen.dart';
 import 'package:rtc_erp/routes/route_names.dart';
 
+import '../app_init_screen.dart';
 import '../common/enums/index.dart';
 import '../di/injection.dart';
 import '../features/auth/view/bloc/auth_bloc.dart';
 import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
-import '../features/splash/view/splash_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_screen.dart';
@@ -62,23 +62,26 @@ import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart'
 
 class AppRouter {
   static final router = GoRouter(
-    initialLocation: '/splash',
+    initialLocation: '/',
+
     routes: [
       GoRoute(
-        path: '/splash',
-        builder: (context, state) => const SplashScreen(),
+        path: '/',
+        builder: (_, __) => const AppInitScreen(),
       ),
+
       GoRoute(
         path: RouteNames.login,
         builder: (context, state) {
           return BlocProvider(
-            create: (_) => getIt<AuthBloc>()..add(const AuthEvent.init()),
+            create: (_) =>
+            getIt<AuthBloc>()..add(const AuthEvent.init()),
             child: const LoginScreen(),
           );
         },
       ),
       GoRoute(
-        path: '/dashboard',
+        path: RouteNames.dashboard,
         builder: (context, state) => const DashboardScreen(),
       ),
       GoRoute(

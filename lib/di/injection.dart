@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import '../common/app/app_env.dart';
 import '../common/local_data/shared_pref.dart';
+import '../common/logger/index.dart';
 import '../features/auth/data/datasource/service/auth_service.dart';
 import '../features/auth/data/repository/auth_repo.dart';
 import '../features/auth/data/repository/auth_repo_impl.dart';
@@ -14,6 +15,8 @@ final getIt = GetIt.instance;
 void configureDependencies(AppEnv env) {
   // ===== COMMON =====
   getIt.registerLazySingleton<LocalStorage>(() => LocalStorageImpl());
+
+  getIt.registerLazySingleton<LogUtils>(() => LogUtils());
 
   /// ===== NETWORK =====
   getIt.registerLazySingleton<Dio>(() {
@@ -38,7 +41,7 @@ void configureDependencies(AppEnv env) {
   );
 
   /// ===== BLOCS =====
-  getIt.registerFactory<AuthBloc>(() => AuthBloc(getIt<AuthRepo>()));
+  getIt.registerFactory<AuthBloc>(() => AuthBloc(getIt<AuthRepo>(), getIt<LogUtils>()));
   getIt.registerFactory<TechBloc>(() => TechBloc());
   getIt.registerFactory<HrBloc>(() => HrBloc());
 

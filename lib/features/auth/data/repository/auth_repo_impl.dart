@@ -25,9 +25,11 @@ class AuthRepoImpl implements AuthRepo {
         passwordHash,
       );
 
-      return right(res.data);
+      // 🔥 res LÀ LoginResponse
+      return right(res);
     } on DioException catch (e) {
-      return left( e.baseError);
+      return left(e.baseError);
     }
   }
+
 }
