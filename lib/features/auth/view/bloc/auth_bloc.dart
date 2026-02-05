@@ -7,6 +7,7 @@ import '../../../../../../../../base/bloc/index.dart';
 import '../../../../common/constants.dart';
 import '../../data/datasource/models/auth_model.dart';
 import '../../data/repository/auth_repo.dart';
+import '../../../../../../../../base/network/errors/extension.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -36,44 +37,30 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
   }
 
   Future<void> _onLogin(
-      String loginName,
-      String passwordHash,
-      Emitter<AuthState> emit,
-      ) async {
-    emit(state.copyWith(status: BaseStateStatus.loading, message: null));
-
-    final result = await _authRepo.login(
+    String loginName,
+    String passwordHash,
+    Emitter<AuthState> emit,
+  ) async {
+    final res = await _authRepo.login(
       loginName: loginName,
       passwordHash: passwordHash,
     );
 
-    result.fold(
-          (error) {
-        final err = error.toString().toLowerCase();
-
-        final isWrongCredential =
-            err.contains('401') ||
-                err.contains('unauthorized') ||
-                err.contains('invalid') ||
-                err.contains('sai') ||
-                err.contains('không đúng') ||
-                err.contains('wrong_credential');
-
+    res.fold(
+      (l) {
         emit(
           state.copyWith(
             status: BaseStateStatus.failed,
-            message: isWrongCredential
-                ? 'Tài khoản hoặc mật khẩu không chính xác!'
-                : BlocMessages.notLoggedIn,
+            message: l.getErrorMessage,
           ),
         );
       },
-          (token) async {
+      (r) async {
         emit(
           state.copyWith(
             status: BaseStateStatus.success,
             message: BlocMessages.loginSuccess,
-            loginResponse: LoginResponse(accessToken: token ?? ''),
+            loginResponse: r,
           ),
         );
       },

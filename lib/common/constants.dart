@@ -67,3 +67,8 @@ class FireBaseLog {
   static const String loginPage = 'login_page';
 }
 
+class ApiEndPoint{
+  static const String login = '/home/login';
+
+  static const String getDailyReportTech = '/DailyReportTech/get-daily-report-tech';
+}

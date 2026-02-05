@@ -35,10 +35,6 @@ class BaseListData<T> {
   String? msg;
   @JsonKey(name: 'name')
   String? name;
-  @JsonKey(name: 'totalPage')
-  int? totalPage;
-  @JsonKey(name: 'totalItem')
-  dynamic totalItem; //todo
 }
 
 @JsonSerializable(
@@ -70,6 +66,4 @@ class BaseData<T> {
   String? msg;
   @JsonKey(name: 'name')
   String? name;
-  @JsonKey(name: 'questionTitle')
-  String? questionTitle;
 }

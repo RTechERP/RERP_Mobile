@@ -19,7 +19,7 @@ void configureDependencies(AppEnv env) {
   getIt.registerLazySingleton<Dio>(() {
     final dio = Dio(
       BaseOptions(
-        baseUrl: 'http://10.20.30.149:8088', // TODO: đổi baseUrl
+        baseUrl: 'http://10.20.30.149:8088/rerpapi/api', // TODO: đổi baseUrl
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
       ),

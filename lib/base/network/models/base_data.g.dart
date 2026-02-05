@@ -19,9 +19,7 @@ BaseListData<T> _$BaseListDataFromJson<T>(
       ..results = (json['results'] as List<dynamic>?)?.map(fromJsonT).toList()
       ..message = json['message'] as String?
       ..msg = json['msg'] as String?
-      ..name = json['name'] as String?
-      ..totalPage = (json['totalPage'] as num?)?.toInt()
-      ..totalItem = json['totalItem'];
+      ..name = json['name'] as String?;
 
 Map<String, dynamic> _$BaseListDataToJson<T>(
   BaseListData<T> instance,
@@ -36,8 +34,6 @@ Map<String, dynamic> _$BaseListDataToJson<T>(
       'message': instance.message,
       'msg': instance.msg,
       'name': instance.name,
-      'totalPage': instance.totalPage,
-      'totalItem': instance.totalItem,
     };
 
 BaseData<T> _$BaseDataFromJson<T>(
@@ -51,8 +47,7 @@ BaseData<T> _$BaseDataFromJson<T>(
       ..result = _$nullableGenericFromJson(json['result'], fromJsonT)
       ..message = json['message'] as String?
       ..msg = json['msg'] as String?
-      ..name = json['name'] as String?
-      ..questionTitle = json['questionTitle'] as String?;
+      ..name = json['name'] as String?;
 
 Map<String, dynamic> _$BaseDataToJson<T>(
   BaseData<T> instance,
@@ -65,7 +60,6 @@ Map<String, dynamic> _$BaseDataToJson<T>(
       'message': instance.message,
       'msg': instance.msg,
       'name': instance.name,
-      'questionTitle': instance.questionTitle,
     };
 
 T? _$nullableGenericFromJson<T>(

@@ -135,6 +135,17 @@ flutter:
     - assets/images/icons/apps/08.png
     - assets/images/icons/apps/09.png
     - assets/images/icons/apps/10.png
+    - assets/images/icons/apps/11.png
+    - assets/images/icons/apps/12.png
+    - assets/images/icons/apps/13.png
+    - assets/images/icons/apps/14.png
+    - assets/images/icons/apps/15.png
+    - assets/images/icons/apps/16.png
+    - assets/images/icons/apps/17.png
+    - assets/images/icons/apps/18.png
+    - assets/images/icons/apps/19.png
+    - assets/images/icons/apps/20.png
+    - assets/images/icons/apps/21.png
 
     # Trans
     - assets/trans/vi-VN.json
