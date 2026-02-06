@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/utils/card/index.dart';
+import '../bloc/tech_bloc.dart';
 class TechScreen extends StatelessWidget {
   const TechScreen({super.key});
 
@@ -13,40 +15,35 @@ class TechScreen extends StatelessWidget {
     return BaseScaffold(
       appBar: AppBarCommon(
         title: Text('report.tech'.tr(), style: AppStyles.headingTitle2),
-        onBackTap: () => context.pop(), // 👈 đảm bảo pop đúng GoRouter
+      ),
+      body: BlocBuilder<TechBloc, TechState>(
+        builder: (context, state) {
+          return ListView.builder(
+            padding: const EdgeInsets.all(16),
+            itemCount: state.reports.length,
+            itemBuilder: (context, index) {
+              final r = state.reports[index];
+
+              return AppCardReport(
+                category: r.projectName,
+                project: r.projectText,
+                time: r.createdDate,
+                progress: ((r.percentComplete) / 100).clamp(0, 1),
+                onTap: () {
+                  context.push('/report/tech/detail?index=$index');
+                },
+              );
+            },
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.push('/report/tech/add');
-        },
+        onPressed: () => context.push('/report/tech/add'),
         backgroundColor: AppColors.primaryERP,
-        elevation: 6,
-        shape: const CircleBorder(),
-        child: const Icon(Icons.add, color: Colors.white, size: 28),
-      ),
-      body: AppCardList(
-        children: [
-          AppCardReport(
-            category: 'RTC 02.26.002_2',
-            project: 'RTC1.26.002 - R-ERP Mobile',
-            time: DateTime.now(),
-            progress: 0.25,
-            onTap: () {
-              context.push('/report/tech/detail');
-          },
-          ),
-          AppCardReport(
-            category: 'RTC 02.26.002_2',
-            project: 'RTC1.26.002 - R-ERP Mobile',
-            time: DateTime.now(),
-            progress: 0.25,
-            onTap: () {
-              context.push('/report/tech/detail');
-            },
-
-          ),
-        ],
+        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }
 }
+
+

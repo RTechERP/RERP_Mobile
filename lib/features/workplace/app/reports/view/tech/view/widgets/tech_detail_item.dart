@@ -20,13 +20,13 @@ class TechDetailItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (work.category?.isNotEmpty == true)
+          if (work.projectText.isNotEmpty == true)
             FormReadonlyField(
-              key: ValueKey('work_${work.id}_category_${work.category}'),
+              key: ValueKey('work_${work.id}_category_${work.projectText}'),
               name: 'work_${work.id}_category',
               label: 'Hạng mục',
               icon: Icons.category_outlined,
-              initialValue: work.category,
+              initialValue: work.projectText,
             ),
 
           const SizedBox(height: 8),
@@ -45,11 +45,11 @@ class TechDetailItem extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: FormReadonlyField(
-                  key: ValueKey('work_${work.id}_ot_${work.otHours}'),
+                  key: ValueKey('work_${work.id}_ot_${work.totalHourOT}'),
                   name: 'work_${work.id}_ot',
                   label: 'OT',
                   icon: Icons.timer_outlined,
-                  initialValue: work.otHours,
+                  initialValue: work.totalHourOT,
                 ),
               ),
             ],
@@ -58,11 +58,11 @@ class TechDetailItem extends StatelessWidget {
           const SizedBox(height: 8),
 
           FormReadonlyField(
-            key: ValueKey('work_${work.id}_percent_${work.percent}'),
+            key: ValueKey('work_${work.id}_percent_${work.percentComplete}'),
             name: 'work_${work.id}_percent',
             label: 'Tiến độ (%)',
             icon: Icons.percent_outlined,
-            initialValue: work.percent,
+            initialValue: work.percentComplete,
           ),
 
           if (work.content.isNotEmpty == true) ...[
@@ -76,14 +76,14 @@ class TechDetailItem extends StatelessWidget {
             ),
           ],
 
-          if (work.result.isNotEmpty == true) ...[
+          if (work.results.isNotEmpty == true) ...[
             const SizedBox(height: 8),
             FormReadonlyField(
-              key: ValueKey('work_${work.id}_result_${work.result}'),
+              key: ValueKey('work_${work.id}_result_${work.results}'),
               name: 'work_${work.id}_result',
               label: 'Kết quả',
               icon: Icons.task_alt_outlined,
-              initialValue: work.result,
+              initialValue: work.results,
             ),
           ],
         ],

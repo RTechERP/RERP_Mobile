@@ -7,9 +7,8 @@ import '../../data/datasource/models/tech_model.dart';
 import '../bloc/tech_bloc.dart';
 
 class TechTabWorkItem extends StatelessWidget {
-  final int projectIndex;
   final String title;
-  final TechWork work;
+  final TechWork report;
   final bool isExpanded;
   final VoidCallback onToggleExpand;
   final VoidCallback? onDelete;
@@ -17,12 +16,13 @@ class TechTabWorkItem extends StatelessWidget {
 
   /// 👇 DetailScreen bật flag này = luôn mở
   final bool alwaysExpanded;
+  final int index;
 
   const TechTabWorkItem({
     super.key,
-    required this.projectIndex,
     required this.title,
-    required this.work,
+    required this.index,
+    required this.report,
     required this.isExpanded,
     required this.onToggleExpand,
     this.onDelete,
@@ -32,11 +32,11 @@ class TechTabWorkItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final showExpanded = alwaysExpanded ? true : isExpanded;
+    final showExpanded = alwaysExpanded || isExpanded;
 
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-      onTap: alwaysExpanded ? null : onToggleExpand, // 👈 bấm cả card để expand
+      onTap: alwaysExpanded ? null : onToggleExpand,
       child: FormCard(
         title: title,
         actions: [
@@ -49,12 +49,14 @@ class TechTabWorkItem extends StatelessWidget {
               ),
               onPressed: onToggleExpand,
             ),
+          if (!readonly && onDelete != null)
+            IconButton(
+              icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
+              onPressed: onDelete,
+            ),
         ],
         child: showExpanded
-            ? IgnorePointer(
-          ignoring: readonly, // 👈 chỉ khoá input
-          child: _buildContent(context),
-        )
+            ? IgnorePointer(ignoring: readonly, child: _buildContent(context))
             : const SizedBox.shrink(),
       ),
     );
@@ -65,43 +67,42 @@ class TechTabWorkItem extends StatelessWidget {
       'Bugfix',
       'Feature',
       'Tối ưu hiệu năng',
-      'Nghiên cứu'
+      'Nghiên cứu',
     ];
+
+    debugPrint('UI mission = ${report.mission}');
 
     return Column(
       children: [
-        /// ===== CATEGORY =====
+        /// ===== CATEGORY (map tạm vào projectText / hoặc mission tuỳ BE) =====
         GestureDetector(
           onTap: readonly
               ? null
               : () {
-            openSelectBottomSheet(
-              context: context,
-              title: 'Chọn hạng mục',
-              items: fakeCategories,
-              onSelected: (v) {
-                context.read<TechBloc>().add(
-                  TechEvent.updateWork(
-                    projectIndex: projectIndex,
-                    workId: work.id,
-                    category: v,
-                  ),
-                );
-              },
-            );
-          },
+                  openSelectBottomSheet(
+                    context: context,
+                    title: 'Chọn hạng mục',
+                    items: fakeCategories,
+                    onSelected: (v) {
+                      context.read<TechBloc>().add(
+                        TechEvent.updateWork(index: index, mission: v),
+                      );
+                    },
+                  );
+                },
           child: AbsorbPointer(
             child: FormInputField(
-              key: ValueKey('${work.id}_${work.category}'),
-              nameForm: 'tech_add_category_${work.id}',
-              nameTextField: 'category_${work.id}',
-              label: work.category?.isNotEmpty == true
-                  ? work.category!
+              key: ValueKey('${report.id}_${report.mission}'),
+              nameForm: 'tech_add_category_${report.projectCode}_${report.projectText}',
+              nameTextField: 'category_${report.projectCode}_${report.projectText}',
+              label: report.mission.isNotEmpty == true
+                  ? report.mission
                   : 'Hạng mục',
               readOnly: true,
               icon: Icons.category_outlined,
-              initialValue: work.category ?? '',
+              initialValue: report.mission,
             ),
+
           ),
         ),
 
@@ -113,46 +114,41 @@ class TechTabWorkItem extends StatelessWidget {
             Expanded(
               child: FormInputField(
                 icon: Icons.timer_outlined,
-                nameForm: 'tech_add_total_${work.id}',
-                nameTextField: 'total_${work.id}',
+                nameForm:
+                    'tech_add_total_${report.projectCode}_${report.projectText}',
+                nameTextField:
+                    'total_${report.projectCode}_${report.projectText}',
                 label: 'Tổng giờ',
                 keyboardType: TextInputType.number,
                 readOnly: readonly,
-                initialValue: work.totalHours,
+                initialValue: report.totalHours.toString(),
                 onChanged: readonly
                     ? null
                     : (v) {
-                  context.read<TechBloc>().add(
-                    TechEvent.updateWork(
-                      projectIndex: projectIndex,
-                      workId: work.id,
-                      totalHours: v,
-                    ),
-                  );
-                },
+                        context.read<TechBloc>().add(
+                          TechEvent.updateWork(index: index, totalHours: v),
+                        );
+                      },
               ),
             ),
             const SizedBox(width: 8),
             Expanded(
               child: FormInputField(
                 icon: Icons.timer_outlined,
-                nameForm: 'tech_add_ot_${work.id}',
-                nameTextField: 'ot_${work.id}',
+                nameForm:
+                    'tech_add_ot_${report.projectCode}_${report.projectText}',
+                nameTextField: 'ot_${report.projectCode}_${report.projectText}',
                 label: 'OT',
                 keyboardType: TextInputType.number,
                 readOnly: readonly,
-                initialValue: work.otHours,
+                initialValue: report.totalHourOT?.toString() ?? '',
                 onChanged: readonly
                     ? null
                     : (v) {
-                  context.read<TechBloc>().add(
-                    TechEvent.updateWork(
-                      projectIndex: projectIndex,
-                      workId: work.id,
-                      otHours: v,
-                    ),
-                  );
-                },
+                        context.read<TechBloc>().add(
+                          TechEvent.updateWork(index: index, totalHourOT: v),
+                        );
+                      },
               ),
             ),
           ],
@@ -163,23 +159,20 @@ class TechTabWorkItem extends StatelessWidget {
         /// ===== PERCENT =====
         FormInputField(
           icon: Icons.percent_outlined,
-          nameForm: 'tech_add_percent_${work.id}',
-          nameTextField: 'percent_${work.id}',
+          nameForm:
+              'tech_add_percent_${report.projectCode}_${report.projectText}',
+          nameTextField: 'percent_${report.projectCode}_${report.projectText}',
           label: 'Tiến độ hoàn thành',
           keyboardType: TextInputType.number,
           readOnly: readonly,
-          initialValue: work.percent,
+          initialValue: report.percentComplete.toString(),
           onChanged: readonly
               ? null
               : (v) {
-            context.read<TechBloc>().add(
-              TechEvent.updateWork(
-                projectIndex: projectIndex,
-                workId: work.id,
-                percent: v,
-              ),
-            );
-          },
+                  context.read<TechBloc>().add(
+                    TechEvent.updateWork(index: index, percentComplete: v),
+                  );
+                },
         ),
 
         const SizedBox(height: 8),
@@ -187,23 +180,20 @@ class TechTabWorkItem extends StatelessWidget {
         /// ===== CONTENT =====
         FormInputField(
           icon: Icons.note_outlined,
-          nameForm: 'tech_add_content_${work.id}',
-          nameTextField: 'content_${work.id}',
+          nameForm:
+              'tech_add_content_${report.projectCode}_${report.projectText}',
+          nameTextField: 'content_${report.projectCode}_${report.projectText}',
           label: 'Nội dung công việc',
           maxLines: 3,
           readOnly: readonly,
-          initialValue: work.content,
+          initialValue: report.content,
           onChanged: readonly
               ? null
               : (v) {
-            context.read<TechBloc>().add(
-              TechEvent.updateWork(
-                projectIndex: projectIndex,
-                workId: work.id,
-                content: v,
-              ),
-            );
-          },
+                  context.read<TechBloc>().add(
+                    TechEvent.updateWork(index: index, content: v),
+                  );
+                },
         ),
 
         const SizedBox(height: 8),
@@ -211,23 +201,20 @@ class TechTabWorkItem extends StatelessWidget {
         /// ===== RESULT =====
         FormInputField(
           icon: Icons.note_outlined,
-          nameForm: 'tech_add_result_${work.id}',
-          nameTextField: 'result_${work.id}',
+          nameForm:
+              'tech_add_result_${report.projectCode}_${report.projectText}',
+          nameTextField: 'result_${report.projectCode}_${report.projectText}',
           label: 'Kết quả',
           maxLines: 3,
           readOnly: readonly,
-          initialValue: work.result,
+          initialValue: report.results,
           onChanged: readonly
               ? null
               : (v) {
-            context.read<TechBloc>().add(
-              TechEvent.updateWork(
-                projectIndex: projectIndex,
-                workId: work.id,
-                result: v,
-              ),
-            );
-          },
+                  context.read<TechBloc>().add(
+                    TechEvent.updateWork(index: index, results: v),
+                  );
+                },
         ),
       ],
     );

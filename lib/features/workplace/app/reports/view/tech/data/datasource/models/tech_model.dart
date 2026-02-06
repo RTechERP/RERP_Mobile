@@ -1,228 +1,251 @@
 import 'package:equatable/equatable.dart';
-
-/// ==========================
-/// 🔹 Tech Work (Entity)
-/// ==========================
+import '../../../../../data/datasource/models/report_model.dart';
 
 class TechWork extends Equatable {
-  final String id;
-  final String? category;
-  final String totalHours;
-  final String otHours;
-  final String percent;
+  final int id;
+
+  final String code;
+  final String fullName;
+  final int userId;
+  final DateTime dateReport;
+
+  final String projectCode;
+  final String projectName;
+  final String projectText;
+
+  final double totalHours;
+  final double? totalHourOT;
+  final int percentComplete;
+
   final String content;
-  final String result;
-  final DateTime? date; // 👈 nullable
+  final String results;
+  final String planNextDay;
+
+  final String? backlog;
+  final String? problem;
+  final String? note;
+
+  final DateTime createdDate;
+  final int type;
+  final String positionName;
+  final String mission;
+
+  final String projectItemCode;
+
+  final DateTime holidayDate;
+
+  final DateTime? planStartDate;
+  final DateTime? planEndDate;
+  final DateTime? actualStartDate;
+  final DateTime? actualEndDate;
+
+  final int? totalDayPlan;
 
   const TechWork({
     required this.id,
-    this.category,
-    this.totalHours = '',
-    this.otHours = '',
-    this.percent = '',
-    this.content = '',
-    this.result = '',
-    this.date, // 👈 nullable
+    required this.code,
+    required this.fullName,
+    required this.userId,
+    required this.dateReport,
+    required this.projectCode,
+    required this.projectName,
+    required this.projectText,
+    required this.totalHours,
+    this.totalHourOT,
+    required this.percentComplete,
+    required this.content,
+    required this.results,
+    required this.planNextDay,
+    this.backlog,
+    this.problem,
+    this.note,
+    required this.createdDate,
+    required this.type,
+    required this.positionName,
+    required this.mission,
+    required this.projectItemCode,
+    required this.holidayDate,
+    this.planStartDate,
+    this.planEndDate,
+    this.actualStartDate,
+    this.actualEndDate,
+    this.totalDayPlan,
   });
 
-  factory TechWork.fromJson(Map<String, dynamic> json) {
+  factory TechWork.empty({
+    required int userId,
+    required String fullName,
+    required DateTime dateReport,
+    required DateTime createdDate,
+  }) {
     return TechWork(
-      id: json['id'] as String,
-      category: json['category'] as String?,
-      totalHours: json['total_hours'] as String? ?? '',
-      otHours: json['ot_hours'] as String? ?? '',
-      percent: json['percent'] as String? ?? '',
-      content: json['content'] as String? ?? '',
-      result: json['result'] as String? ?? '',
-      date: json['date'] != null
-          ? DateTime.tryParse(json['date'] as String)
-          : null,
+      id: 0,
+      code: '',
+      fullName: fullName,
+      userId: userId,
+      dateReport: dateReport,
+      projectCode: '',
+      projectName: '',
+      projectText: '',
+      totalHours: 0,
+      totalHourOT: 0,
+      percentComplete: 0,
+      content: '',
+      results: '',
+      planNextDay: '',
+      backlog: null,
+      problem: null,
+      note: null,
+      createdDate: createdDate,
+      type: 0,
+      positionName: '',
+      mission: '',
+      projectItemCode: '',
+      holidayDate: dateReport,
+      planStartDate: null,
+      planEndDate: null,
+      actualStartDate: null,
+      actualEndDate: null,
+      totalDayPlan: null,
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'category': category,
-      'total_hours': totalHours,
-      'ot_hours': otHours,
-      'percent': percent,
-      'content': content,
-      'result': result,
-      if (date != null) 'date': date!.toIso8601String(), // 👈 chỉ gửi khi có
-    };
-  }
+  factory TechWork.fromReportResponse(ReportResponse r) => TechWork(
+    id: r.id,
+    code: r.code,
+    fullName: r.fullName,
+    userId: r.userId,
+    dateReport: r.dateReport,
+    projectCode: r.projectCode,
+    projectName: r.projectName,
+    projectText: r.projectText,
+    totalHours: r.totalHours,
+    totalHourOT: r.totalHourOT,
+    percentComplete: r.percentComplete,
+    content: r.content,
+    results: r.results,
+    planNextDay: r.planNextDay,
+    backlog: r.backlog,
+    problem: r.problem,
+    note: r.note,
+    createdDate: r.createdDate,
+    type: r.type,
+    positionName: r.positionName,
+    mission: r.mission,
+    projectItemCode: r.projectItemCode,
+    holidayDate: r.holidayDate,
+    planStartDate: r.planStartDate,
+    planEndDate: r.planEndDate,
+    actualStartDate: r.actualStartDate,
+    actualEndDate: r.actualEndDate,
+    totalDayPlan: r.totalDayPlan,
+  );
 
   TechWork copyWith({
-    String? category,
-    String? totalHours,
-    String? otHours,
-    String? percent,
+    String? projectCode,
+    String? projectName,
+    String? projectText,
+    double? totalHours,
+    double? totalHourOT,
+    int? percentComplete,
     String? content,
-    String? result,
-    DateTime? date,
-    bool clearDate = false, // 👈 tiện cho case xoá date
+    String? results,
+    String? planNextDay,
+    String? backlog,
+    String? problem,
+    String? note,
+    String? projectItemCode,
+    DateTime? planStartDate,
+    DateTime? planEndDate,
+    DateTime? actualStartDate,
+    DateTime? actualEndDate,
+    int? totalDayPlan,
+    String? mission,
   }) {
     return TechWork(
       id: id,
-      category: category ?? this.category,
+      code: code,
+      fullName: fullName,
+      userId: userId,
+      dateReport: dateReport,
+      projectCode: projectCode ?? this.projectCode,
+      projectName: projectName ?? this.projectName,
+      projectText: projectText ?? this.projectText,
       totalHours: totalHours ?? this.totalHours,
-      otHours: otHours ?? this.otHours,
-      percent: percent ?? this.percent,
+      totalHourOT: totalHourOT ?? this.totalHourOT,
+      percentComplete: percentComplete ?? this.percentComplete,
       content: content ?? this.content,
-      result: result ?? this.result,
-      date: clearDate ? null : (date ?? this.date),
+      results: results ?? this.results,
+      planNextDay: planNextDay ?? this.planNextDay,
+      backlog: backlog ?? this.backlog,
+      problem: problem ?? this.problem,
+      note: note ?? this.note,
+      createdDate: createdDate,
+      type: type,
+      positionName: positionName,
+      mission: mission ?? this.mission,
+      projectItemCode: projectItemCode ?? this.projectItemCode,
+      holidayDate: holidayDate,
+      planStartDate: planStartDate ?? this.planStartDate,
+      planEndDate: planEndDate ?? this.planEndDate,
+      actualStartDate: actualStartDate ?? this.actualStartDate,
+      actualEndDate: actualEndDate ?? this.actualEndDate,
+      totalDayPlan: totalDayPlan ?? this.totalDayPlan,
     );
   }
 
   @override
-  List<Object?> get props =>
-      [id, category, totalHours, otHours, percent, content, result, date];
+  List<Object?> get props => [
+    id,
+    projectCode,
+    projectName,
+    projectText,
+    totalHours,
+    totalHourOT,
+    percentComplete,
+    content,
+    results,
+    planNextDay,
+    backlog,
+    problem,
+    note,
+    projectItemCode,
+    planStartDate,
+    planEndDate,
+    actualStartDate,
+    actualEndDate,
+    totalDayPlan,
+    mission,
+  ];
 }
 
-/// ==========================
-/// 🔹 Tech Category
-/// ==========================
-class TechCategory extends Equatable {
-  final String? category;
-  final List<TechWork> works;
-
-  const TechCategory({
-    this.category,
-    this.works = const [],
-  });
-
-  factory TechCategory.fromJson(Map<String, dynamic> json) {
-    return TechCategory(
-      category: json['category'] as String?,
-      works: (json['works'] as List<dynamic>? ?? [])
-          .map((e) => TechWork.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'category': category,
-      'works': works.map((e) => e.toJson()).toList(),
-    };
-  }
-
-  TechCategory copyWith({
-    String? category,
-    List<TechWork>? works,
-  }) {
-    return TechCategory(
-      category: category ?? this.category,
-      works: works ?? this.works,
-    );
-  }
-
-  @override
-  List<Object?> get props => [category, works];
-}
-
-/// ==========================
-/// 🔹 Tech Project
-/// ==========================
 class TechProject extends Equatable {
-  final String id;
+  final String id;     // id BE hoặc '' nếu FE tự tạo
   final String? name;
-  final List<TechCategory> categories;
 
+  /// 👇 FE quản lý work
   final List<TechWork> works;
 
   const TechProject({
     required this.id,
     this.name,
-    this.categories = const [],
     this.works = const [],
   });
-
-  factory TechProject.fromJson(Map<String, dynamic> json) {
-    return TechProject(
-      id: json['id'] as String,
-      name: json['name'] as String?,
-      categories: (json['categories'] as List<dynamic>? ?? [])
-          .map((e) => TechCategory.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      works: (json['works'] as List<dynamic>? ?? [])
-          .map((e) => TechWork.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'categories': categories.map((e) => e.toJson()).toList(),
-      'works': works.map((e) => e.toJson()).toList(),
-    };
-  }
 
   TechProject copyWith({
     String? id,
     String? name,
-    List<TechCategory>? categories,
     List<TechWork>? works,
   }) {
     return TechProject(
       id: id ?? this.id,
       name: name ?? this.name,
-      categories: categories ?? this.categories,
       works: works ?? this.works,
     );
   }
 
   @override
-  List<Object?> get props => [id, name, categories, works];
+  List<Object?> get props => [id, name, works];
 }
 
-/// ==========================
-/// 🔹 Tech Report Payload
-/// ==========================
-class TechReportPayload extends Equatable {
-  final String? userId;
-  final String? date;
-  final List<TechCategory> categories;
 
-  const TechReportPayload({
-    this.userId,
-    this.date,
-    this.categories = const [],
-  });
-
-  factory TechReportPayload.fromJson(Map<String, dynamic> json) {
-    return TechReportPayload(
-      userId: json['userId'] as String?,
-      date: json['date'] as String?,
-      categories: (json['categories'] as List<dynamic>? ?? [])
-          .map((e) => TechCategory.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'userId': userId,
-      'date': date,
-      'categories': categories.map((e) => e.toJson()).toList(),
-    };
-  }
-
-  TechReportPayload copyWith({
-    String? userId,
-    String? date,
-    List<TechCategory>? categories,
-  }) {
-    return TechReportPayload(
-      userId: userId ?? this.userId,
-      date: date ?? this.date,
-      categories: categories ?? this.categories,
-    );
-  }
-
-  @override
-  List<Object?> get props => [userId, date, categories];
-}

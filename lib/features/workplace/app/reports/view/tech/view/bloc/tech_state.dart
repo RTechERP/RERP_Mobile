@@ -2,85 +2,83 @@ part of 'tech_bloc.dart';
 
 @CopyWith()
 class TechState extends BaseBlocState {
-  final List<TechCategory> categories;
+  final List<ReportResponse> reports;
   final List<TechProject> projects;
 
-  /// 📌 Chỉ cho phép expand 1 work tại 1 thời điểm
-  final int? expandedWorkIndex;
+  final TechProject? selectedProject;
+
   final int? expandedProjectIndex;
+  final int? expandedWorkIndex;
 
-  final DateTime? reportDate;
+  final DateTime? dateStart;
+  final DateTime? dateEnd;
+  final String? keyword;
 
-  final DateTime? createDate;
-
-  /// ===== LOCATION =====
-  final String locationType; // 'rtc' | 'other'
+  final String locationType;
   final String? location;
 
-  /// ===== EXTRA INFO =====
-  final String? issue;
-  final String? solution;
-  final String? blocking;
-  final String? blockingReason;
+  final String? backlog;
+  final String? problem;
+  final String? problemSolve;
+  final String? note;
+  final String? planNextDay;
 
-  /// ===== NEXT PLAN =====
-  final String? nextPlan;
+  final int? id;
+
+  final String? fullName;
 
   const TechState({
     required super.status,
     super.message,
-    this.categories = const [],
+    this.reports = const [],
     this.projects = const [],
-    this.expandedWorkIndex,
+    this.selectedProject,
     this.expandedProjectIndex,
-    this.reportDate,
-    this.createDate,
-
+    this.expandedWorkIndex,
+    this.dateStart,
+    this.dateEnd,
+    this.keyword,
     this.locationType = 'rtc',
-    this.location,
-
-    this.issue,
-    this.solution,
-    this.blocking,
-    this.blockingReason,
-
-    this.nextPlan,
+    this.location = 'VP RTC',
+    this.backlog,
+    this.problem,
+    this.problemSolve,
+    this.note,
+    this.planNextDay,
+    this.id,
+    this.fullName,
   });
 
   factory TechState.init() => const TechState(
     status: BaseStateStatus.init,
-    projects: [TechProject(id: '1')],
-    categories: [TechCategory()],
+    projects: [],
+    reports: [],
+    expandedProjectIndex: 0,
     expandedWorkIndex: null,
-    expandedProjectIndex: null,
-    reportDate: null,
-    createDate: null,
-
     locationType: 'rtc',
     location: 'VP RTC',
-    issue: null,
-    solution: null,
-    blocking: null,
-    blockingReason: null,
-    nextPlan: null,
   );
 
   @override
   List get props => [
     status,
     message,
-    categories,
+    reports,
     projects,
-    expandedWorkIndex,
+    selectedProject,
     expandedProjectIndex,
-    reportDate,
-    createDate,
+    expandedWorkIndex,
+    dateStart,
+    dateEnd,
+    keyword,
     locationType,
     location,
-    issue,
-    solution,
-    blocking,
-    blockingReason,
-    nextPlan,
+    backlog,
+    problem,
+    problemSolve,
+    note,
+    planNextDay,
+    id,
+    fullName,
   ];
 }

@@ -2,11 +2,11 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:uuid/uuid.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../common/logger/index.dart';
+import '../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../../../../data/repository/report_repo.dart';
 import '../../data/datasource/models/tech_model.dart';
@@ -19,331 +19,69 @@ part 'tech_bloc.freezed.dart';
 @injectable
 class TechBloc extends BaseBloc<TechEvent, TechState> {
   final ReportRepo _reportRepo;
-
   final LogUtils _log;
-  final _uuid = const Uuid();
-  TechBloc(this._reportRepo, this._log) : super(TechState.init()) {
+  final AuthRepo _authRepo;
+
+  TechBloc(this._reportRepo, this._authRepo, this._log)
+    : super(TechState.init()) {
     on<TechEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
 
-        loadReport: (
-            dateStart,
-            dateEnd,
-            teamId,
-            userId,
-            departmentId,
-            keyword,
-            ) =>
-            _onLoadReport(
-              dateStart,
-              dateEnd,
-              teamId,
-              userId,
-              departmentId,
-              keyword,
-              emit,
-            ),
-
+        /// ===== PROJECT =====
         addProject: () => _onAddProject(emit),
-        removeProject: (projectId) => _onRemoveProject(projectId, emit),
-        selectProject: (index, name) => _onSelectProject(index, name, emit),
-        expandProject: (index) => _onExpandProject(index, emit),
 
-        addWork: (projectIndex) => _onAddWork(projectIndex, emit),
-        removeWork: (projectIndex, workId) =>
-            _onRemoveWork(projectIndex, workId, emit),
-        expandWork: (projectIndex, workIndex) =>
-            _onExpandWork(projectIndex, workIndex, emit),
+        removeProject: (projectText) => _onRemoveProject(projectText, emit),
 
-        updateWork: (
-            projectIndex,
-            workId,
-            totalHours,
-            otHours,
-            percent,
-            content,
-            result,
-            category,
-            ) =>
-            _onUpdateWork(
-              projectIndex,
-              workId,
+        selectProject: (projectText) => _onSelectProject(projectText, emit),
+
+        updateProjectName: (projectText, newName) =>
+            _onUpdateProjectName(projectText, newName, emit),
+
+        /// ===== WORK =====
+        addWork: () => _onAddWork(emit),
+
+        removeWork: (index) => _onRemoveWork(index, emit),
+
+        expandWork: (index) => _onExpandWork(index, emit),
+
+        updateWork:
+            (
+              index,
+              totalHours,
+              totalHourOT,
+              percentComplete,
+              content,
+              results,
+              mission,
+            ) => _onUpdateWork(
+              index,
               totalHours: totalHours,
-              otHours: otHours,
-              percent: percent,
+              totalHourOT: totalHourOT,
+              percentComplete: percentComplete,
               content: content,
-              result: result,
-              category: category,
+              results: results,
+              mission: mission,
               emit: emit,
             ),
 
-        updateDate: (date) => _onUpdateDate(date, emit),
-        updateLocation: (type, value) =>
-            _onUpdateLocation(type, value, emit),
-        updateExtraInfo: (
-            issue,
-            solution,
-            blocking,
-            blockingReason,
-            nextPlan,
-            ) =>
-            _onUpdateExtraInfo(
-              issue: issue,
-              solution: solution,
-              blocking: blocking,
-              blockingReason: blockingReason,
-              nextPlan: nextPlan,
-              emit: emit,
-            ),
+        updateDate: (createdDate) => _onUpdateDate(createdDate, emit),
+
+        updateLocation: (type, value) => _onUpdateLocation(type, value, emit),
       );
     });
   }
 
-  // _onInit(Emitter<TechState> emit) async {
-  //   emit(state.copyWith(status: BaseStateStatus.loading));
-  //
-  //   emit(
-  //     state.copyWith(
-  //       status: BaseStateStatus.success,
-  //       projects: [
-  //         TechProject(
-  //           id: _uuid.v4(),
-  //           categories: const [TechCategory()],
-  //         ),
-  //       ],
-  //       expandedProjectIndex: 0,
-  //     ),
-  //   );
-  // }
+  // ================== HANDLERS ==================
 
   Future<void> _onInit(Emitter<TechState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
-    if (emit.isDone) return;
+    final userRes = await _authRepo.getCurrentUser();
 
-    emit(
-      state.copyWith(
-        status: BaseStateStatus.init,
-      ),
-    );
-  }
-
-  _onAddProject(Emitter<TechState> emit) {
-    final newProjects = [
-      ...state.projects,
-      TechProject(
-        id: _uuid.v4(),
-        categories: const [TechCategory()],
-      ),
-    ];
-
-    emit(state.copyWith(
-      projects: newProjects,
-      expandedProjectIndex: newProjects.length - 1,
-      expandedWorkIndex: null,
-    ));
-  }
-
-  _onRemoveProject(String projectId, Emitter<TechState> emit) {
-    final newProjects =
-    state.projects.where((p) => p.id != projectId).toList();
-
-    int? nextExpandedProjectIndex = state.expandedProjectIndex;
-
-    if (state.expandedProjectIndex != null) {
-      if (newProjects.isEmpty) {
-        nextExpandedProjectIndex = null;
-      } else if (state.expandedProjectIndex! >= newProjects.length) {
-        nextExpandedProjectIndex = newProjects.length - 1;
-      }
-    }
-
-    emit(state.copyWith(
-      projects: newProjects,
-      expandedProjectIndex: nextExpandedProjectIndex,
-      expandedWorkIndex: null,
-    ));
-  }
-
-  _onSelectProject(int projectIndex, String name, Emitter<TechState> emit) {
-    final newProjects = [...state.projects];
-
-    if (projectIndex < 0 || projectIndex >= newProjects.length) return;
-
-    final project = newProjects[projectIndex];
-
-    newProjects[projectIndex] = project.copyWith(name: name);
-
-    emit(state.copyWith(projects: newProjects));
-  }
-  _onAddWork(int projectIndex, Emitter<TechState> emit) {
-    final projects = [...state.projects];
-    final project = projects[projectIndex];
-
-    final works = [
-      ...project.works,
-      TechWork(id: const Uuid().v4()),
-    ];
-
-    projects[projectIndex] = project.copyWith(works: works);
-
-    emit(
-      state.copyWith(
-        projects: projects,
-        expandedWorkIndex: works.length - 1,
-        expandedProjectIndex: projectIndex,
-      ),
-    );
-  }
-
-  _onRemoveWork(int projectIndex, String workId, Emitter<TechState> emit) {
-    final newProjects = [...state.projects];
-    final project = newProjects[projectIndex];
-
-    final newWorks = project.works.where((w) => w.id != workId).toList();
-
-    newProjects[projectIndex] = project.copyWith(works: newWorks);
-
-    int? nextExpandedWorkIndex = state.expandedWorkIndex;
-
-    // Nếu đang expand work thuộc project này
-    if (state.expandedProjectIndex == projectIndex) {
-      if (newWorks.isEmpty) {
-        nextExpandedWorkIndex = null;
-      } else if (nextExpandedWorkIndex != null &&
-          nextExpandedWorkIndex >= newWorks.length) {
-        nextExpandedWorkIndex = newWorks.length - 1;
-      }
-    }
-
-    emit(
-      state.copyWith(
-        projects: newProjects,
-        expandedWorkIndex: nextExpandedWorkIndex,
-      ),
-    );
-  }
-
-  _onExpandWork(int projectIndex, int workIndex, Emitter<TechState> emit) {
-    if (projectIndex < 0 || projectIndex >= state.projects.length) return;
-
-    final works = state.projects[projectIndex].works;
-    if (workIndex < 0 || workIndex >= works.length) return;
-
-    final isSame =
-        state.expandedProjectIndex == projectIndex &&
-            state.expandedWorkIndex == workIndex;
-
-    emit(
-      state.copyWith(
-        expandedProjectIndex: isSame ? null : projectIndex,
-        expandedWorkIndex: isSame ? null : workIndex,
-      ),
-    );
-  }
-
-  _onUpdateWork(
-      int projectIndex,
-      String workId, {
-        String? totalHours,
-        String? otHours,
-        String? percent,
-        String? content,
-        String? result,
-        String? category,
-        required Emitter<TechState> emit,
-      }) {
-    final newProjects = [...state.projects];
-    final project = newProjects[projectIndex];
-
-    final newWorks = project.works.map((w) {
-      if (w.id != workId) return w;
-
-      return w.copyWith(
-        category: category ?? w.category,
-        totalHours: totalHours ?? w.totalHours,
-        otHours: otHours ?? w.otHours,
-        percent: percent ?? w.percent,
-        content: content ?? w.content,
-        result: result ?? w.result,
-      );
-    }).toList();
-
-    newProjects[projectIndex] = project.copyWith(works: newWorks);
-
-    emit(state.copyWith(projects: newProjects)); // 👈 bắt buộc phải emit list mới
-  }
-
-  _onUpdateDate(DateTime? date, Emitter<TechState> emit) {
-    emit(state.copyWith(reportDate: date));
-  }
-
-  _onExpandProject(int projectIndex, Emitter<TechState> emit) {
-    if (projectIndex < 0 || projectIndex >= state.projects.length) return;
-
-    if (state.expandedProjectIndex == projectIndex) return;
-
-    emit(
-      state.copyWith(
-        expandedProjectIndex: projectIndex,
-        expandedWorkIndex: null,
-      ),
-    );
-  }
-
-   _onUpdateLocation(String type, String? value, Emitter<TechState> emit) {
-    emit(
-      state.copyWith(
-        locationType: type,
-        location: type == 'rtc' ? 'VP RTC' : value,
-      ),
-    );
-  }
-
-  _onUpdateExtraInfo({
-    String? issue,
-    String? solution,
-    String? blocking,
-    String? blockingReason,
-    String? nextPlan,
-    required Emitter<TechState> emit,
-  }) {
-    emit(
-      state.copyWith(
-        issue: issue ?? state.issue,
-        solution: solution ?? state.solution,
-        blocking: blocking ?? state.blocking,
-        blockingReason: blockingReason ?? state.blockingReason,
-        nextPlan: nextPlan ?? state.nextPlan,
-      ),
-    );
-  }
-
-  Future<void> _onLoadReport(
-      DateTime dateStart,
-      DateTime dateEnd,
-      int teamId,
-      int userId,
-      int departmentId,
-      String? keyword,
-      Emitter<TechState> emit,
-      ) async {
-    emit(state.copyWith(status: BaseStateStatus.loading));
-
-    final res = await _reportRepo.getDailyReportTech(
-      dateStart: dateStart,
-      dateEnd: dateEnd,
-      teamId: teamId,
-      userId: userId,
-      departmentId: departmentId,
-      keyword: keyword,
-    );
-
-    await res.fold(
-          (l) async {
-        if (emit.isDone) return;
-
+    await userRes.fold(
+      (l) async {
+        _log.logE('Get current user failed: ${l.getErrorMessage}');
         emit(
           state.copyWith(
             status: BaseStateStatus.failed,
@@ -351,58 +89,254 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           ),
         );
       },
+      (user) async {
+        if (user == null) {
+          emit(
+            state.copyWith(
+              status: BaseStateStatus.failed,
+              message: 'Không lấy được thông tin team của user',
+            ),
+          );
+          return;
+        }
+
+        final now = DateTime.now();
+        final dateStart =
+            state.dateStart ?? DateTime(now.year, now.month, now.day);
+        final dateEnd =
+            state.dateEnd ?? DateTime(now.year, now.month, now.day, 23, 59, 59);
+
+        final res = await _reportRepo.getDailyReportTech(
+          dateStart: dateStart,
+          dateEnd: dateEnd,
+          keyword: state.keyword,
+          teamId: user.teamOfUser,
+          userId: user.id,
+          departmentId: user.departmentId,
+        );
+
+        await res.fold(
+          (l) async {
+            _log.logE(l.getErrorMessage);
+            emit(
+              state.copyWith(
+                status: BaseStateStatus.failed,
+                message: l.getErrorMessage,
+              ),
+            );
+          },
           (r) async {
-        if (emit.isDone) return;
-
-        final projects = _mapReportsToProjects(r);
-
-
-        emit(
-          state.copyWith(
-            status: BaseStateStatus.success,
-            projects: projects,
-            reportDate: dateStart,
-          ),
+            emit(
+              state.copyWith(
+                status: BaseStateStatus.success,
+                reports: r,
+                dateStart: dateStart,
+                dateEnd: dateEnd,
+              ),
+            );
+          },
         );
       },
     );
   }
-}
 
-List<TechProject> _mapReportsToProjects(List<ReportResponse> reports) {
-  final Map<String, List<ReportResponse>> grouped = {};
+  // ================= PROJECT =================
 
-  for (final r in reports) {
-    final key = r.projectText.isNotEmpty
-        ? r.projectText
-        : 'Không báo cáo';
+  _onAddProject(Emitter<TechState> emit) {
+    final projects = [...state.projects];
 
-    grouped.putIfAbsent(key, () => []).add(r);
+    final newProject = TechProject(
+      id: projects.length.toString(),
+      name: 'Dự án ${projects.length + 1}',
+    );
+
+    projects.add(newProject);
+
+    emit(state.copyWith(projects: projects, selectedProject: newProject));
   }
 
-  return grouped.entries.map((entry) {
-    final works = entry.value.map((r) {
-      return TechWork(
-        id: const Uuid().v4(),
-        category: r.projectItemCode,
-        totalHours: r.totalHours.toString(),
-        otHours: (r.totalHourOT ?? 0).toString(),
-        percent: r.percentComplete.toString(),
-        content: r.content,
-        result: r.results,
-        date: r.dateReport,
-      );
+  _onRemoveProject(TechProject project, Emitter<TechState> emit) {
+    final projects = state.projects.where((p) => p.id != project.id).toList();
+
+    final reports = state.reports
+        .where((r) => r.projectName != project.name)
+        .toList();
+
+    emit(
+      state.copyWith(
+        projects: projects,
+        reports: reports,
+        selectedProject: projects.isNotEmpty ? projects.first : null,
+        expandedWorkIndex: null,
+      ),
+    );
+  }
+
+  _onSelectProject(TechProject project, Emitter<TechState> emit) {
+    emit(state.copyWith(selectedProject: project, expandedWorkIndex: null));
+  }
+
+  _onUpdateProjectName(
+    TechProject project,
+    String newName,
+    Emitter<TechState> emit,
+  ) {
+    final projects = state.projects.map((p) {
+      if (p.id == project.id) {
+        return p.copyWith(name: newName);
+      }
+      return p;
     }).toList();
 
-    return TechProject(
-      id: const Uuid().v4(),
-      name: entry.key,
-      categories: [
-        TechCategory(
-          category: entry.key,
-          works: works,
-        ),
-      ],
+    final reports = state.reports.map((r) {
+      if (r.projectName == project.name) {
+        return r.copyWith(projectName: newName);
+      }
+      return r;
+    }).toList();
+
+    final selected = state.selectedProject?.id == project.id
+        ? project.copyWith(name: newName)
+        : state.selectedProject;
+
+    emit(
+      state.copyWith(
+        projects: projects,
+        reports: reports,
+        selectedProject: selected,
+      ),
     );
-  }).toList();
+  }
+
+  // ================= WORK =================
+
+  _onAddWork(Emitter<TechState> emit) {
+    final project = state.selectedProject;
+    if (project == null) return;
+
+    final works = [...project.works];
+
+    final newWork = TechWork.empty(
+      userId: state.id ?? 0,
+      fullName: state.fullName ?? '',
+      dateReport: DateTime.now(),
+      createdDate: DateTime.now(),
+    );
+
+    works.add(newWork);
+
+    final newProjects = state.projects.map((p) {
+      if (p.id == project.id) {
+        return p.copyWith(works: works);
+      }
+      return p;
+    }).toList();
+
+    final newSelectedProject =
+    newProjects.firstWhere((p) => p.id == project.id);
+
+    emit(state.copyWith(
+      projects: newProjects,
+      selectedProject: newSelectedProject,
+
+      // 👇 TỰ ĐỘNG EXPAND WORK MỚI NHẤT
+      expandedWorkIndex: newSelectedProject.works.length - 1,
+    ));
+  }
+  _onRemoveWork(int index, Emitter<TechState> emit) {
+    final project = state.selectedProject;
+    if (project == null) return;
+    if (index < 0 || index >= project.works.length) return;
+
+    final newWorks = [...project.works]..removeAt(index);
+
+    final newProjects = state.projects.map((p) {
+      if (p.id == project.id) {
+        return p.copyWith(works: newWorks);
+      }
+      return p;
+    }).toList();
+
+    emit(
+      state.copyWith(
+        projects: newProjects,
+        selectedProject: newProjects.firstWhere((p) => p.id == project.id),
+        expandedWorkIndex: null,
+      ),
+    );
+  }
+
+  _onExpandWork(int index, Emitter<TechState> emit) {
+    emit(
+      state.copyWith(
+        expandedWorkIndex: state.expandedWorkIndex == index ? null : index,
+      ),
+    );
+  }
+
+  _onUpdateWork(
+      int index, {
+        String? totalHours,
+        String? totalHourOT,
+        String? percentComplete,
+        String? content,
+        String? results,
+        String? mission,
+        required Emitter<TechState> emit,
+      }) {
+    final project = state.selectedProject;
+    if (project == null) return;
+    if (index < 0 || index >= project.works.length) return;
+
+    final works = List<TechWork>.from(project.works);
+    final w = works[index];
+
+    works[index] = w.copyWith(
+      totalHours: totalHours != null
+          ? double.tryParse(totalHours) ?? w.totalHours
+          : w.totalHours,
+      totalHourOT: totalHourOT != null
+          ? double.tryParse(totalHourOT) ?? w.totalHourOT
+          : w.totalHourOT,
+      percentComplete: percentComplete != null
+          ? int.tryParse(percentComplete) ?? w.percentComplete
+          : w.percentComplete,
+      content: content ?? w.content,
+      results: results ?? w.results,
+      mission: mission ?? w.mission, // ✅ QUAN TRỌNG
+    );
+
+    final newProjects = state.projects.map((p) {
+      if (p.id == project.id) {
+        return p.copyWith(works: works);
+      }
+      return p;
+    }).toList();
+
+    final newSelectedProject =
+    newProjects.firstWhere((p) => p.id == project.id);
+
+    emit(state.copyWith(
+      projects: newProjects,
+      selectedProject: newSelectedProject,
+    ));
+  }
+  _onUpdateDate(DateTime? createdDate, Emitter<TechState> emit) {
+    if (createdDate == null) return;
+
+    final reports = state.reports
+        .map((r) => r.copyWith(createdDate: createdDate))
+        .toList();
+
+    emit(state.copyWith(reports: reports));
+  }
+
+  _onUpdateLocation(String type, String? value, Emitter<TechState> emit) {
+    emit(
+      state.copyWith(
+        locationType: type,
+        location: type == 'rtc' ? 'VP RTC' : value,
+      ),
+    );
+  }
 }

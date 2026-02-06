@@ -4,48 +4,43 @@ part of 'tech_bloc.dart';
 class TechEvent with _$TechEvent {
   const factory TechEvent.init() = _Init;
 
-  const factory TechEvent.addWork(int categoryIndex) = _AddWork;
-  const factory TechEvent.removeWork({
-    required int projectIndex,
-    required String workId,
-  }) = _RemoveWork;
-
-  const factory TechEvent.expandWork(int projectIndex, int workIndex) =
-      _ExpandWork;
-
-  const factory TechEvent.updateWork({
-    required int projectIndex,
-    required String workId,
-    String? totalHours,
-    String? otHours,
-    String? percent,
-    String? content,
-    String? result,
-    String? category,
-  }) = _UpdateWork;
-
-  const factory TechEvent.updateDate({DateTime? date}) = _UpdateDate;
-
+  /// ===== PROJECT =====
   const factory TechEvent.addProject() = _AddProject;
 
-  const factory TechEvent.removeProject({required String projectId}) =
-      _RemoveProject;
-  const factory TechEvent.selectProject(int index, String name) =
-      _SelectProject;
+  const factory TechEvent.removeProject({
+    required TechProject project,
+  }) = _RemoveProject;
 
-  const factory TechEvent.expandProject(int projectIndex) = _ExpandProject;
+  const factory TechEvent.selectProject({
+    required TechProject project,
+  }) = _SelectProject;
 
-  /// ✅ BỔ SUNG 2 EVENT MỚI
+  const factory TechEvent.updateProjectName({
+    required TechProject project,
+    required String newName,
+  }) = _UpdateProjectName;
+
+  /// ===== WORK =====
+  const factory TechEvent.addWork() = _AddWork;
+
+  const factory TechEvent.removeWork({required int index}) = _RemoveWork;
+  const factory TechEvent.expandWork({required int index}) = _ExpandWork;
+
+  const factory TechEvent.updateWork({
+    required int index,
+    String? totalHours,
+    String? totalHourOT,
+    String? percentComplete,
+    String? content,
+    String? results,
+    String? mission,
+  }) = _UpdateWork;
+
+  const factory TechEvent.updateDate({DateTime? createdDate}) = _UpdateDate;
+
   const factory TechEvent.updateLocation({
-    required String type, // 'rtc' | 'other'
-    String? value,        // địa điểm nhập tay nếu other
+    required String type,
+    String? value,
   }) = _UpdateLocation;
-
-  const factory TechEvent.updateExtraInfo({
-    String? issue,
-    String? solution,
-    String? blocking,
-    String? blockingReason,
-    String? nextPlan,
-  }) = _UpdateExtraInfo;
 }
+

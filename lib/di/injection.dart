@@ -35,25 +35,26 @@ void configureDependencies(AppEnv env) {
   });
 
   /// ===== SERVICES =====
-  getIt.registerLazySingleton<AuthService>(
-        () => AuthService(getIt<Dio>()),
-  );
+  getIt.registerLazySingleton<AuthService>(() => AuthService(getIt<Dio>()));
 
-  getIt.registerLazySingleton<ReportService>(
-      () => ReportService(getIt<Dio>()),
-  );
+  getIt.registerLazySingleton<ReportService>(() => ReportService(getIt<Dio>()));
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
-        () => AuthRepoImpl(getIt<AuthService>()),
+    () => AuthRepoImpl(getIt<AuthService>()),
   );
 
   getIt.registerLazySingleton<ReportRepo>(
-      ()=> ReportRepoImpl(getIt<ReportService>()),
+    () => ReportRepoImpl(getIt<ReportService>()),
   );
 
   /// ===== BLOCS =====
-  getIt.registerFactory<AuthBloc>(() => AuthBloc(getIt<AuthRepo>(), getIt<LogUtils>()));
-  getIt.registerFactory<TechBloc>(() => TechBloc(getIt<ReportRepo>(), getIt<LogUtils>()));
+  getIt.registerFactory<AuthBloc>(
+    () => AuthBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
+  getIt.registerFactory<TechBloc>(
+    () => TechBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
   getIt.registerFactory<WorkspaceBloc>(() => WorkspaceBloc(getIt<LogUtils>()));
   getIt.registerFactory<HrBloc>(() => HrBloc());
 
