@@ -132,10 +132,15 @@ class AuthRepository {
       return null;
     }
 
-    final user = User.fromJson(jsonDecode(raw));
-    log?.logD('Get current user: ${user.fullName}');
-
-    return user;
+    try {
+      final user = User.fromJson(jsonDecode(raw));
+      log?.logD('Get current user: ${user.fullName}');
+      return user;
+    } catch (e) {
+      log?.logE('Parse cached user failed → clear cache');
+      await prefs.remove(_userKey);
+      return null;
+    }
   }
 
   static Future<void> clearUser({LogUtils? log}) async {
@@ -146,15 +151,34 @@ class AuthRepository {
 
   static Future<User?> fetchAndSaveCurrentUser({
     LogUtils? log,
+    bool forceRefresh = false,
   }) async {
     try {
-      final authRepo = getIt<AuthRepo>();
+      if (!forceRefresh) {
+        final cached = await getCurrentUser(log: log);
+        if (cached != null) {
+          log?.logI('Use cached current user');
+          return cached;
+        }
+      }
 
+      final authRepo = getIt<AuthRepo>();
       final res = await authRepo.getCurrentUser();
 
       return await res.fold(
             (l) async {
           log?.logE('Get current user failed: ${l.getErrorMessage}');
+
+          /// ✅ Xử lý 401 theo BaseError hiện tại
+          l.when(
+            httpInternalServerError: (_) {},
+            httpUnAuthorizedError: () async {
+              log?.logW('Unauthorized → clear all');
+              await clearAll(log: log);
+            },
+            httpUnknownError: (_) {},
+          );
+
           return null;
         },
             (user) async {
@@ -173,6 +197,7 @@ class AuthRepository {
       return null;
     }
   }
+
 
   static Future<bool> isLoggedInAndValid({LogUtils? log}) async {
     final token = await getToken(log: log);

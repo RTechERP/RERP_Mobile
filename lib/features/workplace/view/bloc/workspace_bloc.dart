@@ -30,6 +30,18 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
   Future<void> _onInit(Emitter<WorkspaceState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
+    final cached = await AuthRepository.getCurrentUser(log: _log);
+
+    if (cached != null) {
+      emit(
+        state.copyWith(
+          status: BaseStateStatus.success,
+          user: cached,
+        ),
+      );
+      return;
+    }
+
     final user = await AuthRepository.fetchAndSaveCurrentUser(log: _log);
 
     if (emit.isDone) return;
@@ -45,10 +57,14 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
     );
   }
 
+
   Future<void> _onRefresh(Emitter<WorkspaceState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
-    final user = await AuthRepository.fetchAndSaveCurrentUser(log: _log);
+    final user = await AuthRepository.fetchAndSaveCurrentUser(
+      log: _log,
+      forceRefresh: true, // nếu bạn có param này
+    );
 
     if (emit.isDone) return;
 
@@ -61,4 +77,5 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
       ),
     );
   }
+
 }

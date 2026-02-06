@@ -45,7 +45,11 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
       return;
     }
 
-    final user = await AuthRepository.fetchAndSaveCurrentUser(log: _log);
+    final cached = await AuthRepository.getCurrentUser(log: _log);
+
+    final user = cached ??
+        await AuthRepository.fetchAndSaveCurrentUser(log: _log);
+
 
     if (emit.isDone) return;
 
