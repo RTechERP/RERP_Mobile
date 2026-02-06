@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class WpInfoCard extends StatelessWidget {
   final String name;
-  final String company;
+  final String code;
   final String? avatarUrl;
   final double height;
 
   const WpInfoCard({
     super.key,
     required this.name,
-    required this.company,
+    required this.code,
     this.avatarUrl,
     this.height = 48,
   });
@@ -41,16 +41,18 @@ class WpInfoCard extends StatelessWidget {
   }
 
   Widget _buildAvatar() {
+    final hasAvatar = avatarUrl != null && avatarUrl!.trim().isNotEmpty;
+
     return CircleAvatar(
       radius: (height - 16) / 2,
       backgroundColor: Colors.grey.shade200,
-      backgroundImage:
-      avatarUrl != null ? NetworkImage(avatarUrl!) : null,
-      child: avatarUrl == null
-          ? const Icon(Icons.person, color: Colors.grey)
-          : null,
+      backgroundImage: hasAvatar ? NetworkImage(avatarUrl!) : null,
+      child: hasAvatar
+          ? null
+          : const Icon(Icons.person, color: Colors.grey),
     );
   }
+
 
   Widget _buildInfo() {
     return Flexible(
@@ -70,7 +72,7 @@ class WpInfoCard extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           Text(
-            company,
+            code,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(

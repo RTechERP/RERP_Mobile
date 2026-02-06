@@ -59,6 +59,7 @@ import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart';
+import '../features/workplace/view/bloc/workspace_bloc.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -80,10 +81,25 @@ class AppRouter {
           );
         },
       ),
-      GoRoute(
-        path: RouteNames.dashboard,
-        builder: (context, state) => const DashboardScreen(),
+      ShellRoute(
+        builder: (context, state, child) {
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider<WorkspaceBloc>(
+                create: (_) => getIt<WorkspaceBloc>()..add(const WorkspaceEvent.init()),
+              ),
+            ],
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.dashboard,
+            builder: (context, state) => const DashboardScreen(),
+          ),
+        ],
       ),
+
       GoRoute(
         path: '/regwork',
         builder: (context, state) => const RegWorkScreen(),
@@ -224,15 +240,15 @@ class AppRouter {
         },
         routes: [
           GoRoute(
-            path: '/report/tech',
+            path: RouteNames.reportITdepart,
             builder: (context, state) => const TechScreen(),
           ),
           GoRoute(
-            path: '/report/tech/add',
+            path: RouteNames.reportITdepartAdd,
             builder: (context, state) => const TechAddScreen(),
           ),
           GoRoute(
-            path: '/report/tech/detail',
+            path: RouteNames.reportITdepartDetail,
             builder: (context, state) => const TechDetailScreen(),
           ),
         ],

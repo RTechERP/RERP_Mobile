@@ -1,11 +1,20 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:rtc_erp/base/network/errors/extension.dart';
+
 import '../../../../common/logger/index.dart';
+import '../../../../di/injection.dart';
+import '../datasource/models/user_model.dart';
+import 'auth_repo.dart';
 
 class AuthRepository {
   AuthRepository._();
 
   static const _tokenKey = 'access_token';
   static const _expiresKey = 'access_token_expires';
+
+  static const _userKey = 'current_user';
 
   /// ==========================
   /// SAVE LOGIN INFO
@@ -95,5 +104,99 @@ class AuthRepository {
     }
 
     return true;
+  }
+
+  /// ==========================
+  /// SAVE + GET + CLEAR CURRENT USER
+  /// ==========================
+  static Future<void> saveCurrentUser({
+    required User user,
+    LogUtils? log,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    await prefs.setString(
+      _userKey,
+      jsonEncode(user.toJson()),
+    );
+
+    log?.logI('Current user saved');
+  }
+
+  static Future<User?> getCurrentUser({LogUtils? log}) async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_userKey);
+
+    if (raw == null) {
+      log?.logW('Get current user: null');
+      return null;
+    }
+
+    final user = User.fromJson(jsonDecode(raw));
+    log?.logD('Get current user: ${user.fullName}');
+
+    return user;
+  }
+
+  static Future<void> clearUser({LogUtils? log}) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_userKey);
+    log?.logI('Current user cleared');
+  }
+
+  static Future<User?> fetchAndSaveCurrentUser({
+    LogUtils? log,
+  }) async {
+    try {
+      final authRepo = getIt<AuthRepo>();
+
+      final res = await authRepo.getCurrentUser();
+
+      return await res.fold(
+            (l) async {
+          log?.logE('Get current user failed: ${l.getErrorMessage}');
+          return null;
+        },
+            (user) async {
+          if (user == null) {
+            log?.logW('User is null, skip save');
+            return null;
+          }
+
+          await saveCurrentUser(user: user, log: log);
+          return user;
+        },
+      );
+    } catch (e, s) {
+      log?.logE('Fetch user exception: $e');
+      log?.logD('$s');
+      return null;
+    }
+  }
+
+  static Future<bool> isLoggedInAndValid({LogUtils? log}) async {
+    final token = await getToken(log: log);
+    final expires = await getExpires(log: log);
+
+    if (token == null || expires == null) {
+      log?.logI('Auth invalid: missing token/expires');
+      return false;
+    }
+
+    final now = DateTime.now().toUtc();
+    final isExpired = now.isAfter(expires);
+
+    if (isExpired) {
+      log?.logW('Auth expired → clear all');
+      await clearAll(log: log);
+      return false;
+    }
+
+    return true;
+  }
+
+  static Future<void> clearAll({LogUtils? log}) async {
+    await clearToken(log: log);
+    await clearUser(log: log);
   }
 }

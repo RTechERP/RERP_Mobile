@@ -5,6 +5,10 @@ import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
+import '../../../../../../../../base/network/errors/extension.dart';
+import '../../../../../../../../common/logger/index.dart';
+import '../../../../data/datasource/models/report_model.dart';
+import '../../../../data/repository/report_repo.dart';
 import '../../data/datasource/models/tech_model.dart';
 
 part 'tech_event.dart';
@@ -14,11 +18,44 @@ part 'tech_bloc.freezed.dart';
 
 @injectable
 class TechBloc extends BaseBloc<TechEvent, TechState> {
+  final ReportRepo _reportRepo;
+
+  final LogUtils _log;
   final _uuid = const Uuid();
-  TechBloc() : super(TechState.init()) {
+  TechBloc(this._reportRepo, this._log) : super(TechState.init()) {
     on<TechEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
+
+        loadReport: (
+            dateStart,
+            dateEnd,
+            teamId,
+            userId,
+            departmentId,
+            keyword,
+            ) =>
+            _onLoadReport(
+              dateStart,
+              dateEnd,
+              teamId,
+              userId,
+              departmentId,
+              keyword,
+              emit,
+            ),
+
+        addProject: () => _onAddProject(emit),
+        removeProject: (projectId) => _onRemoveProject(projectId, emit),
+        selectProject: (index, name) => _onSelectProject(index, name, emit),
+        expandProject: (index) => _onExpandProject(index, emit),
+
+        addWork: (projectIndex) => _onAddWork(projectIndex, emit),
+        removeWork: (projectIndex, workId) =>
+            _onRemoveWork(projectIndex, workId, emit),
+        expandWork: (projectIndex, workIndex) =>
+            _onExpandWork(projectIndex, workIndex, emit),
+
         updateWork: (
             projectIndex,
             workId,
@@ -40,23 +77,17 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
               category: category,
               emit: emit,
             ),
-        addProject: () => _onAddProject(emit),
-        removeProject: (projectId) => _onRemoveProject(projectId, emit),
-        selectProject: (projectIndex, name) => _onSelectProject(projectIndex, name, emit),
-
-        addWork: (categoryIndex) => _onAddWork(categoryIndex, emit),
-        removeWork: (projectIndex, workId) =>
-            _onRemoveWork(projectIndex, workId, emit),
-
-        expandWork: (projectIndex, workIndex) =>
-            _onExpandWork(projectIndex, workIndex, emit),
 
         updateDate: (date) => _onUpdateDate(date, emit),
-        expandProject: (projectIndex) => _onExpandProject(projectIndex, emit),
         updateLocation: (type, value) =>
             _onUpdateLocation(type, value, emit),
-
-        updateExtraInfo: (issue, solution, blocking, blockingReason, nextPlan) =>
+        updateExtraInfo: (
+            issue,
+            solution,
+            blocking,
+            blockingReason,
+            nextPlan,
+            ) =>
             _onUpdateExtraInfo(
               issue: issue,
               solution: solution,
@@ -86,99 +117,18 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
   //   );
   // }
 
-  _onInit(Emitter<TechState> emit) async {
+  Future<void> _onInit(Emitter<TechState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
+
+    if (emit.isDone) return;
 
     emit(
       state.copyWith(
-        status: BaseStateStatus.success,
-
-        /// ===== THÔNG TIN CHUNG =====
-        reportDate: DateTime(2026, 2, 3),
-        locationType: 'rtc',
-        location: 'VP RTC',
-        issue: 'API báo cáo thiếu field percent',
-        solution: 'FE tạm mock dữ liệu để demo',
-        blocking: 'Chưa có token môi trường staging',
-        blockingReason: 'DevOps chưa cấp quyền',
-        nextPlan: 'Hoàn thiện màn hình chi tiết báo cáo & review BE',
-
-        /// ===== PROJECT + CATEGORY + WORK =====
-        projects: [
-          TechProject(
-            id: _uuid.v4(),
-            name: 'ERP Nội bộ',
-            categories: [
-              TechCategory(
-                category: 'Frontend',
-                works: [
-                  TechWork(
-                    id: _uuid.v4(),
-                    category: 'Frontend',
-                    totalHours: '2',
-                    otHours: '0',
-                    percent: '80',
-                    content: 'Thiết kế UI màn hình báo cáo kỹ thuật',
-                    result: 'Hoàn thành layout chính',
-                    date: DateTime(2026, 2, 3),
-                  ),
-                  TechWork(
-                    id: _uuid.v4(),
-                    category: 'Frontend',
-                    totalHours: '1.5',
-                    otHours: '0',
-                    percent: '100',
-                    content: 'Tích hợp BLoC cho Tech Detail',
-                    result: 'Đã chạy ổn định',
-                    date: DateTime(2026, 2, 3),
-                  ),
-                ],
-              ),
-              TechCategory(
-                category: 'Backend',
-                works: [
-                  TechWork(
-                    id: _uuid.v4(),
-                    category: 'Backend',
-                    totalHours: '1',
-                    otHours: '0',
-                    percent: '70',
-                    content: 'Mock API báo cáo ngày',
-                    result: 'Đủ dữ liệu cho FE test',
-                    date: DateTime(2026, 2, 3),
-                  ),
-                ],
-              ),
-            ],
-          ),
-
-          TechProject(
-            id: _uuid.v4(),
-            name: 'App Kỹ thuật viên',
-            categories: [
-              TechCategory(
-                category: 'Bugfix',
-                works: [
-                  TechWork(
-                    id: _uuid.v4(),
-                    category: 'Bugfix',
-                    totalHours: '2',
-                    otHours: '0.5',
-                    percent: '60',
-                    content: 'Fix lỗi GPS không update realtime',
-                    result: 'Android OK, iOS pending',
-                    date: DateTime(2026, 2, 3),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-
-        expandedProjectIndex: 0,
+        status: BaseStateStatus.init,
       ),
     );
   }
+
   _onAddProject(Emitter<TechState> emit) {
     final newProjects = [
       ...state.projects,
@@ -370,4 +320,89 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     );
   }
 
+  Future<void> _onLoadReport(
+      DateTime dateStart,
+      DateTime dateEnd,
+      int teamId,
+      int userId,
+      int departmentId,
+      String? keyword,
+      Emitter<TechState> emit,
+      ) async {
+    emit(state.copyWith(status: BaseStateStatus.loading));
+
+    final res = await _reportRepo.getDailyReportTech(
+      dateStart: dateStart,
+      dateEnd: dateEnd,
+      teamId: teamId,
+      userId: userId,
+      departmentId: departmentId,
+      keyword: keyword,
+    );
+
+    await res.fold(
+          (l) async {
+        if (emit.isDone) return;
+
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.failed,
+            message: l.getErrorMessage,
+          ),
+        );
+      },
+          (r) async {
+        if (emit.isDone) return;
+
+        final projects = _mapReportsToProjects(r);
+
+
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.success,
+            projects: projects,
+            reportDate: dateStart,
+          ),
+        );
+      },
+    );
+  }
+}
+
+List<TechProject> _mapReportsToProjects(List<ReportResponse> reports) {
+  final Map<String, List<ReportResponse>> grouped = {};
+
+  for (final r in reports) {
+    final key = r.projectText.isNotEmpty
+        ? r.projectText
+        : 'Không báo cáo';
+
+    grouped.putIfAbsent(key, () => []).add(r);
+  }
+
+  return grouped.entries.map((entry) {
+    final works = entry.value.map((r) {
+      return TechWork(
+        id: const Uuid().v4(),
+        category: r.projectItemCode,
+        totalHours: r.totalHours.toString(),
+        otHours: (r.totalHourOT ?? 0).toString(),
+        percent: r.percentComplete.toString(),
+        content: r.content,
+        result: r.results,
+        date: r.dateReport,
+      );
+    }).toList();
+
+    return TechProject(
+      id: const Uuid().v4(),
+      name: entry.key,
+      categories: [
+        TechCategory(
+          category: entry.key,
+          works: works,
+        ),
+      ],
+    );
+  }).toList();
 }

@@ -7,6 +7,7 @@ import '../../../../../../../../base/bloc/index.dart';
 import '../../../../common/constants.dart';
 
 import '../../data/datasource/models/auth_model.dart';
+import '../../data/datasource/models/user_model.dart';
 import '../../data/repository/auth_repo.dart';
 import '../../../../../../../../base/network/errors/extension.dart';
 import '../../data/repository/auth_repository.dart';
@@ -36,20 +37,27 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
   Future<void> _onInit(Emitter<AuthState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
-    final isLogin = await AuthRepository.checkLogin(log: _log);
+    final isValid = await AuthRepository.isLoggedInAndValid(log: _log);
+
+    if (!isValid) {
+      if (emit.isDone) return;
+      emit(state.copyWith(status: BaseStateStatus.init));
+      return;
+    }
+
+    final user = await AuthRepository.fetchAndSaveCurrentUser(log: _log);
 
     if (emit.isDone) return;
 
     emit(
       state.copyWith(
-        status: isLogin
+        status: user != null
             ? BaseStateStatus.success
             : BaseStateStatus.init,
+        user: user,
       ),
     );
   }
-
-
 
   Future<void> _onLogin(
       String loginName,
@@ -74,33 +82,40 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         );
       },
           (r) async {
-            if (r?.accessToken != null && r?.expires != null) {
-              await AuthRepository.saveLogin(
-                token: r!.accessToken,
-                expires: r.expires!,
-                log: _log,
-              );
-            }
+        if (r?.accessToken != null && r?.expires != null) {
+          await AuthRepository.saveLogin(
+            token: r!.accessToken,
+            expires: r.expires!,
+            log: _log,
+          );
+        }
 
+        final user = await AuthRepository.fetchAndSaveCurrentUser(log: _log);
 
-            if (emit.isDone) return;
+        if (emit.isDone) return;
+
         emit(
           state.copyWith(
-            status: BaseStateStatus.success,
-            message: BlocMessages.loginSuccess,
+            status: user != null
+                ? BaseStateStatus.success
+                : BaseStateStatus.failed,
+            message: user != null
+                ? BlocMessages.loginSuccess
+                : 'Login success but fetch user failed',
             loginResponse: r,
+            user: user,
           ),
         );
       },
     );
   }
 
+
   Future<void> _onLogout(Emitter<AuthState> emit) async {
-    await AuthRepository.clearToken(log: _log);
+    await AuthRepository.clearAll(log: _log);
 
     if (emit.isDone) return;
     emit(AuthState.init());
   }
-
 
 }

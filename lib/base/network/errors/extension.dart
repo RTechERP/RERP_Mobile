@@ -9,19 +9,19 @@ extension DioErrorMessage on DioException {
     BaseError errorMessage = const BaseError.httpUnknownError("unknown");
     switch (type) {
       case DioExceptionType.cancel:
-        errorMessage = BaseError.httpUnknownError("dio_cancel_request".tr());
+        errorMessage = BaseError.httpUnknownError("dio.cancel_request".tr());
         break;
       case DioExceptionType.connectionTimeout:
-        errorMessage = BaseError.httpUnknownError("dio_cancel_request".tr());
+        errorMessage = BaseError.httpUnknownError("dio.cancel_request".tr());
         break;
       case DioExceptionType.unknown:
-        errorMessage = BaseError.httpUnknownError("dio_cancel_request".tr());
+        errorMessage = BaseError.httpUnknownError("dio.cancel_request".tr());
         break;
       case DioExceptionType.receiveTimeout:
-        errorMessage = BaseError.httpUnknownError("dio_cancel_request".tr());
+        errorMessage = BaseError.httpUnknownError("dio.cancel_request".tr());
         break;
       case DioExceptionType.sendTimeout:
-        errorMessage = BaseError.httpUnknownError("dio_cancel_request".tr());
+        errorMessage = BaseError.httpUnknownError("dio.cancel_request".tr());
         break;
       case DioExceptionType.badResponse:
         final code = error;
@@ -38,7 +38,7 @@ extension DioErrorMessage on DioException {
         }
         break;
       default:
-        errorMessage = BaseError.httpUnknownError("dio_cancel_request".tr());
+        errorMessage = BaseError.httpUnknownError("dio.cancel_request".tr());
         break;
     }
     return errorMessage;

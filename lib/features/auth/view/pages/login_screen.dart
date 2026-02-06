@@ -7,7 +7,6 @@ import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import '../../../../base/bloc/index.dart';
 import '../../../../base/widgets/base_widget.dart';
 import '../../../../common/app_theme/index.dart';
-import '../../../../common/constants.dart';
 import '../../../../common/constants/index.dart';
 import '../../../../common/utils/dialog/index.dart';
 import '../../../../common/widgets/form/index.dart';
@@ -51,19 +50,18 @@ class _LoginScreenState
     }
 
     if (state.status == BaseStateStatus.failed) {
-      if (state.message == 'Tài khoản hoặc mật khẩu không chính xác!') {
-        DialogService.showToastFailed(
-          context: context,
-          mess: 'Tài khoản hoặc mật khẩu không chính xác!',
-        );
-      } else {
-        DialogService.showToastFailed(context: context);
-      }
+      DialogService.showToastFailed(
+        context: context,
+        mess: state.message,
+      );
     }
 
-    if (state.message == BlocMessages.loginSuccess) {
+
+    if (state.status == BaseStateStatus.success &&
+        state.user != null) {
       context.go('/dashboard');
     }
+
   }
 
   @override
@@ -138,37 +136,44 @@ class _LoginScreenState
                     SizedBox(
                       width: double.infinity,
                       height: 48,
-                      child: ElevatedButton(
-                        onPressed: _onSubmitLogin,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primaryERPlight,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                      child: blocBuilder((context, state) {
+                        final isLoading = state.status == BaseStateStatus.loading;
+
+                        return ElevatedButton(
+                          onPressed: isLoading ? null : _onSubmitLogin,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primaryERPlight,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                           ),
-                        ),
-                        child: const Text(
-                          'Đăng nhập',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                          child: isLoading
+                              ? const SizedBox(
+                            width: 22,
+                            height: 22,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Colors.white,
+                            ),
+                          )
+                              : const Text(
+                            'Đăng nhập',
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                      ),
+                        );
+                      }, buildWhen: (p, n) => p.status != n.status),
                     ),
+
                   ],
                 ),
               ),
             ),
           ),
 
-          /// ===== LOADING OVERLAY =====
-          blocBuilder((context, state) {
-            if (state.status == BaseStateStatus.loading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            return const SizedBox.shrink();
-          }, buildWhen: (p, n) => p.status != n.status),
         ],
       ),
     );

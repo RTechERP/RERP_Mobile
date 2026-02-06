@@ -70,5 +70,6 @@ class FireBaseLog {
 class ApiEndPoint{
   static const String login = '/home/login';
 
+  static const String currentUser = '/home/current-user';
   static const String getDailyReportTech = '/DailyReportTech/get-daily-report-tech';
 }

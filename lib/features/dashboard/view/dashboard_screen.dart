@@ -14,10 +14,10 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   late final PersistentTabController _tabController;
-
   @override
   void initState() {
     super.initState();
+
     _tabController = PersistentTabController(initialIndex: 2);
   }
 

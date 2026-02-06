@@ -1,15 +1,18 @@
 import "package:easy_localization/easy_localization.dart";
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
+import "package:rtc_erp/base/widgets/base_scaffold.dart";
 
-import "package:rtc_erp/features/workplace/view/widgets/wp_action_card.dart";
-import "package:rtc_erp/features/workplace/view/widgets/wp_circle_button.dart";
-import "package:rtc_erp/features/workplace/view/widgets/wp_favorite_add.dart";
-import "package:rtc_erp/features/workplace/view/widgets/wp_info_card.dart";
-
-import "../../../base/widgets/base_scaffold.dart";
+import "../../../base/bloc/index.dart";
+import "../../../base/widgets/base_widget.dart";
 import "../../../common/models/index.dart";
 import "../../../common/utils/dialog/index.dart";
+
+import "bloc/workspace_bloc.dart";
+import "widgets/wp_action_card.dart";
+import "widgets/wp_circle_button.dart";
+import "widgets/wp_favorite_add.dart";
+import "widgets/wp_info_card.dart";
 
 class WorkPlaceScreen extends StatefulWidget {
   const WorkPlaceScreen({super.key});
@@ -18,23 +21,64 @@ class WorkPlaceScreen extends StatefulWidget {
   State<WorkPlaceScreen> createState() => _WorkPlaceScreenState();
 }
 
-class _WorkPlaceScreenState extends State<WorkPlaceScreen> {
+class _WorkPlaceScreenState
+    extends BaseState<WorkPlaceScreen, WorkspaceEvent, WorkspaceState, WorkspaceBloc> {
+
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+    bloc.add(const WorkspaceEvent.init());
+  }
+
+  /// ===== LISTEN STATE =====
+  @override
+  void listener(BuildContext context, WorkspaceState state) {
+    super.listener(context, state);
+
+    if (state.status == BaseStateStatus.failed) {
+      DialogService.showToastFailed(
+        context: context,
+        mess: state.message ?? 'Load workspace failed',
+      );
+    }
+  }
+
+  @override
+  Widget renderUI(BuildContext context) {
     return BaseScaffold(
       onRefresh: () async {
-        await Future.delayed(const Duration(seconds: 2));
+        bloc.add(const WorkspaceEvent.refresh());
       },
       appBar: AppBar(
         elevation: 0,
         scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.white,
-        title: WpInfoCard(
-          avatarUrl: 'https://i.pravatar.cc/150',
-          name: 'Nguyễn Văn A',
-          company: 'RTC ERP',
+
+        /// ===== HEADER USER INFO =====
+        title: blocBuilder(
+              (context, state) {
+            final user = state.user;
+
+            if (state.status == BaseStateStatus.loading && user == null) {
+              return const SizedBox(
+                height: 36,
+                child: Center(
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+              );
+            }
+
+            return WpInfoCard(
+              avatarUrl: user?.avatar ?? 'https://i.pravatar.cc/150',
+              name: user?.fullName ?? '---',
+              code: user?.code ?? '---',
+            );
+          },
+          buildWhen: (p, n) =>
+          p.user != n.user || p.status != n.status,
         ),
+
         actions: [
           Stack(
             clipBehavior: Clip.none,
@@ -67,104 +111,123 @@ class _WorkPlaceScreenState extends State<WorkPlaceScreen> {
           const SizedBox(width: 12),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 12),
-        child: SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
-          child: SafeArea(
-            child: Column(
-              children: [
-                WpFavoriteAdd(onAddTap: () => context.push('/favorites')),
 
-                const SizedBox(height: 8),
+      body: blocBuilder(
+            (context, state) {
+          if (state.status == BaseStateStatus.loading && state.user == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-                WpActionCard(
-                  onItemTap: (item) {
-                    final route = item.route;
+          if (state.user == null) {
+            return const Center(child: Text('Không có dữ liệu user'));
+          }
 
-                    if (route == null || route.isEmpty) {
-                      DialogService.showProcessing(context: context);
-                      return;
-                    }
+          return Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    WpFavoriteAdd(onAddTap: () => context.push('/favorites')),
 
-                    context.push(route);
-                  },
-                  title: 'tab.applications'.tr(),
-                  expandable: true,
-                  collapsedItemCount: 11,
-                  items: [
-                    AppItemModel(
-                      id: 'general_forms',
-                      name: 'applications.general_forms'.tr(),
-                      iconCodePoint: Icons.assignment_outlined.codePoint,
-                    ),
-                    AppItemModel(
-                      id: 'summary_work',
-                      iconCodePoint:
+                    const SizedBox(height: 8),
+
+                    WpActionCard(
+                      onItemTap: (item) {
+                        final route = item.route;
+                        if (route == null || route.isEmpty) {
+                          DialogService.showProcessing(context: context);
+                          return;
+                        }
+                        context.push(route);
+                      },
+                      title: 'tab.applications'.tr(),
+                      expandable: true,
+                      collapsedItemCount: 11,
+                      items: [
+                        AppItemModel(
+                          id: 'general_forms',
+                          name: 'applications.general_forms'.tr(),
+                          iconCodePoint:
+                          Icons.assignment_outlined.codePoint,
+                        ),
+                        AppItemModel(
+                          id: 'summary_work',
+                          iconCodePoint:
                           Icons.content_paste_search_outlined.codePoint,
-                      name: 'applications.summary_work'.tr(),
+                          name: 'applications.summary_work'.tr(),
+                        ),
+                        AppItemModel(
+                          id: 'reg_work',
+                          iconCodePoint:
+                          Icons.person_pin_outlined.codePoint,
+                          name: 'applications.reg_work'.tr(),
+                          route: '/regwork',
+                        ),
+                        AppItemModel(
+                          id: 'reg_general',
+                          iconCodePoint: Icons.dvr_outlined.codePoint,
+                          name: 'applications.reg_general'.tr(),
+                        ),
+                        AppItemModel(
+                          id: 'report',
+                          iconCodePoint:
+                          Icons.description_outlined.codePoint,
+                          name: 'applications.report'.tr(),
+                          route: '/report',
+                        ),
+                        AppItemModel(
+                          id: 'week_plan',
+                          iconCodePoint:
+                          Icons.newspaper_outlined.codePoint,
+                          name: 'applications.week_plan'.tr(),
+                        ),
+                        AppItemModel(
+                          id: 'stock',
+                          iconCodePoint:
+                          Icons.shopping_cart_outlined.codePoint,
+                          name: 'applications.stock'.tr(),
+                        ),
+                      ],
                     ),
-                    AppItemModel(
-                      id: 'reg_work',
-                      iconCodePoint: Icons.person_pin_outlined.codePoint,
-                      name: 'applications.reg_work'.tr(),
-                      route: '/regwork',
-                    ),
-                    AppItemModel(
-                      id: 'reg_general',
-                      iconCodePoint: Icons.dvr_outlined.codePoint,
-                      name: 'applications.reg_general'.tr(),
-                    ),
-                    AppItemModel(
-                      id: 'report',
-                      iconCodePoint: Icons.description_outlined.codePoint,
-                      name: 'applications.report'.tr(),
-                      route: '/report',
-                    ),
-                    AppItemModel(
-                      id: 'week_plan',
-                      iconCodePoint: Icons.newspaper_outlined.codePoint,
-                      name: 'applications.week_plan'.tr(),
-                    ),
-                    AppItemModel(
-                      id: 'stock',
-                      iconCodePoint: Icons.shopping_cart_outlined.codePoint,
-                      name: 'applications.stock'.tr(),
+
+                    const SizedBox(height: 8),
+
+                    WpActionCard(
+                      onItemTap: (item) {
+                        final route = item.route;
+                        if (route == null || route.isEmpty) {
+                          DialogService.showProcessing(context: context);
+                          return;
+                        }
+                        context.push(route);
+                      },
+                      title: 'tab.features'.tr(),
+                      expandable: true,
+                      collapsedItemCount: 11,
+                      items: [
+                        AppItemModel(
+                          id: 'process',
+                          name: 'common.process'.tr(),
+                          iconCodePoint:
+                          Icons.error_outline_outlined.codePoint,
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
-
-                WpActionCard(
-                  onItemTap: (item) {
-                    final route = item.route;
-
-                    if (route == null || route.isEmpty) {
-                      DialogService.showProcessing(context: context);
-                      return;
-                    }
-
-                    context.push(route);
-                  },
-                  title: 'tab.features'.tr(),
-                  expandable: true,
-                  collapsedItemCount: 11,
-                  items: [
-                    AppItemModel(
-                      id: 'process',
-                      name: 'common.process'.tr(),
-                      iconCodePoint: Icons.error_outline_outlined.codePoint,
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
+        buildWhen: (p, n) =>
+        p.status != n.status || p.user != n.user,
       ),
     );
   }
 }
+
 
 // class _FavoriteGrid extends StatelessWidget {
 //   final List<AppItemModel> items;

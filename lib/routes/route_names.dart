@@ -10,6 +10,8 @@ class RouteNames {
 
   // Applications
   static const attendance = '/attendance';
+
+  static const workspace = '';
   static const generalforms = '/general_forms';
   static const summarywork = '/summary_work';
   static const regwork = '/reg_work';

@@ -5,6 +5,7 @@ import 'package:rtc_erp/base/network/errors/extension.dart';
 
 import '../../../../base/network/errors/error.dart';
 import '../datasource/models/auth_model.dart';
+import '../datasource/models/user_model.dart';
 import '../datasource/service/auth_service.dart';
 import 'auth_repo.dart';
 
@@ -32,4 +33,13 @@ class AuthRepoImpl implements AuthRepo {
     }
   }
 
+  @override
+  Future<Either<BaseError, User?>> getCurrentUser() async {
+    try {
+      final user = await _service.getCurrentUser();
+      return right(user);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

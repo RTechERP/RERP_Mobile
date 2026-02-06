@@ -113,5 +113,13 @@
   },
   "dialog_service": {
     "an_error_occurred_please_try_again": "Có lỗi xảy ra, vui lòng thử lại"
+  },
+  "dio": {
+    "cancel_request": "Request was cancelled",
+    "connect_timeout": "Connection timeout",
+    "cancel_other": "Connection failed due to internet connection",
+    "receive_timeout": "Receive timeout in connection",
+    "send_timeout": "Connection failed due to internet connection"
   }
+
 }
