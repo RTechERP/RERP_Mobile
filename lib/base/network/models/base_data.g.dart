@@ -12,7 +12,7 @@ BaseListData<T> _$BaseListDataFromJson<T>(
 ) =>
     BaseListData<T>(
       data: (json['data'] as List<dynamic>?)?.map(fromJsonT).toList(),
-      status: json['status'] as String?,
+      status: (json['status'] as num?)?.toInt(),
       result: (json['result'] as List<dynamic>?)?.map(fromJsonT).toList(),
     )
       ..items = (json['items'] as List<dynamic>?)?.map(fromJsonT).toList()
@@ -42,7 +42,7 @@ BaseData<T> _$BaseDataFromJson<T>(
 ) =>
     BaseData<T>(
       data: _$nullableGenericFromJson(json['data'], fromJsonT),
-      status: json['status'] as String?,
+      status: (json['status'] as num?)?.toInt(),
     )
       ..result = _$nullableGenericFromJson(json['result'], fromJsonT)
       ..message = json['message'] as String?

@@ -15,6 +15,9 @@ class FormDateTimePicker extends StatelessWidget {
 
   final DateTime? initialValue;
   final ValueChanged<DateTime?>? onChanged;
+  final ValueChanged<DateTime?>? onSaved; // ✅ thêm onSaved
+
+  final FormFieldValidator<DateTime?>? validator;
 
   const FormDateTimePicker({
     super.key,
@@ -26,6 +29,8 @@ class FormDateTimePicker extends StatelessWidget {
     this.enabled = true,
     this.initialValue,
     this.onChanged,
+    this.onSaved, // ✅ thêm vào constructor
+    this.validator,
   });
 
   @override
@@ -36,12 +41,24 @@ class FormDateTimePicker extends StatelessWidget {
       format: format,
       enabled: enabled,
       initialValue: initialValue,
-      onChanged: onChanged,
+
+      // ✅ Bắt cả 2 case: user đổi ngày + form save
+      onChanged: (v) {
+        debugPrint('🟡 FormDateTimePicker onChanged = $v');
+        onChanged?.call(v);
+      },
+      onSaved: (v) {
+        debugPrint('🟠 FormDateTimePicker onSaved = $v');
+        onSaved?.call(v);
+      },
+
       decoration: formInputDecoration(
         context,
         label: label,
         icon: icon,
       ),
+      validator: validator,
     );
   }
 }
+

@@ -72,4 +72,17 @@ class ApiEndPoint{
 
   static const String currentUser = '/home/current-user';
   static const String getDailyReportTech = '/DailyReportTech/get-daily-report-tech';
+
+  static const String getDepart = '/Department/get-all';
+
+  static const String getStaff = '/Course/get-employees?departmentid=2';
+
+  static const String getTeam = '/Team/department/2';
+
+  static const String getProject = '/project/get-project-modal';
+
+  static const String getProjectItemByUser =
+      '/DailyReportTech/get-project-item-by-user';
+
+  static const String saveReportTech = '/DailyReportTech/save-report-tech';
 }

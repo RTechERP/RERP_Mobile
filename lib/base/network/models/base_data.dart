@@ -28,7 +28,7 @@ class BaseListData<T> {
   @JsonKey(name: 'results')
   List<T>? results;
   @JsonKey(name: 'status')
-  String? status;
+  int? status;
   @JsonKey(name: 'message')
   String? message;
   @JsonKey(name: 'msg')
@@ -59,7 +59,7 @@ class BaseData<T> {
   @JsonKey(name: 'result')
   T? result;
   @JsonKey(name: 'status')
-  String? status;
+  int? status;
   @JsonKey(name: 'message')
   String? message;
   @JsonKey(name: 'msg')

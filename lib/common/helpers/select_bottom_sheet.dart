@@ -20,30 +20,34 @@ Future<void> openSelectBottomSheet({
         WoltModalSheetPage(
           topBarTitle: Text(title, style: AppStyles.headingTitle2),
           isTopBarLayerAlwaysVisible: true,
-
           child: SafeArea(
-            top: false, // 👈 vì top bar đã xử lý padding rồi
+            top: false,
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 maxHeight: MediaQuery.of(context).size.height * 0.55,
               ),
               child: StatefulBuilder(
                 builder: (context, setState) {
+                  final isEmpty = items.isEmpty;
+
                   return Column(
                     children: [
-                      /// 🔍 SEARCH
+                      /// 🔍 SEARCH (disable khi không có dữ liệu)
                       Padding(
                         padding: const EdgeInsets.fromLTRB(12, 6, 12, 10),
                         child: TextField(
                           controller: controller,
-                          autofocus: true,
+                          autofocus: !isEmpty,
+                          enabled: !isEmpty, // ✅ rỗng thì disable search
                           decoration: InputDecoration(
                             prefixIcon: const Icon(Icons.search),
                             hintText: hintText ?? 'Tìm kiếm...',
                             border: const OutlineInputBorder(),
                             isDense: true,
                           ),
-                          onChanged: (value) {
+                          onChanged: isEmpty
+                              ? null
+                              : (value) {
                             setState(() {
                               filtered = items
                                   .where(
@@ -59,9 +63,25 @@ Future<void> openSelectBottomSheet({
 
                       const Divider(height: 1),
 
-                      /// 📜 LIST
+                      /// 📜 CONTENT
                       Expanded(
-                        child: ListView.separated(
+                        child: isEmpty
+                            ? Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(
+                              Icons.insert_drive_file_outlined,
+                              size: 56,
+                              color: Colors.grey,
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              'Không có dữ liệu',
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ],
+                        )
+                            : ListView.separated(
                           padding:
                           const EdgeInsets.fromLTRB(12, 6, 12, 12),
                           itemCount: filtered.length,

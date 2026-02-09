@@ -5,7 +5,17 @@ class TechState extends BaseBlocState {
   final List<ReportResponse> reports;
   final List<TechProject> projects;
 
+  final List<DepartResponse> departs;
+
+  final List<ProjectResponse> rtcProject;
+
+  final List<ProjectItemResponse> projectItem;
+
+  final List<TechWork> works;
+
   final TechProject? selectedProject;
+
+  final ProjectItemResponse? selectedProjectItem;
 
   final int? expandedProjectIndex;
   final int? expandedWorkIndex;
@@ -27,11 +37,23 @@ class TechState extends BaseBlocState {
 
   final String? fullName;
 
+  final bool isSubmitting;
+  final bool submitSuccess;
+
+  final String? projectError;
+  final String? workItemError;
+  final String? totalHoursError;
+  final String? percentError;
+
   const TechState({
     required super.status,
     super.message,
     this.reports = const [],
     this.projects = const [],
+    this.departs = const [],
+    this.rtcProject = const [],
+    this.projectItem = const [],
+    this.works = const [],
     this.selectedProject,
     this.expandedProjectIndex,
     this.expandedWorkIndex,
@@ -47,16 +69,34 @@ class TechState extends BaseBlocState {
     this.planNextDay,
     this.id,
     this.fullName,
+    this.selectedProjectItem,
+    this.isSubmitting = false,
+    this.submitSuccess = false,
+    this.projectError,
+    this.workItemError,
+    this.totalHoursError,
+    this.percentError,
   });
 
   factory TechState.init() => const TechState(
     status: BaseStateStatus.init,
     projects: [],
     reports: [],
+    departs: [],
+    rtcProject: [],
+    projectItem: [],
+    works: [],
+    selectedProject: null,
     expandedProjectIndex: 0,
     expandedWorkIndex: null,
     locationType: 'rtc',
     location: 'VP RTC',
+    isSubmitting: false,
+    submitSuccess: false,
+    projectError: null,
+    workItemError: null,
+    totalHoursError: null,
+    percentError: null,
   );
 
   @override
@@ -80,5 +120,16 @@ class TechState extends BaseBlocState {
     planNextDay,
     id,
     fullName,
+    departs,
+    rtcProject,
+    projectItem,
+    selectedProjectItem,
+    isSubmitting,
+    submitSuccess,
+    works,
+    projectError,
+    workItemError,
+    totalHoursError,
+    percentError,
   ];
 }

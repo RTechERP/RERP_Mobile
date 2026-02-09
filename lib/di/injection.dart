@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import '../base/network/constants/constants.dart';
 import '../common/app/app_env.dart';
 import '../common/local_data/shared_pref.dart';
 import '../common/logger/index.dart';
@@ -26,7 +27,7 @@ void configureDependencies(AppEnv env) {
   getIt.registerLazySingleton<Dio>(() {
     final dio = Dio(
       BaseOptions(
-        baseUrl: 'http://10.20.30.149:8088/rerpapi/api', // TODO: đổi baseUrl
+        baseUrl: BaseApiUrl.baseUrl, // TODO: đổi baseUrl
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
       ),

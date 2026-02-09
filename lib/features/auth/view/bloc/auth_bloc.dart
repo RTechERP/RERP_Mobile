@@ -47,27 +47,24 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
 
     final cached = await AuthRepository.getCurrentUser(log: _log);
 
-    final user = cached ??
-        await AuthRepository.fetchAndSaveCurrentUser(log: _log);
-
+    final user =
+        cached ?? await AuthRepository.fetchAndSaveCurrentUser(log: _log);
 
     if (emit.isDone) return;
 
     emit(
       state.copyWith(
-        status: user != null
-            ? BaseStateStatus.success
-            : BaseStateStatus.init,
+        status: user != null ? BaseStateStatus.success : BaseStateStatus.init,
         user: user,
       ),
     );
   }
 
   Future<void> _onLogin(
-      String loginName,
-      String passwordHash,
-      Emitter<AuthState> emit,
-      ) async {
+    String loginName,
+    String passwordHash,
+    Emitter<AuthState> emit,
+  ) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
     final res = await _authRepo.login(
@@ -76,7 +73,7 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     );
 
     await res.fold(
-          (l) async {
+      (l) async {
         if (emit.isDone) return;
         emit(
           state.copyWith(
@@ -85,7 +82,7 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
           ),
         );
       },
-          (r) async {
+      (r) async {
         if (r?.accessToken != null && r?.expires != null) {
           await AuthRepository.saveLogin(
             token: r!.accessToken,
@@ -114,12 +111,10 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     );
   }
 
-
   Future<void> _onLogout(Emitter<AuthState> emit) async {
     await AuthRepository.clearAll(log: _log);
 
     if (emit.isDone) return;
     emit(AuthState.init());
   }
-
 }

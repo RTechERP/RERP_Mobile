@@ -4,10 +4,10 @@ import '../../../../../data/datasource/models/report_model.dart';
 class TechWork extends Equatable {
   final int id;
 
-  final String code;
+  final String code; // ✅ giữ nguyên code từ API (RTC1.26.002_1)
   final String fullName;
   final int userId;
-  final DateTime dateReport;
+  final String dateReport;
 
   final String projectCode;
   final String projectName;
@@ -15,7 +15,7 @@ class TechWork extends Equatable {
 
   final double totalHours;
   final double? totalHourOT;
-  final int percentComplete;
+  final double percentComplete;
 
   final String content;
   final String results;
@@ -23,6 +23,8 @@ class TechWork extends Equatable {
 
   final String? backlog;
   final String? problem;
+
+  final String? problemSolve;
   final String? note;
 
   final DateTime createdDate;
@@ -32,7 +34,9 @@ class TechWork extends Equatable {
 
   final String projectItemCode;
 
-  final DateTime holidayDate;
+  final int? projectItemId;
+
+  final DateTime? holidayDate;
 
   final DateTime? planStartDate;
   final DateTime? planEndDate;
@@ -70,43 +74,61 @@ class TechWork extends Equatable {
     this.actualStartDate,
     this.actualEndDate,
     this.totalDayPlan,
+    this.problemSolve,
+    this.projectItemId,
   });
 
+  /// ➕ Work trống – gắn sẵn project info + code
   factory TechWork.empty({
+    required int projectId,
     required int userId,
     required String fullName,
-    required DateTime dateReport,
+    required String dateReport,
     required DateTime createdDate,
+    required String projectCode,
+    required String projectText,
+    required String projectName,
+    required String code,
+    required int projectItemId,
   }) {
     return TechWork(
-      id: 0,
-      code: '',
+      id: projectId,
+      code: code, // ✅ giữ nguyên
       fullName: fullName,
       userId: userId,
       dateReport: dateReport,
-      projectCode: '',
-      projectName: '',
-      projectText: '',
+
+      projectCode: projectCode,
+      projectName: projectName,
+      projectText: projectText,
+
       totalHours: 0,
       totalHourOT: 0,
       percentComplete: 0,
+
       content: '',
       results: '',
       planNextDay: '',
+
       backlog: null,
       problem: null,
       note: null,
+
       createdDate: createdDate,
       type: 0,
       positionName: '',
       mission: '',
+
       projectItemCode: '',
-      holidayDate: dateReport,
+      projectItemId: projectItemId,
+      holidayDate: null,
+
       planStartDate: null,
       planEndDate: null,
       actualStartDate: null,
       actualEndDate: null,
       totalDayPlan: null,
+      problemSolve: null,
     );
   }
 
@@ -139,15 +161,17 @@ class TechWork extends Equatable {
     actualStartDate: r.actualStartDate,
     actualEndDate: r.actualEndDate,
     totalDayPlan: r.totalDayPlan,
+    problemSolve: r.problemSolve,
   );
 
   TechWork copyWith({
+    String? code, // ✅ cho phép update code
     String? projectCode,
     String? projectName,
     String? projectText,
     double? totalHours,
     double? totalHourOT,
-    int? percentComplete,
+    double? percentComplete,
     String? content,
     String? results,
     String? planNextDay,
@@ -161,42 +185,58 @@ class TechWork extends Equatable {
     DateTime? actualEndDate,
     int? totalDayPlan,
     String? mission,
+    DateTime? createdDate,
+    int? type,
+    String? positionName,
+    String? problemSolve,
+    int? projectItemId,
+    String? dateReport,
   }) {
     return TechWork(
       id: id,
-      code: code,
+      code: code ?? this.code, // ✅ giữ nguyên code nếu không truyền
       fullName: fullName,
       userId: userId,
-      dateReport: dateReport,
+      dateReport: dateReport ?? this.dateReport,
+
       projectCode: projectCode ?? this.projectCode,
       projectName: projectName ?? this.projectName,
       projectText: projectText ?? this.projectText,
+
       totalHours: totalHours ?? this.totalHours,
       totalHourOT: totalHourOT ?? this.totalHourOT,
       percentComplete: percentComplete ?? this.percentComplete,
+
       content: content ?? this.content,
       results: results ?? this.results,
       planNextDay: planNextDay ?? this.planNextDay,
+
       backlog: backlog ?? this.backlog,
       problem: problem ?? this.problem,
       note: note ?? this.note,
-      createdDate: createdDate,
-      type: type,
-      positionName: positionName,
+
+      createdDate: createdDate ?? this.createdDate,
+      type: type ?? this.type,
+      positionName: positionName ?? this.positionName,
       mission: mission ?? this.mission,
+
       projectItemCode: projectItemCode ?? this.projectItemCode,
       holidayDate: holidayDate,
+
       planStartDate: planStartDate ?? this.planStartDate,
       planEndDate: planEndDate ?? this.planEndDate,
       actualStartDate: actualStartDate ?? this.actualStartDate,
       actualEndDate: actualEndDate ?? this.actualEndDate,
       totalDayPlan: totalDayPlan ?? this.totalDayPlan,
+      problemSolve: problemSolve ?? this.problemSolve,
+      projectItemId: projectItemId ?? this.projectItemId,
     );
   }
 
   @override
   List<Object?> get props => [
     id,
+    code,
     projectCode,
     projectName,
     projectText,
@@ -216,36 +256,67 @@ class TechWork extends Equatable {
     actualEndDate,
     totalDayPlan,
     mission,
+    createdDate,
+    type,
+    positionName,
+    problemSolve,
+    userId,
+    fullName,
+    dateReport,
+    holidayDate,
+    projectItemId,
   ];
 }
 
+
 class TechProject extends Equatable {
-  final String id;     // id BE hoặc '' nếu FE tự tạo
+  final String tempId;        // local id (UUID)
+  final int? projectId;      // backend id
+  final String? projectCode;
   final String? name;
+
+  final String? code;
 
   /// 👇 FE quản lý work
   final List<TechWork> works;
 
   const TechProject({
-    required this.id,
+    required this.tempId,
+    this.projectId,
+    this.projectCode,
     this.name,
     this.works = const [],
+    this.code
   });
 
   TechProject copyWith({
-    String? id,
+    String? tempId,
+    int? projectId,
+    String? projectCode,
     String? name,
     List<TechWork>? works,
+    String? code
   }) {
     return TechProject(
-      id: id ?? this.id,
+      tempId: tempId ?? this.tempId,
+      projectId: projectId ?? this.projectId,
+      projectCode: projectCode ?? this.projectCode,
       name: name ?? this.name,
       works: works ?? this.works,
+      code: code ?? this.code,
     );
   }
 
   @override
-  List<Object?> get props => [id, name, works];
+  List<Object?> get props => [
+    tempId,
+    projectId,
+    projectCode,
+    name,
+    works,
+    code,
+  ];
 }
+
 
 
