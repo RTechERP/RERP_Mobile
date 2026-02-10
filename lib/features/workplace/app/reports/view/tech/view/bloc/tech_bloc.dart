@@ -60,7 +60,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
               results,
               mission,
               projectItemId,
-              planNextDay,
+            code,
             ) => _onUpdateWork(
               index,
               totalHours: totalHours,
@@ -70,7 +70,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
               results: results,
               mission: mission,
               projectItemId: projectItemId,
-              planNextDay: planNextDay,
+              code:code,
               emit: emit,
             ),
 
@@ -78,15 +78,24 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
         updateLocation: (type, value) => _onUpdateLocation(type, value, emit),
 
-        submitReport: () => _onSubmitReport(emit),
-        submitReportWithDate: (pickedDate) =>
-            _onSubmitReportWithDate(pickedDate, emit),
+        submitReport: (pickedDate) => _onSubmitReport(pickedDate, emit),
+
+        updatePlanNextDay: (planNextDay) =>
+            _onUpdatePlanNextDay(planNextDay, emit),
 
       );
     });
   }
 
   // ================== HANDLERS ==================
+
+  _onUpdatePlanNextDay(
+      String planNextDay,
+      Emitter<TechState> emit,
+      ) {
+    emit(state.copyWith(planNextDay: planNextDay));
+  }
+
 
   Future<void> _onInit(Emitter<TechState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
@@ -96,24 +105,19 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     final projectRes = await _reportRepo.getProject();
 
     await userRes.fold(
-      (l) async {
-        emit(
-          state.copyWith(
-            status: BaseStateStatus.failed,
-            message: l.getErrorMessage,
-          ),
-        );
+          (l) async {
+        emit(state.copyWith(status: BaseStateStatus.failed));
       },
-      (user) async {
+          (user) async {
         if (user == null) {
-          emit(
-            state.copyWith(
-              status: BaseStateStatus.failed,
-              message: 'Không lấy được user',
-            ),
-          );
+          emit(state.copyWith(status: BaseStateStatus.failed));
           return;
         }
+
+        emit(state.copyWith(
+          userId: user.id,
+          fullName: user.fullName,
+        ));
 
         final now = DateTime.now();
         final dateStart =
@@ -131,13 +135,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         );
 
         await res.fold(
-          (l) async => emit(
-            state.copyWith(
-              status: BaseStateStatus.failed,
-              message: l.getErrorMessage,
-            ),
-          ),
-          (r) async => emit(
+              (l) async => emit(state.copyWith(status: BaseStateStatus.failed)),
+              (r) async => emit(
             state.copyWith(
               status: BaseStateStatus.success,
               reports: r,
@@ -167,8 +166,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     final index = projects.length + 1;
 
     final newProject = TechProject(
-      tempId: const Uuid().v4(), // local unique id
-      projectId: null, // chưa bind API
+      tempId: const Uuid().v4(),
+      projectId: null,
       projectCode: 'Dự án $index',
       name: 'Dự án $index',
       works: const [],
@@ -183,54 +182,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     );
   }
 
-  Future<void> _onAddProject(Emitter<TechState> emit) async {
-    final apiProjects = state.rtcProject;
-
-    if (apiProjects.isEmpty) {
-      _log.logW('rtcProject is empty – onInit chưa load project API');
-      return;
-    }
-
-    final projects = [...state.projects];
-
-    // Các ID / Code đã dùng
-    final usedIds = projects.map((e) => e.projectId).toSet();
-    final usedCodes = projects.map((e) => e.projectCode).toSet();
-
-    // Tìm project API chưa dùng
-    final selected = apiProjects.firstWhere(
-      (p) => !usedIds.contains(p.id) && !usedCodes.contains(p.projectCode),
-      orElse: () {
-        _log.logW('All API projects are already used');
-        return apiProjects.first; // fallback nếu muốn cho phép trùng
-      },
-    );
-
-    _log.logI(
-      'Selected API project id=${selected.id} code=${selected.projectCode}',
-    );
-
-    final newProject = TechProject(
-      tempId: const Uuid().v4(),
-      projectId: selected.id, // ✅ map từ API
-      projectCode: selected.projectCode, // ✅ map từ API
-      name: selected
-          .projectName,
-      works: const [],
-    );
-
-    emit(
-      state.copyWith(
-        projects: [...projects, newProject],
-        selectedProject: newProject,
-        expandedWorkIndex: 0,
-      ),
-    );
-  }
-
   _onRemoveProject(String tempId, Emitter<TechState> emit) {
     final projects = state.projects.where((p) => p.tempId != tempId).toList();
-
     emit(
       state.copyWith(
         projects: projects,
@@ -252,7 +205,6 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         ? state.selectedProject!.copyWith(name: newName)
         : state.selectedProject;
 
-    // tìm project để sync reports theo backend id (nếu có)
     TechProject? project;
     for (final p in state.projects) {
       if (p.tempId == tempId) {
@@ -284,28 +236,20 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
     final isSameProject = state.selectedProject?.tempId == tempId;
 
-    // ✅ Bấm lại cùng project & đã có dữ liệu → không gọi lại API
     if (isSameProject && state.projectItem.isNotEmpty) {
       emit(state.copyWith(selectedProject: project));
       emit(state.copyWith(selectedProject: project));
       return;
     }
 
-    emit(
-      state.copyWith(
-        selectedProject: project,
-        projectItem: const [], // reset mission
-      ),
-    );
+    emit(state.copyWith(selectedProject: project, projectItem: const []));
 
-    // ✅ Project chưa bind API → không gọi API, không fail state
     if (project.projectId == null) {
-      _log.logW('Project chưa bind API ID → không load mission');
       return;
     }
 
     final res = await _reportRepo.getProjectItemByUser(
-      projectId: project.projectId!, // ✅ projectId của item đang select
+      projectId: project.projectId!,
     );
 
     await res.fold(
@@ -324,14 +268,12 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     ProjectResponse apiProject,
     Emitter<TechState> emit,
   ) async {
-    // chặn bind trùng backend project
     final usedBackendIds = state.projects
         .where((p) => p.projectId != null)
         .map((p) => p.projectId)
         .toSet();
 
     if (usedBackendIds.contains(apiProject.id)) {
-      _log.logW('Project API này đã được bind ở project khác');
       return;
     }
 
@@ -352,15 +294,13 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       state.copyWith(
         projects: projects,
         selectedProject: selected,
-        projectItem: const [], // ✅ reset mission
-        selectedProjectItem: null, // ✅ reset item đang chọn
+        projectItem: const [],
+        selectedProjectItem: null,
       ),
     );
 
-    // ✅ Sau khi bind xong → gọi API load mission luôn
     final res = await _reportRepo.getProjectItemByUser(
       projectId: apiProject.id,
-
     );
 
     await res.fold(
@@ -375,51 +315,78 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
             selectedProjectItem: r.isNotEmpty ? r.first : null,
           ),
         );
-
       },
     );
   }
 
   // ================= WORK =================
+
+  List<TechWork> _normalizeWorkingHours(List<TechWork> works) {
+    if (works.isEmpty) return works;
+
+    double sumNormal = works.fold<double>(
+      0,
+          (s, w) => s + ((w.totalHours) - (w.totalHourOT ?? 0)),
+    );
+
+    // ✅ Nếu tổng giờ thường >= 8 → scale xuống 7.99 (hoặc 8 tuỳ rule backend)
+    if (sumNormal >= 8) {
+      final ratio = 8 / sumNormal;
+
+      return works.map((w) {
+        final normal = (w.totalHours - (w.totalHourOT ?? 0)) * ratio;
+
+        return w.copyWith(
+          totalHours: normal + (w.totalHourOT ?? 0),
+        );
+      }).toList();
+    }
+
+    return works;
+  }
   _onAddWork(Emitter<TechState> emit) {
     final project = state.selectedProject;
-    final item = state.selectedProjectItem;
     if (project == null) return;
 
     final dateStr = state.dateStart != null
         ? DateFormat('yyyy-MM-dd').format(state.dateStart!)
-        : null; // ✅ KHÔNG fallback DateTime.now()
+        : '';
 
-    late TechProject newSelectedProject;
+    TechProject? newSelectedProject;
 
     final newProjects = state.projects.map((p) {
       if (p.projectId == project.projectId) {
         final works = [
           ...p.works,
           TechWork.empty(
-            code: item?.code ?? '',
+            code: '',
             projectId: p.projectId ?? 0,
             projectCode: p.projectCode ?? '',
             projectName: p.name ?? '',
             projectText: p.name ?? '',
-            userId: state.id ?? 0,
+            userId: state.userId ?? 0,
             fullName: state.fullName ?? '',
-            dateReport: dateStr ?? '', // ✅ để rỗng nếu chưa chọn ngày
+            dateReport: dateStr,
             createdDate: DateTime.now(),
-            projectItemId: item?.id ?? 0,
+            projectItemId: 0,
           ),
         ];
-        newSelectedProject = p.copyWith(works: works);
-        return newSelectedProject;
+        final normalized = _normalizeWorkingHours(works);
+        newSelectedProject = p.copyWith(works: normalized);
+        return newSelectedProject!;
       }
       return p;
     }).toList();
 
-    emit(state.copyWith(
-      projects: newProjects,
-      selectedProject: newSelectedProject,
-      expandedWorkIndex: newSelectedProject.works.length - 1,
-    ));
+    if (newSelectedProject == null) return;
+
+    emit(
+      state.copyWith(
+        projects: newProjects,
+        selectedProject: newSelectedProject,
+        expandedWorkIndex: newSelectedProject!.works.length - 1,
+      ),
+    );
   }
 
 
@@ -452,6 +419,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     );
   }
 
+
   Future<void> _onUpdateWork(
       int index, {
         double? totalHours,
@@ -461,14 +429,16 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         String? results,
         String? mission,
         int? projectItemId,
-        String? planNextDay,
         String? dateReport,
+        String? code,
         required Emitter<TechState> emit,
       }) async {
     final selected = state.selectedProject;
     if (selected == null) return;
 
     final newWorks = [...selected.works];
+
+    if (index < 0 || index >= newWorks.length) return;
 
     final old = newWorks[index];
 
@@ -481,13 +451,13 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       results: results ?? old.results,
       mission: mission ?? old.mission,
       projectItemId: projectItemId ?? old.projectItemId,
-      planNextDay: planNextDay ?? old.planNextDay,
+      code: code ?? old.code,
     );
 
     emit(
       state.copyWith(
         projects: state.projects.map((p) {
-          if (p.tempId == selected.projectId) {
+          if (p.projectId == selected.projectId) {
             return p.copyWith(works: newWorks);
           }
           return p;
@@ -496,8 +466,6 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       ),
     );
   }
-
-
 
   _onExpandWork(int index, Emitter<TechState> emit) {
     emit(
@@ -530,15 +498,14 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       return p;
     }).toList();
 
-    emit(state.copyWith(
-      projects: projects,
-      selectedProject: newSelected,
-      dateStart: safeDate, // ✅ BẮT BUỘC
-    ));
+    emit(
+      state.copyWith(
+        projects: projects,
+        selectedProject: newSelected,
+        dateStart: safeDate,
+      ),
+    );
   }
-
-
-
 
   _onUpdateLocation(String type, String? value, Emitter<TechState> emit) {
     emit(
@@ -549,98 +516,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     );
   }
 
-  Future<void> _onSubmitReport(Emitter<TechState> emit) async {
-    try {
-      emit(state.copyWith(
-        isSubmitting: true,
-      ));
-
-      // 1️⃣ Lấy user
-      final userRes = await _authRepo.getCurrentUser();
-      final user = userRes.getOrElse(() => null);
-      final userId = user?.id;
-
-
-      // 2️⃣ Lấy project
-      final selectedProject = state.selectedProject;
-      if (selectedProject == null) {
-        emit(state.copyWith(isSubmitting: false));
-        _log.logE('No project selected');
-        return;
-      }
-
-      // 3️⃣ Submit từng work (KHÔNG validate nữa)
-      for (final work in selectedProject.works) {
-        if (work.projectItemId == null) {
-          emit(state.copyWith(isSubmitting: false));
-          return;
-        }
-
-        final dateStr = state.dateStart != null
-            ? DateFormat('yyyy-MM-dd').format(state.dateStart!)
-            : null;
-
-
-        final req = SaveReportTechRequest(
-          id: 0,
-          masterId: 0,
-          userReport: userId,
-          dateReport: dateStr,
-          projectId: selectedProject.projectId,
-          projectItemId: work.projectItemId,
-          content: work.content,
-          results: work.results,
-          problem: work.problem,
-          problemSolve: work.problemSolve,
-          planNextDay: work.planNextDay,
-          backlog: work.backlog,
-          totalHours: work.totalHours,
-          totalHourOT: work.totalHourOT,
-          percentComplete: work.percentComplete,
-          location: state.location,
-          note: work.note,
-          type: 0,
-          reportLate: 0,
-          statusResult: 0,
-          workPlanDetailId: 0,
-          oldProjectId: 0,
-          deleteFlag: 0,
-          confirm: false,
-        );
-
-        // ✅ Log payload gửi đi (format giống Postman)
-        _log.logI('Submit payload: ${req.toJson()}');
-        final res = await _reportRepo.saveReportTech(request: req);
-
-        await res.fold(
-              (l) async {
-            emit(state.copyWith(isSubmitting: false));
-
-            _log.logE(
-              '❌ Submit report failed on workId=${work.id}'
-            );
-            return;
-          },
-              (r) async {
-            _log.logI('✅ Submit success workId=${work.id}');
-          },
-        );
-
-      }
-
-      // 4️⃣ Thành công toàn bộ
-      emit(state.copyWith(isSubmitting: false, submitSuccess: true));
-    } catch (e) {
-      emit(state.copyWith(isSubmitting: false));
-      _log.logE('Submit report error: $e');
-    }
-  }
-
-
-  Future<void> _onSubmitReportWithDate(
-      DateTime pickedDate,
-      Emitter<TechState> emit,
-      ) async {
+  Future<void> _onSubmitReport(
+    DateTime pickedDate,
+    Emitter<TechState> emit,
+  ) async {
     try {
       emit(state.copyWith(isSubmitting: true));
 
@@ -648,46 +527,40 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       final user = userRes.getOrElse(() => null);
       final userId = user?.id;
 
-      if (userId == null) {
-        emit(state.copyWith(isSubmitting: false));
-        _log.logE('User not found');
-        return;
-      }
-
       final selectedProject = state.selectedProject;
       if (selectedProject == null) {
         emit(state.copyWith(isSubmitting: false));
-        _log.logE('No project selected');
         return;
       }
 
       // ✅ CHỈ LẤY TỪ UI
-      final safeDate = DateTime(pickedDate.year, pickedDate.month, pickedDate.day);
+      final safeDate = DateTime(
+        pickedDate.year,
+        pickedDate.month,
+        pickedDate.day,
+      );
       final dateStr = DateFormat('yyyy-MM-dd').format(safeDate);
-
-      _log.logI('🔥 Submit with UI date = $dateStr');
 
       for (final work in selectedProject.works) {
         final payload = <String, dynamic>{
           'ID': 0,
           'MasterID': 0,
           'UserReport': userId,
-          'DateReport': dateStr, // ✅ đúng ngày user chọn
+          'DateReport': dateStr,
           'ProjectID': selectedProject.projectId,
           'ProjectItemID': work.projectItemId,
 
-          'Content': work.content ?? '',
-          'Results': work.results ?? '',
+          'Content': work.content,
+          'Results': work.results,
           'Problem': work.problem ?? '',
           'ProblemSolve': work.problemSolve ?? '',
-          'PlanNextDay': work.planNextDay ?? '',
+          'PlanNextDay': state.planNextDay,
           'Note': work.note ?? '',
           'Backlog': work.backlog ?? '',
 
-          // ⚠️ backend hay fail nếu gửi double → ép về num/int nếu cần
-          'TotalHours': (work.totalHours ?? 0).toInt(),
+          'TotalHours': (work.totalHours).toInt(),
           'TotalHourOT': (work.totalHourOT ?? 0).toInt(),
-          'PercentComplete': (work.percentComplete ?? 0).toInt(),
+          'PercentComplete': (work.percentComplete).toInt(),
 
           'Location': state.location ?? 'VP RTC',
           'Type': 0,
@@ -704,12 +577,12 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         final res = await _reportRepo.saveReportTechRaw(payload: payload);
 
         await res.fold(
-              (l) async {
+          (l) async {
             emit(state.copyWith(isSubmitting: false));
             _log.logE('❌ Submit failed: ${l.getErrorMessage}');
             return;
           },
-              (r) async {
+          (r) async {
             _log.logI('✅ Submit success');
           },
         );
@@ -721,4 +594,6 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       _log.logE('❌ Submit error: $e\n$st');
     }
   }
+
+
 }

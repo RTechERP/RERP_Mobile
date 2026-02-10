@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 import '../../../../../../../../common/helpers/index.dart';
@@ -35,30 +36,67 @@ class TechTabWorkItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final showExpanded = alwaysExpanded || isExpanded;
 
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: alwaysExpanded ? null : onToggleExpand,
-      child: FormCard(
-        title: title,
-        actions: [
-          if (!alwaysExpanded)
-            IconButton(
-              icon: Icon(
-                showExpanded
-                    ? Icons.keyboard_arrow_up_rounded
-                    : Icons.keyboard_arrow_down_rounded,
-              ),
-              onPressed: onToggleExpand,
-            ),
-          if (!readonly && onDelete != null)
-            IconButton(
-              icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
-              onPressed: onDelete,
-            ),
+    return Slidable(
+      key: ValueKey('work_${title}_$index'),
+      enabled: !showExpanded, // expanded thì disable swipe
+      endActionPane: showExpanded
+          ? null
+          : ActionPane(
+        motion: const DrawerMotion(),
+        extentRatio: 0.22,
+        children: [
+          SlidableAction(
+            onPressed: (_) => onDelete?.call(),
+            backgroundColor: Colors.redAccent,
+            foregroundColor: Colors.white,
+            icon: Icons.delete_outline,
+            label: 'Xoá',
+            borderRadius: BorderRadius.circular(12),
+          ),
         ],
-        child: showExpanded
-            ? IgnorePointer(ignoring: readonly, child: _buildContent(context))
-            : const SizedBox.shrink(),
+      ),
+      child: Builder(
+        // 👈 rất quan trọng: để lấy đúng context của Slidable
+        builder: (slidableCtx) {
+          return GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onTap: alwaysExpanded
+                ? null
+                : () {
+              // 👇 Đóng Slidable trước khi expand
+              Slidable.of(slidableCtx)?.close();
+              onToggleExpand();
+            },
+            child: FormCard(
+              title: title,
+              collapsed: !showExpanded,
+              actions: [
+                if (!alwaysExpanded)
+                  IconButton(
+                    icon: Icon(
+                      showExpanded
+                          ? Icons.keyboard_arrow_up_rounded
+                          : Icons.keyboard_arrow_down_rounded,
+                    ),
+                    onPressed: () {
+                      Slidable.of(slidableCtx)?.close(); // 👈 đóng khi bấm icon
+                      onToggleExpand();
+                    },
+                  ),
+              ],
+              child: AnimatedSize(
+                duration: const Duration(milliseconds: 250),
+                curve: Curves.easeInOut,
+                child: showExpanded
+                    ? IgnorePointer(
+                  ignoring: readonly,
+                  child: _buildContent(context),
+                )
+                    : const SizedBox.shrink(),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -97,7 +135,8 @@ class TechTabWorkItem extends StatelessWidget {
                       TechEvent.updateWork(
                         index: index,
                         mission: item.mission,
-                        projectItemId: item.id,        // ✅ ID đúng theo item user chọn
+                        projectItemId: item.id,
+                        code: item.code,
                       ),
                     );
                   },
@@ -105,17 +144,22 @@ class TechTabWorkItem extends StatelessWidget {
               },
               child: AbsorbPointer(
                 child: FormInputField(
-                  key: ValueKey('work_${report.id}_$index'),
-                  nameForm:
-                  'tech_add_category_${state.selectedProject?.projectCode}_${index}',
-                  nameTextField:
-                  'category_${state.selectedProject?.projectCode}_${index}',
+                  key: ValueKey('work_${report.id}'),
+                  nameForm: 'tech_add_category_${report.id}',
+                  nameTextField: 'category_${report.id}',
                   label: (report.mission.isNotEmpty == true)
                       ? report.mission
                       : 'Hạng mục',
                   readOnly: true,
                   icon: Icons.category_outlined,
                   initialValue: report.mission,
+                  validator: (_) {
+                    if (report.projectItemId == 0) {
+                      return 'Vui lòng chọn hạng mục công việc';
+                    }
+                    return null;
+                  },
+
                 ),
               ),
             ),
@@ -127,11 +171,10 @@ class TechTabWorkItem extends StatelessWidget {
               children: [
                 Expanded(
                   child: FormInputField(
+                    key: ValueKey('total_${report.id}'),
                     icon: Icons.timer_outlined,
-                    nameForm:
-                        'tech_add_total_${report.projectCode}_${report.projectText}',
-                    nameTextField:
-                        'total_${report.projectCode}_${report.projectText}',
+                    nameForm: 'tech_add_total_${report.id}',
+                    nameTextField: 'total_${report.id}',
                     label: 'Tổng giờ',
                     keyboardType: TextInputType.number,
                     initialValue: report.totalHours.toString(),
@@ -139,8 +182,14 @@ class TechTabWorkItem extends StatelessWidget {
                       FormBuilderValidators.required(errorText: 'Vui lòng nhập tổng số giờ'),
                       FormBuilderValidators.numeric(errorText: 'Chỉ được nhập số'),
                       FormBuilderValidators.min(0.1, errorText: 'Giờ phải > 0'),
+                      FormBuilderValidators.max(24, errorText: 'Giờ không được > 24'),
                     ]),
+
                     onChanged: (v) {
+                      final total = double.tryParse(v ?? '') ?? 0;
+                      final ot = report.totalHourOT ?? 0;
+
+                      if (total - ot <= 0) return; // chặn giờ thường âm
                       context.read<TechBloc>().add(
                         TechEvent.updateWork(
                           index: index,
@@ -154,10 +203,8 @@ class TechTabWorkItem extends StatelessWidget {
                 Expanded(
                   child: FormInputField(
                     icon: Icons.timer_outlined,
-                    nameForm:
-                        'tech_add_ot_${report.projectCode}_${report.projectText}',
-                    nameTextField:
-                        'ot_${report.projectCode}_${report.projectText}',
+                    nameForm: 'tech_add_ot_${report.id}',
+                    nameTextField: 'ot_${report.id}',
                     label: 'OT',
                     keyboardType: TextInputType.number,
                     initialValue: report.totalHourOT?.toString() ?? '0',
@@ -169,6 +216,16 @@ class TechTabWorkItem extends StatelessWidget {
                         ),
                       );
                     },
+                    validator: (v) {
+                      final total = report.totalHours;
+                      final ot = double.tryParse(v ?? '') ?? 0;
+
+                      if (ot < 0) return 'OT không được < 0';
+                      if (ot > total) return 'OT không được > Tổng giờ';
+                      if (total > 8 && ot <= 0) return 'Tổng giờ > 8 thì phải có OT';
+                      if (total - ot > 8) return 'Giờ hành chính không được > 8h';
+                      return null;
+                    },
                   ),
                 ),
               ],
@@ -178,11 +235,11 @@ class TechTabWorkItem extends StatelessWidget {
 
             /// ===== PERCENT =====
             FormInputField(
+              key: ValueKey('percent_${report.id}'),
+
               icon: Icons.percent_outlined,
-              nameForm:
-                  'tech_add_percent_${report.projectCode}_${report.projectText}',
-              nameTextField:
-                  'percent_${report.projectCode}_${report.projectText}',
+              nameForm: 'tech_add_percent_${report.id}',
+              nameTextField: 'percent_${report.id}',
               label: 'Tiến độ hoàn thành',
               keyboardType: TextInputType.number,
               initialValue: report.percentComplete.toString(),
@@ -192,6 +249,7 @@ class TechTabWorkItem extends StatelessWidget {
                 FormBuilderValidators.min(0, errorText: '>= 0'),
                 FormBuilderValidators.max(100, errorText: '<= 100'),
               ]),
+
               onChanged: (v) {
                 context.read<TechBloc>().add(
                   TechEvent.updateWork(
@@ -206,11 +264,12 @@ class TechTabWorkItem extends StatelessWidget {
 
             /// ===== CONTENT =====
             FormInputField(
+              key: ValueKey('content_${report.id}'),
+
               icon: Icons.note_outlined,
-              nameForm:
-                  'tech_add_content_${report.projectCode}_${report.projectText}',
-              nameTextField:
-                  'content_${report.projectCode}_${report.projectText}',
+              nameForm: 'tech_add_content_${report.id}',
+              nameTextField: 'content_${report.id}',
+
               label: 'Nội dung công việc',
               maxLines: 3,
               initialValue: report.content,
@@ -228,11 +287,11 @@ class TechTabWorkItem extends StatelessWidget {
 
             /// ===== RESULT =====
             FormInputField(
+              key: ValueKey('result_${report.id}'),
+
               icon: Icons.note_outlined,
-              nameForm:
-                  'tech_add_result_${report.projectCode}_${report.projectText}',
-              nameTextField:
-                  'result_${report.projectCode}_${report.projectText}',
+              nameForm: 'tech_add_result_${report.id}',
+              nameTextField: 'result_${report.id}',
               label: 'Kết quả',
               maxLines: 3,
               initialValue: report.results,

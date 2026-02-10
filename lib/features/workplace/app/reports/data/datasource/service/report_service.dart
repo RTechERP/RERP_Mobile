@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
@@ -154,8 +152,6 @@ class ReportService extends DioBaseApiService {
     final token = await AuthRepository.getToken();
 
     final body = [payload]; // ✅ root là mảng
-
-    print('🔥 RAW BODY = ${jsonEncode(body)}');
 
     return post<BaseData<void>>(
       ApiEndPoint.saveReportTech,

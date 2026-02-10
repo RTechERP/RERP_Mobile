@@ -34,13 +34,6 @@ class _TechAddScreenState
 
   @override
   Widget renderUI(BuildContext context) {
-    final projects = context.watch<TechBloc>().state.rtcProject;
-
-    final categories = projects
-        .map((e) => e.projectName)
-        .whereType<String>()
-        .toList();
-
     return BaseScaffold(
       appBar: AppBarCommon(title: const Text('Tạo báo cáo')),
       body: BlocBuilder<TechBloc, TechState>(
@@ -49,44 +42,21 @@ class _TechAddScreenState
             key: _screenFormKey,
             initialValue: {'location_type': state.locationType},
             child: ListView(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(8),
               children: [
                 /// ===== NGÀY =====
-                // FormCard(
-                //   title: 'Ngày báo cáo',
-                //   child: FormDateTimePicker(
-                //     icon: Icons.calendar_today,
-                //     name: 'tech_add_date',
-                //     label: 'Ngày báo cáo',
-                //     inputType: InputType.date,
-                //     format: DateFormat('dd/MM/yyyy'),
-                //
-                //     // ✅ set cứng 2026-02-03 để test
-                //     initialValue: DateTime(2026, 2, 3),
-                //
-                //     onChanged: (v) {
-                //       bloc.add(TechEvent.updateDate(v));
-                //     },
-                //
-                //     onSaved: (v) {
-                //       bloc.add(TechEvent.updateDate(v)); // ✅ đảm bảo submit cũng set dateStart
-                //     },
-                //
-                //     // validator: FormBuilderValidators.compose([
-                //     //   FormBuilderValidators.required(errorText: 'Vui lòng chọn ngày báo cáo'),
-                //     // ]),
-                //   ),
-                // ),
-
-
                 FormCard(
-                  title: 'Ngày báo cáo',
                   child: FormDateTimePicker(
                     icon: Icons.calendar_today,
                     name: 'tech_add_date',
                     label: 'Ngày báo cáo',
                     inputType: InputType.date,
                     format: DateFormat('dd/MM/yyyy'),
+                    validator: (v) {
+                      if (v == null) return 'Vui lòng chọn Ngày báo cáo';
+                      return null;
+                    },
+
                   ),
                 ),
 
@@ -125,8 +95,7 @@ class _TechAddScreenState
                               children: [
                                 ...state.projects.map((project) {
                                   final isActive =
-                                      project.tempId ==
-                                      state.selectedProject?.tempId;
+                                      project.tempId == state.selectedProject?.tempId;
 
                                   return Padding(
                                     padding: const EdgeInsets.only(right: 8),
@@ -137,18 +106,12 @@ class _TechAddScreenState
                                         );
                                       },
                                       child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 10,
-                                          vertical: 8,
-                                        ),
+                                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                                         decoration: BoxDecoration(
                                           color: isActive
-                                              ? AppColors.primaryERP
-                                                    .withOpacity(0.1)
+                                              ? AppColors.primaryERP.withOpacity(0.1)
                                               : Colors.transparent,
-                                          borderRadius: BorderRadius.circular(
-                                            8,
-                                          ),
+                                          borderRadius: BorderRadius.circular(8),
                                           border: Border.all(
                                             color: isActive
                                                 ? AppColors.primaryERP
@@ -173,9 +136,7 @@ class _TechAddScreenState
                                             GestureDetector(
                                               onTap: () {
                                                 bloc.add(
-                                                  TechEvent.removeProject(
-                                                    tempId: project.tempId,
-                                                  ), // ✅ tempId
+                                                  TechEvent.removeProject(tempId: project.tempId),
                                                 );
                                               },
                                               child: const Icon(
@@ -188,17 +149,13 @@ class _TechAddScreenState
                                         ),
                                       ),
                                     ),
-
                                   );
-
                                 }),
 
                                 /// ➕ ADD PROJECT
                                 IconButton(
                                   onPressed: () {
-                                    bloc.add(
-                                      const TechEvent.addEmptyProject(),
-                                    ); // ✅
+                                    bloc.add(const TechEvent.addEmptyProject());
                                   },
                                   icon: const Icon(Icons.add_circle_outline),
                                 ),
@@ -215,20 +172,12 @@ class _TechAddScreenState
                                 openSelectBottomSheet(
                                   context: context,
                                   title: 'Chọn dự án',
-                                  items: state.rtcProject
-                                      .map((e) => e.projectName)
-                                      .toList(),
+                                  items: state.rtcProject.map((e) => e.projectName).toList(),
                                   onSelected: (v) {
-                                    final selectedApiProject = state.rtcProject
-                                        .firstWhere((e) => e.projectName == v);
+                                    final selectedApiProject =
+                                    state.rtcProject.firstWhere((e) => e.projectName == v);
 
-                                    final tempId =
-                                        state.selectedProject!.tempId;
-
-                                    // ✅ gọi selectProject NGAY sau khi bind xong
-                                    bloc.add(
-                                      TechEvent.selectProject(tempId: tempId),
-                                    );
+                                    final tempId = state.selectedProject!.tempId;
 
                                     bloc.add(
                                       TechEvent.bindProjectFromApi(
@@ -236,19 +185,27 @@ class _TechAddScreenState
                                         apiProject: selectedApiProject,
                                       ),
                                     );
+
+                                    bloc.add(
+                                      TechEvent.selectProject(tempId: tempId),
+                                    );
                                   },
                                 );
                               },
                               child: AbsorbPointer(
                                 child: FormInputField(
-                                  nameForm:
-                                      'tech_add_project_${state.selectedProject!.tempId}', // ✅ dùng tempId
-                                  nameTextField:
-                                      'tech_project_${state.selectedProject!.tempId}', // ✅ dùng tempId
+                                  nameForm: 'tech_add_project_${state.selectedProject!.tempId}',
+                                  nameTextField: 'tech_project_${state.selectedProject!.tempId}',
                                   label: state.selectedProject?.name ?? '',
                                   readOnly: true,
                                   icon: Icons.work_outline,
                                   initialValue: state.selectedProject!.name,
+                                  validator: (_) {
+                                    if ((state.selectedProject?.projectId ?? 0) == 0) {
+                                      return 'Vui lòng chọn dự án';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
                             ),
@@ -257,33 +214,38 @@ class _TechAddScreenState
 
                           /// ===== LIST WORK =====
                           if (state.selectedProject != null)
-                            ...state.selectedProject!.works.asMap().entries.map((entry) {
-                              final wIndex = entry.key;
-                              final work = entry.value;
+                            ...state.selectedProject!.works.asMap().entries.map(
+                              (entry) {
+                                final wIndex = entry.key;
+                                final work = entry.value;
 
-                              final hasData = work.mission.isNotEmpty;
-                              final codeText = work.code.isNotEmpty
-                                  ? work.code
-                                  : 'Công việc ${wIndex + 1}';
+                                final hasData = work.mission.isNotEmpty;
+                                final codeText = work.code.isNotEmpty
+                                    ? work.code
+                                    : 'Công việc ${wIndex + 1}';
 
-                              print('Work[$wIndex].id = ${work.projectItemId}');
-
-                              return TechTabWorkItem(
-                                report: work,
-                                readonly: false,
-                                title: hasData ? codeText : 'Công việc ${wIndex + 1}',
-                                index: wIndex,
-                                isExpanded: state.expandedWorkIndex == wIndex,
-                                onToggleExpand: () {
-                                  bloc.add(TechEvent.expandWork(index: wIndex));
-                                },
-                                onDelete: () {
-                                  bloc.add(TechEvent.removeWork(index: wIndex));
-                                },
-                              );
-                            }),
-
-
+                                return TechTabWorkItem(
+                                  key: ValueKey(work.id),
+                                  report: work,
+                                  readonly: false,
+                                  title: hasData
+                                      ? codeText
+                                      : 'Công việc ${wIndex + 1}',
+                                  index: wIndex,
+                                  isExpanded: state.expandedWorkIndex == wIndex,
+                                  onToggleExpand: () {
+                                    bloc.add(
+                                      TechEvent.expandWork(index: wIndex),
+                                    );
+                                  },
+                                  onDelete: () {
+                                    bloc.add(
+                                      TechEvent.removeWork(index: wIndex),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
 
                           const SizedBox(height: 8),
 
@@ -319,8 +281,14 @@ class _TechAddScreenState
                         name: 'location_type',
                         initialValue: state.locationType,
                         options: const [
-                          FormBuilderFieldOption(value: 'rtc', child: Text('VP RTC')),
-                          FormBuilderFieldOption(value: 'other', child: Text('Địa điểm khác')),
+                          FormBuilderFieldOption(
+                            value: 'rtc',
+                            child: Text('VP RTC'),
+                          ),
+                          FormBuilderFieldOption(
+                            value: 'other',
+                            child: Text('Địa điểm khác'),
+                          ),
                         ],
                         onChanged: (v) {
                           if (v == null) return;
@@ -347,7 +315,9 @@ class _TechAddScreenState
                               TechEvent.updateLocation(type: 'other', value: v),
                             );
                           },
-                          validator: FormBuilderValidators.required(errorText: 'Vui lòng chọn nơi làm việc'),
+                          validator: FormBuilderValidators.required(
+                            errorText: 'Vui lòng chọn nơi làm việc',
+                          ),
                         ),
                     ],
                   ),
@@ -421,44 +391,16 @@ class _TechAddScreenState
                       errorText: 'Vui lòng nhập kế hoạch ngày tiếp theo',
                     ),
                     onChanged: (v) {
-                      final idx = context.read<TechBloc>().state.expandedWorkIndex;
-                      if (idx == null) return;
+                      if (v == null) return;
 
-                      context.read<TechBloc>().add(
-                        TechEvent.updateWork(
-                          index: idx,
-                          planNextDay: v, // ✅ đẩy vào state
-                        ),
+                      bloc.add(
+                        TechEvent.updatePlanNextDay(v),
                       );
                     },
                   ),
                 ),
 
                 const SizedBox(height: 12),
-
-                // FormActions(
-                //   mode: FormActionMode.add,
-                //   onSubmit: () {
-                //     final formState = _screenFormKey.currentState;
-                //
-                //     // 1️⃣ Đóng bàn phím cho gọn UX
-                //     FocusScope.of(context).unfocus();
-                //
-                //     // 2️⃣ Validate form
-                //     final isValid = formState?.saveAndValidate() ?? false;
-                //     if (!isValid) return;
-                //
-                //     // 3️⃣ Debug (optional)
-                //     debugPrint(formState!.value.toString());
-                //
-                //     // 4️⃣ Tránh submit 2 lần khi đang loading
-                //     final isSubmitting = bloc.state.isSubmitting;
-                //     if (isSubmitting) return;
-                //
-                //     // 5️⃣ Submit
-                //     bloc.add(const TechEvent.submitReport());
-                //   },
-                // ),
 
                 FormActions(
                   mode: FormActionMode.add,
@@ -471,21 +413,16 @@ class _TechAddScreenState
                     if (!isValid) return;
 
                     final values = formState!.value;
-                    debugPrint('FORM VALUE = $values');
 
                     final pickedDate = values['tech_add_date'] as DateTime?;
 
                     if (pickedDate == null) {
-                      debugPrint('❌ tech_add_date is null');
                       return;
                     }
 
-                    // ✅ Truyền thẳng DateTime sang bloc
-                    bloc.add(TechEvent.submitReportWithDate(pickedDate));
+                    bloc.add(TechEvent.submitReport(pickedDate));
                   },
                 ),
-
-
               ],
             ),
           );

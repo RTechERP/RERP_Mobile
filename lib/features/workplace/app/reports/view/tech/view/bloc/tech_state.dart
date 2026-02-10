@@ -45,6 +45,8 @@ class TechState extends BaseBlocState {
   final String? totalHoursError;
   final String? percentError;
 
+  final int? userId;
+
   const TechState({
     required super.status,
     super.message,
@@ -76,6 +78,7 @@ class TechState extends BaseBlocState {
     this.workItemError,
     this.totalHoursError,
     this.percentError,
+    this.userId,
   });
 
   factory TechState.init() => const TechState(
@@ -97,6 +100,8 @@ class TechState extends BaseBlocState {
     workItemError: null,
     totalHoursError: null,
     percentError: null,
+    userId: null,
+    fullName: null,
   );
 
   @override
@@ -131,5 +136,6 @@ class TechState extends BaseBlocState {
     workItemError,
     totalHoursError,
     percentError,
+    userId,
   ];
 }

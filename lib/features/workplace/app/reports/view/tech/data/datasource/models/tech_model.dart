@@ -4,7 +4,7 @@ import '../../../../../data/datasource/models/report_model.dart';
 class TechWork extends Equatable {
   final int id;
 
-  final String code; // ✅ giữ nguyên code từ API (RTC1.26.002_1)
+  final String code;
   final String fullName;
   final int userId;
   final String dateReport;
@@ -78,7 +78,6 @@ class TechWork extends Equatable {
     this.projectItemId,
   });
 
-  /// ➕ Work trống – gắn sẵn project info + code
   factory TechWork.empty({
     required int projectId,
     required int userId,
@@ -92,8 +91,8 @@ class TechWork extends Equatable {
     required int projectItemId,
   }) {
     return TechWork(
-      id: projectId,
-      code: code, // ✅ giữ nguyên
+      id: DateTime.now().microsecondsSinceEpoch,
+      code: code,
       fullName: fullName,
       userId: userId,
       dateReport: dateReport,
@@ -131,6 +130,7 @@ class TechWork extends Equatable {
       problemSolve: null,
     );
   }
+
 
   factory TechWork.fromReportResponse(ReportResponse r) => TechWork(
     id: r.id,
