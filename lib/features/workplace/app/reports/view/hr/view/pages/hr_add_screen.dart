@@ -61,7 +61,8 @@ class _HrAddAdminViewState extends State<_HrAddAdminView> {
             title: 'Ngày báo cáo',
             child: FormDateTimePicker(
               icon: Icons.calendar_today,
-              name: 'date',
+              nameForm: 'hr_add_date',
+              nameTimePicker: 'date_time',
               label: 'Ngày báo cáo',
               inputType: InputType.date,
               format: DateFormat('dd/MM/yyyy'),

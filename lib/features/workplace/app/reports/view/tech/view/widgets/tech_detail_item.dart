@@ -20,7 +20,6 @@ class TechDetailItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (work.projectText.isNotEmpty == true)
             FormReadonlyField(
               key: ValueKey('work_${work.id}_category_${work.projectText}'),
               name: 'work_${work.id}_category',

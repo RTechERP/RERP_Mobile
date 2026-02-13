@@ -7,10 +7,10 @@ abstract class ReportRepo {
   Future<Either<BaseError, List<ReportResponse>>> getDailyReportTech({
     required DateTime dateStart,
     required DateTime dateEnd,
-    required int teamId,
-    required int userId,
-    String? keyword,
-    required int departmentId,
+    required String teamId,
+    required String userId,
+    required String keyword,
+    required String departmentId,
   });
 
   Future<Either<BaseError, List<DepartResponse>>> getDepart();
@@ -23,11 +23,10 @@ abstract class ReportRepo {
   });
 
   Future<Either<BaseError, String>> saveReportTech({
-    required SaveReportTechRequest request,
-  });
-
-  Future<Either<BaseError, String>> saveReportTechRaw({
     required Map<String, dynamic> payload,
   });
 
+  Future<Either<BaseError, String>> sendMailReport({
+    required SendMailRequestModel request,
+  });
 }

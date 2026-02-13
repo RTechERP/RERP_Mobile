@@ -98,7 +98,8 @@ class _WfhDetailScreenState extends State<WfhDetailScreen> {
                             /// NGÀY
                             _isEditing
                                 ? FormDateTimePicker(
-                                    name: 'regwork_wfh_detail_date',
+                                    nameForm: 'regwork_wfh_detail_date',
+                                    nameTimePicker: 'wfh_detail_date_time',
                                     label: 'Ngày',
                                     icon: Icons.date_range_outlined,
                                     inputType: InputType.date,

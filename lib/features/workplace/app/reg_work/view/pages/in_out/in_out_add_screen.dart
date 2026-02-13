@@ -68,7 +68,9 @@ class _InOutAddScreenPageState extends State<InOutAddScreenPage> {
                           children: [
                             /// Ngày
                             FormDateTimePicker(
-                              name: 'regwork_inout_add_date',
+                              nameForm: 'regwork_inout_add_date',
+                              nameTimePicker: 'input_add_date_time',
+
                               label: 'Ngày',
                               icon: Icons.date_range_outlined,
                               inputType: InputType.date,
@@ -110,7 +112,8 @@ class _InOutAddScreenPageState extends State<InOutAddScreenPage> {
                               children: [
                                 Expanded(
                                   child: FormDateTimePicker(
-                                    name: 'regwork_inout_add_from',
+                                    nameForm: 'regwork_inout_add_from',
+                                    nameTimePicker: 'inout_add_from',
                                     label: 'Từ',
                                     icon: Icons.schedule_outlined,
                                     inputType: InputType.time,
@@ -120,7 +123,8 @@ class _InOutAddScreenPageState extends State<InOutAddScreenPage> {
                                 const SizedBox(width: 12),
                                 Expanded(
                                   child: FormDateTimePicker(
-                                    name: 'regwork_inout_add_to',
+                                    nameForm: 'regwork_inout_add_to',
+                                    nameTimePicker: 'inout_add_to',
                                     label: 'Đến',
                                     icon: Icons.schedule_outlined,
                                     inputType: InputType.time,

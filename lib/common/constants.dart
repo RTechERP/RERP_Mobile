@@ -85,4 +85,6 @@ class ApiEndPoint{
       '/DailyReportTech/get-project-item-by-user';
 
   static const String saveReportTech = '/DailyReportTech/save-report-tech';
+
+  static const String sendMailReport = '/DailyReportTech/send-email-report';
 }

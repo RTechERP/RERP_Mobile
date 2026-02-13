@@ -3,15 +3,16 @@ import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
 import '../app_theme/index.dart';
 
-Future<void> openSelectBottomSheet({
+Future<void> openSelectBottomSheet<T>({
   required BuildContext context,
   required String title,
-  required List<String> items,
-  required void Function(String value) onSelected,
+  required List<T> items,
+  required String Function(T item) displayText, // 👈 hiển thị
+  required void Function(T value) onSelected,   // 👈 trả về object
   String? hintText,
 }) async {
   final controller = TextEditingController();
-  List<String> filtered = List.from(items);
+  List<T> filtered = List.from(items);
 
   await WoltModalSheet.show<void>(
     context: context,
@@ -32,13 +33,13 @@ Future<void> openSelectBottomSheet({
 
                   return Column(
                     children: [
-                      /// 🔍 SEARCH (disable khi không có dữ liệu)
+                      /// 🔍 SEARCH
                       Padding(
                         padding: const EdgeInsets.fromLTRB(12, 6, 12, 10),
                         child: TextField(
                           controller: controller,
                           autofocus: !isEmpty,
-                          enabled: !isEmpty, // ✅ rỗng thì disable search
+                          enabled: !isEmpty,
                           decoration: InputDecoration(
                             prefixIcon: const Icon(Icons.search),
                             hintText: hintText ?? 'Tìm kiếm...',
@@ -49,12 +50,12 @@ Future<void> openSelectBottomSheet({
                               ? null
                               : (value) {
                             setState(() {
+                              final q = value.toLowerCase();
                               filtered = items
-                                  .where(
-                                    (e) => e
-                                    .toLowerCase()
-                                    .contains(value.toLowerCase()),
-                              )
+                                  .where((e) =>
+                                  displayText(e)
+                                      .toLowerCase()
+                                      .contains(q))
                                   .toList();
                             });
                           },
@@ -69,16 +70,11 @@ Future<void> openSelectBottomSheet({
                             ? Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
-                            Icon(
-                              Icons.insert_drive_file_outlined,
-                              size: 56,
-                              color: Colors.grey,
-                            ),
+                            Icon(Icons.insert_drive_file_outlined,
+                                size: 56, color: Colors.grey),
                             SizedBox(height: 8),
-                            Text(
-                              'Không có dữ liệu',
-                              style: TextStyle(color: Colors.grey),
-                            ),
+                            Text('Không có dữ liệu',
+                                style: TextStyle(color: Colors.grey)),
                           ],
                         )
                             : ListView.separated(
@@ -90,7 +86,7 @@ Future<void> openSelectBottomSheet({
                           itemBuilder: (context, index) {
                             final item = filtered[index];
                             return ListTile(
-                              title: Text(item),
+                              title: Text(displayText(item)),
                               onTap: () {
                                 Navigator.pop(context);
                                 onSelected(item);
@@ -110,3 +106,4 @@ Future<void> openSelectBottomSheet({
     },
   );
 }
+

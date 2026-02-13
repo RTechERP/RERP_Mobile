@@ -42,7 +42,8 @@ class _WfhAddScreenState extends State<WfhAddScreen> {
                           children: [
                             /// Ngày
                             FormDateTimePicker(
-                              name: 'regwork_wfh_add_date',
+                              nameForm: 'regwork_wfh_add_date',
+                              nameTimePicker: 'wfh_add_date_time',
                               label: 'Ngày',
                               icon: Icons.date_range_outlined,
                               inputType: InputType.date,

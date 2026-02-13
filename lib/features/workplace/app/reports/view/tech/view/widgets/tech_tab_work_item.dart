@@ -125,12 +125,9 @@ class TechTabWorkItem extends StatelessWidget {
                 openSelectBottomSheet(
                   context: context,
                   title: 'Chọn hạng mục',
-                  items: missions, // có thể rỗng
-                  onSelected: (v) {
-                    final item = state.projectItem.firstWhere(
-                          (e) => e.mission == v,
-                    );
-
+                  items: state.projectItem, // List<ProjectItem>
+                  displayText: (v) => '${v.code} - ${v.mission}',
+                  onSelected: (item) {
                     context.read<TechBloc>().add(
                       TechEvent.updateWork(
                         index: index,
@@ -141,6 +138,7 @@ class TechTabWorkItem extends StatelessWidget {
                     );
                   },
                 );
+
               },
               child: AbsorbPointer(
                 child: FormInputField(
@@ -152,14 +150,13 @@ class TechTabWorkItem extends StatelessWidget {
                       : 'Hạng mục',
                   readOnly: true,
                   icon: Icons.category_outlined,
-                  initialValue: report.mission,
                   validator: (_) {
                     if (report.projectItemId == 0) {
                       return 'Vui lòng chọn hạng mục công việc';
                     }
                     return null;
                   },
-
+                
                 ),
               ),
             ),
@@ -178,18 +175,18 @@ class TechTabWorkItem extends StatelessWidget {
                     label: 'Tổng giờ',
                     keyboardType: TextInputType.number,
                     initialValue: report.totalHours.toString(),
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(errorText: 'Vui lòng nhập tổng số giờ'),
-                      FormBuilderValidators.numeric(errorText: 'Chỉ được nhập số'),
-                      FormBuilderValidators.min(0.1, errorText: 'Giờ phải > 0'),
-                      FormBuilderValidators.max(24, errorText: 'Giờ không được > 24'),
-                    ]),
-
-                    onChanged: (v) {
+                    validator: (v) {
                       final total = double.tryParse(v ?? '') ?? 0;
                       final ot = report.totalHourOT ?? 0;
 
-                      if (total - ot <= 0) return; // chặn giờ thường âm
+                      if (total <= 0) return 'Giờ phải > 0';
+                      if (total > 24) return 'Giờ không được > 24';
+                      if (total - ot <= 0) return 'Giờ hành chính phải > 0';
+                      return null;
+                    },
+
+
+                    onChanged: (v) {
                       context.read<TechBloc>().add(
                         TechEvent.updateWork(
                           index: index,
@@ -197,6 +194,7 @@ class TechTabWorkItem extends StatelessWidget {
                         ),
                       );
                     },
+
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -208,6 +206,15 @@ class TechTabWorkItem extends StatelessWidget {
                     label: 'OT',
                     keyboardType: TextInputType.number,
                     initialValue: report.totalHourOT?.toString() ?? '0',
+                    validator: (v) {
+                      final total = report.totalHours;
+                      final ot = double.tryParse(v ?? '') ?? 0;
+
+                      if (ot > total) return 'OT không được > Tổng giờ';
+                      if (total > 8 && ot <= 0) return 'Tổng giờ > 8 thì phải có OT';
+                      if (total - ot > 8) return 'Giờ hành chính không được > 8h';
+                      return null;
+                    },
                     onChanged: (v) {
                       context.read<TechBloc>().add(
                         TechEvent.updateWork(
@@ -216,16 +223,7 @@ class TechTabWorkItem extends StatelessWidget {
                         ),
                       );
                     },
-                    validator: (v) {
-                      final total = report.totalHours;
-                      final ot = double.tryParse(v ?? '') ?? 0;
 
-                      if (ot < 0) return 'OT không được < 0';
-                      if (ot > total) return 'OT không được > Tổng giờ';
-                      if (total > 8 && ot <= 0) return 'Tổng giờ > 8 thì phải có OT';
-                      if (total - ot > 8) return 'Giờ hành chính không được > 8h';
-                      return null;
-                    },
                   ),
                 ),
               ],
@@ -245,7 +243,6 @@ class TechTabWorkItem extends StatelessWidget {
               initialValue: report.percentComplete.toString(),
               validator: FormBuilderValidators.compose([
                 FormBuilderValidators.required(errorText: 'Vui lòng nhập % tiến độ'),
-                FormBuilderValidators.numeric(errorText: 'Chỉ được nhập số'),
                 FormBuilderValidators.min(0, errorText: '>= 0'),
                 FormBuilderValidators.max(100, errorText: '<= 100'),
               ]),
@@ -272,6 +269,8 @@ class TechTabWorkItem extends StatelessWidget {
 
               label: 'Nội dung công việc',
               maxLines: 3,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.newline,
               initialValue: report.content,
               validator: FormBuilderValidators.required(
                 errorText: 'Vui lòng nhập nội dung công việc',
@@ -294,6 +293,8 @@ class TechTabWorkItem extends StatelessWidget {
               nameTextField: 'result_${report.id}',
               label: 'Kết quả',
               maxLines: 3,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.newline, // ⬅ Enter xuống dòng
               initialValue: report.results,
               validator: FormBuilderValidators.required(
                 errorText: 'Vui lòng nhập kết quả',

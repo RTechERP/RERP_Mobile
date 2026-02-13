@@ -132,7 +132,9 @@ class _InOutDetailScreenPageState extends State<InOutDetailScreenPage> {
                             /// NGÀY
                             _isEditing
                                 ? FormDateTimePicker(
-                              name: 'regwork_inout_detail_date',
+                              nameForm: 'regwork_inout_detail_date',
+                              nameTimePicker: 'inout_detail_date_time',
+
                               label: 'Ngày',
                               icon: Icons.date_range_outlined,
                               inputType: InputType.date,
@@ -154,7 +156,8 @@ class _InOutDetailScreenPageState extends State<InOutDetailScreenPage> {
                                 Expanded(
                                   child: _isEditing
                                       ? FormDateTimePicker(
-                                    name: 'regwork_inout_detail_from',
+                                    nameForm: 'regwork_inout_detail_from',
+                                    nameTimePicker: 'inout_detail_from',
                                     label: 'Từ',
                                     icon: Icons.schedule_outlined,
                                     inputType: InputType.time,
@@ -171,7 +174,8 @@ class _InOutDetailScreenPageState extends State<InOutDetailScreenPage> {
                                 Expanded(
                                   child: _isEditing
                                       ? FormDateTimePicker(
-                                    name: 'regwork_inout_detail_to',
+                                    nameForm: 'regwork_inout_detail_to',
+                                    nameTimePicker: 'inout_detail_to',
                                     label: 'Đến',
                                     icon: Icons.schedule_outlined,
                                     inputType: InputType.time,

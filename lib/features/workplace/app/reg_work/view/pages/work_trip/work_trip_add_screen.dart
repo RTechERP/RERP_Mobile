@@ -129,7 +129,8 @@ class _WorkTripAddScreenState extends State<WorkTripAddScreen> {
                         title: 'Thông tin công tác',
                         child: Column(
                           children: [ FormDateTimePicker(
-                            name: 'regwork_work_trip_add_date',
+                            nameForm: 'regwork_work_trip_add_date',
+                            nameTimePicker: 'work_trip_add_date_time',
                             label: 'Ngày',
                             icon: Icons.date_range_outlined,
                             inputType: InputType.date,

@@ -38,7 +38,8 @@ class _SaleStaffAddScreenState extends State<SaleStaffAddScreen> {
               title: 'Ngày báo cáo',
               child: FormDateTimePicker(
                 icon: Icons.calendar_today,
-                name: 'date',
+                nameForm: 'sale_staff_add_report_time',
+                nameTimePicker: 'date_time',
                 label: 'Ngày báo cáo',
                 inputType: InputType.date,
                 format: DateFormat('dd/MM/yyyy'),

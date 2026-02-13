@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/enums/index.dart';
-import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 
 class AdAddScreen extends StatefulWidget {
@@ -61,7 +60,8 @@ class _AdAddScreenState extends State<AdAddScreen> {
               title: 'Ngày báo cáo',
               child: FormDateTimePicker(
                 icon: Icons.calendar_today,
-                name: 'ad_add_date',
+                nameForm: 'ad_add_date',
+                nameTimePicker: 'date_time',
                 label: 'Ngày báo cáo',
                 inputType: InputType.date,
                 format: DateFormat('dd/MM/yyyy'),
@@ -138,16 +138,16 @@ class _AdAddScreenState extends State<AdAddScreen> {
                   /// ===== SELECT PROJECT NAME =====
                   GestureDetector(
                     onTap: () {
-                      openSelectBottomSheet(
-                        context: context,
-                        title: 'Chọn dự án',
-                        items: fakeProjects,
-                        onSelected: (v) {
-                          setState(() {
-                            _projects[_activeProjectIndex].name = v;
-                          });
-                        },
-                      );
+                      // openSelectBottomSheet(
+                      //   context: context,
+                      //   title: 'Chọn dự án',
+                      //   items: fakeProjects,
+                      //   onSelected: (v) {
+                      //     setState(() {
+                      //       _projects[_activeProjectIndex].name = v;
+                      //     });
+                      //   },
+                      // );
                     },
                     child: AbsorbPointer(
                       child: FormInputField(

@@ -11,10 +11,10 @@ class ReportRequest with _$ReportRequest {
   const factory ReportRequest({
     @JsonKey(name: 'DateStart') required DateTime dateStart,
     @JsonKey(name: 'DateEnd') required DateTime dateEnd,
-    @JsonKey(name: 'TeamID') required int teamId,
-    @JsonKey(name: 'UserID') required int userId,
-    @JsonKey(name: 'Keyword') String? keyword,
-    @JsonKey(name: 'DepartmentID') required int departmentId,
+    @JsonKey(name: 'TeamID') required String teamId,
+    @JsonKey(name: 'UserID') required String userId,
+    @JsonKey(name: 'Keyword') required String keyword,
+    @JsonKey(name: 'DepartmentID') required String departmentId,
   }) = _ReportRequest;
 
   factory ReportRequest.fromJson(Map<String, dynamic> json) =>
@@ -33,9 +33,9 @@ class ReportResponse with _$ReportResponse {
     @JsonKey(name: 'UserID') required int userId,
     @JsonKey(name: 'DateReport') required String dateReport,
 
-    @JsonKey(name: 'ProjectCode') required String projectCode,
-    @JsonKey(name: 'ProjectName') required String projectName,
-    @JsonKey(name: 'ProjectText') required String projectText,
+    @JsonKey(name: 'ProjectCode') String? projectCode,
+    @JsonKey(name: 'ProjectName') String? projectName,
+    @JsonKey(name: 'ProjectText') String? projectText,
 
     @JsonKey(name: 'TotalHours') required double totalHours,
     @JsonKey(name: 'Results') required String results,
@@ -46,8 +46,8 @@ class ReportResponse with _$ReportResponse {
     @JsonKey(name: 'ProblemSolve') String? problemSolve,
     @JsonKey(name: 'Note') String? note,
 
-    @JsonKey(name: 'CreatedDate') required DateTime createdDate,
-    @JsonKey(name: 'Type') required int type,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'Type') int? type,
     @JsonKey(name: 'TypeText') String? typeText,
     @JsonKey(name: 'PositionName') required String positionName,
     @JsonKey(name: 'Mission') required String mission,
@@ -58,13 +58,13 @@ class ReportResponse with _$ReportResponse {
     @JsonKey(name: 'PercentComplete') required double percentComplete,
 
     @JsonKey(name: 'TotalHourOT') double? totalHourOT,
-    @JsonKey(name: 'HolidayDate') DateTime? holidayDate,    // 🔧 null
+    @JsonKey(name: 'HolidayDate') DateTime? holidayDate,
 
     /// ⚠️ API trả "" → nên để String? rồi tự parse khi cần
-    @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
-    @JsonKey(name: 'PlanEndDate') DateTime? planEndDate,
-    @JsonKey(name: 'ActualStartDate') DateTime? actualStartDate,
-    @JsonKey(name: 'ActualEndDate') DateTime? actualEndDate,
+    @JsonKey(name: 'PlanStartDate') String? planStartDate,
+    @JsonKey(name: 'PlanEndDate') String? planEndDate,
+    @JsonKey(name: 'ActualStartDate') String? actualStartDate,
+    @JsonKey(name: 'ActualEndDate') String? actualEndDate,
 
     /// API trả 0.0
     @JsonKey(name: 'TotalDayPlan') int? totalDayPlan,
@@ -74,7 +74,6 @@ class ReportResponse with _$ReportResponse {
   factory ReportResponse.fromJson(Map<String, dynamic> json) =>
       _$ReportResponseFromJson(json);
 }
-
 
 /// ==========================
 /// 🔹 Depart Response Model
@@ -169,7 +168,6 @@ class TeamResponse with _$TeamResponse {
   factory TeamResponse.fromJson(Map<String, dynamic> json) =>
       _$TeamResponseFromJson(json);
 }
-
 
 /// ==========================
 /// 🔹 Project Response Model
@@ -275,4 +273,19 @@ class SaveReportTechRequest with _$SaveReportTechRequest {
 
   factory SaveReportTechRequest.fromJson(Map<String, dynamic> json) =>
       _$SaveReportTechRequestFromJson(json);
+}
+
+/// ==========================
+/// 🔹 Send Email Request Model
+/// ==========================
+
+@freezed
+class SendMailRequestModel with _$SendMailRequestModel {
+  const factory SendMailRequestModel({
+    @JsonKey(name: 'Body') required String body,
+    @JsonKey(name: 'DateReport') required String dateReport,
+  }) = _SendMailRequestModel;
+
+  factory SendMailRequestModel.fromJson(Map<String, dynamic> json) =>
+      _$SendMailRequestModelFromJson(json);
 }

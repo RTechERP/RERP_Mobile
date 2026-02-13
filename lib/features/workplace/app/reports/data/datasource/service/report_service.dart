@@ -13,32 +13,50 @@ class ReportService extends DioBaseApiService {
 
 
   /// Danh sách báo cáo hàng ngày
-  Future<BaseData<List<ReportResponse>>> getDailyReportTech(
-      DateTime dateStart,
-      DateTime dateEnd,
-      int teamId,
-      int userId,
-      String? keyword,
-      int departmentId,
-      ) {
+  Future<BaseData<List<ReportResponse>>> getDailyReportTech({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required String teamId,
+    required String userId,
+    required String keyword,
+    required String departmentId,
+  }) async {
+    final token = await AuthRepository.getToken();
+
+    String fmt(DateTime d) {
+      final y = d.year.toString().padLeft(4, '0');
+      final m = d.month.toString().padLeft(2, '0');
+      final day = d.day.toString().padLeft(2, '0');
+      final h = d.hour.toString().padLeft(2, '0');
+      final min = d.minute.toString().padLeft(2, '0');
+      final s = d.second.toString().padLeft(2, '0');
+      return '$y-$m-$day' 'T' '$h:$min:$s';
+    }
+
+    final body = <String, dynamic>{
+      'DateStart': fmt(dateStart), // bắt buộc string
+      'DateEnd': fmt(dateEnd),     // bắt buộc string
+      'TeamID': teamId,
+      'UserID': userId,
+      'Keyword': keyword,
+      'DepartmentID': departmentId,
+    };
+
+    // 🔴 log đúng body gửi đi
     return post<BaseData<List<ReportResponse>>>(
       ApiEndPoint.getDailyReportTech,
-      body: {
-        'DateStart': dateStart.toIso8601String(),
-        'DateEnd': dateEnd.toIso8601String(),
-        'TeamID': teamId,
-        'UserID': userId,
-        'Keyword': keyword,
-        'DepartmentID': departmentId,
-      },
+      body: body,
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      ),
       parser: (json) => BaseData<List<ReportResponse>>.fromJson(
         json,
             (data) => (data as List)
-            .map(
-              (e) => ReportResponse.fromJson(
-            e as Map<String, dynamic>,
-          ),
-        )
+            .map((e) => ReportResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
     );
@@ -122,36 +140,11 @@ class ReportService extends DioBaseApiService {
   }
 
   /// Lưu báo cáo công việc "Phòng Kỹ thuật"
-  Future<BaseData<void>> saveReportTech({
-    required SaveReportTechRequest request,
-  }) async {
-    final token = await AuthRepository.getToken();
-
-    return post<BaseData<void>>(
-      ApiEndPoint.saveReportTech,
-      body: [
-        request
-      ],
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      ),
-      parser: (json) => BaseData<void>.fromJson(
-        json,
-            (_) => null, // data = null
-      ),
-    );
-  }
-
   Future<BaseData<void>> saveReportTechRaw({
     required Map<String, dynamic> payload,
   }) async {
-    final token = await AuthRepository.getToken();
-
     final body = [payload]; // ✅ root là mảng
+    final token = await AuthRepository.getToken();
 
     return post<BaseData<void>>(
       ApiEndPoint.saveReportTech,
@@ -167,5 +160,26 @@ class ReportService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<void>> sendMailReport({
+    required SendMailRequestModel request,
+  }) async {
+    final token = await AuthRepository.getToken();
+
+    return post<BaseData<void>>(
+      ApiEndPoint.sendMailReport,
+      body: request.toJson(),
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      ),
+      parser: (json) => BaseData<void>.fromJson(json, (_) => null),
+    );
+  }
+
+
 }
+
 

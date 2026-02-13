@@ -47,6 +47,11 @@ class TechState extends BaseBlocState {
 
   final int? userId;
 
+  final bool sendMailSuccess;
+
+  final DateTime? lastPickedDate;
+
+
   const TechState({
     required super.status,
     super.message,
@@ -79,6 +84,8 @@ class TechState extends BaseBlocState {
     this.totalHoursError,
     this.percentError,
     this.userId,
+    this.sendMailSuccess = false,
+    this.lastPickedDate,
   });
 
   factory TechState.init() => const TechState(
@@ -102,6 +109,8 @@ class TechState extends BaseBlocState {
     percentError: null,
     userId: null,
     fullName: null,
+    sendMailSuccess: false,
+    lastPickedDate: null,
   );
 
   @override
@@ -137,5 +146,7 @@ class TechState extends BaseBlocState {
     totalHoursError,
     percentError,
     userId,
+    sendMailSuccess,
+    lastPickedDate,
   ];
 }

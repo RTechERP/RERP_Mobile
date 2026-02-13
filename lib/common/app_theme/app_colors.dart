@@ -1,36 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  //interaction books
-  static const MaterialColor primaryColor =
-      MaterialColor(0xFF0072BB, <int, Color>{
-        50: Color(0xFFE4F4FF),
-        100: Color(0xFFCDE7F8),
-        200: Color(0xFFB6DAF1),
-        300: Color(0xFFA0CDEB),
-        400: Color(0xFF89C0E4),
-        500: Color(0xFF5BA6D6),
-        600: Color(0xFF2E8CC9),
-        700: Color(0xFF0072BB),
-        800: Color(0xFF005B96),
-        900: Color(0xFF003B61),
-      });
-
-  static const Color color8C96B1 = Color(0xff8C96B1);
-  static const Color colorA3ABC0 = Color(0xffA3ABC0);
-  static const Color colorF0F4FF = Color(0xffF0F4FF);
-  static const Color colorF9FBFF = Color(0xffF9FBFF);
-  static const Color color4267CD = Color(0xff4267CD);
-  static const Color color41B339 = Color(0xff41B339);
-  static const Color colorD92B46 = Color(0xffD92B46);
-
-  static const Color primaryERP = Color(0xFFEF4723);
+  static const Color primaryERP = Color(0xFFEE4623);
+  static const Color secondaryERP = Color(0xFF2957A6);
   static const Color primaryERPlight = Color(0xFFFFA726);
 
   static const Color primaryColor2 = Color(0xff000000);
   static const Color textColor = Color(0xffffffff);
-  static const Color color0f1b2b = Color(0xff0f1b2b);
-  static const Color colore51937 = Color(0xffe51937);
 
   static const Color heading = Color(0xff404C6D);
   static const Color gray = Color(0xff8C96B1);
@@ -54,13 +30,6 @@ class AppColors {
 
   static const Color grey_bg = Color(0xFFECEEF0);
 
-  /// primary
-  static const Color primaryA500 = Color(0xFF5768FF);
-  static const Color primaryA400 = Color(0xFF7987FF);
-  static const Color primaryA300 = Color(0xFFAEB7FF);
-  static const Color primaryA200 = Color(0xFFECEEFF);
-  static const Color primaryA100 = Color(0xFFF8F8FF);
-
   static const MaterialColor secondaryColor =
       MaterialColor(0xFFFFB909, <int, Color>{
         50: Color(0xFFFFF8E6),
@@ -82,23 +51,12 @@ class AppColors {
   static const Color stateErrorColor = Color(0xFFED3A3A);
 
   /// Text Color.
-  static const Color colord9d9d9 = Color(0xffd9d9d9);
   static const Color textSuccessColor = Color(0xFF181C32);
   static const Color textSecondaryColor = Color(0xFF3F4254);
   static const Color textTertiaryColor = Color(0xFF8B90A7);
   static const Color textDisableColor = Color(0xFFC1C1CC);
   static const Color textMain = Color(0xFF009E62);
-  static const Color text3F4254 = Color(0xFF3F4254);
-  static const Color textC5C7D3 = Color(0xFFC5C7D3);
-  static const Color text8B90A7 = Color(0xFF8B90A7);
-  static const Color text0072BB = Color(0xFF0072BB);
-  static const Color textFBC628 = Color(0xffFBC628);
-  static const Color text8C96B1 = Color(0xff8C96B1);
   static const Color label = Color(0xFF6E7191);
-  static const Color colorF3f3f3 = Color(0xFFF3F3F3);
-  static const Color color273430 = Color(0xff273430);
-  static const Color color646A69 = Color(0xff646A69);
-  static const Color color1F2021 = Color(0xff1F2021);
   static const Color hintText = Color(0xff989898);
 
   /// Button Color.
@@ -121,18 +79,10 @@ class AppColors {
   static const Color line = Color(0xFFD9DBE9);
   static const Color strokeOrderColor = Color(0xFFD9D9D9);
 
-  ///ink
-  static const Color inkA500 = Color(0xFF1F2738);
-  static const Color inkA400 = Color(0xFF7B8091);
-  static const Color inkA300 = Color(0xFFB2B4BC);
-  static const Color inkA200 = Color(0xFFE1E6EB);
-  static const Color inkA100 = Color(0xFFF2F3F4);
-
   ///support colors
   static const Color backgroundLight = Color(0xFFF8F9FC);
   static const Color iconColor = Color(0xFF555B7C);
   static const Color placeholder = Color(0xFFE8EAF3);
-  static const Color redStreak = Color(0xFFFF4D4D);
 
   static const LinearGradient gradientERP = LinearGradient(
     colors: [Color(0xFFEF4723), Color(0xFFFF0000)],
@@ -162,20 +112,7 @@ class AppColors {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
-  static const LinearGradient gradientBlack = LinearGradient(
-    colors: [
-      Color(0xFFE1E4E7),
-      Color(0xFFFFFFFF),
-      Color(0xFFFFFFFF),
-      Color(0xFFFFFFFF),
-    ],
-  );
-  static const LinearGradient gradientAIBeta = LinearGradient(
-    colors: [Color(0xFF5D4BFF), Color(0xFF8A0574)],
-  );
-  static const Color backgroundStreak = Color(0xFFFFF8F2);
 
-  /// functional color palette
   /// Emotion [Stressful]: display dangerous content.
   static const Color redA500 = Color(0xFFE41338);
   static const Color redA400 = Color(0xFFE94260);
@@ -233,35 +170,9 @@ class AppColors {
   static const Color blueA200 = Color(0xFFC2DFFF);
   static const Color blueA100 = Color(0xFFE7F2FF);
 
-  static const Color blueBackground = Color(0xFFF9FBFF);
-  static const Color blueBackground2 = Color(0xFFF0F4FF);
-
   static const Color danger = Color(0xFFBD4242);
   static const Color backgroundDialog = Color(0xFFF2F2F2);
   static const Color dialogDivider = Color(0xFF3C3C43);
-
-  //Movie App
-  static const Color color47cfff = Color(0xff47cfff);
-  static const Color color47cbff = Color(0xff47cbff);
-  static const Color colorFFBCC5D3 = Color(0xFFBCC5D3);
-
-  static const Color backgroundFlashCard = Color(0xffE5ECFF);
-  static const Color bgFlashCardTablet = Color(0xffFDF8E8);
-
-  static const Color backgroundIconCard = Color(0xffA4B7EB);
-  static const Color flashcardProgressBorder = Color(0xffF7CC7F);
-
-  static const Color colorFEF7F0 = Color(0xffFEF7F0);
-  static const Color colorFF8B2D = Color(0xffFF8B2D);
-  static const Color colorEAEEED = Color(0xffEAEEED);
-  static const Color colorA5ADAB = Color(0xffA5ADAB);
-  static const Color colorDED2FF = Color(0xffDED2FF);
-  static const Color colorC1F9A6 = Color(0xffC1F9A6);
-
-  static ColorFilter? colorFilter = const ColorFilter.mode(
-    AppColors.text0072BB,
-    BlendMode.srcIn,
-  );
 
   // Gray Color.
   static const MaterialColor grayColor = MaterialColor(0xFFA6A6B0, <int, Color>{
@@ -286,22 +197,4 @@ class AppColors {
 
   static const Color shadowColor = Color(0xFF00000017);
 
-  // Point Color
-  static const LinearGradient pointCf = LinearGradient(
-    colors: [Color(0xFF6366F1), Color(0xFF3F0B98)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
-
-  static const Color pointTxt = Color(0xff3F0B98);
-  static const Color pointBg = Color(0xffEFF5FF);
-  static const Color pointVip = Color(0xffF49D0B);
-  static const Color pointHintText = Color(0xff808080);
-  static const Color pointExplain = Color(0xff565969);
-  static const Color pointColor = Color(0xffffb636);
-  static const Color pointWidgetColor = Color(0xff448AFF);
-  static const Color pointColorbland = Color(0xffFFD469);
-  static const Color pointThank = Color(0xffFFFAEB);
-  static const Color pointRollCall = Color(0xffD6F0E1);
-  static const Color pointAdvice = Color(0xff9F9FA0);
 }

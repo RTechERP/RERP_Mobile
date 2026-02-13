@@ -82,7 +82,8 @@ class _OvertimeAddScreenPageState extends State<OvertimeAddScreenPage> {
                           children: [
                             /// Ngày đăng ký
                             FormDateTimePicker(
-                              name: 'regwork_overtime_add_date',
+                              nameForm: 'regwork_overtime_add_date',
+                              nameTimePicker: 'overtime_add_date_time',
                               label: 'Ngày đăng ký',
                               icon: Icons.date_range_outlined,
                               inputType: InputType.date,
@@ -96,7 +97,8 @@ class _OvertimeAddScreenPageState extends State<OvertimeAddScreenPage> {
                               children: [
                                 Expanded(
                                   child: FormDateTimePicker(
-                                    name: 'regwork_overtime_add_from',
+                                    nameForm: 'regwork_overtime_add_from',
+                                    nameTimePicker: 'overtime_add_from_time',
                                     label: 'Từ',
                                     icon: Icons.date_range_outlined,
                                     inputType: InputType.time,
@@ -106,7 +108,8 @@ class _OvertimeAddScreenPageState extends State<OvertimeAddScreenPage> {
                                 const SizedBox(width: 12),
                                 Expanded(
                                   child: FormDateTimePicker(
-                                    name: 'regwork_overtime_add_to',
+                                    nameForm: 'regwork_overtime_add_to',
+                                    nameTimePicker: 'overtime_add_to_time',
                                     label: 'Đến',
                                     icon: Icons.schedule_outlined,
                                     inputType: InputType.time,

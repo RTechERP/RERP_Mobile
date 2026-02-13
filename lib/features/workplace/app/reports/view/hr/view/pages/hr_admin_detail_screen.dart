@@ -77,7 +77,8 @@ class _HrAdminDetailScreenState extends State<HrAdminDetailScreen> {
               child: _isEditing
                   ? FormDateTimePicker(
                 icon: Icons.calendar_today,
-                name: 'date',
+                nameForm: 'hr_detail_date',
+                nameTimePicker: 'date_time',
                 label: 'Ngày báo cáo',
                 inputType: InputType.date,
                 format: DateFormat('dd/MM/yyyy'),

@@ -82,6 +82,9 @@ dependencies:
   wolt_modal_sheet: ^0.11.0
   dartz: ^0.10.1
   jwt_decode: ^0.3.1
+  share_plus: ^7.2.1
+  lottie: ^3.3.2
+  syncfusion_flutter_datepicker: ^32.2.4
 
 flutter_native_splash:
   color: "#FFFFFF"
@@ -150,6 +153,18 @@ flutter:
 
     # Trans
     - assets/trans/vi-VN.json
+
+    # States
+    - assets/images/states/error.png
+    - assets/images/states/missing.png
+    - assets/images/states/notification.png
+    - assets/images/states/success.png
+
+    # Lottie
+    - assets/lotties/Success.json
+    - assets/lotties/Loading.json
+
+    # Fonts
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

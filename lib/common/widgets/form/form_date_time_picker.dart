@@ -5,7 +5,9 @@ import 'package:intl/intl.dart';
 import 'index.dart';
 
 class FormDateTimePicker extends StatelessWidget {
-  final String name;
+  final String nameForm;
+
+  final String nameTimePicker;
   final String label;
   final IconData icon;
 
@@ -15,13 +17,13 @@ class FormDateTimePicker extends StatelessWidget {
 
   final DateTime? initialValue;
   final ValueChanged<DateTime?>? onChanged;
-  final ValueChanged<DateTime?>? onSaved; // ✅ thêm onSaved
-
+  final ValueChanged<DateTime?>? onSaved;
   final FormFieldValidator<DateTime?>? validator;
 
   const FormDateTimePicker({
     super.key,
-    required this.name,
+    required this.nameForm,
+    required this.nameTimePicker,
     required this.label,
     required this.icon,
     required this.inputType,
@@ -29,36 +31,47 @@ class FormDateTimePicker extends StatelessWidget {
     this.enabled = true,
     this.initialValue,
     this.onChanged,
-    this.onSaved, // ✅ thêm vào constructor
+    this.onSaved,
     this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderDateTimePicker(
-      name: name,
-      inputType: inputType,
-      format: format,
-      enabled: enabled,
+    return FormBuilderField<DateTime?>(
+      name: nameForm,
       initialValue: initialValue,
-
-      // ✅ Bắt cả 2 case: user đổi ngày + form save
-      onChanged: (v) {
-        debugPrint('🟡 FormDateTimePicker onChanged = $v');
-        onChanged?.call(v);
-      },
-      onSaved: (v) {
-        debugPrint('🟠 FormDateTimePicker onSaved = $v');
-        onSaved?.call(v);
-      },
-
-      decoration: formInputDecoration(
-        context,
-        label: label,
-        icon: icon,
-      ),
       validator: validator,
+      enabled: enabled,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      builder: (field) {
+        return FormBuilderDateTimePicker(
+          name: nameTimePicker,
+          inputType: inputType,
+          format: format,
+          enabled: enabled,
+          initialValue: initialValue,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+
+          onChanged: (v) {
+            field.didChange(v);       // 🔑 sync state cho validator
+            onChanged?.call(v);
+          },
+          onSaved: (v) {
+            onSaved?.call(v);
+          },
+
+          decoration: formInputDecoration(
+            context,
+            label: label,
+            icon: icon,
+            hasError: field.hasError,     // ✅ đổi màu icon khi lỗi
+            errorText: field.errorText,   // ✅ show text lỗi
+          ),
+          validator: validator,
+        );
+      },
     );
   }
 }
+
 

@@ -60,4 +60,19 @@ class TechEvent with _$TechEvent {
   /// ===== SUBMIT =====
   const factory TechEvent.submitReport(DateTime pickedDate) =
       _SubmitReportWithDate;
+
+  /// ===== SEND MAIL ====
+  const factory TechEvent.sendMailReport({
+    required DateTime pickedDate,
+    required BuildContext context,
+  }) = _SendMailReport;
+
+  const factory TechEvent.resetSubmitFlags() = _ResetSubmitFlags;
+
+  const factory TechEvent.changeDateRange({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) = _ChangeDateRange;
+
+
 }

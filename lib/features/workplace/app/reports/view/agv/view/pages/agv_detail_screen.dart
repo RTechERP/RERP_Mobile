@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/enums/index.dart';
-import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 
 class AgvDetailScreen extends StatefulWidget {
@@ -78,7 +77,8 @@ class _AgvDetailScreenState extends State<AgvDetailScreen> {
               title: 'Ngày báo cáo',
               child: FormDateTimePicker(
                 icon: Icons.calendar_today,
-                name: 'ad_detail_date',
+                nameForm: 'ad_detail_date',
+                nameTimePicker: 'date_time',
                 label: 'Ngày báo cáo',
                 inputType: InputType.date,
                 format: DateFormat('dd/MM/yyyy'),
@@ -152,16 +152,16 @@ class _AgvDetailScreenState extends State<AgvDetailScreen> {
                   GestureDetector(
                     onTap: _isEditing
                         ? () {
-                      openSelectBottomSheet(
-                        context: context,
-                        title: 'Chọn dự án',
-                        items: fakeProjects,
-                        onSelected: (v) {
-                          setState(() {
-                            project.name = v;
-                          });
-                        },
-                      );
+                      // openSelectBottomSheet(
+                      //   context: context,
+                      //   title: 'Chọn dự án',
+                      //   items: fakeProjects,
+                      //   onSelected: (v) {
+                      //     setState(() {
+                      //       project.name = v;
+                      //     });
+                      //   },
+                      // );
                     }
                         : null,
                     child: AbsorbPointer(

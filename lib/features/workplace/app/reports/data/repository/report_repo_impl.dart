@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/errors/extension.dart';
 
 import '../../../../../../base/network/errors/error.dart';
+import '../../../../../../common/logger/index.dart';
 import '../datasource/models/report_model.dart';
 import '../datasource/service/report_service.dart';
 import 'report_repo.dart';
@@ -18,29 +19,34 @@ class ReportRepoImpl implements ReportRepo {
   Future<Either<BaseError, List<ReportResponse>>> getDailyReportTech({
     required DateTime dateStart,
     required DateTime dateEnd,
-    required int teamId,
-    required int userId,
-    String? keyword,
-    required int departmentId,
+    required String teamId,
+    required String userId,
+    required String keyword,
+    required String departmentId,
   }) async {
     try {
       final res = await _service.getDailyReportTech(
-        dateStart,
-        dateEnd,
-        teamId,
-        userId,
-        keyword,
-        departmentId,
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        teamId: teamId,
+        userId: userId,
+        keyword: keyword,
+        departmentId: departmentId,
       );
 
       return right(res.data ?? []);
     } on DioException catch (e) {
+      final log = LogUtils();
+
+      log.logE('Dio status: ${e.response?.statusCode}');
+      log.logE('Dio data: ${e.response?.data}');
+
       return left(e.baseError);
     }
   }
 
   @override
-  Future<Either<BaseError, List<DepartResponse>>> getDepart() async{
+  Future<Either<BaseError, List<DepartResponse>>> getDepart() async {
     try {
       final res = await _service.getDepart();
       return right(res.data ?? []);
@@ -78,26 +84,6 @@ class ReportRepoImpl implements ReportRepo {
 
   @override
   Future<Either<BaseError, String>> saveReportTech({
-    required SaveReportTechRequest request,
-  }) async {
-    try {
-      final res = await _service.saveReportTech(request: request);
-
-      // API trả status = 1 là success
-      if (res.status == 1) {
-        return right(res.message ?? 'Lưu dữ liệu thành công');
-      } else {
-        return left(
-          BaseError.httpInternalServerError(res.message ?? 'Lưu dữ liệu thất bại'),
-        );
-      }
-    } on DioException catch (e) {
-      return left(e.baseError);
-    }
-  }
-
-  @override
-  Future<Either<BaseError, String>> saveReportTechRaw({
     required Map<String, dynamic> payload,
   }) async {
     try {
@@ -116,6 +102,24 @@ class ReportRepoImpl implements ReportRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, String>> sendMailReport({
+    required SendMailRequestModel request,
+  }) async {
+    try {
+      final res = await _service.sendMailReport(request: request);
+      if (res.status == 1) {
+        return right(res.message ?? 'Gửi email thành công');
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Gửi email thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }
-
-

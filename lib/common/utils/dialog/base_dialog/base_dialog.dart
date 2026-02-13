@@ -170,8 +170,8 @@ class BaseDialog {
             flex: 1,
             child: CustomTextButton(
               text: contentNoFunc ?? 'common.cancel'.tr(),
-              colorText: colorTextNoButton ?? AppColors.primaryColor,
-              bgColor: colorNoButton ?? AppColors.primaryColor[50],
+              colorText: colorTextNoButton ?? AppColors.primaryERP,
+              bgColor: colorNoButton ?? AppColors.primaryERPlight,
               borderRadius: AppUICommons.largeRadius,
               buttonFn: () {
                 if (noFunc != null) {

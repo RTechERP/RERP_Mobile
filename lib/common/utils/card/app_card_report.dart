@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../app_theme/index.dart';
+
 class AppCardReport extends StatelessWidget {
-  final String? project;
-  final String? category;
+  final String? projectName;
+  final String? projectCode;
   final double? progress; // 0.0 to 1.0
   final DateTime? time;
   final String? employeeName;
@@ -10,23 +12,28 @@ class AppCardReport extends StatelessWidget {
   final bool showProgress;
   final VoidCallback? onTap;
 
+  final String? category;
+
+  final String? project;
+
   const AppCardReport({
     super.key,
-    this.project,
-    this.category,
+    this.projectName,
+    this.projectCode,
     this.progress,
     this.time,
     this.employeeName,
     this.position,
     this.showProgress = true,
     this.onTap,
+    this.category,
+    this.project,
   });
 
   String _formatTime(DateTime? dt) {
-    if (dt == null) return '--/--/---- --:--:--';
+    if (dt == null) return '--/--/----';
     String two(int n) => n.toString().padLeft(2, '0');
-    return '${two(dt.day)}/${two(dt.month)}/${dt.year} '
-        '${two(dt.hour)}:${two(dt.minute)}:${two(dt.second)}';
+    return '${two(dt.day)}/${two(dt.month)}/${dt.year}';
   }
 
   @override
@@ -63,7 +70,7 @@ class AppCardReport extends StatelessWidget {
                       spacing: 8,
                       runSpacing: 6,
                       children: [
-                        if (category?.isNotEmpty == true)
+                        if (projectCode?.isNotEmpty == true)
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                             decoration: BoxDecoration(
@@ -71,7 +78,7 @@ class AppCardReport extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
-                              category!,
+                              projectCode!,
                               style: const TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w600,
@@ -117,9 +124,9 @@ class AppCardReport extends StatelessWidget {
                     const SizedBox(height: 6),
 
                     /// Project
-                    if (project?.isNotEmpty == true) ...[
+                    if (projectName?.isNotEmpty == true) ...[
                       Text(
-                        project!,
+                        projectName!,
                         style: const TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
@@ -185,7 +192,7 @@ class _CircleProgressSmall extends StatelessWidget {
               value: safeProgress,
               strokeWidth: 6,
               backgroundColor: Colors.grey.shade200,
-              valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+              valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primaryERP),
             ),
           ),
           Text(

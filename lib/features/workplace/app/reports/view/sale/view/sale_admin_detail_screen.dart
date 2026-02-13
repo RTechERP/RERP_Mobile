@@ -80,7 +80,8 @@ class _SaleAdminDetailScreenState extends State<SaleAdminDetailScreen> {
               title: 'Ngày báo cáo',
               child: _isEditing
                   ? FormDateTimePicker(
-                name: 'date',
+                nameForm: 'sale_admin_detail_report_time',
+                nameTimePicker: 'date_time',
                 icon: Icons.calendar_today,
                 label: 'Ngày báo cáo',
                 inputType: InputType.date,

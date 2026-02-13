@@ -6,7 +6,6 @@ import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../../../../../../../../common/enums/index.dart';
-import '../../../../../../../common/helpers/index.dart';
 import '../../../../../../../common/utils/dialog/index.dart';
 import '../data/datasource/sale_admin_model.dart';
 
@@ -118,7 +117,8 @@ class _SaleAdminAddScreenState extends State<SaleAdminAddScreen> {
               title: 'Thời gian báo cáo',
               child: FormDateTimePicker(
                 label: '',
-                name: 'sale_admin_report_time',
+                nameForm: 'sale_admin_add_report_time',
+                nameTimePicker: 'date_time',
                 icon: Icons.access_time,
                 inputType: InputType.both,
                 format: DateFormat('dd/MM/yyyy'),
@@ -246,19 +246,19 @@ class _SaleAdminAddScreenState extends State<SaleAdminAddScreen> {
       title: title,
       child: GestureDetector(
         onTap: () {
-          openSelectBottomSheet(
-            context: context,
-            title: title,
-            items: items,
-            onSelected: (v) {
-              onSelected(v);
-
-              /// 👇 BẮT BUỘC: cập nhật FormBuilder
-              _formKey.currentState
-                  ?.fields[title]
-                  ?.didChange(v);
-            },
-          );
+          // openSelectBottomSheet(
+          //   context: context,
+          //   title: title,
+          //   items: items,
+          //   onSelected: (v) {
+          //     onSelected(v);
+          //
+          //     /// 👇 BẮT BUỘC: cập nhật FormBuilder
+          //     _formKey.currentState
+          //         ?.fields[title]
+          //         ?.didChange(v);
+          //   },
+          // );
         },
 
         child: AbsorbPointer(

@@ -49,7 +49,8 @@ class _MarketingAddViewState extends State<_MarketingAddView> {
             title: 'Ngày báo cáo',
             child: FormDateTimePicker(
               icon: Icons.calendar_today,
-              name: 'date',
+              nameForm: 'marketing_add_date',
+              nameTimePicker: 'date_time',
               label: 'Ngày báo cáo',
               inputType: InputType.date,
               format: DateFormat('dd/MM/yyyy'),

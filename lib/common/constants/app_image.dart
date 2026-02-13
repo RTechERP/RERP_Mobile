@@ -14,5 +14,11 @@ class AppImages {
 
   static const app_sum_personal = 'assets/images/icons/apps/01.png';
 
+  static const error = 'assets/images/states/error.png';
+  static const success = 'assets/images/states/success.png';
+
+  static const notification = 'assets/images/states/notification.png';
+  static const missing = 'assets/images/states/missing.png';
+
 
 }

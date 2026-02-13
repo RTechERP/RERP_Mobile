@@ -66,17 +66,13 @@ class AppRouter {
     initialLocation: '/',
 
     routes: [
-      GoRoute(
-        path: '/',
-        builder: (_, __) => const AppInitScreen(),
-      ),
+      GoRoute(path: '/', builder: (_, __) => const AppInitScreen()),
 
       GoRoute(
         path: RouteNames.login,
         builder: (context, state) {
           return BlocProvider(
-            create: (_) =>
-            getIt<AuthBloc>()..add(const AuthEvent.init()),
+            create: (_) => getIt<AuthBloc>()..add(const AuthEvent.init()),
             child: const LoginScreen(),
           );
         },
@@ -86,7 +82,8 @@ class AppRouter {
           return MultiBlocProvider(
             providers: [
               BlocProvider<WorkspaceBloc>(
-                create: (_) => getIt<WorkspaceBloc>()..add(const WorkspaceEvent.init()),
+                create: (_) =>
+                    getIt<WorkspaceBloc>()..add(const WorkspaceEvent.init()),
               ),
             ],
             child: child,
@@ -233,8 +230,8 @@ class AppRouter {
       /// Tech Route
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider(
-            create: (_) => getIt<TechBloc>()..add(const TechEvent.init()),
+          return BlocProvider.value(
+            value: getIt<TechBloc>(), // KHÔNG .add ở đây
             child: child,
           );
         },

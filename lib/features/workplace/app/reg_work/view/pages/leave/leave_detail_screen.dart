@@ -89,7 +89,8 @@ class _LeaveDetailScreenPageState extends State<LeaveDetailScreenPage> {
 
                             _isEditing
                                 ? FormDateTimePicker(
-                              name: 'regwork_leave_detail_date',
+                              nameForm: 'regwork_leave_detail_date',
+                              nameTimePicker: 'leave_detail_date_time',
                               label: 'Ngày nghỉ',
                               icon: Icons.date_range,
                               inputType: InputType.date,

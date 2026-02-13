@@ -9,9 +9,9 @@ class TechWork extends Equatable {
   final int userId;
   final String dateReport;
 
-  final String projectCode;
-  final String projectName;
-  final String projectText;
+  final String? projectCode;
+  final String? projectName;
+  final String? projectText;
 
   final double totalHours;
   final double? totalHourOT;
@@ -27,8 +27,8 @@ class TechWork extends Equatable {
   final String? problemSolve;
   final String? note;
 
-  final DateTime createdDate;
-  final int type;
+  final DateTime? createdDate;
+  final int? type;
   final String positionName;
   final String mission;
 
@@ -38,10 +38,10 @@ class TechWork extends Equatable {
 
   final DateTime? holidayDate;
 
-  final DateTime? planStartDate;
-  final DateTime? planEndDate;
-  final DateTime? actualStartDate;
-  final DateTime? actualEndDate;
+  final String? planStartDate;
+  final String? planEndDate;
+  final String? actualStartDate;
+  final String? actualEndDate;
 
   final int? totalDayPlan;
 
@@ -51,9 +51,9 @@ class TechWork extends Equatable {
     required this.fullName,
     required this.userId,
     required this.dateReport,
-    required this.projectCode,
-    required this.projectName,
-    required this.projectText,
+    this.projectCode,
+     this.projectName,
+     this.projectText,
     required this.totalHours,
     this.totalHourOT,
     required this.percentComplete,
@@ -63,7 +63,7 @@ class TechWork extends Equatable {
     this.backlog,
     this.problem,
     this.note,
-    required this.createdDate,
+    this.createdDate,
     required this.type,
     required this.positionName,
     required this.mission,
@@ -83,10 +83,10 @@ class TechWork extends Equatable {
     required int userId,
     required String fullName,
     required String dateReport,
-    required DateTime createdDate,
-    required String projectCode,
-    required String projectText,
-    required String projectName,
+    DateTime? createdDate,
+    String? projectCode,
+    String? projectText,
+    String? projectName,
     required String code,
     required int projectItemId,
   }) {
@@ -179,10 +179,10 @@ class TechWork extends Equatable {
     String? problem,
     String? note,
     String? projectItemCode,
-    DateTime? planStartDate,
-    DateTime? planEndDate,
-    DateTime? actualStartDate,
-    DateTime? actualEndDate,
+    String? planStartDate,
+    String? planEndDate,
+    String? actualStartDate,
+    String? actualEndDate,
     int? totalDayPlan,
     String? mission,
     DateTime? createdDate,

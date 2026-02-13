@@ -118,8 +118,10 @@ class _MissedDetailScreenState extends State<MissedDetailScreen> {
 
                             _isEditing
                                 ? FormDateTimePicker(
-                              name:
+                              nameForm:
                               'regwork_missed_detail_date',
+                              nameTimePicker:
+                              'missed_detail_date_time',
                               label: 'Ngày',
                               icon: Icons
                                   .date_range_outlined,

@@ -61,7 +61,8 @@ class _MissedAddScreenState extends State<MissedAddScreen> {
                         child: Column(
                           children: [
                             FormDateTimePicker(
-                              name: 'regwork_missed_add_date',
+                              nameForm: 'regwork_missed_add_date',
+                              nameTimePicker: 'missed_add_date_time',
                               label: 'Ngày',
                               icon: Icons.date_range_outlined,
                               inputType: InputType.date,

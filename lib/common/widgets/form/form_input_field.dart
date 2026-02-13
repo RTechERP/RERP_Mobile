@@ -55,8 +55,9 @@ class FormInputField extends StatelessWidget {
     return FormBuilderField<String>(
       onChanged: onChanged,
       initialValue: initialValue,
-      name: nameForm,
       validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      name: nameForm,
       enabled: enabled,
       builder: (field) {
         final value = field.value?.trim() ?? '';
@@ -71,6 +72,7 @@ class FormInputField extends StatelessWidget {
 
 
         return FormBuilderTextField(
+          validator: validator,
           readOnly: readOnly,
           onTap: onTap,
           enabled: enabled,
@@ -79,6 +81,7 @@ class FormInputField extends StatelessWidget {
           obscureText: obscureText,
           keyboardType: keyboardType,
           textInputAction: textInputAction,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           onSubmitted: onSubmitted,
           onChanged: field.didChange,
           maxLines: effectiveMaxLines,

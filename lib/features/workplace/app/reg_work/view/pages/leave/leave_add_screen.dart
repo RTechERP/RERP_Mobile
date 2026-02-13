@@ -88,7 +88,8 @@ class LeaveAddScreenPage extends StatelessWidget {
                           children: [
                             /// Thời gian nghỉ
                             FormDateTimePicker(
-                              name: 'regwork_leave_detail_date',
+                              nameForm: 'regwork_leave_detail_date',
+                              nameTimePicker: 'leave_detail_date_time',
                               label: 'Ngày nghỉ',
                               icon: Icons.date_range,
                               inputType: InputType.date,
@@ -121,7 +122,8 @@ class LeaveAddScreenPage extends StatelessWidget {
 
                             /// Từ ngày
                             FormDateTimePicker(
-                              name: 'regwork_leave_add_fromDate',
+                              nameForm: 'regwork_leave_add_fromDate',
+                              nameTimePicker: 'leave_add_fromDate',
                               label: 'Ngày đăng ký',
                               icon: Icons.date_range_outlined,
                               inputType: InputType.date,
