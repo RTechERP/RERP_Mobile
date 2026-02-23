@@ -67,12 +67,17 @@ class TechEvent with _$TechEvent {
     required BuildContext context,
   }) = _SendMailReport;
 
+  /// ===== RESET SUBMIT FLAGS ====
   const factory TechEvent.resetSubmitFlags() = _ResetSubmitFlags;
 
+  /// ===== CHANGE DATE RANGE ====
   const factory TechEvent.changeDateRange({
     required DateTime dateStart,
     required DateTime dateEnd,
   }) = _ChangeDateRange;
 
-
+  /// ===== SELECT REPORT (GET DETAIL BY ID) ====
+  const factory TechEvent.selectReport({
+    required int dailyID,
+  }) = _SelectReport;
 }

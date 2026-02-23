@@ -289,3 +289,44 @@ class SendMailRequestModel with _$SendMailRequestModel {
   factory SendMailRequestModel.fromJson(Map<String, dynamic> json) =>
       _$SendMailRequestModelFromJson(json);
 }
+
+/// ==========================
+/// 🔹 Detail Report Response Model
+/// ==========================
+
+@freezed
+class DetailReportResponse with _$DetailReportResponse {
+  const factory DetailReportResponse({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'MasterID') required int masterId,
+    @JsonKey(name: 'UserReport') required int userReport,
+    @JsonKey(name: 'DateReport') required String dateReport, // "2026-02-16"
+    @JsonKey(name: 'ProjectID') required int projectId,
+    @JsonKey(name: 'Content') required String content,
+    @JsonKey(name: 'Results') required String results,
+    @JsonKey(name: 'Problem') required String problem,
+    @JsonKey(name: 'ProblemSolve') required String problemSolve,
+    @JsonKey(name: 'PlanNextDay') required String planNextDay,
+    @JsonKey(name: 'Note') required String note,
+    @JsonKey(name: 'Confirm') required bool confirm,
+    @JsonKey(name: 'Backlog') required String backlog,
+    @JsonKey(name: 'DeleteFlag') required int deleteFlag,
+    @JsonKey(name: 'CreatedDate') required DateTime createdDate,   // "2026-02-12T15:32:48.303"
+    @JsonKey(name: 'Type') required int type,
+    @JsonKey(name: 'ReportLate') required int reportLate,
+    @JsonKey(name: 'OldProjectID') required int oldProjectId,
+    @JsonKey(name: 'TotalHours') required double totalHours,        // 8.00
+    @JsonKey(name: 'StatusResult') required int statusResult,
+    @JsonKey(name: 'WorkPlanDetailID') required int workPlanDetailId,
+    @JsonKey(name: 'CreatedBy') required String createdBy,
+    @JsonKey(name: 'UpdatedDate') required DateTime updatedDate,
+    @JsonKey(name: 'UpdatedBy') required String updatedBy,
+    @JsonKey(name: 'ProjectItemID') required int projectItemId,
+    @JsonKey(name: 'PercentComplete') required int percentComplete,
+    @JsonKey(name: 'TotalHourOT') required double totalHourOT,
+    @JsonKey(name: 'Location') required String location,
+  }) = _DetailReportResponse;
+
+  factory DetailReportResponse.fromJson(Map<String, dynamic> json) =>
+      _$DetailReportResponseFromJson(json);
+}

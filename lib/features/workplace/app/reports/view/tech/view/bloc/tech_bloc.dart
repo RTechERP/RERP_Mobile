@@ -1,4 +1,5 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -89,6 +90,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         resetSubmitFlags: () => _onResetSubmitFlags(emit),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(dateStart, dateEnd, emit),
+        selectReport: (dailyID) => _onSelectReport(dailyID, emit),
       );
     });
   }
@@ -114,7 +116,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       ),
     );
 
-    add(const TechEvent.init()); // reload theo range mới
+    add(const TechEvent.init());
   }
 
   Future<void> _onInit(Emitter<TechState> emit) async {
@@ -191,8 +193,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     final newProject = TechProject(
       tempId: const Uuid().v4(),
       projectId: null,
-      projectCode: 'Dự án $index',
-      name: 'Dự án $index',
+      projectCode: '${'report.project'.tr()} $index',
+      name: '${'report.project'.tr()} $index',
       works: const [],
     );
 
@@ -277,7 +279,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
     await res.fold(
       (l) async {
-        _log.logE('Get project item failed: ${l.getErrorMessage}');
+        // _log.logE('Get project item failed: ${l.getErrorMessage}');
         emit(state.copyWith(projectItem: const []));
       },
       (r) async {
@@ -328,7 +330,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
     await res.fold(
       (l) async {
-        _log.logE('Get project item failed: ${l.getErrorMessage}');
+        // _log.logE('Get project item failed: ${l.getErrorMessage}');
         emit(state.copyWith(projectItem: const []));
       },
       (r) async {
@@ -352,7 +354,6 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       (s, w) => s + ((w.totalHours) - (w.totalHourOT ?? 0)),
     );
 
-    // ✅ Nếu tổng giờ thường >= 8 → scale xuống 7.99 (hoặc 8 tuỳ rule backend)
     if (sumNormal >= 8) {
       final ratio = 8 / sumNormal;
 
@@ -441,36 +442,60 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
   }
 
   Future<void> _onUpdateWork(
-    int index, {
-    double? totalHours,
-    double? totalHourOT,
-    double? percentComplete,
-    String? content,
-    String? results,
-    String? mission,
-    int? projectItemId,
-    String? dateReport,
-    String? code,
-    required Emitter<TechState> emit,
-  }) async {
+      int index, {
+        double? totalHours,
+        double? totalHourOT,
+        double? percentComplete,
+        String? content,
+        String? results,
+        String? mission,
+        int? projectItemId,
+        String? dateReport,
+        String? code,
+        required Emitter<TechState> emit,
+      }) async {
     final selected = state.selectedProject;
     if (selected == null) return;
 
     final newWorks = [...selected.works];
-
     if (index < 0 || index >= newWorks.length) return;
 
     final old = newWorks[index];
+
+    // ✅ xác định projectItemId cuối cùng
+    final effectiveProjectItemId =
+        projectItemId ?? old.projectItemId;
+
+    // ✅ tìm ProjectItemResponse tương ứng
+    ProjectItemResponse? item;
+    if (effectiveProjectItemId != null) {
+      try {
+        item = state.projectItem.firstWhere(
+              (e) => e.id == effectiveProjectItemId,
+        );
+      } catch (_) {
+        item = null;
+      }
+    }
+
+    // ✅ xác định percentComplete cuối cùng
+    double effectivePercent = old.percentComplete;
+
+    if (percentComplete != null) {
+      effectivePercent = percentComplete;
+    } else if (projectItemId != null && projectItemId != old.projectItemId) {
+      effectivePercent = item?.percentageActual ?? old.percentComplete;
+    }
 
     newWorks[index] = old.copyWith(
       dateReport: dateReport ?? old.dateReport,
       totalHours: totalHours ?? old.totalHours,
       totalHourOT: totalHourOT ?? old.totalHourOT,
-      percentComplete: percentComplete ?? old.percentComplete,
+      percentComplete: effectivePercent,
       content: content ?? old.content,
       results: results ?? old.results,
       mission: mission ?? old.mission,
-      projectItemId: projectItemId ?? old.projectItemId,
+      projectItemId: effectiveProjectItemId,
       code: code ?? old.code,
     );
 
@@ -531,7 +556,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     emit(
       state.copyWith(
         locationType: type,
-        location: type == 'rtc' ? 'VP RTC' : value,
+        location: type == 'rtc' ? 'report.project'.tr() : value,
       ),
     );
   }
@@ -542,7 +567,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     DateTime pickedDate,
     Emitter<TechState> emit,
   ) async {
-    if (_isSubmittingReport) return; // ✅ chặn trùng
+    if (_isSubmittingReport) return;
     _isSubmittingReport = true;
 
     try {
@@ -580,10 +605,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           'PlanNextDay': state.planNextDay,
           'Note': work.note ?? '',
           'Backlog': work.backlog ?? '',
-          'TotalHours': work.totalHours.toInt(),
+          'TotalHours': (work.totalHours).toInt(),
           'TotalHourOT': (work.totalHourOT ?? 0).toInt(),
           'PercentComplete': work.percentComplete.toInt(),
-          'Location': state.location ?? 'VP RTC',
+          'Location': state.location ?? 'report.project'.tr(),
           'Type': 0,
           'ReportLate': 0,
           'StatusResult': 0,
@@ -593,17 +618,17 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           'Confirm': false,
         };
 
-        _log.logI('🔥 RAW Submit payload = $payload');
+        // _log.logI('🔥 RAW Submit payload = $payload');
 
         final res = await _reportRepo.saveReportTech(payload: payload);
 
         final isFailed = await res.fold(
           (l) async {
-            _log.logE('❌ Submit failed: ${l.getErrorMessage}');
+            // _log.logE('❌ Submit failed: ${l.getErrorMessage}');
             return true;
           },
           (r) async {
-            _log.logI('✅ Submit success');
+            // _log.logI('✅ Submit success');
             return false;
           },
         );
@@ -617,9 +642,9 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       emit(state.copyWith(isSubmitting: false, submitSuccess: true));
     } catch (e, st) {
       emit(state.copyWith(isSubmitting: false, submitSuccess: false));
-      _log.logE('❌ Submit error: $e\n$st');
+      // _log.logE('❌ Submit error: $e\n$st');
     } finally {
-      _isSubmittingReport = false; // ✅ đảm bảo reset
+      _isSubmittingReport = false;
     }
   }
 
@@ -647,12 +672,12 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       await res.fold(
         (l) async {
           emit(state.copyWith(isSubmitting: false, sendMailSuccess: false));
-          _log.logE('❌ Send mail failed: ${l.getErrorMessage}');
+          // _log.logE('❌ Send mail failed: ${l.getErrorMessage}');
         },
         (r) async {
           emit(state.copyWith(isSubmitting: false, sendMailSuccess: true));
 
-          _log.logI('✅ Send mail success: $r');
+          // _log.logI('✅ Send mail success: $r');
 
           // 3. Giữ success đủ lâu để chạy animation
           await Future.delayed(const Duration(milliseconds: 900));
@@ -663,11 +688,38 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       );
     } catch (e, st) {
       emit(state.copyWith(isSubmitting: false, sendMailSuccess: false));
-      _log.logE('❌ Send mail error: $e\n$st');
+      // _log.logE('❌ Send mail error: $e\n$st');
     }
   }
 
   _onResetSubmitFlags(Emitter<TechState> emit) {
     emit(state.copyWith(submitSuccess: false, sendMailSuccess: false));
+  }
+
+  Future<void> _onSelectReport(
+      int dailyID,
+      Emitter<TechState> emit,
+      ) async {
+    emit(state.copyWith(isLoadingDetail: true));
+
+    final res = await _reportRepo.getById(dailyID: dailyID);
+
+    await res.fold(
+          (l) async {
+        _log.logE('Get detail failed: ${l.getErrorMessage}');
+        emit(state.copyWith(isLoadingDetail: false));
+      },
+          (detail) async {
+            // _log.logI('✅ Detail Report: $detail');
+
+        emit(
+          state.copyWith(
+            isLoadingDetail: false,
+            selectedReportDetail: detail, // DetailReportResponse
+          ),
+        );
+
+      },
+    );
   }
 }

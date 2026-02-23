@@ -8,42 +8,79 @@ enum SnackBarType { success, error, info }
 @singleton
 class SnackBarHelper {
   //todo: icon & color
+  // void _show(
+  //     BuildContext context,
+  //     String message, {
+  //       SnackBarType type = SnackBarType.success,
+  //       int duration = 3,
+  //       Function()? onTap,
+  //     }) async {
+  //   Widget icon = const Icon(Icons.check);
+  //   Color color = Colors.green;
+  //   // haptic();
+  //   switch (type) {
+  //     case SnackBarType.success:
+  //       icon = const Icon(Icons.check);
+  //       color = Colors.green;
+  //       break;
+  //     case SnackBarType.error:
+  //       icon = const Icon(Icons.error_outline);
+  //       color = Colors.red;
+  //       break;
+  //     case SnackBarType.info:
+  //       icon = const Icon(Icons.info_outline);
+  //       color = Colors.blue;
+  //       break;
+  //   }
+  //
+  //   showTopSnackBar(
+  //     Overlay.of(context),
+  //     CustomSnackBar.info(
+  //       message: message,
+  //       iconRotationAngle: 0,
+  //       iconPositionLeft: 4,
+  //       textStyle: const TextStyle(), //todo:
+  //       backgroundColor: color,
+  //       messagePadding: const EdgeInsets.only(left: 56, right: 16),
+  //       icon: icon,
+  //     ),
+  //     displayDuration: Duration(seconds: duration),
+  //     onTap: onTap,
+  //   );
+  // }
+
   void _show(
       BuildContext context,
       String message, {
         SnackBarType type = SnackBarType.success,
-        int duration = 3,
+        int duration = 1,
         Function()? onTap,
-      }) async {
-    Widget icon = const Icon(Icons.check);
-    Color color = Colors.green;
-    // haptic();
+      }) {
+    Widget snackBar;
+
     switch (type) {
       case SnackBarType.success:
-        icon = const Icon(Icons.check);
-        color = Colors.green;
+        snackBar = CustomSnackBar.success(
+          message: message,
+        );
         break;
+
       case SnackBarType.error:
-        icon = const Icon(Icons.error_outline);
-        color = Colors.red;
+        snackBar = CustomSnackBar.error(
+          message: message,
+        );
         break;
+
       case SnackBarType.info:
-        icon = const Icon(Icons.info_outline);
-        color = Colors.blue;
+        snackBar = CustomSnackBar.info(
+          message: message,
+        );
         break;
     }
 
     showTopSnackBar(
       Overlay.of(context),
-      CustomSnackBar.info(
-        message: message,
-        iconRotationAngle: 0,
-        iconPositionLeft: 4,
-        textStyle: const TextStyle(), //todo:
-        backgroundColor: color,
-        messagePadding: const EdgeInsets.only(left: 56, right: 16),
-        icon: icon,
-      ),
+      snackBar,
       displayDuration: Duration(seconds: duration),
       onTap: onTap,
     );

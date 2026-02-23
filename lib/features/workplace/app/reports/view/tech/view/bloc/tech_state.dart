@@ -9,6 +9,9 @@ class TechState extends BaseBlocState {
 
   final List<ProjectResponse> rtcProject;
 
+  final DetailReportResponse? detailReport;
+
+
   final List<ProjectItemResponse> projectItem;
 
   final List<TechWork> works;
@@ -51,6 +54,8 @@ class TechState extends BaseBlocState {
 
   final DateTime? lastPickedDate;
 
+  final bool isLoadingDetail;
+  final DetailReportResponse? selectedReportDetail;
 
   const TechState({
     required super.status,
@@ -61,6 +66,7 @@ class TechState extends BaseBlocState {
     this.rtcProject = const [],
     this.projectItem = const [],
     this.works = const [],
+    this.detailReport,
     this.selectedProject,
     this.expandedProjectIndex,
     this.expandedWorkIndex,
@@ -86,6 +92,8 @@ class TechState extends BaseBlocState {
     this.userId,
     this.sendMailSuccess = false,
     this.lastPickedDate,
+    this.isLoadingDetail = false,
+    this.selectedReportDetail,
   });
 
   factory TechState.init() => const TechState(
@@ -96,6 +104,7 @@ class TechState extends BaseBlocState {
     rtcProject: [],
     projectItem: [],
     works: [],
+    detailReport: null,
     selectedProject: null,
     expandedProjectIndex: 0,
     expandedWorkIndex: null,
@@ -111,6 +120,8 @@ class TechState extends BaseBlocState {
     fullName: null,
     sendMailSuccess: false,
     lastPickedDate: null,
+    isLoadingDetail: false,
+    selectedReportDetail: null,
   );
 
   @override
@@ -148,5 +159,8 @@ class TechState extends BaseBlocState {
     userId,
     sendMailSuccess,
     lastPickedDate,
+    isLoadingDetail,
+    selectedReportDetail,
+    detailReport,
   ];
 }

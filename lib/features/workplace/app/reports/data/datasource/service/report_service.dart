@@ -1,16 +1,13 @@
-import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../../base/network/dio/dio_base_api_service.dart';
 import '../../../../../../../base/network/models/base_data.dart';
 import '../../../../../../../common/constants.dart';
-import '../../../../../../auth/data/repository/auth_repository.dart';
 import '../models/report_model.dart';
 
 @injectable
 class ReportService extends DioBaseApiService {
   ReportService(super.dio);
-
 
   /// Danh sách báo cáo hàng ngày
   Future<BaseData<List<ReportResponse>>> getDailyReportTech({
@@ -21,8 +18,6 @@ class ReportService extends DioBaseApiService {
     required String keyword,
     required String departmentId,
   }) async {
-    final token = await AuthRepository.getToken();
-
     String fmt(DateTime d) {
       final y = d.year.toString().padLeft(4, '0');
       final m = d.month.toString().padLeft(2, '0');
@@ -34,25 +29,17 @@ class ReportService extends DioBaseApiService {
     }
 
     final body = <String, dynamic>{
-      'DateStart': fmt(dateStart), // bắt buộc string
-      'DateEnd': fmt(dateEnd),     // bắt buộc string
+      'DateStart': fmt(dateStart),
+      'DateEnd': fmt(dateEnd),
       'TeamID': teamId,
       'UserID': userId,
       'Keyword': keyword,
       'DepartmentID': departmentId,
     };
 
-    // 🔴 log đúng body gửi đi
     return post<BaseData<List<ReportResponse>>>(
       ApiEndPoint.getDailyReportTech,
       body: body,
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      ),
       parser: (json) => BaseData<List<ReportResponse>>.fromJson(
         json,
             (data) => (data as List)
@@ -81,19 +68,11 @@ class ReportService extends DioBaseApiService {
 
   }
 
-
   /// Danh sách dự án
   Future<BaseData<List<ProjectResponse>>> getProject() async {
-    final token = await AuthRepository.getToken();
 
     return get<BaseData<List<ProjectResponse>>>(
       ApiEndPoint.getProject,
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Accept': 'application/json',
-        },
-      ),
       parser: (json) => BaseData<List<ProjectResponse>>.fromJson(
         json,
             (data) => (data as List)
@@ -112,7 +91,6 @@ class ReportService extends DioBaseApiService {
     required int projectId,
     int status = 2,
   }) async {
-    final token = await AuthRepository.getToken();
 
     return get<BaseData<List<ProjectItemResponse>>>(
       ApiEndPoint.getProjectItemByUser,
@@ -120,12 +98,6 @@ class ReportService extends DioBaseApiService {
         'projectId': projectId,
         'status': status,
       },
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Accept': 'application/json',
-        },
-      ),
       parser: (json) => BaseData<List<ProjectItemResponse>>.fromJson(
         json,
             (data) => (data as List)
@@ -140,46 +112,44 @@ class ReportService extends DioBaseApiService {
   }
 
   /// Lưu báo cáo công việc "Phòng Kỹ thuật"
-  Future<BaseData<void>> saveReportTechRaw({
+  Future<BaseData<void>> saveReportTech({
     required Map<String, dynamic> payload,
   }) async {
     final body = [payload]; // ✅ root là mảng
-    final token = await AuthRepository.getToken();
-
     return post<BaseData<void>>(
       ApiEndPoint.saveReportTech,
       body: body, // nếu wrapper không encode thì đổi thành jsonEncode(body)
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      ),
       parser: (json) => BaseData<void>.fromJson(json, (_) => null),
     );
   }
 
+  /// Gửi mail báo cáo phòng kỹ thuật
   Future<BaseData<void>> sendMailReport({
     required SendMailRequestModel request,
   }) async {
-    final token = await AuthRepository.getToken();
-
     return post<BaseData<void>>(
       ApiEndPoint.sendMailReport,
       body: request.toJson(),
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      ),
       parser: (json) => BaseData<void>.fromJson(json, (_) => null),
     );
   }
 
-
+  /// Lấy chi tiết báo cáo theo ID
+  Future<BaseData<DetailReportResponse>> getById({
+    required int dailyID,
+  }) {
+    return get<BaseData<DetailReportResponse>>(
+      ApiEndPoint.getById,
+      query: {
+        'dailyID': dailyID,
+      },
+      parser: (json) => BaseData<DetailReportResponse>.fromJson(
+        json,
+            (data) => DetailReportResponse.fromJson(
+          data as Map<String, dynamic>,
+        ),
+      ),
+    );
+  }
 }
-
 

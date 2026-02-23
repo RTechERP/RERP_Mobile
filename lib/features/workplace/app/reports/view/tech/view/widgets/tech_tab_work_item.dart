@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
-
 import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../../data/datasource/models/tech_model.dart';
 import '../bloc/tech_bloc.dart';
 
-class TechTabWorkItem extends StatelessWidget {
+class TechTabWorkItem extends StatefulWidget {
   final String title;
   final TechWork report;
   final bool isExpanded;
@@ -33,11 +31,112 @@ class TechTabWorkItem extends StatelessWidget {
   });
 
   @override
+  State<TechTabWorkItem> createState() => _TechTabWorkItemState();
+}
+
+class _TechTabWorkItemState extends State<TechTabWorkItem> {
+  late TextEditingController _percentController;
+  late TextEditingController _totalController;
+  late TextEditingController _otController;
+
+  @override
+  void initState() {
+    super.initState();
+    _percentController = TextEditingController(
+      text: widget.report.percentComplete.toInt().toString(),
+    );
+
+    _totalController = TextEditingController(
+      text: (widget.report.totalHours)
+          .toInt()
+          .toString(),
+    );
+
+    _otController = TextEditingController(
+      text: (widget.report.totalHourOT ?? 0)
+          .toInt()
+          .toString(),
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant TechTabWorkItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.report.percentComplete !=
+        widget.report.percentComplete) {
+
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+
+        final newText = widget.report.percentComplete
+            .toInt()
+            .toString();
+
+        if (_percentController.text != newText) {
+          _percentController.value = TextEditingValue(
+            text: newText,
+            selection: TextSelection.collapsed(
+              offset: newText.length,
+            ),
+          );
+        }
+      });
+    }
+
+    if (oldWidget.report.totalHours != widget.report.totalHours) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+
+        final newText =
+        (widget.report.totalHours)
+            .toInt()
+            .toString();
+
+        if (_totalController.text != newText) {
+          _totalController.value = TextEditingValue(
+            text: newText,
+            selection: TextSelection.collapsed(
+              offset: newText.length,
+            ),
+          );
+        }
+      });
+    }
+
+    if (oldWidget.report.totalHourOT != widget.report.totalHourOT) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+
+        final newText =
+        (widget.report.totalHourOT ?? 0)
+            .toInt()
+            .toString();
+
+        if (_otController.text != newText) {
+          _otController.value = TextEditingValue(
+            text: newText,
+            selection: TextSelection.collapsed(
+              offset: newText.length,
+            ),
+          );
+        }
+      });
+    }
+  }
+  @override
+  void dispose() {
+    _percentController.dispose();
+    _totalController.dispose();
+    _otController.dispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
-    final showExpanded = alwaysExpanded || isExpanded;
+    final showExpanded = widget.alwaysExpanded || widget.isExpanded;
 
     return Slidable(
-      key: ValueKey('work_${title}_$index'),
+      key: ValueKey('work_${widget.title}_${widget.index}'),
       enabled: !showExpanded, // expanded thì disable swipe
       endActionPane: showExpanded
           ? null
@@ -46,7 +145,7 @@ class TechTabWorkItem extends StatelessWidget {
         extentRatio: 0.22,
         children: [
           SlidableAction(
-            onPressed: (_) => onDelete?.call(),
+            onPressed: (_) => widget.onDelete?.call(),
             backgroundColor: Colors.redAccent,
             foregroundColor: Colors.white,
             icon: Icons.delete_outline,
@@ -60,18 +159,18 @@ class TechTabWorkItem extends StatelessWidget {
         builder: (slidableCtx) {
           return GestureDetector(
             behavior: HitTestBehavior.translucent,
-            onTap: alwaysExpanded
+            onTap: widget.alwaysExpanded
                 ? null
                 : () {
               // 👇 Đóng Slidable trước khi expand
               Slidable.of(slidableCtx)?.close();
-              onToggleExpand();
+              widget.onToggleExpand();
             },
             child: FormCard(
-              title: title,
+              title: widget.title,
               collapsed: !showExpanded,
               actions: [
-                if (!alwaysExpanded)
+                if (!widget.alwaysExpanded)
                   IconButton(
                     icon: Icon(
                       showExpanded
@@ -80,7 +179,7 @@ class TechTabWorkItem extends StatelessWidget {
                     ),
                     onPressed: () {
                       Slidable.of(slidableCtx)?.close(); // 👈 đóng khi bấm icon
-                      onToggleExpand();
+                      widget.onToggleExpand();
                     },
                   ),
               ],
@@ -89,7 +188,7 @@ class TechTabWorkItem extends StatelessWidget {
                 curve: Curves.easeInOut,
                 child: showExpanded
                     ? IgnorePointer(
-                  ignoring: readonly,
+                  ignoring: widget.readonly,
                   child: _buildContent(context),
                 )
                     : const SizedBox.shrink(),
@@ -109,17 +208,11 @@ class TechTabWorkItem extends StatelessWidget {
           prev.projectItem != curr.projectItem,
 
       builder: (context, state) {
-        final missions = state.projectItem
-            .map((e) => e.mission ?? '')
-            .where((e) => e.isNotEmpty)
-            .toSet()
-            .toList(); // loại trùng
-
         return Column(
           children: [
             /// ===== CATEGORY (MISSION TỪ BE) =====
             GestureDetector(
-              onTap: readonly
+              onTap: widget.readonly
                   ? null
                   : () {
                 openSelectBottomSheet(
@@ -130,10 +223,11 @@ class TechTabWorkItem extends StatelessWidget {
                   onSelected: (item) {
                     context.read<TechBloc>().add(
                       TechEvent.updateWork(
-                        index: index,
+                        index: widget.index,
                         mission: item.mission,
                         projectItemId: item.id,
                         code: item.code,
+                        percentComplete: item.percentageActual,
                       ),
                     );
                   },
@@ -142,21 +236,14 @@ class TechTabWorkItem extends StatelessWidget {
               },
               child: AbsorbPointer(
                 child: FormInputField(
-                  key: ValueKey('work_${report.id}'),
-                  nameForm: 'tech_add_category_${report.id}',
-                  nameTextField: 'category_${report.id}',
-                  label: (report.mission.isNotEmpty == true)
-                      ? report.mission
+                  key: ValueKey('work_${widget.report.id}'),
+                  nameForm: 'tech_add_category_${widget.report.id}',
+                  nameTextField: 'category_${widget.report.id}',
+                  label: (widget.report.mission.isNotEmpty == true)
+                      ? widget.report.mission
                       : 'Hạng mục',
                   readOnly: true,
                   icon: Icons.category_outlined,
-                  validator: (_) {
-                    if (report.projectItemId == 0) {
-                      return 'Vui lòng chọn hạng mục công việc';
-                    }
-                    return null;
-                  },
-                
                 ),
               ),
             ),
@@ -168,28 +255,17 @@ class TechTabWorkItem extends StatelessWidget {
               children: [
                 Expanded(
                   child: FormInputField(
-                    key: ValueKey('total_${report.id}'),
+                    key: ValueKey('total_${widget.report.id}'),
                     icon: Icons.timer_outlined,
-                    nameForm: 'tech_add_total_${report.id}',
-                    nameTextField: 'total_${report.id}',
+                    nameForm: 'tech_add_total_${widget.report.id}',
+                    nameTextField: 'total_${widget.report.id}',
                     label: 'Tổng giờ',
                     keyboardType: TextInputType.number,
-                    initialValue: report.totalHours.toString(),
-                    validator: (v) {
-                      final total = double.tryParse(v ?? '') ?? 0;
-                      final ot = report.totalHourOT ?? 0;
-
-                      if (total <= 0) return 'Giờ phải > 0';
-                      if (total > 24) return 'Giờ không được > 24';
-                      if (total - ot <= 0) return 'Giờ hành chính phải > 0';
-                      return null;
-                    },
-
-
+                    controller: _totalController,
                     onChanged: (v) {
                       context.read<TechBloc>().add(
                         TechEvent.updateWork(
-                          index: index,
+                          index: widget.index,
                           totalHours: double.tryParse(v ?? '') ?? 0,
                         ),
                       );
@@ -201,24 +277,15 @@ class TechTabWorkItem extends StatelessWidget {
                 Expanded(
                   child: FormInputField(
                     icon: Icons.timer_outlined,
-                    nameForm: 'tech_add_ot_${report.id}',
-                    nameTextField: 'ot_${report.id}',
+                    nameForm: 'tech_add_ot_${widget.report.id}',
+                    nameTextField: 'ot_${widget.report.id}',
                     label: 'OT',
                     keyboardType: TextInputType.number,
-                    initialValue: report.totalHourOT?.toString() ?? '0',
-                    validator: (v) {
-                      final total = report.totalHours;
-                      final ot = double.tryParse(v ?? '') ?? 0;
-
-                      if (ot > total) return 'OT không được > Tổng giờ';
-                      if (total > 8 && ot <= 0) return 'Tổng giờ > 8 thì phải có OT';
-                      if (total - ot > 8) return 'Giờ hành chính không được > 8h';
-                      return null;
-                    },
+                    controller: _otController,
                     onChanged: (v) {
                       context.read<TechBloc>().add(
                         TechEvent.updateWork(
-                          index: index,
+                          index: widget.index,
                           totalHourOT: double.tryParse(v ?? '') ?? 0,
                         ),
                       );
@@ -233,24 +300,17 @@ class TechTabWorkItem extends StatelessWidget {
 
             /// ===== PERCENT =====
             FormInputField(
-              key: ValueKey('percent_${report.id}'),
-
+              key: ValueKey('percent_${widget.report.id}'),
               icon: Icons.percent_outlined,
-              nameForm: 'tech_add_percent_${report.id}',
-              nameTextField: 'percent_${report.id}',
+              nameForm: 'tech_add_percent_${widget.report.id}',
+              nameTextField: 'percent_${widget.report.id}',
               label: 'Tiến độ hoàn thành',
               keyboardType: TextInputType.number,
-              initialValue: report.percentComplete.toString(),
-              validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(errorText: 'Vui lòng nhập % tiến độ'),
-                FormBuilderValidators.min(0, errorText: '>= 0'),
-                FormBuilderValidators.max(100, errorText: '<= 100'),
-              ]),
-
+              controller: _percentController,
               onChanged: (v) {
                 context.read<TechBloc>().add(
                   TechEvent.updateWork(
-                    index: index,
+                    index: widget.index,
                     percentComplete: double.tryParse(v ?? '') ?? 0,
                   ),
                 );
@@ -261,23 +321,20 @@ class TechTabWorkItem extends StatelessWidget {
 
             /// ===== CONTENT =====
             FormInputField(
-              key: ValueKey('content_${report.id}'),
+              key: ValueKey('content_${widget.report.id}'),
 
               icon: Icons.note_outlined,
-              nameForm: 'tech_add_content_${report.id}',
-              nameTextField: 'content_${report.id}',
+              nameForm: 'tech_add_content_${widget.report.id}',
+              nameTextField: 'content_${widget.report.id}',
 
               label: 'Nội dung công việc',
               maxLines: 3,
               keyboardType: TextInputType.multiline,
               textInputAction: TextInputAction.newline,
-              initialValue: report.content,
-              validator: FormBuilderValidators.required(
-                errorText: 'Vui lòng nhập nội dung công việc',
-              ),
+              initialValue: widget.report.content,
               onChanged: (v) {
                 context.read<TechBloc>().add(
-                  TechEvent.updateWork(index: index, content: v),
+                  TechEvent.updateWork(index: widget.index, content: v),
                 );
               },
             ),
@@ -286,22 +343,19 @@ class TechTabWorkItem extends StatelessWidget {
 
             /// ===== RESULT =====
             FormInputField(
-              key: ValueKey('result_${report.id}'),
+              key: ValueKey('result_${widget.report.id}'),
 
               icon: Icons.note_outlined,
-              nameForm: 'tech_add_result_${report.id}',
-              nameTextField: 'result_${report.id}',
+              nameForm: 'tech_add_result_${widget.report.id}',
+              nameTextField: 'result_${widget.report.id}',
               label: 'Kết quả',
               maxLines: 3,
               keyboardType: TextInputType.multiline,
               textInputAction: TextInputAction.newline, // ⬅ Enter xuống dòng
-              initialValue: report.results,
-              validator: FormBuilderValidators.required(
-                errorText: 'Vui lòng nhập kết quả',
-              ),
+              initialValue: widget.report.results,
               onChanged: (v) {
                 context.read<TechBloc>().add(
-                  TechEvent.updateWork(index: index, results: v),
+                  TechEvent.updateWork(index: widget.index, results: v),
                 );
               },
             ),

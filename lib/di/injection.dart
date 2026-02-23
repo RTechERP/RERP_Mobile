@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import '../base/network/constants/constants.dart';
+import '../base/network/dio/dio_interceptor.dart';
 import '../common/app/app_env.dart';
 import '../common/local_data/shared_pref.dart';
 import '../common/logger/index.dart';
+import '../common/utils/snack_bar_helper.dart';
 import '../features/auth/data/datasource/service/auth_service.dart';
 import '../features/auth/data/repository/auth_repo.dart';
 import '../features/auth/data/repository/auth_repo_impl.dart';
@@ -23,15 +25,18 @@ void configureDependencies(AppEnv env) {
 
   getIt.registerLazySingleton<LogUtils>(() => LogUtils());
 
+  getIt.registerLazySingleton<SnackBarHelper>(() => SnackBarHelper());
+
   /// ===== NETWORK =====
   getIt.registerLazySingleton<Dio>(() {
     final dio = Dio(
       BaseOptions(
-        baseUrl: BaseApiUrl.baseUrl, // TODO: đổi baseUrl
+        baseUrl: BaseApiUrl.baseUrl,
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
       ),
     );
+    dio.interceptors.add(DioInterceptor());
     return dio;
   });
 

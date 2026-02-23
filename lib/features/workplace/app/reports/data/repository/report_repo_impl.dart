@@ -15,6 +15,7 @@ class ReportRepoImpl implements ReportRepo {
 
   ReportRepoImpl(this._service);
 
+  /// Danh sách báo cáo hàng ngày
   @override
   Future<Either<BaseError, List<ReportResponse>>> getDailyReportTech({
     required DateTime dateStart,
@@ -45,6 +46,7 @@ class ReportRepoImpl implements ReportRepo {
     }
   }
 
+  /// Danh sách phòng ban
   @override
   Future<Either<BaseError, List<DepartResponse>>> getDepart() async {
     try {
@@ -55,6 +57,7 @@ class ReportRepoImpl implements ReportRepo {
     }
   }
 
+  /// Danh sách dự án
   @override
   Future<Either<BaseError, List<ProjectResponse>>> getProject() async {
     try {
@@ -65,6 +68,7 @@ class ReportRepoImpl implements ReportRepo {
     }
   }
 
+  /// Danh sách hạng mục công việc theo dự án
   @override
   Future<Either<BaseError, List<ProjectItemResponse>>> getProjectItemByUser({
     required int projectId,
@@ -82,12 +86,13 @@ class ReportRepoImpl implements ReportRepo {
     }
   }
 
+  /// Lưu báo cáo công việc "Phòng Kỹ thuật"
   @override
   Future<Either<BaseError, String>> saveReportTech({
     required Map<String, dynamic> payload,
   }) async {
     try {
-      final res = await _service.saveReportTechRaw(payload: payload);
+      final res = await _service.saveReportTech(payload: payload);
 
       if (res.status == 1) {
         return right(res.message ?? 'Lưu dữ liệu thành công');
@@ -103,6 +108,7 @@ class ReportRepoImpl implements ReportRepo {
     }
   }
 
+  /// Gửi mail báo cáo phòng kỹ thuật
   @override
   Future<Either<BaseError, String>> sendMailReport({
     required SendMailRequestModel request,
@@ -118,6 +124,19 @@ class ReportRepoImpl implements ReportRepo {
           ),
         );
       }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  /// Lấy chi tiết báo cáo theo ID
+  @override
+  Future<Either<BaseError, DetailReportResponse>> getById({
+    required int dailyID,
+  }) async {
+    try {
+      final res = await _service.getById(dailyID: dailyID);
+      return right(res.data!); // DetailReportResponse
     } on DioException catch (e) {
       return left(e.baseError);
     }

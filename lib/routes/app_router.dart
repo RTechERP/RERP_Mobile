@@ -58,6 +58,7 @@ import '../features/workplace/app/reports/view/sale/view/sale_staff_screen.dart'
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
+import '../features/workplace/app/reports/view/tech/view/pages/tech_edit_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart';
 import '../features/workplace/view/bloc/workspace_bloc.dart';
 
@@ -231,7 +232,7 @@ class AppRouter {
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(
-            value: getIt<TechBloc>(), // KHÔNG .add ở đây
+            value: getIt<TechBloc>(),
             child: child,
           );
         },
@@ -247,6 +248,10 @@ class AppRouter {
           GoRoute(
             path: RouteNames.reportITdepartDetail,
             builder: (context, state) => const TechDetailScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.reportITdepartEdit,
+            builder: (context, state) => const TechEditScreen(),
           ),
         ],
       ),

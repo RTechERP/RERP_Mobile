@@ -67,6 +67,8 @@ class RouteNames {
   static const reportITdepartDetail = '/report/tech/detail';
   static const reportITdepartAdd = '/report/tech/add';
 
+  static const reportITdepartEdit = '/report/tech/edit';
+
   ///***Sale Department***///
   static const reportSaleAdd = '/report/sale/add';
   ///**** Admin Sale ****///

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../../../../../base/widgets/base_scaffold.dart';
@@ -10,22 +11,20 @@ import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/utils/dialog/dialog_service.dart';
-import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/buttons/custom_text_button.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
-import '../../data/datasource/models/tech_model.dart';
 import '../bloc/tech_bloc.dart';
 import '../widgets/tech_tab_work_item.dart';
 
-class TechAddScreen extends StatefulWidget {
-  const TechAddScreen({super.key});
+class TechEditScreen extends StatefulWidget {
+  const TechEditScreen({super.key});
 
   @override
-  State<TechAddScreen> createState() => _TechAddScreenState();
+  State<TechEditScreen> createState() => _TechEditScreenState();
 }
 
-class _TechAddScreenState
-    extends BaseState<TechAddScreen, TechEvent, TechState, TechBloc> {
+class _TechEditScreenState
+    extends BaseState<TechEditScreen, TechEvent, TechState, TechBloc> {
   final _screenFormKey = GlobalKey<FormBuilderState>();
   bool _showExtraInfo = false;
 
@@ -71,6 +70,12 @@ class _TechAddScreenState
                             inputType: InputType.date,
                             initialValue: _initialReportDate(),
                             format: DateFormat('dd/MM/yyyy'),
+                            validator: (v) {
+                              if (v == null) {
+                                return 'Vui lòng chọn Ngày báo cáo';
+                              }
+                              return null;
+                            },
                           ),
                         ),
 
@@ -81,7 +86,7 @@ class _TechAddScreenState
                           title: 'Dự án',
                           child: BlocBuilder<TechBloc, TechState>(
                             buildWhen: (prev, curr) =>
-                                prev.projects != curr.projects ||
+                            prev.projects != curr.projects ||
                                 prev.expandedWorkIndex !=
                                     curr.expandedWorkIndex ||
                                 prev.selectedProject != curr.selectedProject,
@@ -111,7 +116,7 @@ class _TechAddScreenState
                                         ...state.projects.map((project) {
                                           final isActive =
                                               project.tempId ==
-                                              state.selectedProject?.tempId;
+                                                  state.selectedProject?.tempId;
 
                                           return Padding(
                                             padding: const EdgeInsets.only(
@@ -127,17 +132,17 @@ class _TechAddScreenState
                                               },
                                               child: Container(
                                                 padding:
-                                                    const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 8,
-                                                    ),
+                                                const EdgeInsets.symmetric(
+                                                  horizontal: 10,
+                                                  vertical: 8,
+                                                ),
                                                 decoration: BoxDecoration(
                                                   color: isActive
                                                       ? AppColors.primaryERP
-                                                            .withOpacity(0.1)
+                                                      .withOpacity(0.1)
                                                       : Colors.transparent,
                                                   borderRadius:
-                                                      BorderRadius.circular(8),
+                                                  BorderRadius.circular(8),
                                                   border: Border.all(
                                                     color: isActive
                                                         ? AppColors.primaryERP
@@ -146,14 +151,14 @@ class _TechAddScreenState
                                                 ),
                                                 child: Row(
                                                   mainAxisSize:
-                                                      MainAxisSize.min,
+                                                  MainAxisSize.min,
                                                   children: [
                                                     Text(
                                                       project.projectCode ?? '',
                                                       style: TextStyle(
                                                         color: isActive
                                                             ? AppColors
-                                                                  .primaryERP
+                                                            .primaryERP
                                                             : Colors.black87,
                                                         fontWeight: isActive
                                                             ? FontWeight.w600
@@ -166,7 +171,7 @@ class _TechAddScreenState
                                                         bloc.add(
                                                           TechEvent.removeProject(
                                                             tempId:
-                                                                project.tempId,
+                                                            project.tempId,
                                                           ),
                                                         );
                                                       },
@@ -208,9 +213,9 @@ class _TechAddScreenState
                                           context: context,
                                           title: 'Chọn dự án',
                                           items:
-                                              state.rtcProject, // List<Project>
+                                          state.rtcProject, // List<Project>
                                           displayText: (v) =>
-                                              '${v.projectCode} - ${v.projectName}',
+                                          '${v.projectCode} - ${v.projectName}',
                                           onSelected: (v) {
                                             final tempId =
                                                 state.selectedProject!.tempId;
@@ -232,15 +237,25 @@ class _TechAddScreenState
                                       child: AbsorbPointer(
                                         child: FormInputField(
                                           nameForm:
-                                              'tech_add_project_${state.selectedProject!.tempId}',
+                                          'tech_add_project_${state.selectedProject!.tempId}',
                                           nameTextField:
-                                              'tech_project_${state.selectedProject!.tempId}',
+                                          'tech_project_${state.selectedProject!.tempId}',
                                           label:
-                                              state.selectedProject?.name ?? '',
+                                          state.selectedProject?.name ?? '',
                                           readOnly: true,
                                           icon: Icons.work_outline,
                                           initialValue:
-                                              state.selectedProject!.name,
+                                          state.selectedProject!.name,
+                                          validator: (_) {
+                                            if ((state
+                                                .selectedProject
+                                                ?.projectId ??
+                                                0) ==
+                                                0) {
+                                              return 'Vui lòng chọn dự án';
+                                            }
+                                            return null;
+                                          },
                                         ),
                                       ),
                                     ),
@@ -253,47 +268,47 @@ class _TechAddScreenState
                                         .asMap()
                                         .entries
                                         .map((entry) {
-                                          final wIndex = entry.key;
-                                          final work = entry.value;
+                                      final wIndex = entry.key;
+                                      final work = entry.value;
 
-                                          final hasData =
-                                              work.mission.isNotEmpty;
-                                          final codeText = work.code.isNotEmpty
-                                              ? work.code
-                                              : 'Công việc ${wIndex + 1}';
+                                      final hasData =
+                                          work.mission.isNotEmpty;
+                                      final codeText = work.code.isNotEmpty
+                                          ? work.code
+                                          : 'Công việc ${wIndex + 1}';
 
-                                          return Padding(
-                                            padding: const EdgeInsets.only(
-                                              bottom: 8.0,
-                                            ),
-                                            child: TechTabWorkItem(
-                                              key: ValueKey(work.id),
-                                              report: work,
-                                              readonly: false,
-                                              title: hasData
-                                                  ? codeText
-                                                  : 'Công việc ${wIndex + 1}',
-                                              index: wIndex,
-                                              isExpanded:
-                                                  state.expandedWorkIndex ==
-                                                  wIndex,
-                                              onToggleExpand: () {
-                                                bloc.add(
-                                                  TechEvent.expandWork(
-                                                    index: wIndex,
-                                                  ),
-                                                );
-                                              },
-                                              onDelete: () {
-                                                bloc.add(
-                                                  TechEvent.removeWork(
-                                                    index: wIndex,
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          );
-                                        }),
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                          bottom: 8.0,
+                                        ),
+                                        child: TechTabWorkItem(
+                                          key: ValueKey(work.id),
+                                          report: work,
+                                          readonly: false,
+                                          title: hasData
+                                              ? codeText
+                                              : 'Công việc ${wIndex + 1}',
+                                          index: wIndex,
+                                          isExpanded:
+                                          state.expandedWorkIndex ==
+                                              wIndex,
+                                          onToggleExpand: () {
+                                            bloc.add(
+                                              TechEvent.expandWork(
+                                                index: wIndex,
+                                              ),
+                                            );
+                                          },
+                                          onDelete: () {
+                                            bloc.add(
+                                              TechEvent.removeWork(
+                                                index: wIndex,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    }),
 
                                   const SizedBox(height: 8),
 
@@ -366,6 +381,9 @@ class _TechAddScreenState
                                       ),
                                     );
                                   },
+                                  validator: FormBuilderValidators.required(
+                                    errorText: 'Vui lòng chọn nơi làm việc',
+                                  ),
                                 ),
                             ],
                           ),
@@ -383,7 +401,11 @@ class _TechAddScreenState
                             maxLines: 3,
                             keyboardType: TextInputType.multiline,
                             textInputAction:
-                                TextInputAction.newline, // ⬅ Enter xuống dòng
+                            TextInputAction.newline, // ⬅ Enter xuống dòng
+                            validator: FormBuilderValidators.required(
+                              errorText:
+                              'Vui lòng nhập kế hoạch ngày tiếp theo',
+                            ),
                             onChanged: (v) {
                               if (v == null) return;
 
@@ -403,7 +425,7 @@ class _TechAddScreenState
                               children: [
                                 InkWell(
                                   onTap: () => setState(
-                                    () => _showExtraInfo = !_showExtraInfo,
+                                        () => _showExtraInfo = !_showExtraInfo,
                                   ),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -540,38 +562,20 @@ class _TechAddScreenState
                         child: FormActions(
                           mode: FormActionMode.add,
                           onSubmit: () {
+                            final formState = _screenFormKey.currentState;
+
                             FocusScope.of(context).unfocus();
 
-                            final formState = _screenFormKey.currentState;
-                            if (formState == null) return;
-
-                            final isValid = formState.saveAndValidate();
+                            final isValid =
+                                formState?.saveAndValidate() ?? false;
                             if (!isValid) return;
 
-                            final values = formState.value;
+                            final values = formState!.value;
+                            final pickedDate =
+                            values['tech_add_date'] as DateTime?;
+                            if (pickedDate == null) return;
 
-                            final error = ValidateHelper.validateReport<TechWork>(
-                              date: values['tech_add_date'] as DateTime?,
-                              projectId: state.selectedProject?.projectId ?? 0,
-                              works: state.selectedProject?.works ?? [],
-                              locationType: state.locationType,
-                              location: state.location,
-                              nextPlan: values['next_plan'] as String?,
-
-                              getProjectItemId: (w) => w.projectItemId,
-                              getTotalHours: (w) => w.totalHours,
-                              getOtHours: (w) => w.totalHourOT,
-                              getPercent: (w) => w.percentComplete,
-                              getContent: (w) => w.content,
-                              getResult: (w) => w.results,
-                            );
-
-                            if (error != null) {
-                              showMessage(context, error, type: SnackBarType.error);
-                              return;
-                            }
-
-                            final pickedDate = values['tech_add_date'] as DateTime;
+                            // bloc.add(TechEvent.submitReport(pickedDate));
 
                             DialogService.showMailReport(
                               context: context,

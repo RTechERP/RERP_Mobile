@@ -103,10 +103,12 @@ class _TechScreenState
                     time: parsedDate,
                     progress: (r.percentComplete / 100).clamp(0.0, 1.0),
                     onTap: canTap
-                        ? () => context.push(
-                            RouteNames.reportITdepartDetail,
-                            extra: r,
-                          )
+                        ? () {
+                            context.push(
+                              RouteNames.reportITdepartDetail,
+                              extra: r.id, // 👈 truyền id
+                            );
+                          }
                         : null,
                   ),
                 ),
@@ -116,7 +118,7 @@ class _TechScreenState
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.push('/report/tech/add'),
+        onPressed: () => context.push(RouteNames.reportITdepartAdd),
         backgroundColor: AppColors.primaryERP,
         child: const Icon(Icons.add, color: Colors.white),
       ),

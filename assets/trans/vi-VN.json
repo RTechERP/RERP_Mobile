@@ -93,7 +93,10 @@
     "agv": "Phòng AGV - Cơ ",
     "hr": "Phòng nhân sự",
     "thr": "Hành chính - IT",
-    "lxcp": "Lái xe - cắt phim"
+    "lxcp": "Lái xe - cắt phim",
+    "project": "Dự án",
+    "main_location": "VP RTC",
+    "other_location": "Địa điểm khác"
   },
   "week_plan": {
     "personal": "Cá nhân",
