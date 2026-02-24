@@ -4,7 +4,6 @@ import '../../../../../../base/network/errors/error.dart';
 import '../datasource/models/report_model.dart';
 
 abstract class ReportRepo {
-
   /// Danh sách báo cáo hàng ngày
   Future<Either<BaseError, List<ReportResponse>>> getDailyReportTech({
     required DateTime dateStart,
@@ -41,4 +40,7 @@ abstract class ReportRepo {
   Future<Either<BaseError, DetailReportResponse>> getById({
     required int dailyID,
   });
+
+  /// Xoá báo cáo theo ID
+  Future<Either<BaseError, String>> deleteReportById({required int dailyID});
 }

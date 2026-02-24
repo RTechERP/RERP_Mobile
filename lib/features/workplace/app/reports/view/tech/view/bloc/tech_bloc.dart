@@ -95,7 +95,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         loadDetailData: (dailyID) => _onLoadDetailData(dailyID, emit),
         submitEditReport: (pickedDate, dailyID) =>
             _onSubmitEditReport(dailyID, pickedDate, emit),
-
+        deleteReport: (dailyID) => _onDeleteReport(dailyID, emit),
       );
     });
   }
@@ -902,5 +902,46 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     } finally {
       _isSavingReport = false; // ⚠ sửa lại đúng biến
     }
+  }
+
+  Future<void> _onDeleteReport(
+      int dailyID,
+      Emitter<TechState> emit,
+      ) async {
+    emit(
+      state.copyWith(
+        isDeleting: true,
+        deleteSuccess: false,
+        status: BaseStateStatus.loading,
+      ),
+    );
+
+    final result = await _reportRepo.deleteReportById(dailyID: dailyID);
+
+    result.fold(
+          (error) {
+        emit(
+          state.copyWith(
+            isDeleting: false,
+            deleteSuccess: false,
+          ),
+        );
+      },
+          (message) {
+        /// remove khỏi list hiện tại (không cần gọi lại API)
+        final updatedReports =
+        state.reports.where((e) => e.id != dailyID).toList();
+
+        emit(
+          state.copyWith(
+            reports: updatedReports,
+            isDeleting: false,
+            deleteSuccess: true,
+            status: BaseStateStatus.success,
+            message: message,
+          ),
+        );
+      },
+    );
   }
 }

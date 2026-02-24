@@ -19,10 +19,11 @@ abstract class DioBaseApiService {
   Future<T> post<T>(
       String path, {
         dynamic body,
+        Map<String, dynamic>? query,
         Options? options,
         T Function(dynamic json)? parser,
       }) async {
-    final res = await dio.post(path, data: body, options: options);
+    final res = await dio.post(path, data: body, options: options, queryParameters: query);
     return parser != null ? parser(res.data) : res.data as T;
   }
 

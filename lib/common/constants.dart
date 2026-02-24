@@ -89,4 +89,7 @@ class ApiEndPoint{
   static const String sendMailReport = '/DailyReportTech/send-email-report';
 
   static const String getById = '/DailyReportTech/get-by-id';
+
+  static const String deleteReportById = '/DailyReportTech/delete-daily-report';
+
 }

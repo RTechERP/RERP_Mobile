@@ -87,4 +87,7 @@ class TechEvent with _$TechEvent {
   /// ===== SUBMIT EDIT REPORT ====
   const factory TechEvent.submitEditReport(DateTime pickedDate, int dailyID) =
   _SubmitEditReportWithDate;
+
+  /// ===== DELETE REPORT ====
+  const factory TechEvent.deleteReport(int dailyID) = _DeleteReport;
 }

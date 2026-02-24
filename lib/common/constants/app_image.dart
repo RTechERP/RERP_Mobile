@@ -20,5 +20,12 @@ class AppImages {
   static const notification = 'assets/images/states/notification.png';
   static const missing = 'assets/images/states/missing.png';
 
+  static const app_menu_general_form = 'assets/images/icons/apps/22.png';
+  static const app_menu_summary_work = 'assets/images/icons/apps/28.png';
+  static const app_menu_reg_work = 'assets/images/icons/apps/24.png';
+  static const app_menu_reg_general = 'assets/images/icons/apps/25.png';
+  static const app_menu_report = 'assets/images/icons/apps/26.png';
+  static const app_menu_week_plan = 'assets/images/icons/apps/27.png';
+  static const app_menu_stock = 'assets/images/icons/apps/21.png';
 
 }

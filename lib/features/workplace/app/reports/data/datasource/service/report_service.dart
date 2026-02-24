@@ -151,5 +151,18 @@ class ReportService extends DioBaseApiService {
       ),
     );
   }
+
+  /// Xoá báo cáo theo ID
+  Future<BaseData<void>> deleteReportById({
+    required int dailyID,
+  }) async {
+    return post<BaseData<void>>(
+      ApiEndPoint.deleteReportById,
+      query:{
+        'dailyReportID': dailyID,
+      },
+      parser: (json) => BaseData<void>.fromJson(json, (_) {}),
+    );
+  }
 }
 

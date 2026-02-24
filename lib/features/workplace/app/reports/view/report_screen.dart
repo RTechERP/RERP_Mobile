@@ -17,7 +17,7 @@ class ReportScreen extends StatelessWidget {
 
     return BaseScaffold(
       appBar: AppBarCommon(
-        title: Text('Báo cáo công việc'.tr(), style: AppStyles.headingTitle2),
+        title: Text('report.report_work'.tr(), style: AppStyles.headingTitle2),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 16),

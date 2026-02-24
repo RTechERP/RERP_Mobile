@@ -2,6 +2,7 @@ import "package:easy_localization/easy_localization.dart";
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 import "package:rtc_erp/base/widgets/base_scaffold.dart";
+import "package:rtc_erp/common/constants/app_image.dart";
 
 import "../../../base/bloc/index.dart";
 import "../../../base/widgets/base_widget.dart";
@@ -151,12 +152,14 @@ class _WorkPlaceScreenState
                           name: 'applications.general_forms'.tr(),
                           iconCodePoint:
                           Icons.assignment_outlined.codePoint,
+                          imageUrl: AppImages.app_menu_general_form,
                         ),
                         AppItemModel(
                           id: 'summary_work',
                           iconCodePoint:
                           Icons.content_paste_search_outlined.codePoint,
                           name: 'applications.summary_work'.tr(),
+                          imageUrl: AppImages.app_menu_summary_work,
                         ),
                         AppItemModel(
                           id: 'reg_work',
@@ -164,11 +167,13 @@ class _WorkPlaceScreenState
                           Icons.person_pin_outlined.codePoint,
                           name: 'applications.reg_work'.tr(),
                           route: '/regwork',
+                          imageUrl: AppImages.app_menu_reg_work,
                         ),
                         AppItemModel(
                           id: 'reg_general',
                           iconCodePoint: Icons.dvr_outlined.codePoint,
                           name: 'applications.reg_general'.tr(),
+                          imageUrl: AppImages.app_menu_reg_general,
                         ),
                         AppItemModel(
                           id: 'report',
@@ -176,18 +181,21 @@ class _WorkPlaceScreenState
                           Icons.description_outlined.codePoint,
                           name: 'applications.report'.tr(),
                           route: '/report',
+                          imageUrl: AppImages.app_menu_report,
                         ),
                         AppItemModel(
                           id: 'week_plan',
                           iconCodePoint:
                           Icons.newspaper_outlined.codePoint,
                           name: 'applications.week_plan'.tr(),
+                          imageUrl: AppImages.app_menu_week_plan,
                         ),
                         AppItemModel(
                           id: 'stock',
                           iconCodePoint:
                           Icons.shopping_cart_outlined.codePoint,
                           name: 'applications.stock'.tr(),
+                          imageUrl: AppImages.app_menu_stock,
                         ),
                       ],
                     ),
