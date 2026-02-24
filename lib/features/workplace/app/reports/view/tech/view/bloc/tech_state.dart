@@ -57,6 +57,11 @@ class TechState extends BaseBlocState {
   final bool isLoadingDetail;
   final DetailReportResponse? selectedReportDetail;
 
+  final DateTime? dateReport;
+
+  final bool isSaving;
+  final bool saveSuccess;
+
   const TechState({
     required super.status,
     super.message,
@@ -94,6 +99,9 @@ class TechState extends BaseBlocState {
     this.lastPickedDate,
     this.isLoadingDetail = false,
     this.selectedReportDetail,
+    this.dateReport,
+    this.isSaving = false,
+    this.saveSuccess = false,
   });
 
   factory TechState.init() => const TechState(
@@ -122,6 +130,9 @@ class TechState extends BaseBlocState {
     lastPickedDate: null,
     isLoadingDetail: false,
     selectedReportDetail: null,
+    dateReport: null,
+    isSaving: false,
+    saveSuccess: false,
   );
 
   @override
@@ -162,5 +173,8 @@ class TechState extends BaseBlocState {
     isLoadingDetail,
     selectedReportDetail,
     detailReport,
+    dateReport,
+    isSaving,
+    saveSuccess,
   ];
 }

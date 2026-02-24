@@ -251,7 +251,10 @@ class AppRouter {
           ),
           GoRoute(
             path: RouteNames.reportITdepartEdit,
-            builder: (context, state) => const TechEditScreen(),
+            builder: (context, state) {
+              final dailyId = state.extra as int;
+              return TechEditScreen(dailyId: dailyId);
+            },
           ),
         ],
       ),

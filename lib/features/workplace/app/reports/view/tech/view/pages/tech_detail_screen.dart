@@ -7,6 +7,7 @@ import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/constants/index.dart';
+import '../../../../../../../../routes/route_names.dart';
 import '../bloc/tech_bloc.dart';
 
 class TechDetailScreen extends StatefulWidget {
@@ -37,7 +38,20 @@ class _TechDetailScreenState
   @override
   Widget renderUI(BuildContext context) {
     return BaseScaffold(
-      appBar: AppBarCommon(title: const Text('Chi tiết báo cáo')),
+      appBar: AppBarCommon(
+        title: const Text('Chi tiết báo cáo'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.edit_outlined),
+            onPressed: () {
+              context.push(
+                RouteNames.reportITdepartEdit,
+                extra: _dailyId,
+              );
+            },
+          ),
+        ],
+      ),
       body: BlocBuilder<TechBloc, TechState>(
         builder: (context, state) {
           if (state.isLoadingDetail) {

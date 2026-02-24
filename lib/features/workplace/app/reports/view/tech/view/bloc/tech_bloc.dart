@@ -91,6 +91,11 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(dateStart, dateEnd, emit),
         selectReport: (dailyID) => _onSelectReport(dailyID, emit),
+
+        loadDetailData: (dailyID) => _onLoadDetailData(dailyID, emit),
+        submitEditReport: (pickedDate, dailyID) =>
+            _onSubmitEditReport(dailyID, pickedDate, emit),
+
       );
     });
   }
@@ -563,6 +568,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
   bool _isSubmittingReport = false;
 
+
   Future<void> _onSubmitReport(
     DateTime pickedDate,
     Emitter<TechState> emit,
@@ -721,5 +727,180 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
       },
     );
+  }
+
+  Future<void> _onLoadDetailData(
+      int dailyID,
+      Emitter<TechState> emit,
+      ) async {
+    emit(state.copyWith(isLoadingDetail: true));
+
+    final detailRes = await _reportRepo.getById(dailyID: dailyID);
+
+    await detailRes.fold(
+          (l) async {
+        emit(state.copyWith(isLoadingDetail: false));
+      },
+          (detail) async {
+        final userRes = await _authRepo.getCurrentUser();
+        final projectRes = await _reportRepo.getProject();
+
+        final user = userRes.getOrElse(() => null);
+        final projectList = projectRes.getOrElse(() => []);
+
+        final apiProject = projectList
+            .where((p) => p.id == detail.projectId)
+            .firstOrNull;
+
+        if (apiProject == null) {
+          emit(state.copyWith(isLoadingDetail: false));
+          return;
+        }
+
+        final projectItemRes =
+        await _reportRepo.getProjectItemByUser(
+          projectId: apiProject.id,
+        );
+
+        final projectItems =
+        projectItemRes.getOrElse(() => []);
+
+        final matchedItem = projectItems
+            .where((e) => e.id == detail.projectItemId)
+            .firstOrNull;
+
+        final work = TechWork.fromDetailReportResponse(
+          detail,
+          code: matchedItem?.code ?? '',
+          mission: matchedItem?.mission ?? '',
+          fullName: user?.fullName ?? '',
+          positionName: user?.positionName ?? '',
+          projectItemCode: matchedItem?.code ?? '',
+        );
+
+        final project = TechProject(
+          tempId: 'project_${detail.projectId}',
+          projectId: apiProject.id,
+          name: apiProject.projectName,
+          projectCode: apiProject.projectCode,
+          works: [work],
+        );
+
+        emit(
+          state.copyWith(
+            isLoadingDetail: false,
+            rtcProject: projectList,
+            projectItem: projectItems,
+            projects: [project],
+            selectedProject: project,
+            locationType:
+            detail.location == 'VP RTC' ? 'rtc' : 'other',
+            location: detail.location,
+            planNextDay: detail.planNextDay,
+            problem: detail.problem,
+            problemSolve: detail.problemSolve,
+            backlog: detail.backlog,
+            note: detail.note,
+            dateReport:
+            DateTime.tryParse(detail.dateReport),
+          ),
+        );
+      },
+    );
+  }
+
+  bool _isSavingReport = false;
+
+  Future<void> _onSubmitEditReport(
+      int dailyID,
+      DateTime pickedDate,
+      Emitter<TechState> emit,
+      ) async {
+    if (_isSavingReport) return;
+    _isSavingReport = true;
+
+    try {
+      emit(state.copyWith(
+        isSaving: true,
+        saveSuccess: false,
+      ));
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+      final userId = user?.id;
+
+      final selectedProject = state.selectedProject;
+      if (selectedProject == null ||
+          selectedProject.works.isEmpty) {
+        emit(state.copyWith(isSaving: false));
+        return;
+      }
+
+      final work = selectedProject.works.first;
+
+      final safeDate = DateTime(
+        pickedDate.year,
+        pickedDate.month,
+        pickedDate.day,
+      );
+
+      final dateStr =
+      DateFormat('yyyy-MM-dd').format(safeDate);
+
+      final payload = <String, dynamic>{
+        'ID': dailyID,
+        'MasterID': 0,
+        'UserReport': userId,
+        'DateReport': dateStr,
+        'ProjectID': selectedProject.projectId,
+        'ProjectItemID': work.projectItemId,
+        'Content': work.content,
+        'Results': work.results,
+        'Problem': work.problem ?? '',
+        'ProblemSolve': work.problemSolve ?? '',
+        'PlanNextDay': state.planNextDay,
+        'Note': work.note ?? '',
+        'Backlog': work.backlog ?? '',
+        'TotalHours': work.totalHours.toInt(),
+        'TotalHourOT': (work.totalHourOT ?? 0).toInt(),
+        'PercentComplete': work.percentComplete.toInt(),
+        'Location': state.location ?? 'report.project'.tr(),
+        'Type': 0,
+        'ReportLate': 0,
+        'StatusResult': 0,
+        'WorkPlanDetailID': 0,
+        'OldProjectID': 0,
+        'DeleteFlag': 0,
+        'Confirm': false,
+      };
+
+      final res =
+      await _reportRepo.saveReportTech(payload: payload);
+
+      final isFailed = res.fold(
+            (l) => true,
+            (r) => false,
+      );
+
+      if (isFailed) {
+        emit(state.copyWith(
+          isSaving: false,
+          saveSuccess: false,
+        ));
+        return;
+      }
+
+      emit(state.copyWith(
+        isSaving: false,
+        saveSuccess: true,
+      ));
+    } catch (_) {
+      emit(state.copyWith(
+        isSaving: false,
+        saveSuccess: false,
+      ));
+    } finally {
+      _isSavingReport = false; // ⚠ sửa lại đúng biến
+    }
   }
 }

@@ -6,7 +6,7 @@ import '../../../../../../../../common/widgets/form/index.dart';
 import '../../data/datasource/models/tech_model.dart';
 import '../bloc/tech_bloc.dart';
 
-class TechTabWorkItem extends StatefulWidget {
+class TechAddWorkItem extends StatefulWidget {
   final String title;
   final TechWork report;
   final bool isExpanded;
@@ -18,7 +18,7 @@ class TechTabWorkItem extends StatefulWidget {
   final bool alwaysExpanded;
   final int index;
 
-  const TechTabWorkItem({
+  const TechAddWorkItem({
     super.key,
     required this.title,
     required this.index,
@@ -31,10 +31,10 @@ class TechTabWorkItem extends StatefulWidget {
   });
 
   @override
-  State<TechTabWorkItem> createState() => _TechTabWorkItemState();
+  State<TechAddWorkItem> createState() => _TechAddWorkItemState();
 }
 
-class _TechTabWorkItemState extends State<TechTabWorkItem> {
+class _TechAddWorkItemState extends State<TechAddWorkItem> {
   late TextEditingController _percentController;
   late TextEditingController _totalController;
   late TextEditingController _otController;
@@ -60,7 +60,7 @@ class _TechTabWorkItemState extends State<TechTabWorkItem> {
   }
 
   @override
-  void didUpdateWidget(covariant TechTabWorkItem oldWidget) {
+  void didUpdateWidget(covariant TechAddWorkItem oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.report.percentComplete !=

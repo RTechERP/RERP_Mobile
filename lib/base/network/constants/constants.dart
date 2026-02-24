@@ -6,5 +6,5 @@ class StatusCode {
 }
 
 class BaseApiUrl{
-  static const String baseUrl = 'http://10.20.28.5:5207/api';
+  static const String baseUrl = 'http://10.20.28.14:5207/api';
 }

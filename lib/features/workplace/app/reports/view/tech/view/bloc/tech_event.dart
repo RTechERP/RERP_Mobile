@@ -77,7 +77,14 @@ class TechEvent with _$TechEvent {
   }) = _ChangeDateRange;
 
   /// ===== SELECT REPORT (GET DETAIL BY ID) ====
-  const factory TechEvent.selectReport({
-    required int dailyID,
-  }) = _SelectReport;
+  const factory TechEvent.selectReport({required int dailyID}) = _SelectReport;
+
+
+  /// ===== LOAD DETAIL DATA ====
+  const factory TechEvent.loadDetailData({required int dailyID}) =
+      _LoadDetailData;
+
+  /// ===== SUBMIT EDIT REPORT ====
+  const factory TechEvent.submitEditReport(DateTime pickedDate, int dailyID) =
+  _SubmitEditReportWithDate;
 }

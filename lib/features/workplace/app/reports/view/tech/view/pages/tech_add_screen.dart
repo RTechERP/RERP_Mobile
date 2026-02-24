@@ -15,7 +15,7 @@ import '../../../../../../../../common/widgets/buttons/custom_text_button.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../../data/datasource/models/tech_model.dart';
 import '../bloc/tech_bloc.dart';
-import '../widgets/tech_tab_work_item.dart';
+import '../widgets/tech_add_work_item.dart';
 
 class TechAddScreen extends StatefulWidget {
   const TechAddScreen({super.key});
@@ -266,7 +266,7 @@ class _TechAddScreenState
                                             padding: const EdgeInsets.only(
                                               bottom: 8.0,
                                             ),
-                                            child: TechTabWorkItem(
+                                            child: TechAddWorkItem(
                                               key: ValueKey(work.id),
                                               report: work,
                                               readonly: false,

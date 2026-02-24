@@ -164,8 +164,56 @@ class TechWork extends Equatable {
     problemSolve: r.problemSolve,
   );
 
+  factory TechWork.fromDetailReportResponse(
+      DetailReportResponse r, {
+        required String code,
+        required String fullName,
+        required String positionName,
+        required String mission,
+        required String projectItemCode,
+      }) {
+    return TechWork(
+      id: r.id,
+      code: code,
+      fullName: fullName,
+      userId: r.userReport,
+      dateReport: r.dateReport,
+
+      projectCode: null,
+      projectName: null,
+      projectText: null,
+
+      totalHours: r.totalHours,
+      totalHourOT: r.totalHourOT,
+      percentComplete: r.percentComplete.toDouble(),
+
+      content: r.content,
+      results: r.results,
+      planNextDay: r.planNextDay,
+
+      backlog: r.backlog,
+      problem: r.problem,
+      problemSolve: r.problemSolve,
+      note: r.note,
+
+      createdDate: r.createdDate,
+      type: r.type,
+      positionName: positionName,
+      mission: mission,
+
+      projectItemCode: projectItemCode,
+      projectItemId: r.projectItemId,
+      holidayDate: null,
+
+      planStartDate: null,
+      planEndDate: null,
+      actualStartDate: null,
+      actualEndDate: null,
+      totalDayPlan: null,
+    );
+  }
   TechWork copyWith({
-    String? code, // ✅ cho phép update code
+    String? code,
     String? projectCode,
     String? projectName,
     String? projectText,
@@ -194,7 +242,7 @@ class TechWork extends Equatable {
   }) {
     return TechWork(
       id: id,
-      code: code ?? this.code, // ✅ giữ nguyên code nếu không truyền
+      code: code ?? this.code,
       fullName: fullName,
       userId: userId,
       dateReport: dateReport ?? this.dateReport,
