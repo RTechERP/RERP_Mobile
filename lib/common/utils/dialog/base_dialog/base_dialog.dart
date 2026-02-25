@@ -329,6 +329,8 @@ class BaseDialog {
     String? description,
     TextStyle? descriptionStyle,
     Widget? displayIconAndText,
+    String? leftAssetPath,
+    String? rightAssetPath,
 
     /// LEFT
     required Future<Object?> Function()? leftButtonFunc,
@@ -361,11 +363,11 @@ class BaseDialog {
       buttonWidget: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          /// 🔵 LEFT
           CustomCircleButton(
-            icon: leftIcon ?? Icons.admin_panel_settings_outlined,
+            icon: leftIcon,
+            assetPath: leftAssetPath,
             label: contentLeftButton ?? '',
-            bgColor: leftBgColor ?? AppColors.grey_bg,
+            bgColor: leftBgColor,
             onTap: () async {
               if (leftButtonFunc != null) {
                 await leftButtonFunc();
@@ -373,15 +375,13 @@ class BaseDialog {
                 onBack(context);
               }
             },
-            // optional style
-            // boxShadow: AppUICommons.cardShadow,
           ),
 
-          /// 🟢 RIGHT
           CustomCircleButton(
-            icon: rightIcon ?? Icons.people_alt_outlined,
+            icon: rightIcon,
+            assetPath: rightAssetPath,
             label: contentRightButton ?? '',
-            bgColor: rightBgColor ?? AppColors.main,
+            bgColor: rightBgColor,
             onTap: () async {
               if (rightButtonFunc != null) {
                 await rightButtonFunc();

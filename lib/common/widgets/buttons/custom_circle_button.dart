@@ -15,6 +15,7 @@ class CustomCircleButton extends StatelessWidget {
     this.gradient,
     this.icon,
     this.child,
+    this.assetPath, // ✅ thêm
     this.label,
     this.labelStyle,
     this.spacing,
@@ -23,24 +24,18 @@ class CustomCircleButton extends StatelessWidget {
   });
 
   final VoidCallback? onTap;
-
-  /// size của hình tròn
   final double? size;
-
   final Color? bgColor;
   final Border? border;
   final List<BoxShadow>? boxShadow;
   final Gradient? gradient;
 
-  /// icon hoặc widget bên trong circle
   final IconData? icon;
   final Widget? child;
+  final String? assetPath; // ✅ thêm
 
-  /// text hiển thị dưới circle
   final String? label;
   final TextStyle? labelStyle;
-
-  /// khoảng cách giữa circle và text
   final double? spacing;
 
   final bool onAnimation;
@@ -49,6 +44,29 @@ class CustomCircleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double circleSize = size ?? 56.w;
+
+    Widget buildContent() {
+      if (child != null) return child!;
+
+      if (assetPath?.isNotEmpty == true) {
+        return Image.asset(
+          assetPath!,
+          width: circleSize * 0.55,
+          height: circleSize * 0.55,
+          fit: BoxFit.contain,
+        );
+      }
+
+      if (icon != null) {
+        return Icon(
+          icon,
+          color: Colors.white,
+          size: circleSize * 0.45,
+        );
+      }
+
+      return const SizedBox.shrink();
+    }
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -73,12 +91,7 @@ class CustomCircleButton extends StatelessWidget {
                   gradient: gradient,
                 ),
                 alignment: Alignment.center,
-                child: child ??
-                    Icon(
-                      icon,
-                      color: Colors.white,
-                      size: circleSize * 0.45,
-                    ),
+                child: buildContent(),
               ),
             ),
           ),

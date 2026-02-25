@@ -129,26 +129,26 @@ flutter:
     # Images
     - assets/images/icons/logo/logo_app.png
     - assets/images/icons/logo/logo_splash.png
-    - assets/images/icons/apps/01.png
-    - assets/images/icons/apps/02.png
-    - assets/images/icons/apps/03.png
-    - assets/images/icons/apps/04.png
-    - assets/images/icons/apps/05.png
-    - assets/images/icons/apps/06.png
-    - assets/images/icons/apps/07.png
-    - assets/images/icons/apps/08.png
-    - assets/images/icons/apps/09.png
-    - assets/images/icons/apps/10.png
-    - assets/images/icons/apps/11.png
-    - assets/images/icons/apps/12.png
-    - assets/images/icons/apps/13.png
-    - assets/images/icons/apps/14.png
-    - assets/images/icons/apps/15.png
-    - assets/images/icons/apps/16.png
-    - assets/images/icons/apps/17.png
-    - assets/images/icons/apps/18.png
-    - assets/images/icons/apps/19.png
-    - assets/images/icons/apps/20.png
+    - assets/images/icons/apps/reg_work/01.png
+    - assets/images/icons/apps/reg_work/02.png
+    - assets/images/icons/apps/reg_work/03.png
+    - assets/images/icons/apps/reg_work/04.png
+    - assets/images/icons/apps/reg_work/05.png
+    - assets/images/icons/apps/reg_work/06.png
+    - assets/images/icons/apps/reg_work/07.png
+    - assets/images/icons/apps/reg_work/08.png
+    - assets/images/icons/apps/reg_work/09.png
+    - assets/images/icons/apps/reg_work/10.png
+    - assets/images/icons/apps/reg_work/11.png
+    - assets/images/icons/apps/reg_general/12.png
+    - assets/images/icons/apps/reg_general/13.png
+    - assets/images/icons/apps/reg_general/14.png
+    - assets/images/icons/apps/reg_general/15.png
+    - assets/images/icons/apps/reg_general/16.png
+    - assets/images/icons/apps/reg_general/17.png
+    - assets/images/icons/apps/reg_general/18.png
+    - assets/images/icons/apps/reg_general/19.png
+    - assets/images/icons/apps/reg_general/20.png
     - assets/images/icons/apps/21.png
     - assets/images/icons/apps/22.png
     - assets/images/icons/apps/23.png
@@ -157,6 +157,16 @@ flutter:
     - assets/images/icons/apps/26.png
     - assets/images/icons/apps/27.png
     - assets/images/icons/apps/28.png
+    - assets/images/icons/apps/report/AGV.png
+    - assets/images/icons/apps/report/Assemble.png
+    - assets/images/icons/apps/report/Driver.png
+    - assets/images/icons/apps/report/HR.png
+    - assets/images/icons/apps/report/IT.png
+    - assets/images/icons/apps/report/Marketing.png
+    - assets/images/icons/apps/report/Sale_Admin.png
+    - assets/images/icons/apps/report/Sale.png
+    - assets/images/icons/apps/report/Saler.png
+    - assets/images/icons/apps/report/Tech.png
 
     # Trans
     - assets/trans/vi-VN.json

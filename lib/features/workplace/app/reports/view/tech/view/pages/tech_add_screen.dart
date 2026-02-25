@@ -53,351 +53,340 @@ class _TechAddScreenState
           appBar: AppBarCommon(title: const Text('Tạo báo cáo')),
           body: BlocBuilder<TechBloc, TechState>(
             builder: (context, state) {
-              return Stack(
+              return Column(
                 children: [
-                  FormBuilder(
-                    key: _screenFormKey,
-                    initialValue: {'location_type': state.locationType},
-                    child: ListView(
-                      padding: const EdgeInsets.all(8),
-                      children: [
-                        /// ===== NGÀY =====
-                        FormCard(
-                          child: FormDateTimePicker(
-                            icon: Icons.calendar_today,
-                            nameForm: 'tech_add_date',
-                            nameTimePicker: 'date_time',
-                            label: 'Ngày báo cáo',
-                            inputType: InputType.date,
-                            initialValue: _initialReportDate(),
-                            format: DateFormat('dd/MM/yyyy'),
+                  Expanded(
+                    child: FormBuilder(
+                      key: _screenFormKey,
+                      initialValue: {'location_type': state.locationType},
+                      child: ListView(
+                        padding: const EdgeInsets.all(8),
+                        children: [
+                          /// ===== NGÀY =====
+                          FormCard(
+                            child: FormDateTimePicker(
+                              icon: Icons.calendar_today,
+                              nameForm: 'tech_add_date',
+                              nameTimePicker: 'date_time',
+                              label: 'Ngày báo cáo',
+                              inputType: InputType.date,
+                              initialValue: _initialReportDate(),
+                              format: DateFormat('dd/MM/yyyy'),
+                            ),
                           ),
-                        ),
 
-                        const SizedBox(height: 8),
+                          const SizedBox(height: 8),
 
-                        /// ===== PROJECT + WORK =====
-                        FormCard(
-                          title: 'Dự án',
-                          child: BlocBuilder<TechBloc, TechState>(
-                            buildWhen: (prev, curr) =>
-                                prev.projects != curr.projects ||
-                                prev.expandedWorkIndex !=
-                                    curr.expandedWorkIndex ||
-                                prev.selectedProject != curr.selectedProject,
-                            builder: (context, state) {
-                              if (state.projects.isEmpty) {
-                                return CustomTextButton(
-                                  width: double.infinity,
-                                  bgColor: AppColors.grayColor[10],
-                                  colorText: AppColors.primaryERPlight,
-                                  buttonFn: () {
-                                    bloc.add(
-                                      const TechEvent.addEmptyProject(),
-                                    ); // ✅ đổi event
-                                  },
-                                  child: const Text('Thêm dự án'),
-                                );
-                              }
+                          /// ===== PROJECT + WORK =====
+                          FormCard(
+                            title: 'Dự án',
+                            child: BlocBuilder<TechBloc, TechState>(
+                              buildWhen: (prev, curr) =>
+                                  prev.projects != curr.projects ||
+                                  prev.expandedWorkIndex != curr.expandedWorkIndex ||
+                                  prev.selectedProject != curr.selectedProject,
+                              builder: (context, state) {
+                                if (state.projects.isEmpty) {
+                                  return CustomTextButton(
+                                    width: double.infinity,
+                                    bgColor: AppColors.grayColor[10],
+                                    colorText: AppColors.primaryERPlight,
+                                    buttonFn: () {
+                                      bloc.add(
+                                        const TechEvent.addEmptyProject(),
+                                      ); // ✅ đổi event
+                                    },
+                                    child: const Text('Thêm dự án'),
+                                  );
+                                }
 
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  /// ===== TAB PROJECT =====
-                                  SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                      children: [
-                                        ...state.projects.map((project) {
-                                          final isActive =
-                                              project.tempId ==
-                                              state.selectedProject?.tempId;
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    /// ===== TAB PROJECT =====
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        children: [
+                                          ...state.projects.map((project) {
+                                            final isActive =
+                                                project.tempId ==
+                                                state.selectedProject?.tempId;
 
-                                          return Padding(
-                                            padding: const EdgeInsets.only(
-                                              right: 8,
-                                            ),
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                bloc.add(
-                                                  TechEvent.selectProject(
-                                                    tempId: project.tempId,
-                                                  ),
-                                                );
-                                              },
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 8,
+                                            return Padding(
+                                              padding: const EdgeInsets.only(
+                                                right: 8,
+                                              ),
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  bloc.add(
+                                                    TechEvent.selectProject(
+                                                      tempId: project.tempId,
                                                     ),
-                                                decoration: BoxDecoration(
-                                                  color: isActive
-                                                      ? AppColors.primaryERP
-                                                            .withOpacity(0.1)
-                                                      : Colors.transparent,
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
-                                                  border: Border.all(
+                                                  );
+                                                },
+                                                child: Container(
+                                                  padding: const EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 8,
+                                                  ),
+                                                  decoration: BoxDecoration(
                                                     color: isActive
                                                         ? AppColors.primaryERP
-                                                        : Colors.grey.shade300,
+                                                              .withOpacity(0.1)
+                                                        : Colors.transparent,
+                                                    borderRadius:
+                                                        BorderRadius.circular(8),
+                                                    border: Border.all(
+                                                      color: isActive
+                                                          ? AppColors.primaryERP
+                                                          : Colors.grey.shade300,
+                                                    ),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisSize: MainAxisSize.min,
+                                                    children: [
+                                                      Text(
+                                                        project.projectCode ?? '',
+                                                        style: TextStyle(
+                                                          color: isActive
+                                                              ? AppColors.primaryERP
+                                                              : Colors.black87,
+                                                          fontWeight: isActive
+                                                              ? FontWeight.w600
+                                                              : FontWeight.normal,
+                                                        ),
+                                                      ),
+                                                      const SizedBox(width: 6),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          bloc.add(
+                                                            TechEvent.removeProject(
+                                                              tempId: project.tempId,
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: const Icon(
+                                                          Icons.close,
+                                                          size: 16,
+                                                          color: Colors.redAccent,
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    Text(
-                                                      project.projectCode ?? '',
-                                                      style: TextStyle(
-                                                        color: isActive
-                                                            ? AppColors
-                                                                  .primaryERP
-                                                            : Colors.black87,
-                                                        fontWeight: isActive
-                                                            ? FontWeight.w600
-                                                            : FontWeight.normal,
-                                                      ),
-                                                    ),
-                                                    const SizedBox(width: 6),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        bloc.add(
-                                                          TechEvent.removeProject(
-                                                            tempId:
-                                                                project.tempId,
-                                                          ),
-                                                        );
-                                                      },
-                                                      child: const Icon(
-                                                        Icons.close,
-                                                        size: 16,
-                                                        color: Colors.redAccent,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
                                               ),
-                                            ),
-                                          );
-                                        }),
-
-                                        /// ➕ ADD PROJECT
-                                        IconButton(
-                                          onPressed: () {
-                                            bloc.add(
-                                              const TechEvent.addEmptyProject(),
                                             );
-                                          },
-                                          icon: const Icon(
-                                            Icons.add_circle_outline,
+                                          }),
+
+                                          /// ➕ ADD PROJECT
+                                          IconButton(
+                                            onPressed: () {
+                                              bloc.add(
+                                                const TechEvent.addEmptyProject(),
+                                              );
+                                            },
+                                            icon: const Icon(
+                                              Icons.add_circle_outline,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+
+                                    const SizedBox(height: 8),
+
+                                    /// ===== SELECT PROJECT NAME (bind API) =====
+                                    if (state.selectedProject != null)
+                                      GestureDetector(
+                                        onTap: () {
+                                          openSelectBottomSheet(
+                                            context: context,
+                                            title: 'Chọn dự án',
+                                            items: state.rtcProject, // List<Project>
+                                            displayText: (v) =>
+                                                '${v.projectCode} - ${v.projectName}',
+                                            onSelected: (v) {
+                                              final tempId =
+                                                  state.selectedProject!.tempId;
+
+                                              bloc.add(
+                                                TechEvent.bindProjectFromApi(
+                                                  tempId: tempId,
+                                                  apiProject: v,
+                                                ),
+                                              );
+                                              bloc.add(
+                                                TechEvent.selectProject(
+                                                  tempId: tempId,
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+                                        child: AbsorbPointer(
+                                          child: FormInputField(
+                                            nameForm:
+                                                'tech_add_project_${state.selectedProject!.tempId}',
+                                            nameTextField:
+                                                'tech_project_${state.selectedProject!.tempId}',
+                                            label: state.selectedProject?.name ?? '',
+                                            readOnly: true,
+                                            icon: Icons.work_outline,
+                                            initialValue: state.selectedProject!.name,
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                  ),
+                                      ),
 
-                                  const SizedBox(height: 8),
+                                    const SizedBox(height: 8),
 
-                                  /// ===== SELECT PROJECT NAME (bind API) =====
-                                  if (state.selectedProject != null)
-                                    GestureDetector(
-                                      onTap: () {
-                                        openSelectBottomSheet(
-                                          context: context,
-                                          title: 'Chọn dự án',
-                                          items:
-                                              state.rtcProject, // List<Project>
-                                          displayText: (v) =>
-                                              '${v.projectCode} - ${v.projectName}',
-                                          onSelected: (v) {
-                                            final tempId =
-                                                state.selectedProject!.tempId;
+                                    /// ===== LIST WORK =====
+                                    if (state.selectedProject != null)
+                                      ...state.selectedProject!.works
+                                          .asMap()
+                                          .entries
+                                          .map((entry) {
+                                            final wIndex = entry.key;
+                                            final work = entry.value;
 
-                                            bloc.add(
-                                              TechEvent.bindProjectFromApi(
-                                                tempId: tempId,
-                                                apiProject: v,
+                                            final hasData = work.mission.isNotEmpty;
+                                            final codeText = work.code.isNotEmpty
+                                                ? work.code
+                                                : 'Công việc ${wIndex + 1}';
+
+                                            return Padding(
+                                              padding: const EdgeInsets.only(
+                                                bottom: 8.0,
+                                              ),
+                                              child: TechAddWorkItem(
+                                                key: ValueKey(work.id),
+                                                report: work,
+                                                readonly: false,
+                                                title: hasData
+                                                    ? codeText
+                                                    : 'Công việc ${wIndex + 1}',
+                                                index: wIndex,
+                                                isExpanded:
+                                                    state.expandedWorkIndex == wIndex,
+                                                onToggleExpand: () {
+                                                  bloc.add(
+                                                    TechEvent.expandWork(
+                                                      index: wIndex,
+                                                    ),
+                                                  );
+                                                },
+                                                onDelete: () {
+                                                  bloc.add(
+                                                    TechEvent.removeWork(
+                                                      index: wIndex,
+                                                    ),
+                                                  );
+                                                },
                                               ),
                                             );
-                                            bloc.add(
-                                              TechEvent.selectProject(
-                                                tempId: tempId,
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      },
-                                      child: AbsorbPointer(
-                                        child: FormInputField(
-                                          nameForm:
-                                              'tech_add_project_${state.selectedProject!.tempId}',
-                                          nameTextField:
-                                              'tech_project_${state.selectedProject!.tempId}',
-                                          label:
-                                              state.selectedProject?.name ?? '',
-                                          readOnly: true,
-                                          icon: Icons.work_outline,
-                                          initialValue:
-                                              state.selectedProject!.name,
+                                          }),
+
+                                    const SizedBox(height: 8),
+
+                                    /// ===== ADD WORK =====
+                                    Center(
+                                      child: InkResponse(
+                                        onTap: () {
+                                          bloc.add(const TechEvent.addWork());
+                                        },
+                                        radius: 28,
+                                        child: const Icon(
+                                          Icons.add_circle_outline,
+                                          size: 32,
+                                          color: AppColors.primaryERP,
                                         ),
                                       ),
                                     ),
-
-                                  const SizedBox(height: 8),
-
-                                  /// ===== LIST WORK =====
-                                  if (state.selectedProject != null)
-                                    ...state.selectedProject!.works
-                                        .asMap()
-                                        .entries
-                                        .map((entry) {
-                                          final wIndex = entry.key;
-                                          final work = entry.value;
-
-                                          final hasData =
-                                              work.mission.isNotEmpty;
-                                          final codeText = work.code.isNotEmpty
-                                              ? work.code
-                                              : 'Công việc ${wIndex + 1}';
-
-                                          return Padding(
-                                            padding: const EdgeInsets.only(
-                                              bottom: 8.0,
-                                            ),
-                                            child: TechAddWorkItem(
-                                              key: ValueKey(work.id),
-                                              report: work,
-                                              readonly: false,
-                                              title: hasData
-                                                  ? codeText
-                                                  : 'Công việc ${wIndex + 1}',
-                                              index: wIndex,
-                                              isExpanded:
-                                                  state.expandedWorkIndex ==
-                                                  wIndex,
-                                              onToggleExpand: () {
-                                                bloc.add(
-                                                  TechEvent.expandWork(
-                                                    index: wIndex,
-                                                  ),
-                                                );
-                                              },
-                                              onDelete: () {
-                                                bloc.add(
-                                                  TechEvent.removeWork(
-                                                    index: wIndex,
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          );
-                                        }),
-
-                                  const SizedBox(height: 8),
-
-                                  /// ===== ADD WORK =====
-                                  Center(
-                                    child: InkResponse(
-                                      onTap: () {
-                                        bloc.add(const TechEvent.addWork());
-                                      },
-                                      radius: 28,
-                                      child: const Icon(
-                                        Icons.add_circle_outline,
-                                        size: 32,
-                                        color: AppColors.primaryERP,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
+                                  ],
+                                );
+                              },
+                            ),
                           ),
-                        ),
 
-                        const SizedBox(height: 8),
+                          const SizedBox(height: 8),
 
-                        /// ===== LOCATION =====
-                        FormCard(
-                          title: 'Nơi làm việc',
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              FormBuilderRadioGroup<String>(
-                                name: 'location_type',
-                                initialValue: state.locationType,
-                                options: const [
-                                  FormBuilderFieldOption(
-                                    value: 'rtc',
-                                    child: Text('VP RTC'),
-                                  ),
-                                  FormBuilderFieldOption(
-                                    value: 'other',
-                                    child: Text('Địa điểm khác'),
-                                  ),
-                                ],
-                                onChanged: (v) {
-                                  if (v == null) return;
-                                  bloc.add(TechEvent.updateLocation(type: v));
-                                },
-                              ),
-                              const SizedBox(height: 8),
-                              if (state.locationType == 'rtc')
-                                const FormReadonlyField(
-                                  name: 'tech_add_rtc_location',
-                                  label: '',
-                                  icon: Icons.location_on_outlined,
-                                  initialValue: 'VP RTC',
-                                )
-                              else
-                                FormInputField(
-                                  icon: Icons.location_on_outlined,
-                                  nameForm: 'tech_add_location',
-                                  nameTextField: 'tech_add_other_location',
-                                  label: 'Địa điểm làm việc',
-                                  initialValue: state.location ?? '',
+                          /// ===== LOCATION =====
+                          FormCard(
+                            title: 'Nơi làm việc',
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                FormBuilderRadioGroup<String>(
+                                  name: 'location_type',
+                                  initialValue: state.locationType,
+                                  options: const [
+                                    FormBuilderFieldOption(
+                                      value: 'rtc',
+                                      child: Text('VP RTC'),
+                                    ),
+                                    FormBuilderFieldOption(
+                                      value: 'other',
+                                      child: Text('Địa điểm khác'),
+                                    ),
+                                  ],
                                   onChanged: (v) {
-                                    bloc.add(
-                                      TechEvent.updateLocation(
-                                        type: 'other',
-                                        value: v,
-                                      ),
-                                    );
+                                    if (v == null) return;
+                                    bloc.add(TechEvent.updateLocation(type: v));
                                   },
                                 ),
-                            ],
+                                const SizedBox(height: 8),
+                                if (state.locationType == 'rtc')
+                                  const FormReadonlyField(
+                                    name: 'tech_add_rtc_location',
+                                    label: '',
+                                    icon: Icons.location_on_outlined,
+                                    initialValue: 'VP RTC',
+                                  )
+                                else
+                                  FormInputField(
+                                    icon: Icons.location_on_outlined,
+                                    nameForm: 'tech_add_location',
+                                    nameTextField: 'tech_add_other_location',
+                                    label: 'Địa điểm làm việc',
+                                    initialValue: state.location ?? '',
+                                    onChanged: (v) {
+                                      bloc.add(
+                                        TechEvent.updateLocation(
+                                          type: 'other',
+                                          value: v,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                              ],
+                            ),
                           ),
-                        ),
 
-                        const SizedBox(height: 8),
+                          const SizedBox(height: 8),
 
-                        FormCard(
-                          title: 'Kế hoạch ngày tiếp theo',
-                          child: FormInputField(
-                            icon: Icons.next_plan_outlined,
-                            nameForm: 'tech_add_next_plan',
-                            nameTextField: 'next_plan',
-                            label: 'Kế hoạch ngày tiếp theo',
-                            maxLines: 3,
-                            keyboardType: TextInputType.multiline,
-                            textInputAction:
-                                TextInputAction.newline, // ⬅ Enter xuống dòng
-                            onChanged: (v) {
-                              if (v == null) return;
+                          FormCard(
+                            title: 'Kế hoạch ngày tiếp theo',
+                            child: FormInputField(
+                              icon: Icons.next_plan_outlined,
+                              nameForm: 'tech_add_next_plan',
+                              nameTextField: 'next_plan',
+                              label: 'Kế hoạch ngày tiếp theo',
+                              maxLines: 3,
+                              keyboardType: TextInputType.multiline,
+                              textInputAction:
+                                  TextInputAction.newline, // ⬅ Enter xuống dòng
+                              onChanged: (v) {
+                                if (v == null) return;
 
-                              bloc.add(TechEvent.updatePlanNextDay(v));
-                            },
+                                bloc.add(TechEvent.updatePlanNextDay(v));
+                              },
+                            ),
                           ),
-                        ),
 
-                        const SizedBox(height: 8),
+                          const SizedBox(height: 8),
 
-                        /// ===== EXTRA INFO =====
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 60.0),
-                          child: FormCard(
+                          /// ===== EXTRA INFO =====
+                          FormCard(
                             title: 'Thông tin bổ sung',
                             child: Column(
                               children: [
@@ -437,8 +426,8 @@ class _TechAddScreenState
                                     label: 'Vấn đề phát sinh',
                                     maxLines: 1,
                                     keyboardType: TextInputType.multiline,
-                                    textInputAction: TextInputAction
-                                        .newline, // ⬅ Enter xuống dòng
+                                    textInputAction:
+                                        TextInputAction.newline, // ⬅ Enter xuống dòng
                                     onChanged: (v) {
                                       if (state.expandedWorkIndex == null) {
                                         return;
@@ -460,8 +449,8 @@ class _TechAddScreenState
                                     label: 'Hướng giải quyết',
                                     maxLines: 1,
                                     keyboardType: TextInputType.multiline,
-                                    textInputAction: TextInputAction
-                                        .newline, // ⬅ Enter xuống dòng
+                                    textInputAction:
+                                        TextInputAction.newline, // ⬅ Enter xuống dòng
                                     onChanged: (v) {
                                       if (state.expandedWorkIndex == null) {
                                         return;
@@ -483,8 +472,8 @@ class _TechAddScreenState
                                     label: 'Tồn động',
                                     maxLines: 1,
                                     keyboardType: TextInputType.multiline,
-                                    textInputAction: TextInputAction
-                                        .newline, // ⬅ Enter xuống dòng
+                                    textInputAction:
+                                        TextInputAction.newline, // ⬅ Enter xuống dòng
                                     onChanged: (v) {
                                       if (state.expandedWorkIndex == null) {
                                         return;
@@ -506,8 +495,8 @@ class _TechAddScreenState
                                     label: 'Ghi chú/Lý do tồn đọng',
                                     maxLines: 1,
                                     keyboardType: TextInputType.multiline,
-                                    textInputAction: TextInputAction
-                                        .newline, // ⬅ Enter xuống dòng
+                                    textInputAction:
+                                        TextInputAction.newline, // ⬅ Enter xuống dòng
                                     onChanged: (v) {
                                       if (state.expandedWorkIndex == null) {
                                         return;
@@ -524,67 +513,66 @@ class _TechAddScreenState
                               ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    bottom: 10,
-                    child: SafeArea(
-                      top: false,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: FormActions(
-                          mode: FormActionMode.add,
-                          onSubmit: () {
-                            FocusScope.of(context).unfocus();
-
-                            final formState = _screenFormKey.currentState;
-                            if (formState == null) return;
-
-                            final isValid = formState.saveAndValidate();
-                            if (!isValid) return;
-
-                            final values = formState.value;
-
-                            final error = ValidateHelper.validateReport<TechWork>(
-                              date: values['tech_add_date'] as DateTime?,
-                              projectId: state.selectedProject?.projectId ?? 0,
-                              works: state.selectedProject?.works ?? [],
-                              locationType: state.locationType,
-                              location: state.location,
-                              nextPlan: values['next_plan'] as String?,
-
-                              getProjectItemId: (w) => w.projectItemId,
-                              getTotalHours: (w) => w.totalHours,
-                              getOtHours: (w) => w.totalHourOT,
-                              getPercent: (w) => w.percentComplete,
-                              getContent: (w) => w.content,
-                              getResult: (w) => w.results,
-                            );
-
-                            if (error != null) {
-                              showMessage(context, error, type: SnackBarType.error);
-                              return;
-                            }
-
-                            final pickedDate = values['tech_add_date'] as DateTime;
-
-                            DialogService.showMailReport(
-                              context: context,
-                              state: state,
-                              dateReport: pickedDate,
-                            );
-                          },
-                        ),
+                        ],
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+                    child: FormActions(
+                      mode: FormActionMode.add,
+                      onSubmit: () async {
+                        FocusScope.of(context).unfocus();
 
-                  // ===== FULLSCREEN OVERLAY =====
+                        final formState = _screenFormKey.currentState;
+                        if (formState == null) return;
+
+                        final isValid = formState.saveAndValidate();
+                        if (!isValid) return;
+
+                        final values = formState.value;
+
+                        final error = ValidateHelper.validateReport<TechWork>(
+                          date: values['tech_add_date'] as DateTime?,
+                          projectId: state.selectedProject?.projectId ?? 0,
+                          works: state.selectedProject?.works ?? [],
+                          locationType: state.locationType,
+                          location: state.location,
+                          nextPlan: values['next_plan'] as String?,
+                          getProjectItemId: (w) => w.projectItemId,
+                          getTotalHours: (w) => w.totalHours,
+                          getOtHours: (w) => w.totalHourOT,
+                          getPercent: (w) => w.percentComplete,
+                          getContent: (w) => w.content,
+                          getResult: (w) => w.results,
+                        );
+
+                        if (error != null) {
+                          showMessage(context, error, type: SnackBarType.error);
+                          return;
+                        }
+
+                        final pickedDate = values['tech_add_date'] as DateTime;
+                        await DialogService.showMailReport(
+                          context: context,
+                          state: state,
+                          dateReport: pickedDate,
+                          onSubmit: () async {
+                            bloc.add(const TechEvent.resetSubmitFlags());
+                            bloc.add(TechEvent.submitReport(pickedDate));
+                          },
+                          onSendMail: () async {
+                            bloc.add(
+                              TechEvent.sendMailReport(
+                                pickedDate: pickedDate,
+                                context: context,
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
                 ],
               );
             },

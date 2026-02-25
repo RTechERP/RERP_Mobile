@@ -269,6 +269,7 @@ class AppItemRegistry {
       tab: 'report',
       type: 'sale',
       route: null,
+      imageUrl: AppImages.report_sale,
     ),
     AppItemModel(
       id: 'report:ad',
@@ -277,6 +278,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'report',
       route: RouteNames.reportADdepart,
+      imageUrl: AppImages.report_sale_admin,
     ),
     AppItemModel(
       id: 'report:tech',
@@ -285,6 +287,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'report',
       route: '/report/tech',
+      imageUrl: AppImages.report_tech,
     ),
     AppItemModel(
       id: 'report:hr',
@@ -294,6 +297,7 @@ class AppItemRegistry {
       tab: 'report',
       type: 'hr',
       route: null,
+      imageUrl: AppImages.report_hr,
     ),
     AppItemModel(
       id: 'report:marketing',
@@ -302,6 +306,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'report',
       route: RouteNames.reportMarketingdepart,
+      imageUrl: AppImages.report_marketing,
     ),
     AppItemModel(
       id: 'report:agv',
@@ -310,6 +315,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'report',
       route: RouteNames.reportAGVdepart,
+      imageUrl: AppImages.report_agv,
     ),
   ];
 

@@ -106,68 +106,84 @@ class _TechScreenState
             if (state.isDeleting) {
               return const Center(child: CircularProgressIndicator());
             }
-            return ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: state.reports.length,
-              itemBuilder: (context, index) {
-                final r = state.reports[index];
+            return RefreshIndicator(
+              onRefresh: () async {
+                bloc.add(const TechEvent.init());
 
-                final hasData =
-                    (r.projectCode?.isNotEmpty == true) &&
-                    (r.projectName?.isNotEmpty == true);
-
-                final parsedDate = DateTime.tryParse(r.dateReport);
-
-                Widget card = AppCardReport(
-                  projectCode: r.projectCode,
-                  projectName: r.projectName,
-                  time: parsedDate,
-                  progress: (r.percentComplete / 100).clamp(0.0, 1.0),
-                  onTap: hasData
-                      ? () => context.push(
-                          RouteNames.reportITdepartDetail,
-                          extra: r.id,
-                        )
-                      : null,
-                );
-
-                /// Nếu không đủ dữ liệu → disable hoàn toàn (không tap, không slide)
-                if (!hasData) {
-                  return Opacity(opacity: 0.5, child: card);
-                }
-
-                /// Nếu hợp lệ → cho slide delete
-                return Slidable(
-                  key: ValueKey(r.id),
-                  endActionPane: ActionPane(
-                    motion: const DrawerMotion(),
-                    extentRatio: 0.25,
-                    children: [
-                      SlidableAction(
-                        onPressed: (_) async {
-                          final confirmed =
-                              await DialogService.showConfirmDelete(
-                                context: context,
-                              );
-                          if (!confirmed) return;
-
-                          bloc.add(TechEvent.deleteReport(r.id));
-                        },
-                        backgroundColor: Colors.red,
-                        foregroundColor: Colors.white,
-                        icon: Icons.delete,
-                        label: 'Xoá',
-                      ),
-                    ],
-                  ),
-                  child: card,
+                // đợi load xong
+                await bloc.stream.firstWhere(
+                  (s) => s.status != BaseStateStatus.loading,
                 );
               },
+              child: ListView.builder(
+                padding: const EdgeInsets.all(16),
+                itemCount: state.reports.length,
+                itemBuilder: (context, index) {
+                  final r = state.reports[index];
+
+                  final hasData =
+                      (r.projectCode?.isNotEmpty == true) &&
+                      (r.projectName?.isNotEmpty == true);
+
+                  final parsedDate = DateTime.tryParse(r.dateReport);
+
+                  Widget card = AppCardReport(
+                    projectCode: r.projectCode,
+                    projectName: r.projectName,
+                    time: parsedDate,
+                    progress: (r.percentComplete / 100).clamp(0.0, 1.0),
+                    onTap: hasData
+                        ? () => context.push(
+                            RouteNames.reportITdepartDetail,
+                            extra: r.id,
+                          )
+                        : null,
+                  );
+
+                  /// Nếu không đủ dữ liệu → disable hoàn toàn (không tap, không slide)
+                  if (!hasData) {
+                    return Opacity(opacity: 0.5, child: card);
+                  }
+
+                  /// Nếu hợp lệ → cho slide delete
+                  return Slidable(
+                    key: ValueKey(r.id),
+                    endActionPane: ActionPane(
+                      motion: const DrawerMotion(),
+                      extentRatio: 0.25,
+                      children: [
+                        SlidableAction(
+                          onPressed: (_) async {
+                            final confirmed =
+                                await DialogService.showConfirmDelete(
+                                  context: context,
+                                );
+                            if (!confirmed) return;
+
+                            bloc.add(TechEvent.deleteReport(r.id));
+                          },
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                          icon: Icons.delete,
+                          label: 'Xoá',
+                        ),
+                      ],
+                    ),
+                    child: card,
+                  );
+                },
+              ),
             );
           },
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => context.push(RouteNames.reportITdepartAdd),
+          onPressed: () async {
+            final reload = await context.push(RouteNames.reportITdepartAdd);
+
+            if (reload == true) {
+              bloc.add(const TechEvent.init()); // reload API
+            }
+          },
           backgroundColor: AppColors.primaryERP,
           child: const Icon(Icons.add, color: Colors.white),
         ),

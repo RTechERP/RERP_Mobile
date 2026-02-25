@@ -25,8 +25,8 @@ class FormActions extends StatelessWidget {
     this.onSubmit,
     this.viewText = 'Huỷ đơn',
     this.cancelText = 'Huỷ',
-    this.saveText = 'Lưu',
-    this.submitText = 'Gửi đơn',
+    this.saveText = 'Cập nhật',
+    this.submitText = 'Lưu',
   });
 
   @override
