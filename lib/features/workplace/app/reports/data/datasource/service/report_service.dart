@@ -164,5 +164,42 @@ class ReportService extends DioBaseApiService {
       parser: (json) => BaseData<void>.fromJson(json, (_) {}),
     );
   }
+
+  /// Copy báo cáo
+  Future<BaseData<List<CopyResponse>>> copyReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required int teamId,
+    required int userId,
+    required String keyword,
+    required int departmentId,
+  }) async {
+    String fmt(DateTime d) {
+      final y = d.year.toString().padLeft(4, '0');
+      final m = d.month.toString().padLeft(2, '0');
+      final day = d.day.toString().padLeft(2, '0');
+      return '$y-$m-$day';
+    }
+
+    final body = <String, dynamic>{
+      'dateStart': fmt(dateStart),
+      'dateEnd': fmt(dateEnd),
+      'team_id': teamId,
+      'keyword': keyword,
+      'userid': userId,
+      'departmentid': departmentId,
+    };
+
+    return post<BaseData<List<CopyResponse>>>(
+      ApiEndPoint.copyReport, // sửa đúng endpoint của bạn
+      body: body,
+      parser: (json) => BaseData<List<CopyResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => CopyResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
 }
 

@@ -65,6 +65,13 @@ class TechState extends BaseBlocState {
   final bool isDeleting;
   final bool deleteSuccess;
 
+  final List<CopyResponse> copyReports;
+  final bool isCopyLoading;
+
+  final int? teamId;
+  final int? departmentId;
+
+  final int? employeeID;
   const TechState({
     required super.status,
     super.message,
@@ -107,6 +114,11 @@ class TechState extends BaseBlocState {
     this.saveSuccess = false,
     this.isDeleting = false,
     this.deleteSuccess = false,
+    this.copyReports = const [],
+    this.isCopyLoading = false,
+    this.teamId,
+    this.departmentId,
+    this.employeeID,
   });
 
   factory TechState.init() => const TechState(
@@ -140,6 +152,11 @@ class TechState extends BaseBlocState {
     saveSuccess: false,
     isDeleting: false,
     deleteSuccess: false,
+    copyReports: [],
+    isCopyLoading: false,
+    teamId: null,
+    departmentId: null,
+    employeeID: null,
   );
 
   @override
@@ -185,5 +202,10 @@ class TechState extends BaseBlocState {
     saveSuccess,
     isDeleting,
     deleteSuccess,
+    copyReports,
+    isCopyLoading,
+    teamId,
+    departmentId,
+    employeeID,
   ];
 }

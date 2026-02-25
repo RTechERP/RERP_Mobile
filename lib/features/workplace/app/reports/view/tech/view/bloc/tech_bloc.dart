@@ -96,6 +96,17 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         submitEditReport: (pickedDate, dailyID) =>
             _onSubmitEditReport(dailyID, pickedDate, emit),
         deleteReport: (dailyID) => _onDeleteReport(dailyID, emit),
+        copyReport:
+            (dateStart, dateEnd, keyword, teamId, userId, departmentId) =>
+                _onCopyReport(
+                  dateStart,
+                  dateEnd,
+                  teamId,
+                  userId,
+                  keyword,
+                  departmentId,
+                  emit,
+                ),
       );
     });
   }
@@ -106,22 +117,61 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     emit(state.copyWith(planNextDay: planNextDay));
   }
 
-  Future<void> _onChangeDateRange(
-    DateTime dateStart,
-    DateTime dateEnd,
-    Emitter<TechState> emit,
-  ) async {
-    final start = dateStart;
-    final end = dateEnd;
+  Future<void> _loadDailyReport({
+    required DateTime start,
+    required DateTime end,
+    required Emitter<TechState> emit,
+  }) async {
+    final teamId = state.teamId;
+    final userId = state.userId;
+    final departmentId = state.departmentId;
 
-    emit(
-      state.copyWith(
-        dateStart: DateTime(start.year, start.month, start.day),
-        dateEnd: DateTime(end.year, end.month, end.day, 23, 59, 59),
-      ),
+    if (teamId == null || userId == null || departmentId == null) {
+      emit(state.copyWith(status: BaseStateStatus.failed));
+      return;
+    }
+
+    final res = await _reportRepo.getDailyReportTech(
+      dateStart: start,
+      dateEnd: end,
+      keyword: state.keyword ?? '',
+      teamId: teamId.toString(),
+      userId: userId.toString(),
+      departmentId: departmentId.toString(),
     );
 
-    add(const TechEvent.init());
+    res.fold(
+          (l) {
+        _log.logE('GetDailyReportTech failed: ${l.getErrorMessage}');
+        emit(state.copyWith(status: BaseStateStatus.failed));
+      },
+          (r) {
+        emit(state.copyWith(
+          status: BaseStateStatus.success,
+          reports: r,
+          dateStart: start,
+          dateEnd: end,
+        ));
+      },
+    );
+  }
+  Future<void> _onChangeDateRange(
+      DateTime dateStart,
+      DateTime dateEnd,
+      Emitter<TechState> emit,
+      ) async {
+    final start = DateTime(dateStart.year, dateStart.month, dateStart.day);
+    final end = DateTime(dateEnd.year, dateEnd.month, dateEnd.day);
+
+    emit(state.copyWith(
+      status: BaseStateStatus.loading,
+    ));
+
+    await _loadDailyReport(
+      start: start,
+      end: end,
+      emit: emit,
+    );
   }
 
   Future<void> _onInit(Emitter<TechState> emit) async {
@@ -132,63 +182,45 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     final projectRes = await _reportRepo.getProject();
 
     await userRes.fold(
-      (l) async {
+          (l) async {
         emit(state.copyWith(status: BaseStateStatus.failed));
       },
-      (user) async {
+          (user) async {
         if (user == null) {
           emit(state.copyWith(status: BaseStateStatus.failed));
           return;
         }
 
-        emit(state.copyWith(userId: user.id, fullName: user.fullName));
+        emit(state.copyWith(
+          userId: user.id,
+          fullName: user.fullName,
+          departmentId: user.departmentId,
+          teamId: user.teamOfUser,
+          employeeID: user.employeeId,
+        ));
 
         final now = DateTime.now();
+        final start = now;
+        final end = DateTime(now.year, now.month, now.day + 1);
 
-        final defaultStart = now;
-
-        final defaultEnd = DateTime(now.year, now.month, now.day+1, 23, 59, 59);
-
-        final dateStart = state.lastPickedDate ?? defaultStart;
-        final dateEnd = state.dateEnd ?? defaultEnd;
-
-        final res = await _reportRepo.getDailyReportTech(
-          dateStart: dateStart,
-          dateEnd: dateEnd,
-          keyword: state.keyword ?? '',
-          teamId: user.teamOfUser.toString(),
-          userId: user.id.toString(),
-          departmentId: user.departmentId.toString(),
-        );
-
-        await res.fold(
-          (l) async {
-            _log.logE('GetDailyReportTech failed: ${l.getErrorMessage}');
-            emit(state.copyWith(status: BaseStateStatus.failed));
-          },
-          (r) async => emit(
-            state.copyWith(
-              status: BaseStateStatus.success,
-              reports: r,
-              dateStart: dateStart,
-              dateEnd: dateEnd,
-            ),
-          ),
+        await _loadDailyReport(
+          start: start,
+          end: end,
+          emit: emit,
         );
       },
     );
 
-    await departRes.fold(
-      (l) async => _log.logE('Get depart failed: ${l.getErrorMessage}'),
-      (r) async => emit(state.copyWith(departs: r)),
+    departRes.fold(
+          (l) => _log.logE('Get depart failed: ${l.getErrorMessage}'),
+          (r) => emit(state.copyWith(departs: r)),
     );
 
-    await projectRes.fold(
-      (l) async => _log.logE('Get project failed: ${l.getErrorMessage}'),
-      (r) async => emit(state.copyWith(rtcProject: r)),
+    projectRes.fold(
+          (l) => _log.logE('Get project failed: ${l.getErrorMessage}'),
+          (r) => emit(state.copyWith(rtcProject: r)),
     );
   }
-
   // ================= PROJECT =================
 
   Future<void> _onAddEmptyProject(Emitter<TechState> emit) async {
@@ -447,18 +479,18 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
   }
 
   Future<void> _onUpdateWork(
-      int index, {
-        double? totalHours,
-        double? totalHourOT,
-        double? percentComplete,
-        String? content,
-        String? results,
-        String? mission,
-        int? projectItemId,
-        String? dateReport,
-        String? code,
-        required Emitter<TechState> emit,
-      }) async {
+    int index, {
+    double? totalHours,
+    double? totalHourOT,
+    double? percentComplete,
+    String? content,
+    String? results,
+    String? mission,
+    int? projectItemId,
+    String? dateReport,
+    String? code,
+    required Emitter<TechState> emit,
+  }) async {
     final selected = state.selectedProject;
     if (selected == null) return;
 
@@ -468,15 +500,14 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     final old = newWorks[index];
 
     // ✅ xác định projectItemId cuối cùng
-    final effectiveProjectItemId =
-        projectItemId ?? old.projectItemId;
+    final effectiveProjectItemId = projectItemId ?? old.projectItemId;
 
     // ✅ tìm ProjectItemResponse tương ứng
     ProjectItemResponse? item;
     if (effectiveProjectItemId != null) {
       try {
         item = state.projectItem.firstWhere(
-              (e) => e.id == effectiveProjectItemId,
+          (e) => e.id == effectiveProjectItemId,
         );
       } catch (_) {
         item = null;
@@ -567,7 +598,6 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
   }
 
   bool _isSubmittingReport = false;
-
 
   Future<void> _onSubmitReport(
     DateTime pickedDate,
@@ -702,21 +732,18 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     emit(state.copyWith(submitSuccess: false, sendMailSuccess: false));
   }
 
-  Future<void> _onSelectReport(
-      int dailyID,
-      Emitter<TechState> emit,
-      ) async {
+  Future<void> _onSelectReport(int dailyID, Emitter<TechState> emit) async {
     emit(state.copyWith(isLoadingDetail: true));
 
     final res = await _reportRepo.getById(dailyID: dailyID);
 
     await res.fold(
-          (l) async {
+      (l) async {
         _log.logE('Get detail failed: ${l.getErrorMessage}');
         emit(state.copyWith(isLoadingDetail: false));
       },
-          (detail) async {
-            // _log.logI('✅ Detail Report: $detail');
+      (detail) async {
+        // _log.logI('✅ Detail Report: $detail');
 
         emit(
           state.copyWith(
@@ -724,24 +751,20 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
             selectedReportDetail: detail, // DetailReportResponse
           ),
         );
-
       },
     );
   }
 
-  Future<void> _onLoadDetailData(
-      int dailyID,
-      Emitter<TechState> emit,
-      ) async {
+  Future<void> _onLoadDetailData(int dailyID, Emitter<TechState> emit) async {
     emit(state.copyWith(isLoadingDetail: true));
 
     final detailRes = await _reportRepo.getById(dailyID: dailyID);
 
     await detailRes.fold(
-          (l) async {
+      (l) async {
         emit(state.copyWith(isLoadingDetail: false));
       },
-          (detail) async {
+      (detail) async {
         final userRes = await _authRepo.getCurrentUser();
         final projectRes = await _reportRepo.getProject();
 
@@ -757,13 +780,11 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           return;
         }
 
-        final projectItemRes =
-        await _reportRepo.getProjectItemByUser(
+        final projectItemRes = await _reportRepo.getProjectItemByUser(
           projectId: apiProject.id,
         );
 
-        final projectItems =
-        projectItemRes.getOrElse(() => []);
+        final projectItems = projectItemRes.getOrElse(() => []);
 
         final matchedItem = projectItems
             .where((e) => e.id == detail.projectItemId)
@@ -793,16 +814,14 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
             projectItem: projectItems,
             projects: [project],
             selectedProject: project,
-            locationType:
-            detail.location == 'VP RTC' ? 'rtc' : 'other',
+            locationType: detail.location == 'VP RTC' ? 'rtc' : 'other',
             location: detail.location,
             planNextDay: detail.planNextDay,
             problem: detail.problem,
             problemSolve: detail.problemSolve,
             backlog: detail.backlog,
             note: detail.note,
-            dateReport:
-            DateTime.tryParse(detail.dateReport),
+            dateReport: DateTime.tryParse(detail.dateReport),
           ),
         );
       },
@@ -812,26 +831,22 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
   bool _isSavingReport = false;
 
   Future<void> _onSubmitEditReport(
-      int dailyID,
-      DateTime pickedDate,
-      Emitter<TechState> emit,
-      ) async {
+    int dailyID,
+    DateTime pickedDate,
+    Emitter<TechState> emit,
+  ) async {
     if (_isSavingReport) return;
     _isSavingReport = true;
 
     try {
-      emit(state.copyWith(
-        isSaving: true,
-        saveSuccess: false,
-      ));
+      emit(state.copyWith(isSaving: true, saveSuccess: false));
 
       final userRes = await _authRepo.getCurrentUser();
       final user = userRes.getOrElse(() => null);
       final userId = user?.id;
 
       final selectedProject = state.selectedProject;
-      if (selectedProject == null ||
-          selectedProject.works.isEmpty) {
+      if (selectedProject == null || selectedProject.works.isEmpty) {
         emit(state.copyWith(isSaving: false));
         return;
       }
@@ -844,8 +859,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         pickedDate.day,
       );
 
-      final dateStr =
-      DateFormat('yyyy-MM-dd').format(safeDate);
+      final dateStr = DateFormat('yyyy-MM-dd').format(safeDate);
 
       final payload = <String, dynamic>{
         'ID': dailyID,
@@ -874,40 +888,24 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         'Confirm': false,
       };
 
-      final res =
-      await _reportRepo.saveReportTech(payload: payload);
+      final res = await _reportRepo.saveReportTech(payload: payload);
 
-      final isFailed = res.fold(
-            (l) => true,
-            (r) => false,
-      );
+      final isFailed = res.fold((l) => true, (r) => false);
 
       if (isFailed) {
-        emit(state.copyWith(
-          isSaving: false,
-          saveSuccess: false,
-        ));
+        emit(state.copyWith(isSaving: false, saveSuccess: false));
         return;
       }
 
-      emit(state.copyWith(
-        isSaving: false,
-        saveSuccess: true,
-      ));
+      emit(state.copyWith(isSaving: false, saveSuccess: true));
     } catch (_) {
-      emit(state.copyWith(
-        isSaving: false,
-        saveSuccess: false,
-      ));
+      emit(state.copyWith(isSaving: false, saveSuccess: false));
     } finally {
       _isSavingReport = false; // ⚠ sửa lại đúng biến
     }
   }
 
-  Future<void> _onDeleteReport(
-      int dailyID,
-      Emitter<TechState> emit,
-      ) async {
+  Future<void> _onDeleteReport(int dailyID, Emitter<TechState> emit) async {
     emit(
       state.copyWith(
         isDeleting: true,
@@ -919,18 +917,14 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     final result = await _reportRepo.deleteReportById(dailyID: dailyID);
 
     result.fold(
-          (error) {
-        emit(
-          state.copyWith(
-            isDeleting: false,
-            deleteSuccess: false,
-          ),
-        );
+      (error) {
+        emit(state.copyWith(isDeleting: false, deleteSuccess: false));
       },
-          (message) {
+      (message) {
         /// remove khỏi list hiện tại (không cần gọi lại API)
-        final updatedReports =
-        state.reports.where((e) => e.id != dailyID).toList();
+        final updatedReports = state.reports
+            .where((e) => e.id != dailyID)
+            .toList();
 
         emit(
           state.copyWith(
@@ -939,6 +933,45 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
             deleteSuccess: true,
             status: BaseStateStatus.success,
             message: message,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _onCopyReport(
+    DateTime dateStart,
+    DateTime dateEnd,
+    int teamId,
+    int userId,
+    String keyword,
+    int departmentId,
+    Emitter<TechState> emit,
+  ) async {
+    emit(state.copyWith(isCopyLoading: true, status: BaseStateStatus.loading));
+
+    final result = await _reportRepo.copyReport(
+      dateStart: dateStart,
+      dateEnd: dateEnd,
+      teamId: teamId,
+      userId: userId,
+      keyword: keyword,
+      departmentId: departmentId,
+    );
+
+    result.fold(
+      (error) {
+        emit(
+          state.copyWith(isCopyLoading: false, status: BaseStateStatus.failed),
+        );
+      },
+      (data) {
+        _log.logI('Copy report success: $data');
+        emit(
+          state.copyWith(
+            isCopyLoading: false,
+            copyReports: List.from(data),
+            status: BaseStateStatus.success,
           ),
         );
       },

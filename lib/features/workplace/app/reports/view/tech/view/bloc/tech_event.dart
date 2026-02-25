@@ -79,15 +79,24 @@ class TechEvent with _$TechEvent {
   /// ===== SELECT REPORT (GET DETAIL BY ID) ====
   const factory TechEvent.selectReport({required int dailyID}) = _SelectReport;
 
-
   /// ===== LOAD DETAIL DATA ====
   const factory TechEvent.loadDetailData({required int dailyID}) =
       _LoadDetailData;
 
   /// ===== SUBMIT EDIT REPORT ====
   const factory TechEvent.submitEditReport(DateTime pickedDate, int dailyID) =
-  _SubmitEditReportWithDate;
+      _SubmitEditReportWithDate;
 
   /// ===== DELETE REPORT ====
   const factory TechEvent.deleteReport(int dailyID) = _DeleteReport;
+
+  /// ===== COPY REPORT ====
+  const factory TechEvent.copyReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required String keyword,
+    required int teamId,
+    required int userId,
+    required int departmentId,
+  }) = _CopyReport;
 }

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -38,20 +39,7 @@ class _TechDetailScreenState
   @override
   Widget renderUI(BuildContext context) {
     return BaseScaffold(
-      appBar: AppBarCommon(
-        title: const Text('Chi tiết báo cáo'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.edit_outlined),
-            onPressed: () {
-              context.push(
-                RouteNames.reportITdepartEdit,
-                extra: _dailyId,
-              );
-            },
-          ),
-        ],
-      ),
+      appBar: AppBarCommon(title: const Text('Chi tiết báo cáo')),
       body: BlocBuilder<TechBloc, TechState>(
         builder: (context, state) {
           if (state.isLoadingDetail) {
@@ -73,43 +61,84 @@ class _TechDetailScreenState
             );
           }
 
-          return Card(
-            margin: const EdgeInsets.all(12),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            elevation: 2,
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _h(
-                    'Báo cáo công việc ngày ${DateFormat('dd/MM/yyyy').format(DateTime.parse(detail.dateReport))}',
+          return Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(12),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _h(
+                            'Báo cáo công việc ngày ${DateFormat('dd/MM/yyyy').format(DateTime.parse(detail.dateReport))}',
+                          ),
+                          const Divider(height: 20),
+
+                          _row('* Nội dung công việc:', detail.content),
+                          _row('* Kết quả công việc:', detail.results),
+                          _row(
+                            '* Kế hoạch ngày tiếp theo:',
+                            detail.planNextDay,
+                          ),
+
+                          const Divider(height: 20),
+
+                          _info('Tổng giờ', '${detail.totalHours.toInt()}'),
+                          _info('OT', '${detail.totalHourOT.toInt()}'),
+                          _info('Hoàn thành', '${detail.percentComplete}%'),
+                          _info('Địa điểm', detail.location),
+
+                          const Divider(height: 20),
+
+                          _row('* Tồn đọng:', detail.backlog),
+                          _row('* Ghi chú:', detail.note),
+                          _row('* Vấn đề phát sinh:', detail.problem),
+                          _row(
+                            '* Giải pháp cho vấn đề phát sinh:',
+                            detail.problemSolve,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  const Divider(height: 20),
-
-                  _row('* Nội dung công việc:', detail.content),
-                  _row('* Kết quả công việc:', detail.results),
-                  _row('* Kế hoạch ngày tiếp theo:', detail.planNextDay),
-
-                  const Divider(height: 20),
-
-                  _info('Tổng giờ', '${detail.totalHours.toInt()}'),
-                  _info('OT', '${detail.totalHourOT.toInt()}'),
-                  _info('Hoàn thành', '${detail.percentComplete}%'),
-                  _info('Địa điểm', detail.location),
-
-                  const Divider(height: 20),
-
-                  _row('* Tồn đọng:', detail.backlog),
-                  _row('* Ghi chú:', detail.note),
-                  _row('* Vấn đề phát sinh:', detail.problem),
-                  _row('* Giải pháp cho vấn đề phát sinh:', detail.problemSolve),
-                ],
+                ),
               ),
-            ),
+
+              /// ===== BUTTON GROUP =====
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryERP,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    minimumSize: const Size.fromHeight(48),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                  ),
+                  onPressed: () {
+                    context.push(
+                      RouteNames.reportITdepartEdit,
+                      extra: _dailyId,
+                    );
+                  },
+                  child: const Text(
+                    'Sửa',
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           );
         },
       ),

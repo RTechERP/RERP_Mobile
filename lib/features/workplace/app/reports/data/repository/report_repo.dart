@@ -43,4 +43,14 @@ abstract class ReportRepo {
 
   /// Xoá báo cáo theo ID
   Future<Either<BaseError, String>> deleteReportById({required int dailyID});
+
+  /// Copy báo cáo
+  Future<Either<BaseError, List<CopyResponse>>> copyReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required int teamId,
+    required int userId,
+    required String keyword,
+    required int departmentId,
+});
 }

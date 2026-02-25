@@ -92,4 +92,5 @@ class ApiEndPoint{
 
   static const String deleteReportById = '/DailyReportTech/delete-daily-report';
 
+  static const String copyReport = '/DailyReportTech/get-for-copy';
 }

@@ -164,4 +164,34 @@ class ReportRepoImpl implements ReportRepo {
     }
   }
 
+  @override
+  Future<Either<BaseError, List<CopyResponse>>> copyReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required int teamId,
+    required int userId,
+    required String keyword,
+    required int departmentId,
+  }) async {
+    try {
+      final res = await _service.copyReport(
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        teamId: teamId,
+        userId: userId,
+        keyword: keyword,
+        departmentId: departmentId,
+      );
+
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      final log = LogUtils();
+
+      log.logE('Dio status: ${e.response?.statusCode}');
+      log.logE('Dio data: ${e.response?.data}');
+
+      return left(e.baseError);
+    }
+  }
+
 }

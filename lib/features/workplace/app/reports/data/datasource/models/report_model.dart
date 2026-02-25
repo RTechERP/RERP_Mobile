@@ -330,3 +330,41 @@ class DetailReportResponse with _$DetailReportResponse {
   factory DetailReportResponse.fromJson(Map<String, dynamic> json) =>
       _$DetailReportResponseFromJson(json);
 }
+
+/// ==========================
+/// 🔹 Copy Request + Response Model
+/// ==========================
+
+@freezed
+class CopyRequest with _$CopyRequest {
+  const factory CopyRequest({
+    @JsonKey(name: 'dateStart') required String dateStart,
+    @JsonKey(name: 'dateEnd') required String dateEnd,
+    @JsonKey(name: 'team_id') required int teamId,
+    @JsonKey(name: 'keyword') required String keyword,
+    @JsonKey(name: 'userid') required int userId,
+    @JsonKey(name: 'departmentid') required int departmentId,
+  }) = _CopyRequest;
+
+  factory CopyRequest.fromJson(Map<String, dynamic> json) =>
+      _$CopyRequestFromJson(json);
+}
+@freezed
+class CopyResponse with _$CopyResponse {
+  const factory CopyResponse({
+    @JsonKey(name: 'ProjectCode') required String projectCode,
+    @JsonKey(name: 'ProjectName') required String projectName,
+    @JsonKey(name: 'ProjectItemCode') required String projectItemCode,
+    @JsonKey(name: 'DateReport') required String dateReport,
+    @JsonKey(name: 'Mission') required String mission, // Nội dung công việc
+    @JsonKey(name: 'Results') required String results,
+    @JsonKey(name: 'Backlog') required String backlog,
+    @JsonKey(name: 'Problem') required String problem,
+    @JsonKey(name: 'ProblemSolve') required String problemSolve,
+    @JsonKey(name: 'PlanNextDay') required String planNextDay,
+    @JsonKey(name: 'Note') required String note,
+  }) = _CopyResponse;
+
+  factory CopyResponse.fromJson(Map<String, dynamic> json) =>
+      _$CopyResponseFromJson(json);
+}
