@@ -44,6 +44,8 @@ class TechWork extends Equatable {
   final String? actualEndDate;
 
   final int? totalDayPlan;
+  final String? location;
+
 
   const TechWork({
     required this.id,
@@ -76,6 +78,7 @@ class TechWork extends Equatable {
     this.totalDayPlan,
     this.problemSolve,
     this.projectItemId,
+    this.location,
   });
 
   factory TechWork.empty({
@@ -239,6 +242,8 @@ class TechWork extends Equatable {
     String? problemSolve,
     int? projectItemId,
     String? dateReport,
+    DateTime? holidayDate,
+    String? location,
   }) {
     return TechWork(
       id: id,
@@ -278,6 +283,8 @@ class TechWork extends Equatable {
       totalDayPlan: totalDayPlan ?? this.totalDayPlan,
       problemSolve: problemSolve ?? this.problemSolve,
       projectItemId: projectItemId ?? this.projectItemId,
+      location: location ?? this.location,
+
     );
   }
 
@@ -313,6 +320,7 @@ class TechWork extends Equatable {
     dateReport,
     holidayDate,
     projectItemId,
+    location,
   ];
 }
 

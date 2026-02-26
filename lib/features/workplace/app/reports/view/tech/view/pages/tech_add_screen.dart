@@ -435,7 +435,7 @@ class _TechAddScreenState
                                       bloc.add(
                                         TechEvent.updateWork(
                                           index: state.expandedWorkIndex!,
-                                          content: v,
+                                          problem: v,
                                         ),
                                       );
                                     },
@@ -458,7 +458,7 @@ class _TechAddScreenState
                                       bloc.add(
                                         TechEvent.updateWork(
                                           index: state.expandedWorkIndex!,
-                                          content: v,
+                                          problemSolve: v,
                                         ),
                                       );
                                     },
@@ -481,7 +481,7 @@ class _TechAddScreenState
                                       bloc.add(
                                         TechEvent.updateWork(
                                           index: state.expandedWorkIndex!,
-                                          content: v,
+                                          backlog: v,
                                         ),
                                       );
                                     },
@@ -504,7 +504,7 @@ class _TechAddScreenState
                                       bloc.add(
                                         TechEvent.updateWork(
                                           index: state.expandedWorkIndex!,
-                                          content: v,
+                                          note: v,
                                         ),
                                       );
                                     },

@@ -39,6 +39,8 @@ class _TechEditScreenState
   final TextEditingController _backlogController = TextEditingController();
 
   final TextEditingController _noteController = TextEditingController();
+
+  final TextEditingController _locationController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -52,6 +54,7 @@ class _TechEditScreenState
     _problemSolveController.dispose();
     _backlogController.dispose();
     _noteController.dispose();
+    _locationController.dispose();
     super.dispose();
   }
 
@@ -60,27 +63,25 @@ class _TechEditScreenState
     return MultiBlocListener(
       listeners: [
         BlocListener<TechBloc, TechState>(
-          listenWhen: (p, c) => p.saveSuccess != c.saveSuccess,
+          listenWhen: (p, c) =>
+              p.location != c.location || p.locationType != c.locationType,
           listener: (context, state) {
-            if (state.saveSuccess == true) {
-              context.pop(true);
+            if (state.locationType == 'other') {
+              _locationController.text = state.location ?? '';
             }
           },
         ),
-        /// ===== FILL DATA CHỈ KHI LOAD XONG =====
         BlocListener<TechBloc, TechState>(
           listenWhen: (p, c) =>
-          p.planNextDay != c.planNextDay ||
-              p.problem != c.problem ||
-              p.problemSolve != c.problemSolve ||
-              p.backlog != c.backlog ||
-              p.note != c.note,
+              p.selectedProject != c.selectedProject,
           listener: (context, state) {
+            final work = state.selectedProject?.works.firstOrNull;
+            if (work == null) return;
             _planNextDayController.text = state.planNextDay ?? '';
-            _problemController.text = state.problem ?? '';
-            _problemSolveController.text = state.problemSolve ?? '';
-            _backlogController.text = state.backlog ?? '';
-            _noteController.text = state.note ?? '';
+            _problemController.text = work.problem ?? '';
+            _problemSolveController.text = work.problemSolve ?? '';
+            _backlogController.text = work.backlog ?? '';
+            _noteController.text = work.note ?? '';
           },
         ),
       ],
@@ -128,10 +129,12 @@ class _TechEditScreenState
                                     prev.projects != curr.projects ||
                                     prev.expandedWorkIndex !=
                                         curr.expandedWorkIndex ||
-                                    prev.selectedProject != curr.selectedProject,
+                                    prev.selectedProject !=
+                                        curr.selectedProject,
                                 builder: (context, state) {
                                   return Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       /// ===== TAB PROJECT =====
                                       SingleChildScrollView(
@@ -158,7 +161,8 @@ class _TechEditScreenState
                                                           vertical: 8,
                                                         ),
                                                     decoration: BoxDecoration(
-                                                      color: AppColors.primaryERP
+                                                      color: AppColors
+                                                          .primaryERP
                                                           .withOpacity(0.1),
 
                                                       borderRadius:
@@ -166,8 +170,8 @@ class _TechEditScreenState
                                                             8,
                                                           ),
                                                       border: Border.all(
-                                                        color:
-                                                            AppColors.primaryERP,
+                                                        color: AppColors
+                                                            .primaryERP,
                                                       ),
                                                     ),
                                                     child: Row(
@@ -208,8 +212,9 @@ class _TechEditScreenState
                                               displayText: (v) =>
                                                   '${v.projectCode} - ${v.projectName}',
                                               onSelected: (v) {
-                                                final tempId =
-                                                    state.selectedProject!.tempId;
+                                                final tempId = state
+                                                    .selectedProject!
+                                                    .tempId;
 
                                                 bloc.add(
                                                   TechEvent.bindProjectFromApi(
@@ -304,7 +309,9 @@ class _TechEditScreenState
                                     ],
                                     onChanged: (v) {
                                       if (v == null) return;
-                                      bloc.add(TechEvent.updateLocation(type: v));
+                                      bloc.add(
+                                        TechEvent.updateLocation(type: v),
+                                      );
                                     },
                                   ),
                                   const SizedBox(height: 8),
@@ -321,7 +328,7 @@ class _TechEditScreenState
                                       nameForm: 'tech_edit_location',
                                       nameTextField: 'tech_edit_other_location',
                                       label: 'Địa điểm làm việc',
-                                      initialValue: state.location ?? '',
+                                      controller: _locationController,
                                       onChanged: (v) {
                                         bloc.add(
                                           TechEvent.updateLocation(
@@ -346,8 +353,8 @@ class _TechEditScreenState
                                 label: 'Kế hoạch ngày tiếp theo',
                                 maxLines: 3,
                                 keyboardType: TextInputType.multiline,
-                                textInputAction:
-                                    TextInputAction.newline, // ⬅ Enter xuống dòng
+                                textInputAction: TextInputAction
+                                    .newline, // ⬅ Enter xuống dòng
                                 controller: _planNextDayController,
                                 onChanged: (v) {
                                   if (v == null) return;
@@ -411,7 +418,7 @@ class _TechEditScreenState
                                         bloc.add(
                                           TechEvent.updateWork(
                                             index: state.expandedWorkIndex!,
-                                            content: v,
+                                            problem: v,
                                           ),
                                         );
                                       },
@@ -435,7 +442,7 @@ class _TechEditScreenState
                                         bloc.add(
                                           TechEvent.updateWork(
                                             index: state.expandedWorkIndex!,
-                                            content: v,
+                                            problemSolve: v,
                                           ),
                                         );
                                       },
@@ -458,7 +465,7 @@ class _TechEditScreenState
                                         bloc.add(
                                           TechEvent.updateWork(
                                             index: state.expandedWorkIndex!,
-                                            content: v,
+                                            backlog: v,
                                           ),
                                         );
                                       },
@@ -482,7 +489,7 @@ class _TechEditScreenState
                                         bloc.add(
                                           TechEvent.updateWork(
                                             index: state.expandedWorkIndex!,
-                                            content: v,
+                                            note: v,
                                           ),
                                         );
                                       },
@@ -493,12 +500,14 @@ class _TechEditScreenState
                             ),
                           ],
                         ),
-
                       ),
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 8.0,
+                      ),
                       child: FormActions(
                         mode: FormActionMode.edit,
 
@@ -540,10 +549,10 @@ class _TechEditScreenState
                             return;
                           }
 
-                          final pickedDate = values['tech_edit_date'] as DateTime;
+                          final pickedDate =
+                              values['tech_edit_date'] as DateTime;
 
                           await DialogService.showMailReport(
-                            isEdit: true,
                             context: context,
                             state: state,
                             dateReport: pickedDate,
@@ -568,7 +577,6 @@ class _TechEditScreenState
                         },
                       ),
                     ),
-
                   ],
                 );
               },

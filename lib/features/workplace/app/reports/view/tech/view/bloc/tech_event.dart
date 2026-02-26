@@ -44,6 +44,11 @@ class TechEvent with _$TechEvent {
     String? mission,
     int? projectItemId,
     String? code,
+    String? backlog,
+    String? problem,
+    String? problemSolve,
+    String? note,
+    String? location,
   }) = _UpdateWork;
 
   const factory TechEvent.updateDate(DateTime? picked) = _UpdateDate;

@@ -64,6 +64,11 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
               mission,
               projectItemId,
               code,
+              backlog,
+              problem,
+              problemSolve,
+              note,
+              location,
             ) => _onUpdateWork(
               index,
               totalHours: totalHours,
@@ -74,6 +79,11 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
               mission: mission,
               projectItemId: projectItemId,
               code: code,
+              backlog: backlog,
+              problem: problem,
+              problemSolve: problemSolve,
+              note: note,
+              location: location,
               emit: emit,
             ),
 
@@ -142,37 +152,34 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     );
 
     res.fold(
-          (l) {
+      (l) {
         _log.logE('GetDailyReportTech failed: ${l.getErrorMessage}');
         emit(state.copyWith(status: BaseStateStatus.failed));
       },
-          (r) {
-        emit(state.copyWith(
-          status: BaseStateStatus.success,
-          reports: r,
-          dateStart: start,
-          dateEnd: end,
-        ));
+      (r) {
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.success,
+            reports: r,
+            dateStart: start,
+            dateEnd: end,
+          ),
+        );
       },
     );
   }
+
   Future<void> _onChangeDateRange(
-      DateTime dateStart,
-      DateTime dateEnd,
-      Emitter<TechState> emit,
-      ) async {
+    DateTime dateStart,
+    DateTime dateEnd,
+    Emitter<TechState> emit,
+  ) async {
     final start = DateTime(dateStart.year, dateStart.month, dateStart.day);
     final end = DateTime(dateEnd.year, dateEnd.month, dateEnd.day);
 
-    emit(state.copyWith(
-      status: BaseStateStatus.loading,
-    ));
+    emit(state.copyWith(status: BaseStateStatus.loading));
 
-    await _loadDailyReport(
-      start: start,
-      end: end,
-      emit: emit,
-    );
+    await _loadDailyReport(start: start, end: end, emit: emit);
   }
 
   Future<void> _onInit(Emitter<TechState> emit) async {
@@ -183,43 +190,41 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     final projectRes = await _reportRepo.getProject();
 
     await userRes.fold(
-          (l) async {
+      (l) async {
         emit(state.copyWith(status: BaseStateStatus.failed));
       },
-          (user) async {
+      (user) async {
         if (user == null) {
           emit(state.copyWith(status: BaseStateStatus.failed));
           return;
         }
 
-        emit(state.copyWith(
-          userId: user.id,
-          fullName: user.fullName,
-          departmentId: user.departmentId,
-          teamId: user.teamOfUser,
-          employeeID: user.employeeId,
-        ));
+        emit(
+          state.copyWith(
+            userId: user.id,
+            fullName: user.fullName,
+            departmentId: user.departmentId,
+            teamId: user.teamOfUser,
+            employeeID: user.employeeId,
+          ),
+        );
 
         final now = DateTime.now();
         final start = now;
         final end = DateTime(now.year, now.month, now.day + 1);
 
-        await _loadDailyReport(
-          start: start,
-          end: end,
-          emit: emit,
-        );
+        await _loadDailyReport(start: start, end: end, emit: emit);
       },
     );
 
     departRes.fold(
-          (l) => _log.logE('Get depart failed: ${l.getErrorMessage}'),
-          (r) => emit(state.copyWith(departs: r)),
+      (l) => _log.logE('Get depart failed: ${l.getErrorMessage}'),
+      (r) => emit(state.copyWith(departs: r)),
     );
 
     projectRes.fold(
-          (l) => _log.logE('Get project failed: ${l.getErrorMessage}'),
-          (r) => emit(state.copyWith(rtcProject: r)),
+      (l) => _log.logE('Get project failed: ${l.getErrorMessage}'),
+      (r) => emit(state.copyWith(rtcProject: r)),
     );
   }
   // ================= PROJECT =================
@@ -487,9 +492,14 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     String? content,
     String? results,
     String? mission,
+    String? backlog,
+    String? problem,
+    String? problemSolve,
+    String? note,
     int? projectItemId,
     String? dateReport,
     String? code,
+    String? location,
     required Emitter<TechState> emit,
   }) async {
     final selected = state.selectedProject;
@@ -532,8 +542,13 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       content: content ?? old.content,
       results: results ?? old.results,
       mission: mission ?? old.mission,
+      backlog: backlog ?? old.backlog,
+      problem: problem ?? old.problem,
+      problemSolve: problemSolve ?? old.problemSolve,
+      note: note ?? old.note,
       projectItemId: effectiveProjectItemId,
       code: code ?? old.code,
+      location: location ?? old.location,
     );
 
     emit(
@@ -589,11 +604,15 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     );
   }
 
-  _onUpdateLocation(String type, String? value, Emitter<TechState> emit) {
+  _onUpdateLocation(
+      String type,
+      String? value,
+      Emitter<TechState> emit,
+      ) {
     emit(
       state.copyWith(
         locationType: type,
-        location: type == 'rtc' ? 'report.project'.tr() : value,
+        location: type == 'rtc' ? 'VP RTC' : (value ?? ''),
       ),
     );
   }
@@ -731,6 +750,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
   _onResetSubmitFlags(Emitter<TechState> emit) {
     emit(state.copyWith(submitSuccess: false, sendMailSuccess: false));
+    emit(state.copyWith(isSubmitting: false, sendMailSuccess: false));
   }
 
   Future<void> _onSelectReport(int dailyID, Emitter<TechState> emit) async {
@@ -808,6 +828,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           works: [work],
         );
 
+        final rawLocation = detail.location;
+        final normalized = rawLocation.trim().toLowerCase();
+        final isRtc = normalized == 'vp rtc';
+
         emit(
           state.copyWith(
             isLoadingDetail: false,
@@ -815,14 +839,16 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
             projectItem: projectItems,
             projects: [project],
             selectedProject: project,
-            locationType: detail.location == 'VP RTC' ? 'rtc' : 'other',
-            location: detail.location,
+            // ✅ location bind chuẩn
+            locationType: isRtc ? 'rtc' : 'other',
+            location: rawLocation.trim(),
             planNextDay: detail.planNextDay,
             problem: detail.problem,
             problemSolve: detail.problemSolve,
             backlog: detail.backlog,
             note: detail.note,
             dateReport: DateTime.tryParse(detail.dateReport),
+            expandedWorkIndex: 0
           ),
         );
       },
@@ -961,13 +987,12 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     );
 
     result.fold(
-          (error) {
+      (error) {
         emit(
           state.copyWith(isCopyLoading: false, status: BaseStateStatus.failed),
         );
-
       },
-          (data) {
+      (data) {
         // _log.logI('Copy report success: $data');
         emit(
           state.copyWith(
@@ -979,12 +1004,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       },
     );
   }
+
   _onResetCopy(Emitter<TechState> emit) {
-    emit(
-      state.copyWith(
-        copyReports: [],
-        copyError: null,
-      ),
-    );
+    emit(state.copyWith(copyReports: [], copyError: null));
   }
 }
