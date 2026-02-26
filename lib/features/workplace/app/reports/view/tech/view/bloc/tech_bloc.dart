@@ -902,7 +902,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     } catch (_) {
       emit(state.copyWith(isSaving: false, saveSuccess: false));
     } finally {
-      _isSavingReport = false; // ⚠ sửa lại đúng biến
+      _isSavingReport = false;
     }
   }
 

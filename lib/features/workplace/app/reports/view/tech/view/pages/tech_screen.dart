@@ -269,10 +269,16 @@ class _TechScreenState
                           time: parsedDate,
                           progress: (r.percentComplete / 100).clamp(0.0, 1.0),
                           onTap: hasData
-                              ? () => context.push(
-                                  RouteNames.reportITdepartDetail,
-                                  extra: r.id,
-                                )
+                              ? () async {
+                                  final reload = await context.push(
+                                    RouteNames.reportITdepartDetail,
+                                    extra: r.id,
+                                  );
+
+                                  if (reload == true) {
+                                    bloc.add(const TechEvent.init());
+                                  }
+                                }
                               : null,
                         );
 

@@ -123,11 +123,15 @@ class _TechDetailScreenState
                       borderRadius: BorderRadius.circular(14),
                     ),
                   ),
-                  onPressed: () {
-                    context.push(
+                  onPressed: () async {
+                    final result = await context.push(
                       RouteNames.reportITdepartEdit,
                       extra: _dailyId,
                     );
+
+                    if (result == true && context.mounted) {
+                      context.pop(true);
+                    }
                   },
                   child: const Text(
                     'Sửa',

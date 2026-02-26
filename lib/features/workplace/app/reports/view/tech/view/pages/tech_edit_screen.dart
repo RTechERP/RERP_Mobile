@@ -10,9 +10,9 @@ import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../common/helpers/index.dart';
+import '../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
-import '../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/tech_model.dart';
 import '../bloc/tech_bloc.dart';
 import '../widgets/tech_edit_work_item.dart';
@@ -59,6 +59,14 @@ class _TechEditScreenState
   Widget renderUI(BuildContext context) {
     return MultiBlocListener(
       listeners: [
+        BlocListener<TechBloc, TechState>(
+          listenWhen: (p, c) => p.saveSuccess != c.saveSuccess,
+          listener: (context, state) {
+            if (state.saveSuccess == true) {
+              context.pop(true);
+            }
+          },
+        ),
         /// ===== FILL DATA CHỈ KHI LOAD XONG =====
         BlocListener<TechBloc, TechState>(
           listenWhen: (p, c) =>
@@ -73,17 +81,6 @@ class _TechEditScreenState
             _problemSolveController.text = state.problemSolve ?? '';
             _backlogController.text = state.backlog ?? '';
             _noteController.text = state.note ?? '';
-          },
-        ),
-
-        /// ===== PUSH KHI SAVE THÀNH CÔNG =====
-        BlocListener<TechBloc, TechState>(
-          listenWhen: (p, c) => p.saveSuccess != c.saveSuccess,
-          listener: (context, state) {
-            if (state.saveSuccess) {
-              if (!context.mounted) return;
-              context.pushReplacement(RouteNames.reportITdepart);
-            }
           },
         ),
       ],
@@ -504,10 +501,11 @@ class _TechEditScreenState
                       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
                       child: FormActions(
                         mode: FormActionMode.edit,
+
                         onCancel: () {
                           context.pop();
                         },
-                        onSave: () {
+                        onSave: () async {
                           FocusScope.of(context).unfocus();
 
                           final formState = _screenFormKey.currentState;
@@ -518,16 +516,13 @@ class _TechEditScreenState
 
                           final values = formState.value;
 
-                          final error =
-                          ValidateHelper.validateReport<TechWork>(
+                          final error = ValidateHelper.validateReport<TechWork>(
                             date: values['tech_edit_date'] as DateTime?,
-                            projectId:
-                            state.selectedProject?.projectId ?? 0,
+                            projectId: state.selectedProject?.projectId ?? 0,
                             works: state.selectedProject?.works ?? [],
                             locationType: state.locationType,
                             location: state.location,
                             nextPlan: values['next_plan'] as String?,
-
                             getProjectItemId: (w) => w.projectItemId,
                             getTotalHours: (w) => w.totalHours,
                             getOtHours: (w) => w.totalHourOT,
@@ -545,14 +540,30 @@ class _TechEditScreenState
                             return;
                           }
 
-                          final pickedDate =
-                          values['tech_edit_date'] as DateTime;
+                          final pickedDate = values['tech_edit_date'] as DateTime;
 
-                          bloc.add(
-                            TechEvent.submitEditReport(
-                              pickedDate,
-                              widget.dailyId,
-                            ),
+                          await DialogService.showMailReport(
+                            isEdit: true,
+                            context: context,
+                            state: state,
+                            dateReport: pickedDate,
+                            onSubmit: () async {
+                              bloc.add(const TechEvent.resetSubmitFlags());
+                              bloc.add(
+                                TechEvent.submitEditReport(
+                                  pickedDate,
+                                  widget.dailyId,
+                                ),
+                              );
+                            },
+                            onSendMail: () async {
+                              bloc.add(
+                                TechEvent.sendMailReport(
+                                  pickedDate: pickedDate,
+                                  context: context,
+                                ),
+                              );
+                            },
                           );
                         },
                       ),
