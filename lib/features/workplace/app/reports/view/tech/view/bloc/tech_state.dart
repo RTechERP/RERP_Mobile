@@ -68,6 +68,8 @@ class TechState extends BaseBlocState {
   final List<CopyResponse> copyReports;
   final bool isCopyLoading;
 
+  final String? copyError;
+
   final int? teamId;
   final int? departmentId;
 
@@ -119,6 +121,7 @@ class TechState extends BaseBlocState {
     this.teamId,
     this.departmentId,
     this.employeeID,
+    this.copyError
   });
 
   factory TechState.init() => const TechState(
@@ -157,6 +160,7 @@ class TechState extends BaseBlocState {
     teamId: null,
     departmentId: null,
     employeeID: null,
+    copyError: null,
   );
 
   @override
@@ -207,5 +211,6 @@ class TechState extends BaseBlocState {
     teamId,
     departmentId,
     employeeID,
+    copyError,
   ];
 }

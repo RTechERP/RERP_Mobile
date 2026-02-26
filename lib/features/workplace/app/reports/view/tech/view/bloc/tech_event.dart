@@ -99,4 +99,7 @@ class TechEvent with _$TechEvent {
     required int userId,
     required int departmentId,
   }) = _CopyReport;
+
+  /// ===== RESET COPY ====
+  const factory TechEvent.resetCopyReport() = _ResetCopy;
 }

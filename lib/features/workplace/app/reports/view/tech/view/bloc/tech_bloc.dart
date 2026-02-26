@@ -107,6 +107,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
                   departmentId,
                   emit,
                 ),
+        resetCopyReport: () => _onResetCopy(emit),
       );
     });
   }
@@ -960,13 +961,14 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     );
 
     result.fold(
-      (error) {
+          (error) {
         emit(
           state.copyWith(isCopyLoading: false, status: BaseStateStatus.failed),
         );
+
       },
-      (data) {
-        _log.logI('Copy report success: $data');
+          (data) {
+        // _log.logI('Copy report success: $data');
         emit(
           state.copyWith(
             isCopyLoading: false,
@@ -975,6 +977,14 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           ),
         );
       },
+    );
+  }
+  _onResetCopy(Emitter<TechState> emit) {
+    emit(
+      state.copyWith(
+        copyReports: [],
+        copyError: null,
+      ),
     );
   }
 }

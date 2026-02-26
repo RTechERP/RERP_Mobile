@@ -148,7 +148,9 @@ class _TechScreenState
   Widget renderUI(BuildContext context) {
     return BlocListener<TechBloc, TechState>(
       listenWhen: (p, c) =>
-          p.deleteSuccess != c.deleteSuccess || p.copyReports != c.copyReports,
+      p.deleteSuccess != c.deleteSuccess ||
+          p.copyReports != c.copyReports ||
+          p.copyError != c.copyError,
       listener: (context, state) async {
         if (state.deleteSuccess) {
           showMessage(
@@ -162,11 +164,32 @@ class _TechScreenState
           showMessage(context, state.message!, type: SnackBarType.error);
         }
 
+        /// COPY ERROR
+        if (state.copyError != null) {
+          showMessage(
+            context,
+            state.copyError!,
+            type: SnackBarType.error,
+          );
+          return;
+        }
+
+        /// COPY SUCCESS
         if (state.copyReports.isNotEmpty) {
           final content = _buildCopyContent(state.copyReports);
 
           await Clipboard.setData(ClipboardData(text: content));
+
+          showMessage(
+            context,
+            'Đã copy nội dung thành công',
+            type: SnackBarType.success,
+          );
+
           await Share.share(content);
+
+          // reset sau khi xử lý xong
+          bloc.add(const TechEvent.resetCopyReport());
         }
       },
       child: BaseScaffold(
@@ -330,7 +353,24 @@ class _TechScreenState
               onTap: () {
                 final state = bloc.state;
 
-                if (state.reports.isEmpty) return;
+                if (state.reports.isEmpty) {
+                  showMessage(context, 'Không có dữ liệu để copy!');
+                  return;
+                }
+
+                final uniqueDates = state.reports
+                    .map((e) => e.dateReport)
+                    .toSet()
+                    .toList();
+
+                if (uniqueDates.length != 1) {
+                  showMessage(
+                    context,
+                    'Bạn không thể copy nội dung của ${uniqueDates.length} ngày!',
+                    type: SnackBarType.error,
+                  );
+                  return;
+                }
 
                 bloc.add(
                   TechEvent.copyReport(
