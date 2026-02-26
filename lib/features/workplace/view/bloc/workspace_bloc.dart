@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../../../../base/bloc/index.dart';
 
 import '../../../../common/logger/logger.dart';
+import '../../../../common/services/permissions/permission_service.dart';
 import '../../../auth/data/datasource/models/user_model.dart';
 import '../../../auth/data/repository/auth_repository.dart';
 
@@ -33,6 +34,8 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
     final cached = await AuthRepository.getCurrentUser(log: _log);
 
     if (cached != null) {
+      await PermissionService.init();   // ✅ thêm dòng này
+
       emit(
         state.copyWith(
           status: BaseStateStatus.success,
@@ -45,6 +48,10 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
     final user = await AuthRepository.fetchAndSaveCurrentUser(log: _log);
 
     if (emit.isDone) return;
+
+    if (user != null) {
+      await PermissionService.init();   // ✅ thêm dòng này
+    }
 
     emit(
       state.copyWith(
@@ -63,10 +70,14 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
 
     final user = await AuthRepository.fetchAndSaveCurrentUser(
       log: _log,
-      forceRefresh: true, // nếu bạn có param này
+      forceRefresh: true,
     );
 
     if (emit.isDone) return;
+
+    if (user != null) {
+      await PermissionService.init();   // ✅ thêm dòng này
+    }
 
     emit(
       state.copyWith(

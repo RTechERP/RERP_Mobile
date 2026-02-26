@@ -75,17 +75,23 @@ class _WpActionCardState extends State<WpActionCard> {
                   );
                 }
 
-                return ActionIconTile(
-                  icon: item.imageUrl?.isNotEmpty == true
-                      ? null
-                      : IconData(
-                    item.iconCodePoint ?? 0,
-                    fontFamily: 'MaterialIcons',
+                return Opacity(
+                  opacity: item.enabled ? 1.0 : 0.4,
+                  child: AbsorbPointer(
+                    absorbing: !item.enabled,
+                    child: ActionIconTile(
+                      icon: item.imageUrl?.isNotEmpty == true
+                          ? null
+                          : IconData(
+                        item.iconCodePoint ?? 0,
+                        fontFamily: 'MaterialIcons',
+                      ),
+                      imageUrl: item.imageUrl,
+                      title: item.name,
+                      onTap: () => widget.onItemTap?.call(item),
+                      textStyle: AppStyles.caption1,
+                    ),
                   ),
-                  imageUrl: item.imageUrl, // 👈 nếu có link ảnh sẽ dùng ảnh
-                  title: item.name,
-                  onTap: () => widget.onItemTap?.call(item),
-                  textStyle: AppStyles.caption1,
                 );
               },
             ),

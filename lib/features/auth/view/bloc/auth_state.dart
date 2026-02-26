@@ -23,5 +23,5 @@ class AuthState extends BaseBlocState {
 
   bool get isAuthenticated => user != null;
   @override
-  List get props => [status, message, loginResponse, null];
+  List get props => [status, message, loginResponse, user];
 }

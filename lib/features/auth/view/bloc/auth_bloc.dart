@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../common/constants.dart';
 
+import '../../../../common/services/permissions/permission_service.dart';
 import '../../data/datasource/models/auth_model.dart';
 import '../../data/datasource/models/user_model.dart';
 import '../../data/repository/auth_repo.dart';
@@ -113,7 +114,7 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
 
   Future<void> _onLogout(Emitter<AuthState> emit) async {
     await AuthRepository.clearAll(log: _log);
-
+    PermissionService.reset();
     if (emit.isDone) return;
     emit(AuthState.init());
   }

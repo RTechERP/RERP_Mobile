@@ -73,18 +73,24 @@ class AppRouter {
         path: RouteNames.login,
         builder: (context, state) {
           return BlocProvider(
-            create: (_) => getIt<AuthBloc>()..add(const AuthEvent.init()),
+            create: (_) => getIt<AuthBloc>()
+              ..add(const AuthEvent.init()),
             child: const LoginScreen(),
           );
         },
       ),
+
       ShellRoute(
         builder: (context, state, child) {
           return MultiBlocProvider(
             providers: [
-              BlocProvider<WorkspaceBloc>(
-                create: (_) =>
-                    getIt<WorkspaceBloc>()..add(const WorkspaceEvent.init()),
+              BlocProvider(
+                create: (_) => getIt<AuthBloc>()
+                  ..add(const AuthEvent.init()),
+              ),
+              BlocProvider(
+                create: (_) => getIt<WorkspaceBloc>()
+                  ..add(const WorkspaceEvent.init()),
               ),
             ],
             child: child,

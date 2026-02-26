@@ -27,10 +27,7 @@ class AuthRepository {
     final prefs = await SharedPreferences.getInstance();
 
     await prefs.setString(_tokenKey, token);
-    await prefs.setString(
-      _expiresKey,
-      expires.toUtc().toIso8601String(),
-    );
+    await prefs.setString(_expiresKey, expires.toUtc().toIso8601String());
 
     log?.logI('AccessToken saved');
     log?.logD('Token expires at: $expires');
@@ -115,10 +112,7 @@ class AuthRepository {
   }) async {
     final prefs = await SharedPreferences.getInstance();
 
-    await prefs.setString(
-      _userKey,
-      jsonEncode(user.toJson()),
-    );
+    await prefs.setString(_userKey, jsonEncode(user.toJson()));
 
     log?.logI('Current user saved');
   }
@@ -134,7 +128,9 @@ class AuthRepository {
 
     try {
       final user = User.fromJson(jsonDecode(raw));
-      log?.logD('Get current user: ${user.fullName}');
+      log?.logD(
+        'Get current user: ${user.fullName} & ${user.departmentId} & ${user.departmentName}',
+      );
       return user;
     } catch (e) {
       log?.logE('Parse cached user failed → clear cache');
@@ -166,7 +162,7 @@ class AuthRepository {
       final res = await authRepo.getCurrentUser();
 
       return await res.fold(
-            (l) async {
+        (l) async {
           log?.logE('Get current user failed: ${l.getErrorMessage}');
 
           /// ✅ Xử lý 401 theo BaseError hiện tại
@@ -181,7 +177,7 @@ class AuthRepository {
 
           return null;
         },
-            (user) async {
+        (user) async {
           if (user == null) {
             log?.logW('User is null, skip save');
             return null;
@@ -197,7 +193,6 @@ class AuthRepository {
       return null;
     }
   }
-
 
   static Future<bool> isLoggedInAndValid({LogUtils? log}) async {
     final token = await getToken(log: log);
