@@ -118,6 +118,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
                   emit,
                 ),
         resetCopyReport: () => _onResetCopy(emit),
+        updateExtraInfo: (problem, problemSolve, backlog, note) =>
+            _onUpdateExtraInfo(problem, problemSolve, backlog, note, emit),
       );
     });
   }
@@ -126,6 +128,23 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
   _onUpdatePlanNextDay(String planNextDay, Emitter<TechState> emit) {
     emit(state.copyWith(planNextDay: planNextDay));
+  }
+
+  _onUpdateExtraInfo(
+      String? problem,
+      String? problemSolve,
+      String? backlog,
+      String? note,
+      Emitter<TechState> emit,
+      ) {
+    emit(
+      state.copyWith(
+        problem: problem ?? state.problem,
+        problemSolve: problemSolve ?? state.problemSolve,
+        backlog: backlog ?? state.backlog,
+        note: note ?? state.note,
+      ),
+    );
   }
 
   Future<void> _loadDailyReport({
@@ -604,11 +623,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     );
   }
 
-  _onUpdateLocation(
-      String type,
-      String? value,
-      Emitter<TechState> emit,
-      ) {
+  _onUpdateLocation(String type, String? value, Emitter<TechState> emit) {
     emit(
       state.copyWith(
         locationType: type,
@@ -633,10 +648,20 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       final user = userRes.getOrElse(() => null);
       final userId = user?.id;
 
-      final selectedProject = state.selectedProject;
-      if (selectedProject == null) {
+      final projects = state.projects;
+
+      if (projects.isEmpty) {
         emit(state.copyWith(isSubmitting: false));
         return;
+      }
+
+      final List<TechProject> submitProjects;
+
+      if (projects.length == 1) {
+        final selected = state.selectedProject ?? projects.first;
+        submitProjects = [selected];
+      } else {
+        submitProjects = projects;
       }
 
       final safeDate = DateTime(
@@ -646,52 +671,46 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       );
       final dateStr = DateFormat('yyyy-MM-dd').format(safeDate);
 
-      for (final work in selectedProject.works) {
-        final payload = <String, dynamic>{
-          'ID': 0,
-          'MasterID': 0,
-          'UserReport': userId,
-          'DateReport': dateStr,
-          'ProjectID': selectedProject.projectId,
-          'ProjectItemID': work.projectItemId,
-          'Content': work.content,
-          'Results': work.results,
-          'Problem': work.problem ?? '',
-          'ProblemSolve': work.problemSolve ?? '',
-          'PlanNextDay': state.planNextDay,
-          'Note': work.note ?? '',
-          'Backlog': work.backlog ?? '',
-          'TotalHours': (work.totalHours).toInt(),
-          'TotalHourOT': (work.totalHourOT ?? 0).toInt(),
-          'PercentComplete': work.percentComplete.toInt(),
-          'Location': state.location ?? 'report.project'.tr(),
-          'Type': 0,
-          'ReportLate': 0,
-          'StatusResult': 0,
-          'WorkPlanDetailID': 0,
-          'OldProjectID': 0,
-          'DeleteFlag': 0,
-          'Confirm': false,
-        };
+      for (final project in submitProjects) {
+        for (final work in project.works) {
+          final payload = <String, dynamic>{
+            'ID': 0,
+            'MasterID': 0,
+            'UserReport': userId,
+            'DateReport': dateStr,
+            'ProjectID': project.projectId,
+            'ProjectItemID': work.projectItemId,
+            'Content': work.content,
+            'Results': work.results,
+            'Problem': state.problem ?? '',
+            'ProblemSolve': state.problemSolve ?? '',
+            'PlanNextDay': state.planNextDay,
+            'Note': state.note ?? '',
+            'Backlog': state.backlog ?? '',
+            'TotalHours': work.totalHours.toInt(),
+            'TotalHourOT': (work.totalHourOT ?? 0).toInt(),
+            'PercentComplete': work.percentComplete.toInt(),
+            'Location': state.location ?? 'report.project'.tr(),
+            'Type': 0,
+            'ReportLate': 0,
+            'StatusResult': 0,
+            'WorkPlanDetailID': 0,
+            'OldProjectID': 0,
+            'DeleteFlag': 0,
+            'Confirm': false,
+          };
 
-        // _log.logI('🔥 RAW Submit payload = $payload');
+          final res = await _reportRepo.saveReportTech(payload: payload);
 
-        final res = await _reportRepo.saveReportTech(payload: payload);
+          final isFailed = await res.fold(
+            (l) async => true,
+            (r) async => false,
+          );
 
-        final isFailed = await res.fold(
-          (l) async {
-            // _log.logE('❌ Submit failed: ${l.getErrorMessage}');
-            return true;
-          },
-          (r) async {
-            // _log.logI('✅ Submit success');
-            return false;
-          },
-        );
-
-        if (isFailed) {
-          emit(state.copyWith(isSubmitting: false, submitSuccess: false));
-          return;
+          if (isFailed) {
+            emit(state.copyWith(isSubmitting: false, submitSuccess: false));
+            return;
+          }
         }
       }
 
@@ -848,7 +867,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
             backlog: detail.backlog,
             note: detail.note,
             dateReport: DateTime.tryParse(detail.dateReport),
-            expandedWorkIndex: 0
+            expandedWorkIndex: 0,
           ),
         );
       },

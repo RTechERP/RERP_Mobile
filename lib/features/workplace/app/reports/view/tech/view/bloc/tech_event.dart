@@ -62,6 +62,13 @@ class TechEvent with _$TechEvent {
   /// ===== GLOBAL =====
   const factory TechEvent.updatePlanNextDay(String value) = _UpdatePlanNextDay;
 
+  const factory TechEvent.updateExtraInfo({
+    String? problem,
+    String? problemSolve,
+    String? backlog,
+    String? note,
+  }) = _UpdateExtraInfo;
+
   /// ===== SUBMIT =====
   const factory TechEvent.submitReport(DateTime pickedDate) =
       _SubmitReportWithDate;

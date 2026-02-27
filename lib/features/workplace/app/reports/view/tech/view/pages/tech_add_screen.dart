@@ -29,6 +29,7 @@ class _TechAddScreenState
   final _screenFormKey = GlobalKey<FormBuilderState>();
   bool _showExtraInfo = false;
 
+
   DateTime? _initialReportDate() {
     final now = DateTime.now();
 
@@ -428,13 +429,10 @@ class _TechAddScreenState
                                     keyboardType: TextInputType.multiline,
                                     textInputAction:
                                         TextInputAction.newline, // ⬅ Enter xuống dòng
+                                    initialValue: state.problem ?? '',
                                     onChanged: (v) {
-                                      if (state.expandedWorkIndex == null) {
-                                        return;
-                                      }
                                       bloc.add(
-                                        TechEvent.updateWork(
-                                          index: state.expandedWorkIndex!,
+                                        TechEvent.updateExtraInfo(
                                           problem: v,
                                         ),
                                       );
@@ -451,13 +449,10 @@ class _TechAddScreenState
                                     keyboardType: TextInputType.multiline,
                                     textInputAction:
                                         TextInputAction.newline, // ⬅ Enter xuống dòng
+                                    initialValue: state.problemSolve ?? '',
                                     onChanged: (v) {
-                                      if (state.expandedWorkIndex == null) {
-                                        return;
-                                      }
                                       bloc.add(
-                                        TechEvent.updateWork(
-                                          index: state.expandedWorkIndex!,
+                                        TechEvent.updateExtraInfo(
                                           problemSolve: v,
                                         ),
                                       );
@@ -469,18 +464,15 @@ class _TechAddScreenState
                                     icon: Icons.report_problem_outlined,
                                     nameForm: 'tech_add_backlog',
                                     nameTextField: 'block',
-                                    label: 'Tồn động',
+                                    label: 'Tồn đọng',
                                     maxLines: 1,
                                     keyboardType: TextInputType.multiline,
                                     textInputAction:
                                         TextInputAction.newline, // ⬅ Enter xuống dòng
+                                    initialValue: state.backlog ?? '',
                                     onChanged: (v) {
-                                      if (state.expandedWorkIndex == null) {
-                                        return;
-                                      }
                                       bloc.add(
-                                        TechEvent.updateWork(
-                                          index: state.expandedWorkIndex!,
+                                        TechEvent.updateExtraInfo(
                                           backlog: v,
                                         ),
                                       );
@@ -497,13 +489,10 @@ class _TechAddScreenState
                                     keyboardType: TextInputType.multiline,
                                     textInputAction:
                                         TextInputAction.newline, // ⬅ Enter xuống dòng
+                                    initialValue: state.note ?? '',
                                     onChanged: (v) {
-                                      if (state.expandedWorkIndex == null) {
-                                        return;
-                                      }
                                       bloc.add(
-                                        TechEvent.updateWork(
-                                          index: state.expandedWorkIndex!,
+                                        TechEvent.updateExtraInfo(
                                           note: v,
                                         ),
                                       );

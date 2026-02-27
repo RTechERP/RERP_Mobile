@@ -30,12 +30,36 @@ class TechScreen extends StatefulWidget {
 
 class _TechScreenState
     extends BaseState<TechScreen, TechEvent, TechState, TechBloc> {
+
+  bool _isSearching = false;
+  final TextEditingController _searchController = TextEditingController();
+  List<ReportResponse> _filteredReports = [];
+
+  void _filterReports(String keyword, List<ReportResponse> reports) {
+    final lower = keyword.toLowerCase().trim();
+
+    if (lower.isEmpty) {
+      _filteredReports = reports;
+      return;
+    }
+
+    _filteredReports = reports.where((r) {
+      final code = (r.projectCode ?? '').toLowerCase();
+      final name = (r.projectName ?? '').toLowerCase();
+      return code.contains(lower) || name.contains(lower);
+    }).toList();
+  }
   @override
   void initState() {
     super.initState();
     bloc.add(const TechEvent.init());
   }
 
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
   String _buildCopyContent(List<CopyResponse> reports) {
     if (reports.isEmpty) return '';
 
@@ -48,7 +72,6 @@ class _TechScreenState
         : '';
 
     buffer.writeln('Báo cáo công việc ngày $formattedDate');
-    buffer.writeln('');
 
     for (final r in reports) {
       final projectLine = '${r.projectCode} - ${r.projectName}'.trim();
@@ -68,6 +91,11 @@ class _TechScreenState
       buffer.writeln('* Tồn đọng:');
       buffer.writeln(_cleanOrDefault(r.backlog));
       buffer.writeln('');
+
+      buffer.writeln('* Ghi chú:');
+      buffer.writeln(_cleanOrDefault(r.note));
+      buffer.writeln('');
+
 
       buffer.writeln('* Vấn đề phát sinh:');
       buffer.writeln(_cleanOrDefault(r.problem));
@@ -144,6 +172,7 @@ class _TechScreenState
         '${d.year}';
   }
 
+
   @override
   Widget renderUI(BuildContext context) {
     return BlocListener<TechBloc, TechState>(
@@ -194,11 +223,36 @@ class _TechScreenState
       },
       child: BaseScaffold(
         appBar: AppBarCommon(
-          title: Text('report.tech'.tr(), style: AppStyles.headingTitle2),
+          title: _isSearching
+              ? TextField(
+            controller: _searchController,
+            autofocus: true,
+            decoration: const InputDecoration(
+              hintText: 'Tìm theo mã hoặc tên dự án',
+              border: InputBorder.none,
+            ),
+            onChanged: (value) {
+              setState(() {
+                _filterReports(value, bloc.state.reports);
+              });
+            },
+          )
+              : Text('report.tech'.tr()),
           onBackTap: () => onBack(context),
           actions: [
-            const Icon(Icons.search, size: 22),
-            const SizedBox(width: 12),
+            IconButton(
+              icon: Icon(
+                _isSearching ? Icons.close : Icons.search,
+                size: 22,
+              ),
+              onPressed: () {
+                setState(() {
+                  _isSearching = !_isSearching;
+                  _searchController.clear();
+                  _filteredReports = [];
+                });
+              },
+            ),
           ],
         ),
 
@@ -238,6 +292,12 @@ class _TechScreenState
               );
             }
 
+            final displayList =
+            _isSearching ? _filteredReports : state.reports;
+
+            if (!_isSearching) {
+              _filteredReports = state.reports;
+            }
             return Column(
               children: [
                 Padding(
@@ -254,9 +314,10 @@ class _TechScreenState
                     },
                     child: ListView.builder(
                       padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                      itemCount: state.reports.length,
+
+                      itemCount: displayList.length,
                       itemBuilder: (context, index) {
-                        final r = state.reports[index];
+                        final r = displayList[index];
                         final hasData =
                             (r.projectCode?.isNotEmpty == true) &&
                             (r.projectName?.isNotEmpty == true);
@@ -345,7 +406,7 @@ class _TechScreenState
             /// ===== LỌC THEO NGÀY =====
             SpeedDialChild(
               child: const Icon(Icons.date_range),
-              label: 'Lọc theo ngày',
+              label: 'Lọc ngày',
               onTap: () {
                 final state = bloc.state;
                 TechDateRangePicker.open(context, bloc);
