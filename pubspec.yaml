@@ -95,14 +95,15 @@ flutter_native_splash:
   ios: true
 
   android_12:
-    image: assets/images/icons/logo/logo_splash.png
+    image: assets/images/icons/logo/logo_splash_test.png
     color: "#FFFFFF"
 
 
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: assets/images/icons/logo/logo_app.png
+  remove_alpha_ios: true
+  image_path: assets/images/icons/logo/logo_app_test.png
 
 dev_dependencies:
   flutter_test:
