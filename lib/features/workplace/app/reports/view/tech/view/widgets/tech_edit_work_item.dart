@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
-import '../../data/datasource/models/tech_model.dart';
+import '../../data/tech_model.dart';
 import '../bloc/tech_bloc.dart';
 
 class TechEditWorkItem extends StatefulWidget {

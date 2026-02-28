@@ -13,7 +13,7 @@ import '../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/buttons/custom_text_button.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
-import '../../data/datasource/models/tech_model.dart';
+import '../../data/tech_model.dart';
 import '../bloc/tech_bloc.dart';
 import '../widgets/tech_add_work_item.dart';
 

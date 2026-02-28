@@ -14,7 +14,7 @@ import '../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../../../../data/repository/report_repo.dart';
-import '../../data/datasource/models/tech_model.dart';
+import '../../data/tech_model.dart';
 
 part 'tech_event.dart';
 part 'tech_state.dart';

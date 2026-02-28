@@ -27,12 +27,11 @@ class RoleResolver {
       roles.add(AppRole.agv);
     }
 
-    if (DepartmentGroups.marketingPositions
-        .contains(user.positionId)) {
+    if (DepartmentGroups.marketing.contains(user.departmentId)) {
       roles.add(AppRole.marketing);
     }
 
-    if(DepartmentGroups.lapraps.contains(user.departmentId)){
+    if (DepartmentGroups.lapraps.contains(user.departmentId)) {
       roles.add(AppRole.ad);
     }
 

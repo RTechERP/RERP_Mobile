@@ -9,7 +9,7 @@ class DepartmentGroups {
   /// ===== POSITION =====
   static const drivers = [6];
   static const cutFilms = [7, 72];
-  static const marketingPositions = [8];
+  static const marketing = [8];
 
   /// ===== SPECIAL USER =====
   static const userAllReportTechs = [
