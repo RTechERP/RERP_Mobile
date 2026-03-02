@@ -188,10 +188,6 @@ class ReportRepoImpl implements ReportRepo {
       return right(res.data ?? []);
     } on DioException catch (e) {
       final log = LogUtils();
-
-      log.logE('Dio status: ${e.response?.statusCode}');
-      log.logE('Dio data: ${e.response?.data}');
-
       return left(e.baseError);
     }
   }
@@ -219,9 +215,7 @@ class ReportRepoImpl implements ReportRepo {
     required Map<String, dynamic> payload,
   }) async {
     try {
-      final res = await _service.saveReportMarketing(
-        payload: payload,
-      );
+      final res = await _service.saveReportMarketing(payload: payload);
 
       if (res.status == 1) {
         return right(res.message ?? 'Lưu dữ liệu thành công');
@@ -233,10 +227,20 @@ class ReportRepoImpl implements ReportRepo {
         );
       }
     } on DioException catch (e) {
-      print('STATUS CODE: ${e.response?.statusCode}');
-      print('RESPONSE DATA: ${e.response?.data}');
-      print('REQUEST DATA: ${e.requestOptions.data}');
-      rethrow; // đừng wrap vội
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Either<BaseError, DetailMarketingReportResponse>> getMarketingById({
+    required int dailyID,
+  }) async {
+    try {
+      final res = await _service.getMarketingById(dailyID: dailyID);
+
+      return right(res.data!);
+    } on DioException catch (e) {
+      return left(e.baseError);
     }
   }
 }

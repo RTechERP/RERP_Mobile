@@ -88,6 +88,7 @@ class RouteNames {
   static const reportMarketingdepart = '/report/marketing';
   static const reportMarketingdepartDetail = '/report/marketing/detail';
   static const reportMarketingdepartAdd = '/report/marketing/add';
+  static const reportMarketingdepartEdit = '/report/marketing/edit';
 
 
   ///*** HR Department ***///

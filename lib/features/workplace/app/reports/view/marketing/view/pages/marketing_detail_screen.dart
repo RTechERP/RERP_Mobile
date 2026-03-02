@@ -1,13 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../base/widgets/base_scaffold.dart';
+import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
-import '../../../../../../../../common/enums/index.dart';
-import '../../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../common/constants/index.dart';
+import '../../../../../../../../routes/route_names.dart';
+import '../../../../data/datasource/models/report_model.dart';
+import '../bloc/marketing_bloc.dart';
 
 class MarketingDetailScreen extends StatefulWidget {
   const MarketingDetailScreen({super.key});
@@ -16,227 +19,176 @@ class MarketingDetailScreen extends StatefulWidget {
   State<MarketingDetailScreen> createState() => _MarketingDetailScreenState();
 }
 
-class _MarketingDetailScreenState extends State<MarketingDetailScreen> {
-  final _formKey = GlobalKey<FormBuilderState>();
-  bool _isEditing = false;
+class _MarketingDetailScreenState
+    extends
+        BaseState<
+          MarketingDetailScreen,
+          MarketingEvent,
+          MarketingState,
+          MarketingBloc
+        > {
+  int? _dailyId;
 
-  /// Fake data demo (sau này thay bằng state / api)
-  final Map<String, dynamic> _initialValue = {
-    'date': DateTime.now(),
-    'content': 'Chạy chiến dịch Facebook Ads',
-    'result': 'Tăng 20% lượt tiếp cận',
-    'next_plan': 'Tối ưu landing page',
-    'improve': 'Cần thêm ngân sách cho kênh TikTok',
+  @override
+  void initState() {
+    super.initState();
 
-    // File từ server
-    'attachments': [
-      {'name': 'report_ads_jan.pdf'},
-      {'name': 'result_screenshot.png'},
-    ],
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final extra = GoRouterState.of(context).extra;
 
-    // File mới user chọn
-    'new_attachments': <PlatformFile>[],
-  };
-
-  void _toggleEdit() {
-    setState(() => _isEditing = true);
-  }
-
-  void _cancelEdit() {
-    _formKey.currentState?.reset();
-    setState(() => _isEditing = false);
-  }
-
-  void _save() {
-    if (_formKey.currentState?.saveAndValidate() ?? false) {
-      final value = _formKey.currentState!.value;
-
-      final List serverFiles = value['attachments'] ?? [];
-      final List<PlatformFile> newFiles = value['new_attachments'] ?? [];
-
-      debugPrint('Server files: $serverFiles');
-      debugPrint('New upload files: ${newFiles.map((e) => e.name).toList()}');
-
-      // TODO:
-      // - upload newFiles
-      // - merge vào serverFiles sau khi upload xong
-
-      setState(() => _isEditing = false);
-    }
+      if (extra is int) {
+        _dailyId = extra;
+        bloc.add(MarketingEvent.selectReport(dailyID: _dailyId!));
+      }
+    });
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget renderUI(BuildContext context) {
     return BaseScaffold(
-      appBar: AppBarCommon(
-        title: const Text('Chi tiết báo cáo Marketing'),
-        automaticallyImplyLeading: !_isEditing,
-        actions: [
-          IconButton(
-            icon: Icon(_isEditing ? Icons.close : Icons.create_outlined),
-            onPressed: () {
-              _isEditing ? _cancelEdit() : _toggleEdit();
-            },
-            tooltip: _isEditing ? 'Huỷ' : 'Chỉnh sửa',
-          ),
-        ],
-      ),
-      body: FormBuilder(
-        key: _formKey,
-        initialValue: _initialValue,
-        enabled: _isEditing, // 🔥 edit mode
-        child: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            /// ===== NGÀY =====
-            FormCard(
-              title: 'Ngày báo cáo',
-              child: _isEditing
-                  ? FormDateTimePicker(
-                icon: Icons.calendar_today,
-                nameForm: 'marketing_detail_date',
-                nameTimePicker: 'date_time',
-                label: 'Ngày báo cáo',
-                inputType: InputType.date,
-                format: DateFormat('dd/MM/yyyy'),
-              )
-                  : FormReadonlyField(
-                name: 'date',
-                label: 'Ngày báo cáo',
-                icon: Icons.calendar_today,
-                initialValue: _initialValue['date'],
-                valueTransformer: (value) {
-                  if (value == null) return '';
-                  return DateFormat('dd/MM/yyyy')
-                      .format(value as DateTime);
-                },
+      appBar: AppBarCommon(title: const Text('Chi tiết báo cáo')),
+      body: BlocBuilder<MarketingBloc, MarketingState>(
+        builder: (context, state) {
+          if (state.isLoadingDetail) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final wrapper = state.detailReport;
+          final detail = wrapper?.dailyData;
+          final files = wrapper?.dailyFileData ?? [];
+
+          if (detail == null) {
+            return Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(AppImages.missing, width: 320),
+                  const SizedBox(height: 12),
+                  const Text('Không có báo cáo'),
+                ],
               ),
-            ),
+            );
+          }
 
-            const SizedBox(height: 12),
+          return Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(16),
+                  child:
+                    Column(
+                      children: [
+                        Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          elevation: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _h(
+                                  'Báo cáo công việc ngày ${DateTime.tryParse(detail.dateReport ?? '') != null ? DateFormat('dd/MM/yyyy').format(DateTime.parse(detail.dateReport!)) : '-'}',
+                                ),
+                                const Divider(height: 20),
 
-            /// ===== NỘI DUNG =====
-            FormCard(
-              title: 'Nội dung công việc',
-              child: _isEditing
-                  ? FormInputField(
-                icon: Icons.note_alt_outlined,
-                nameForm: 'marketing_detail_content',
-                nameTextField: 'content',
-                label: 'Nội dung công việc',
-                maxLines: 4,
-              )
-                  : FormReadonlyField(
-                name: 'content',
-                label: 'Nội dung công việc',
-                icon: Icons.note_alt_outlined,
-                initialValue: _initialValue['content'],
+                                _row('* Nội dung công việc:', detail.content),
+                                _row('* Kết quả công việc:', detail.results),
+                                _row('* Kế hoạch ngày tiếp theo:', detail.planNextDay),
+
+                                const Divider(height: 20),
+
+                                _row('* Đề xuất cải tiến:', detail.note),
+                              ],
+                            ),
+                          ),
+                        ),
+                        /// FILE ĐÍNH KÈM
+                        Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          elevation: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: _MarketingAttachmentsReadonly(files: files),
+                          ),
+                        ),
+
+                        const SizedBox(height: 24),
+                      ],
+                    ),
+
+
+
+
+                ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryERP,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    minimumSize: const Size.fromHeight(48),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                  ),
+                  onPressed: () async {
+                    final result = await context.push(
+                      RouteNames.reportMarketingdepartEdit,
+                      extra: _dailyId,
+                    );
 
-            const SizedBox(height: 12),
-
-            /// ===== KẾT QUẢ =====
-            FormCard(
-              title: 'Kết quả',
-              child: _isEditing
-                  ? FormInputField(
-                icon: Icons.task_alt_outlined,
-                nameForm: 'marketing_detail_result',
-                nameTextField: 'result',
-                label: 'Kết quả đạt được',
-                maxLines: 4,
-              )
-                  : FormReadonlyField(
-                name: 'result',
-                label: 'Kết quả đạt được',
-                icon: Icons.task_alt_outlined,
-                initialValue: _initialValue['result'],
+                    if (result == true && context.mounted) {
+                      context.pop(true);
+                    }
+                  },
+                  child: const Text(
+                    'Sửa',
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
-            ),
-
-            const SizedBox(height: 12),
-
-            /// ===== NEXT PLAN =====
-            FormCard(
-              title: 'Kế hoạch ngày tiếp theo',
-              child: _isEditing
-                  ? FormInputField(
-                icon: Icons.next_plan_outlined,
-                nameForm: 'marketing_detail_next_plan',
-                nameTextField: 'next_plan',
-                label: 'Kế hoạch ngày tiếp theo',
-                maxLines: 3,
-              )
-                  : FormReadonlyField(
-                name: 'next_plan',
-                label: 'Kế hoạch ngày tiếp theo',
-                icon: Icons.next_plan_outlined,
-                initialValue: _initialValue['next_plan'],
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            /// ===== ĐỀ XUẤT CẢI TIẾN =====
-            FormCard(
-              title: 'Đề xuất cải tiến phòng Marketing',
-              child: _isEditing
-                  ? FormInputField(
-                icon: Icons.lightbulb_outline,
-                nameForm: 'marketing_detail_improve',
-                nameTextField: 'improve',
-                label: 'Đề xuất cải tiến',
-                maxLines: 4,
-              )
-                  : FormReadonlyField(
-                name: 'improve',
-                label: 'Đề xuất cải tiến',
-                icon: Icons.lightbulb_outline,
-                initialValue: _initialValue['improve'],
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            /// ===== FILE ĐÍNH KÈM =====
-            FormCard(
-              title: 'File đính kèm',
-              child: _isEditing
-                  ? FormFilePicker(
-                name: 'new_attachments', // 🔥 đổi key
-                label: 'Chọn file đính kèm',
-                icon: Icons.attach_file,
-                allowMultiple: true,
-              )
-                  : _MarketingAttachmentsReadonly(
-                files: _initialValue['attachments'] ?? [],
-              ),
-            ),
-
-            const SizedBox(height: 24),
-
-            FormActions(
-              mode: _isEditing ? FormActionMode.edit : FormActionMode.view,
-              onView: () {},
-              onCancel: _cancelEdit,
-              onSave: _save,
-            ),
-
-            const SizedBox(height: 24),
-          ],
-        ),
+            ],
+          );
+        },
       ),
     );
   }
+
+  static Widget _row(String title, String? value) => Padding(
+    padding: const EdgeInsets.only(bottom: 8),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _h(title),
+        const SizedBox(height: 2),
+        _p(value?.isNotEmpty == true ? value! : '- Không có'),
+      ],
+    ),
+  );
+
+  static Widget _h(String text) => Padding(
+    padding: const EdgeInsets.only(bottom: 4),
+    child: Text(text, style: const TextStyle(fontWeight: FontWeight.w600)),
+  );
+
+  static Widget _p(String text) => Padding(
+    padding: const EdgeInsets.only(left: 8, bottom: 4),
+    child: Text(text),
+  );
 }
 
 class _MarketingAttachmentsReadonly extends StatelessWidget {
-  final List files;
+  final List<MarketingDailyFile> files;
 
-  const _MarketingAttachmentsReadonly({
-    required this.files,
-  });
+  const _MarketingAttachmentsReadonly({required this.files});
 
   @override
   Widget build(BuildContext context) {
@@ -251,22 +203,20 @@ class _MarketingAttachmentsReadonly extends StatelessWidget {
     }
 
     return Column(
-      children: files
-          .map(
-            (e) => ListTile(
+      children: files.map((file) {
+        return ListTile(
           dense: true,
           contentPadding: EdgeInsets.zero,
           leading: const Icon(Icons.insert_drive_file_outlined),
-          title: Text(e['name'] ?? 'file'),
-          trailing: IconButton(
-            icon: const Icon(Icons.download),
-            onPressed: () {
-              // TODO: open / download file
-            },
-          ),
-        ),
-      )
-          .toList(),
+          title: Text(file.fileName),
+          // trailing: IconButton(
+          //   icon: const Icon(Icons.download),
+          //   onPressed: () {
+          //
+          //   },
+          // ),
+        );
+      }).toList(),
     );
   }
 }

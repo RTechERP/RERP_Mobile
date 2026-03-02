@@ -116,9 +116,7 @@ class _MarketingScreenState
   Widget renderUI(BuildContext context) {
     return BlocListener<MarketingBloc, MarketingState>(
       listenWhen: (p, c) =>
-          p.deleteSuccess != c.deleteSuccess ||
-          p.copyReports != c.copyReports ||
-          p.copyError != c.copyError,
+          p.deleteSuccess != c.deleteSuccess,
       listener: (context, state) async {
         if (state.deleteSuccess) {
           showMessage(
@@ -132,11 +130,6 @@ class _MarketingScreenState
           showMessage(context, state.message!, type: SnackBarType.error);
         }
 
-        /// COPY ERROR
-        if (state.copyError != null) {
-          showMessage(context, state.copyError!, type: SnackBarType.error);
-          return;
-        }
       },
       child: BaseScaffold(
         appBar: AppBarCommon(

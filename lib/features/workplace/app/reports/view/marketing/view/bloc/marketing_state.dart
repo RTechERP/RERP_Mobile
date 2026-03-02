@@ -5,8 +5,8 @@ class MarketingState extends BaseBlocState{
   final List<ReportResponse> reports;
 
   final List<DepartResponse> departs;
-
-  final DetailReportResponse? detailReport;
+  final List<MarketingDailyFile>? marketingDailyFiles;
+  final DetailMarketingReportResponse? detailReport;
 
   final DateTime? dateStart;
   final DateTime? dateEnd;
@@ -27,8 +27,7 @@ class MarketingState extends BaseBlocState{
   final DateTime? lastPickedDate;
   final bool isLoadingDetail;
 
-  final DetailReportResponse? selectedReportDetail;
-
+  final bool saveSuccess;
   final DateTime? dateReport;
 
   final bool isSaving;
@@ -65,9 +64,12 @@ class MarketingState extends BaseBlocState{
 
   final String? departmentName;
 
+  final int? dailyID;
+
   const MarketingState({
     required super.status,
     super.message,
+    this.marketingDailyFiles,
     this.reports = const [],
     this.departs = const [],
     this.detailReport,
@@ -83,7 +85,6 @@ class MarketingState extends BaseBlocState{
     this.sendMailSuccess = false,
     this.lastPickedDate,
     this.isLoadingDetail = false,
-    this.selectedReportDetail,
     this.dateReport,
     this.isSaving = false,
     this.isDeleting = false,
@@ -104,6 +105,8 @@ class MarketingState extends BaseBlocState{
     this.uploadSuccess = false,
     this.positionName,
     this.departmentName,
+    this.saveSuccess = false,
+    this.dailyID,
   });
 
   factory MarketingState.init()=> const MarketingState(
@@ -118,7 +121,6 @@ class MarketingState extends BaseBlocState{
     sendMailSuccess: false,
     lastPickedDate: null,
     isLoadingDetail: false,
-    selectedReportDetail: null,
     dateReport: null,
     isSaving: false,
     isDeleting: false,
@@ -139,6 +141,9 @@ class MarketingState extends BaseBlocState{
     uploadSuccess: false,
     positionName: null,
     departmentName: null,
+    saveSuccess: false,
+    marketingDailyFiles: null,
+    dailyID: null,
   );
 
   @override
@@ -160,7 +165,6 @@ class MarketingState extends BaseBlocState{
     sendMailSuccess,
     lastPickedDate,
     isLoadingDetail,
-    selectedReportDetail,
     dateReport,
     isSaving,
     isDeleting,
@@ -179,7 +183,12 @@ class MarketingState extends BaseBlocState{
     isUploadingFile,
     localFiles,
     uploadSuccess,
+    deletedFileIds,
+    sendMailSuccess,
     positionName,
     departmentName,
+    saveSuccess,
+    marketingDailyFiles,
+    dailyID,
   ];
 }

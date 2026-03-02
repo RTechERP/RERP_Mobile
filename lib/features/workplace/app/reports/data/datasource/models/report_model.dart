@@ -433,3 +433,61 @@ class UploadFileResponse with _$UploadFileResponse {
   factory UploadFileResponse.fromJson(Map<String, dynamic> json) =>
       _$UploadFileResponseFromJson(json);
 }
+
+/// ==========================
+/// 🔹 Detail Marketing Report Response Model
+/// ==========================
+@freezed
+class DetailMarketingReportResponse
+    with _$DetailMarketingReportResponse {
+  const factory DetailMarketingReportResponse({
+    @JsonKey(name: 'dailyData')
+    required DetailMarketingDailyData dailyData,
+
+    @JsonKey(name: 'dailyFileData')
+    required List<MarketingDailyFile> dailyFileData,
+  }) = _DetailMarketingReportResponse;
+
+  factory DetailMarketingReportResponse.fromJson(
+      Map<String, dynamic> json,
+      ) =>
+      _$DetailMarketingReportResponseFromJson(json);
+}
+
+@freezed
+class DetailMarketingDailyData with _$DetailMarketingDailyData {
+  const factory DetailMarketingDailyData({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'DateReport') String? dateReport,
+    @JsonKey(name: 'Content') String? content,
+    @JsonKey(name: 'Results') String? results,
+    @JsonKey(name: 'PlanNextDay') String? planNextDay,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'UserReport') int? employeeID,
+  }) = _DetailMarketingDailyData;
+
+  factory DetailMarketingDailyData.fromJson(
+      Map<String, dynamic> json,
+      ) =>
+      _$DetailMarketingDailyDataFromJson(json);
+}
+
+@freezed
+class MarketingDailyFile with _$MarketingDailyFile {
+  const factory MarketingDailyFile({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'FileName') required String fileName,
+    @JsonKey(name: 'DailyReportID') required int dailyReportId,
+    @JsonKey(name: 'PathServer') required String pathServer,
+    @JsonKey(name: 'IsDeleted') required bool isDeleted,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'CreatedBy')  String? createdBy,
+    @JsonKey(name: 'UpdatedBy')  String? updatedBy,
+    @JsonKey(name: 'CreatedDate')  DateTime? createdDate,
+  }) = _MarketingDailyFile;
+
+  factory MarketingDailyFile.fromJson(
+      Map<String, dynamic> json,
+      ) =>
+      _$MarketingDailyFileFromJson(json);
+}

@@ -97,4 +97,6 @@ class ApiEndPoint{
   static const String marketing_upload = '/home/upload-multiple';
 
   static const String saveReportMarketing = '/DailyReportTech/save-report-mar';
+
+  static const String getMarketingById = '/DailyReportTech/get-by-id-hr';
 }

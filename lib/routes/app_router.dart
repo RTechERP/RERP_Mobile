@@ -48,6 +48,7 @@ import '../features/workplace/app/reports/view/hr/view/pages/hr_lxcp_screen.dart
 import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
 import '../features/workplace/app/reports/view/marketing/view/pages/marketing_add_screen.dart';
 import '../features/workplace/app/reports/view/marketing/view/pages/marketing_detail_screen.dart';
+import '../features/workplace/app/reports/view/marketing/view/pages/marketing_edit_screen.dart';
 import '../features/workplace/app/reports/view/marketing/view/pages/marketing_screen.dart';
 import '../features/workplace/app/reports/view/report_screen.dart';
 import '../features/workplace/app/reports/view/sale/view/sale_admin_add_screen.dart';
@@ -317,6 +318,14 @@ class AppRouter {
           GoRoute(
             path: RouteNames.reportMarketingdepartDetail,
             builder: (context, state) => const MarketingDetailScreen(),
+          ),
+
+          GoRoute(
+            path: RouteNames.reportMarketingdepartEdit,
+            builder: (context, state) {
+              final dailyId = state.extra as int;
+              return MarketingEditScreen(dailyId: dailyId);
+            },
           ),
         ],
       ),

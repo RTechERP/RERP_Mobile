@@ -67,4 +67,9 @@ abstract class ReportRepo {
   Future<Either<BaseError, void>> saveReportMarketing({
     required Map<String, dynamic> payload,
   });
+
+  /// Lấy chi tiết báo cáo Marketing theo ID
+  Future<Either<BaseError, DetailMarketingReportResponse>> getMarketingById({
+    required int dailyID,
+  });
 }

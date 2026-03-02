@@ -51,6 +51,15 @@ class MarketingBloc extends BaseBloc<MarketingEvent, MarketingState> {
             _onDeleteReport(dailyID, emit),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(dateStart, dateEnd, emit),
+        loadDetailData: (dailyID) => _onLoadDetailData(dailyID, emit),
+        submitEditReport: (pickedDate, dailyID) =>
+            _onSubmitEditReport(dailyID, pickedDate, emit),
+
+        selectReport: (dailyID) => _onSelectReport(dailyID, emit),
+        uploadEditFiles: (files) =>
+            _onUploadEditFiles(files, emit),
+
+        removeFile: (file) => _onRemoveFile(file, emit),
       );
     });
   }
@@ -430,15 +439,257 @@ class MarketingBloc extends BaseBloc<MarketingEvent, MarketingState> {
   }
 
   Future<void> _onChangeDateRange(
-      DateTime dateStart,
-      DateTime dateEnd,
-      Emitter<MarketingState> emit,
-      ) async {
+    DateTime dateStart,
+    DateTime dateEnd,
+    Emitter<MarketingState> emit,
+  ) async {
     final start = DateTime(dateStart.year, dateStart.month, dateStart.day);
     final end = DateTime(dateEnd.year, dateEnd.month, dateEnd.day);
 
     emit(state.copyWith(status: BaseStateStatus.loading));
 
     await _loadDailyReport(start: start, end: end, emit: emit);
+  }
+
+  Future<void> _onLoadDetailData(
+    int dailyID,
+    Emitter<MarketingState> emit,
+  ) async {
+    _log.logI('Load detail marketing report - dailyID: $dailyID');
+
+    emit(state.copyWith(isLoadingDetail: true));
+
+    final detailRes = await _reportRepo.getMarketingById(dailyID: dailyID);
+
+    await detailRes.fold(
+      (l) async {
+        _log.logE(
+          'Load detail failed - dailyID: $dailyID - error: ${l.getErrorMessage}',
+        );
+
+        emit(state.copyWith(isLoadingDetail: false));
+      },
+      (detail) async {
+        _log.logI('Load detail success - dailyID: $dailyID');
+
+        final userRes = await _authRepo.getCurrentUser();
+        final user = userRes.getOrElse(() => null);
+
+        _log.logI('Current user loaded - id: ${user?.id}');
+
+        emit(
+          state.copyWith(
+            isLoadingDetail: false,
+            detailReport: detail,
+            content: detail.dailyData.content,
+            results: detail.dailyData.results,
+            planNextDay: detail.dailyData.planNextDay,
+            note: detail.dailyData.note,
+            marketingDailyFiles: detail.dailyFileData,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _onSelectReport(
+    int dailyID,
+    Emitter<MarketingState> emit,
+  ) async {
+    emit(state.copyWith(isLoadingDetail: true));
+
+    final res = await _reportRepo.getMarketingById(dailyID: dailyID);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get detail failed: ${l.getErrorMessage}');
+        emit(state.copyWith(isLoadingDetail: false));
+      },
+      (detail) async {
+        _log.logI('✅ Detail Report: $detail');
+
+        emit(
+          state.copyWith(
+            isLoadingDetail: false,
+            detailReport: detail,
+            marketingDailyFiles: detail.dailyFileData,
+            dailyID: detail.dailyData.id,
+          ),
+        );
+      },
+    );
+  }
+
+  bool _isSavingReport = false;
+
+  Future<void> _onSubmitEditReport(
+    int dailyID,
+    DateTime pickedDate,
+    Emitter<MarketingState> emit,
+  ) async {
+    if (_isSavingReport) {
+      _log.logW('Submit blocked - already saving');
+      return;
+    }
+
+    _isSavingReport = true;
+
+    try {
+      _log.logI('Start submit edit report - dailyID: $dailyID');
+
+      emit(state.copyWith(isSaving: true, saveSuccess: false));
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+      final userId = user?.id;
+
+      if (userId == null) {
+        _log.logE('Submit failed - userId null');
+        emit(state.copyWith(isSaving: false, saveSuccess: false));
+        return;
+      }
+
+      final safeDate = DateTime(
+        pickedDate.year,
+        pickedDate.month,
+        pickedDate.day,
+      );
+
+      final dateStr = DateFormat('yyyy-MM-dd').format(safeDate);
+
+      final payload = <String, dynamic>{
+        'ID': dailyID, // FIX: dùng dailyID thay vì 0
+        'UserReport': userId,
+        'DateReport': dateStr,
+        'Content': state.content ?? '',
+        'Results': state.results ?? '',
+        'PlanNextDay': state.planNextDay ?? '',
+        'Note': state.note ?? '',
+        'dailyReportMarketingFiles': (state.files ?? [])
+            .map((e) => e.toJson())
+            .toList(),
+        'deletedFileID': state.deletedFileIds ?? [],
+      };
+
+      _log.logI('Submit payload: $payload');
+
+      final res = await _reportRepo.saveReportMarketing(payload: payload);
+
+      res.fold(
+        (l) {
+          _log.logE(
+            'Submit edit failed - dailyID: $dailyID - error: ${l.getErrorMessage}',
+          );
+
+          emit(state.copyWith(isSaving: false, saveSuccess: false));
+        },
+        (r) {
+          _log.logI('Submit edit success - dailyID: $dailyID');
+
+          emit(state.copyWith(isSaving: false, saveSuccess: true));
+        },
+      );
+    } catch (e, s) {
+      _log.logE('Submit edit exception - dailyID: $dailyID - error: $e');
+      _log.logE(s.toString());
+
+      emit(state.copyWith(isSaving: false, saveSuccess: false));
+    } finally {
+      _isSavingReport = false;
+    }
+  }
+
+  Future<void> _onUploadEditFiles(
+      List<File> files,
+      Emitter<MarketingState> emit,
+      ) async {
+    if (files.isEmpty) return;
+
+    emit(state.copyWith(
+      isUploadingFile: true,
+      uploadSuccess: false,
+    ));
+
+    try {
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+      final userId = user?.id;
+
+      if (userId == null) {
+        emit(state.copyWith(isUploadingFile: false));
+        return;
+      }
+
+      final date = state.dateReport ?? DateTime.now();
+      final year = DateFormat('yyyy').format(date);
+      final month = DateFormat('MM').format(date);
+
+      final subPath =
+          'DailyReportMarketing/$year/$month/$userId';
+
+      final uploadRes =
+      await _reportRepo.uploadReportFile(
+        files: files,
+        key: 'PathDailyReportMarketing',
+        subPath: subPath,
+      );
+
+      uploadRes.fold(
+            (l) {
+          emit(state.copyWith(
+            isUploadingFile: false,
+            uploadSuccess: false,
+          ));
+        },
+            (uploadedFiles) {
+          final mapped = uploadedFiles.map((f) {
+            final extension =
+            f.originalFileName.contains('.')
+                ? '.${f.originalFileName.split('.').last}'
+                : '';
+
+            return MarketingFileRequest(
+              id: 0,
+              fileName: f.savedFileName,
+              fileNameOrigin: f.originalFileName,
+              originPath: f.originalFileName,
+              extension: extension,
+              pathServer:
+              f.filePath.replaceAll(r'\', r'\\'),
+              dailyReportId: state.dailyID ?? 0,
+            );
+          }).toList();
+
+          emit(
+            state.copyWith(
+              isUploadingFile: false,
+              uploadSuccess: true,
+              files: [
+                ...(state.files ?? []),
+                ...mapped,
+              ],
+            ),
+          );
+        },
+      );
+    } catch (_) {
+      emit(state.copyWith(isUploadingFile: false));
+    }
+  }
+
+   _onRemoveFile(
+      MarketingFileRequest file,
+      Emitter<MarketingState> emit,
+      ) {
+    final currentFiles = state.files ?? [];
+
+    final updatedFiles =
+    currentFiles.where((e) => e != file).toList();
+
+    emit(
+      state.copyWith(
+        files: updatedFiles,
+      ),
+    );
   }
 }

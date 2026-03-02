@@ -259,5 +259,25 @@ class ReportService extends DioBaseApiService {
       parser: (json) => BaseData<void>.fromJson(json, (_) => null),
     );
   }
+
+  /// Lấy chi tiết báo cáo Marketing theo ID
+  Future<BaseData<DetailMarketingReportResponse>> getMarketingById({
+    required int dailyID,
+  }) {
+    return get<BaseData<DetailMarketingReportResponse>>(
+      ApiEndPoint.getMarketingById,
+      query: {
+        'dailyID': dailyID,
+      },
+      parser: (json) {
+        return BaseData<DetailMarketingReportResponse>.fromJson(
+          json as Map<String, dynamic>,
+              (dataJson) => DetailMarketingReportResponse.fromJson(
+            dataJson as Map<String, dynamic>,
+          ),
+        );
+      },
+    );
+  }
 }
 
