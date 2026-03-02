@@ -7,42 +7,47 @@ abstract class DioBaseApiService {
   DioBaseApiService(this.dio);
 
   Future<T> get<T>(
-      String path, {
-        Map<String, dynamic>? query,
-        Options? options,
-        T Function(dynamic json)? parser,
-      }) async {
+    String path, {
+    Map<String, dynamic>? query,
+    Options? options,
+    T Function(dynamic json)? parser,
+  }) async {
     final res = await dio.get(path, queryParameters: query, options: options);
     return parser != null ? parser(res.data) : res.data as T;
   }
 
   Future<T> post<T>(
-      String path, {
-        dynamic body,
-        Map<String, dynamic>? query,
-        Options? options,
-        T Function(dynamic json)? parser,
-      }) async {
-    final res = await dio.post(path, data: body, options: options, queryParameters: query);
+    String path, {
+    dynamic body,
+    Map<String, dynamic>? query,
+    Options? options,
+    T Function(dynamic json)? parser,
+  }) async {
+    final res = await dio.post(
+      path,
+      data: body,
+      options: options,
+      queryParameters: query,
+    );
     return parser != null ? parser(res.data) : res.data as T;
   }
 
   Future<T> put<T>(
-      String path, {
-        dynamic body,
-        Options? options,
-        T Function(dynamic json)? parser,
-      }) async {
+    String path, {
+    dynamic body,
+    Options? options,
+    T Function(dynamic json)? parser,
+  }) async {
     final res = await dio.put(path, data: body, options: options);
     return parser != null ? parser(res.data) : res.data as T;
   }
 
   Future<T> delete<T>(
-      String path, {
-        dynamic body,
-        Options? options,
-        T Function(dynamic json)? parser,
-      }) async {
+    String path, {
+    dynamic body,
+    Options? options,
+    T Function(dynamic json)? parser,
+  }) async {
     final res = await dio.delete(path, data: body, options: options);
     return parser != null ? parser(res.data) : res.data as T;
   }

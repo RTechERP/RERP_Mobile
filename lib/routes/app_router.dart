@@ -45,6 +45,7 @@ import '../features/workplace/app/reports/view/hr/view/pages/hr_admin_detail_scr
 import '../features/workplace/app/reports/view/hr/view/pages/hr_admin_screen.dart';
 import '../features/workplace/app/reports/view/hr/view/pages/hr_lcxp_detail_screen.dart';
 import '../features/workplace/app/reports/view/hr/view/pages/hr_lxcp_screen.dart';
+import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
 import '../features/workplace/app/reports/view/marketing/view/pages/marketing_add_screen.dart';
 import '../features/workplace/app/reports/view/marketing/view/pages/marketing_detail_screen.dart';
 import '../features/workplace/app/reports/view/marketing/view/pages/marketing_screen.dart';
@@ -73,8 +74,7 @@ class AppRouter {
         path: RouteNames.login,
         builder: (context, state) {
           return BlocProvider(
-            create: (_) => getIt<AuthBloc>()
-              ..add(const AuthEvent.init()),
+            create: (_) => getIt<AuthBloc>()..add(const AuthEvent.init()),
             child: const LoginScreen(),
           );
         },
@@ -85,12 +85,11 @@ class AppRouter {
           return MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (_) => getIt<AuthBloc>()
-                  ..add(const AuthEvent.init()),
+                create: (_) => getIt<AuthBloc>()..add(const AuthEvent.init()),
               ),
               BlocProvider(
-                create: (_) => getIt<WorkspaceBloc>()
-                  ..add(const WorkspaceEvent.init()),
+                create: (_) =>
+                    getIt<WorkspaceBloc>()..add(const WorkspaceEvent.init()),
               ),
             ],
             child: child,
@@ -237,10 +236,7 @@ class AppRouter {
       /// Tech Route
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(
-            value: getIt<TechBloc>(),
-            child: child,
-          );
+          return BlocProvider.value(value: getIt<TechBloc>(), child: child);
         },
         routes: [
           GoRoute(
@@ -301,18 +297,28 @@ class AppRouter {
       ),
 
       /// Marketing Route
-      GoRoute(
-        path: RouteNames.reportMarketingdepart,
-        builder: (context, state) => const MarketingScreen(),
-      ),
-      GoRoute(
-        path: RouteNames.reportMarketingdepartAdd,
-        builder: (context, state) => const MarketingAddScreen(),
-      ),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<MarketingBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.reportMarketingdepart,
+            builder: (context, state) => const MarketingScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.reportMarketingdepartAdd,
+            builder: (context, state) => const MarketingAddScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportMarketingdepartDetail,
-        builder: (context, state) => const MarketingDetailScreen(),
+          GoRoute(
+            path: RouteNames.reportMarketingdepartDetail,
+            builder: (context, state) => const MarketingDetailScreen(),
+          ),
+        ],
       ),
 
       /// Assembly - Project Implementation Route

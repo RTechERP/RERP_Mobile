@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 
 import '../../../../../../base/network/errors/error.dart';
@@ -52,5 +54,17 @@ abstract class ReportRepo {
     required int userId,
     required String keyword,
     required int departmentId,
-});
+  });
+
+  /// Upload file báo cáo
+  Future<Either<BaseError, List<UploadFileResponse>>> uploadReportFile({
+    required List<File> files,
+    required String key,
+    required String subPath,
+  });
+
+  /// Lưu báo cáo phòng Marketing
+  Future<Either<BaseError, void>> saveReportMarketing({
+    required Map<String, dynamic> payload,
+  });
 }

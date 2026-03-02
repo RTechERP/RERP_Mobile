@@ -10,12 +10,16 @@ class FormFilePicker extends StatelessWidget {
   final IconData icon;
   final bool allowMultiple;
 
+  /// ➜ thêm callback
+  final ValueChanged<List<PlatformFile>>? onChanged;
+
   const FormFilePicker({
     super.key,
     required this.name,
     required this.label,
     required this.icon,
     this.allowMultiple = false,
+    this.onChanged,
   });
 
   @override
@@ -23,30 +27,22 @@ class FormFilePicker extends StatelessWidget {
     return FormBuilderField<List<PlatformFile>>(
       name: name,
       builder: (field) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ListTile(
-              leading: Icon(icon, color: AppColors.primaryERP),
-              title: Text(label),
-              trailing: const Icon(Icons.upload_file),
-              onTap: () async {
-                final result = await FilePicker.platform.pickFiles(
-                  allowMultiple: allowMultiple,
-                );
-                if (result != null) {
-                  field.didChange(result.files);
-                }
-              },
-            ),
-            if (field.value != null && field.value!.isNotEmpty)
-              ...field.value!.map(
-                    (e) => Padding(
-                  padding: const EdgeInsets.only(left: 16, top: 4),
-                  child: Text('• ${e.name}', style: const TextStyle(fontSize: 13)),
-                ),
-              ),
-          ],
+        return ListTile(
+          leading: Icon(icon, color: AppColors.primaryERP),
+          title: Text(label),
+          trailing: const Icon(Icons.upload_file),
+          onTap: () async {
+            final result = await FilePicker.platform.pickFiles(
+              allowMultiple: allowMultiple,
+            );
+
+            if (result != null && result.files.isNotEmpty) {
+              field.didChange(result.files);
+
+              /// ➜ gọi callback ra ngoài
+              onChanged?.call(result.files);
+            }
+          },
         );
       },
     );

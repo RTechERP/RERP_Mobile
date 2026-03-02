@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../../base/network/dio/dio_base_api_service.dart';
@@ -199,6 +202,61 @@ class ReportService extends DioBaseApiService {
             .map((e) => CopyResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
+    );
+  }
+
+  /// Lưu file đính kèm
+  Future<BaseData<List<UploadFileResponse>>> uploadReportFile({
+    required List<File> files,
+    required String key,
+    required String subPath,
+  }) async {
+    final formData = FormData();
+
+    // add file(s)
+    for (final file in files) {
+      formData.files.add(
+        MapEntry(
+          'files',
+          await MultipartFile.fromFile(
+            file.path,
+            filename: file.path.split('/').last,
+          ),
+        ),
+      );
+    }
+
+    // add text fields
+    formData.fields.addAll([
+      MapEntry('key', key),
+      MapEntry('subPath', subPath),
+    ]);
+
+    return post<BaseData<List<UploadFileResponse>>>(
+      ApiEndPoint.marketing_upload,
+      body: formData,
+      options: Options(
+        contentType: 'multipart/form-data',
+      ),
+      parser: (json) => BaseData<List<UploadFileResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => UploadFileResponse.fromJson(e))
+            .toList(),
+      ),
+    );
+  }
+
+  /// Lưu báo cáo phòng Marketing
+  Future<BaseData<void>> saveReportMarketing({
+    required Map<String, dynamic> payload,
+  }) async {
+    final body = payload;
+
+    return post<BaseData<void>>(
+      ApiEndPoint.saveReportMarketing,
+      body: body,
+      parser: (json) => BaseData<void>.fromJson(json, (_) => null),
     );
   }
 }

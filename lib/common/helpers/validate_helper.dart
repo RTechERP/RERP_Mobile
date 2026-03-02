@@ -83,4 +83,28 @@ class ValidateHelper {
 
     return null;
   }
+  static String? validateMarketingReport({
+    required DateTime? date,
+    required String content,
+    required String result,
+    required String planNextDay,
+  }) {
+    if (date == null) {
+      return 'Vui lòng chọn Ngày báo cáo';
+    }
+
+    if (content.trim().isEmpty) {
+      return 'Vui lòng nhập Nội dung công việc';
+    }
+
+    if (result.trim().isEmpty) {
+      return 'Vui lòng nhập Kết quả';
+    }
+
+    if (planNextDay.trim().isEmpty) {
+      return 'Vui lòng nhập Kế hoạch ngày tiếp theo';
+    }
+
+    return null;
+  }
 }

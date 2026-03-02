@@ -311,11 +311,12 @@ class DetailReportResponse with _$DetailReportResponse {
     @JsonKey(name: 'Confirm') required bool confirm,
     @JsonKey(name: 'Backlog') required String backlog,
     @JsonKey(name: 'DeleteFlag') required int deleteFlag,
-    @JsonKey(name: 'CreatedDate') required DateTime createdDate,   // "2026-02-12T15:32:48.303"
+    @JsonKey(name: 'CreatedDate')
+    required DateTime createdDate, // "2026-02-12T15:32:48.303"
     @JsonKey(name: 'Type') required int type,
     @JsonKey(name: 'ReportLate') required int reportLate,
     @JsonKey(name: 'OldProjectID') required int oldProjectId,
-    @JsonKey(name: 'TotalHours') required double totalHours,        // 8.00
+    @JsonKey(name: 'TotalHours') required double totalHours, // 8.00
     @JsonKey(name: 'StatusResult') required int statusResult,
     @JsonKey(name: 'WorkPlanDetailID') required int workPlanDetailId,
     @JsonKey(name: 'CreatedBy') required String createdBy,
@@ -349,6 +350,7 @@ class CopyRequest with _$CopyRequest {
   factory CopyRequest.fromJson(Map<String, dynamic> json) =>
       _$CopyRequestFromJson(json);
 }
+
 @freezed
 class CopyResponse with _$CopyResponse {
   const factory CopyResponse({
@@ -367,4 +369,67 @@ class CopyResponse with _$CopyResponse {
 
   factory CopyResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyResponseFromJson(json);
+}
+
+/// ==========================
+/// 🔹 Marketing + File Request Model
+/// ==========================
+
+@freezed
+class MarketingFileRequest with _$MarketingFileRequest {
+  const factory MarketingFileRequest({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'FileName') required String fileName,
+    @JsonKey(name: 'FileNameOrigin') required String fileNameOrigin,
+    @JsonKey(name: 'OriginPath') required String originPath,
+    @JsonKey(name: 'Extension') required String extension,
+    @JsonKey(name: 'PathServer') required String pathServer,
+    @JsonKey(name: 'DailyReportID') required int dailyReportId,
+  }) = _MarketingFileRequest;
+
+  factory MarketingFileRequest.fromJson(Map<String, dynamic> json) =>
+      _$MarketingFileRequestFromJson(json);
+}
+
+@freezed
+class MarketingRequest with _$MarketingRequest {
+  const factory MarketingRequest({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'UserReport') required int userReport,
+    @JsonKey(name: 'DateReport') required String dateReport,
+    @JsonKey(name: 'Content') required String content,
+    @JsonKey(name: 'Results') required String results,
+    @JsonKey(name: 'PlanNextDay') required String planNextDay,
+    @JsonKey(name: 'Note') required String note,
+    @JsonKey(name: 'dailyReportMarketingFiles')
+    required List<MarketingFileRequest> dailyReportMarketingFiles,
+    @JsonKey(name: 'deletedFileID') required List<int> deletedFileId,
+  }) = _MarketingRequest;
+
+  factory MarketingRequest.fromJson(Map<String, dynamic> json) =>
+      _$MarketingRequestFromJson(json);
+}
+
+/// ==========================
+/// 🔹 Upload File Response Model
+/// ==========================
+
+@freezed
+class UploadFileResponse with _$UploadFileResponse {
+  const factory UploadFileResponse({
+    @JsonKey(name: 'OriginalFileName') required String originalFileName,
+
+    @JsonKey(name: 'SavedFileName') required String savedFileName,
+
+    @JsonKey(name: 'FilePath') required String filePath,
+
+    @JsonKey(name: 'FileSize') required int fileSize,
+
+    @JsonKey(name: 'ContentType') required String contentType,
+
+    @JsonKey(name: 'UploadTime') required DateTime uploadTime,
+  }) = _UploadFileResponse;
+
+  factory UploadFileResponse.fromJson(Map<String, dynamic> json) =>
+      _$UploadFileResponseFromJson(json);
 }

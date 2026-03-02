@@ -14,6 +14,7 @@ import '../features/workplace/app/reports/data/datasource/service/report_service
 import '../features/workplace/app/reports/data/repository/report_repo.dart';
 import '../features/workplace/app/reports/data/repository/report_repo_impl.dart';
 import '../features/workplace/app/reports/view/hr/view/bloc/hr_bloc.dart';
+import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../features/workplace/view/bloc/workspace_bloc.dart';
 
@@ -63,6 +64,14 @@ void configureDependencies(AppEnv env) {
   );
   getIt.registerFactory<WorkspaceBloc>(() => WorkspaceBloc(getIt<LogUtils>()));
   getIt.registerFactory<HrBloc>(() => HrBloc());
+
+  getIt.registerFactory<MarketingBloc>(
+    () => MarketingBloc(
+      getIt<ReportRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
 
   // ===== THEO ENV =====
   switch (env) {

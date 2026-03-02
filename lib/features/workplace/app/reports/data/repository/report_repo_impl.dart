@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -194,4 +196,47 @@ class ReportRepoImpl implements ReportRepo {
     }
   }
 
+  @override
+  Future<Either<BaseError, List<UploadFileResponse>>> uploadReportFile({
+    required List<File> files,
+    required String key,
+    required String subPath,
+  }) async {
+    try {
+      final res = await _service.uploadReportFile(
+        files: files,
+        key: key,
+        subPath: subPath,
+      );
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, String>> saveReportMarketing({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.saveReportMarketing(
+        payload: payload,
+      );
+
+      if (res.status == 1) {
+        return right(res.message ?? 'Lưu dữ liệu thành công');
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Lưu dữ liệu thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      print('STATUS CODE: ${e.response?.statusCode}');
+      print('RESPONSE DATA: ${e.response?.data}');
+      print('REQUEST DATA: ${e.requestOptions.data}');
+      rethrow; // đừng wrap vội
+    }
+  }
 }

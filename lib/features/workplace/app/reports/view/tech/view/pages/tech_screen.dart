@@ -408,7 +408,6 @@ class _TechScreenState
               child: const Icon(Icons.date_range),
               label: 'Lọc ngày',
               onTap: () {
-                final state = bloc.state;
                 TechDateRangePicker.open(context, bloc);
               },
             ),

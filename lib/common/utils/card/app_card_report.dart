@@ -15,6 +15,7 @@ class AppCardReport extends StatelessWidget {
   final String? category;
 
   final String? project;
+  final String? planNextDay;
 
   const AppCardReport({
     super.key,
@@ -28,6 +29,7 @@ class AppCardReport extends StatelessWidget {
     this.onTap,
     this.category,
     this.project,
+    this.planNextDay,
   });
 
   String _formatTime(DateTime? dt) {
@@ -72,7 +74,10 @@ class AppCardReport extends StatelessWidget {
                       children: [
                         if (projectCode?.isNotEmpty == true)
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.blue.withOpacity(0.12),
                               borderRadius: BorderRadius.circular(8),
@@ -89,9 +94,14 @@ class AppCardReport extends StatelessWidget {
 
                         if (position?.isNotEmpty == true)
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
+                            ),
                             decoration: BoxDecoration(
-                              color: Colors.orange.withOpacity(0.12), // 👈 màu khác category
+                              color: Colors.orange.withOpacity(
+                                0.12,
+                              ), // 👈 màu khác category
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
@@ -107,16 +117,22 @@ class AppCardReport extends StatelessWidget {
                     ),
                     const SizedBox(height: 6),
 
-
                     if (employeeName?.isNotEmpty == true)
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(Icons.person_outline, size: 14, color: Colors.grey),
+                          const Icon(
+                            Icons.person_outline,
+                            size: 14,
+                            color: Colors.grey,
+                          ),
                           const SizedBox(width: 4),
                           Text(
                             employeeName!,
-                            style: TextStyle(fontSize: 12, color: Colors.grey[700]),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey[700],
+                            ),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ],
@@ -139,17 +155,39 @@ class AppCardReport extends StatelessWidget {
 
                     const SizedBox(height: 6),
 
-                    /// Name + Position (Badge)
+                    if (planNextDay?.isNotEmpty == true) ...[
+                      Text(
+                        planNextDay!,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey[800],
+                          height: 1.4,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 6),
+                    ],
 
+                    const SizedBox(height: 6),
+
+                    /// Name + Position (Badge)
 
                     /// Time
                     Row(
                       children: [
-                        const Icon(Icons.access_time_rounded, size: 14, color: Colors.grey),
+                        const Icon(
+                          Icons.access_time_rounded,
+                          size: 14,
+                          color: Colors.grey,
+                        ),
                         const SizedBox(width: 4),
                         Text(
                           _formatTime(time),
-                          style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey[600],
+                          ),
                         ),
                       ],
                     ),
@@ -158,8 +196,7 @@ class AppCardReport extends StatelessWidget {
               ),
 
               /// RIGHT PROGRESS
-              if (showProgress)
-                _CircleProgressSmall(progress: progress),
+              if (showProgress) _CircleProgressSmall(progress: progress),
             ],
           ),
         ),
@@ -192,15 +229,14 @@ class _CircleProgressSmall extends StatelessWidget {
               value: safeProgress,
               strokeWidth: 6,
               backgroundColor: Colors.grey.shade200,
-              valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primaryERP),
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                AppColors.primaryERP,
+              ),
             ),
           ),
           Text(
             '$percent%',
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           ),
         ],
       ),
