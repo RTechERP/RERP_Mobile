@@ -6,9 +6,14 @@ import "package:rtc_erp/common/constants/app_image.dart";
 
 import "../../../base/bloc/index.dart";
 import "../../../base/widgets/base_widget.dart";
+import "../../../common/enums/role_enum.dart";
 import "../../../common/models/index.dart";
+import "../../../common/services/permissions/role_groups.dart";
+import "../../../common/services/permissions/role_resolver.dart";
 import "../../../common/utils/dialog/index.dart";
 
+import "../../../routes/route_names.dart";
+import "../../auth/data/datasource/models/user_model.dart";
 import "bloc/workspace_bloc.dart";
 import "widgets/wp_action_card.dart";
 import "widgets/wp_circle_button.dart";
@@ -23,8 +28,13 @@ class WorkPlaceScreen extends StatefulWidget {
 }
 
 class _WorkPlaceScreenState
-    extends BaseState<WorkPlaceScreen, WorkspaceEvent, WorkspaceState, WorkspaceBloc> {
-
+    extends
+        BaseState<
+          WorkPlaceScreen,
+          WorkspaceEvent,
+          WorkspaceState,
+          WorkspaceBloc
+        > {
   @override
   void initState() {
     super.initState();
@@ -46,6 +56,58 @@ class _WorkPlaceScreenState
 
   @override
   Widget renderUI(BuildContext context) {
+    String? resolveReportRoute(User user) {
+      final roles = RoleResolver.resolve(user);
+      final employeeId = user.employeeId;
+      final deptId = user.departmentId;
+      final posId = user.positionId;
+
+      // if (roles.contains(AppRole.admin)) {
+      //   return RouteNames.reportHRAdmin;
+      // }
+
+      if (roles.contains(AppRole.hr)) {
+
+        if(employeeId == 5 ) return RouteNames.reportHRAdmin;
+
+        /// ===== HR LXCP (ưu tiên position trước) =====
+        if (PositionGroups.positionLxs.contains(posId) ||
+            PositionGroups.positionCps.contains(posId)) {
+          return RouteNames.reportHRLXCP;
+        }
+
+        /// ===== HR ADMIN =====
+        if (DepartmentGroups.hr.contains(deptId)) {
+          return RouteNames.reportHRAdmin;
+        }
+
+
+        return RouteNames.reportHRAdmin;
+      }
+
+      if (roles.contains(AppRole.sale)) {
+        return RouteNames.reportSaleAdd;
+      }
+
+      if (roles.contains(AppRole.tech)) {
+        return RouteNames.reportITdepart;
+      }
+
+      if (roles.contains(AppRole.agv)) {
+        return RouteNames.reportAGVdepart;
+      }
+
+      if (roles.contains(AppRole.ad)) {
+        return RouteNames.reportADdepart;
+      }
+
+      if (roles.contains(AppRole.marketing)) {
+        return RouteNames.reportMarketingdepart;
+      }
+
+      return null;
+    }
+
     return BaseScaffold(
       onRefresh: () async {
         bloc.add(const WorkspaceEvent.refresh());
@@ -57,28 +119,22 @@ class _WorkPlaceScreenState
         surfaceTintColor: Colors.white,
 
         /// ===== HEADER USER INFO =====
-        title: blocBuilder(
-              (context, state) {
-            final user = state.user;
+        title: blocBuilder((context, state) {
+          final user = state.user;
 
-            if (state.status == BaseStateStatus.loading && user == null) {
-              return const SizedBox(
-                height: 36,
-                child: Center(
-                  child: CircularProgressIndicator(strokeWidth: 2),
-                ),
-              );
-            }
-
-            return WpInfoCard(
-              avatarUrl: user?.avatar ?? 'https://i.pravatar.cc/150',
-              name: user?.fullName ?? '---',
-              code: user?.code ?? '---',
+          if (state.status == BaseStateStatus.loading && user == null) {
+            return const SizedBox(
+              height: 36,
+              child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
             );
-          },
-          buildWhen: (p, n) =>
-          p.user != n.user || p.status != n.status,
-        ),
+          }
+
+          return WpInfoCard(
+            avatarUrl: user?.avatar ?? 'https://i.pravatar.cc/150',
+            name: user?.fullName ?? '---',
+            code: user?.code ?? '---',
+          );
+        }, buildWhen: (p, n) => p.user != n.user || p.status != n.status),
 
         actions: [
           Stack(
@@ -113,34 +169,51 @@ class _WorkPlaceScreenState
         ],
       ),
 
-      body: blocBuilder(
-            (context, state) {
-          if (state.status == BaseStateStatus.loading && state.user == null) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      body: blocBuilder((context, state) {
+        if (state.status == BaseStateStatus.loading && state.user == null) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-          if (state.user == null) {
-            return const Center(child: Text('Không có dữ liệu user'));
-          }
+        if (state.user == null) {
+          return const Center(child: Text('Không có dữ liệu user'));
+        }
 
-          return Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
-              child: SafeArea(
-                child: Column(
-                  children: [
-                    WpFavoriteAdd(onAddTap: () => context.push('/favorites')),
+        return Padding(
+          padding: const EdgeInsets.only(top: 12),
+          child: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: SafeArea(
+              child: Column(
+                children: [
+                  WpFavoriteAdd(onAddTap: () => context.push('/favorites')),
 
-                    const SizedBox(height: 8),
+                  const SizedBox(height: 8),
 
                     WpActionCard(
                       onItemTap: (item) {
+                        final user = state.user;
+                        if (user == null) return;
+
+                        /// ===== ONLY HANDLE REPORT =====
+                        if (item.id == 'report') {
+                          final route = resolveReportRoute(user);
+
+                          if (route != null) {
+                            context.push(route);
+                            return;
+                          }
+
+                          DialogService.showProcessing(context: context);
+                          return;
+                        }
+
+                        /// ===== DEFAULT =====
                         final route = item.route;
                         if (route == null || route.isEmpty) {
                           DialogService.showProcessing(context: context);
                           return;
                         }
+
                         context.push(route);
                       },
                       title: 'tab.applications'.tr(),
@@ -200,38 +273,34 @@ class _WorkPlaceScreenState
                       ],
                     ),
 
-                    const SizedBox(height: 8),
+                  const SizedBox(height: 8),
 
-                    WpActionCard(
-                      onItemTap: (item) {
-                        final route = item.route;
-                        if (route == null || route.isEmpty) {
-                          DialogService.showProcessing(context: context);
-                          return;
-                        }
-                        context.push(route);
-                      },
-                      title: 'tab.features'.tr(),
-                      expandable: true,
-                      collapsedItemCount: 11,
-                      items: [
-                        AppItemModel(
-                          id: 'process',
-                          name: 'common.process'.tr(),
-                          iconCodePoint:
-                          Icons.error_outline_outlined.codePoint,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                  WpActionCard(
+                    onItemTap: (item) {
+                      final route = item.route;
+                      if (route == null || route.isEmpty) {
+                        DialogService.showProcessing(context: context);
+                        return;
+                      }
+                      context.push(route);
+                    },
+                    title: 'tab.features'.tr(),
+                    expandable: true,
+                    collapsedItemCount: 11,
+                    items: [
+                      AppItemModel(
+                        id: 'process',
+                        name: 'common.process'.tr(),
+                        iconCodePoint: Icons.error_outline_outlined.codePoint,
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-          );
-        },
-        buildWhen: (p, n) =>
-        p.status != n.status || p.user != n.user,
-      ),
+          ),
+        );
+      }, buildWhen: (p, n) => p.status != n.status || p.user != n.user),
     );
   }
 }
