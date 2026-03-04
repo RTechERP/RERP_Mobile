@@ -155,6 +155,23 @@ class ReportService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<DetailReportNullResponse>> getByIdNull({
+    required int dailyID,
+  }) {
+    return get<BaseData<DetailReportNullResponse>>(
+      ApiEndPoint.getById,
+      query: {
+        'dailyID': dailyID,
+      },
+      parser: (json) => BaseData<DetailReportNullResponse>.fromJson(
+        json,
+            (data) => DetailReportNullResponse.fromJson(
+          data as Map<String, dynamic>,
+        ),
+      ),
+    );
+  }
+
   /// Xoá báo cáo theo ID
   Future<BaseData<void>> deleteReportById({
     required int dailyID,
@@ -205,7 +222,7 @@ class ReportService extends DioBaseApiService {
     );
   }
 
-  Future<BaseData<List<CopyHrResponse>>> copyHrReport({
+  Future<BaseData<List<CopyNullResponse>>> copyHrReport({
     required DateTime dateStart,
     required DateTime dateEnd,
     required int teamId,
@@ -229,13 +246,13 @@ class ReportService extends DioBaseApiService {
       'departmentid': departmentId,
     };
 
-    return post<BaseData<List<CopyHrResponse>>>(
+    return post<BaseData<List<CopyNullResponse>>>(
       ApiEndPoint.copyReport, // sửa đúng endpoint của bạn
       body: body,
-      parser: (json) => BaseData<List<CopyHrResponse>>.fromJson(
+      parser: (json) => BaseData<List<CopyNullResponse>>.fromJson(
         json,
             (data) => (data as List)
-            .map((e) => CopyHrResponse.fromJson(e as Map<String, dynamic>))
+            .map((e) => CopyNullResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
     );

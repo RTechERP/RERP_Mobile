@@ -246,7 +246,7 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
   Future<void> _onSelectReport(int dailyID, Emitter<HrState> emit) async {
     emit(state.copyWith(isLoadingDetail: true));
 
-    final res = await _reportRepo.getById(dailyID: dailyID);
+    final res = await _reportRepo.getByIdNull(dailyID: dailyID);
 
     await res.fold(
       (l) async {
@@ -316,7 +316,7 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
   Future<void> _onLoadDetailData(int dailyID, Emitter<HrState> emit) async {
     emit(state.copyWith(isLoadingDetail: true));
 
-    final detailRes = await _reportRepo.getById(dailyID: dailyID);
+    final detailRes = await _reportRepo.getByIdNull(dailyID: dailyID);
 
     await detailRes.fold(
       (l) async {
@@ -324,7 +324,6 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
       },
       (detail) async {
         final userRes = await _authRepo.getCurrentUser();
-        final projectRes = await _reportRepo.getProject();
 
         final user = userRes.getOrElse(() => null);
         emit(
@@ -392,7 +391,7 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
 
       _log.logI('Submit payload: $payload');
 
-      final res = await _reportRepo.saveReportMarketing(payload: payload);
+      final res = await _reportRepo.saveReportHR(payload: payload);
 
       res.fold(
         (l) {

@@ -93,6 +93,7 @@ class RouteNames {
 
   ///*** HR Department ***///
   static const reportHRAdd = '/report/hr/add';
+  static const reportHREdit = '/report/hr/edit';
 
   ///**** Administration - IT ****///
 

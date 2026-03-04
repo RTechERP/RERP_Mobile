@@ -43,6 +43,10 @@ abstract class ReportRepo {
     required int dailyID,
   });
 
+  Future<Either<BaseError, DetailReportNullResponse>> getByIdNull({
+    required int dailyID,
+  });
+
   /// Xoá báo cáo theo ID
   Future<Either<BaseError, String>> deleteReportById({required int dailyID});
 
@@ -56,7 +60,7 @@ abstract class ReportRepo {
     required int departmentId,
   });
 
-  Future<Either<BaseError, List<CopyHrResponse>>> copyHrReport({
+  Future<Either<BaseError, List<CopyNullResponse>>> copyHrReport({
     required DateTime dateStart,
     required DateTime dateEnd,
     required int teamId,

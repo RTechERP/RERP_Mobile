@@ -43,6 +43,7 @@ import '../features/workplace/app/reports/view/hr/view/bloc/hr_bloc.dart';
 import '../features/workplace/app/reports/view/hr/view/pages/hr_add_screen.dart';
 import '../features/workplace/app/reports/view/hr/view/pages/hr_admin_detail_screen.dart';
 import '../features/workplace/app/reports/view/hr/view/pages/hr_admin_screen.dart';
+import '../features/workplace/app/reports/view/hr/view/pages/hr_edit_screen.dart';
 import '../features/workplace/app/reports/view/hr/view/pages/hr_lcxp_detail_screen.dart';
 import '../features/workplace/app/reports/view/hr/view/pages/hr_lxcp_screen.dart';
 import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
@@ -293,6 +294,18 @@ class AppRouter {
           GoRoute(
             path: RouteNames.reportHRLXCPDetail,
             builder: (context, state) => const HrHclxDetailScreen(),
+          ),
+
+          GoRoute(
+            path: RouteNames.reportHREdit,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>;
+
+              return HrEditScreen(
+                dailyId: extra['dailyId'] as int,
+                type: extra['type'] as DepartmentType?,
+              );
+            },
           ),
         ],
       ),

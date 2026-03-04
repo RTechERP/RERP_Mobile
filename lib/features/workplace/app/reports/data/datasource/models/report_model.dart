@@ -300,7 +300,7 @@ class DetailReportResponse with _$DetailReportResponse {
     @JsonKey(name: 'ID') required int id,
     @JsonKey(name: 'MasterID') required int masterId,
     @JsonKey(name: 'UserReport') required int userReport,
-    @JsonKey(name: 'DateReport') required String dateReport, // "2026-02-16"
+    @JsonKey(name: 'DateReport') required String dateReport,
     @JsonKey(name: 'ProjectID') required int projectId,
     @JsonKey(name: 'Content') required String content,
     @JsonKey(name: 'Results') required String results,
@@ -311,12 +311,11 @@ class DetailReportResponse with _$DetailReportResponse {
     @JsonKey(name: 'Confirm') required bool confirm,
     @JsonKey(name: 'Backlog') required String backlog,
     @JsonKey(name: 'DeleteFlag') required int deleteFlag,
-    @JsonKey(name: 'CreatedDate')
-    required DateTime createdDate, // "2026-02-12T15:32:48.303"
+    @JsonKey(name: 'CreatedDate') required DateTime createdDate,
     @JsonKey(name: 'Type') required int type,
     @JsonKey(name: 'ReportLate') required int reportLate,
     @JsonKey(name: 'OldProjectID') required int oldProjectId,
-    @JsonKey(name: 'TotalHours') required double totalHours, // 8.00
+    @JsonKey(name: 'TotalHours') required double totalHours,
     @JsonKey(name: 'StatusResult') required int statusResult,
     @JsonKey(name: 'WorkPlanDetailID') required int workPlanDetailId,
     @JsonKey(name: 'CreatedBy') required String createdBy,
@@ -330,6 +329,43 @@ class DetailReportResponse with _$DetailReportResponse {
 
   factory DetailReportResponse.fromJson(Map<String, dynamic> json) =>
       _$DetailReportResponseFromJson(json);
+}
+
+@freezed
+class DetailReportNullResponse with _$DetailReportNullResponse {
+  const factory DetailReportNullResponse({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'MasterID') required int masterId,
+    @JsonKey(name: 'UserReport') required int userReport,
+    @JsonKey(name: 'DateReport') required String dateReport,
+    @JsonKey(name: 'ProjectID') required int projectId,
+    @JsonKey(name: 'Content') required String content,
+    @JsonKey(name: 'Results') required String results,
+    @JsonKey(name: 'Problem') required String problem,
+    @JsonKey(name: 'ProblemSolve') required String problemSolve,
+    @JsonKey(name: 'PlanNextDay') required String planNextDay,
+    @JsonKey(name: 'Note') required String note,
+    @JsonKey(name: 'Confirm') required bool confirm,
+    @JsonKey(name: 'Backlog') required String backlog,
+    @JsonKey(name: 'DeleteFlag') required int deleteFlag,
+    @JsonKey(name: 'CreatedDate') required DateTime createdDate,
+    @JsonKey(name: 'Type') required int type,
+    @JsonKey(name: 'ReportLate') required int reportLate,
+    @JsonKey(name: 'OldProjectID') required int oldProjectId,
+    @JsonKey(name: 'TotalHours') required double totalHours,
+    @JsonKey(name: 'StatusResult') required int statusResult,
+    @JsonKey(name: 'WorkPlanDetailID') required int workPlanDetailId,
+    @JsonKey(name: 'CreatedBy') required String createdBy,
+    @JsonKey(name: 'UpdatedDate') required DateTime updatedDate,
+    @JsonKey(name: 'UpdatedBy') required String updatedBy,
+    @JsonKey(name: 'ProjectItemID') int? projectItemId,
+    @JsonKey(name: 'PercentComplete') int? percentComplete,
+    @JsonKey(name: 'TotalHourOT') required double totalHourOT,
+    @JsonKey(name: 'Location') required String location,
+  }) = _DetailReportNullResponse;
+
+  factory DetailReportNullResponse.fromJson(Map<String, dynamic> json) =>
+      _$DetailReportNullResponseFromJson(json);
 }
 
 /// ==========================
@@ -373,8 +409,8 @@ class CopyResponse with _$CopyResponse {
 
 
 @freezed
-class CopyHrResponse with _$CopyHrResponse {
-  const factory CopyHrResponse({
+class CopyNullResponse with _$CopyNullResponse {
+  const factory CopyNullResponse({
     @JsonKey(name: 'ProjectCode') String? projectCode,
     @JsonKey(name: 'ProjectName') String? projectName,
     @JsonKey(name: 'ProjectItemCode') String? projectItemCode,
@@ -385,11 +421,11 @@ class CopyHrResponse with _$CopyHrResponse {
     @JsonKey(name: 'Problem') String? problem,
     @JsonKey(name: 'ProblemSolve') String? problemSolve,
     @JsonKey(name: 'PlanNextDay') required String planNextDay,
-    @JsonKey(name: 'Note') required String note,}) = _CopyHrResponse;
+    @JsonKey(name: 'Note') required String note,}) = _CopyNullResponse;
 
 
-  factory CopyHrResponse.fromJson(Map<String, dynamic> json) =>
-      _$CopyHrResponseFromJson(json);
+  factory CopyNullResponse.fromJson(Map<String, dynamic> json) =>
+      _$CopyNullResponseFromJson(json);
 }
 
 /// ==========================

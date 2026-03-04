@@ -265,7 +265,7 @@ class ReportRepoImpl implements ReportRepo {
   }
 
   @override
-  Future<Either<BaseError, List<CopyHrResponse>>> copyHrReport({
+  Future<Either<BaseError, List<CopyNullResponse>>> copyHrReport({
     required DateTime dateStart,
     required DateTime dateEnd,
     required int teamId,
@@ -284,6 +284,18 @@ class ReportRepoImpl implements ReportRepo {
       );
 
       return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, DetailReportNullResponse>> getByIdNull({
+    required int dailyID,
+  }) async {
+    try {
+      final res = await _service.getByIdNull(dailyID: dailyID);
+      return right(res.data!); // DetailReportResponse
     } on DioException catch (e) {
       return left(e.baseError);
     }

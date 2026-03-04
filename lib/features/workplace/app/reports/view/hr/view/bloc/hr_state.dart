@@ -43,7 +43,7 @@ class HrState extends BaseBlocState {
   final DateTime? lastPickedDate;
 
   final bool isLoadingDetail;
-  final DetailReportResponse? selectedReportDetail;
+  final DetailReportNullResponse? selectedReportDetail;
 
   final DateTime? dateReport;
 
@@ -53,7 +53,7 @@ class HrState extends BaseBlocState {
   final bool isDeleting;
   final bool deleteSuccess;
 
-  final List<CopyHrResponse> copyReports;
+  final List<CopyNullResponse> copyReports;
   final bool isCopyLoading;
 
   final String? copyError;

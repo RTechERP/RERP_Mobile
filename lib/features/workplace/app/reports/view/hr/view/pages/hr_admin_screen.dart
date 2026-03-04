@@ -62,7 +62,7 @@ class _HrAdminScreenState
     super.dispose();
   }
 
-  String _buildCopyContent(List<CopyHrResponse> reports) {
+  String _buildCopyContent(List<CopyNullResponse> reports) {
     if (reports.isEmpty) return '';
 
     final buffer = StringBuffer();
