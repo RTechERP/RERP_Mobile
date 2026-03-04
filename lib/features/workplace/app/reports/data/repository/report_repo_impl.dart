@@ -187,7 +187,6 @@ class ReportRepoImpl implements ReportRepo {
 
       return right(res.data ?? []);
     } on DioException catch (e) {
-      final log = LogUtils();
       return left(e.baseError);
     }
   }
@@ -239,6 +238,52 @@ class ReportRepoImpl implements ReportRepo {
       final res = await _service.getMarketingById(dailyID: dailyID);
 
       return right(res.data!);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, String>> saveReportHR({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.saveReportHr(payload: payload);
+
+      if (res.status == 1) {
+        return right(res.message ?? 'Lưu dữ liệu thành công');
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Lưu dữ liệu thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<CopyHrResponse>>> copyHrReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required int teamId,
+    required int userId,
+    required String keyword,
+    required int departmentId,
+  }) async {
+    try {
+      final res = await _service.copyHrReport(
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        teamId: teamId,
+        userId: userId,
+        keyword: keyword,
+        departmentId: departmentId,
+      );
+
+      return right(res.data ?? []);
     } on DioException catch (e) {
       return left(e.baseError);
     }

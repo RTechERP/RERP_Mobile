@@ -205,6 +205,43 @@ class ReportService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<List<CopyHrResponse>>> copyHrReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required int teamId,
+    required int userId,
+    required String keyword,
+    required int departmentId,
+  }) async {
+    String fmt(DateTime d) {
+      final y = d.year.toString().padLeft(4, '0');
+      final m = d.month.toString().padLeft(2, '0');
+      final day = d.day.toString().padLeft(2, '0');
+      return '$y-$m-$day';
+    }
+
+    final body = <String, dynamic>{
+      'dateStart': fmt(dateStart),
+      'dateEnd': fmt(dateEnd),
+      'team_id': teamId,
+      'keyword': keyword,
+      'userid': userId,
+      'departmentid': departmentId,
+    };
+
+    return post<BaseData<List<CopyHrResponse>>>(
+      ApiEndPoint.copyReport, // sửa đúng endpoint của bạn
+      body: body,
+      parser: (json) => BaseData<List<CopyHrResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => CopyHrResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+
   /// Lưu file đính kèm
   Future<BaseData<List<UploadFileResponse>>> uploadReportFile({
     required List<File> files,
@@ -277,6 +314,19 @@ class ReportService extends DioBaseApiService {
           ),
         );
       },
+    );
+  }
+
+  /// Lưu báo cáo phòng Marketing
+  Future<BaseData<void>> saveReportHr({
+    required Map<String, dynamic> payload,
+  }) async {
+    final body = payload;
+
+    return post<BaseData<void>>(
+      ApiEndPoint.saveReportMarketing,
+      body: body,
+      parser: (json) => BaseData<void>.fromJson(json, (_) => null),
     );
   }
 }

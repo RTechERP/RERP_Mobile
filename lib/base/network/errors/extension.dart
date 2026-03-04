@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 
+import '../../../common/utils/snack_bar_helper.dart';
+import '../../../di/injection.dart';
 import '../constants/constants.dart';
 import 'error.dart';
 
@@ -55,5 +58,26 @@ extension BaseErrorMessage on BaseError {
       return (this as HttpUnknownError).message;
     }
     return "HttpUnknownError";
+  }
+}
+
+extension AppMessageExtension on BuildContext {
+  void showMessage(
+      String message, {
+        SnackBarType type = SnackBarType.success,
+      }) {
+    final helper = getIt<SnackBarHelper>();
+
+    switch (type) {
+      case SnackBarType.error:
+        helper.showError(this, message);
+        break;
+      case SnackBarType.info:
+        helper.showInfo(this, message);
+        break;
+      default:
+        helper.showSuccess(this, message);
+        break;
+    }
   }
 }

@@ -56,6 +56,14 @@ abstract class ReportRepo {
     required int departmentId,
   });
 
+  Future<Either<BaseError, List<CopyHrResponse>>> copyHrReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required int teamId,
+    required int userId,
+    required String keyword,
+    required int departmentId,
+  });
   /// Upload file báo cáo
   Future<Either<BaseError, List<UploadFileResponse>>> uploadReportFile({
     required List<File> files,
@@ -72,4 +80,11 @@ abstract class ReportRepo {
   Future<Either<BaseError, DetailMarketingReportResponse>> getMarketingById({
     required int dailyID,
   });
+
+  /// Lưu báo cáo phòng HR
+  Future<Either<BaseError, void>> saveReportHR({
+    required Map<String, dynamic> payload,
+  });
+
+
 }

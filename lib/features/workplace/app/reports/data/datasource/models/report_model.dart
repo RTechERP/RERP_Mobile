@@ -371,6 +371,27 @@ class CopyResponse with _$CopyResponse {
       _$CopyResponseFromJson(json);
 }
 
+
+@freezed
+class CopyHrResponse with _$CopyHrResponse {
+  const factory CopyHrResponse({
+    @JsonKey(name: 'ProjectCode') String? projectCode,
+    @JsonKey(name: 'ProjectName') String? projectName,
+    @JsonKey(name: 'ProjectItemCode') String? projectItemCode,
+    @JsonKey(name: 'DateReport') required String dateReport,
+    @JsonKey(name: 'Mission') String? mission,
+    @JsonKey(name: 'Results') String? results,
+    @JsonKey(name: 'Backlog') required String backlog,
+    @JsonKey(name: 'Problem') String? problem,
+    @JsonKey(name: 'ProblemSolve') String? problemSolve,
+    @JsonKey(name: 'PlanNextDay') required String planNextDay,
+    @JsonKey(name: 'Note') required String note,}) = _CopyHrResponse;
+
+
+  factory CopyHrResponse.fromJson(Map<String, dynamic> json) =>
+      _$CopyHrResponseFromJson(json);
+}
+
 /// ==========================
 /// 🔹 Marketing + File Request Model
 /// ==========================

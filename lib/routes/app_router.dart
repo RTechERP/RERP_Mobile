@@ -265,8 +265,8 @@ class AppRouter {
       /// Hr Route
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider<HrBloc>(
-            create: (context) => getIt<HrBloc>(),
+          return BlocProvider.value(
+            value:getIt<HrBloc>(),
             child: child,
           );
         },

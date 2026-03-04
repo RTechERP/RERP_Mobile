@@ -63,7 +63,9 @@ void configureDependencies(AppEnv env) {
     () => TechBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
   getIt.registerFactory<WorkspaceBloc>(() => WorkspaceBloc(getIt<LogUtils>()));
-  getIt.registerFactory<HrBloc>(() => HrBloc());
+  getIt.registerFactory<HrBloc>(
+    () => HrBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
 
   getIt.registerFactory<MarketingBloc>(
     () => MarketingBloc(
