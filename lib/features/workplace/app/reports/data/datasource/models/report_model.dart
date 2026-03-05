@@ -494,6 +494,8 @@ class UploadFileResponse with _$UploadFileResponse {
 /// ==========================
 /// 🔹 Detail Marketing Report Response Model
 /// ==========================
+
+
 @freezed
 class DetailMarketingReportResponse
     with _$DetailMarketingReportResponse {
@@ -547,4 +549,139 @@ class MarketingDailyFile with _$MarketingDailyFile {
       Map<String, dynamic> json,
       ) =>
       _$MarketingDailyFileFromJson(json);
+}
+
+
+/// ==========================
+/// 🔹 LXCP Request Model
+/// ==========================
+
+@freezed
+class ReportLXCPRequest with _$ReportLXCPRequest {
+  const factory ReportLXCPRequest({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'EmployeeID') required int employeeId,
+    @JsonKey(name: 'DateReport') required String dateReport,
+    @JsonKey(name: 'FilmManagementDetailID') int? filmManagementDetailId,
+    @JsonKey(name: 'Quantity') int? quantity,
+    @JsonKey(name: 'TimeActual') int? timeActual,
+    @JsonKey(name: 'PerformanceActual') double? performanceActual,
+    @JsonKey(name: 'Percentage') double? percentage,
+    @JsonKey(name: 'KmNumber') int? kmNumber,
+    @JsonKey(name: 'TotalLate') int? totalLate,
+    @JsonKey(name: 'TotalTimeLate') int? totalTimeLate,
+    @JsonKey(name: 'ReasonLate') String? reasonLate,
+    @JsonKey(name: 'StatusVehicle') String? statusVehicle,
+    @JsonKey(name: 'Propose') String? propose,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _ReportLXCPRequest;
+
+  factory ReportLXCPRequest.fromJson(Map<String, dynamic> json) =>
+      _$ReportLXCPRequestFromJson(json);
+}
+
+/// ==========================
+/// 🔹 LXCP Response Model
+/// ==========================
+
+@freezed
+class ReportLXCPResponse with _$ReportLXCPResponse {
+  const factory ReportLXCPResponse({
+    int? status,
+    String? message,
+    ReportLXCPData? data,
+    String? error,
+  }) = _ReportLXCPResponse;
+
+  factory ReportLXCPResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReportLXCPResponseFromJson(json);
+}
+
+@freezed
+class ReportLXCPData with _$ReportLXCPData {
+  const factory ReportLXCPData({
+    @Default([]) List<TechnicalReport> technical,
+    @Default([]) List<HrReportItem> dataFilm,
+    @Default([]) List<HrReportItem> dataDriver,
+    @Default([]) List<HrReportItem> hrAll,
+  }) = _ReportLXCPData;
+
+  factory ReportLXCPData.fromJson(Map<String, dynamic> json) =>
+      _$ReportLXCPDataFromJson(json);
+}
+
+@freezed
+class TechnicalReport with _$TechnicalReport {
+  const factory TechnicalReport({
+    @JsonKey(name: 'UserID') int? userId,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'Confirm') bool? confirm,
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'DateReport') String? dateReport,
+    @JsonKey(name: 'ProjectCode') String? projectCode,
+    @JsonKey(name: 'ProjectName') String? projectName,
+    @JsonKey(name: 'ProjectText') String? projectText,
+    @JsonKey(name: 'TotalHours') double? totalHours,
+    @JsonKey(name: 'Results') String? results,
+    @JsonKey(name: 'PlanNextDay') String? planNextDay,
+    @JsonKey(name: 'Backlog') String? backlog,
+    @JsonKey(name: 'Problem') String? problem,
+    @JsonKey(name: 'ProblemSolve') String? problemSolve,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'CreatedDate') String? createdDate,
+    @JsonKey(name: 'Type') int? type,
+    @JsonKey(name: 'TypeText') String? typeText,
+    @JsonKey(name: 'PositionName') String? positionName,
+    @JsonKey(name: 'Mission') String? mission,
+    @JsonKey(name: 'ProjectItemCode') String? projectItemCode,
+    @JsonKey(name: 'Content') String? content,
+    @JsonKey(name: 'PercentComplete') int? percentComplete,
+    @JsonKey(name: 'ProjectItemName') String? projectItemName,
+    @JsonKey(name: 'TotalHourOT') double? totalHourOT,
+    @JsonKey(name: 'HolidayDate') String? holidayDate,
+    @JsonKey(name: 'PlanStartDate') String? planStartDate,
+    @JsonKey(name: 'PlanEndDate') String? planEndDate,
+    @JsonKey(name: 'TotalDayPlan') double? totalDayPlan,
+    @JsonKey(name: 'ActualStartDate') String? actualStartDate,
+    @JsonKey(name: 'ActualEndDate') String? actualEndDate,
+    @JsonKey(name: 'TotalDayActual') double? totalDayActual,
+  }) = _TechnicalReport;
+
+  factory TechnicalReport.fromJson(Map<String, dynamic> json) =>
+      _$TechnicalReportFromJson(json);
+}
+
+@freezed
+class HrReportItem with _$HrReportItem {
+  const factory HrReportItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'DateReport') String? dateReport,
+    @JsonKey(name: 'FilmManagementDetailID') int? filmManagementDetailId,
+    @JsonKey(name: 'Quantity') int? quantity,
+    @JsonKey(name: 'TimeActual') double? timeActual,
+    @JsonKey(name: 'PerformanceActual') double? performanceActual,
+    @JsonKey(name: 'Percentage') double? percentage,
+    @JsonKey(name: 'KmNumber') double? kmNumber,
+    @JsonKey(name: 'TotalLate') int? totalLate,
+    @JsonKey(name: 'TotalTimeLate') double? totalTimeLate,
+    @JsonKey(name: 'ReasonLate') String? reasonLate,
+    @JsonKey(name: 'StatusVehicle') String? statusVehicle,
+    @JsonKey(name: 'Propose') String? propose,
+    @JsonKey(name: 'CreatedDate') String? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') String? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'PerformanceAVG') double? performanceAVG,
+    @JsonKey(name: 'WorkContent') String? workContent,
+    @JsonKey(name: 'FilmName') String? filmName,
+    @JsonKey(name: 'UnitName') String? unitName,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'ChucVuHDID') int? chucVuHdId,
+  }) = _HrReportItem;
+
+  factory HrReportItem.fromJson(Map<String, dynamic> json) =>
+      _$HrReportItemFromJson(json);
 }

@@ -90,5 +90,12 @@ abstract class ReportRepo {
     required Map<String, dynamic> payload,
   });
 
+  /// Danh sách báo cáo LXCP
+  Future<Either<BaseError, ReportLXCPResponse>> getLXCPDailyReport({
+    required String employeeId,
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required String keyword,
+  });
 
 }

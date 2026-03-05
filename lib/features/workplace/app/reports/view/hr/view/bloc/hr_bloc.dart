@@ -54,7 +54,7 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
     });
   }
 
-  Future<void> _loadDailyReport({
+  Future<void> _loadDailyHRReport({
     required DateTime start,
     required DateTime end,
     required Emitter<HrState> emit,
@@ -86,6 +86,43 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
           state.copyWith(
             status: BaseStateStatus.success,
             reports: r,
+            dateStart: start,
+            dateEnd: end,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _loadDailyLXCPReport({
+    required DateTime start,
+    required DateTime end,
+    required Emitter<HrState> emit,
+  }) async {
+   final employeeId = state.employeeID;
+
+
+    if (employeeId == null) {
+      emit(state.copyWith(status: BaseStateStatus.failed));
+      return;
+    }
+
+    final res = await _reportRepo.getLXCPDailyReport(
+      dateStart: start,
+      dateEnd: end,
+      keyword: state.keyword ?? '',
+      employeeId: employeeId.toString(),
+    );
+
+    res.fold(
+          (l) {
+        emit(state.copyWith(status: BaseStateStatus.failed));
+      },
+          (r) {
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.success,
+            lxcpReports: r.data?.hrAll,
             dateStart: start,
             dateEnd: end,
           ),
@@ -126,7 +163,7 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
         final start = now;
         final end = DateTime(now.year, now.month, now.day + 1);
 
-        await _loadDailyReport(start: start, end: end, emit: emit);
+        await _loadDailyHRReport(start: start, end: end, emit: emit);
       },
     );
 
@@ -139,14 +176,36 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
   Future<void> _onInitLxcp(Emitter<HrState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
-    // TODO: call API LXCP
-    await Future.delayed(const Duration(milliseconds: 500));
+    final userRes = await _authRepo.getCurrentUser();
 
-    emit(
-      state.copyWith(
-        status: BaseStateStatus.success,
-        lxcpList: const [], // fake data tạm
-      ),
+    await userRes.fold(
+          (l) async {
+        emit(state.copyWith(status: BaseStateStatus.failed));
+      },
+          (user) async {
+        if (user == null) {
+          emit(state.copyWith(status: BaseStateStatus.failed));
+          return;
+        }
+
+        emit(
+          state.copyWith(
+            userId: user.id,
+            fullName: user.fullName,
+            departmentId: user.departmentId,
+            teamId: user.teamOfUser,
+            employeeID: user.employeeId,
+            positionName: user.positionName,
+            departmentName: user.departmentName,
+          ),
+        );
+
+        final now = DateTime.now();
+        final start = now;
+        final end = DateTime(now.year, now.month, now.day + 1);
+
+        await _loadDailyLXCPReport(start: start, end: end, emit: emit);
+      },
     );
   }
 
@@ -310,7 +369,7 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
 
     emit(state.copyWith(status: BaseStateStatus.loading));
 
-    await _loadDailyReport(start: start, end: end, emit: emit);
+    await _loadDailyHRReport(start: start, end: end, emit: emit);
   }
 
   Future<void> _onLoadDetailData(int dailyID, Emitter<HrState> emit) async {
@@ -323,9 +382,7 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
         emit(state.copyWith(isLoadingDetail: false));
       },
       (detail) async {
-        final userRes = await _authRepo.getCurrentUser();
 
-        final user = userRes.getOrElse(() => null);
         emit(
           state.copyWith(
             isLoadingDetail: false,

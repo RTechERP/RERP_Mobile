@@ -300,4 +300,30 @@ class ReportRepoImpl implements ReportRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError,ReportLXCPResponse>> getLXCPDailyReport({
+    required String employeeId,
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required String keyword,
+  }) async {
+    try {
+      final res = await _service.getLXCPDailyReport(
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        keyword: keyword,
+        employeeID: employeeId,
+      );
+
+      return right(res.data!);
+    } on DioException catch (e) {
+      final log = LogUtils();
+
+      log.logE('Dio status: ${e.response?.statusCode}');
+      log.logE('Dio data: ${e.response?.data}');
+
+      return left(e.baseError);
+    }
+  }
 }

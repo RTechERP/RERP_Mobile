@@ -7,6 +7,7 @@ class HrState extends BaseBlocState {
 
   final List<ReportResponse> reports;
 
+  final List<HrReportItem> lxcpReports;
   final List<DepartResponse> departs;
 
   final DetailReportResponse? detailReport;
@@ -77,6 +78,7 @@ class HrState extends BaseBlocState {
     this.adList,
     this.lxcpList,
     this.reports = const [],
+    this.lxcpReports = const [],
     this.departs = const [],
     this.projectItem = const [],
     this.detailReport,
@@ -123,6 +125,7 @@ class HrState extends BaseBlocState {
     adList: null,
     lxcpList: null,
     reports: [],
+    lxcpReports: [],
     departs: [],
     projectItem: [],
     detailReport: null,
@@ -201,5 +204,6 @@ class HrState extends BaseBlocState {
     departmentName,
     content,
     results,
+    lxcpReports,
   ];
 }

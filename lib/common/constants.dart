@@ -101,4 +101,6 @@ class ApiEndPoint{
   static const String getMarketingById = '/DailyReportTech/get-by-id-hr';
 
   static const String saveReportHr = '/DailyReportTech/save-report-hr';
+
+  static const String getDailyLXCP = '/DailyReportHr/get-daily-report-hr';
 }

@@ -28,7 +28,9 @@ class ReportService extends DioBaseApiService {
       final h = d.hour.toString().padLeft(2, '0');
       final min = d.minute.toString().padLeft(2, '0');
       final s = d.second.toString().padLeft(2, '0');
-      return '$y-$m-$day' 'T' '$h:$min:$s';
+      return '$y-$m-$day'
+          'T'
+          '$h:$min:$s';
     }
 
     final body = <String, dynamic>{
@@ -45,7 +47,7 @@ class ReportService extends DioBaseApiService {
       body: body,
       parser: (json) => BaseData<List<ReportResponse>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map((e) => ReportResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
@@ -53,37 +55,26 @@ class ReportService extends DioBaseApiService {
   }
 
   /// Danh sách phòng ban
-  Future<BaseData<List<DepartResponse>>> getDepart(){
-
+  Future<BaseData<List<DepartResponse>>> getDepart() {
     return get<BaseData<List<DepartResponse>>>(
       ApiEndPoint.getDepart,
       parser: (json) => BaseData<List<DepartResponse>>.fromJson(
         json,
-            (data) => (data as List)
-            .map(
-              (e) => DepartResponse.fromJson(
-            e as Map<String, dynamic>,
-          ),
-        )
+        (data) => (data as List)
+            .map((e) => DepartResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
     );
-
   }
 
   /// Danh sách dự án
   Future<BaseData<List<ProjectResponse>>> getProject() async {
-
     return get<BaseData<List<ProjectResponse>>>(
       ApiEndPoint.getProject,
       parser: (json) => BaseData<List<ProjectResponse>>.fromJson(
         json,
-            (data) => (data as List)
-            .map(
-              (e) => ProjectResponse.fromJson(
-            e as Map<String, dynamic>,
-          ),
-        )
+        (data) => (data as List)
+            .map((e) => ProjectResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
     );
@@ -94,21 +85,13 @@ class ReportService extends DioBaseApiService {
     required int projectId,
     int status = 2,
   }) async {
-
     return get<BaseData<List<ProjectItemResponse>>>(
       ApiEndPoint.getProjectItemByUser,
-      query: {
-        'projectId': projectId,
-        'status': status,
-      },
+      query: {'projectId': projectId, 'status': status},
       parser: (json) => BaseData<List<ProjectItemResponse>>.fromJson(
         json,
-            (data) => (data as List)
-            .map(
-              (e) => ProjectItemResponse.fromJson(
-            e as Map<String, dynamic>,
-          ),
-        )
+        (data) => (data as List)
+            .map((e) => ProjectItemResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
     );
@@ -138,19 +121,13 @@ class ReportService extends DioBaseApiService {
   }
 
   /// Lấy chi tiết báo cáo theo ID
-  Future<BaseData<DetailReportResponse>> getById({
-    required int dailyID,
-  }) {
+  Future<BaseData<DetailReportResponse>> getById({required int dailyID}) {
     return get<BaseData<DetailReportResponse>>(
       ApiEndPoint.getById,
-      query: {
-        'dailyID': dailyID,
-      },
+      query: {'dailyID': dailyID},
       parser: (json) => BaseData<DetailReportResponse>.fromJson(
         json,
-            (data) => DetailReportResponse.fromJson(
-          data as Map<String, dynamic>,
-        ),
+        (data) => DetailReportResponse.fromJson(data as Map<String, dynamic>),
       ),
     );
   }
@@ -160,27 +137,20 @@ class ReportService extends DioBaseApiService {
   }) {
     return get<BaseData<DetailReportNullResponse>>(
       ApiEndPoint.getById,
-      query: {
-        'dailyID': dailyID,
-      },
+      query: {'dailyID': dailyID},
       parser: (json) => BaseData<DetailReportNullResponse>.fromJson(
         json,
-            (data) => DetailReportNullResponse.fromJson(
-          data as Map<String, dynamic>,
-        ),
+        (data) =>
+            DetailReportNullResponse.fromJson(data as Map<String, dynamic>),
       ),
     );
   }
 
   /// Xoá báo cáo theo ID
-  Future<BaseData<void>> deleteReportById({
-    required int dailyID,
-  }) async {
+  Future<BaseData<void>> deleteReportById({required int dailyID}) async {
     return post<BaseData<void>>(
       ApiEndPoint.deleteReportById,
-      query:{
-        'dailyReportID': dailyID,
-      },
+      query: {'dailyReportID': dailyID},
       parser: (json) => BaseData<void>.fromJson(json, (_) {}),
     );
   }
@@ -215,7 +185,7 @@ class ReportService extends DioBaseApiService {
       body: body,
       parser: (json) => BaseData<List<CopyResponse>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map((e) => CopyResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
@@ -251,13 +221,12 @@ class ReportService extends DioBaseApiService {
       body: body,
       parser: (json) => BaseData<List<CopyNullResponse>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map((e) => CopyNullResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
     );
   }
-
 
   /// Lưu file đính kèm
   Future<BaseData<List<UploadFileResponse>>> uploadReportFile({
@@ -289,14 +258,11 @@ class ReportService extends DioBaseApiService {
     return post<BaseData<List<UploadFileResponse>>>(
       ApiEndPoint.marketing_upload,
       body: formData,
-      options: Options(
-        contentType: 'multipart/form-data',
-      ),
+      options: Options(contentType: 'multipart/form-data'),
       parser: (json) => BaseData<List<UploadFileResponse>>.fromJson(
         json,
-            (data) => (data as List)
-            .map((e) => UploadFileResponse.fromJson(e))
-            .toList(),
+        (data) =>
+            (data as List).map((e) => UploadFileResponse.fromJson(e)).toList(),
       ),
     );
   }
@@ -320,13 +286,11 @@ class ReportService extends DioBaseApiService {
   }) {
     return get<BaseData<DetailMarketingReportResponse>>(
       ApiEndPoint.getMarketingById,
-      query: {
-        'dailyID': dailyID,
-      },
+      query: {'dailyID': dailyID},
       parser: (json) {
         return BaseData<DetailMarketingReportResponse>.fromJson(
           json as Map<String, dynamic>,
-              (dataJson) => DetailMarketingReportResponse.fromJson(
+          (dataJson) => DetailMarketingReportResponse.fromJson(
             dataJson as Map<String, dynamic>,
           ),
         );
@@ -346,5 +310,43 @@ class ReportService extends DioBaseApiService {
       parser: (json) => BaseData<void>.fromJson(json, (_) => null),
     );
   }
-}
 
+  /// Danh sách báo cáo LXCP
+  Future<BaseData<ReportLXCPResponse>> getLXCPDailyReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required String keyword,
+    required String employeeID,
+  }) async {
+    String fmt(DateTime d) {
+      final y = d.year.toString().padLeft(4, '0');
+      final m = d.month.toString().padLeft(2, '0');
+      final day = d.day.toString().padLeft(2, '0');
+      final h = d.hour.toString().padLeft(2, '0');
+      final min = d.minute.toString().padLeft(2, '0');
+      final s = d.second.toString().padLeft(2, '0');
+      return '$y-$m-$day'
+          'T'
+          '$h:$min:$s';
+    }
+
+    final body = <String, dynamic>{
+      'DateStart': fmt(dateStart),
+      'DateEnd': fmt(dateEnd),
+      'Keyword': keyword,
+      'employeeID': employeeID,
+    };
+
+    return post<BaseData<ReportLXCPResponse>>(
+      ApiEndPoint.getDailyLXCP,
+      body: body,
+      parser: (json) =>
+      BaseData<ReportLXCPResponse>.fromJson(
+        {
+          "data": json
+        },
+            (data) => ReportLXCPResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+}
