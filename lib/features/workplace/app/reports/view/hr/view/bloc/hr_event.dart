@@ -1,26 +1,43 @@
 part of 'hr_bloc.dart';
 
 @freezed
-class HrEvent with _$HrEvent{
+class HrEvent with _$HrEvent {
   const factory HrEvent.initAd() = _InitAd;
 
   const factory HrEvent.initLxcp() = _InitLxcp;
 
   /// ===== SUBMIT =====
   const factory HrEvent.submitReport(DateTime pickedDate) =
-  _SubmitReportWithDate;
+      _SubmitReportWithDate;
+
+  const factory HrEvent.submitReportLCXP(DateTime pickedDate) =
+      _SubmitReportLCXPWithDate;
+
+  const factory HrEvent.deleteReportLCXP(int id, bool isDeleted) = _DeleteReportLCXPWithDate;
 
   /// ===== RESET SUBMIT FLAGS ====
   const factory HrEvent.resetSubmitFlags() = _ResetSubmitFlags;
 
   const factory HrEvent.updateWork({
-
     String? content,
     String? results,
     String? note,
     String? backlog,
     String? planNextDay,
   }) = _UpdateWork;
+
+  const factory HrEvent.lxcpUpdateWork({
+    String? quantity,
+    int? timeActual,
+    String? performanceActual,
+    String? percentage,
+    int? kmNumber,
+    int? totalLate,
+    int? totalTimeLate,
+    String? reasonLate,
+    String? statusVehicle,
+    String? propose,
+  }) = _LxcpUpdateWork;
 
   const factory HrEvent.updateDate(DateTime? picked) = _UpdateDate;
 
@@ -32,12 +49,12 @@ class HrEvent with _$HrEvent{
   }) = _ChangeDateRange;
 
   const factory HrEvent.loadDetailData({required int dailyID}) =
-  _LoadDetailData;
+      _LoadDetailData;
 
   const factory HrEvent.selectReport({required int dailyID}) = _SelectReport;
 
   const factory HrEvent.submitEditReport(DateTime pickedDate, int dailyID) =
-  _SubmitEditReportWithDate;
+      _SubmitEditReportWithDate;
 
   /// ===== COPY REPORT ====
   const factory HrEvent.copyReport({
@@ -51,5 +68,4 @@ class HrEvent with _$HrEvent{
 
   /// ===== RESET COPY ====
   const factory HrEvent.resetCopyReport() = _ResetCopy;
-
 }

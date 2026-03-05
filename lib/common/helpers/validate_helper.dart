@@ -40,7 +40,8 @@ class ValidateHelper {
       if (total <= 0) return '${prefix}Tổng số giờ phải lớn hơn 0';
       if (total > 24) return '${prefix}Tổng số giờ không được lớn hơn 24';
       if (ot < 0) return '${prefix}Số giờ OT không được nhỏ hơn 0';
-      if (ot > total) return '${prefix}Số giờ OT không được lớn hơn Tổng số giờ';
+      if (ot > total)
+        return '${prefix}Số giờ OT không được lớn hơn Tổng số giờ';
       if (total > 8 && ot <= 0) {
         return '${prefix}Tổng số giờ lớn hơn 8, vui lòng nhập OT';
       }
@@ -72,8 +73,7 @@ class ValidateHelper {
       return 'Tổng giờ hành chính trong ngày không được lớn hơn 8h';
     }
 
-    if (locationType == 'other' &&
-        (location?.trim().isEmpty ?? true)) {
+    if (locationType == 'other' && (location?.trim().isEmpty ?? true)) {
       return 'Vui lòng nhập Nơi làm việc';
     }
 
@@ -83,6 +83,7 @@ class ValidateHelper {
 
     return null;
   }
+
   static String? validateMarketingReport({
     required DateTime? date,
     required String content,
@@ -103,6 +104,31 @@ class ValidateHelper {
 
     if (planNextDay.trim().isEmpty) {
       return 'Vui lòng nhập Kế hoạch ngày tiếp theo';
+    }
+
+    return null;
+  }
+
+  static String? validateLxReport({
+    required DateTime? date,
+    required int? kmNumber,
+    required int? totalLate,
+    required int? totalTimeLate,
+  }) {
+    if (date == null) {
+      return 'Vui lòng chọn Ngày báo cáo';
+    }
+
+    if (kmNumber == null || kmNumber <= 0) {
+      return 'Vui lòng nhập Số Km';
+    }
+
+    if (totalLate == null) {
+      return 'Vui lòng nhập Số cuốc xe muộn';
+    }
+
+    if (totalTimeLate == null) {
+      return 'Vui lòng nhập Tổng số phút chậm';
     }
 
     return null;

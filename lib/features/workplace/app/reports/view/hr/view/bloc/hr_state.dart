@@ -71,6 +71,20 @@ class HrState extends BaseBlocState {
   final String? content;
 
   final String? results;
+  final int? positionId;
+
+  final String? quantity;
+  final int? timeActual;
+  final String? performanceActual;
+  final String? percentage;
+  final int? kmNumber;
+  final int? totalLate;
+  final int? totalTimeLate;
+  final String? reasonLate;
+  final String? statusVehicle;
+  final String? propose;
+
+  final int? filmManagementDetailID;
 
   const HrState({
     required super.status,
@@ -118,6 +132,18 @@ class HrState extends BaseBlocState {
     this.departmentName,
     this.content,
     this.results,
+    this.positionId,
+    this.quantity,
+    this.timeActual,
+    this.performanceActual,
+    this.percentage,
+    this.kmNumber,
+    this.totalLate,
+    this.totalTimeLate,
+    this.reasonLate,
+    this.statusVehicle,
+    this.propose,
+    this.filmManagementDetailID,
   });
 
   factory HrState.init() => const HrState(
@@ -156,6 +182,18 @@ class HrState extends BaseBlocState {
     departmentName: null,
     content: null,
     results: null,
+    positionId: null,
+    quantity: null,
+    timeActual: null,
+    performanceActual: null,
+    percentage: null,
+    kmNumber: null,
+    totalLate: null,
+    totalTimeLate: null,
+    reasonLate: null,
+    statusVehicle: null,
+    propose: null,
+    filmManagementDetailID: null,
   );
 
   @override
@@ -205,5 +243,17 @@ class HrState extends BaseBlocState {
     content,
     results,
     lxcpReports,
+    positionId,
+    quantity,
+    timeActual,
+    performanceActual,
+    percentage,
+    kmNumber,
+    totalLate,
+    totalTimeLate,
+    reasonLate,
+    statusVehicle,
+    propose,
+    filmManagementDetailID,
   ];
 }

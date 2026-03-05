@@ -302,7 +302,7 @@ class ReportRepoImpl implements ReportRepo {
   }
 
   @override
-  Future<Either<BaseError,ReportLXCPResponse>> getLXCPDailyReport({
+  Future<Either<BaseError, ReportLXCPResponse>> getLXCPDailyReport({
     required String employeeId,
     required DateTime dateStart,
     required DateTime dateEnd,
@@ -324,6 +324,26 @@ class ReportRepoImpl implements ReportRepo {
       log.logE('Dio data: ${e.response?.data}');
 
       return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, String>> saveReportLXCP({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    try {
+      final res = await _service.saveReportLXCP(payload: payload);
+      if (res.status == 1) {
+        return right(res.message ?? 'Lưu dữ liệu thành công');
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Lưu dữ liệu thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      rethrow;
     }
   }
 }

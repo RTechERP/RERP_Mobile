@@ -104,8 +104,7 @@ class _HrAddAdminView extends StatefulWidget {
   State<_HrAddAdminView> createState() => _HrAddAdminViewState();
 }
 
-class _HrAddAdminViewState
-    extends State<_HrAddAdminView> {
+class _HrAddAdminViewState extends State<_HrAddAdminView> {
   final _formAdminKey = GlobalKey<FormBuilderState>();
   bool _showExtraInfo = false;
 
@@ -127,6 +126,7 @@ class _HrAddAdminViewState
     super.didChangeDependencies();
     bloc = context.read<HrBloc>();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HrBloc, HrState>(
@@ -340,11 +340,313 @@ class _HrAddAdminViewState
   }
 }
 
-class _HrAddLxcpView extends StatelessWidget {
+class _HrAddLxcpView extends StatefulWidget {
   const _HrAddLxcpView();
 
   @override
+  State<_HrAddLxcpView> createState() => _HrAddLxcpViewState();
+}
+
+class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
+  bool _showExtraInfo = false;
+
+  final _formLxKey = GlobalKey<FormBuilderState>();
+  final _formCpKey = GlobalKey<FormBuilderState>();
+
+  DateTime? _initialReportDate() {
+    final now = DateTime.now();
+
+    // 09:00 hôm nay
+    final todayAt9 = DateTime(now.year, now.month, now.day, 9);
+
+    // Nếu trước 09:00 => null, sau 09:00 => now
+    if (now.isBefore(todayAt9)) return null;
+    return now;
+  }
+
+  late HrBloc bloc;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    bloc = context.read<HrBloc>();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Form thêm HR - LXCP'));
+    return BlocBuilder<HrBloc, HrState>(
+      builder: (context, state) {
+        if (state.positionId == 6) {
+          return _buildLxForm(state);
+        }
+
+        if (state.positionId == 72) {
+          return _buildCpForm(state);
+        }
+
+        return const SizedBox();
+      },
+    );
+  }
+
+  Widget _buildLxForm(HrState state) {
+    return Column(
+      children: [
+        Expanded(
+          child: FormBuilder(
+            key: _formLxKey,
+            initialValue: {'date': DateTime.now()},
+            child: ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
+                FormCard(
+                  child: FormDateTimePicker(
+                    icon: Icons.calendar_today,
+                    nameForm: 'lx_add_date',
+                    nameTimePicker: 'date_time',
+                    label: 'Ngày báo cáo',
+                    inputType: InputType.date,
+                    initialValue: _initialReportDate(),
+                    format: DateFormat('dd/MM/yyyy'),
+                  ),
+                ),
+
+                const SizedBox(height: 8),
+
+                FormCard(
+                  title: 'Số Km',
+                  child: FormInputField(
+                    label: 'Số Km',
+                    icon: Icons.add_road_outlined,
+                    nameForm: 'lx_add_km',
+                    nameTextField: 'km',
+                    maxLines: 1,
+                    keyboardType: TextInputType.number,
+                    onChanged: (v) => bloc.add(
+                      HrEvent.lxcpUpdateWork(
+                        kmNumber: int.tryParse(v ?? '') ?? 0,
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 8),
+
+                FormCard(
+                  title: 'Số cuốc xe muộn',
+                  child: FormInputField(
+                    label: 'Số cuốc xe muộn',
+                    icon: Icons.car_crash_outlined,
+                    nameForm: 'lx_add_late_car',
+                    nameTextField: 'late_car',
+                    maxLines: 1,
+                    keyboardType: TextInputType.number,
+                    onChanged: (v) => bloc.add(
+                      HrEvent.lxcpUpdateWork(
+                        totalLate: int.tryParse(v ?? '') ?? 0,
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 8),
+
+                FormCard(
+                  title: 'Tổng số phút chậm',
+                  child: FormInputField(
+                    label: 'Tổng số phút chậm',
+                    icon: Icons.access_time_outlined,
+                    nameForm: 'lx_add_late_minute',
+                    nameTextField: 'late_minute',
+                    maxLines: 1,
+                    keyboardType: TextInputType.number,
+                    onChanged: (v) => bloc.add(
+                      HrEvent.lxcpUpdateWork(
+                        totalTimeLate: int.tryParse(v ?? '') ?? 0,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+
+                FormCard(
+                  title: 'Lý do muộn',
+                  child: FormInputField(
+                    label: 'Lý do muộn',
+                    icon: Icons.question_mark_outlined,
+                    nameForm: 'lx_add_late_reason',
+                    nameTextField: 'late_reason',
+                    maxLines: 3,
+                    keyboardType: TextInputType.multiline,
+                    textInputAction:
+                        TextInputAction.newline, // ⬅ Enter xuống dòng
+                    onChanged: (v) =>
+                        bloc.add(HrEvent.lxcpUpdateWork(reasonLate: v)),
+                  ),
+                ),
+                const SizedBox(height: 8),
+
+                FormCard(
+                  title: 'Thông tin bổ sung',
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () =>
+                            setState(() => _showExtraInfo = !_showExtraInfo),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              _showExtraInfo
+                                  ? Icons.keyboard_arrow_up_rounded
+                                  : Icons.keyboard_arrow_down_rounded,
+                              color: AppColors.primaryERP,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              _showExtraInfo
+                                  ? 'Ẩn thông tin bổ sung'
+                                  : 'Hiện thông tin bổ sung',
+                              style: const TextStyle(
+                                color: AppColors.primaryERP,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      if (_showExtraInfo) ...[
+                        const SizedBox(height: 8),
+                        FormInputField(
+                          label: 'Trạng thái xe',
+                          icon: Icons.next_plan_outlined,
+                          nameForm: 'lx_add_status',
+                          nameTextField: 'status',
+                          maxLines: 3,
+                          keyboardType: TextInputType.multiline,
+                          textInputAction: TextInputAction.newline,
+                          onChanged: (v) => bloc.add(
+                            HrEvent.lxcpUpdateWork(statusVehicle: v),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        FormInputField(
+                          label: 'Kiến nghị / Yêu cầu',
+                          icon: Icons.next_plan_outlined,
+                          nameForm: 'lx_add_propose',
+                          nameTextField: 'propose',
+                          maxLines: 3,
+                          keyboardType: TextInputType.multiline,
+                          textInputAction: TextInputAction.newline,
+                          onChanged: (v) =>
+                              bloc.add(HrEvent.lxcpUpdateWork(propose: v)),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: FormActions(
+            mode: FormActionMode.add,
+            onSubmit: () => _submitLx(state),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCpForm(HrState state) {
+    return Column(
+      children: [
+        Expanded(
+          child: FormBuilder(
+            key: _formCpKey,
+            child: ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
+                FormCard(
+                  title: 'Nội dung CP',
+                  child: FormInputField(
+                    label: 'Nội dung CP',
+                    icon: Icons.work_outline,
+                    nameForm: 'cp_content',
+                    nameTextField: 'content',
+                    maxLines: 3,
+                    onChanged: (v) => bloc.add(HrEvent.updateWork(content: v)),
+                  ),
+                ),
+
+                const SizedBox(height: 12),
+
+                FormCard(
+                  title: 'Ghi chú CP',
+                  child: FormInputField(
+                    label: 'Ghi chú CP',
+                    icon: Icons.description_outlined,
+                    nameForm: 'cp_note',
+                    nameTextField: 'note',
+                    maxLines: 3,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: FormActions(
+            mode: FormActionMode.add,
+            onSubmit: () => _submitCp(state),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _submitLx(HrState state) {
+    FocusScope.of(context).unfocus();
+
+    final formState = _formLxKey.currentState;
+    if (formState == null) return;
+
+    final isValid = formState.saveAndValidate();
+    if (!isValid) return;
+
+    final values = formState.value;
+
+    final error = ValidateHelper.validateLxReport(
+      date: values['lx_add_date'] as DateTime?,
+      kmNumber: state.kmNumber,
+      totalLate: state.totalLate,
+      totalTimeLate: state.totalTimeLate,
+    );
+
+    if (error != null) {
+      context.showMessage(error, type: SnackBarType.error);
+      return;
+    }
+
+    final pickedDate = values['lx_add_date'] as DateTime?;
+    if (pickedDate == null) return;
+
+    bloc.add(HrEvent.submitReportLCXP(pickedDate));
+  }
+
+  void _submitCp(HrState state) {
+    final formState = _formCpKey.currentState;
+    if (formState == null) return;
+    if (!formState.saveAndValidate()) return;
+
+    final values = formState.value;
+
+    // bloc.add(HrEvent.submitCp(values)); // tạo event riêng cho CP
   }
 }

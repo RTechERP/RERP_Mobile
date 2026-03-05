@@ -98,4 +98,10 @@ abstract class ReportRepo {
     required String keyword,
   });
 
+  /// Lưu báo cáo phòng LXCP
+  Future<Either<BaseError, void>> saveReportLXCP({
+    required List<Map<String, dynamic>> payload,
+  });
+
+
 }

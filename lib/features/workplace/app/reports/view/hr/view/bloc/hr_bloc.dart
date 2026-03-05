@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,6 +31,31 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
         updateDate: (picked) => _onUpdateDate(picked, emit),
         updateWork: (content, results, note, backlog, planNextDay) =>
             _onUpdateWork(content, results, note, backlog, planNextDay, emit),
+        lxcpUpdateWork:
+            (
+              quantity,
+              timeActual,
+              performanceActual,
+              percentage,
+              kmNumber,
+              totalLate,
+              totalTimeLate,
+              reasonLate,
+              statusVehicle,
+              propose,
+            ) => _onLxcpUpdateXWork(
+              quantity,
+              timeActual,
+              performanceActual,
+              percentage,
+              kmNumber,
+              totalLate,
+              totalTimeLate,
+              reasonLate,
+              statusVehicle,
+              propose,
+              emit,
+            ),
         deleteReport: (dailyID) => _onDeleteReport(dailyID, emit),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(dateStart, dateEnd, emit),
@@ -50,6 +77,8 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
                   emit,
                 ),
         resetCopyReport: () => _onResetCopy(emit),
+        submitReportLCXP: (pickedDate) => _onSubmitReportLXCP(pickedDate, emit),
+        deleteReportLCXP: (id, isDeleted) => _onDeleteReportLXCP(id, isDeleted, emit),
       );
     });
   }
@@ -99,8 +128,7 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
     required DateTime end,
     required Emitter<HrState> emit,
   }) async {
-   final employeeId = state.employeeID;
-
+    final employeeId = state.employeeID;
 
     if (employeeId == null) {
       emit(state.copyWith(status: BaseStateStatus.failed));
@@ -115,10 +143,10 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
     );
 
     res.fold(
-          (l) {
+      (l) {
         emit(state.copyWith(status: BaseStateStatus.failed));
       },
-          (r) {
+      (r) {
         emit(
           state.copyWith(
             status: BaseStateStatus.success,
@@ -179,10 +207,10 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
     final userRes = await _authRepo.getCurrentUser();
 
     await userRes.fold(
-          (l) async {
+      (l) async {
         emit(state.copyWith(status: BaseStateStatus.failed));
       },
-          (user) async {
+      (user) async {
         if (user == null) {
           emit(state.copyWith(status: BaseStateStatus.failed));
           return;
@@ -197,6 +225,7 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
             employeeID: user.employeeId,
             positionName: user.positionName,
             departmentName: user.departmentName,
+            positionId: user.positionId,
           ),
         );
 
@@ -270,6 +299,139 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
     }
   }
 
+  Future<void> _onSubmitReportLXCP(
+    DateTime pickedDate,
+    Emitter<HrState> emit,
+  ) async {
+    if (_isSubmittingReport) return;
+    _isSubmittingReport = true;
+
+    try {
+      emit(state.copyWith(isSubmitting: true, submitSuccess: false));
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+      final userId = user?.id;
+
+      if (userId == null) {
+        emit(state.copyWith(isSubmitting: false));
+        return;
+      }
+
+      final safeDate = DateTime(
+        pickedDate.year,
+        pickedDate.month,
+        pickedDate.day,
+      );
+
+      final dateStr = DateFormat('yyyy-MM-dd').format(safeDate);
+
+      final payload = [
+        {
+          'ID': 0,
+          'EmployeeID': state.employeeID,
+          'DateReport': dateStr,
+          'FilmManagementDetailID': state.filmManagementDetailID,
+          'Quantity': state.quantity,
+          'TimeActual': state.timeActual ?? 0,
+          'PerformanceActual': state.performanceActual,
+          'Percentage': state.percentage,
+          'KmNumber': state.kmNumber,
+          'TotalLate': state.totalLate,
+          'TotalTimeLate': state.totalTimeLate,
+          'ReasonLate': state.reasonLate,
+          'StatusVehicle': state.statusVehicle,
+          'Propose': state.propose,
+          'IsDeleted': false,
+        },
+      ];
+
+      _log.logI('📦 Submit LXCP payload: ${jsonEncode(payload)}');
+
+      final res = await _reportRepo.saveReportLXCP(payload: payload);
+
+      await res.fold(
+        (l) async {
+          _log.logE('❌ Submit API failed: $l');
+          emit(state.copyWith(isSubmitting: false, submitSuccess: false));
+        },
+        (r) async {
+          _log.logI('✅ Submit LXCP report success');
+          emit(state.copyWith(isSubmitting: false, submitSuccess: true));
+        },
+      );
+    } catch (e, s) {
+      _log.logE('❌ Submit exception: $e');
+      _log.logE('$s');
+      emit(state.copyWith(isSubmitting: false, submitSuccess: false));
+    } finally {
+      _isSubmittingReport = false;
+      _log.logI('🏁 End submit LXCP report');
+    }
+  }
+
+  Future<void> _onDeleteReportLXCP(
+      int? id,
+      bool isDeleted,
+      Emitter<HrState> emit,
+      ) async {
+    if (_isSubmittingReport) return;
+    _isSubmittingReport = true;
+
+    try {
+      emit(state.copyWith(isDeleting: true, deleteSuccess: false));
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+      final userId = user?.id;
+
+      if (userId == null) {
+        emit(state.copyWith(isDeleting: false));
+        return;
+      }
+
+      final payload = [
+        {
+          'ID': id,
+          'EmployeeID': state.employeeID,
+          'DateReport': state.dateReport,
+          'FilmManagementDetailID': state.filmManagementDetailID,
+          'Quantity': state.quantity,
+          'TimeActual': state.timeActual ?? 0,
+          'PerformanceActual': state.performanceActual,
+          'Percentage': state.percentage,
+          'KmNumber': state.kmNumber,
+          'TotalLate': state.totalLate,
+          'TotalTimeLate': state.totalTimeLate,
+          'ReasonLate': state.reasonLate,
+          'StatusVehicle': state.statusVehicle,
+          'Propose': state.propose,
+          'IsDeleted': isDeleted,
+        },
+      ];
+
+      final res = await _reportRepo.saveReportLXCP(payload: payload);
+
+      await res.fold(
+            (l) async {
+          _log.logE('❌ Delete API failed: $l');
+          emit(state.copyWith(isDeleting: false, deleteSuccess: false));
+        },
+            (r) async {
+          _log.logI('✅ Delete LXCP success');
+          emit(state.copyWith(isDeleting: false, deleteSuccess: true));
+        },
+      );
+    } catch (e, s) {
+      _log.logE('❌ Delete exception: $e');
+      _log.logE('$s');
+      emit(state.copyWith(isDeleting: false, deleteSuccess: false));
+    } finally {
+      _isSubmittingReport = false;
+      _log.logI('🏁 End delete LXCP');
+    }
+  }
+
   _onResetSubmitFlags(Emitter<HrState> emit) {
     emit(state.copyWith(submitSuccess: false, sendMailSuccess: false));
     emit(state.copyWith(isSubmitting: false, sendMailSuccess: false));
@@ -298,6 +460,35 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
         note: note ?? state.note,
         backlog: backlog ?? state.backlog,
         planNextDay: planNextDay ?? state.planNextDay,
+      ),
+    );
+  }
+
+  Future<void> _onLxcpUpdateXWork(
+    String? quantity,
+    int? timeActual,
+    String? performanceActual,
+    String? percentage,
+    int? kmNumber,
+    int? totalLate,
+    int? totalTimeLate,
+    String? reasonLate,
+    String? statusVehicle,
+    String? propose,
+    Emitter<HrState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        quantity: quantity ?? state.quantity,
+        timeActual: timeActual ?? state.timeActual,
+        performanceActual: performanceActual ?? state.performanceActual,
+        percentage: percentage ?? state.percentage,
+        kmNumber: kmNumber ?? state.kmNumber,
+        totalLate: totalLate ?? state.totalLate,
+        totalTimeLate: totalTimeLate ?? state.totalTimeLate,
+        reasonLate: reasonLate ?? state.reasonLate,
+        statusVehicle: statusVehicle ?? state.statusVehicle,
+        propose: propose ?? state.propose,
       ),
     );
   }
@@ -382,7 +573,6 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
         emit(state.copyWith(isLoadingDetail: false));
       },
       (detail) async {
-
         emit(
           state.copyWith(
             isLoadingDetail: false,

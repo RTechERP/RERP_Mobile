@@ -340,13 +340,21 @@ class ReportService extends DioBaseApiService {
     return post<BaseData<ReportLXCPResponse>>(
       ApiEndPoint.getDailyLXCP,
       body: body,
-      parser: (json) =>
-      BaseData<ReportLXCPResponse>.fromJson(
-        {
-          "data": json
-        },
-            (data) => ReportLXCPResponse.fromJson(data as Map<String, dynamic>),
-      ),
+      parser: (json) => BaseData<ReportLXCPResponse>.fromJson({
+        "data": json,
+      }, (data) => ReportLXCPResponse.fromJson(data as Map<String, dynamic>)),
+    );
+  }
+
+  Future<BaseData<void>> saveReportLXCP({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    final body = payload;
+
+    return post<BaseData<void>>(
+      ApiEndPoint.saveReportLXCP,
+      body: body,
+      parser: (json) => BaseData<void>.fromJson(json, (_) => null),
     );
   }
 }

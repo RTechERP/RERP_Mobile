@@ -29,23 +29,22 @@ class HrLxcpScreen extends StatefulWidget {
 
 class _HrLxcpScreenState
     extends BaseState<HrLxcpScreen, HrEvent, HrState, HrBloc> {
-
   bool _isSearching = false;
   final TextEditingController _searchController = TextEditingController();
   List<HrReportItem> _filteredReports = [];
 
-  // void _filterReports(String keyword, List<HrReportItem> reports) {
-  //   final lower = keyword.toLowerCase().trim();
-  //
-  //   if (lower.isEmpty) {
-  //     _filteredReports = reports;
-  //     return;
-  //   }
-  //
-  //   _filteredReports = reports.where((r) {
-  //
-  //   }).toList();
-  // }
+  void _filterReports(String keyword, List<HrReportItem> reports) {
+    final lower = keyword.toLowerCase().trim();
+
+    if (lower.isEmpty) {
+      _filteredReports = reports;
+      return;
+    }
+
+    // _filteredReports = reports.where((r) {
+    //   ;
+    // }).toList();
+  }
 
   Widget _buildDateHeader(HrState state) {
     String text;
@@ -58,8 +57,8 @@ class _HrLxcpScreenState
 
       final isSameDay =
           start.year == end.year &&
-              start.month == end.month &&
-              start.day == end.day;
+          start.month == end.month &&
+          start.day == end.day;
 
       if (isSameDay) {
         text = 'Hiện tại: ${_formatDate(start)}';
@@ -109,8 +108,7 @@ class _HrLxcpScreenState
   @override
   Widget renderUI(BuildContext context) {
     return BlocListener<HrBloc, HrState>(
-      listenWhen: (p, c) =>
-      p.deleteSuccess != c.deleteSuccess,
+      listenWhen: (p, c) => p.deleteSuccess != c.deleteSuccess,
       listener: (context, state) async {
         if (state.deleteSuccess) {
           showMessage(
@@ -123,23 +121,25 @@ class _HrLxcpScreenState
         if (state.status == BaseStateStatus.failed && state.message != null) {
           showMessage(context, state.message!, type: SnackBarType.error);
         }
+
+        bloc.add(const HrEvent.initLxcp());
       },
       child: BaseScaffold(
         appBar: AppBarCommon(
           title: _isSearching
               ? TextField(
-            controller: _searchController,
-            autofocus: true,
-            decoration: const InputDecoration(
-              hintText: 'Tìm theo mã hoặc tên dự án',
-              border: InputBorder.none,
-            ),
-            onChanged: (value) {
-              setState(() {
-                // _filterReports(value, bloc.state.lxcpReports);
-              });
-            },
-          )
+                  controller: _searchController,
+                  autofocus: true,
+                  decoration: const InputDecoration(
+                    hintText: 'Tìm theo mã hoặc tên dự án',
+                    border: InputBorder.none,
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      // _filterReports(value, bloc.state.lxcpReports);
+                    });
+                  },
+                )
               : Text('report.lxcp'.tr()),
           onBackTap: () => onBack(context),
           actions: [
@@ -191,7 +191,9 @@ class _HrLxcpScreenState
               );
             }
 
-            final displayList = _isSearching ? _filteredReports : state.lxcpReports;
+            final displayList = _isSearching
+                ? _filteredReports
+                : state.lxcpReports;
 
             if (!_isSearching) {
               _filteredReports = state.lxcpReports;
@@ -207,7 +209,7 @@ class _HrLxcpScreenState
                     onRefresh: () async {
                       bloc.add(const HrEvent.initLxcp());
                       await bloc.stream.firstWhere(
-                            (s) => s.status != BaseStateStatus.loading,
+                        (s) => s.status != BaseStateStatus.loading,
                       );
                     },
                     child: ListView.builder(
@@ -215,7 +217,9 @@ class _HrLxcpScreenState
                       itemCount: displayList.length,
                       itemBuilder: (context, index) {
                         final r = displayList[index];
-                        final parsedDate = DateTime.tryParse(r.dateReport ?? '');
+                        final parsedDate = DateTime.tryParse(
+                          r.dateReport ?? '',
+                        );
 
                         return Slidable(
                           key: ValueKey(r.id),
@@ -226,12 +230,14 @@ class _HrLxcpScreenState
                               SlidableAction(
                                 onPressed: (_) async {
                                   final confirmed =
-                                  await DialogService.showConfirmDelete(
-                                    context: context,
-                                  );
+                                      await DialogService.showConfirmDelete(
+                                        context: context,
+                                      );
                                   if (!confirmed) return;
 
-                                  bloc.add(HrEvent.deleteReport(r.id ?? 0));
+                                  bloc.add(
+                                    HrEvent.deleteReportLCXP(r.id ?? 0, true),
+                                  );
                                 },
                                 backgroundColor: Colors.red,
                                 foregroundColor: Colors.white,
@@ -283,7 +289,7 @@ class _HrLxcpScreenState
               onTap: () async {
                 final reload = await context.push(
                   RouteNames.reportHRAdd,
-                  extra: DepartmentType.hr_admin,
+                  extra: DepartmentType.hr_lxcp,
                 );
 
                 if (reload == true) {
@@ -300,8 +306,6 @@ class _HrLxcpScreenState
                 TechDateRangePicker.open(context, bloc);
               },
             ),
-
-
           ],
         ),
       ),
@@ -345,12 +349,12 @@ class TechDateRangePicker {
                     minDate: minDate,
                     maxDate: maxDate,
                     initialSelectedRange:
-                    (bloc.state.dateStart != null &&
-                        bloc.state.dateEnd != null)
+                        (bloc.state.dateStart != null &&
+                            bloc.state.dateEnd != null)
                         ? PickerDateRange(
-                      bloc.state.dateStart,
-                      bloc.state.dateEnd,
-                    )
+                            bloc.state.dateStart,
+                            bloc.state.dateEnd,
+                          )
                         : null,
                     onSelectionChanged: (args) {
                       final range = args.value as PickerDateRange?;
