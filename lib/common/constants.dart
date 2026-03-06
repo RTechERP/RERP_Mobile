@@ -105,4 +105,6 @@ class ApiEndPoint{
   static const String getDailyLXCP = '/DailyReportHr/get-daily-report-hr';
 
   static const String saveReportLXCP = '/DailyReportHr/save-report-hr';
+
+  static const String getFilmDetail = '/DailyReportHr/get-film-detail';
 }

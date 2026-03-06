@@ -357,4 +357,17 @@ class ReportService extends DioBaseApiService {
       parser: (json) => BaseData<void>.fromJson(json, (_) => null),
     );
   }
+
+  /// Danh sách chi tiết phim
+  Future<BaseData<List<FilmDetailResponse>>> getFilmDetail() async {
+    return get<BaseData<List<FilmDetailResponse>>>(
+      ApiEndPoint.getFilmDetail,
+      parser: (json) => BaseData<List<FilmDetailResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => FilmDetailResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
 }

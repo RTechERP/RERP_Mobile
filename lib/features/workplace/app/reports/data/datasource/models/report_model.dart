@@ -660,12 +660,12 @@ class HrReportItem with _$HrReportItem {
     @JsonKey(name: 'DateReport') String? dateReport,
     @JsonKey(name: 'FilmManagementDetailID') int? filmManagementDetailId,
     @JsonKey(name: 'Quantity') int? quantity,
-    @JsonKey(name: 'TimeActual') double? timeActual,
-    @JsonKey(name: 'PerformanceActual') double? performanceActual,
-    @JsonKey(name: 'Percentage') double? percentage,
-    @JsonKey(name: 'KmNumber') double? kmNumber,
+    @JsonKey(name: 'TimeActual') int? timeActual,
+    @JsonKey(name: 'PerformanceActual') int? performanceActual,
+    @JsonKey(name: 'Percentage') int? percentage,
+    @JsonKey(name: 'KmNumber') int? kmNumber,
     @JsonKey(name: 'TotalLate') int? totalLate,
-    @JsonKey(name: 'TotalTimeLate') double? totalTimeLate,
+    @JsonKey(name: 'TotalTimeLate') int? totalTimeLate,
     @JsonKey(name: 'ReasonLate') String? reasonLate,
     @JsonKey(name: 'StatusVehicle') String? statusVehicle,
     @JsonKey(name: 'Propose') String? propose,
@@ -684,4 +684,27 @@ class HrReportItem with _$HrReportItem {
 
   factory HrReportItem.fromJson(Map<String, dynamic> json) =>
       _$HrReportItemFromJson(json);
+}
+
+@freezed
+class FilmDetailResponse with _$FilmDetailResponse {
+  const factory FilmDetailResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'FilmManagementID') int? filmManagementID,
+    @JsonKey(name: 'UnitID') int? unitID,
+    @JsonKey(name: 'PerformanceAVG') double? performanceAVG,
+    @JsonKey(name: 'WorkContent') String? workContent,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'CreatedDate') String? createdDate,
+    @JsonKey(name: 'UpdatedDate') String? updatedDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UnitName') String? unitName,
+    @JsonKey(name: 'WorkContent1') String? workContent1,
+    @JsonKey(name: 'RequestResult') bool? requestResult,
+  }) = _FilmDetailResponse;
+
+  factory FilmDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$FilmDetailResponseFromJson(json);
 }

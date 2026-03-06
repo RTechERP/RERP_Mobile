@@ -346,4 +346,17 @@ class ReportRepoImpl implements ReportRepo {
       rethrow;
     }
   }
+
+  @override
+  Future<Either<BaseError, List<FilmDetailResponse>>> getFilmDetail()async {
+    try {
+      final res = await _service.getFilmDetail();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+
+
 }

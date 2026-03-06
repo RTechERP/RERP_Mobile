@@ -133,4 +133,66 @@ class ValidateHelper {
 
     return null;
   }
+
+  static String? validateCpReport<T>({
+    required DateTime? date,
+    required List<T> works,
+
+    required int? Function(T) getFilmId,
+    required int? Function(T) getQuantity,
+    required int? Function(T) getActualTime,
+    required int? Function(T) getPerformanceActual,
+    required int? Function(T) getPercentage,
+  }) {
+
+    if (date == null) {
+      return 'Vui lòng chọn Ngày báo cáo';
+    }
+
+    if (works.isEmpty) {
+      return 'Vui lòng thêm ít nhất 1 công việc';
+    }
+
+    final usedIds = <int>{};
+
+    for (int i = 0; i < works.length; i++) {
+      final work = works[i];
+      final prefix = 'Công việc ${i + 1}: ';
+
+      final filmId = getFilmId(work) ?? 0;
+
+      if (filmId == 0) {
+        return '${prefix}Vui lòng chọn nội dung công việc';
+      }
+
+      if (usedIds.contains(filmId)) {
+        return '${prefix}Nội dung công việc đã được chọn';
+      }
+
+      usedIds.add(filmId);
+
+      final quantity = getQuantity(work) ?? 0;
+      final time = getActualTime(work) ?? 0;
+      final performance = getPerformanceActual(work) ?? 0;
+      final percent = getPercentage(work) ?? 0;
+
+      if (quantity <= 0) {
+        return '${prefix}Số lượng phải lớn hơn 0';
+      }
+
+      if (time <= 0) {
+        return '${prefix}Thời gian thực hiện phải lớn hơn 0';
+      }
+
+      if (performance <= 0) {
+        return '${prefix}Năng suất thực tế không hợp lệ';
+      }
+
+      if (percent <= 0) {
+        return '${prefix}Tỷ lệ (%) không hợp lệ';
+      }
+    }
+
+    return null;
+  }
 }

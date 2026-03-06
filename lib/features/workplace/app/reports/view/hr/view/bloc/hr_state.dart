@@ -14,6 +14,8 @@ class HrState extends BaseBlocState {
 
   final List<ProjectItemResponse> projectItem;
 
+  final List<FilmDetailResponse> filmDetail;
+
   final int? expandedWorkIndex;
 
   final DateTime? dateStart;
@@ -73,7 +75,7 @@ class HrState extends BaseBlocState {
   final String? results;
   final int? positionId;
 
-  final String? quantity;
+  final int? quantity;
   final int? timeActual;
   final String? performanceActual;
   final String? percentage;
@@ -86,6 +88,9 @@ class HrState extends BaseBlocState {
 
   final int? filmManagementDetailID;
 
+  final FilmDetailResponse? selectedFilmDetail;
+
+  final List<CpWork> works;
   const HrState({
     required super.status,
     super.message,
@@ -95,6 +100,7 @@ class HrState extends BaseBlocState {
     this.lxcpReports = const [],
     this.departs = const [],
     this.projectItem = const [],
+    this.filmDetail = const [],
     this.detailReport,
     this.expandedWorkIndex,
     this.dateStart,
@@ -144,6 +150,8 @@ class HrState extends BaseBlocState {
     this.statusVehicle,
     this.propose,
     this.filmManagementDetailID,
+    this.selectedFilmDetail,
+    this.works = const [],
   });
 
   factory HrState.init() => const HrState(
@@ -154,6 +162,7 @@ class HrState extends BaseBlocState {
     lxcpReports: [],
     departs: [],
     projectItem: [],
+    filmDetail: [],
     detailReport: null,
     expandedWorkIndex: null,
     isSubmitting: false,
@@ -194,6 +203,8 @@ class HrState extends BaseBlocState {
     statusVehicle: null,
     propose: null,
     filmManagementDetailID: null,
+    selectedFilmDetail: null,
+    works: [],
   );
 
   @override
@@ -255,5 +266,8 @@ class HrState extends BaseBlocState {
     statusVehicle,
     propose,
     filmManagementDetailID,
+    filmDetail,
+    selectedFilmDetail,
+    works,
   ];
 }

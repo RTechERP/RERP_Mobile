@@ -12,8 +12,10 @@ import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
+import '../../../../../../../../common/widgets/buttons/custom_text_button.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../bloc/hr_bloc.dart';
+import '../widgets/CpAddWorkItem.dart';
 
 class HrAddScreen extends StatefulWidget {
   final DepartmentType? type;
@@ -424,6 +426,7 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
                     keyboardType: TextInputType.number,
                     onChanged: (v) => bloc.add(
                       HrEvent.lxcpUpdateWork(
+                        index: 0,
                         kmNumber: int.tryParse(v ?? '') ?? 0,
                       ),
                     ),
@@ -443,6 +446,7 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
                     keyboardType: TextInputType.number,
                     onChanged: (v) => bloc.add(
                       HrEvent.lxcpUpdateWork(
+                        index: 0,
                         totalLate: int.tryParse(v ?? '') ?? 0,
                       ),
                     ),
@@ -462,6 +466,7 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
                     keyboardType: TextInputType.number,
                     onChanged: (v) => bloc.add(
                       HrEvent.lxcpUpdateWork(
+                        index: 0,
                         totalTimeLate: int.tryParse(v ?? '') ?? 0,
                       ),
                     ),
@@ -480,8 +485,9 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
                     keyboardType: TextInputType.multiline,
                     textInputAction:
                         TextInputAction.newline, // ⬅ Enter xuống dòng
-                    onChanged: (v) =>
-                        bloc.add(HrEvent.lxcpUpdateWork(reasonLate: v)),
+                    onChanged: (v) => bloc.add(
+                      HrEvent.lxcpUpdateWork(index: 0, reasonLate: v),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -527,7 +533,7 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
                           keyboardType: TextInputType.multiline,
                           textInputAction: TextInputAction.newline,
                           onChanged: (v) => bloc.add(
-                            HrEvent.lxcpUpdateWork(statusVehicle: v),
+                            HrEvent.lxcpUpdateWork(index: 0, statusVehicle: v),
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -539,8 +545,9 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
                           maxLines: 3,
                           keyboardType: TextInputType.multiline,
                           textInputAction: TextInputAction.newline,
-                          onChanged: (v) =>
-                              bloc.add(HrEvent.lxcpUpdateWork(propose: v)),
+                          onChanged: (v) => bloc.add(
+                            HrEvent.lxcpUpdateWork(index: 0, propose: v),
+                          ),
                         ),
                       ],
                     ],
@@ -568,31 +575,97 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
         Expanded(
           child: FormBuilder(
             key: _formCpKey,
+            initialValue: {'date': DateTime.now()},
             child: ListView(
               padding: const EdgeInsets.all(16),
               children: [
                 FormCard(
-                  title: 'Nội dung CP',
-                  child: FormInputField(
-                    label: 'Nội dung CP',
-                    icon: Icons.work_outline,
-                    nameForm: 'cp_content',
-                    nameTextField: 'content',
-                    maxLines: 3,
-                    onChanged: (v) => bloc.add(HrEvent.updateWork(content: v)),
+                  child: FormDateTimePicker(
+                    icon: Icons.calendar_today,
+                    nameForm: 'cp_add_date',
+                    nameTimePicker: 'date_time',
+                    label: 'Ngày báo cáo',
+                    inputType: InputType.date,
+                    initialValue: _initialReportDate(),
+                    format: DateFormat('dd/MM/yyyy'),
                   ),
                 ),
 
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
 
                 FormCard(
-                  title: 'Ghi chú CP',
-                  child: FormInputField(
-                    label: 'Ghi chú CP',
-                    icon: Icons.description_outlined,
-                    nameForm: 'cp_note',
-                    nameTextField: 'note',
-                    maxLines: 3,
+                  child: BlocBuilder<HrBloc, HrState>(
+                    buildWhen: (prev, curr) =>
+                        prev.works != curr.works ||
+                        prev.expandedWorkIndex != curr.expandedWorkIndex,
+                    builder: (context, state) {
+                      /// ===== KHÔNG CÓ WORK (user đã xoá) =====
+                      if (state.works.isEmpty) {
+                        return CustomTextButton(
+                          width: double.infinity,
+                          bgColor: AppColors.grayColor[10],
+                          colorText: AppColors.primaryERPlight,
+                          buttonFn: () {
+                            bloc.add(const HrEvent.addWork());
+                          },
+                          child: const Text('Thêm công việc'),
+                        );
+                      }
+
+                      /// ===== CÓ WORK =====
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ...state.works.asMap().entries.map((entry) {
+                            final wIndex = entry.key;
+                            final work = entry.value;
+
+                            final hasData = (work.workContent ?? '')
+                                .trim()
+                                .isNotEmpty;
+
+                            final codeText = hasData
+                                ? work.workContent!
+                                : 'Công việc ${wIndex + 1}';
+
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: CpAddWorkItem(
+                                key: ValueKey(work.id ?? wIndex),
+                                report: work,
+                                readonly: false,
+                                title: codeText,
+                                index: wIndex,
+                                isExpanded: state.expandedWorkIndex == wIndex,
+                                onToggleExpand: () {
+                                  bloc.add(HrEvent.expandWork(index: wIndex));
+                                },
+                                onDelete: () {
+                                  bloc.add(HrEvent.removeWork(index: wIndex));
+                                },
+                              ),
+                            );
+                          }),
+
+                          const SizedBox(height: 8),
+
+                          /// CHỈ HIỂN THỊ + KHI CÓ ÍT NHẤT 1 WORK
+                          Center(
+                            child: InkResponse(
+                              onTap: () {
+                                bloc.add(const HrEvent.addWork());
+                              },
+                              radius: 28,
+                              child: const Icon(
+                                Icons.add_circle_outline,
+                                size: 32,
+                                color: AppColors.primaryERP,
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ),
               ],
@@ -621,12 +694,13 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
     if (!isValid) return;
 
     final values = formState.value;
+    final work = state.works.isNotEmpty ? state.works.first : null;
 
     final error = ValidateHelper.validateLxReport(
       date: values['lx_add_date'] as DateTime?,
-      kmNumber: state.kmNumber,
-      totalLate: state.totalLate,
-      totalTimeLate: state.totalTimeLate,
+      kmNumber: work?.kmNumber,
+      totalLate: work?.totalLate,
+      totalTimeLate: work?.totalTimeLate,
     );
 
     if (error != null) {
@@ -641,12 +715,36 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
   }
 
   void _submitCp(HrState state) {
+    FocusScope.of(context).unfocus();
+
     final formState = _formCpKey.currentState;
     if (formState == null) return;
-    if (!formState.saveAndValidate()) return;
+
+    final isValid = formState.saveAndValidate();
+    if (!isValid) return;
 
     final values = formState.value;
 
-    // bloc.add(HrEvent.submitCp(values)); // tạo event riêng cho CP
+    final error = ValidateHelper.validateCpReport(
+      date: values['cp_add_date'] as DateTime?,
+      works: state.works,
+
+      getFilmId: (w) => w.filmManagementDetailId,
+      getQuantity: (w) => w.quantity,
+      getActualTime: (w) => w.timeActual,
+      getPerformanceActual: (w) => w.performanceActual,
+      getPercentage: (w) => w.percentage,
+    );
+
+    if (error != null) {
+      context.showMessage(error, type: SnackBarType.error);
+      return;
+    }
+
+    final pickedDate = values['cp_add_date'] as DateTime?;
+    if (pickedDate == null) return;
+
+    bloc.add(HrEvent.submitReportLCXP(pickedDate));
+
   }
 }

@@ -103,5 +103,6 @@ abstract class ReportRepo {
     required List<Map<String, dynamic>> payload,
   });
 
+  Future<Either<BaseError, List<FilmDetailResponse>>> getFilmDetail();
 
 }

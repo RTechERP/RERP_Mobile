@@ -1,7 +1,6 @@
-import 'dart:convert';
-
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -11,6 +10,7 @@ import '../../../../../../../../common/logger/index.dart';
 import '../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../../../../data/repository/report_repo.dart';
+import '../../data/cp_model.dart';
 
 part 'hr_event.dart';
 part 'hr_state.dart';
@@ -33,6 +33,7 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
             _onUpdateWork(content, results, note, backlog, planNextDay, emit),
         lxcpUpdateWork:
             (
+              index,
               quantity,
               timeActual,
               performanceActual,
@@ -43,18 +44,21 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
               reasonLate,
               statusVehicle,
               propose,
+              filmManagementDetailID,
             ) => _onLxcpUpdateXWork(
-              quantity,
-              timeActual,
-              performanceActual,
-              percentage,
-              kmNumber,
-              totalLate,
-              totalTimeLate,
-              reasonLate,
-              statusVehicle,
-              propose,
-              emit,
+              index,
+              quantity: quantity,
+              timeActual: timeActual,
+              performanceActual: performanceActual,
+              percentage: percentage,
+              kmNumber: kmNumber,
+              totalLate: totalLate,
+              totalTimeLate: totalTimeLate,
+              reasonLate: reasonLate,
+              statusVehicle: statusVehicle,
+              propose: propose,
+              filmManagementDetailID: filmManagementDetailID,
+              emit: emit,
             ),
         deleteReport: (dailyID) => _onDeleteReport(dailyID, emit),
         changeDateRange: (dateStart, dateEnd) =>
@@ -78,7 +82,13 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
                 ),
         resetCopyReport: () => _onResetCopy(emit),
         submitReportLCXP: (pickedDate) => _onSubmitReportLXCP(pickedDate, emit),
-        deleteReportLCXP: (id, isDeleted) => _onDeleteReportLXCP(id, isDeleted, emit),
+        deleteReportLCXP: (id, isDeleted) =>
+            _onDeleteReportLXCP(id, isDeleted, emit),
+        addWork: () => _onAddWork(emit),
+
+        removeWork: (index) => _onRemoveWork(index, emit),
+
+        expandWork: (index) => _onExpandWork(index, emit),
       );
     });
   }
@@ -205,6 +215,7 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
     final userRes = await _authRepo.getCurrentUser();
+    final filmRes = await _reportRepo.getFilmDetail();
 
     await userRes.fold(
       (l) async {
@@ -226,6 +237,17 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
             positionName: user.positionName,
             departmentName: user.departmentName,
             positionId: user.positionId,
+
+            /// auto có sẵn công việc 1
+            works: [
+              CpWork(
+                id: DateTime.now().microsecondsSinceEpoch,
+                workContent: '',
+              ),
+            ],
+
+            /// auto mở
+            expandedWorkIndex: 0,
           ),
         );
 
@@ -235,6 +257,10 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
 
         await _loadDailyLXCPReport(start: start, end: end, emit: emit);
       },
+    );
+    filmRes.fold(
+      (l) => _log.logE('Get film detail failed: $l'),
+      (r) => emit(state.copyWith(filmDetail: r)),
     );
   }
 
@@ -326,27 +352,25 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
 
       final dateStr = DateFormat('yyyy-MM-dd').format(safeDate);
 
-      final payload = [
-        {
+      final payload = state.works.map((w) {
+        return {
           'ID': 0,
           'EmployeeID': state.employeeID,
           'DateReport': dateStr,
-          'FilmManagementDetailID': state.filmManagementDetailID,
-          'Quantity': state.quantity,
-          'TimeActual': state.timeActual ?? 0,
-          'PerformanceActual': state.performanceActual,
-          'Percentage': state.percentage,
-          'KmNumber': state.kmNumber,
-          'TotalLate': state.totalLate,
-          'TotalTimeLate': state.totalTimeLate,
-          'ReasonLate': state.reasonLate,
-          'StatusVehicle': state.statusVehicle,
-          'Propose': state.propose,
+          'FilmManagementDetailID': w.filmManagementDetailId,
+          'Quantity': w.quantity,
+          'TimeActual': w.timeActual ?? 0,
+          'PerformanceActual': w.performanceActual,
+          'Percentage': w.percentage,
+          'KmNumber': w.kmNumber,
+          'TotalLate': w.totalLate,
+          'TotalTimeLate': w.totalTimeLate,
+          'ReasonLate': w.reasonLate,
+          'StatusVehicle': w.statusVehicle,
+          'Propose': w.propose,
           'IsDeleted': false,
-        },
-      ];
-
-      _log.logI('📦 Submit LXCP payload: ${jsonEncode(payload)}');
+        };
+      }).toList();
 
       final res = await _reportRepo.saveReportLXCP(payload: payload);
 
@@ -371,10 +395,10 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
   }
 
   Future<void> _onDeleteReportLXCP(
-      int? id,
-      bool isDeleted,
-      Emitter<HrState> emit,
-      ) async {
+    int? id,
+    bool isDeleted,
+    Emitter<HrState> emit,
+  ) async {
     if (_isSubmittingReport) return;
     _isSubmittingReport = true;
 
@@ -413,11 +437,11 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
       final res = await _reportRepo.saveReportLXCP(payload: payload);
 
       await res.fold(
-            (l) async {
+        (l) async {
           _log.logE('❌ Delete API failed: $l');
           emit(state.copyWith(isDeleting: false, deleteSuccess: false));
         },
-            (r) async {
+        (r) async {
           _log.logI('✅ Delete LXCP success');
           emit(state.copyWith(isDeleting: false, deleteSuccess: true));
         },
@@ -465,32 +489,75 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
   }
 
   Future<void> _onLxcpUpdateXWork(
-    String? quantity,
-    int? timeActual,
-    String? performanceActual,
-    String? percentage,
-    int? kmNumber,
-    int? totalLate,
-    int? totalTimeLate,
-    String? reasonLate,
-    String? statusVehicle,
-    String? propose,
-    Emitter<HrState> emit,
-  ) async {
-    emit(
-      state.copyWith(
-        quantity: quantity ?? state.quantity,
-        timeActual: timeActual ?? state.timeActual,
-        performanceActual: performanceActual ?? state.performanceActual,
-        percentage: percentage ?? state.percentage,
-        kmNumber: kmNumber ?? state.kmNumber,
-        totalLate: totalLate ?? state.totalLate,
-        totalTimeLate: totalTimeLate ?? state.totalTimeLate,
-        reasonLate: reasonLate ?? state.reasonLate,
-        statusVehicle: statusVehicle ?? state.statusVehicle,
-        propose: propose ?? state.propose,
-      ),
+      int index, {
+        int? quantity,
+        int? timeActual,
+        int? performanceActual,
+        int? percentage,
+        int? kmNumber,
+        int? totalLate,
+        int? totalTimeLate,
+        String? reasonLate,
+        String? statusVehicle,
+        String? propose,
+        int? filmManagementDetailID,
+        required Emitter<HrState> emit,
+      }) async {
+
+    final newWorks = [...state.works];
+
+    if (index < 0 || index >= newWorks.length) return;
+
+    final old = newWorks[index];
+
+    final effectiveFilmId =
+        filmManagementDetailID ?? old.filmManagementDetailId;
+
+    FilmDetailResponse? film;
+
+    if (effectiveFilmId != null) {
+      try {
+        film = state.filmDetail.firstWhere(
+              (e) => e.filmManagementID == effectiveFilmId,
+        );
+      } catch (_) {
+        film = null;
+      }
+    }
+
+    final q = quantity ?? old.quantity ?? 0;
+    final t = timeActual ?? old.timeActual ?? 0;
+
+    final performanceAVG = film?.performanceAVG ?? 0;
+
+    /// performanceActual = timeActual / quantity
+    double performanceActualCalc = 0;
+    if (q > 0) {
+      performanceActualCalc = double.parse((t / q).toStringAsFixed(2));
+    }
+
+    /// percentage = performanceAVG / performanceActual
+    double percentageCalc = 0;
+    if (performanceActualCalc > 0 && performanceAVG > 0) {
+      percentageCalc =
+          double.parse((performanceAVG / performanceActualCalc).toStringAsFixed(2));
+    }
+    newWorks[index] = old.copyWith(
+      quantity: q,
+      timeActual: t,
+      performanceActual: performanceActualCalc.toInt(),
+      percentage: percentageCalc.toInt(),
+      kmNumber: kmNumber ?? old.kmNumber,
+      totalLate: totalLate ?? old.totalLate,
+      totalTimeLate: totalTimeLate ?? old.totalTimeLate,
+      reasonLate: reasonLate ?? old.reasonLate,
+      statusVehicle: statusVehicle ?? old.statusVehicle,
+      propose: propose ?? old.propose,
+      filmManagementDetailId: effectiveFilmId,
+      performanceAvg: performanceAVG,   // THIẾU DÒNG NÀY
     );
+
+    emit(state.copyWith(works: newWorks));
   }
 
   Future<void> _onSelectReport(int dailyID, Emitter<HrState> emit) async {
@@ -703,5 +770,38 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
 
   _onResetCopy(Emitter<HrState> emit) {
     emit(state.copyWith(copyReports: [], copyError: null));
+  }
+
+  _onAddWork(Emitter<HrState> emit) {
+    final dateStr = state.dateStart != null
+        ? DateFormat('yyyy-MM-dd').format(state.dateStart!)
+        : '';
+
+    final newWorks = [
+      ...state.works,
+      CpWork.empty(employeeId: state.employeeID ?? 0, dateReport: dateStr),
+    ];
+
+    emit(
+      state.copyWith(works: newWorks, expandedWorkIndex: newWorks.length - 1),
+    );
+  }
+
+  _onRemoveWork(int index, Emitter<HrState> emit) {
+    final newWorks = [...state.works];
+
+    if (index < 0 || index >= newWorks.length) return;
+
+    newWorks.removeAt(index);
+
+    emit(state.copyWith(works: newWorks, expandedWorkIndex: null));
+  }
+
+  _onExpandWork(int index, Emitter<HrState> emit) {
+    emit(
+      state.copyWith(
+        expandedWorkIndex: state.expandedWorkIndex == index ? null : index,
+      ),
+    );
   }
 }

@@ -27,16 +27,18 @@ class HrEvent with _$HrEvent {
   }) = _UpdateWork;
 
   const factory HrEvent.lxcpUpdateWork({
-    String? quantity,
+    required int index,
+    int? quantity,
     int? timeActual,
-    String? performanceActual,
-    String? percentage,
+    int? performanceActual,
+    int? percentage,
     int? kmNumber,
     int? totalLate,
     int? totalTimeLate,
     String? reasonLate,
     String? statusVehicle,
     String? propose,
+    int? filmManagementDetailID,
   }) = _LxcpUpdateWork;
 
   const factory HrEvent.updateDate(DateTime? picked) = _UpdateDate;
@@ -68,4 +70,10 @@ class HrEvent with _$HrEvent {
 
   /// ===== RESET COPY ====
   const factory HrEvent.resetCopyReport() = _ResetCopy;
+
+
+  const factory HrEvent.addWork() = _AddWork;
+
+  const factory HrEvent.removeWork({required int index}) = _RemoveWork;
+  const factory HrEvent.expandWork({required int index}) = _ExpandWork;
 }
