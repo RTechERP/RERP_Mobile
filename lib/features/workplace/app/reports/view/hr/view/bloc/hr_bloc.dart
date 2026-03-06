@@ -10,7 +10,7 @@ import '../../../../../../../../common/logger/index.dart';
 import '../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../../../../data/repository/report_repo.dart';
-import '../../data/cp_model.dart';
+import '../../data/lxcp_model.dart';
 
 part 'hr_event.dart';
 part 'hr_state.dart';
@@ -66,8 +66,11 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
         loadDetailData: (dailyID) => _onLoadDetailData(dailyID, emit),
         submitEditReport: (pickedDate, dailyID) =>
             _onSubmitEditReport(dailyID, pickedDate, emit),
+        submitLXCPEditReport: (pickedDate, dailyID) => _onSubmitLXCPEditReport(dailyID, pickedDate, emit),
+
 
         selectReport: (dailyID) => _onSelectReport(dailyID, emit),
+        selectLXCPReport: (dailyID) => _onSelectLXCPReport(dailyID, emit),
         submitReport: (pickedDate) => _onSubmitReport(pickedDate, emit),
         copyReport:
             (dateStart, dateEnd, keyword, teamId, userId, departmentId) =>
@@ -240,7 +243,7 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
 
             /// auto có sẵn công việc 1
             works: [
-              CpWork(
+              LxCpWork(
                 id: DateTime.now().microsecondsSinceEpoch,
                 workContent: '',
               ),
@@ -506,6 +509,11 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
 
     final newWorks = [...state.works];
 
+    /// nếu chưa có work thì tạo mới
+    if (newWorks.isEmpty) {
+      newWorks.add(LxCpWork());
+    }
+
     if (index < 0 || index >= newWorks.length) return;
 
     final old = newWorks[index];
@@ -577,6 +585,48 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
           state.copyWith(
             isLoadingDetail: false,
             selectedReportDetail: detail, // DetailReportResponse
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _onSelectLXCPReport(int dailyID, Emitter<HrState> emit) async {
+    emit(state.copyWith(isLoadingDetail: true));
+
+    final userRes = await _authRepo.getCurrentUser();
+    final user = userRes.getOrElse(() => null);
+
+    final res = await _reportRepo.getLXCPById(dailyID: dailyID);
+
+    await res.fold(
+          (l) async {
+        _log.logE('Get LXCP detail failed: $l');
+        emit(state.copyWith(isLoadingDetail: false));
+      },
+          (detail) async {
+        _log.logI('✅ Detail Report: $detail');
+
+        emit(
+          state.copyWith(
+            isLoadingDetail: false,
+            selectedLXCPReportDetail: detail,
+            positionId: user?.positionId,   // bổ sung
+            works: [
+              LxCpWork(
+                filmManagementDetailId: detail.filmManagementDetailID,
+                quantity: detail.quantity,
+                timeActual: detail.timeActual?.toInt(),
+                performanceActual: detail.performanceActual?.toInt(),
+                percentage: detail.percentage?.toInt(),
+                kmNumber: detail.kmNumber?.toInt(),
+                totalLate: detail.totalLate,
+                totalTimeLate: detail.totalTimeLate?.toInt(),
+                reasonLate: detail.reasonLate,
+                statusVehicle: detail.statusVehicle,
+                propose: detail.propose,
+              )
+            ],
           ),
         );
       },
@@ -729,6 +779,86 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
     }
   }
 
+  Future<void> _onSubmitLXCPEditReport(
+      int dailyID,
+      DateTime pickedDate,
+      Emitter<HrState> emit,
+      ) async {
+    if (_isSavingReport) return;
+    _isSavingReport = true;
+
+    try {
+      emit(state.copyWith(isSaving: true, saveSuccess: false));
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+      final userId = user?.id;
+
+      if (userId == null) {
+        emit(state.copyWith(isSaving: false));
+        return;
+      }
+
+      final safeDate = DateTime(
+        pickedDate.year,
+        pickedDate.month,
+        pickedDate.day,
+      );
+
+      final dateStr = DateFormat('yyyy-MM-dd').format(safeDate);
+
+      if (state.works.isEmpty) {
+        emit(state.copyWith(isSaving: false));
+        return;
+      }
+
+      final payload = state.works.map((w) {
+        return {
+          'ID': dailyID,
+          'EmployeeID': state.employeeID,
+          'DateReport': dateStr,
+          'FilmManagementDetailID': w.filmManagementDetailId,
+          'Quantity': w.quantity,
+          'TimeActual': w.timeActual ?? 0,
+          'PerformanceActual': w.performanceActual,
+          'Percentage': w.percentage,
+          'KmNumber': w.kmNumber,
+          'TotalLate': w.totalLate,
+          'TotalTimeLate': w.totalTimeLate,
+          'ReasonLate': w.reasonLate,
+          'StatusVehicle': w.statusVehicle,
+          'Propose': w.propose,
+          'IsDeleted': false,
+        };
+      }).toList();
+
+
+      _log.logI('📦 LXCP EDIT PAYLOAD: $payload');
+      _log.logI('📊 WORKS LENGTH: ${state.works.length}');
+
+      final res = await _reportRepo.saveReportLXCP(payload: payload);
+
+      res.fold(
+            (l) {
+          _log.logE('❌ Edit API failed: $l');
+          emit(state.copyWith(isSaving: false, saveSuccess: false));
+        },
+            (r) {
+          _log.logI('✅ Edit LXCP report success');
+          emit(state.copyWith(isSaving: false, saveSuccess: true));
+        },
+      );
+    } catch (e, s) {
+      _log.logE('❌ Edit exception: $e');
+      _log.logE('$s');
+
+      emit(state.copyWith(isSaving: false, saveSuccess: false));
+    } finally {
+      _isSavingReport = false;
+      _log.logI('🏁 End edit LXCP report');
+    }
+  }
+
   Future<void> _onCopyReport(
     DateTime dateStart,
     DateTime dateEnd,
@@ -779,7 +909,7 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
 
     final newWorks = [
       ...state.works,
-      CpWork.empty(employeeId: state.employeeID ?? 0, dateReport: dateStr),
+      LxCpWork.empty(employeeId: state.employeeID ?? 0, dateReport: dateStr),
     ];
 
     emit(

@@ -4,12 +4,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../../../../data/datasource/models/report_model.dart';
-import '../../data/cp_model.dart';
+import '../../data/lxcp_model.dart';
 import '../bloc/hr_bloc.dart';
 
 class CpAddWorkItem extends StatefulWidget {
   final String title;
-  final CpWork report;
+  final LxCpWork report;
   final bool isExpanded;
   final VoidCallback onToggleExpand;
   final VoidCallback? onDelete;

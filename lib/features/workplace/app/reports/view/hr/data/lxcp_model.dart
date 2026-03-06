@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../data/datasource/models/report_model.dart';
 
-class CpWork extends Equatable {
+class LxCpWork extends Equatable {
   final int? id;
   final int? employeeId;
   final String? dateReport;
@@ -31,7 +31,7 @@ class CpWork extends Equatable {
 
   final double? performanceAvg;
 
-  const CpWork({
+  const LxCpWork({
     this.id,
     this.employeeId,
     this.dateReport,
@@ -54,11 +54,11 @@ class CpWork extends Equatable {
   });
 
   /// tạo item rỗng để add trên UI
-  factory CpWork.empty({
+  factory LxCpWork.empty({
     required int employeeId,
     required String dateReport,
   }) {
-    return CpWork(
+    return LxCpWork(
       id: DateTime.now().microsecondsSinceEpoch,
       employeeId: employeeId,
       dateReport: dateReport,
@@ -88,8 +88,8 @@ class CpWork extends Equatable {
   }
 
   /// convert từ API
-  factory CpWork.fromHrReportItem(HrReportItem r) {
-    return CpWork(
+  factory LxCpWork.fromHrReportItem(HrReportItem r) {
+    return LxCpWork(
       id: r.id,
       employeeId: r.employeeId,
       dateReport: r.dateReport,
@@ -113,7 +113,7 @@ class CpWork extends Equatable {
     );
   }
 
-  CpWork copyWith({
+  LxCpWork copyWith({
     int? id,
     int? employeeId,
     String? dateReport,
@@ -134,7 +134,7 @@ class CpWork extends Equatable {
     bool? isDeleted,
     double? performanceAvg,
   }) {
-    return CpWork(
+    return LxCpWork(
       id: id ?? this.id,
       employeeId: employeeId ?? this.employeeId,
       dateReport: dateReport ?? this.dateReport,

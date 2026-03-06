@@ -47,6 +47,10 @@ abstract class ReportRepo {
     required int dailyID,
   });
 
+  Future<Either<BaseError, DetailLXCPReportResponse>> getLXCPById({
+    required int dailyID,
+  });
+
   /// Xoá báo cáo theo ID
   Future<Either<BaseError, String>> deleteReportById({required int dailyID});
 

@@ -48,6 +48,8 @@ class HrState extends BaseBlocState {
   final bool isLoadingDetail;
   final DetailReportNullResponse? selectedReportDetail;
 
+  final DetailLXCPReportResponse? selectedLXCPReportDetail;
+
   final DateTime? dateReport;
 
   final bool isSaving;
@@ -90,7 +92,7 @@ class HrState extends BaseBlocState {
 
   final FilmDetailResponse? selectedFilmDetail;
 
-  final List<CpWork> works;
+  final List<LxCpWork> works;
   const HrState({
     required super.status,
     super.message,
@@ -152,6 +154,7 @@ class HrState extends BaseBlocState {
     this.filmManagementDetailID,
     this.selectedFilmDetail,
     this.works = const [],
+    this.selectedLXCPReportDetail,
   });
 
   factory HrState.init() => const HrState(
@@ -205,6 +208,7 @@ class HrState extends BaseBlocState {
     filmManagementDetailID: null,
     selectedFilmDetail: null,
     works: [],
+    selectedLXCPReportDetail: null,
   );
 
   @override
@@ -269,5 +273,6 @@ class HrState extends BaseBlocState {
     filmDetail,
     selectedFilmDetail,
     works,
+    selectedLXCPReportDetail,
   ];
 }

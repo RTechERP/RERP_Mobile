@@ -55,8 +55,12 @@ class HrEvent with _$HrEvent {
 
   const factory HrEvent.selectReport({required int dailyID}) = _SelectReport;
 
+  const factory HrEvent.selectLXCPReport({required int dailyID}) = _SelectLXCPReport;
+
   const factory HrEvent.submitEditReport(DateTime pickedDate, int dailyID) =
       _SubmitEditReportWithDate;
+  const factory HrEvent.submitLXCPEditReport(DateTime pickedDate, int dailyID) =
+  _SubmitLXCPEditReportWithDate;
 
   /// ===== COPY REPORT ====
   const factory HrEvent.copyReport({

@@ -146,6 +146,17 @@ class ReportService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<DetailLXCPReportResponse>> getLXCPById({required int dailyID}) {
+    return get<BaseData<DetailLXCPReportResponse>>(
+      ApiEndPoint.getLXCPById,
+      query: {'id': dailyID},
+      parser: (json) => BaseData<DetailLXCPReportResponse>.fromJson(
+        json,
+            (data) => DetailLXCPReportResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
   /// Xoá báo cáo theo ID
   Future<BaseData<void>> deleteReportById({required int dailyID}) async {
     return post<BaseData<void>>(
@@ -364,7 +375,7 @@ class ReportService extends DioBaseApiService {
       ApiEndPoint.getFilmDetail,
       parser: (json) => BaseData<List<FilmDetailResponse>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map((e) => FilmDetailResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),

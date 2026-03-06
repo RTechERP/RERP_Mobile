@@ -407,7 +407,6 @@ class CopyResponse with _$CopyResponse {
       _$CopyResponseFromJson(json);
 }
 
-
 @freezed
 class CopyNullResponse with _$CopyNullResponse {
   const factory CopyNullResponse({
@@ -421,8 +420,8 @@ class CopyNullResponse with _$CopyNullResponse {
     @JsonKey(name: 'Problem') String? problem,
     @JsonKey(name: 'ProblemSolve') String? problemSolve,
     @JsonKey(name: 'PlanNextDay') required String planNextDay,
-    @JsonKey(name: 'Note') required String note,}) = _CopyNullResponse;
-
+    @JsonKey(name: 'Note') required String note,
+  }) = _CopyNullResponse;
 
   factory CopyNullResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyNullResponseFromJson(json);
@@ -495,21 +494,16 @@ class UploadFileResponse with _$UploadFileResponse {
 /// 🔹 Detail Marketing Report Response Model
 /// ==========================
 
-
 @freezed
-class DetailMarketingReportResponse
-    with _$DetailMarketingReportResponse {
+class DetailMarketingReportResponse with _$DetailMarketingReportResponse {
   const factory DetailMarketingReportResponse({
-    @JsonKey(name: 'dailyData')
-    required DetailMarketingDailyData dailyData,
+    @JsonKey(name: 'dailyData') required DetailMarketingDailyData dailyData,
 
     @JsonKey(name: 'dailyFileData')
     required List<MarketingDailyFile> dailyFileData,
   }) = _DetailMarketingReportResponse;
 
-  factory DetailMarketingReportResponse.fromJson(
-      Map<String, dynamic> json,
-      ) =>
+  factory DetailMarketingReportResponse.fromJson(Map<String, dynamic> json) =>
       _$DetailMarketingReportResponseFromJson(json);
 }
 
@@ -525,9 +519,7 @@ class DetailMarketingDailyData with _$DetailMarketingDailyData {
     @JsonKey(name: 'UserReport') int? employeeID,
   }) = _DetailMarketingDailyData;
 
-  factory DetailMarketingDailyData.fromJson(
-      Map<String, dynamic> json,
-      ) =>
+  factory DetailMarketingDailyData.fromJson(Map<String, dynamic> json) =>
       _$DetailMarketingDailyDataFromJson(json);
 }
 
@@ -540,17 +532,14 @@ class MarketingDailyFile with _$MarketingDailyFile {
     @JsonKey(name: 'PathServer') required String pathServer,
     @JsonKey(name: 'IsDeleted') required bool isDeleted,
     @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
-    @JsonKey(name: 'CreatedBy')  String? createdBy,
-    @JsonKey(name: 'UpdatedBy')  String? updatedBy,
-    @JsonKey(name: 'CreatedDate')  DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
   }) = _MarketingDailyFile;
 
-  factory MarketingDailyFile.fromJson(
-      Map<String, dynamic> json,
-      ) =>
+  factory MarketingDailyFile.fromJson(Map<String, dynamic> json) =>
       _$MarketingDailyFileFromJson(json);
 }
-
 
 /// ==========================
 /// 🔹 LXCP Request Model
@@ -707,4 +696,38 @@ class FilmDetailResponse with _$FilmDetailResponse {
 
   factory FilmDetailResponse.fromJson(Map<String, dynamic> json) =>
       _$FilmDetailResponseFromJson(json);
+}
+
+@freezed
+class DetailLXCPReportResponse with _$DetailLXCPReportResponse {
+  const factory DetailLXCPReportResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'EmployeeID') int? employeeID,
+    @JsonKey(name: 'DateReport') String? dateReport,
+
+    @JsonKey(name: 'FilmManagementDetailID') int? filmManagementDetailID,
+    @JsonKey(name: 'Quantity') int? quantity,
+
+    @JsonKey(name: 'TimeActual') double? timeActual,
+    @JsonKey(name: 'PerformanceActual') double? performanceActual,
+    @JsonKey(name: 'Percentage') double? percentage,
+
+    @JsonKey(name: 'KmNumber') double? kmNumber,
+    @JsonKey(name: 'TotalLate') int? totalLate,
+    @JsonKey(name: 'TotalTimeLate') double? totalTimeLate,
+
+    @JsonKey(name: 'ReasonLate') String? reasonLate,
+    @JsonKey(name: 'StatusVehicle') String? statusVehicle,
+    @JsonKey(name: 'Propose') String? propose,
+
+    @JsonKey(name: 'CreatedDate') String? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') String? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _DetailLXCPReportResponse;
+
+  factory DetailLXCPReportResponse.fromJson(Map<String, dynamic> json) =>
+      _$DetailLXCPReportResponseFromJson(json);
 }

@@ -357,6 +357,14 @@ class ReportRepoImpl implements ReportRepo {
     }
   }
 
-
+  @override
+  Future<Either<BaseError, DetailLXCPReportResponse>> getLXCPById({required int dailyID}) async {
+    try {
+      final res = await _service.getLXCPById(dailyID: dailyID);
+      return right(res.data!); // DetailReportResponse
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 
 }
