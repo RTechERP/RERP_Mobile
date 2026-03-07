@@ -14,7 +14,12 @@ class LogUtils {
   // final bool showLog = kDebugMode && kReleaseMode; //For test notification
 
   final _logger = Logger(
-    printer: PrettyPrinter(),
+    printer: PrettyPrinter(
+      colors: false,
+      printEmojis: true,
+      methodCount: 0,        // 🔥 TẮT stacktrace
+      errorMethodCount: 0,   // 🔥 TẮT stacktrace cho error
+    ),
   );
 
   void debugNormal(String text) {

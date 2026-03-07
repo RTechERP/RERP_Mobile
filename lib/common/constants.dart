@@ -45,8 +45,6 @@ class Config {
   static const memCacheWidth = 150;
   static const minCacheHeight = 100;
   static const minCacheWidth = 100;
-  static const imgHOCRWidth = 1377.0;
-  static const imgHOCRHeight = 1933.0;
 }
 
 class SharedKeys {
@@ -59,7 +57,6 @@ class SharedKeys {
 class BlocMessages {
   static const appNotOpened = 'appNotOpened';
   static const notLoggedIn = 'notLoggedIn';
-  static const showTutorial = 'showTutorial';
   static const loggedIn = 'loggedIn';
   static const loginSuccess = 'loginSuccess';
 }
@@ -70,3 +67,46 @@ class FireBaseLog {
   static const String loginPage = 'login_page';
 }
 
+class ApiEndPoint{
+  static const String login = '/home/login';
+
+  static const String currentUser = '/home/current-user';
+  static const String getDailyReportTech = '/DailyReportTech/get-daily-report-tech';
+
+  static const String getDepart = '/Department/get-all';
+
+  static const String getStaff = '/Course/get-employees?departmentid=2';
+
+  static const String getTeam = '/Team/department/2';
+
+  static const String getProject = '/project/get-project-modal';
+
+  static const String getProjectItemByUser =
+      '/DailyReportTech/get-project-item-by-user';
+
+  static const String saveReportTech = '/DailyReportTech/save-report-tech';
+
+  static const String sendMailReport = '/DailyReportTech/send-email-report';
+
+  static const String getById = '/DailyReportTech/get-by-id';
+
+  static const String deleteReportById = '/DailyReportTech/delete-daily-report';
+
+  static const String copyReport = '/DailyReportTech/get-for-copy';
+
+  static const String marketing_upload = '/home/upload-multiple';
+
+  static const String saveReportMarketing = '/DailyReportTech/save-report-mar';
+
+  static const String getMarketingById = '/DailyReportTech/get-by-id-hr';
+
+  static const String saveReportHr = '/DailyReportTech/save-report-hr';
+
+  static const String getDailyLXCP = '/DailyReportHr/get-daily-report-hr';
+
+  static const String saveReportLXCP = '/DailyReportHr/save-report-hr';
+
+  static const String getFilmDetail = '/DailyReportHr/get-film-detail';
+
+  static const String getLXCPById = '/DailyReportHr/get-data-by-id';
+}

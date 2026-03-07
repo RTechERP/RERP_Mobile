@@ -1,0 +1,27 @@
+class DepartmentGroups {
+  /// ===== DEPARTMENT =====
+  static const tech = [2, 11, 12, 13];
+  static const agv = [9,10];
+  static const lrtk = [23];
+  static const sale = [3, 12];
+  static const hr = [6, 22];
+  static const marketing = [8];
+
+}
+
+class EmployeeIdGroups{
+  static const employeeHrs = [586,5];
+
+  static const employeeSaleHCM = [29,42,341,641];
+
+}
+class UserIdGroups{
+
+
+  static const userAllReportTechs = [1,23,24,51,53,78,88,1221,1313,1431,1434,1534];
+
+}
+class PositionGroups{
+  static const positionLxs = [6];
+  static const positionCps = [7,72];
+}

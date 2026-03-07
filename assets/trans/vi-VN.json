@@ -1,0 +1,129 @@
+{
+  "common": {
+    "ok": "Đã hiểu",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "expand": "Xem thêm",
+    "collapse": "Thu gọn",
+    "notification": "Thông báo",
+    "process": "Tính năng đang được phát triển!",
+    "done": "Đồng ý"
+  },
+  "auth": {
+    "login": "Đăng nhập",
+    "login_success": "Đăng nhập thành công",
+    "email": "Tài khoản",
+    "password": "Mật khẩu",
+    "profile": "Hồ sơ",
+    "logout": "Đăng xuất",
+    "rtc": "RTC"
+  },
+
+  "dashboard": {
+    "feeds": "Bảng tin",
+    "contacts": "Danh bạ",
+    "reports": "Báo cáo",
+    "chat": "Tin nhắn",
+    "more": "Xem thêm",
+    "workplace": "Nơi làm việc"
+  },
+  "settings": {
+    "theme": "Giao diện",
+    "language": "Ngôn ngữ",
+    "settings": "Cài đặt",
+    "help": "Trợ giúp",
+    "about": "Thông tin"
+  },
+  "tab": {
+    "applications": "Ứng dụng",
+    "features": "Tính năng"
+  },
+  "applications": {
+    "all": "Tất cả",
+    "general_forms": "Biểu mẫu chung",
+    "summary_work": "Tổng hợp công",
+    "reg_work": "Đăng ký công",
+    "reg_general": "Đăng ký chung",
+    "report": "Báo cáo CV",
+    "week_plan": "Kế hoạch tuần",
+    "stock": "Tồn kho theo SP"
+  },
+  "general_forms": {
+
+  },
+  "summary_work": {
+    "leaving":"Đăng ký nghỉ",
+    "in_out": "Đi muộn - về sớm",
+    "wfh": "WFH",
+    "fingerprint": "Quên vân tay",
+    "overtime": "Làm thêm",
+    "overnight": "Làm đêm"
+  },
+  "reg_work": {
+    "lunch": "Cơm ca",
+    "leave": "Đăng ký nghỉ",
+    "in_out": "Đi muộn - về sớm",
+    "overtime": "Làm thêm",
+    "overnight": "Làm đêm",
+    "work_trip": "Công tác",
+    "wfh": "WFH",
+    "missed": "Quên chấm công",
+    "sum_personal": "Tổng hợp cá nhân"
+  },
+  "reg_general": {
+    "meeting_room": "Phòng họp",
+    "booking_car":"Đặt xe",
+    "purchase": "Đề nghị thanh toán",
+    "special_purchase": "Đề nghị thanh toán ĐB",
+    "work_request": "Yêu cầu công việc",
+    "idea": "Đăng ký ý tưởng",
+    "contract": "Đăng ký hợp đồng",
+    "stationery": "VPP",
+    "work_category": "Hạng mục công việc",
+    "personal_asset": "Tài sản cá nhân",
+    "stamp": "Đăng ký đóng dấu"
+  },
+  "report": {
+    "sale": "Sale",
+    "sale_admin": "Sale Admin",
+    "sale_staff": "Nhân viên sale",
+    "marketing": "Marketing",
+    "ad": "Lắp ráp - triển khai dự án",
+    "tech": "Kỹ thuật",
+    "agv": "AGV - Cơ khí",
+    "hr": "Nhân sự",
+    "thr": "Hành chính - IT",
+    "lxcp": "Lái xe - cắt phim",
+    "project": "Dự án",
+    "main_location": "VP RTC",
+    "other_location": "Địa điểm khác",
+    "report_work": "Báo cáo công việc"
+  },
+  "week_plan": {
+    "personal": "Cá nhân",
+    "summary": "Tổng hợp"
+  },
+  "features": {
+    "birthday": "Sinh nhật",
+    "profile": "Hồ sơ",
+    "salary": "Phiếu lương",
+    "bonus": "Phúc lợi",
+    "uniform": "Đồng phục",
+    "leave": "Nghỉ việc"
+  },
+  "favorites": {
+    "title": "Thêm vào mục yêu thích",
+    "added": "Đã thêm"
+  },
+  "dialog_service": {
+    "an_error_occurred_please_try_again": "Có lỗi xảy ra, vui lòng thử lại"
+  },
+  "dio": {
+    "cancel_request": "Request was cancelled",
+    "connect_timeout": "Connection timeout",
+    "cancel_other": "Connection failed due to internet connection",
+    "receive_timeout": "Receive timeout in connection",
+    "send_timeout": "Connection failed due to internet connection"
+  }
+
+}

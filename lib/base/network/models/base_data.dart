@@ -28,17 +28,13 @@ class BaseListData<T> {
   @JsonKey(name: 'results')
   List<T>? results;
   @JsonKey(name: 'status')
-  String? status;
+  int? status;
   @JsonKey(name: 'message')
   String? message;
   @JsonKey(name: 'msg')
   String? msg;
   @JsonKey(name: 'name')
   String? name;
-  @JsonKey(name: 'totalPage')
-  int? totalPage;
-  @JsonKey(name: 'totalItem')
-  dynamic totalItem; //todo
 }
 
 @JsonSerializable(
@@ -63,13 +59,11 @@ class BaseData<T> {
   @JsonKey(name: 'result')
   T? result;
   @JsonKey(name: 'status')
-  String? status;
+  int? status;
   @JsonKey(name: 'message')
   String? message;
   @JsonKey(name: 'msg')
   String? msg;
   @JsonKey(name: 'name')
   String? name;
-  @JsonKey(name: 'questionTitle')
-  String? questionTitle;
 }
