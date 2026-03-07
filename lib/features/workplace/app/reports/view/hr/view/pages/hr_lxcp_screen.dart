@@ -381,7 +381,7 @@ class TechDateRangePicker {
                               onBack(context);
 
                               bloc.add(
-                                HrEvent.changeDateRange(
+                                HrEvent.changeLXCPDateRange(
                                   dateStart: start!,
                                   dateEnd: end!,
                                 ),

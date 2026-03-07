@@ -20,13 +20,10 @@ class HrLxcpEditScreen extends StatefulWidget {
   final int dailyId;
   final int positionId;
 
-
-
   const HrLxcpEditScreen({
     super.key,
     required this.dailyId,
     required this.positionId,
-
   });
   @override
   State<HrLxcpEditScreen> createState() => _HrLxcpEditScreenState();
@@ -34,7 +31,6 @@ class HrLxcpEditScreen extends StatefulWidget {
 
 class _HrLxcpEditScreenState
     extends BaseState<HrLxcpEditScreen, HrEvent, HrState, HrBloc> {
-
   @override
   void initState() {
     super.initState();
@@ -47,7 +43,7 @@ class _HrLxcpEditScreenState
       children: [
         BlocListener<HrBloc, HrState>(
           listenWhen: (p, c) =>
-          p.selectedLXCPReportDetail != c.selectedLXCPReportDetail ||
+              p.selectedLXCPReportDetail != c.selectedLXCPReportDetail ||
               p.saveSuccess != c.saveSuccess,
           listener: (context, state) {
             if (state.saveSuccess) {
@@ -169,7 +165,6 @@ class _HrEditLXViewState extends State<_HrEditLXView> {
                 child: ListView(
                   padding: const EdgeInsets.all(16),
                   children: [
-
                     FormCard(
                       child: FormDateTimePicker(
                         icon: Icons.calendar_today,
@@ -194,7 +189,10 @@ class _HrEditLXViewState extends State<_HrEditLXView> {
                         controller: kmController,
                         keyboardType: TextInputType.number,
                         onChanged: (v) => context.read<HrBloc>().add(
-                          HrEvent.lxcpUpdateWork(index: 0, kmNumber: int.tryParse(v ?? '') ?? 0,),
+                          HrEvent.lxcpUpdateWork(
+                            index: 0,
+                            kmNumber: int.tryParse(v ?? '') ?? 0,
+                          ),
                         ),
                       ),
                     ),
@@ -211,7 +209,10 @@ class _HrEditLXViewState extends State<_HrEditLXView> {
                         controller: lateController,
                         keyboardType: TextInputType.number,
                         onChanged: (v) => context.read<HrBloc>().add(
-                          HrEvent.lxcpUpdateWork(index: 0, totalLate: int.tryParse(v ?? '') ?? 0,),
+                          HrEvent.lxcpUpdateWork(
+                            index: 0,
+                            totalLate: int.tryParse(v ?? '') ?? 0,
+                          ),
                         ),
                       ),
                     ),
@@ -228,7 +229,10 @@ class _HrEditLXViewState extends State<_HrEditLXView> {
                         controller: minuteController,
                         keyboardType: TextInputType.number,
                         onChanged: (v) => context.read<HrBloc>().add(
-                          HrEvent.lxcpUpdateWork(index: 0, totalTimeLate: int.tryParse(v ?? '') ?? 0,),
+                          HrEvent.lxcpUpdateWork(
+                            index: 0,
+                            totalTimeLate: int.tryParse(v ?? '') ?? 0,
+                          ),
                         ),
                       ),
                     ),
@@ -332,6 +336,7 @@ class _HrEditLXViewState extends State<_HrEditLXView> {
     );
   }
 }
+
 class _HrEditCPView extends StatefulWidget {
   final int dailyId;
 
@@ -346,8 +351,9 @@ class _HrEditCPViewState extends State<_HrEditCPView> {
 
   final quantityController = TextEditingController();
   final timeController = TextEditingController();
-  final performanceController = TextEditingController();
-  final percentageController = TextEditingController();
+  final percentController = TextEditingController();
+  final performanceAvgController = TextEditingController();
+  final performanceActualController = TextEditingController();
 
   bool _loaded = false;
 
@@ -361,31 +367,51 @@ class _HrEditCPViewState extends State<_HrEditCPView> {
 
     quantityController.text = detail.quantity?.toString() ?? '';
     timeController.text = detail.timeActual?.toInt().toString() ?? '';
-    performanceController.text =
-        detail.performanceActual?.toInt().toString() ?? '';
-    percentageController.text = detail.percentage?.toInt().toString() ?? '';
+    percentController.text = detail.percentage?.toString() ?? '';
+    performanceAvgController.text =
+        context
+            .read<HrBloc>()
+            .state
+            .selectedFilmDetail
+            ?.performanceAVG
+            ?.toString() ??
+        '';
+    performanceActualController.text =
+        detail.performanceActual?.toString() ?? '';
 
     _loaded = true;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<HrBloc>().add(const HrEvent.getFilmDetail());
   }
 
   @override
   void dispose() {
     quantityController.dispose();
     timeController.dispose();
-    performanceController.dispose();
-    percentageController.dispose();
+    percentController.dispose();
+    performanceAvgController.dispose();
+    performanceActualController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HrBloc, HrState>(
+      buildWhen: (p, c) =>
+      p.selectedFilmDetail != c.selectedFilmDetail ||
+          p.filmDetail != c.filmDetail,
       builder: (context, state) {
         final detail = state.selectedLXCPReportDetail;
 
         if (detail == null) {
           return const Center(child: CircularProgressIndicator());
         }
+
+        final film = state.selectedFilmDetail;
 
         _bindData(detail);
 
@@ -397,12 +423,11 @@ class _HrEditCPViewState extends State<_HrEditCPView> {
                 child: ListView(
                   padding: const EdgeInsets.all(16),
                   children: [
-
                     /// DATE
                     FormCard(
                       child: FormDateTimePicker(
                         icon: Icons.calendar_today,
-                        nameForm: 'date',
+                        nameForm: 'cp_edit_date',
                         nameTimePicker: 'date_picker',
                         label: 'Ngày báo cáo',
                         inputType: InputType.date,
@@ -413,61 +438,118 @@ class _HrEditCPViewState extends State<_HrEditCPView> {
 
                     const SizedBox(height: 8),
 
-                    /// QUANTITY
                     FormCard(
-                      title: 'Kết quả thực hiện',
-                      child: FormInputField(
-                        label: 'Số lượng',
-                        icon: Icons.production_quantity_limits,
-                        nameForm: 'quantity',
-                        nameTextField: 'quantity_field',
-                        controller: quantityController,
-                        keyboardType: TextInputType.number,
-                      ),
-                    ),
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              openSelectBottomSheet(
+                                context: context,
+                                title: 'Nội dung công việc',
+                                items: state.filmDetail,
+                                displayText: (v) => v.workContent1 ?? '',
+                                onSelected: (item) {
+                                  context.read<HrBloc>().add(
+                                    HrEvent.selectFilmDetail(item),
+                                  );
+                                  performanceAvgController.text =
+                                      item.performanceAVG?.toString() ?? '';
+                                  context.read<HrBloc>().add(
+                                    HrEvent.lxcpUpdateWork(
+                                      index: 0,
+                                      filmManagementDetailID:
+                                          item.filmManagementID,
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: AbsorbPointer(
+                              child: FormInputField(
+                                key: ValueKey(film?.filmManagementID),
+                                nameForm: 'cp_edit_content',
+                                nameTextField: 'edit_content',
+                                icon: Icons.category_outlined,
+                                label: film?.workContent1 ?? 'Nội dung công việc',
+                                readOnly: true,
+                              )
+                            ),
+                          ),
+                          const SizedBox(height: 8),
 
-                    const SizedBox(height: 8),
+                          /// Quantity
+                          FormInputField(
+                            nameForm: 'cp_edit_quantity',
+                            nameTextField: 'edit_quantity',
+                            icon: Icons.onetwothree_outlined,
+                            label: 'Số lượng',
+                            controller: quantityController,
+                            keyboardType: TextInputType.number,
+                            onChanged: (v) {
+                              context.read<HrBloc>().add(
+                                HrEvent.lxcpUpdateWork(
+                                  index: 0,
+                                  quantity: int.tryParse(v ?? '') ?? 0,
+                                ),
+                              );
+                            },
+                          ),
 
-                    /// TIME
-                    FormCard(
-                      title: 'Thời gian thực hiện',
-                      child: FormInputField(
-                        label: 'Thời gian',
-                        icon: Icons.access_time,
-                        nameForm: 'time',
-                        nameTextField: 'time_field',
-                        controller: timeController,
-                        keyboardType: TextInputType.number,
-                      ),
-                    ),
+                          const SizedBox(height: 8),
 
-                    const SizedBox(height: 8),
+                          /// Time
+                          FormInputField(
+                            nameForm: 'cp_edit_timeActual',
+                            nameTextField: 'edit_timeActual',
+                            icon: Icons.access_time_outlined,
+                            label: 'Thời gian (phút)',
+                            controller: timeController,
+                            keyboardType: TextInputType.number,
+                            onChanged: (v) {
+                              context.read<HrBloc>().add(
+                                HrEvent.lxcpUpdateWork(
+                                  index: 0,
+                                  timeActual: int.tryParse(v ?? '') ?? 0,
+                                ),
+                              );
+                            },
+                          ),
 
-                    /// PERFORMANCE
-                    FormCard(
-                      title: 'Năng suất thực tế',
-                      child: FormInputField(
-                        label: 'Năng suất thực tế',
-                        icon: Icons.speed,
-                        nameForm: 'performance',
-                        nameTextField: 'performance_field',
-                        controller: performanceController,
-                        keyboardType: TextInputType.number,
-                      ),
-                    ),
+                          const SizedBox(height: 8),
 
-                    const SizedBox(height: 8),
+                          /// Percentage
+                          FormInputField(
+                            nameForm: 'cp_edit_percentage',
+                            nameTextField: 'edit_percentage',
+                            icon: Icons.percent_outlined,
+                            label: 'Tỷ lệ (%)',
+                            controller: percentController,
+                            enabled: false,
+                          ),
 
-                    /// PERCENTAGE
-                    FormCard(
-                      title: 'Tỷ lệ',
-                      child: FormInputField(
-                        label: 'Tỷ lệ',
-                        icon: Icons.percent,
-                        nameForm: 'percentage',
-                        nameTextField: 'percentage_field',
-                        controller: percentageController,
-                        keyboardType: TextInputType.number,
+                          const SizedBox(height: 8),
+
+                          /// Performance AVG
+                          FormInputField(
+                            nameForm: 'cp_edit_performanceAvg',
+                            nameTextField: 'edit_performanceAvg',
+                            icon: Icons.bar_chart_outlined,
+                            label: 'Năng suất trung bình',
+                            controller: performanceAvgController,
+                            enabled: false,
+                          ),
+                          const SizedBox(height: 8),
+
+                          /// Performance Actual
+                          FormInputField(
+                            nameForm: 'cp_edit_performanceActual',
+                            nameTextField: 'edit_performanceActual',
+                            icon: Icons.bar_chart_outlined,
+                            label: 'Năng suất thực tế',
+                            controller: performanceActualController,
+                            enabled: false,
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -475,6 +557,7 @@ class _HrEditCPViewState extends State<_HrEditCPView> {
               ),
             ),
 
+            /// ACTION
             Padding(
               padding: const EdgeInsets.all(8),
               child: FormActions(
@@ -491,25 +574,18 @@ class _HrEditCPViewState extends State<_HrEditCPView> {
 
                   final values = formState.value;
 
-                  final pickedDate = values['hr_edit_date'] as DateTime?;
+                  final pickedDate = values['cp_edit_date'] as DateTime?;
 
-                  if (pickedDate == null) return;
-
-                  /// VALIDATE BUSINESS
-                  final error = ValidateHelper.validateMarketingReport(
-                    date: pickedDate,
-                    content: state.content ?? '',
-                    result: state.results ?? '',
-                    planNextDay: state.planNextDay ?? '',
-                  );
-
-                  if (error != null) {
-                    context.showMessage(error, type: SnackBarType.error);
+                  if (pickedDate == null) {
+                    context.showMessage(
+                      'Ngày báo cáo không hợp lệ',
+                      type: SnackBarType.error,
+                    );
                     return;
                   }
 
                   context.read<HrBloc>().add(
-                    HrEvent.submitEditReport(pickedDate, widget.dailyId),
+                    HrEvent.submitLXCPEditReport(pickedDate, widget.dailyId),
                   );
                 },
               ),

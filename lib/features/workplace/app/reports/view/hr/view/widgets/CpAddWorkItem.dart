@@ -210,9 +210,6 @@ class _CpAddWorkItemState extends State<CpAddWorkItem> {
         } catch (_) {
           film = null;
         }
-
-        debugPrint('UI filmManagementDetailId: ${work.filmManagementDetailId}');
-        debugPrint('UI workContent1: ${film?.workContent1}');
         return Column(
           children: [
             /// ===== Nội dung công việc =====
@@ -226,10 +223,6 @@ class _CpAddWorkItemState extends State<CpAddWorkItem> {
                         items: state.filmDetail,
                         displayText: (v) => '${v.workContent1}',
                         onSelected: (item) {
-                          debugPrint(
-                            'filmManagementID: ${item.filmManagementID}',
-                          );
-                          debugPrint('workContent1: ${item.workContent1}');
                           context.read<HrBloc>().add(
                             HrEvent.lxcpUpdateWork(
                               index: widget.index,

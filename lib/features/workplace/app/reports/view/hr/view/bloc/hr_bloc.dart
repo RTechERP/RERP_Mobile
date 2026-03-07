@@ -63,6 +63,8 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
         deleteReport: (dailyID) => _onDeleteReport(dailyID, emit),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(dateStart, dateEnd, emit),
+        changeLXCPDateRange: (dateStart, dateEnd) =>
+            _onChangeLXCPDateRange(dateStart, dateEnd, emit),
         loadDetailData: (dailyID) => _onLoadDetailData(dailyID, emit),
         submitEditReport: (pickedDate, dailyID) =>
             _onSubmitEditReport(dailyID, pickedDate, emit),
@@ -92,6 +94,9 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
         removeWork: (index) => _onRemoveWork(index, emit),
 
         expandWork: (index) => _onExpandWork(index, emit),
+        getFilmDetail: () => _onGetFilmDetail(emit),
+        selectFilmDetail: (film) => _onSelectFilmDetail(film, emit),
+
       );
     });
   }
@@ -680,6 +685,19 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
     await _loadDailyHRReport(start: start, end: end, emit: emit);
   }
 
+  Future<void> _onChangeLXCPDateRange(
+      DateTime dateStart,
+      DateTime dateEnd,
+      Emitter<HrState> emit,
+      ) async {
+    final start = DateTime(dateStart.year, dateStart.month, dateStart.day);
+    final end = DateTime(dateEnd.year, dateEnd.month, dateEnd.day);
+
+    emit(state.copyWith(status: BaseStateStatus.loading));
+
+    await _loadDailyLXCPReport(start: start, end: end, emit: emit);
+  }
+
   Future<void> _onLoadDetailData(int dailyID, Emitter<HrState> emit) async {
     emit(state.copyWith(isLoadingDetail: true));
 
@@ -705,6 +723,8 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
       },
     );
   }
+
+
 
   bool _isSavingReport = false;
 
@@ -931,6 +951,28 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
     emit(
       state.copyWith(
         expandedWorkIndex: state.expandedWorkIndex == index ? null : index,
+      ),
+    );
+  }
+
+  Future<void> _onGetFilmDetail(Emitter<HrState> emit)async{
+    final res = await _reportRepo.getFilmDetail();
+
+    res.fold(
+          (l) {},
+          (r) {
+        emit(state.copyWith(filmDetail: r));
+      },
+    );
+  }
+
+   _onSelectFilmDetail(
+      FilmDetailResponse film,
+      Emitter<HrState> emit,
+      ) {
+    emit(
+      state.copyWith(
+        selectedFilmDetail: film,
       ),
     );
   }

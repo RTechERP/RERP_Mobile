@@ -50,6 +50,13 @@ class HrEvent with _$HrEvent {
     required DateTime dateEnd,
   }) = _ChangeDateRange;
 
+  const factory HrEvent.changeLXCPDateRange({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+}) = _ChangeLXCPDateRange;
+
+
+
   const factory HrEvent.loadDetailData({required int dailyID}) =
       _LoadDetailData;
 
@@ -80,4 +87,8 @@ class HrEvent with _$HrEvent {
 
   const factory HrEvent.removeWork({required int index}) = _RemoveWork;
   const factory HrEvent.expandWork({required int index}) = _ExpandWork;
+
+  const factory HrEvent.getFilmDetail() = _GetFilmDetail;
+
+  const factory HrEvent.selectFilmDetail(FilmDetailResponse film) = _SelectFilmDetail;
 }
