@@ -36,6 +36,7 @@ import '../features/workplace/app/reg_work/view/pages/work_trip/work_trip_screen
 import '../features/workplace/app/reports/view/ad/view/pages/ad_add_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_detail_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_screen.dart';
+import '../features/workplace/app/reports/view/agv/view/bloc/agv_bloc.dart';
 import '../features/workplace/app/reports/view/agv/view/pages/agv_add_screen.dart';
 import '../features/workplace/app/reports/view/agv/view/pages/agv_detail_screen.dart';
 import '../features/workplace/app/reports/view/agv/view/pages/agv_screen.dart';
@@ -356,6 +357,7 @@ class AppRouter {
       ),
 
       /// Assembly - Project Implementation Route
+
       GoRoute(
         path: RouteNames.reportADdepart,
         builder: (context, state) => const AdScreen(),
@@ -372,19 +374,34 @@ class AppRouter {
       ),
 
       /// AGV Route
-      GoRoute(
-        path: RouteNames.reportAGVdepart,
-        builder: (context, state) => const AgvScreen(),
-      ),
 
-      GoRoute(
-        path: RouteNames.reportAGVdepartAdd,
-        builder: (context, state) => const AgvAddScreen(),
-      ),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<AgvBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.reportAGVdepart,
+            builder: (context, state) => const AgvScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportAGVdepartDetail,
-        builder: (context, state) => const AgvDetailScreen(),
+          GoRoute(
+            path: RouteNames.reportAGVdepartAdd,
+            builder: (context, state) => const AgvAddScreen(),
+          ),
+
+          GoRoute(
+            path: RouteNames.reportAGVdepartDetail,
+            builder: (context, state) => const AgvDetailScreen(),
+          ),
+          // GoRoute(
+          //   path: RouteNames.reportITdepartEdit,
+          //   builder: (context, state) {
+          //     final dailyId = state.extra as int;
+          //     return TechEditScreen(dailyId: dailyId);
+          //   },
+          // ),
+        ],
       ),
 
       /// Sale Route

@@ -381,4 +381,16 @@ class ReportService extends DioBaseApiService {
       ),
     );
   }
+
+  Future<BaseData<void>> saveReportAgvAd({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    final body = payload;
+
+    return post<BaseData<void>>(
+      ApiEndPoint.saveReportTech,
+      body: body,
+      parser: (json) => BaseData<void>.fromJson(json, (_) => null),
+    );
+  }
 }

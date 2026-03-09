@@ -367,4 +367,21 @@ class ReportRepoImpl implements ReportRepo {
     }
   }
 
+  @override
+  Future<Either<BaseError, void>> saveReportAgvAd({required List<Map<String, dynamic>> payload}) async {
+    try {
+      final res = await _service.saveReportAgvAd(payload: payload);
+      if (res.status == 1) {
+        return right(res.message ?? 'Lưu dữ liệu thành công');
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Lưu dữ liệu thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      rethrow;
+    }
+  }
 }

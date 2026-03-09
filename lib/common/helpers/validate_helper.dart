@@ -195,4 +195,92 @@ class ValidateHelper {
 
     return null;
   }
+
+  static String? validateAgvAdReport<T>({
+    required DateTime? date,
+    required List<T> works,
+
+    required String? Function(T) getProjectName,
+    required double Function(T) getTotalHours,
+    required double? Function(T) getOtHours,
+    required String Function(T) getContent,
+    required String Function(T) getResult,
+
+    String? locationType,
+    String? location,
+    String? nextPlan,
+  }) {
+    if (date == null) return 'Vui lòng chọn Ngày báo cáo';
+    if (works.isEmpty) return 'Vui lòng thêm ít nhất 1 dự án';
+
+    double totalDayHours = 0;
+    double totalDayOT = 0;
+
+    final usedProjects = <String>{};
+
+    for (int i = 0; i < works.length; i++) {
+      final work = works[i];
+      final prefix = 'Dự án ${i + 1}: ';
+
+      final projectName = (getProjectName(work) ?? '').trim();
+
+      if (projectName.isEmpty) {
+        return '${prefix}Vui lòng chọn dự án';
+      }
+
+      if (usedProjects.contains(projectName)) {
+        return '${prefix}Dự án đã được chọn ở dòng khác';
+      }
+
+      usedProjects.add(projectName);
+
+      final total = getTotalHours(work);
+      final ot = getOtHours(work) ?? 0;
+
+      if (total <= 0) return '${prefix}Tổng số giờ phải lớn hơn 0';
+      if (total > 24) return '${prefix}Tổng số giờ không được lớn hơn 24';
+
+      if (ot < 0) return '${prefix}Số giờ OT không được nhỏ hơn 0';
+      if (ot > total) {
+        return '${prefix}Số giờ OT không được lớn hơn Tổng số giờ';
+      }
+
+      if (total > 8 && ot <= 0) {
+        return '${prefix}Tổng số giờ lớn hơn 8, vui lòng nhập OT';
+      }
+
+      if (total - ot > 8) {
+        return '${prefix}Số giờ hành chính không được lớn hơn 8h';
+      }
+
+      if (total - ot <= 0) {
+        return '${prefix}Số giờ hành chính phải lớn hơn 0';
+      }
+
+      if (getContent(work).trim().isEmpty) {
+        return '${prefix}Vui lòng nhập nội dung công việc';
+      }
+
+      if (getResult(work).trim().isEmpty) {
+        return '${prefix}Vui lòng nhập kết quả';
+      }
+
+      totalDayHours += total;
+      totalDayOT += ot;
+    }
+
+    if (totalDayHours - totalDayOT > 8) {
+      return 'Tổng giờ hành chính trong ngày không được lớn hơn 8h';
+    }
+
+    if (locationType == 'other' && (location?.trim().isEmpty ?? true)) {
+      return 'Vui lòng nhập Nơi làm việc';
+    }
+
+    if (nextPlan?.trim().isEmpty ?? true) {
+      return 'Vui lòng nhập Kế hoạch ngày tiếp theo';
+    }
+
+    return null;
+  }
 }

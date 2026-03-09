@@ -109,4 +109,8 @@ abstract class ReportRepo {
 
   Future<Either<BaseError, List<FilmDetailResponse>>> getFilmDetail();
 
+  Future<Either<BaseError, void>> saveReportAgvAd({
+    required List<Map<String, dynamic>> payload,
+  });
+
 }

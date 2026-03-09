@@ -110,6 +110,8 @@ class RouteNames {
   static const reportAGVdepartDetail = '/report/agv/detail';
   static const reportAGVdepartAdd = '/report/agv/add';
 
+  static const reportAGVdepartEdit = '/report/agv/edit';
+
   ///*** Assembly - Deployment Department ***///
   static const reportADdepart = '/report/ad';
   static const reportADdepartDetail = '/report/ad/detail';
