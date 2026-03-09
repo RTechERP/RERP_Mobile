@@ -332,7 +332,7 @@ class _AgvScreenState
                           onTap: hasData
                               ? () async {
                             final reload = await context.push(
-                              RouteNames.reportITdepartDetail,
+                              RouteNames.reportAGVdepartDetail,
                               extra: r.id,
                             );
 

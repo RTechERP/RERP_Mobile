@@ -5,7 +5,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
@@ -206,7 +205,7 @@ class _AgvAddScreenState
                                   const SizedBox(height: 8),
                                   if (state.locationType == 'rtc')
                                     const FormReadonlyField(
-                                      name: 'tech_add_rtc_location',
+                                      name: 'agv_add_rtc_location',
                                       label: '',
                                       icon: Icons.location_on_outlined,
                                       initialValue: 'VP RTC',
@@ -214,8 +213,8 @@ class _AgvAddScreenState
                                   else
                                     FormInputField(
                                       icon: Icons.location_on_outlined,
-                                      nameForm: 'tech_add_location',
-                                      nameTextField: 'tech_add_other_location',
+                                      nameForm: 'agv_add_location',
+                                      nameTextField: 'agv_add_other_location',
                                       label: 'Địa điểm làm việc',
                                       initialValue: state.location ?? '',
                                       onChanged: (v) {
@@ -237,7 +236,7 @@ class _AgvAddScreenState
                               title: 'Kế hoạch ngày tiếp theo',
                               child: FormInputField(
                                 icon: Icons.next_plan_outlined,
-                                nameForm: 'tech_add_next_plan',
+                                nameForm: 'agv_add_next_plan',
                                 nameTextField: 'next_plan',
                                 label: 'Kế hoạch ngày tiếp theo',
                                 maxLines: 3,
@@ -288,7 +287,8 @@ class _AgvAddScreenState
                           );
 
                           if (error != null) {
-                            context.showMessage(
+                            showMessage(
+                              context,
                               error,
                               type: SnackBarType.error,
                             );

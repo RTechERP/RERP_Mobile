@@ -79,6 +79,8 @@ class AgvState extends BaseBlocState {
 
   final int? projectId;
 
+  final String? projectName;
+
   const AgvState({
     required super.status,
     super.message,
@@ -129,6 +131,7 @@ class AgvState extends BaseBlocState {
     this.projectId,
     this.selectedProject,
     this.selectedProjectItem,
+    this.projectName,
   });
 
   factory AgvState.init() => const AgvState(
@@ -171,6 +174,7 @@ class AgvState extends BaseBlocState {
     projectId: null,
     selectedProject: null,
     selectedProjectItem: null,
+    projectName: null,
   );
 
   @override
@@ -224,5 +228,6 @@ class AgvState extends BaseBlocState {
     selectedProject,
     projectItem,
     selectedProjectItem,
+    projectName,
   ];
 }

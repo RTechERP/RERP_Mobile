@@ -94,7 +94,8 @@ class AgvBloc extends BaseBloc<AgvEvent, AgvState> {
         getProject: () => _onGetProject(emit),
         selectProject: (project) => _onSelectProject(project, emit),
         updateLocation: (type, value) => _onUpdateLocation(type, value, emit),
-        updatePlanNextDay: (planNextDay) => _onUpdatePlanNextDay(planNextDay, emit),
+        updatePlanNextDay: (planNextDay) =>
+            _onUpdatePlanNextDay(planNextDay, emit),
       );
     });
   }
@@ -252,9 +253,7 @@ class AgvBloc extends BaseBloc<AgvEvent, AgvState> {
 
       _log.logD('Payload: ${jsonEncode(payload)}');
 
-      final res = await _reportRepo.saveReportAgvAd(
-        payload: payload,
-      );
+      final res = await _reportRepo.saveReportAgvAd(payload: payload);
 
       await res.fold(
         (l) async {
@@ -499,29 +498,30 @@ class AgvBloc extends BaseBloc<AgvEvent, AgvState> {
         return;
       }
 
-      final payload = state.works.map((w) {
+      final payload = state.works.map<Map<String, dynamic>>((w) {
         return {
-          'ID': 0,
+          'ID': dailyID,
           'MasterID': 0,
           'UserReport': userId,
           'DateReport': dateStr,
 
-          'ProjectID': w.projectItemId,
-          'ProjectItemID': w.projectItemId,
+          // đúng format backend
+          'ProjectID': w.projectItemId ?? 0,
+          'ProjectItemID': 0,
 
           'Content': w.content,
           'Results': w.results,
           'Problem': w.problem ?? '',
           'ProblemSolve': w.problemSolve ?? '',
-          'PlanNextDay': w.planNextDay,
+          'PlanNextDay': state.planNextDay ?? '',
           'Note': w.note ?? '',
           'Backlog': w.backlog ?? '',
 
-          'TotalHours': w.totalHours.toInt(),
+          'TotalHours': (w.totalHours).toInt(),
           'TotalHourOT': (w.totalHourOT ?? 0).toInt(),
           'PercentComplete': 0,
 
-          'Location': w.location ?? 'VP RTC',
+          'Location': state.location ?? 'VP RTC',
 
           'Type': 0,
           'ReportLate': 0,
@@ -533,10 +533,9 @@ class AgvBloc extends BaseBloc<AgvEvent, AgvState> {
         };
       }).toList();
 
-      _log.logI('📦 LXCP EDIT PAYLOAD: $payload');
-      _log.logI('📊 WORKS LENGTH: ${state.works.length}');
+      _log.logD('Payload: ${jsonEncode(payload)}');
 
-      final res = await _reportRepo.saveReportLXCP(payload: payload);
+      final res = await _reportRepo.saveReportAgvAd(payload: payload);
 
       res.fold(
         (l) {

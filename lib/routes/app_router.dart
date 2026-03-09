@@ -39,6 +39,7 @@ import '../features/workplace/app/reports/view/ad/view/pages/ad_screen.dart';
 import '../features/workplace/app/reports/view/agv/view/bloc/agv_bloc.dart';
 import '../features/workplace/app/reports/view/agv/view/pages/agv_add_screen.dart';
 import '../features/workplace/app/reports/view/agv/view/pages/agv_detail_screen.dart';
+import '../features/workplace/app/reports/view/agv/view/pages/agv_edit_screen.dart';
 import '../features/workplace/app/reports/view/agv/view/pages/agv_screen.dart';
 import '../features/workplace/app/reports/view/hr/view/bloc/hr_bloc.dart';
 import '../features/workplace/app/reports/view/hr/view/pages/hr_add_screen.dart';
@@ -394,13 +395,13 @@ class AppRouter {
             path: RouteNames.reportAGVdepartDetail,
             builder: (context, state) => const AgvDetailScreen(),
           ),
-          // GoRoute(
-          //   path: RouteNames.reportITdepartEdit,
-          //   builder: (context, state) {
-          //     final dailyId = state.extra as int;
-          //     return TechEditScreen(dailyId: dailyId);
-          //   },
-          // ),
+          GoRoute(
+            path: RouteNames.reportAGVdepartEdit,
+            builder: (context, state) {
+              final dailyId = state.extra as int;
+              return AgvEditScreen(dailyId: dailyId);
+            },
+          ),
         ],
       ),
 

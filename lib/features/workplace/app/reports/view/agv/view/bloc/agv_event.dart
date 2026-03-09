@@ -75,4 +75,5 @@ class AgvEvent with _$AgvEvent {
     required String type,
     String? value,
   }) = _UpdateLocation;
+
 }
