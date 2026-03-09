@@ -33,8 +33,10 @@ import '../features/workplace/app/reg_work/view/pages/wfh/wfh_detail_screen.dart
 import '../features/workplace/app/reg_work/view/pages/wfh/wfh_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/work_trip/work_trip_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/work_trip/work_trip_screen.dart';
+import '../features/workplace/app/reports/view/ad/view/bloc/ad_bloc.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_add_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_detail_screen.dart';
+import '../features/workplace/app/reports/view/ad/view/pages/ad_edit_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_screen.dart';
 import '../features/workplace/app/reports/view/agv/view/bloc/agv_bloc.dart';
 import '../features/workplace/app/reports/view/agv/view/pages/agv_add_screen.dart';
@@ -359,20 +361,35 @@ class AppRouter {
 
       /// Assembly - Project Implementation Route
 
-      GoRoute(
-        path: RouteNames.reportADdepart,
-        builder: (context, state) => const AdScreen(),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<AdBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.reportADdepart,
+            builder: (context, state) => const AdScreen(),
+          ),
+
+          GoRoute(
+            path: RouteNames.reportADdepartAdd,
+            builder: (context, state) => const AdAddScreen(),
+          ),
+
+          GoRoute(
+            path: RouteNames.reportADdepartDetail,
+            builder: (context, state) => const AdDetailScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.reportADdepartEdit,
+            builder: (context, state) {
+              final dailyId = state.extra as int;
+              return AdEditScreen(dailyId: dailyId);
+            },
+          ),
+        ],
       ),
 
-      GoRoute(
-        path: RouteNames.reportADdepartAdd,
-        builder: (context, state) => const AdAddScreen(),
-      ),
-
-      GoRoute(
-        path: RouteNames.reportADdepartDetail,
-        builder: (context, state) => const AdDetailScreen(),
-      ),
 
       /// AGV Route
 

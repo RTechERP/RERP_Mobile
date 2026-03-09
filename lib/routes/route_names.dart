@@ -117,6 +117,8 @@ class RouteNames {
   static const reportADdepartDetail = '/report/ad/detail';
   static const reportADdepartAdd = '/report/ad/add';
 
+  static const reportADdepartEdit = '/report/ad/edit';
+
 
   // Favorites
   static const favorites = '/favorites';
