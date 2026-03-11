@@ -16,7 +16,7 @@ class RoleResolver {
     final empId = user.employeeId;
     final userId = user.id;
     final posId = user.positionId;
-
+    final permissions = user.permissions.split(',');
     /// ===== HR =====
     if (DepartmentGroups.hr.contains(deptId) ||
         EmployeeIdGroups.employeeHrs.contains(empId) ||
@@ -27,7 +27,9 @@ class RoleResolver {
 
     /// ===== SALE =====
     if (DepartmentGroups.sale.contains(deptId) ||
-        EmployeeIdGroups.employeeSaleHCM.contains(empId)) {
+        EmployeeIdGroups.employeeSaleHCM.contains(empId) ||
+        UserIdGroups.userAdminReportTech.contains(userId) ||
+        permissions.any(PermissionGroups.saleAdminReports.contains)) {
       roles.add(AppRole.sale);
     }
 

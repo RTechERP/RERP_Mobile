@@ -393,4 +393,171 @@ class ReportService extends DioBaseApiService {
       parser: (json) => BaseData<void>.fromJson(json, (_) => null),
     );
   }
+
+  Future<BaseData<DetailSaleReportResponse>> getSaleById({required int dailyID}) {
+    return get<BaseData<DetailSaleReportResponse>>(
+      ApiEndPoint.getSaleById,
+      query: {'id': dailyID},
+      parser: (json) => BaseData<DetailSaleReportResponse>.fromJson(
+        json,
+            (data) => DetailSaleReportResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  Future<BaseData<List<SaleProjectResponse>>> getSaleProject() async {
+    return get<BaseData<List<SaleProjectResponse>>>(
+      ApiEndPoint.getSaleProject,
+      parser: (json) => BaseData<List<SaleProjectResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => SaleProjectResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  Future<BaseData<List<TeamSaleResponse>>> getTeamSale() async {
+    return get<BaseData<List<TeamSaleResponse>>>(
+      ApiEndPoint.getTeamSale,
+      parser: (json) => BaseData<List<TeamSaleResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => TeamSaleResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  Future<BaseData<List<CustomerPartResponse>>> getCustomerPart({required int customerId}) async {
+    return get<BaseData<List<CustomerPartResponse>>>(
+      ApiEndPoint.getCustomerPart,
+      query: {'customerId': customerId},
+      parser: (json) => BaseData<List<CustomerPartResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => CustomerPartResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  Future<BaseData<List<TypeTeamSaleResponse>>> getTypeTeamSale() async {
+    return get<BaseData<List<TypeTeamSaleResponse>>>(
+      ApiEndPoint.getTypeTeamSale,
+      parser: (json) => BaseData<List<TypeTeamSaleResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => TypeTeamSaleResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  Future<BaseData<List<CustomerResponse>>> getCustomer() async {
+    return get<BaseData<List<CustomerResponse>>>(
+      ApiEndPoint.getCustomer,
+      parser: (json) => BaseData<List<CustomerResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => CustomerResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  Future<BaseData<List<FirmBaseResponse>>> getFirmBase() async {
+    return get<BaseData<List<FirmBaseResponse>>>(
+      ApiEndPoint.getFirmBase,
+      parser: (json) => BaseData<List<FirmBaseResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => FirmBaseResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  Future<BaseData<List<TypeProjectResponse>>> getTypeProject() async {
+    return get<BaseData<List<TypeProjectResponse>>>(
+      ApiEndPoint.getTypeProject,
+      parser: (json) => BaseData<List<TypeProjectResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => TypeProjectResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  Future<BaseData<List<CustomerContactResponse>>> getCustomerContact({required int customerId}) async {
+    return get<BaseData<List<CustomerContactResponse>>>(
+      ApiEndPoint.getCustomerContact,
+      query: {'customerId': customerId},
+      parser: (json) => BaseData<List<CustomerContactResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => CustomerContactResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  Future<BaseData<void>> saveReportSaleStaff({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    final body = [payload];
+    return post<BaseData<void>>(
+      ApiEndPoint.saveSaleStaffReport,
+      body: body,
+      parser: (json) => BaseData<void>.fromJson(json, (_) => null),
+    );
+  }
+
+  Future<BaseData<SaleReportResponse>> getSaleDailyReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required int userId,
+    required int employeeTeamSaleId,
+    int page = 1,
+    int size = 50,
+    String filterText = '',
+    int customerId = 0,
+    int groupType = -1,
+    int projectId = 0,
+  }) async {
+    String fmt(DateTime d) {
+      final y = d.year.toString().padLeft(4, '0');
+      final m = d.month.toString().padLeft(2, '0');
+      final day = d.day.toString().padLeft(2, '0');
+      final h = d.hour.toString().padLeft(2, '0');
+      final min = d.minute.toString().padLeft(2, '0');
+      final s = d.second.toString().padLeft(2, '0');
+      return '$y-$m-$day'
+          'T'
+          '$h:$min:$s';
+    }
+
+    final query = {
+      'page': page,
+      'size': size,
+      'dateStart': fmt(dateStart),
+      'dateEnd': fmt(dateEnd),
+      'filterText': filterText,
+      'customerId': customerId,
+      'userId': userId,
+      'groupType': groupType,
+      'projectId': projectId,
+      'employeeTeamSaleId': employeeTeamSaleId,
+    };
+
+    return get<BaseData<SaleReportResponse>>(
+      ApiEndPoint.getSaleDailyReport,
+      query: query,
+      parser: (json) => BaseData<SaleReportResponse>.fromJson(
+        {"data": json},
+            (data) => SaleReportResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
 }

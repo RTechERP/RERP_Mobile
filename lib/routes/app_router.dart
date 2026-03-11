@@ -57,12 +57,13 @@ import '../features/workplace/app/reports/view/marketing/view/pages/marketing_de
 import '../features/workplace/app/reports/view/marketing/view/pages/marketing_edit_screen.dart';
 import '../features/workplace/app/reports/view/marketing/view/pages/marketing_screen.dart';
 import '../features/workplace/app/reports/view/report_screen.dart';
-import '../features/workplace/app/reports/view/sale/view/sale_admin_add_screen.dart';
-import '../features/workplace/app/reports/view/sale/view/sale_admin_detail_screen.dart';
-import '../features/workplace/app/reports/view/sale/view/sale_admin_screen.dart';
-import '../features/workplace/app/reports/view/sale/view/sale_staff_add_screen.dart';
-import '../features/workplace/app/reports/view/sale/view/sale_staff_detail_screen.dart';
-import '../features/workplace/app/reports/view/sale/view/sale_staff_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/bloc/sale_bloc.dart';
+import '../features/workplace/app/reports/view/sale/view/pages/sale_admin_add_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/pages/sale_admin_detail_screen.dart';
+
+import '../features/workplace/app/reports/view/sale/view/pages/sale_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/pages/sale_staff_add_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/pages/sale_staff_detail_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
@@ -271,10 +272,7 @@ class AppRouter {
       /// Hr Route
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(
-            value:getIt<HrBloc>(),
-            child: child,
-          );
+          return BlocProvider.value(value: getIt<HrBloc>(), child: child);
         },
         routes: [
           GoRoute(
@@ -360,7 +358,6 @@ class AppRouter {
       ),
 
       /// Assembly - Project Implementation Route
-
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<AdBloc>(), child: child);
@@ -390,9 +387,7 @@ class AppRouter {
         ],
       ),
 
-
       /// AGV Route
-
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<AgvBloc>(), child: child);
@@ -423,34 +418,36 @@ class AppRouter {
       ),
 
       /// Sale Route
-      GoRoute(
-        path: RouteNames.reportSaleAdmin,
-        builder: (context, state) => const SaleAdminScreen(),
-      ),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<SaleBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.reportSaledepart,
+            builder: (context, state) => const SaleScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportSaleStaff,
-        builder: (context, state) => const SaleStaffScreen(),
-      ),
+          GoRoute(
+            path: RouteNames.reportSaleStaffAdd,
+            builder: (context, state) => const SaleStaffAddScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportSaleStaffAdd,
-        builder: (context, state) => const SaleStaffAddScreen(),
-      ),
+          GoRoute(
+            path: RouteNames.reportSaleAdminAdd,
+            builder: (context, state) => const SaleAdminAddScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportSaleAdminAdd,
-        builder: (context, state) => const SaleAdminAddScreen(),
-      ),
+          GoRoute(
+            path: RouteNames.reportSaleStaffDetail,
+            builder: (context, state) => const SaleStaffDetailScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportSaleStaffDetail,
-        builder: (context, state) => const SaleStaffDetailScreen(),
-      ),
-
-      GoRoute(
-        path: RouteNames.reportSaledAdminDetail,
-        builder: (context, state) => const SaleAdminDetailScreen(),
+          GoRoute(
+            path: RouteNames.reportSaledAdminDetail,
+            builder: (context, state) => const SaleAdminDetailScreen(),
+          ),
+        ],
       ),
 
       GoRoute(

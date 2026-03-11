@@ -109,4 +109,28 @@ class ApiEndPoint{
   static const String getFilmDetail = '/DailyReportHr/get-film-detail';
 
   static const String getLXCPById = '/DailyReportHr/get-data-by-id';
+
+  static const String getSaleById = '/DailyReportSale/get-by-id';
+
+  static const String getSaleProject = '/DailyReportSale/get-projects';
+
+  static const String getTeamSale = '/DailyReportSale/get-employee-team-sale';
+
+  static const String getCustomerPart = '/DailyReportSale/get-customerpart';
+
+  static const String getTypeTeamSale = '/DailyReportSale/get-mainindex';
+
+  static const String getCustomer = '/DailyReportSale/get-customers';
+
+  static const String getFirmBase = '/DailyReportSale/get-firmbase';
+
+  static const String getTypeProject = '/DailyReportSale/get-projecttypebase';
+
+  static const String getCustomerContact = '/DailyReportSale/get-customercontact';
+
+  static const String deleteSaleReport = '/DailyReportSale/delete';
+
+  static const String saveSaleStaffReport = '/DailyReportSale/save-data';
+
+  static const String getSaleDailyReport = 'DailyReportSale/get-data';
 }

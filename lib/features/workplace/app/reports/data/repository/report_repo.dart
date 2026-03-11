@@ -72,6 +72,7 @@ abstract class ReportRepo {
     required String keyword,
     required int departmentId,
   });
+
   /// Upload file báo cáo
   Future<Either<BaseError, List<UploadFileResponse>>> uploadReportFile({
     required List<File> files,
@@ -113,4 +114,40 @@ abstract class ReportRepo {
     required List<Map<String, dynamic>> payload,
   });
 
+  Future<Either<BaseError, DetailSaleReportResponse>> getSaleById({
+    required int dailyID,
+  });
+
+  Future<Either<BaseError, List<SaleProjectResponse>>> getSaleProject();
+  Future<Either<BaseError, List<TeamSaleResponse>>> getTeamSale();
+
+  Future<Either<BaseError, List<CustomerPartResponse>>> getCustomerPart({
+    required int customerId,
+  });
+
+  Future<Either<BaseError, List<TypeTeamSaleResponse>>> getTypeTeamSale();
+
+  Future<Either<BaseError, List<CustomerResponse>>> getCustomer();
+  Future<Either<BaseError, List<FirmBaseResponse>>> getFirmBase();
+  Future<Either<BaseError, List<TypeProjectResponse>>> getTypeProject();
+  Future<Either<BaseError, List<CustomerContactResponse>>> getCustomerContact({
+    required int customerId,
+  });
+
+  Future<Either<BaseError, String>> deleteSaleReport({required int dailyID});
+  Future<Either<BaseError, void>> saveReportSaleStaff({
+    required List<Map<String, dynamic>> payload,
+  });
+
+  Future<Either<BaseError, SaleReportResponse>> getSaleDailyReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required int userId,
+    required int employeeTeamSaleId,
+    int page,
+    int size,
+    String filterText,
+    int customerId,
+    int groupType,
+    int projectId});
 }

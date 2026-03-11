@@ -70,15 +70,15 @@ class RouteNames {
   static const reportITdepartEdit = '/report/tech/edit';
 
   ///***Sale Department***///
+  static const reportSaledepart = '/report/sale';
+
   static const reportSaleAdd = '/report/sale/add';
   ///**** Admin Sale ****///
-  static const reportSaleAdmin = '/report/sale_admin';
   static const reportSaledAdminDetail = '/report/sale_admin/detail';
 
   static const reportSaleAdminAdd = '/report/sale_admin/add';
 
   ///**** Sale Staff ****///
-  static const reportSaleStaff = '/report/sale_staff';
   static const reportSaleStaffDetail = '/report/sale_staff/detail';
 
   static const reportSaleStaffAdd = '/report/sale_staff/add';

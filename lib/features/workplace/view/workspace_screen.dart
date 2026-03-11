@@ -86,7 +86,7 @@ class _WorkPlaceScreenState
       }
 
       if (roles.contains(AppRole.sale)) {
-        return RouteNames.reportSaleAdd;
+        return RouteNames.reportSaledepart;
       }
 
       if (roles.contains(AppRole.tech)) {
