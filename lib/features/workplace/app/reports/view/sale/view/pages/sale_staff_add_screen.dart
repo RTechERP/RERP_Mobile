@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -26,22 +25,17 @@ class _SaleStaffAddScreenState
     extends BaseState<SaleStaffAddScreen, SaleEvent, SaleState, SaleBloc> {
   final _formKey = GlobalKey<FormBuilderState>();
 
-  DateTime? _initialReportDate() {
-    final now = DateTime.now();
-
-    // 09:00 hôm nay
-    final todayAt9 = DateTime(now.year, now.month, now.day, 9);
-
-    // Nếu trước 09:00 => null, sau 09:00 => now
-    if (now.isBefore(todayAt9)) return null;
-    return now;
-  }
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       bloc.add(const SaleEvent.init());
+      bloc.add(const SaleEvent.getSaleProject());
+      bloc.add(const SaleEvent.getFirmBase());
+      bloc.add(const SaleEvent.getTypeProjectBase());
+      bloc.add(const SaleEvent.getCustomer());
+      bloc.add(const SaleEvent.getTypeTeamSale());
+      bloc.add(const SaleEvent.getStatusProject());
     });
   }
 
@@ -70,20 +64,7 @@ class _SaleStaffAddScreenState
                         child: ListView(
                           padding: const EdgeInsets.all(16),
                           children: [
-                            /// ===== NGÀY =====
-                            FormCard(
-                              child: FormDateTimePicker(
-                                icon: Icons.calendar_today,
-                                nameForm: 'sale_staff_add_report_time',
-                                nameTimePicker: 'date_time',
-                                label: 'Ngày báo cáo',
-                                inputType: InputType.date,
-                                initialValue: _initialReportDate(),
-                                format: DateFormat('dd/MM/yyyy'),
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            /// ===== DANH SÁCH CÔNG VIỆC CP (Ad) =====
+                            /// ===== DANH SÁCH CÔNG VIỆC SALE =====
                             FormCard(
                               child: BlocBuilder<SaleBloc, SaleState>(
                                 buildWhen: (prev, curr) =>
@@ -113,14 +94,6 @@ class _SaleStaffAddScreenState
                                         final index = entry.key;
                                         final work = entry.value;
 
-                                        final hasData = (work.projectName ?? '')
-                                            .trim()
-                                            .isNotEmpty;
-
-                                        final title = hasData
-                                            ? work.projectCode!
-                                            : 'Dự án ${index + 1}';
-
                                         return Padding(
                                           padding: const EdgeInsets.only(
                                             bottom: 8,
@@ -129,7 +102,7 @@ class _SaleStaffAddScreenState
                                             key: ValueKey(work.id ?? index),
                                             report: work,
                                             readonly: false,
-                                            title: title,
+                                            title: 'Báo cáo ${index + 1}',
                                             index: index,
                                             isExpanded:
                                                 state.expandedWorkIndex ==
@@ -172,8 +145,6 @@ class _SaleStaffAddScreenState
                                 },
                               ),
                             ),
-
-                            const SizedBox(height: 8),
                           ],
                         ),
                       ),
@@ -197,33 +168,11 @@ class _SaleStaffAddScreenState
                           if (!isValid) return;
 
                           final values = formState.value;
+                          // Hiện tại tất cả dateStart/dateEnd nằm trong từng SaleStaffWork
+                          // (được cập nhật ở SaleStaffAddItem), nên chỉ cần dùng ngày hôm nay
+                          // làm ngày submit tổng thể.
 
-                          // final error = ValidateHelper.validateAgvAdReport(
-                          //   date: values['Ad_add_date'] as DateTime?,
-                          //   works: state.works,
-                          //   getProjectName: (w) => w.projectName,
-                          //   getTotalHours: (w) => w.totalHours,
-                          //   getOtHours: (w) => w.totalHourOT,
-                          //   getContent: (w) => w.content,
-                          //   getResult: (w) => w.results,
-                          //   locationType: state.locationType,
-                          //   location: state.location,
-                          //   nextPlan: values['next_plan'],
-                          // );
-                          //
-                          // if (error != null) {
-                          //   showMessage(
-                          //     context,
-                          //     error,
-                          //     type: SnackBarType.error,
-                          //   );
-                          //   return;
-                          // }
-
-                          final pickedDate = values['Ad_add_date'] as DateTime?;
-                          if (pickedDate == null) return;
-
-                          // bloc.add(SaleEvent.submitReport(pickedDate));
+                          bloc.add(SaleEvent.submitReport(DateTime.now()));
                         },
                       ),
                     ),

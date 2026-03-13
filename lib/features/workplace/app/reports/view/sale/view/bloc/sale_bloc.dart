@@ -34,6 +34,89 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         addWork: () => _onAddWork(emit),
         removeWork: (index) => _onRemoveWork(index, emit),
         expandWork: (index) => _onExpandWork(index, emit),
+        getSaleProject: () => _onGetSaleProject(emit),
+        getFirmBase: () => _onGetFirmBase(emit),
+        getTypeProjectBase: () => _onGetTypeProjectBase(emit),
+        getCustomer: () => _onGetCustomer(emit),
+        getTypeTeamSale: () => _onGetTypeTeamSale(emit),
+        getStatusProject: () => _onGetStatusProject(emit),
+        getCustomerContact: (customerId) =>
+            _onGetCustomerContact(customerId, emit),
+        getCustomerPart: (customerId) => _onGetCustomerPart(customerId, emit),
+        updateWork:
+            (
+              index,
+              projectId,
+              projectName,
+              code,
+              firmId,
+              firmName,
+              typeProjectId,
+              typeProjectName,
+              customerId,
+              customerName,
+              customerCode,
+              typeTeamSaleId,
+              typeTeamSaleMainIndex,
+              statusProjectId,
+              statusProjectName,
+              indexStatusProject,
+              customerContactId,
+              customerContactName,
+              customerContactPhone,
+              customerContactTeam,
+              customerContactPart,
+              customerContactPosition,
+              customerPartId,
+              customerPartName,
+              customerPartCode,
+              indexCustomerPart,
+              saleOpportunity,
+              bigAccount,
+              content,
+              results,
+              planNextDay,
+              backlog,
+              customerProduct,
+            ) => _onUpdateWork(
+              index,
+              projectId: projectId,
+              projectName: projectName,
+              code: code,
+              firmId: firmId,
+              firmName: firmName,
+              typeProjectId: typeProjectId,
+              typeProjectName: typeProjectName,
+              customerId: customerId,
+              customerName: customerName,
+              customerCode: customerCode,
+              typeTeamSaleId: typeTeamSaleId,
+              typeTeamSaleMainIndex: typeTeamSaleMainIndex,
+              statusProjectId: statusProjectId,
+              statusProjectName: statusProjectName,
+              indexStatusProject: indexStatusProject,
+              customerContactId: customerContactId,
+              customerContactName: customerContactName,
+              customerContactPhone: customerContactPhone,
+              customerContactTeam: customerContactTeam,
+              customerContactPart: customerContactPart,
+              customerContactPosition: customerContactPosition,
+              customerPartId: customerPartId,
+              customerPartName: customerPartName,
+              customerPartCode: customerPartCode,
+              indexCustomerPart: indexCustomerPart,
+              saleOpportunity: saleOpportunity,
+              bigAccount: bigAccount,
+              content: content,
+              results: results,
+              planNextDay: planNextDay,
+              backlog: backlog,
+              customerProduct: customerProduct,
+              emit: emit,
+            ),
+        updateDate: (picked) => _onUpdateDate(picked, emit),
+        submitReport: (pickedDate) => _onSubmitReport(pickedDate, emit),
+        resetSubmitFlags: () => _onResetSubmitFlags(emit),
       );
     });
   }
@@ -174,5 +257,364 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
     newWorks.removeAt(index);
 
     emit(state.copyWith(staffWorks: newWorks, expandedWorkIndex: null));
+  }
+
+  Future<void> _onGetSaleProject(Emitter<SaleState> emit) async {
+    final res = await _reportRepo.getSaleProject();
+
+    res.fold(
+      (l) {
+        _log.logE('Get sale project failed: $l');
+      },
+      (r) {
+        emit(state.copyWith(projects: r));
+      },
+    );
+  }
+
+  Future<void> _onGetFirmBase(Emitter<SaleState> emit) async {
+    final res = await _reportRepo.getFirmBase();
+
+    res.fold(
+      (l) {
+        _log.logE('Get firm base failed: $l');
+      },
+      (r) {
+        emit(state.copyWith(firmBases: r));
+      },
+    );
+  }
+
+  Future<void> _onGetTypeProjectBase(Emitter<SaleState> emit) async {
+    final res = await _reportRepo.getTypeProject();
+
+    res.fold(
+      (l) {
+        _log.logE('Get type project base failed: $l');
+      },
+      (r) {
+        emit(state.copyWith(typeProjectBases: r));
+      },
+    );
+  }
+
+  Future<void> _onGetCustomer(Emitter<SaleState> emit) async {
+    final res = await _reportRepo.getCustomer();
+
+    res.fold(
+      (l) {
+        _log.logE('Get customer failed: $l');
+      },
+      (r) {
+        emit(state.copyWith(customers: r));
+      },
+    );
+  }
+
+  Future<void> _onGetTypeTeamSale(Emitter<SaleState> emit) async {
+    final res = await _reportRepo.getTypeTeamSale();
+
+    res.fold(
+      (l) {
+        _log.logE('Get type team sale failed: $l');
+      },
+      (r) {
+        emit(state.copyWith(typeTeamSales: r));
+      },
+    );
+  }
+
+  Future<void> _onGetStatusProject(Emitter<SaleState> emit) async {
+    final res = await _reportRepo.getStatusProject();
+
+    res.fold(
+      (l) {
+        _log.logE('Get status project failed: $l');
+      },
+      (r) {
+        emit(state.copyWith(statusProjects: r));
+      },
+    );
+  }
+
+  Future<void> _onGetCustomerContact(
+    int customerId,
+    Emitter<SaleState> emit,
+  ) async {
+    if (customerId <= 0) {
+      _log.logE('CustomerId invalid ($customerId), skip getCustomerContact');
+      return;
+    }
+
+    final res = await _reportRepo.getCustomerContact(customerId: customerId);
+
+    res.fold(
+      (l) {
+        _log.logE('Get customer contact failed: $l');
+      },
+      (r) {
+        emit(state.copyWith(customerContacts: r));
+      },
+    );
+  }
+
+  Future<void> _onGetCustomerPart(
+    int customerId,
+    Emitter<SaleState> emit,
+  ) async {
+    if (customerId <= 0) {
+      _log.logE('CustomerId invalid ($customerId), skip getCustomerPart');
+      return;
+    }
+
+    final res = await _reportRepo.getCustomerPart(customerId: customerId);
+
+    res.fold(
+      (l) {
+        _log.logE('Get customer part failed: $l');
+      },
+      (r) {
+        emit(state.copyWith(customerParts: r));
+      },
+    );
+  }
+
+  Future<void> _onUpdateWork(
+    int index, {
+    int? projectId,
+    String? projectName,
+    String? code,
+    int? firmId,
+    String? firmName,
+    int? typeProjectId,
+    String? typeProjectName,
+    int? customerId,
+    String? customerName,
+    String? customerCode,
+    int? typeTeamSaleId,
+    String? typeTeamSaleMainIndex,
+    int? statusProjectId,
+    String? statusProjectName,
+    int? indexStatusProject,
+    int? customerContactId,
+    String? customerContactName,
+    String? customerContactPhone,
+    String? customerContactTeam,
+    String? customerContactPart,
+    String? customerContactPosition,
+    int? customerPartId,
+    String? customerPartName,
+    String? customerPartCode,
+    int? indexCustomerPart,
+    bool? saleOpportunity,
+    bool? bigAccount,
+    String? content,
+    String? results,
+    String? planNextDay,
+    String? backlog,
+    String? customerProduct,
+    required Emitter<SaleState> emit,
+  }) async {
+    final works = [...state.staffWorks];
+    if (index < 0 || index >= works.length) return;
+
+    final old = works[index];
+
+    final effectiveProjectId = projectId ?? old.projectId;
+    SaleProjectResponse? project;
+    if (effectiveProjectId != null) {
+      for (final p in state.projects) {
+        if (p.id == effectiveProjectId) {
+          project = p;
+          break;
+        }
+      }
+    }
+
+    final effectiveProjectName =
+        projectName ?? project?.projectName ?? old.projectName;
+    final effectiveProjectCode =
+        code ?? project?.projectCode ?? old.projectCode;
+    final effectiveProjectText =
+        '${effectiveProjectCode ?? ''} - ${effectiveProjectName ?? ''}'.trim();
+
+    final effectiveCustomerId = customerId ?? old.customerId;
+    final customerChanged = customerId != null && customerId != old.customerId;
+
+    works[index] = old.copyWith(
+      projectId: effectiveProjectId,
+      projectName: effectiveProjectName,
+      projectCode: effectiveProjectCode,
+      projectText: effectiveProjectText,
+      firmId: firmId ?? old.firmId,
+      firmName: firmName ?? old.firmName,
+      typeProjectId: typeProjectId ?? old.typeProjectId,
+      typeProjectName: typeProjectName ?? old.typeProjectName,
+      customerId: effectiveCustomerId,
+      customerName: customerName ?? old.customerName,
+      customerCode: customerCode ?? old.customerCode,
+      typeTeamSaleId: typeTeamSaleId ?? old.typeTeamSaleId,
+      typeTeamSaleMainIndex: typeTeamSaleMainIndex ?? old.typeTeamSaleMainIndex,
+      statusProjectId: statusProjectId ?? old.statusProjectId,
+      statusProjectName: statusProjectName ?? old.statusProjectName,
+      indexStatusProject: indexStatusProject ?? old.indexStatusProject,
+      clearContactAndPart: customerChanged,
+      customerContactId: customerContactId ?? old.customerContactId,
+      customerContactName: customerContactName ?? old.customerContactName,
+      customerContactPhone: customerContactPhone ?? old.customerContactPhone,
+      customerContactTeam: customerContactTeam ?? old.customerContactTeam,
+      customerContactPart: customerContactPart ?? old.customerContactPart,
+      customerContactPosition:
+          customerContactPosition ?? old.customerContactPosition,
+      customerPartId: customerPartId ?? old.customerPartId,
+      customerPartName: customerPartName ?? old.customerPartName,
+      customerPartCode: customerPartCode ?? old.customerPartCode,
+      indexCustomerPart: indexCustomerPart ?? old.indexCustomerPart,
+      saleOpportunity: saleOpportunity ?? old.saleOpportunity,
+      bigAccount: bigAccount ?? old.bigAccount,
+      content: content ?? old.content,
+      results: results ?? old.results,
+      planNextDay: planNextDay ?? old.planNextDay,
+      backlog: backlog ?? old.backlog,
+      customerProduct: customerProduct ?? old.customerProduct,
+    );
+
+    if (customerChanged) {
+      // Xóa cache contact/part cũ; load lại theo customerId mới để bottom sheet đúng KH.
+      emit(
+        state.copyWith(
+          staffWorks: works,
+          customerContacts: const [],
+          customerParts: const [],
+        ),
+      );
+      if (effectiveCustomerId != null && effectiveCustomerId > 0) {
+        final contactRes = await _reportRepo.getCustomerContact(
+          customerId: effectiveCustomerId,
+        );
+        contactRes.fold(
+          (l) => _log.logE('Get customer contact after customer change: $l'),
+          (r) => emit(state.copyWith(staffWorks: works, customerContacts: r)),
+        );
+        final partRes = await _reportRepo.getCustomerPart(
+          customerId: effectiveCustomerId,
+        );
+        partRes.fold(
+          (l) => _log.logE('Get customer part after customer change: $l'),
+          (r) => emit(state.copyWith(staffWorks: works, customerParts: r)),
+        );
+      }
+    } else {
+      emit(state.copyWith(staffWorks: works));
+    }
+  }
+
+  _onUpdateDate(DateTime? picked, Emitter<SaleState> emit) {
+    if (picked == null) return;
+
+    final safeDate = DateTime(picked.year, picked.month, picked.day);
+
+    emit(state.copyWith(dateReport: safeDate));
+  }
+
+  bool _isSubmittingReport = false;
+
+  Future<void> _onSubmitReport(
+    DateTime pickedDate,
+    Emitter<SaleState> emit,
+  ) async {
+    if (_isSubmittingReport) return;
+    _isSubmittingReport = true;
+
+    try {
+      emit(state.copyWith(isSubmitting: true, submitSuccess: false));
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+      final userId = user?.id;
+
+      if (userId == null) {
+        emit(state.copyWith(isSubmitting: false));
+        return;
+      }
+
+      if (state.staffWorks.isEmpty) {
+        emit(state.copyWith(isSubmitting: false));
+        return;
+      }
+
+      final safeStart = DateTime(
+        pickedDate.year,
+        pickedDate.month,
+        pickedDate.day,
+      );
+      final safeEnd = safeStart;
+
+      final payload = state.staffWorks.map<Map<String, dynamic>>((w) {
+        return {
+          'ID': 0,
+
+          'projectId': w.projectId ?? 0,
+          'customerId': w.customerId ?? 0,
+          'warehouseId': 1,
+          'projectStatusBaseId': w.projectStatusBaseId ?? 0,
+          'userId': userId,
+
+          // Nếu từng work không có date riêng thì dùng khoảng ngày submit
+          'dateStart':
+              (w.dateStart ?? safeStart).toIso8601String(),
+          'dateEnd':
+              (w.dateEnd ?? safeEnd).toIso8601String(),
+
+          'firmId': w.firmId ?? 0,
+          'projectTypeId': w.typeProjectId ?? 0,
+          'contactId': w.customerContactId ?? 0,
+          'groupTypeId': w.typeTeamSaleId ?? 0,
+
+          'partId': w.customerPartId,
+
+          'bigAccount': w.bigAccount,
+          'saleOpportunity': w.saleOpportunity,
+
+          'content': w.content,
+          'result': w.results,
+          'problemBacklog': w.problem ?? '',
+          'planNext': w.planNextDay,
+          'productOfCustomer': w.customerProduct ?? '',
+
+          'projectStatusOld': w.projectStatusOld ?? 0,
+          'employeeId': userId,
+
+          'dateStatusLog': DateTime.now().toIso8601String(),
+        };
+      }).toList();
+
+      _log.logD('Payload: ${jsonEncode(payload)}');
+
+      final res = await _reportRepo.saveReportSaleStaff(payload: payload);
+
+      await res.fold(
+        (l) async {
+          _log.logE('❌ Submit API failed: $l');
+          emit(state.copyWith(isSubmitting: false, submitSuccess: false));
+        },
+        (r) async {
+          _log.logI('✅ Submit report success');
+          emit(state.copyWith(isSubmitting: false, submitSuccess: true));
+        },
+      );
+    } catch (e, s) {
+      _log.logE('❌ Submit exception: $e');
+      _log.logE('$s');
+      emit(state.copyWith(isSubmitting: false, submitSuccess: false));
+    } finally {
+      _isSubmittingReport = false;
+      _log.logI('🏁 End submit report');
+    }
+  }
+
+  _onResetSubmitFlags(Emitter<SaleState> emit) {
+    emit(state.copyWith(submitSuccess: false));
+    emit(state.copyWith(isSubmitting: false));
   }
 }

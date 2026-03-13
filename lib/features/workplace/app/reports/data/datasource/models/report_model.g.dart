@@ -1200,9 +1200,9 @@ _$SaleProjectResponseImpl _$$SaleProjectResponseImplFromJson(
       userId: (json['UserID'] as num).toInt(),
       userTechnicalId: (json['UserTechnicalID'] as num?)?.toInt(),
       note: json['Note'] as String,
-      isApproved: json['IsApproved'] as bool,
-      contactId: (json['ContactID'] as num).toInt(),
-      po: json['PO'] as String,
+      isApproved: json['IsApproved'] as bool?,
+      contactId: (json['ContactID'] as num?)?.toInt(),
+      po: json['PO'] as String?,
       projectType: (json['ProjectType'] as num?)?.toInt(),
       listCostId: (json['ListCostID'] as num?)?.toInt(),
       planDateStart: json['PlanDateStart'] == null
@@ -1218,13 +1218,13 @@ _$SaleProjectResponseImpl _$$SaleProjectResponseImplFromJson(
           ? null
           : DateTime.parse(json['ActualDateEnd'] as String),
       eu: json['EU'] as String?,
-      projectManager: json['ProjectManager'] as String?,
-      currentState: (json['CurrentState'] as num?)?.toInt(),
+      projectManager: (json['ProjectManager'] as num?)?.toInt(),
+      currentState: json['CurrentState'] as String?,
       priority: (json['Priotity'] as num?)?.toInt(),
       poDate: json['PODate'] == null
           ? null
           : DateTime.parse(json['PODate'] as String),
-      endUser: json['EndUser'] as String?,
+      endUser: (json['EndUser'] as num?)?.toInt(),
       createdBy: json['CreatedBy'] as String,
       createdDate: DateTime.parse(json['CreatedDate'] as String),
       updatedBy: json['UpdatedBy'] as String,
@@ -1277,7 +1277,7 @@ _$CustomerPartResponseImpl _$$CustomerPartResponseImplFromJson(
       partName: json['PartName'] as String,
       partCode: json['PartCode'] as String,
       customerId: (json['CustomerID'] as num).toInt(),
-      stt: (json['STT'] as num).toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$CustomerPartResponseImplToJson(
@@ -1305,9 +1305,9 @@ _$TypeTeamSaleResponseImpl _$$TypeTeamSaleResponseImplFromJson(
       goal2: (json['Goal2'] as num?)?.toDouble(),
       result2: (json['Result2'] as num?)?.toDouble(),
       accp2: (json['ACCP2'] as num?)?.toDouble(),
-      accp: (json['ACCP'] as num).toDouble(),
-      goal: (json['Goal'] as num).toDouble(),
-      result: (json['Result'] as num).toDouble(),
+      accp: (json['ACCP'] as num?)?.toDouble(),
+      goal: (json['Goal'] as num?)?.toDouble(),
+      result: (json['Result'] as num?)?.toDouble(),
       convertId: (json['ConvertID'] as num?)?.toInt(),
       mainIndex1: json['MainIndex1'] as String?,
       mainIndex2: json['MainIndex2'] as String?,
@@ -1384,6 +1384,30 @@ Map<String, dynamic> _$$TypeProjectResponseImplToJson(
       'ProjectTypeName': instance.projectTypeName,
     };
 
+_$StatusProjectResponseImpl _$$StatusProjectResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$StatusProjectResponseImpl(
+      id: (json['ID'] as num).toInt(),
+      statusName: json['StatusName'] as String?,
+      createdDate: json['CreatedDate'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] as String?,
+      updatedBy: json['UpdatedBy'] as String?,
+      stt: (json['STT'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$StatusProjectResponseImplToJson(
+        _$StatusProjectResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'StatusName': instance.statusName,
+      'CreatedDate': instance.createdDate,
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate,
+      'UpdatedBy': instance.updatedBy,
+      'STT': instance.stt,
+    };
+
 _$CustomerContactResponseImpl _$$CustomerContactResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$CustomerContactResponseImpl(
@@ -1396,7 +1420,7 @@ _$CustomerContactResponseImpl _$$CustomerContactResponseImplFromJson(
       customerTeam: json['CustomerTeam'] as String?,
       customerPart: json['CustomerPart'] as String?,
       customerPosition: json['CustomerPosition'] as String?,
-      isDeleted: json['IsDeleted'] as bool,
+      isDeleted: json['IsDeleted'] as bool?,
     );
 
 Map<String, dynamic> _$$CustomerContactResponseImplToJson(

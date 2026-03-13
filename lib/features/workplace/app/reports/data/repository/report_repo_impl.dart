@@ -562,4 +562,14 @@ class ReportRepoImpl implements ReportRepo {
       return Left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<StatusProjectResponse>>> getStatusProject() async{
+    try {
+      final res = await _service.getStatusProject();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

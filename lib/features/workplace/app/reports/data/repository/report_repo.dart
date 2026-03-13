@@ -130,10 +130,11 @@ abstract class ReportRepo {
   Future<Either<BaseError, List<CustomerResponse>>> getCustomer();
   Future<Either<BaseError, List<FirmBaseResponse>>> getFirmBase();
   Future<Either<BaseError, List<TypeProjectResponse>>> getTypeProject();
+
+  Future<Either<BaseError, List<StatusProjectResponse>>> getStatusProject();
   Future<Either<BaseError, List<CustomerContactResponse>>> getCustomerContact({
     required int customerId,
   });
-
   Future<Either<BaseError, String>> deleteSaleReport({required int dailyID});
   Future<Either<BaseError, void>> saveReportSaleStaff({
     required List<Map<String, dynamic>> payload,

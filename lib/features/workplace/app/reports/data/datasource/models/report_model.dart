@@ -802,10 +802,10 @@ class SaleProjectResponse with _$SaleProjectResponse {
 
     @JsonKey(name: 'Note') required String note,
 
-    @JsonKey(name: 'IsApproved') required bool isApproved,
-    @JsonKey(name: 'ContactID') required int contactId,
+    @JsonKey(name: 'IsApproved') bool? isApproved,
+    @JsonKey(name: 'ContactID')  int? contactId,
 
-    @JsonKey(name: 'PO') required String po,
+    @JsonKey(name: 'PO') String? po,
 
     @JsonKey(name: 'ProjectType') int? projectType,
     @JsonKey(name: 'ListCostID') int? listCostId,
@@ -817,14 +817,14 @@ class SaleProjectResponse with _$SaleProjectResponse {
     @JsonKey(name: 'ActualDateEnd') DateTime? actualDateEnd,
 
     @JsonKey(name: 'EU') String? eu,
-    @JsonKey(name: 'ProjectManager') String? projectManager,
+    @JsonKey(name: 'ProjectManager') int? projectManager,
 
-    @JsonKey(name: 'CurrentState') int? currentState,
+    @JsonKey(name: 'CurrentState') String? currentState,
     @JsonKey(name: 'Priotity') int? priority,
 
     @JsonKey(name: 'PODate') DateTime? poDate,
 
-    @JsonKey(name: 'EndUser') String? endUser,
+    @JsonKey(name: 'EndUser') int? endUser,
 
     @JsonKey(name: 'CreatedBy') required String createdBy,
     @JsonKey(name: 'CreatedDate') required DateTime createdDate,
@@ -849,7 +849,7 @@ class CustomerPartResponse with _$CustomerPartResponse {
     @JsonKey(name: 'PartName') required String partName,
     @JsonKey(name: 'PartCode') required String partCode,
     @JsonKey(name: 'CustomerID') required int customerId,
-    @JsonKey(name: 'STT') required int stt,
+    @JsonKey(name: 'STT') int? stt,
   }) = _CustomerPartResponse;
 
   factory CustomerPartResponse.fromJson(Map<String, dynamic> json) =>
@@ -875,9 +875,9 @@ class TypeTeamSaleResponse with _$TypeTeamSaleResponse {
     @JsonKey(name: 'Result2') double? result2,
     @JsonKey(name: 'ACCP2') double? accp2,
 
-    @JsonKey(name: 'ACCP') required double accp,
-    @JsonKey(name: 'Goal') required double goal,
-    @JsonKey(name: 'Result') required double result,
+    @JsonKey(name: 'ACCP') double? accp,
+    @JsonKey(name: 'Goal') double? goal,
+    @JsonKey(name: 'Result') double? result,
 
     @JsonKey(name: 'ConvertID') int? convertId,
 
@@ -926,6 +926,22 @@ class TypeProjectResponse with _$TypeProjectResponse {
 }
 
 @freezed
+class StatusProjectResponse with _$StatusProjectResponse {
+  const factory StatusProjectResponse({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'StatusName')  String? statusName,
+    @JsonKey(name: 'CreatedDate') String? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') String? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'STT') int? stt,
+  }) = _StatusProjectResponse;
+
+  factory StatusProjectResponse.fromJson(Map<String, dynamic> json) =>
+      _$StatusProjectResponseFromJson(json);
+}
+
+@freezed
 class CustomerContactResponse with _$CustomerContactResponse {
   const factory CustomerContactResponse({
     @JsonKey(name: 'ID') required int id,
@@ -937,13 +953,12 @@ class CustomerContactResponse with _$CustomerContactResponse {
     @JsonKey(name: 'CustomerTeam') String? customerTeam,
     @JsonKey(name: 'CustomerPart') String? customerPart,
     @JsonKey(name: 'CustomerPosition') String? customerPosition,
-    @JsonKey(name: 'IsDeleted') required bool isDeleted,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
   }) = _CustomerContactResponse;
 
   factory CustomerContactResponse.fromJson(Map<String, dynamic> json) =>
       _$CustomerContactResponseFromJson(json);
 }
-
 @freezed
 class SaleRequest with _$SaleRequest {
   const factory SaleRequest({

@@ -490,6 +490,17 @@ class ReportService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<List<StatusProjectResponse>>> getStatusProject() async {
+    return get<BaseData<List<StatusProjectResponse>>>(
+      ApiEndPoint.getStatusProject,
+      parser: (json) => BaseData<List<StatusProjectResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => StatusProjectResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
   Future<BaseData<List<CustomerContactResponse>>> getCustomerContact({required int customerId}) async {
     return get<BaseData<List<CustomerContactResponse>>>(
       ApiEndPoint.getCustomerContact,
@@ -506,7 +517,7 @@ class ReportService extends DioBaseApiService {
   Future<BaseData<void>> saveReportSaleStaff({
     required List<Map<String, dynamic>> payload,
   }) async {
-    final body = [payload];
+    final body = payload;
     return post<BaseData<void>>(
       ApiEndPoint.saveSaleStaffReport,
       body: body,

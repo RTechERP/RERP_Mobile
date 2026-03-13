@@ -6,7 +6,6 @@ class SaleState extends BaseBlocState {
   final bool isSubmitting;
   final bool submitSuccess;
   final bool isDeleting;
-
   final int? userId;
   final String? fullName;
   final int? departmentId;
@@ -20,19 +19,36 @@ class SaleState extends BaseBlocState {
   final List<SaleProjectResponse> projects;
   final List<SaleStaffWork> staffWorks;
 
+  final List<FirmBaseResponse> firmBases;
+
+  final List<TypeProjectResponse> typeProjectBases;
+
+  final List<TypeTeamSaleResponse> typeTeamSales;
+  final List<StatusProjectResponse> statusProjects;
+  final List<CustomerResponse> customers;
+
+  final List<CustomerContactResponse> customerContacts;
+  final List<CustomerPartResponse> customerParts;
   final DateTime? dateStart;
   final DateTime? dateEnd;
   final String? keyword;
-
   final int? expandedWorkIndex;
+  final int? customerId;
 
-
+  final DateTime? dateReport;
   const SaleState({
     required super.status,
     super.message,
     this.reports = const [],
     this.projects = const [],
     this.staffWorks = const [],
+    this.firmBases = const [],
+    this.typeProjectBases = const [],
+    this.customers = const [],
+    this.typeTeamSales = const [],
+    this.statusProjects = const [],
+    this.customerContacts = const [],
+    this.customerParts = const [],
     this.userId,
     this.fullName,
     this.departmentId,
@@ -48,6 +64,8 @@ class SaleState extends BaseBlocState {
     this.isSubmitting = false,
     this.submitSuccess = false,
     this.expandedWorkIndex,
+    this.customerId,
+    this.dateReport,
   });
 
   factory SaleState.init() => const SaleState(
@@ -55,6 +73,13 @@ class SaleState extends BaseBlocState {
     reports: [],
     projects: [],
     staffWorks: [],
+    firmBases: [],
+    typeProjectBases: [],
+    customers: [],
+    typeTeamSales: [],
+    statusProjects: [],
+    customerContacts: [],
+    customerParts: [],
     userId: null,
     fullName: null,
     departmentId: null,
@@ -71,6 +96,8 @@ class SaleState extends BaseBlocState {
     isSubmitting: false,
     submitSuccess: false,
     expandedWorkIndex: null,
+    customerId: null,
+    dateReport: null,
   );
 
   @override
@@ -95,5 +122,14 @@ class SaleState extends BaseBlocState {
     isSubmitting,
     submitSuccess,
     expandedWorkIndex,
+    firmBases,
+    typeProjectBases,
+    customers,
+    typeTeamSales,
+    statusProjects,
+    customerContacts,
+    customerParts,
+    customerId,
+    dateReport,
   ];
 }

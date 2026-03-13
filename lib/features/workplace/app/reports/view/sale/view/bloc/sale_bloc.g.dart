@@ -17,6 +17,20 @@ abstract class _$SaleStateCWProxy {
 
   SaleState staffWorks(List<SaleStaffWork> staffWorks);
 
+  SaleState firmBases(List<FirmBaseResponse> firmBases);
+
+  SaleState typeProjectBases(List<TypeProjectResponse> typeProjectBases);
+
+  SaleState customers(List<CustomerResponse> customers);
+
+  SaleState typeTeamSales(List<TypeTeamSaleResponse> typeTeamSales);
+
+  SaleState statusProjects(List<StatusProjectResponse> statusProjects);
+
+  SaleState customerContacts(List<CustomerContactResponse> customerContacts);
+
+  SaleState customerParts(List<CustomerPartResponse> customerParts);
+
   SaleState userId(int? userId);
 
   SaleState fullName(String? fullName);
@@ -47,6 +61,10 @@ abstract class _$SaleStateCWProxy {
 
   SaleState expandedWorkIndex(int? expandedWorkIndex);
 
+  SaleState customerId(int? customerId);
+
+  SaleState dateReport(DateTime? dateReport);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -59,6 +77,13 @@ abstract class _$SaleStateCWProxy {
     List<SaleReportItem>? reports,
     List<SaleProjectResponse>? projects,
     List<SaleStaffWork>? staffWorks,
+    List<FirmBaseResponse>? firmBases,
+    List<TypeProjectResponse>? typeProjectBases,
+    List<CustomerResponse>? customers,
+    List<TypeTeamSaleResponse>? typeTeamSales,
+    List<StatusProjectResponse>? statusProjects,
+    List<CustomerContactResponse>? customerContacts,
+    List<CustomerPartResponse>? customerParts,
     int? userId,
     String? fullName,
     int? departmentId,
@@ -74,6 +99,8 @@ abstract class _$SaleStateCWProxy {
     bool? isSubmitting,
     bool? submitSuccess,
     int? expandedWorkIndex,
+    int? customerId,
+    DateTime? dateReport,
   });
 }
 
@@ -99,6 +126,34 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
   @override
   SaleState staffWorks(List<SaleStaffWork> staffWorks) =>
       this(staffWorks: staffWorks);
+
+  @override
+  SaleState firmBases(List<FirmBaseResponse> firmBases) =>
+      this(firmBases: firmBases);
+
+  @override
+  SaleState typeProjectBases(List<TypeProjectResponse> typeProjectBases) =>
+      this(typeProjectBases: typeProjectBases);
+
+  @override
+  SaleState customers(List<CustomerResponse> customers) =>
+      this(customers: customers);
+
+  @override
+  SaleState typeTeamSales(List<TypeTeamSaleResponse> typeTeamSales) =>
+      this(typeTeamSales: typeTeamSales);
+
+  @override
+  SaleState statusProjects(List<StatusProjectResponse> statusProjects) =>
+      this(statusProjects: statusProjects);
+
+  @override
+  SaleState customerContacts(List<CustomerContactResponse> customerContacts) =>
+      this(customerContacts: customerContacts);
+
+  @override
+  SaleState customerParts(List<CustomerPartResponse> customerParts) =>
+      this(customerParts: customerParts);
 
   @override
   SaleState userId(int? userId) => this(userId: userId);
@@ -150,6 +205,12 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
       this(expandedWorkIndex: expandedWorkIndex);
 
   @override
+  SaleState customerId(int? customerId) => this(customerId: customerId);
+
+  @override
+  SaleState dateReport(DateTime? dateReport) => this(dateReport: dateReport);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -163,6 +224,13 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
     Object? reports = const $CopyWithPlaceholder(),
     Object? projects = const $CopyWithPlaceholder(),
     Object? staffWorks = const $CopyWithPlaceholder(),
+    Object? firmBases = const $CopyWithPlaceholder(),
+    Object? typeProjectBases = const $CopyWithPlaceholder(),
+    Object? customers = const $CopyWithPlaceholder(),
+    Object? typeTeamSales = const $CopyWithPlaceholder(),
+    Object? statusProjects = const $CopyWithPlaceholder(),
+    Object? customerContacts = const $CopyWithPlaceholder(),
+    Object? customerParts = const $CopyWithPlaceholder(),
     Object? userId = const $CopyWithPlaceholder(),
     Object? fullName = const $CopyWithPlaceholder(),
     Object? departmentId = const $CopyWithPlaceholder(),
@@ -178,6 +246,8 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
     Object? expandedWorkIndex = const $CopyWithPlaceholder(),
+    Object? customerId = const $CopyWithPlaceholder(),
+    Object? dateReport = const $CopyWithPlaceholder(),
   }) {
     return SaleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -201,6 +271,39 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
               ? _value.staffWorks
               // ignore: cast_nullable_to_non_nullable
               : staffWorks as List<SaleStaffWork>,
+      firmBases: firmBases == const $CopyWithPlaceholder() || firmBases == null
+          ? _value.firmBases
+          // ignore: cast_nullable_to_non_nullable
+          : firmBases as List<FirmBaseResponse>,
+      typeProjectBases: typeProjectBases == const $CopyWithPlaceholder() ||
+              typeProjectBases == null
+          ? _value.typeProjectBases
+          // ignore: cast_nullable_to_non_nullable
+          : typeProjectBases as List<TypeProjectResponse>,
+      customers: customers == const $CopyWithPlaceholder() || customers == null
+          ? _value.customers
+          // ignore: cast_nullable_to_non_nullable
+          : customers as List<CustomerResponse>,
+      typeTeamSales:
+          typeTeamSales == const $CopyWithPlaceholder() || typeTeamSales == null
+              ? _value.typeTeamSales
+              // ignore: cast_nullable_to_non_nullable
+              : typeTeamSales as List<TypeTeamSaleResponse>,
+      statusProjects: statusProjects == const $CopyWithPlaceholder() ||
+              statusProjects == null
+          ? _value.statusProjects
+          // ignore: cast_nullable_to_non_nullable
+          : statusProjects as List<StatusProjectResponse>,
+      customerContacts: customerContacts == const $CopyWithPlaceholder() ||
+              customerContacts == null
+          ? _value.customerContacts
+          // ignore: cast_nullable_to_non_nullable
+          : customerContacts as List<CustomerContactResponse>,
+      customerParts:
+          customerParts == const $CopyWithPlaceholder() || customerParts == null
+              ? _value.customerParts
+              // ignore: cast_nullable_to_non_nullable
+              : customerParts as List<CustomerPartResponse>,
       userId: userId == const $CopyWithPlaceholder()
           ? _value.userId
           // ignore: cast_nullable_to_non_nullable
@@ -264,6 +367,14 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
           ? _value.expandedWorkIndex
           // ignore: cast_nullable_to_non_nullable
           : expandedWorkIndex as int?,
+      customerId: customerId == const $CopyWithPlaceholder()
+          ? _value.customerId
+          // ignore: cast_nullable_to_non_nullable
+          : customerId as int?,
+      dateReport: dateReport == const $CopyWithPlaceholder()
+          ? _value.dateReport
+          // ignore: cast_nullable_to_non_nullable
+          : dateReport as DateTime?,
     );
   }
 }

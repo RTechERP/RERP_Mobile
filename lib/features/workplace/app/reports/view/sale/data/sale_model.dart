@@ -44,7 +44,44 @@ class SaleStaffWork extends Equatable {
 
   final bool? isDeleted;
   final int? projectId;
+  final int? firmId;
+  final String? firmName;
+  final int? typeProjectId;
+  final String? typeProjectName;
+  final int? customerId;
+  final String? customerName;
+  final String? customerCode;
 
+  final int? typeTeamSaleId;
+  final String? typeTeamSaleMainIndex;
+
+  final int? statusProjectId;
+  final String? statusProjectName;
+  final int? indexStatusProject;
+
+  final int? customerContactId;
+  final String? customerContactName;
+  final String? customerContactPhone;
+
+  final String? customerContactTeam;
+  final String? customerContactPart;
+  final String? customerContactPosition;
+
+  final int? customerPartId;
+  final String? customerPartName;
+  final String? customerPartCode;
+  final int? indexCustomerPart;
+
+  final bool saleOpportunity;
+  final bool bigAccount;
+
+  final String? customerProduct;
+
+  final DateTime? dateStart;
+  final DateTime? dateEnd;
+
+  final int? projectStatusBaseId;
+  final int? projectStatusOld;
   const SaleStaffWork({
     this.id,
     this.employeeId,
@@ -79,6 +116,35 @@ class SaleStaffWork extends Equatable {
     this.location,
     this.isDeleted,
     this.projectId,
+    this.firmId,
+    this.firmName,
+    this.typeProjectId,
+    this.typeProjectName,
+    this.customerId,
+    this.customerName,
+    this.customerCode,
+    this.typeTeamSaleId,
+    this.typeTeamSaleMainIndex,
+    this.statusProjectId,
+    this.statusProjectName,
+    this.indexStatusProject,
+    this.customerContactId,
+    this.customerContactName,
+    this.customerContactPhone,
+    this.customerContactTeam,
+    this.customerContactPart,
+    this.customerContactPosition,
+    this.customerPartId,
+    this.customerPartName,
+    this.customerPartCode,
+    this.indexCustomerPart,
+    this.saleOpportunity = false,
+    this.bigAccount = false,
+    this.customerProduct,
+    this.dateStart,
+    this.dateEnd,
+    this.projectStatusBaseId,
+    this.projectStatusOld,
   });
 
   /// tạo item rỗng để Add trên UI
@@ -133,6 +199,35 @@ class SaleStaffWork extends Equatable {
       problemSolve: null,
       location: null,
       isDeleted: false,
+      firmId: null,
+      firmName: null,
+      typeProjectId: null,
+      typeProjectName: null,
+      customerId: null,
+      customerName: null,
+      customerCode: null,
+      typeTeamSaleId: null,
+      typeTeamSaleMainIndex: null,
+      statusProjectId: null,
+      statusProjectName: null,
+      indexStatusProject: null,
+      customerContactId: null,
+      customerContactName: null,
+      customerContactPhone: null,
+      customerContactTeam: null,
+      customerContactPart: null,
+      customerContactPosition: null,
+      customerPartId: null,
+      customerPartName: null,
+      customerPartCode: null,
+      indexCustomerPart: null,
+      saleOpportunity: false,
+      bigAccount: false,
+      customerProduct: null,
+      dateStart: null,
+      dateEnd: null,
+      projectStatusBaseId: null,
+      projectStatusOld: null,
     );
   }
 
@@ -218,6 +313,37 @@ class SaleStaffWork extends Equatable {
     DateTime? holidayDate,
     String? location,
     int? projectId,
+    int? firmId,
+    String? firmName,
+    int? typeProjectId,
+    String? typeProjectName,
+    int? customerId,
+    String? customerName,
+    String? customerCode,
+    int? typeTeamSaleId,
+    String? typeTeamSaleMainIndex,
+    int? statusProjectId,
+    String? statusProjectName,
+    int? indexStatusProject,
+    int? customerContactId,
+    String? customerContactName,
+    String? customerContactPhone,
+    String? customerContactTeam,
+    String? customerContactPart,
+    String? customerContactPosition,
+    int? customerPartId,
+    String? customerPartName,
+    String? customerPartCode,
+    int? indexCustomerPart,
+    /// Khi đổi khách hàng, set true để xóa contact/part cũ (copyWith mặc định không gán null).
+    bool clearContactAndPart = false,
+    bool? saleOpportunity,
+    bool? bigAccount,
+    String? customerProduct,
+    DateTime? dateStart,
+    DateTime? dateEnd,
+    int? projectStatusBaseId,
+    int? projectStatusOld,
   }) {
     return SaleStaffWork(
       id: id ?? this.id,
@@ -261,6 +387,55 @@ class SaleStaffWork extends Equatable {
       location: location ?? this.location,
       isDeleted: isDeleted ?? this.isDeleted,
       projectId: projectId ?? this.projectId,
+      firmId: firmId ?? this.firmId,
+      firmName: firmName ?? this.firmName,
+      typeProjectId: typeProjectId ?? this.typeProjectId,
+      typeProjectName: typeProjectName ?? this.typeProjectName,
+      customerId: customerId ?? this.customerId,
+      customerName: customerName ?? this.customerName,
+      customerCode: customerCode ?? this.customerCode,
+      typeTeamSaleId: typeTeamSaleId ?? this.typeTeamSaleId,
+      typeTeamSaleMainIndex:
+          typeTeamSaleMainIndex ?? this.typeTeamSaleMainIndex,
+      statusProjectId: statusProjectId ?? this.statusProjectId,
+      statusProjectName: statusProjectName ?? this.statusProjectName,
+      indexStatusProject: indexStatusProject ?? this.indexStatusProject,
+      customerContactId: clearContactAndPart
+          ? null
+          : (customerContactId ?? this.customerContactId),
+      customerContactName: clearContactAndPart
+          ? null
+          : (customerContactName ?? this.customerContactName),
+      customerContactPhone: clearContactAndPart
+          ? null
+          : (customerContactPhone ?? this.customerContactPhone),
+      customerContactTeam: clearContactAndPart
+          ? null
+          : (customerContactTeam ?? this.customerContactTeam),
+      customerContactPart: clearContactAndPart
+          ? null
+          : (customerContactPart ?? this.customerContactPart),
+      customerContactPosition: clearContactAndPart
+          ? null
+          : (customerContactPosition ?? this.customerContactPosition),
+      customerPartId:
+          clearContactAndPart ? null : (customerPartId ?? this.customerPartId),
+      customerPartName: clearContactAndPart
+          ? null
+          : (customerPartName ?? this.customerPartName),
+      customerPartCode: clearContactAndPart
+          ? null
+          : (customerPartCode ?? this.customerPartCode),
+      indexCustomerPart: clearContactAndPart
+          ? null
+          : (indexCustomerPart ?? this.indexCustomerPart),
+      saleOpportunity: saleOpportunity ?? this.saleOpportunity,
+      bigAccount: bigAccount ?? this.bigAccount,
+      customerProduct: customerProduct ?? this.customerProduct,
+      dateStart: dateStart ?? this.dateStart,
+      dateEnd: dateEnd ?? this.dateEnd,
+      projectStatusBaseId: projectStatusBaseId ?? this.projectStatusBaseId,
+      projectStatusOld: projectStatusOld ?? this.projectStatusOld,
     );
   }
 
@@ -299,5 +474,32 @@ class SaleStaffWork extends Equatable {
     location,
     isDeleted,
     projectId,
+    firmId,
+    firmName,
+    typeProjectId,
+    typeProjectName,
+    customerId,
+    customerName,
+    customerCode,
+    typeTeamSaleId,
+    typeTeamSaleMainIndex,
+    statusProjectId,
+    statusProjectName,
+    indexStatusProject,
+    customerContactId,
+    customerContactName,
+    customerContactPhone,
+    customerContactTeam,
+    customerContactPart,
+    customerContactPosition,
+    customerPartId,
+    customerPartName,
+    customerPartCode,
+    indexCustomerPart,
+    saleOpportunity,
+    bigAccount,
+    customerProduct,
+    dateStart,
+    dateEnd,
   ];
 }

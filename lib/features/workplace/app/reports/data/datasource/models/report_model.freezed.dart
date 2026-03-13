@@ -14185,11 +14185,11 @@ mixin _$SaleProjectResponse {
   @JsonKey(name: 'Note')
   String get note => throw _privateConstructorUsedError;
   @JsonKey(name: 'IsApproved')
-  bool get isApproved => throw _privateConstructorUsedError;
+  bool? get isApproved => throw _privateConstructorUsedError;
   @JsonKey(name: 'ContactID')
-  int get contactId => throw _privateConstructorUsedError;
+  int? get contactId => throw _privateConstructorUsedError;
   @JsonKey(name: 'PO')
-  String get po => throw _privateConstructorUsedError;
+  String? get po => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProjectType')
   int? get projectType => throw _privateConstructorUsedError;
   @JsonKey(name: 'ListCostID')
@@ -14205,15 +14205,15 @@ mixin _$SaleProjectResponse {
   @JsonKey(name: 'EU')
   String? get eu => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProjectManager')
-  String? get projectManager => throw _privateConstructorUsedError;
+  int? get projectManager => throw _privateConstructorUsedError;
   @JsonKey(name: 'CurrentState')
-  int? get currentState => throw _privateConstructorUsedError;
+  String? get currentState => throw _privateConstructorUsedError;
   @JsonKey(name: 'Priotity')
   int? get priority => throw _privateConstructorUsedError;
   @JsonKey(name: 'PODate')
   DateTime? get poDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'EndUser')
-  String? get endUser => throw _privateConstructorUsedError;
+  int? get endUser => throw _privateConstructorUsedError;
   @JsonKey(name: 'CreatedBy')
   String get createdBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'CreatedDate')
@@ -14251,9 +14251,9 @@ abstract class $SaleProjectResponseCopyWith<$Res> {
       @JsonKey(name: 'UserID') int userId,
       @JsonKey(name: 'UserTechnicalID') int? userTechnicalId,
       @JsonKey(name: 'Note') String note,
-      @JsonKey(name: 'IsApproved') bool isApproved,
-      @JsonKey(name: 'ContactID') int contactId,
-      @JsonKey(name: 'PO') String po,
+      @JsonKey(name: 'IsApproved') bool? isApproved,
+      @JsonKey(name: 'ContactID') int? contactId,
+      @JsonKey(name: 'PO') String? po,
       @JsonKey(name: 'ProjectType') int? projectType,
       @JsonKey(name: 'ListCostID') int? listCostId,
       @JsonKey(name: 'PlanDateStart') DateTime? planDateStart,
@@ -14261,11 +14261,11 @@ abstract class $SaleProjectResponseCopyWith<$Res> {
       @JsonKey(name: 'ActualDateStart') DateTime? actualDateStart,
       @JsonKey(name: 'ActualDateEnd') DateTime? actualDateEnd,
       @JsonKey(name: 'EU') String? eu,
-      @JsonKey(name: 'ProjectManager') String? projectManager,
-      @JsonKey(name: 'CurrentState') int? currentState,
+      @JsonKey(name: 'ProjectManager') int? projectManager,
+      @JsonKey(name: 'CurrentState') String? currentState,
       @JsonKey(name: 'Priotity') int? priority,
       @JsonKey(name: 'PODate') DateTime? poDate,
-      @JsonKey(name: 'EndUser') String? endUser,
+      @JsonKey(name: 'EndUser') int? endUser,
       @JsonKey(name: 'CreatedBy') String createdBy,
       @JsonKey(name: 'CreatedDate') DateTime createdDate,
       @JsonKey(name: 'UpdatedBy') String updatedBy,
@@ -14297,9 +14297,9 @@ class _$SaleProjectResponseCopyWithImpl<$Res, $Val extends SaleProjectResponse>
     Object? userId = null,
     Object? userTechnicalId = freezed,
     Object? note = null,
-    Object? isApproved = null,
-    Object? contactId = null,
-    Object? po = null,
+    Object? isApproved = freezed,
+    Object? contactId = freezed,
+    Object? po = freezed,
     Object? projectType = freezed,
     Object? listCostId = freezed,
     Object? planDateStart = freezed,
@@ -14357,18 +14357,18 @@ class _$SaleProjectResponseCopyWithImpl<$Res, $Val extends SaleProjectResponse>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
-      isApproved: null == isApproved
+      isApproved: freezed == isApproved
           ? _value.isApproved
           : isApproved // ignore: cast_nullable_to_non_nullable
-              as bool,
-      contactId: null == contactId
+              as bool?,
+      contactId: freezed == contactId
           ? _value.contactId
           : contactId // ignore: cast_nullable_to_non_nullable
-              as int,
-      po: null == po
+              as int?,
+      po: freezed == po
           ? _value.po
           : po // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       projectType: freezed == projectType
           ? _value.projectType
           : projectType // ignore: cast_nullable_to_non_nullable
@@ -14400,11 +14400,11 @@ class _$SaleProjectResponseCopyWithImpl<$Res, $Val extends SaleProjectResponse>
       projectManager: freezed == projectManager
           ? _value.projectManager
           : projectManager // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       currentState: freezed == currentState
           ? _value.currentState
           : currentState // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       priority: freezed == priority
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
@@ -14416,7 +14416,7 @@ class _$SaleProjectResponseCopyWithImpl<$Res, $Val extends SaleProjectResponse>
       endUser: freezed == endUser
           ? _value.endUser
           : endUser // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       createdBy: null == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -14467,9 +14467,9 @@ abstract class _$$SaleProjectResponseImplCopyWith<$Res>
       @JsonKey(name: 'UserID') int userId,
       @JsonKey(name: 'UserTechnicalID') int? userTechnicalId,
       @JsonKey(name: 'Note') String note,
-      @JsonKey(name: 'IsApproved') bool isApproved,
-      @JsonKey(name: 'ContactID') int contactId,
-      @JsonKey(name: 'PO') String po,
+      @JsonKey(name: 'IsApproved') bool? isApproved,
+      @JsonKey(name: 'ContactID') int? contactId,
+      @JsonKey(name: 'PO') String? po,
       @JsonKey(name: 'ProjectType') int? projectType,
       @JsonKey(name: 'ListCostID') int? listCostId,
       @JsonKey(name: 'PlanDateStart') DateTime? planDateStart,
@@ -14477,11 +14477,11 @@ abstract class _$$SaleProjectResponseImplCopyWith<$Res>
       @JsonKey(name: 'ActualDateStart') DateTime? actualDateStart,
       @JsonKey(name: 'ActualDateEnd') DateTime? actualDateEnd,
       @JsonKey(name: 'EU') String? eu,
-      @JsonKey(name: 'ProjectManager') String? projectManager,
-      @JsonKey(name: 'CurrentState') int? currentState,
+      @JsonKey(name: 'ProjectManager') int? projectManager,
+      @JsonKey(name: 'CurrentState') String? currentState,
       @JsonKey(name: 'Priotity') int? priority,
       @JsonKey(name: 'PODate') DateTime? poDate,
-      @JsonKey(name: 'EndUser') String? endUser,
+      @JsonKey(name: 'EndUser') int? endUser,
       @JsonKey(name: 'CreatedBy') String createdBy,
       @JsonKey(name: 'CreatedDate') DateTime createdDate,
       @JsonKey(name: 'UpdatedBy') String updatedBy,
@@ -14511,9 +14511,9 @@ class __$$SaleProjectResponseImplCopyWithImpl<$Res>
     Object? userId = null,
     Object? userTechnicalId = freezed,
     Object? note = null,
-    Object? isApproved = null,
-    Object? contactId = null,
-    Object? po = null,
+    Object? isApproved = freezed,
+    Object? contactId = freezed,
+    Object? po = freezed,
     Object? projectType = freezed,
     Object? listCostId = freezed,
     Object? planDateStart = freezed,
@@ -14571,18 +14571,18 @@ class __$$SaleProjectResponseImplCopyWithImpl<$Res>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
-      isApproved: null == isApproved
+      isApproved: freezed == isApproved
           ? _value.isApproved
           : isApproved // ignore: cast_nullable_to_non_nullable
-              as bool,
-      contactId: null == contactId
+              as bool?,
+      contactId: freezed == contactId
           ? _value.contactId
           : contactId // ignore: cast_nullable_to_non_nullable
-              as int,
-      po: null == po
+              as int?,
+      po: freezed == po
           ? _value.po
           : po // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       projectType: freezed == projectType
           ? _value.projectType
           : projectType // ignore: cast_nullable_to_non_nullable
@@ -14614,11 +14614,11 @@ class __$$SaleProjectResponseImplCopyWithImpl<$Res>
       projectManager: freezed == projectManager
           ? _value.projectManager
           : projectManager // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       currentState: freezed == currentState
           ? _value.currentState
           : currentState // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       priority: freezed == priority
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
@@ -14630,7 +14630,7 @@ class __$$SaleProjectResponseImplCopyWithImpl<$Res>
       endUser: freezed == endUser
           ? _value.endUser
           : endUser // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       createdBy: null == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -14676,9 +14676,9 @@ class _$SaleProjectResponseImpl implements _SaleProjectResponse {
       @JsonKey(name: 'UserID') required this.userId,
       @JsonKey(name: 'UserTechnicalID') this.userTechnicalId,
       @JsonKey(name: 'Note') required this.note,
-      @JsonKey(name: 'IsApproved') required this.isApproved,
-      @JsonKey(name: 'ContactID') required this.contactId,
-      @JsonKey(name: 'PO') required this.po,
+      @JsonKey(name: 'IsApproved') this.isApproved,
+      @JsonKey(name: 'ContactID') this.contactId,
+      @JsonKey(name: 'PO') this.po,
       @JsonKey(name: 'ProjectType') this.projectType,
       @JsonKey(name: 'ListCostID') this.listCostId,
       @JsonKey(name: 'PlanDateStart') this.planDateStart,
@@ -14731,13 +14731,13 @@ class _$SaleProjectResponseImpl implements _SaleProjectResponse {
   final String note;
   @override
   @JsonKey(name: 'IsApproved')
-  final bool isApproved;
+  final bool? isApproved;
   @override
   @JsonKey(name: 'ContactID')
-  final int contactId;
+  final int? contactId;
   @override
   @JsonKey(name: 'PO')
-  final String po;
+  final String? po;
   @override
   @JsonKey(name: 'ProjectType')
   final int? projectType;
@@ -14761,10 +14761,10 @@ class _$SaleProjectResponseImpl implements _SaleProjectResponse {
   final String? eu;
   @override
   @JsonKey(name: 'ProjectManager')
-  final String? projectManager;
+  final int? projectManager;
   @override
   @JsonKey(name: 'CurrentState')
-  final int? currentState;
+  final String? currentState;
   @override
   @JsonKey(name: 'Priotity')
   final int? priority;
@@ -14773,7 +14773,7 @@ class _$SaleProjectResponseImpl implements _SaleProjectResponse {
   final DateTime? poDate;
   @override
   @JsonKey(name: 'EndUser')
-  final String? endUser;
+  final int? endUser;
   @override
   @JsonKey(name: 'CreatedBy')
   final String createdBy;
@@ -14926,9 +14926,9 @@ abstract class _SaleProjectResponse implements SaleProjectResponse {
       @JsonKey(name: 'UserID') required final int userId,
       @JsonKey(name: 'UserTechnicalID') final int? userTechnicalId,
       @JsonKey(name: 'Note') required final String note,
-      @JsonKey(name: 'IsApproved') required final bool isApproved,
-      @JsonKey(name: 'ContactID') required final int contactId,
-      @JsonKey(name: 'PO') required final String po,
+      @JsonKey(name: 'IsApproved') final bool? isApproved,
+      @JsonKey(name: 'ContactID') final int? contactId,
+      @JsonKey(name: 'PO') final String? po,
       @JsonKey(name: 'ProjectType') final int? projectType,
       @JsonKey(name: 'ListCostID') final int? listCostId,
       @JsonKey(name: 'PlanDateStart') final DateTime? planDateStart,
@@ -14936,11 +14936,11 @@ abstract class _SaleProjectResponse implements SaleProjectResponse {
       @JsonKey(name: 'ActualDateStart') final DateTime? actualDateStart,
       @JsonKey(name: 'ActualDateEnd') final DateTime? actualDateEnd,
       @JsonKey(name: 'EU') final String? eu,
-      @JsonKey(name: 'ProjectManager') final String? projectManager,
-      @JsonKey(name: 'CurrentState') final int? currentState,
+      @JsonKey(name: 'ProjectManager') final int? projectManager,
+      @JsonKey(name: 'CurrentState') final String? currentState,
       @JsonKey(name: 'Priotity') final int? priority,
       @JsonKey(name: 'PODate') final DateTime? poDate,
-      @JsonKey(name: 'EndUser') final String? endUser,
+      @JsonKey(name: 'EndUser') final int? endUser,
       @JsonKey(name: 'CreatedBy') required final String createdBy,
       @JsonKey(name: 'CreatedDate') required final DateTime createdDate,
       @JsonKey(name: 'UpdatedBy') required final String updatedBy,
@@ -14982,13 +14982,13 @@ abstract class _SaleProjectResponse implements SaleProjectResponse {
   String get note;
   @override
   @JsonKey(name: 'IsApproved')
-  bool get isApproved;
+  bool? get isApproved;
   @override
   @JsonKey(name: 'ContactID')
-  int get contactId;
+  int? get contactId;
   @override
   @JsonKey(name: 'PO')
-  String get po;
+  String? get po;
   @override
   @JsonKey(name: 'ProjectType')
   int? get projectType;
@@ -15012,10 +15012,10 @@ abstract class _SaleProjectResponse implements SaleProjectResponse {
   String? get eu;
   @override
   @JsonKey(name: 'ProjectManager')
-  String? get projectManager;
+  int? get projectManager;
   @override
   @JsonKey(name: 'CurrentState')
-  int? get currentState;
+  String? get currentState;
   @override
   @JsonKey(name: 'Priotity')
   int? get priority;
@@ -15024,7 +15024,7 @@ abstract class _SaleProjectResponse implements SaleProjectResponse {
   DateTime? get poDate;
   @override
   @JsonKey(name: 'EndUser')
-  String? get endUser;
+  int? get endUser;
   @override
   @JsonKey(name: 'CreatedBy')
   String get createdBy;
@@ -15067,7 +15067,7 @@ mixin _$CustomerPartResponse {
   @JsonKey(name: 'CustomerID')
   int get customerId => throw _privateConstructorUsedError;
   @JsonKey(name: 'STT')
-  int get stt => throw _privateConstructorUsedError;
+  int? get stt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -15086,7 +15086,7 @@ abstract class $CustomerPartResponseCopyWith<$Res> {
       @JsonKey(name: 'PartName') String partName,
       @JsonKey(name: 'PartCode') String partCode,
       @JsonKey(name: 'CustomerID') int customerId,
-      @JsonKey(name: 'STT') int stt});
+      @JsonKey(name: 'STT') int? stt});
 }
 
 /// @nodoc
@@ -15107,7 +15107,7 @@ class _$CustomerPartResponseCopyWithImpl<$Res,
     Object? partName = null,
     Object? partCode = null,
     Object? customerId = null,
-    Object? stt = null,
+    Object? stt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -15126,10 +15126,10 @@ class _$CustomerPartResponseCopyWithImpl<$Res,
           ? _value.customerId
           : customerId // ignore: cast_nullable_to_non_nullable
               as int,
-      stt: null == stt
+      stt: freezed == stt
           ? _value.stt
           : stt // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -15147,7 +15147,7 @@ abstract class _$$CustomerPartResponseImplCopyWith<$Res>
       @JsonKey(name: 'PartName') String partName,
       @JsonKey(name: 'PartCode') String partCode,
       @JsonKey(name: 'CustomerID') int customerId,
-      @JsonKey(name: 'STT') int stt});
+      @JsonKey(name: 'STT') int? stt});
 }
 
 /// @nodoc
@@ -15165,7 +15165,7 @@ class __$$CustomerPartResponseImplCopyWithImpl<$Res>
     Object? partName = null,
     Object? partCode = null,
     Object? customerId = null,
-    Object? stt = null,
+    Object? stt = freezed,
   }) {
     return _then(_$CustomerPartResponseImpl(
       id: null == id
@@ -15184,10 +15184,10 @@ class __$$CustomerPartResponseImplCopyWithImpl<$Res>
           ? _value.customerId
           : customerId // ignore: cast_nullable_to_non_nullable
               as int,
-      stt: null == stt
+      stt: freezed == stt
           ? _value.stt
           : stt // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -15200,7 +15200,7 @@ class _$CustomerPartResponseImpl implements _CustomerPartResponse {
       @JsonKey(name: 'PartName') required this.partName,
       @JsonKey(name: 'PartCode') required this.partCode,
       @JsonKey(name: 'CustomerID') required this.customerId,
-      @JsonKey(name: 'STT') required this.stt});
+      @JsonKey(name: 'STT') this.stt});
 
   factory _$CustomerPartResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$CustomerPartResponseImplFromJson(json);
@@ -15219,7 +15219,7 @@ class _$CustomerPartResponseImpl implements _CustomerPartResponse {
   final int customerId;
   @override
   @JsonKey(name: 'STT')
-  final int stt;
+  final int? stt;
 
   @override
   String toString() {
@@ -15264,12 +15264,11 @@ class _$CustomerPartResponseImpl implements _CustomerPartResponse {
 
 abstract class _CustomerPartResponse implements CustomerPartResponse {
   const factory _CustomerPartResponse(
-          {@JsonKey(name: 'ID') required final int id,
-          @JsonKey(name: 'PartName') required final String partName,
-          @JsonKey(name: 'PartCode') required final String partCode,
-          @JsonKey(name: 'CustomerID') required final int customerId,
-          @JsonKey(name: 'STT') required final int stt}) =
-      _$CustomerPartResponseImpl;
+      {@JsonKey(name: 'ID') required final int id,
+      @JsonKey(name: 'PartName') required final String partName,
+      @JsonKey(name: 'PartCode') required final String partCode,
+      @JsonKey(name: 'CustomerID') required final int customerId,
+      @JsonKey(name: 'STT') final int? stt}) = _$CustomerPartResponseImpl;
 
   factory _CustomerPartResponse.fromJson(Map<String, dynamic> json) =
       _$CustomerPartResponseImpl.fromJson;
@@ -15288,7 +15287,7 @@ abstract class _CustomerPartResponse implements CustomerPartResponse {
   int get customerId;
   @override
   @JsonKey(name: 'STT')
-  int get stt;
+  int? get stt;
   @override
   @JsonKey(ignore: true)
   _$$CustomerPartResponseImplCopyWith<_$CustomerPartResponseImpl>
@@ -15326,11 +15325,11 @@ mixin _$TypeTeamSaleResponse {
   @JsonKey(name: 'ACCP2')
   double? get accp2 => throw _privateConstructorUsedError;
   @JsonKey(name: 'ACCP')
-  double get accp => throw _privateConstructorUsedError;
+  double? get accp => throw _privateConstructorUsedError;
   @JsonKey(name: 'Goal')
-  double get goal => throw _privateConstructorUsedError;
+  double? get goal => throw _privateConstructorUsedError;
   @JsonKey(name: 'Result')
-  double get result => throw _privateConstructorUsedError;
+  double? get result => throw _privateConstructorUsedError;
   @JsonKey(name: 'ConvertID')
   int? get convertId => throw _privateConstructorUsedError;
   @JsonKey(name: 'MainIndex1')
@@ -15363,9 +15362,9 @@ abstract class $TypeTeamSaleResponseCopyWith<$Res> {
       @JsonKey(name: 'Goal2') double? goal2,
       @JsonKey(name: 'Result2') double? result2,
       @JsonKey(name: 'ACCP2') double? accp2,
-      @JsonKey(name: 'ACCP') double accp,
-      @JsonKey(name: 'Goal') double goal,
-      @JsonKey(name: 'Result') double result,
+      @JsonKey(name: 'ACCP') double? accp,
+      @JsonKey(name: 'Goal') double? goal,
+      @JsonKey(name: 'Result') double? result,
       @JsonKey(name: 'ConvertID') int? convertId,
       @JsonKey(name: 'MainIndex1') String? mainIndex1,
       @JsonKey(name: 'MainIndex2') String? mainIndex2});
@@ -15397,9 +15396,9 @@ class _$TypeTeamSaleResponseCopyWithImpl<$Res,
     Object? goal2 = freezed,
     Object? result2 = freezed,
     Object? accp2 = freezed,
-    Object? accp = null,
-    Object? goal = null,
-    Object? result = null,
+    Object? accp = freezed,
+    Object? goal = freezed,
+    Object? result = freezed,
     Object? convertId = freezed,
     Object? mainIndex1 = freezed,
     Object? mainIndex2 = freezed,
@@ -15453,18 +15452,18 @@ class _$TypeTeamSaleResponseCopyWithImpl<$Res,
           ? _value.accp2
           : accp2 // ignore: cast_nullable_to_non_nullable
               as double?,
-      accp: null == accp
+      accp: freezed == accp
           ? _value.accp
           : accp // ignore: cast_nullable_to_non_nullable
-              as double,
-      goal: null == goal
+              as double?,
+      goal: freezed == goal
           ? _value.goal
           : goal // ignore: cast_nullable_to_non_nullable
-              as double,
-      result: null == result
+              as double?,
+      result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       convertId: freezed == convertId
           ? _value.convertId
           : convertId // ignore: cast_nullable_to_non_nullable
@@ -15502,9 +15501,9 @@ abstract class _$$TypeTeamSaleResponseImplCopyWith<$Res>
       @JsonKey(name: 'Goal2') double? goal2,
       @JsonKey(name: 'Result2') double? result2,
       @JsonKey(name: 'ACCP2') double? accp2,
-      @JsonKey(name: 'ACCP') double accp,
-      @JsonKey(name: 'Goal') double goal,
-      @JsonKey(name: 'Result') double result,
+      @JsonKey(name: 'ACCP') double? accp,
+      @JsonKey(name: 'Goal') double? goal,
+      @JsonKey(name: 'Result') double? result,
       @JsonKey(name: 'ConvertID') int? convertId,
       @JsonKey(name: 'MainIndex1') String? mainIndex1,
       @JsonKey(name: 'MainIndex2') String? mainIndex2});
@@ -15533,9 +15532,9 @@ class __$$TypeTeamSaleResponseImplCopyWithImpl<$Res>
     Object? goal2 = freezed,
     Object? result2 = freezed,
     Object? accp2 = freezed,
-    Object? accp = null,
-    Object? goal = null,
-    Object? result = null,
+    Object? accp = freezed,
+    Object? goal = freezed,
+    Object? result = freezed,
     Object? convertId = freezed,
     Object? mainIndex1 = freezed,
     Object? mainIndex2 = freezed,
@@ -15589,18 +15588,18 @@ class __$$TypeTeamSaleResponseImplCopyWithImpl<$Res>
           ? _value.accp2
           : accp2 // ignore: cast_nullable_to_non_nullable
               as double?,
-      accp: null == accp
+      accp: freezed == accp
           ? _value.accp
           : accp // ignore: cast_nullable_to_non_nullable
-              as double,
-      goal: null == goal
+              as double?,
+      goal: freezed == goal
           ? _value.goal
           : goal // ignore: cast_nullable_to_non_nullable
-              as double,
-      result: null == result
+              as double?,
+      result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       convertId: freezed == convertId
           ? _value.convertId
           : convertId // ignore: cast_nullable_to_non_nullable
@@ -15633,9 +15632,9 @@ class _$TypeTeamSaleResponseImpl implements _TypeTeamSaleResponse {
       @JsonKey(name: 'Goal2') this.goal2,
       @JsonKey(name: 'Result2') this.result2,
       @JsonKey(name: 'ACCP2') this.accp2,
-      @JsonKey(name: 'ACCP') required this.accp,
-      @JsonKey(name: 'Goal') required this.goal,
-      @JsonKey(name: 'Result') required this.result,
+      @JsonKey(name: 'ACCP') this.accp,
+      @JsonKey(name: 'Goal') this.goal,
+      @JsonKey(name: 'Result') this.result,
       @JsonKey(name: 'ConvertID') this.convertId,
       @JsonKey(name: 'MainIndex1') this.mainIndex1,
       @JsonKey(name: 'MainIndex2') this.mainIndex2});
@@ -15681,13 +15680,13 @@ class _$TypeTeamSaleResponseImpl implements _TypeTeamSaleResponse {
   final double? accp2;
   @override
   @JsonKey(name: 'ACCP')
-  final double accp;
+  final double? accp;
   @override
   @JsonKey(name: 'Goal')
-  final double goal;
+  final double? goal;
   @override
   @JsonKey(name: 'Result')
-  final double result;
+  final double? result;
   @override
   @JsonKey(name: 'ConvertID')
   final int? convertId;
@@ -15786,9 +15785,9 @@ abstract class _TypeTeamSaleResponse implements TypeTeamSaleResponse {
           @JsonKey(name: 'Goal2') final double? goal2,
           @JsonKey(name: 'Result2') final double? result2,
           @JsonKey(name: 'ACCP2') final double? accp2,
-          @JsonKey(name: 'ACCP') required final double accp,
-          @JsonKey(name: 'Goal') required final double goal,
-          @JsonKey(name: 'Result') required final double result,
+          @JsonKey(name: 'ACCP') final double? accp,
+          @JsonKey(name: 'Goal') final double? goal,
+          @JsonKey(name: 'Result') final double? result,
           @JsonKey(name: 'ConvertID') final int? convertId,
           @JsonKey(name: 'MainIndex1') final String? mainIndex1,
           @JsonKey(name: 'MainIndex2') final String? mainIndex2}) =
@@ -15835,13 +15834,13 @@ abstract class _TypeTeamSaleResponse implements TypeTeamSaleResponse {
   double? get accp2;
   @override
   @JsonKey(name: 'ACCP')
-  double get accp;
+  double? get accp;
   @override
   @JsonKey(name: 'Goal')
-  double get goal;
+  double? get goal;
   @override
   @JsonKey(name: 'Result')
-  double get result;
+  double? get result;
   @override
   @JsonKey(name: 'ConvertID')
   int? get convertId;
@@ -16437,6 +16436,298 @@ abstract class _TypeProjectResponse implements TypeProjectResponse {
       throw _privateConstructorUsedError;
 }
 
+StatusProjectResponse _$StatusProjectResponseFromJson(
+    Map<String, dynamic> json) {
+  return _StatusProjectResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$StatusProjectResponse {
+  @JsonKey(name: 'ID')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StatusName')
+  String? get statusName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  String? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  String? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StatusProjectResponseCopyWith<StatusProjectResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StatusProjectResponseCopyWith<$Res> {
+  factory $StatusProjectResponseCopyWith(StatusProjectResponse value,
+          $Res Function(StatusProjectResponse) then) =
+      _$StatusProjectResponseCopyWithImpl<$Res, StatusProjectResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'StatusName') String? statusName,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') String? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'STT') int? stt});
+}
+
+/// @nodoc
+class _$StatusProjectResponseCopyWithImpl<$Res,
+        $Val extends StatusProjectResponse>
+    implements $StatusProjectResponseCopyWith<$Res> {
+  _$StatusProjectResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? statusName = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? stt = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      statusName: freezed == statusName
+          ? _value.statusName
+          : statusName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$StatusProjectResponseImplCopyWith<$Res>
+    implements $StatusProjectResponseCopyWith<$Res> {
+  factory _$$StatusProjectResponseImplCopyWith(
+          _$StatusProjectResponseImpl value,
+          $Res Function(_$StatusProjectResponseImpl) then) =
+      __$$StatusProjectResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'StatusName') String? statusName,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') String? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'STT') int? stt});
+}
+
+/// @nodoc
+class __$$StatusProjectResponseImplCopyWithImpl<$Res>
+    extends _$StatusProjectResponseCopyWithImpl<$Res,
+        _$StatusProjectResponseImpl>
+    implements _$$StatusProjectResponseImplCopyWith<$Res> {
+  __$$StatusProjectResponseImplCopyWithImpl(_$StatusProjectResponseImpl _value,
+      $Res Function(_$StatusProjectResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? statusName = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? stt = freezed,
+  }) {
+    return _then(_$StatusProjectResponseImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      statusName: freezed == statusName
+          ? _value.statusName
+          : statusName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$StatusProjectResponseImpl implements _StatusProjectResponse {
+  const _$StatusProjectResponseImpl(
+      {@JsonKey(name: 'ID') required this.id,
+      @JsonKey(name: 'StatusName') this.statusName,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'STT') this.stt});
+
+  factory _$StatusProjectResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StatusProjectResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int id;
+  @override
+  @JsonKey(name: 'StatusName')
+  final String? statusName;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final String? createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final String? updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+
+  @override
+  String toString() {
+    return 'StatusProjectResponse(id: $id, statusName: $statusName, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, stt: $stt)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StatusProjectResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.statusName, statusName) ||
+                other.statusName == statusName) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.stt, stt) || other.stt == stt));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, statusName, createdDate,
+      createdBy, updatedDate, updatedBy, stt);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StatusProjectResponseImplCopyWith<_$StatusProjectResponseImpl>
+      get copyWith => __$$StatusProjectResponseImplCopyWithImpl<
+          _$StatusProjectResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$StatusProjectResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _StatusProjectResponse implements StatusProjectResponse {
+  const factory _StatusProjectResponse(
+      {@JsonKey(name: 'ID') required final int id,
+      @JsonKey(name: 'StatusName') final String? statusName,
+      @JsonKey(name: 'CreatedDate') final String? createdDate,
+      @JsonKey(name: 'CreatedBy') final String? createdBy,
+      @JsonKey(name: 'UpdatedDate') final String? updatedDate,
+      @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+      @JsonKey(name: 'STT') final int? stt}) = _$StatusProjectResponseImpl;
+
+  factory _StatusProjectResponse.fromJson(Map<String, dynamic> json) =
+      _$StatusProjectResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int get id;
+  @override
+  @JsonKey(name: 'StatusName')
+  String? get statusName;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  String? get createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  String? get updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(ignore: true)
+  _$$StatusProjectResponseImplCopyWith<_$StatusProjectResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 CustomerContactResponse _$CustomerContactResponseFromJson(
     Map<String, dynamic> json) {
   return _CustomerContactResponse.fromJson(json);
@@ -16463,7 +16754,7 @@ mixin _$CustomerContactResponse {
   @JsonKey(name: 'CustomerPosition')
   String? get customerPosition => throw _privateConstructorUsedError;
   @JsonKey(name: 'IsDeleted')
-  bool get isDeleted => throw _privateConstructorUsedError;
+  bool? get isDeleted => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -16487,7 +16778,7 @@ abstract class $CustomerContactResponseCopyWith<$Res> {
       @JsonKey(name: 'CustomerTeam') String? customerTeam,
       @JsonKey(name: 'CustomerPart') String? customerPart,
       @JsonKey(name: 'CustomerPosition') String? customerPosition,
-      @JsonKey(name: 'IsDeleted') bool isDeleted});
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
 }
 
 /// @nodoc
@@ -16513,7 +16804,7 @@ class _$CustomerContactResponseCopyWithImpl<$Res,
     Object? customerTeam = freezed,
     Object? customerPart = freezed,
     Object? customerPosition = freezed,
-    Object? isDeleted = null,
+    Object? isDeleted = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -16552,10 +16843,10 @@ class _$CustomerContactResponseCopyWithImpl<$Res,
           ? _value.customerPosition
           : customerPosition // ignore: cast_nullable_to_non_nullable
               as String?,
-      isDeleted: null == isDeleted
+      isDeleted: freezed == isDeleted
           ? _value.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ) as $Val);
   }
 }
@@ -16579,7 +16870,7 @@ abstract class _$$CustomerContactResponseImplCopyWith<$Res>
       @JsonKey(name: 'CustomerTeam') String? customerTeam,
       @JsonKey(name: 'CustomerPart') String? customerPart,
       @JsonKey(name: 'CustomerPosition') String? customerPosition,
-      @JsonKey(name: 'IsDeleted') bool isDeleted});
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
 }
 
 /// @nodoc
@@ -16604,7 +16895,7 @@ class __$$CustomerContactResponseImplCopyWithImpl<$Res>
     Object? customerTeam = freezed,
     Object? customerPart = freezed,
     Object? customerPosition = freezed,
-    Object? isDeleted = null,
+    Object? isDeleted = freezed,
   }) {
     return _then(_$CustomerContactResponseImpl(
       id: null == id
@@ -16643,10 +16934,10 @@ class __$$CustomerContactResponseImplCopyWithImpl<$Res>
           ? _value.customerPosition
           : customerPosition // ignore: cast_nullable_to_non_nullable
               as String?,
-      isDeleted: null == isDeleted
+      isDeleted: freezed == isDeleted
           ? _value.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -16664,7 +16955,7 @@ class _$CustomerContactResponseImpl implements _CustomerContactResponse {
       @JsonKey(name: 'CustomerTeam') this.customerTeam,
       @JsonKey(name: 'CustomerPart') this.customerPart,
       @JsonKey(name: 'CustomerPosition') this.customerPosition,
-      @JsonKey(name: 'IsDeleted') required this.isDeleted});
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
 
   factory _$CustomerContactResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$CustomerContactResponseImplFromJson(json);
@@ -16698,7 +16989,7 @@ class _$CustomerContactResponseImpl implements _CustomerContactResponse {
   final String? customerPosition;
   @override
   @JsonKey(name: 'IsDeleted')
-  final bool isDeleted;
+  final bool? isDeleted;
 
   @override
   String toString() {
@@ -16772,7 +17063,7 @@ abstract class _CustomerContactResponse implements CustomerContactResponse {
           @JsonKey(name: 'CustomerTeam') final String? customerTeam,
           @JsonKey(name: 'CustomerPart') final String? customerPart,
           @JsonKey(name: 'CustomerPosition') final String? customerPosition,
-          @JsonKey(name: 'IsDeleted') required final bool isDeleted}) =
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
       _$CustomerContactResponseImpl;
 
   factory _CustomerContactResponse.fromJson(Map<String, dynamic> json) =
@@ -16807,7 +17098,7 @@ abstract class _CustomerContactResponse implements CustomerContactResponse {
   String? get customerPosition;
   @override
   @JsonKey(name: 'IsDeleted')
-  bool get isDeleted;
+  bool? get isDeleted;
   @override
   @JsonKey(ignore: true)
   _$$CustomerContactResponseImplCopyWith<_$CustomerContactResponseImpl>

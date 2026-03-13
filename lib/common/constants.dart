@@ -126,6 +126,7 @@ class ApiEndPoint{
 
   static const String getTypeProject = '/DailyReportSale/get-projecttypebase';
 
+  static const String getStatusProject = '/DailyReportSale/get-projectstatus';
   static const String getCustomerContact = '/DailyReportSale/get-customercontact';
 
   static const String deleteSaleReport = '/DailyReportSale/delete';
