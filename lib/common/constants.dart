@@ -133,5 +133,5 @@ class ApiEndPoint{
 
   static const String saveSaleStaffReport = '/DailyReportSale/save-data';
 
-  static const String getSaleDailyReport = 'DailyReportSale/get-data';
+  static const String getSaleDailyReport = '/DailyReportSale/get-data';
 }

@@ -1065,7 +1065,7 @@ class SaleReportItem with _$SaleReportItem {
     @JsonKey(name: 'GroupType') required int groupType,
 
     @JsonKey(name: 'Content') String? content,
-    @JsonKey(name: 'UserLoginID') required int userLoginId,
+    @JsonKey(name: 'UserLoginID') int? userLoginId,
 
     @JsonKey(name: 'CreatedDate') required DateTime createdDate,
     @JsonKey(name: 'CreatedBy') required String createdBy,

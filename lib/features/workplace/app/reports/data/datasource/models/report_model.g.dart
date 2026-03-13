@@ -1575,7 +1575,7 @@ _$SaleReportItemImpl _$$SaleReportItemImplFromJson(Map<String, dynamic> json) =>
       bigAccount: json['BigAccount'] as bool,
       groupType: (json['GroupType'] as num).toInt(),
       content: json['Content'] as String?,
-      userLoginId: (json['UserLoginID'] as num).toInt(),
+      userLoginId: (json['UserLoginID'] as num?)?.toInt(),
       createdDate: DateTime.parse(json['CreatedDate'] as String),
       createdBy: json['CreatedBy'] as String,
       month: (json['Month'] as num).toInt(),

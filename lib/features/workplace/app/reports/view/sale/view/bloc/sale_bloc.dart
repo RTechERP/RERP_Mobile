@@ -117,6 +117,7 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         updateDate: (picked) => _onUpdateDate(picked, emit),
         submitReport: (pickedDate) => _onSubmitReport(pickedDate, emit),
         resetSubmitFlags: () => _onResetSubmitFlags(emit),
+        deleteReport: (dailyID) => _onDeleteReport(dailyID,emit),
       );
     });
   }
@@ -127,10 +128,9 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
     required Emitter<SaleState> emit,
   }) async {
     final userId = state.userId;
-    final departmentId = state.departmentId;
     final teamId = state.teamId;
 
-    if (userId == null && departmentId == null && teamId == null) {
+    if (userId == null && teamId == null) {
       emit(state.copyWith(status: BaseStateStatus.failed));
       return;
     }
@@ -139,7 +139,7 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
       dateStart: start,
       dateEnd: end,
       userId: userId!,
-      employeeTeamSaleId: teamId!,
+      employeeTeamSaleId: 0,
     );
 
     res.fold(
@@ -208,8 +208,9 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         );
 
         final now = DateTime.now();
-        final start = now;
-        final end = DateTime(now.year, now.month, now.day + 1);
+
+        final start = DateTime(now.year, now.month, now.day);
+        final end = DateTime(now.year, now.month, now.day, 23, 59, 59);
 
         await _loadDailyReport(start: start, end: end, emit: emit);
       },
@@ -616,5 +617,39 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
   _onResetSubmitFlags(Emitter<SaleState> emit) {
     emit(state.copyWith(submitSuccess: false));
     emit(state.copyWith(isSubmitting: false));
+  }
+
+  Future<void> _onDeleteReport(int dailyID, Emitter<SaleState> emit) async {
+    emit(
+      state.copyWith(
+        isDeleting: true,
+        deleteSuccess: false,
+        status: BaseStateStatus.loading,
+      ),
+    );
+
+    final result = await _reportRepo.deleteSaleReport(dailyID: dailyID);
+
+    result.fold(
+          (error) {
+        emit(state.copyWith(isDeleting: false, deleteSuccess: false));
+      },
+          (message) {
+        /// remove khỏi list hiện tại (không cần gọi lại API)
+        final updatedReports = state.reports
+            .where((e) => e.id != dailyID)
+            .toList();
+
+        emit(
+          state.copyWith(
+            reports: updatedReports,
+            isDeleting: false,
+            deleteSuccess: true,
+            status: BaseStateStatus.success,
+            message: message,
+          ),
+        );
+      },
+    );
   }
 }

@@ -6,6 +6,7 @@ class SaleState extends BaseBlocState {
   final bool isSubmitting;
   final bool submitSuccess;
   final bool isDeleting;
+  final bool deleteSuccess;
   final int? userId;
   final String? fullName;
   final int? departmentId;
@@ -63,6 +64,7 @@ class SaleState extends BaseBlocState {
     this.isDeleting = false,
     this.isSubmitting = false,
     this.submitSuccess = false,
+    this.deleteSuccess = false,
     this.expandedWorkIndex,
     this.customerId,
     this.dateReport,
@@ -95,6 +97,7 @@ class SaleState extends BaseBlocState {
     isDeleting: false,
     isSubmitting: false,
     submitSuccess: false,
+    deleteSuccess: false,
     expandedWorkIndex: null,
     customerId: null,
     dateReport: null,
@@ -131,5 +134,6 @@ class SaleState extends BaseBlocState {
     customerParts,
     customerId,
     dateReport,
+    deleteSuccess,
   ];
 }

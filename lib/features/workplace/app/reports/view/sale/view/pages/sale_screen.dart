@@ -15,7 +15,6 @@ import '../../../../../../../../common/services/permissions/role_groups.dart';
 import '../../../../../../../../common/utils/card/index.dart';
 import '../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../common/utils/navigation/navigation_utils.dart';
-import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../routes/route_names.dart';
 import '../../../../../../../auth/data/repository/auth_repository.dart';
 import '../../../../data/datasource/models/report_model.dart';
@@ -213,34 +212,165 @@ class _SaleScreenState
   }
   Widget _buildSaleAdminUI() {
     return BlocBuilder<SaleBloc, SaleState>(
+      buildWhen: (prev, curr) =>
+      prev.reports != curr.reports ||
+          prev.isDeleting != curr.isDeleting ||
+          prev.status != curr.status ||
+          prev.dateStart != curr.dateStart ||
+          prev.dateEnd != curr.dateEnd,
       builder: (context, state) {
-        return _buildReportList(state);
+
+        if (state.status == BaseStateStatus.loading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (state.status == BaseStateStatus.failed) {
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(AppImages.error, width: 320),
+                const SizedBox(height: 12),
+                const Text('Load dữ liệu thất bại'),
+              ],
+            ),
+          );
+        }
+
+        if (state.reports.isEmpty) {
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(AppImages.missing, width: 320),
+                const SizedBox(height: 12),
+                const Text('Không có báo cáo'),
+              ],
+            ),
+          );
+        }
+
+        return Stack(
+          children: [
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: _buildDateHeader(state),
+                ),
+                Expanded(
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      bloc.add(const SaleEvent.init());
+
+                      await bloc.stream.firstWhere(
+                            (s) => s.status != BaseStateStatus.loading,
+                      );
+                    },
+                    child: _buildReportList(state),
+                  ),
+                ),
+              ],
+            ),
+
+            if (state.isDeleting)
+              const Positioned.fill(
+                child: ColoredBox(
+                  color: Colors.black26,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              ),
+          ],
+        );
       },
     );
   }
   Widget _buildSaleStaffUI() {
     return BlocBuilder<SaleBloc, SaleState>(
+      buildWhen: (prev, curr) =>
+      prev.reports != curr.reports ||
+          prev.isDeleting != curr.isDeleting ||
+          prev.status != curr.status ||
+          prev.dateStart != curr.dateStart ||
+          prev.dateEnd != curr.dateEnd,
       builder: (context, state) {
-        return _buildReportList(state, canDelete: false);
+
+        if (state.status == BaseStateStatus.loading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (state.status == BaseStateStatus.failed) {
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(AppImages.error, width: 320),
+                const SizedBox(height: 12),
+                const Text('Load dữ liệu thất bại'),
+              ],
+            ),
+          );
+        }
+
+        if (state.reports.isEmpty) {
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(AppImages.missing, width: 320),
+                const SizedBox(height: 12),
+                const Text('Không có báo cáo'),
+              ],
+            ),
+          );
+        }
+
+        return Stack(
+          children: [
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: _buildDateHeader(state),
+                ),
+                Expanded(
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      bloc.add(const SaleEvent.init());
+
+                      await bloc.stream.firstWhere(
+                            (s) => s.status != BaseStateStatus.loading,
+                      );
+                    },
+                    child: _buildReportList(state),
+                  ),
+                ),
+              ],
+            ),
+
+            if (state.isDeleting)
+              const Positioned.fill(
+                child: ColoredBox(
+                  color: Colors.black26,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              ),
+          ],
+        );
       },
     );
   }
-  Widget _buildReportList(SaleState state, {bool canDelete = true}) {
+  Widget _buildReportList(SaleState state) {
     final displayList = _isSearching ? _filteredReports : state.reports;
 
     return ListView.builder(
       itemCount: displayList.length,
       itemBuilder: (context, index) {
         final r = displayList[index];
-
-        Widget card = AppCardReport(
-          projectCode: r.customerName ?? '',
-          projectName: r.content ?? '',
-          time: DateTime.tryParse(r.createdDate.toString()),
-          progress: 0,
-        );
-
-        if (!canDelete) return card;
 
         return Slidable(
           key: ValueKey(r.id),
@@ -249,14 +379,28 @@ class _SaleScreenState
             extentRatio: 0.25,
             children: [
               SlidableAction(
-                onPressed: (_) {},
+                onPressed: (_) async {
+                  final confirmed =
+                  await DialogService.showConfirmDelete(
+                    context: context,
+                  );
+                  if (!confirmed) return;
+
+                  bloc.add(SaleEvent.deleteReport(dailyID: r.id));
+                },
                 backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
                 icon: Icons.delete,
                 label: 'Xoá',
               ),
             ],
           ),
-          child: card,
+          child: AppCardReport(
+            projectCode: r.projectCode ?? '',
+            projectName: r.customerName ?? '',
+            time: DateTime.tryParse(r.createdDate.toString()),
+            showProgress: false,
+          ),
         );
       },
     );

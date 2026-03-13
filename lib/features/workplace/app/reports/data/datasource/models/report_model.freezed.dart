@@ -18577,7 +18577,7 @@ mixin _$SaleReportItem {
   @JsonKey(name: 'Content')
   String? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'UserLoginID')
-  int get userLoginId => throw _privateConstructorUsedError;
+  int? get userLoginId => throw _privateConstructorUsedError;
   @JsonKey(name: 'CreatedDate')
   DateTime get createdDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'CreatedBy')
@@ -18660,7 +18660,7 @@ abstract class $SaleReportItemCopyWith<$Res> {
       @JsonKey(name: 'BigAccount') bool bigAccount,
       @JsonKey(name: 'GroupType') int groupType,
       @JsonKey(name: 'Content') String? content,
-      @JsonKey(name: 'UserLoginID') int userLoginId,
+      @JsonKey(name: 'UserLoginID') int? userLoginId,
       @JsonKey(name: 'CreatedDate') DateTime createdDate,
       @JsonKey(name: 'CreatedBy') String createdBy,
       @JsonKey(name: 'Month') int month,
@@ -18718,7 +18718,7 @@ class _$SaleReportItemCopyWithImpl<$Res, $Val extends SaleReportItem>
     Object? bigAccount = null,
     Object? groupType = null,
     Object? content = freezed,
-    Object? userLoginId = null,
+    Object? userLoginId = freezed,
     Object? createdDate = null,
     Object? createdBy = null,
     Object? month = null,
@@ -18811,10 +18811,10 @@ class _$SaleReportItemCopyWithImpl<$Res, $Val extends SaleReportItem>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String?,
-      userLoginId: null == userLoginId
+      userLoginId: freezed == userLoginId
           ? _value.userLoginId
           : userLoginId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       createdDate: null == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -18948,7 +18948,7 @@ abstract class _$$SaleReportItemImplCopyWith<$Res>
       @JsonKey(name: 'BigAccount') bool bigAccount,
       @JsonKey(name: 'GroupType') int groupType,
       @JsonKey(name: 'Content') String? content,
-      @JsonKey(name: 'UserLoginID') int userLoginId,
+      @JsonKey(name: 'UserLoginID') int? userLoginId,
       @JsonKey(name: 'CreatedDate') DateTime createdDate,
       @JsonKey(name: 'CreatedBy') String createdBy,
       @JsonKey(name: 'Month') int month,
@@ -19004,7 +19004,7 @@ class __$$SaleReportItemImplCopyWithImpl<$Res>
     Object? bigAccount = null,
     Object? groupType = null,
     Object? content = freezed,
-    Object? userLoginId = null,
+    Object? userLoginId = freezed,
     Object? createdDate = null,
     Object? createdBy = null,
     Object? month = null,
@@ -19097,10 +19097,10 @@ class __$$SaleReportItemImplCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String?,
-      userLoginId: null == userLoginId
+      userLoginId: freezed == userLoginId
           ? _value.userLoginId
           : userLoginId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       createdDate: null == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -19229,7 +19229,7 @@ class _$SaleReportItemImpl implements _SaleReportItem {
       @JsonKey(name: 'BigAccount') required this.bigAccount,
       @JsonKey(name: 'GroupType') required this.groupType,
       @JsonKey(name: 'Content') this.content,
-      @JsonKey(name: 'UserLoginID') required this.userLoginId,
+      @JsonKey(name: 'UserLoginID') this.userLoginId,
       @JsonKey(name: 'CreatedDate') required this.createdDate,
       @JsonKey(name: 'CreatedBy') required this.createdBy,
       @JsonKey(name: 'Month') required this.month,
@@ -19310,7 +19310,7 @@ class _$SaleReportItemImpl implements _SaleReportItem {
   final String? content;
   @override
   @JsonKey(name: 'UserLoginID')
-  final int userLoginId;
+  final int? userLoginId;
   @override
   @JsonKey(name: 'CreatedDate')
   final DateTime createdDate;
@@ -19557,7 +19557,7 @@ abstract class _SaleReportItem implements SaleReportItem {
           @JsonKey(name: 'BigAccount') required final bool bigAccount,
           @JsonKey(name: 'GroupType') required final int groupType,
           @JsonKey(name: 'Content') final String? content,
-          @JsonKey(name: 'UserLoginID') required final int userLoginId,
+          @JsonKey(name: 'UserLoginID') final int? userLoginId,
           @JsonKey(name: 'CreatedDate') required final DateTime createdDate,
           @JsonKey(name: 'CreatedBy') required final String createdBy,
           @JsonKey(name: 'Month') required final int month,
@@ -19639,7 +19639,7 @@ abstract class _SaleReportItem implements SaleReportItem {
   String? get content;
   @override
   @JsonKey(name: 'UserLoginID')
-  int get userLoginId;
+  int? get userLoginId;
   @override
   @JsonKey(name: 'CreatedDate')
   DateTime get createdDate;

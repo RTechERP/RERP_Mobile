@@ -58,4 +58,7 @@ class SaleEvent with _$SaleEvent {
   const factory SaleEvent.submitReport(DateTime pickedDate) = _SubmitReport;
 
   const factory SaleEvent.resetSubmitFlags() = _ResetSubmitFlags;
+
+  const factory SaleEvent.deleteReport({required int dailyID}) = _DeleteReport;
+
 }

@@ -7,7 +7,6 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../common/utils/dialog/index.dart';
-import '../../data/sale_admin_model.dart';
 
 class SaleAdminAddScreen extends StatefulWidget {
   const SaleAdminAddScreen({super.key});
@@ -19,7 +18,7 @@ class SaleAdminAddScreen extends StatefulWidget {
 class _SaleAdminAddScreenState extends State<SaleAdminAddScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
 
-  final List<SaleReportTabData> _tabs = [SaleReportTabData()];
+  // final List<SaleReportTabData> _tabs = [SaleReportTabData()];
   int _activeTab = 0;
 
   /// fake data – sau này gắn API
@@ -29,14 +28,14 @@ class _SaleAdminAddScreenState extends State<SaleAdminAddScreen> {
   final customers = ['Công ty ABC', 'Công ty XYZ'];
   final requesters = ['PM A', 'PM B'];
 
-  void _addTab() {
-    setState(() {
-      _tabs.add(SaleReportTabData());
-      _activeTab = _tabs.length - 1;
-    });
-  }
-
-  SaleReportTabData get currentTab => _tabs[_activeTab];
+  // void _addTab() {
+  //   setState(() {
+  //     _tabs.add(SaleReportTabData());
+  //     _activeTab = _tabs.length - 1;
+  //   });
+  // }
+  //
+  // SaleReportTabData get currentTab => _tabs[_activeTab];
 
   @override
   Widget build(BuildContext context) {
@@ -69,43 +68,43 @@ class _SaleAdminAddScreenState extends State<SaleAdminAddScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  ..._tabs.asMap().entries.map((e) {
-                    final isActive = e.key == _activeTab;
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: GestureDetector(
-                        onTap: () => setState(() => _activeTab = e.key),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                              color: isActive
-                                  ? AppColors.primaryERP
-                                  : Colors.grey.shade300,
-                            ),
-                            color: isActive
-                                ? AppColors.primaryERP.withOpacity(0.1)
-                                : null,
-                          ),
-                          child: Text(
-                            e.value.staff ?? 'Nhân viên ${e.key + 1}',
-                            style: TextStyle(
-                              color: isActive
-                                  ? AppColors.primaryERP
-                                  : Colors.black87,
-                              fontWeight:
-                              isActive ? FontWeight.w600 : FontWeight.normal,
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  }),
-                  IconButton(
-                    onPressed: _addTab,
-                    icon: const Icon(Icons.add_circle_outline),
-                  ),
+                  // ..._tabs.asMap().entries.map((e) {
+                  //   final isActive = e.key == _activeTab;
+                  //   return Padding(
+                  //     padding: const EdgeInsets.only(right: 8),
+                  //     child: GestureDetector(
+                  //       onTap: () => setState(() => _activeTab = e.key),
+                  //       child: Container(
+                  //         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  //         decoration: BoxDecoration(
+                  //           borderRadius: BorderRadius.circular(8),
+                  //           border: Border.all(
+                  //             color: isActive
+                  //                 ? AppColors.primaryERP
+                  //                 : Colors.grey.shade300,
+                  //           ),
+                  //           color: isActive
+                  //               ? AppColors.primaryERP.withOpacity(0.1)
+                  //               : null,
+                  //         ),
+                  //         child: Text(
+                  //           e.value.staff ?? 'Nhân viên ${e.key + 1}',
+                  //           style: TextStyle(
+                  //             color: isActive
+                  //                 ? AppColors.primaryERP
+                  //                 : Colors.black87,
+                  //             fontWeight:
+                  //             isActive ? FontWeight.w600 : FontWeight.normal,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   );
+                  // }),
+                  // IconButton(
+                  //   onPressed: _addTab,
+                  //   icon: const Icon(Icons.add_circle_outline),
+                  // ),
                 ],
               ),
             ),
@@ -128,61 +127,61 @@ class _SaleAdminAddScreenState extends State<SaleAdminAddScreen> {
             const SizedBox(height: 12),
 
             /// ===== NHÂN VIÊN =====
-            _selectField(
-              nameForm: 'sale_admin_staff_$_activeTab',
-              title: 'Nhân viên',
-              value: currentTab.staff,
-              icon: Icons.person_outline,
-              items: staffs,
-              onSelected: (v) => setState(() => currentTab.staff = v),
-            ),
-
-            _selectField(
-              nameForm: 'sale_admin_report_type_$_activeTab',
-              title: 'Loại báo cáo',
-              value: currentTab.reportType,
-              icon: Icons.category_outlined,
-              items: reportTypes,
-              onSelected: (v) => setState(() => currentTab.reportType = v),
-            ),
-
-            FormCard(
-              title: 'Nội dung báo cáo',
-              child: FormInputField(
-                label: '',
-                icon: Icons.description_outlined,
-                nameForm: 'sale_admin_content_$_activeTab',
-                nameTextField: 'content',
-                maxLines: 4,
-              ),
-            ),
-
-            _selectField(
-              nameForm: 'sale_admin_project_$_activeTab',
-              title: 'Mã dự án',
-              value: currentTab.project,
-              icon: Icons.work_outline,
-              items: projects,
-              onSelected: (v) => setState(() => currentTab.project = v),
-            ),
-
-            _selectField(
-              nameForm: 'sale_admin_customer_$_activeTab',
-              title: 'Khách hàng',
-              value: currentTab.customer,
-              icon: Icons.people_outline,
-              items: customers,
-              onSelected: (v) => setState(() => currentTab.customer = v),
-            ),
-
-            _selectField(
-              nameForm: 'sale_admin_requester_$_activeTab',
-              title: 'Người yêu cầu',
-              value: currentTab.requester,
-              icon: Icons.person_pin_outlined,
-              items: requesters,
-              onSelected: (v) => setState(() => currentTab.requester = v),
-            ),
+            // _selectField(
+            //   nameForm: 'sale_admin_staff_$_activeTab',
+            //   title: 'Nhân viên',
+            //   value: currentTab.staff,
+            //   icon: Icons.person_outline,
+            //   items: staffs,
+            //   onSelected: (v) => setState(() => currentTab.staff = v),
+            // ),
+            //
+            // _selectField(
+            //   nameForm: 'sale_admin_report_type_$_activeTab',
+            //   title: 'Loại báo cáo',
+            //   value: currentTab.reportType,
+            //   icon: Icons.category_outlined,
+            //   items: reportTypes,
+            //   onSelected: (v) => setState(() => currentTab.reportType = v),
+            // ),
+            //
+            // FormCard(
+            //   title: 'Nội dung báo cáo',
+            //   child: FormInputField(
+            //     label: '',
+            //     icon: Icons.description_outlined,
+            //     nameForm: 'sale_admin_content_$_activeTab',
+            //     nameTextField: 'content',
+            //     maxLines: 4,
+            //   ),
+            // ),
+            //
+            // _selectField(
+            //   nameForm: 'sale_admin_project_$_activeTab',
+            //   title: 'Mã dự án',
+            //   value: currentTab.project,
+            //   icon: Icons.work_outline,
+            //   items: projects,
+            //   onSelected: (v) => setState(() => currentTab.project = v),
+            // ),
+            //
+            // _selectField(
+            //   nameForm: 'sale_admin_customer_$_activeTab',
+            //   title: 'Khách hàng',
+            //   value: currentTab.customer,
+            //   icon: Icons.people_outline,
+            //   items: customers,
+            //   onSelected: (v) => setState(() => currentTab.customer = v),
+            // ),
+            //
+            // _selectField(
+            //   nameForm: 'sale_admin_requester_$_activeTab',
+            //   title: 'Người yêu cầu',
+            //   value: currentTab.requester,
+            //   icon: Icons.person_pin_outlined,
+            //   items: requesters,
+            //   onSelected: (v) => setState(() => currentTab.requester = v),
+            // ),
 
             FormCard(
               title: 'Kết quả xử lý',
@@ -223,8 +222,7 @@ class _SaleAdminAddScreenState extends State<SaleAdminAddScreen> {
               mode: FormActionMode.add,
               onSubmit: () {
                 if (_formKey.currentState?.saveAndValidate() ?? false) {
-                  debugPrint(_formKey.currentState!.value.toString());
-                  debugPrint(_tabs.toString());
+
                 }
               },
             ),

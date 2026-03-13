@@ -59,6 +59,8 @@ abstract class _$SaleStateCWProxy {
 
   SaleState submitSuccess(bool submitSuccess);
 
+  SaleState deleteSuccess(bool deleteSuccess);
+
   SaleState expandedWorkIndex(int? expandedWorkIndex);
 
   SaleState customerId(int? customerId);
@@ -98,6 +100,7 @@ abstract class _$SaleStateCWProxy {
     bool? isDeleting,
     bool? isSubmitting,
     bool? submitSuccess,
+    bool? deleteSuccess,
     int? expandedWorkIndex,
     int? customerId,
     DateTime? dateReport,
@@ -201,6 +204,10 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
       this(submitSuccess: submitSuccess);
 
   @override
+  SaleState deleteSuccess(bool deleteSuccess) =>
+      this(deleteSuccess: deleteSuccess);
+
+  @override
   SaleState expandedWorkIndex(int? expandedWorkIndex) =>
       this(expandedWorkIndex: expandedWorkIndex);
 
@@ -245,6 +252,7 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
     Object? isDeleting = const $CopyWithPlaceholder(),
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
+    Object? deleteSuccess = const $CopyWithPlaceholder(),
     Object? expandedWorkIndex = const $CopyWithPlaceholder(),
     Object? customerId = const $CopyWithPlaceholder(),
     Object? dateReport = const $CopyWithPlaceholder(),
@@ -363,6 +371,11 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
               ? _value.submitSuccess
               // ignore: cast_nullable_to_non_nullable
               : submitSuccess as bool,
+      deleteSuccess:
+          deleteSuccess == const $CopyWithPlaceholder() || deleteSuccess == null
+              ? _value.deleteSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : deleteSuccess as bool,
       expandedWorkIndex: expandedWorkIndex == const $CopyWithPlaceholder()
           ? _value.expandedWorkIndex
           // ignore: cast_nullable_to_non_nullable

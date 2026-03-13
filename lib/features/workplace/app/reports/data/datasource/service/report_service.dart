@@ -166,6 +166,14 @@ class ReportService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<void>> deleteSaleReportById({required int dailyID}) async {
+    return post<BaseData<void>>(
+      ApiEndPoint.deleteSaleReport,
+      query: {'id': dailyID},
+      parser: (json) => BaseData<void>.fromJson(json, (_) {}),
+    );
+  }
+
   /// Copy báo cáo
   Future<BaseData<List<CopyResponse>>> copyReport({
     required DateTime dateStart,
@@ -531,7 +539,7 @@ class ReportService extends DioBaseApiService {
     required int userId,
     required int employeeTeamSaleId,
     int page = 1,
-    int size = 50,
+    int size = 10,
     String filterText = '',
     int customerId = 0,
     int groupType = -1,

@@ -394,7 +394,7 @@ class ReportRepoImpl implements ReportRepo {
     required int dailyID,
   }) async {
     try {
-      final res = await _service.deleteReportById(dailyID: dailyID);
+      final res = await _service.deleteSaleReportById(dailyID: dailyID);
 
       if (res.status == 1) {
         return right(res.message ?? 'Xoá thành công');
@@ -537,7 +537,7 @@ class ReportRepoImpl implements ReportRepo {
     required int userId,
     required int employeeTeamSaleId,
     int page = 1,
-    int size = 50,
+    int size = 10,
     String filterText = '',
     int customerId = 0,
     int groupType = -1,
