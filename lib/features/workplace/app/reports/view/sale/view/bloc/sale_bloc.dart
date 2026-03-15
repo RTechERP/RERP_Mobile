@@ -118,6 +118,10 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         submitReport: (pickedDate) => _onSubmitReport(pickedDate, emit),
         resetSubmitFlags: () => _onResetSubmitFlags(emit),
         deleteReport: (dailyID) => _onDeleteReport(dailyID,emit),
+        changeDateRange: (dateStart, dateEnd) =>
+            _onChangeDateRange(dateStart, dateEnd, emit),
+        selectReport: (dailyID) => _onSelectReport(dailyID, emit),
+
       );
     });
   }
@@ -647,6 +651,42 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
             deleteSuccess: true,
             status: BaseStateStatus.success,
             message: message,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _onChangeDateRange(
+      DateTime dateStart,
+      DateTime dateEnd,
+      Emitter<SaleState> emit,
+      ) async {
+    final start = DateTime(dateStart.year, dateStart.month, dateStart.day);
+    final end = DateTime(dateEnd.year, dateEnd.month, dateEnd.day);
+
+    emit(state.copyWith(status: BaseStateStatus.loading));
+
+    await _loadDailyReport(start: start, end: end, emit: emit);
+  }
+
+  Future<void> _onSelectReport(int dailyID, Emitter<SaleState> emit) async {
+    emit(state.copyWith(isLoadingDetail: true));
+
+    final res = await _reportRepo.getSaleById(dailyID: dailyID);
+
+    await res.fold(
+          (l) async {
+        _log.logE('Get detail failed: $l');
+        emit(state.copyWith(isLoadingDetail: false));
+      },
+          (detail) async {
+        _log.logI('✅ Detail Report: $detail');
+
+        emit(
+          state.copyWith(
+            isLoadingDetail: false,
+            selectedReportDetail: detail, // DetailReportResponse
           ),
         );
       },

@@ -61,11 +61,16 @@ abstract class _$SaleStateCWProxy {
 
   SaleState deleteSuccess(bool deleteSuccess);
 
+  SaleState isLoadingDetail(bool isLoadingDetail);
+
   SaleState expandedWorkIndex(int? expandedWorkIndex);
 
   SaleState customerId(int? customerId);
 
   SaleState dateReport(DateTime? dateReport);
+
+  SaleState selectedReportDetail(
+      DetailSaleReportResponse? selectedReportDetail);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -101,9 +106,11 @@ abstract class _$SaleStateCWProxy {
     bool? isSubmitting,
     bool? submitSuccess,
     bool? deleteSuccess,
+    bool? isLoadingDetail,
     int? expandedWorkIndex,
     int? customerId,
     DateTime? dateReport,
+    DetailSaleReportResponse? selectedReportDetail,
   });
 }
 
@@ -208,6 +215,10 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
       this(deleteSuccess: deleteSuccess);
 
   @override
+  SaleState isLoadingDetail(bool isLoadingDetail) =>
+      this(isLoadingDetail: isLoadingDetail);
+
+  @override
   SaleState expandedWorkIndex(int? expandedWorkIndex) =>
       this(expandedWorkIndex: expandedWorkIndex);
 
@@ -216,6 +227,11 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
 
   @override
   SaleState dateReport(DateTime? dateReport) => this(dateReport: dateReport);
+
+  @override
+  SaleState selectedReportDetail(
+          DetailSaleReportResponse? selectedReportDetail) =>
+      this(selectedReportDetail: selectedReportDetail);
 
   @override
 
@@ -253,9 +269,11 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
     Object? deleteSuccess = const $CopyWithPlaceholder(),
+    Object? isLoadingDetail = const $CopyWithPlaceholder(),
     Object? expandedWorkIndex = const $CopyWithPlaceholder(),
     Object? customerId = const $CopyWithPlaceholder(),
     Object? dateReport = const $CopyWithPlaceholder(),
+    Object? selectedReportDetail = const $CopyWithPlaceholder(),
   }) {
     return SaleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -376,6 +394,11 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
               ? _value.deleteSuccess
               // ignore: cast_nullable_to_non_nullable
               : deleteSuccess as bool,
+      isLoadingDetail: isLoadingDetail == const $CopyWithPlaceholder() ||
+              isLoadingDetail == null
+          ? _value.isLoadingDetail
+          // ignore: cast_nullable_to_non_nullable
+          : isLoadingDetail as bool,
       expandedWorkIndex: expandedWorkIndex == const $CopyWithPlaceholder()
           ? _value.expandedWorkIndex
           // ignore: cast_nullable_to_non_nullable
@@ -388,6 +411,10 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
           ? _value.dateReport
           // ignore: cast_nullable_to_non_nullable
           : dateReport as DateTime?,
+      selectedReportDetail: selectedReportDetail == const $CopyWithPlaceholder()
+          ? _value.selectedReportDetail
+          // ignore: cast_nullable_to_non_nullable
+          : selectedReportDetail as DetailSaleReportResponse?,
     );
   }
 }

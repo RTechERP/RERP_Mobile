@@ -202,7 +202,7 @@ class _SaleScreenState
               child: const Icon(Icons.date_range),
               label: 'Lọc ngày',
               onTap: () {
-                AdDateRangePicker.open(context, bloc);
+                SaleDateRangePicker.open(context, bloc);
               },
             ),
           ],
@@ -400,6 +400,16 @@ class _SaleScreenState
             projectName: r.customerName ?? '',
             time: DateTime.tryParse(r.createdDate.toString()),
             showProgress: false,
+            onTap: () async {
+              final reload = await context.push(
+                RouteNames.reportSaleStaffDetail,
+                extra: r.id,
+              );
+
+              if (reload == true) {
+                bloc.add(const SaleEvent.init());
+              }
+            },
           ),
         );
       },
@@ -407,23 +417,15 @@ class _SaleScreenState
   }
 }
 
-class AdDateRangePicker {
-  static DateTime _safeAddMonth(DateTime d, int offset) {
-    final target = DateTime(d.year, d.month + offset, 1);
-    final lastDay = DateTime(target.year, target.month + 1, 0).day;
-    final day = d.day.clamp(1, lastDay);
-    return DateTime(target.year, target.month, day);
-  }
+class SaleDateRangePicker {
 
   static void open(BuildContext context, SaleBloc bloc) {
-    final now = DateTime.now();
-    final minDate = _safeAddMonth(now, -1);
-    final maxDate = _safeAddMonth(now, 1);
 
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (_) {
+
         DateTime? start;
         DateTime? end;
 
@@ -440,16 +442,16 @@ class AdDateRangePicker {
                 Expanded(
                   child: SfDateRangePicker(
                     selectionMode: DateRangePickerSelectionMode.range,
-                    minDate: minDate,
-                    maxDate: maxDate,
-                    // initialSelectedRange:
-                    // (bloc.state.dateStart != null &&
-                    //     bloc.state.dateEnd != null)
-                    //     ? PickerDateRange(
-                    //   bloc.state.dateStart,
-                    //   bloc.state.dateEnd,
-                    // )
-                    //     : null,
+
+                    initialSelectedRange:
+                    (bloc.state.dateStart != null &&
+                        bloc.state.dateEnd != null)
+                        ? PickerDateRange(
+                      bloc.state.dateStart,
+                      bloc.state.dateEnd,
+                    )
+                        : null,
+
                     onSelectionChanged: (args) {
                       final range = args.value as PickerDateRange?;
                       start = range?.startDate;
@@ -474,12 +476,12 @@ class AdDateRangePicker {
                             if (start != null && end != null) {
                               onBack(context);
 
-                              // bloc.add(
-                              //   AdEvent.changeDateRange(
-                              //     dateStart: start!,
-                              //     dateEnd: end!,
-                              //   ),
-                              // );
+                              bloc.add(
+                                SaleEvent.changeDateRange(
+                                  dateStart: start!,
+                                  dateEnd: end!,
+                                ),
+                              );
                             }
                           },
                           child: const Text('Áp dụng'),
@@ -493,8 +495,6 @@ class AdDateRangePicker {
           ),
         );
       },
-
     );
   }
 }
-

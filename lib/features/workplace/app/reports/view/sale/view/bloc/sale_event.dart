@@ -61,4 +61,10 @@ class SaleEvent with _$SaleEvent {
 
   const factory SaleEvent.deleteReport({required int dailyID}) = _DeleteReport;
 
+  const factory SaleEvent.changeDateRange({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) = _ChangeDateRange;
+
+  const factory SaleEvent.selectReport({required int dailyID}) = _SelectReport;
 }

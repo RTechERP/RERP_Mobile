@@ -7,6 +7,7 @@ class SaleState extends BaseBlocState {
   final bool submitSuccess;
   final bool isDeleting;
   final bool deleteSuccess;
+  final bool isLoadingDetail;
   final int? userId;
   final String? fullName;
   final int? departmentId;
@@ -26,6 +27,8 @@ class SaleState extends BaseBlocState {
 
   final List<TypeTeamSaleResponse> typeTeamSales;
   final List<StatusProjectResponse> statusProjects;
+
+  final DetailSaleReportResponse? selectedReportDetail;
   final List<CustomerResponse> customers;
 
   final List<CustomerContactResponse> customerContacts;
@@ -65,9 +68,11 @@ class SaleState extends BaseBlocState {
     this.isSubmitting = false,
     this.submitSuccess = false,
     this.deleteSuccess = false,
+    this.isLoadingDetail = false,
     this.expandedWorkIndex,
     this.customerId,
     this.dateReport,
+    this.selectedReportDetail,
   });
 
   factory SaleState.init() => const SaleState(
@@ -98,9 +103,11 @@ class SaleState extends BaseBlocState {
     isSubmitting: false,
     submitSuccess: false,
     deleteSuccess: false,
+    isLoadingDetail: false,
     expandedWorkIndex: null,
     customerId: null,
     dateReport: null,
+    selectedReportDetail: null,
   );
 
   @override
@@ -135,5 +142,7 @@ class SaleState extends BaseBlocState {
     customerId,
     dateReport,
     deleteSuccess,
+    isLoadingDetail,
+    selectedReportDetail,
   ];
 }

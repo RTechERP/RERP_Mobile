@@ -748,9 +748,9 @@ class DetailSaleReportResponse with _$DetailSaleReportResponse {
     @JsonKey(name: 'Visit') int? visit,
     @JsonKey(name: 'Demo') int? demo,
 
-    @JsonKey(name: 'Result') required String result,
-    @JsonKey(name: 'ProblemBacklog') required String problemBacklog,
-    @JsonKey(name: 'PlanNext') required String planNext,
+    @JsonKey(name: 'Result')  String? result,
+    @JsonKey(name: 'ProblemBacklog')  String? problemBacklog,
+    @JsonKey(name: 'PlanNext') String? planNext,
     @JsonKey(name: 'Note') String? note,
 
     @JsonKey(name: 'BigAccount') required bool bigAccount,
@@ -771,15 +771,15 @@ class DetailSaleReportResponse with _$DetailSaleReportResponse {
     @JsonKey(name: 'DeleteFlag') required int deleteFlag,
     @JsonKey(name: 'Confirm') required bool confirm,
 
-    @JsonKey(name: 'ProductOfCustomer') required String productOfCustomer,
+    @JsonKey(name: 'ProductOfCustomer') String? productOfCustomer,
     @JsonKey(name: 'RequestOfCustomer') String? requestOfCustomer,
 
-    @JsonKey(name: 'ProjectID') required int projectId,
-    @JsonKey(name: 'FirmBaseID') required int firmBaseId,
-    @JsonKey(name: 'ProjectTypeBaseID') required int projectTypeBaseId,
+    @JsonKey(name: 'ProjectID')  int? projectId,
+    @JsonKey(name: 'FirmBaseID') int? firmBaseId,
+    @JsonKey(name: 'ProjectTypeBaseID') int? projectTypeBaseId,
 
-    @JsonKey(name: 'SaleOpportunity') required bool saleOpportunity,
-    @JsonKey(name: 'WarehouseID') required int warehouseId,
+    @JsonKey(name: 'SaleOpportunity') bool? saleOpportunity,
+    @JsonKey(name: 'WarehouseID')  int? warehouseId,
   }) = _DetailSaleReportResponse;
 
   factory DetailSaleReportResponse.fromJson(Map<String, dynamic> json) =>
@@ -1061,8 +1061,8 @@ class SaleReportItem with _$SaleReportItem {
     @JsonKey(name: 'PlanNext') String? planNext,
     @JsonKey(name: 'Note') String? note,
 
-    @JsonKey(name: 'BigAccount') required bool bigAccount,
-    @JsonKey(name: 'GroupType') required int groupType,
+    @JsonKey(name: 'BigAccount') bool? bigAccount,
+    @JsonKey(name: 'GroupType')  int? groupType,
 
     @JsonKey(name: 'Content') String? content,
     @JsonKey(name: 'UserLoginID') int? userLoginId,

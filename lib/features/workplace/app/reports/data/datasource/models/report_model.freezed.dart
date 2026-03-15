@@ -13293,11 +13293,11 @@ mixin _$DetailSaleReportResponse {
   @JsonKey(name: 'Demo')
   int? get demo => throw _privateConstructorUsedError;
   @JsonKey(name: 'Result')
-  String get result => throw _privateConstructorUsedError;
+  String? get result => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProblemBacklog')
-  String get problemBacklog => throw _privateConstructorUsedError;
+  String? get problemBacklog => throw _privateConstructorUsedError;
   @JsonKey(name: 'PlanNext')
-  String get planNext => throw _privateConstructorUsedError;
+  String? get planNext => throw _privateConstructorUsedError;
   @JsonKey(name: 'Note')
   String? get note => throw _privateConstructorUsedError;
   @JsonKey(name: 'BigAccount')
@@ -13323,19 +13323,19 @@ mixin _$DetailSaleReportResponse {
   @JsonKey(name: 'Confirm')
   bool get confirm => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProductOfCustomer')
-  String get productOfCustomer => throw _privateConstructorUsedError;
+  String? get productOfCustomer => throw _privateConstructorUsedError;
   @JsonKey(name: 'RequestOfCustomer')
   String? get requestOfCustomer => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProjectID')
-  int get projectId => throw _privateConstructorUsedError;
+  int? get projectId => throw _privateConstructorUsedError;
   @JsonKey(name: 'FirmBaseID')
-  int get firmBaseId => throw _privateConstructorUsedError;
+  int? get firmBaseId => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProjectTypeBaseID')
-  int get projectTypeBaseId => throw _privateConstructorUsedError;
+  int? get projectTypeBaseId => throw _privateConstructorUsedError;
   @JsonKey(name: 'SaleOpportunity')
-  bool get saleOpportunity => throw _privateConstructorUsedError;
+  bool? get saleOpportunity => throw _privateConstructorUsedError;
   @JsonKey(name: 'WarehouseID')
-  int get warehouseId => throw _privateConstructorUsedError;
+  int? get warehouseId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -13359,9 +13359,9 @@ abstract class $DetailSaleReportResponseCopyWith<$Res> {
       @JsonKey(name: 'Telesale') int? telesale,
       @JsonKey(name: 'Visit') int? visit,
       @JsonKey(name: 'Demo') int? demo,
-      @JsonKey(name: 'Result') String result,
-      @JsonKey(name: 'ProblemBacklog') String problemBacklog,
-      @JsonKey(name: 'PlanNext') String planNext,
+      @JsonKey(name: 'Result') String? result,
+      @JsonKey(name: 'ProblemBacklog') String? problemBacklog,
+      @JsonKey(name: 'PlanNext') String? planNext,
       @JsonKey(name: 'Note') String? note,
       @JsonKey(name: 'BigAccount') bool bigAccount,
       @JsonKey(name: 'GroupType') int groupType,
@@ -13374,13 +13374,13 @@ abstract class $DetailSaleReportResponseCopyWith<$Res> {
       @JsonKey(name: 'EndUser') String? endUser,
       @JsonKey(name: 'DeleteFlag') int deleteFlag,
       @JsonKey(name: 'Confirm') bool confirm,
-      @JsonKey(name: 'ProductOfCustomer') String productOfCustomer,
+      @JsonKey(name: 'ProductOfCustomer') String? productOfCustomer,
       @JsonKey(name: 'RequestOfCustomer') String? requestOfCustomer,
-      @JsonKey(name: 'ProjectID') int projectId,
-      @JsonKey(name: 'FirmBaseID') int firmBaseId,
-      @JsonKey(name: 'ProjectTypeBaseID') int projectTypeBaseId,
-      @JsonKey(name: 'SaleOpportunity') bool saleOpportunity,
-      @JsonKey(name: 'WarehouseID') int warehouseId});
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'FirmBaseID') int? firmBaseId,
+      @JsonKey(name: 'ProjectTypeBaseID') int? projectTypeBaseId,
+      @JsonKey(name: 'SaleOpportunity') bool? saleOpportunity,
+      @JsonKey(name: 'WarehouseID') int? warehouseId});
 }
 
 /// @nodoc
@@ -13406,9 +13406,9 @@ class _$DetailSaleReportResponseCopyWithImpl<$Res,
     Object? telesale = freezed,
     Object? visit = freezed,
     Object? demo = freezed,
-    Object? result = null,
-    Object? problemBacklog = null,
-    Object? planNext = null,
+    Object? result = freezed,
+    Object? problemBacklog = freezed,
+    Object? planNext = freezed,
     Object? note = freezed,
     Object? bigAccount = null,
     Object? groupType = null,
@@ -13421,13 +13421,13 @@ class _$DetailSaleReportResponseCopyWithImpl<$Res,
     Object? endUser = freezed,
     Object? deleteFlag = null,
     Object? confirm = null,
-    Object? productOfCustomer = null,
+    Object? productOfCustomer = freezed,
     Object? requestOfCustomer = freezed,
-    Object? projectId = null,
-    Object? firmBaseId = null,
-    Object? projectTypeBaseId = null,
-    Object? saleOpportunity = null,
-    Object? warehouseId = null,
+    Object? projectId = freezed,
+    Object? firmBaseId = freezed,
+    Object? projectTypeBaseId = freezed,
+    Object? saleOpportunity = freezed,
+    Object? warehouseId = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -13466,18 +13466,18 @@ class _$DetailSaleReportResponseCopyWithImpl<$Res,
           ? _value.demo
           : demo // ignore: cast_nullable_to_non_nullable
               as int?,
-      result: null == result
+      result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
-              as String,
-      problemBacklog: null == problemBacklog
+              as String?,
+      problemBacklog: freezed == problemBacklog
           ? _value.problemBacklog
           : problemBacklog // ignore: cast_nullable_to_non_nullable
-              as String,
-      planNext: null == planNext
+              as String?,
+      planNext: freezed == planNext
           ? _value.planNext
           : planNext // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -13526,34 +13526,34 @@ class _$DetailSaleReportResponseCopyWithImpl<$Res,
           ? _value.confirm
           : confirm // ignore: cast_nullable_to_non_nullable
               as bool,
-      productOfCustomer: null == productOfCustomer
+      productOfCustomer: freezed == productOfCustomer
           ? _value.productOfCustomer
           : productOfCustomer // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       requestOfCustomer: freezed == requestOfCustomer
           ? _value.requestOfCustomer
           : requestOfCustomer // ignore: cast_nullable_to_non_nullable
               as String?,
-      projectId: null == projectId
+      projectId: freezed == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
-              as int,
-      firmBaseId: null == firmBaseId
+              as int?,
+      firmBaseId: freezed == firmBaseId
           ? _value.firmBaseId
           : firmBaseId // ignore: cast_nullable_to_non_nullable
-              as int,
-      projectTypeBaseId: null == projectTypeBaseId
+              as int?,
+      projectTypeBaseId: freezed == projectTypeBaseId
           ? _value.projectTypeBaseId
           : projectTypeBaseId // ignore: cast_nullable_to_non_nullable
-              as int,
-      saleOpportunity: null == saleOpportunity
+              as int?,
+      saleOpportunity: freezed == saleOpportunity
           ? _value.saleOpportunity
           : saleOpportunity // ignore: cast_nullable_to_non_nullable
-              as bool,
-      warehouseId: null == warehouseId
+              as bool?,
+      warehouseId: freezed == warehouseId
           ? _value.warehouseId
           : warehouseId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -13577,9 +13577,9 @@ abstract class _$$DetailSaleReportResponseImplCopyWith<$Res>
       @JsonKey(name: 'Telesale') int? telesale,
       @JsonKey(name: 'Visit') int? visit,
       @JsonKey(name: 'Demo') int? demo,
-      @JsonKey(name: 'Result') String result,
-      @JsonKey(name: 'ProblemBacklog') String problemBacklog,
-      @JsonKey(name: 'PlanNext') String planNext,
+      @JsonKey(name: 'Result') String? result,
+      @JsonKey(name: 'ProblemBacklog') String? problemBacklog,
+      @JsonKey(name: 'PlanNext') String? planNext,
       @JsonKey(name: 'Note') String? note,
       @JsonKey(name: 'BigAccount') bool bigAccount,
       @JsonKey(name: 'GroupType') int groupType,
@@ -13592,13 +13592,13 @@ abstract class _$$DetailSaleReportResponseImplCopyWith<$Res>
       @JsonKey(name: 'EndUser') String? endUser,
       @JsonKey(name: 'DeleteFlag') int deleteFlag,
       @JsonKey(name: 'Confirm') bool confirm,
-      @JsonKey(name: 'ProductOfCustomer') String productOfCustomer,
+      @JsonKey(name: 'ProductOfCustomer') String? productOfCustomer,
       @JsonKey(name: 'RequestOfCustomer') String? requestOfCustomer,
-      @JsonKey(name: 'ProjectID') int projectId,
-      @JsonKey(name: 'FirmBaseID') int firmBaseId,
-      @JsonKey(name: 'ProjectTypeBaseID') int projectTypeBaseId,
-      @JsonKey(name: 'SaleOpportunity') bool saleOpportunity,
-      @JsonKey(name: 'WarehouseID') int warehouseId});
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'FirmBaseID') int? firmBaseId,
+      @JsonKey(name: 'ProjectTypeBaseID') int? projectTypeBaseId,
+      @JsonKey(name: 'SaleOpportunity') bool? saleOpportunity,
+      @JsonKey(name: 'WarehouseID') int? warehouseId});
 }
 
 /// @nodoc
@@ -13623,9 +13623,9 @@ class __$$DetailSaleReportResponseImplCopyWithImpl<$Res>
     Object? telesale = freezed,
     Object? visit = freezed,
     Object? demo = freezed,
-    Object? result = null,
-    Object? problemBacklog = null,
-    Object? planNext = null,
+    Object? result = freezed,
+    Object? problemBacklog = freezed,
+    Object? planNext = freezed,
     Object? note = freezed,
     Object? bigAccount = null,
     Object? groupType = null,
@@ -13638,13 +13638,13 @@ class __$$DetailSaleReportResponseImplCopyWithImpl<$Res>
     Object? endUser = freezed,
     Object? deleteFlag = null,
     Object? confirm = null,
-    Object? productOfCustomer = null,
+    Object? productOfCustomer = freezed,
     Object? requestOfCustomer = freezed,
-    Object? projectId = null,
-    Object? firmBaseId = null,
-    Object? projectTypeBaseId = null,
-    Object? saleOpportunity = null,
-    Object? warehouseId = null,
+    Object? projectId = freezed,
+    Object? firmBaseId = freezed,
+    Object? projectTypeBaseId = freezed,
+    Object? saleOpportunity = freezed,
+    Object? warehouseId = freezed,
   }) {
     return _then(_$DetailSaleReportResponseImpl(
       id: null == id
@@ -13683,18 +13683,18 @@ class __$$DetailSaleReportResponseImplCopyWithImpl<$Res>
           ? _value.demo
           : demo // ignore: cast_nullable_to_non_nullable
               as int?,
-      result: null == result
+      result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
-              as String,
-      problemBacklog: null == problemBacklog
+              as String?,
+      problemBacklog: freezed == problemBacklog
           ? _value.problemBacklog
           : problemBacklog // ignore: cast_nullable_to_non_nullable
-              as String,
-      planNext: null == planNext
+              as String?,
+      planNext: freezed == planNext
           ? _value.planNext
           : planNext // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -13743,34 +13743,34 @@ class __$$DetailSaleReportResponseImplCopyWithImpl<$Res>
           ? _value.confirm
           : confirm // ignore: cast_nullable_to_non_nullable
               as bool,
-      productOfCustomer: null == productOfCustomer
+      productOfCustomer: freezed == productOfCustomer
           ? _value.productOfCustomer
           : productOfCustomer // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       requestOfCustomer: freezed == requestOfCustomer
           ? _value.requestOfCustomer
           : requestOfCustomer // ignore: cast_nullable_to_non_nullable
               as String?,
-      projectId: null == projectId
+      projectId: freezed == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
-              as int,
-      firmBaseId: null == firmBaseId
+              as int?,
+      firmBaseId: freezed == firmBaseId
           ? _value.firmBaseId
           : firmBaseId // ignore: cast_nullable_to_non_nullable
-              as int,
-      projectTypeBaseId: null == projectTypeBaseId
+              as int?,
+      projectTypeBaseId: freezed == projectTypeBaseId
           ? _value.projectTypeBaseId
           : projectTypeBaseId // ignore: cast_nullable_to_non_nullable
-              as int,
-      saleOpportunity: null == saleOpportunity
+              as int?,
+      saleOpportunity: freezed == saleOpportunity
           ? _value.saleOpportunity
           : saleOpportunity // ignore: cast_nullable_to_non_nullable
-              as bool,
-      warehouseId: null == warehouseId
+              as bool?,
+      warehouseId: freezed == warehouseId
           ? _value.warehouseId
           : warehouseId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -13788,9 +13788,9 @@ class _$DetailSaleReportResponseImpl implements _DetailSaleReportResponse {
       @JsonKey(name: 'Telesale') this.telesale,
       @JsonKey(name: 'Visit') this.visit,
       @JsonKey(name: 'Demo') this.demo,
-      @JsonKey(name: 'Result') required this.result,
-      @JsonKey(name: 'ProblemBacklog') required this.problemBacklog,
-      @JsonKey(name: 'PlanNext') required this.planNext,
+      @JsonKey(name: 'Result') this.result,
+      @JsonKey(name: 'ProblemBacklog') this.problemBacklog,
+      @JsonKey(name: 'PlanNext') this.planNext,
       @JsonKey(name: 'Note') this.note,
       @JsonKey(name: 'BigAccount') required this.bigAccount,
       @JsonKey(name: 'GroupType') required this.groupType,
@@ -13803,13 +13803,13 @@ class _$DetailSaleReportResponseImpl implements _DetailSaleReportResponse {
       @JsonKey(name: 'EndUser') this.endUser,
       @JsonKey(name: 'DeleteFlag') required this.deleteFlag,
       @JsonKey(name: 'Confirm') required this.confirm,
-      @JsonKey(name: 'ProductOfCustomer') required this.productOfCustomer,
+      @JsonKey(name: 'ProductOfCustomer') this.productOfCustomer,
       @JsonKey(name: 'RequestOfCustomer') this.requestOfCustomer,
-      @JsonKey(name: 'ProjectID') required this.projectId,
-      @JsonKey(name: 'FirmBaseID') required this.firmBaseId,
-      @JsonKey(name: 'ProjectTypeBaseID') required this.projectTypeBaseId,
-      @JsonKey(name: 'SaleOpportunity') required this.saleOpportunity,
-      @JsonKey(name: 'WarehouseID') required this.warehouseId});
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'FirmBaseID') this.firmBaseId,
+      @JsonKey(name: 'ProjectTypeBaseID') this.projectTypeBaseId,
+      @JsonKey(name: 'SaleOpportunity') this.saleOpportunity,
+      @JsonKey(name: 'WarehouseID') this.warehouseId});
 
   factory _$DetailSaleReportResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$DetailSaleReportResponseImplFromJson(json);
@@ -13843,13 +13843,13 @@ class _$DetailSaleReportResponseImpl implements _DetailSaleReportResponse {
   final int? demo;
   @override
   @JsonKey(name: 'Result')
-  final String result;
+  final String? result;
   @override
   @JsonKey(name: 'ProblemBacklog')
-  final String problemBacklog;
+  final String? problemBacklog;
   @override
   @JsonKey(name: 'PlanNext')
-  final String planNext;
+  final String? planNext;
   @override
   @JsonKey(name: 'Note')
   final String? note;
@@ -13888,25 +13888,25 @@ class _$DetailSaleReportResponseImpl implements _DetailSaleReportResponse {
   final bool confirm;
   @override
   @JsonKey(name: 'ProductOfCustomer')
-  final String productOfCustomer;
+  final String? productOfCustomer;
   @override
   @JsonKey(name: 'RequestOfCustomer')
   final String? requestOfCustomer;
   @override
   @JsonKey(name: 'ProjectID')
-  final int projectId;
+  final int? projectId;
   @override
   @JsonKey(name: 'FirmBaseID')
-  final int firmBaseId;
+  final int? firmBaseId;
   @override
   @JsonKey(name: 'ProjectTypeBaseID')
-  final int projectTypeBaseId;
+  final int? projectTypeBaseId;
   @override
   @JsonKey(name: 'SaleOpportunity')
-  final bool saleOpportunity;
+  final bool? saleOpportunity;
   @override
   @JsonKey(name: 'WarehouseID')
-  final int warehouseId;
+  final int? warehouseId;
 
   @override
   String toString() {
@@ -14024,39 +14024,38 @@ class _$DetailSaleReportResponseImpl implements _DetailSaleReportResponse {
 
 abstract class _DetailSaleReportResponse implements DetailSaleReportResponse {
   const factory _DetailSaleReportResponse(
-      {@JsonKey(name: 'ID') required final int id,
-      @JsonKey(name: 'CustomerID') required final int customerId,
-      @JsonKey(name: 'UserID') required final int userId,
-      @JsonKey(name: 'ContacID') required final int contacId,
-      @JsonKey(name: 'DateStart') required final DateTime dateStart,
-      @JsonKey(name: 'DateEnd') required final DateTime dateEnd,
-      @JsonKey(name: 'Telesale') final int? telesale,
-      @JsonKey(name: 'Visit') final int? visit,
-      @JsonKey(name: 'Demo') final int? demo,
-      @JsonKey(name: 'Result') required final String result,
-      @JsonKey(name: 'ProblemBacklog') required final String problemBacklog,
-      @JsonKey(name: 'PlanNext') required final String planNext,
-      @JsonKey(name: 'Note') final String? note,
-      @JsonKey(name: 'BigAccount') required final bool bigAccount,
-      @JsonKey(name: 'GroupType') required final int groupType,
-      @JsonKey(name: 'Content') required final String content,
-      @JsonKey(name: 'UserLoginID') final int? userLoginId,
-      @JsonKey(name: 'CreatedDate') required final DateTime createdDate,
-      @JsonKey(name: 'CreatedBy') required final String createdBy,
-      @JsonKey(name: 'Month') required final int month,
-      @JsonKey(name: 'Year') required final int year,
-      @JsonKey(name: 'EndUser') final String? endUser,
-      @JsonKey(name: 'DeleteFlag') required final int deleteFlag,
-      @JsonKey(name: 'Confirm') required final bool confirm,
-      @JsonKey(name: 'ProductOfCustomer')
-      required final String productOfCustomer,
-      @JsonKey(name: 'RequestOfCustomer') final String? requestOfCustomer,
-      @JsonKey(name: 'ProjectID') required final int projectId,
-      @JsonKey(name: 'FirmBaseID') required final int firmBaseId,
-      @JsonKey(name: 'ProjectTypeBaseID') required final int projectTypeBaseId,
-      @JsonKey(name: 'SaleOpportunity') required final bool saleOpportunity,
-      @JsonKey(name: 'WarehouseID')
-      required final int warehouseId}) = _$DetailSaleReportResponseImpl;
+          {@JsonKey(name: 'ID') required final int id,
+          @JsonKey(name: 'CustomerID') required final int customerId,
+          @JsonKey(name: 'UserID') required final int userId,
+          @JsonKey(name: 'ContacID') required final int contacId,
+          @JsonKey(name: 'DateStart') required final DateTime dateStart,
+          @JsonKey(name: 'DateEnd') required final DateTime dateEnd,
+          @JsonKey(name: 'Telesale') final int? telesale,
+          @JsonKey(name: 'Visit') final int? visit,
+          @JsonKey(name: 'Demo') final int? demo,
+          @JsonKey(name: 'Result') final String? result,
+          @JsonKey(name: 'ProblemBacklog') final String? problemBacklog,
+          @JsonKey(name: 'PlanNext') final String? planNext,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'BigAccount') required final bool bigAccount,
+          @JsonKey(name: 'GroupType') required final int groupType,
+          @JsonKey(name: 'Content') required final String content,
+          @JsonKey(name: 'UserLoginID') final int? userLoginId,
+          @JsonKey(name: 'CreatedDate') required final DateTime createdDate,
+          @JsonKey(name: 'CreatedBy') required final String createdBy,
+          @JsonKey(name: 'Month') required final int month,
+          @JsonKey(name: 'Year') required final int year,
+          @JsonKey(name: 'EndUser') final String? endUser,
+          @JsonKey(name: 'DeleteFlag') required final int deleteFlag,
+          @JsonKey(name: 'Confirm') required final bool confirm,
+          @JsonKey(name: 'ProductOfCustomer') final String? productOfCustomer,
+          @JsonKey(name: 'RequestOfCustomer') final String? requestOfCustomer,
+          @JsonKey(name: 'ProjectID') final int? projectId,
+          @JsonKey(name: 'FirmBaseID') final int? firmBaseId,
+          @JsonKey(name: 'ProjectTypeBaseID') final int? projectTypeBaseId,
+          @JsonKey(name: 'SaleOpportunity') final bool? saleOpportunity,
+          @JsonKey(name: 'WarehouseID') final int? warehouseId}) =
+      _$DetailSaleReportResponseImpl;
 
   factory _DetailSaleReportResponse.fromJson(Map<String, dynamic> json) =
       _$DetailSaleReportResponseImpl.fromJson;
@@ -14090,13 +14089,13 @@ abstract class _DetailSaleReportResponse implements DetailSaleReportResponse {
   int? get demo;
   @override
   @JsonKey(name: 'Result')
-  String get result;
+  String? get result;
   @override
   @JsonKey(name: 'ProblemBacklog')
-  String get problemBacklog;
+  String? get problemBacklog;
   @override
   @JsonKey(name: 'PlanNext')
-  String get planNext;
+  String? get planNext;
   @override
   @JsonKey(name: 'Note')
   String? get note;
@@ -14135,25 +14134,25 @@ abstract class _DetailSaleReportResponse implements DetailSaleReportResponse {
   bool get confirm;
   @override
   @JsonKey(name: 'ProductOfCustomer')
-  String get productOfCustomer;
+  String? get productOfCustomer;
   @override
   @JsonKey(name: 'RequestOfCustomer')
   String? get requestOfCustomer;
   @override
   @JsonKey(name: 'ProjectID')
-  int get projectId;
+  int? get projectId;
   @override
   @JsonKey(name: 'FirmBaseID')
-  int get firmBaseId;
+  int? get firmBaseId;
   @override
   @JsonKey(name: 'ProjectTypeBaseID')
-  int get projectTypeBaseId;
+  int? get projectTypeBaseId;
   @override
   @JsonKey(name: 'SaleOpportunity')
-  bool get saleOpportunity;
+  bool? get saleOpportunity;
   @override
   @JsonKey(name: 'WarehouseID')
-  int get warehouseId;
+  int? get warehouseId;
   @override
   @JsonKey(ignore: true)
   _$$DetailSaleReportResponseImplCopyWith<_$DetailSaleReportResponseImpl>
@@ -18571,9 +18570,9 @@ mixin _$SaleReportItem {
   @JsonKey(name: 'Note')
   String? get note => throw _privateConstructorUsedError;
   @JsonKey(name: 'BigAccount')
-  bool get bigAccount => throw _privateConstructorUsedError;
+  bool? get bigAccount => throw _privateConstructorUsedError;
   @JsonKey(name: 'GroupType')
-  int get groupType => throw _privateConstructorUsedError;
+  int? get groupType => throw _privateConstructorUsedError;
   @JsonKey(name: 'Content')
   String? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'UserLoginID')
@@ -18657,8 +18656,8 @@ abstract class $SaleReportItemCopyWith<$Res> {
       @JsonKey(name: 'ProblemBacklog') String? problemBacklog,
       @JsonKey(name: 'PlanNext') String? planNext,
       @JsonKey(name: 'Note') String? note,
-      @JsonKey(name: 'BigAccount') bool bigAccount,
-      @JsonKey(name: 'GroupType') int groupType,
+      @JsonKey(name: 'BigAccount') bool? bigAccount,
+      @JsonKey(name: 'GroupType') int? groupType,
       @JsonKey(name: 'Content') String? content,
       @JsonKey(name: 'UserLoginID') int? userLoginId,
       @JsonKey(name: 'CreatedDate') DateTime createdDate,
@@ -18715,8 +18714,8 @@ class _$SaleReportItemCopyWithImpl<$Res, $Val extends SaleReportItem>
     Object? problemBacklog = freezed,
     Object? planNext = freezed,
     Object? note = freezed,
-    Object? bigAccount = null,
-    Object? groupType = null,
+    Object? bigAccount = freezed,
+    Object? groupType = freezed,
     Object? content = freezed,
     Object? userLoginId = freezed,
     Object? createdDate = null,
@@ -18799,14 +18798,14 @@ class _$SaleReportItemCopyWithImpl<$Res, $Val extends SaleReportItem>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String?,
-      bigAccount: null == bigAccount
+      bigAccount: freezed == bigAccount
           ? _value.bigAccount
           : bigAccount // ignore: cast_nullable_to_non_nullable
-              as bool,
-      groupType: null == groupType
+              as bool?,
+      groupType: freezed == groupType
           ? _value.groupType
           : groupType // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -18945,8 +18944,8 @@ abstract class _$$SaleReportItemImplCopyWith<$Res>
       @JsonKey(name: 'ProblemBacklog') String? problemBacklog,
       @JsonKey(name: 'PlanNext') String? planNext,
       @JsonKey(name: 'Note') String? note,
-      @JsonKey(name: 'BigAccount') bool bigAccount,
-      @JsonKey(name: 'GroupType') int groupType,
+      @JsonKey(name: 'BigAccount') bool? bigAccount,
+      @JsonKey(name: 'GroupType') int? groupType,
       @JsonKey(name: 'Content') String? content,
       @JsonKey(name: 'UserLoginID') int? userLoginId,
       @JsonKey(name: 'CreatedDate') DateTime createdDate,
@@ -19001,8 +19000,8 @@ class __$$SaleReportItemImplCopyWithImpl<$Res>
     Object? problemBacklog = freezed,
     Object? planNext = freezed,
     Object? note = freezed,
-    Object? bigAccount = null,
-    Object? groupType = null,
+    Object? bigAccount = freezed,
+    Object? groupType = freezed,
     Object? content = freezed,
     Object? userLoginId = freezed,
     Object? createdDate = null,
@@ -19085,14 +19084,14 @@ class __$$SaleReportItemImplCopyWithImpl<$Res>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String?,
-      bigAccount: null == bigAccount
+      bigAccount: freezed == bigAccount
           ? _value.bigAccount
           : bigAccount // ignore: cast_nullable_to_non_nullable
-              as bool,
-      groupType: null == groupType
+              as bool?,
+      groupType: freezed == groupType
           ? _value.groupType
           : groupType // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -19226,8 +19225,8 @@ class _$SaleReportItemImpl implements _SaleReportItem {
       @JsonKey(name: 'ProblemBacklog') this.problemBacklog,
       @JsonKey(name: 'PlanNext') this.planNext,
       @JsonKey(name: 'Note') this.note,
-      @JsonKey(name: 'BigAccount') required this.bigAccount,
-      @JsonKey(name: 'GroupType') required this.groupType,
+      @JsonKey(name: 'BigAccount') this.bigAccount,
+      @JsonKey(name: 'GroupType') this.groupType,
       @JsonKey(name: 'Content') this.content,
       @JsonKey(name: 'UserLoginID') this.userLoginId,
       @JsonKey(name: 'CreatedDate') required this.createdDate,
@@ -19301,10 +19300,10 @@ class _$SaleReportItemImpl implements _SaleReportItem {
   final String? note;
   @override
   @JsonKey(name: 'BigAccount')
-  final bool bigAccount;
+  final bool? bigAccount;
   @override
   @JsonKey(name: 'GroupType')
-  final int groupType;
+  final int? groupType;
   @override
   @JsonKey(name: 'Content')
   final String? content;
@@ -19554,8 +19553,8 @@ abstract class _SaleReportItem implements SaleReportItem {
           @JsonKey(name: 'ProblemBacklog') final String? problemBacklog,
           @JsonKey(name: 'PlanNext') final String? planNext,
           @JsonKey(name: 'Note') final String? note,
-          @JsonKey(name: 'BigAccount') required final bool bigAccount,
-          @JsonKey(name: 'GroupType') required final int groupType,
+          @JsonKey(name: 'BigAccount') final bool? bigAccount,
+          @JsonKey(name: 'GroupType') final int? groupType,
           @JsonKey(name: 'Content') final String? content,
           @JsonKey(name: 'UserLoginID') final int? userLoginId,
           @JsonKey(name: 'CreatedDate') required final DateTime createdDate,
@@ -19630,10 +19629,10 @@ abstract class _SaleReportItem implements SaleReportItem {
   String? get note;
   @override
   @JsonKey(name: 'BigAccount')
-  bool get bigAccount;
+  bool? get bigAccount;
   @override
   @JsonKey(name: 'GroupType')
-  int get groupType;
+  int? get groupType;
   @override
   @JsonKey(name: 'Content')
   String? get content;
