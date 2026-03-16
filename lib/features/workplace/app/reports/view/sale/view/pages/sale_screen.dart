@@ -403,7 +403,12 @@ class _SaleScreenState
             onTap: () async {
               final reload = await context.push(
                 RouteNames.reportSaleStaffDetail,
-                extra: r.id,
+                extra: {
+                  'id': r.id,
+                  'projectCode': r.projectCode,
+                  'customerName': r.customerName,
+                  'projectName': r.projectName,
+                },
               );
 
               if (reload == true) {

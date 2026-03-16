@@ -120,8 +120,9 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         deleteReport: (dailyID) => _onDeleteReport(dailyID,emit),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(dateStart, dateEnd, emit),
-        selectReport: (dailyID) => _onSelectReport(dailyID, emit),
-
+        selectReport: (dailyID, forEdit) =>
+            _onSelectReport(dailyID, forEdit: forEdit, emit: emit),
+        submitEditReport: (pickedDate, dailyID) => _onSubmitEditReport(pickedDate,dailyID, emit),
       );
     });
   }
@@ -670,7 +671,11 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
     await _loadDailyReport(start: start, end: end, emit: emit);
   }
 
-  Future<void> _onSelectReport(int dailyID, Emitter<SaleState> emit) async {
+  Future<void> _onSelectReport(
+    int dailyID, {
+    required bool forEdit,
+    required Emitter<SaleState> emit,
+  }) async {
     emit(state.copyWith(isLoadingDetail: true));
 
     final res = await _reportRepo.getSaleById(dailyID: dailyID);
@@ -686,10 +691,108 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         emit(
           state.copyWith(
             isLoadingDetail: false,
-            selectedReportDetail: detail, // DetailReportResponse
+            selectedReportDetail: detail,
+            staffWorks: forEdit
+                ? [SaleStaffWork.fromDetailSaleReportResponse(detail)]
+                : state.staffWorks,
           ),
         );
       },
     );
+  }
+
+  Future<void> _onSubmitEditReport(
+      DateTime pickedDate,
+      int dailyID,
+      Emitter<SaleState> emit,
+      ) async {
+    if (_isSubmittingReport) return;
+    _isSubmittingReport = true;
+
+    try {
+      emit(state.copyWith(isSaving: true, saveSuccess: false));
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+      final userId = user?.id;
+
+      if (userId == null) {
+        emit(state.copyWith(isSaving: false));
+        return;
+      }
+
+      if (state.staffWorks.isEmpty) {
+        emit(state.copyWith(isSaving: false));
+        return;
+      }
+
+      final safeStart = DateTime(
+        pickedDate.year,
+        pickedDate.month,
+        pickedDate.day,
+      );
+      final safeEnd = safeStart;
+
+      final payload = state.staffWorks.map<Map<String, dynamic>>((w) {
+        return {
+          'ID': dailyID,
+
+          'projectId': w.projectId ?? 0,
+          'customerId': w.customerId ?? 0,
+          'warehouseId': 1,
+          'projectStatusBaseId': w.projectStatusBaseId ?? 0,
+          'userId': userId,
+
+          // Nếu từng work không có date riêng thì dùng khoảng ngày submit
+          'dateStart':
+          (w.dateStart ?? safeStart).toIso8601String(),
+          'dateEnd':
+          (w.dateEnd ?? safeEnd).toIso8601String(),
+
+          'firmId': w.firmId ?? 0,
+          'projectTypeId': w.typeProjectId ?? 0,
+          'contactId': w.customerContactId ?? 0,
+          'groupTypeId': w.typeTeamSaleId ?? 0,
+
+          'partId': w.customerPartId,
+
+          'bigAccount': w.bigAccount,
+          'saleOpportunity': w.saleOpportunity,
+
+          'content': w.content,
+          'result': w.results,
+          'problemBacklog': w.problem ?? '',
+          'planNext': w.planNextDay,
+          'productOfCustomer': w.customerProduct ?? '',
+
+          'projectStatusOld': w.projectStatusOld ?? 0,
+          'employeeId': userId,
+
+          'dateStatusLog': DateTime.now().toIso8601String(),
+        };
+      }).toList();
+
+      _log.logD('Payload: ${jsonEncode(payload)}');
+
+      final res = await _reportRepo.saveReportSaleStaff(payload: payload);
+
+      await res.fold(
+            (l) async {
+          _log.logE('❌ Submit API failed: $l');
+          emit(state.copyWith(isSaving: false, saveSuccess: false));
+        },
+            (r) async {
+          _log.logI('✅ Submit report success');
+          emit(state.copyWith(isSaving: false, saveSuccess: true));
+        },
+      );
+    } catch (e, s) {
+      _log.logE('❌ Submit exception: $e');
+      _log.logE('$s');
+      emit(state.copyWith(isSaving: false, saveSuccess: false));
+    } finally {
+      _isSubmittingReport = false;
+      _log.logI('🏁 End submit report');
+    }
   }
 }

@@ -66,5 +66,10 @@ class SaleEvent with _$SaleEvent {
     required DateTime dateEnd,
   }) = _ChangeDateRange;
 
-  const factory SaleEvent.selectReport({required int dailyID}) = _SelectReport;
+  const factory SaleEvent.selectReport({
+    required int dailyID,
+    @Default(false) bool forEdit,
+  }) = _SelectReport;
+
+  const factory SaleEvent.submitEditReport(DateTime pickedDate, int dailyID) = _SubmitEditReport;
 }

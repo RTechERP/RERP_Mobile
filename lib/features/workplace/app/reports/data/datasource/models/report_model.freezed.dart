@@ -13317,7 +13317,7 @@ mixin _$DetailSaleReportResponse {
   @JsonKey(name: 'Year')
   int get year => throw _privateConstructorUsedError;
   @JsonKey(name: 'EndUser')
-  String? get endUser => throw _privateConstructorUsedError;
+  int? get endUser => throw _privateConstructorUsedError;
   @JsonKey(name: 'DeleteFlag')
   int get deleteFlag => throw _privateConstructorUsedError;
   @JsonKey(name: 'Confirm')
@@ -13371,7 +13371,7 @@ abstract class $DetailSaleReportResponseCopyWith<$Res> {
       @JsonKey(name: 'CreatedBy') String createdBy,
       @JsonKey(name: 'Month') int month,
       @JsonKey(name: 'Year') int year,
-      @JsonKey(name: 'EndUser') String? endUser,
+      @JsonKey(name: 'EndUser') int? endUser,
       @JsonKey(name: 'DeleteFlag') int deleteFlag,
       @JsonKey(name: 'Confirm') bool confirm,
       @JsonKey(name: 'ProductOfCustomer') String? productOfCustomer,
@@ -13517,7 +13517,7 @@ class _$DetailSaleReportResponseCopyWithImpl<$Res,
       endUser: freezed == endUser
           ? _value.endUser
           : endUser // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       deleteFlag: null == deleteFlag
           ? _value.deleteFlag
           : deleteFlag // ignore: cast_nullable_to_non_nullable
@@ -13589,7 +13589,7 @@ abstract class _$$DetailSaleReportResponseImplCopyWith<$Res>
       @JsonKey(name: 'CreatedBy') String createdBy,
       @JsonKey(name: 'Month') int month,
       @JsonKey(name: 'Year') int year,
-      @JsonKey(name: 'EndUser') String? endUser,
+      @JsonKey(name: 'EndUser') int? endUser,
       @JsonKey(name: 'DeleteFlag') int deleteFlag,
       @JsonKey(name: 'Confirm') bool confirm,
       @JsonKey(name: 'ProductOfCustomer') String? productOfCustomer,
@@ -13734,7 +13734,7 @@ class __$$DetailSaleReportResponseImplCopyWithImpl<$Res>
       endUser: freezed == endUser
           ? _value.endUser
           : endUser // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       deleteFlag: null == deleteFlag
           ? _value.deleteFlag
           : deleteFlag // ignore: cast_nullable_to_non_nullable
@@ -13879,7 +13879,7 @@ class _$DetailSaleReportResponseImpl implements _DetailSaleReportResponse {
   final int year;
   @override
   @JsonKey(name: 'EndUser')
-  final String? endUser;
+  final int? endUser;
   @override
   @JsonKey(name: 'DeleteFlag')
   final int deleteFlag;
@@ -14045,7 +14045,7 @@ abstract class _DetailSaleReportResponse implements DetailSaleReportResponse {
           @JsonKey(name: 'CreatedBy') required final String createdBy,
           @JsonKey(name: 'Month') required final int month,
           @JsonKey(name: 'Year') required final int year,
-          @JsonKey(name: 'EndUser') final String? endUser,
+          @JsonKey(name: 'EndUser') final int? endUser,
           @JsonKey(name: 'DeleteFlag') required final int deleteFlag,
           @JsonKey(name: 'Confirm') required final bool confirm,
           @JsonKey(name: 'ProductOfCustomer') final String? productOfCustomer,
@@ -14125,7 +14125,7 @@ abstract class _DetailSaleReportResponse implements DetailSaleReportResponse {
   int get year;
   @override
   @JsonKey(name: 'EndUser')
-  String? get endUser;
+  int? get endUser;
   @override
   @JsonKey(name: 'DeleteFlag')
   int get deleteFlag;

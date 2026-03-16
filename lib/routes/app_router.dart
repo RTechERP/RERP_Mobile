@@ -64,6 +64,7 @@ import '../features/workplace/app/reports/view/sale/view/pages/sale_admin_detail
 import '../features/workplace/app/reports/view/sale/view/pages/sale_screen.dart';
 import '../features/workplace/app/reports/view/sale/view/pages/sale_staff_add_screen.dart';
 import '../features/workplace/app/reports/view/sale/view/pages/sale_staff_detail_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/pages/sale_staff_edit_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
@@ -446,6 +447,14 @@ class AppRouter {
           GoRoute(
             path: RouteNames.reportSaledAdminDetail,
             builder: (context, state) => const SaleAdminDetailScreen(),
+          ),
+
+          GoRoute(
+            path: RouteNames.reportSaleStaffEdit,
+            builder: (context, state) {
+              final dailyId = state.extra as int;
+              return SaleStaffEditScreen(dailyId: dailyId);
+            },
           ),
         ],
       ),

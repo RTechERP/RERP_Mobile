@@ -766,7 +766,7 @@ class DetailSaleReportResponse with _$DetailSaleReportResponse {
     @JsonKey(name: 'Month') required int month,
     @JsonKey(name: 'Year') required int year,
 
-    @JsonKey(name: 'EndUser') String? endUser,
+    @JsonKey(name: 'EndUser') int? endUser,
 
     @JsonKey(name: 'DeleteFlag') required int deleteFlag,
     @JsonKey(name: 'Confirm') required bool confirm,

@@ -78,10 +78,14 @@ class RouteNames {
 
   static const reportSaleAdminAdd = '/report/sale_admin/add';
 
+  static const reportSaleAdminEdit = '/report/sale_admin/edit';
+
   ///**** Sale Staff ****///
   static const reportSaleStaffDetail = '/report/sale_staff/detail';
 
   static const reportSaleStaffAdd = '/report/sale_staff/add';
+
+  static const reportSaleStaffEdit = '/report/sale_staff/edit';
 
 
   ///*** Marketing Department ***///

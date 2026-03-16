@@ -1140,7 +1140,7 @@ _$DetailSaleReportResponseImpl _$$DetailSaleReportResponseImplFromJson(
       createdBy: json['CreatedBy'] as String,
       month: (json['Month'] as num).toInt(),
       year: (json['Year'] as num).toInt(),
-      endUser: json['EndUser'] as String?,
+      endUser: (json['EndUser'] as num?)?.toInt(),
       deleteFlag: (json['DeleteFlag'] as num).toInt(),
       confirm: json['Confirm'] as bool,
       productOfCustomer: json['ProductOfCustomer'] as String?,

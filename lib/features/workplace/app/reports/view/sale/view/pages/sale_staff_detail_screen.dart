@@ -21,17 +21,24 @@ class _SaleStaffDetailScreenState
     extends BaseState<SaleStaffDetailScreen, SaleEvent, SaleState, SaleBloc> {
   int? _dailyId;
 
+  String projectCode = '';
+  String customerName = '';
+
+  String projectName = '';
+
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final extra = GoRouterState.of(context).extra;
+      final extra = GoRouterState.of(context).extra as Map;
 
-      if (extra is int) {
-        _dailyId = extra;
-        bloc.add(SaleEvent.selectReport(dailyID: _dailyId!));
-      }
+      _dailyId = extra['id'];
+      projectCode = extra['projectCode'] ?? '';
+      customerName = extra['customerName'] ?? '';
+      projectName = extra['projectName'] ?? '';
+
+      bloc.add(SaleEvent.selectReport(dailyID: _dailyId!));
     });
   }
 
@@ -76,11 +83,18 @@ class _SaleStaffDetailScreenState
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _h(
-                            'Báo cáo công việc ngày ${DateFormat('dd/MM/yyyy').format(DateTime.parse(detail.dateStart.toString()))}',
+                            'Ngày thực hiện gần nhất: ${DateFormat('dd/MM/yyyy').format(DateTime.parse(detail.dateEnd.toString()))}',
                           ),
                           _h(
-                            'Báo cáo công việc ngày ${DateFormat('dd/MM/yyyy').format(DateTime.parse(detail.dateStart.toString()))}',
+                            'Ngày dự kiến thực hiện: ${DateFormat('dd/MM/yyyy').format(DateTime.parse(detail.dateStart.toString()))}',
+
                           ),
+                          const Divider(height: 20),
+
+
+                          _row('* Mã dự án - Tên dự án:', '$projectCode - $projectName'),
+                          _row('* Khách hàng:', customerName),
+
                           const Divider(height: 20),
 
                           _row('* Nội dung công việc:', detail.content),
@@ -89,15 +103,14 @@ class _SaleStaffDetailScreenState
                             '* Kế hoạch ngày tiếp theo:',
                             detail.planNext,
                           ),
-
-                          const Divider(height: 20),
-
+                          _row(
+                            '* Sản phẩm của khách hàng:',
+                            detail.productOfCustomer,
+                          ),
 
                           const Divider(height: 20),
 
                           _row('* Tồn đọng:', detail.problemBacklog),
-                          _row('* Ghi chú:', detail.note),
-                          _row('* Vấn đề phát sinh:', detail.note),
 
                         ],
                       ),
@@ -120,7 +133,7 @@ class _SaleStaffDetailScreenState
                   ),
                   onPressed: () async {
                     final result = await context.push(
-                      RouteNames.reportADdepartEdit,
+                      RouteNames.reportSaleStaffEdit,
                       extra: _dailyId,
                     );
 
