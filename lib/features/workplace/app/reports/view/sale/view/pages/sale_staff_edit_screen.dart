@@ -56,6 +56,59 @@ class _SaleStaffEditScreenState
     _loaded = true;
   }
 
+  /// Bind display text cho các trường select (project, firm, typeProject, status, customer, contact, group, endUser) từ state lists.
+  void _bindSelectFields(SaleStaffWork work, SaleState state) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final projects = state.projects.where((p) => p.id == work.projectId).toList();
+      if (projects.isNotEmpty) {
+        projectField?.didChange(
+            '${projects.first.projectCode} - ${projects.first.projectName}');
+      }
+      final firms =
+          state.firmBases.where((f) => f.id == work.firmId).toList();
+      if (firms.isNotEmpty) {
+        firmField?.didChange(firms.first.firmName);
+      }
+      final typeProjects = state.typeProjectBases
+          .where((t) => t.id == work.typeProjectId)
+          .toList();
+      if (typeProjects.isNotEmpty) {
+        typeProjectField?.didChange(typeProjects.first.projectTypeName);
+      }
+      final statusProjects = state.statusProjects
+          .where((s) => s.id == work.statusProjectId)
+          .toList();
+      if (statusProjects.isNotEmpty) {
+        statusProjectField?.didChange(statusProjects.first.statusName ?? '');
+      }
+      final customers =
+          state.customers.where((c) => c.id == work.customerId).toList();
+      if (customers.isNotEmpty) {
+        customerField?.didChange(
+            '${customers.first.customerCode} - ${customers.first.customerName}');
+      }
+      final contacts = state.customerContacts
+          .where((c) => c.id == work.customerContactId)
+          .toList();
+      if (contacts.isNotEmpty) {
+        contactField?.didChange(contacts.first.contactName);
+      }
+      final typeTeamSales = state.typeTeamSales
+          .where((t) => t.id == work.typeTeamSaleId)
+          .toList();
+      if (typeTeamSales.isNotEmpty) {
+        typeTeamSaleField?.didChange(typeTeamSales.first.mainIndex);
+      }
+      final customerParts = state.customerParts
+          .where((p) => p.id == work.customerPartId)
+          .toList();
+      if (customerParts.isNotEmpty) {
+        endUserField?.didChange(customerParts.first.partCode);
+      }
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -115,8 +168,18 @@ class _SaleStaffEditScreenState
 
                 final work = state.staffWorks[0];
                 _bindData(work);
+                _bindSelectFields(work, state);
 
                 final customerId = work.customerId;
+                if ((customerId ?? 0) > 0) {
+                  if (state.customerContacts.isEmpty) {
+                    bloc.add(
+                        SaleEvent.getCustomerContact(customerId: customerId!));
+                  }
+                  if (state.customerParts.isEmpty) {
+                    bloc.add(SaleEvent.getCustomerPart(customerId: customerId!));
+                  }
+                }
 
                 return Column(
                   children: [
