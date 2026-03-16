@@ -42,6 +42,8 @@ abstract class _$SaleStateCWProxy {
 
   SaleState adminProjects(List<SaleAdminProjectResponse> adminProjects);
 
+  SaleState adminReports(List<SaleAdminResponse> adminReports);
+
   SaleState userId(int? userId);
 
   SaleState fullName(String? fullName);
@@ -113,6 +115,7 @@ abstract class _$SaleStateCWProxy {
     List<SaleAdminTypeReportResponse>? adminTypeReports,
     List<SaleAdminCustomerResponse>? adminCustomers,
     List<SaleAdminProjectResponse>? adminProjects,
+    List<SaleAdminResponse>? adminReports,
     int? userId,
     String? fullName,
     int? departmentId,
@@ -209,6 +212,10 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
   @override
   SaleState adminProjects(List<SaleAdminProjectResponse> adminProjects) =>
       this(adminProjects: adminProjects);
+
+  @override
+  SaleState adminReports(List<SaleAdminResponse> adminReports) =>
+      this(adminReports: adminReports);
 
   @override
   SaleState userId(int? userId) => this(userId: userId);
@@ -314,6 +321,7 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
     Object? adminTypeReports = const $CopyWithPlaceholder(),
     Object? adminCustomers = const $CopyWithPlaceholder(),
     Object? adminProjects = const $CopyWithPlaceholder(),
+    Object? adminReports = const $CopyWithPlaceholder(),
     Object? userId = const $CopyWithPlaceholder(),
     Object? fullName = const $CopyWithPlaceholder(),
     Object? departmentId = const $CopyWithPlaceholder(),
@@ -417,6 +425,11 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
               ? _value.adminProjects
               // ignore: cast_nullable_to_non_nullable
               : adminProjects as List<SaleAdminProjectResponse>,
+      adminReports:
+          adminReports == const $CopyWithPlaceholder() || adminReports == null
+              ? _value.adminReports
+              // ignore: cast_nullable_to_non_nullable
+              : adminReports as List<SaleAdminResponse>,
       userId: userId == const $CopyWithPlaceholder()
           ? _value.userId
           // ignore: cast_nullable_to_non_nullable

@@ -20,7 +20,6 @@ import '../../../../../../../auth/data/repository/auth_repository.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../bloc/sale_bloc.dart';
 
-
 class SaleScreen extends StatefulWidget {
   const SaleScreen({super.key});
 
@@ -30,7 +29,6 @@ class SaleScreen extends StatefulWidget {
 
 class _SaleScreenState
     extends BaseState<SaleScreen, SaleEvent, SaleState, SaleBloc> {
-
   bool _isSaleAdmin = false;
   bool _isSearching = false;
   final TextEditingController _searchController = TextEditingController();
@@ -46,9 +44,7 @@ class _SaleScreenState
 
     _filteredReports = reports.where((r) {
       final id = r.id.toString().toLowerCase().contains(lower);
-      return id ||
-          (r.projectName?.toLowerCase().contains(lower) ?? false);
-
+      return id || (r.projectName?.toLowerCase().contains(lower) ?? false);
     }).toList();
   }
 
@@ -65,8 +61,9 @@ class _SaleScreenState
     final permissions = user?.permissions.split(',') ?? [];
 
     setState(() {
-      _isSaleAdmin =
-          permissions.any(PermissionGroups.saleAdminReports.contains);
+      _isSaleAdmin = permissions.any(
+        PermissionGroups.saleAdminReports.contains,
+      );
     });
   }
 
@@ -87,8 +84,8 @@ class _SaleScreenState
 
       final isSameDay =
           start.year == end.year &&
-              start.month == end.month &&
-              start.day == end.day;
+          start.month == end.month &&
+          start.day == end.day;
 
       if (isSameDay) {
         text = 'Hiện tại: ${_formatDate(start)}';
@@ -105,9 +102,7 @@ class _SaleScreenState
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       alignment: Alignment.center,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
+      decoration: const BoxDecoration(color: Colors.white),
       child: Text(
         text,
         style: const TextStyle(
@@ -135,26 +130,23 @@ class _SaleScreenState
         appBar: AppBarCommon(
           title: _isSearching
               ? TextField(
-            controller: _searchController,
-            autofocus: true,
-            decoration: const InputDecoration(
-              hintText: 'Tìm theo mã hoặc tên dự án',
-              border: InputBorder.none,
-            ),
-            onChanged: (value) {
-              setState(() {
-                // _filterReports(value, bloc.state.reports);
-              });
-            },
-          )
+                  controller: _searchController,
+                  autofocus: true,
+                  decoration: const InputDecoration(
+                    hintText: 'Tìm theo mã hoặc tên dự án',
+                    border: InputBorder.none,
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      // _filterReports(value, bloc.state.reports);
+                    });
+                  },
+                )
               : Text('report.sale'.tr()),
           onBackTap: () => onBack(context),
           actions: [
             IconButton(
-              icon: Icon(
-                _isSearching ? Icons.close : Icons.search,
-                size: 22,
-              ),
+              icon: Icon(_isSearching ? Icons.close : Icons.search, size: 22),
               onPressed: () {
                 setState(() {
                   _isSearching = !_isSearching;
@@ -165,9 +157,7 @@ class _SaleScreenState
             ),
           ],
         ),
-        body: _isSaleAdmin
-          ? _buildSaleAdminUI()
-            : _buildSaleStaffUI(),
+        body: _isSaleAdmin ? _buildSaleAdminUI() : _buildSaleStaffUI(),
 
         floatingActionButton: SpeedDial(
           icon: Icons.menu,
@@ -184,7 +174,6 @@ class _SaleScreenState
               child: const Icon(Icons.add),
               label: 'Thêm',
               onTap: () async {
-
                 final route = _isSaleAdmin
                     ? RouteNames.reportSaleAdminAdd
                     : RouteNames.reportSaleStaffAdd;
@@ -210,16 +199,16 @@ class _SaleScreenState
       ),
     );
   }
+
   Widget _buildSaleAdminUI() {
     return BlocBuilder<SaleBloc, SaleState>(
       buildWhen: (prev, curr) =>
-      prev.reports != curr.reports ||
+          prev.adminReports != curr.adminReports ||
           prev.isDeleting != curr.isDeleting ||
           prev.status != curr.status ||
           prev.dateStart != curr.dateStart ||
           prev.dateEnd != curr.dateEnd,
       builder: (context, state) {
-
         if (state.status == BaseStateStatus.loading) {
           return const Center(child: CircularProgressIndicator());
         }
@@ -237,7 +226,7 @@ class _SaleScreenState
           );
         }
 
-        if (state.reports.isEmpty) {
+        if (state.adminReports.isEmpty) {
           return Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -264,10 +253,10 @@ class _SaleScreenState
                       bloc.add(const SaleEvent.init());
 
                       await bloc.stream.firstWhere(
-                            (s) => s.status != BaseStateStatus.loading,
+                        (s) => s.status != BaseStateStatus.loading,
                       );
                     },
-                    child: _buildReportList(state),
+                    child: _buildAdminReportList(state),
                   ),
                 ),
               ],
@@ -277,9 +266,7 @@ class _SaleScreenState
               const Positioned.fill(
                 child: ColoredBox(
                   color: Colors.black26,
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                  child: Center(child: CircularProgressIndicator()),
                 ),
               ),
           ],
@@ -287,16 +274,16 @@ class _SaleScreenState
       },
     );
   }
+
   Widget _buildSaleStaffUI() {
     return BlocBuilder<SaleBloc, SaleState>(
       buildWhen: (prev, curr) =>
-      prev.reports != curr.reports ||
+          prev.reports != curr.reports ||
           prev.isDeleting != curr.isDeleting ||
           prev.status != curr.status ||
           prev.dateStart != curr.dateStart ||
           prev.dateEnd != curr.dateEnd,
       builder: (context, state) {
-
         if (state.status == BaseStateStatus.loading) {
           return const Center(child: CircularProgressIndicator());
         }
@@ -341,7 +328,7 @@ class _SaleScreenState
                       bloc.add(const SaleEvent.init());
 
                       await bloc.stream.firstWhere(
-                            (s) => s.status != BaseStateStatus.loading,
+                        (s) => s.status != BaseStateStatus.loading,
                       );
                     },
                     child: _buildReportList(state),
@@ -354,9 +341,7 @@ class _SaleScreenState
               const Positioned.fill(
                 child: ColoredBox(
                   color: Colors.black26,
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                  child: Center(child: CircularProgressIndicator()),
                 ),
               ),
           ],
@@ -364,6 +349,7 @@ class _SaleScreenState
       },
     );
   }
+
   Widget _buildReportList(SaleState state) {
     final displayList = _isSearching ? _filteredReports : state.reports;
 
@@ -380,8 +366,7 @@ class _SaleScreenState
             children: [
               SlidableAction(
                 onPressed: (_) async {
-                  final confirmed =
-                  await DialogService.showConfirmDelete(
+                  final confirmed = await DialogService.showConfirmDelete(
                     context: context,
                   );
                   if (!confirmed) return;
@@ -420,17 +405,71 @@ class _SaleScreenState
       },
     );
   }
+
+  Widget _buildAdminReportList(SaleState state) {
+    final displayList = state.adminReports;
+
+    return ListView.builder(
+      itemCount: displayList.length,
+      itemBuilder: (context, index) {
+        final r = displayList[index];
+
+        return Slidable(
+          key: ValueKey(r.id),
+          endActionPane: ActionPane(
+            motion: const DrawerMotion(),
+            extentRatio: 0.25,
+            children: [
+              SlidableAction(
+                onPressed: (_) async {
+                  final confirmed = await DialogService.showConfirmDelete(
+                    context: context,
+                  );
+                  if (!confirmed) return;
+
+                  bloc.add(SaleEvent.deleteReport(dailyID: r.id));
+                },
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+                icon: Icons.delete,
+                label: 'Xoá',
+              ),
+            ],
+          ),
+          child: AppCardReport(
+            projectCode: r.reportContent ?? '',
+            projectName: r.employeeFullName ?? '',
+            showProgress: false,
+            time: DateTime.tryParse(r.dateReport.toString()),
+            onTap: () async {
+              final reload = await context.push(
+                RouteNames.reportSaledAdminDetail,
+                extra: {
+                  'id': r.id,
+                  'projectCode': r.projectCode,
+                  'customerName': r.customerName,
+                  'employeeName': r.employeeFullName,
+                },
+              );
+
+
+              if (reload == true) {
+                bloc.add(const SaleEvent.init());
+              }
+            },
+          ),
+        );
+      },
+    );
+  }
 }
 
 class SaleDateRangePicker {
-
   static void open(BuildContext context, SaleBloc bloc) {
-
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (_) {
-
         DateTime? start;
         DateTime? end;
 
@@ -449,12 +488,12 @@ class SaleDateRangePicker {
                     selectionMode: DateRangePickerSelectionMode.range,
 
                     initialSelectedRange:
-                    (bloc.state.dateStart != null &&
-                        bloc.state.dateEnd != null)
+                        (bloc.state.dateStart != null &&
+                            bloc.state.dateEnd != null)
                         ? PickerDateRange(
-                      bloc.state.dateStart,
-                      bloc.state.dateEnd,
-                    )
+                            bloc.state.dateStart,
+                            bloc.state.dateEnd,
+                          )
                         : null,
 
                     onSelectionChanged: (args) {

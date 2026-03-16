@@ -633,4 +633,27 @@ class ReportRepoImpl implements ReportRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<SaleAdminResponse>>> getSaleAdminDailyReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    int? customerId,
+    int? userId,
+    String? keyword,
+  }) async {
+    try {
+      final res = await _service.getSaleAdminDailyReport(
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        customerId: customerId,
+        userId: userId,
+        keyword: keyword,
+      );
+
+      return Right(res.data ?? []);
+    } on DioException catch (e) {
+      return Left(e.baseError);
+    }
+  }
 }

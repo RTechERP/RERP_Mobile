@@ -144,4 +144,6 @@ class ApiEndPoint {
   static const String getAdminProject = '/DailyReportSaleAdmin/get-projects';
 
   static const String getAdminCustomer = '/DailyReportSaleAdmin/get-customers';
+
+  static const String getAdminReport = '/DailyReportSaleAdmin/load-data';
 }

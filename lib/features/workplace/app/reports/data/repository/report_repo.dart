@@ -152,6 +152,14 @@ abstract class ReportRepo {
     int groupType,
     int projectId});
 
+  Future<Either<BaseError, List<SaleAdminResponse>>> getSaleAdminDailyReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    int? customerId,
+    int? userId,
+    String? keyword,
+  });
+
   Future<Either<BaseError, List<UserResponse>>> getAllUser();
 
   Future<Either<BaseError, void>> saveReportSaleAdmin({

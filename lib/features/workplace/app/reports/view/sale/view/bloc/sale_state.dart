@@ -21,6 +21,8 @@ class SaleState extends BaseBlocState {
   final int? positionId;
 
   final List<SaleReportItem> reports;
+
+  final List<SaleAdminResponse> adminReports;
   final List<SaleAdminWork> adminWorks;
   final List<SaleProjectResponse> projects;
   final List<SaleStaffWork> staffWorks;
@@ -71,6 +73,7 @@ class SaleState extends BaseBlocState {
     this.adminTypeReports = const [],
     this.adminCustomers = const [],
     this.adminProjects = const [],
+    this.adminReports = const [],
     this.userId,
     this.fullName,
     this.departmentId,
@@ -113,6 +116,7 @@ class SaleState extends BaseBlocState {
     adminTypeReports: [],
     adminCustomers: [],
     adminProjects: [],
+    adminReports: [],
     userId: null,
     fullName: null,
     departmentId: null,
@@ -181,5 +185,6 @@ class SaleState extends BaseBlocState {
     adminTypeReports,
     adminCustomers,
     adminProjects,
+    adminReports,
   ];
 }

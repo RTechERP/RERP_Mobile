@@ -9,6 +9,7 @@ import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
+import '../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../common/logger/index.dart';
 import '../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../../../data/datasource/models/report_model.dart';
@@ -158,9 +159,40 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         getAdminTypeReport: () => _onGetAdminTypeReport(emit),
         getAdminProject: () => _onGetAdminProject(emit),
         getAdminCustomer: () => _onGetAdminCustomer(emit),
-        submitAdminReport: (pickedDate) => _onSubmitAdminReport(pickedDate, emit),
+        submitAdminReport: (pickedDate) =>
+            _onSubmitAdminReport(pickedDate, emit),
       );
     });
+  }
+
+  Future<void> _loadAdminDailyReport({
+    required DateTime start,
+    required DateTime end,
+    required Emitter<SaleState> emit,
+  }) async {
+    final res = await _reportRepo.getSaleAdminDailyReport(
+      dateStart: start,
+      dateEnd: end,
+      customerId: 0,
+      userId: 0,
+      keyword: "",
+    );
+    res.fold(
+      (l) {
+        _log.logE('Error Sale Admin: ${l.getErrorMessage}');
+        emit(state.copyWith(status: BaseStateStatus.failed));
+      },
+      (r) {
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.success,
+            adminReports: r,
+            dateStart: start,
+            dateEnd: end,
+          ),
+        );
+      },
+    );
   }
 
   Future<void> _loadDailyReport({
@@ -258,7 +290,6 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
                 problemSolve: '',
                 reportTypeName: '',
                 customerName: '',
-
               ),
             ],
 
@@ -273,6 +304,7 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         final end = DateTime(now.year, now.month, now.day, 23, 59, 59);
 
         await _loadDailyReport(start: start, end: end, emit: emit);
+        await _loadAdminDailyReport(start: start, end: end, emit:emit);
       },
     );
   }
@@ -888,10 +920,10 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
     final res = await _reportRepo.getAdminTypeReport();
 
     res.fold(
-          (l) {
+      (l) {
         _log.logE('Get admin type report failed: $l');
       },
-          (r) {
+      (r) {
         emit(state.copyWith(adminTypeReports: r));
       },
     );
@@ -901,10 +933,10 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
     final res = await _reportRepo.getAdminProject();
 
     res.fold(
-          (l) {
+      (l) {
         _log.logE('Get admin project failed: $l');
       },
-          (r) {
+      (r) {
         emit(state.copyWith(adminProjects: r));
       },
     );
@@ -914,30 +946,30 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
     final res = await _reportRepo.getAdminCustomer();
 
     res.fold(
-          (l) {
+      (l) {
         _log.logE('Get admin customer failed: $l');
       },
-          (r) {
+      (r) {
         emit(state.copyWith(adminCustomers: r));
       },
     );
   }
 
   Future<void> _onUpdateAdminWork(
-      int index, {
-        int? projectId,
-        int? employeeId,
-        int? employeeRequestId,
-        int? customerId,
-        int? reportTypeId,
-        DateTime? dateReport,
-        String? reportContent,
-        String? result,
-        String? planNextDay,
-        String? problem,
-        String? problemSolve,
-        required Emitter<SaleState> emit,
-      }) async {
+    int index, {
+    int? projectId,
+    int? employeeId,
+    int? employeeRequestId,
+    int? customerId,
+    int? reportTypeId,
+    DateTime? dateReport,
+    String? reportContent,
+    String? result,
+    String? planNextDay,
+    String? problem,
+    String? problemSolve,
+    required Emitter<SaleState> emit,
+  }) async {
     final works = [...state.adminWorks];
     if (index < 0 || index >= works.length) return;
 
@@ -965,17 +997,13 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
       problemSolve: problemSolve ?? old.problemSolve,
     );
 
-    emit(
-      state.copyWith(
-        adminWorks: works,
-      ),
-    );
+    emit(state.copyWith(adminWorks: works));
   }
 
   Future<void> _onSubmitAdminReport(
-      DateTime pickedDate,
-      Emitter<SaleState> emit,
-      ) async {
+    DateTime pickedDate,
+    Emitter<SaleState> emit,
+  ) async {
     if (_isSubmittingReport) return;
     _isSubmittingReport = true;
 
@@ -1027,11 +1055,11 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
       final res = await _reportRepo.saveReportSaleAdmin(payload: payload);
 
       await res.fold(
-            (l) async {
+        (l) async {
           _log.logE('❌ Submit API failed: $l');
           emit(state.copyWith(isSubmitting: false, submitSuccess: false));
         },
-            (r) async {
+        (r) async {
           _log.logI('✅ Submit report success');
           emit(state.copyWith(isSubmitting: false, submitSuccess: true));
         },

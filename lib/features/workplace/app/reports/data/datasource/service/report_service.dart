@@ -146,13 +146,16 @@ class ReportService extends DioBaseApiService {
     );
   }
 
-  Future<BaseData<DetailLXCPReportResponse>> getLXCPById({required int dailyID}) {
+  Future<BaseData<DetailLXCPReportResponse>> getLXCPById({
+    required int dailyID,
+  }) {
     return get<BaseData<DetailLXCPReportResponse>>(
       ApiEndPoint.getLXCPById,
       query: {'id': dailyID},
       parser: (json) => BaseData<DetailLXCPReportResponse>.fromJson(
         json,
-            (data) => DetailLXCPReportResponse.fromJson(data as Map<String, dynamic>),
+        (data) =>
+            DetailLXCPReportResponse.fromJson(data as Map<String, dynamic>),
       ),
     );
   }
@@ -402,13 +405,16 @@ class ReportService extends DioBaseApiService {
     );
   }
 
-  Future<BaseData<DetailSaleReportResponse>> getSaleById({required int dailyID}) {
+  Future<BaseData<DetailSaleReportResponse>> getSaleById({
+    required int dailyID,
+  }) {
     return get<BaseData<DetailSaleReportResponse>>(
       ApiEndPoint.getSaleById,
       query: {'id': dailyID},
       parser: (json) => BaseData<DetailSaleReportResponse>.fromJson(
         json,
-            (data) => DetailSaleReportResponse.fromJson(data as Map<String, dynamic>),
+        (data) =>
+            DetailSaleReportResponse.fromJson(data as Map<String, dynamic>),
       ),
     );
   }
@@ -418,7 +424,7 @@ class ReportService extends DioBaseApiService {
       ApiEndPoint.getSaleProject,
       parser: (json) => BaseData<List<SaleProjectResponse>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map((e) => SaleProjectResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
@@ -430,21 +436,25 @@ class ReportService extends DioBaseApiService {
       ApiEndPoint.getTeamSale,
       parser: (json) => BaseData<List<TeamSaleResponse>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map((e) => TeamSaleResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
     );
   }
 
-  Future<BaseData<List<CustomerPartResponse>>> getCustomerPart({required int customerId}) async {
+  Future<BaseData<List<CustomerPartResponse>>> getCustomerPart({
+    required int customerId,
+  }) async {
     return get<BaseData<List<CustomerPartResponse>>>(
       ApiEndPoint.getCustomerPart,
       query: {'customerId': customerId},
       parser: (json) => BaseData<List<CustomerPartResponse>>.fromJson(
         json,
-            (data) => (data as List)
-            .map((e) => CustomerPartResponse.fromJson(e as Map<String, dynamic>))
+        (data) => (data as List)
+            .map(
+              (e) => CustomerPartResponse.fromJson(e as Map<String, dynamic>),
+            )
             .toList(),
       ),
     );
@@ -455,8 +465,10 @@ class ReportService extends DioBaseApiService {
       ApiEndPoint.getTypeTeamSale,
       parser: (json) => BaseData<List<TypeTeamSaleResponse>>.fromJson(
         json,
-            (data) => (data as List)
-            .map((e) => TypeTeamSaleResponse.fromJson(e as Map<String, dynamic>))
+        (data) => (data as List)
+            .map(
+              (e) => TypeTeamSaleResponse.fromJson(e as Map<String, dynamic>),
+            )
             .toList(),
       ),
     );
@@ -467,7 +479,7 @@ class ReportService extends DioBaseApiService {
       ApiEndPoint.getCustomer,
       parser: (json) => BaseData<List<CustomerResponse>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map((e) => CustomerResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
@@ -479,7 +491,7 @@ class ReportService extends DioBaseApiService {
       ApiEndPoint.getFirmBase,
       parser: (json) => BaseData<List<FirmBaseResponse>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map((e) => FirmBaseResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
@@ -491,20 +503,25 @@ class ReportService extends DioBaseApiService {
       ApiEndPoint.getTypeProject,
       parser: (json) => BaseData<List<TypeProjectResponse>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map((e) => TypeProjectResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
     );
   }
 
-  Future<BaseData<List<SaleAdminTypeReportResponse>>> getAdminTypeReport() async {
+  Future<BaseData<List<SaleAdminTypeReportResponse>>>
+  getAdminTypeReport() async {
     return get<BaseData<List<SaleAdminTypeReportResponse>>>(
       ApiEndPoint.getAdminTypeReport,
       parser: (json) => BaseData<List<SaleAdminTypeReportResponse>>.fromJson(
         json,
-            (data) => (data as List)
-            .map((e) => SaleAdminTypeReportResponse.fromJson(e as Map<String, dynamic>))
+        (data) => (data as List)
+            .map(
+              (e) => SaleAdminTypeReportResponse.fromJson(
+                e as Map<String, dynamic>,
+              ),
+            )
             .toList(),
       ),
     );
@@ -515,20 +532,28 @@ class ReportService extends DioBaseApiService {
       ApiEndPoint.getStatusProject,
       parser: (json) => BaseData<List<StatusProjectResponse>>.fromJson(
         json,
-            (data) => (data as List)
-            .map((e) => StatusProjectResponse.fromJson(e as Map<String, dynamic>))
+        (data) => (data as List)
+            .map(
+              (e) => StatusProjectResponse.fromJson(e as Map<String, dynamic>),
+            )
             .toList(),
       ),
     );
   }
-  Future<BaseData<List<CustomerContactResponse>>> getCustomerContact({required int customerId}) async {
+
+  Future<BaseData<List<CustomerContactResponse>>> getCustomerContact({
+    required int customerId,
+  }) async {
     return get<BaseData<List<CustomerContactResponse>>>(
       ApiEndPoint.getCustomerContact,
       query: {'customerId': customerId},
       parser: (json) => BaseData<List<CustomerContactResponse>>.fromJson(
         json,
-            (data) => (data as List)
-            .map((e) => CustomerContactResponse.fromJson(e as Map<String, dynamic>))
+        (data) => (data as List)
+            .map(
+              (e) =>
+                  CustomerContactResponse.fromJson(e as Map<String, dynamic>),
+            )
             .toList(),
       ),
     );
@@ -595,9 +620,48 @@ class ReportService extends DioBaseApiService {
     return get<BaseData<SaleReportResponse>>(
       ApiEndPoint.getSaleDailyReport,
       query: query,
-      parser: (json) => BaseData<SaleReportResponse>.fromJson(
-        {"data": json},
-            (data) => SaleReportResponse.fromJson(data as Map<String, dynamic>),
+      parser: (json) => BaseData<SaleReportResponse>.fromJson({
+        "data": json,
+      }, (data) => SaleReportResponse.fromJson(data as Map<String, dynamic>)),
+    );
+  }
+
+  Future<BaseData<List<SaleAdminResponse>>> getSaleAdminDailyReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    int? customerId,
+    int? userId,
+    String? keyword,
+  }) async {
+
+    String fmt(DateTime d) {
+      final y = d.year.toString().padLeft(4, '0');
+      final m = d.month.toString().padLeft(2, '0');
+      final day = d.day.toString().padLeft(2, '0');
+      final h = d.hour.toString().padLeft(2, '0');
+      final min = d.minute.toString().padLeft(2, '0');
+      final s = d.second.toString().padLeft(2, '0');
+      return '$y-$m-$day'
+          'T'
+          '$h:$min:$s';
+    }
+
+    final query = {
+      'dateStart': fmt(dateStart),
+      'dateEnd': fmt(dateEnd),
+      'customerId': customerId,
+      'userId': userId,
+      'keyword': keyword,
+    };
+
+    return get<BaseData<List<SaleAdminResponse>>>(
+      ApiEndPoint.getAdminReport,
+      query: query,
+      parser: (json) => BaseData<List<SaleAdminResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => SaleAdminResponse.fromJson(e))
+            .toList(),
       ),
     );
   }
@@ -607,7 +671,7 @@ class ReportService extends DioBaseApiService {
       ApiEndPoint.getAllUser,
       parser: (json) => BaseData<List<UserResponse>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map((e) => UserResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
@@ -619,8 +683,11 @@ class ReportService extends DioBaseApiService {
       ApiEndPoint.getAdminProject,
       parser: (json) => BaseData<List<SaleAdminProjectResponse>>.fromJson(
         json,
-            (data) => (data as List)
-            .map((e) => SaleAdminProjectResponse.fromJson(e as Map<String, dynamic>))
+        (data) => (data as List)
+            .map(
+              (e) =>
+                  SaleAdminProjectResponse.fromJson(e as Map<String, dynamic>),
+            )
             .toList(),
       ),
     );
@@ -631,8 +698,11 @@ class ReportService extends DioBaseApiService {
       ApiEndPoint.getAdminCustomer,
       parser: (json) => BaseData<List<SaleAdminCustomerResponse>>.fromJson(
         json,
-            (data) => (data as List)
-            .map((e) => SaleAdminCustomerResponse.fromJson(e as Map<String, dynamic>))
+        (data) => (data as List)
+            .map(
+              (e) =>
+                  SaleAdminCustomerResponse.fromJson(e as Map<String, dynamic>),
+            )
             .toList(),
       ),
     );
