@@ -564,7 +564,8 @@ class ReportRepoImpl implements ReportRepo {
   }
 
   @override
-  Future<Either<BaseError, List<StatusProjectResponse>>> getStatusProject() async{
+  Future<Either<BaseError, List<StatusProjectResponse>>>
+  getStatusProject() async {
     try {
       final res = await _service.getStatusProject();
       return right(res.data ?? []);
@@ -605,7 +606,8 @@ class ReportRepoImpl implements ReportRepo {
   }
 
   @override
-  Future<Either<BaseError, List<SaleAdminTypeReportResponse>>> getAdminTypeReport() async {
+  Future<Either<BaseError, List<SaleAdminTypeReportResponse>>>
+  getAdminTypeReport() async {
     try {
       final res = await _service.getAdminTypeReport();
       return right(res.data ?? []);
@@ -615,7 +617,8 @@ class ReportRepoImpl implements ReportRepo {
   }
 
   @override
-  Future<Either<BaseError, List<SaleAdminCustomerResponse>>> getAdminCustomer() async {
+  Future<Either<BaseError, List<SaleAdminCustomerResponse>>>
+  getAdminCustomer() async {
     try {
       final res = await _service.getAdminCustomer();
       return right(res.data ?? []);
@@ -625,7 +628,8 @@ class ReportRepoImpl implements ReportRepo {
   }
 
   @override
-  Future<Either<BaseError, List<SaleAdminProjectResponse>>> getAdminProject() async {
+  Future<Either<BaseError, List<SaleAdminProjectResponse>>>
+  getAdminProject() async {
     try {
       final res = await _service.getAdminProject();
       return right(res.data ?? []);
@@ -654,6 +658,26 @@ class ReportRepoImpl implements ReportRepo {
       return Right(res.data ?? []);
     } on DioException catch (e) {
       return Left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, DetailSaleAdminReportResponse>> getSaleAdminById({
+    required int dailyID,
+  }) async {
+    try {
+      final res = await _service.getSaleAdminById(dailyID: dailyID);
+
+      final list = res.data ?? [];
+
+      if (list.isEmpty) {
+        return left(
+        BaseError.httpInternalServerError('Không tìm thấy báo cáo'));
+      }
+
+      return right(list.first);
+    } on DioException catch (e) {
+      return left(e.baseError);
     }
   }
 }

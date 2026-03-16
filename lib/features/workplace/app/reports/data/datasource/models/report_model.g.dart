@@ -1125,9 +1125,9 @@ _$DetailSaleReportResponseImpl _$$DetailSaleReportResponseImplFromJson(
       contacId: (json['ContacID'] as num).toInt(),
       dateStart: DateTime.parse(json['DateStart'] as String),
       dateEnd: DateTime.parse(json['DateEnd'] as String),
-      telesale: (json['Telesale'] as num?)?.toInt(),
-      visit: (json['Visit'] as num?)?.toInt(),
-      demo: (json['Demo'] as num?)?.toInt(),
+      telesale: json['Telesale'] as String?,
+      visit: json['Visit'] as String?,
+      demo: json['Demo'] as String?,
       result: json['Result'] as String?,
       problemBacklog: json['ProblemBacklog'] as String?,
       planNext: json['PlanNext'] as String?,
@@ -2065,4 +2065,50 @@ Map<String, dynamic> _$$SaleAdminCustomerResponseImplToJson(
       'BigAccount': instance.bigAccount,
       'Province': instance.province,
       'RegisterOTs': instance.registerOTs,
+    };
+
+_$DetailSaleAdminReportResponseImpl
+    _$$DetailSaleAdminReportResponseImplFromJson(Map<String, dynamic> json) =>
+        _$DetailSaleAdminReportResponseImpl(
+          id: (json['ID'] as num).toInt(),
+          employeeId: (json['EmployeeID'] as num?)?.toInt(),
+          reportTypeId: (json['ReportTypeID'] as num?)?.toInt(),
+          customerId: (json['CustomerID'] as num?)?.toInt(),
+          employeeRequestId: (json['EmployeeRequestID'] as num?)?.toInt(),
+          dateReport: json['DateReport'] == null
+              ? null
+              : DateTime.parse(json['DateReport'] as String),
+          reportTypeName: json['ReportTypeName'] as String?,
+          employeeFullName: json['EmployeeFullName'] as String?,
+          employeeRequestFullName: json['EmployeeRequestFullName'] as String?,
+          customerName: json['CustomerName'] as String?,
+          reportContent: json['ReportContent'] as String?,
+          result: json['Result'] as String?,
+          problem: json['Problem'] as String?,
+          problemSolve: json['ProblemSolve'] as String?,
+          planNextDay: json['PlanNextDay'] as String?,
+          stt: (json['STT'] as num?)?.toInt(),
+          projectId: (json['ProjectID'] as num?)?.toInt(),
+        );
+
+Map<String, dynamic> _$$DetailSaleAdminReportResponseImplToJson(
+        _$DetailSaleAdminReportResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'EmployeeID': instance.employeeId,
+      'ReportTypeID': instance.reportTypeId,
+      'CustomerID': instance.customerId,
+      'EmployeeRequestID': instance.employeeRequestId,
+      'DateReport': instance.dateReport?.toIso8601String(),
+      'ReportTypeName': instance.reportTypeName,
+      'EmployeeFullName': instance.employeeFullName,
+      'EmployeeRequestFullName': instance.employeeRequestFullName,
+      'CustomerName': instance.customerName,
+      'ReportContent': instance.reportContent,
+      'Result': instance.result,
+      'Problem': instance.problem,
+      'ProblemSolve': instance.problemSolve,
+      'PlanNextDay': instance.planNextDay,
+      'STT': instance.stt,
+      'ProjectID': instance.projectId,
     };

@@ -13287,11 +13287,11 @@ mixin _$DetailSaleReportResponse {
   @JsonKey(name: 'DateEnd')
   DateTime get dateEnd => throw _privateConstructorUsedError;
   @JsonKey(name: 'Telesale')
-  int? get telesale => throw _privateConstructorUsedError;
+  String? get telesale => throw _privateConstructorUsedError;
   @JsonKey(name: 'Visit')
-  int? get visit => throw _privateConstructorUsedError;
+  String? get visit => throw _privateConstructorUsedError;
   @JsonKey(name: 'Demo')
-  int? get demo => throw _privateConstructorUsedError;
+  String? get demo => throw _privateConstructorUsedError;
   @JsonKey(name: 'Result')
   String? get result => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProblemBacklog')
@@ -13356,9 +13356,9 @@ abstract class $DetailSaleReportResponseCopyWith<$Res> {
       @JsonKey(name: 'ContacID') int contacId,
       @JsonKey(name: 'DateStart') DateTime dateStart,
       @JsonKey(name: 'DateEnd') DateTime dateEnd,
-      @JsonKey(name: 'Telesale') int? telesale,
-      @JsonKey(name: 'Visit') int? visit,
-      @JsonKey(name: 'Demo') int? demo,
+      @JsonKey(name: 'Telesale') String? telesale,
+      @JsonKey(name: 'Visit') String? visit,
+      @JsonKey(name: 'Demo') String? demo,
       @JsonKey(name: 'Result') String? result,
       @JsonKey(name: 'ProblemBacklog') String? problemBacklog,
       @JsonKey(name: 'PlanNext') String? planNext,
@@ -13457,15 +13457,15 @@ class _$DetailSaleReportResponseCopyWithImpl<$Res,
       telesale: freezed == telesale
           ? _value.telesale
           : telesale // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       visit: freezed == visit
           ? _value.visit
           : visit // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       demo: freezed == demo
           ? _value.demo
           : demo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -13574,9 +13574,9 @@ abstract class _$$DetailSaleReportResponseImplCopyWith<$Res>
       @JsonKey(name: 'ContacID') int contacId,
       @JsonKey(name: 'DateStart') DateTime dateStart,
       @JsonKey(name: 'DateEnd') DateTime dateEnd,
-      @JsonKey(name: 'Telesale') int? telesale,
-      @JsonKey(name: 'Visit') int? visit,
-      @JsonKey(name: 'Demo') int? demo,
+      @JsonKey(name: 'Telesale') String? telesale,
+      @JsonKey(name: 'Visit') String? visit,
+      @JsonKey(name: 'Demo') String? demo,
       @JsonKey(name: 'Result') String? result,
       @JsonKey(name: 'ProblemBacklog') String? problemBacklog,
       @JsonKey(name: 'PlanNext') String? planNext,
@@ -13674,15 +13674,15 @@ class __$$DetailSaleReportResponseImplCopyWithImpl<$Res>
       telesale: freezed == telesale
           ? _value.telesale
           : telesale // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       visit: freezed == visit
           ? _value.visit
           : visit // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       demo: freezed == demo
           ? _value.demo
           : demo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -13834,13 +13834,13 @@ class _$DetailSaleReportResponseImpl implements _DetailSaleReportResponse {
   final DateTime dateEnd;
   @override
   @JsonKey(name: 'Telesale')
-  final int? telesale;
+  final String? telesale;
   @override
   @JsonKey(name: 'Visit')
-  final int? visit;
+  final String? visit;
   @override
   @JsonKey(name: 'Demo')
-  final int? demo;
+  final String? demo;
   @override
   @JsonKey(name: 'Result')
   final String? result;
@@ -14030,9 +14030,9 @@ abstract class _DetailSaleReportResponse implements DetailSaleReportResponse {
           @JsonKey(name: 'ContacID') required final int contacId,
           @JsonKey(name: 'DateStart') required final DateTime dateStart,
           @JsonKey(name: 'DateEnd') required final DateTime dateEnd,
-          @JsonKey(name: 'Telesale') final int? telesale,
-          @JsonKey(name: 'Visit') final int? visit,
-          @JsonKey(name: 'Demo') final int? demo,
+          @JsonKey(name: 'Telesale') final String? telesale,
+          @JsonKey(name: 'Visit') final String? visit,
+          @JsonKey(name: 'Demo') final String? demo,
           @JsonKey(name: 'Result') final String? result,
           @JsonKey(name: 'ProblemBacklog') final String? problemBacklog,
           @JsonKey(name: 'PlanNext') final String? planNext,
@@ -14080,13 +14080,13 @@ abstract class _DetailSaleReportResponse implements DetailSaleReportResponse {
   DateTime get dateEnd;
   @override
   @JsonKey(name: 'Telesale')
-  int? get telesale;
+  String? get telesale;
   @override
   @JsonKey(name: 'Visit')
-  int? get visit;
+  String? get visit;
   @override
   @JsonKey(name: 'Demo')
-  int? get demo;
+  String? get demo;
   @override
   @JsonKey(name: 'Result')
   String? get result;
@@ -24578,5 +24578,563 @@ abstract class _SaleAdminCustomerResponse implements SaleAdminCustomerResponse {
   @override
   @JsonKey(ignore: true)
   _$$SaleAdminCustomerResponseImplCopyWith<_$SaleAdminCustomerResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+DetailSaleAdminReportResponse _$DetailSaleAdminReportResponseFromJson(
+    Map<String, dynamic> json) {
+  return _DetailSaleAdminReportResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$DetailSaleAdminReportResponse {
+  @JsonKey(name: 'ID')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReportTypeID')
+  int? get reportTypeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CustomerID')
+  int? get customerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeRequestID')
+  int? get employeeRequestId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateReport')
+  DateTime? get dateReport => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReportTypeName')
+  String? get reportTypeName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeFullName')
+  String? get employeeFullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeRequestFullName')
+  String? get employeeRequestFullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CustomerName')
+  String? get customerName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReportContent')
+  String? get reportContent => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Result')
+  String? get result => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Problem')
+  String? get problem => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProblemSolve')
+  String? get problemSolve => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PlanNextDay')
+  String? get planNextDay => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DetailSaleAdminReportResponseCopyWith<DetailSaleAdminReportResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DetailSaleAdminReportResponseCopyWith<$Res> {
+  factory $DetailSaleAdminReportResponseCopyWith(
+          DetailSaleAdminReportResponse value,
+          $Res Function(DetailSaleAdminReportResponse) then) =
+      _$DetailSaleAdminReportResponseCopyWithImpl<$Res,
+          DetailSaleAdminReportResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'ReportTypeID') int? reportTypeId,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'EmployeeRequestID') int? employeeRequestId,
+      @JsonKey(name: 'DateReport') DateTime? dateReport,
+      @JsonKey(name: 'ReportTypeName') String? reportTypeName,
+      @JsonKey(name: 'EmployeeFullName') String? employeeFullName,
+      @JsonKey(name: 'EmployeeRequestFullName') String? employeeRequestFullName,
+      @JsonKey(name: 'CustomerName') String? customerName,
+      @JsonKey(name: 'ReportContent') String? reportContent,
+      @JsonKey(name: 'Result') String? result,
+      @JsonKey(name: 'Problem') String? problem,
+      @JsonKey(name: 'ProblemSolve') String? problemSolve,
+      @JsonKey(name: 'PlanNextDay') String? planNextDay,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'ProjectID') int? projectId});
+}
+
+/// @nodoc
+class _$DetailSaleAdminReportResponseCopyWithImpl<$Res,
+        $Val extends DetailSaleAdminReportResponse>
+    implements $DetailSaleAdminReportResponseCopyWith<$Res> {
+  _$DetailSaleAdminReportResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? employeeId = freezed,
+    Object? reportTypeId = freezed,
+    Object? customerId = freezed,
+    Object? employeeRequestId = freezed,
+    Object? dateReport = freezed,
+    Object? reportTypeName = freezed,
+    Object? employeeFullName = freezed,
+    Object? employeeRequestFullName = freezed,
+    Object? customerName = freezed,
+    Object? reportContent = freezed,
+    Object? result = freezed,
+    Object? problem = freezed,
+    Object? problemSolve = freezed,
+    Object? planNextDay = freezed,
+    Object? stt = freezed,
+    Object? projectId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      reportTypeId: freezed == reportTypeId
+          ? _value.reportTypeId
+          : reportTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeRequestId: freezed == employeeRequestId
+          ? _value.employeeRequestId
+          : employeeRequestId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dateReport: freezed == dateReport
+          ? _value.dateReport
+          : dateReport // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      reportTypeName: freezed == reportTypeName
+          ? _value.reportTypeName
+          : reportTypeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeFullName: freezed == employeeFullName
+          ? _value.employeeFullName
+          : employeeFullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeRequestFullName: freezed == employeeRequestFullName
+          ? _value.employeeRequestFullName
+          : employeeRequestFullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerName: freezed == customerName
+          ? _value.customerName
+          : customerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reportContent: freezed == reportContent
+          ? _value.reportContent
+          : reportContent // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as String?,
+      problem: freezed == problem
+          ? _value.problem
+          : problem // ignore: cast_nullable_to_non_nullable
+              as String?,
+      problemSolve: freezed == problemSolve
+          ? _value.problemSolve
+          : problemSolve // ignore: cast_nullable_to_non_nullable
+              as String?,
+      planNextDay: freezed == planNextDay
+          ? _value.planNextDay
+          : planNextDay // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DetailSaleAdminReportResponseImplCopyWith<$Res>
+    implements $DetailSaleAdminReportResponseCopyWith<$Res> {
+  factory _$$DetailSaleAdminReportResponseImplCopyWith(
+          _$DetailSaleAdminReportResponseImpl value,
+          $Res Function(_$DetailSaleAdminReportResponseImpl) then) =
+      __$$DetailSaleAdminReportResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'ReportTypeID') int? reportTypeId,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'EmployeeRequestID') int? employeeRequestId,
+      @JsonKey(name: 'DateReport') DateTime? dateReport,
+      @JsonKey(name: 'ReportTypeName') String? reportTypeName,
+      @JsonKey(name: 'EmployeeFullName') String? employeeFullName,
+      @JsonKey(name: 'EmployeeRequestFullName') String? employeeRequestFullName,
+      @JsonKey(name: 'CustomerName') String? customerName,
+      @JsonKey(name: 'ReportContent') String? reportContent,
+      @JsonKey(name: 'Result') String? result,
+      @JsonKey(name: 'Problem') String? problem,
+      @JsonKey(name: 'ProblemSolve') String? problemSolve,
+      @JsonKey(name: 'PlanNextDay') String? planNextDay,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'ProjectID') int? projectId});
+}
+
+/// @nodoc
+class __$$DetailSaleAdminReportResponseImplCopyWithImpl<$Res>
+    extends _$DetailSaleAdminReportResponseCopyWithImpl<$Res,
+        _$DetailSaleAdminReportResponseImpl>
+    implements _$$DetailSaleAdminReportResponseImplCopyWith<$Res> {
+  __$$DetailSaleAdminReportResponseImplCopyWithImpl(
+      _$DetailSaleAdminReportResponseImpl _value,
+      $Res Function(_$DetailSaleAdminReportResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? employeeId = freezed,
+    Object? reportTypeId = freezed,
+    Object? customerId = freezed,
+    Object? employeeRequestId = freezed,
+    Object? dateReport = freezed,
+    Object? reportTypeName = freezed,
+    Object? employeeFullName = freezed,
+    Object? employeeRequestFullName = freezed,
+    Object? customerName = freezed,
+    Object? reportContent = freezed,
+    Object? result = freezed,
+    Object? problem = freezed,
+    Object? problemSolve = freezed,
+    Object? planNextDay = freezed,
+    Object? stt = freezed,
+    Object? projectId = freezed,
+  }) {
+    return _then(_$DetailSaleAdminReportResponseImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      reportTypeId: freezed == reportTypeId
+          ? _value.reportTypeId
+          : reportTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeRequestId: freezed == employeeRequestId
+          ? _value.employeeRequestId
+          : employeeRequestId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dateReport: freezed == dateReport
+          ? _value.dateReport
+          : dateReport // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      reportTypeName: freezed == reportTypeName
+          ? _value.reportTypeName
+          : reportTypeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeFullName: freezed == employeeFullName
+          ? _value.employeeFullName
+          : employeeFullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeRequestFullName: freezed == employeeRequestFullName
+          ? _value.employeeRequestFullName
+          : employeeRequestFullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerName: freezed == customerName
+          ? _value.customerName
+          : customerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reportContent: freezed == reportContent
+          ? _value.reportContent
+          : reportContent // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as String?,
+      problem: freezed == problem
+          ? _value.problem
+          : problem // ignore: cast_nullable_to_non_nullable
+              as String?,
+      problemSolve: freezed == problemSolve
+          ? _value.problemSolve
+          : problemSolve // ignore: cast_nullable_to_non_nullable
+              as String?,
+      planNextDay: freezed == planNextDay
+          ? _value.planNextDay
+          : planNextDay // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$DetailSaleAdminReportResponseImpl
+    implements _DetailSaleAdminReportResponse {
+  const _$DetailSaleAdminReportResponseImpl(
+      {@JsonKey(name: 'ID') required this.id,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'ReportTypeID') this.reportTypeId,
+      @JsonKey(name: 'CustomerID') this.customerId,
+      @JsonKey(name: 'EmployeeRequestID') this.employeeRequestId,
+      @JsonKey(name: 'DateReport') this.dateReport,
+      @JsonKey(name: 'ReportTypeName') this.reportTypeName,
+      @JsonKey(name: 'EmployeeFullName') this.employeeFullName,
+      @JsonKey(name: 'EmployeeRequestFullName') this.employeeRequestFullName,
+      @JsonKey(name: 'CustomerName') this.customerName,
+      @JsonKey(name: 'ReportContent') this.reportContent,
+      @JsonKey(name: 'Result') this.result,
+      @JsonKey(name: 'Problem') this.problem,
+      @JsonKey(name: 'ProblemSolve') this.problemSolve,
+      @JsonKey(name: 'PlanNextDay') this.planNextDay,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'ProjectID') this.projectId});
+
+  factory _$DetailSaleAdminReportResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$DetailSaleAdminReportResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int id;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'ReportTypeID')
+  final int? reportTypeId;
+  @override
+  @JsonKey(name: 'CustomerID')
+  final int? customerId;
+  @override
+  @JsonKey(name: 'EmployeeRequestID')
+  final int? employeeRequestId;
+  @override
+  @JsonKey(name: 'DateReport')
+  final DateTime? dateReport;
+  @override
+  @JsonKey(name: 'ReportTypeName')
+  final String? reportTypeName;
+  @override
+  @JsonKey(name: 'EmployeeFullName')
+  final String? employeeFullName;
+  @override
+  @JsonKey(name: 'EmployeeRequestFullName')
+  final String? employeeRequestFullName;
+  @override
+  @JsonKey(name: 'CustomerName')
+  final String? customerName;
+  @override
+  @JsonKey(name: 'ReportContent')
+  final String? reportContent;
+  @override
+  @JsonKey(name: 'Result')
+  final String? result;
+  @override
+  @JsonKey(name: 'Problem')
+  final String? problem;
+  @override
+  @JsonKey(name: 'ProblemSolve')
+  final String? problemSolve;
+  @override
+  @JsonKey(name: 'PlanNextDay')
+  final String? planNextDay;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+
+  @override
+  String toString() {
+    return 'DetailSaleAdminReportResponse(id: $id, employeeId: $employeeId, reportTypeId: $reportTypeId, customerId: $customerId, employeeRequestId: $employeeRequestId, dateReport: $dateReport, reportTypeName: $reportTypeName, employeeFullName: $employeeFullName, employeeRequestFullName: $employeeRequestFullName, customerName: $customerName, reportContent: $reportContent, result: $result, problem: $problem, problemSolve: $problemSolve, planNextDay: $planNextDay, stt: $stt, projectId: $projectId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DetailSaleAdminReportResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.reportTypeId, reportTypeId) ||
+                other.reportTypeId == reportTypeId) &&
+            (identical(other.customerId, customerId) ||
+                other.customerId == customerId) &&
+            (identical(other.employeeRequestId, employeeRequestId) ||
+                other.employeeRequestId == employeeRequestId) &&
+            (identical(other.dateReport, dateReport) ||
+                other.dateReport == dateReport) &&
+            (identical(other.reportTypeName, reportTypeName) ||
+                other.reportTypeName == reportTypeName) &&
+            (identical(other.employeeFullName, employeeFullName) ||
+                other.employeeFullName == employeeFullName) &&
+            (identical(
+                    other.employeeRequestFullName, employeeRequestFullName) ||
+                other.employeeRequestFullName == employeeRequestFullName) &&
+            (identical(other.customerName, customerName) ||
+                other.customerName == customerName) &&
+            (identical(other.reportContent, reportContent) ||
+                other.reportContent == reportContent) &&
+            (identical(other.result, result) || other.result == result) &&
+            (identical(other.problem, problem) || other.problem == problem) &&
+            (identical(other.problemSolve, problemSolve) ||
+                other.problemSolve == problemSolve) &&
+            (identical(other.planNextDay, planNextDay) ||
+                other.planNextDay == planNextDay) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      employeeId,
+      reportTypeId,
+      customerId,
+      employeeRequestId,
+      dateReport,
+      reportTypeName,
+      employeeFullName,
+      employeeRequestFullName,
+      customerName,
+      reportContent,
+      result,
+      problem,
+      problemSolve,
+      planNextDay,
+      stt,
+      projectId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DetailSaleAdminReportResponseImplCopyWith<
+          _$DetailSaleAdminReportResponseImpl>
+      get copyWith => __$$DetailSaleAdminReportResponseImplCopyWithImpl<
+          _$DetailSaleAdminReportResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DetailSaleAdminReportResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _DetailSaleAdminReportResponse
+    implements DetailSaleAdminReportResponse {
+  const factory _DetailSaleAdminReportResponse(
+          {@JsonKey(name: 'ID') required final int id,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'ReportTypeID') final int? reportTypeId,
+          @JsonKey(name: 'CustomerID') final int? customerId,
+          @JsonKey(name: 'EmployeeRequestID') final int? employeeRequestId,
+          @JsonKey(name: 'DateReport') final DateTime? dateReport,
+          @JsonKey(name: 'ReportTypeName') final String? reportTypeName,
+          @JsonKey(name: 'EmployeeFullName') final String? employeeFullName,
+          @JsonKey(name: 'EmployeeRequestFullName')
+          final String? employeeRequestFullName,
+          @JsonKey(name: 'CustomerName') final String? customerName,
+          @JsonKey(name: 'ReportContent') final String? reportContent,
+          @JsonKey(name: 'Result') final String? result,
+          @JsonKey(name: 'Problem') final String? problem,
+          @JsonKey(name: 'ProblemSolve') final String? problemSolve,
+          @JsonKey(name: 'PlanNextDay') final String? planNextDay,
+          @JsonKey(name: 'STT') final int? stt,
+          @JsonKey(name: 'ProjectID') final int? projectId}) =
+      _$DetailSaleAdminReportResponseImpl;
+
+  factory _DetailSaleAdminReportResponse.fromJson(Map<String, dynamic> json) =
+      _$DetailSaleAdminReportResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int get id;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'ReportTypeID')
+  int? get reportTypeId;
+  @override
+  @JsonKey(name: 'CustomerID')
+  int? get customerId;
+  @override
+  @JsonKey(name: 'EmployeeRequestID')
+  int? get employeeRequestId;
+  @override
+  @JsonKey(name: 'DateReport')
+  DateTime? get dateReport;
+  @override
+  @JsonKey(name: 'ReportTypeName')
+  String? get reportTypeName;
+  @override
+  @JsonKey(name: 'EmployeeFullName')
+  String? get employeeFullName;
+  @override
+  @JsonKey(name: 'EmployeeRequestFullName')
+  String? get employeeRequestFullName;
+  @override
+  @JsonKey(name: 'CustomerName')
+  String? get customerName;
+  @override
+  @JsonKey(name: 'ReportContent')
+  String? get reportContent;
+  @override
+  @JsonKey(name: 'Result')
+  String? get result;
+  @override
+  @JsonKey(name: 'Problem')
+  String? get problem;
+  @override
+  @JsonKey(name: 'ProblemSolve')
+  String? get problemSolve;
+  @override
+  @JsonKey(name: 'PlanNextDay')
+  String? get planNextDay;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(ignore: true)
+  _$$DetailSaleAdminReportResponseImplCopyWith<
+          _$DetailSaleAdminReportResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

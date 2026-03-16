@@ -94,6 +94,8 @@ class SaleEvent with _$SaleEvent {
     @Default(false) bool forEdit,
   }) = _SelectReport;
 
+  const factory SaleEvent.selectAdminReport({required int dailyID}) = _SelectAdminReport;
+
   const factory SaleEvent.submitEditReport(DateTime pickedDate, int dailyID) = _SubmitEditReport;
 
   const factory SaleEvent.submitAdminReport(DateTime pickedDate) = _SubmitAdminReport;

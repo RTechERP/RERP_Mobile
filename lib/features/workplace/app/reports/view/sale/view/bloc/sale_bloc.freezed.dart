@@ -90,6 +90,7 @@ mixin _$SaleEvent {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -168,6 +169,7 @@ mixin _$SaleEvent {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) =>
@@ -245,6 +247,7 @@ mixin _$SaleEvent {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -276,6 +279,7 @@ mixin _$SaleEvent {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) =>
@@ -306,6 +310,7 @@ mixin _$SaleEvent {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) =>
@@ -336,6 +341,7 @@ mixin _$SaleEvent {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -469,6 +475,7 @@ class _$InitImpl implements _Init {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -550,6 +557,7 @@ class _$InitImpl implements _Init {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -630,6 +638,7 @@ class _$InitImpl implements _Init {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -667,6 +676,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -700,6 +710,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -733,6 +744,7 @@ class _$InitImpl implements _Init {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -858,6 +870,7 @@ class _$AddWorkImpl implements _AddWork {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -939,6 +952,7 @@ class _$AddWorkImpl implements _AddWork {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -1019,6 +1033,7 @@ class _$AddWorkImpl implements _AddWork {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -1056,6 +1071,7 @@ class _$AddWorkImpl implements _AddWork {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -1089,6 +1105,7 @@ class _$AddWorkImpl implements _AddWork {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -1122,6 +1139,7 @@ class _$AddWorkImpl implements _AddWork {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -1273,6 +1291,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -1354,6 +1373,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -1434,6 +1454,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -1471,6 +1492,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -1504,6 +1526,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -1537,6 +1560,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -1693,6 +1717,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -1774,6 +1799,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -1854,6 +1880,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -1891,6 +1918,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -1924,6 +1952,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -1957,6 +1986,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -2087,6 +2117,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -2168,6 +2199,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -2248,6 +2280,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -2285,6 +2318,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -2318,6 +2352,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -2351,6 +2386,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -2476,6 +2512,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -2557,6 +2594,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -2637,6 +2675,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -2674,6 +2713,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -2707,6 +2747,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -2740,6 +2781,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -2865,6 +2907,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -2946,6 +2989,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -3026,6 +3070,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -3063,6 +3108,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -3096,6 +3142,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -3129,6 +3176,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -3254,6 +3302,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -3335,6 +3384,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -3415,6 +3465,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -3452,6 +3503,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -3485,6 +3537,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -3518,6 +3571,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -3643,6 +3697,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -3724,6 +3779,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -3804,6 +3860,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -3841,6 +3898,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -3874,6 +3932,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -3907,6 +3966,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -4032,6 +4092,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -4113,6 +4174,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -4193,6 +4255,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -4230,6 +4293,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -4263,6 +4327,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -4296,6 +4361,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -4421,6 +4487,7 @@ class _$GetAdminTypeReportImpl implements _GetAdminTypeReport {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -4502,6 +4569,7 @@ class _$GetAdminTypeReportImpl implements _GetAdminTypeReport {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -4582,6 +4650,7 @@ class _$GetAdminTypeReportImpl implements _GetAdminTypeReport {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -4619,6 +4688,7 @@ class _$GetAdminTypeReportImpl implements _GetAdminTypeReport {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -4652,6 +4722,7 @@ class _$GetAdminTypeReportImpl implements _GetAdminTypeReport {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -4685,6 +4756,7 @@ class _$GetAdminTypeReportImpl implements _GetAdminTypeReport {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -4810,6 +4882,7 @@ class _$GetAdminCustomerImpl implements _GetAdminCustomer {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -4891,6 +4964,7 @@ class _$GetAdminCustomerImpl implements _GetAdminCustomer {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -4971,6 +5045,7 @@ class _$GetAdminCustomerImpl implements _GetAdminCustomer {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -5008,6 +5083,7 @@ class _$GetAdminCustomerImpl implements _GetAdminCustomer {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -5041,6 +5117,7 @@ class _$GetAdminCustomerImpl implements _GetAdminCustomer {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -5074,6 +5151,7 @@ class _$GetAdminCustomerImpl implements _GetAdminCustomer {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -5199,6 +5277,7 @@ class _$GetAdminProjectImpl implements _GetAdminProject {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -5280,6 +5359,7 @@ class _$GetAdminProjectImpl implements _GetAdminProject {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -5360,6 +5440,7 @@ class _$GetAdminProjectImpl implements _GetAdminProject {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -5397,6 +5478,7 @@ class _$GetAdminProjectImpl implements _GetAdminProject {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -5430,6 +5512,7 @@ class _$GetAdminProjectImpl implements _GetAdminProject {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -5463,6 +5546,7 @@ class _$GetAdminProjectImpl implements _GetAdminProject {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -5616,6 +5700,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -5697,6 +5782,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -5777,6 +5863,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -5814,6 +5901,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -5847,6 +5935,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -5880,6 +5969,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -6039,6 +6129,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -6120,6 +6211,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -6200,6 +6292,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -6237,6 +6330,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -6270,6 +6364,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -6303,6 +6398,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -6434,6 +6530,7 @@ class _$GetAllUserImpl implements _GetAllUser {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -6515,6 +6612,7 @@ class _$GetAllUserImpl implements _GetAllUser {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -6595,6 +6693,7 @@ class _$GetAllUserImpl implements _GetAllUser {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -6632,6 +6731,7 @@ class _$GetAllUserImpl implements _GetAllUser {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -6665,6 +6765,7 @@ class _$GetAllUserImpl implements _GetAllUser {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -6698,6 +6799,7 @@ class _$GetAllUserImpl implements _GetAllUser {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -7234,6 +7336,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -7348,6 +7451,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -7461,6 +7565,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -7531,6 +7636,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -7564,6 +7670,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -7597,6 +7704,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -7953,6 +8061,7 @@ class _$UpdateAdminWorkImpl implements _UpdateAdminWork {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -8046,6 +8155,7 @@ class _$UpdateAdminWorkImpl implements _UpdateAdminWork {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -8138,6 +8248,7 @@ class _$UpdateAdminWorkImpl implements _UpdateAdminWork {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -8187,6 +8298,7 @@ class _$UpdateAdminWorkImpl implements _UpdateAdminWork {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -8220,6 +8332,7 @@ class _$UpdateAdminWorkImpl implements _UpdateAdminWork {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -8253,6 +8366,7 @@ class _$UpdateAdminWorkImpl implements _UpdateAdminWork {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -8432,6 +8546,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -8513,6 +8628,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -8593,6 +8709,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -8630,6 +8747,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -8663,6 +8781,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -8696,6 +8815,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -8853,6 +8973,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -8934,6 +9055,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -9014,6 +9136,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -9051,6 +9174,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -9084,6 +9208,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -9117,6 +9242,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -9247,6 +9373,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -9328,6 +9455,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -9408,6 +9536,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -9445,6 +9574,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -9478,6 +9608,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -9511,6 +9642,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -9662,6 +9794,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -9743,6 +9876,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -9823,6 +9957,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -9860,6 +9995,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -9893,6 +10029,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -9926,6 +10063,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -10093,6 +10231,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -10174,6 +10313,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -10254,6 +10394,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -10291,6 +10432,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -10324,6 +10466,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -10357,6 +10500,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -10525,6 +10669,7 @@ class _$SelectReportImpl implements _SelectReport {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -10606,6 +10751,7 @@ class _$SelectReportImpl implements _SelectReport {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -10686,6 +10832,7 @@ class _$SelectReportImpl implements _SelectReport {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -10723,6 +10870,7 @@ class _$SelectReportImpl implements _SelectReport {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -10756,6 +10904,7 @@ class _$SelectReportImpl implements _SelectReport {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -10789,6 +10938,7 @@ class _$SelectReportImpl implements _SelectReport {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -10808,6 +10958,434 @@ abstract class _SelectReport implements SaleEvent {
   bool get forEdit;
   @JsonKey(ignore: true)
   _$$SelectReportImplCopyWith<_$SelectReportImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectAdminReportImplCopyWith<$Res> {
+  factory _$$SelectAdminReportImplCopyWith(_$SelectAdminReportImpl value,
+          $Res Function(_$SelectAdminReportImpl) then) =
+      __$$SelectAdminReportImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int dailyID});
+}
+
+/// @nodoc
+class __$$SelectAdminReportImplCopyWithImpl<$Res>
+    extends _$SaleEventCopyWithImpl<$Res, _$SelectAdminReportImpl>
+    implements _$$SelectAdminReportImplCopyWith<$Res> {
+  __$$SelectAdminReportImplCopyWithImpl(_$SelectAdminReportImpl _value,
+      $Res Function(_$SelectAdminReportImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dailyID = null,
+  }) {
+    return _then(_$SelectAdminReportImpl(
+      dailyID: null == dailyID
+          ? _value.dailyID
+          : dailyID // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectAdminReportImpl implements _SelectAdminReport {
+  const _$SelectAdminReportImpl({required this.dailyID});
+
+  @override
+  final int dailyID;
+
+  @override
+  String toString() {
+    return 'SaleEvent.selectAdminReport(dailyID: $dailyID)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectAdminReportImpl &&
+            (identical(other.dailyID, dailyID) || other.dailyID == dailyID));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, dailyID);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectAdminReportImplCopyWith<_$SelectAdminReportImpl> get copyWith =>
+      __$$SelectAdminReportImplCopyWithImpl<_$SelectAdminReportImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() addWork,
+    required TResult Function(int index) removeWork,
+    required TResult Function(int index) expandWork,
+    required TResult Function() getSaleProject,
+    required TResult Function() getFirmBase,
+    required TResult Function() getTypeProjectBase,
+    required TResult Function() getStatusProject,
+    required TResult Function() getCustomer,
+    required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
+    required TResult Function(int customerId) getCustomerContact,
+    required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
+    required TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)
+        updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
+    required TResult Function(DateTime? picked) updateDate,
+    required TResult Function(DateTime pickedDate) submitReport,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(int dailyID) deleteReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
+    required TResult Function(DateTime pickedDate, int dailyID)
+        submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
+  }) {
+    return selectAdminReport(dailyID);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? addWork,
+    TResult? Function(int index)? removeWork,
+    TResult? Function(int index)? expandWork,
+    TResult? Function()? getSaleProject,
+    TResult? Function()? getFirmBase,
+    TResult? Function()? getTypeProjectBase,
+    TResult? Function()? getStatusProject,
+    TResult? Function()? getCustomer,
+    TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
+    TResult? Function(int customerId)? getCustomerContact,
+    TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
+    TResult? Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult? Function(DateTime? picked)? updateDate,
+    TResult? Function(DateTime pickedDate)? submitReport,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(int dailyID)? deleteReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
+    TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
+  }) {
+    return selectAdminReport?.call(dailyID);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? addWork,
+    TResult Function(int index)? removeWork,
+    TResult Function(int index)? expandWork,
+    TResult Function()? getSaleProject,
+    TResult Function()? getFirmBase,
+    TResult Function()? getTypeProjectBase,
+    TResult Function()? getStatusProject,
+    TResult Function()? getCustomer,
+    TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
+    TResult Function(int customerId)? getCustomerContact,
+    TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
+    TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult Function(DateTime? picked)? updateDate,
+    TResult Function(DateTime pickedDate)? submitReport,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(int dailyID)? deleteReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
+    TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (selectAdminReport != null) {
+      return selectAdminReport(dailyID);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_AddWork value) addWork,
+    required TResult Function(_RemoveWork value) removeWork,
+    required TResult Function(_ExpandWork value) expandWork,
+    required TResult Function(_GetSaleProject value) getSaleProject,
+    required TResult Function(_GetFirmBase value) getFirmBase,
+    required TResult Function(_GetTypeProjectBase value) getTypeProjectBase,
+    required TResult Function(_GetStatusProject value) getStatusProject,
+    required TResult Function(_GetCustomer value) getCustomer,
+    required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
+    required TResult Function(_GetCustomerContact value) getCustomerContact,
+    required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
+    required TResult Function(_UpdateDate value) updateDate,
+    required TResult Function(_SubmitReport value) submitReport,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
+    required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
+  }) {
+    return selectAdminReport(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_AddWork value)? addWork,
+    TResult? Function(_RemoveWork value)? removeWork,
+    TResult? Function(_ExpandWork value)? expandWork,
+    TResult? Function(_GetSaleProject value)? getSaleProject,
+    TResult? Function(_GetFirmBase value)? getFirmBase,
+    TResult? Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult? Function(_GetStatusProject value)? getStatusProject,
+    TResult? Function(_GetCustomer value)? getCustomer,
+    TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
+    TResult? Function(_GetCustomerContact value)? getCustomerContact,
+    TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult? Function(_UpdateDate value)? updateDate,
+    TResult? Function(_SubmitReport value)? submitReport,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
+    TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
+  }) {
+    return selectAdminReport?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_AddWork value)? addWork,
+    TResult Function(_RemoveWork value)? removeWork,
+    TResult Function(_ExpandWork value)? expandWork,
+    TResult Function(_GetSaleProject value)? getSaleProject,
+    TResult Function(_GetFirmBase value)? getFirmBase,
+    TResult Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult Function(_GetStatusProject value)? getStatusProject,
+    TResult Function(_GetCustomer value)? getCustomer,
+    TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
+    TResult Function(_GetCustomerContact value)? getCustomerContact,
+    TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult Function(_UpdateDate value)? updateDate,
+    TResult Function(_SubmitReport value)? submitReport,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
+    TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (selectAdminReport != null) {
+      return selectAdminReport(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectAdminReport implements SaleEvent {
+  const factory _SelectAdminReport({required final int dailyID}) =
+      _$SelectAdminReportImpl;
+
+  int get dailyID;
+  @JsonKey(ignore: true)
+  _$$SelectAdminReportImplCopyWith<_$SelectAdminReportImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -10957,6 +11535,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -11038,6 +11617,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -11118,6 +11698,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -11155,6 +11736,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -11188,6 +11770,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -11221,6 +11804,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
@@ -11381,6 +11965,7 @@ class _$SubmitAdminReportImpl implements _SubmitAdminReport {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
     required TResult Function(DateTime pickedDate) submitAdminReport,
@@ -11462,6 +12047,7 @@ class _$SubmitAdminReportImpl implements _SubmitAdminReport {
     TResult? Function(int dailyID)? deleteReport,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
@@ -11542,6 +12128,7 @@ class _$SubmitAdminReportImpl implements _SubmitAdminReport {
     TResult Function(int dailyID)? deleteReport,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
@@ -11579,6 +12166,7 @@ class _$SubmitAdminReportImpl implements _SubmitAdminReport {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
     required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
@@ -11612,6 +12200,7 @@ class _$SubmitAdminReportImpl implements _SubmitAdminReport {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
     TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
@@ -11645,6 +12234,7 @@ class _$SubmitAdminReportImpl implements _SubmitAdminReport {
     TResult Function(_DeleteReport value)? deleteReport,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
     TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),

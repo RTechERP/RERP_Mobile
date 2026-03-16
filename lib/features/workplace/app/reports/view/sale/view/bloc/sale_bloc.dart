@@ -161,6 +161,7 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         getAdminCustomer: () => _onGetAdminCustomer(emit),
         submitAdminReport: (pickedDate) =>
             _onSubmitAdminReport(pickedDate, emit),
+        selectAdminReport: (dailyID) => _onSelectAdminReport(dailyID, emit: emit),
       );
     });
   }
@@ -304,7 +305,7 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         final end = DateTime(now.year, now.month, now.day, 23, 59, 59);
 
         await _loadDailyReport(start: start, end: end, emit: emit);
-        await _loadAdminDailyReport(start: start, end: end, emit:emit);
+        await _loadAdminDailyReport(start: start, end: end, emit: emit);
       },
     );
   }
@@ -804,6 +805,32 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
             staffWorks: forEdit
                 ? [SaleStaffWork.fromDetailSaleReportResponse(detail)]
                 : state.staffWorks,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _onSelectAdminReport(
+      int dailyID, {
+        required Emitter<SaleState> emit,
+      }) async {
+    emit(state.copyWith(isLoadingDetail: true));
+
+    final res = await _reportRepo.getSaleAdminById(dailyID: dailyID);
+
+    await res.fold(
+          (l) async {
+        _log.logE('Get detail failed: $l');
+        emit(state.copyWith(isLoadingDetail: false));
+      },
+          (detail) async {
+        _log.logI('✅ Detail Report: $detail');
+
+        emit(
+          state.copyWith(
+            isLoadingDetail: false,
+            selectedReportAdminDetail: detail,
           ),
         );
       },

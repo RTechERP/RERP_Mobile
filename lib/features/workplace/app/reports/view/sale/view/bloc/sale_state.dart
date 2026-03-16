@@ -40,6 +40,8 @@ class SaleState extends BaseBlocState {
   final List<StatusProjectResponse> statusProjects;
 
   final DetailSaleReportResponse? selectedReportDetail;
+
+  final DetailSaleAdminReportResponse? selectedReportAdminDetail;
   final List<CustomerResponse> customers;
 
   final List<CustomerContactResponse> customerContacts;
@@ -97,6 +99,7 @@ class SaleState extends BaseBlocState {
     this.dateReport,
     this.selectedReportDetail,
     this.selectedProject,
+    this.selectedReportAdminDetail,
   });
 
   factory SaleState.init() => const SaleState(
@@ -141,6 +144,7 @@ class SaleState extends BaseBlocState {
     selectedReportDetail: null,
     selectedProject: null,
     saveSuccess: false,
+    selectedReportAdminDetail: null,
   );
 
   @override
@@ -186,5 +190,6 @@ class SaleState extends BaseBlocState {
     adminCustomers,
     adminProjects,
     adminReports,
+    selectedReportAdminDetail,
   ];
 }

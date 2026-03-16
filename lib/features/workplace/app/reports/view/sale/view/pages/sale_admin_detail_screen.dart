@@ -1,292 +1,174 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../../../../../../base/widgets/base_scaffold.dart';
-import '../../../../../../../../../common/app_theme/index.dart';
-import '../../../../../../../../../common/enums/index.dart';
-import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../base/widgets/base_scaffold.dart';
+import '../../../../../../../../base/widgets/base_widget.dart';
+import '../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../common/constants/index.dart';
+import '../../../../../../../../routes/route_names.dart';
+import '../bloc/sale_bloc.dart';
 
 class SaleAdminDetailScreen extends StatefulWidget {
   const SaleAdminDetailScreen({super.key});
 
   @override
-  State<SaleAdminDetailScreen> createState() =>
-      _SaleAdminDetailScreenState();
+  State<SaleAdminDetailScreen> createState() => _SaleAdminDetailScreenState();
 }
 
-class _SaleAdminDetailScreenState extends State<SaleAdminDetailScreen> {
-  final _formKey = GlobalKey<FormBuilderState>();
-  bool _isEditing = false;
+class _SaleAdminDetailScreenState
+    extends BaseState<SaleAdminDetailScreen, SaleEvent, SaleState, SaleBloc> {
+  int? _dailyId;
 
-  final Map<String, dynamic> _initialValue = {
-    'date': DateTime.now(),
+  String projectCode = '';
+  String customerName = '';
 
-    /// ===== CORE =====
-    'employee_name': 'Nguyễn Văn A',
-    'report_type': 'Báo cáo Sale ngày',
-    'content': 'Theo dõi tiến độ dự án ERP',
+  String projectName = '';
 
-    /// ===== BUSINESS =====
-    'project_code': 'ERP-2025-001',
-    'customer': 'Công ty ABC',
-    'requester': 'Trần Văn B',
+  @override
+  void initState() {
+    super.initState();
 
-    /// ===== RESULT =====
-    'result': 'Khách hàng đồng ý phương án triển khai',
-    'blocking': 'Chờ ký hợp đồng',
-    'next_plan': 'Theo dõi ký hợp đồng trong tuần',
-  };
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final extra = GoRouterState.of(context).extra as Map;
 
-  void _toggleEdit() => setState(() => _isEditing = true);
+      _dailyId = extra['id'];
+      projectCode = extra['projectCode'] ?? '';
+      customerName = extra['customerName'] ?? '';
+      projectName = extra['projectName'] ?? '';
 
-  void _cancelEdit() {
-    _formKey.currentState?.reset();
-    setState(() => _isEditing = false);
-  }
-
-  void _save() {
-    if (_formKey.currentState?.saveAndValidate() ?? false) {
-      debugPrint(_formKey.currentState!.value.toString());
-      setState(() => _isEditing = false);
-    }
+      bloc.add(SaleEvent.selectAdminReport(dailyID: _dailyId!));
+    });
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget renderUI(BuildContext context) {
     return BaseScaffold(
-      appBar: AppBarCommon(
-        title: const Text('Chi tiết báo cáo Sale (Admin)'),
-        automaticallyImplyLeading: !_isEditing,
-        actions: [
-          IconButton(
-            icon: Icon(_isEditing ? Icons.close : Icons.edit_outlined),
-            onPressed: () {
-              _isEditing ? _cancelEdit() : _toggleEdit();
-            },
-          ),
-        ],
-      ),
-      body: FormBuilder(
-        key: _formKey,
-        initialValue: _initialValue,
-        enabled: _isEditing,
-        child: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            /// ===== NGÀY =====
-            FormCard(
-              title: 'Ngày báo cáo',
-              child: _isEditing
-                  ? FormDateTimePicker(
-                nameForm: 'sale_admin_detail_report_time',
-                nameTimePicker: 'date_time',
-                icon: Icons.calendar_today,
-                label: 'Ngày báo cáo',
-                inputType: InputType.date,
-                format: DateFormat('dd/MM/yyyy'),
-              )
-                  : FormReadonlyField(
-                name: 'date',
-                label: 'Ngày báo cáo',
-                icon: Icons.calendar_today,
-                initialValue: _initialValue['date'],
-                valueTransformer: (value) =>
-                    DateFormat('dd/MM/yyyy')
-                        .format(value as DateTime),
+      appBar: AppBarCommon(title: const Text('Chi tiết báo cáo')),
+      body: BlocBuilder<SaleBloc, SaleState>(
+        builder: (context, state) {
+          if (state.isLoadingDetail) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final detail = state.selectedReportAdminDetail;
+
+          if (detail == null) {
+            return Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(AppImages.missing, width: 320),
+                  const SizedBox(height: 12),
+                  const Text('Không có báo cáo'),
+                ],
               ),
-            ),
+            );
+          }
 
-            const SizedBox(height: 12),
+          return Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(12),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _h(
+                            'Ngày báo cáo: ${DateFormat('dd/MM/yyyy').format(DateTime.parse(detail.dateReport.toString()))}',
+                          ),
+                          const Divider(height: 20),
 
-            /// ===== NHÂN VIÊN (1 NGƯỜI) =====
-            FormCard(
-              title: 'Nhân viên thực hiện',
-              child: FormReadonlyField(
-                name: 'employee_name',
-                label: 'Tên nhân viên',
-                icon: Icons.person_outline,
-                initialValue: _initialValue['employee_name'],
+
+                          _row('* Nhân viên:', detail.employeeFullName),
+                          _row('* Người yêu cầu:', detail.employeeRequestFullName),
+
+                          const Divider(height: 20),
+
+                          _row('* Nội dung công việc:', detail.reportContent),
+                          _row('* Kết quả công việc:', detail.result),
+                          _row(
+                            '* Kế hoạch ngày tiếp theo:',
+                            detail.planNextDay,
+                          ),
+
+                          const Divider(height: 20),
+
+                          _row('* Tồn đọng:', detail.problem),
+
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ),
 
-            const SizedBox(height: 12),
+              /// ===== BUTTON GROUP =====
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryERP,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    minimumSize: const Size.fromHeight(48),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                  ),
+                  onPressed: () async {
+                    final result = await context.push(
+                      RouteNames.reportSaleAdminEdit,
+                      extra: _dailyId,
+                    );
 
-            /// ===== LOẠI BÁO CÁO =====
-            FormCard(
-              title: 'Loại báo cáo',
-              child: _isEditing
-                  ? FormInputField(
-                icon: Icons.category_outlined,
-                nameForm: 'sale_admin_report_type',
-                nameTextField: 'report_type',
-                label: 'Loại báo cáo',
-              )
-                  : FormReadonlyField(
-                name: 'report_type',
-                label: 'Loại báo cáo',
-                icon: Icons.category_outlined,
-                initialValue: _initialValue['report_type'],
+                    if (result == true && context.mounted) {
+                      context.pop(true);
+                    }
+                  },
+                  child: const Text(
+                    'Sửa',
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
-            ),
-
-            const SizedBox(height: 12),
-
-            /// ===== NỘI DUNG =====
-            FormCard(
-              title: 'Nội dung báo cáo',
-              child: _isEditing
-                  ? FormInputField(
-                icon: Icons.description_outlined,
-                nameForm: 'sale_admin_content',
-                nameTextField: 'content',
-                label: 'Nội dung báo cáo',
-                maxLines: 4,
-              )
-                  : FormReadonlyField(
-                name: 'content',
-                label: 'Nội dung báo cáo',
-                icon: Icons.description_outlined,
-                initialValue: _initialValue['content'],
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            /// ===== DỰ ÁN =====
-            FormCard(
-              title: 'Dự án',
-              child: _isEditing
-                  ? FormInputField(
-                icon: Icons.code_outlined,
-                nameForm: 'sale_admin_project',
-                nameTextField: 'project_code',
-                label: 'Mã dự án',
-              )
-                  : FormReadonlyField(
-                name: 'project_code',
-                label: 'Mã dự án',
-                icon: Icons.code_outlined,
-                initialValue: _initialValue['project_code'],
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            /// ===== KHÁCH HÀNG =====
-            FormCard(
-              title: 'Khách hàng',
-              child: _isEditing
-                  ? FormInputField(
-                icon: Icons.business_outlined,
-                nameForm: 'sale_admin_customer',
-                nameTextField: 'customer',
-                label: 'Khách hàng',
-              )
-                  : FormReadonlyField(
-                name: 'customer',
-                label: 'Khách hàng',
-                icon: Icons.business_outlined,
-                initialValue: _initialValue['customer'],
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            /// ===== NGƯỜI YÊU CẦU =====
-            FormCard(
-              title: 'Người yêu cầu',
-              child: _isEditing
-                  ? FormInputField(
-                icon: Icons.person_search_outlined,
-                nameForm: 'sale_admin_requester',
-                nameTextField: 'requester',
-                label: 'Người yêu cầu',
-              )
-                  : FormReadonlyField(
-                name: 'requester',
-                label: 'Người yêu cầu',
-                icon: Icons.person_search_outlined,
-                initialValue: _initialValue['requester'],
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            /// ===== KẾT QUẢ =====
-            FormCard(
-              title: 'Kết quả xử lý',
-              child: _isEditing
-                  ? FormInputField(
-                icon: Icons.task_alt_outlined,
-                nameForm: 'sale_admin_result',
-                nameTextField: 'result',
-                label: 'Kết quả xử lý',
-                maxLines: 3,
-              )
-                  : FormReadonlyField(
-                name: 'result',
-                label: 'Kết quả xử lý',
-                icon: Icons.task_alt_outlined,
-                initialValue: _initialValue['result'],
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            /// ===== TỒN ĐỌNG =====
-            FormCard(
-              title: 'Vấn đề tồn đọng',
-              child: _isEditing
-                  ? FormInputField(
-                icon: Icons.warning_amber_outlined,
-                nameForm: 'sale_admin_blocking',
-                nameTextField: 'blocking',
-                label: 'Vấn đề tồn đọng',
-                maxLines: 3,
-              )
-                  : FormReadonlyField(
-                name: 'blocking',
-                label: 'Vấn đề tồn đọng',
-                icon: Icons.warning_amber_outlined,
-                initialValue: _initialValue['blocking'],
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            /// ===== KẾ HOẠCH =====
-            FormCard(
-              title: 'Kế hoạch tiếp theo',
-              child: _isEditing
-                  ? FormInputField(
-                icon: Icons.next_plan_outlined,
-                nameForm: 'sale_admin_next_plan',
-                nameTextField: 'next_plan',
-                label: 'Kế hoạch tiếp theo',
-                maxLines: 3,
-              )
-                  : FormReadonlyField(
-                name: 'next_plan',
-                label: 'Kế hoạch tiếp theo',
-                icon: Icons.next_plan_outlined,
-                initialValue: _initialValue['next_plan'],
-              ),
-            ),
-
-            const SizedBox(height: 24),
-
-            FormActions(
-              mode:
-              _isEditing ? FormActionMode.edit : FormActionMode.view,
-              onView: () {},
-              onCancel: _cancelEdit,
-              onSave: _save,
-            ),
-          ],
-        ),
+            ],
+          );
+        },
       ),
     );
   }
+
+  static Widget _row(String title, String? value) => Padding(
+    padding: const EdgeInsets.only(bottom: 8),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _h(title),
+        const SizedBox(height: 2),
+        _p(value?.isNotEmpty == true ? value! : '- Không có'),
+      ],
+    ),
+  );
+
+
+  static Widget _h(String text) => Padding(
+    padding: const EdgeInsets.only(bottom: 4),
+    child: Text(text, style: const TextStyle(fontWeight: FontWeight.w600)),
+  );
+
+  static Widget _p(String text) => Padding(
+    padding: const EdgeInsets.only(left: 8, bottom: 4),
+    child: Text(text),
+  );
 }

@@ -91,6 +91,9 @@ abstract class _$SaleStateCWProxy {
 
   SaleState selectedProject(SaleProjectResponse? selectedProject);
 
+  SaleState selectedReportAdminDetail(
+      DetailSaleAdminReportResponse? selectedReportAdminDetail);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -139,6 +142,7 @@ abstract class _$SaleStateCWProxy {
     DateTime? dateReport,
     DetailSaleReportResponse? selectedReportDetail,
     SaleProjectResponse? selectedProject,
+    DetailSaleAdminReportResponse? selectedReportAdminDetail,
   });
 }
 
@@ -296,6 +300,11 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
       this(selectedProject: selectedProject);
 
   @override
+  SaleState selectedReportAdminDetail(
+          DetailSaleAdminReportResponse? selectedReportAdminDetail) =>
+      this(selectedReportAdminDetail: selectedReportAdminDetail);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -345,6 +354,7 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
     Object? dateReport = const $CopyWithPlaceholder(),
     Object? selectedReportDetail = const $CopyWithPlaceholder(),
     Object? selectedProject = const $CopyWithPlaceholder(),
+    Object? selectedReportAdminDetail = const $CopyWithPlaceholder(),
   }) {
     return SaleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -528,6 +538,11 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
           ? _value.selectedProject
           // ignore: cast_nullable_to_non_nullable
           : selectedProject as SaleProjectResponse?,
+      selectedReportAdminDetail:
+          selectedReportAdminDetail == const $CopyWithPlaceholder()
+              ? _value.selectedReportAdminDetail
+              // ignore: cast_nullable_to_non_nullable
+              : selectedReportAdminDetail as DetailSaleAdminReportResponse?,
     );
   }
 }

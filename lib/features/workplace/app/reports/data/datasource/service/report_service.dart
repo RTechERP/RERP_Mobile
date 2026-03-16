@@ -419,6 +419,25 @@ class ReportService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<List<DetailSaleAdminReportResponse>>> getSaleAdminById({
+    required int dailyID,
+  }) {
+    return get<BaseData<List<DetailSaleAdminReportResponse>>>(
+      ApiEndPoint.getSaleAdminById,
+      query: {'id': dailyID},
+      parser: (json) => BaseData<List<DetailSaleAdminReportResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map(
+              (e) => DetailSaleAdminReportResponse.fromJson(
+            e as Map<String, dynamic>,
+          ),
+        )
+            .toList(),
+      ),
+    );
+  }
+
   Future<BaseData<List<SaleProjectResponse>>> getSaleProject() async {
     return get<BaseData<List<SaleProjectResponse>>>(
       ApiEndPoint.getSaleProject,

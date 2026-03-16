@@ -170,4 +170,8 @@ abstract class ReportRepo {
   Future<Either<BaseError, List<SaleAdminProjectResponse>>> getAdminProject();
   Future<Either<BaseError, List<SaleAdminCustomerResponse>>> getAdminCustomer();
 
+  Future<Either<BaseError, DetailSaleAdminReportResponse>> getSaleAdminById({
+    required int dailyID,
+  });
+
 }

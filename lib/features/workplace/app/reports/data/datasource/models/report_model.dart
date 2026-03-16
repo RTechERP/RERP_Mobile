@@ -744,9 +744,9 @@ class DetailSaleReportResponse with _$DetailSaleReportResponse {
     @JsonKey(name: 'DateStart') required DateTime dateStart,
     @JsonKey(name: 'DateEnd') required DateTime dateEnd,
 
-    @JsonKey(name: 'Telesale') int? telesale,
-    @JsonKey(name: 'Visit') int? visit,
-    @JsonKey(name: 'Demo') int? demo,
+    @JsonKey(name: 'Telesale') String? telesale,
+    @JsonKey(name: 'Visit') String? visit,
+    @JsonKey(name: 'Demo') String? demo,
 
     @JsonKey(name: 'Result')  String? result,
     @JsonKey(name: 'ProblemBacklog')  String? problemBacklog,
@@ -1356,4 +1356,34 @@ class SaleAdminCustomerResponse with _$SaleAdminCustomerResponse {
 
   factory SaleAdminCustomerResponse.fromJson(Map<String, dynamic> json) =>
       _$SaleAdminCustomerResponseFromJson(json);
+}
+
+@freezed
+class DetailSaleAdminReportResponse with _$DetailSaleAdminReportResponse {
+  const factory DetailSaleAdminReportResponse({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'ReportTypeID') int? reportTypeId,
+    @JsonKey(name: 'CustomerID') int? customerId,
+    @JsonKey(name: 'EmployeeRequestID') int? employeeRequestId,
+    @JsonKey(name: 'DateReport') DateTime? dateReport,
+
+    @JsonKey(name: 'ReportTypeName') String? reportTypeName,
+    @JsonKey(name: 'EmployeeFullName') String? employeeFullName,
+    @JsonKey(name: 'EmployeeRequestFullName') String? employeeRequestFullName,
+    @JsonKey(name: 'CustomerName') String? customerName,
+
+    @JsonKey(name: 'ReportContent') String? reportContent,
+    @JsonKey(name: 'Result') String? result,
+    @JsonKey(name: 'Problem') String? problem,
+    @JsonKey(name: 'ProblemSolve') String? problemSolve,
+    @JsonKey(name: 'PlanNextDay') String? planNextDay,
+
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'ProjectID') int? projectId,
+  }) = _DetailSaleAdminReportResponse;
+
+  factory DetailSaleAdminReportResponse.fromJson(
+      Map<String, dynamic> json,
+      ) => _$DetailSaleAdminReportResponseFromJson(json);
 }
