@@ -1119,3 +1119,241 @@ class SaleReportTotalPage with _$SaleReportTotalPage {
   factory SaleReportTotalPage.fromJson(Map<String, dynamic> json) =>
       _$SaleReportTotalPageFromJson(json);
 }
+
+@freezed
+class UserResponse with _$UserResponse {
+  const factory UserResponse({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'UserID') int? userId,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'ChucVuHDID') int? chucVuHDID,
+    @JsonKey(name: 'ChuVuID') int? chuVuID,
+    @JsonKey(name: 'STT') int? stt,
+
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'IDChamCongMoi') String? idChamCongMoi,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'AnhCBNV') String? anhCBNV,
+
+    @JsonKey(name: 'ChucVuHD') String? chucVuHD,
+    @JsonKey(name: 'ChucVu') String? chucVu,
+
+    @JsonKey(name: 'DepartmentSTT') int? departmentSTT,
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+
+    @JsonKey(name: 'DvBHXH') String? dvBHXH,
+    @JsonKey(name: 'DiaDiemLamViec') String? diaDiemLamViec,
+
+    @JsonKey(name: 'BirthOfDate') DateTime? birthOfDate,
+    @JsonKey(name: 'NoiSinh') String? noiSinh,
+
+    @JsonKey(name: 'GioiTinh') int? gioiTinh,
+    @JsonKey(name: 'GioiTinhText') String? gioiTinhText,
+
+    @JsonKey(name: 'DanToc') String? danToc,
+    @JsonKey(name: 'TonGiao') String? tonGiao,
+    @JsonKey(name: 'QuocTich') String? quocTich,
+    @JsonKey(name: 'TinhTrangHonNhan') String? tinhTrangHonNhan,
+
+    @JsonKey(name: 'DcThuongTru') String? dcThuongTru,
+    @JsonKey(name: 'DcTamTru') String? dcTamTru,
+
+    @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan,
+    @JsonKey(name: 'EmailCaNhan') String? emailCaNhan,
+
+    @JsonKey(name: 'SDTCongTy') String? sdtCongTy,
+    @JsonKey(name: 'EmailCongTy') String? emailCongTy,
+
+    @JsonKey(name: 'NguoiLienHeKhiCan') String? nguoiLienHeKhiCan,
+    @JsonKey(name: 'MoiQuanHe') String? moiQuanHe,
+    @JsonKey(name: 'SDTNguoiThan') String? sdtNguoiThan,
+
+    @JsonKey(name: 'NguoiLienHeKhiCan2') String? nguoiLienHeKhiCan2,
+    @JsonKey(name: 'MoiQuanHe2') String? moiQuanHe2,
+    @JsonKey(name: 'SDTNguoiThan2') String? sdtNguoiThan2,
+  }) = _UserResponse;
+
+  factory UserResponse.fromJson(Map<String, dynamic> json) =>
+      _$UserResponseFromJson(json);
+}
+
+@freezed
+class SaleAdminRequest with _$SaleAdminRequest {
+  const factory SaleAdminRequest({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'PlanNextDay') required String planNextDay,
+    @JsonKey(name: 'Problem') required String problem,
+    @JsonKey(name: 'ProblemSolve') required String problemSolve,
+    @JsonKey(name: 'ReportContent') required String reportContent,
+    @JsonKey(name: 'Result') required String result,
+    @JsonKey(name: 'EmployeeID') required int employeeId,
+    @JsonKey(name: 'EmployeeRequestID') required int employeeRequestId,
+    @JsonKey(name: 'CustomerID') required int customerId,
+    @JsonKey(name: 'ReportTypeID') required int reportTypeId,
+    @JsonKey(name: 'DateReport') required DateTime dateReport,
+    @JsonKey(name: 'ProjectID') required int projectId,
+  }) = _SaleAdminRequest;
+
+  factory SaleAdminRequest.fromJson(Map<String, dynamic> json) =>
+      _$SaleAdminRequestFromJson(json);
+}
+
+@freezed
+class SaleAdminResponse with _$SaleAdminResponse {
+  const factory SaleAdminResponse({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'EmployeeID') required int employeeId,
+    @JsonKey(name: 'ReportTypeID') required int reportTypeId,
+    @JsonKey(name: 'CustomerID') required int customerId,
+    @JsonKey(name: 'EmployeeRequestID') required int employeeRequestId,
+    @JsonKey(name: 'DateReport') required DateTime dateReport,
+
+    @JsonKey(name: 'ReportTypeName') String? reportTypeName,
+    @JsonKey(name: 'EmployeeFullName') String? employeeFullName,
+    @JsonKey(name: 'ReportContent') String? reportContent,
+    @JsonKey(name: 'CustomerName') String? customerName,
+    @JsonKey(name: 'EmployeeRequestFullName') String? employeeRequestFullName,
+
+    @JsonKey(name: 'Result') String? result,
+    @JsonKey(name: 'Problem') String? problem,
+    @JsonKey(name: 'ProblemSolve') String? problemSolve,
+    @JsonKey(name: 'PlanNextDay') String? planNextDay,
+
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'ProjectCode') String? projectCode,
+  }) = _SaleAdminResponse;
+
+  factory SaleAdminResponse.fromJson(Map<String, dynamic> json) =>
+      _$SaleAdminResponseFromJson(json);
+}
+
+@freezed
+class SaleAdminDetailReportResponse with _$SaleAdminDetailReportResponse {
+  const factory SaleAdminDetailReportResponse({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'EmployeeID') required int employeeId,
+    @JsonKey(name: 'ReportTypeID') required int reportTypeId,
+    @JsonKey(name: 'CustomerID') required int customerId,
+    @JsonKey(name: 'EmployeeRequestID') required int employeeRequestId,
+    @JsonKey(name: 'ProjectID') required int projectId,
+
+    @JsonKey(name: 'DateReport') required DateTime dateReport,
+
+    @JsonKey(name: 'ReportTypeName') String? reportTypeName,
+    @JsonKey(name: 'EmployeeFullName') String? employeeFullName,
+    @JsonKey(name: 'ReportContent') String? reportContent,
+    @JsonKey(name: 'CustomerName') String? customerName,
+    @JsonKey(name: 'EmployeeRequestFullName') String? employeeRequestFullName,
+
+    @JsonKey(name: 'Result') String? result,
+    @JsonKey(name: 'Problem') String? problem,
+    @JsonKey(name: 'ProblemSolve') String? problemSolve,
+    @JsonKey(name: 'PlanNextDay') String? planNextDay,
+
+    @JsonKey(name: 'STT') int? stt,
+  }) = _SaleAdminDetailReportResponse;
+
+  factory SaleAdminDetailReportResponse.fromJson(
+      Map<String, dynamic> json,
+      ) =>
+      _$SaleAdminDetailReportResponseFromJson(json);
+}
+
+@freezed
+class SaleAdminTypeReportResponse with _$SaleAdminTypeReportResponse {
+  const factory SaleAdminTypeReportResponse({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'ReportTypeName') required String reportTypeName,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+  }) = _SaleAdminTypeReportResponse;
+
+  factory SaleAdminTypeReportResponse.fromJson(Map<String, dynamic> json) =>
+      _$SaleAdminTypeReportResponseFromJson(json);
+}
+
+@freezed
+class SaleAdminProjectResponse with _$SaleAdminProjectResponse {
+  const factory SaleAdminProjectResponse({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'CustomerID') int? customerId,
+    @JsonKey(name: 'ProjectCode') String? projectCode,
+    @JsonKey(name: 'ProjectName') String? projectName,
+    @JsonKey(name: 'ProjectShortName') String? projectShortName,
+    @JsonKey(name: 'ProjectStatus') int? projectStatus,
+    @JsonKey(name: 'UserID') int? userId,
+    @JsonKey(name: 'UserTechnicalID') int? userTechnicalId,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'IsApproved') bool? isApproved,
+    @JsonKey(name: 'ContactID') int? contactId,
+    @JsonKey(name: 'PO') String? po,
+    @JsonKey(name: 'ProjectType') int? projectType,
+    @JsonKey(name: 'ListCostID') int? listCostId,
+    @JsonKey(name: 'PlanDateStart') DateTime? planDateStart,
+    @JsonKey(name: 'PlanDateEnd') DateTime? planDateEnd,
+    @JsonKey(name: 'ActualDateStart') DateTime? actualDateStart,
+    @JsonKey(name: 'ActualDateEnd') DateTime? actualDateEnd,
+    @JsonKey(name: 'EU') String? eu,
+    @JsonKey(name: 'ProjectManager') int? projectManager,
+    @JsonKey(name: 'CurrentState') String? currentState,
+    @JsonKey(name: 'Priotity') double? priotity,
+    @JsonKey(name: 'PODate') DateTime? poDate,
+    @JsonKey(name: 'EndUser') int? endUser,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
+    @JsonKey(name: 'TypeProject') int? typeProject,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _SaleAdminProjectResponse;
+
+  factory SaleAdminProjectResponse.fromJson(Map<String, dynamic> json) =>
+      _$SaleAdminProjectResponseFromJson(json);
+}
+
+@freezed
+class SaleAdminCustomerResponse with _$SaleAdminCustomerResponse {
+  const factory SaleAdminCustomerResponse({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'CustomerName') String? customerName,
+    @JsonKey(name: 'CustomerCode') String? customerCode,
+    @JsonKey(name: 'CustomerShortName') String? customerShortName,
+    @JsonKey(name: 'Address') String? address,
+    @JsonKey(name: 'Phone') String? phone,
+    @JsonKey(name: 'Email') String? email,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'CustomerType') int? customerType,
+    @JsonKey(name: 'StatusDisable') int? statusDisable,
+    @JsonKey(name: 'Website') String? website,
+    @JsonKey(name: 'ContactName') String? contactName,
+    @JsonKey(name: 'ContactPhone') String? contactPhone,
+    @JsonKey(name: 'ContactEmail') String? contactEmail,
+    @JsonKey(name: 'ContactNote') String? contactNote,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'NoteDelivery') String? noteDelivery,
+    @JsonKey(name: 'NoteVoucher') String? noteVoucher,
+    @JsonKey(name: 'CheckVoucher') String? checkVoucher,
+    @JsonKey(name: 'HardCopyVoucher') String? hardCopyVoucher,
+    @JsonKey(name: 'ClosingDateDebt') DateTime? closingDateDebt,
+    @JsonKey(name: 'Debt') String? debt,
+    @JsonKey(name: 'AdressStock') String? adressStock,
+    @JsonKey(name: 'TaxCode') String? taxCode,
+    @JsonKey(name: 'CustomerDetails') String? customerDetails,
+    @JsonKey(name: 'CustomerSpecializationID') int? customerSpecializationId,
+    @JsonKey(name: 'ProductDetails') String? productDetails,
+    @JsonKey(name: 'BigAccount') bool? bigAccount,
+    @JsonKey(name: 'Province') String? province,
+    @JsonKey(name: 'RegisterOTs') List<dynamic>? registerOTs,
+  }) = _SaleAdminCustomerResponse;
+
+  factory SaleAdminCustomerResponse.fromJson(Map<String, dynamic> json) =>
+      _$SaleAdminCustomerResponseFromJson(json);
+}

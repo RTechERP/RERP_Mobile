@@ -151,4 +151,15 @@ abstract class ReportRepo {
     int customerId,
     int groupType,
     int projectId});
+
+  Future<Either<BaseError, List<UserResponse>>> getAllUser();
+
+  Future<Either<BaseError, void>> saveReportSaleAdmin({
+    required Map<String, dynamic> payload,
+  });
+
+  Future<Either<BaseError, List<SaleAdminTypeReportResponse>>> getAdminTypeReport();
+  Future<Either<BaseError, List<SaleAdminProjectResponse>>> getAdminProject();
+  Future<Either<BaseError, List<SaleAdminCustomerResponse>>> getAdminCustomer();
+
 }

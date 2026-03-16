@@ -31,6 +31,17 @@ abstract class _$SaleStateCWProxy {
 
   SaleState customerParts(List<CustomerPartResponse> customerParts);
 
+  SaleState users(List<UserResponse> users);
+
+  SaleState adminWorks(List<SaleAdminWork> adminWorks);
+
+  SaleState adminTypeReports(
+      List<SaleAdminTypeReportResponse> adminTypeReports);
+
+  SaleState adminCustomers(List<SaleAdminCustomerResponse> adminCustomers);
+
+  SaleState adminProjects(List<SaleAdminProjectResponse> adminProjects);
+
   SaleState userId(int? userId);
 
   SaleState fullName(String? fullName);
@@ -97,6 +108,11 @@ abstract class _$SaleStateCWProxy {
     List<StatusProjectResponse>? statusProjects,
     List<CustomerContactResponse>? customerContacts,
     List<CustomerPartResponse>? customerParts,
+    List<UserResponse>? users,
+    List<SaleAdminWork>? adminWorks,
+    List<SaleAdminTypeReportResponse>? adminTypeReports,
+    List<SaleAdminCustomerResponse>? adminCustomers,
+    List<SaleAdminProjectResponse>? adminProjects,
     int? userId,
     String? fullName,
     int? departmentId,
@@ -173,6 +189,26 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
   @override
   SaleState customerParts(List<CustomerPartResponse> customerParts) =>
       this(customerParts: customerParts);
+
+  @override
+  SaleState users(List<UserResponse> users) => this(users: users);
+
+  @override
+  SaleState adminWorks(List<SaleAdminWork> adminWorks) =>
+      this(adminWorks: adminWorks);
+
+  @override
+  SaleState adminTypeReports(
+          List<SaleAdminTypeReportResponse> adminTypeReports) =>
+      this(adminTypeReports: adminTypeReports);
+
+  @override
+  SaleState adminCustomers(List<SaleAdminCustomerResponse> adminCustomers) =>
+      this(adminCustomers: adminCustomers);
+
+  @override
+  SaleState adminProjects(List<SaleAdminProjectResponse> adminProjects) =>
+      this(adminProjects: adminProjects);
 
   @override
   SaleState userId(int? userId) => this(userId: userId);
@@ -273,6 +309,11 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
     Object? statusProjects = const $CopyWithPlaceholder(),
     Object? customerContacts = const $CopyWithPlaceholder(),
     Object? customerParts = const $CopyWithPlaceholder(),
+    Object? users = const $CopyWithPlaceholder(),
+    Object? adminWorks = const $CopyWithPlaceholder(),
+    Object? adminTypeReports = const $CopyWithPlaceholder(),
+    Object? adminCustomers = const $CopyWithPlaceholder(),
+    Object? adminProjects = const $CopyWithPlaceholder(),
     Object? userId = const $CopyWithPlaceholder(),
     Object? fullName = const $CopyWithPlaceholder(),
     Object? departmentId = const $CopyWithPlaceholder(),
@@ -352,6 +393,30 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
               ? _value.customerParts
               // ignore: cast_nullable_to_non_nullable
               : customerParts as List<CustomerPartResponse>,
+      users: users == const $CopyWithPlaceholder() || users == null
+          ? _value.users
+          // ignore: cast_nullable_to_non_nullable
+          : users as List<UserResponse>,
+      adminWorks:
+          adminWorks == const $CopyWithPlaceholder() || adminWorks == null
+              ? _value.adminWorks
+              // ignore: cast_nullable_to_non_nullable
+              : adminWorks as List<SaleAdminWork>,
+      adminTypeReports: adminTypeReports == const $CopyWithPlaceholder() ||
+              adminTypeReports == null
+          ? _value.adminTypeReports
+          // ignore: cast_nullable_to_non_nullable
+          : adminTypeReports as List<SaleAdminTypeReportResponse>,
+      adminCustomers: adminCustomers == const $CopyWithPlaceholder() ||
+              adminCustomers == null
+          ? _value.adminCustomers
+          // ignore: cast_nullable_to_non_nullable
+          : adminCustomers as List<SaleAdminCustomerResponse>,
+      adminProjects:
+          adminProjects == const $CopyWithPlaceholder() || adminProjects == null
+              ? _value.adminProjects
+              // ignore: cast_nullable_to_non_nullable
+              : adminProjects as List<SaleAdminProjectResponse>,
       userId: userId == const $CopyWithPlaceholder()
           ? _value.userId
           // ignore: cast_nullable_to_non_nullable

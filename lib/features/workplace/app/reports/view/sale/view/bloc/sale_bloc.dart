@@ -13,7 +13,8 @@ import '../../../../../../../../common/logger/index.dart';
 import '../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../../../../data/repository/report_repo.dart';
-import '../../data/sale_model.dart';
+import '../../data/sale_admin_model.dart';
+import '../../data/sale_staff_model.dart';
 
 part 'sale_event.dart';
 part 'sale_state.dart';
@@ -117,12 +118,47 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         updateDate: (picked) => _onUpdateDate(picked, emit),
         submitReport: (pickedDate) => _onSubmitReport(pickedDate, emit),
         resetSubmitFlags: () => _onResetSubmitFlags(emit),
-        deleteReport: (dailyID) => _onDeleteReport(dailyID,emit),
+        deleteReport: (dailyID) => _onDeleteReport(dailyID, emit),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(dateStart, dateEnd, emit),
         selectReport: (dailyID, forEdit) =>
             _onSelectReport(dailyID, forEdit: forEdit, emit: emit),
-        submitEditReport: (pickedDate, dailyID) => _onSubmitEditReport(pickedDate,dailyID, emit),
+        submitEditReport: (pickedDate, dailyID) =>
+            _onSubmitEditReport(pickedDate, dailyID, emit),
+        getAllUser: () => _onGetAllUser(emit),
+        updateAdminWork:
+            (
+              index,
+              projectId,
+              employeeId,
+              employeeRequestId,
+              customerId,
+              reportTypeId,
+              dateReport,
+              reportContent,
+              result,
+              planNextDay,
+              problem,
+              problemSolve,
+            ) => _onUpdateAdminWork(
+              index,
+              projectId: projectId,
+              employeeId: employeeId,
+              employeeRequestId: employeeRequestId,
+              customerId: customerId,
+              reportTypeId: reportTypeId,
+              dateReport: dateReport,
+              reportContent: reportContent,
+              result: result,
+              planNextDay: planNextDay,
+              problem: problem,
+              problemSolve: problemSolve,
+              emit: emit,
+            ),
+        getAdminTypeReport: () => _onGetAdminTypeReport(emit),
+        getAdminProject: () => _onGetAdminProject(emit),
+        getAdminCustomer: () => _onGetAdminCustomer(emit),
+        submitAdminReport: (pickedDate) => _onSubmitAdminReport(pickedDate, emit),
       );
     });
   }
@@ -207,6 +243,25 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
               ),
             ],
 
+            adminWorks: [
+              SaleAdminWork(
+                id: DateTime.now().microsecondsSinceEpoch,
+                employeeId: user.id,
+                employeeRequestId: 0,
+                customerId: 0,
+                projectId: 0,
+                reportTypeId: 0,
+                reportContent: '',
+                result: '',
+                planNextDay: '',
+                problem: '',
+                problemSolve: '',
+                reportTypeName: '',
+                customerName: '',
+
+              ),
+            ],
+
             /// auto mở
             expandedWorkIndex: 0,
           ),
@@ -235,7 +290,7 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         ? DateFormat('yyyy-MM-dd').format(state.dateStart!)
         : '';
 
-    final newWorks = [
+    final newStaffWorks = [
       ...state.staffWorks,
       SaleStaffWork.empty(
         dateReport: dateStr,
@@ -247,22 +302,46 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
       ),
     ];
 
+    final newAdminWorks = [
+      ...state.adminWorks,
+      SaleAdminWork.empty(
+        dateReport: dateStr,
+        projectId: 0,
+        userId: 0,
+        code: '',
+        fullName: '',
+        projectItemId: 0,
+      ),
+    ];
+
     emit(
       state.copyWith(
-        staffWorks: newWorks,
-        expandedWorkIndex: newWorks.length - 1,
+        staffWorks: newStaffWorks,
+        adminWorks: newAdminWorks,
+        expandedWorkIndex: newStaffWorks.length - 1,
       ),
     );
   }
 
   _onRemoveWork(int index, Emitter<SaleState> emit) {
-    final newWorks = [...state.staffWorks];
+    final newStaffWorks = [...state.staffWorks];
+    final newAdminWorks = [...state.adminWorks];
 
-    if (index < 0 || index >= newWorks.length) return;
+    if (index < 0 || index >= newStaffWorks.length) return;
 
-    newWorks.removeAt(index);
+    newStaffWorks.removeAt(index);
 
-    emit(state.copyWith(staffWorks: newWorks, expandedWorkIndex: null));
+    if (index < newAdminWorks.length) {
+      newAdminWorks.removeAt(index);
+    }
+
+    emit(
+      state.copyWith(
+        staffWorks: newStaffWorks,
+        adminWorks: newAdminWorks,
+        expandedWorkIndex: null,
+      ),
+    );
   }
 
   Future<void> _onGetSaleProject(Emitter<SaleState> emit) async {
@@ -567,10 +646,8 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
           'userId': userId,
 
           // Nếu từng work không có date riêng thì dùng khoảng ngày submit
-          'dateStart':
-              (w.dateStart ?? safeStart).toIso8601String(),
-          'dateEnd':
-              (w.dateEnd ?? safeEnd).toIso8601String(),
+          'dateStart': (w.dateStart ?? safeStart).toIso8601String(),
+          'dateEnd': (w.dateEnd ?? safeEnd).toIso8601String(),
 
           'firmId': w.firmId ?? 0,
           'projectTypeId': w.typeProjectId ?? 0,
@@ -636,10 +713,10 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
     final result = await _reportRepo.deleteSaleReport(dailyID: dailyID);
 
     result.fold(
-          (error) {
+      (error) {
         emit(state.copyWith(isDeleting: false, deleteSuccess: false));
       },
-          (message) {
+      (message) {
         /// remove khỏi list hiện tại (không cần gọi lại API)
         final updatedReports = state.reports
             .where((e) => e.id != dailyID)
@@ -659,10 +736,10 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
   }
 
   Future<void> _onChangeDateRange(
-      DateTime dateStart,
-      DateTime dateEnd,
-      Emitter<SaleState> emit,
-      ) async {
+    DateTime dateStart,
+    DateTime dateEnd,
+    Emitter<SaleState> emit,
+  ) async {
     final start = DateTime(dateStart.year, dateStart.month, dateStart.day);
     final end = DateTime(dateEnd.year, dateEnd.month, dateEnd.day);
 
@@ -681,11 +758,11 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
     final res = await _reportRepo.getSaleById(dailyID: dailyID);
 
     await res.fold(
-          (l) async {
+      (l) async {
         _log.logE('Get detail failed: $l');
         emit(state.copyWith(isLoadingDetail: false));
       },
-          (detail) async {
+      (detail) async {
         _log.logI('✅ Detail Report: $detail');
 
         emit(
@@ -702,10 +779,10 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
   }
 
   Future<void> _onSubmitEditReport(
-      DateTime pickedDate,
-      int dailyID,
-      Emitter<SaleState> emit,
-      ) async {
+    DateTime pickedDate,
+    int dailyID,
+    Emitter<SaleState> emit,
+  ) async {
     if (_isSubmittingReport) return;
     _isSubmittingReport = true;
 
@@ -744,10 +821,8 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
           'userId': userId,
 
           // Nếu từng work không có date riêng thì dùng khoảng ngày submit
-          'dateStart':
-          (w.dateStart ?? safeStart).toIso8601String(),
-          'dateEnd':
-          (w.dateEnd ?? safeEnd).toIso8601String(),
+          'dateStart': (w.dateStart ?? safeStart).toIso8601String(),
+          'dateEnd': (w.dateEnd ?? safeEnd).toIso8601String(),
 
           'firmId': w.firmId ?? 0,
           'projectTypeId': w.typeProjectId ?? 0,
@@ -777,11 +852,11 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
       final res = await _reportRepo.saveReportSaleStaff(payload: payload);
 
       await res.fold(
-            (l) async {
+        (l) async {
           _log.logE('❌ Submit API failed: $l');
           emit(state.copyWith(isSaving: false, saveSuccess: false));
         },
-            (r) async {
+        (r) async {
           _log.logI('✅ Submit report success');
           emit(state.copyWith(isSaving: false, saveSuccess: true));
         },
@@ -790,6 +865,181 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
       _log.logE('❌ Submit exception: $e');
       _log.logE('$s');
       emit(state.copyWith(isSaving: false, saveSuccess: false));
+    } finally {
+      _isSubmittingReport = false;
+      _log.logI('🏁 End submit report');
+    }
+  }
+
+  Future<void> _onGetAllUser(Emitter<SaleState> emit) async {
+    final res = await _reportRepo.getAllUser();
+
+    res.fold(
+      (l) {
+        _log.logE('Get all users failed: $l');
+      },
+      (r) {
+        emit(state.copyWith(users: r));
+      },
+    );
+  }
+
+  Future<void> _onGetAdminTypeReport(Emitter<SaleState> emit) async {
+    final res = await _reportRepo.getAdminTypeReport();
+
+    res.fold(
+          (l) {
+        _log.logE('Get admin type report failed: $l');
+      },
+          (r) {
+        emit(state.copyWith(adminTypeReports: r));
+      },
+    );
+  }
+
+  Future<void> _onGetAdminProject(Emitter<SaleState> emit) async {
+    final res = await _reportRepo.getAdminProject();
+
+    res.fold(
+          (l) {
+        _log.logE('Get admin project failed: $l');
+      },
+          (r) {
+        emit(state.copyWith(adminProjects: r));
+      },
+    );
+  }
+
+  Future<void> _onGetAdminCustomer(Emitter<SaleState> emit) async {
+    final res = await _reportRepo.getAdminCustomer();
+
+    res.fold(
+          (l) {
+        _log.logE('Get admin customer failed: $l');
+      },
+          (r) {
+        emit(state.copyWith(adminCustomers: r));
+      },
+    );
+  }
+
+  Future<void> _onUpdateAdminWork(
+      int index, {
+        int? projectId,
+        int? employeeId,
+        int? employeeRequestId,
+        int? customerId,
+        int? reportTypeId,
+        DateTime? dateReport,
+        String? reportContent,
+        String? result,
+        String? planNextDay,
+        String? problem,
+        String? problemSolve,
+        required Emitter<SaleState> emit,
+      }) async {
+    final works = [...state.adminWorks];
+    if (index < 0 || index >= works.length) return;
+
+    final old = works[index];
+
+    final effectiveProjectId = projectId ?? old.projectId;
+    final effectiveEmployeeId = employeeId ?? old.employeeId;
+    final effectiveEmployeeRequestId =
+        employeeRequestId ?? old.employeeRequestId;
+    final effectiveCustomerId = customerId ?? old.customerId;
+    final effectiveReportTypeId = reportTypeId ?? old.reportTypeId;
+    final effectiveDateReport = dateReport ?? old.dateReport;
+
+    works[index] = old.copyWith(
+      projectId: effectiveProjectId,
+      employeeId: effectiveEmployeeId,
+      employeeRequestId: effectiveEmployeeRequestId,
+      customerId: effectiveCustomerId,
+      reportTypeId: effectiveReportTypeId,
+      dateReport: effectiveDateReport,
+      reportContent: reportContent ?? old.reportContent,
+      result: result ?? old.result,
+      planNextDay: planNextDay ?? old.planNextDay,
+      problem: problem ?? old.problem,
+      problemSolve: problemSolve ?? old.problemSolve,
+    );
+
+    emit(
+      state.copyWith(
+        adminWorks: works,
+      ),
+    );
+  }
+
+  Future<void> _onSubmitAdminReport(
+      DateTime pickedDate,
+      Emitter<SaleState> emit,
+      ) async {
+    if (_isSubmittingReport) return;
+    _isSubmittingReport = true;
+
+    try {
+      emit(state.copyWith(isSubmitting: true, submitSuccess: false));
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+      final userId = user?.id;
+
+      if (userId == null) {
+        emit(state.copyWith(isSubmitting: false));
+        return;
+      }
+
+      if (state.adminWorks.isEmpty) {
+        emit(state.copyWith(isSubmitting: false));
+        return;
+      }
+
+      final safeStart = DateTime(
+        pickedDate.year,
+        pickedDate.month,
+        pickedDate.day,
+      );
+
+      final payload = {
+        'request': state.adminWorks.map((w) {
+          return {
+            'ID': 0,
+            'PlanNextDay': w.planNextDay ?? '',
+            'Problem': w.problem ?? '',
+            'ProblemSolve': w.problemSolve ?? '',
+            'ReportContent': w.reportContent ?? '',
+            'Result': w.result ?? '',
+            'EmployeeID': w.employeeId,
+            'EmployeeRequestID': w.employeeRequestId ?? 0,
+            'CustomerID': w.customerId ?? 0,
+            'ProjectID': w.projectId ?? 0,
+            'ReportTypeID': w.reportTypeId ?? 0,
+            'DateReport': safeStart.toIso8601String(),
+          };
+        }).toList(),
+        'IdsDel': [],
+      };
+
+      _log.logD('Payload: ${jsonEncode(payload)}');
+
+      final res = await _reportRepo.saveReportSaleAdmin(payload: payload);
+
+      await res.fold(
+            (l) async {
+          _log.logE('❌ Submit API failed: $l');
+          emit(state.copyWith(isSubmitting: false, submitSuccess: false));
+        },
+            (r) async {
+          _log.logI('✅ Submit report success');
+          emit(state.copyWith(isSubmitting: false, submitSuccess: true));
+        },
+      );
+    } catch (e, s) {
+      _log.logE('❌ Submit exception: $e');
+      _log.logE('$s');
+      emit(state.copyWith(isSubmitting: false, submitSuccess: false));
     } finally {
       _isSubmittingReport = false;
       _log.logI('🏁 End submit report');

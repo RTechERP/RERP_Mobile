@@ -10,7 +10,7 @@ import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
-import '../../data/sale_model.dart';
+import '../../data/sale_staff_model.dart';
 import '../bloc/sale_bloc.dart';
 
 class SaleStaffEditScreen extends StatefulWidget {

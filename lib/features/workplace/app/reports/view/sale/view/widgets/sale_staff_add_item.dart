@@ -6,7 +6,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
-import '../../data/sale_model.dart';
+import '../../data/sale_staff_model.dart';
 import '../bloc/sale_bloc.dart';
 
 class SaleStaffAddItem extends StatefulWidget {

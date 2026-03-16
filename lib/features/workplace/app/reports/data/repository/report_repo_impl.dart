@@ -572,4 +572,65 @@ class ReportRepoImpl implements ReportRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<UserResponse>>> getAllUser() async {
+    try {
+      final res = await _service.getAllUser();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, void>> saveReportSaleAdmin({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.saveReportSaleAdmin(payload: payload);
+
+      if (res.status == 1) {
+        return right(null);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Lưu dữ liệu thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<SaleAdminTypeReportResponse>>> getAdminTypeReport() async {
+    try {
+      final res = await _service.getAdminTypeReport();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<SaleAdminCustomerResponse>>> getAdminCustomer() async {
+    try {
+      final res = await _service.getAdminCustomer();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<SaleAdminProjectResponse>>> getAdminProject() async {
+    try {
+      final res = await _service.getAdminProject();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

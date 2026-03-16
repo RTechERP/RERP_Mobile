@@ -30,7 +30,6 @@ class AppInfoConstants {
   static String get termsOfService => _appInfo.termsOfService;
 
   static String get privacyPolicy => _appInfo.privacyPolicy;
-
 }
 
 class NotificationConfig {
@@ -61,17 +60,16 @@ class BlocMessages {
   static const loginSuccess = 'loginSuccess';
 }
 
-
-
 class FireBaseLog {
   static const String loginPage = 'login_page';
 }
 
-class ApiEndPoint{
+class ApiEndPoint {
   static const String login = '/home/login';
 
   static const String currentUser = '/home/current-user';
-  static const String getDailyReportTech = '/DailyReportTech/get-daily-report-tech';
+  static const String getDailyReportTech =
+      '/DailyReportTech/get-daily-report-tech';
 
   static const String getDepart = '/Department/get-all';
 
@@ -127,11 +125,23 @@ class ApiEndPoint{
   static const String getTypeProject = '/DailyReportSale/get-projecttypebase';
 
   static const String getStatusProject = '/DailyReportSale/get-projectstatus';
-  static const String getCustomerContact = '/DailyReportSale/get-customercontact';
+  static const String getCustomerContact =
+      '/DailyReportSale/get-customercontact';
 
   static const String deleteSaleReport = '/DailyReportSale/delete';
 
   static const String saveSaleStaffReport = '/DailyReportSale/save-data';
 
   static const String getSaleDailyReport = '/DailyReportSale/get-data';
+
+  static const String getAllUser = '/DailyReportSaleAdmin/get-user';
+
+  static const String saveSaleAdminReport = '/DailyReportSaleAdmin/save-data';
+
+  static const String getAdminTypeReport =
+      '/DailyReportSaleAdmin/get-reporttypes';
+
+  static const String getAdminProject = '/DailyReportSaleAdmin/get-projects';
+
+  static const String getAdminCustomer = '/DailyReportSaleAdmin/get-customers';
 }

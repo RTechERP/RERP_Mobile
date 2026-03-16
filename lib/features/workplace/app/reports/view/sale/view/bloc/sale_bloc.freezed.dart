@@ -28,8 +28,12 @@ mixin _$SaleEvent {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -65,6 +69,20 @@ mixin _$SaleEvent {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -74,6 +92,7 @@ mixin _$SaleEvent {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -88,8 +107,12 @@ mixin _$SaleEvent {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -125,6 +148,20 @@ mixin _$SaleEvent {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -132,6 +169,7 @@ mixin _$SaleEvent {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -146,8 +184,12 @@ mixin _$SaleEvent {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -183,6 +225,20 @@ mixin _$SaleEvent {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -190,6 +246,7 @@ mixin _$SaleEvent {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -205,9 +262,14 @@ mixin _$SaleEvent {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -215,6 +277,7 @@ mixin _$SaleEvent {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -229,9 +292,14 @@ mixin _$SaleEvent {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -239,6 +307,7 @@ mixin _$SaleEvent {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -253,9 +322,14 @@ mixin _$SaleEvent {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -263,6 +337,7 @@ mixin _$SaleEvent {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -332,8 +407,12 @@ class _$InitImpl implements _Init {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -369,6 +448,20 @@ class _$InitImpl implements _Init {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -378,6 +471,7 @@ class _$InitImpl implements _Init {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return init();
   }
@@ -395,8 +489,12 @@ class _$InitImpl implements _Init {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -432,6 +530,20 @@ class _$InitImpl implements _Init {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -439,6 +551,7 @@ class _$InitImpl implements _Init {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return init?.call();
   }
@@ -456,8 +569,12 @@ class _$InitImpl implements _Init {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -493,6 +610,20 @@ class _$InitImpl implements _Init {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -500,6 +631,7 @@ class _$InitImpl implements _Init {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -521,9 +653,14 @@ class _$InitImpl implements _Init {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -531,6 +668,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return init(this);
   }
@@ -548,9 +686,14 @@ class _$InitImpl implements _Init {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -558,6 +701,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return init?.call(this);
   }
@@ -575,9 +719,14 @@ class _$InitImpl implements _Init {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -585,6 +734,7 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -646,8 +796,12 @@ class _$AddWorkImpl implements _AddWork {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -683,6 +837,20 @@ class _$AddWorkImpl implements _AddWork {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -692,6 +860,7 @@ class _$AddWorkImpl implements _AddWork {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return addWork();
   }
@@ -709,8 +878,12 @@ class _$AddWorkImpl implements _AddWork {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -746,6 +919,20 @@ class _$AddWorkImpl implements _AddWork {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -753,6 +940,7 @@ class _$AddWorkImpl implements _AddWork {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return addWork?.call();
   }
@@ -770,8 +958,12 @@ class _$AddWorkImpl implements _AddWork {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -807,6 +999,20 @@ class _$AddWorkImpl implements _AddWork {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -814,6 +1020,7 @@ class _$AddWorkImpl implements _AddWork {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (addWork != null) {
@@ -835,9 +1042,14 @@ class _$AddWorkImpl implements _AddWork {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -845,6 +1057,7 @@ class _$AddWorkImpl implements _AddWork {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return addWork(this);
   }
@@ -862,9 +1075,14 @@ class _$AddWorkImpl implements _AddWork {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -872,6 +1090,7 @@ class _$AddWorkImpl implements _AddWork {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return addWork?.call(this);
   }
@@ -889,9 +1108,14 @@ class _$AddWorkImpl implements _AddWork {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -899,6 +1123,7 @@ class _$AddWorkImpl implements _AddWork {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (addWork != null) {
@@ -986,8 +1211,12 @@ class _$RemoveWorkImpl implements _RemoveWork {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -1023,6 +1252,20 @@ class _$RemoveWorkImpl implements _RemoveWork {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -1032,6 +1275,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return removeWork(index);
   }
@@ -1049,8 +1293,12 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -1086,6 +1334,20 @@ class _$RemoveWorkImpl implements _RemoveWork {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -1093,6 +1355,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return removeWork?.call(index);
   }
@@ -1110,8 +1373,12 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -1147,6 +1414,20 @@ class _$RemoveWorkImpl implements _RemoveWork {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -1154,6 +1435,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (removeWork != null) {
@@ -1175,9 +1457,14 @@ class _$RemoveWorkImpl implements _RemoveWork {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -1185,6 +1472,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return removeWork(this);
   }
@@ -1202,9 +1490,14 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -1212,6 +1505,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return removeWork?.call(this);
   }
@@ -1229,9 +1523,14 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -1239,6 +1538,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (removeWork != null) {
@@ -1331,8 +1631,12 @@ class _$ExpandWorkImpl implements _ExpandWork {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -1368,6 +1672,20 @@ class _$ExpandWorkImpl implements _ExpandWork {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -1377,6 +1695,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return expandWork(index);
   }
@@ -1394,8 +1713,12 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -1431,6 +1754,20 @@ class _$ExpandWorkImpl implements _ExpandWork {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -1438,6 +1775,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return expandWork?.call(index);
   }
@@ -1455,8 +1793,12 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -1492,6 +1834,20 @@ class _$ExpandWorkImpl implements _ExpandWork {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -1499,6 +1855,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (expandWork != null) {
@@ -1520,9 +1877,14 @@ class _$ExpandWorkImpl implements _ExpandWork {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -1530,6 +1892,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return expandWork(this);
   }
@@ -1547,9 +1910,14 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -1557,6 +1925,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return expandWork?.call(this);
   }
@@ -1574,9 +1943,14 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -1584,6 +1958,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (expandWork != null) {
@@ -1650,8 +2025,12 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -1687,6 +2066,20 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -1696,6 +2089,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return getSaleProject();
   }
@@ -1713,8 +2107,12 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -1750,6 +2148,20 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -1757,6 +2169,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return getSaleProject?.call();
   }
@@ -1774,8 +2187,12 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -1811,6 +2228,20 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -1818,6 +2249,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getSaleProject != null) {
@@ -1839,9 +2271,14 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -1849,6 +2286,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return getSaleProject(this);
   }
@@ -1866,9 +2304,14 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -1876,6 +2319,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return getSaleProject?.call(this);
   }
@@ -1893,9 +2337,14 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -1903,6 +2352,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getSaleProject != null) {
@@ -1964,8 +2414,12 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -2001,6 +2455,20 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -2010,6 +2478,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return getFirmBase();
   }
@@ -2027,8 +2496,12 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -2064,6 +2537,20 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -2071,6 +2558,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return getFirmBase?.call();
   }
@@ -2088,8 +2576,12 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -2125,6 +2617,20 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -2132,6 +2638,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getFirmBase != null) {
@@ -2153,9 +2660,14 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -2163,6 +2675,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return getFirmBase(this);
   }
@@ -2180,9 +2693,14 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -2190,6 +2708,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return getFirmBase?.call(this);
   }
@@ -2207,9 +2726,14 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -2217,6 +2741,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getFirmBase != null) {
@@ -2278,8 +2803,12 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -2315,6 +2844,20 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -2324,6 +2867,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return getTypeProjectBase();
   }
@@ -2341,8 +2885,12 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -2378,6 +2926,20 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -2385,6 +2947,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return getTypeProjectBase?.call();
   }
@@ -2402,8 +2965,12 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -2439,6 +3006,20 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -2446,6 +3027,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getTypeProjectBase != null) {
@@ -2467,9 +3049,14 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -2477,6 +3064,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return getTypeProjectBase(this);
   }
@@ -2494,9 +3082,14 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -2504,6 +3097,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return getTypeProjectBase?.call(this);
   }
@@ -2521,9 +3115,14 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -2531,6 +3130,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getTypeProjectBase != null) {
@@ -2592,8 +3192,12 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -2629,6 +3233,20 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -2638,6 +3256,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return getStatusProject();
   }
@@ -2655,8 +3274,12 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -2692,6 +3315,20 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -2699,6 +3336,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return getStatusProject?.call();
   }
@@ -2716,8 +3354,12 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -2753,6 +3395,20 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -2760,6 +3416,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getStatusProject != null) {
@@ -2781,9 +3438,14 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -2791,6 +3453,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return getStatusProject(this);
   }
@@ -2808,9 +3471,14 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -2818,6 +3486,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return getStatusProject?.call(this);
   }
@@ -2835,9 +3504,14 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -2845,6 +3519,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getStatusProject != null) {
@@ -2906,8 +3581,12 @@ class _$GetCustomerImpl implements _GetCustomer {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -2943,6 +3622,20 @@ class _$GetCustomerImpl implements _GetCustomer {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -2952,6 +3645,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return getCustomer();
   }
@@ -2969,8 +3663,12 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -3006,6 +3704,20 @@ class _$GetCustomerImpl implements _GetCustomer {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -3013,6 +3725,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return getCustomer?.call();
   }
@@ -3030,8 +3743,12 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -3067,6 +3784,20 @@ class _$GetCustomerImpl implements _GetCustomer {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -3074,6 +3805,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getCustomer != null) {
@@ -3095,9 +3827,14 @@ class _$GetCustomerImpl implements _GetCustomer {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -3105,6 +3842,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return getCustomer(this);
   }
@@ -3122,9 +3860,14 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -3132,6 +3875,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return getCustomer?.call(this);
   }
@@ -3149,9 +3893,14 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -3159,6 +3908,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getCustomer != null) {
@@ -3220,8 +3970,12 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -3257,6 +4011,20 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -3266,6 +4034,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return getTypeTeamSale();
   }
@@ -3283,8 +4052,12 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -3320,6 +4093,20 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -3327,6 +4114,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return getTypeTeamSale?.call();
   }
@@ -3344,8 +4132,12 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -3381,6 +4173,20 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -3388,6 +4194,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getTypeTeamSale != null) {
@@ -3409,9 +4216,14 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -3419,6 +4231,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return getTypeTeamSale(this);
   }
@@ -3436,9 +4249,14 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -3446,6 +4264,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return getTypeTeamSale?.call(this);
   }
@@ -3463,9 +4282,14 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -3473,6 +4297,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getTypeTeamSale != null) {
@@ -3484,6 +4309,1173 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
 
 abstract class _GetTypeTeamSale implements SaleEvent {
   const factory _GetTypeTeamSale() = _$GetTypeTeamSaleImpl;
+}
+
+/// @nodoc
+abstract class _$$GetAdminTypeReportImplCopyWith<$Res> {
+  factory _$$GetAdminTypeReportImplCopyWith(_$GetAdminTypeReportImpl value,
+          $Res Function(_$GetAdminTypeReportImpl) then) =
+      __$$GetAdminTypeReportImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetAdminTypeReportImplCopyWithImpl<$Res>
+    extends _$SaleEventCopyWithImpl<$Res, _$GetAdminTypeReportImpl>
+    implements _$$GetAdminTypeReportImplCopyWith<$Res> {
+  __$$GetAdminTypeReportImplCopyWithImpl(_$GetAdminTypeReportImpl _value,
+      $Res Function(_$GetAdminTypeReportImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetAdminTypeReportImpl implements _GetAdminTypeReport {
+  const _$GetAdminTypeReportImpl();
+
+  @override
+  String toString() {
+    return 'SaleEvent.getAdminTypeReport()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetAdminTypeReportImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() addWork,
+    required TResult Function(int index) removeWork,
+    required TResult Function(int index) expandWork,
+    required TResult Function() getSaleProject,
+    required TResult Function() getFirmBase,
+    required TResult Function() getTypeProjectBase,
+    required TResult Function() getStatusProject,
+    required TResult Function() getCustomer,
+    required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
+    required TResult Function(int customerId) getCustomerContact,
+    required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
+    required TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)
+        updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
+    required TResult Function(DateTime? picked) updateDate,
+    required TResult Function(DateTime pickedDate) submitReport,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(int dailyID) deleteReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(DateTime pickedDate, int dailyID)
+        submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
+  }) {
+    return getAdminTypeReport();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? addWork,
+    TResult? Function(int index)? removeWork,
+    TResult? Function(int index)? expandWork,
+    TResult? Function()? getSaleProject,
+    TResult? Function()? getFirmBase,
+    TResult? Function()? getTypeProjectBase,
+    TResult? Function()? getStatusProject,
+    TResult? Function()? getCustomer,
+    TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
+    TResult? Function(int customerId)? getCustomerContact,
+    TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
+    TResult? Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult? Function(DateTime? picked)? updateDate,
+    TResult? Function(DateTime pickedDate)? submitReport,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(int dailyID)? deleteReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
+  }) {
+    return getAdminTypeReport?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? addWork,
+    TResult Function(int index)? removeWork,
+    TResult Function(int index)? expandWork,
+    TResult Function()? getSaleProject,
+    TResult Function()? getFirmBase,
+    TResult Function()? getTypeProjectBase,
+    TResult Function()? getStatusProject,
+    TResult Function()? getCustomer,
+    TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
+    TResult Function(int customerId)? getCustomerContact,
+    TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
+    TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult Function(DateTime? picked)? updateDate,
+    TResult Function(DateTime pickedDate)? submitReport,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(int dailyID)? deleteReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (getAdminTypeReport != null) {
+      return getAdminTypeReport();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_AddWork value) addWork,
+    required TResult Function(_RemoveWork value) removeWork,
+    required TResult Function(_ExpandWork value) expandWork,
+    required TResult Function(_GetSaleProject value) getSaleProject,
+    required TResult Function(_GetFirmBase value) getFirmBase,
+    required TResult Function(_GetTypeProjectBase value) getTypeProjectBase,
+    required TResult Function(_GetStatusProject value) getStatusProject,
+    required TResult Function(_GetCustomer value) getCustomer,
+    required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
+    required TResult Function(_GetCustomerContact value) getCustomerContact,
+    required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
+    required TResult Function(_UpdateDate value) updateDate,
+    required TResult Function(_SubmitReport value) submitReport,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
+  }) {
+    return getAdminTypeReport(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_AddWork value)? addWork,
+    TResult? Function(_RemoveWork value)? removeWork,
+    TResult? Function(_ExpandWork value)? expandWork,
+    TResult? Function(_GetSaleProject value)? getSaleProject,
+    TResult? Function(_GetFirmBase value)? getFirmBase,
+    TResult? Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult? Function(_GetStatusProject value)? getStatusProject,
+    TResult? Function(_GetCustomer value)? getCustomer,
+    TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
+    TResult? Function(_GetCustomerContact value)? getCustomerContact,
+    TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult? Function(_UpdateDate value)? updateDate,
+    TResult? Function(_SubmitReport value)? submitReport,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
+  }) {
+    return getAdminTypeReport?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_AddWork value)? addWork,
+    TResult Function(_RemoveWork value)? removeWork,
+    TResult Function(_ExpandWork value)? expandWork,
+    TResult Function(_GetSaleProject value)? getSaleProject,
+    TResult Function(_GetFirmBase value)? getFirmBase,
+    TResult Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult Function(_GetStatusProject value)? getStatusProject,
+    TResult Function(_GetCustomer value)? getCustomer,
+    TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
+    TResult Function(_GetCustomerContact value)? getCustomerContact,
+    TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult Function(_UpdateDate value)? updateDate,
+    TResult Function(_SubmitReport value)? submitReport,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (getAdminTypeReport != null) {
+      return getAdminTypeReport(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAdminTypeReport implements SaleEvent {
+  const factory _GetAdminTypeReport() = _$GetAdminTypeReportImpl;
+}
+
+/// @nodoc
+abstract class _$$GetAdminCustomerImplCopyWith<$Res> {
+  factory _$$GetAdminCustomerImplCopyWith(_$GetAdminCustomerImpl value,
+          $Res Function(_$GetAdminCustomerImpl) then) =
+      __$$GetAdminCustomerImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetAdminCustomerImplCopyWithImpl<$Res>
+    extends _$SaleEventCopyWithImpl<$Res, _$GetAdminCustomerImpl>
+    implements _$$GetAdminCustomerImplCopyWith<$Res> {
+  __$$GetAdminCustomerImplCopyWithImpl(_$GetAdminCustomerImpl _value,
+      $Res Function(_$GetAdminCustomerImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetAdminCustomerImpl implements _GetAdminCustomer {
+  const _$GetAdminCustomerImpl();
+
+  @override
+  String toString() {
+    return 'SaleEvent.getAdminCustomer()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetAdminCustomerImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() addWork,
+    required TResult Function(int index) removeWork,
+    required TResult Function(int index) expandWork,
+    required TResult Function() getSaleProject,
+    required TResult Function() getFirmBase,
+    required TResult Function() getTypeProjectBase,
+    required TResult Function() getStatusProject,
+    required TResult Function() getCustomer,
+    required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
+    required TResult Function(int customerId) getCustomerContact,
+    required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
+    required TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)
+        updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
+    required TResult Function(DateTime? picked) updateDate,
+    required TResult Function(DateTime pickedDate) submitReport,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(int dailyID) deleteReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(DateTime pickedDate, int dailyID)
+        submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
+  }) {
+    return getAdminCustomer();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? addWork,
+    TResult? Function(int index)? removeWork,
+    TResult? Function(int index)? expandWork,
+    TResult? Function()? getSaleProject,
+    TResult? Function()? getFirmBase,
+    TResult? Function()? getTypeProjectBase,
+    TResult? Function()? getStatusProject,
+    TResult? Function()? getCustomer,
+    TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
+    TResult? Function(int customerId)? getCustomerContact,
+    TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
+    TResult? Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult? Function(DateTime? picked)? updateDate,
+    TResult? Function(DateTime pickedDate)? submitReport,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(int dailyID)? deleteReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
+  }) {
+    return getAdminCustomer?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? addWork,
+    TResult Function(int index)? removeWork,
+    TResult Function(int index)? expandWork,
+    TResult Function()? getSaleProject,
+    TResult Function()? getFirmBase,
+    TResult Function()? getTypeProjectBase,
+    TResult Function()? getStatusProject,
+    TResult Function()? getCustomer,
+    TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
+    TResult Function(int customerId)? getCustomerContact,
+    TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
+    TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult Function(DateTime? picked)? updateDate,
+    TResult Function(DateTime pickedDate)? submitReport,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(int dailyID)? deleteReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (getAdminCustomer != null) {
+      return getAdminCustomer();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_AddWork value) addWork,
+    required TResult Function(_RemoveWork value) removeWork,
+    required TResult Function(_ExpandWork value) expandWork,
+    required TResult Function(_GetSaleProject value) getSaleProject,
+    required TResult Function(_GetFirmBase value) getFirmBase,
+    required TResult Function(_GetTypeProjectBase value) getTypeProjectBase,
+    required TResult Function(_GetStatusProject value) getStatusProject,
+    required TResult Function(_GetCustomer value) getCustomer,
+    required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
+    required TResult Function(_GetCustomerContact value) getCustomerContact,
+    required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
+    required TResult Function(_UpdateDate value) updateDate,
+    required TResult Function(_SubmitReport value) submitReport,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
+  }) {
+    return getAdminCustomer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_AddWork value)? addWork,
+    TResult? Function(_RemoveWork value)? removeWork,
+    TResult? Function(_ExpandWork value)? expandWork,
+    TResult? Function(_GetSaleProject value)? getSaleProject,
+    TResult? Function(_GetFirmBase value)? getFirmBase,
+    TResult? Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult? Function(_GetStatusProject value)? getStatusProject,
+    TResult? Function(_GetCustomer value)? getCustomer,
+    TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
+    TResult? Function(_GetCustomerContact value)? getCustomerContact,
+    TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult? Function(_UpdateDate value)? updateDate,
+    TResult? Function(_SubmitReport value)? submitReport,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
+  }) {
+    return getAdminCustomer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_AddWork value)? addWork,
+    TResult Function(_RemoveWork value)? removeWork,
+    TResult Function(_ExpandWork value)? expandWork,
+    TResult Function(_GetSaleProject value)? getSaleProject,
+    TResult Function(_GetFirmBase value)? getFirmBase,
+    TResult Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult Function(_GetStatusProject value)? getStatusProject,
+    TResult Function(_GetCustomer value)? getCustomer,
+    TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
+    TResult Function(_GetCustomerContact value)? getCustomerContact,
+    TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult Function(_UpdateDate value)? updateDate,
+    TResult Function(_SubmitReport value)? submitReport,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (getAdminCustomer != null) {
+      return getAdminCustomer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAdminCustomer implements SaleEvent {
+  const factory _GetAdminCustomer() = _$GetAdminCustomerImpl;
+}
+
+/// @nodoc
+abstract class _$$GetAdminProjectImplCopyWith<$Res> {
+  factory _$$GetAdminProjectImplCopyWith(_$GetAdminProjectImpl value,
+          $Res Function(_$GetAdminProjectImpl) then) =
+      __$$GetAdminProjectImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetAdminProjectImplCopyWithImpl<$Res>
+    extends _$SaleEventCopyWithImpl<$Res, _$GetAdminProjectImpl>
+    implements _$$GetAdminProjectImplCopyWith<$Res> {
+  __$$GetAdminProjectImplCopyWithImpl(
+      _$GetAdminProjectImpl _value, $Res Function(_$GetAdminProjectImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetAdminProjectImpl implements _GetAdminProject {
+  const _$GetAdminProjectImpl();
+
+  @override
+  String toString() {
+    return 'SaleEvent.getAdminProject()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetAdminProjectImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() addWork,
+    required TResult Function(int index) removeWork,
+    required TResult Function(int index) expandWork,
+    required TResult Function() getSaleProject,
+    required TResult Function() getFirmBase,
+    required TResult Function() getTypeProjectBase,
+    required TResult Function() getStatusProject,
+    required TResult Function() getCustomer,
+    required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
+    required TResult Function(int customerId) getCustomerContact,
+    required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
+    required TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)
+        updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
+    required TResult Function(DateTime? picked) updateDate,
+    required TResult Function(DateTime pickedDate) submitReport,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(int dailyID) deleteReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(DateTime pickedDate, int dailyID)
+        submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
+  }) {
+    return getAdminProject();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? addWork,
+    TResult? Function(int index)? removeWork,
+    TResult? Function(int index)? expandWork,
+    TResult? Function()? getSaleProject,
+    TResult? Function()? getFirmBase,
+    TResult? Function()? getTypeProjectBase,
+    TResult? Function()? getStatusProject,
+    TResult? Function()? getCustomer,
+    TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
+    TResult? Function(int customerId)? getCustomerContact,
+    TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
+    TResult? Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult? Function(DateTime? picked)? updateDate,
+    TResult? Function(DateTime pickedDate)? submitReport,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(int dailyID)? deleteReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
+  }) {
+    return getAdminProject?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? addWork,
+    TResult Function(int index)? removeWork,
+    TResult Function(int index)? expandWork,
+    TResult Function()? getSaleProject,
+    TResult Function()? getFirmBase,
+    TResult Function()? getTypeProjectBase,
+    TResult Function()? getStatusProject,
+    TResult Function()? getCustomer,
+    TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
+    TResult Function(int customerId)? getCustomerContact,
+    TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
+    TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult Function(DateTime? picked)? updateDate,
+    TResult Function(DateTime pickedDate)? submitReport,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(int dailyID)? deleteReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (getAdminProject != null) {
+      return getAdminProject();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_AddWork value) addWork,
+    required TResult Function(_RemoveWork value) removeWork,
+    required TResult Function(_ExpandWork value) expandWork,
+    required TResult Function(_GetSaleProject value) getSaleProject,
+    required TResult Function(_GetFirmBase value) getFirmBase,
+    required TResult Function(_GetTypeProjectBase value) getTypeProjectBase,
+    required TResult Function(_GetStatusProject value) getStatusProject,
+    required TResult Function(_GetCustomer value) getCustomer,
+    required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
+    required TResult Function(_GetCustomerContact value) getCustomerContact,
+    required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
+    required TResult Function(_UpdateDate value) updateDate,
+    required TResult Function(_SubmitReport value) submitReport,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
+  }) {
+    return getAdminProject(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_AddWork value)? addWork,
+    TResult? Function(_RemoveWork value)? removeWork,
+    TResult? Function(_ExpandWork value)? expandWork,
+    TResult? Function(_GetSaleProject value)? getSaleProject,
+    TResult? Function(_GetFirmBase value)? getFirmBase,
+    TResult? Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult? Function(_GetStatusProject value)? getStatusProject,
+    TResult? Function(_GetCustomer value)? getCustomer,
+    TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
+    TResult? Function(_GetCustomerContact value)? getCustomerContact,
+    TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult? Function(_UpdateDate value)? updateDate,
+    TResult? Function(_SubmitReport value)? submitReport,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
+  }) {
+    return getAdminProject?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_AddWork value)? addWork,
+    TResult Function(_RemoveWork value)? removeWork,
+    TResult Function(_ExpandWork value)? expandWork,
+    TResult Function(_GetSaleProject value)? getSaleProject,
+    TResult Function(_GetFirmBase value)? getFirmBase,
+    TResult Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult Function(_GetStatusProject value)? getStatusProject,
+    TResult Function(_GetCustomer value)? getCustomer,
+    TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
+    TResult Function(_GetCustomerContact value)? getCustomerContact,
+    TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult Function(_UpdateDate value)? updateDate,
+    TResult Function(_SubmitReport value)? submitReport,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (getAdminProject != null) {
+      return getAdminProject(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAdminProject implements SaleEvent {
+  const factory _GetAdminProject() = _$GetAdminProjectImpl;
 }
 
 /// @nodoc
@@ -3562,8 +5554,12 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -3599,6 +5595,20 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -3608,6 +5618,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return getCustomerContact(customerId);
   }
@@ -3625,8 +5636,12 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -3662,6 +5677,20 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -3669,6 +5698,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return getCustomerContact?.call(customerId);
   }
@@ -3686,8 +5716,12 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -3723,6 +5757,20 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -3730,6 +5778,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getCustomerContact != null) {
@@ -3751,9 +5800,14 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -3761,6 +5815,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return getCustomerContact(this);
   }
@@ -3778,9 +5833,14 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -3788,6 +5848,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return getCustomerContact?.call(this);
   }
@@ -3805,9 +5866,14 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -3815,6 +5881,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getCustomerContact != null) {
@@ -3910,8 +5977,12 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -3947,6 +6018,20 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -3956,6 +6041,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return getCustomerPart(customerId);
   }
@@ -3973,8 +6059,12 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -4010,6 +6100,20 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -4017,6 +6121,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return getCustomerPart?.call(customerId);
   }
@@ -4034,8 +6139,12 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -4071,6 +6180,20 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -4078,6 +6201,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getCustomerPart != null) {
@@ -4099,9 +6223,14 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -4109,6 +6238,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return getCustomerPart(this);
   }
@@ -4126,9 +6256,14 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -4136,6 +6271,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return getCustomerPart?.call(this);
   }
@@ -4153,9 +6289,14 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -4163,6 +6304,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (getCustomerPart != null) {
@@ -4180,6 +6322,395 @@ abstract class _GetCustomerPart implements SaleEvent {
   @JsonKey(ignore: true)
   _$$GetCustomerPartImplCopyWith<_$GetCustomerPartImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetAllUserImplCopyWith<$Res> {
+  factory _$$GetAllUserImplCopyWith(
+          _$GetAllUserImpl value, $Res Function(_$GetAllUserImpl) then) =
+      __$$GetAllUserImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetAllUserImplCopyWithImpl<$Res>
+    extends _$SaleEventCopyWithImpl<$Res, _$GetAllUserImpl>
+    implements _$$GetAllUserImplCopyWith<$Res> {
+  __$$GetAllUserImplCopyWithImpl(
+      _$GetAllUserImpl _value, $Res Function(_$GetAllUserImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetAllUserImpl implements _GetAllUser {
+  const _$GetAllUserImpl();
+
+  @override
+  String toString() {
+    return 'SaleEvent.getAllUser()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetAllUserImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() addWork,
+    required TResult Function(int index) removeWork,
+    required TResult Function(int index) expandWork,
+    required TResult Function() getSaleProject,
+    required TResult Function() getFirmBase,
+    required TResult Function() getTypeProjectBase,
+    required TResult Function() getStatusProject,
+    required TResult Function() getCustomer,
+    required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
+    required TResult Function(int customerId) getCustomerContact,
+    required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
+    required TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)
+        updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
+    required TResult Function(DateTime? picked) updateDate,
+    required TResult Function(DateTime pickedDate) submitReport,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(int dailyID) deleteReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(DateTime pickedDate, int dailyID)
+        submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
+  }) {
+    return getAllUser();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? addWork,
+    TResult? Function(int index)? removeWork,
+    TResult? Function(int index)? expandWork,
+    TResult? Function()? getSaleProject,
+    TResult? Function()? getFirmBase,
+    TResult? Function()? getTypeProjectBase,
+    TResult? Function()? getStatusProject,
+    TResult? Function()? getCustomer,
+    TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
+    TResult? Function(int customerId)? getCustomerContact,
+    TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
+    TResult? Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult? Function(DateTime? picked)? updateDate,
+    TResult? Function(DateTime pickedDate)? submitReport,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(int dailyID)? deleteReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
+  }) {
+    return getAllUser?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? addWork,
+    TResult Function(int index)? removeWork,
+    TResult Function(int index)? expandWork,
+    TResult Function()? getSaleProject,
+    TResult Function()? getFirmBase,
+    TResult Function()? getTypeProjectBase,
+    TResult Function()? getStatusProject,
+    TResult Function()? getCustomer,
+    TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
+    TResult Function(int customerId)? getCustomerContact,
+    TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
+    TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult Function(DateTime? picked)? updateDate,
+    TResult Function(DateTime pickedDate)? submitReport,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(int dailyID)? deleteReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (getAllUser != null) {
+      return getAllUser();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_AddWork value) addWork,
+    required TResult Function(_RemoveWork value) removeWork,
+    required TResult Function(_ExpandWork value) expandWork,
+    required TResult Function(_GetSaleProject value) getSaleProject,
+    required TResult Function(_GetFirmBase value) getFirmBase,
+    required TResult Function(_GetTypeProjectBase value) getTypeProjectBase,
+    required TResult Function(_GetStatusProject value) getStatusProject,
+    required TResult Function(_GetCustomer value) getCustomer,
+    required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
+    required TResult Function(_GetCustomerContact value) getCustomerContact,
+    required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
+    required TResult Function(_UpdateDate value) updateDate,
+    required TResult Function(_SubmitReport value) submitReport,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
+  }) {
+    return getAllUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_AddWork value)? addWork,
+    TResult? Function(_RemoveWork value)? removeWork,
+    TResult? Function(_ExpandWork value)? expandWork,
+    TResult? Function(_GetSaleProject value)? getSaleProject,
+    TResult? Function(_GetFirmBase value)? getFirmBase,
+    TResult? Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult? Function(_GetStatusProject value)? getStatusProject,
+    TResult? Function(_GetCustomer value)? getCustomer,
+    TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
+    TResult? Function(_GetCustomerContact value)? getCustomerContact,
+    TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult? Function(_UpdateDate value)? updateDate,
+    TResult? Function(_SubmitReport value)? submitReport,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
+  }) {
+    return getAllUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_AddWork value)? addWork,
+    TResult Function(_RemoveWork value)? removeWork,
+    TResult Function(_ExpandWork value)? expandWork,
+    TResult Function(_GetSaleProject value)? getSaleProject,
+    TResult Function(_GetFirmBase value)? getFirmBase,
+    TResult Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult Function(_GetStatusProject value)? getStatusProject,
+    TResult Function(_GetCustomer value)? getCustomer,
+    TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
+    TResult Function(_GetCustomerContact value)? getCustomerContact,
+    TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult Function(_UpdateDate value)? updateDate,
+    TResult Function(_SubmitReport value)? submitReport,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (getAllUser != null) {
+      return getAllUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAllUser implements SaleEvent {
+  const factory _GetAllUser() = _$GetAllUserImpl;
 }
 
 /// @nodoc
@@ -4641,8 +7172,12 @@ class _$UpdateWorkImpl implements _UpdateWork {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -4678,6 +7213,20 @@ class _$UpdateWorkImpl implements _UpdateWork {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -4687,6 +7236,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return updateWork(
         index,
@@ -4737,8 +7287,12 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -4774,6 +7328,20 @@ class _$UpdateWorkImpl implements _UpdateWork {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -4781,6 +7349,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return updateWork?.call(
         index,
@@ -4831,8 +7400,12 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -4868,6 +7441,20 @@ class _$UpdateWorkImpl implements _UpdateWork {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -4875,6 +7462,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (updateWork != null) {
@@ -4929,9 +7517,14 @@ class _$UpdateWorkImpl implements _UpdateWork {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -4939,6 +7532,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return updateWork(this);
   }
@@ -4956,9 +7550,14 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -4966,6 +7565,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return updateWork?.call(this);
   }
@@ -4983,9 +7583,14 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -4993,6 +7598,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (updateWork != null) {
@@ -5077,6 +7683,620 @@ abstract class _UpdateWork implements SaleEvent {
 }
 
 /// @nodoc
+abstract class _$$UpdateAdminWorkImplCopyWith<$Res> {
+  factory _$$UpdateAdminWorkImplCopyWith(_$UpdateAdminWorkImpl value,
+          $Res Function(_$UpdateAdminWorkImpl) then) =
+      __$$UpdateAdminWorkImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int index,
+      int? projectId,
+      int? employeeId,
+      int? employeeRequestId,
+      int? customerId,
+      int? reportTypeId,
+      DateTime? dateReport,
+      String? reportContent,
+      String? result,
+      String? planNextDay,
+      String? problem,
+      String? problemSolve});
+}
+
+/// @nodoc
+class __$$UpdateAdminWorkImplCopyWithImpl<$Res>
+    extends _$SaleEventCopyWithImpl<$Res, _$UpdateAdminWorkImpl>
+    implements _$$UpdateAdminWorkImplCopyWith<$Res> {
+  __$$UpdateAdminWorkImplCopyWithImpl(
+      _$UpdateAdminWorkImpl _value, $Res Function(_$UpdateAdminWorkImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+    Object? projectId = freezed,
+    Object? employeeId = freezed,
+    Object? employeeRequestId = freezed,
+    Object? customerId = freezed,
+    Object? reportTypeId = freezed,
+    Object? dateReport = freezed,
+    Object? reportContent = freezed,
+    Object? result = freezed,
+    Object? planNextDay = freezed,
+    Object? problem = freezed,
+    Object? problemSolve = freezed,
+  }) {
+    return _then(_$UpdateAdminWorkImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeRequestId: freezed == employeeRequestId
+          ? _value.employeeRequestId
+          : employeeRequestId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      reportTypeId: freezed == reportTypeId
+          ? _value.reportTypeId
+          : reportTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dateReport: freezed == dateReport
+          ? _value.dateReport
+          : dateReport // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      reportContent: freezed == reportContent
+          ? _value.reportContent
+          : reportContent // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as String?,
+      planNextDay: freezed == planNextDay
+          ? _value.planNextDay
+          : planNextDay // ignore: cast_nullable_to_non_nullable
+              as String?,
+      problem: freezed == problem
+          ? _value.problem
+          : problem // ignore: cast_nullable_to_non_nullable
+              as String?,
+      problemSolve: freezed == problemSolve
+          ? _value.problemSolve
+          : problemSolve // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateAdminWorkImpl implements _UpdateAdminWork {
+  const _$UpdateAdminWorkImpl(
+      {required this.index,
+      this.projectId,
+      this.employeeId,
+      this.employeeRequestId,
+      this.customerId,
+      this.reportTypeId,
+      this.dateReport,
+      this.reportContent,
+      this.result,
+      this.planNextDay,
+      this.problem,
+      this.problemSolve});
+
+  @override
+  final int index;
+  @override
+  final int? projectId;
+  @override
+  final int? employeeId;
+  @override
+  final int? employeeRequestId;
+  @override
+  final int? customerId;
+  @override
+  final int? reportTypeId;
+  @override
+  final DateTime? dateReport;
+  @override
+  final String? reportContent;
+  @override
+  final String? result;
+  @override
+  final String? planNextDay;
+  @override
+  final String? problem;
+  @override
+  final String? problemSolve;
+
+  @override
+  String toString() {
+    return 'SaleEvent.updateAdminWork(index: $index, projectId: $projectId, employeeId: $employeeId, employeeRequestId: $employeeRequestId, customerId: $customerId, reportTypeId: $reportTypeId, dateReport: $dateReport, reportContent: $reportContent, result: $result, planNextDay: $planNextDay, problem: $problem, problemSolve: $problemSolve)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateAdminWorkImpl &&
+            (identical(other.index, index) || other.index == index) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.employeeRequestId, employeeRequestId) ||
+                other.employeeRequestId == employeeRequestId) &&
+            (identical(other.customerId, customerId) ||
+                other.customerId == customerId) &&
+            (identical(other.reportTypeId, reportTypeId) ||
+                other.reportTypeId == reportTypeId) &&
+            (identical(other.dateReport, dateReport) ||
+                other.dateReport == dateReport) &&
+            (identical(other.reportContent, reportContent) ||
+                other.reportContent == reportContent) &&
+            (identical(other.result, result) || other.result == result) &&
+            (identical(other.planNextDay, planNextDay) ||
+                other.planNextDay == planNextDay) &&
+            (identical(other.problem, problem) || other.problem == problem) &&
+            (identical(other.problemSolve, problemSolve) ||
+                other.problemSolve == problemSolve));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      index,
+      projectId,
+      employeeId,
+      employeeRequestId,
+      customerId,
+      reportTypeId,
+      dateReport,
+      reportContent,
+      result,
+      planNextDay,
+      problem,
+      problemSolve);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateAdminWorkImplCopyWith<_$UpdateAdminWorkImpl> get copyWith =>
+      __$$UpdateAdminWorkImplCopyWithImpl<_$UpdateAdminWorkImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() addWork,
+    required TResult Function(int index) removeWork,
+    required TResult Function(int index) expandWork,
+    required TResult Function() getSaleProject,
+    required TResult Function() getFirmBase,
+    required TResult Function() getTypeProjectBase,
+    required TResult Function() getStatusProject,
+    required TResult Function() getCustomer,
+    required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
+    required TResult Function(int customerId) getCustomerContact,
+    required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
+    required TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)
+        updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
+    required TResult Function(DateTime? picked) updateDate,
+    required TResult Function(DateTime pickedDate) submitReport,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(int dailyID) deleteReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(DateTime pickedDate, int dailyID)
+        submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
+  }) {
+    return updateAdminWork(
+        index,
+        projectId,
+        employeeId,
+        employeeRequestId,
+        customerId,
+        reportTypeId,
+        dateReport,
+        reportContent,
+        result,
+        planNextDay,
+        problem,
+        problemSolve);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? addWork,
+    TResult? Function(int index)? removeWork,
+    TResult? Function(int index)? expandWork,
+    TResult? Function()? getSaleProject,
+    TResult? Function()? getFirmBase,
+    TResult? Function()? getTypeProjectBase,
+    TResult? Function()? getStatusProject,
+    TResult? Function()? getCustomer,
+    TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
+    TResult? Function(int customerId)? getCustomerContact,
+    TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
+    TResult? Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult? Function(DateTime? picked)? updateDate,
+    TResult? Function(DateTime pickedDate)? submitReport,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(int dailyID)? deleteReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
+  }) {
+    return updateAdminWork?.call(
+        index,
+        projectId,
+        employeeId,
+        employeeRequestId,
+        customerId,
+        reportTypeId,
+        dateReport,
+        reportContent,
+        result,
+        planNextDay,
+        problem,
+        problemSolve);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? addWork,
+    TResult Function(int index)? removeWork,
+    TResult Function(int index)? expandWork,
+    TResult Function()? getSaleProject,
+    TResult Function()? getFirmBase,
+    TResult Function()? getTypeProjectBase,
+    TResult Function()? getStatusProject,
+    TResult Function()? getCustomer,
+    TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
+    TResult Function(int customerId)? getCustomerContact,
+    TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
+    TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult Function(DateTime? picked)? updateDate,
+    TResult Function(DateTime pickedDate)? submitReport,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(int dailyID)? deleteReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (updateAdminWork != null) {
+      return updateAdminWork(
+          index,
+          projectId,
+          employeeId,
+          employeeRequestId,
+          customerId,
+          reportTypeId,
+          dateReport,
+          reportContent,
+          result,
+          planNextDay,
+          problem,
+          problemSolve);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_AddWork value) addWork,
+    required TResult Function(_RemoveWork value) removeWork,
+    required TResult Function(_ExpandWork value) expandWork,
+    required TResult Function(_GetSaleProject value) getSaleProject,
+    required TResult Function(_GetFirmBase value) getFirmBase,
+    required TResult Function(_GetTypeProjectBase value) getTypeProjectBase,
+    required TResult Function(_GetStatusProject value) getStatusProject,
+    required TResult Function(_GetCustomer value) getCustomer,
+    required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
+    required TResult Function(_GetCustomerContact value) getCustomerContact,
+    required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
+    required TResult Function(_UpdateDate value) updateDate,
+    required TResult Function(_SubmitReport value) submitReport,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
+  }) {
+    return updateAdminWork(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_AddWork value)? addWork,
+    TResult? Function(_RemoveWork value)? removeWork,
+    TResult? Function(_ExpandWork value)? expandWork,
+    TResult? Function(_GetSaleProject value)? getSaleProject,
+    TResult? Function(_GetFirmBase value)? getFirmBase,
+    TResult? Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult? Function(_GetStatusProject value)? getStatusProject,
+    TResult? Function(_GetCustomer value)? getCustomer,
+    TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
+    TResult? Function(_GetCustomerContact value)? getCustomerContact,
+    TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult? Function(_UpdateDate value)? updateDate,
+    TResult? Function(_SubmitReport value)? submitReport,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
+  }) {
+    return updateAdminWork?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_AddWork value)? addWork,
+    TResult Function(_RemoveWork value)? removeWork,
+    TResult Function(_ExpandWork value)? expandWork,
+    TResult Function(_GetSaleProject value)? getSaleProject,
+    TResult Function(_GetFirmBase value)? getFirmBase,
+    TResult Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult Function(_GetStatusProject value)? getStatusProject,
+    TResult Function(_GetCustomer value)? getCustomer,
+    TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
+    TResult Function(_GetCustomerContact value)? getCustomerContact,
+    TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult Function(_UpdateDate value)? updateDate,
+    TResult Function(_SubmitReport value)? submitReport,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (updateAdminWork != null) {
+      return updateAdminWork(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateAdminWork implements SaleEvent {
+  const factory _UpdateAdminWork(
+      {required final int index,
+      final int? projectId,
+      final int? employeeId,
+      final int? employeeRequestId,
+      final int? customerId,
+      final int? reportTypeId,
+      final DateTime? dateReport,
+      final String? reportContent,
+      final String? result,
+      final String? planNextDay,
+      final String? problem,
+      final String? problemSolve}) = _$UpdateAdminWorkImpl;
+
+  int get index;
+  int? get projectId;
+  int? get employeeId;
+  int? get employeeRequestId;
+  int? get customerId;
+  int? get reportTypeId;
+  DateTime? get dateReport;
+  String? get reportContent;
+  String? get result;
+  String? get planNextDay;
+  String? get problem;
+  String? get problemSolve;
+  @JsonKey(ignore: true)
+  _$$UpdateAdminWorkImplCopyWith<_$UpdateAdminWorkImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$UpdateDateImplCopyWith<$Res> {
   factory _$$UpdateDateImplCopyWith(
           _$UpdateDateImpl value, $Res Function(_$UpdateDateImpl) then) =
@@ -5150,8 +8370,12 @@ class _$UpdateDateImpl implements _UpdateDate {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -5187,6 +8411,20 @@ class _$UpdateDateImpl implements _UpdateDate {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -5196,6 +8434,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return updateDate(picked);
   }
@@ -5213,8 +8452,12 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -5250,6 +8493,20 @@ class _$UpdateDateImpl implements _UpdateDate {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -5257,6 +8514,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return updateDate?.call(picked);
   }
@@ -5274,8 +8532,12 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -5311,6 +8573,20 @@ class _$UpdateDateImpl implements _UpdateDate {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -5318,6 +8594,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (updateDate != null) {
@@ -5339,9 +8616,14 @@ class _$UpdateDateImpl implements _UpdateDate {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -5349,6 +8631,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return updateDate(this);
   }
@@ -5366,9 +8649,14 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -5376,6 +8664,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return updateDate?.call(this);
   }
@@ -5393,9 +8682,14 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -5403,6 +8697,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (updateDate != null) {
@@ -5496,8 +8791,12 @@ class _$SubmitReportImpl implements _SubmitReport {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -5533,6 +8832,20 @@ class _$SubmitReportImpl implements _SubmitReport {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -5542,6 +8855,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return submitReport(pickedDate);
   }
@@ -5559,8 +8873,12 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -5596,6 +8914,20 @@ class _$SubmitReportImpl implements _SubmitReport {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -5603,6 +8935,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return submitReport?.call(pickedDate);
   }
@@ -5620,8 +8953,12 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -5657,6 +8994,20 @@ class _$SubmitReportImpl implements _SubmitReport {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -5664,6 +9015,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (submitReport != null) {
@@ -5685,9 +9037,14 @@ class _$SubmitReportImpl implements _SubmitReport {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -5695,6 +9052,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return submitReport(this);
   }
@@ -5712,9 +9070,14 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -5722,6 +9085,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return submitReport?.call(this);
   }
@@ -5739,9 +9103,14 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -5749,6 +9118,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (submitReport != null) {
@@ -5815,8 +9185,12 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -5852,6 +9226,20 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -5861,6 +9249,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return resetSubmitFlags();
   }
@@ -5878,8 +9267,12 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -5915,6 +9308,20 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -5922,6 +9329,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return resetSubmitFlags?.call();
   }
@@ -5939,8 +9347,12 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -5976,6 +9388,20 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -5983,6 +9409,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (resetSubmitFlags != null) {
@@ -6004,9 +9431,14 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -6014,6 +9446,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return resetSubmitFlags(this);
   }
@@ -6031,9 +9464,14 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -6041,6 +9479,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return resetSubmitFlags?.call(this);
   }
@@ -6058,9 +9497,14 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -6068,6 +9512,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (resetSubmitFlags != null) {
@@ -6155,8 +9600,12 @@ class _$DeleteReportImpl implements _DeleteReport {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -6192,6 +9641,20 @@ class _$DeleteReportImpl implements _DeleteReport {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -6201,6 +9664,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return deleteReport(dailyID);
   }
@@ -6218,8 +9682,12 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -6255,6 +9723,20 @@ class _$DeleteReportImpl implements _DeleteReport {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -6262,6 +9744,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return deleteReport?.call(dailyID);
   }
@@ -6279,8 +9762,12 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -6316,6 +9803,20 @@ class _$DeleteReportImpl implements _DeleteReport {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -6323,6 +9824,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (deleteReport != null) {
@@ -6344,9 +9846,14 @@ class _$DeleteReportImpl implements _DeleteReport {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -6354,6 +9861,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return deleteReport(this);
   }
@@ -6371,9 +9879,14 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -6381,6 +9894,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return deleteReport?.call(this);
   }
@@ -6398,9 +9912,14 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -6408,6 +9927,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (deleteReport != null) {
@@ -6511,8 +10031,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -6548,6 +10072,20 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -6557,6 +10095,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -6574,8 +10113,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -6611,6 +10154,20 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -6618,6 +10175,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -6635,8 +10193,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -6672,6 +10234,20 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -6679,6 +10255,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -6700,9 +10277,14 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -6710,6 +10292,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return changeDateRange(this);
   }
@@ -6727,9 +10310,14 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -6737,6 +10325,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return changeDateRange?.call(this);
   }
@@ -6754,9 +10343,14 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -6764,6 +10358,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -6868,8 +10463,12 @@ class _$SelectReportImpl implements _SelectReport {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -6905,6 +10504,20 @@ class _$SelectReportImpl implements _SelectReport {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -6914,6 +10527,7 @@ class _$SelectReportImpl implements _SelectReport {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return selectReport(dailyID, forEdit);
   }
@@ -6931,8 +10545,12 @@ class _$SelectReportImpl implements _SelectReport {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -6968,6 +10586,20 @@ class _$SelectReportImpl implements _SelectReport {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -6975,6 +10607,7 @@ class _$SelectReportImpl implements _SelectReport {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return selectReport?.call(dailyID, forEdit);
   }
@@ -6992,8 +10625,12 @@ class _$SelectReportImpl implements _SelectReport {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -7029,6 +10666,20 @@ class _$SelectReportImpl implements _SelectReport {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -7036,6 +10687,7 @@ class _$SelectReportImpl implements _SelectReport {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (selectReport != null) {
@@ -7057,9 +10709,14 @@ class _$SelectReportImpl implements _SelectReport {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -7067,6 +10724,7 @@ class _$SelectReportImpl implements _SelectReport {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return selectReport(this);
   }
@@ -7084,9 +10742,14 @@ class _$SelectReportImpl implements _SelectReport {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -7094,6 +10757,7 @@ class _$SelectReportImpl implements _SelectReport {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return selectReport?.call(this);
   }
@@ -7111,9 +10775,14 @@ class _$SelectReportImpl implements _SelectReport {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -7121,6 +10790,7 @@ class _$SelectReportImpl implements _SelectReport {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (selectReport != null) {
@@ -7225,8 +10895,12 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     required TResult Function() getStatusProject,
     required TResult Function() getCustomer,
     required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
     required TResult Function(
             int index,
             int? projectId,
@@ -7262,6 +10936,20 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
             String? backlog,
             String? customerProduct)
         updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function() resetSubmitFlags,
@@ -7271,6 +10959,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     required TResult Function(int dailyID, bool forEdit) selectReport,
     required TResult Function(DateTime pickedDate, int dailyID)
         submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
   }) {
     return submitEditReport(pickedDate, dailyID);
   }
@@ -7288,8 +10977,12 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult? Function()? getStatusProject,
     TResult? Function()? getCustomer,
     TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
     TResult? Function(int customerId)? getCustomerContact,
     TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
     TResult? Function(
             int index,
             int? projectId,
@@ -7325,6 +11018,20 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function()? resetSubmitFlags,
@@ -7332,6 +11039,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID, bool forEdit)? selectReport,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
   }) {
     return submitEditReport?.call(pickedDate, dailyID);
   }
@@ -7349,8 +11057,12 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult Function()? getStatusProject,
     TResult Function()? getCustomer,
     TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
     TResult Function(
             int index,
             int? projectId,
@@ -7386,6 +11098,20 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
             String? backlog,
             String? customerProduct)?
         updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function()? resetSubmitFlags,
@@ -7393,6 +11119,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID, bool forEdit)? selectReport,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (submitEditReport != null) {
@@ -7414,9 +11141,14 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     required TResult Function(_GetStatusProject value) getStatusProject,
     required TResult Function(_GetCustomer value) getCustomer,
     required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
     required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
     required TResult Function(_SubmitReport value) submitReport,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
@@ -7424,6 +11156,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectReport value) selectReport,
     required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
   }) {
     return submitEditReport(this);
   }
@@ -7441,9 +11174,14 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult? Function(_GetStatusProject value)? getStatusProject,
     TResult? Function(_GetCustomer value)? getCustomer,
     TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
     TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
     TResult? Function(_SubmitReport value)? submitReport,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -7451,6 +11189,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectReport value)? selectReport,
     TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
   }) {
     return submitEditReport?.call(this);
   }
@@ -7468,9 +11207,14 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult Function(_GetStatusProject value)? getStatusProject,
     TResult Function(_GetCustomer value)? getCustomer,
     TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
     TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
     TResult Function(_SubmitReport value)? submitReport,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
@@ -7478,6 +11222,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectReport value)? selectReport,
     TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
     required TResult orElse(),
   }) {
     if (submitEditReport != null) {
@@ -7495,5 +11240,428 @@ abstract class _SubmitEditReport implements SaleEvent {
   int get dailyID;
   @JsonKey(ignore: true)
   _$$SubmitEditReportImplCopyWith<_$SubmitEditReportImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SubmitAdminReportImplCopyWith<$Res> {
+  factory _$$SubmitAdminReportImplCopyWith(_$SubmitAdminReportImpl value,
+          $Res Function(_$SubmitAdminReportImpl) then) =
+      __$$SubmitAdminReportImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime pickedDate});
+}
+
+/// @nodoc
+class __$$SubmitAdminReportImplCopyWithImpl<$Res>
+    extends _$SaleEventCopyWithImpl<$Res, _$SubmitAdminReportImpl>
+    implements _$$SubmitAdminReportImplCopyWith<$Res> {
+  __$$SubmitAdminReportImplCopyWithImpl(_$SubmitAdminReportImpl _value,
+      $Res Function(_$SubmitAdminReportImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pickedDate = null,
+  }) {
+    return _then(_$SubmitAdminReportImpl(
+      null == pickedDate
+          ? _value.pickedDate
+          : pickedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SubmitAdminReportImpl implements _SubmitAdminReport {
+  const _$SubmitAdminReportImpl(this.pickedDate);
+
+  @override
+  final DateTime pickedDate;
+
+  @override
+  String toString() {
+    return 'SaleEvent.submitAdminReport(pickedDate: $pickedDate)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SubmitAdminReportImpl &&
+            (identical(other.pickedDate, pickedDate) ||
+                other.pickedDate == pickedDate));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, pickedDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SubmitAdminReportImplCopyWith<_$SubmitAdminReportImpl> get copyWith =>
+      __$$SubmitAdminReportImplCopyWithImpl<_$SubmitAdminReportImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() addWork,
+    required TResult Function(int index) removeWork,
+    required TResult Function(int index) expandWork,
+    required TResult Function() getSaleProject,
+    required TResult Function() getFirmBase,
+    required TResult Function() getTypeProjectBase,
+    required TResult Function() getStatusProject,
+    required TResult Function() getCustomer,
+    required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
+    required TResult Function(int customerId) getCustomerContact,
+    required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
+    required TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)
+        updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)
+        updateAdminWork,
+    required TResult Function(DateTime? picked) updateDate,
+    required TResult Function(DateTime pickedDate) submitReport,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(int dailyID) deleteReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(DateTime pickedDate, int dailyID)
+        submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
+  }) {
+    return submitAdminReport(pickedDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? addWork,
+    TResult? Function(int index)? removeWork,
+    TResult? Function(int index)? expandWork,
+    TResult? Function()? getSaleProject,
+    TResult? Function()? getFirmBase,
+    TResult? Function()? getTypeProjectBase,
+    TResult? Function()? getStatusProject,
+    TResult? Function()? getCustomer,
+    TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
+    TResult? Function(int customerId)? getCustomerContact,
+    TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
+    TResult? Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult? Function(DateTime? picked)? updateDate,
+    TResult? Function(DateTime pickedDate)? submitReport,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(int dailyID)? deleteReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
+  }) {
+    return submitAdminReport?.call(pickedDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? addWork,
+    TResult Function(int index)? removeWork,
+    TResult Function(int index)? expandWork,
+    TResult Function()? getSaleProject,
+    TResult Function()? getFirmBase,
+    TResult Function()? getTypeProjectBase,
+    TResult Function()? getStatusProject,
+    TResult Function()? getCustomer,
+    TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
+    TResult Function(int customerId)? getCustomerContact,
+    TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
+    TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve)?
+        updateAdminWork,
+    TResult Function(DateTime? picked)? updateDate,
+    TResult Function(DateTime pickedDate)? submitReport,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(int dailyID)? deleteReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (submitAdminReport != null) {
+      return submitAdminReport(pickedDate);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_AddWork value) addWork,
+    required TResult Function(_RemoveWork value) removeWork,
+    required TResult Function(_ExpandWork value) expandWork,
+    required TResult Function(_GetSaleProject value) getSaleProject,
+    required TResult Function(_GetFirmBase value) getFirmBase,
+    required TResult Function(_GetTypeProjectBase value) getTypeProjectBase,
+    required TResult Function(_GetStatusProject value) getStatusProject,
+    required TResult Function(_GetCustomer value) getCustomer,
+    required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
+    required TResult Function(_GetCustomerContact value) getCustomerContact,
+    required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
+    required TResult Function(_UpdateDate value) updateDate,
+    required TResult Function(_SubmitReport value) submitReport,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
+  }) {
+    return submitAdminReport(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_AddWork value)? addWork,
+    TResult? Function(_RemoveWork value)? removeWork,
+    TResult? Function(_ExpandWork value)? expandWork,
+    TResult? Function(_GetSaleProject value)? getSaleProject,
+    TResult? Function(_GetFirmBase value)? getFirmBase,
+    TResult? Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult? Function(_GetStatusProject value)? getStatusProject,
+    TResult? Function(_GetCustomer value)? getCustomer,
+    TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
+    TResult? Function(_GetCustomerContact value)? getCustomerContact,
+    TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult? Function(_UpdateDate value)? updateDate,
+    TResult? Function(_SubmitReport value)? submitReport,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
+  }) {
+    return submitAdminReport?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_AddWork value)? addWork,
+    TResult Function(_RemoveWork value)? removeWork,
+    TResult Function(_ExpandWork value)? expandWork,
+    TResult Function(_GetSaleProject value)? getSaleProject,
+    TResult Function(_GetFirmBase value)? getFirmBase,
+    TResult Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult Function(_GetStatusProject value)? getStatusProject,
+    TResult Function(_GetCustomer value)? getCustomer,
+    TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
+    TResult Function(_GetCustomerContact value)? getCustomerContact,
+    TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult Function(_UpdateDate value)? updateDate,
+    TResult Function(_SubmitReport value)? submitReport,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
+    required TResult orElse(),
+  }) {
+    if (submitAdminReport != null) {
+      return submitAdminReport(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SubmitAdminReport implements SaleEvent {
+  const factory _SubmitAdminReport(final DateTime pickedDate) =
+      _$SubmitAdminReportImpl;
+
+  DateTime get pickedDate;
+  @JsonKey(ignore: true)
+  _$$SubmitAdminReportImplCopyWith<_$SubmitAdminReportImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

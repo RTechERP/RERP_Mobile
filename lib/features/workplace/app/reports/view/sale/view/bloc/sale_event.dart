@@ -13,10 +13,17 @@ class SaleEvent with _$SaleEvent {
   const factory SaleEvent.getCustomer() = _GetCustomer;
   const factory SaleEvent.getTypeTeamSale() = _GetTypeTeamSale;
 
+  const factory SaleEvent.getAdminTypeReport() = _GetAdminTypeReport;
+
+  const factory SaleEvent.getAdminCustomer() = _GetAdminCustomer;
+  const factory SaleEvent.getAdminProject() = _GetAdminProject;
+
   const factory SaleEvent.getCustomerContact({required int customerId}) =
       _GetCustomerContact;
   const factory SaleEvent.getCustomerPart({required int customerId}) =
       _GetCustomerPart;
+
+  const factory SaleEvent.getAllUser() = _GetAllUser;
   const factory SaleEvent.updateWork({
     required int index,
     int? projectId,
@@ -53,6 +60,22 @@ class SaleEvent with _$SaleEvent {
     String? customerProduct,
   }) = _UpdateWork;
 
+
+  const factory SaleEvent.updateAdminWork({
+    required int index,
+    int? projectId,
+    int? employeeId,
+    int? employeeRequestId,
+    int? customerId,
+    int? reportTypeId,
+    DateTime? dateReport,
+    String? reportContent,
+    String? result,
+    String? planNextDay,
+    String? problem,
+    String? problemSolve,
+  }) = _UpdateAdminWork;
+
   const factory SaleEvent.updateDate(DateTime? picked) = _UpdateDate;
 
   const factory SaleEvent.submitReport(DateTime pickedDate) = _SubmitReport;
@@ -72,4 +95,6 @@ class SaleEvent with _$SaleEvent {
   }) = _SelectReport;
 
   const factory SaleEvent.submitEditReport(DateTime pickedDate, int dailyID) = _SubmitEditReport;
+
+  const factory SaleEvent.submitAdminReport(DateTime pickedDate) = _SubmitAdminReport;
 }

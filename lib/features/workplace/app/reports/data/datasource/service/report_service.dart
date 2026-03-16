@@ -498,6 +498,18 @@ class ReportService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<List<SaleAdminTypeReportResponse>>> getAdminTypeReport() async {
+    return get<BaseData<List<SaleAdminTypeReportResponse>>>(
+      ApiEndPoint.getAdminTypeReport,
+      parser: (json) => BaseData<List<SaleAdminTypeReportResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => SaleAdminTypeReportResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
   Future<BaseData<List<StatusProjectResponse>>> getStatusProject() async {
     return get<BaseData<List<StatusProjectResponse>>>(
       ApiEndPoint.getStatusProject,
@@ -529,6 +541,16 @@ class ReportService extends DioBaseApiService {
     return post<BaseData<void>>(
       ApiEndPoint.saveSaleStaffReport,
       body: body,
+      parser: (json) => BaseData<void>.fromJson(json, (_) => null),
+    );
+  }
+
+  Future<BaseData<void>> saveReportSaleAdmin({
+    required Map<String, dynamic> payload,
+  }) async {
+    return post<BaseData<void>>(
+      ApiEndPoint.saveSaleAdminReport,
+      body: payload,
       parser: (json) => BaseData<void>.fromJson(json, (_) => null),
     );
   }
@@ -576,6 +598,42 @@ class ReportService extends DioBaseApiService {
       parser: (json) => BaseData<SaleReportResponse>.fromJson(
         {"data": json},
             (data) => SaleReportResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  Future<BaseData<List<UserResponse>>> getAllUser() async {
+    return get<BaseData<List<UserResponse>>>(
+      ApiEndPoint.getAllUser,
+      parser: (json) => BaseData<List<UserResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => UserResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  Future<BaseData<List<SaleAdminProjectResponse>>> getAdminProject() async {
+    return get<BaseData<List<SaleAdminProjectResponse>>>(
+      ApiEndPoint.getAdminProject,
+      parser: (json) => BaseData<List<SaleAdminProjectResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => SaleAdminProjectResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  Future<BaseData<List<SaleAdminCustomerResponse>>> getAdminCustomer() async {
+    return get<BaseData<List<SaleAdminCustomerResponse>>>(
+      ApiEndPoint.getAdminCustomer,
+      parser: (json) => BaseData<List<SaleAdminCustomerResponse>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => SaleAdminCustomerResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
     );
   }
