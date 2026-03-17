@@ -105,7 +105,7 @@ class SaleAdminWork extends Equatable {
 
   /// từ API detail
   factory SaleAdminWork.fromDetailSaleReportResponse(
-      SaleAdminDetailReportResponse d,
+      DetailSaleAdminReportResponse d,
       ) {
     return SaleAdminWork(
       id: d.id,

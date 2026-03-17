@@ -74,6 +74,7 @@ class SaleEvent with _$SaleEvent {
     String? planNextDay,
     String? problem,
     String? problemSolve,
+    String? reportTypeName,
   }) = _UpdateAdminWork;
 
   const factory SaleEvent.updateDate(DateTime? picked) = _UpdateDate;
@@ -99,4 +100,9 @@ class SaleEvent with _$SaleEvent {
   const factory SaleEvent.submitEditReport(DateTime pickedDate, int dailyID) = _SubmitEditReport;
 
   const factory SaleEvent.submitAdminReport(DateTime pickedDate) = _SubmitAdminReport;
+
+  const factory SaleEvent.submitEditAdminReport(DateTime pickedDate, int dailyID) = _SubmitEditAdminReport;
+
+  const factory SaleEvent.deleteAdminReport({required int dailyID}) = _DeleteAdminReport;
+
 }

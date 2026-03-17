@@ -141,6 +141,7 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
               planNextDay,
               problem,
               problemSolve,
+            reportTypeName,
             ) => _onUpdateAdminWork(
               index,
               projectId: projectId,
@@ -154,6 +155,7 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
               planNextDay: planNextDay,
               problem: problem,
               problemSolve: problemSolve,
+              reportTypeName: reportTypeName,
               emit: emit,
             ),
         getAdminTypeReport: () => _onGetAdminTypeReport(emit),
@@ -162,6 +164,9 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         submitAdminReport: (pickedDate) =>
             _onSubmitAdminReport(pickedDate, emit),
         selectAdminReport: (dailyID) => _onSelectAdminReport(dailyID, emit: emit),
+        submitEditAdminReport: (pickedDate, dailyID) =>
+            _onSubmitEditAdminReport(pickedDate, dailyID, emit),
+        deleteAdminReport: (dailyID) => _onDeleteAdminReport(dailyID, emit),
       );
     });
   }
@@ -831,6 +836,9 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
           state.copyWith(
             isLoadingDetail: false,
             selectedReportAdminDetail: detail,
+            adminWorks: [
+              SaleAdminWork.fromDetailSaleReportResponse(detail),
+            ],
           ),
         );
       },
@@ -995,6 +1003,7 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
     String? planNextDay,
     String? problem,
     String? problemSolve,
+        String? reportTypeName,
     required Emitter<SaleState> emit,
   }) async {
     final works = [...state.adminWorks];
@@ -1022,6 +1031,7 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
       planNextDay: planNextDay ?? old.planNextDay,
       problem: problem ?? old.problem,
       problemSolve: problemSolve ?? old.problemSolve,
+      reportTypeName: reportTypeName ?? old.reportTypeName,
     );
 
     emit(state.copyWith(adminWorks: works));
@@ -1099,5 +1109,114 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
       _isSubmittingReport = false;
       _log.logI('🏁 End submit report');
     }
+  }
+
+  Future<void> _onSubmitEditAdminReport(
+      DateTime pickedDate,
+      int dailyID,
+      Emitter<SaleState> emit,
+      ) async {
+    if (_isSubmittingReport) return;
+    _isSubmittingReport = true;
+
+    try {
+      emit(state.copyWith(isSubmitting: true, submitSuccess: false));
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+      final userId = user?.id;
+
+      if (userId == null) {
+        emit(state.copyWith(isSubmitting: false));
+        return;
+      }
+
+      if (state.adminWorks.isEmpty) {
+        emit(state.copyWith(isSubmitting: false));
+        return;
+      }
+
+      final safeStart = DateTime(
+        pickedDate.year,
+        pickedDate.month,
+        pickedDate.day,
+      );
+
+      final payload = {
+        'request': state.adminWorks.map((w) {
+          return {
+            'ID': dailyID,
+            'PlanNextDay': w.planNextDay ?? '',
+            'Problem': w.problem ?? '',
+            'ProblemSolve': w.problemSolve ?? '',
+            'ReportContent': w.reportContent ?? '',
+            'Result': w.result ?? '',
+            'EmployeeID': w.employeeId,
+            'EmployeeRequestID': w.employeeRequestId ?? 0,
+            'CustomerID': w.customerId ?? 0,
+            'ProjectID': w.projectId ?? 0,
+            'ReportTypeID': w.reportTypeId ?? 0,
+            'DateReport': safeStart.toIso8601String(),
+          };
+        }).toList(),
+        'IdsDel': [],
+      };
+
+      _log.logD('Payload: ${jsonEncode(payload)}');
+
+      final res = await _reportRepo.saveReportSaleAdmin(payload: payload);
+
+      await res.fold(
+            (l) async {
+          _log.logE('❌ Submit API failed: $l');
+          emit(state.copyWith(isSubmitting: false, submitSuccess: false));
+        },
+            (r) async {
+          _log.logI('✅ Submit report success');
+          emit(state.copyWith(isSubmitting: false, submitSuccess: true));
+        },
+      );
+    } catch (e, s) {
+      _log.logE('❌ Submit exception: $e');
+      _log.logE('$s');
+      emit(state.copyWith(isSubmitting: false, submitSuccess: false));
+    } finally {
+      _isSubmittingReport = false;
+      _log.logI('🏁 End submit report');
+    }
+  }
+
+  Future<void> _onDeleteAdminReport(int dailyID, Emitter<SaleState> emit) async {
+    emit(
+      state.copyWith(
+        isDeleting: true,
+        deleteSuccess: false,
+        status: BaseStateStatus.loading,
+      ),
+    );
+
+    final result = await _reportRepo.deleteSaleAdminReport(dailyID: dailyID);
+
+    result.fold(
+          (error) {
+        emit(state.copyWith(isDeleting: false, deleteSuccess: false));
+      },
+          (message) {
+        /// remove khỏi list hiện tại (không cần gọi lại API)
+        final updatedReports = state.adminReports
+            .where((e) => e.id != dailyID)
+            .toList();
+
+        emit(
+          state.copyWith(
+            adminReports: updatedReports,
+            isDeleting: false,
+            deleteSuccess: true,
+            status: BaseStateStatus.success,
+            message: message,
+          ),
+        );
+      },
+    );
   }
 }

@@ -9,6 +9,8 @@ import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../../../../../../../common/enums/index.dart';
+import '../../../../../../../../common/helpers/index.dart';
+import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/buttons/custom_text_button.dart';
 import '../bloc/sale_bloc.dart';
 import '../widgets/sale_admin_add_item.dart';
@@ -165,9 +167,25 @@ class _SaleAdminAddScreenState
                           if (!isValid) return;
 
                           final values = formState.value;
-                          // Hiện tại tất cả dateStart/dateEnd nằm trong từng SaleStaffWork
-                          // (được cập nhật ở SaleStaffAddItem), nên chỉ cần dùng ngày hôm nay
-                          // làm ngày submit tổng thể.
+
+                          final error = ValidateHelper.validateSaleAdminReport(
+                            reports: state.adminWorks,
+                            getEmployeeFullName: (e) => e.employeeFullName ?? '',
+                            getTypeReportName: (e) => e.reportTypeName ?? '',
+                            getReportContent: (e) => e.reportContent ?? '',
+                            getResult: (e) => e.result ?? '',
+
+                            getPlanNextDay: (e) => e.planNextDay ?? '',
+                          );
+
+                          if (error != null) {
+                            showMessage(
+                              context,
+                              error,
+                              type: SnackBarType.error,
+                            );
+                            return;
+                          }
 
                           bloc.add(SaleEvent.submitAdminReport(DateTime.now()));
                         },

@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rtc_erp/features/workplace/app/reports/view/sale/view/widgets/app_card_sale_admin_report.dart';
+import 'package:rtc_erp/features/workplace/app/reports/view/sale/view/widgets/app_card_sale_staff_report.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
@@ -12,7 +14,6 @@ import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../common/services/permissions/role_groups.dart';
-import '../../../../../../../../common/utils/card/index.dart';
 import '../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../routes/route_names.dart';
@@ -380,11 +381,14 @@ class _SaleScreenState
               ),
             ],
           ),
-          child: AppCardReport(
-            projectCode: r.projectCode ?? '',
-            projectName: r.customerName ?? '',
-            time: DateTime.tryParse(r.createdDate.toString()),
-            showProgress: false,
+          child: AppCardSaleStaffReport(
+            projectCode: r.projectCode,
+            customerName: r.customerName,
+            contactName: r.contactName,
+            content: r.content,
+            result: r.result,
+            planNext: r.planNext,
+            dateStart: r.dateStart,
             onTap: () async {
               final reload = await context.push(
                 RouteNames.reportSaleStaffDetail,
@@ -427,7 +431,7 @@ class _SaleScreenState
                   );
                   if (!confirmed) return;
 
-                  bloc.add(SaleEvent.deleteReport(dailyID: r.id));
+                  bloc.add(SaleEvent.deleteAdminReport(dailyID: r.id));
                 },
                 backgroundColor: Colors.red,
                 foregroundColor: Colors.white,
@@ -436,11 +440,14 @@ class _SaleScreenState
               ),
             ],
           ),
-          child: AppCardReport(
-            projectCode: r.reportContent ?? '',
-            projectName: r.employeeFullName ?? '',
-            showProgress: false,
-            time: DateTime.tryParse(r.dateReport.toString()),
+          child: AppCardSaleAdminReport(
+            projectCode: r.projectCode,
+            reportTypeName: r.reportTypeName,
+            employeeFullName: r.employeeFullName,
+            reportContent: r.reportContent,
+            result: r.result,
+            planNextDay: r.planNextDay,
+            dateReport: DateTime.tryParse(r.dateReport.toString()),
             onTap: () async {
               final reload = await context.push(
                 RouteNames.reportSaledAdminDetail,
@@ -457,7 +464,7 @@ class _SaleScreenState
                 bloc.add(const SaleEvent.init());
               }
             },
-          ),
+          )
         );
       },
     );

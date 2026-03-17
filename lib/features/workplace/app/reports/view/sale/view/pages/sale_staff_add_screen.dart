@@ -9,6 +9,7 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/enums/index.dart';
+import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/buttons/custom_text_button.dart';
 import '../bloc/sale_bloc.dart';
@@ -168,10 +169,30 @@ class _SaleStaffAddScreenState
                           if (!isValid) return;
 
                           final values = formState.value;
-                          // Hiện tại tất cả dateStart/dateEnd nằm trong từng SaleStaffWork
-                          // (được cập nhật ở SaleStaffAddItem), nên chỉ cần dùng ngày hôm nay
-                          // làm ngày submit tổng thể.
+                          final error = ValidateHelper.validateSaleStaffReport(
+                            reports: state.staffWorks,
 
+                            getFirmName: (e) => e.firmName ?? '',
+                            getProjectTypeBaseID: (e) => e.typeProjectId,
+                            getCustomerName: (e) => e.customerName ?? '',
+                            getProjectTypeName: (e) => e.typeProjectName ?? '',
+                            getContactName: (e) => e.customerContactName ?? '',
+                            getMainIndex: (e) => e.typeTeamSaleMainIndex ?? '',
+                            getContent: (e) => e.content,
+                            getResult: (e) => e.results,
+                            getPlanNext: (e) => e.planNextDay,
+                            getProductOfCustomer: (e) => e.customerProduct ?? '',
+                            getStatusName: (e) => e.statusProjectName ?? '',
+                          );
+
+                          if (error != null) {
+                            showMessage(
+                              context,
+                              error,
+                              type: SnackBarType.error,
+                            );
+                            return;
+                          }
                           bloc.add(SaleEvent.submitReport(DateTime.now()));
                         },
                       ),

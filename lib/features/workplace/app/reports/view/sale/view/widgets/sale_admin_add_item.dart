@@ -168,7 +168,7 @@ class _SaleAdminAddItemState extends State<SaleAdminAddItem> {
   Widget _buildContent(BuildContext context) {
     return BlocBuilder<SaleBloc, SaleState>(
       buildWhen: (prev, curr) =>
-      prev.adminProjects != curr.adminProjects ||
+          prev.adminProjects != curr.adminProjects ||
           prev.adminCustomers != curr.adminCustomers ||
           prev.adminTypeReports != curr.adminTypeReports ||
           prev.users != curr.users,
@@ -223,6 +223,7 @@ class _SaleAdminAddItemState extends State<SaleAdminAddItem> {
                       SaleEvent.updateAdminWork(
                         index: widget.index,
                         reportTypeId: item.id,
+                        reportTypeName: item.reportTypeName,
                       ),
                     );
                   },
@@ -251,7 +252,9 @@ class _SaleAdminAddItemState extends State<SaleAdminAddItem> {
                   items: state.adminProjects,
                   displayText: (v) => '${v.projectCode} - ${v.projectName}',
                   onSelected: (item) {
-                    projectField?.didChange('${item.projectCode} - ${item.projectName}');
+                    projectField?.didChange(
+                      '${item.projectCode} - ${item.projectName}',
+                    );
 
                     context.read<SaleBloc>().add(
                       SaleEvent.updateAdminWork(
@@ -285,7 +288,9 @@ class _SaleAdminAddItemState extends State<SaleAdminAddItem> {
                   items: state.adminCustomers,
                   displayText: (v) => '${v.customerCode} - ${v.customerName}',
                   onSelected: (item) {
-                    customerField?.didChange('${item.customerCode} - ${item.customerName}');
+                    customerField?.didChange(
+                      '${item.customerCode} - ${item.customerName}',
+                    );
 
                     context.read<SaleBloc>().add(
                       SaleEvent.updateAdminWork(
@@ -356,7 +361,7 @@ class _SaleAdminAddItemState extends State<SaleAdminAddItem> {
                 context.read<SaleBloc>().add(
                   SaleEvent.updateAdminWork(
                     index: widget.index,
-                        reportContent: v,
+                    reportContent: v,
                   ),
                 );
               },
@@ -374,10 +379,7 @@ class _SaleAdminAddItemState extends State<SaleAdminAddItem> {
               maxLines: 3,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
-                  SaleEvent.updateAdminWork(
-                    index: widget.index,
-                    result: v,
-                  ),
+                  SaleEvent.updateAdminWork(index: widget.index, result: v),
                 );
               },
             ),
@@ -414,10 +416,7 @@ class _SaleAdminAddItemState extends State<SaleAdminAddItem> {
               maxLines: 2,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
-                  SaleEvent.updateAdminWork(
-                    index: widget.index,
-                    problem: v,
-                  ),
+                  SaleEvent.updateAdminWork(index: widget.index, problem: v),
                 );
               },
             ),
@@ -435,7 +434,8 @@ class _SaleAdminAddItemState extends State<SaleAdminAddItem> {
               onChanged: (v) {
                 context.read<SaleBloc>().add(
                   SaleEvent.updateAdminWork(
-                    index: widget.index, problemSolve: v,
+                    index: widget.index,
+                    problemSolve: v,
                   ),
                 );
               },

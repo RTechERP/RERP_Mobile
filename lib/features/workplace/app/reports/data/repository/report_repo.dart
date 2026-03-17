@@ -174,4 +174,7 @@ abstract class ReportRepo {
     required int dailyID,
   });
 
+  Future<Either<BaseError, String>> deleteSaleAdminReport({required int dailyID});
+
+
 }

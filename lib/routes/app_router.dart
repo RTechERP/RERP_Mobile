@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/reg_general_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_detail_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_screen.dart';
@@ -16,6 +17,7 @@ import '../di/injection.dart';
 import '../features/auth/view/bloc/auth_bloc.dart';
 import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/meeting_room/meeting_room_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_screen.dart';
@@ -61,6 +63,7 @@ import '../features/workplace/app/reports/view/sale/view/bloc/sale_bloc.dart';
 import '../features/workplace/app/reports/view/sale/view/pages/sale_admin_add_screen.dart';
 import '../features/workplace/app/reports/view/sale/view/pages/sale_admin_detail_screen.dart';
 
+import '../features/workplace/app/reports/view/sale/view/pages/sale_admin_edit_screen.dart';
 import '../features/workplace/app/reports/view/sale/view/pages/sale_screen.dart';
 import '../features/workplace/app/reports/view/sale/view/pages/sale_staff_add_screen.dart';
 import '../features/workplace/app/reports/view/sale/view/pages/sale_staff_detail_screen.dart';
@@ -456,12 +459,30 @@ class AppRouter {
               return SaleStaffEditScreen(dailyId: dailyId);
             },
           ),
+
+          GoRoute(
+            path: RouteNames.reportSaleAdminEdit,
+            builder: (context, state) {
+              final dailyId = state.extra as int;
+              return SaleAdminEditScreen(dailyId: dailyId);
+            },
+          ),
         ],
       ),
 
       GoRoute(
         path: '/favorites',
         builder: (context, state) => const FavoritesAddingScreen(),
+      ),
+
+      GoRoute(
+        path: RouteNames.reggeneral,
+        builder: (context, state) => const RegGeneralScreen(),
+      ),
+
+      GoRoute(
+        path: RouteNames.meetingRoom,
+        builder: (context, state) => const MeetingRoomScreen(),
       ),
     ],
   );

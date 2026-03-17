@@ -130,6 +130,8 @@ class ApiEndPoint {
 
   static const String deleteSaleReport = '/DailyReportSale/delete';
 
+  static const String deleteSaleAdminReport = '/DailyReportSaleAdmin/delete';
+
   static const String saveSaleStaffReport = '/DailyReportSale/save-data';
 
   static const String getSaleDailyReport = '/DailyReportSale/get-data';

@@ -247,6 +247,7 @@ class _WorkPlaceScreenState
                           iconCodePoint: Icons.dvr_outlined.codePoint,
                           name: 'applications.reg_general'.tr(),
                           imageUrl: AppImages.app_menu_reg_general,
+                          route: RouteNames.reggeneral,
                         ),
                         AppItemModel(
                           id: 'report',

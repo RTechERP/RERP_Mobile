@@ -283,4 +283,126 @@ class ValidateHelper {
 
     return null;
   }
+
+  static String? validateSaleAdminReport<T>({
+    required List<T> reports,
+
+    required String Function(T) getEmployeeFullName,
+    required String Function(T) getTypeReportName,
+    required String Function(T) getReportContent,
+    required String Function(T) getResult,
+    required String Function(T) getPlanNextDay,
+  }) {
+    if (reports.isEmpty) return 'Vui lòng thêm ít nhất 1 báo cáo';
+
+    final usedTypes = <String>{};
+
+    for (int i = 0; i < reports.length; i++) {
+      final report = reports[i];
+      final prefix = 'Báo cáo ${i + 1}: ';
+
+      final employee = getEmployeeFullName(report).trim();
+      final typeName = getTypeReportName(report).trim();
+
+      if (employee.isEmpty) {
+        return '${prefix}Vui lòng chọn Nhân viên';
+      }
+
+      if (typeName.isEmpty) {
+        return '${prefix}Vui lòng chọn loại báo cáo';
+      }
+
+      if (usedTypes.contains(typeName)) {
+        return '${prefix}Loại báo cáo đã được chọn ở dòng khác';
+      }
+
+      usedTypes.add(typeName);
+
+      if (getReportContent(report).trim().isEmpty) {
+        return '${prefix}Vui lòng nhập Nội dung';
+      }
+
+      if (getResult(report).trim().isEmpty) {
+        return '${prefix}Vui lòng nhập Kết quả';
+      }
+
+      if (getPlanNextDay(report).trim().isEmpty) {
+        return '${prefix}Vui lòng nhập Kế hoạch ngày tiếp theo';
+      }
+    }
+
+    return null;
+  }
+
+  static String? validateSaleStaffReport<T>({
+    required List<T> reports,
+
+    required String Function(T) getFirmName,
+    required int? Function(T) getProjectTypeBaseID,
+    required String Function(T) getCustomerName,
+    required String Function(T) getProjectTypeName,
+    required String Function(T) getContactName,
+    required String Function(T) getMainIndex,
+    required String Function(T) getContent,
+    required String Function(T) getResult,
+    required String Function(T) getPlanNext,
+    required String Function(T) getProductOfCustomer,
+    required String Function(T) getStatusName,
+  }) {
+    if (reports.isEmpty) return 'Vui lòng thêm ít nhất 1 báo cáo';
+
+    for (int i = 0; i < reports.length; i++) {
+      final report = reports[i];
+      final prefix = 'Báo cáo ${i + 1}: ';
+
+      if (getFirmName(report).trim().isEmpty) {
+        return '${prefix}Vui lòng chọn Công ty';
+      }
+
+      if ((getProjectTypeBaseID(report) ?? 0) <= 0) {
+        return '${prefix}Vui lòng chọn Loại dự án';
+      }
+
+      if (getCustomerName(report).trim().isEmpty) {
+        return '${prefix}Vui lòng chọn Khách hàng';
+      }
+
+      if (getProjectTypeName(report).trim().isEmpty) {
+        return '${prefix}Vui lòng chọn Loại hình dự án';
+      }
+
+      if (getContactName(report).trim().isEmpty) {
+        return '${prefix}Vui lòng nhập Người liên hệ';
+      }
+
+      if (getMainIndex(report).trim().isEmpty) {
+        return '${prefix}Vui lòng nhập Chỉ số chính';
+      }
+
+
+      if (getStatusName(report).trim().isEmpty) {
+        return '${prefix}Vui lòng chọn Trạng thái';
+      }
+
+      if (getContent(report).trim().isEmpty) {
+        return '${prefix}Vui lòng nhập Nội dung';
+      }
+
+      if (getResult(report).trim().isEmpty) {
+        return '${prefix}Vui lòng nhập Kết quả';
+      }
+
+      if (getPlanNext(report).trim().isEmpty) {
+        return '${prefix}Vui lòng nhập Kế hoạch tiếp theo';
+      }
+
+      if (getProductOfCustomer(report).trim().isEmpty) {
+        return '${prefix}Vui lòng nhập Sản phẩm của khách hàng';
+      }
+
+    }
+
+    return null;
+  }
+
 }
