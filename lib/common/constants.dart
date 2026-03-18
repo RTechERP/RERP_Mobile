@@ -150,4 +150,8 @@ class ApiEndPoint {
   static const String getAdminReport = '/DailyReportSaleAdmin/load-data';
 
   static const String getSaleAdminById = '/DailyReportSaleAdmin/get-details';
+
+  static const String getMeetingRoom = '/bookingroom/get-booking-room';
+
+  static const String saveMeetingRoom = '/BookingRoom/save-data';
 }

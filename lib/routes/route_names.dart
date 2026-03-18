@@ -126,4 +126,9 @@ class RouteNames {
 
   // Favorites
   static const favorites = '/favorites';
+
+
+  // Reg General
+  static const meetingRoom = '/reg_general/meeting_room';
+
 }

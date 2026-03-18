@@ -17,7 +17,8 @@ import '../di/injection.dart';
 import '../features/auth/view/bloc/auth_bloc.dart';
 import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
-import '../features/workplace/app/reg_general/view/pages/meeting_room/meeting_room_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_screen.dart';
@@ -480,10 +481,19 @@ class AppRouter {
         builder: (context, state) => const RegGeneralScreen(),
       ),
 
-      GoRoute(
-        path: RouteNames.meetingRoom,
-        builder: (context, state) => const MeetingRoomScreen(),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<MeetingRoomBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.meetingRoom,
+            builder: (context, state) => const MeetingRoomScreen(),
+          ),
+        ],
       ),
+
+
     ],
   );
 }

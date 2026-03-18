@@ -106,7 +106,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.meeting_room_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/meeting-room',
+      route: RouteNames.meetingRoom,
     ),
 
     AppItemModel(
@@ -257,7 +257,8 @@ class AppItemRegistry {
     ),
   ];
 
-  static final List<AppItemModel> generalforms = [];
+  static final List<AppItemModel> generalforms = [
+  ];
 
   static final List<AppItemModel> reports = [
     /// ================= REPORT =================

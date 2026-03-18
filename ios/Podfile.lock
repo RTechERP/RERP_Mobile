@@ -325,7 +325,7 @@ SPEC CHECKSUMS:
   FirebaseRemoteConfigInterop: 869ddca16614f979e5c931ece11fbb0b8729ed41
   FirebaseSessions: d614ca154c63dbbc6c10d6c38259c2162c4e7c9b
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
-  flutter_local_notifications: ad39620c743ea4c15127860f4b5641649a988100
+  flutter_local_notifications: 643a3eda1ce1c0599413ca31672536d423dee214
   flutter_native_splash: c32d145d68aeda5502d5f543ee38c192065986cf
   flutter_timezone: 7c838e17ffd4645d261e87037e5bebf6d38fe544
   fluttertoast: 2c67e14dce98bbdb200df9e1acf610d7a6264ea1

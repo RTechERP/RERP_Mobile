@@ -17,6 +17,7 @@ class LocalNotificationHelper {
     flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin>();
     await flutterLocalNotificationsPlugin.initialize(
+      settings:
       initializationSettings,
       onDidReceiveNotificationResponse: (NotificationResponse response) {
 
@@ -154,11 +155,7 @@ class LocalNotificationHelper {
 
     _notificationId++;
     await flutterLocalNotificationsPlugin.show(
-      _notificationId,
-      title,
-      body,
-      platformChannelSpecifics,
-      payload: payload,
+      id: _notificationId,
     );
   }
 

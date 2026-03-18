@@ -10,6 +10,10 @@ import '../features/auth/data/datasource/service/auth_service.dart';
 import '../features/auth/data/repository/auth_repo.dart';
 import '../features/auth/data/repository/auth_repo_impl.dart';
 import '../features/auth/view/bloc/auth_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/meeting_room/data/datasource/service/meeting_room_service.dart';
+import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
 import '../features/workplace/app/reports/data/datasource/service/report_service.dart';
 import '../features/workplace/app/reports/data/repository/report_repo.dart';
 import '../features/workplace/app/reports/data/repository/report_repo_impl.dart';
@@ -49,6 +53,8 @@ void configureDependencies(AppEnv env) {
 
   getIt.registerLazySingleton<ReportService>(() => ReportService(getIt<Dio>()));
 
+  getIt.registerLazySingleton<MeetingRoomService>(() => MeetingRoomService(getIt<Dio>()));
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(getIt<AuthService>()),
@@ -56,6 +62,10 @@ void configureDependencies(AppEnv env) {
 
   getIt.registerLazySingleton<ReportRepo>(
     () => ReportRepoImpl(getIt<ReportService>()),
+  );
+
+  getIt.registerLazySingleton<MeetingRoomRepo>(
+    () => MeetingRoomRepoImpl(getIt<MeetingRoomService>()),
   );
 
   /// ===== BLOCS =====
@@ -81,10 +91,18 @@ void configureDependencies(AppEnv env) {
     () => AgvBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
   getIt.registerFactory<AdBloc>(
-        () => AdBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+    () => AdBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
   getIt.registerFactory<SaleBloc>(
-        () => SaleBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+    () => SaleBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<MeetingRoomBloc>(
+    () => MeetingRoomBloc(
+      getIt<MeetingRoomRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
   );
   // ===== THEO ENV =====
   switch (env) {
