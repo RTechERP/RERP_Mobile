@@ -46,6 +46,8 @@ class MeetingRoomBloc extends BaseBloc<MeetingRoomEvent, MeetingRoomState> {
               endTime,
               emit,
             ),
+        deleteRoom: (roomId, isDelete) =>
+            _onDeleteRoom(roomId, isDelete, emit),
         updateInfo:
             (content, startTime, endTime, selectedRoomId, departmentId) =>
                 _onUpdateInfo(
@@ -346,6 +348,101 @@ class MeetingRoomBloc extends BaseBloc<MeetingRoomEvent, MeetingRoomState> {
     } finally {
       _isSubmittingRoom = false;
       _log.logI('🏁 End submit edit meeting room');
+    }
+  }
+
+  Future<void> _onDeleteRoom(
+    int roomId,
+    bool isDelete,
+    Emitter<MeetingRoomState> emit,
+  ) async {
+    if (_isSubmittingRoom) return;
+    _isSubmittingRoom = true;
+
+    try {
+      emit(
+        state.copyWith(
+          isSubmitting: true,
+          submitSuccess: false,
+          deleteSuccess: false,
+        ),
+      );
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+
+      if (user == null) {
+        emit(state.copyWith(isSubmitting: false));
+        return;
+      }
+
+      final detail = state.detailMeetingRoom;
+
+      final selectedMeetingRoomId =
+          state.selectedRoomId ?? detail?.meetingRoomId;
+      if (selectedMeetingRoomId == null) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            status: BaseStateStatus.failed,
+            message: 'Không có dữ liệu phòng họp để xoá',
+          ),
+        );
+        return;
+      }
+
+      final dateRegister = state.dateStart ?? detail?.dateRegister;
+      final startTime = state.timeStart ?? detail?.startTime;
+      final endTime = state.timeEnd ?? detail?.endTime;
+      if (dateRegister == null || startTime == null || endTime == null) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            status: BaseStateStatus.failed,
+            message: 'Không có dữ liệu thời gian để xoá',
+          ),
+        );
+        return;
+      }
+
+      final dateStr = DateFormat('yyyy-MM-dd').format(dateRegister);
+      final startStr = DateFormat("yyyy-MM-ddTHH:mm:ss").format(startTime);
+      final endStr = DateFormat("yyyy-MM-ddTHH:mm:ss").format(endTime);
+
+      final payload = {
+        "ID": roomId,
+        "MeetingRoomId": selectedMeetingRoomId,
+        "DateRegister": dateStr,
+        "Content": state.content ?? detail?.content ?? '',
+        "StartTime": startStr,
+        "EndTime": endStr,
+        "DepartmentId": state.departmentId ?? detail?.departmentId ?? 0,
+        "EmployeeId": user.employeeId,
+        "IsApproved": detail?.isApproved ?? 0,
+        "IsDeleted": isDelete,
+      };
+
+      _log.logD('Payload (delete): ${jsonEncode(payload)}');
+
+      final res = await _meetingRoomRepo.saveMeetingRoom(payload: payload);
+
+      await res.fold(
+        (l) async {
+          _log.logE('❌ Delete API failed: $l');
+          emit(state.copyWith(isSubmitting: false, deleteSuccess: false));
+        },
+        (r) async {
+          _log.logI('✅ Delete meeting room success');
+          emit(state.copyWith(isSubmitting: false, deleteSuccess: true));
+        },
+      );
+    } catch (e, s) {
+      _log.logE('❌ Delete exception: $e');
+      _log.logE('$s');
+      emit(state.copyWith(isSubmitting: false, deleteSuccess: false));
+    } finally {
+      _isSubmittingRoom = false;
+      _log.logI('🏁 End delete meeting room');
     }
   }
 

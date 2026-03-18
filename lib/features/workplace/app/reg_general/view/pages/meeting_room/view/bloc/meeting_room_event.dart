@@ -21,6 +21,11 @@ class MeetingRoomEvent with _$MeetingRoomEvent {
     required DateTime dateRegister,
   }) = _SubmitEditRoom;
 
+  const factory MeetingRoomEvent.deleteRoom({
+    required int roomId,
+    required bool isDelete,
+  }) = _DeleteRoom;
+
   // const factory MeetingRoomEvent.deleteRoom({
   //   required int roomId,
   //   required bool isDeleted,

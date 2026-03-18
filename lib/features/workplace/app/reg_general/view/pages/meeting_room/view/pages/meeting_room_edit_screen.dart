@@ -96,8 +96,14 @@ class _MeetingRoomEditScreenState
               prev.detailMeetingRoom != curr.detailMeetingRoom ||
               prev.departs != curr.departs ||
               prev.submitSuccess != curr.submitSuccess ||
+              prev.deleteSuccess != curr.deleteSuccess ||
               prev.status != curr.status,
           listener: (context, state) {
+            if (state.deleteSuccess) {
+              context.pop(true);
+              return;
+            }
+
             if (state.detailMeetingRoom != null) {
               final detail = state.detailMeetingRoom!;
 
@@ -153,7 +159,22 @@ class _MeetingRoomEditScreenState
             }
           },
           child: BaseScaffold(
-            appBar: AppBarCommon(title: const Text('Đặt phòng họp')),
+            appBar: AppBarCommon(
+              title: const Text('Đặt phòng họp'),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.delete_outline),
+                  onPressed: () {
+                    bloc.add(
+                      MeetingRoomEvent.deleteRoom(
+                        roomId: widget.roomId,
+                        isDelete: true,
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
             body: BlocBuilder<MeetingRoomBloc, MeetingRoomState>(
               buildWhen: (prev, curr) =>
                   prev.departs != curr.departs ||

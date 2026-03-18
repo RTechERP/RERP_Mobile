@@ -7,6 +7,7 @@ class MeetingRoomState extends BaseBlocState {
 
   final bool isSubmitting;
   final bool submitSuccess;
+  final bool deleteSuccess;
   final MeetingRoomData? meetingRoom;
   final DateTime? timeStart;
   final DateTime? timeEnd;
@@ -28,6 +29,7 @@ class MeetingRoomState extends BaseBlocState {
     this.departs = const [],
     this.isSubmitting = false,
     this.submitSuccess = false,
+    this.deleteSuccess = false,
     this.meetingRoom,
     this.timeStart,
     this.timeEnd,
@@ -45,6 +47,7 @@ class MeetingRoomState extends BaseBlocState {
     departs: [],
     isSubmitting: false,
     submitSuccess: false,
+    deleteSuccess: false,
     meetingRoom: null,
     timeStart: null,
     timeEnd: null,
@@ -65,6 +68,7 @@ class MeetingRoomState extends BaseBlocState {
     timeEnd,
     isSubmitting,
     submitSuccess,
+    deleteSuccess,
     selectedRoomId,
     content,
     departmentId,
