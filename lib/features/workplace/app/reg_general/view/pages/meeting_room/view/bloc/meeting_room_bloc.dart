@@ -34,8 +34,18 @@ class MeetingRoomBloc extends BaseBloc<MeetingRoomEvent, MeetingRoomState> {
 
         initAdd: () => _onAddInit(emit),
 
+        initEdit: (roomId) => _onAddEdit(roomId, emit),
+
         submitRoom: (startTime, endTime, dateRegister) =>
             _onSubmitRoom(dateRegister, startTime, endTime, emit),
+        submitEditRoom: (roomId, startTime, endTime, dateRegister) =>
+            _onSubmitEditRoom(
+              roomId,
+              dateRegister,
+              startTime,
+              endTime,
+              emit,
+            ),
         updateInfo:
             (content, startTime, endTime, selectedRoomId, departmentId) =>
                 _onUpdateInfo(
@@ -126,6 +136,56 @@ class MeetingRoomBloc extends BaseBloc<MeetingRoomEvent, MeetingRoomState> {
     );
   }
 
+  Future<void> _onAddEdit(int roomId, Emitter<MeetingRoomState> emit) async {
+    emit(state.copyWith(status: BaseStateStatus.loading));
+
+    final userRes = await _authRepo.getCurrentUser();
+
+    final roomRes = await _meetingRoomRepo.getRoomById(id: roomId);
+    final departRes = await _meetingRoomRepo.getDepart();
+
+    await userRes.fold(
+      (l) async {
+        emit(state.copyWith(status: BaseStateStatus.failed));
+      },
+      (user) async {
+        if (user == null) {
+          emit(state.copyWith(status: BaseStateStatus.failed));
+          return;
+        }
+
+        emit(
+          state.copyWith(
+            departmentId: user.departmentId,
+            employeeId: user.employeeId,
+          ),
+        );
+      },
+    );
+
+    roomRes.fold(
+      (l) => _log.logE('Get detail meeting room failed: ${l.getErrorMessage}'),
+      (r) => emit(
+        state.copyWith(
+          status: BaseStateStatus.success,
+          detailMeetingRoom: r,
+          content: r.content,
+          selectedRoomId: r.meetingRoomId,
+          timeStart: r.startTime,
+          timeEnd: r.endTime,
+          departmentId: r.departmentId,
+          dateStart: r.dateRegister,
+        ),
+      ),
+    );
+
+    departRes.fold(
+      (l) => _log.logE('Get depart failed: ${l.getErrorMessage}'),
+      (r) => emit(state.copyWith(departs: r)),
+    );
+
+  }
+
   bool _isSubmittingRoom = false;
   Future<void> _onSubmitRoom(
     DateTime dateRegister,
@@ -172,7 +232,7 @@ class MeetingRoomBloc extends BaseBloc<MeetingRoomEvent, MeetingRoomState> {
 
       /// payload đúng
       final payload = {
-        "ID": 0,
+        "ID": state.detailMeetingRoom?.id ?? 0,
         "MeetingRoomId": state.selectedRoomId,
         "DateRegister": dateStr,
         "Content": state.content,
@@ -206,6 +266,86 @@ class MeetingRoomBloc extends BaseBloc<MeetingRoomEvent, MeetingRoomState> {
     } finally {
       _isSubmittingRoom = false; // fix bug sai biến
       _log.logI('🏁 End submit meeting room');
+    }
+  }
+
+  Future<void> _onSubmitEditRoom(
+    int roomId,
+    DateTime dateRegister,
+    DateTime startTime,
+    DateTime endTime,
+    Emitter<MeetingRoomState> emit,
+  ) async {
+    if (_isSubmittingRoom) return;
+    _isSubmittingRoom = true;
+
+    try {
+      emit(state.copyWith(isSubmitting: true, submitSuccess: false));
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+
+      if (user == null) {
+        emit(state.copyWith(isSubmitting: false));
+        return;
+      }
+
+      if (state.selectedRoomId == null) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            status: BaseStateStatus.failed,
+            message: 'Vui lòng chọn phòng họp',
+          ),
+        );
+        return;
+      }
+
+      /// format date
+      final dateStr = DateFormat('yyyy-MM-dd').format(dateRegister);
+      final startStr = DateFormat("yyyy-MM-ddTHH:mm:ss").format(startTime);
+      final endStr = DateFormat("yyyy-MM-ddTHH:mm:ss").format(endTime);
+
+      final payload = {
+        "ID": roomId,
+        "MeetingRoomId": state.selectedRoomId,
+        "DateRegister": dateStr,
+        "Content": state.content,
+        "StartTime": startStr,
+        "EndTime": endStr,
+        "DepartmentId": state.departmentId,
+        "EmployeeId": user.employeeId,
+        "IsApproved": 0,
+      };
+
+      _log.logD('Payload (edit): ${jsonEncode(payload)}');
+
+      final res = await _meetingRoomRepo.saveMeetingRoom(payload: payload);
+
+      await res.fold(
+        (l) async {
+          _log.logE('❌ SubmitEdit API failed: $l');
+          emit(state.copyWith(isSubmitting: false, submitSuccess: false));
+        },
+        (r) async {
+          _log.logI('✅ SubmitEdit meeting room success');
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              submitSuccess: true,
+              timeStart: startTime,
+              timeEnd: endTime,
+            ),
+          );
+        },
+      );
+    } catch (e, s) {
+      _log.logE('❌ SubmitEdit exception: $e');
+      _log.logE('$s');
+      emit(state.copyWith(isSubmitting: false, submitSuccess: false));
+    } finally {
+      _isSubmittingRoom = false;
+      _log.logI('🏁 End submit edit meeting room');
     }
   }
 

@@ -130,5 +130,6 @@ class RouteNames {
 
   // Reg General
   static const meetingRoom = '/reg_general/meeting_room';
+  static const meetingRoomEdit = '/reg_general/meeting_room/edit';
 
 }

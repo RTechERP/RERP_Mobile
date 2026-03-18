@@ -15,12 +15,12 @@ class MeetingRoomSaveResponse with _$MeetingRoomSaveResponse {
     @JsonKey(name: 'EndTime') required DateTime endTime,
     @JsonKey(name: 'Content') required String content,
     @JsonKey(name: 'IsApproved') required int isApproved,
-    @JsonKey(name: 'CreatedBy') required String createdBy,
-    @JsonKey(name: 'CreatedDate') required DateTime createdDate,
-    @JsonKey(name: 'UpdatedBy') required String updatedBy,
-    @JsonKey(name: 'UpdatedDate') required DateTime updatedDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate')  DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy')  String? updatedBy,
+    @JsonKey(name: 'UpdatedDate')  DateTime? updatedDate,
     @JsonKey(name: 'DepartmentID') required int departmentId,
-    @JsonKey(name: 'IsDeleted') required bool isDeleted,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
   }) = _MeetingRoomSaveResponse;
 
   factory MeetingRoomSaveResponse.fromJson(Map<String, dynamic> json) =>

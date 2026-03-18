@@ -20,6 +20,7 @@ class MeetingRoomMapper {
       DateTime? start;
       DateTime? end;
       String? currentValue;
+      int? currentRoomId;
 
       /// sort chuẩn theo time
       final sortedSlots = item.timeSlots.keys.toList()
@@ -31,7 +32,9 @@ class MeetingRoomMapper {
 
       for (final time in sortedSlots) {
         final raw = item.timeSlots[time];
-        final value = raw != null ? _formatName(raw.toString()) : null;
+        final rawStr = raw?.toString();
+        final value = rawStr != null ? _formatName(rawStr) : null;
+        final parsedRoomId = rawStr != null ? _parseRoomId(rawStr) : null;
 
         final currentTime = _merge(date, time);
 
@@ -42,10 +45,18 @@ class MeetingRoomMapper {
             start = currentTime;
             end = currentTime.add(const Duration(minutes: 30));
             currentValue = value;
+            currentRoomId = parsedRoomId;
           }
           /// cùng meeting → extend
-          else if (currentValue == value) {
+          else if (currentValue == value &&
+              (currentRoomId == null ||
+                  parsedRoomId == null ||
+                  currentRoomId == parsedRoomId)) {
             end = currentTime.add(const Duration(minutes: 30));
+            // keep currentRoomId; but if it's missing try fill from raw
+            if (currentRoomId == null && parsedRoomId != null) {
+              currentRoomId = parsedRoomId;
+            }
           }
           /// khác meeting → đóng block cũ
           else {
@@ -60,6 +71,7 @@ class MeetingRoomMapper {
                 to: end,
                 background: generateNiceColor('$currentValue$start'),
                 isBooked: true,
+                roomId: currentRoomId,
               ),
             );
 
@@ -67,6 +79,7 @@ class MeetingRoomMapper {
             start = currentTime;
             end = currentTime.add(const Duration(minutes: 30));
             currentValue = value;
+            currentRoomId = parsedRoomId;
           }
         }
 
@@ -84,11 +97,13 @@ class MeetingRoomMapper {
                 to: end,
                 background: generateNiceColor('$currentValue$start'),
                 isBooked: true,
+                roomId: currentRoomId,
               ),
             );
             start = null;
             end = null;
             currentValue = null;
+            currentRoomId = null;
           }
         }
       }
@@ -106,6 +121,7 @@ class MeetingRoomMapper {
             to: end,
             background: generateNiceColor('$currentValue$start'),
             isBooked: true,
+            roomId: currentRoomId,
           ),
         );
       }
@@ -156,6 +172,20 @@ class MeetingRoomMapper {
     final time = '${_formatTime(start)} - ${_formatTime(end)}';
 
     return '$time\n $code\n$name'; // 👈 thêm space đầu dòng để đỡ lệch
+  }
+
+  static int? _parseRoomId(String raw) {
+    final idx = raw.indexOf('#');
+    if (idx == -1) return null;
+
+    final suffix = raw.substring(idx + 1).trim();
+    if (suffix.isEmpty) return null;
+
+    // Backend format unknown; try to extract the first integer in suffix.
+    final match = RegExp(r'\d+').firstMatch(suffix);
+    if (match == null) return null;
+
+    return int.tryParse(match.group(0) ?? '');
   }
 
   static String _formatTime(DateTime dt) {

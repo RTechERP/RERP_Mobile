@@ -64,4 +64,15 @@ class MeetingRoomService extends DioBaseApiService {
       ),
     );
   }
+
+  Future<BaseData<MeetingRoomSaveResponse>> getRoomById({required int id}) {
+    return get<BaseData<MeetingRoomSaveResponse>>(
+      ApiEndPoint.getDetailMeetingRoom,
+      query: {'id': id},
+      parser: (json) => BaseData<MeetingRoomSaveResponse>.fromJson(
+        json,
+            (data) => MeetingRoomSaveResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
 }

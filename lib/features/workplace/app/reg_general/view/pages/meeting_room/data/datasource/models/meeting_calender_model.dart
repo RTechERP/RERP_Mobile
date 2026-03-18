@@ -8,6 +8,7 @@ class Meeting {
     required this.from,
     required this.to,
     required this.background,
+    this.roomId,
     this.isAllDay = false,
     this.recurrenceRule,
     this.isBooked = false,
@@ -17,6 +18,8 @@ class Meeting {
   DateTime from;
   DateTime to;
   Color background;
+  /// Backend meeting record id (used for edit screen).
+  int? roomId;
   bool isAllDay;
   String? recurrenceRule;
   bool isBooked;

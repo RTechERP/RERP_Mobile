@@ -20,6 +20,8 @@ class MeetingRoomState extends BaseBlocState {
   final int? departmentId;
 
   final int? employeeId;
+
+  final MeetingRoomSaveResponse? detailMeetingRoom;
   const MeetingRoomState({
     required super.status,
     super.message,
@@ -35,6 +37,7 @@ class MeetingRoomState extends BaseBlocState {
     this.dateStart,
     this.dateEnd,
     this.employeeId,
+    this.detailMeetingRoom,
   });
 
   factory MeetingRoomState.init() => const MeetingRoomState(
@@ -51,6 +54,7 @@ class MeetingRoomState extends BaseBlocState {
     dateStart: null,
     dateEnd: null,
     employeeId: null,
+    detailMeetingRoom: null,
   );
   @override
   List get props => [
@@ -68,5 +72,6 @@ class MeetingRoomState extends BaseBlocState {
     dateEnd,
     employeeId,
     departs,
+    detailMeetingRoom,
   ];
 }

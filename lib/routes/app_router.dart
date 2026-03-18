@@ -19,6 +19,7 @@ import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_edit_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_screen.dart';
@@ -489,6 +490,18 @@ class AppRouter {
           GoRoute(
             path: RouteNames.meetingRoom,
             builder: (context, state) => const MeetingRoomScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.meetingRoomEdit,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final roomId = extra['roomId'] as int;
+              final startTime = extra['startTime'] as DateTime?;
+              return MeetingRoomEditScreen(
+                roomId: roomId,
+                startTime: startTime ?? DateTime.now(),
+              );
+            },
           ),
         ],
       ),

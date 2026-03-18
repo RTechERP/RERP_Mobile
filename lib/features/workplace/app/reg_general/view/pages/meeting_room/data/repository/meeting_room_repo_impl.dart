@@ -68,4 +68,16 @@ class MeetingRoomRepoImpl implements MeetingRoomRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, MeetingRoomSaveResponse>> getRoomById({
+    required int id,
+  }) async {
+    try {
+      final res = await _service.getRoomById(id: id);
+      return right(res.data!); // DetailReportResponse
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

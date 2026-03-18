@@ -17,4 +17,8 @@ abstract class MeetingRoomRepo {
 
   Future<Either<BaseError, List<DepartResponse>>> getDepart();
 
+  Future<Either<BaseError, MeetingRoomSaveResponse>> getRoomById({
+    required int id,
+  });
+
 }

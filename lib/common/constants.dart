@@ -154,4 +154,6 @@ class ApiEndPoint {
   static const String getMeetingRoom = '/bookingroom/get-booking-room';
 
   static const String saveMeetingRoom = '/BookingRoom/save-data';
+
+  static const String getDetailMeetingRoom = '/bookingroom/get-by-id';
 }

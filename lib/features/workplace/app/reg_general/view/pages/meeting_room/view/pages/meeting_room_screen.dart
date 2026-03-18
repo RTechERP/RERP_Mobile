@@ -6,11 +6,13 @@ import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../../routes/route_names.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../data/datasource/models/meeting_calender_model.dart';
 import '../../data/datasource/models/meeting_room_mapper.dart';
 import '../bloc/meeting_room_bloc.dart';
 import 'meeting_room_add_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class MeetingRoomScreen extends StatefulWidget {
   const MeetingRoomScreen({super.key});
@@ -60,9 +62,40 @@ class _MeetingRoomScreenState
   }
 
   void _onTap(CalendarTapDetails details, int roomIndex) async {
-    if (details.targetElement == CalendarElement.calendarCell) {
-      final selectedDate = details.date!;
+    final selectedDate = details.date;
+    if (selectedDate == null) return;
 
+    /// Nếu tap vào đoạn đã có dữ liệu (appointment) thì chuyển sang màn edit.
+    final appts = details.appointments;
+    if (appts != null && appts.isNotEmpty) {
+      Meeting? meeting;
+      for (final a in appts) {
+        if (a is Meeting) {
+          meeting = a;
+          break;
+        }
+      }
+
+      final roomId = meeting?.roomId;
+      if (roomId != null) {
+        final result = await context.push(
+          RouteNames.meetingRoomEdit,
+          extra: {
+            'roomId': roomId,
+            'startTime': selectedDate,
+          },
+        );
+
+        // reload lại calendar khi vừa edit xong
+        if (result != null) {
+          bloc.add(const MeetingRoomEvent.init());
+        }
+        return;
+      }
+    }
+
+    /// Nếu tap vào "calendar cell" (trống) thì mở màn add.
+    if (details.targetElement == CalendarElement.calendarCell) {
       final Meeting? meeting = await Navigator.push(
         context,
         MaterialPageRoute(
