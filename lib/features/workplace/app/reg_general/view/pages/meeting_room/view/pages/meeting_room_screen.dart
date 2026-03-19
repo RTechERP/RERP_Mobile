@@ -11,7 +11,6 @@ import '../../../../../../../../../common/utils/navigation/navigation_utils.dart
 import '../../data/datasource/models/meeting_calender_model.dart';
 import '../../data/datasource/models/meeting_room_mapper.dart';
 import '../bloc/meeting_room_bloc.dart';
-import 'meeting_room_add_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class MeetingRoomScreen extends StatefulWidget {
@@ -96,27 +95,17 @@ class _MeetingRoomScreenState
 
     /// Nếu tap vào "calendar cell" (trống) thì mở màn add.
     if (details.targetElement == CalendarElement.calendarCell) {
-      final Meeting? meeting = await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => MeetingRoomAddScreen(startTime: selectedDate),
-        ),
+      // Dùng context.push thay cho Navigator.push
+      final shouldReload = await context.push<bool>(
+        RouteNames.meetingRoomAdd,
+        extra: {
+          'startTime': selectedDate,
+        },
       );
 
-      if (meeting != null) {
-        final ds = _dataSources[roomIndex]!;
-
-        final newMeeting = Meeting(
-          eventName: meeting.from.toString(),
-          from: meeting.from,
-          to: meeting.to,
-          background: generateNiceColor(meeting.eventName),
-        );
-
-        setState(() {
-          ds.appointments!.add(newMeeting);
-          ds.notifyListeners(CalendarDataSourceAction.add, [newMeeting]);
-        });
+      // Sau khi add xong (pop(true)) thì reload từ API để đồng bộ.
+      if (shouldReload == true) {
+        bloc.add(const MeetingRoomEvent.init());
       }
     }
   }
@@ -163,12 +152,13 @@ class _MeetingRoomScreenState
       showDatePickerButton: true,
       onTap: (details) => _onTap(details, roomIndex),
       timeSlotViewSettings: const TimeSlotViewSettings(
-        startHour: 8,
+        startHour: 7.5,
         endHour: 18,
         timeInterval: Duration(minutes: 30),
         timeFormat: 'HH:mm',
-        timeIntervalHeight: 45, // tăng chiều cao để fill đẹp hơn
+        timeIntervalHeight: 50,
       ),
+      showCurrentTimeIndicator: true,
     );
   }
 }

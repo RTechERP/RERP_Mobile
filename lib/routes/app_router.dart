@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/reg_general_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_detail_screen.dart';
@@ -490,6 +491,14 @@ class AppRouter {
           GoRoute(
             path: RouteNames.meetingRoom,
             builder: (context, state) => const MeetingRoomScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.meetingRoomAdd,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final startTime = extra['startTime'] as DateTime?;
+
+              return MeetingRoomAddScreen(startTime: startTime ?? DateTime.now());},
           ),
           GoRoute(
             path: RouteNames.meetingRoomEdit,

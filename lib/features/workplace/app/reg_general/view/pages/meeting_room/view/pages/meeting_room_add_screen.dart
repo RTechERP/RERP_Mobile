@@ -13,7 +13,6 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
-import '../../data/datasource/models/meeting_calender_model.dart';
 import '../bloc/meeting_room_bloc.dart';
 
 class MeetingRoomAddScreen extends StatefulWidget {
@@ -81,14 +80,8 @@ class _MeetingRoomAddScreenState
         BlocListener<MeetingRoomBloc, MeetingRoomState>(
           listener: (context, state) {
             if (state.submitSuccess) {
-              context.pop(
-                Meeting(
-                  eventName: state.content ?? 'Cuộc họp',
-                  from: state.timeStart!,
-                  to: state.timeEnd!,
-                  background: Colors.blue,
-                ),
-              );
+              context.pop(true);
+              return;
             }
 
             if (state.status == BaseStateStatus.failed) {
@@ -296,10 +289,6 @@ class _MeetingRoomAddScreenState
                           mode: FormActionMode.add,
                           onSubmit: () {
                             FocusScope.of(context).unfocus();
-
-                            final values = _formKey.currentState!.value;
-
-                            final title = values['title'] ?? 'Cuộc họp';
                             bloc.add(
                               MeetingRoomEvent.submitRoom(
                                 startTime: _startTime!,
