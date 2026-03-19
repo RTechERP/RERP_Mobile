@@ -13,6 +13,8 @@ abstract class _$MeetingRoomStateCWProxy {
 
   MeetingRoomState departs(List<DepartResponse> departs);
 
+  MeetingRoomState userMeetings(List<UserResponse> userMeetings);
+
   MeetingRoomState isSubmitting(bool isSubmitting);
 
   MeetingRoomState submitSuccess(bool submitSuccess);
@@ -50,6 +52,7 @@ abstract class _$MeetingRoomStateCWProxy {
     BaseStateStatus? status,
     String? message,
     List<DepartResponse>? departs,
+    List<UserResponse>? userMeetings,
     bool? isSubmitting,
     bool? submitSuccess,
     bool? deleteSuccess,
@@ -81,6 +84,10 @@ class _$MeetingRoomStateCWProxyImpl implements _$MeetingRoomStateCWProxy {
   @override
   MeetingRoomState departs(List<DepartResponse> departs) =>
       this(departs: departs);
+
+  @override
+  MeetingRoomState userMeetings(List<UserResponse> userMeetings) =>
+      this(userMeetings: userMeetings);
 
   @override
   MeetingRoomState isSubmitting(bool isSubmitting) =>
@@ -141,6 +148,7 @@ class _$MeetingRoomStateCWProxyImpl implements _$MeetingRoomStateCWProxy {
     Object? status = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
     Object? departs = const $CopyWithPlaceholder(),
+    Object? userMeetings = const $CopyWithPlaceholder(),
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
     Object? deleteSuccess = const $CopyWithPlaceholder(),
@@ -168,6 +176,11 @@ class _$MeetingRoomStateCWProxyImpl implements _$MeetingRoomStateCWProxy {
           ? _value.departs
           // ignore: cast_nullable_to_non_nullable
           : departs as List<DepartResponse>,
+      userMeetings:
+          userMeetings == const $CopyWithPlaceholder() || userMeetings == null
+              ? _value.userMeetings
+              // ignore: cast_nullable_to_non_nullable
+              : userMeetings as List<UserResponse>,
       isSubmitting:
           isSubmitting == const $CopyWithPlaceholder() || isSubmitting == null
               ? _value.isSubmitting

@@ -80,4 +80,14 @@ class MeetingRoomRepoImpl implements MeetingRoomRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<UserResponse>>> getUserMeetingRoom() async {
+    try {
+      final res = await _service.getUserMeetingRoom();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

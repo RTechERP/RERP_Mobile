@@ -145,6 +145,7 @@ class MeetingRoomBloc extends BaseBloc<MeetingRoomEvent, MeetingRoomState> {
 
     final roomRes = await _meetingRoomRepo.getRoomById(id: roomId);
     final departRes = await _meetingRoomRepo.getDepart();
+    final userMeetingRes = await _meetingRoomRepo.getUserMeetingRoom();
 
     await userRes.fold(
       (l) async {
@@ -184,6 +185,11 @@ class MeetingRoomBloc extends BaseBloc<MeetingRoomEvent, MeetingRoomState> {
     departRes.fold(
       (l) => _log.logE('Get depart failed: ${l.getErrorMessage}'),
       (r) => emit(state.copyWith(departs: r)),
+    );
+
+    userMeetingRes.fold(
+          (l) => _log.logE('Get user failed: ${l.getErrorMessage}'),
+          (r) => emit(state.copyWith(userMeetings: r)),
     );
 
   }

@@ -16,25 +16,17 @@ class MeetingRoomService extends DioBaseApiService {
   }) async {
     String fmt(DateTime d) => '${d.year}-${d.month}-${d.day}';
 
-    final query = {
-      'DateStart': fmt(dateStart),
-      'DateEnd': fmt(dateEnd),
-    };
+    final query = {'DateStart': fmt(dateStart), 'DateEnd': fmt(dateEnd)};
 
     return post<BaseData<MeetingRoomData>>(
       ApiEndPoint.getMeetingRoom,
       query: query,
-      parser: (json) => BaseData<MeetingRoomData>.fromJson(
-        json,
-            (data) {
-          if (data == null) {
-            throw Exception('MeetingRoom data is null');
-          }
-          return MeetingRoomData.fromJson(
-            data as Map<String, dynamic>,
-          );
-        },
-      ),
+      parser: (json) => BaseData<MeetingRoomData>.fromJson(json, (data) {
+        if (data == null) {
+          throw Exception('MeetingRoom data is null');
+        }
+        return MeetingRoomData.fromJson(data as Map<String, dynamic>);
+      }),
     );
   }
 
@@ -48,7 +40,8 @@ class MeetingRoomService extends DioBaseApiService {
       body: body,
       parser: (json) => BaseData<MeetingRoomSaveResponse>.fromJson(
         json,
-            (data) => MeetingRoomSaveResponse.fromJson(data as Map<String, dynamic>),
+        (data) =>
+            MeetingRoomSaveResponse.fromJson(data as Map<String, dynamic>),
       ),
     );
   }
@@ -58,7 +51,7 @@ class MeetingRoomService extends DioBaseApiService {
       ApiEndPoint.getDepart,
       parser: (json) => BaseData<List<DepartResponse>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map((e) => DepartResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
@@ -71,7 +64,20 @@ class MeetingRoomService extends DioBaseApiService {
       query: {'id': id},
       parser: (json) => BaseData<MeetingRoomSaveResponse>.fromJson(
         json,
-            (data) => MeetingRoomSaveResponse.fromJson(data as Map<String, dynamic>),
+        (data) =>
+            MeetingRoomSaveResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  Future<BaseData<List<UserResponse>>> getUserMeetingRoom() {
+    return get<BaseData<List<UserResponse>>>(
+      ApiEndPoint.getUserMeetingRoom,
+      parser: (json) => BaseData<List<UserResponse>>.fromJson(
+        json,
+        (data) => (data as List)
+            .map((e) => UserResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
     );
   }

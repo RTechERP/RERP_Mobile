@@ -21,4 +21,5 @@ abstract class MeetingRoomRepo {
     required int id,
   });
 
+  Future<Either<BaseError, List<UserResponse>>> getUserMeetingRoom();
 }

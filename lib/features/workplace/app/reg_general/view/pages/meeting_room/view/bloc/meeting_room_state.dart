@@ -5,6 +5,8 @@ class MeetingRoomState extends BaseBlocState {
 
   final List<DepartResponse> departs;
 
+  final List<UserResponse> userMeetings;
+
   final bool isSubmitting;
   final bool submitSuccess;
   final bool deleteSuccess;
@@ -27,6 +29,7 @@ class MeetingRoomState extends BaseBlocState {
     required super.status,
     super.message,
     this.departs = const [],
+    this.userMeetings = const [],
     this.isSubmitting = false,
     this.submitSuccess = false,
     this.deleteSuccess = false,
@@ -45,6 +48,7 @@ class MeetingRoomState extends BaseBlocState {
   factory MeetingRoomState.init() => const MeetingRoomState(
     status: BaseStateStatus.init,
     departs: [],
+    userMeetings: [],
     isSubmitting: false,
     submitSuccess: false,
     deleteSuccess: false,
@@ -64,6 +68,7 @@ class MeetingRoomState extends BaseBlocState {
     status,
     message,
     meetingRoom,
+    userMeetings,
     timeStart,
     timeEnd,
     isSubmitting,

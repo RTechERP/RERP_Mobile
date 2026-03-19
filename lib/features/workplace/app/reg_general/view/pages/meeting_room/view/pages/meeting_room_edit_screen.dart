@@ -53,6 +53,7 @@ class _MeetingRoomEditScreenState
   }
 
   late TextEditingController _contentController;
+  late TextEditingController _employeeController;
 
   FormFieldState<String>? departField;
   FormFieldState<String>? meetingRoomField;
@@ -74,11 +75,44 @@ class _MeetingRoomEditScreenState
     return 'Meeting Room 1 (Hồ Tây)';
   }
 
+  String _resolveMeetingOwnerName(MeetingRoomState state) {
+    final detail = state.detailMeetingRoom;
+    if (detail == null) return '';
+
+    for (final user in state.userMeetings) {
+      if (user.id == detail.employeeId) {
+        final name = user.fullName?.trim();
+        final code = user.code?.trim();
+
+        // ✅ Có cả code + name
+        if (code != null && code.isNotEmpty &&
+            name != null && name.isNotEmpty) {
+          return '$code - $name';
+        }
+
+        // ✅ Chỉ có code
+        if (code != null && code.isNotEmpty) {
+          return code;
+        }
+
+        // ✅ Chỉ có name
+        if (name != null && name.isNotEmpty) {
+          return name;
+        }
+
+        break;
+      }
+    }
+
+    return detail.employeeId.toString();
+  }
+
   @override
   void initState() {
     super.initState();
 
     _contentController = TextEditingController(); // <-- thiếu cái này
+    _employeeController = TextEditingController();
     bloc.add(MeetingRoomEvent.initEdit(roomId: widget.roomId));
     _selectedDate = DateTime(
       widget.startTime.year,
@@ -93,6 +127,7 @@ class _MeetingRoomEditScreenState
   @override
   void dispose() {
     _contentController.dispose();
+    _employeeController.dispose();
     super.dispose();
   }
 
@@ -104,6 +139,7 @@ class _MeetingRoomEditScreenState
           listenWhen: (prev, curr) =>
               prev.detailMeetingRoom != curr.detailMeetingRoom ||
               prev.departs != curr.departs ||
+              prev.userMeetings != curr.userMeetings ||
               prev.submitSuccess != curr.submitSuccess ||
               prev.deleteSuccess != curr.deleteSuccess ||
               prev.status != curr.status,
@@ -115,6 +151,7 @@ class _MeetingRoomEditScreenState
 
             if (state.detailMeetingRoom != null) {
               final detail = state.detailMeetingRoom!;
+              _employeeController.text = _resolveMeetingOwnerName(state);
 
               // Prefill phần "core" chỉ 1 lần để không ghi đè lựa chọn người dùng.
               if (!_didPrefillCore) {
@@ -165,14 +202,25 @@ class _MeetingRoomEditScreenState
             appBar: AppBarCommon(
               title: const Text('Đặt phòng họp'),
               actions: [
-                IconButton(
-                  icon: const Icon(Icons.delete_outline),
-                  onPressed: () {
-                    bloc.add(
-                      MeetingRoomEvent.deleteRoom(
-                        roomId: widget.roomId,
-                        isDelete: true,
-                      ),
+                BlocBuilder<MeetingRoomBloc, MeetingRoomState>(
+                  buildWhen: (prev, curr) =>
+                      prev.detailMeetingRoom != curr.detailMeetingRoom ||
+                      prev.employeeId != curr.employeeId,
+                  builder: (context, state) {
+                    final detail = state.detailMeetingRoom;
+                    final canEdit =
+                        detail != null && state.employeeId == detail.employeeId;
+                    if (!canEdit) return const SizedBox.shrink();
+                    return IconButton(
+                      icon: const Icon(Icons.delete_outline),
+                      onPressed: () {
+                        bloc.add(
+                          MeetingRoomEvent.deleteRoom(
+                            roomId: widget.roomId,
+                            isDelete: true,
+                          ),
+                        );
+                      },
                     );
                   },
                 ),
@@ -182,10 +230,15 @@ class _MeetingRoomEditScreenState
               buildWhen: (prev, curr) =>
                   prev.departs != curr.departs ||
                   prev.detailMeetingRoom != curr.detailMeetingRoom ||
+                  prev.userMeetings != curr.userMeetings ||
+                  prev.employeeId != curr.employeeId ||
                   prev.timeStart != curr.timeStart ||
                   prev.timeEnd != curr.timeEnd ||
                   prev.content != curr.content,
               builder: (context, state) {
+                final detail = state.detailMeetingRoom;
+                final canEdit = detail != null && state.employeeId == detail.employeeId;
+
                 return FormBuilder(
                   key: _formKey,
                   child: Column(
@@ -197,6 +250,24 @@ class _MeetingRoomEditScreenState
                             FormCard(
                               child: Column(
                                 children: [
+                                  /// ===== Nhân viên =====
+                                  FormInputField(
+                                    icon: Icons.person,
+                                    nameForm: 'employee',
+                                    nameTextField: 'employee_text',
+                                    label: 'Nhân viên',
+                                    readOnly: true,
+                                    controller: _employeeController,
+                                    maxLines: 1,
+                                    // onChanged: (v) {
+                                    //   bloc.add(
+                                    //     MeetingRoomEvent.updateInfo(content: v),
+                                    //   );
+                                    // },
+                                    enabled: false,
+                                  ),
+                                  const SizedBox(height: 16),
+
                                   /// ===== NGÀY =====
                                   FormDateTimePicker(
                                     icon: Icons.calendar_today,
@@ -220,7 +291,7 @@ class _MeetingRoomEditScreenState
                                     },
                                   ),
 
-                                  const SizedBox(height: 8),
+                                  const SizedBox(height: 10),
 
                                   /// ===== BẮT ĐẦU =====
                                   Row(
@@ -285,7 +356,7 @@ class _MeetingRoomEditScreenState
                                     ],
                                   ),
 
-                                  const SizedBox(height: 8),
+                                  const SizedBox(height: 10),
 
                                   /// ===== PHÒNG BAN =====
                                   GestureDetector(
@@ -318,7 +389,7 @@ class _MeetingRoomEditScreenState
                                     ),
                                   ),
 
-                                  const SizedBox(height: 8),
+                                  const SizedBox(height: 10),
 
                                   /// ===== PHÒNG HỌP =====
                                   GestureDetector(
@@ -361,7 +432,7 @@ class _MeetingRoomEditScreenState
                                     ),
                                   ),
 
-                                  const SizedBox(height: 8),
+                                  const SizedBox(height: 10),
 
                                   /// ===== TÊN CUỘC HỌP =====
                                   FormInputField(
@@ -385,42 +456,43 @@ class _MeetingRoomEditScreenState
                       ),
 
                       /// ===== ACTION =====
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0,
-                          vertical: 8.0,
-                        ),
-                        child: FormActions(
-                          mode: FormActionMode.add,
-                          onSubmit: () {
-                            FocusScope.of(context).unfocus();
-                            final error = ValidateHelper.validateMeetingRoom(
-                              date: _selectedDate,
-                              startTime: _startTime,
-                              endTime: _endTime,
-                              roomId: bloc.state.selectedRoomId,
-                              departmentId: bloc.state.departmentId,
-                              content: _contentController.text,
-                            );
-
-                            if (error != null) {
-                              context.showMessage(
-                                error,
-                                type: SnackBarType.error,
+                      if (canEdit)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8.0,
+                            vertical: 8.0,
+                          ),
+                          child: FormActions(
+                            mode: FormActionMode.add,
+                            onSubmit: () {
+                              FocusScope.of(context).unfocus();
+                              final error = ValidateHelper.validateMeetingRoom(
+                                date: _selectedDate,
+                                startTime: _startTime,
+                                endTime: _endTime,
+                                roomId: bloc.state.selectedRoomId,
+                                departmentId: bloc.state.departmentId,
+                                content: _contentController.text,
                               );
-                              return;
-                            }
-                            bloc.add(
-                              MeetingRoomEvent.submitEditRoom(
-                                roomId: widget.roomId,
-                                startTime: _startTime!,
-                                endTime: _endTime!,
-                                dateRegister: _selectedDate!,
-                              ),
-                            );
-                          },
+
+                              if (error != null) {
+                                context.showMessage(
+                                  error,
+                                  type: SnackBarType.error,
+                                );
+                                return;
+                              }
+                              bloc.add(
+                                MeetingRoomEvent.submitEditRoom(
+                                  roomId: widget.roomId,
+                                  startTime: _startTime!,
+                                  endTime: _endTime!,
+                                  dateRegister: _selectedDate!,
+                                ),
+                              );
+                            },
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 );
