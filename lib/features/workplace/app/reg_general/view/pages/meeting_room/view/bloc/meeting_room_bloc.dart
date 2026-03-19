@@ -34,7 +34,7 @@ class MeetingRoomBloc extends BaseBloc<MeetingRoomEvent, MeetingRoomState> {
 
         initAdd: () => _onAddInit(emit),
 
-        initEdit: (roomId) => _onAddEdit(roomId, emit),
+        initEdit: (roomId) => _onInitEdit(roomId, emit),
 
         submitRoom: (startTime, endTime, dateRegister) =>
             _onSubmitRoom(dateRegister, startTime, endTime, emit),
@@ -138,7 +138,7 @@ class MeetingRoomBloc extends BaseBloc<MeetingRoomEvent, MeetingRoomState> {
     );
   }
 
-  Future<void> _onAddEdit(int roomId, Emitter<MeetingRoomState> emit) async {
+  Future<void> _onInitEdit(int roomId, Emitter<MeetingRoomState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
     final userRes = await _authRepo.getCurrentUser();

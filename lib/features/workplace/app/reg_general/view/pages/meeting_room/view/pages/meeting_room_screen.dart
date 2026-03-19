@@ -151,12 +151,17 @@ class _MeetingRoomScreenState
       controller: _calendarController,
       view: CalendarView.week,
       dataSource: dataSource,
+      minDate: DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+      ),
       allowedViews: const [CalendarView.day, CalendarView.week],
       showDatePickerButton: true,
       onTap: (details) => _onTap(details, roomIndex),
       timeSlotViewSettings: const TimeSlotViewSettings(
         startHour: 7.5,
-        endHour: 18,
+        endHour: 17.5,
         timeInterval: Duration(minutes: 30),
         timeFormat: 'HH:mm',
         timeIntervalHeight: 50,

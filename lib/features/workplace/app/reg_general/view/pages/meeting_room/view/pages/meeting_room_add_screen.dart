@@ -12,6 +12,7 @@ import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../../common/helpers/index.dart';
+import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../bloc/meeting_room_bloc.dart';
 
@@ -55,6 +56,13 @@ class _MeetingRoomAddScreenState
     return 1;
   }
 
+  bool isStartTimeInvalid(DateTime start) {
+    return start.hour < 8 ||
+        start.hour > 17 ||
+        (start.hour == 17 && start.minute > 0);
+  }
+
+  bool _isEndTimeManuallyChanged = false;
   @override
   void initState() {
     super.initState();
@@ -117,7 +125,6 @@ class _MeetingRoomAddScreenState
                                       if (v != null) {
                                         _selectedDate = v;
 
-                                        // update lại start/end theo date mới
                                         if (_startTime != null) {
                                           _startTime = combine(v, _startTime!);
                                         }
@@ -143,12 +150,28 @@ class _MeetingRoomAddScreenState
                                           initialValue: _startTime,
                                           format: DateFormat('HH:mm'),
                                           onChanged: (v) {
-                                            if (v != null &&
-                                                _selectedDate != null) {
-                                              _startTime = combine(
-                                                _selectedDate!,
-                                                v,
-                                              );
+                                            if (v != null && _selectedDate != null) {
+                                              final newStart = combine(_selectedDate!, v);
+
+                                              _startTime = newStart;
+
+                                              // ❗ reset endTime nếu invalid
+                                              if (_endTime != null && !_endTime!.isAfter(_startTime!)) {
+                                                _endTime = null;
+                                                _isEndTimeManuallyChanged = false;
+
+                                                _formKey.currentState?.fields['end_time_picker']
+                                                    ?.didChange(null);
+                                              }
+
+                                              // ✅ auto +2h nếu user chưa chỉnh endTime
+                                              if (!_isEndTimeManuallyChanged) {
+                                                final newEnd = newStart.add(const Duration(hours: 2));
+                                                _endTime = newEnd;
+
+                                                _formKey.currentState?.fields['end_time_picker']
+                                                    ?.didChange(newEnd);
+                                              }
                                             }
                                           },
                                         ),
@@ -167,12 +190,9 @@ class _MeetingRoomAddScreenState
                                           initialValue: _endTime,
                                           format: DateFormat('HH:mm'),
                                           onChanged: (v) {
-                                            if (v != null &&
-                                                _selectedDate != null) {
-                                              _endTime = combine(
-                                                _selectedDate!,
-                                                v,
-                                              );
+                                            if (v != null && _selectedDate != null) {
+                                              _isEndTimeManuallyChanged = true;
+                                              _endTime = combine(_selectedDate!, v);
                                             }
                                           },
                                         ),
@@ -289,6 +309,24 @@ class _MeetingRoomAddScreenState
                           mode: FormActionMode.add,
                           onSubmit: () {
                             FocusScope.of(context).unfocus();
+
+                            final error = ValidateHelper.validateMeetingRoom(
+                              date: _selectedDate,
+                              startTime: _startTime,
+                              endTime: _endTime,
+                              roomId: bloc.state.selectedRoomId,
+                              departmentId: bloc.state.departmentId,
+                              content: _contentController.text,
+                            );
+
+                            if (error != null) {
+                              context.showMessage(
+                                error,
+                                type: SnackBarType.error,
+                              );
+                              return;
+                            }
+
                             bloc.add(
                               MeetingRoomEvent.submitRoom(
                                 startTime: _startTime!,

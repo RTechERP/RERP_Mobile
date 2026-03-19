@@ -405,4 +405,61 @@ class ValidateHelper {
     return null;
   }
 
+
+  static String? validateMeetingRoom({
+    required DateTime? date,
+    required DateTime? startTime,
+    required DateTime? endTime,
+    required int? roomId,
+    required int? departmentId,
+    required String content,
+  }) {
+    if (date == null) {
+      return 'Vui lòng chọn ngày';
+    }
+
+    final today = DateTime.now();
+    final todayOnly = DateTime(today.year, today.month, today.day);
+    final pickedDate = DateTime(date.year, date.month, date.day);
+
+    if (pickedDate.isBefore(todayOnly)) {
+      return 'Không được chọn ngày trước hiện tại';
+    }
+
+    if (startTime == null) {
+      return 'Vui lòng chọn giờ bắt đầu';
+    }
+
+    if (startTime.hour < 8) {
+      return 'Giờ bắt đầu không được trước 08:00';
+    }
+
+    if (startTime.hour > 17 ||
+        (startTime.hour == 17 && startTime.minute > 0)) {
+      return 'Giờ bắt đầu không được quá 17:00';
+    }
+
+
+    if (endTime == null) {
+      return 'Vui lòng chọn giờ kết thúc';
+    }
+
+    if (!endTime.isAfter(startTime)) {
+      return 'Giờ kết thúc phải lớn hơn giờ bắt đầu';
+    }
+
+    if (departmentId == null) {
+      return 'Vui lòng chọn phòng ban';
+    }
+
+    if (roomId == null) {
+      return 'Vui lòng chọn phòng họp';
+    }
+
+    if (content.trim().isEmpty) {
+      return 'Vui lòng nhập nội dung cuộc họp';
+    }
+
+    return null;
+  }
 }
