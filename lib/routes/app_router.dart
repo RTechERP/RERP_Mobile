@@ -506,9 +506,15 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final roomId = extra['roomId'] as int;
               final startTime = extra['startTime'] as DateTime?;
+              final endTime = extra['endTime'] as DateTime?;
+
+              final safeStart = startTime ?? DateTime.now();
+              final safeEnd = endTime ?? safeStart.add(const Duration(hours: 2));
+
               return MeetingRoomEditScreen(
                 roomId: roomId,
-                startTime: startTime ?? DateTime.now(),
+                startTime: safeStart,
+                endTime: safeEnd,
               );
             },
           ),

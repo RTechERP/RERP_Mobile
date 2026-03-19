@@ -81,7 +81,10 @@ class _MeetingRoomScreenState
           RouteNames.meetingRoomEdit,
           extra: {
             'roomId': roomId,
-            'startTime': selectedDate,
+            // Lấy start/end theo đúng ô màu đang được tap (meeting.from/to),
+            // không lấy theo details.date của cell.
+            'startTime': meeting!.from,
+            'endTime': meeting.to,
           },
         );
 

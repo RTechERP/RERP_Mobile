@@ -19,10 +19,12 @@ import '../bloc/meeting_room_bloc.dart';
 class MeetingRoomEditScreen extends StatefulWidget {
   final int roomId;
   final DateTime startTime;
+  final DateTime endTime;
 
   const MeetingRoomEditScreen({
     super.key,
     required this.startTime,
+    required this.endTime,
     required this.roomId,
   });
 
@@ -75,10 +77,14 @@ class _MeetingRoomEditScreenState
 
     _contentController = TextEditingController(); // <-- thiếu cái này
     bloc.add(MeetingRoomEvent.initEdit(roomId: widget.roomId));
-    _selectedDate = widget.startTime;
+    _selectedDate = DateTime(
+      widget.startTime.year,
+      widget.startTime.month,
+      widget.startTime.day,
+    );
 
     _startTime = widget.startTime;
-    _endTime = widget.startTime.add(const Duration(hours: 2));
+    _endTime = widget.endTime;
   }
 
   @override
@@ -110,12 +116,6 @@ class _MeetingRoomEditScreenState
               // Prefill phần "core" chỉ 1 lần để không ghi đè lựa chọn người dùng.
               if (!_didPrefillCore) {
                 _contentController.text = detail.content;
-
-                setState(() {
-                  _selectedDate = detail.dateRegister;
-                  _startTime = detail.startTime;
-                  _endTime = detail.endTime;
-                });
 
                 if (meetingRoomField != null) {
                   meetingRoomField?.didChange(
