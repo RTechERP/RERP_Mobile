@@ -10,6 +10,10 @@ import '../features/auth/data/datasource/service/auth_service.dart';
 import '../features/auth/data/repository/auth_repo.dart';
 import '../features/auth/data/repository/auth_repo_impl.dart';
 import '../features/auth/view/bloc/auth_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/service/booking_vehicle_service.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/datasource/service/meeting_room_service.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo_impl.dart';
@@ -55,6 +59,8 @@ void configureDependencies(AppEnv env) {
 
   getIt.registerLazySingleton<MeetingRoomService>(() => MeetingRoomService(getIt<Dio>()));
 
+  getIt.registerLazySingleton<BookingVehicleService>(() => BookingVehicleService(getIt<Dio>()));
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(getIt<AuthService>()),
@@ -67,6 +73,11 @@ void configureDependencies(AppEnv env) {
   getIt.registerLazySingleton<MeetingRoomRepo>(
     () => MeetingRoomRepoImpl(getIt<MeetingRoomService>()),
   );
+
+  getIt.registerLazySingleton<BookingVehicleRepo>(
+    () => BookingVehicleRepoImpl(getIt<BookingVehicleService>()),
+  );
+
 
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
@@ -100,6 +111,14 @@ void configureDependencies(AppEnv env) {
   getIt.registerFactory<MeetingRoomBloc>(
     () => MeetingRoomBloc(
       getIt<MeetingRoomRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<BookingVehicleBloc>(
+    () => BookingVehicleBloc(
+      getIt<BookingVehicleRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

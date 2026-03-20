@@ -17,7 +17,7 @@ class RegGeneralScreen extends StatelessWidget {
     return BaseScaffold(
       appBar: AppBarCommon(
         title: Text(
-          'applications.reg_work'.tr(),
+          'applications.reg_general'.tr(),
           style: AppStyles.headingTitle2,
         ),
       ),

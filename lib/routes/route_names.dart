@@ -134,4 +134,6 @@ class RouteNames {
 
   static const meetingRoomEdit = '/reg_general/meeting_room/edit';
 
+  static const bookingVehicle = '/reg_general/booking_vehicle';
+
 }

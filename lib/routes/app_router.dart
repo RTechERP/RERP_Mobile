@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/reg_general_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_add_screen.dart';
@@ -521,7 +523,43 @@ class AppRouter {
         ],
       ),
 
-
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<BookingVehicleBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.bookingVehicle,
+            builder: (context, state) => const BookingVehicleScreen(),
+          ),
+          // GoRoute(
+          //   path: RouteNames.meetingRoomAdd,
+          //   builder: (context, state) {
+          //     final extra = state.extra as Map<String, dynamic>;
+          //     final startTime = extra['startTime'] as DateTime?;
+          //
+          //     return MeetingRoomAddScreen(startTime: startTime ?? DateTime.now());},
+          // ),
+          // GoRoute(
+          //   path: RouteNames.meetingRoomEdit,
+          //   builder: (context, state) {
+          //     final extra = state.extra as Map<String, dynamic>;
+          //     final roomId = extra['roomId'] as int;
+          //     final startTime = extra['startTime'] as DateTime?;
+          //     final endTime = extra['endTime'] as DateTime?;
+          //
+          //     final safeStart = startTime ?? DateTime.now();
+          //     final safeEnd = endTime ?? safeStart.add(const Duration(hours: 2));
+          //
+          //     return MeetingRoomEditScreen(
+          //       roomId: roomId,
+          //       startTime: safeStart,
+          //       endTime: safeEnd,
+          //     );
+          //   },
+          // ),
+        ],
+      ),
     ],
   );
 }

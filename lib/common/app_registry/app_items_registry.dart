@@ -115,7 +115,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.directions_car_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/booking-car',
+      route: RouteNames.bookingVehicle,
     ),
 
     AppItemModel(

@@ -158,4 +158,7 @@ class ApiEndPoint {
   static const String getDetailMeetingRoom = '/bookingroom/get-by-id';
 
   static const String getUserMeetingRoom = '/Employee';
+
+  static const String getBookingVehicle =
+      '/vehiclebookingmanagement/get-vehicle-booking-management';
 }
