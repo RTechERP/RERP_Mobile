@@ -7,4 +7,22 @@ abstract class BookingVehicleRepo {
   Future<Either<BaseError, List<BookingVehicleItem>>> getBookingVehicle({
     required Map<String, dynamic> payload,
   });
+
+  Future<Either<BaseError, List<ProvinceArrivesItem>>> getProvinceArrives({
+    required int employeeId,
+  });
+
+  Future<Either<BaseError, List<ProvinceDepartureItem>>> getProvinceDeparture({
+    required int employeeId,
+  });
+
+  Future<Either<BaseError, List<BookingVehicleProjectItem>>> getProject();
+
+  Future<Either<BaseError, List<ApproverItem>>> getApprover();
+
+  Future<Either<BaseError, List<BookingVehiclePersonalItem>>> getEmployee();
+
+  Future<Either<BaseError, BookingVehiclePersonalItem>> getEmployeeById({
+    required int employeeId,
+  });
 }

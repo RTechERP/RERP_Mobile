@@ -304,9 +304,9 @@ _$BookingVehicleProjectItemImpl _$$BookingVehicleProjectItemImplFromJson(
       actualDateEnd: json['ActualDateEnd'] == null
           ? null
           : DateTime.parse(json['ActualDateEnd'] as String),
-      eu: (json['EU'] as num?)?.toInt(),
+      eu: json['EU'] as String?,
       projectManager: (json['ProjectManager'] as num?)?.toInt(),
-      currentState: (json['CurrentState'] as num?)?.toInt(),
+      currentState: json['CurrentState'] as String?,
       priotity: (json['Priotity'] as num?)?.toInt(),
       poDate: json['PODate'] == null
           ? null

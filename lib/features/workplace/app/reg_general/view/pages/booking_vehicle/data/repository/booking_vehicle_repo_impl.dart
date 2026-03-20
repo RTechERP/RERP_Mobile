@@ -25,11 +25,73 @@ class BookingVehicleRepoImpl implements BookingVehicleRepo {
         return right(res.data!);
       } else {
         return left(
-          BaseError.httpInternalServerError(
-            res.message ?? 'Có lỗi xảy ra',
-          ),
+          BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
         );
       }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<ProvinceArrivesItem>>> getProvinceArrives({
+    required int employeeId,
+  }) async {
+    try {
+      final res = await _service.getProvinceArrives(employeeId: employeeId);
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<ProvinceDepartureItem>>> getProvinceDeparture({
+    required int employeeId,
+  }) async {
+    try {
+      final res = await _service.getProvinceDeparture(employeeId: employeeId);
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<ApproverItem>>> getApprover() async {
+    try {
+      final res = await _service.getApprover();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<BookingVehiclePersonalItem>>> getEmployee() async {
+    try {
+      final res = await _service.getEmployee();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, BookingVehiclePersonalItem>> getEmployeeById({required int employeeId}) async {
+    try {
+      final res = await _service.getEmployeeById(employeeId: employeeId);
+      return right(res.data!);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<BookingVehicleProjectItem>>> getProject() async {
+    try {
+      final res = await _service.getProject();
+      return right(res.data ?? []);
     } on DioException catch (e) {
       return left(e.baseError);
     }

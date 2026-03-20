@@ -3083,11 +3083,11 @@ mixin _$BookingVehicleProjectItem {
   @JsonKey(name: 'ActualDateEnd')
   DateTime? get actualDateEnd => throw _privateConstructorUsedError;
   @JsonKey(name: 'EU')
-  int? get eu => throw _privateConstructorUsedError;
+  String? get eu => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProjectManager')
   int? get projectManager => throw _privateConstructorUsedError;
   @JsonKey(name: 'CurrentState')
-  int? get currentState => throw _privateConstructorUsedError;
+  String? get currentState => throw _privateConstructorUsedError;
   @JsonKey(name: 'Priotity')
   int? get priotity => throw _privateConstructorUsedError;
   @JsonKey(name: 'PODate')
@@ -3140,9 +3140,9 @@ abstract class $BookingVehicleProjectItemCopyWith<$Res> {
       @JsonKey(name: 'PlanDateEnd') DateTime? planDateEnd,
       @JsonKey(name: 'ActualDateStart') DateTime? actualDateStart,
       @JsonKey(name: 'ActualDateEnd') DateTime? actualDateEnd,
-      @JsonKey(name: 'EU') int? eu,
+      @JsonKey(name: 'EU') String? eu,
       @JsonKey(name: 'ProjectManager') int? projectManager,
-      @JsonKey(name: 'CurrentState') int? currentState,
+      @JsonKey(name: 'CurrentState') String? currentState,
       @JsonKey(name: 'Priotity') int? priotity,
       @JsonKey(name: 'PODate') DateTime? poDate,
       @JsonKey(name: 'EndUser') int? endUser,
@@ -3277,7 +3277,7 @@ class _$BookingVehicleProjectItemCopyWithImpl<$Res,
       eu: freezed == eu
           ? _value.eu
           : eu // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       projectManager: freezed == projectManager
           ? _value.projectManager
           : projectManager // ignore: cast_nullable_to_non_nullable
@@ -3285,7 +3285,7 @@ class _$BookingVehicleProjectItemCopyWithImpl<$Res,
       currentState: freezed == currentState
           ? _value.currentState
           : currentState // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       priotity: freezed == priotity
           ? _value.priotity
           : priotity // ignore: cast_nullable_to_non_nullable
@@ -3358,9 +3358,9 @@ abstract class _$$BookingVehicleProjectItemImplCopyWith<$Res>
       @JsonKey(name: 'PlanDateEnd') DateTime? planDateEnd,
       @JsonKey(name: 'ActualDateStart') DateTime? actualDateStart,
       @JsonKey(name: 'ActualDateEnd') DateTime? actualDateEnd,
-      @JsonKey(name: 'EU') int? eu,
+      @JsonKey(name: 'EU') String? eu,
       @JsonKey(name: 'ProjectManager') int? projectManager,
-      @JsonKey(name: 'CurrentState') int? currentState,
+      @JsonKey(name: 'CurrentState') String? currentState,
       @JsonKey(name: 'Priotity') int? priotity,
       @JsonKey(name: 'PODate') DateTime? poDate,
       @JsonKey(name: 'EndUser') int? endUser,
@@ -3494,7 +3494,7 @@ class __$$BookingVehicleProjectItemImplCopyWithImpl<$Res>
       eu: freezed == eu
           ? _value.eu
           : eu // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       projectManager: freezed == projectManager
           ? _value.projectManager
           : projectManager // ignore: cast_nullable_to_non_nullable
@@ -3502,7 +3502,7 @@ class __$$BookingVehicleProjectItemImplCopyWithImpl<$Res>
       currentState: freezed == currentState
           ? _value.currentState
           : currentState // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       priotity: freezed == priotity
           ? _value.priotity
           : priotity // ignore: cast_nullable_to_non_nullable
@@ -3642,13 +3642,13 @@ class _$BookingVehicleProjectItemImpl implements _BookingVehicleProjectItem {
   final DateTime? actualDateEnd;
   @override
   @JsonKey(name: 'EU')
-  final int? eu;
+  final String? eu;
   @override
   @JsonKey(name: 'ProjectManager')
   final int? projectManager;
   @override
   @JsonKey(name: 'CurrentState')
-  final int? currentState;
+  final String? currentState;
   @override
   @JsonKey(name: 'Priotity')
   final int? priotity;
@@ -3819,9 +3819,9 @@ abstract class _BookingVehicleProjectItem implements BookingVehicleProjectItem {
           @JsonKey(name: 'PlanDateEnd') final DateTime? planDateEnd,
           @JsonKey(name: 'ActualDateStart') final DateTime? actualDateStart,
           @JsonKey(name: 'ActualDateEnd') final DateTime? actualDateEnd,
-          @JsonKey(name: 'EU') final int? eu,
+          @JsonKey(name: 'EU') final String? eu,
           @JsonKey(name: 'ProjectManager') final int? projectManager,
-          @JsonKey(name: 'CurrentState') final int? currentState,
+          @JsonKey(name: 'CurrentState') final String? currentState,
           @JsonKey(name: 'Priotity') final int? priotity,
           @JsonKey(name: 'PODate') final DateTime? poDate,
           @JsonKey(name: 'EndUser') final int? endUser,
@@ -3893,13 +3893,13 @@ abstract class _BookingVehicleProjectItem implements BookingVehicleProjectItem {
   DateTime? get actualDateEnd;
   @override
   @JsonKey(name: 'EU')
-  int? get eu;
+  String? get eu;
   @override
   @JsonKey(name: 'ProjectManager')
   int? get projectManager;
   @override
   @JsonKey(name: 'CurrentState')
-  int? get currentState;
+  String? get currentState;
   @override
   @JsonKey(name: 'Priotity')
   int? get priotity;

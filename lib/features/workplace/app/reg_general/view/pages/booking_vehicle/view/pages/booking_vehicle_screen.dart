@@ -33,6 +33,8 @@ class _BookingVehicleScreenState
   void initState() {
     super.initState();
     bloc.add(const BookingVehicleEvent.init());
+    // Preload cache cho màn add ngay khi vào module list.
+    bloc.add(const BookingVehicleEvent.preloadInitAdd());
   }
 
   @override
@@ -128,7 +130,7 @@ class _BookingVehicleScreenState
               child: const Icon(Icons.add),
               label: 'Thêm',
               onTap: () async {
-                final reload = await context.push(RouteNames.reportADdepartAdd);
+                final reload = await context.push(RouteNames.bookingVehicleAdd);
 
                 if (reload == true) {
                   bloc.add(const BookingVehicleEvent.init());

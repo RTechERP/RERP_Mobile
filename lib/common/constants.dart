@@ -161,4 +161,22 @@ class ApiEndPoint {
 
   static const String getBookingVehicle =
       '/vehiclebookingmanagement/get-vehicle-booking-management';
+
+  static const String getProvinceArrives =
+      '/vehiclebookingmanagement/get-province-arrives';
+
+  static const String getProvinceDeparture =
+      '/vehiclebookingmanagement/get-province-departure';
+
+  static const String getBookingVehicleProject =
+      '/vehiclebookingmanagement/get-projects';
+
+  static const String getBookingVehicleApprover =
+      '/vehiclebookingmanagement/get-approved-list';
+
+  static const String getBookingVehicleEmployee =
+      '/vehiclebookingmanagement/get-employees';
+
+  static const String getBookingVehicleEmployeeById =
+      '/vehiclebookingmanagement/get-employee-by-id';
 }

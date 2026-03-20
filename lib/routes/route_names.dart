@@ -136,4 +136,11 @@ class RouteNames {
 
   static const bookingVehicle = '/reg_general/booking_vehicle';
 
+  static const bookingVehicleAdd = '/reg_general/booking_vehicle/add';
+
+  static const bookingVehicleDetail = '/reg_general/booking_vehicle/detail';
+
+  static const bookingVehicleEdit = '/reg_general/booking_vehicle/Edit';
+
+
 }

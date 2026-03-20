@@ -20,6 +20,7 @@ import '../di/injection.dart';
 import '../features/auth/view/bloc/auth_bloc.dart';
 import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_edit_screen.dart';
@@ -532,14 +533,10 @@ class AppRouter {
             path: RouteNames.bookingVehicle,
             builder: (context, state) => const BookingVehicleScreen(),
           ),
-          // GoRoute(
-          //   path: RouteNames.meetingRoomAdd,
-          //   builder: (context, state) {
-          //     final extra = state.extra as Map<String, dynamic>;
-          //     final startTime = extra['startTime'] as DateTime?;
-          //
-          //     return MeetingRoomAddScreen(startTime: startTime ?? DateTime.now());},
-          // ),
+          GoRoute(
+            path: RouteNames.bookingVehicleAdd,
+            builder: (context, state) => const BookingVehicleAddScreen(),
+          ),
           // GoRoute(
           //   path: RouteNames.meetingRoomEdit,
           //   builder: (context, state) {

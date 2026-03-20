@@ -177,9 +177,9 @@ class BookingVehicleProjectItem with _$BookingVehicleProjectItem {
     @JsonKey(name: 'ActualDateStart') DateTime? actualDateStart,
     @JsonKey(name: 'ActualDateEnd') DateTime? actualDateEnd,
 
-    @JsonKey(name: 'EU') int? eu,
+    @JsonKey(name: 'EU') String? eu,
     @JsonKey(name: 'ProjectManager') int? projectManager,
-    @JsonKey(name: 'CurrentState') int? currentState,
+    @JsonKey(name: 'CurrentState') String? currentState,
     @JsonKey(name: 'Priotity') int? priotity,
 
     @JsonKey(name: 'PODate') DateTime? poDate,
