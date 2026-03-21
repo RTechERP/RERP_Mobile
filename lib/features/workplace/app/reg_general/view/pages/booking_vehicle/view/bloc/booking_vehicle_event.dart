@@ -56,4 +56,27 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
   const factory BookingVehicleEvent.deletePickupGiverInfo({
     required int index,
   }) = _DeletePickupGiverInfo;
+
+  /// Merge snapshot field phần Form chung vào state (đồng bộ với [TypeFormPassengerGo] / …).
+  const factory BookingVehicleEvent.updateForm({
+    required Map<String, dynamic> values,
+  }) = _UpdateForm;
+
+  /// Merge snapshot field từng dòng Info vào state ([PassengerInfoItem], [ReceiverPackageInfoItem], …).
+  const factory BookingVehicleEvent.updateInfo({
+    required Map<String, dynamic> values,
+  }) = _UpdateInfo;
+
+  /// Gửi đăng ký **Người đi** — body map từ `FormBuilder.saveAndValidate().value`.
+  const factory BookingVehicleEvent.submitPassengerGo({
+    required Map<String, dynamic> formValues,
+  }) = _SubmitPassengerGo;
+
+  /// Gửi đăng ký **Người về** — `Category` = 5 (`BookingVehicleApiCategory.passengerReturn`).
+  const factory BookingVehicleEvent.submitPassengerReturn({
+    required Map<String, dynamic> formValues,
+  }) = _SubmitPassengerReturn;
+
+  /// Xoá cờ submit (vào lại màn add / shell dùng chung bloc).
+  const factory BookingVehicleEvent.clearSubmitResult() = _ClearSubmitResult;
 }

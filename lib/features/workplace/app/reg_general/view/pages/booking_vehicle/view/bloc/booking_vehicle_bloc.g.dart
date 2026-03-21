@@ -70,6 +70,10 @@ abstract class _$BookingVehicleStateCWProxy {
 
   BookingVehicleState pickupGiverFormGeneration(int pickupGiverFormGeneration);
 
+  BookingVehicleState formFieldValues(Map<String, dynamic> formFieldValues);
+
+  BookingVehicleState infoFieldValues(Map<String, dynamic> infoFieldValues);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -105,6 +109,8 @@ abstract class _$BookingVehicleStateCWProxy {
     int? pickupGiverLineCount,
     int? expandedPickupGiverIndex,
     int? pickupGiverFormGeneration,
+    Map<String, dynamic>? formFieldValues,
+    Map<String, dynamic>? infoFieldValues,
   });
 }
 
@@ -235,6 +241,14 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
       this(pickupGiverFormGeneration: pickupGiverFormGeneration);
 
   @override
+  BookingVehicleState formFieldValues(Map<String, dynamic> formFieldValues) =>
+      this(formFieldValues: formFieldValues);
+
+  @override
+  BookingVehicleState infoFieldValues(Map<String, dynamic> infoFieldValues) =>
+      this(infoFieldValues: infoFieldValues);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -272,6 +286,8 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
     Object? pickupGiverLineCount = const $CopyWithPlaceholder(),
     Object? expandedPickupGiverIndex = const $CopyWithPlaceholder(),
     Object? pickupGiverFormGeneration = const $CopyWithPlaceholder(),
+    Object? formFieldValues = const $CopyWithPlaceholder(),
+    Object? infoFieldValues = const $CopyWithPlaceholder(),
   }) {
     return BookingVehicleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -412,6 +428,16 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
               ? _value.pickupGiverFormGeneration
               // ignore: cast_nullable_to_non_nullable
               : pickupGiverFormGeneration as int,
+      formFieldValues: formFieldValues == const $CopyWithPlaceholder() ||
+              formFieldValues == null
+          ? _value.formFieldValues
+          // ignore: cast_nullable_to_non_nullable
+          : formFieldValues as Map<String, dynamic>,
+      infoFieldValues: infoFieldValues == const $CopyWithPlaceholder() ||
+              infoFieldValues == null
+          ? _value.infoFieldValues
+          // ignore: cast_nullable_to_non_nullable
+          : infoFieldValues as Map<String, dynamic>,
     );
   }
 }

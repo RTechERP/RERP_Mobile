@@ -9,12 +9,14 @@ import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../../common/helpers/index.dart';
+import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../data/datasource/models/booking_vehicle_passenger_form_shift.dart';
 import '../../data/datasource/models/booking_vehicle_deliver_form_shift.dart';
 import '../../data/datasource/models/booking_vehicle_receiver_form_shift.dart';
 import '../../data/repository/booking_vehicle_repository.dart';
 import '../bloc/booking_vehicle_bloc.dart';
+import '../booking_vehicle_form_field_registry.dart';
 import '../widgets/forms/index.dart';
 import '../widgets/infos/index.dart';
 
@@ -60,6 +62,7 @@ class _BookingVehicleAddScreenState
   void initState() {
     super.initState();
     _bookingTypeGroup = _BookingVehicleTypeGroup.passengerGo;
+    bloc.add(const BookingVehicleEvent.clearSubmitResult());
     bloc.add(const BookingVehicleEvent.initAdd());
     bloc.add(const BookingVehicleEvent.initPassengerGoInfos());
   }
@@ -77,13 +80,27 @@ class _BookingVehicleAddScreenState
       children: [
         BlocListener<BookingVehicleBloc, BookingVehicleState>(
           listenWhen: (previous, current) =>
-              previous.submitSuccess != current.submitSuccess,
+              previous.message != current.message &&
+              current.message != null &&
+              current.message!.isNotEmpty &&
+              !current.isSubmitting &&
+              !current.submitSuccess,
           listener: (context, state) {
-            if (state.submitSuccess) {
-              context.pop(true);
-            }
+            showMessage(
+              context,
+              state.message!,
+              type: SnackBarType.error,
+            );
           },
-          child: BaseScaffold(
+          child: BlocListener<BookingVehicleBloc, BookingVehicleState>(
+            listenWhen: (previous, current) =>
+                previous.submitSuccess != current.submitSuccess,
+            listener: (context, state) {
+              if (state.submitSuccess) {
+                context.pop(true);
+              }
+            },
+            child: BaseScaffold(
             appBar: AppBarCommon(title: const Text('Tạo báo cáo')),
             body: BlocBuilder<BookingVehicleBloc, BookingVehicleState>(
               buildWhen: (prev, curr) =>
@@ -114,13 +131,30 @@ class _BookingVehicleAddScreenState
               builder: (context, state) {
                 return FormBuilder(
                   key: _formKey,
-                  initialValue: const {
+                  initialValue: {
                     'booking_type': 'Đăng ký người đi',
                     'booking_type_text': 'Đăng ký người đi',
-                    // Mặc định: cả "xuất phát" và "điểm về" đều là "Khác"
-                    // để người dùng nhập cụ thể.
+                    'type_transport': 'Ô tô, xe máy ...',
+                    'type_transport_text': 'Ô tô, xe máy ...',
                     'starting_point': 'Khác',
                     'return_point': 'Khác',
+                    ...state.formFieldValues,
+                    ...state.infoFieldValues,
+                  },
+                  onChanged: () {
+                    final raw =
+                        _formKey.currentState?.instantValue ?? const {};
+                    final split = splitBookingVehicleFormAndInfo(raw);
+                    if (split.form.isNotEmpty) {
+                      bloc.add(
+                        BookingVehicleEvent.updateForm(values: split.form),
+                      );
+                    }
+                    if (split.info.isNotEmpty) {
+                      bloc.add(
+                        BookingVehicleEvent.updateInfo(values: split.info),
+                      );
+                    }
                   },
                   child: Column(
                     children: [
@@ -715,30 +749,39 @@ class _BookingVehicleAddScreenState
                           onSubmit: () {
                             FocusScope.of(context).unfocus();
 
-                            // final error = ValidateHelper.validateMeetingRoom(
-                            //   date: _selectedDate,
-                            //   startTime: _startTime,
-                            //   endTime: _endTime,
-                            //   roomId: bloc.state.selectedRoomId,
-                            //   departmentId: bloc.state.departmentId,
-                            //   content: _contentController.text,
-                            // );
-                            //
-                            // if (error != null) {
-                            //   context.showMessage(
-                            //     error,
-                            //     type: SnackBarType.error,
-                            //   );
-                            //   return;
-                            // }
-                            //
-                            // bloc.add(
-                            //   MeetingRoomEvent.submitRoom(
-                            //     startTime: _startTime!,
-                            //     endTime: _endTime!,
-                            //     dateRegister: _selectedDate!,
-                            //   ),
-                            // );
+                            if (_bookingTypeGroup !=
+                                    _BookingVehicleTypeGroup.passengerGo &&
+                                _bookingTypeGroup !=
+                                    _BookingVehicleTypeGroup.passengerReturn) {
+                              showMessage(
+                                context,
+                                'Chưa hỗ trợ gửi loại đăng ký này.',
+                                type: SnackBarType.info,
+                              );
+                              return;
+                            }
+
+                            final formState = _formKey.currentState;
+                            if (formState == null) return;
+                            if (!formState.saveAndValidate()) return;
+
+                            final values = Map<String, dynamic>.from(
+                              formState.value,
+                            );
+                            if (_bookingTypeGroup ==
+                                _BookingVehicleTypeGroup.passengerGo) {
+                              bloc.add(
+                                BookingVehicleEvent.submitPassengerGo(
+                                  formValues: values,
+                                ),
+                              );
+                            } else {
+                              bloc.add(
+                                BookingVehicleEvent.submitPassengerReturn(
+                                  formValues: values,
+                                ),
+                              );
+                            }
                           },
                         ),
                       ),
@@ -748,6 +791,7 @@ class _BookingVehicleAddScreenState
               },
             ),
           ),
+        ),
         ),
 
         /// ===== LOADING OVERLAY =====

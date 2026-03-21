@@ -53,6 +53,13 @@ class BookingVehicleState extends BaseBlocState {
   final int? expandedPickupGiverIndex;
 
   final int pickupGiverFormGeneration;
+
+  /// Snapshot field Form chung; cập nhật qua [BookingVehicleEvent.updateForm].
+  final Map<String, dynamic> formFieldValues;
+
+  /// Snapshot field Info theo dòng; cập nhật qua [BookingVehicleEvent.updateInfo].
+  final Map<String, dynamic> infoFieldValues;
+
   const BookingVehicleState({
     required super.status,
     super.message,
@@ -84,6 +91,8 @@ class BookingVehicleState extends BaseBlocState {
     this.pickupGiverLineCount = 0,
     this.expandedPickupGiverIndex,
     this.pickupGiverFormGeneration = 0,
+    this.formFieldValues = const {},
+    this.infoFieldValues = const {},
   });
 
   factory BookingVehicleState.init() => const BookingVehicleState(
@@ -114,6 +123,8 @@ class BookingVehicleState extends BaseBlocState {
     pickupGiverLineCount: 0,
     expandedPickupGiverIndex: null,
     pickupGiverFormGeneration: 0,
+    formFieldValues: {},
+    infoFieldValues: {},
   );
 
   @override
@@ -146,5 +157,7 @@ class BookingVehicleState extends BaseBlocState {
     pickupGiverLineCount,
     expandedPickupGiverIndex,
     pickupGiverFormGeneration,
+    formFieldValues,
+    infoFieldValues,
   ];
 }

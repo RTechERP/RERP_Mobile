@@ -115,4 +115,19 @@ class BookingVehicleService extends DioBaseApiService {
       ),
     );
   }
+
+  Future<BaseData<BookingVehicleItem>> createBookingVehicle({
+    required Map<String, dynamic> payload,
+  }) async {
+    return post<BaseData<BookingVehicleItem>>(
+      ApiEndPoint.createBookingVehicle,
+      body: payload,
+      parser: (json) => BaseData<BookingVehicleItem>.fromJson(
+        json,
+            (data) => BookingVehicleItem.fromJson(
+          data as Map<String, dynamic>,
+        ),
+      ),
+    );
+  }
 }

@@ -179,4 +179,6 @@ class ApiEndPoint {
 
   static const String getBookingVehicleEmployeeById =
       '/vehiclebookingmanagement/get-employee-by-id';
+
+  static const String createBookingVehicle = '/vehiclebookingmanagement/create';
 }

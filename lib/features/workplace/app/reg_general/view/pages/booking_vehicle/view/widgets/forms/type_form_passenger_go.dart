@@ -26,23 +26,6 @@ class TypeFormPassengerGo extends StatefulWidget {
 class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
   static const String _otherPointLabel = 'Khác';
 
-  FormFieldState<String>? projectField;
-  FormFieldState<String>? startingPointField;
-  FormFieldState<String>? returnPointField;
-  FormFieldState<String>? typeTransportField;
-
-  FormFieldState<String>? destinationAddressField;
-  FormFieldState<String>? returnAddressField;
-
-  FormFieldState<String>? provincesField;
-
-  List<BookingVehicleProjectItem> get _projects => widget.projects;
-  List<ProvinceDepartureItem> get _departureProvinces =>
-      widget.departureProvinces;
-  List<ProvinceArrivesItem> get _arrivalProvinces => widget.arrivalProvinces;
-
-  final List<String> _types = const ['Ô tô, xe máy ...', 'Máy bay'];
-
   String _startingPointValue = _otherPointLabel;
   String _returnPointValue = _otherPointLabel;
 
@@ -50,7 +33,20 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
       _startingPointValue.trim() == _otherPointLabel;
   bool get _isReturnPointOther => _returnPointValue.trim() == _otherPointLabel;
 
-  List<String> get _startingPointOptions {
+  FormFieldState<String>? projectField;
+  FormFieldState<String>? provincesField;
+  FormFieldState<String>? typeTransportField;
+  FormFieldState<String>? startingPointField;
+  FormFieldState<String>? returnPointField;
+  FormFieldState<String>? destinationAddressField;
+  FormFieldState<String>? returnAddressField;
+
+  List<BookingVehicleProjectItem> get _projects => widget.projects;
+  List<ProvinceDepartureItem> get _departureProvinces =>
+      widget.departureProvinces;
+  List<ProvinceArrivesItem> get _arrivalProvinces => widget.arrivalProvinces;
+
+  List<String> get _departurePointOptions {
     final points = _departureProvinces
         .map((e) => e.provinceName)
         .where((e) => e.trim().isNotEmpty)
@@ -59,6 +55,11 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
     points.add(_otherPointLabel);
     return points;
   }
+
+  static const List<String> _vehicleTypes = [
+    'Ô tô, xe máy ...',
+    'Máy bay',
+  ];
 
   Future<void> _pickProject() async {
     await openSelectBottomSheet<BookingVehicleProjectItem>(
@@ -74,20 +75,28 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
     );
   }
 
+  Future<void> _pickProvinces() async {
+    await openSelectBottomSheet<ProvinceArrivesItem>(
+      context: context,
+      title: 'Chọn tỉnh cần đến',
+      items: _arrivalProvinces,
+      displayText: (v) => v.provinceName ?? '',
+      onSelected: (item) {
+        provincesField?.didChange(item.provinceName ?? '');
+      },
+    );
+  }
+
   Future<void> _pickStartingPoint() async {
     await openSelectBottomSheet<String>(
       context: context,
       title: 'Chọn điểm xuất phát',
-      items: _startingPointOptions,
+      items: _departurePointOptions,
       displayText: (v) => v,
       onSelected: (item) {
         final selected = item.trim();
-        setState(() {
-          _startingPointValue = selected;
-        });
+        setState(() => _startingPointValue = selected);
         startingPointField?.didChange(selected);
-
-        /// Nếu không phải "Khác" thì disable field cụ thể và copy giá trị.
         if (selected != _otherPointLabel) {
           destinationAddressField?.didChange(selected);
         }
@@ -99,16 +108,12 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
     await openSelectBottomSheet<String>(
       context: context,
       title: 'Chọn điểm về',
-      items: _startingPointOptions,
+      items: _departurePointOptions,
       displayText: (v) => v,
       onSelected: (item) {
         final selected = item.trim();
-        setState(() {
-          _returnPointValue = selected;
-        });
+        setState(() => _returnPointValue = selected);
         returnPointField?.didChange(selected);
-
-        /// Nếu không phải "Khác" thì disable field cụ thể và copy giá trị.
         if (selected != _otherPointLabel) {
           returnAddressField?.didChange(selected);
         }
@@ -120,22 +125,10 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
     await openSelectBottomSheet<String>(
       context: context,
       title: 'Chọn loại phương tiện',
-      items: _types,
+      items: _vehicleTypes,
       displayText: (v) => v,
       onSelected: (item) {
         typeTransportField?.didChange(item);
-      },
-    );
-  }
-
-  Future<void> _pickProvinces() async {
-    await openSelectBottomSheet<ProvinceArrivesItem>(
-      context: context,
-      title: 'Chọn loại phương tiện',
-      items: _arrivalProvinces,
-      displayText: (v) => v.provinceName ?? '',
-      onSelected: (item) {
-        provincesField?.didChange(item.provinceName ?? '');
       },
     );
   }
@@ -233,7 +226,7 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
                       nameForm: 'starting_point',
                       nameTextField: 'starting_point_text',
                       label: 'Xuất phát',
-                      onFieldCreated: (field) => startingPointField = field,
+                      onFieldCreated: (f) => startingPointField = f,
                       readOnly: true,
                     ),
                   ),
@@ -249,7 +242,7 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
                       nameForm: 'return_point',
                       nameTextField: 'return_point_text',
                       label: 'Điểm về',
-                      onFieldCreated: (field) => returnPointField = field,
+                      onFieldCreated: (f) => returnPointField = f,
                       readOnly: true,
                     ),
                   ),
@@ -266,7 +259,7 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
             label: 'Điểm xuất phát cụ thể',
             enabled: _isStartingPointOther,
             readOnly: !_isStartingPointOther,
-            onFieldCreated: (field) => destinationAddressField = field,
+            onFieldCreated: (f) => destinationAddressField = f,
           ),
           const SizedBox(height: 8),
           FormInputField(
@@ -276,7 +269,7 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
             label: 'Địa chỉ quay về cụ thể',
             enabled: _isReturnPointOther,
             readOnly: !_isReturnPointOther,
-            onFieldCreated: (field) => returnAddressField = field,
+            onFieldCreated: (f) => returnAddressField = f,
           ),
           const SizedBox(height: 8),
 

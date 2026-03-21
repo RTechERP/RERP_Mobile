@@ -96,4 +96,25 @@ class BookingVehicleRepoImpl implements BookingVehicleRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, BookingVehicleItem>> createBookingVehicle({required Map<String, dynamic> payload}) async {
+    try {
+      final res = await _service.createBookingVehicle(payload: payload);
+
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? res.msg ?? 'Có lỗi xảy ra',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

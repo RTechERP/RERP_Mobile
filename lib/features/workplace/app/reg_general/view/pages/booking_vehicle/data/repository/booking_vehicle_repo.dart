@@ -25,4 +25,8 @@ abstract class BookingVehicleRepo {
   Future<Either<BaseError, BookingVehiclePersonalItem>> getEmployeeById({
     required int employeeId,
   });
+
+  Future<Either<BaseError, BookingVehicleItem>> createBookingVehicle({
+    required Map<String, dynamic> payload,
+  });
 }

@@ -312,8 +312,7 @@ class _PassengerInfoItemState
                         icon: Icons.phone_outlined,
                         onFieldCreated: (field) =>
                             contactPhoneField = field,
-                        enabled: !_isPassengerFromEmployee,
-                        readOnly: _isPassengerFromEmployee,
+                        keyboardType: TextInputType.phone,
                       ),
                       const SizedBox(height: 8),
 

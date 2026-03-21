@@ -27,27 +27,22 @@ class TypeFormPassengerReturn extends StatefulWidget {
 class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
   static const String _otherPointLabel = 'Khác';
 
+  String _returnPointValue = _otherPointLabel;
+
+  bool get _isReturnPointOther => _returnPointValue.trim() == _otherPointLabel;
+
   FormFieldState<String>? projectField;
-  FormFieldState<String>? startingPointField;
-  FormFieldState<String>? returnPointField;
-  FormFieldState<String>? typeTransportField;
-
-  FormFieldState<String>? destinationAddressField;
-  FormFieldState<String>? returnAddressField;
-
   FormFieldState<String>? provincesField;
+  FormFieldState<String>? typeTransportField;
+  FormFieldState<String>? returnPointField;
+  FormFieldState<String>? returnAddressField;
 
   List<BookingVehicleProjectItem> get _projects => widget.projects;
   List<ProvinceDepartureItem> get _departureProvinces =>
       widget.departureProvinces;
   List<ProvinceArrivesItem> get _arrivalProvinces => widget.arrivalProvinces;
 
-  final List<String> _types = const ['Ô tô, xe máy ...', 'Máy bay'];
-  String _returnPointValue = _otherPointLabel;
-
-  bool get _isReturnPointOther => _returnPointValue.trim() == _otherPointLabel;
-
-  List<String> get _endingPointOptions {
+  List<String> get _pickupPointOptions {
     final points = _departureProvinces
         .map((e) => e.provinceName)
         .where((e) => e.trim().isNotEmpty)
@@ -56,6 +51,11 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
     points.add(_otherPointLabel);
     return points;
   }
+
+  static const List<String> _vehicleTypes = [
+    'Ô tô, xe máy ...',
+    'Máy bay',
+  ];
 
   Future<void> _pickProject() async {
     await openSelectBottomSheet<BookingVehicleProjectItem>(
@@ -71,20 +71,28 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
     );
   }
 
+  Future<void> _pickProvinces() async {
+    await openSelectBottomSheet<ProvinceArrivesItem>(
+      context: context,
+      title: 'Chọn tỉnh cần về',
+      items: _arrivalProvinces,
+      displayText: (v) => v.provinceName ?? '',
+      onSelected: (item) {
+        provincesField?.didChange(item.provinceName ?? '');
+      },
+    );
+  }
+
   Future<void> _pickReturnPoint() async {
     await openSelectBottomSheet<String>(
       context: context,
       title: 'Chọn điểm đón',
-      items: _endingPointOptions,
+      items: _pickupPointOptions,
       displayText: (v) => v,
       onSelected: (item) {
         final selected = item.trim();
-        setState(() {
-          _returnPointValue = selected;
-        });
+        setState(() => _returnPointValue = selected);
         returnPointField?.didChange(selected);
-
-        // Nếu không phải "Khác" thì disable field cụ thể và copy giá trị.
         if (selected != _otherPointLabel) {
           returnAddressField?.didChange(selected);
         }
@@ -96,22 +104,10 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
     await openSelectBottomSheet<String>(
       context: context,
       title: 'Chọn loại phương tiện',
-      items: _types,
+      items: _vehicleTypes,
       displayText: (v) => v,
       onSelected: (item) {
         typeTransportField?.didChange(item);
-      },
-    );
-  }
-
-  Future<void> _pickProvinces() async {
-    await openSelectBottomSheet<ProvinceArrivesItem>(
-      context: context,
-      title: 'Chọn tỉnh cần về',
-      items: _arrivalProvinces,
-      displayText: (v) => v.provinceName ?? '',
-      onSelected: (item) {
-        provincesField?.didChange(item.provinceName ?? '');
       },
     );
   }
@@ -195,7 +191,7 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
                 nameForm: 'return_point',
                 nameTextField: 'return_point_text',
                 label: 'Điểm đón',
-                onFieldCreated: (field) => returnPointField = field,
+                onFieldCreated: (f) => returnPointField = f,
                 readOnly: true,
               ),
             ),
@@ -210,7 +206,7 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
             label: 'Địa chỉ đón cụ thể',
             enabled: _isReturnPointOther,
             readOnly: !_isReturnPointOther,
-            onFieldCreated: (field) => returnAddressField = field,
+            onFieldCreated: (f) => returnAddressField = f,
           ),
           const SizedBox(height: 8),
 

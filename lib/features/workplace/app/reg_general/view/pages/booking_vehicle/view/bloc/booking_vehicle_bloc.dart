@@ -8,6 +8,7 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_ve
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repository.dart';
 
+import '../booking_vehicle_passenger_go_payload.dart';
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
@@ -55,6 +56,27 @@ class BookingVehicleBloc
             _onExpandPickupGiverInfo(index, emit),
         deletePickupGiverInfo: (index) =>
             _onDeletePickupGiverInfo(index, emit),
+        updateForm: (values) async {
+          _onUpdateForm(values, emit);
+        },
+        updateInfo: (values) async {
+          _onUpdateInfo(values, emit);
+        },
+        submitPassengerGo: (formValues) async {
+          await _onSubmitPassengerGo(formValues, emit);
+        },
+        submitPassengerReturn: (formValues) async {
+          await _onSubmitPassengerReturn(formValues, emit);
+        },
+        clearSubmitResult: () async {
+          emit(
+            state.copyWith(
+              submitSuccess: false,
+              isSubmitting: false,
+              message: null,
+            ),
+          );
+        },
       );
     });
   }
@@ -494,6 +516,269 @@ class BookingVehicleBloc
         pickupGiverLineCount: n - 1,
         expandedPickupGiverIndex: nextExpanded,
         pickupGiverFormGeneration: state.pickupGiverFormGeneration + 1,
+      ),
+    );
+  }
+
+  void _onUpdateForm(
+    Map<String, dynamic> values,
+    Emitter<BookingVehicleState> emit,
+  ) {
+    if (values.isEmpty) return;
+    final merged = Map<String, dynamic>.from(state.formFieldValues)
+      ..addAll(values);
+    emit(state.copyWith(formFieldValues: merged));
+  }
+
+  void _onUpdateInfo(
+    Map<String, dynamic> values,
+    Emitter<BookingVehicleState> emit,
+  ) {
+    if (values.isEmpty) return;
+    final merged = Map<String, dynamic>.from(state.infoFieldValues)
+      ..addAll(values);
+    emit(state.copyWith(infoFieldValues: merged));
+  }
+
+  Future<void> _onSubmitPassengerGo(
+    Map<String, dynamic> formValues,
+    Emitter<BookingVehicleState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        submitSuccess: false,
+        message: null,
+      ),
+    );
+
+    final employeeId = state.employeeId;
+    if (employeeId == null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Không xác định được nhân viên đăng ký.',
+        ),
+      );
+      return;
+    }
+
+    final n = state.passengerGoLineCount;
+    if (n <= 0) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Chưa có dòng người đi.',
+        ),
+      );
+      return;
+    }
+
+    final bookerName =
+        state.currentEmployee?.fullName?.trim() ?? '';
+
+    final projectId = resolveBookingVehicleProjectId(
+      formValues['project'],
+      state.projects,
+    );
+    if (projectId == 0) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Vui lòng chọn dự án.',
+        ),
+      );
+      return;
+    }
+
+    for (var i = 0; i < n; i++) {
+      final name = bookingVehicleTrimFormValue(
+        formValues['passenger_full_name_$i'],
+      );
+      final code = bookingVehicleTrimFormValue(formValues['passenger_code_$i']);
+      if (name.isEmpty && code.isEmpty) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message: 'Vui lòng nhập thông tin người đi (dòng ${i + 1}).',
+          ),
+        );
+        return;
+      }
+    }
+
+    final payloads = buildAllPassengerGoCreatePayloads(
+      formValues: formValues,
+      bookerEmployeeId: employeeId,
+      bookerFullName: bookerName,
+      projects: state.projects,
+      employees: state.employee,
+      passengerLineCount: n,
+    );
+
+    for (final payload in payloads) {
+      final res = await _bookingVehicleRepo.createBookingVehicle(
+        payload: payload,
+      );
+
+      final failed = await res.fold(
+        (err) async {
+          _log.logE('❌ createBookingVehicle failed: $err');
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              message: err.getErrorMessage,
+            ),
+          );
+          return true;
+        },
+        (created) async {
+          _log.logI('✅ createBookingVehicle OK id=${created.id}');
+          return false;
+        },
+      );
+
+      if (failed) return;
+    }
+
+    emit(
+      state.copyWith(
+        isSubmitting: false,
+        submitSuccess: true,
+        message: null,
+      ),
+    );
+  }
+
+  Future<void> _onSubmitPassengerReturn(
+    Map<String, dynamic> formValues,
+    Emitter<BookingVehicleState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        submitSuccess: false,
+        message: null,
+      ),
+    );
+
+    final employeeId = state.employeeId;
+    if (employeeId == null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Không xác định được nhân viên đăng ký.',
+        ),
+      );
+      return;
+    }
+
+    final n = state.passengerGoLineCount;
+    if (n <= 0) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Chưa có dòng người về.',
+        ),
+      );
+      return;
+    }
+
+    final bookerName =
+        state.currentEmployee?.fullName?.trim() ?? '';
+
+    final projectId = resolveBookingVehicleProjectId(
+      formValues['project'],
+      state.projects,
+    );
+    if (projectId == 0) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Vui lòng chọn dự án.',
+        ),
+      );
+      return;
+    }
+
+    if (bookingVehicleFormatApiDateTime(formValues['time_return']) == null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Vui lòng chọn thời gian đón.',
+        ),
+      );
+      return;
+    }
+
+    if (bookingVehicleFormatApiDateTime(formValues['time_need_present']) ==
+        null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Vui lòng chọn thời gian cần về.',
+        ),
+      );
+      return;
+    }
+
+    for (var i = 0; i < n; i++) {
+      final name = bookingVehicleTrimFormValue(
+        formValues['passenger_full_name_$i'],
+      );
+      final code = bookingVehicleTrimFormValue(formValues['passenger_code_$i']);
+      if (name.isEmpty && code.isEmpty) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message: 'Vui lòng nhập thông tin người về (dòng ${i + 1}).',
+          ),
+        );
+        return;
+      }
+    }
+
+    final payloads = buildAllPassengerReturnCreatePayloads(
+      formValues: formValues,
+      bookerEmployeeId: employeeId,
+      bookerFullName: bookerName,
+      projects: state.projects,
+      employees: state.employee,
+      passengerLineCount: n,
+    );
+
+    for (final payload in payloads) {
+      final res = await _bookingVehicleRepo.createBookingVehicle(
+        payload: payload,
+      );
+
+      final failed = await res.fold(
+        (err) async {
+          _log.logE('❌ createBookingVehicle (return) failed: $err');
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              message: err.getErrorMessage,
+            ),
+          );
+          return true;
+        },
+        (created) async {
+          _log.logI(
+            '✅ createBookingVehicle (return) OK id=${created.id}',
+          );
+          return false;
+        },
+      );
+
+      if (failed) return;
+    }
+
+    emit(
+      state.copyWith(
+        isSubmitting: false,
+        submitSuccess: true,
+        message: null,
       ),
     );
   }

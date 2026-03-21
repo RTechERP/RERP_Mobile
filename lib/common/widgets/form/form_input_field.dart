@@ -86,8 +86,9 @@ class _FormInputFieldState extends State<FormInputField> {
       builder: (field) {
         widget.onFieldCreated?.call(field);
 
-        final value = field.value?.trim() ?? '';
-        final hasValue = value.isNotEmpty;
+        // Không trim khi đồng bộ controller — trim làm mất space đang gõ (kéo ngược con trỏ).
+        final rawValue = field.value ?? '';
+        final hasValue = rawValue.trim().isNotEmpty;
 
         final showError = field.hasError && !hasValue;
         final effectiveMaxLines = widget.obscureText ? 1 : (widget.maxLines ?? 1);
@@ -95,10 +96,10 @@ class _FormInputFieldState extends State<FormInputField> {
         final controller = _effectiveController;
 
         /// sync value -> controller (bottomsheet / initialValue)
-        if (controller.text != value) {
+        if (controller.text != rawValue) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             if (!mounted) return;
-            controller.text = value;
+            controller.text = rawValue;
           });
         }
 
