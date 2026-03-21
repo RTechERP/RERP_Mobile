@@ -2,8 +2,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import '../../../../../../../../../common/app_theme/index.dart';
-import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../../common/widgets/form/index.dart';
 
 class TypeFormCommercialDeliveryPackage extends StatelessWidget {
   const TypeFormCommercialDeliveryPackage({super.key});

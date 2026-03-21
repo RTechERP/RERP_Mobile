@@ -14,12 +14,12 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
   /// thêm một dòng mới "nhân viên n" với field rỗng.
   const factory BookingVehicleEvent.addPassengerGoInfo() = _AddPassengerGoInfo;
 
-  /// expand/collapse dòng nhân viên theo index.
+  /// expand/collapse theo index dòng 0..n-1.
   const factory BookingVehicleEvent.expandPassengerGoInfo({
     required int index,
   }) = _ExpandPassengerGoInfo;
 
-  /// Xoá dòng "nhân viên n" theo index.
+  /// Xoá dòng theo index vị trí 0..n-1 (sau xoá các dòng sau đẩy lên, index lùi 1).
   const factory BookingVehicleEvent.deletePassengerGoInfo({
     required int index,
   }) = _DeletePassengerGoInfo;
@@ -32,12 +32,12 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
   const factory BookingVehicleEvent.addCommercialReceiverInfo() =
       _AddCommercialReceiverInfo;
 
-  /// expand/collapse dòng người nhận theo index.
+  /// expand/collapse theo index dòng 0..n-1.
   const factory BookingVehicleEvent.expandCommercialReceiverInfo({
     required int index,
   }) = _ExpandCommercialReceiverInfo;
 
-  /// Xoá dòng "người nhận n" theo index.
+  /// Xoá dòng theo index vị trí (field form được dịch lên trước khi emit).
   const factory BookingVehicleEvent.deleteCommercialReceiverInfo({
     required int index,
   }) = _DeleteCommercialReceiverInfo;

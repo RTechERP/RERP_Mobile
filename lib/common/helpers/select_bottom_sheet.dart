@@ -10,6 +10,9 @@ Future<void> openSelectBottomSheet<T>({
   required String Function(T item) displayText, // 👈 hiển thị
   required void Function(T value) onSelected,   // 👈 trả về object
   String? hintText,
+  /// Hàng cố định phía trên danh sách (vd: nhập tay, bỏ chọn).
+  String? secondaryActionLabel,
+  VoidCallback? onSecondaryAction,
 }) async {
   final controller = TextEditingController();
   List<T> filtered = List.from(items);
@@ -30,6 +33,10 @@ Future<void> openSelectBottomSheet<T>({
               child: StatefulBuilder(
                 builder: (context, setState) {
                   final isEmpty = items.isEmpty;
+                  final hasSecondary =
+                      secondaryActionLabel != null &&
+                          onSecondaryAction != null;
+                  final showSearch = !isEmpty;
 
                   return Column(
                     children: [
@@ -38,8 +45,8 @@ Future<void> openSelectBottomSheet<T>({
                         padding: const EdgeInsets.fromLTRB(12, 6, 12, 10),
                         child: TextField(
                           controller: controller,
-                          autofocus: !isEmpty,
-                          enabled: !isEmpty,
+                          autofocus: showSearch,
+                          enabled: showSearch,
                           decoration: InputDecoration(
                             prefixIcon: const Icon(Icons.search),
                             hintText: hintText ?? 'Tìm kiếm...',
@@ -66,34 +73,48 @@ Future<void> openSelectBottomSheet<T>({
 
                       /// 📜 CONTENT
                       Expanded(
-                        child: isEmpty
+                        child: isEmpty && !hasSecondary
                             ? Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(Icons.insert_drive_file_outlined,
-                                size: 56, color: Colors.grey),
-                            SizedBox(height: 8),
-                            Text('Không có dữ liệu',
-                                style: TextStyle(color: Colors.grey)),
-                          ],
-                        )
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(Icons.insert_drive_file_outlined,
+                                      size: 56, color: Colors.grey),
+                                  SizedBox(height: 8),
+                                  Text('Không có dữ liệu',
+                                      style: TextStyle(color: Colors.grey)),
+                                ],
+                              )
                             : ListView.separated(
-                          padding:
-                          const EdgeInsets.fromLTRB(12, 6, 12, 12),
-                          itemCount: filtered.length,
-                          separatorBuilder: (_, __) =>
-                          const Divider(height: 1),
-                          itemBuilder: (context, index) {
-                            final item = filtered[index];
-                            return ListTile(
-                              title: Text(displayText(item)),
-                              onTap: () {
-                                Navigator.pop(context);
-                                onSelected(item);
-                              },
-                            );
-                          },
-                        ),
+                                padding: const EdgeInsets.fromLTRB(
+                                    12, 6, 12, 12),
+                                itemCount:
+                                    (hasSecondary ? 1 : 0) + filtered.length,
+                                separatorBuilder: (_, __) =>
+                                    const Divider(height: 1),
+                                itemBuilder: (context, index) {
+                                  if (hasSecondary && index == 0) {
+                                    return ListTile(
+                                      leading: const Icon(
+                                        Icons.edit_outlined,
+                                      ),
+                                      title: Text(secondaryActionLabel),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                        onSecondaryAction();
+                                      },
+                                    );
+                                  }
+                                  final fi = index - (hasSecondary ? 1 : 0);
+                                  final item = filtered[fi];
+                                  return ListTile(
+                                    title: Text(displayText(item)),
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      onSelected(item);
+                                    },
+                                  );
+                                },
+                              ),
                       ),
                     ],
                   );

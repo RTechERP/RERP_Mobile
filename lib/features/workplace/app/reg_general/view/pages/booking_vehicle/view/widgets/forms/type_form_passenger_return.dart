@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../../../../common/helpers/index.dart';
-import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../../../common/helpers/index.dart';
+import '../../../../../../../../../../common/widgets/form/index.dart';
 
-import '../../data/datasource/models/booking_vehicle_model.dart';
+import '../../../data/datasource/models/booking_vehicle_model.dart';
 
-class TypeFormCommercialDelivery extends StatefulWidget {
-  const TypeFormCommercialDelivery({
+class TypeFormPassengerReturn extends StatefulWidget {
+  const TypeFormPassengerReturn({
     super.key,
     required this.projects,
     required this.departureProvinces,
@@ -20,12 +20,11 @@ class TypeFormCommercialDelivery extends StatefulWidget {
   final List<ProvinceArrivesItem> arrivalProvinces;
 
   @override
-  State<TypeFormCommercialDelivery> createState() =>
-      _TypeFormCommercialDeliveryState();
+  State<TypeFormPassengerReturn> createState() =>
+      _TypeFormPassengerReturnState();
 }
 
-class _TypeFormCommercialDeliveryState
-    extends State<TypeFormCommercialDelivery> {
+class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
   static const String _otherPointLabel = 'Khác';
 
   FormFieldState<String>? projectField;
@@ -38,20 +37,17 @@ class _TypeFormCommercialDeliveryState
 
   FormFieldState<String>? provincesField;
 
-  // Route-level form only; receiver/package UI đã được tách ra widget khác.
-
   List<BookingVehicleProjectItem> get _projects => widget.projects;
   List<ProvinceDepartureItem> get _departureProvinces =>
       widget.departureProvinces;
   List<ProvinceArrivesItem> get _arrivalProvinces => widget.arrivalProvinces;
 
   final List<String> _types = const ['Ô tô, xe máy ...', 'Máy bay'];
-
   String _returnPointValue = _otherPointLabel;
 
   bool get _isReturnPointOther => _returnPointValue.trim() == _otherPointLabel;
 
-  List<String> get _startingPointOptions {
+  List<String> get _endingPointOptions {
     final points = _departureProvinces
         .map((e) => e.provinceName)
         .where((e) => e.trim().isNotEmpty)
@@ -78,8 +74,8 @@ class _TypeFormCommercialDeliveryState
   Future<void> _pickReturnPoint() async {
     await openSelectBottomSheet<String>(
       context: context,
-      title: 'Chọn điểm lấy hàng',
-      items: _startingPointOptions,
+      title: 'Chọn điểm đón',
+      items: _endingPointOptions,
       displayText: (v) => v,
       onSelected: (item) {
         final selected = item.trim();
@@ -111,7 +107,7 @@ class _TypeFormCommercialDeliveryState
   Future<void> _pickProvinces() async {
     await openSelectBottomSheet<ProvinceArrivesItem>(
       context: context,
-      title: 'Chọn tỉnh giao đến',
+      title: 'Chọn tỉnh cần về',
       items: _arrivalProvinces,
       displayText: (v) => v.provinceName ?? '',
       onSelected: (item) {
@@ -144,7 +140,7 @@ class _TypeFormCommercialDeliveryState
             icon: Icons.access_time,
             nameForm: 'time_need_present',
             nameTimePicker: 'time_need_present_picker',
-            label: 'Thời gian cần giao đến',
+            label: 'Thời gian cần về',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
           ),
@@ -154,7 +150,7 @@ class _TypeFormCommercialDeliveryState
             icon: Icons.navigation_outlined,
             nameForm: 'location_address',
             nameTextField: 'location_address_text',
-            label: 'Công ty giao đến',
+            label: 'Công ty cần về',
           ),
           const SizedBox(height: 8),
 
@@ -165,7 +161,7 @@ class _TypeFormCommercialDeliveryState
                 icon: Icons.navigation_outlined,
                 nameForm: 'provinces',
                 nameTextField: 'provinces_text',
-                label: 'Tỉnh giao đến',
+                label: 'Tỉnh cần về',
                 onFieldCreated: (field) => provincesField = field,
                 readOnly: true,
               ),
@@ -185,7 +181,7 @@ class _TypeFormCommercialDeliveryState
             icon: Icons.departure_board_outlined,
             nameForm: 'time_return',
             nameTimePicker: 'time_return_picker',
-            label: 'Thời gian lấy hàng',
+            label: 'Thời gian đón',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
           ),
@@ -198,19 +194,20 @@ class _TypeFormCommercialDeliveryState
                 icon: Icons.navigation_outlined,
                 nameForm: 'return_point',
                 nameTextField: 'return_point_text',
-                label: 'Điểm lấy hàng',
+                label: 'Điểm đón',
                 onFieldCreated: (field) => returnPointField = field,
                 readOnly: true,
               ),
             ),
           ),
+
           const SizedBox(height: 8),
 
           FormInputField(
             icon: Icons.navigation_outlined,
             nameForm: 'return_address',
             nameTextField: 'return_address_text',
-            label: 'Địa chỉ lấy hàng cụ thể',
+            label: 'Địa chỉ đón cụ thể',
             enabled: _isReturnPointOther,
             readOnly: !_isReturnPointOther,
             onFieldCreated: (field) => returnAddressField = field,

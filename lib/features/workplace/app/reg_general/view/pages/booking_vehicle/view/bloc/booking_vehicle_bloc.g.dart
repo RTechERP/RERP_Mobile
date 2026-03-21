@@ -43,18 +43,26 @@ abstract class _$BookingVehicleStateCWProxy {
 
   BookingVehicleState driverEmployeeId(int? driverEmployeeId);
 
-  BookingVehicleState passengerGoInfos(List<int> passengerGoInfos);
+  BookingVehicleState passengerGoLineCount(int passengerGoLineCount);
 
   BookingVehicleState expandedPassengerGoIndex(int? expandedPassengerGoIndex);
+
+  BookingVehicleState passengerGoFirstRowIsCurrentUserSlot(
+      bool passengerGoFirstRowIsCurrentUserSlot);
+
+  BookingVehicleState passengerFormGeneration(int passengerFormGeneration);
 
   BookingVehicleState currentEmployee(
       BookingVehiclePersonalItem? currentEmployee);
 
-  BookingVehicleState commercialDeliveryReceiverInfos(
-      List<int> commercialDeliveryReceiverInfos);
+  BookingVehicleState commercialReceiverLineCount(
+      int commercialReceiverLineCount);
 
   BookingVehicleState expandedCommercialDeliveryReceiverIndex(
       int? expandedCommercialDeliveryReceiverIndex);
+
+  BookingVehicleState commercialReceiverFormGeneration(
+      int commercialReceiverFormGeneration);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -80,11 +88,14 @@ abstract class _$BookingVehicleStateCWProxy {
     int? userId,
     int? employeeId,
     int? driverEmployeeId,
-    List<int>? passengerGoInfos,
+    int? passengerGoLineCount,
     int? expandedPassengerGoIndex,
+    bool? passengerGoFirstRowIsCurrentUserSlot,
+    int? passengerFormGeneration,
     BookingVehiclePersonalItem? currentEmployee,
-    List<int>? commercialDeliveryReceiverInfos,
+    int? commercialReceiverLineCount,
     int? expandedCommercialDeliveryReceiverIndex,
+    int? commercialReceiverFormGeneration,
   });
 }
 
@@ -161,12 +172,23 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
       this(driverEmployeeId: driverEmployeeId);
 
   @override
-  BookingVehicleState passengerGoInfos(List<int> passengerGoInfos) =>
-      this(passengerGoInfos: passengerGoInfos);
+  BookingVehicleState passengerGoLineCount(int passengerGoLineCount) =>
+      this(passengerGoLineCount: passengerGoLineCount);
 
   @override
   BookingVehicleState expandedPassengerGoIndex(int? expandedPassengerGoIndex) =>
       this(expandedPassengerGoIndex: expandedPassengerGoIndex);
+
+  @override
+  BookingVehicleState passengerGoFirstRowIsCurrentUserSlot(
+          bool passengerGoFirstRowIsCurrentUserSlot) =>
+      this(
+          passengerGoFirstRowIsCurrentUserSlot:
+              passengerGoFirstRowIsCurrentUserSlot);
+
+  @override
+  BookingVehicleState passengerFormGeneration(int passengerFormGeneration) =>
+      this(passengerFormGeneration: passengerFormGeneration);
 
   @override
   BookingVehicleState currentEmployee(
@@ -174,9 +196,9 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
       this(currentEmployee: currentEmployee);
 
   @override
-  BookingVehicleState commercialDeliveryReceiverInfos(
-          List<int> commercialDeliveryReceiverInfos) =>
-      this(commercialDeliveryReceiverInfos: commercialDeliveryReceiverInfos);
+  BookingVehicleState commercialReceiverLineCount(
+          int commercialReceiverLineCount) =>
+      this(commercialReceiverLineCount: commercialReceiverLineCount);
 
   @override
   BookingVehicleState expandedCommercialDeliveryReceiverIndex(
@@ -184,6 +206,11 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
       this(
           expandedCommercialDeliveryReceiverIndex:
               expandedCommercialDeliveryReceiverIndex);
+
+  @override
+  BookingVehicleState commercialReceiverFormGeneration(
+          int commercialReceiverFormGeneration) =>
+      this(commercialReceiverFormGeneration: commercialReceiverFormGeneration);
 
   @override
 
@@ -211,12 +238,15 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
     Object? userId = const $CopyWithPlaceholder(),
     Object? employeeId = const $CopyWithPlaceholder(),
     Object? driverEmployeeId = const $CopyWithPlaceholder(),
-    Object? passengerGoInfos = const $CopyWithPlaceholder(),
+    Object? passengerGoLineCount = const $CopyWithPlaceholder(),
     Object? expandedPassengerGoIndex = const $CopyWithPlaceholder(),
+    Object? passengerGoFirstRowIsCurrentUserSlot = const $CopyWithPlaceholder(),
+    Object? passengerFormGeneration = const $CopyWithPlaceholder(),
     Object? currentEmployee = const $CopyWithPlaceholder(),
-    Object? commercialDeliveryReceiverInfos = const $CopyWithPlaceholder(),
+    Object? commercialReceiverLineCount = const $CopyWithPlaceholder(),
     Object? expandedCommercialDeliveryReceiverIndex =
         const $CopyWithPlaceholder(),
+    Object? commercialReceiverFormGeneration = const $CopyWithPlaceholder(),
   }) {
     return BookingVehicleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -294,32 +324,52 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
           ? _value.driverEmployeeId
           // ignore: cast_nullable_to_non_nullable
           : driverEmployeeId as int?,
-      passengerGoInfos: passengerGoInfos == const $CopyWithPlaceholder() ||
-              passengerGoInfos == null
-          ? _value.passengerGoInfos
-          // ignore: cast_nullable_to_non_nullable
-          : passengerGoInfos as List<int>,
+      passengerGoLineCount:
+          passengerGoLineCount == const $CopyWithPlaceholder() ||
+                  passengerGoLineCount == null
+              ? _value.passengerGoLineCount
+              // ignore: cast_nullable_to_non_nullable
+              : passengerGoLineCount as int,
       expandedPassengerGoIndex:
           expandedPassengerGoIndex == const $CopyWithPlaceholder()
               ? _value.expandedPassengerGoIndex
               // ignore: cast_nullable_to_non_nullable
               : expandedPassengerGoIndex as int?,
+      passengerGoFirstRowIsCurrentUserSlot:
+          passengerGoFirstRowIsCurrentUserSlot ==
+                      const $CopyWithPlaceholder() ||
+                  passengerGoFirstRowIsCurrentUserSlot == null
+              ? _value.passengerGoFirstRowIsCurrentUserSlot
+              // ignore: cast_nullable_to_non_nullable
+              : passengerGoFirstRowIsCurrentUserSlot as bool,
+      passengerFormGeneration:
+          passengerFormGeneration == const $CopyWithPlaceholder() ||
+                  passengerFormGeneration == null
+              ? _value.passengerFormGeneration
+              // ignore: cast_nullable_to_non_nullable
+              : passengerFormGeneration as int,
       currentEmployee: currentEmployee == const $CopyWithPlaceholder()
           ? _value.currentEmployee
           // ignore: cast_nullable_to_non_nullable
           : currentEmployee as BookingVehiclePersonalItem?,
-      commercialDeliveryReceiverInfos:
-          commercialDeliveryReceiverInfos == const $CopyWithPlaceholder() ||
-                  commercialDeliveryReceiverInfos == null
-              ? _value.commercialDeliveryReceiverInfos
+      commercialReceiverLineCount:
+          commercialReceiverLineCount == const $CopyWithPlaceholder() ||
+                  commercialReceiverLineCount == null
+              ? _value.commercialReceiverLineCount
               // ignore: cast_nullable_to_non_nullable
-              : commercialDeliveryReceiverInfos as List<int>,
+              : commercialReceiverLineCount as int,
       expandedCommercialDeliveryReceiverIndex:
           expandedCommercialDeliveryReceiverIndex ==
                   const $CopyWithPlaceholder()
               ? _value.expandedCommercialDeliveryReceiverIndex
               // ignore: cast_nullable_to_non_nullable
               : expandedCommercialDeliveryReceiverIndex as int?,
+      commercialReceiverFormGeneration:
+          commercialReceiverFormGeneration == const $CopyWithPlaceholder() ||
+                  commercialReceiverFormGeneration == null
+              ? _value.commercialReceiverFormGeneration
+              // ignore: cast_nullable_to_non_nullable
+              : commercialReceiverFormGeneration as int,
     );
   }
 }

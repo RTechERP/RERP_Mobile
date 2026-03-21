@@ -26,16 +26,26 @@ class BookingVehicleState extends BaseBlocState {
   final int? employeeId;
   final int? driverEmployeeId;
 
-  final List<int> passengerGoInfos;
+  /// Số dòng người đi / người về; index UI luôn `0..passengerGoLineCount-1`.
+  final int passengerGoLineCount;
 
-  /// Index dòng đang expand (null nghĩa là collapse tất cả).
+  /// Index dòng đang mở (null = collapse hết).
   final int? expandedPassengerGoIndex;
 
-  /// Danh sách "người nhận n" cho form giao hàng thương mại.
-  final List<int> commercialDeliveryReceiverInfos;
+  /// Dòng 0 prefill user hiện tại; tắt sau khi xoá dòng 0 (dòng mới 0 = dữ liệu đã đẩy lên).
+  final bool passengerGoFirstRowIsCurrentUserSlot;
 
-  /// Index dòng đang expand của "người nhận n" (null nghĩa là collapse tất cả).
+  /// Tăng khi xoá dòng — tránh Flutter tái dùng [State] cũ khi index 0 đổi chủ.
+  final int passengerFormGeneration;
+
+  /// Số dòng người nhận + kiện (giao hàng thương mại); index UI 0..n-1.
+  final int commercialReceiverLineCount;
+
+  /// Index dòng đang mở (null = collapse hết).
   final int? expandedCommercialDeliveryReceiverIndex;
+
+  /// Tăng khi xoá dòng người nhận — tránh tái dùng State cũ.
+  final int commercialReceiverFormGeneration;
   const BookingVehicleState({
     required super.status,
     super.message,
@@ -54,12 +64,15 @@ class BookingVehicleState extends BaseBlocState {
     this.userId,
     this.employeeId,
     this.driverEmployeeId,
-    this.passengerGoInfos = const [],
+    this.passengerGoLineCount = 0,
     this.expandedPassengerGoIndex,
+    this.passengerGoFirstRowIsCurrentUserSlot = true,
+    this.passengerFormGeneration = 0,
     this.currentEmployee,
 
-    this.commercialDeliveryReceiverInfos = const [],
+    this.commercialReceiverLineCount = 0,
     this.expandedCommercialDeliveryReceiverIndex,
+    this.commercialReceiverFormGeneration = 0,
   });
 
   factory BookingVehicleState.init() => const BookingVehicleState(
@@ -79,11 +92,14 @@ class BookingVehicleState extends BaseBlocState {
     userId: null,
     employeeId: null,
     driverEmployeeId: null,
-    passengerGoInfos: [],
+    passengerGoLineCount: 0,
     expandedPassengerGoIndex: null,
+    passengerGoFirstRowIsCurrentUserSlot: true,
+    passengerFormGeneration: 0,
     currentEmployee: null,
-    commercialDeliveryReceiverInfos: [],
+    commercialReceiverLineCount: 0,
     expandedCommercialDeliveryReceiverIndex: null,
+    commercialReceiverFormGeneration: 0,
   );
 
   @override
@@ -105,10 +121,13 @@ class BookingVehicleState extends BaseBlocState {
     userId,
     employeeId,
     driverEmployeeId,
-    passengerGoInfos,
+    passengerGoLineCount,
     expandedPassengerGoIndex,
+    passengerGoFirstRowIsCurrentUserSlot,
+    passengerFormGeneration,
     currentEmployee,
-    commercialDeliveryReceiverInfos,
+    commercialReceiverLineCount,
     expandedCommercialDeliveryReceiverIndex,
+    commercialReceiverFormGeneration,
   ];
 }

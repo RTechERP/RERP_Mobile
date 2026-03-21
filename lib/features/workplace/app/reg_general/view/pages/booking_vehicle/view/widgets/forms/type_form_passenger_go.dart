@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../../../../common/helpers/index.dart';
-import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../../../common/helpers/index.dart';
+import '../../../../../../../../../../common/widgets/form/index.dart';
 
-import '../../data/datasource/models/booking_vehicle_model.dart';
+import '../../../data/datasource/models/booking_vehicle_model.dart';
 
 class TypeFormPassengerGo extends StatefulWidget {
   const TypeFormPassengerGo({

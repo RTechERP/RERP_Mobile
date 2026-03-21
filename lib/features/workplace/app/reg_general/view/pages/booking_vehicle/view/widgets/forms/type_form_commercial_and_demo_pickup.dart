@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../../../common/widgets/form/index.dart';
 
 /// Gộp 2 lựa chọn: lấy hàng thương mại + lấy hàng Demo/triển lãm.
 class TypeFormCommercialAndDemoPickup

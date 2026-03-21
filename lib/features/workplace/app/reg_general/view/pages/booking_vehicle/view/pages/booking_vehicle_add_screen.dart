@@ -10,15 +10,12 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../data/booking_vehicle_passenger_form_shift.dart';
+import '../../data/booking_vehicle_receiver_form_shift.dart';
 import '../../data/repository/booking_vehicle_repository.dart';
 import '../bloc/booking_vehicle_bloc.dart';
-import '../widgets/passenger_go_info_item.dart';
-import '../widgets/type_form_commercial_and_demo_pickup.dart';
-import '../widgets/type_form_demo_delivery.dart';
-import '../widgets/type_form_passenger_go.dart';
-import '../widgets/type_form_passenger_return.dart';
-import '../widgets/type_form_commercial_delivery.dart';
-import '../widgets/commercial_receiver_package_info_item.dart';
+import '../widgets/forms/index.dart';
+import '../widgets/infos/index.dart';
 
 class BookingVehicleAddScreen extends StatefulWidget {
   const BookingVehicleAddScreen({super.key});
@@ -152,6 +149,10 @@ class _BookingVehicleAddScreenState
                                           const BookingVehicleEvent
                                               .initCommercialReceiverInfos(),
                                         );
+                                        bloc.add(
+                                          const BookingVehicleEvent
+                                              .preloadInitAdd(),
+                                        );
                                       }
                                     },
                                     displayText: (item) => item,
@@ -190,13 +191,17 @@ class _BookingVehicleAddScreenState
                                   buildWhen: (prev, curr) =>
                                       prev.employee != curr.employee ||
                                       prev.currentEmployee != curr.currentEmployee ||
-                                      prev.passengerGoInfos !=
-                                          curr.passengerGoInfos ||
+                                      prev.passengerGoLineCount !=
+                                          curr.passengerGoLineCount ||
                                       prev.expandedPassengerGoIndex !=
-                                          curr.expandedPassengerGoIndex,
+                                          curr.expandedPassengerGoIndex ||
+                                      prev.passengerGoFirstRowIsCurrentUserSlot !=
+                                          curr.passengerGoFirstRowIsCurrentUserSlot ||
+                                      prev.passengerFormGeneration !=
+                                          curr.passengerFormGeneration,
                                   builder: (context, state) {
-                                    final items = state.passengerGoInfos;
-                                    if (items.isEmpty) {
+                                    final n = state.passengerGoLineCount;
+                                    if (n <= 0) {
                                       return const SizedBox.shrink();
                                     }
 
@@ -204,48 +209,50 @@ class _BookingVehicleAddScreenState
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        ...items.asMap().entries.map((e) {
-                                          final itemId = e.value;
-                                          final isExpanded =
-                                              state.expandedPassengerGoIndex ==
-                                                  itemId;
-
-                                          return Padding(
+                                        for (var i = 0; i < n; i++)
+                                          Padding(
                                             padding: const EdgeInsets.only(
                                               bottom: 8,
                                             ),
-                                            child:
-                                            PassengerGoInfoItem(
-                                              key: ValueKey(itemId),
-                                              index: itemId,
-                                              isExpanded: isExpanded,
-                                              totalCount:
-                                                  state.passengerGoInfos
-                                                      .length,
+                                            child: PassengerInfoItem(
+                                              key: ValueKey(
+                                                'pass_line_${i}_${state.passengerFormGeneration}',
+                                              ),
+                                              index: i,
+                                              isExpanded:
+                                                  state.expandedPassengerGoIndex ==
+                                                      i,
+                                              totalCount: n,
                                               employeeOptions: state.employee,
-                                              prefillEmployee:
-                                                  itemId == 0
-                                                      ? state.currentEmployee
-                                                      : null,
+                                              prefillEmployee: i == 0 &&
+                                                      state
+                                                          .passengerGoFirstRowIsCurrentUserSlot
+                                                  ? state.currentEmployee
+                                                  : null,
                                               onToggleExpand: () {
                                                 bloc.add(
                                                   BookingVehicleEvent
                                                       .expandPassengerGoInfo(
-                                                    index: itemId,
+                                                    index: i,
                                                   ),
                                                 );
                                               },
                                               onDelete: () {
+                                                BookingVehiclePassengerFormShift
+                                                    .afterDeleteAt(
+                                                  _formKey.currentState,
+                                                  deletedIndex: i,
+                                                  oldLineCount: n,
+                                                );
                                                 bloc.add(
                                                   BookingVehicleEvent
                                                       .deletePassengerGoInfo(
-                                                    index: itemId,
+                                                    index: i,
                                                   ),
                                                 );
                                               },
                                             ),
-                                          );
-                                        }),
+                                          ),
 
                                         const SizedBox(height: 4),
 
@@ -287,13 +294,17 @@ class _BookingVehicleAddScreenState
                                   buildWhen: (prev, curr) =>
                                       prev.employee != curr.employee ||
                                       prev.currentEmployee != curr.currentEmployee ||
-                                      prev.passengerGoInfos !=
-                                          curr.passengerGoInfos ||
+                                      prev.passengerGoLineCount !=
+                                          curr.passengerGoLineCount ||
                                       prev.expandedPassengerGoIndex !=
-                                          curr.expandedPassengerGoIndex,
+                                          curr.expandedPassengerGoIndex ||
+                                      prev.passengerGoFirstRowIsCurrentUserSlot !=
+                                          curr.passengerGoFirstRowIsCurrentUserSlot ||
+                                      prev.passengerFormGeneration !=
+                                          curr.passengerFormGeneration,
                                   builder: (context, state) {
-                                    final items = state.passengerGoInfos;
-                                    if (items.isEmpty) {
+                                    final n = state.passengerGoLineCount;
+                                    if (n <= 0) {
                                       return const SizedBox.shrink();
                                     }
 
@@ -301,47 +312,50 @@ class _BookingVehicleAddScreenState
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        ...items.asMap().entries.map((e) {
-                                          final itemId = e.value;
-                                          final isExpanded =
-                                              state.expandedPassengerGoIndex ==
-                                                  itemId;
-
-                                          return Padding(
+                                        for (var i = 0; i < n; i++)
+                                          Padding(
                                             padding: const EdgeInsets.only(
                                               bottom: 8,
                                             ),
-                                            child: PassengerGoInfoItem(
-                                              key: ValueKey(itemId),
-                                              index: itemId,
-                                              isExpanded: isExpanded,
-                                              totalCount:
-                                                  state.passengerGoInfos
-                                                      .length,
+                                            child: PassengerInfoItem(
+                                              key: ValueKey(
+                                                'pass_line_${i}_${state.passengerFormGeneration}',
+                                              ),
+                                              index: i,
+                                              isExpanded:
+                                                  state.expandedPassengerGoIndex ==
+                                                      i,
+                                              totalCount: n,
                                               employeeOptions: state.employee,
-                                              prefillEmployee:
-                                                  itemId == 0
-                                                      ? state.currentEmployee
-                                                      : null,
+                                              prefillEmployee: i == 0 &&
+                                                      state
+                                                          .passengerGoFirstRowIsCurrentUserSlot
+                                                  ? state.currentEmployee
+                                                  : null,
                                               onToggleExpand: () {
                                                 bloc.add(
                                                   BookingVehicleEvent
                                                       .expandPassengerGoInfo(
-                                                    index: itemId,
+                                                    index: i,
                                                   ),
                                                 );
                                               },
                                               onDelete: () {
+                                                BookingVehiclePassengerFormShift
+                                                    .afterDeleteAt(
+                                                  _formKey.currentState,
+                                                  deletedIndex: i,
+                                                  oldLineCount: n,
+                                                );
                                                 bloc.add(
                                                   BookingVehicleEvent
                                                       .deletePassengerGoInfo(
-                                                    index: itemId,
+                                                    index: i,
                                                   ),
                                                 );
                                               },
                                             ),
-                                          );
-                                        }),
+                                          ),
 
                                         const SizedBox(height: 4),
 
@@ -382,50 +396,41 @@ class _BookingVehicleAddScreenState
                                     BookingVehicleState>(
                                   buildWhen: (prev, curr) =>
                                       prev.employee != curr.employee ||
-                                      prev.commercialDeliveryReceiverInfos !=
-                                          curr.commercialDeliveryReceiverInfos ||
+                                      prev.currentEmployee !=
+                                          curr.currentEmployee ||
+                                      prev.commercialReceiverLineCount !=
+                                          curr.commercialReceiverLineCount ||
                                       prev.expandedCommercialDeliveryReceiverIndex !=
-                                          curr.expandedCommercialDeliveryReceiverIndex,
+                                          curr.expandedCommercialDeliveryReceiverIndex ||
+                                      prev.commercialReceiverFormGeneration !=
+                                          curr.commercialReceiverFormGeneration,
                                   builder: (context, state) {
-                                    final items =
-                                        state.commercialDeliveryReceiverInfos;
-                                    if (items.isEmpty) {
-                                      // UI-first: luôn hiển thị ngay 1 card người nhận
-                                      // kể cả khi initAdd/API vẫn đang chạy ngầm.
-                                      return Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          CommercialReceiverPackageInfoItem(
-                                            key: const ValueKey(
-                                              'commercial_receiver_fallback_0',
-                                            ),
-                                            index: 0,
-                                            isExpanded: true,
-                                            totalCount: 1,
-                                            employeeOptions: state.employee,
-                                            prefillEmployee: null,
-                                            onToggleExpand: () {},
-                                            onDelete: null,
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Center(
-                                            child: InkResponse(
-                                              onTap: () {
-                                                bloc.add(
+                                    final n =
+                                        state.commercialReceiverLineCount;
+                                    if (n <= 0) {
+                                      return Center(
+                                        child: TextButton.icon(
+                                          onPressed: () {
+                                            context
+                                                .read<BookingVehicleBloc>()
+                                                .add(
                                                   const BookingVehicleEvent
-                                                      .addCommercialReceiverInfo(),
+                                                      .initCommercialReceiverInfos(),
                                                 );
-                                              },
-                                              radius: 28,
-                                              child: const Icon(
-                                                Icons.add_circle_outline,
-                                                size: 32,
-                                                color: AppColors.primaryERP,
-                                              ),
-                                            ),
+                                            context
+                                                .read<BookingVehicleBloc>()
+                                                .add(
+                                                  const BookingVehicleEvent
+                                                      .preloadInitAdd(),
+                                                );
+                                          },
+                                          icon: const Icon(
+                                            Icons.person_add_outlined,
                                           ),
-                                        ],
+                                          label: const Text(
+                                            'Thêm người nhận',
+                                          ),
+                                        ),
                                       );
                                     }
 
@@ -433,46 +438,47 @@ class _BookingVehicleAddScreenState
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        ...items.asMap().entries.map((e) {
-                                          final itemId = e.value;
-                                          final isExpanded =
-                                              state
-                                                      .expandedCommercialDeliveryReceiverIndex ==
-                                                  itemId;
-
-                                          return Padding(
+                                        for (var i = 0; i < n; i++)
+                                          Padding(
                                             padding: const EdgeInsets.only(
                                               bottom: 8,
                                             ),
-                                            child:
-                                                CommercialReceiverPackageInfoItem(
-                                              key: ValueKey(itemId),
-                                              index: itemId,
-                                              isExpanded: isExpanded,
-                                              totalCount:
-                                                  state.commercialDeliveryReceiverInfos
-                                                      .length,
+                                            child: ReceiverPackageInfoItem(
+                                              key: ValueKey(
+                                                'recv_line_${i}_${state.commercialReceiverFormGeneration}',
+                                              ),
+                                              index: i,
+                                              isExpanded: state
+                                                      .expandedCommercialDeliveryReceiverIndex ==
+                                                  i,
+                                              totalCount: n,
                                               employeeOptions: state.employee,
                                               prefillEmployee: null,
                                               onToggleExpand: () {
                                                 bloc.add(
                                                   BookingVehicleEvent
                                                       .expandCommercialReceiverInfo(
-                                                    index: itemId,
+                                                    index: i,
                                                   ),
                                                 );
                                               },
                                               onDelete: () {
+                                                if (n <= 1) return;
+                                                BookingVehicleReceiverFormShift
+                                                    .afterDeleteAt(
+                                                  _formKey.currentState,
+                                                  deletedIndex: i,
+                                                  oldLineCount: n,
+                                                );
                                                 bloc.add(
                                                   BookingVehicleEvent
                                                       .deleteCommercialReceiverInfo(
-                                                    index: itemId,
+                                                    index: i,
                                                   ),
                                                 );
                                               },
                                             ),
-                                          );
-                                        }),
+                                          ),
 
                                         const SizedBox(height: 4),
 

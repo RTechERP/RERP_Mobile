@@ -297,26 +297,22 @@ class BookingVehicleBloc
   Future<void> _onInitPassengerGoInfos(
     Emitter<BookingVehicleState> emit,
   ) async {
-    // Reset lại về 1 dòng đầu tiên và auto expand.
     emit(
       state.copyWith(
-        passengerGoInfos: const [0],
+        passengerGoLineCount: 1,
         expandedPassengerGoIndex: 0,
+        passengerGoFirstRowIsCurrentUserSlot: true,
+        passengerFormGeneration: 0,
       ),
     );
   }
 
   Future<void> _onAddPassengerGoInfo(Emitter<BookingVehicleState> emit) async {
-    final current = state.passengerGoInfos;
-    final nextIndex = current.isEmpty
-        ? 0
-        : current.reduce((max, item) => item > max ? item : max) + 1;
-
-    final next = [...current, nextIndex];
+    final n = state.passengerGoLineCount;
     emit(
       state.copyWith(
-        passengerGoInfos: next,
-        expandedPassengerGoIndex: nextIndex,
+        passengerGoLineCount: n + 1,
+        expandedPassengerGoIndex: n,
       ),
     );
   }
@@ -333,32 +329,34 @@ class BookingVehicleBloc
     );
   }
 
+  /// Xoá theo index vị trí 0..n-1; màn hình dịch field form (passenger_*) trước khi emit.
   Future<void> _onDeletePassengerGoInfo(
     int index,
     Emitter<BookingVehicleState> emit,
   ) async {
-    final currentLength = state.passengerGoInfos.length;
-    if (index == 0 && currentLength == 1) return;
-    final current = state.passengerGoInfos;
-    if (!current.contains(index)) return;
+    final n = state.passengerGoLineCount;
+    if (n <= 1 || index < 0 || index >= n) return;
 
     final oldExpanded = state.expandedPassengerGoIndex;
-
-    final next = [...current]..remove(index);
-
     int? nextExpanded;
     if (oldExpanded == null) {
       nextExpanded = null;
     } else if (oldExpanded == index) {
       nextExpanded = null;
+    } else if (oldExpanded > index) {
+      nextExpanded = oldExpanded - 1;
     } else {
       nextExpanded = oldExpanded;
     }
 
     emit(
       state.copyWith(
-        passengerGoInfos: next,
+        passengerGoLineCount: n - 1,
         expandedPassengerGoIndex: nextExpanded,
+        passengerGoFirstRowIsCurrentUserSlot: index == 0
+            ? false
+            : state.passengerGoFirstRowIsCurrentUserSlot,
+        passengerFormGeneration: state.passengerFormGeneration + 1,
       ),
     );
   }
@@ -366,11 +364,11 @@ class BookingVehicleBloc
   Future<void> _onInitCommercialReceiverInfos(
     Emitter<BookingVehicleState> emit,
   ) async {
-    // Init luôn 1 dòng đầu tiên (rỗng) để user thấy ngay UI.
     emit(
       state.copyWith(
-        commercialDeliveryReceiverInfos: const [0],
+        commercialReceiverLineCount: 1,
         expandedCommercialDeliveryReceiverIndex: 0,
+        commercialReceiverFormGeneration: 0,
       ),
     );
   }
@@ -378,16 +376,11 @@ class BookingVehicleBloc
   Future<void> _onAddCommercialReceiverInfo(
     Emitter<BookingVehicleState> emit,
   ) async {
-    final current = state.commercialDeliveryReceiverInfos;
-    final nextIndex = current.isEmpty
-        ? 0
-        : current.reduce((max, item) => item > max ? item : max) + 1;
-
-    final next = [...current, nextIndex];
+    final n = state.commercialReceiverLineCount;
     emit(
       state.copyWith(
-        commercialDeliveryReceiverInfos: next,
-        expandedCommercialDeliveryReceiverIndex: nextIndex,
+        commercialReceiverLineCount: n + 1,
+        expandedCommercialDeliveryReceiverIndex: n,
       ),
     );
   }
@@ -410,28 +403,27 @@ class BookingVehicleBloc
     int index,
     Emitter<BookingVehicleState> emit,
   ) async {
-    final currentLength = state.commercialDeliveryReceiverInfos.length;
-    if (index == 0 && currentLength == 1) return;
-    final current = state.commercialDeliveryReceiverInfos;
-    if (!current.contains(index)) return;
+    final n = state.commercialReceiverLineCount;
+    if (n <= 1 || index < 0 || index >= n) return;
 
     final oldExpanded = state.expandedCommercialDeliveryReceiverIndex;
-
-    final next = [...current]..remove(index);
-
     int? nextExpanded;
     if (oldExpanded == null) {
       nextExpanded = null;
     } else if (oldExpanded == index) {
       nextExpanded = null;
+    } else if (oldExpanded > index) {
+      nextExpanded = oldExpanded - 1;
     } else {
       nextExpanded = oldExpanded;
     }
 
     emit(
       state.copyWith(
-        commercialDeliveryReceiverInfos: next,
+        commercialReceiverLineCount: n - 1,
         expandedCommercialDeliveryReceiverIndex: nextExpanded,
+        commercialReceiverFormGeneration:
+            state.commercialReceiverFormGeneration + 1,
       ),
     );
   }
