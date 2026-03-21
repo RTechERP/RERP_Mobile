@@ -41,4 +41,19 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
   const factory BookingVehicleEvent.deleteCommercialReceiverInfo({
     required int index,
   }) = _DeleteCommercialReceiverInfo;
+
+  /// init danh sách "người giao n" (lấy hàng thương mại / Demo).
+  const factory BookingVehicleEvent.initPickupGiverInfos() =
+      _InitPickupGiverInfos;
+
+  const factory BookingVehicleEvent.addPickupGiverInfo() =
+      _AddPickupGiverInfo;
+
+  const factory BookingVehicleEvent.expandPickupGiverInfo({
+    required int index,
+  }) = _ExpandPickupGiverInfo;
+
+  const factory BookingVehicleEvent.deletePickupGiverInfo({
+    required int index,
+  }) = _DeletePickupGiverInfo;
 }

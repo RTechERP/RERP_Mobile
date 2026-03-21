@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import 'booking_vehicle_row_id.dart';
 
+
 /// Một dòng "Người nhận + kiện hàng" (tương tự pattern sale work row).
 ///
 /// [isCurrentUserSlot]: giống [BookingPassengerInfoRow] — chỉ dòng khởi tạo prefill user hiện tại.

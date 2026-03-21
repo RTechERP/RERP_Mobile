@@ -49,6 +49,12 @@ class BookingVehicleBloc
             _onExpandCommercialReceiverInfo(index, emit),
         deleteCommercialReceiverInfo: (index) =>
             _onDeleteCommercialReceiverInfo(index, emit),
+        initPickupGiverInfos: () => _onInitPickupGiverInfos(emit),
+        addPickupGiverInfo: () => _onAddPickupGiverInfo(emit),
+        expandPickupGiverInfo: (index) =>
+            _onExpandPickupGiverInfo(index, emit),
+        deletePickupGiverInfo: (index) =>
+            _onDeletePickupGiverInfo(index, emit),
       );
     });
   }
@@ -424,6 +430,70 @@ class BookingVehicleBloc
         expandedCommercialDeliveryReceiverIndex: nextExpanded,
         commercialReceiverFormGeneration:
             state.commercialReceiverFormGeneration + 1,
+      ),
+    );
+  }
+
+  Future<void> _onInitPickupGiverInfos(
+    Emitter<BookingVehicleState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        pickupGiverLineCount: 1,
+        expandedPickupGiverIndex: 0,
+        pickupGiverFormGeneration: 0,
+      ),
+    );
+  }
+
+  Future<void> _onAddPickupGiverInfo(
+    Emitter<BookingVehicleState> emit,
+  ) async {
+    final n = state.pickupGiverLineCount;
+    emit(
+      state.copyWith(
+        pickupGiverLineCount: n + 1,
+        expandedPickupGiverIndex: n,
+      ),
+    );
+  }
+
+  Future<void> _onExpandPickupGiverInfo(
+    int index,
+    Emitter<BookingVehicleState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        expandedPickupGiverIndex:
+            state.expandedPickupGiverIndex == index ? null : index,
+      ),
+    );
+  }
+
+  Future<void> _onDeletePickupGiverInfo(
+    int index,
+    Emitter<BookingVehicleState> emit,
+  ) async {
+    final n = state.pickupGiverLineCount;
+    if (n <= 1 || index < 0 || index >= n) return;
+
+    final oldExpanded = state.expandedPickupGiverIndex;
+    int? nextExpanded;
+    if (oldExpanded == null) {
+      nextExpanded = null;
+    } else if (oldExpanded == index) {
+      nextExpanded = null;
+    } else if (oldExpanded > index) {
+      nextExpanded = oldExpanded - 1;
+    } else {
+      nextExpanded = oldExpanded;
+    }
+
+    emit(
+      state.copyWith(
+        pickupGiverLineCount: n - 1,
+        expandedPickupGiverIndex: nextExpanded,
+        pickupGiverFormGeneration: state.pickupGiverFormGeneration + 1,
       ),
     );
   }

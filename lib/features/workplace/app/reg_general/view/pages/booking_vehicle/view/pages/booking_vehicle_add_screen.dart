@@ -10,8 +10,9 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
-import '../../data/booking_vehicle_passenger_form_shift.dart';
-import '../../data/booking_vehicle_receiver_form_shift.dart';
+import '../../data/datasource/models/booking_vehicle_passenger_form_shift.dart';
+import '../../data/datasource/models/booking_vehicle_deliver_form_shift.dart';
+import '../../data/datasource/models/booking_vehicle_receiver_form_shift.dart';
 import '../../data/repository/booking_vehicle_repository.dart';
 import '../bloc/booking_vehicle_bloc.dart';
 import '../widgets/forms/index.dart';
@@ -45,12 +46,11 @@ class _BookingVehicleAddScreenState
       case 'Đăng ký người về':
         return _BookingVehicleTypeGroup.passengerReturn;
       case 'Đăng ký giao hàng thương mại':
+      case 'Đăng ký giao hàng Demo/triển lãm':
         return _BookingVehicleTypeGroup.commercialDelivery;
       case 'Đăng ký lấy hàng thương mại':
       case 'Đăng ký lấy hàng Demo/triển lãm':
         return _BookingVehicleTypeGroup.commercialPickupAndDemoPickup;
-      case 'Đăng ký giao hàng Demo/triển lãm':
-        return _BookingVehicleTypeGroup.demoDelivery;
       default:
         return _BookingVehicleTypeGroup.passengerGo;
     }
@@ -92,7 +92,25 @@ class _BookingVehicleAddScreenState
                   prev.provinceDeparture != curr.provinceDeparture ||
                   prev.provinceArrives != curr.provinceArrives ||
                   prev.employee != curr.employee ||
-                  prev.currentEmployee != curr.currentEmployee,
+                  prev.currentEmployee != curr.currentEmployee ||
+                  prev.passengerGoLineCount != curr.passengerGoLineCount ||
+                  prev.expandedPassengerGoIndex !=
+                      curr.expandedPassengerGoIndex ||
+                  prev.passengerGoFirstRowIsCurrentUserSlot !=
+                      curr.passengerGoFirstRowIsCurrentUserSlot ||
+                  prev.passengerFormGeneration !=
+                      curr.passengerFormGeneration ||
+                  prev.commercialReceiverLineCount !=
+                      curr.commercialReceiverLineCount ||
+                  prev.expandedCommercialDeliveryReceiverIndex !=
+                      curr.expandedCommercialDeliveryReceiverIndex ||
+                  prev.commercialReceiverFormGeneration !=
+                      curr.commercialReceiverFormGeneration ||
+                  prev.pickupGiverLineCount != curr.pickupGiverLineCount ||
+                  prev.expandedPickupGiverIndex !=
+                      curr.expandedPickupGiverIndex ||
+                  prev.pickupGiverFormGeneration !=
+                      curr.pickupGiverFormGeneration,
               builder: (context, state) {
                 return FormBuilder(
                   key: _formKey,
@@ -153,6 +171,17 @@ class _BookingVehicleAddScreenState
                                           const BookingVehicleEvent
                                               .preloadInitAdd(),
                                         );
+                                      } else if (group ==
+                                          _BookingVehicleTypeGroup
+                                              .commercialPickupAndDemoPickup) {
+                                        bloc.add(
+                                          const BookingVehicleEvent
+                                              .initPickupGiverInfos(),
+                                        );
+                                        bloc.add(
+                                          const BookingVehicleEvent
+                                              .preloadInitAdd(),
+                                        );
                                       }
                                     },
                                     displayText: (item) => item,
@@ -202,7 +231,30 @@ class _BookingVehicleAddScreenState
                                   builder: (context, state) {
                                     final n = state.passengerGoLineCount;
                                     if (n <= 0) {
-                                      return const SizedBox.shrink();
+                                      return Center(
+                                        child: TextButton.icon(
+                                          onPressed: () {
+                                            context
+                                                .read<BookingVehicleBloc>()
+                                                .add(
+                                                  const BookingVehicleEvent
+                                                      .initPassengerGoInfos(),
+                                                );
+                                            context
+                                                .read<BookingVehicleBloc>()
+                                                .add(
+                                                  const BookingVehicleEvent
+                                                      .preloadInitAdd(),
+                                                );
+                                          },
+                                          icon: const Icon(
+                                            Icons.person_add_outlined,
+                                          ),
+                                          label: const Text(
+                                            'Thêm người đi',
+                                          ),
+                                        ),
+                                      );
                                     }
 
                                     return Column(
@@ -305,7 +357,30 @@ class _BookingVehicleAddScreenState
                                   builder: (context, state) {
                                     final n = state.passengerGoLineCount;
                                     if (n <= 0) {
-                                      return const SizedBox.shrink();
+                                      return Center(
+                                        child: TextButton.icon(
+                                          onPressed: () {
+                                            context
+                                                .read<BookingVehicleBloc>()
+                                                .add(
+                                                  const BookingVehicleEvent
+                                                      .initPassengerGoInfos(),
+                                                );
+                                            context
+                                                .read<BookingVehicleBloc>()
+                                                .add(
+                                                  const BookingVehicleEvent
+                                                      .preloadInitAdd(),
+                                                );
+                                          },
+                                          icon: const Icon(
+                                            Icons.person_add_outlined,
+                                          ),
+                                          label: const Text(
+                                            'Thêm người đi',
+                                          ),
+                                        ),
+                                      );
                                     }
 
                                     return Column(
@@ -506,10 +581,124 @@ class _BookingVehicleAddScreenState
                               if (_bookingTypeGroup ==
                                   _BookingVehicleTypeGroup
                                       .commercialPickupAndDemoPickup)
-                                const TypeFormCommercialAndDemoPickup(),
+                                TypeFormReceiver(
+                                  projects: state.projects,
+                                  arrivalProvinces: state.provinceArrives,
+                                ),
                               if (_bookingTypeGroup ==
-                                  _BookingVehicleTypeGroup.demoDelivery)
-                                const TypeFormDemoDelivery(),
+                                  _BookingVehicleTypeGroup
+                                      .commercialPickupAndDemoPickup)
+                                const SizedBox(height: 12),
+                              if (_bookingTypeGroup ==
+                                  _BookingVehicleTypeGroup
+                                      .commercialPickupAndDemoPickup)
+                                BlocBuilder<BookingVehicleBloc,
+                                    BookingVehicleState>(
+                                  buildWhen: (prev, curr) =>
+                                      prev.employee != curr.employee ||
+                                      prev.currentEmployee !=
+                                          curr.currentEmployee ||
+                                      prev.pickupGiverLineCount !=
+                                          curr.pickupGiverLineCount ||
+                                      prev.expandedPickupGiverIndex !=
+                                          curr.expandedPickupGiverIndex ||
+                                      prev.pickupGiverFormGeneration !=
+                                          curr.pickupGiverFormGeneration,
+                                  builder: (context, state) {
+                                    final n = state.pickupGiverLineCount;
+                                    if (n <= 0) {
+                                      return Center(
+                                        child: TextButton.icon(
+                                          onPressed: () {
+                                            context
+                                                .read<BookingVehicleBloc>()
+                                                .add(
+                                                  const BookingVehicleEvent
+                                                      .initPickupGiverInfos(),
+                                                );
+                                            context
+                                                .read<BookingVehicleBloc>()
+                                                .add(
+                                                  const BookingVehicleEvent
+                                                      .preloadInitAdd(),
+                                                );
+                                          },
+                                          icon: const Icon(
+                                            Icons.person_add_outlined,
+                                          ),
+                                          label: const Text(
+                                            'Thêm người giao',
+                                          ),
+                                        ),
+                                      );
+                                    }
+
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        for (var i = 0; i < n; i++)
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              bottom: 8,
+                                            ),
+                                            child: DeliverPackageInfoItem(
+                                              key: ValueKey(
+                                                'pickup_giver_${i}_${state.pickupGiverFormGeneration}',
+                                              ),
+                                              index: i,
+                                              isExpanded: state
+                                                      .expandedPickupGiverIndex ==
+                                                  i,
+                                              totalCount: n,
+                                              employeeOptions: state.employee,
+                                              prefillEmployee: null,
+                                              onToggleExpand: () {
+                                                bloc.add(
+                                                  BookingVehicleEvent
+                                                      .expandPickupGiverInfo(
+                                                    index: i,
+                                                  ),
+                                                );
+                                              },
+                                              onDelete: () {
+                                                if (n <= 1) return;
+                                                BookingVehicleDeliverFormShift
+                                                    .afterDeleteAt(
+                                                  _formKey.currentState,
+                                                  deletedIndex: i,
+                                                  oldLineCount: n,
+                                                );
+                                                bloc.add(
+                                                  BookingVehicleEvent
+                                                      .deletePickupGiverInfo(
+                                                    index: i,
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                        const SizedBox(height: 4),
+                                        Center(
+                                          child: InkResponse(
+                                            onTap: () {
+                                              bloc.add(
+                                                const BookingVehicleEvent
+                                                    .addPickupGiverInfo(),
+                                              );
+                                            },
+                                            radius: 28,
+                                            child: const Icon(
+                                              Icons.add_circle_outline,
+                                              size: 32,
+                                              color: AppColors.primaryERP,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
                             ],
                           ],
                         ),
@@ -596,5 +785,4 @@ enum _BookingVehicleTypeGroup {
   passengerReturn,
   commercialDelivery,
   commercialPickupAndDemoPickup,
-  demoDelivery,
 }

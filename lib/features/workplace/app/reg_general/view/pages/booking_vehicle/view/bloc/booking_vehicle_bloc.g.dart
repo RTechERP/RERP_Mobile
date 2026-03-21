@@ -64,6 +64,12 @@ abstract class _$BookingVehicleStateCWProxy {
   BookingVehicleState commercialReceiverFormGeneration(
       int commercialReceiverFormGeneration);
 
+  BookingVehicleState pickupGiverLineCount(int pickupGiverLineCount);
+
+  BookingVehicleState expandedPickupGiverIndex(int? expandedPickupGiverIndex);
+
+  BookingVehicleState pickupGiverFormGeneration(int pickupGiverFormGeneration);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -96,6 +102,9 @@ abstract class _$BookingVehicleStateCWProxy {
     int? commercialReceiverLineCount,
     int? expandedCommercialDeliveryReceiverIndex,
     int? commercialReceiverFormGeneration,
+    int? pickupGiverLineCount,
+    int? expandedPickupGiverIndex,
+    int? pickupGiverFormGeneration,
   });
 }
 
@@ -213,6 +222,19 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
       this(commercialReceiverFormGeneration: commercialReceiverFormGeneration);
 
   @override
+  BookingVehicleState pickupGiverLineCount(int pickupGiverLineCount) =>
+      this(pickupGiverLineCount: pickupGiverLineCount);
+
+  @override
+  BookingVehicleState expandedPickupGiverIndex(int? expandedPickupGiverIndex) =>
+      this(expandedPickupGiverIndex: expandedPickupGiverIndex);
+
+  @override
+  BookingVehicleState pickupGiverFormGeneration(
+          int pickupGiverFormGeneration) =>
+      this(pickupGiverFormGeneration: pickupGiverFormGeneration);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -247,6 +269,9 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
     Object? expandedCommercialDeliveryReceiverIndex =
         const $CopyWithPlaceholder(),
     Object? commercialReceiverFormGeneration = const $CopyWithPlaceholder(),
+    Object? pickupGiverLineCount = const $CopyWithPlaceholder(),
+    Object? expandedPickupGiverIndex = const $CopyWithPlaceholder(),
+    Object? pickupGiverFormGeneration = const $CopyWithPlaceholder(),
   }) {
     return BookingVehicleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -370,6 +395,23 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
               ? _value.commercialReceiverFormGeneration
               // ignore: cast_nullable_to_non_nullable
               : commercialReceiverFormGeneration as int,
+      pickupGiverLineCount:
+          pickupGiverLineCount == const $CopyWithPlaceholder() ||
+                  pickupGiverLineCount == null
+              ? _value.pickupGiverLineCount
+              // ignore: cast_nullable_to_non_nullable
+              : pickupGiverLineCount as int,
+      expandedPickupGiverIndex:
+          expandedPickupGiverIndex == const $CopyWithPlaceholder()
+              ? _value.expandedPickupGiverIndex
+              // ignore: cast_nullable_to_non_nullable
+              : expandedPickupGiverIndex as int?,
+      pickupGiverFormGeneration:
+          pickupGiverFormGeneration == const $CopyWithPlaceholder() ||
+                  pickupGiverFormGeneration == null
+              ? _value.pickupGiverFormGeneration
+              // ignore: cast_nullable_to_non_nullable
+              : pickupGiverFormGeneration as int,
     );
   }
 }

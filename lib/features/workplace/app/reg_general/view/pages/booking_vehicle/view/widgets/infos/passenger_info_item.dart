@@ -43,6 +43,8 @@ class _PassengerInfoItemState
 
   BookingVehiclePersonalItem? _selectedEmployee;
 
+  bool get _isPassengerFromEmployee => _selectedEmployee != null;
+
   @override
   void initState() {
     super.initState();
@@ -93,11 +95,16 @@ class _PassengerInfoItemState
         (form.fields['passenger_full_name_${widget.index}']?.value as String?)
                 ?.trim() ??
             '';
-    if (code.isEmpty && name.isEmpty) return;
+    final empPick =
+        (form.fields['passenger_employee_${widget.index}']?.value as String?)
+                ?.trim() ??
+            '';
+    if (code.isEmpty && name.isEmpty && empPick.isEmpty) return;
 
     for (final e in widget.employeeOptions) {
       final c = (e.code ?? '').trim();
       final n = (e.fullName ?? '').trim();
+      if (c.isEmpty && n.isEmpty) continue;
       if (code.isNotEmpty && c == code) {
         setState(() => _selectedEmployee = e);
         _syncFieldsToEmployee(e);
@@ -108,11 +115,16 @@ class _PassengerInfoItemState
         _syncFieldsToEmployee(e);
         return;
       }
+      if (empPick.isNotEmpty &&
+          (n == empPick || empPick.contains(n) || c == empPick)) {
+        setState(() => _selectedEmployee = e);
+        _syncFieldsToEmployee(e);
+        return;
+      }
     }
   }
 
   void _syncFieldsToEmployee(BookingVehiclePersonalItem? employee) {
-    // Khi chưa có dữ liệu thì hiển thị chuỗi rỗng.
     employeeSelectField?.didChange(employee?.fullName ?? '');
     departmentField?.didChange(employee?.departmentName ?? '');
     employeeCodeField?.didChange(employee?.code ?? '');
@@ -120,8 +132,18 @@ class _PassengerInfoItemState
     contactPhoneField?.didChange(employee?.sdtCaNhan ?? '');
   }
 
+  void _switchToManualPassengerEntry() {
+    setState(() => _selectedEmployee = null);
+    employeeSelectField?.didChange('');
+    departmentField?.didChange('');
+    employeeCodeField?.didChange('');
+    employeeNameField?.didChange('');
+    contactPhoneField?.didChange('');
+  }
+
   Future<void> _pickEmployee() async {
     final items = widget.employeeOptions;
+    final hadEmployee = _selectedEmployee != null;
 
     await openSelectBottomSheet<BookingVehiclePersonalItem>(
       context: context,
@@ -129,14 +151,14 @@ class _PassengerInfoItemState
       items: items,
       displayText: (v) => '${v.code ?? ''} - ${v.fullName ?? ''}',
       onSelected: (item) {
-        setState(() {
-          _selectedEmployee = item;
-        });
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (!mounted) return;
-          _syncFieldsToEmployee(item);
-        });
+        setState(() => _selectedEmployee = item);
+        _syncFieldsToEmployee(item);
       },
+      secondaryActionLabel: hadEmployee
+          ? 'Nhập tay (bỏ chọn nhân viên)'
+          : null,
+      onSecondaryAction:
+          hadEmployee ? () => _switchToManualPassengerEntry() : null,
     );
   }
 
@@ -167,9 +189,9 @@ class _PassengerInfoItemState
             ),
       child: Builder(
         builder: (slidableCtx) {
-          final fullName = (_selectedEmployee?.fullName ?? '').trim();
+          final nameFromField = (employeeNameField?.value ?? '').trim();
           final headerTitle =
-              'Người đi: ${fullName.isNotEmpty ? fullName : 'Chưa chọn'}';
+              'Người đi: ${nameFromField.isNotEmpty ? nameFromField : 'Chưa chọn'}';
 
           final collapsed = !widget.isExpanded;
 
@@ -218,101 +240,92 @@ class _PassengerInfoItemState
                     ),
                   ),
                 ),
-                AnimatedSize(
-                  duration: const Duration(milliseconds: 250),
-                  curve: Curves.easeInOut,
-                  child: Offstage(
-                    offstage: collapsed,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const SizedBox(height: 8),
+                Offstage(
+                  offstage: collapsed,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SizedBox(height: 8),
 
-                        /// Chọn nhân viên
-                        GestureDetector(
-                          onTap: _pickEmployee,
-                          child: AbsorbPointer(
-                            child: FormInputField(
-                              nameForm: 'passenger_employee_$employeeIndex',
-                              nameTextField:
-                                  'passenger_employee_text_$employeeIndex',
-                              label: 'Chọn là nhân viên (nếu có)',
-                              icon: Icons.person_outline,
-                              onFieldCreated: (field) =>
-                                  employeeSelectField = field,
-                              readOnly: true,
-                            ),
+                      /// Chọn nhân viên
+                      GestureDetector(
+                        onTap: _pickEmployee,
+                        child: AbsorbPointer(
+                          child: FormInputField(
+                            nameForm: 'passenger_employee_$employeeIndex',
+                            nameTextField:
+                                'passenger_employee_text_$employeeIndex',
+                            label: 'Chọn là nhân viên (nếu có)',
+                            icon: Icons.person_outline,
+                            onFieldCreated: (field) =>
+                                employeeSelectField = field,
+                            readOnly: true,
                           ),
                         ),
-                        const SizedBox(height: 12),
+                      ),
+                      const SizedBox(height: 12),
 
-                        /// Phòng ban (disable)
-                        FormInputField(
-                          nameForm: 'passenger_department_$employeeIndex',
-                          nameTextField:
-                              'passenger_department_text_$employeeIndex',
-                          label: 'Phòng ban (nếu có)',
-                          icon: Icons.apartment_outlined,
-                          enabled: false,
-                          readOnly: true,
-                          onFieldCreated: (field) =>
-                              departmentField = field,
-                        ),
-                        const SizedBox(height: 8),
+                      FormInputField(
+                        nameForm: 'passenger_department_$employeeIndex',
+                        nameTextField:
+                            'passenger_department_text_$employeeIndex',
+                        label: 'Phòng ban',
+                        icon: Icons.apartment_outlined,
+                        onFieldCreated: (field) => departmentField = field,
+                        enabled: !_isPassengerFromEmployee,
+                        readOnly: _isPassengerFromEmployee,
+                      ),
+                      const SizedBox(height: 8),
 
-                        /// Mã người đi (disable)
-                        FormInputField(
-                          nameForm: 'passenger_code_$employeeIndex',
-                          nameTextField:
-                              'passenger_code_text_$employeeIndex',
-                          label: 'Mã người đi (nếu có)',
-                          icon: Icons.assignment_ind_outlined,
-                          enabled: false,
-                          readOnly: true,
-                          onFieldCreated: (field) =>
-                              employeeCodeField = field,
-                        ),
-                        const SizedBox(height: 8),
+                      FormInputField(
+                        nameForm: 'passenger_code_$employeeIndex',
+                        nameTextField: 'passenger_code_text_$employeeIndex',
+                        label: 'Mã người đi',
+                        icon: Icons.assignment_ind_outlined,
+                        onFieldCreated: (field) => employeeCodeField = field,
+                        enabled: !_isPassengerFromEmployee,
+                        readOnly: _isPassengerFromEmployee,
+                      ),
+                      const SizedBox(height: 8),
 
-                        /// Tên người đi (disable)
-                        FormInputField(
-                          nameForm: 'passenger_full_name_$employeeIndex',
-                          nameTextField:
-                              'passenger_full_name_text_$employeeIndex',
-                          label: 'Tên người đi (disable theo API)',
-                          icon: Icons.person_pin_outlined,
-                          enabled: false,
-                          readOnly: true,
-                          onFieldCreated: (field) =>
-                              employeeNameField = field,
-                        ),
-                        const SizedBox(height: 8),
+                      FormInputField(
+                        nameForm: 'passenger_full_name_$employeeIndex',
+                        nameTextField:
+                            'passenger_full_name_text_$employeeIndex',
+                        label: 'Tên người đi',
+                        icon: Icons.person_pin_outlined,
+                        onFieldCreated: (field) => employeeNameField = field,
+                        onChanged: (_) {
+                          if (mounted) setState(() {});
+                        },
+                        enabled: !_isPassengerFromEmployee,
+                        readOnly: _isPassengerFromEmployee,
+                      ),
+                      const SizedBox(height: 8),
 
-                        /// SĐT liên hệ (disable)
-                        FormInputField(
-                          nameForm:
-                              'passenger_contact_phone_$employeeIndex',
-                          nameTextField:
-                              'passenger_contact_phone_text_$employeeIndex',
-                          label: 'SĐT liên hệ (disable theo API)',
-                          icon: Icons.phone_outlined,
-                          readOnly: true,
-                          onFieldCreated: (field) =>
-                              contactPhoneField = field,
-                        ),
-                        const SizedBox(height: 8),
+                      FormInputField(
+                        nameForm:
+                            'passenger_contact_phone_$employeeIndex',
+                        nameTextField:
+                            'passenger_contact_phone_text_$employeeIndex',
+                        label: 'SĐT liên hệ',
+                        icon: Icons.phone_outlined,
+                        onFieldCreated: (field) =>
+                            contactPhoneField = field,
+                        enabled: !_isPassengerFromEmployee,
+                        readOnly: _isPassengerFromEmployee,
+                      ),
+                      const SizedBox(height: 8),
 
-                        /// Note
-                        FormInputField(
-                          icon: Icons.note_outlined,
-                          nameForm: 'passenger_note_$employeeIndex',
-                          nameTextField:
-                              'passenger_note_text_$employeeIndex',
-                          label: 'Ghi chú (nếu có)',
-                          maxLines: 3,
-                        ),
-                      ],
-                    ),
+                      FormInputField(
+                        icon: Icons.note_outlined,
+                        nameForm: 'passenger_note_$employeeIndex',
+                        nameTextField:
+                            'passenger_note_text_$employeeIndex',
+                        label: 'Ghi chú (nếu có)',
+                        maxLines: 3,
+                      ),
+                    ],
                   ),
                 ),
               ],

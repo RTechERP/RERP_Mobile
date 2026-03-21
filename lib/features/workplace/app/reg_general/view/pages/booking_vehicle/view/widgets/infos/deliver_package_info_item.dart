@@ -8,9 +8,9 @@ import '../../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../../common/widgets/form/index.dart';
 import '../../../data/datasource/models/booking_vehicle_model.dart';
 
-/// Mỗi dòng "Người nhận n" (expand/collapse): chọn NV / tên / SĐT + kiện hàng (giao hàng thương mại / demo).
-class ReceiverPackageInfoItem extends StatefulWidget {
-  const ReceiverPackageInfoItem({
+/// Mỗi dòng "Người giao n" (lấy hàng thương mại / Demo) — cùng UX với [ReceiverPackageInfoItem] nhưng field/nhãn riêng.
+class DeliverPackageInfoItem extends StatefulWidget {
+  const DeliverPackageInfoItem({
     super.key,
     required this.index,
     required this.isExpanded,
@@ -30,20 +30,21 @@ class ReceiverPackageInfoItem extends StatefulWidget {
   final VoidCallback? onDelete;
 
   @override
-  State<ReceiverPackageInfoItem> createState() =>
-      _ReceiverPackageInfoItemState();
+  State<DeliverPackageInfoItem> createState() =>
+      _DeliverPackageInfoItemState();
 }
 
-class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
+class _DeliverPackageInfoItemState
+    extends State<DeliverPackageInfoItem> {
   FormFieldState<String>? employeeSelectField;
-  FormFieldState<String>? receiverNameField;
-  FormFieldState<String>? receiverPhoneField;
+  FormFieldState<String>? giverNameField;
+  FormFieldState<String>? giverPhoneField;
 
   BookingVehiclePersonalItem? _selectedEmployee;
 
   final List<String> _allowedImageExtensions = const ['png', 'jpeg', 'jpg'];
 
-  bool get _isReceiverFromEmployee => _selectedEmployee != null;
+  bool get _isGiverFromEmployee => _selectedEmployee != null;
 
   @override
   void initState() {
@@ -61,7 +62,7 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
   }
 
   @override
-  void didUpdateWidget(covariant ReceiverPackageInfoItem oldWidget) {
+  void didUpdateWidget(covariant DeliverPackageInfoItem oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.prefillEmployee != oldWidget.prefillEmployee) {
       _selectedEmployee = widget.prefillEmployee;
@@ -87,9 +88,10 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
     if (form == null) return;
     final i = widget.index;
     final name =
-        (form.fields['receiver_name_$i']?.value as String?)?.trim() ?? '';
+        (form.fields['pickup_giver_name_$i']?.value as String?)?.trim() ?? '';
     final empPick =
-        (form.fields['receiver_employee_$i']?.value as String?)?.trim() ?? '';
+        (form.fields['pickup_giver_employee_$i']?.value as String?)?.trim() ??
+            '';
     if (name.isEmpty && empPick.isEmpty) return;
 
     for (final e in widget.employeeOptions) {
@@ -108,18 +110,18 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
     final phone = (employee?.sdtCaNhan ?? '').trim();
 
     employeeSelectField?.didChange(fullName);
-    receiverNameField?.didChange(fullName);
-    receiverPhoneField?.didChange(phone);
+    giverNameField?.didChange(fullName);
+    giverPhoneField?.didChange(phone);
   }
 
-  void _switchToManualReceiverEntry() {
+  void _switchToManualGiverEntry() {
     setState(() => _selectedEmployee = null);
     employeeSelectField?.didChange('');
-    receiverNameField?.didChange('');
-    receiverPhoneField?.didChange('');
+    giverNameField?.didChange('');
+    giverPhoneField?.didChange('');
   }
 
-  Future<void> _pickReceiverEmployee() async {
+  Future<void> _pickGiverEmployee() async {
     final items = widget.employeeOptions;
     final hadEmployee = _selectedEmployee != null;
 
@@ -136,7 +138,7 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
           ? 'Nhập tay (bỏ chọn nhân viên)'
           : null,
       onSecondaryAction:
-          hadEmployee ? () => _switchToManualReceiverEntry() : null,
+          hadEmployee ? () => _switchToManualGiverEntry() : null,
     );
   }
 
@@ -145,14 +147,14 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
     final showExpanded = widget.isExpanded;
     final collapsed = !showExpanded;
     final canDelete = widget.totalCount > 1;
-    final nameFromField = (receiverNameField?.value ?? '').trim();
+    final nameFromField = (giverNameField?.value ?? '').trim();
     final headerTitle =
-        'Người nhận: ${nameFromField.isNotEmpty ? nameFromField : "Chưa chọn"}';
+        'Người giao: ${nameFromField.isNotEmpty ? nameFromField : "Chưa chọn"}';
 
     final i = widget.index;
 
     return Slidable(
-      key: ValueKey('commercial_receiver_${widget.index}'),
+      key: ValueKey('pickup_giver_row_${widget.index}'),
       enabled: !showExpanded && canDelete,
       endActionPane: showExpanded || !canDelete
           ? null
@@ -224,11 +226,11 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                     children: [
                       const SizedBox(height: 8),
                       GestureDetector(
-                        onTap: _pickReceiverEmployee,
+                        onTap: _pickGiverEmployee,
                         child: AbsorbPointer(
                           child: FormInputField(
-                            nameForm: 'receiver_employee_$i',
-                            nameTextField: 'receiver_employee_text_$i',
+                            nameForm: 'pickup_giver_employee_$i',
+                            nameTextField: 'pickup_giver_employee_text_$i',
                             label: 'Chọn là nhân viên (nếu có)',
                             icon: Icons.person_outline,
                             onFieldCreated: (field) =>
@@ -240,36 +242,35 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                       const SizedBox(height: 12),
                       FormInputField(
                         icon: Icons.person_pin_outlined,
-                        nameForm: 'receiver_name_$i',
-                        nameTextField: 'receiver_name_text_$i',
-                        label: 'Tên người nhận',
-                        onFieldCreated: (field) => receiverNameField = field,
+                        nameForm: 'pickup_giver_name_$i',
+                        nameTextField: 'pickup_giver_name_text_$i',
+                        label: 'Tên người giao',
+                        onFieldCreated: (field) => giverNameField = field,
                         onChanged: (_) {
                           if (mounted) setState(() {});
                         },
-                        enabled: !_isReceiverFromEmployee,
-                        readOnly: _isReceiverFromEmployee,
+                        enabled: !_isGiverFromEmployee,
+                        readOnly: _isGiverFromEmployee,
                       ),
                       const SizedBox(height: 8),
                       FormInputField(
                         icon: Icons.phone_outlined,
-                        nameForm: 'receiver_phone_number_$i',
-                        nameTextField: 'receiver_phone_number_text_$i',
+                        nameForm: 'pickup_giver_phone_number_$i',
+                        nameTextField: 'pickup_giver_phone_number_text_$i',
                         label: 'SDT liên hệ',
-                        onFieldCreated: (field) =>
-                            receiverPhoneField = field,
+                        onFieldCreated: (field) => giverPhoneField = field,
                       ),
                       const SizedBox(height: 16),
                       FormInputField(
                         icon: Icons.description_outlined,
-                        nameForm: 'commercial_package_name_$i',
-                        nameTextField: 'commercial_package_name_text_$i',
+                        nameForm: 'pickup_package_name_$i',
+                        nameTextField: 'pickup_package_name_text_$i',
                         label: 'Tên kiện hàng',
                         maxLines: 3,
                       ),
                       const SizedBox(height: 8),
                       FormBuilderField<List<PlatformFile>>(
-                        name: 'commercial_package_image_$i',
+                        name: 'pickup_package_image_$i',
                         builder: (field) {
                           final files =
                               field.value ?? const <PlatformFile>[];
@@ -327,8 +328,8 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                           Expanded(
                             child: FormInputField(
                               icon: Icons.crop_square_outlined,
-                              nameForm: 'package_size_$i',
-                              nameTextField: 'package_size_text_$i',
+                              nameForm: 'pickup_package_size_$i',
+                              nameTextField: 'pickup_package_size_text_$i',
                               label: 'Kích thước (cm)',
                               keyboardType: TextInputType.number,
                             ),
@@ -337,8 +338,8 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                           Expanded(
                             child: FormInputField(
                               icon: Icons.monitor_weight_outlined,
-                              nameForm: 'package_weight_$i',
-                              nameTextField: 'package_weight_text_$i',
+                              nameForm: 'pickup_package_weight_$i',
+                              nameTextField: 'pickup_package_weight_text_$i',
                               label: 'Cân nặng (kg)',
                               keyboardType: TextInputType.number,
                             ),
@@ -348,9 +349,8 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                       const SizedBox(height: 8),
                       FormInputField(
                         icon: Icons.inventory_2_outlined,
-                        nameForm: 'commercial_package_quantity_$i',
-                        nameTextField:
-                            'commercial_package_quantity_text_$i',
+                        nameForm: 'pickup_package_quantity_$i',
+                        nameTextField: 'pickup_package_quantity_text_$i',
                         label: 'Số lượng kiện hàng',
                         keyboardType: TextInputType.number,
                         initialValue: '1',
@@ -358,9 +358,8 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                       const SizedBox(height: 8),
                       FormInputField(
                         icon: Icons.note_outlined,
-                        nameForm: 'note_return_or_delivery_$i',
-                        nameTextField:
-                            'note_return_or_delivery_text_$i',
+                        nameForm: 'note_pickup_package_$i',
+                        nameTextField: 'note_pickup_package_text_$i',
                         label: 'Ghi chú (nếu có)',
                         maxLines: 3,
                         initialValue: '[Hàng đang chuẩn bị]',

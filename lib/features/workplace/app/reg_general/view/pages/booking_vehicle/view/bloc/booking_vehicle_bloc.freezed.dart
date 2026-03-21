@@ -29,6 +29,10 @@ mixin _$BookingVehicleEvent {
     required TResult Function() addCommercialReceiverInfo,
     required TResult Function(int index) expandCommercialReceiverInfo,
     required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +48,10 @@ mixin _$BookingVehicleEvent {
     TResult? Function()? addCommercialReceiverInfo,
     TResult? Function(int index)? expandCommercialReceiverInfo,
     TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +67,10 @@ mixin _$BookingVehicleEvent {
     TResult Function()? addCommercialReceiverInfo,
     TResult Function(int index)? expandCommercialReceiverInfo,
     TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -81,6 +93,12 @@ mixin _$BookingVehicleEvent {
         expandCommercialReceiverInfo,
     required TResult Function(_DeleteCommercialReceiverInfo value)
         deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -100,6 +118,10 @@ mixin _$BookingVehicleEvent {
         expandCommercialReceiverInfo,
     TResult? Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -119,6 +141,10 @@ mixin _$BookingVehicleEvent {
         expandCommercialReceiverInfo,
     TResult Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -190,6 +216,10 @@ class _$InitImpl implements _Init {
     required TResult Function() addCommercialReceiverInfo,
     required TResult Function(int index) expandCommercialReceiverInfo,
     required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
   }) {
     return init();
   }
@@ -208,6 +238,10 @@ class _$InitImpl implements _Init {
     TResult? Function()? addCommercialReceiverInfo,
     TResult? Function(int index)? expandCommercialReceiverInfo,
     TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
   }) {
     return init?.call();
   }
@@ -226,6 +260,10 @@ class _$InitImpl implements _Init {
     TResult Function()? addCommercialReceiverInfo,
     TResult Function(int index)? expandCommercialReceiverInfo,
     TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -254,6 +292,12 @@ class _$InitImpl implements _Init {
         expandCommercialReceiverInfo,
     required TResult Function(_DeleteCommercialReceiverInfo value)
         deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
   }) {
     return init(this);
   }
@@ -276,6 +320,10 @@ class _$InitImpl implements _Init {
         expandCommercialReceiverInfo,
     TResult? Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
   }) {
     return init?.call(this);
   }
@@ -298,6 +346,10 @@ class _$InitImpl implements _Init {
         expandCommercialReceiverInfo,
     TResult Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -360,6 +412,10 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function() addCommercialReceiverInfo,
     required TResult Function(int index) expandCommercialReceiverInfo,
     required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
   }) {
     return initAdd();
   }
@@ -378,6 +434,10 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function()? addCommercialReceiverInfo,
     TResult? Function(int index)? expandCommercialReceiverInfo,
     TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
   }) {
     return initAdd?.call();
   }
@@ -396,6 +456,10 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function()? addCommercialReceiverInfo,
     TResult Function(int index)? expandCommercialReceiverInfo,
     TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -424,6 +488,12 @@ class _$InitAddImpl implements _InitAdd {
         expandCommercialReceiverInfo,
     required TResult Function(_DeleteCommercialReceiverInfo value)
         deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
   }) {
     return initAdd(this);
   }
@@ -446,6 +516,10 @@ class _$InitAddImpl implements _InitAdd {
         expandCommercialReceiverInfo,
     TResult? Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
   }) {
     return initAdd?.call(this);
   }
@@ -468,6 +542,10 @@ class _$InitAddImpl implements _InitAdd {
         expandCommercialReceiverInfo,
     TResult Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -530,6 +608,10 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     required TResult Function() addCommercialReceiverInfo,
     required TResult Function(int index) expandCommercialReceiverInfo,
     required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
   }) {
     return preloadInitAdd();
   }
@@ -548,6 +630,10 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     TResult? Function()? addCommercialReceiverInfo,
     TResult? Function(int index)? expandCommercialReceiverInfo,
     TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
   }) {
     return preloadInitAdd?.call();
   }
@@ -566,6 +652,10 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     TResult Function()? addCommercialReceiverInfo,
     TResult Function(int index)? expandCommercialReceiverInfo,
     TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (preloadInitAdd != null) {
@@ -594,6 +684,12 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
         expandCommercialReceiverInfo,
     required TResult Function(_DeleteCommercialReceiverInfo value)
         deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
   }) {
     return preloadInitAdd(this);
   }
@@ -616,6 +712,10 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
         expandCommercialReceiverInfo,
     TResult? Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
   }) {
     return preloadInitAdd?.call(this);
   }
@@ -638,6 +738,10 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
         expandCommercialReceiverInfo,
     TResult Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (preloadInitAdd != null) {
@@ -701,6 +805,10 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     required TResult Function() addCommercialReceiverInfo,
     required TResult Function(int index) expandCommercialReceiverInfo,
     required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
   }) {
     return initPassengerGoInfos();
   }
@@ -719,6 +827,10 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     TResult? Function()? addCommercialReceiverInfo,
     TResult? Function(int index)? expandCommercialReceiverInfo,
     TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
   }) {
     return initPassengerGoInfos?.call();
   }
@@ -737,6 +849,10 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     TResult Function()? addCommercialReceiverInfo,
     TResult Function(int index)? expandCommercialReceiverInfo,
     TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (initPassengerGoInfos != null) {
@@ -765,6 +881,12 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
         expandCommercialReceiverInfo,
     required TResult Function(_DeleteCommercialReceiverInfo value)
         deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
   }) {
     return initPassengerGoInfos(this);
   }
@@ -787,6 +909,10 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
         expandCommercialReceiverInfo,
     TResult? Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
   }) {
     return initPassengerGoInfos?.call(this);
   }
@@ -809,6 +935,10 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
         expandCommercialReceiverInfo,
     TResult Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (initPassengerGoInfos != null) {
@@ -871,6 +1001,10 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     required TResult Function() addCommercialReceiverInfo,
     required TResult Function(int index) expandCommercialReceiverInfo,
     required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
   }) {
     return addPassengerGoInfo();
   }
@@ -889,6 +1023,10 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     TResult? Function()? addCommercialReceiverInfo,
     TResult? Function(int index)? expandCommercialReceiverInfo,
     TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
   }) {
     return addPassengerGoInfo?.call();
   }
@@ -907,6 +1045,10 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     TResult Function()? addCommercialReceiverInfo,
     TResult Function(int index)? expandCommercialReceiverInfo,
     TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (addPassengerGoInfo != null) {
@@ -935,6 +1077,12 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
         expandCommercialReceiverInfo,
     required TResult Function(_DeleteCommercialReceiverInfo value)
         deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
   }) {
     return addPassengerGoInfo(this);
   }
@@ -957,6 +1105,10 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
         expandCommercialReceiverInfo,
     TResult? Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
   }) {
     return addPassengerGoInfo?.call(this);
   }
@@ -979,6 +1131,10 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
         expandCommercialReceiverInfo,
     TResult Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (addPassengerGoInfo != null) {
@@ -1069,6 +1225,10 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     required TResult Function() addCommercialReceiverInfo,
     required TResult Function(int index) expandCommercialReceiverInfo,
     required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
   }) {
     return expandPassengerGoInfo(index);
   }
@@ -1087,6 +1247,10 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     TResult? Function()? addCommercialReceiverInfo,
     TResult? Function(int index)? expandCommercialReceiverInfo,
     TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
   }) {
     return expandPassengerGoInfo?.call(index);
   }
@@ -1105,6 +1269,10 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     TResult Function()? addCommercialReceiverInfo,
     TResult Function(int index)? expandCommercialReceiverInfo,
     TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (expandPassengerGoInfo != null) {
@@ -1133,6 +1301,12 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
         expandCommercialReceiverInfo,
     required TResult Function(_DeleteCommercialReceiverInfo value)
         deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
   }) {
     return expandPassengerGoInfo(this);
   }
@@ -1155,6 +1329,10 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
         expandCommercialReceiverInfo,
     TResult? Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
   }) {
     return expandPassengerGoInfo?.call(this);
   }
@@ -1177,6 +1355,10 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
         expandCommercialReceiverInfo,
     TResult Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (expandPassengerGoInfo != null) {
@@ -1273,6 +1455,10 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     required TResult Function() addCommercialReceiverInfo,
     required TResult Function(int index) expandCommercialReceiverInfo,
     required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
   }) {
     return deletePassengerGoInfo(index);
   }
@@ -1291,6 +1477,10 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     TResult? Function()? addCommercialReceiverInfo,
     TResult? Function(int index)? expandCommercialReceiverInfo,
     TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
   }) {
     return deletePassengerGoInfo?.call(index);
   }
@@ -1309,6 +1499,10 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     TResult Function()? addCommercialReceiverInfo,
     TResult Function(int index)? expandCommercialReceiverInfo,
     TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (deletePassengerGoInfo != null) {
@@ -1337,6 +1531,12 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
         expandCommercialReceiverInfo,
     required TResult Function(_DeleteCommercialReceiverInfo value)
         deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
   }) {
     return deletePassengerGoInfo(this);
   }
@@ -1359,6 +1559,10 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
         expandCommercialReceiverInfo,
     TResult? Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
   }) {
     return deletePassengerGoInfo?.call(this);
   }
@@ -1381,6 +1585,10 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
         expandCommercialReceiverInfo,
     TResult Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (deletePassengerGoInfo != null) {
@@ -1454,6 +1662,10 @@ class _$InitCommercialReceiverInfosImpl
     required TResult Function() addCommercialReceiverInfo,
     required TResult Function(int index) expandCommercialReceiverInfo,
     required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
   }) {
     return initCommercialReceiverInfos();
   }
@@ -1472,6 +1684,10 @@ class _$InitCommercialReceiverInfosImpl
     TResult? Function()? addCommercialReceiverInfo,
     TResult? Function(int index)? expandCommercialReceiverInfo,
     TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
   }) {
     return initCommercialReceiverInfos?.call();
   }
@@ -1490,6 +1706,10 @@ class _$InitCommercialReceiverInfosImpl
     TResult Function()? addCommercialReceiverInfo,
     TResult Function(int index)? expandCommercialReceiverInfo,
     TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (initCommercialReceiverInfos != null) {
@@ -1518,6 +1738,12 @@ class _$InitCommercialReceiverInfosImpl
         expandCommercialReceiverInfo,
     required TResult Function(_DeleteCommercialReceiverInfo value)
         deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
   }) {
     return initCommercialReceiverInfos(this);
   }
@@ -1540,6 +1766,10 @@ class _$InitCommercialReceiverInfosImpl
         expandCommercialReceiverInfo,
     TResult? Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
   }) {
     return initCommercialReceiverInfos?.call(this);
   }
@@ -1562,6 +1792,10 @@ class _$InitCommercialReceiverInfosImpl
         expandCommercialReceiverInfo,
     TResult Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (initCommercialReceiverInfos != null) {
@@ -1629,6 +1863,10 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     required TResult Function() addCommercialReceiverInfo,
     required TResult Function(int index) expandCommercialReceiverInfo,
     required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
   }) {
     return addCommercialReceiverInfo();
   }
@@ -1647,6 +1885,10 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     TResult? Function()? addCommercialReceiverInfo,
     TResult? Function(int index)? expandCommercialReceiverInfo,
     TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
   }) {
     return addCommercialReceiverInfo?.call();
   }
@@ -1665,6 +1907,10 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     TResult Function()? addCommercialReceiverInfo,
     TResult Function(int index)? expandCommercialReceiverInfo,
     TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (addCommercialReceiverInfo != null) {
@@ -1693,6 +1939,12 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
         expandCommercialReceiverInfo,
     required TResult Function(_DeleteCommercialReceiverInfo value)
         deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
   }) {
     return addCommercialReceiverInfo(this);
   }
@@ -1715,6 +1967,10 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
         expandCommercialReceiverInfo,
     TResult? Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
   }) {
     return addCommercialReceiverInfo?.call(this);
   }
@@ -1737,6 +1993,10 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
         expandCommercialReceiverInfo,
     TResult Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (addCommercialReceiverInfo != null) {
@@ -1831,6 +2091,10 @@ class _$ExpandCommercialReceiverInfoImpl
     required TResult Function() addCommercialReceiverInfo,
     required TResult Function(int index) expandCommercialReceiverInfo,
     required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
   }) {
     return expandCommercialReceiverInfo(index);
   }
@@ -1849,6 +2113,10 @@ class _$ExpandCommercialReceiverInfoImpl
     TResult? Function()? addCommercialReceiverInfo,
     TResult? Function(int index)? expandCommercialReceiverInfo,
     TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
   }) {
     return expandCommercialReceiverInfo?.call(index);
   }
@@ -1867,6 +2135,10 @@ class _$ExpandCommercialReceiverInfoImpl
     TResult Function()? addCommercialReceiverInfo,
     TResult Function(int index)? expandCommercialReceiverInfo,
     TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (expandCommercialReceiverInfo != null) {
@@ -1895,6 +2167,12 @@ class _$ExpandCommercialReceiverInfoImpl
         expandCommercialReceiverInfo,
     required TResult Function(_DeleteCommercialReceiverInfo value)
         deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
   }) {
     return expandCommercialReceiverInfo(this);
   }
@@ -1917,6 +2195,10 @@ class _$ExpandCommercialReceiverInfoImpl
         expandCommercialReceiverInfo,
     TResult? Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
   }) {
     return expandCommercialReceiverInfo?.call(this);
   }
@@ -1939,6 +2221,10 @@ class _$ExpandCommercialReceiverInfoImpl
         expandCommercialReceiverInfo,
     TResult Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (expandCommercialReceiverInfo != null) {
@@ -2040,6 +2326,10 @@ class _$DeleteCommercialReceiverInfoImpl
     required TResult Function() addCommercialReceiverInfo,
     required TResult Function(int index) expandCommercialReceiverInfo,
     required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
   }) {
     return deleteCommercialReceiverInfo(index);
   }
@@ -2058,6 +2348,10 @@ class _$DeleteCommercialReceiverInfoImpl
     TResult? Function()? addCommercialReceiverInfo,
     TResult? Function(int index)? expandCommercialReceiverInfo,
     TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
   }) {
     return deleteCommercialReceiverInfo?.call(index);
   }
@@ -2076,6 +2370,10 @@ class _$DeleteCommercialReceiverInfoImpl
     TResult Function()? addCommercialReceiverInfo,
     TResult Function(int index)? expandCommercialReceiverInfo,
     TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (deleteCommercialReceiverInfo != null) {
@@ -2104,6 +2402,12 @@ class _$DeleteCommercialReceiverInfoImpl
         expandCommercialReceiverInfo,
     required TResult Function(_DeleteCommercialReceiverInfo value)
         deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
   }) {
     return deleteCommercialReceiverInfo(this);
   }
@@ -2126,6 +2430,10 @@ class _$DeleteCommercialReceiverInfoImpl
         expandCommercialReceiverInfo,
     TResult? Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
   }) {
     return deleteCommercialReceiverInfo?.call(this);
   }
@@ -2148,6 +2456,10 @@ class _$DeleteCommercialReceiverInfoImpl
         expandCommercialReceiverInfo,
     TResult Function(_DeleteCommercialReceiverInfo value)?
         deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     required TResult orElse(),
   }) {
     if (deleteCommercialReceiverInfo != null) {
@@ -2165,5 +2477,858 @@ abstract class _DeleteCommercialReceiverInfo implements BookingVehicleEvent {
   @JsonKey(ignore: true)
   _$$DeleteCommercialReceiverInfoImplCopyWith<
           _$DeleteCommercialReceiverInfoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InitPickupGiverInfosImplCopyWith<$Res> {
+  factory _$$InitPickupGiverInfosImplCopyWith(_$InitPickupGiverInfosImpl value,
+          $Res Function(_$InitPickupGiverInfosImpl) then) =
+      __$$InitPickupGiverInfosImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitPickupGiverInfosImplCopyWithImpl<$Res>
+    extends _$BookingVehicleEventCopyWithImpl<$Res, _$InitPickupGiverInfosImpl>
+    implements _$$InitPickupGiverInfosImplCopyWith<$Res> {
+  __$$InitPickupGiverInfosImplCopyWithImpl(_$InitPickupGiverInfosImpl _value,
+      $Res Function(_$InitPickupGiverInfosImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
+  const _$InitPickupGiverInfosImpl();
+
+  @override
+  String toString() {
+    return 'BookingVehicleEvent.initPickupGiverInfos()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitPickupGiverInfosImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function() preloadInitAdd,
+    required TResult Function() initPassengerGoInfos,
+    required TResult Function() addPassengerGoInfo,
+    required TResult Function(int index) expandPassengerGoInfo,
+    required TResult Function(int index) deletePassengerGoInfo,
+    required TResult Function() initCommercialReceiverInfos,
+    required TResult Function() addCommercialReceiverInfo,
+    required TResult Function(int index) expandCommercialReceiverInfo,
+    required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
+  }) {
+    return initPickupGiverInfos();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function()? preloadInitAdd,
+    TResult? Function()? initPassengerGoInfos,
+    TResult? Function()? addPassengerGoInfo,
+    TResult? Function(int index)? expandPassengerGoInfo,
+    TResult? Function(int index)? deletePassengerGoInfo,
+    TResult? Function()? initCommercialReceiverInfos,
+    TResult? Function()? addCommercialReceiverInfo,
+    TResult? Function(int index)? expandCommercialReceiverInfo,
+    TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
+  }) {
+    return initPickupGiverInfos?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function()? preloadInitAdd,
+    TResult Function()? initPassengerGoInfos,
+    TResult Function()? addPassengerGoInfo,
+    TResult Function(int index)? expandPassengerGoInfo,
+    TResult Function(int index)? deletePassengerGoInfo,
+    TResult Function()? initCommercialReceiverInfos,
+    TResult Function()? addCommercialReceiverInfo,
+    TResult Function(int index)? expandCommercialReceiverInfo,
+    TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
+    required TResult orElse(),
+  }) {
+    if (initPickupGiverInfos != null) {
+      return initPickupGiverInfos();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
+    required TResult Function(_AddPassengerGoInfo value) addPassengerGoInfo,
+    required TResult Function(_ExpandPassengerGoInfo value)
+        expandPassengerGoInfo,
+    required TResult Function(_DeletePassengerGoInfo value)
+        deletePassengerGoInfo,
+    required TResult Function(_InitCommercialReceiverInfos value)
+        initCommercialReceiverInfos,
+    required TResult Function(_AddCommercialReceiverInfo value)
+        addCommercialReceiverInfo,
+    required TResult Function(_ExpandCommercialReceiverInfo value)
+        expandCommercialReceiverInfo,
+    required TResult Function(_DeleteCommercialReceiverInfo value)
+        deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
+  }) {
+    return initPickupGiverInfos(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult? Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult? Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult? Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult? Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult? Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult? Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult? Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+  }) {
+    return initPickupGiverInfos?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+    required TResult orElse(),
+  }) {
+    if (initPickupGiverInfos != null) {
+      return initPickupGiverInfos(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitPickupGiverInfos implements BookingVehicleEvent {
+  const factory _InitPickupGiverInfos() = _$InitPickupGiverInfosImpl;
+}
+
+/// @nodoc
+abstract class _$$AddPickupGiverInfoImplCopyWith<$Res> {
+  factory _$$AddPickupGiverInfoImplCopyWith(_$AddPickupGiverInfoImpl value,
+          $Res Function(_$AddPickupGiverInfoImpl) then) =
+      __$$AddPickupGiverInfoImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AddPickupGiverInfoImplCopyWithImpl<$Res>
+    extends _$BookingVehicleEventCopyWithImpl<$Res, _$AddPickupGiverInfoImpl>
+    implements _$$AddPickupGiverInfoImplCopyWith<$Res> {
+  __$$AddPickupGiverInfoImplCopyWithImpl(_$AddPickupGiverInfoImpl _value,
+      $Res Function(_$AddPickupGiverInfoImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
+  const _$AddPickupGiverInfoImpl();
+
+  @override
+  String toString() {
+    return 'BookingVehicleEvent.addPickupGiverInfo()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AddPickupGiverInfoImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function() preloadInitAdd,
+    required TResult Function() initPassengerGoInfos,
+    required TResult Function() addPassengerGoInfo,
+    required TResult Function(int index) expandPassengerGoInfo,
+    required TResult Function(int index) deletePassengerGoInfo,
+    required TResult Function() initCommercialReceiverInfos,
+    required TResult Function() addCommercialReceiverInfo,
+    required TResult Function(int index) expandCommercialReceiverInfo,
+    required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
+  }) {
+    return addPickupGiverInfo();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function()? preloadInitAdd,
+    TResult? Function()? initPassengerGoInfos,
+    TResult? Function()? addPassengerGoInfo,
+    TResult? Function(int index)? expandPassengerGoInfo,
+    TResult? Function(int index)? deletePassengerGoInfo,
+    TResult? Function()? initCommercialReceiverInfos,
+    TResult? Function()? addCommercialReceiverInfo,
+    TResult? Function(int index)? expandCommercialReceiverInfo,
+    TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
+  }) {
+    return addPickupGiverInfo?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function()? preloadInitAdd,
+    TResult Function()? initPassengerGoInfos,
+    TResult Function()? addPassengerGoInfo,
+    TResult Function(int index)? expandPassengerGoInfo,
+    TResult Function(int index)? deletePassengerGoInfo,
+    TResult Function()? initCommercialReceiverInfos,
+    TResult Function()? addCommercialReceiverInfo,
+    TResult Function(int index)? expandCommercialReceiverInfo,
+    TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
+    required TResult orElse(),
+  }) {
+    if (addPickupGiverInfo != null) {
+      return addPickupGiverInfo();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
+    required TResult Function(_AddPassengerGoInfo value) addPassengerGoInfo,
+    required TResult Function(_ExpandPassengerGoInfo value)
+        expandPassengerGoInfo,
+    required TResult Function(_DeletePassengerGoInfo value)
+        deletePassengerGoInfo,
+    required TResult Function(_InitCommercialReceiverInfos value)
+        initCommercialReceiverInfos,
+    required TResult Function(_AddCommercialReceiverInfo value)
+        addCommercialReceiverInfo,
+    required TResult Function(_ExpandCommercialReceiverInfo value)
+        expandCommercialReceiverInfo,
+    required TResult Function(_DeleteCommercialReceiverInfo value)
+        deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
+  }) {
+    return addPickupGiverInfo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult? Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult? Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult? Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult? Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult? Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult? Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult? Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+  }) {
+    return addPickupGiverInfo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+    required TResult orElse(),
+  }) {
+    if (addPickupGiverInfo != null) {
+      return addPickupGiverInfo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddPickupGiverInfo implements BookingVehicleEvent {
+  const factory _AddPickupGiverInfo() = _$AddPickupGiverInfoImpl;
+}
+
+/// @nodoc
+abstract class _$$ExpandPickupGiverInfoImplCopyWith<$Res> {
+  factory _$$ExpandPickupGiverInfoImplCopyWith(
+          _$ExpandPickupGiverInfoImpl value,
+          $Res Function(_$ExpandPickupGiverInfoImpl) then) =
+      __$$ExpandPickupGiverInfoImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$ExpandPickupGiverInfoImplCopyWithImpl<$Res>
+    extends _$BookingVehicleEventCopyWithImpl<$Res, _$ExpandPickupGiverInfoImpl>
+    implements _$$ExpandPickupGiverInfoImplCopyWith<$Res> {
+  __$$ExpandPickupGiverInfoImplCopyWithImpl(_$ExpandPickupGiverInfoImpl _value,
+      $Res Function(_$ExpandPickupGiverInfoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$ExpandPickupGiverInfoImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
+  const _$ExpandPickupGiverInfoImpl({required this.index});
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'BookingVehicleEvent.expandPickupGiverInfo(index: $index)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ExpandPickupGiverInfoImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ExpandPickupGiverInfoImplCopyWith<_$ExpandPickupGiverInfoImpl>
+      get copyWith => __$$ExpandPickupGiverInfoImplCopyWithImpl<
+          _$ExpandPickupGiverInfoImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function() preloadInitAdd,
+    required TResult Function() initPassengerGoInfos,
+    required TResult Function() addPassengerGoInfo,
+    required TResult Function(int index) expandPassengerGoInfo,
+    required TResult Function(int index) deletePassengerGoInfo,
+    required TResult Function() initCommercialReceiverInfos,
+    required TResult Function() addCommercialReceiverInfo,
+    required TResult Function(int index) expandCommercialReceiverInfo,
+    required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
+  }) {
+    return expandPickupGiverInfo(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function()? preloadInitAdd,
+    TResult? Function()? initPassengerGoInfos,
+    TResult? Function()? addPassengerGoInfo,
+    TResult? Function(int index)? expandPassengerGoInfo,
+    TResult? Function(int index)? deletePassengerGoInfo,
+    TResult? Function()? initCommercialReceiverInfos,
+    TResult? Function()? addCommercialReceiverInfo,
+    TResult? Function(int index)? expandCommercialReceiverInfo,
+    TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
+  }) {
+    return expandPickupGiverInfo?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function()? preloadInitAdd,
+    TResult Function()? initPassengerGoInfos,
+    TResult Function()? addPassengerGoInfo,
+    TResult Function(int index)? expandPassengerGoInfo,
+    TResult Function(int index)? deletePassengerGoInfo,
+    TResult Function()? initCommercialReceiverInfos,
+    TResult Function()? addCommercialReceiverInfo,
+    TResult Function(int index)? expandCommercialReceiverInfo,
+    TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
+    required TResult orElse(),
+  }) {
+    if (expandPickupGiverInfo != null) {
+      return expandPickupGiverInfo(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
+    required TResult Function(_AddPassengerGoInfo value) addPassengerGoInfo,
+    required TResult Function(_ExpandPassengerGoInfo value)
+        expandPassengerGoInfo,
+    required TResult Function(_DeletePassengerGoInfo value)
+        deletePassengerGoInfo,
+    required TResult Function(_InitCommercialReceiverInfos value)
+        initCommercialReceiverInfos,
+    required TResult Function(_AddCommercialReceiverInfo value)
+        addCommercialReceiverInfo,
+    required TResult Function(_ExpandCommercialReceiverInfo value)
+        expandCommercialReceiverInfo,
+    required TResult Function(_DeleteCommercialReceiverInfo value)
+        deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
+  }) {
+    return expandPickupGiverInfo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult? Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult? Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult? Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult? Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult? Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult? Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult? Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+  }) {
+    return expandPickupGiverInfo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+    required TResult orElse(),
+  }) {
+    if (expandPickupGiverInfo != null) {
+      return expandPickupGiverInfo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ExpandPickupGiverInfo implements BookingVehicleEvent {
+  const factory _ExpandPickupGiverInfo({required final int index}) =
+      _$ExpandPickupGiverInfoImpl;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$ExpandPickupGiverInfoImplCopyWith<_$ExpandPickupGiverInfoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeletePickupGiverInfoImplCopyWith<$Res> {
+  factory _$$DeletePickupGiverInfoImplCopyWith(
+          _$DeletePickupGiverInfoImpl value,
+          $Res Function(_$DeletePickupGiverInfoImpl) then) =
+      __$$DeletePickupGiverInfoImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$DeletePickupGiverInfoImplCopyWithImpl<$Res>
+    extends _$BookingVehicleEventCopyWithImpl<$Res, _$DeletePickupGiverInfoImpl>
+    implements _$$DeletePickupGiverInfoImplCopyWith<$Res> {
+  __$$DeletePickupGiverInfoImplCopyWithImpl(_$DeletePickupGiverInfoImpl _value,
+      $Res Function(_$DeletePickupGiverInfoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$DeletePickupGiverInfoImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
+  const _$DeletePickupGiverInfoImpl({required this.index});
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'BookingVehicleEvent.deletePickupGiverInfo(index: $index)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeletePickupGiverInfoImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeletePickupGiverInfoImplCopyWith<_$DeletePickupGiverInfoImpl>
+      get copyWith => __$$DeletePickupGiverInfoImplCopyWithImpl<
+          _$DeletePickupGiverInfoImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function() preloadInitAdd,
+    required TResult Function() initPassengerGoInfos,
+    required TResult Function() addPassengerGoInfo,
+    required TResult Function(int index) expandPassengerGoInfo,
+    required TResult Function(int index) deletePassengerGoInfo,
+    required TResult Function() initCommercialReceiverInfos,
+    required TResult Function() addCommercialReceiverInfo,
+    required TResult Function(int index) expandCommercialReceiverInfo,
+    required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
+  }) {
+    return deletePickupGiverInfo(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function()? preloadInitAdd,
+    TResult? Function()? initPassengerGoInfos,
+    TResult? Function()? addPassengerGoInfo,
+    TResult? Function(int index)? expandPassengerGoInfo,
+    TResult? Function(int index)? deletePassengerGoInfo,
+    TResult? Function()? initCommercialReceiverInfos,
+    TResult? Function()? addCommercialReceiverInfo,
+    TResult? Function(int index)? expandCommercialReceiverInfo,
+    TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
+  }) {
+    return deletePickupGiverInfo?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function()? preloadInitAdd,
+    TResult Function()? initPassengerGoInfos,
+    TResult Function()? addPassengerGoInfo,
+    TResult Function(int index)? expandPassengerGoInfo,
+    TResult Function(int index)? deletePassengerGoInfo,
+    TResult Function()? initCommercialReceiverInfos,
+    TResult Function()? addCommercialReceiverInfo,
+    TResult Function(int index)? expandCommercialReceiverInfo,
+    TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
+    required TResult orElse(),
+  }) {
+    if (deletePickupGiverInfo != null) {
+      return deletePickupGiverInfo(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
+    required TResult Function(_AddPassengerGoInfo value) addPassengerGoInfo,
+    required TResult Function(_ExpandPassengerGoInfo value)
+        expandPassengerGoInfo,
+    required TResult Function(_DeletePassengerGoInfo value)
+        deletePassengerGoInfo,
+    required TResult Function(_InitCommercialReceiverInfos value)
+        initCommercialReceiverInfos,
+    required TResult Function(_AddCommercialReceiverInfo value)
+        addCommercialReceiverInfo,
+    required TResult Function(_ExpandCommercialReceiverInfo value)
+        expandCommercialReceiverInfo,
+    required TResult Function(_DeleteCommercialReceiverInfo value)
+        deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
+  }) {
+    return deletePickupGiverInfo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult? Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult? Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult? Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult? Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult? Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult? Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult? Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+  }) {
+    return deletePickupGiverInfo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+    required TResult orElse(),
+  }) {
+    if (deletePickupGiverInfo != null) {
+      return deletePickupGiverInfo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeletePickupGiverInfo implements BookingVehicleEvent {
+  const factory _DeletePickupGiverInfo({required final int index}) =
+      _$DeletePickupGiverInfoImpl;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$DeletePickupGiverInfoImplCopyWith<_$DeletePickupGiverInfoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

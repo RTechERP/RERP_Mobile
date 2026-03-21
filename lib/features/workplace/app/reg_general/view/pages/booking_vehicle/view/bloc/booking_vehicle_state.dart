@@ -46,6 +46,13 @@ class BookingVehicleState extends BaseBlocState {
 
   /// Tăng khi xoá dòng người nhận — tránh tái dùng State cũ.
   final int commercialReceiverFormGeneration;
+
+  /// Số dòng người giao + kiện (lấy hàng thương mại / Demo).
+  final int pickupGiverLineCount;
+
+  final int? expandedPickupGiverIndex;
+
+  final int pickupGiverFormGeneration;
   const BookingVehicleState({
     required super.status,
     super.message,
@@ -73,6 +80,10 @@ class BookingVehicleState extends BaseBlocState {
     this.commercialReceiverLineCount = 0,
     this.expandedCommercialDeliveryReceiverIndex,
     this.commercialReceiverFormGeneration = 0,
+
+    this.pickupGiverLineCount = 0,
+    this.expandedPickupGiverIndex,
+    this.pickupGiverFormGeneration = 0,
   });
 
   factory BookingVehicleState.init() => const BookingVehicleState(
@@ -100,6 +111,9 @@ class BookingVehicleState extends BaseBlocState {
     commercialReceiverLineCount: 0,
     expandedCommercialDeliveryReceiverIndex: null,
     commercialReceiverFormGeneration: 0,
+    pickupGiverLineCount: 0,
+    expandedPickupGiverIndex: null,
+    pickupGiverFormGeneration: 0,
   );
 
   @override
@@ -129,5 +143,8 @@ class BookingVehicleState extends BaseBlocState {
     commercialReceiverLineCount,
     expandedCommercialDeliveryReceiverIndex,
     commercialReceiverFormGeneration,
+    pickupGiverLineCount,
+    expandedPickupGiverIndex,
+    pickupGiverFormGeneration,
   ];
 }
