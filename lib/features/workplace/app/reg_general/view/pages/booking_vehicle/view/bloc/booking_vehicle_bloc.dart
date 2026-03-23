@@ -39,6 +39,8 @@ class BookingVehicleBloc
         initAdd: () => _onInitAdd(emit),
         preloadInitAdd: () => _onPreloadInitAdd(emit),
         initPassengerGoInfos: () => _onInitPassengerGoInfos(emit),
+        initPassengerGoInfosForEdit: () =>
+            _onInitPassengerGoInfosForEdit(emit),
         addPassengerGoInfo: () => _onAddPassengerGoInfo(emit),
         expandPassengerGoInfo: (index) =>
             _onExpandPassengerGoInfo(index, emit),
@@ -64,17 +66,33 @@ class BookingVehicleBloc
         updateInfo: (values) async {
           _onUpdateInfo(values, emit);
         },
-        submitPassengerGo: (formValues) async {
-          await _onSubmitPassengerGo(formValues, emit);
+        submitPassengerGo: (formValues, existingBookingId) async {
+          await _onSubmitPassengerGo(
+            formValues,
+            emit,
+            existingBookingId: existingBookingId,
+          );
         },
-        submitPassengerReturn: (formValues) async {
-          await _onSubmitPassengerReturn(formValues, emit);
+        submitPassengerReturn: (formValues, existingBookingId) async {
+          await _onSubmitPassengerReturn(
+            formValues,
+            emit,
+            existingBookingId: existingBookingId,
+          );
         },
-        submitCommercialDelivery: (formValues) async {
-          await _onSubmitCommercialDelivery(formValues, emit);
+        submitCommercialDelivery: (formValues, existingBookingId) async {
+          await _onSubmitCommercialDelivery(
+            formValues,
+            emit,
+            existingBookingId: existingBookingId,
+          );
         },
-        submitCommercialPickup: (formValues) async {
-          await _onSubmitCommercialPickup(formValues, emit);
+        submitCommercialPickup: (formValues, existingBookingId) async {
+          await _onSubmitCommercialPickup(
+            formValues,
+            emit,
+            existingBookingId: existingBookingId,
+          );
         },
         clearSubmitResult: () async {
           emit(
@@ -398,6 +416,19 @@ class BookingVehicleBloc
     );
   }
 
+  Future<void> _onInitPassengerGoInfosForEdit(
+    Emitter<BookingVehicleState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        passengerGoLineCount: 1,
+        expandedPassengerGoIndex: 0,
+        passengerGoFirstRowIsCurrentUserSlot: false,
+        passengerFormGeneration: 0,
+      ),
+    );
+  }
+
   Future<void> _onAddPassengerGoInfo(Emitter<BookingVehicleState> emit) async {
     final n = state.passengerGoLineCount;
     emit(
@@ -629,8 +660,9 @@ class BookingVehicleBloc
 
   Future<void> _onSubmitPassengerGo(
     Map<String, dynamic> formValues,
-    Emitter<BookingVehicleState> emit,
-  ) async {
+    Emitter<BookingVehicleState> emit, {
+    int? existingBookingId,
+  }) async {
     emit(
       state.copyWith(
         isSubmitting: true,
@@ -712,6 +744,7 @@ class BookingVehicleBloc
       projects: state.projects,
       employees: state.employee,
       passengerLineCount: n,
+      existingBookingId: existingBookingId,
     );
 
     for (final payload in payloads) {
@@ -750,8 +783,9 @@ class BookingVehicleBloc
 
   Future<void> _onSubmitPassengerReturn(
     Map<String, dynamic> formValues,
-    Emitter<BookingVehicleState> emit,
-  ) async {
+    Emitter<BookingVehicleState> emit, {
+    int? existingBookingId,
+  }) async {
     emit(
       state.copyWith(
         isSubmitting: true,
@@ -843,6 +877,7 @@ class BookingVehicleBloc
       projects: state.projects,
       employees: state.employee,
       passengerLineCount: n,
+      existingBookingId: existingBookingId,
     );
 
     for (final payload in payloads) {
@@ -883,8 +918,9 @@ class BookingVehicleBloc
 
   Future<void> _onSubmitCommercialDelivery(
     Map<String, dynamic> formValues,
-    Emitter<BookingVehicleState> emit,
-  ) async {
+    Emitter<BookingVehicleState> emit, {
+    int? existingBookingId,
+  }) async {
     emit(
       state.copyWith(
         isSubmitting: true,
@@ -1057,6 +1093,7 @@ class BookingVehicleBloc
       employees: state.employee,
       receiverLineCount: n,
       apiCategory: apiCategory,
+      existingBookingId: existingBookingId,
     );
 
     for (var i = 0; i < payloads.length; i++) {
@@ -1160,8 +1197,9 @@ class BookingVehicleBloc
 
   Future<void> _onSubmitCommercialPickup(
     Map<String, dynamic> formValues,
-    Emitter<BookingVehicleState> emit,
-  ) async {
+    Emitter<BookingVehicleState> emit, {
+    int? existingBookingId,
+  }) async {
     emit(
       state.copyWith(
         isSubmitting: true,
@@ -1343,6 +1381,7 @@ class BookingVehicleBloc
       employees: state.employee,
       giverLineCount: n,
       apiCategory: apiCategory,
+      existingBookingId: existingBookingId,
     );
 
     for (var i = 0; i < payloads.length; i++) {

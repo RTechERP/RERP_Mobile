@@ -4,6 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../../../../../../../base/bloc/bloc_status.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
@@ -11,18 +12,26 @@ import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../data/datasource/models/booking_vehicle_model.dart';
 import '../../data/datasource/models/booking_vehicle_passenger_form_shift.dart';
 import '../../data/datasource/models/booking_vehicle_deliver_form_shift.dart';
 import '../../data/datasource/models/booking_vehicle_receiver_form_shift.dart';
 import '../../data/repository/booking_vehicle_repository.dart';
 import '../bloc/booking_vehicle_bloc.dart';
 import '../booking_vehicle_form_field_registry.dart';
+import '../booking_vehicle_item_form_prefill.dart';
 import '../booking_vehicle_passenger_go_payload.dart';
 import '../widgets/forms/index.dart';
 import '../widgets/infos/index.dart';
 
 class BookingVehicleAddScreen extends StatefulWidget {
-  const BookingVehicleAddScreen({super.key});
+  const BookingVehicleAddScreen({
+    super.key,
+    this.existingBookingItem,
+  });
+
+  /// Khi khác null: màn sửa — prefill từ item, submit gửi kèm `ID` bản ghi.
+  final BookingVehicleItem? existingBookingItem;
 
   @override
   State<BookingVehicleAddScreen> createState() =>
@@ -41,6 +50,16 @@ class _BookingVehicleAddScreenState
 
   FormFieldState<String>? _bookingTypeField;
   _BookingVehicleTypeGroup? _bookingTypeGroup;
+
+  bool _editPrefillApplied = false;
+
+  bool get _isEditMode => widget.existingBookingItem != null;
+
+  int? get _existingBookingId {
+    final id = widget.existingBookingItem?.id;
+    if (id == null || id <= 0) return null;
+    return id;
+  }
 
   DateTime? _needTimeForProblemUi(BookingVehicleState state) {
     final group = _bookingTypeGroup;
@@ -78,18 +97,122 @@ class _BookingVehicleAddScreenState
 
   @override
   void initState() {
+    final edit = widget.existingBookingItem;
+    if (edit != null) {
+      _bookingTypeGroup = _mapBookingTypeToGroup(
+        bookingVehicleEditBookingTypeLabel(edit),
+      );
+    } else {
+      _bookingTypeGroup = _BookingVehicleTypeGroup.passengerGo;
+    }
     super.initState();
-    _bookingTypeGroup = _BookingVehicleTypeGroup.passengerGo;
     bloc.add(const BookingVehicleEvent.clearSubmitResult());
     bloc.add(const BookingVehicleEvent.initAdd());
-    bloc.add(const BookingVehicleEvent.initPassengerGoInfos());
+    if (edit != null) {
+      switch (_bookingTypeGroup) {
+        case _BookingVehicleTypeGroup.passengerGo:
+        case _BookingVehicleTypeGroup.passengerReturn:
+          bloc.add(const BookingVehicleEvent.initPassengerGoInfosForEdit());
+          break;
+        case _BookingVehicleTypeGroup.commercialDelivery:
+          bloc.add(const BookingVehicleEvent.initCommercialReceiverInfos());
+          bloc.add(const BookingVehicleEvent.preloadInitAdd());
+          break;
+        case _BookingVehicleTypeGroup.commercialPickupAndDemoPickup:
+          bloc.add(const BookingVehicleEvent.initPickupGiverInfos());
+          bloc.add(const BookingVehicleEvent.preloadInitAdd());
+          break;
+        case null:
+          break;
+      }
+    } else {
+      bloc.add(const BookingVehicleEvent.initPassengerGoInfos());
+    }
+    if (edit != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _tryApplyEditPrefill(context, bloc.state);
+      });
+    }
   }
 
   @override
   void dispose() {
-    // Giải phóng cache tạm của màn add khi rời màn.
-    BookingVehicleRepository.clearInitAddCache();
+    if (widget.existingBookingItem == null) {
+      BookingVehicleRepository.clearInitAddCache();
+    }
     super.dispose();
+  }
+
+  void _tryApplyEditPrefill(BuildContext context, BookingVehicleState state) {
+    final edit = widget.existingBookingItem;
+    if (edit == null || _editPrefillApplied) return;
+    if (state.status != BaseStateStatus.success) return;
+    if (state.projects.isEmpty) return;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || _editPrefillApplied) return;
+      final patch = buildBookingVehicleEditFormPatch(
+        edit,
+        projects: state.projects,
+      );
+      final split = splitBookingVehicleFormAndInfo(patch);
+      if (split.form.isNotEmpty) {
+        bloc.add(BookingVehicleEvent.updateForm(values: split.form));
+      }
+      if (split.info.isNotEmpty) {
+        bloc.add(BookingVehicleEvent.updateInfo(values: split.info));
+      }
+      _formKey.currentState?.patchValue(patch);
+      _editPrefillApplied = true;
+    });
+  }
+
+  void _onSubmitForm() {
+    FocusScope.of(context).unfocus();
+
+    final formState = _formKey.currentState;
+    if (formState == null) return;
+    if (!formState.saveAndValidate()) return;
+
+    final values = Map<String, dynamic>.from(formState.value);
+    final editId = _existingBookingId;
+    switch (_bookingTypeGroup) {
+      case _BookingVehicleTypeGroup.passengerGo:
+        bloc.add(
+          BookingVehicleEvent.submitPassengerGo(
+            formValues: values,
+            existingBookingId: editId,
+          ),
+        );
+        break;
+      case _BookingVehicleTypeGroup.passengerReturn:
+        bloc.add(
+          BookingVehicleEvent.submitPassengerReturn(
+            formValues: values,
+            existingBookingId: editId,
+          ),
+        );
+        break;
+      case _BookingVehicleTypeGroup.commercialDelivery:
+        bloc.add(
+          BookingVehicleEvent.submitCommercialDelivery(
+            formValues: values,
+            existingBookingId: editId,
+          ),
+        );
+        break;
+      case _BookingVehicleTypeGroup.commercialPickupAndDemoPickup:
+        bloc.add(
+          BookingVehicleEvent.submitCommercialPickup(
+            formValues: values,
+            existingBookingId: editId,
+          ),
+        );
+        break;
+      case null:
+        break;
+    }
   }
 
   @override
@@ -98,30 +221,43 @@ class _BookingVehicleAddScreenState
       children: [
         BlocListener<BookingVehicleBloc, BookingVehicleState>(
           listenWhen: (previous, current) =>
-              previous.message != current.message &&
-              current.message != null &&
-              current.message!.isNotEmpty &&
-              !current.isSubmitting &&
-              !current.submitSuccess,
+              widget.existingBookingItem != null &&
+              !_editPrefillApplied &&
+              current.status == BaseStateStatus.success &&
+              current.projects.isNotEmpty,
           listener: (context, state) {
-            showMessage(
-              context,
-              state.message!,
-              type: SnackBarType.error,
-            );
+            _tryApplyEditPrefill(context, state);
           },
           child: BlocListener<BookingVehicleBloc, BookingVehicleState>(
             listenWhen: (previous, current) =>
-                previous.submitSuccess != current.submitSuccess,
+                previous.message != current.message &&
+                current.message != null &&
+                current.message!.isNotEmpty &&
+                !current.isSubmitting &&
+                !current.submitSuccess,
             listener: (context, state) {
-              if (state.submitSuccess) {
-                context.pop(true);
-              }
+              showMessage(
+                context,
+                state.message!,
+                type: SnackBarType.error,
+              );
             },
-            child: BaseScaffold(
-            appBar: AppBarCommon(title: const Text('Tạo báo cáo')),
-            body: BlocBuilder<BookingVehicleBloc, BookingVehicleState>(
-              buildWhen: (prev, curr) =>
+            child: BlocListener<BookingVehicleBloc, BookingVehicleState>(
+              listenWhen: (previous, current) =>
+                  previous.submitSuccess != current.submitSuccess,
+              listener: (context, state) {
+                if (state.submitSuccess) {
+                  context.pop(true);
+                }
+              },
+              child: BaseScaffold(
+                appBar: AppBarCommon(
+                  title: Text(
+                    _isEditMode ? 'Sửa báo cáo' : 'Tạo báo cáo',
+                  ),
+                ),
+                body: BlocBuilder<BookingVehicleBloc, BookingVehicleState>(
+                  buildWhen: (prev, curr) =>
                   prev.status != curr.status ||
                   prev.projects != curr.projects ||
                   prev.provinceDeparture != curr.provinceDeparture ||
@@ -794,51 +930,13 @@ class _BookingVehicleAddScreenState
                           vertical: 8.0,
                         ),
                         child: FormActions(
-                          mode: FormActionMode.add,
-                          onSubmit: () {
-                            FocusScope.of(context).unfocus();
-
-                            final formState = _formKey.currentState;
-                            if (formState == null) return;
-                            if (!formState.saveAndValidate()) return;
-
-                            final values = Map<String, dynamic>.from(
-                              formState.value,
-                            );
-                            switch (_bookingTypeGroup) {
-                              case _BookingVehicleTypeGroup.passengerGo:
-                                bloc.add(
-                                  BookingVehicleEvent.submitPassengerGo(
-                                    formValues: values,
-                                  ),
-                                );
-                                break;
-                              case _BookingVehicleTypeGroup.passengerReturn:
-                                bloc.add(
-                                  BookingVehicleEvent.submitPassengerReturn(
-                                    formValues: values,
-                                  ),
-                                );
-                                break;
-                              case _BookingVehicleTypeGroup.commercialDelivery:
-                                bloc.add(
-                                  BookingVehicleEvent.submitCommercialDelivery(
-                                    formValues: values,
-                                  ),
-                                );
-                                break;
-                              case _BookingVehicleTypeGroup
-                                    .commercialPickupAndDemoPickup:
-                                bloc.add(
-                                  BookingVehicleEvent.submitCommercialPickup(
-                                    formValues: values,
-                                  ),
-                                );
-                                break;
-                              case null:
-                                break;
-                            }
-                          },
+                          mode: _isEditMode
+                              ? FormActionMode.edit
+                              : FormActionMode.add,
+                          onSubmit: _isEditMode ? null : _onSubmitForm,
+                          onSave: _isEditMode ? _onSubmitForm : null,
+                          onCancel:
+                              _isEditMode ? () => context.pop() : null,
                         ),
                       ),
                     ],
@@ -847,6 +945,7 @@ class _BookingVehicleAddScreenState
               },
             ),
           ),
+        ),
         ),
         ),
 

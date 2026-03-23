@@ -11,6 +11,10 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
   const factory BookingVehicleEvent.initPassengerGoInfos() =
       _InitPassengerGoInfos;
 
+  /// Giống [initPassengerGoInfos] nhưng không gán dòng 0 = user hiện tại (màn sửa).
+  const factory BookingVehicleEvent.initPassengerGoInfosForEdit() =
+      _InitPassengerGoInfosForEdit;
+
   /// thêm một dòng mới "nhân viên n" với field rỗng.
   const factory BookingVehicleEvent.addPassengerGoInfo() = _AddPassengerGoInfo;
 
@@ -70,21 +74,25 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
   /// Gửi đăng ký **Người đi** — body map từ `FormBuilder.saveAndValidate().value`.
   const factory BookingVehicleEvent.submitPassengerGo({
     required Map<String, dynamic> formValues,
+    @Default(null) int? existingBookingId,
   }) = _SubmitPassengerGo;
 
   /// Gửi đăng ký **Người về** — `Category` = 5 (`BookingVehicleApiCategory.passengerReturn`).
   const factory BookingVehicleEvent.submitPassengerReturn({
     required Map<String, dynamic> formValues,
+    @Default(null) int? existingBookingId,
   }) = _SubmitPassengerReturn;
 
   /// Giao hàng thương mại / Demo — `Category` 2 hoặc 8 theo `booking_type`.
   const factory BookingVehicleEvent.submitCommercialDelivery({
     required Map<String, dynamic> formValues,
+    @Default(null) int? existingBookingId,
   }) = _SubmitCommercialDelivery;
 
   /// Lấy hàng thương mại / Demo — `Category` 6 hoặc 7 theo `booking_type`.
   const factory BookingVehicleEvent.submitCommercialPickup({
     required Map<String, dynamic> formValues,
+    @Default(null) int? existingBookingId,
   }) = _SubmitCommercialPickup;
 
   /// Xoá cờ submit (vào lại màn add / shell dùng chung bloc).

@@ -10,6 +10,7 @@ import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../routes/route_names.dart';
+import '../../data/datasource/models/booking_vehicle_model.dart';
 import '../bloc/booking_vehicle_bloc.dart';
 import '../widgets/booking_vehicle_card.dart';
 import '../widgets/date_header.dart';
@@ -36,6 +37,17 @@ class _BookingVehicleScreenState
     bloc.add(const BookingVehicleEvent.init());
     // Preload cache cho màn add ngay khi vào module list.
     bloc.add(const BookingVehicleEvent.preloadInitAdd());
+  }
+
+  Future<void> _openDetail(BookingVehicleItem item) async {
+    final reload = await context.push<bool?>(
+      RouteNames.bookingVehicleDetail,
+      extra: item,
+    );
+    if (!mounted) return;
+    if (reload == true) {
+      bloc.add(const BookingVehicleEvent.init());
+    }
   }
 
   @override
@@ -129,10 +141,7 @@ class _BookingVehicleScreenState
                       final item = state.bookingVehicle[index];
                       return BookingVehicleCard(
                         item: item,
-                        onTap: () => context.push(
-                              RouteNames.bookingVehicleDetail,
-                              extra: item,
-                            ),
+                        onTap: () => _openDetail(item),
                       );
                     },
                   ),

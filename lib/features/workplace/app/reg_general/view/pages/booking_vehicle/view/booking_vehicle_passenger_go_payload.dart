@@ -55,6 +55,11 @@ String? _formatApiDateTime(dynamic v) {
 String? bookingVehicleFormatApiDateTime(dynamic v) =>
     _formatApiDateTime(v);
 
+int _payloadBookingId(int? existingBookingId, int lineIndex) {
+  if (existingBookingId == null || existingBookingId <= 0) return 0;
+  return lineIndex == 0 ? existingBookingId : 0;
+}
+
 int _vehicleTypeFromLabel(String? label) {
   final s = (label ?? '').toLowerCase();
   if (s.contains('máy bay')) return 2;
@@ -122,6 +127,7 @@ Map<String, dynamic> buildPassengerGoCreatePayload({
   required String bookerFullName,
   required List<BookingVehicleProjectItem> projects,
   required List<BookingVehiclePersonalItem> employees,
+  int? existingBookingId,
 }) {
   final projectId = resolveBookingVehicleProjectId(form['project'], projects);
   final passengerCode = _trimStr(form['passenger_code_$passengerIndex']);
@@ -156,7 +162,7 @@ Map<String, dynamic> buildPassengerGoCreatePayload({
     ),
     'DepartureDate': _formatApiDateTime(form['time_depart']) ?? '',
     'EmployeeID': bookerEmployeeId,
-    'ID': 0,
+    'ID': _payloadBookingId(existingBookingId, passengerIndex),
     ..._bookingVehicleCreateStatusFlags(problemMode),
     'Note': _trimStr(form['passenger_note_$passengerIndex']),
     'PackageName': '',
@@ -194,6 +200,7 @@ List<Map<String, dynamic>> buildAllPassengerGoCreatePayloads({
   required List<BookingVehicleProjectItem> projects,
   required List<BookingVehiclePersonalItem> employees,
   required int passengerLineCount,
+  int? existingBookingId,
 }) {
   if (bookerEmployeeId == null) return const [];
   final name = _trimStr(bookerFullName);
@@ -207,6 +214,7 @@ List<Map<String, dynamic>> buildAllPassengerGoCreatePayloads({
         bookerFullName: name,
         projects: projects,
         employees: employees,
+        existingBookingId: existingBookingId,
       ),
     );
   }
@@ -230,6 +238,7 @@ Map<String, dynamic> buildPassengerReturnCreatePayload({
   required String bookerFullName,
   required List<BookingVehicleProjectItem> projects,
   required List<BookingVehiclePersonalItem> employees,
+  int? existingBookingId,
 }) {
   final projectId = resolveBookingVehicleProjectId(form['project'], projects);
   final passengerCode = _trimStr(form['passenger_code_$passengerIndex']);
@@ -266,7 +275,7 @@ Map<String, dynamic> buildPassengerReturnCreatePayload({
     ),
     'DepartureDate': departureDateStr,
     'EmployeeID': bookerEmployeeId,
-    'ID': 0,
+    'ID': _payloadBookingId(existingBookingId, passengerIndex),
     ..._bookingVehicleCreateStatusFlags(problemModeRet),
     'Note': _trimStr(form['passenger_note_$passengerIndex']),
     'PackageName': '',
@@ -304,6 +313,7 @@ List<Map<String, dynamic>> buildAllPassengerReturnCreatePayloads({
   required List<BookingVehicleProjectItem> projects,
   required List<BookingVehiclePersonalItem> employees,
   required int passengerLineCount,
+  int? existingBookingId,
 }) {
   if (bookerEmployeeId == null) return const [];
   final name = _trimStr(bookerFullName);
@@ -317,6 +327,7 @@ List<Map<String, dynamic>> buildAllPassengerReturnCreatePayloads({
         bookerFullName: name,
         projects: projects,
         employees: employees,
+        existingBookingId: existingBookingId,
       ),
     );
   }
@@ -418,6 +429,7 @@ Map<String, dynamic> buildCommercialDeliveryCreatePayload({
   required String bookerFullName,
   required List<BookingVehicleProjectItem> projects,
   required List<BookingVehiclePersonalItem> employees,
+  int? existingBookingId,
 }) {
   final needPresent =
       bookingVehicleParseFormDateTime(form['time_need_present']);
@@ -457,7 +469,7 @@ Map<String, dynamic> buildCommercialDeliveryCreatePayload({
     ),
     'DepartureDate': _formatApiDateTime(form['time_return']) ?? '',
     'EmployeeID': bookerEmployeeId,
-    'ID': 0,
+    'ID': _payloadBookingId(existingBookingId, receiverIndex),
     ..._bookingVehicleCreateStatusFlags(problemMode),
     'Note': _trimStr(form['note_return_or_delivery_$receiverIndex']),
     'PackageName': _trimStr(form['commercial_package_name_$receiverIndex']),
@@ -492,6 +504,7 @@ List<Map<String, dynamic>> buildAllCommercialDeliveryCreatePayloads({
   required List<BookingVehiclePersonalItem> employees,
   required int receiverLineCount,
   required int apiCategory,
+  int? existingBookingId,
 }) {
   if (bookerEmployeeId == null || apiCategory == 0) return const [];
   final name = _trimStr(bookerFullName);
@@ -506,6 +519,7 @@ List<Map<String, dynamic>> buildAllCommercialDeliveryCreatePayloads({
         bookerFullName: name,
         projects: projects,
         employees: employees,
+        existingBookingId: existingBookingId,
       ),
     );
   }
@@ -521,6 +535,7 @@ Map<String, dynamic> buildCommercialPickupCreatePayload({
   required String bookerFullName,
   required List<BookingVehicleProjectItem> projects,
   required List<BookingVehiclePersonalItem> employees,
+  int? existingBookingId,
 }) {
   final needPickup =
       bookingVehicleParseFormDateTime(form['pickup_need_arrive_time']);
@@ -559,7 +574,7 @@ Map<String, dynamic> buildCommercialPickupCreatePayload({
     'DepartureAddressStatus': 0,
     'DepartureDate': _formatApiDateTime(form['pickup_departure_time']) ?? '',
     'EmployeeID': bookerEmployeeId,
-    'ID': 0,
+    'ID': _payloadBookingId(existingBookingId, giverIndex),
     ..._bookingVehicleCreateStatusFlags(problemMode),
     'Note': _trimStr(form['note_pickup_package_$giverIndex']),
     'PackageName': _trimStr(form['pickup_package_name_$giverIndex']),
@@ -595,6 +610,7 @@ List<Map<String, dynamic>> buildAllCommercialPickupCreatePayloads({
   required List<BookingVehiclePersonalItem> employees,
   required int giverLineCount,
   required int apiCategory,
+  int? existingBookingId,
 }) {
   if (bookerEmployeeId == null || apiCategory == 0) return const [];
   final name = _trimStr(bookerFullName);
@@ -609,6 +625,7 @@ List<Map<String, dynamic>> buildAllCommercialPickupCreatePayloads({
         bookerFullName: name,
         projects: projects,
         employees: employees,
+        existingBookingId: existingBookingId,
       ),
     );
   }

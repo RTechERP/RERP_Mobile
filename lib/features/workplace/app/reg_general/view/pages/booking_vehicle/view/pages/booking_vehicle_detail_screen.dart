@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/booking_vehicle_model.dart';
 import '../booking_vehicle_api_categories.dart';
 import '../widgets/booking_vehicle_card.dart'
     show bookingVehicleDetailApprovalLabel;
+
+Future<void> _openBookingVehicleEditAndPopToListIfSaved(
+  BuildContext context,
+  BookingVehicleItem item,
+) async {
+  final edited = await context.push<bool?>(
+    RouteNames.bookingVehicleEdit,
+    extra: item,
+  );
+  if (!context.mounted) return;
+  if (edited == true) {
+    context.pop(true);
+  }
+}
 
 /// Chi tiết yêu cầu đặt xe: hiển thị đúng [item] user chọn từ danh sách
 /// [BookingVehicleRepo.getBookingVehicle] (onInit), không gọi API khác.
@@ -107,6 +123,11 @@ class _DetailBody extends StatelessWidget {
     final bottomLabel = arrangementLabel == 'Đã xếp'
         ? 'ĐÃ XẾP XE'
         : 'ĐANG CHỜ XẾP XE';
+    final bookingId = item.id;
+    final canEdit = arrangementLabel == 'Chưa xếp' &&
+        bookingId != null &&
+        bookingId > 0 &&
+        item.isCancel != true;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -261,29 +282,49 @@ class _DetailBody extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
             child: SizedBox(
               width: double.infinity,
-              child: Material(
-                color: AppColors.supportBtn,
-                borderRadius: BorderRadius.circular(12),
-                child: InkWell(
-                  onTap: null,
-                  borderRadius: BorderRadius.circular(12),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    child: Text(
-                      bottomLabel,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.4,
-                        color: arrangementLabel == 'Đã xếp'
-                            ? AppColors.success
-                            : AppColors.textTertiaryColor,
+              child: canEdit
+                  ? ElevatedButton(
+                      onPressed: () {
+                        _openBookingVehicleEditAndPopToListIfSaved(
+                          context,
+                          item,
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primaryERP,
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: const Text(
+                        'Sửa',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  : Material(
+                      color: AppColors.supportBtn,
+                      borderRadius: BorderRadius.circular(12),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        child: Text(
+                          bottomLabel,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 0.4,
+                            color: arrangementLabel == 'Đã xếp'
+                                ? AppColors.success
+                                : AppColors.textTertiaryColor,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
             ),
           ),
         ),

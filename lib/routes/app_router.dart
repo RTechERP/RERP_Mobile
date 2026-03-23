@@ -23,6 +23,7 @@ import '../features/auth/view/bloc/auth_bloc.dart';
 import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_edit_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_screen.dart';
@@ -539,6 +540,27 @@ class AppRouter {
           GoRoute(
             path: RouteNames.bookingVehicleAdd,
             builder: (context, state) => const BookingVehicleAddScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.bookingVehicleEdit,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is BookingVehicleItem) {
+                return BookingVehicleEditScreen(item: extra);
+              }
+              return Scaffold(
+                appBar: AppBar(title: const Text('Sửa đặt xe')),
+                body: const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(24),
+                    child: Text(
+                      'Không có dữ liệu. Vui lòng mở từ chi tiết yêu cầu.',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
           GoRoute(
             path: RouteNames.bookingVehicleDetail,
