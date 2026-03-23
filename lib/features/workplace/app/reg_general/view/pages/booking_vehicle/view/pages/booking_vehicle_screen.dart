@@ -127,7 +127,13 @@ class _BookingVehicleScreenState
                     separatorBuilder: (_, __) => const SizedBox(height: 10),
                     itemBuilder: (context, index) {
                       final item = state.bookingVehicle[index];
-                      return BookingVehicleCard(item: item);
+                      return BookingVehicleCard(
+                        item: item,
+                        onTap: () => context.push(
+                              RouteNames.bookingVehicleDetail,
+                              extra: item,
+                            ),
+                      );
                     },
                   ),
                 ),

@@ -148,12 +148,15 @@ class BookingVehicleBloc
       },
           (user) async {
         final now = DateTime.now();
+        final todayStart = DateTime(now.year, now.month, now.day);
+        final tomorrow = todayStart.add(const Duration(days: 1));
 
-        final startStr = DateFormat("yyyy-MM-ddTHH:mm:ss").format(now);
-
-        // 👉 EndDate = ngày hôm sau
-        final endStr = DateFormat("yyyy-MM-ddTHH:mm:ss")
-            .format(now.add(const Duration(days: 1)));
+        // Khoảng lọc: cả ngày hôm nay và cả ngày hôm sau (đến 23:59:59).
+        final startStr =
+            DateFormat('yyyy-MM-ddTHH:mm:ss').format(todayStart);
+        final endStr = DateFormat('yyyy-MM-ddTHH:mm:ss').format(
+          DateTime(tomorrow.year, tomorrow.month, tomorrow.day, 23, 59, 59),
+        );
 
         final payload = {
           "StartDate": startStr,

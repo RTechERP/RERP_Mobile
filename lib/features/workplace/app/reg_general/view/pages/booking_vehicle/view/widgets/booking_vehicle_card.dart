@@ -9,14 +9,23 @@ import '../../data/datasource/models/booking_vehicle_model.dart';
 import '../bloc/booking_vehicle_bloc.dart';
 import '../booking_vehicle_api_categories.dart';
 
+/// Màn chi tiết: ưu tiên [BookingVehicleItem.statusText] từ API, sau đó cùng logic list.
+String bookingVehicleDetailApprovalLabel(BookingVehicleItem item) {
+  final st = (item.statusText ?? '').trim();
+  if (st.isNotEmpty) return st;
+  return _approvalBadgeLabel(item);
+}
+
 /// Card một dòng đặt xe: hàng badge (duyệt / xếp xe) phía trên, cột thông tin phía dưới.
 class BookingVehicleCard extends StatelessWidget {
   const BookingVehicleCard({
     super.key,
     required this.item,
+    this.onTap,
   });
 
   final BookingVehicleItem item;
+  final VoidCallback? onTap;
 
   static final DateFormat _returnTimeFormat = DateFormat('HH:mm - dd/MM/yyyy');
 
@@ -35,6 +44,12 @@ class BookingVehicleCard extends StatelessWidget {
 
     final isPassengerReturn =
         item.category == BookingVehicleApiCategory.passengerReturn;
+    final isCargoDelivery =
+        item.category == BookingVehicleApiCategory.commercialDelivery ||
+            item.category == BookingVehicleApiCategory.demoExhibitionDelivery;
+    final isCargoPickup =
+        item.category == BookingVehicleApiCategory.commercialPickup ||
+            item.category == BookingVehicleApiCategory.demoExhibitionPickup;
 
     final infoChildren = <Widget>[
       _InfoLine(text: categoryDisplay, prefix: 'Hình thức đặt xe: '),
@@ -57,6 +72,36 @@ class BookingVehicleCard extends StatelessWidget {
             item.departureDate,
           ),
           prefix: 'Thời gian về: ',
+        ),
+      );
+    } else if (isCargoDelivery) {
+      infoChildren.add(const SizedBox(height: 6));
+      infoChildren.add(
+        _InfoLine(
+          text: _formatReturnDateTime(item.timeNeedPresent),
+          prefix: 'Thời gian giao đến: ',
+        ),
+      );
+      infoChildren.add(const SizedBox(height: 6));
+      infoChildren.add(
+        _InfoLine(
+          text: _formatReturnDateTime(item.departureDate),
+          prefix: 'Thời gian lấy hàng: ',
+        ),
+      );
+    } else if (isCargoPickup) {
+      infoChildren.add(const SizedBox(height: 6));
+      infoChildren.add(
+        _InfoLine(
+          text: _formatReturnDateTime(item.timeNeedPresent),
+          prefix: 'Thời gian cần đến lấy: ',
+        ),
+      );
+      infoChildren.add(const SizedBox(height: 6));
+      infoChildren.add(
+        _InfoLine(
+          text: _formatReturnDateTime(item.departureDate),
+          prefix: 'Thời gian xuất phát: ',
         ),
       );
     } else {
@@ -84,7 +129,7 @@ class BookingVehicleCard extends StatelessWidget {
       );
     }
 
-    final card = Container(
+    final inner = Container(
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
@@ -118,6 +163,17 @@ class BookingVehicleCard extends StatelessWidget {
         ),
       ),
     );
+
+    final card = onTap == null
+        ? inner
+        : Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(12),
+              onTap: onTap,
+              child: inner,
+            ),
+          );
 
     if (!_canShowCancelSlidable(item)) {
       return card;
