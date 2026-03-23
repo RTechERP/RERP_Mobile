@@ -7,38 +7,82 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../data/datasource/models/booking_vehicle_model.dart';
 import '../bloc/booking_vehicle_bloc.dart';
+import '../booking_vehicle_api_categories.dart';
 
-/// Card một dòng đặt xe: cột thông tin + badge trạng thái góc trên phải.
+/// Card một dòng đặt xe: hàng badge (duyệt / xếp xe) phía trên, cột thông tin phía dưới.
 class BookingVehicleCard extends StatelessWidget {
   const BookingVehicleCard({
     super.key,
     required this.item,
-    this.dateFormatPattern = 'dd/MM/yyyy',
   });
 
   final BookingVehicleItem item;
 
-  /// Pattern cho [DateFormat], mặc định `dd/MM/yyyy`.
-  final String dateFormatPattern;
+  static final DateFormat _returnTimeFormat = DateFormat('HH:mm - dd/MM/yyyy');
 
   @override
   Widget build(BuildContext context) {
-    final dateFormatter = DateFormat(dateFormatPattern);
-
-    final employeeName =
-        (item.fullName ?? item.bookerVehicles ?? '-').trim();
-    final departmentName =
-        (item.departmentName ?? item.passengerDepartment ?? '-').trim();
+    final categoryLabel = (item.categoryText ?? '-').trim();
+    final categoryDisplay = categoryLabel.isEmpty ? '-' : categoryLabel;
 
     final projectParts = _splitProjectFullName(item.projectFullName);
-    final projectCode = projectParts.$1;
-    final projectName = projectParts.$2;
+    final projectLine = _formatProjectLine(projectParts.$1, projectParts.$2);
 
-    final statusText = (item.statusText ?? '-').trim();
-    final statusColor = _resolveStatusColor(statusText, item.status);
-    final createdLabel = item.createdDate != null
-        ? dateFormatter.format(item.createdDate!)
-        : '-';
+    final approvalBadge = _approvalBadgeLabel(item);
+    final arrangementBadge = _arrangementBadgeLabel(item);
+    final approvalColor = _approvalBadgeColor(approvalBadge);
+    final arrangementColor = _arrangementBadgeColor(arrangementBadge);
+
+    final isPassengerReturn =
+        item.category == BookingVehicleApiCategory.passengerReturn;
+
+    final infoChildren = <Widget>[
+      _InfoLine(text: categoryDisplay, prefix: 'Hình thức đặt xe: '),
+      const SizedBox(height: 6),
+      _InfoLine(text: projectLine, prefix: 'Dự án: ', isEmphasis: true),
+    ];
+
+    if (isPassengerReturn) {
+      infoChildren.add(const SizedBox(height: 6));
+      infoChildren.add(
+        _InfoLine(
+          text: _formatReturnDateTime(item.timeNeedPresent),
+          prefix: 'Thời gian cần đến: ',
+        ),
+      );
+      infoChildren.add(const SizedBox(height: 6));
+      infoChildren.add(
+        _InfoLine(
+          text: _formatReturnDateTime(
+            item.departureDate,
+          ),
+          prefix: 'Thời gian về: ',
+        ),
+      );
+    } else {
+      infoChildren.add(const SizedBox(height: 6));
+      infoChildren.add(
+        _InfoLine(
+          text: _formatReturnDateTime(item.timeNeedPresent),
+          prefix: 'Thời gian cần đến: ',
+        ),
+      );
+      infoChildren.add(const SizedBox(height: 6));
+      infoChildren.add(
+        _InfoLine(
+          text: _formatReturnDateTime(item.departureDate),
+          prefix: 'Thời gian xuất phát: ',
+        ),
+      );
+
+      infoChildren.add(const SizedBox(height: 6));
+      infoChildren.add(
+        _InfoLine(
+          text: _formatReturnDateTime(item.timeReturn),
+          prefix: 'Thời gian về: ',
+        ),
+      );
+    }
 
     final card = Container(
       decoration: BoxDecoration(
@@ -48,36 +92,27 @@ class BookingVehicleCard extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-        child: Stack(
-          clipBehavior: Clip.none,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 132),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  _InfoLine(text: employeeName, isPrimary: true),
-                  const SizedBox(height: 6),
-                  _InfoLine(text: departmentName),
-                  const SizedBox(height: 6),
-                  _InfoLine(text: projectCode, isEmphasis: true),
-                  const SizedBox(height: 6),
-                  _InfoLine(text: projectName),
-                  const SizedBox(height: 6),
-                  _InfoLine(
-                    text: createdLabel,
-                    prefix: 'Ngày tạo: ',
-                  ),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                _StatusBadge(
+                  text: approvalBadge,
+                  color: approvalColor,
+                ),
+                const SizedBox(width: 8),
+                _StatusBadge(
+                  text: arrangementBadge,
+                  color: arrangementColor,
+                ),
+              ],
             ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: _StatusBadge(
-                text: statusText,
-                color: statusColor,
-              ),
+            const SizedBox(height: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: infoChildren,
             ),
           ],
         ),
@@ -122,6 +157,11 @@ class BookingVehicleCard extends StatelessWidget {
       child: card,
     );
   }
+
+  String _formatReturnDateTime(DateTime? dt) {
+    if (dt == null) return '-';
+    return _returnTimeFormat.format(dt);
+  }
 }
 
 bool _canShowCancelSlidable(BookingVehicleItem item) {
@@ -132,42 +172,90 @@ bool _canShowCancelSlidable(BookingVehicleItem item) {
   return true;
 }
 
+String _formatProjectLine(String code, String name) {
+  final c = code.trim().isEmpty ? '-' : code.trim();
+  final n = name.trim().isEmpty ? '-' : name.trim();
+  if (c == '-' && n == '-') return '-';
+  if (c == n) return c;
+  return '$c - $n';
+}
+
+String _approvalBadgeLabel(BookingVehicleItem item) {
+  if (item.isCancel == true) return 'Đã huỷ';
+  final t = (item.statusText ?? '').trim();
+  final lower = t.toLowerCase();
+  if (lower.contains('từ chối') ||
+      lower.contains('tu choi') ||
+      lower.contains('rejected')) {
+    return 'Từ chối';
+  }
+  if (lower.contains('đã duyệt') ||
+      lower.contains('da duyet') ||
+      lower.contains('phê duyệt') ||
+      lower.contains('phe duyet') ||
+      lower.contains('approved')) {
+    return 'Đã duyệt';
+  }
+  if (item.status == 3) return 'Đã duyệt';
+  if ((item.approvedTBP ?? 0) > 0 && item.isApprovedTBP == true) {
+    return 'Đã duyệt';
+  }
+  return 'Chưa duyệt';
+}
+
+String _arrangementBadgeLabel(BookingVehicleItem item) {
+  final plate = (item.licensePlate ?? '').trim();
+  final driver = (item.driverName ?? '').trim();
+  final charge = (item.nameVehicleCharge ?? '').trim();
+  if (plate.isNotEmpty || driver.isNotEmpty || charge.isNotEmpty) {
+    return 'Đã xếp';
+  }
+  return 'Chưa xếp';
+}
+
+Color _approvalBadgeColor(String label) {
+  switch (label) {
+    case 'Đã duyệt':
+      return AppColors.success;
+    case 'Từ chối':
+    case 'Đã huỷ':
+      return AppColors.alert;
+    default:
+      return AppColors.warning;
+  }
+}
+
+Color _arrangementBadgeColor(String label) {
+  return label == 'Đã xếp' ? AppColors.success : AppColors.gray;
+}
+
 class _InfoLine extends StatelessWidget {
   const _InfoLine({
     required this.text,
     this.prefix = '',
-    this.isPrimary = false,
     this.isEmphasis = false,
   });
 
   final String text;
   final String prefix;
-  final bool isPrimary;
   final bool isEmphasis;
 
   @override
   Widget build(BuildContext context) {
     final display = text.isEmpty ? '-' : text;
-    final style = isPrimary
+    final style = isEmphasis
         ? const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-            color: AppColors.neutralText,
-            height: 1.25,
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+            color: AppColors.secondaryERP,
+            height: 1.2,
           )
-        : isEmphasis
-            ? const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-                color: AppColors.secondaryERP,
-                height: 1.25,
-              )
-            : const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: AppColors.textSecondaryColor,
-                height: 1.25,
-              );
+        : const TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            color: AppColors.textSecondaryColor,
+            height: 1.2,
+          );
 
     return Text.rich(
       TextSpan(
@@ -207,8 +295,8 @@ class _StatusBadge extends StatelessWidget {
     final border = color.withOpacity(0.55);
 
     return Container(
-      constraints: const BoxConstraints(maxWidth: 160),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      constraints: const BoxConstraints(maxWidth: 88),
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
       decoration: BoxDecoration(
         color: bg,
         borderRadius: BorderRadius.circular(999),
@@ -220,7 +308,7 @@ class _StatusBadge extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: 12,
+          fontSize: 10,
           fontWeight: FontWeight.w600,
           color: color,
         ),
@@ -251,39 +339,4 @@ class _StatusBadge extends StatelessWidget {
   }
 
   return (value, value);
-}
-
-Color _resolveStatusColor(String statusText, int? status) {
-  final t = statusText.toLowerCase();
-  if (t.isEmpty || t == '-') return AppColors.gray;
-
-  if (t.contains('chờ') || t.contains('cho') || t.contains('pending')) {
-    return AppColors.warning;
-  }
-
-  if (t.contains('duyệt') ||
-      t.contains('duyet') ||
-      t.contains('phê duyệt') ||
-      t.contains('phe duyet') ||
-      t.contains('approved')) {
-    return AppColors.success;
-  }
-
-  if (t.contains('từ chối') ||
-      t.contains('tu choi') ||
-      t.contains('hủy') ||
-      t.contains('huy') ||
-      t.contains('cancel') ||
-      t.contains('rejected') ||
-      t.contains('từ bỏ')) {
-    return AppColors.alert;
-  }
-
-  if (status != null) {
-    if (status >= 3) return AppColors.success;
-    if (status <= 1) return AppColors.warning;
-    return AppColors.stateInfoColor;
-  }
-
-  return AppColors.stateInfoColor;
 }
