@@ -77,6 +77,16 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
     required Map<String, dynamic> formValues,
   }) = _SubmitPassengerReturn;
 
+  /// Giao hàng thương mại / Demo — `Category` 2 hoặc 8 theo `booking_type`.
+  const factory BookingVehicleEvent.submitCommercialDelivery({
+    required Map<String, dynamic> formValues,
+  }) = _SubmitCommercialDelivery;
+
+  /// Lấy hàng thương mại / Demo — `Category` 6 hoặc 7 theo `booking_type`.
+  const factory BookingVehicleEvent.submitCommercialPickup({
+    required Map<String, dynamic> formValues,
+  }) = _SubmitCommercialPickup;
+
   /// Xoá cờ submit (vào lại màn add / shell dùng chung bloc).
   const factory BookingVehicleEvent.clearSubmitResult() = _ClearSubmitResult;
 }

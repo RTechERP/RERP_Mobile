@@ -462,4 +462,21 @@ class ValidateHelper {
 
     return null;
   }
+
+  /// `true` khi [needTime] cùng **ngày lịch** với hôm nay (theo giờ máy).
+  ///
+  /// Ngày mai trở đi → không coi là “cùng ngày” → không hiện card / không bắt TBP.
+  static bool bookingVehicleNeedTimeIsLocalToday(DateTime? needTime) {
+    if (needTime == null) return false;
+    final now = DateTime.now();
+    final needDay = DateTime(needTime.year, needTime.month, needTime.day);
+    final today = DateTime(now.year, now.month, now.day);
+    return needDay == today;
+  }
+
+  /// Card phát sinh + bắt TBP khi submit: **chỉ** khi mốc cần đến/giao/lấy là **hôm nay**
+  /// (theo ngày lịch local). **Ngày mai** → không hiện, không bắt approver.
+  static bool bookingVehicleShouldShowProblemArisesCard(DateTime? needTime) {
+    return bookingVehicleNeedTimeIsLocalToday(needTime);
+  }
 }

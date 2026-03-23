@@ -1,3 +1,6 @@
+import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/dio/dio_base_api_service.dart';
 
@@ -129,5 +132,48 @@ class BookingVehicleService extends DioBaseApiService {
         ),
       ),
     );
+  }
+
+  /// `POST .../upload-file?vehicleBookingId=` + multipart: [Key], [subPath], [file].
+  Future<BaseData<void>> uploadBookingVehicleFile({
+    required int vehicleBookingId,
+    required PlatformFile file,
+    required String subPath,
+  }) async {
+    late final MultipartFile part;
+    final path = file.path;
+    if (path != null && path.trim().isNotEmpty) {
+      part = await MultipartFile.fromFile(path, filename: file.name);
+    } else if (file.bytes != null) {
+      part = MultipartFile.fromBytes(file.bytes!, filename: file.name);
+    } else {
+      throw ArgumentError('PlatformFile has no path or bytes');
+    }
+
+    final formData = FormData.fromMap(<String, dynamic>{
+      'Key': BookingVehicleUploadForm.keyFieldValue,
+      'subPath': subPath,
+      'file': part,
+    });
+
+    debugPrint(
+      '[BookingVehicleService] upload-file → POST ${ApiEndPoint.uploadBookingVehicleFile} '
+      '?vehicleBookingId=$vehicleBookingId key=${BookingVehicleUploadForm.keyFieldValue} '
+      'subPath=$subPath file="${file.name}" size=${file.size}',
+    );
+
+    final res = await post<BaseData<void>>(
+      ApiEndPoint.uploadBookingVehicleFile,
+      query: {'vehicleBookingId': vehicleBookingId},
+      body: formData,
+      parser: (json) =>
+          BaseData<void>.fromJson(json as Map<String, dynamic>, (_) => null),
+    );
+
+    debugPrint(
+      '[BookingVehicleService] upload-file ← status=${res.status} message=${res.message} msg=${res.msg}',
+    );
+
+    return res;
   }
 }

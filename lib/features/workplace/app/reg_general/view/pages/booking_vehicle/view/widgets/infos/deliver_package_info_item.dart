@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-import '../../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../../common/widgets/form/index.dart';
-import '../../../data/datasource/models/booking_vehicle_model.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/booking_vehicle_package_image_form.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/widgets/booking_vehicle_package_images_section.dart';
 
 /// Mỗi dòng "Người giao n" (lấy hàng thương mại / Demo) — cùng UX với [ReceiverPackageInfoItem] nhưng field/nhãn riêng.
 class DeliverPackageInfoItem extends StatefulWidget {
@@ -41,8 +42,6 @@ class _DeliverPackageInfoItemState
   FormFieldState<String>? giverPhoneField;
 
   BookingVehiclePersonalItem? _selectedEmployee;
-
-  final List<String> _allowedImageExtensions = const ['png', 'jpeg', 'jpg'];
 
   bool get _isGiverFromEmployee => _selectedEmployee != null;
 
@@ -274,51 +273,22 @@ class _DeliverPackageInfoItemState
                         builder: (field) {
                           final files =
                               field.value ?? const <PlatformFile>[];
-                          final fileLabel =
-                              files.isNotEmpty ? files.first.name : '';
-
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ListTile(
-                                contentPadding: EdgeInsets.zero,
-                                leading: Icon(
-                                  Icons.attach_file_outlined,
-                                  color: AppColors.primaryERP,
-                                ),
-                                title: const Text(
-                                  'Ảnh kiện hàng (png/jpeg)',
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                                trailing: const Icon(Icons.upload_file),
-                                onTap: () async {
-                                  final result =
-                                      await FilePicker.platform.pickFiles(
-                                    allowMultiple: false,
-                                    allowedExtensions:
-                                        _allowedImageExtensions,
-                                    type: FileType.custom,
-                                  );
-
-                                  if (result != null &&
-                                      result.files.isNotEmpty) {
-                                    field.didChange(result.files);
-                                    setState(() {});
-                                  }
-                                },
-                              ),
-                              if (fileLabel.trim().isNotEmpty)
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 16,
-                                    bottom: 8,
-                                  ),
-                                  child: Text(
-                                    fileLabel,
-                                    style: const TextStyle(fontSize: 12),
-                                  ),
-                                ),
-                            ],
+                          return BookingVehiclePackageImagesSection(
+                            files: files,
+                            onAddPressed: () async {
+                              final picked =
+                                  await pickBookingVehiclePackageImagesFromGallery();
+                              if (picked.isNotEmpty) {
+                                field.didChange([...files, ...picked]);
+                                setState(() {});
+                              }
+                            },
+                            onRemoveAt: (index) {
+                              final next = List<PlatformFile>.from(files)
+                                ..removeAt(index);
+                              field.didChange(next);
+                              setState(() {});
+                            },
                           );
                         },
                       ),

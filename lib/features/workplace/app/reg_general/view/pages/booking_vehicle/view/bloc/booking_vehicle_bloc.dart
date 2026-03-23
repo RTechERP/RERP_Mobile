@@ -7,8 +7,10 @@ import 'package:rtc_erp/features/auth/data/repository/auth_repository.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repository.dart';
-
+import '../booking_vehicle_package_image_form.dart';
 import '../booking_vehicle_passenger_go_payload.dart';
+import '../booking_vehicle_upload_sub_path.dart';
+import '../../../../../../../../../common/helpers/validate_helper.dart';
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
@@ -68,6 +70,12 @@ class BookingVehicleBloc
         submitPassengerReturn: (formValues) async {
           await _onSubmitPassengerReturn(formValues, emit);
         },
+        submitCommercialDelivery: (formValues) async {
+          await _onSubmitCommercialDelivery(formValues, emit);
+        },
+        submitCommercialPickup: (formValues) async {
+          await _onSubmitCommercialPickup(formValues, emit);
+        },
         clearSubmitResult: () async {
           emit(
             state.copyWith(
@@ -87,15 +95,18 @@ class BookingVehicleBloc
     final userRes = await _authRepo.getCurrentUser();
 
     await userRes.fold(
-      (err) async {
+          (err) async {
         _log.logE('❌ Get user failed: $err');
         emit(state.copyWith(status: BaseStateStatus.failed));
       },
-      (user) async {
-        final startStr = DateFormat(
-          "yyyy-MM-ddTHH:mm:ss",
-        ).format(DateTime.now());
-        final endStr = DateFormat("yyyy-MM-ddTHH:mm:ss").format(DateTime.now());
+          (user) async {
+        final now = DateTime.now();
+
+        final startStr = DateFormat("yyyy-MM-ddTHH:mm:ss").format(now);
+
+        // 👉 EndDate = ngày hôm sau
+        final endStr = DateFormat("yyyy-MM-ddTHH:mm:ss")
+            .format(now.add(const Duration(days: 1)));
 
         final payload = {
           "StartDate": startStr,
@@ -108,21 +119,23 @@ class BookingVehicleBloc
           "IsDeleted": false,
         };
 
+        _log.logI('Payload: $payload'); // debug thêm
+
         final res = await _bookingVehicleRepo.getBookingVehicle(
           payload: payload,
         );
 
         await res.fold(
-          (l) async {
+              (l) async {
             _log.logE('❌ API failed: $l');
             emit(state.copyWith(status: BaseStateStatus.failed));
           },
-          (r) async {
+              (r) async {
             _log.logI('✅ API success - total: $r');
             emit(
               state.copyWith(
                 status: BaseStateStatus.success,
-                bookingVehicle: r, // nếu state có field này
+                bookingVehicle: r,
               ),
             );
           },
@@ -540,6 +553,30 @@ class BookingVehicleBloc
     emit(state.copyWith(infoFieldValues: merged));
   }
 
+  /// Khi mốc thời gian là **hôm nay** — đồng bộ card phát sinh (người đi / giao / lấy).
+  String? _bookingVehicleProblemArisesSubmitError(
+    Map<String, dynamic> formValues, {
+    String needTimeFieldKey = 'time_need_present',
+  }) {
+    final need = bookingVehicleParseFormDateTime(
+      formValues[needTimeFieldKey],
+    );
+    if (!ValidateHelper.bookingVehicleShouldShowProblemArisesCard(need)) {
+      return null;
+    }
+    final raw = formValues['approved_tbp'];
+    final tbp = raw is int
+        ? raw
+        : int.tryParse(bookingVehicleTrimFormValue(raw)) ?? 0;
+    if (tbp == 0) {
+      return 'Vui lòng chọn người duyệt TBP.';
+    }
+    if (bookingVehicleTrimFormValue(formValues['problem_arises']).isEmpty) {
+      return 'Vui lòng nhập vấn đề phát sinh.';
+    }
+    return null;
+  }
+
   Future<void> _onSubmitPassengerGo(
     Map<String, dynamic> formValues,
     Emitter<BookingVehicleState> emit,
@@ -605,6 +642,17 @@ class BookingVehicleBloc
         );
         return;
       }
+    }
+
+    final problemErr = _bookingVehicleProblemArisesSubmitError(formValues);
+    if (problemErr != null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: problemErr,
+        ),
+      );
+      return;
     }
 
     final payloads = buildAllPassengerGoCreatePayloads(
@@ -772,6 +820,567 @@ class BookingVehicleBloc
       );
 
       if (failed) return;
+    }
+
+    emit(
+      state.copyWith(
+        isSubmitting: false,
+        submitSuccess: true,
+        message: null,
+      ),
+    );
+  }
+
+  Future<void> _onSubmitCommercialDelivery(
+    Map<String, dynamic> formValues,
+    Emitter<BookingVehicleState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        submitSuccess: false,
+        message: null,
+      ),
+    );
+
+    final employeeId = state.employeeId;
+    if (employeeId == null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Không xác định được nhân viên đăng ký.',
+        ),
+      );
+      return;
+    }
+
+    final apiCategory = bookingVehicleApiCategoryForCommercialDeliveryBookingType(
+      formValues['booking_type']?.toString(),
+    );
+    if (apiCategory == 0) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Loại đăng ký giao hàng không hợp lệ.',
+        ),
+      );
+      return;
+    }
+
+    final n = state.commercialReceiverLineCount;
+    if (n <= 0) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Chưa có dòng người nhận.',
+        ),
+      );
+      return;
+    }
+
+    final bookerName = state.currentEmployee?.fullName?.trim() ?? '';
+
+    final projectId = resolveBookingVehicleProjectId(
+      formValues['project'],
+      state.projects,
+    );
+    if (projectId == 0) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Vui lòng chọn dự án.',
+        ),
+      );
+      return;
+    }
+
+    if (bookingVehicleFormatApiDateTime(formValues['time_need_present']) ==
+        null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Vui lòng chọn thời gian cần giao đến.',
+        ),
+      );
+      return;
+    }
+
+    if (bookingVehicleFormatApiDateTime(formValues['time_return']) == null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Vui lòng chọn thời gian lấy hàng.',
+        ),
+      );
+      return;
+    }
+
+    for (var i = 0; i < n; i++) {
+      final nameManual = bookingVehicleTrimFormValue(
+        formValues['receiver_name_$i'],
+      );
+      final empPick = bookingVehicleTrimFormValue(
+        formValues['receiver_employee_$i'],
+      );
+      if (nameManual.isEmpty && empPick.isEmpty) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message:
+                'Vui lòng nhập người nhận hoặc chọn nhân viên (dòng ${i + 1}).',
+          ),
+        );
+        return;
+      }
+
+      final phone = bookingVehicleTrimFormValue(
+        formValues['receiver_phone_number_$i'],
+      );
+      if (phone.isEmpty) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message: 'Vui lòng nhập SĐT người nhận (dòng ${i + 1}).',
+          ),
+        );
+        return;
+      }
+
+      final pkg = bookingVehicleTrimFormValue(
+        formValues['commercial_package_name_$i'],
+      );
+      if (pkg.isEmpty) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message: 'Vui lòng nhập tên hàng hoá (dòng ${i + 1}).',
+          ),
+        );
+        return;
+      }
+
+      final size = bookingVehicleTrimFormValue(formValues['package_size_$i']);
+      final weight =
+          bookingVehicleTrimFormValue(formValues['package_weight_$i']);
+      if (size.isEmpty || weight.isEmpty) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message:
+                'Vui lòng nhập kích thước và khối lượng (dòng ${i + 1}).',
+          ),
+        );
+        return;
+      }
+
+      final qtyRaw = formValues['commercial_package_quantity_$i'];
+      final qty = qtyRaw is int
+          ? qtyRaw
+          : int.tryParse(bookingVehicleTrimFormValue(qtyRaw)) ?? 0;
+      if (qty <= 0) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message: 'Vui lòng nhập số lượng hợp lệ (dòng ${i + 1}).',
+          ),
+        );
+        return;
+      }
+    }
+
+    final problemErr = _bookingVehicleProblemArisesSubmitError(formValues);
+    if (problemErr != null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: problemErr,
+        ),
+      );
+      return;
+    }
+
+    final payloads = buildAllCommercialDeliveryCreatePayloads(
+      formValues: formValues,
+      bookerEmployeeId: employeeId,
+      bookerFullName: bookerName,
+      projects: state.projects,
+      employees: state.employee,
+      receiverLineCount: n,
+      apiCategory: apiCategory,
+    );
+
+    for (var i = 0; i < payloads.length; i++) {
+      final payload = payloads[i];
+      final res = await _bookingVehicleRepo.createBookingVehicle(
+        payload: payload,
+      );
+
+      final created = await res.fold(
+        (err) async {
+          _log.logE('❌ createBookingVehicle (commercial) failed: $err');
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              message: err.getErrorMessage,
+            ),
+          );
+          return null;
+        },
+        (c) async {
+          _log.logI(
+            '✅ createBookingVehicle (commercial) OK id=${c.id}',
+          );
+          return c;
+        },
+      );
+
+      if (created == null) return;
+
+      final bookingId = created.id;
+      if (bookingId != null && bookingId > 0) {
+        final categoryText =
+            bookingVehicleTrimFormValue(formValues['booking_type']);
+        final year = bookingVehicleParseFormDateTime(
+              formValues['time_need_present'],
+            )?.year ??
+            DateTime.now().year;
+        final subPath = bookingVehicleUploadSubPath(
+          year: year,
+          categoryText: categoryText,
+          bookingId: bookingId,
+        );
+        final images = bookingVehicleParsePackageImageField(
+          formValues['commercial_package_image_$i'],
+        );
+        if (images.isEmpty) {
+          _log.logI(
+            '📎 upload-file bỏ qua (giao hàng) dòng=${i + 1} vehicleBookingId=$bookingId — không có ảnh',
+          );
+        } else {
+          _log.logI(
+            '📎 upload-file (giao hàng) dòng=${i + 1} vehicleBookingId=$bookingId '
+            'số_ảnh=${images.length} subPath=$subPath',
+          );
+        }
+        for (var fi = 0; fi < images.length; fi++) {
+          final f = images[fi];
+          final src = (f.path != null && f.path!.trim().isNotEmpty)
+              ? 'path'
+              : 'bytes';
+          _log.logI(
+            '📤 upload-file gọi repo (giao hàng) [${fi + 1}/${images.length}] '
+            'vehicleBookingId=$bookingId name="${f.name}" size=${f.size} nguồn=$src',
+          );
+          final up = await _bookingVehicleRepo.uploadBookingVehicleFile(
+            vehicleBookingId: bookingId,
+            file: f,
+            subPath: subPath,
+          );
+          final upFailed = await up.fold(
+            (err) async {
+              _log.logE('❌ uploadBookingVehicleFile (commercial) failed: $err');
+              emit(
+                state.copyWith(
+                  isSubmitting: false,
+                  message: err.getErrorMessage,
+                ),
+              );
+              return true;
+            },
+            (_) async {
+              _log.logI(
+                '✅ upload-file repo OK (giao hàng) vehicleBookingId=$bookingId name="${f.name}"',
+              );
+              return false;
+            },
+          );
+          if (upFailed) return;
+        }
+      }
+    }
+
+    emit(
+      state.copyWith(
+        isSubmitting: false,
+        submitSuccess: true,
+        message: null,
+      ),
+    );
+  }
+
+  Future<void> _onSubmitCommercialPickup(
+    Map<String, dynamic> formValues,
+    Emitter<BookingVehicleState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        submitSuccess: false,
+        message: null,
+      ),
+    );
+
+    final employeeId = state.employeeId;
+    if (employeeId == null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Không xác định được nhân viên đăng ký.',
+        ),
+      );
+      return;
+    }
+
+    final apiCategory = bookingVehicleApiCategoryForPickupBookingType(
+      formValues['booking_type']?.toString(),
+    );
+    if (apiCategory == 0) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Loại đăng ký lấy hàng không hợp lệ.',
+        ),
+      );
+      return;
+    }
+
+    final n = state.pickupGiverLineCount;
+    if (n <= 0) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Chưa có dòng người giao.',
+        ),
+      );
+      return;
+    }
+
+    final bookerName = state.currentEmployee?.fullName?.trim() ?? '';
+
+    final projectId = resolveBookingVehicleProjectId(
+      formValues['pickup_project'],
+      state.projects,
+    );
+    if (projectId == 0) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Vui lòng chọn dự án.',
+        ),
+      );
+      return;
+    }
+
+    if (bookingVehicleFormatApiDateTime(
+          formValues['pickup_departure_time'],
+        ) ==
+        null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Vui lòng chọn thời gian xuất phát.',
+        ),
+      );
+      return;
+    }
+
+    if (bookingVehicleFormatApiDateTime(
+          formValues['pickup_need_arrive_time'],
+        ) ==
+        null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Vui lòng chọn thời gian cần đến lấy.',
+        ),
+      );
+      return;
+    }
+
+    for (var i = 0; i < n; i++) {
+      final nameManual = bookingVehicleTrimFormValue(
+        formValues['pickup_giver_name_$i'],
+      );
+      final empPick = bookingVehicleTrimFormValue(
+        formValues['pickup_giver_employee_$i'],
+      );
+      if (nameManual.isEmpty && empPick.isEmpty) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message:
+                'Vui lòng nhập người giao hoặc chọn nhân viên (dòng ${i + 1}).',
+          ),
+        );
+        return;
+      }
+
+      final phone = bookingVehicleTrimFormValue(
+        formValues['pickup_giver_phone_number_$i'],
+      );
+      if (phone.isEmpty) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message: 'Vui lòng nhập SĐT người giao (dòng ${i + 1}).',
+          ),
+        );
+        return;
+      }
+
+      final pkg = bookingVehicleTrimFormValue(
+        formValues['pickup_package_name_$i'],
+      );
+      if (pkg.isEmpty) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message: 'Vui lòng nhập tên hàng hoá (dòng ${i + 1}).',
+          ),
+        );
+        return;
+      }
+
+      final size =
+          bookingVehicleTrimFormValue(formValues['pickup_package_size_$i']);
+      final weight =
+          bookingVehicleTrimFormValue(formValues['pickup_package_weight_$i']);
+      if (size.isEmpty || weight.isEmpty) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message:
+                'Vui lòng nhập kích thước và khối lượng (dòng ${i + 1}).',
+          ),
+        );
+        return;
+      }
+
+      final qtyRaw = formValues['pickup_package_quantity_$i'];
+      final qty = qtyRaw is int
+          ? qtyRaw
+          : int.tryParse(bookingVehicleTrimFormValue(qtyRaw)) ?? 0;
+      if (qty <= 0) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message: 'Vui lòng nhập số lượng hợp lệ (dòng ${i + 1}).',
+          ),
+        );
+        return;
+      }
+    }
+
+    final problemErr = _bookingVehicleProblemArisesSubmitError(
+      formValues,
+      needTimeFieldKey: 'pickup_need_arrive_time',
+    );
+    if (problemErr != null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: problemErr,
+        ),
+      );
+      return;
+    }
+
+    final payloads = buildAllCommercialPickupCreatePayloads(
+      formValues: formValues,
+      bookerEmployeeId: employeeId,
+      bookerFullName: bookerName,
+      projects: state.projects,
+      employees: state.employee,
+      giverLineCount: n,
+      apiCategory: apiCategory,
+    );
+
+    for (var i = 0; i < payloads.length; i++) {
+      final payload = payloads[i];
+      final res = await _bookingVehicleRepo.createBookingVehicle(
+        payload: payload,
+      );
+
+      final created = await res.fold(
+        (err) async {
+          _log.logE('❌ createBookingVehicle (pickup) failed: $err');
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              message: err.getErrorMessage,
+            ),
+          );
+          return null;
+        },
+        (c) async {
+          _log.logI('✅ createBookingVehicle (pickup) OK id=${c.id}');
+          return c;
+        },
+      );
+
+      if (created == null) return;
+
+      final bookingId = created.id;
+      if (bookingId != null && bookingId > 0) {
+        final categoryText =
+            bookingVehicleTrimFormValue(formValues['booking_type']);
+        final year = bookingVehicleParseFormDateTime(
+              formValues['pickup_need_arrive_time'],
+            )?.year ??
+            DateTime.now().year;
+        final subPath = bookingVehicleUploadSubPath(
+          year: year,
+          categoryText: categoryText,
+          bookingId: bookingId,
+        );
+        final images = bookingVehicleParsePackageImageField(
+          formValues['pickup_package_image_$i'],
+        );
+        if (images.isEmpty) {
+          _log.logI(
+            '📎 upload-file bỏ qua (lấy hàng) dòng=${i + 1} vehicleBookingId=$bookingId — không có ảnh',
+          );
+        } else {
+          _log.logI(
+            '📎 upload-file (lấy hàng) dòng=${i + 1} vehicleBookingId=$bookingId '
+            'số_ảnh=${images.length} subPath=$subPath',
+          );
+        }
+        for (var fi = 0; fi < images.length; fi++) {
+          final f = images[fi];
+          final src = (f.path != null && f.path!.trim().isNotEmpty)
+              ? 'path'
+              : 'bytes';
+          _log.logI(
+            '📤 upload-file gọi repo (lấy hàng) [${fi + 1}/${images.length}] '
+            'vehicleBookingId=$bookingId name="${f.name}" size=${f.size} nguồn=$src',
+          );
+          final up = await _bookingVehicleRepo.uploadBookingVehicleFile(
+            vehicleBookingId: bookingId,
+            file: f,
+            subPath: subPath,
+          );
+          final upFailed = await up.fold(
+            (err) async {
+              _log.logE('❌ uploadBookingVehicleFile (pickup) failed: $err');
+              emit(
+                state.copyWith(
+                  isSubmitting: false,
+                  message: err.getErrorMessage,
+                ),
+              );
+              return true;
+            },
+            (_) async {
+              _log.logI(
+                '✅ upload-file repo OK (lấy hàng) vehicleBookingId=$bookingId name="${f.name}"',
+              );
+              return false;
+            },
+          );
+          if (upFailed) return;
+        }
+      }
     }
 
     emit(

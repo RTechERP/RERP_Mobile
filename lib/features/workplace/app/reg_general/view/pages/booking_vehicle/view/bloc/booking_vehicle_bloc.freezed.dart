@@ -39,6 +39,10 @@ mixin _$BookingVehicleEvent {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) =>
       throw _privateConstructorUsedError;
@@ -63,6 +67,9 @@ mixin _$BookingVehicleEvent {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) =>
       throw _privateConstructorUsedError;
@@ -87,6 +94,8 @@ mixin _$BookingVehicleEvent {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) =>
@@ -121,6 +130,10 @@ mixin _$BookingVehicleEvent {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) =>
       throw _privateConstructorUsedError;
@@ -149,6 +162,9 @@ mixin _$BookingVehicleEvent {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) =>
       throw _privateConstructorUsedError;
@@ -177,6 +193,8 @@ mixin _$BookingVehicleEvent {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) =>
@@ -259,6 +277,10 @@ class _$InitImpl implements _Init {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return init();
@@ -286,6 +308,9 @@ class _$InitImpl implements _Init {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return init?.call();
@@ -313,6 +338,8 @@ class _$InitImpl implements _Init {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -353,6 +380,10 @@ class _$InitImpl implements _Init {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return init(this);
@@ -384,6 +415,9 @@ class _$InitImpl implements _Init {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return init?.call(this);
@@ -415,6 +449,8 @@ class _$InitImpl implements _Init {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -488,6 +524,10 @@ class _$InitAddImpl implements _InitAdd {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return initAdd();
@@ -515,6 +555,9 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return initAdd?.call();
@@ -542,6 +585,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -582,6 +627,10 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return initAdd(this);
@@ -613,6 +662,9 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return initAdd?.call(this);
@@ -644,6 +696,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -717,6 +771,10 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return preloadInitAdd();
@@ -744,6 +802,9 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return preloadInitAdd?.call();
@@ -771,6 +832,8 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -811,6 +874,10 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return preloadInitAdd(this);
@@ -842,6 +909,9 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return preloadInitAdd?.call(this);
@@ -873,6 +943,8 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -947,6 +1019,10 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return initPassengerGoInfos();
@@ -974,6 +1050,9 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return initPassengerGoInfos?.call();
@@ -1001,6 +1080,8 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -1041,6 +1122,10 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return initPassengerGoInfos(this);
@@ -1072,6 +1157,9 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return initPassengerGoInfos?.call(this);
@@ -1103,6 +1191,8 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -1176,6 +1266,10 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return addPassengerGoInfo();
@@ -1203,6 +1297,9 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return addPassengerGoInfo?.call();
@@ -1230,6 +1327,8 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -1270,6 +1369,10 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return addPassengerGoInfo(this);
@@ -1301,6 +1404,9 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return addPassengerGoInfo?.call(this);
@@ -1332,6 +1438,8 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -1433,6 +1541,10 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return expandPassengerGoInfo(index);
@@ -1460,6 +1572,9 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return expandPassengerGoInfo?.call(index);
@@ -1487,6 +1602,8 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -1527,6 +1644,10 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return expandPassengerGoInfo(this);
@@ -1558,6 +1679,9 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return expandPassengerGoInfo?.call(this);
@@ -1589,6 +1713,8 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -1696,6 +1822,10 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return deletePassengerGoInfo(index);
@@ -1723,6 +1853,9 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return deletePassengerGoInfo?.call(index);
@@ -1750,6 +1883,8 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -1790,6 +1925,10 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return deletePassengerGoInfo(this);
@@ -1821,6 +1960,9 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return deletePassengerGoInfo?.call(this);
@@ -1852,6 +1994,8 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -1936,6 +2080,10 @@ class _$InitCommercialReceiverInfosImpl
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return initCommercialReceiverInfos();
@@ -1963,6 +2111,9 @@ class _$InitCommercialReceiverInfosImpl
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return initCommercialReceiverInfos?.call();
@@ -1990,6 +2141,8 @@ class _$InitCommercialReceiverInfosImpl
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -2030,6 +2183,10 @@ class _$InitCommercialReceiverInfosImpl
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return initCommercialReceiverInfos(this);
@@ -2061,6 +2218,9 @@ class _$InitCommercialReceiverInfosImpl
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return initCommercialReceiverInfos?.call(this);
@@ -2092,6 +2252,8 @@ class _$InitCommercialReceiverInfosImpl
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -2170,6 +2332,10 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return addCommercialReceiverInfo();
@@ -2197,6 +2363,9 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return addCommercialReceiverInfo?.call();
@@ -2224,6 +2393,8 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -2264,6 +2435,10 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return addCommercialReceiverInfo(this);
@@ -2295,6 +2470,9 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return addCommercialReceiverInfo?.call(this);
@@ -2326,6 +2504,8 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -2431,6 +2611,10 @@ class _$ExpandCommercialReceiverInfoImpl
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return expandCommercialReceiverInfo(index);
@@ -2458,6 +2642,9 @@ class _$ExpandCommercialReceiverInfoImpl
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return expandCommercialReceiverInfo?.call(index);
@@ -2485,6 +2672,8 @@ class _$ExpandCommercialReceiverInfoImpl
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -2525,6 +2714,10 @@ class _$ExpandCommercialReceiverInfoImpl
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return expandCommercialReceiverInfo(this);
@@ -2556,6 +2749,9 @@ class _$ExpandCommercialReceiverInfoImpl
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return expandCommercialReceiverInfo?.call(this);
@@ -2587,6 +2783,8 @@ class _$ExpandCommercialReceiverInfoImpl
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -2699,6 +2897,10 @@ class _$DeleteCommercialReceiverInfoImpl
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return deleteCommercialReceiverInfo(index);
@@ -2726,6 +2928,9 @@ class _$DeleteCommercialReceiverInfoImpl
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return deleteCommercialReceiverInfo?.call(index);
@@ -2753,6 +2958,8 @@ class _$DeleteCommercialReceiverInfoImpl
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -2793,6 +3000,10 @@ class _$DeleteCommercialReceiverInfoImpl
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return deleteCommercialReceiverInfo(this);
@@ -2824,6 +3035,9 @@ class _$DeleteCommercialReceiverInfoImpl
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return deleteCommercialReceiverInfo?.call(this);
@@ -2855,6 +3069,8 @@ class _$DeleteCommercialReceiverInfoImpl
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -2936,6 +3152,10 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return initPickupGiverInfos();
@@ -2963,6 +3183,9 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return initPickupGiverInfos?.call();
@@ -2990,6 +3213,8 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -3030,6 +3255,10 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return initPickupGiverInfos(this);
@@ -3061,6 +3290,9 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return initPickupGiverInfos?.call(this);
@@ -3092,6 +3324,8 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -3165,6 +3399,10 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return addPickupGiverInfo();
@@ -3192,6 +3430,9 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return addPickupGiverInfo?.call();
@@ -3219,6 +3460,8 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -3259,6 +3502,10 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return addPickupGiverInfo(this);
@@ -3290,6 +3537,9 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return addPickupGiverInfo?.call(this);
@@ -3321,6 +3571,8 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -3422,6 +3674,10 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return expandPickupGiverInfo(index);
@@ -3449,6 +3705,9 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return expandPickupGiverInfo?.call(index);
@@ -3476,6 +3735,8 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -3516,6 +3777,10 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return expandPickupGiverInfo(this);
@@ -3547,6 +3812,9 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return expandPickupGiverInfo?.call(this);
@@ -3578,6 +3846,8 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -3685,6 +3955,10 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return deletePickupGiverInfo(index);
@@ -3712,6 +3986,9 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return deletePickupGiverInfo?.call(index);
@@ -3739,6 +4016,8 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -3779,6 +4058,10 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return deletePickupGiverInfo(this);
@@ -3810,6 +4093,9 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return deletePickupGiverInfo?.call(this);
@@ -3841,6 +4127,8 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -3953,6 +4241,10 @@ class _$UpdateFormImpl implements _UpdateForm {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return updateForm(values);
@@ -3980,6 +4272,9 @@ class _$UpdateFormImpl implements _UpdateForm {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return updateForm?.call(values);
@@ -4007,6 +4302,8 @@ class _$UpdateFormImpl implements _UpdateForm {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -4047,6 +4344,10 @@ class _$UpdateFormImpl implements _UpdateForm {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return updateForm(this);
@@ -4078,6 +4379,9 @@ class _$UpdateFormImpl implements _UpdateForm {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return updateForm?.call(this);
@@ -4109,6 +4413,8 @@ class _$UpdateFormImpl implements _UpdateForm {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -4221,6 +4527,10 @@ class _$UpdateInfoImpl implements _UpdateInfo {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return updateInfo(values);
@@ -4248,6 +4558,9 @@ class _$UpdateInfoImpl implements _UpdateInfo {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return updateInfo?.call(values);
@@ -4275,6 +4588,8 @@ class _$UpdateInfoImpl implements _UpdateInfo {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -4315,6 +4630,10 @@ class _$UpdateInfoImpl implements _UpdateInfo {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return updateInfo(this);
@@ -4346,6 +4665,9 @@ class _$UpdateInfoImpl implements _UpdateInfo {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return updateInfo?.call(this);
@@ -4377,6 +4699,8 @@ class _$UpdateInfoImpl implements _UpdateInfo {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -4492,6 +4816,10 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return submitPassengerGo(formValues);
@@ -4519,6 +4847,9 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return submitPassengerGo?.call(formValues);
@@ -4546,6 +4877,8 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -4586,6 +4919,10 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return submitPassengerGo(this);
@@ -4617,6 +4954,9 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return submitPassengerGo?.call(this);
@@ -4648,6 +4988,8 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -4765,6 +5107,10 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return submitPassengerReturn(formValues);
@@ -4792,6 +5138,9 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return submitPassengerReturn?.call(formValues);
@@ -4819,6 +5168,8 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -4859,6 +5210,10 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return submitPassengerReturn(this);
@@ -4890,6 +5245,9 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return submitPassengerReturn?.call(this);
@@ -4921,6 +5279,8 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -4939,6 +5299,592 @@ abstract class _SubmitPassengerReturn implements BookingVehicleEvent {
   Map<String, dynamic> get formValues;
   @JsonKey(ignore: true)
   _$$SubmitPassengerReturnImplCopyWith<_$SubmitPassengerReturnImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SubmitCommercialDeliveryImplCopyWith<$Res> {
+  factory _$$SubmitCommercialDeliveryImplCopyWith(
+          _$SubmitCommercialDeliveryImpl value,
+          $Res Function(_$SubmitCommercialDeliveryImpl) then) =
+      __$$SubmitCommercialDeliveryImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic> formValues});
+}
+
+/// @nodoc
+class __$$SubmitCommercialDeliveryImplCopyWithImpl<$Res>
+    extends _$BookingVehicleEventCopyWithImpl<$Res,
+        _$SubmitCommercialDeliveryImpl>
+    implements _$$SubmitCommercialDeliveryImplCopyWith<$Res> {
+  __$$SubmitCommercialDeliveryImplCopyWithImpl(
+      _$SubmitCommercialDeliveryImpl _value,
+      $Res Function(_$SubmitCommercialDeliveryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? formValues = null,
+  }) {
+    return _then(_$SubmitCommercialDeliveryImpl(
+      formValues: null == formValues
+          ? _value._formValues
+          : formValues // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SubmitCommercialDeliveryImpl implements _SubmitCommercialDelivery {
+  const _$SubmitCommercialDeliveryImpl(
+      {required final Map<String, dynamic> formValues})
+      : _formValues = formValues;
+
+  final Map<String, dynamic> _formValues;
+  @override
+  Map<String, dynamic> get formValues {
+    if (_formValues is EqualUnmodifiableMapView) return _formValues;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_formValues);
+  }
+
+  @override
+  String toString() {
+    return 'BookingVehicleEvent.submitCommercialDelivery(formValues: $formValues)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SubmitCommercialDeliveryImpl &&
+            const DeepCollectionEquality()
+                .equals(other._formValues, _formValues));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_formValues));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SubmitCommercialDeliveryImplCopyWith<_$SubmitCommercialDeliveryImpl>
+      get copyWith => __$$SubmitCommercialDeliveryImplCopyWithImpl<
+          _$SubmitCommercialDeliveryImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function() preloadInitAdd,
+    required TResult Function() initPassengerGoInfos,
+    required TResult Function() addPassengerGoInfo,
+    required TResult Function(int index) expandPassengerGoInfo,
+    required TResult Function(int index) deletePassengerGoInfo,
+    required TResult Function() initCommercialReceiverInfos,
+    required TResult Function() addCommercialReceiverInfo,
+    required TResult Function(int index) expandCommercialReceiverInfo,
+    required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
+    required TResult Function(Map<String, dynamic> values) updateForm,
+    required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitPassengerGo,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
+    required TResult Function() clearSubmitResult,
+  }) {
+    return submitCommercialDelivery(formValues);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function()? preloadInitAdd,
+    TResult? Function()? initPassengerGoInfos,
+    TResult? Function()? addPassengerGoInfo,
+    TResult? Function(int index)? expandPassengerGoInfo,
+    TResult? Function(int index)? deletePassengerGoInfo,
+    TResult? Function()? initCommercialReceiverInfos,
+    TResult? Function()? addCommercialReceiverInfo,
+    TResult? Function(int index)? expandCommercialReceiverInfo,
+    TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
+    TResult? Function(Map<String, dynamic> values)? updateForm,
+    TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
+    TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
+    TResult? Function()? clearSubmitResult,
+  }) {
+    return submitCommercialDelivery?.call(formValues);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function()? preloadInitAdd,
+    TResult Function()? initPassengerGoInfos,
+    TResult Function()? addPassengerGoInfo,
+    TResult Function(int index)? expandPassengerGoInfo,
+    TResult Function(int index)? deletePassengerGoInfo,
+    TResult Function()? initCommercialReceiverInfos,
+    TResult Function()? addCommercialReceiverInfo,
+    TResult Function(int index)? expandCommercialReceiverInfo,
+    TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
+    TResult Function(Map<String, dynamic> values)? updateForm,
+    TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
+    TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
+    TResult Function()? clearSubmitResult,
+    required TResult orElse(),
+  }) {
+    if (submitCommercialDelivery != null) {
+      return submitCommercialDelivery(formValues);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
+    required TResult Function(_AddPassengerGoInfo value) addPassengerGoInfo,
+    required TResult Function(_ExpandPassengerGoInfo value)
+        expandPassengerGoInfo,
+    required TResult Function(_DeletePassengerGoInfo value)
+        deletePassengerGoInfo,
+    required TResult Function(_InitCommercialReceiverInfos value)
+        initCommercialReceiverInfos,
+    required TResult Function(_AddCommercialReceiverInfo value)
+        addCommercialReceiverInfo,
+    required TResult Function(_ExpandCommercialReceiverInfo value)
+        expandCommercialReceiverInfo,
+    required TResult Function(_DeleteCommercialReceiverInfo value)
+        deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
+    required TResult Function(_SubmitPassengerReturn value)
+        submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
+    required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+  }) {
+    return submitCommercialDelivery(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult? Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult? Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult? Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult? Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult? Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult? Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult? Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
+    TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
+    TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+  }) {
+    return submitCommercialDelivery?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
+    TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
+    TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    required TResult orElse(),
+  }) {
+    if (submitCommercialDelivery != null) {
+      return submitCommercialDelivery(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SubmitCommercialDelivery implements BookingVehicleEvent {
+  const factory _SubmitCommercialDelivery(
+          {required final Map<String, dynamic> formValues}) =
+      _$SubmitCommercialDeliveryImpl;
+
+  Map<String, dynamic> get formValues;
+  @JsonKey(ignore: true)
+  _$$SubmitCommercialDeliveryImplCopyWith<_$SubmitCommercialDeliveryImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SubmitCommercialPickupImplCopyWith<$Res> {
+  factory _$$SubmitCommercialPickupImplCopyWith(
+          _$SubmitCommercialPickupImpl value,
+          $Res Function(_$SubmitCommercialPickupImpl) then) =
+      __$$SubmitCommercialPickupImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic> formValues});
+}
+
+/// @nodoc
+class __$$SubmitCommercialPickupImplCopyWithImpl<$Res>
+    extends _$BookingVehicleEventCopyWithImpl<$Res,
+        _$SubmitCommercialPickupImpl>
+    implements _$$SubmitCommercialPickupImplCopyWith<$Res> {
+  __$$SubmitCommercialPickupImplCopyWithImpl(
+      _$SubmitCommercialPickupImpl _value,
+      $Res Function(_$SubmitCommercialPickupImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? formValues = null,
+  }) {
+    return _then(_$SubmitCommercialPickupImpl(
+      formValues: null == formValues
+          ? _value._formValues
+          : formValues // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SubmitCommercialPickupImpl implements _SubmitCommercialPickup {
+  const _$SubmitCommercialPickupImpl(
+      {required final Map<String, dynamic> formValues})
+      : _formValues = formValues;
+
+  final Map<String, dynamic> _formValues;
+  @override
+  Map<String, dynamic> get formValues {
+    if (_formValues is EqualUnmodifiableMapView) return _formValues;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_formValues);
+  }
+
+  @override
+  String toString() {
+    return 'BookingVehicleEvent.submitCommercialPickup(formValues: $formValues)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SubmitCommercialPickupImpl &&
+            const DeepCollectionEquality()
+                .equals(other._formValues, _formValues));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_formValues));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SubmitCommercialPickupImplCopyWith<_$SubmitCommercialPickupImpl>
+      get copyWith => __$$SubmitCommercialPickupImplCopyWithImpl<
+          _$SubmitCommercialPickupImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function() preloadInitAdd,
+    required TResult Function() initPassengerGoInfos,
+    required TResult Function() addPassengerGoInfo,
+    required TResult Function(int index) expandPassengerGoInfo,
+    required TResult Function(int index) deletePassengerGoInfo,
+    required TResult Function() initCommercialReceiverInfos,
+    required TResult Function() addCommercialReceiverInfo,
+    required TResult Function(int index) expandCommercialReceiverInfo,
+    required TResult Function(int index) deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index) deletePickupGiverInfo,
+    required TResult Function(Map<String, dynamic> values) updateForm,
+    required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitPassengerGo,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
+    required TResult Function() clearSubmitResult,
+  }) {
+    return submitCommercialPickup(formValues);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function()? preloadInitAdd,
+    TResult? Function()? initPassengerGoInfos,
+    TResult? Function()? addPassengerGoInfo,
+    TResult? Function(int index)? expandPassengerGoInfo,
+    TResult? Function(int index)? deletePassengerGoInfo,
+    TResult? Function()? initCommercialReceiverInfos,
+    TResult? Function()? addCommercialReceiverInfo,
+    TResult? Function(int index)? expandCommercialReceiverInfo,
+    TResult? Function(int index)? deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index)? deletePickupGiverInfo,
+    TResult? Function(Map<String, dynamic> values)? updateForm,
+    TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
+    TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
+    TResult? Function()? clearSubmitResult,
+  }) {
+    return submitCommercialPickup?.call(formValues);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function()? preloadInitAdd,
+    TResult Function()? initPassengerGoInfos,
+    TResult Function()? addPassengerGoInfo,
+    TResult Function(int index)? expandPassengerGoInfo,
+    TResult Function(int index)? deletePassengerGoInfo,
+    TResult Function()? initCommercialReceiverInfos,
+    TResult Function()? addCommercialReceiverInfo,
+    TResult Function(int index)? expandCommercialReceiverInfo,
+    TResult Function(int index)? deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index)? deletePickupGiverInfo,
+    TResult Function(Map<String, dynamic> values)? updateForm,
+    TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
+    TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
+    TResult Function()? clearSubmitResult,
+    required TResult orElse(),
+  }) {
+    if (submitCommercialPickup != null) {
+      return submitCommercialPickup(formValues);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
+    required TResult Function(_AddPassengerGoInfo value) addPassengerGoInfo,
+    required TResult Function(_ExpandPassengerGoInfo value)
+        expandPassengerGoInfo,
+    required TResult Function(_DeletePassengerGoInfo value)
+        deletePassengerGoInfo,
+    required TResult Function(_InitCommercialReceiverInfos value)
+        initCommercialReceiverInfos,
+    required TResult Function(_AddCommercialReceiverInfo value)
+        addCommercialReceiverInfo,
+    required TResult Function(_ExpandCommercialReceiverInfo value)
+        expandCommercialReceiverInfo,
+    required TResult Function(_DeleteCommercialReceiverInfo value)
+        deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
+    required TResult Function(_SubmitPassengerReturn value)
+        submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
+    required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+  }) {
+    return submitCommercialPickup(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult? Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult? Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult? Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult? Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult? Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult? Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult? Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
+    TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
+    TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+  }) {
+    return submitCommercialPickup?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
+    TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
+    TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    required TResult orElse(),
+  }) {
+    if (submitCommercialPickup != null) {
+      return submitCommercialPickup(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SubmitCommercialPickup implements BookingVehicleEvent {
+  const factory _SubmitCommercialPickup(
+          {required final Map<String, dynamic> formValues}) =
+      _$SubmitCommercialPickupImpl;
+
+  Map<String, dynamic> get formValues;
+  @JsonKey(ignore: true)
+  _$$SubmitCommercialPickupImplCopyWith<_$SubmitCommercialPickupImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -5001,6 +5947,10 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
         submitPassengerGo,
     required TResult Function(Map<String, dynamic> formValues)
         submitPassengerReturn,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialDelivery,
+    required TResult Function(Map<String, dynamic> formValues)
+        submitCommercialPickup,
     required TResult Function() clearSubmitResult,
   }) {
     return clearSubmitResult();
@@ -5028,6 +5978,9 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult? Function(Map<String, dynamic> values)? updateInfo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult? Function()? clearSubmitResult,
   }) {
     return clearSubmitResult?.call();
@@ -5055,6 +6008,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult Function(Map<String, dynamic> values)? updateInfo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues)? submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues)? submitCommercialPickup,
     TResult Function()? clearSubmitResult,
     required TResult orElse(),
   }) {
@@ -5095,6 +6050,10 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
   }) {
     return clearSubmitResult(this);
@@ -5126,6 +6085,9 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult? Function(_UpdateInfo value)? updateInfo,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
   }) {
     return clearSubmitResult?.call(this);
@@ -5157,6 +6119,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult Function(_UpdateInfo value)? updateInfo,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     required TResult orElse(),
   }) {

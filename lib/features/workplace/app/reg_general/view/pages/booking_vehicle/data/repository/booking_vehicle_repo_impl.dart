@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
@@ -113,6 +114,36 @@ class BookingVehicleRepoImpl implements BookingVehicleRepo {
       }
     } on DioException catch (e) {
       return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, void>> uploadBookingVehicleFile({
+    required int vehicleBookingId,
+    required PlatformFile file,
+    required String subPath,
+  }) async {
+    try {
+      final res = await _service.uploadBookingVehicleFile(
+        vehicleBookingId: vehicleBookingId,
+        file: file,
+        subPath: subPath,
+      );
+
+      if (res.status == 1) {
+        return right(null);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Tải ảnh lên thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } on ArgumentError catch (e) {
+      return left(BaseError.httpInternalServerError(e.message ?? '$e'));
     } catch (e) {
       return left(BaseError.httpInternalServerError(e.toString()));
     }

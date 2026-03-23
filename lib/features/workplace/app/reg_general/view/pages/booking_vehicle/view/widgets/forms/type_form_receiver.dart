@@ -74,15 +74,7 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
             ),
           ),
           const SizedBox(height: 8),
-          FormDateTimePicker(
-            icon: Icons.departure_board_outlined,
-            nameForm: 'pickup_departure_time',
-            nameTimePicker: 'pickup_departure_time_picker',
-            label: 'Thời gian xuất phát',
-            inputType: InputType.both,
-            format: DateFormat('dd/MM/yyyy - HH:mm'),
-          ),
-          const SizedBox(height: 8),
+
           FormDateTimePicker(
             icon: Icons.access_time,
             nameForm: 'pickup_need_arrive_time',
@@ -92,6 +84,16 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
             format: DateFormat('dd/MM/yyyy - HH:mm'),
           ),
           const SizedBox(height: 8),
+          FormDateTimePicker(
+            icon: Icons.departure_board_outlined,
+            nameForm: 'pickup_departure_time',
+            nameTimePicker: 'pickup_departure_time_picker',
+            label: 'Thời gian xuất phát',
+            inputType: InputType.both,
+            format: DateFormat('dd/MM/yyyy - HH:mm'),
+          ),
+          const SizedBox(height: 8),
+
           FormInputField(
             icon: Icons.apartment_outlined,
             nameForm: 'pickup_company',

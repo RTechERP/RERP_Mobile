@@ -51,5 +51,7 @@
 		<string>$(APP_ENV)</string>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Ứng dụng cần truy cập thư viện ảnh để bạn chọn ảnh kiện hàng khi đăng ký giao hoặc lấy hàng.</string>
 	</dict>
 </plist>

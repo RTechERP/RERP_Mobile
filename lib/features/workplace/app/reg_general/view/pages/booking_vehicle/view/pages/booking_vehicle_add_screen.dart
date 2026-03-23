@@ -17,6 +17,7 @@ import '../../data/datasource/models/booking_vehicle_receiver_form_shift.dart';
 import '../../data/repository/booking_vehicle_repository.dart';
 import '../bloc/booking_vehicle_bloc.dart';
 import '../booking_vehicle_form_field_registry.dart';
+import '../booking_vehicle_passenger_go_payload.dart';
 import '../widgets/forms/index.dart';
 import '../widgets/infos/index.dart';
 
@@ -40,6 +41,23 @@ class _BookingVehicleAddScreenState
 
   FormFieldState<String>? _bookingTypeField;
   _BookingVehicleTypeGroup? _bookingTypeGroup;
+
+  DateTime? _needTimeForProblemUi(BookingVehicleState state) {
+    final group = _bookingTypeGroup;
+    if (group == null) return null;
+    final raw = state.formFieldValues;
+    switch (group) {
+      case _BookingVehicleTypeGroup.passengerGo:
+      case _BookingVehicleTypeGroup.commercialDelivery:
+        return bookingVehicleParseFormDateTime(raw['time_need_present']);
+      case _BookingVehicleTypeGroup.commercialPickupAndDemoPickup:
+        return bookingVehicleParseFormDateTime(
+          raw['pickup_need_arrive_time'],
+        );
+      case _BookingVehicleTypeGroup.passengerReturn:
+        return null;
+    }
+  }
 
   _BookingVehicleTypeGroup _mapBookingTypeToGroup(String bookingType) {
     switch (bookingType) {
@@ -108,6 +126,8 @@ class _BookingVehicleAddScreenState
                   prev.projects != curr.projects ||
                   prev.provinceDeparture != curr.provinceDeparture ||
                   prev.provinceArrives != curr.provinceArrives ||
+                  prev.approver != curr.approver ||
+                  prev.formFieldValues != curr.formFieldValues ||
                   prev.employee != curr.employee ||
                   prev.currentEmployee != curr.currentEmployee ||
                   prev.passengerGoLineCount != curr.passengerGoLineCount ||
@@ -138,6 +158,9 @@ class _BookingVehicleAddScreenState
                     'type_transport_text': 'Ô tô, xe máy ...',
                     'starting_point': 'Khác',
                     'return_point': 'Khác',
+                    'approved_tbp': '',
+                    'approved_tbp_text': '',
+                    'problem_arises': '',
                     ...state.formFieldValues,
                     ...state.infoFieldValues,
                   },
@@ -247,6 +270,15 @@ class _BookingVehicleAddScreenState
                               if (_bookingTypeGroup ==
                                   _BookingVehicleTypeGroup.passengerGo)
                                 const SizedBox(height: 12),
+                              if (_bookingTypeGroup ==
+                                  _BookingVehicleTypeGroup.passengerGo)
+                                BookingVehicleProblemArisesCard(
+                                  approvers: state.approver,
+                                  visible:
+                                      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+                                    _needTimeForProblemUi(state),
+                                  ),
+                                ),
                               if (_bookingTypeGroup ==
                                   _BookingVehicleTypeGroup.passengerGo)
                                 BlocBuilder<BookingVehicleBloc,
@@ -421,50 +453,48 @@ class _BookingVehicleAddScreenState
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        for (var i = 0; i < n; i++)
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              bottom: 8,
+                                        for (var i = 0; i < n; i++) ...[
+                                          PassengerInfoItem(
+                                            key: ValueKey(
+                                              'pass_line_${i}_${state.passengerFormGeneration}',
                                             ),
-                                            child: PassengerInfoItem(
-                                              key: ValueKey(
-                                                'pass_line_${i}_${state.passengerFormGeneration}',
-                                              ),
-                                              index: i,
-                                              isExpanded:
-                                                  state.expandedPassengerGoIndex ==
-                                                      i,
-                                              totalCount: n,
-                                              employeeOptions: state.employee,
-                                              prefillEmployee: i == 0 &&
-                                                      state
-                                                          .passengerGoFirstRowIsCurrentUserSlot
-                                                  ? state.currentEmployee
-                                                  : null,
-                                              onToggleExpand: () {
-                                                bloc.add(
-                                                  BookingVehicleEvent
-                                                      .expandPassengerGoInfo(
-                                                    index: i,
-                                                  ),
-                                                );
-                                              },
-                                              onDelete: () {
-                                                BookingVehiclePassengerFormShift
-                                                    .afterDeleteAt(
-                                                  _formKey.currentState,
-                                                  deletedIndex: i,
-                                                  oldLineCount: n,
-                                                );
-                                                bloc.add(
-                                                  BookingVehicleEvent
-                                                      .deletePassengerGoInfo(
-                                                    index: i,
-                                                  ),
-                                                );
-                                              },
-                                            ),
+                                            index: i,
+                                            isExpanded:
+                                                state.expandedPassengerGoIndex ==
+                                                    i,
+                                            totalCount: n,
+                                            employeeOptions: state.employee,
+                                            prefillEmployee: i == 0 &&
+                                                    state
+                                                        .passengerGoFirstRowIsCurrentUserSlot
+                                                ? state.currentEmployee
+                                                : null,
+                                            onToggleExpand: () {
+                                              bloc.add(
+                                                BookingVehicleEvent
+                                                    .expandPassengerGoInfo(
+                                                  index: i,
+                                                ),
+                                              );
+                                            },
+                                            onDelete: () {
+                                              BookingVehiclePassengerFormShift
+                                                  .afterDeleteAt(
+                                                _formKey.currentState,
+                                                deletedIndex: i,
+                                                oldLineCount: n,
+                                              );
+                                              bloc.add(
+                                                BookingVehicleEvent
+                                                    .deletePassengerGoInfo(
+                                                  index: i,
+                                                ),
+                                              );
+                                            },
                                           ),
+                                          if (i < n - 1)
+                                            const SizedBox(height: 12),
+                                        ],
 
                                         const SizedBox(height: 4),
 
@@ -499,6 +529,15 @@ class _BookingVehicleAddScreenState
                               if (_bookingTypeGroup ==
                                   _BookingVehicleTypeGroup.commercialDelivery)
                                 const SizedBox(height: 12),
+                              if (_bookingTypeGroup ==
+                                  _BookingVehicleTypeGroup.commercialDelivery)
+                                BookingVehicleProblemArisesCard(
+                                  approvers: state.approver,
+                                  visible:
+                                      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+                                    _needTimeForProblemUi(state),
+                                  ),
+                                ),
                               if (_bookingTypeGroup ==
                                   _BookingVehicleTypeGroup.commercialDelivery)
                                 BlocBuilder<BookingVehicleBloc,
@@ -626,6 +665,16 @@ class _BookingVehicleAddScreenState
                               if (_bookingTypeGroup ==
                                   _BookingVehicleTypeGroup
                                       .commercialPickupAndDemoPickup)
+                                BookingVehicleProblemArisesCard(
+                                  approvers: state.approver,
+                                  visible:
+                                      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+                                    _needTimeForProblemUi(state),
+                                  ),
+                                ),
+                              if (_bookingTypeGroup ==
+                                  _BookingVehicleTypeGroup
+                                      .commercialPickupAndDemoPickup)
                                 BlocBuilder<BookingVehicleBloc,
                                     BookingVehicleState>(
                                   buildWhen: (prev, curr) =>
@@ -749,18 +798,6 @@ class _BookingVehicleAddScreenState
                           onSubmit: () {
                             FocusScope.of(context).unfocus();
 
-                            if (_bookingTypeGroup !=
-                                    _BookingVehicleTypeGroup.passengerGo &&
-                                _bookingTypeGroup !=
-                                    _BookingVehicleTypeGroup.passengerReturn) {
-                              showMessage(
-                                context,
-                                'Chưa hỗ trợ gửi loại đăng ký này.',
-                                type: SnackBarType.info,
-                              );
-                              return;
-                            }
-
                             final formState = _formKey.currentState;
                             if (formState == null) return;
                             if (!formState.saveAndValidate()) return;
@@ -768,19 +805,38 @@ class _BookingVehicleAddScreenState
                             final values = Map<String, dynamic>.from(
                               formState.value,
                             );
-                            if (_bookingTypeGroup ==
-                                _BookingVehicleTypeGroup.passengerGo) {
-                              bloc.add(
-                                BookingVehicleEvent.submitPassengerGo(
-                                  formValues: values,
-                                ),
-                              );
-                            } else {
-                              bloc.add(
-                                BookingVehicleEvent.submitPassengerReturn(
-                                  formValues: values,
-                                ),
-                              );
+                            switch (_bookingTypeGroup) {
+                              case _BookingVehicleTypeGroup.passengerGo:
+                                bloc.add(
+                                  BookingVehicleEvent.submitPassengerGo(
+                                    formValues: values,
+                                  ),
+                                );
+                                break;
+                              case _BookingVehicleTypeGroup.passengerReturn:
+                                bloc.add(
+                                  BookingVehicleEvent.submitPassengerReturn(
+                                    formValues: values,
+                                  ),
+                                );
+                                break;
+                              case _BookingVehicleTypeGroup.commercialDelivery:
+                                bloc.add(
+                                  BookingVehicleEvent.submitCommercialDelivery(
+                                    formValues: values,
+                                  ),
+                                );
+                                break;
+                              case _BookingVehicleTypeGroup
+                                    .commercialPickupAndDemoPickup:
+                                bloc.add(
+                                  BookingVehicleEvent.submitCommercialPickup(
+                                    formValues: values,
+                                  ),
+                                );
+                                break;
+                              case null:
+                                break;
                             }
                           },
                         ),

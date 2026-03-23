@@ -181,4 +181,14 @@ class ApiEndPoint {
       '/vehiclebookingmanagement/get-employee-by-id';
 
   static const String createBookingVehicle = '/vehiclebookingmanagement/create';
+
+  static const String uploadBookingVehicleFile =
+      '/vehiclebookingmanagement/upload-file';
+}
+
+/// Field [Key] multipart upload-file đặt xe; [subPath] do [bookingVehicleUploadSubPath] build.
+abstract final class BookingVehicleUploadForm {
+  BookingVehicleUploadForm._();
+
+  static const String keyFieldValue = 'VehicleBookingFile';
 }
