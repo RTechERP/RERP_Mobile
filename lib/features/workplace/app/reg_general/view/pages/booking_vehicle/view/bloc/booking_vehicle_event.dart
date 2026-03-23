@@ -89,4 +89,9 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
 
   /// Xoá cờ submit (vào lại màn add / shell dùng chung bloc).
   const factory BookingVehicleEvent.clearSubmitResult() = _ClearSubmitResult;
+
+  /// Huỷ đăng ký đặt xe (API `vehicle-booking-cancel`).
+  const factory BookingVehicleEvent.cancelBookingVehicle({
+    required int vehicleBookingId,
+  }) = _CancelBookingVehicle;
 }

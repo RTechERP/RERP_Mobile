@@ -85,8 +85,55 @@ class BookingVehicleBloc
             ),
           );
         },
+        cancelBookingVehicle: (vehicleBookingId) async {
+          await _onCancelBookingVehicle(vehicleBookingId, emit);
+        },
       );
     });
+  }
+
+  Future<void> _onCancelBookingVehicle(
+    int vehicleBookingId,
+    Emitter<BookingVehicleState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isDeleting: true,
+        deleteSuccess: false,
+        message: null,
+      ),
+    );
+
+    final result = await _bookingVehicleRepo.cancelBookingVehicle(
+      vehicleBookingId: vehicleBookingId,
+    );
+
+    result.fold(
+      (error) {
+        emit(
+          state.copyWith(
+            isDeleting: false,
+            deleteSuccess: false,
+            message: error.getErrorMessage,
+          ),
+        );
+      },
+      (_) {
+        final updated = state.bookingVehicle
+            .where((e) => e.id != vehicleBookingId)
+            .toList();
+        emit(
+          state.copyWith(
+            bookingVehicle: updated,
+            isDeleting: false,
+            deleteSuccess: true,
+            status: BaseStateStatus.success,
+            message: null,
+          ),
+        );
+        add(const BookingVehicleEvent.init());
+      },
+    );
   }
 
   Future<void> _onInit(Emitter<BookingVehicleState> emit) async {

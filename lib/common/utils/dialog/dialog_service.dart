@@ -574,6 +574,31 @@ class DialogService {
 
     return confirmed;
   }
+
+  static Future<void> showCancelBooking({
+    required BuildContext context,
+    VoidCallback? onConfirm,
+  }) {
+    return BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      description: 'Bạn có chắc chắn muốn huỷ đăng ký đặt xe?',
+
+      /// 🖼 Icon / Image huỷ
+      image: Image.asset(AppImages.logo_login, width: 40, height: 40),
+
+      /// Chỉ đóng dialog một lần — `context.pop` + `onBack` lần hai sẽ pop luôn route phía dưới.
+      topButtonFunc: () {
+        onBack(context);
+        onConfirm?.call();
+      },
+
+      /// ⚪ Nút thoát
+      bottomButtonFunc: () {
+        onBack(context);
+      },
+    );
+  }
+
   // static Future<dynamic> showRequestStoragePermissionDialog(
   //     BuildContext context,
   //     ) {

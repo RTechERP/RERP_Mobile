@@ -36,4 +36,8 @@ abstract class BookingVehicleRepo {
     required PlatformFile file,
     required String subPath,
   });
+
+  Future<Either<BaseError, void>> cancelBookingVehicle({
+    required int vehicleBookingId,
+  });
 }

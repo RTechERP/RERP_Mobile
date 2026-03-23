@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../data/datasource/models/booking_vehicle_model.dart';
+import '../bloc/booking_vehicle_bloc.dart';
 
 /// Card một dòng đặt xe: cột thông tin + badge trạng thái góc trên phải.
 class BookingVehicleCard extends StatelessWidget {
@@ -36,7 +40,7 @@ class BookingVehicleCard extends StatelessWidget {
         ? dateFormatter.format(item.createdDate!)
         : '-';
 
-    return Container(
+    final card = Container(
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
@@ -79,7 +83,53 @@ class BookingVehicleCard extends StatelessWidget {
         ),
       ),
     );
+
+    if (!_canShowCancelSlidable(item)) {
+      return card;
+    }
+
+    final bookingId = item.id!;
+
+    return Slidable(
+      key: ValueKey('booking_vehicle_$bookingId'),
+      endActionPane: ActionPane(
+        motion: const DrawerMotion(),
+        extentRatio: 0.28,
+        children: [
+          SlidableAction(
+            onPressed: (actionContext) async {
+              Slidable.of(actionContext)?.close();
+              if (!context.mounted) return;
+              await DialogService.showCancelBooking(
+                context: context,
+                onConfirm: () {
+                  if (!context.mounted) return;
+                  context.read<BookingVehicleBloc>().add(
+                        BookingVehicleEvent.cancelBookingVehicle(
+                          vehicleBookingId: bookingId,
+                        ),
+                      );
+                },
+              );
+            },
+            backgroundColor: AppColors.alert,
+            foregroundColor: Colors.white,
+            icon: Icons.cancel_outlined,
+            label: 'Huỷ',
+          ),
+        ],
+      ),
+      child: card,
+    );
   }
+}
+
+bool _canShowCancelSlidable(BookingVehicleItem item) {
+  final id = item.id;
+  if (id == null || id <= 0) return false;
+  if (item.isCancel == true) return false;
+  if (item.status == 3) return false;
+  return true;
 }
 
 class _InfoLine extends StatelessWidget {

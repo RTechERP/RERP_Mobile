@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
@@ -134,6 +136,22 @@ class BookingVehicleService extends DioBaseApiService {
     );
   }
 
+  /// `POST .../vehicle-booking-cancel` — body JSON primitive `vehicleBookingId` (ASP.NET `[FromBody] int`).
+  Future<BaseData<void>> cancelBookingVehicle({
+    required int vehicleBookingId,
+  }) async {
+    return post<BaseData<void>>(
+      ApiEndPoint.cancelBookingVehicle,
+      body: jsonEncode(vehicleBookingId),
+      options: Options(
+        contentType: Headers.jsonContentType,
+        headers: {Headers.contentTypeHeader: Headers.jsonContentType},
+      ),
+      parser: (json) =>
+          BaseData<void>.fromJson(json as Map<String, dynamic>, (_) => null),
+    );
+  }
+
   /// `POST .../upload-file?vehicleBookingId=` + multipart: [Key], [subPath], [file].
   Future<BaseData<void>> uploadBookingVehicleFile({
     required int vehicleBookingId,
@@ -151,16 +169,11 @@ class BookingVehicleService extends DioBaseApiService {
     }
 
     final formData = FormData.fromMap(<String, dynamic>{
-      'Key': BookingVehicleUploadForm.keyFieldValue,
+      'key': 'VehicleBookingFile',
       'subPath': subPath,
-      'file': part,
+      'files': part,
     });
 
-    debugPrint(
-      '[BookingVehicleService] upload-file → POST ${ApiEndPoint.uploadBookingVehicleFile} '
-      '?vehicleBookingId=$vehicleBookingId key=${BookingVehicleUploadForm.keyFieldValue} '
-      'subPath=$subPath file="${file.name}" size=${file.size}',
-    );
 
     final res = await post<BaseData<void>>(
       ApiEndPoint.uploadBookingVehicleFile,
@@ -168,10 +181,6 @@ class BookingVehicleService extends DioBaseApiService {
       body: formData,
       parser: (json) =>
           BaseData<void>.fromJson(json as Map<String, dynamic>, (_) => null),
-    );
-
-    debugPrint(
-      '[BookingVehicleService] upload-file ← status=${res.status} message=${res.message} msg=${res.msg}',
     );
 
     return res;

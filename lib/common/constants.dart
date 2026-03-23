@@ -182,6 +182,9 @@ class ApiEndPoint {
 
   static const String createBookingVehicle = '/vehiclebookingmanagement/create';
 
+  static const String cancelBookingVehicle =
+      '/vehiclebookingmanagement/vehicle-booking-cancel';
+
   static const String uploadBookingVehicleFile =
       '/vehiclebookingmanagement/upload-file';
 }

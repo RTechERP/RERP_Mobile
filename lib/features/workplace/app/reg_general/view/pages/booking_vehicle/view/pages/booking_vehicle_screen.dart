@@ -8,6 +8,7 @@ import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
+import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../bloc/booking_vehicle_bloc.dart';
 import '../widgets/booking_vehicle_card.dart';
@@ -40,7 +41,26 @@ class _BookingVehicleScreenState
   @override
   Widget renderUI(BuildContext context) {
     return BlocListener<BookingVehicleBloc, BookingVehicleState>(
-      listener: (context, state) {},
+      listenWhen: (prev, curr) =>
+          prev.deleteSuccess != curr.deleteSuccess ||
+          (curr.message != null &&
+              curr.message!.isNotEmpty &&
+              prev.message != curr.message &&
+              !curr.isDeleting),
+      listener: (context, state) {
+        if (state.deleteSuccess) {
+          showMessage(
+            context,
+            'Hủy đặt xe thành công',
+            type: SnackBarType.success,
+          );
+        }
+        if (state.message != null &&
+            state.message!.isNotEmpty &&
+            !state.isDeleting) {
+          showMessage(context, state.message!, type: SnackBarType.error);
+        }
+      },
       child: BaseScaffold(
         appBar: AppBarCommon(
           title: const Text('Đặt xe'),

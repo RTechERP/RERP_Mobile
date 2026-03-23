@@ -148,4 +148,28 @@ class BookingVehicleRepoImpl implements BookingVehicleRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, void>> cancelBookingVehicle({
+    required int vehicleBookingId,
+  }) async {
+    try {
+      final res = await _service.cancelBookingVehicle(
+        vehicleBookingId: vehicleBookingId,
+      );
+
+      if (res.status == 1) {
+        return right(null);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Hủy đặt xe thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }
