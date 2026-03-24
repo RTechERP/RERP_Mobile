@@ -33,9 +33,32 @@ class AppImages {
   static const report_hr_driver = 'assets/images/icons/apps/report/Driver.png';
   static const report_hr = 'assets/images/icons/apps/report/HR.png';
   static const report_hr_it = 'assets/images/icons/apps/report/IT.png';
-  static const report_marketing = 'assets/images/icons/apps/report/Marketing.png';
-  static const report_sale_admin = 'assets/images/icons/apps/report/Sale_Admin.png';
+  static const report_marketing =
+      'assets/images/icons/apps/report/Marketing.png';
+  static const report_sale_admin =
+      'assets/images/icons/apps/report/Sale_Admin.png';
   static const report_sale = 'assets/images/icons/apps/report/Sale.png';
   static const report_saler = 'assets/images/icons/apps/report/Saler.png';
   static const report_tech = 'assets/images/icons/apps/report/Tech.png';
+
+  static const reg_regneral_meeting =
+      'assets/images/icons/apps/reg_general/12.png';
+  static const reg_regneral_booking =
+      'assets/images/icons/apps/reg_general/13.png';
+
+  static const reg_general_purchase =
+      'assets/images/icons/apps/reg_general/14.png';
+  static const reg_general_special_purchase =
+      'assets/images/icons/apps/reg_general/14.png';
+  static const reg_general_work_request =
+      'assets/images/icons/apps/reg_general/15.png';
+  static const reg_general_idea = 'assets/images/icons/apps/reg_general/16.png';
+
+  static const reg_general_contract =
+      'assets/images/icons/apps/reg_general/17.png';
+  static const reg_general_stationery =
+      'assets/images/icons/apps/reg_general/18.png';
+  static const reg_general_work = 'assets/images/icons/apps/reg_general/19.png';
+  static const reg_general_personal_asset =
+      'assets/images/icons/apps/reg_general/20.png';
 }
