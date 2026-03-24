@@ -22,7 +22,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "vn.rtc.erp"
+        applicationId = "com.rtc.erp"
 
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
