@@ -333,7 +333,7 @@ class _BookingVehicleAddScreenState
               child: BaseScaffold(
                 appBar: AppBarCommon(
                   title: Text(
-                    _isEditMode ? 'Sửa báo cáo' : 'Tạo báo cáo',
+                    _isEditMode ? 'Sửa đặt xe' : 'Tạo đặt xe',
                   ),
                 ),
                 body: BlocBuilder<BookingVehicleBloc, BookingVehicleState>(

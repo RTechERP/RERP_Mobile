@@ -7,6 +7,28 @@ enum BookingVehicleValidationVariant {
 }
 
 class ValidateHelper {
+  static String? validateLunch({
+    required int? quantity,
+    required String? location,
+  }) {
+    if (quantity == null || quantity <= 0) {
+      return 'Số lượng phải lớn hơn 0';
+    }
+    if (location == null || location.trim().isEmpty) {
+      return 'Vui lòng chọn địa điểm';
+    }
+    return null;
+  }
+
+  static String? validateLunchQuantityField(String? value) {
+    final input = value?.trim() ?? '';
+    if (input.isEmpty) return 'Vui lòng nhập số lượng';
+    final quantity = int.tryParse(input);
+    if (quantity == null) return 'Số lượng phải là số nguyên';
+    if (quantity <= 0) return 'Số lượng phải lớn hơn 0';
+    return null;
+  }
+
   static String? validateReport<T>({
     required DateTime? date,
     required int projectId,

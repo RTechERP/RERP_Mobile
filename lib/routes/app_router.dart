@@ -10,8 +10,8 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/reg_genera
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_detail_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_screen.dart';
-import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/lunch_add_screen.dart';
-import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/lunch_detail_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/view/pages/lunch_add_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/view/pages/lunch_detail_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/reg_work_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/work_trip/work_trip_detail_screen.dart';
 import 'package:rtc_erp/routes/route_names.dart';
@@ -31,7 +31,8 @@ import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/lunch/lunch_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/lunch/view/bloc/lunch_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/lunch/view/pages/lunch_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/missed_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/missed_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/missed_screen.dart';
@@ -130,19 +131,26 @@ class AppRouter {
         builder: (context, state) => const RegWorkScreen(),
       ),
 
-      GoRoute(
-        path: '/regwork/lunch',
-        builder: (context, state) => const LunchScreen(),
-      ),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<LunchBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: '/regwork/lunch',
+            builder: (context, state) => const LunchScreen(),
+          ),
 
-      GoRoute(
-        path: '/regwork/lunch/detail',
-        builder: (context, state) => const LunchDetailScreen(),
-      ),
+          GoRoute(
+            path: '/regwork/lunch/detail',
+            builder: (context, state) => const LunchDetailScreen(),
+          ),
 
-      GoRoute(
-        path: '/regwork/lunch/add',
-        builder: (context, state) => const LunchAddScreen(),
+          GoRoute(
+            path: RouteNames.lunchAdd,
+            builder: (context, state) => const LunchAddScreen(),
+          ),
+        ],
       ),
 
       GoRoute(

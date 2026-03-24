@@ -142,5 +142,9 @@ class RouteNames {
 
   static const bookingVehicleEdit = '/reg_general/booking_vehicle/Edit';
 
-
+  // Reg work
+  static const lunch = '/reg_work/lunch';
+  static const lunchAdd = '/reg_work/lunch/add';
+  static const lunchEdit = '/reg_work/lunch/edit';
+  static const lunchDetail = '/reg_work/lunch/detail';
 }

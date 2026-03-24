@@ -187,6 +187,9 @@ class ApiEndPoint {
 
   static const String uploadBookingVehicleFile =
       '/vehiclebookingmanagement/upload-file';
+
+  static const String getLunch = '/EmployeeFoodOrder';
+  static const String saveLunch = '/EmployeeFoodOrder/save-data';
 }
 
 /// Field [Key] multipart upload-file đặt xe; [subPath] do [bookingVehicleUploadSubPath] build.

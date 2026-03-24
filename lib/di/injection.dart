@@ -18,6 +18,10 @@ import '../features/workplace/app/reg_general/view/pages/meeting_room/data/datas
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/lunch/data/datasource/service/lunch_service.dart';
+import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/lunch/view/bloc/lunch_bloc.dart';
 import '../features/workplace/app/reports/data/datasource/service/report_service.dart';
 import '../features/workplace/app/reports/data/repository/report_repo.dart';
 import '../features/workplace/app/reports/data/repository/report_repo_impl.dart';
@@ -57,9 +61,15 @@ void configureDependencies(AppEnv env) {
 
   getIt.registerLazySingleton<ReportService>(() => ReportService(getIt<Dio>()));
 
-  getIt.registerLazySingleton<MeetingRoomService>(() => MeetingRoomService(getIt<Dio>()));
+  getIt.registerLazySingleton<MeetingRoomService>(
+    () => MeetingRoomService(getIt<Dio>()),
+  );
 
-  getIt.registerLazySingleton<BookingVehicleService>(() => BookingVehicleService(getIt<Dio>()));
+  getIt.registerLazySingleton<BookingVehicleService>(
+    () => BookingVehicleService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<LunchService>(() => LunchService(getIt<Dio>()));
 
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
@@ -78,6 +88,9 @@ void configureDependencies(AppEnv env) {
     () => BookingVehicleRepoImpl(getIt<BookingVehicleService>()),
   );
 
+  getIt.registerLazySingleton<LunchRepo>(
+    () => LunchRepoImpl(getIt<LunchService>()),
+  );
 
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
@@ -122,6 +135,10 @@ void configureDependencies(AppEnv env) {
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),
+  );
+
+  getIt.registerFactory<LunchBloc>(
+    () => LunchBloc(getIt<LunchRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
   // ===== THEO ENV =====
   switch (env) {
