@@ -30,7 +30,6 @@ class AppInfoConstants {
   static String get termsOfService => _appInfo.termsOfService;
 
   static String get privacyPolicy => _appInfo.privacyPolicy;
-
 }
 
 class NotificationConfig {
@@ -61,17 +60,16 @@ class BlocMessages {
   static const loginSuccess = 'loginSuccess';
 }
 
-
-
 class FireBaseLog {
   static const String loginPage = 'login_page';
 }
 
-class ApiEndPoint{
+class ApiEndPoint {
   static const String login = '/home/login';
 
   static const String currentUser = '/home/current-user';
-  static const String getDailyReportTech = '/DailyReportTech/get-daily-report-tech';
+  static const String getDailyReportTech =
+      '/DailyReportTech/get-daily-report-tech';
 
   static const String getDepart = '/Department/get-all';
 
@@ -109,4 +107,91 @@ class ApiEndPoint{
   static const String getFilmDetail = '/DailyReportHr/get-film-detail';
 
   static const String getLXCPById = '/DailyReportHr/get-data-by-id';
+
+  static const String getSaleById = '/DailyReportSale/get-by-id';
+
+  static const String getSaleProject = '/DailyReportSale/get-projects';
+
+  static const String getTeamSale = '/DailyReportSale/get-employee-team-sale';
+
+  static const String getCustomerPart = '/DailyReportSale/get-customerpart';
+
+  static const String getTypeTeamSale = '/DailyReportSale/get-mainindex';
+
+  static const String getCustomer = '/DailyReportSale/get-customers';
+
+  static const String getFirmBase = '/DailyReportSale/get-firmbase';
+
+  static const String getTypeProject = '/DailyReportSale/get-projecttypebase';
+
+  static const String getStatusProject = '/DailyReportSale/get-projectstatus';
+  static const String getCustomerContact =
+      '/DailyReportSale/get-customercontact';
+
+  static const String deleteSaleReport = '/DailyReportSale/delete';
+
+  static const String deleteSaleAdminReport = '/DailyReportSaleAdmin/delete';
+
+  static const String saveSaleStaffReport = '/DailyReportSale/save-data';
+
+  static const String getSaleDailyReport = '/DailyReportSale/get-data';
+
+  static const String getAllUser = '/DailyReportSaleAdmin/get-user';
+
+  static const String saveSaleAdminReport = '/DailyReportSaleAdmin/save-data';
+
+  static const String getAdminTypeReport =
+      '/DailyReportSaleAdmin/get-reporttypes';
+
+  static const String getAdminProject = '/DailyReportSaleAdmin/get-projects';
+
+  static const String getAdminCustomer = '/DailyReportSaleAdmin/get-customers';
+
+  static const String getAdminReport = '/DailyReportSaleAdmin/load-data';
+
+  static const String getSaleAdminById = '/DailyReportSaleAdmin/get-details';
+
+  static const String getMeetingRoom = '/bookingroom/get-booking-room';
+
+  static const String saveMeetingRoom = '/BookingRoom/save-data';
+
+  static const String getDetailMeetingRoom = '/bookingroom/get-by-id';
+
+  static const String getUserMeetingRoom = '/Employee';
+
+  static const String getBookingVehicle =
+      '/vehiclebookingmanagement/get-vehicle-booking-management';
+
+  static const String getProvinceArrives =
+      '/vehiclebookingmanagement/get-province-arrives';
+
+  static const String getProvinceDeparture =
+      '/vehiclebookingmanagement/get-province-departure';
+
+  static const String getBookingVehicleProject =
+      '/vehiclebookingmanagement/get-projects';
+
+  static const String getBookingVehicleApprover =
+      '/vehiclebookingmanagement/get-approved-list';
+
+  static const String getBookingVehicleEmployee =
+      '/vehiclebookingmanagement/get-employees';
+
+  static const String getBookingVehicleEmployeeById =
+      '/vehiclebookingmanagement/get-employee-by-id';
+
+  static const String createBookingVehicle = '/vehiclebookingmanagement/create';
+
+  static const String cancelBookingVehicle =
+      '/vehiclebookingmanagement/vehicle-booking-cancel';
+
+  static const String uploadBookingVehicleFile =
+      '/vehiclebookingmanagement/upload-file';
+}
+
+/// Field [Key] multipart upload-file đặt xe; [subPath] do [bookingVehicleUploadSubPath] build.
+abstract final class BookingVehicleUploadForm {
+  BookingVehicleUploadForm._();
+
+  static const String keyFieldValue = 'VehicleBookingFile';
 }

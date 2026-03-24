@@ -1,0 +1,43 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "rtc_erp (dev)",
+            "request": "launch",
+            "type": "dart",
+            "toolArgs": [
+                "--flavor",
+                "dev"
+            ]
+        },
+        {
+            "name": "rtc_erp (live)",
+            "request": "launch",
+            "type": "dart",
+            "toolArgs": [
+                "--flavor",
+                "live"
+            ]
+        },
+        {
+            "name": "rtc_erp (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "toolArgs": [
+                "--flavor",
+                "dev"
+            ]
+        },
+        {
+            "name": "rtc_erp (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "toolArgs": [
+                "--flavor",
+                "dev"
+            ]
+        }
+    ]
+}

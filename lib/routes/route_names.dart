@@ -70,18 +70,22 @@ class RouteNames {
   static const reportITdepartEdit = '/report/tech/edit';
 
   ///***Sale Department***///
+  static const reportSaledepart = '/report/sale';
+
   static const reportSaleAdd = '/report/sale/add';
   ///**** Admin Sale ****///
-  static const reportSaleAdmin = '/report/sale_admin';
   static const reportSaledAdminDetail = '/report/sale_admin/detail';
 
   static const reportSaleAdminAdd = '/report/sale_admin/add';
 
+  static const reportSaleAdminEdit = '/report/sale_admin/edit';
+
   ///**** Sale Staff ****///
-  static const reportSaleStaff = '/report/sale_staff';
   static const reportSaleStaffDetail = '/report/sale_staff/detail';
 
   static const reportSaleStaffAdd = '/report/sale_staff/add';
+
+  static const reportSaleStaffEdit = '/report/sale_staff/edit';
 
 
   ///*** Marketing Department ***///
@@ -110,12 +114,33 @@ class RouteNames {
   static const reportAGVdepartDetail = '/report/agv/detail';
   static const reportAGVdepartAdd = '/report/agv/add';
 
+  static const reportAGVdepartEdit = '/report/agv/edit';
+
   ///*** Assembly - Deployment Department ***///
   static const reportADdepart = '/report/ad';
   static const reportADdepartDetail = '/report/ad/detail';
   static const reportADdepartAdd = '/report/ad/add';
 
+  static const reportADdepartEdit = '/report/ad/edit';
+
 
   // Favorites
   static const favorites = '/favorites';
+
+
+  // Reg General
+  static const meetingRoom = '/reg_general/meeting_room';
+  static const meetingRoomAdd = '/reg_general/meeting_room/add';
+
+  static const meetingRoomEdit = '/reg_general/meeting_room/edit';
+
+  static const bookingVehicle = '/reg_general/booking_vehicle';
+
+  static const bookingVehicleAdd = '/reg_general/booking_vehicle/add';
+
+  static const bookingVehicleDetail = '/reg_general/booking_vehicle/detail';
+
+  static const bookingVehicleEdit = '/reg_general/booking_vehicle/Edit';
+
+
 }

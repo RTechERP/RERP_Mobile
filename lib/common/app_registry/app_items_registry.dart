@@ -106,7 +106,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.meeting_room_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/meeting-room',
+      route: RouteNames.meetingRoom,
+      imageUrl: AppImages.reg_regneral_meeting,
     ),
 
     AppItemModel(
@@ -115,7 +116,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.directions_car_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/booking-car',
+      route: RouteNames.bookingVehicle,
+      imageUrl: AppImages.reg_regneral_booking,
     ),
 
     AppItemModel(
@@ -125,6 +127,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
       route: '/reg-general/purchase',
+      imageUrl: AppImages.reg_general_purchase,
     ),
 
     AppItemModel(
@@ -134,6 +137,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
       route: '/reg-general/special-purchase',
+      imageUrl: AppImages.reg_general_special_purchase,
     ),
 
     AppItemModel(
@@ -143,6 +147,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
       route: '/reg-general/work-request',
+      imageUrl: AppImages.reg_general_work_request,
     ),
 
     AppItemModel(
@@ -152,6 +157,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
       route: '/reg-general/idea',
+      imageUrl: AppImages.reg_general_idea,
     ),
 
     AppItemModel(
@@ -161,6 +167,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
       route: '/reg-general/contract',
+      imageUrl: AppImages.reg_general_contract,
     ),
 
     AppItemModel(
@@ -170,6 +177,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
       route: '/reg-general/stationery',
+      imageUrl: AppImages.reg_general_stationery,
     ),
 
     AppItemModel(
@@ -179,6 +187,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
       route: '/reg-general/work-category',
+      imageUrl: AppImages.reg_general_work,
     ),
 
     AppItemModel(
@@ -188,6 +197,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
       route: '/reg-general/personal-asset',
+      imageUrl: AppImages.reg_general_personal_asset,
     ),
 
     AppItemModel(
@@ -257,7 +267,8 @@ class AppItemRegistry {
     ),
   ];
 
-  static final List<AppItemModel> generalforms = [];
+  static final List<AppItemModel> generalforms = [
+  ];
 
   static final List<AppItemModel> reports = [
     /// ================= REPORT =================

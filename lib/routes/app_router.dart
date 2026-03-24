@@ -1,6 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_add_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/reg_general_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_detail_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_screen.dart';
@@ -16,6 +22,12 @@ import '../di/injection.dart';
 import '../features/auth/view/bloc/auth_bloc.dart';
 import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_edit_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_edit_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/in_out_screen.dart';
@@ -33,11 +45,15 @@ import '../features/workplace/app/reg_work/view/pages/wfh/wfh_detail_screen.dart
 import '../features/workplace/app/reg_work/view/pages/wfh/wfh_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/work_trip/work_trip_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/work_trip/work_trip_screen.dart';
+import '../features/workplace/app/reports/view/ad/view/bloc/ad_bloc.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_add_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_detail_screen.dart';
+import '../features/workplace/app/reports/view/ad/view/pages/ad_edit_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_screen.dart';
+import '../features/workplace/app/reports/view/agv/view/bloc/agv_bloc.dart';
 import '../features/workplace/app/reports/view/agv/view/pages/agv_add_screen.dart';
 import '../features/workplace/app/reports/view/agv/view/pages/agv_detail_screen.dart';
+import '../features/workplace/app/reports/view/agv/view/pages/agv_edit_screen.dart';
 import '../features/workplace/app/reports/view/agv/view/pages/agv_screen.dart';
 import '../features/workplace/app/reports/view/hr/view/bloc/hr_bloc.dart';
 import '../features/workplace/app/reports/view/hr/view/pages/hr_add_screen.dart';
@@ -53,12 +69,15 @@ import '../features/workplace/app/reports/view/marketing/view/pages/marketing_de
 import '../features/workplace/app/reports/view/marketing/view/pages/marketing_edit_screen.dart';
 import '../features/workplace/app/reports/view/marketing/view/pages/marketing_screen.dart';
 import '../features/workplace/app/reports/view/report_screen.dart';
-import '../features/workplace/app/reports/view/sale/view/sale_admin_add_screen.dart';
-import '../features/workplace/app/reports/view/sale/view/sale_admin_detail_screen.dart';
-import '../features/workplace/app/reports/view/sale/view/sale_admin_screen.dart';
-import '../features/workplace/app/reports/view/sale/view/sale_staff_add_screen.dart';
-import '../features/workplace/app/reports/view/sale/view/sale_staff_detail_screen.dart';
-import '../features/workplace/app/reports/view/sale/view/sale_staff_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/bloc/sale_bloc.dart';
+import '../features/workplace/app/reports/view/sale/view/pages/sale_admin_add_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/pages/sale_admin_detail_screen.dart';
+
+import '../features/workplace/app/reports/view/sale/view/pages/sale_admin_edit_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/pages/sale_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/pages/sale_staff_add_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/pages/sale_staff_detail_screen.dart';
+import '../features/workplace/app/reports/view/sale/view/pages/sale_staff_edit_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
@@ -267,10 +286,7 @@ class AppRouter {
       /// Hr Route
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(
-            value:getIt<HrBloc>(),
-            child: child,
-          );
+          return BlocProvider.value(value: getIt<HrBloc>(), child: child);
         },
         routes: [
           GoRoute(
@@ -356,71 +372,236 @@ class AppRouter {
       ),
 
       /// Assembly - Project Implementation Route
-      GoRoute(
-        path: RouteNames.reportADdepart,
-        builder: (context, state) => const AdScreen(),
-      ),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<AdBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.reportADdepart,
+            builder: (context, state) => const AdScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportADdepartAdd,
-        builder: (context, state) => const AdAddScreen(),
-      ),
+          GoRoute(
+            path: RouteNames.reportADdepartAdd,
+            builder: (context, state) => const AdAddScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportADdepartDetail,
-        builder: (context, state) => const AdDetailScreen(),
+          GoRoute(
+            path: RouteNames.reportADdepartDetail,
+            builder: (context, state) => const AdDetailScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.reportADdepartEdit,
+            builder: (context, state) {
+              final dailyId = state.extra as int;
+              return AdEditScreen(dailyId: dailyId);
+            },
+          ),
+        ],
       ),
 
       /// AGV Route
-      GoRoute(
-        path: RouteNames.reportAGVdepart,
-        builder: (context, state) => const AgvScreen(),
-      ),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<AgvBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.reportAGVdepart,
+            builder: (context, state) => const AgvScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportAGVdepartAdd,
-        builder: (context, state) => const AgvAddScreen(),
-      ),
+          GoRoute(
+            path: RouteNames.reportAGVdepartAdd,
+            builder: (context, state) => const AgvAddScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportAGVdepartDetail,
-        builder: (context, state) => const AgvDetailScreen(),
+          GoRoute(
+            path: RouteNames.reportAGVdepartDetail,
+            builder: (context, state) => const AgvDetailScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.reportAGVdepartEdit,
+            builder: (context, state) {
+              final dailyId = state.extra as int;
+              return AgvEditScreen(dailyId: dailyId);
+            },
+          ),
+        ],
       ),
 
       /// Sale Route
-      GoRoute(
-        path: RouteNames.reportSaleAdmin,
-        builder: (context, state) => const SaleAdminScreen(),
-      ),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<SaleBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.reportSaledepart,
+            builder: (context, state) => const SaleScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportSaleStaff,
-        builder: (context, state) => const SaleStaffScreen(),
-      ),
+          GoRoute(
+            path: RouteNames.reportSaleStaffAdd,
+            builder: (context, state) => const SaleStaffAddScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportSaleStaffAdd,
-        builder: (context, state) => const SaleStaffAddScreen(),
-      ),
+          GoRoute(
+            path: RouteNames.reportSaleAdminAdd,
+            builder: (context, state) => const SaleAdminAddScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportSaleAdminAdd,
-        builder: (context, state) => const SaleAdminAddScreen(),
-      ),
+          GoRoute(
+            path: RouteNames.reportSaleStaffDetail,
+            builder: (context, state) => const SaleStaffDetailScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportSaleStaffDetail,
-        builder: (context, state) => const SaleStaffDetailScreen(),
-      ),
+          GoRoute(
+            path: RouteNames.reportSaledAdminDetail,
+            builder: (context, state) => const SaleAdminDetailScreen(),
+          ),
 
-      GoRoute(
-        path: RouteNames.reportSaledAdminDetail,
-        builder: (context, state) => const SaleAdminDetailScreen(),
+          GoRoute(
+            path: RouteNames.reportSaleStaffEdit,
+            builder: (context, state) {
+              final dailyId = state.extra as int;
+              return SaleStaffEditScreen(dailyId: dailyId);
+            },
+          ),
+
+          GoRoute(
+            path: RouteNames.reportSaleAdminEdit,
+            builder: (context, state) {
+              final dailyId = state.extra as int;
+              return SaleAdminEditScreen(dailyId: dailyId);
+            },
+          ),
+        ],
       ),
 
       GoRoute(
         path: '/favorites',
         builder: (context, state) => const FavoritesAddingScreen(),
+      ),
+
+      GoRoute(
+        path: RouteNames.reggeneral,
+        builder: (context, state) => const RegGeneralScreen(),
+      ),
+
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<MeetingRoomBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.meetingRoom,
+            builder: (context, state) => const MeetingRoomScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.meetingRoomAdd,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final startTime = extra['startTime'] as DateTime?;
+
+              return MeetingRoomAddScreen(startTime: startTime ?? DateTime.now());},
+          ),
+          GoRoute(
+            path: RouteNames.meetingRoomEdit,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final roomId = extra['roomId'] as int;
+              final startTime = extra['startTime'] as DateTime?;
+              final endTime = extra['endTime'] as DateTime?;
+
+              final safeStart = startTime ?? DateTime.now();
+              final safeEnd = endTime ?? safeStart.add(const Duration(hours: 2));
+
+              return MeetingRoomEditScreen(
+                roomId: roomId,
+                startTime: safeStart,
+                endTime: safeEnd,
+              );
+            },
+          ),
+        ],
+      ),
+
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<BookingVehicleBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.bookingVehicle,
+            builder: (context, state) => const BookingVehicleScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.bookingVehicleAdd,
+            builder: (context, state) => const BookingVehicleAddScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.bookingVehicleEdit,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is BookingVehicleItem) {
+                return BookingVehicleEditScreen(item: extra);
+              }
+              return Scaffold(
+                appBar: AppBar(title: const Text('Sửa đặt xe')),
+                body: const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(24),
+                    child: Text(
+                      'Không có dữ liệu. Vui lòng mở từ chi tiết yêu cầu.',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+          GoRoute(
+            path: RouteNames.bookingVehicleDetail,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is BookingVehicleItem) {
+                return BookingVehicleDetailScreen(item: extra);
+              }
+              return Scaffold(
+                appBar: AppBar(title: const Text('Chi tiết yêu cầu')),
+                body: const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(24),
+                    child: Text(
+                      'Không có dữ liệu yêu cầu. Vui lòng mở từ danh sách đặt xe.',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+          // GoRoute(
+          //   path: RouteNames.meetingRoomEdit,
+          //   builder: (context, state) {
+          //     final extra = state.extra as Map<String, dynamic>;
+          //     final roomId = extra['roomId'] as int;
+          //     final startTime = extra['startTime'] as DateTime?;
+          //     final endTime = extra['endTime'] as DateTime?;
+          //
+          //     final safeStart = startTime ?? DateTime.now();
+          //     final safeEnd = endTime ?? safeStart.add(const Duration(hours: 2));
+          //
+          //     return MeetingRoomEditScreen(
+          //       roomId: roomId,
+          //       startTime: safeStart,
+          //       endTime: safeEnd,
+          //     );
+          //   },
+          // ),
+        ],
       ),
     ],
   );

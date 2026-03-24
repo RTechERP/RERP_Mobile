@@ -16,6 +16,8 @@ class FormDateTimePicker extends StatelessWidget {
   final bool enabled;
 
   final DateTime? initialValue;
+  final DateTime? firstDate;
+  final DateTime? lastDate;
   final ValueChanged<DateTime?>? onChanged;
   final ValueChanged<DateTime?>? onSaved;
   final FormFieldValidator<DateTime?>? validator;
@@ -30,6 +32,8 @@ class FormDateTimePicker extends StatelessWidget {
     required this.format,
     this.enabled = true,
     this.initialValue,
+    this.firstDate,
+    this.lastDate,
     this.onChanged,
     this.onSaved,
     this.validator,
@@ -50,6 +54,8 @@ class FormDateTimePicker extends StatelessWidget {
           format: format,
           enabled: enabled,
           initialValue: initialValue,
+          firstDate: firstDate,
+          lastDate: lastDate,
           autovalidateMode: AutovalidateMode.onUserInteraction,
 
           onChanged: (v) {

@@ -348,7 +348,7 @@ class ReportRepoImpl implements ReportRepo {
   }
 
   @override
-  Future<Either<BaseError, List<FilmDetailResponse>>> getFilmDetail()async {
+  Future<Either<BaseError, List<FilmDetailResponse>>> getFilmDetail() async {
     try {
       final res = await _service.getFilmDetail();
       return right(res.data ?? []);
@@ -358,7 +358,9 @@ class ReportRepoImpl implements ReportRepo {
   }
 
   @override
-  Future<Either<BaseError, DetailLXCPReportResponse>> getLXCPById({required int dailyID}) async {
+  Future<Either<BaseError, DetailLXCPReportResponse>> getLXCPById({
+    required int dailyID,
+  }) async {
     try {
       final res = await _service.getLXCPById(dailyID: dailyID);
       return right(res.data!); // DetailReportResponse
@@ -367,4 +369,336 @@ class ReportRepoImpl implements ReportRepo {
     }
   }
 
+  @override
+  Future<Either<BaseError, void>> saveReportAgvAd({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    try {
+      final res = await _service.saveReportAgvAd(payload: payload);
+      if (res.status == 1) {
+        return right(res.message ?? 'Lưu dữ liệu thành công');
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Lưu dữ liệu thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Either<BaseError, String>> deleteSaleReport({
+    required int dailyID,
+  }) async {
+    try {
+      final res = await _service.deleteSaleReportById(dailyID: dailyID);
+
+      if (res.status == 1) {
+        return right(res.message ?? 'Xoá thành công');
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Xoá dữ liệu thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<CustomerResponse>>> getCustomer() async {
+    try {
+      final res = await _service.getCustomer();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<CustomerContactResponse>>> getCustomerContact({
+    required int customerId,
+  }) async {
+    try {
+      final res = await _service.getCustomerContact(customerId: customerId);
+
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<CustomerPartResponse>>> getCustomerPart({
+    required int customerId,
+  }) async {
+    try {
+      final res = await _service.getCustomerPart(customerId: customerId);
+
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<FirmBaseResponse>>> getFirmBase() async {
+    try {
+      final res = await _service.getFirmBase();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, DetailSaleReportResponse>> getSaleById({
+    required int dailyID,
+  }) async {
+    try {
+      final res = await _service.getSaleById(dailyID: dailyID);
+
+      return right(res.data!);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<SaleProjectResponse>>> getSaleProject() async {
+    try {
+      final res = await _service.getSaleProject();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<TeamSaleResponse>>> getTeamSale() async {
+    try {
+      final res = await _service.getTeamSale();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<TypeProjectResponse>>> getTypeProject() async {
+    try {
+      final res = await _service.getTypeProject();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<TypeTeamSaleResponse>>>
+  getTypeTeamSale() async {
+    try {
+      final res = await _service.getTypeTeamSale();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, void>> saveReportSaleStaff({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    try {
+      final res = await _service.saveReportSaleStaff(payload: payload);
+      if (res.status == 1) {
+        return right(res.message ?? 'Lưu dữ liệu thành công');
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Lưu dữ liệu thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Either<BaseError, SaleReportResponse>> getSaleDailyReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required int userId,
+    required int employeeTeamSaleId,
+    int page = 1,
+    int size = 10,
+    String filterText = '',
+    int customerId = 0,
+    int groupType = -1,
+    int projectId = 0,
+  }) async {
+    try {
+      final res = await _service.getSaleDailyReport(
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        userId: userId,
+        employeeTeamSaleId: employeeTeamSaleId,
+        page: page,
+        size: size,
+        filterText: filterText,
+        customerId: customerId,
+        groupType: groupType,
+        projectId: projectId,
+      );
+
+      return Right(res.data!);
+    } on DioException catch (e) {
+      return Left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<StatusProjectResponse>>>
+  getStatusProject() async {
+    try {
+      final res = await _service.getStatusProject();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<UserResponse>>> getAllUser() async {
+    try {
+      final res = await _service.getAllUser();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, void>> saveReportSaleAdmin({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.saveReportSaleAdmin(payload: payload);
+
+      if (res.status == 1) {
+        return right(null);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Lưu dữ liệu thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<SaleAdminTypeReportResponse>>>
+  getAdminTypeReport() async {
+    try {
+      final res = await _service.getAdminTypeReport();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<SaleAdminCustomerResponse>>>
+  getAdminCustomer() async {
+    try {
+      final res = await _service.getAdminCustomer();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<SaleAdminProjectResponse>>>
+  getAdminProject() async {
+    try {
+      final res = await _service.getAdminProject();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<SaleAdminResponse>>> getSaleAdminDailyReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    int? customerId,
+    int? userId,
+    String? keyword,
+  }) async {
+    try {
+      final res = await _service.getSaleAdminDailyReport(
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        customerId: customerId,
+        userId: userId,
+        keyword: keyword,
+      );
+
+      return Right(res.data ?? []);
+    } on DioException catch (e) {
+      return Left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, DetailSaleAdminReportResponse>> getSaleAdminById({
+    required int dailyID,
+  }) async {
+    try {
+      final res = await _service.getSaleAdminById(dailyID: dailyID);
+
+      final list = res.data ?? [];
+
+      if (list.isEmpty) {
+        return left(
+        BaseError.httpInternalServerError('Không tìm thấy báo cáo'));
+      }
+
+      return right(list.first);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, String>> deleteSaleAdminReport({
+    required int dailyID,
+  }) async {
+    try {
+      final res = await _service.deleteSaleAdminReportById(dailyID: dailyID);
+
+      if (res.status == 1) {
+        return right(res.message ?? 'Xoá thành công');
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Xoá dữ liệu thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

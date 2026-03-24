@@ -3,24 +3,27 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import 'form_input_decoration.dart';
 
-class FormInputField extends StatelessWidget {
+class FormInputField extends StatefulWidget {
   final String nameForm;
   final String nameTextField;
 
   final String label;
   final IconData icon;
+
   final TextInputType? keyboardType;
   final FocusNode? focusNode;
+
   final bool obscureText;
   final TextInputAction textInputAction;
+
   final FormFieldValidator<String>? validator;
   final ValueChanged<String?>? onSubmitted;
 
   final int? maxLines;
 
   final bool enabled;
-
   final bool readOnly;
+
   final VoidCallback? onTap;
 
   final TextEditingController? controller;
@@ -28,6 +31,8 @@ class FormInputField extends StatelessWidget {
   final String? initialValue;
 
   final ValueChanged<String?>? onChanged;
+
+  final ValueChanged<FormFieldState<String>>? onFieldCreated;
 
   const FormInputField({
     super.key,
@@ -47,53 +52,82 @@ class FormInputField extends StatelessWidget {
     this.onTap,
     this.controller,
     this.initialValue,
-    this.onChanged
+    this.onChanged,
+    this.onFieldCreated,
   });
+
+  @override
+  State<FormInputField> createState() => _FormInputFieldState();
+}
+
+class _FormInputFieldState extends State<FormInputField> {
+  TextEditingController? _internalController;
+
+  TextEditingController get _effectiveController {
+    return widget.controller ?? (_internalController ??= TextEditingController());
+  }
+
+  @override
+  void dispose() {
+    if (widget.controller == null) {
+      _internalController?.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return FormBuilderField<String>(
-      onChanged: onChanged,
-      initialValue: initialValue,
-      validator: validator,
+      name: widget.nameForm,
+      initialValue: widget.initialValue,
+      validator: widget.validator,
+      enabled: widget.enabled,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      name: nameForm,
-      enabled: enabled,
       builder: (field) {
-        final value = field.value?.trim() ?? '';
-        final hasValue = value.isNotEmpty;
+        widget.onFieldCreated?.call(field);
 
-        /// 🔑 mấu chốt UX
-        final showError =
-            field.hasError && !hasValue;
+        // Không trim khi đồng bộ controller — trim làm mất space đang gõ (kéo ngược con trỏ).
+        final rawValue = field.value ?? '';
+        final hasValue = rawValue.trim().isNotEmpty;
 
-        final effectiveMaxLines =
-        obscureText ? 1 : (maxLines ?? 1);
+        final showError = field.hasError && !hasValue;
+        final effectiveMaxLines = widget.obscureText ? 1 : (widget.maxLines ?? 1);
 
+        final controller = _effectiveController;
+
+        /// sync value -> controller (bottomsheet / initialValue)
+        if (controller.text != rawValue) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted) return;
+            controller.text = rawValue;
+          });
+        }
 
         return FormBuilderTextField(
-          validator: validator,
-          readOnly: readOnly,
-          onTap: onTap,
-          enabled: enabled,
-          name: nameTextField,
-          focusNode: focusNode,
-          obscureText: obscureText,
-          keyboardType: keyboardType,
-          textInputAction: textInputAction,
+          name: widget.nameTextField,
+          controller: controller,
+          readOnly: widget.readOnly,
+          onTap: widget.onTap,
+          enabled: widget.enabled,
+          focusNode: widget.focusNode,
+          obscureText: widget.obscureText,
+          keyboardType: widget.keyboardType,
+          textInputAction: widget.textInputAction,
+          validator: widget.validator,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          onSubmitted: onSubmitted,
-          onChanged: field.didChange,
+          onSubmitted: widget.onSubmitted,
           maxLines: effectiveMaxLines,
           decoration: formInputDecoration(
             context,
-            label: label,
-            icon: icon,
+            label: widget.label,
+            icon: widget.icon,
             hasError: showError,
             errorText: field.errorText,
           ),
-          controller: controller,
-
+          onChanged: (v) {
+            field.didChange(v);
+            widget.onChanged?.call(v);
+          },
         );
       },
     );
