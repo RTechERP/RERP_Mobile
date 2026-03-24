@@ -114,6 +114,9 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now();
+    final startOfToday = DateTime(now.year, now.month, now.day);
+
     return FormCard(
       child: Column(
         children: [
@@ -180,6 +183,7 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
             label: 'Thời gian đón',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
+            firstDate: startOfToday,
           ),
           const SizedBox(height: 8),
 

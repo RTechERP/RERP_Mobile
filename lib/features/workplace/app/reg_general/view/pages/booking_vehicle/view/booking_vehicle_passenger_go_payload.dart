@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../common/helpers/validate_helper.dart';
@@ -5,6 +7,18 @@ import '../data/datasource/models/booking_vehicle_model.dart';
 import 'booking_vehicle_api_categories.dart';
 
 const String _otherPointLabel = 'Khác';
+
+/// Gắn vào map form trước khi submit (màn add): khi sửa, set = `CreatedDate` gốc để quy tắc phát sinh khớp BE.
+const String kBookingVehicleProblemRuleRegistrationKey =
+    '_booking_vehicle_problem_rule_registration';
+
+DateTime bookingVehicleProblemRuleRegistrationReference(
+  Map<String, dynamic> form,
+) {
+  final raw = form[kBookingVehicleProblemRuleRegistrationKey];
+  if (raw is DateTime) return raw;
+  return DateTime.now();
+}
 
 /// Cờ create: không phát sinh → [IsProblemArises]=false; phát sinh → true; còn lại false.
 Map<String, dynamic> _bookingVehicleCreateStatusFlags(bool hasProblem) {
@@ -60,10 +74,82 @@ int _payloadBookingId(int? existingBookingId, int lineIndex) {
   return lineIndex == 0 ? existingBookingId : 0;
 }
 
-int _vehicleTypeFromLabel(String? label) {
-  final s = (label ?? '').toLowerCase();
+int bookingVehicleVehicleTypeFromForm(dynamic typeTransport) {
+  final s = (typeTransport?.toString() ?? '').toLowerCase();
   if (s.contains('máy bay')) return 2;
+  if (s.trim().isEmpty) return 0;
   return 1;
+}
+
+int _bookingVehicleMaxIndexFromFormKeys(
+  Map<String, dynamic> form,
+  List<RegExp> patterns,
+) {
+  var maxIdx = -1;
+  for (final key in form.keys) {
+    final k = key.toString();
+    for (final re in patterns) {
+      final m = re.firstMatch(k);
+      if (m != null) {
+        final i = int.tryParse(m.group(1)!);
+        if (i != null && i > maxIdx) maxIdx = i;
+      }
+    }
+  }
+  return maxIdx;
+}
+
+/// Số dòng người đi/về suy ra từ key form (khi [BookingVehicleBloc] singleton còn `passengerGoLineCount` = 0).
+int bookingVehicleInferPassengerLineCount(Map<String, dynamic> form) {
+  final m = _bookingVehicleMaxIndexFromFormKeys(form, [
+    RegExp(r'^passenger_code_(\d+)$'),
+    RegExp(r'^passenger_full_name_(\d+)$'),
+    RegExp(r'^passenger_contact_phone_(\d+)$'),
+    RegExp(r'^passenger_employee_(\d+)$'),
+  ]);
+  return m < 0 ? 0 : m + 1;
+}
+
+int bookingVehicleInferCommercialReceiverLineCount(Map<String, dynamic> form) {
+  final m = _bookingVehicleMaxIndexFromFormKeys(form, [
+    RegExp(r'^receiver_name_(\d+)$'),
+    RegExp(r'^receiver_employee_(\d+)$'),
+    RegExp(r'^receiver_phone_number_(\d+)$'),
+  ]);
+  return m < 0 ? 0 : m + 1;
+}
+
+int bookingVehicleInferPickupGiverLineCount(Map<String, dynamic> form) {
+  final m = _bookingVehicleMaxIndexFromFormKeys(form, [
+    RegExp(r'^pickup_giver_name_(\d+)$'),
+    RegExp(r'^pickup_giver_employee_(\d+)$'),
+    RegExp(r'^pickup_giver_phone_number_(\d+)$'),
+  ]);
+  return m < 0 ? 0 : m + 1;
+}
+
+int bookingVehicleEffectivePassengerLineCount({
+  required Map<String, dynamic> form,
+  required int stateCount,
+}) {
+  return math.max(stateCount, bookingVehicleInferPassengerLineCount(form));
+}
+
+int bookingVehicleEffectiveCommercialReceiverLineCount({
+  required Map<String, dynamic> form,
+  required int stateCount,
+}) {
+  return math.max(
+    stateCount,
+    bookingVehicleInferCommercialReceiverLineCount(form),
+  );
+}
+
+int bookingVehicleEffectivePickupGiverLineCount({
+  required Map<String, dynamic> form,
+  required int stateCount,
+}) {
+  return math.max(stateCount, bookingVehicleInferPickupGiverLineCount(form));
 }
 
 int resolveBookingVehicleProjectId(
@@ -139,8 +225,12 @@ Map<String, dynamic> buildPassengerGoCreatePayload({
   final timeReturnRaw = _formatApiDateTime(form['time_return']);
 
   final needPresent = bookingVehicleParseFormDateTime(form['time_need_present']);
+  final regRef = bookingVehicleProblemRuleRegistrationReference(form);
   final problemMode =
-      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(needPresent);
+      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+    needPresent,
+    regRef,
+  );
   final approvedTbp = problemMode
       ? int.tryParse(_trimStr(form['approved_tbp'])) ?? 0
       : 0;
@@ -189,7 +279,7 @@ Map<String, dynamic> buildPassengerGoCreatePayload({
     'SpecificDestinationAddress': _trimStr(form['address']),
     'TimeNeedPresent': _formatApiDateTime(form['time_need_present']) ?? '',
     'TimeReturn': timeReturnRaw,
-    'VehicleType': _vehicleTypeFromLabel(form['type_transport']?.toString()),
+    'VehicleType': bookingVehicleVehicleTypeFromForm(form['type_transport']),
   };
 }
 
@@ -226,8 +316,8 @@ List<Map<String, dynamic>> buildAllPassengerGoCreatePayloads({
 /// Form màn **Người về**: `time_return` = đón → `DepartureDate`,
 /// `time_need_present` = cần về → `TimeNeedPresent` (API: xuất phát &lt; cần đến).
 ///
-/// **Phát sinh người về** (mốc `time_need_present` thỏa [ValidateHelper] — cùng điều kiện
-/// với các loại có card phát sinh, nhưng **không** có UI TBP / mô tả trên form người về):
+/// **Phát sinh người về** (mốc `time_need_present` + thời điểm đăng ký / `CreatedDate` khi sửa —
+/// [ValidateHelper.bookingVehicleIsProblemArises], **không** có UI TBP trên form người về):
 /// cờ create `IsApprovedTBP=false`, `IsProblemArises=true`, `IsCancel=false`, `IsSend=false`,
 /// `IsNotifiled=false` (tương đương isNotified). Trường body `ApprovedTBP` luôn **0**;
 /// `ProblemArises` lấy từ form nếu có (thường rỗng).
@@ -254,8 +344,12 @@ Map<String, dynamic> buildPassengerReturnCreatePayload({
   final needPresentRet = bookingVehicleParseFormDateTime(
     form['time_need_present'],
   );
+  final regRefRet = bookingVehicleProblemRuleRegistrationReference(form);
   final problemModeRet =
-      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(needPresentRet);
+      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+    needPresentRet,
+    regRefRet,
+  );
   const approvedTbpRet = 0;
   final problemArisesRet =
       problemModeRet ? _trimStr(form['problem_arises']) : '';
@@ -302,7 +396,7 @@ Map<String, dynamic> buildPassengerReturnCreatePayload({
     'SpecificDestinationAddress': _trimStr(form['address']),
     'TimeNeedPresent': timeNeedPresentStr,
     'TimeReturn': null,
-    'VehicleType': _vehicleTypeFromLabel(form['type_transport']?.toString()),
+    'VehicleType': bookingVehicleVehicleTypeFromForm(form['type_transport']),
   };
 }
 
@@ -433,8 +527,12 @@ Map<String, dynamic> buildCommercialDeliveryCreatePayload({
 }) {
   final needPresent =
       bookingVehicleParseFormDateTime(form['time_need_present']);
+  final regRefComm = bookingVehicleProblemRuleRegistrationReference(form);
   final problemMode =
-      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(needPresent);
+      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+    needPresent,
+    regRefComm,
+  );
   final approvedTbp = problemMode
       ? int.tryParse(_trimStr(form['approved_tbp'])) ?? 0
       : 0;
@@ -492,7 +590,7 @@ Map<String, dynamic> buildCommercialDeliveryCreatePayload({
     'SpecificDestinationAddress': _trimStr(form['address']),
     'TimeNeedPresent': _formatApiDateTime(form['time_need_present']) ?? '',
     'TimeReturn': null,
-    'VehicleType': _vehicleTypeFromLabel(form['type_transport']?.toString()),
+    'VehicleType': bookingVehicleVehicleTypeFromForm(form['type_transport']),
   };
 }
 
@@ -539,8 +637,12 @@ Map<String, dynamic> buildCommercialPickupCreatePayload({
 }) {
   final needPickup =
       bookingVehicleParseFormDateTime(form['pickup_need_arrive_time']);
+  final regRefPickup = bookingVehicleProblemRuleRegistrationReference(form);
   final problemMode =
-      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(needPickup);
+      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+    needPickup,
+    regRefPickup,
+  );
   final approvedTbp = problemMode
       ? int.tryParse(_trimStr(form['approved_tbp'])) ?? 0
       : 0;
@@ -598,7 +700,7 @@ Map<String, dynamic> buildCommercialPickupCreatePayload({
     'TimeNeedPresent':
         _formatApiDateTime(form['pickup_need_arrive_time']) ?? '',
     'TimeReturn': null,
-    'VehicleType': _vehicleTypeFromLabel(form['type_transport']?.toString()),
+    'VehicleType': bookingVehicleVehicleTypeFromForm(form['type_transport']),
   };
 }
 

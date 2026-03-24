@@ -115,6 +115,10 @@ class _DetailBody extends StatelessWidget {
     final approverName = _nonEmpty(item.fullNameTBP, item.approvedTBPText);
     final showApproval = _hasApprovalData(item);
 
+    final problemArisesText = (item.problemArises ?? '').trim();
+    final showProblemArisesSection =
+        item.isProblemArises == true || problemArisesText.isNotEmpty;
+
     final noteText = (item.note ?? '').trim();
     final showNote = noteText.isNotEmpty;
 
@@ -256,7 +260,17 @@ class _DetailBody extends StatelessWidget {
                       ),
                     ],
                   ),
-                  if (showApproval) ...[
+                  if (showProblemArisesSection) ...[
+                    const SizedBox(height: 16),
+                    _ProblemArisesSection(
+                      problemBody: problemArisesText.isEmpty
+                          ? '—'
+                          : problemArisesText,
+                      tbpApprover: approverName,
+                      onInfoTap: () => _showApprovalInfo(context, item),
+                    ),
+                  ],
+                  if (showApproval && !showProblemArisesSection) ...[
                     const SizedBox(height: 16),
                     _ApprovalBox(
                       approverName: approverName,
@@ -454,9 +468,15 @@ class _DetailBody extends StatelessWidget {
   }
 
   static void _showApprovalInfo(BuildContext context, BookingVehicleItem i) {
+    final tbpName = (i.fullNameTBP ?? '').trim();
+    final tbpText = (i.approvedTBPText ?? '').trim();
     final lines = <String>[
-      if ((i.approvedTBPText ?? '').trim().isNotEmpty)
-        'Duyệt TBP: ${i.approvedTBPText!.trim()}',
+      if ((i.problemArises ?? '').trim().isNotEmpty)
+        'Lý do phát sinh: ${i.problemArises!.trim()}',
+      if (tbpName.isNotEmpty && tbpName != '-')
+        'Người duyệt TBP: $tbpName',
+      if (tbpText.isNotEmpty && tbpText != '-')
+        'Duyệt TBP: $tbpText',
       if ((i.decilineApprove ?? '').trim().isNotEmpty)
         'Từ chối: ${i.decilineApprove!.trim()}',
       if ((i.reasonDeciline ?? '').trim().isNotEmpty)
@@ -533,6 +553,101 @@ class _HeaderStatusBadge extends StatelessWidget {
           fontWeight: FontWeight.w700,
           color: Colors.white,
         ),
+      ),
+    );
+  }
+}
+
+class _ProblemArisesSection extends StatelessWidget {
+  const _ProblemArisesSection({
+    required this.problemBody,
+    required this.tbpApprover,
+    required this.onInfoTap,
+  });
+
+  final String problemBody;
+  final String tbpApprover;
+  final VoidCallback onInfoTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(12, 12, 4, 12),
+      decoration: BoxDecoration(
+        color: AppColors.bgCard,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppColors.borderColor),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                Icons.report_problem_outlined,
+                size: 20,
+                color: AppColors.warning,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  'PHÁT SINH / DUYỆT TBP',
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.5,
+                    color: AppColors.textTertiaryColor,
+                  ),
+                ),
+              ),
+              IconButton(
+                onPressed: onInfoTap,
+                icon: Icon(Icons.info_outline, color: AppColors.secondaryERP),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Lý do phát sinh',
+            style: TextStyle(
+              fontSize: 10,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.4,
+              color: AppColors.textTertiaryColor,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            problemBody,
+            style: const TextStyle(
+              fontSize: 14,
+              height: 1.35,
+              color: AppColors.textSecondaryColor,
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            'Người duyệt TBP',
+            style: TextStyle(
+              fontSize: 10,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.4,
+              color: AppColors.textTertiaryColor,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            tbpApprover,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: AppColors.secondaryERP,
+              height: 1.25,
+            ),
+          ),
+        ],
       ),
     );
   }

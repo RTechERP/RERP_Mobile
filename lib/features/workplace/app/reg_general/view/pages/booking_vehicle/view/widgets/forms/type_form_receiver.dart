@@ -25,9 +25,15 @@ class TypeFormReceiver extends StatefulWidget {
 class _TypeFormReceiverState extends State<TypeFormReceiver> {
   FormFieldState<String>? projectField;
   FormFieldState<String>? provinceField;
+  FormFieldState<String>? typeTransportField;
 
   List<BookingVehicleProjectItem> get _projects => widget.projects;
   List<ProvinceArrivesItem> get _arrivalProvinces => widget.arrivalProvinces;
+
+  static const List<String> _vehicleTypes = [
+    'Ô tô, xe máy ...',
+    'Máy bay',
+  ];
 
   Future<void> _pickProject() async {
     await openSelectBottomSheet<BookingVehicleProjectItem>(
@@ -51,6 +57,18 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
       displayText: (v) => v.provinceName ?? '',
       onSelected: (item) {
         provinceField?.didChange(item.provinceName ?? '');
+      },
+    );
+  }
+
+  Future<void> _pickTypeTransport() async {
+    await openSelectBottomSheet<String>(
+      context: context,
+      title: 'Chọn loại phương tiện',
+      items: _vehicleTypes,
+      displayText: (v) => v,
+      onSelected: (item) {
+        typeTransportField?.didChange(item);
       },
     );
   }
@@ -121,6 +139,20 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
             nameTextField: 'pickup_address_text',
             label: 'Địa chỉ cụ thể đến lấy',
             maxLines: 3,
+          ),
+          const SizedBox(height: 8),
+          GestureDetector(
+            onTap: _pickTypeTransport,
+            child: AbsorbPointer(
+              child: FormInputField(
+                icon: Icons.directions_car_outlined,
+                nameForm: 'type_transport',
+                nameTextField: 'type_transport_text',
+                label: 'Loại phương tiện',
+                onFieldCreated: (field) => typeTransportField = field,
+                readOnly: true,
+              ),
+            ),
           ),
         ],
       ),

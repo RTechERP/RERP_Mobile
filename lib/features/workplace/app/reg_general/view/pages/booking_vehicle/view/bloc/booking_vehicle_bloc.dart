@@ -634,7 +634,7 @@ class BookingVehicleBloc
     emit(state.copyWith(infoFieldValues: merged));
   }
 
-  /// Khi mốc thời gian là **hôm nay** — đồng bộ card phát sinh (người đi / giao / lấy).
+  /// Khi card phát sinh / TBP đang hiện trên UI (mốc cần đến là **hôm nay**).
   String? _bookingVehicleProblemArisesSubmitError(
     Map<String, dynamic> formValues, {
     String needTimeFieldKey = 'time_need_present',
@@ -642,7 +642,7 @@ class BookingVehicleBloc
     final need = bookingVehicleParseFormDateTime(
       formValues[needTimeFieldKey],
     );
-    if (!ValidateHelper.bookingVehicleShouldShowProblemArisesCard(need)) {
+    if (!ValidateHelper.bookingVehicleProblemArisesCardVisibleForUi(need)) {
       return null;
     }
     final raw = formValues['approved_tbp'];
@@ -682,7 +682,10 @@ class BookingVehicleBloc
       return;
     }
 
-    final n = state.passengerGoLineCount;
+    final n = bookingVehicleEffectivePassengerLineCount(
+      form: formValues,
+      stateCount: state.passengerGoLineCount,
+    );
     if (n <= 0) {
       emit(
         state.copyWith(
@@ -805,7 +808,10 @@ class BookingVehicleBloc
       return;
     }
 
-    final n = state.passengerGoLineCount;
+    final n = bookingVehicleEffectivePassengerLineCount(
+      form: formValues,
+      stateCount: state.passengerGoLineCount,
+    );
     if (n <= 0) {
       emit(
         state.copyWith(
@@ -953,7 +959,10 @@ class BookingVehicleBloc
       return;
     }
 
-    final n = state.commercialReceiverLineCount;
+    final n = bookingVehicleEffectiveCommercialReceiverLineCount(
+      form: formValues,
+      stateCount: state.commercialReceiverLineCount,
+    );
     if (n <= 0) {
       emit(
         state.copyWith(
@@ -996,6 +1005,22 @@ class BookingVehicleBloc
         state.copyWith(
           isSubmitting: false,
           message: 'Vui lòng chọn thời gian lấy hàng.',
+        ),
+      );
+      return;
+    }
+    final needGiao = bookingVehicleParseFormDateTime(
+      formValues['time_need_present'],
+    );
+    final layHang = bookingVehicleParseFormDateTime(formValues['time_return']);
+    if (needGiao != null &&
+        layHang != null &&
+        layHang.isAfter(needGiao)) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message:
+              'Thời gian lấy hàng không được lớn hơn thời gian cần giao đến.',
         ),
       );
       return;
@@ -1232,7 +1257,10 @@ class BookingVehicleBloc
       return;
     }
 
-    final n = state.pickupGiverLineCount;
+    final n = bookingVehicleEffectivePickupGiverLineCount(
+      form: formValues,
+      stateCount: state.pickupGiverLineCount,
+    );
     if (n <= 0) {
       emit(
         state.copyWith(
@@ -1260,6 +1288,19 @@ class BookingVehicleBloc
     }
 
     if (bookingVehicleFormatApiDateTime(
+          formValues['pickup_need_arrive_time'],
+        ) ==
+        null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Vui lòng chọn thời gian cần đến lấy.',
+        ),
+      );
+      return;
+    }
+
+    if (bookingVehicleFormatApiDateTime(
           formValues['pickup_departure_time'],
         ) ==
         null) {
@@ -1271,15 +1312,20 @@ class BookingVehicleBloc
       );
       return;
     }
-
-    if (bookingVehicleFormatApiDateTime(
-          formValues['pickup_need_arrive_time'],
-        ) ==
-        null) {
+    final needLay = bookingVehicleParseFormDateTime(
+      formValues['pickup_need_arrive_time'],
+    );
+    final xuatPhatLay = bookingVehicleParseFormDateTime(
+      formValues['pickup_departure_time'],
+    );
+    if (needLay != null &&
+        xuatPhatLay != null &&
+        xuatPhatLay.isAfter(needLay)) {
       emit(
         state.copyWith(
           isSubmitting: false,
-          message: 'Vui lòng chọn thời gian cần đến lấy.',
+          message:
+              'Thời gian xuất phát không được lớn hơn thời gian cần đến lấy.',
         ),
       );
       return;

@@ -1,3 +1,11 @@
+/// Biến thể form đặt xe — dùng cho [ValidateHelper.validateBookingVehicle].
+enum BookingVehicleValidationVariant {
+  passengerGo,
+  passengerReturn,
+  commercialDelivery,
+  commercialPickup,
+}
+
 class ValidateHelper {
   static String? validateReport<T>({
     required DateTime? date,
@@ -463,20 +471,398 @@ class ValidateHelper {
     return null;
   }
 
-  /// `true` khi [needTime] cùng **ngày lịch** với hôm nay (theo giờ máy).
+  // --- Đặt xe (BookingVehicle) — Category API: 1 người đi, 2 giao TM, 5 người về, 6 lấy TM, 7 lấy Demo, 8 giao Demo
+
+  static DateTime? _bvParseDt(dynamic v) {
+    if (v == null) return null;
+    if (v is DateTime) return v;
+    if (v is String) {
+      final t = v.trim();
+      if (t.isEmpty) return null;
+      return DateTime.tryParse(t);
+    }
+    return null;
+  }
+
+  static String _bvTrim(dynamic v) {
+    if (v == null) return '';
+    if (v is String) return v.trim();
+    return v.toString().trim();
+  }
+
+  static bool _bvDepartureRulesApply(int category) =>
+      category != 2 && category != 6 && category != 7 && category != 8;
+
+  static bool _bvNeedsDepartureAddress(int category) =>
+      category != 6 && category != 7;
+
+  static String _bvDepartureAddressFromPassengerGoForm(Map<String, dynamic> f) {
+    final dest = _bvTrim(f['destination_address']);
+    if (dest.isNotEmpty) return dest;
+    return _bvTrim(f['starting_point']);
+  }
+
+  static String _bvDepartureAddressFromReturnForm(Map<String, dynamic> f) {
+    final addr = _bvTrim(f['return_address']);
+    if (addr.isNotEmpty) return addr;
+    return _bvTrim(f['return_point']);
+  }
+
+  static String _bvCommercialReceiverDisplayName(Map<String, dynamic> f, int i) {
+    final n = _bvTrim(f['receiver_name_$i']);
+    if (n.isNotEmpty) return n;
+    final pick = _bvTrim(f['receiver_employee_$i']);
+    if (pick.isEmpty) return '';
+    final sep = pick.indexOf(' - ');
+    if (sep > 0) return pick.substring(sep + 3).trim();
+    return pick;
+  }
+
+  static String _bvPickupGiverDisplayName(Map<String, dynamic> f, int i) {
+    final n = _bvTrim(f['pickup_giver_name_$i']);
+    if (n.isNotEmpty) return n;
+    final pick = _bvTrim(f['pickup_giver_employee_$i']);
+    if (pick.isEmpty) return '';
+    final sep = pick.indexOf(' - ');
+    if (sep > 0) return pick.substring(sep + 3).trim();
+    return pick;
+  }
+
+  static int _bvPackageQty(Map<String, dynamic> f, String key) {
+    final raw = f[key];
+    if (raw is int) return raw;
+    return int.tryParse(_bvTrim(raw)) ?? 0;
+  }
+
+  /// **Phát sinh** theo quy tắc nghiệp vụ (đồng bộ BE):
+  /// - Ngày đăng ký ≠ ngày cần đến → không phát sinh.
+  /// - Cùng ngày: giờ đăng ký ≥ 20:00 → phát sinh; hoặc giờ đăng ký &lt; 16:30 → phát sinh;
+  ///   trong [16:30, 20:00) → không phát sinh.
+  static bool bookingVehicleIsProblemArises({
+    required DateTime? timeNeedPresent,
+    required DateTime registrationTime,
+  }) {
+    final need = timeNeedPresent;
+    if (need == null) return false;
+    final needDay = DateTime(need.year, need.month, need.day);
+    final regDay = DateTime(
+      registrationTime.year,
+      registrationTime.month,
+      registrationTime.day,
+    );
+    if (needDay != regDay) return false;
+
+    final regMinutes =
+        registrationTime.hour * 60 + registrationTime.minute;
+    const t1630 = 16 * 60 + 30;
+    const t20 = 20 * 60;
+    if (regMinutes >= t20) return true;
+    if (regMinutes < t1630) return true;
+    return false;
+  }
+
+  /// Cờ nghiệp vụ / payload: có phát sinh thật (đồng bộ BE) — dùng khi build body và khi bắt TBP lúc submit.
   ///
-  /// Ngày mai trở đi → không coi là “cùng ngày” → không hiện card / không bắt TBP.
-  static bool bookingVehicleNeedTimeIsLocalToday(DateTime? needTime) {
-    if (needTime == null) return false;
-    final now = DateTime.now();
-    final needDay = DateTime(needTime.year, needTime.month, needTime.day);
-    final today = DateTime(now.year, now.month, now.day);
+  /// [registrationReference]: khi sửa bản ghi, truyền `CreatedDate` gốc; tạo mới để `null` (dùng [DateTime.now]).
+  static bool bookingVehicleShouldShowProblemArisesCard(
+    DateTime? needTime, [
+    DateTime? registrationReference,
+  ]) {
+    final reg = registrationReference ?? DateTime.now();
+    return bookingVehicleIsProblemArises(
+      timeNeedPresent: needTime,
+      registrationTime: reg,
+    );
+  }
+
+  /// **Chỉ UI:** hiện card «Vấn đề phát sinh / TBP» khi mốc cần đến (ngày lịch) trùng **hôm nay**.
+  /// Người dùng có thể điền sớm; bắt buộc TBP/lý do vẫn theo [bookingVehicleIsProblemArises] + [validateBookingVehicle].
+  static bool bookingVehicleProblemArisesCardVisibleForUi(DateTime? timeNeedPresent) {
+    if (timeNeedPresent == null) return false;
+    final n = DateTime.now();
+    final today = DateTime(n.year, n.month, n.day);
+    final needDay = DateTime(
+      timeNeedPresent.year,
+      timeNeedPresent.month,
+      timeNeedPresent.day,
+    );
     return needDay == today;
   }
 
-  /// Card phát sinh + bắt TBP khi submit: **chỉ** khi mốc cần đến/giao/lấy là **hôm nay**
-  /// (theo ngày lịch local). **Ngày mai** → không hiện, không bắt approver.
-  static bool bookingVehicleShouldShowProblemArisesCard(DateTime? needTime) {
-    return bookingVehicleNeedTimeIsLocalToday(needTime);
+  /// Validate tổng hợp form đặt xe trước khi gửi bloc/API.
+  ///
+  /// Thứ tự kiểm tra bám theo thứ tự field trên UI (TypeForm* → phát sinh → danh sách dòng).
+  static String? validateBookingVehicle({
+    required BookingVehicleValidationVariant variant,
+    required int apiCategory,
+    required Map<String, dynamic> form,
+    required int lineCount,
+    required int projectId,
+    required int vehicleType,
+  }) {
+    // 1) Hình thức / category
+    if (apiCategory == 0) {
+      return 'Loại đăng ký không hợp lệ.';
+    }
+
+    // 2) Dự án
+    if (projectId == 0) {
+      return 'Vui lòng chọn dự án.';
+    }
+
+    final DateTime? timeNeed = switch (variant) {
+      BookingVehicleValidationVariant.commercialPickup =>
+        _bvParseDt(form['pickup_need_arrive_time']),
+      _ => _bvParseDt(form['time_need_present']),
+    };
+
+    // 3) Thời gian cần đến / cần về / giao đến / đến lấy
+    if (timeNeed == null) {
+      return switch (variant) {
+        BookingVehicleValidationVariant.commercialPickup =>
+          'Vui lòng chọn thời gian cần đến lấy.',
+        BookingVehicleValidationVariant.commercialDelivery =>
+          'Vui lòng chọn thời gian cần giao đến.',
+        BookingVehicleValidationVariant.passengerReturn =>
+          'Vui lòng chọn thời gian cần về.',
+        BookingVehicleValidationVariant.passengerGo =>
+          'Vui lòng chọn thời gian cần đến.',
+      };
+    }
+
+    final now = DateTime.now();
+    if (!timeNeed.isAfter(now)) {
+      return switch (variant) {
+        BookingVehicleValidationVariant.commercialPickup =>
+          'Thời gian cần đến lấy phải lớn hơn thời gian hiện tại.',
+        BookingVehicleValidationVariant.commercialDelivery =>
+          'Thời gian cần giao đến phải lớn hơn thời gian hiện tại.',
+        BookingVehicleValidationVariant.passengerReturn =>
+          'Thời gian cần về phải lớn hơn thời gian hiện tại.',
+        BookingVehicleValidationVariant.passengerGo =>
+          'Thời gian cần đến phải lớn hơn thời gian hiện tại.',
+      };
+    }
+
+    // 3b) Giao hàng (2/8): thời gian lấy hàng — bắt buộc, không sau mốc cần giao đến
+    if (variant == BookingVehicleValidationVariant.commercialDelivery) {
+      final takeGoods = _bvParseDt(form['time_return']);
+      if (takeGoods == null) {
+        return 'Vui lòng chọn thời gian lấy hàng.';
+      }
+      if (takeGoods.isAfter(timeNeed)) {
+        return 'Thời gian lấy hàng không được lớn hơn thời gian cần giao đến.';
+      }
+    }
+
+    // 3c) Lấy hàng (6/7): thời gian xuất phát — bắt buộc, không sau mốc cần đến lấy
+    if (variant == BookingVehicleValidationVariant.commercialPickup) {
+      final departPickup = _bvParseDt(form['pickup_departure_time']);
+      if (departPickup == null) {
+        return 'Vui lòng chọn thời gian xuất phát.';
+      }
+      if (departPickup.isAfter(timeNeed)) {
+        return 'Thời gian xuất phát không được lớn hơn thời gian cần đến lấy.';
+      }
+    }
+
+    // 4) Điểm đến: công ty, tỉnh, địa chỉ cụ thể
+    final String company;
+    final String province;
+    final String specific;
+    switch (variant) {
+      case BookingVehicleValidationVariant.commercialPickup:
+        company = _bvTrim(form['pickup_company']);
+        province = _bvTrim(form['pickup_province']);
+        specific = _bvTrim(form['pickup_address']);
+        break;
+      default:
+        company = _bvTrim(form['location_address']);
+        province = _bvTrim(form['provinces']);
+        specific = _bvTrim(form['address']);
+    }
+
+    if (company.isEmpty) {
+      return switch (variant) {
+        BookingVehicleValidationVariant.commercialPickup =>
+          'Vui lòng nhập công ty đến lấy.',
+        BookingVehicleValidationVariant.commercialDelivery =>
+          'Vui lòng nhập công ty giao đến.',
+        _ => 'Vui lòng nhập công ty đến.',
+      };
+    }
+    if (province.isEmpty) {
+      return switch (variant) {
+        BookingVehicleValidationVariant.commercialPickup =>
+          'Vui lòng chọn tỉnh đến lấy.',
+        BookingVehicleValidationVariant.commercialDelivery =>
+          'Vui lòng chọn tỉnh giao đến.',
+        BookingVehicleValidationVariant.passengerReturn =>
+          'Vui lòng chọn tỉnh cần về.',
+        _ => 'Vui lòng chọn tỉnh đến.',
+      };
+    }
+    if (specific.isEmpty) {
+      return 'Vui lòng nhập địa chỉ cụ thể.';
+    }
+
+    // 5) Thời gian xuất phát / thời gian đón (category áp rule departure)
+    if (_bvDepartureRulesApply(apiCategory)) {
+      final DateTime? dep = switch (variant) {
+        BookingVehicleValidationVariant.passengerGo =>
+          _bvParseDt(form['time_depart']),
+        BookingVehicleValidationVariant.passengerReturn =>
+          _bvParseDt(form['time_return']),
+        _ => null,
+      };
+
+      if (dep == null) {
+        return switch (variant) {
+          BookingVehicleValidationVariant.passengerReturn =>
+            'Vui lòng chọn thời gian đón.',
+          _ => 'Vui lòng chọn thời gian xuất phát.',
+        };
+      }
+
+      if (!dep.isAfter(now)) {
+        return switch (variant) {
+          BookingVehicleValidationVariant.passengerReturn =>
+            'Thời gian đón phải lớn hơn thời gian hiện tại.',
+          _ => 'Thời gian xuất phát phải lớn hơn thời gian hiện tại.',
+        };
+      }
+
+      if (!dep.isBefore(timeNeed)) {
+        return switch (variant) {
+          BookingVehicleValidationVariant.passengerReturn =>
+            'Thời gian đón phải nhỏ hơn thời gian cần về.',
+          _ =>
+              'Thời gian xuất phát phải nhỏ hơn thời gian cần đến.',
+        };
+      }
+    }
+
+    // 6) Thời gian quay về (người đi — nếu có nhập)
+    if (variant == BookingVehicleValidationVariant.passengerGo) {
+      final tr = _bvParseDt(form['time_return']);
+      if (tr != null && !tr.isAfter(timeNeed)) {
+        return 'Thời gian quay về phải lớn hơn thời gian cần đến.';
+      }
+    }
+
+    // 7) Địa chỉ xuất phát / địa chỉ quay về (sau các field điểm đi — điểm về trên form)
+    if (_bvNeedsDepartureAddress(apiCategory)) {
+      final String depAddr;
+      if (apiCategory == 1) {
+        depAddr = _bvDepartureAddressFromPassengerGoForm(form);
+      } else {
+        depAddr = _bvDepartureAddressFromReturnForm(form);
+      }
+      if (depAddr.isEmpty) {
+        return 'Vui lòng nhập địa chỉ xuất phát.';
+      }
+    }
+
+    if (apiCategory == 1) {
+      if (_bvDepartureAddressFromReturnForm(form).isEmpty) {
+        return 'Vui lòng nhập địa chỉ quay về.';
+      }
+    }
+
+    // 8) Loại phương tiện
+    if (vehicleType == 0) {
+      return 'Vui lòng chọn loại phương tiện.';
+    }
+
+    // 9) Người duyệt TBP + lý do phát sinh — cùng điều kiện hiện card
+    // [bookingVehicleProblemArisesCardVisibleForUi] (không áp category 5 / người về).
+    // Cờ API [IsProblemArises] vẫn tính riêng bằng [bookingVehicleIsProblemArises] trong payload.
+    final tbpAndProblemRequired = apiCategory != 5 &&
+        bookingVehicleProblemArisesCardVisibleForUi(timeNeed);
+    if (tbpAndProblemRequired) {
+      final rawTbp = form['approved_tbp'];
+      final tbp = rawTbp is int
+          ? rawTbp
+          : int.tryParse(_bvTrim(rawTbp)) ?? 0;
+      if (tbp == 0) {
+        return 'Vui lòng chọn người duyệt TBP.';
+      }
+      if (_bvTrim(form['problem_arises']).isEmpty) {
+        return 'Vui lòng nhập lý do phát sinh.';
+      }
+    }
+
+    // 10) Danh sách người đi / người về (cuối màn hình)
+    if (apiCategory == 1 || apiCategory == 5) {
+      if (lineCount <= 0) {
+        return apiCategory == 5
+            ? 'Chưa có dòng người về.'
+            : 'Chưa có dòng người đi.';
+      }
+      for (var i = 0; i < lineCount; i++) {
+        if (_bvTrim(form['passenger_full_name_$i']).isEmpty) {
+          return 'Vui lòng nhập tên người đi (dòng ${i + 1}).';
+        }
+        if (_bvTrim(form['passenger_contact_phone_$i']).isEmpty) {
+          return 'Vui lòng nhập SĐT người đi (dòng ${i + 1}).';
+        }
+      }
+    }
+
+    // 11) Giao / lấy hàng — từng dòng người nhận hoặc người giao
+    if ({2, 6, 7, 8}.contains(apiCategory)) {
+      if (lineCount <= 0) {
+        return (apiCategory == 2 || apiCategory == 8)
+            ? 'Chưa có dòng người nhận.'
+            : 'Chưa có dòng người giao.';
+      }
+      for (var i = 0; i < lineCount; i++) {
+        if (apiCategory == 2 || apiCategory == 8) {
+          final rName = _bvCommercialReceiverDisplayName(form, i);
+          if (rName.isEmpty) {
+            return 'Vui lòng nhập tên người nhận (dòng ${i + 1}).';
+          }
+          if (_bvTrim(form['receiver_phone_number_$i']).isEmpty) {
+            return 'Vui lòng nhập SĐT người nhận (dòng ${i + 1}).';
+          }
+          if (_bvTrim(form['commercial_package_name_$i']).isEmpty) {
+            return 'Vui lòng nhập tên kiện hàng (dòng ${i + 1}).';
+          }
+          if (_bvTrim(form['package_size_$i']).isEmpty) {
+            return 'Vui lòng nhập kích thước kiện hàng (dòng ${i + 1}).';
+          }
+          if (_bvTrim(form['package_weight_$i']).isEmpty) {
+            return 'Vui lòng nhập cân nặng kiện hàng (dòng ${i + 1}).';
+          }
+          final q = _bvPackageQty(form, 'commercial_package_quantity_$i');
+          if (q <= 0) {
+            return 'Số lượng kiện hàng phải lớn hơn 0 (dòng ${i + 1}).';
+          }
+        } else {
+          final gName = _bvPickupGiverDisplayName(form, i);
+          if (gName.isEmpty) {
+            return 'Vui lòng nhập tên người giao (dòng ${i + 1}).';
+          }
+          if (_bvTrim(form['pickup_giver_phone_number_$i']).isEmpty) {
+            return 'Vui lòng nhập SĐT người giao (dòng ${i + 1}).';
+          }
+          if (_bvTrim(form['pickup_package_name_$i']).isEmpty) {
+            return 'Vui lòng nhập tên kiện hàng (dòng ${i + 1}).';
+          }
+          if (_bvTrim(form['pickup_package_size_$i']).isEmpty) {
+            return 'Vui lòng nhập kích thước kiện hàng (dòng ${i + 1}).';
+          }
+          if (_bvTrim(form['pickup_package_weight_$i']).isEmpty) {
+            return 'Vui lòng nhập cân nặng kiện hàng (dòng ${i + 1}).';
+          }
+          final q = _bvPackageQty(form, 'pickup_package_quantity_$i');
+          if (q <= 0) {
+            return 'Số lượng kiện hàng phải lớn hơn 0 (dòng ${i + 1}).';
+          }
+        }
+      }
+    }
+
+    return null;
   }
 }

@@ -61,17 +61,23 @@ class _BookingVehicleAddScreenState
     return id;
   }
 
+  /// Mốc «cần đến / giao / lấy» để hiện card phát sinh — ưu tiên giá trị đang nhập trên FormBuilder
+  /// (tránh `formFieldValues` bloc chưa kịp sync).
   DateTime? _needTimeForProblemUi(BookingVehicleState state) {
     final group = _bookingTypeGroup;
     if (group == null) return null;
-    final raw = state.formFieldValues;
+    final merged = Map<String, dynamic>.from(state.formFieldValues);
+    final instant = _formKey.currentState?.instantValue;
+    if (instant != null) {
+      merged.addAll(instant);
+    }
     switch (group) {
       case _BookingVehicleTypeGroup.passengerGo:
       case _BookingVehicleTypeGroup.commercialDelivery:
-        return bookingVehicleParseFormDateTime(raw['time_need_present']);
+        return bookingVehicleParseFormDateTime(merged['time_need_present']);
       case _BookingVehicleTypeGroup.commercialPickupAndDemoPickup:
         return bookingVehicleParseFormDateTime(
-          raw['pickup_need_arrive_time'],
+          merged['pickup_need_arrive_time'],
         );
       case _BookingVehicleTypeGroup.passengerReturn:
         return null;
@@ -176,8 +182,84 @@ class _BookingVehicleAddScreenState
     if (!formState.saveAndValidate()) return;
 
     final values = Map<String, dynamic>.from(formState.value);
+    final createdOriginal = widget.existingBookingItem?.createdDate;
+    if (createdOriginal != null) {
+      values[kBookingVehicleProblemRuleRegistrationKey] = createdOriginal;
+    }
+
+    final state = bloc.state;
+    final group = _bookingTypeGroup;
+    if (group == null) return;
+
+    final (BookingVehicleValidationVariant variant, int apiCat, int lines) =
+        switch (group) {
+      _BookingVehicleTypeGroup.passengerGo => (
+          BookingVehicleValidationVariant.passengerGo,
+          1,
+          bookingVehicleEffectivePassengerLineCount(
+            form: values,
+            stateCount: state.passengerGoLineCount,
+          ),
+        ),
+      _BookingVehicleTypeGroup.passengerReturn => (
+          BookingVehicleValidationVariant.passengerReturn,
+          5,
+          bookingVehicleEffectivePassengerLineCount(
+            form: values,
+            stateCount: state.passengerGoLineCount,
+          ),
+        ),
+      _BookingVehicleTypeGroup.commercialDelivery => (
+          BookingVehicleValidationVariant.commercialDelivery,
+          bookingVehicleApiCategoryForCommercialDeliveryBookingType(
+            values['booking_type']?.toString(),
+          ),
+          bookingVehicleEffectiveCommercialReceiverLineCount(
+            form: values,
+            stateCount: state.commercialReceiverLineCount,
+          ),
+        ),
+      _BookingVehicleTypeGroup.commercialPickupAndDemoPickup => (
+          BookingVehicleValidationVariant.commercialPickup,
+          bookingVehicleApiCategoryForPickupBookingType(
+            values['booking_type']?.toString(),
+          ),
+          bookingVehicleEffectivePickupGiverLineCount(
+            form: values,
+            stateCount: state.pickupGiverLineCount,
+          ),
+        ),
+    };
+
+    final projectId = variant == BookingVehicleValidationVariant.commercialPickup
+        ? resolveBookingVehicleProjectId(
+            values['pickup_project'],
+            state.projects,
+          )
+        : resolveBookingVehicleProjectId(values['project'], state.projects);
+
+    final vehicleType =
+        bookingVehicleVehicleTypeFromForm(values['type_transport']);
+
+    final validateErr = ValidateHelper.validateBookingVehicle(
+      variant: variant,
+      apiCategory: apiCat,
+      form: values,
+      lineCount: lines,
+      projectId: projectId,
+      vehicleType: vehicleType,
+    );
+    if (validateErr != null) {
+      showMessage(
+        context,
+        validateErr,
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
     final editId = _existingBookingId;
-    switch (_bookingTypeGroup) {
+    switch (group) {
       case _BookingVehicleTypeGroup.passengerGo:
         bloc.add(
           BookingVehicleEvent.submitPassengerGo(
@@ -209,8 +291,6 @@ class _BookingVehicleAddScreenState
             existingBookingId: editId,
           ),
         );
-        break;
-      case null:
         break;
     }
   }
@@ -410,8 +490,8 @@ class _BookingVehicleAddScreenState
                                   _BookingVehicleTypeGroup.passengerGo)
                                 BookingVehicleProblemArisesCard(
                                   approvers: state.approver,
-                                  visible:
-                                      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+                                  visible: ValidateHelper
+                                      .bookingVehicleProblemArisesCardVisibleForUi(
                                     _needTimeForProblemUi(state),
                                   ),
                                 ),
@@ -669,8 +749,8 @@ class _BookingVehicleAddScreenState
                                   _BookingVehicleTypeGroup.commercialDelivery)
                                 BookingVehicleProblemArisesCard(
                                   approvers: state.approver,
-                                  visible:
-                                      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+                                  visible: ValidateHelper
+                                      .bookingVehicleProblemArisesCardVisibleForUi(
                                     _needTimeForProblemUi(state),
                                   ),
                                 ),
@@ -803,8 +883,8 @@ class _BookingVehicleAddScreenState
                                       .commercialPickupAndDemoPickup)
                                 BookingVehicleProblemArisesCard(
                                   approvers: state.approver,
-                                  visible:
-                                      ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+                                  visible: ValidateHelper
+                                      .bookingVehicleProblemArisesCardVisibleForUi(
                                     _needTimeForProblemUi(state),
                                   ),
                                 ),
