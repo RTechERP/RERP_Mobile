@@ -12,6 +12,7 @@ import '../../data/datasource/models/user_model.dart';
 import '../../data/repository/auth_repo.dart';
 import '../../../../../../../../base/network/errors/extension.dart';
 import '../../data/repository/auth_repository.dart';
+import '../../helper/auth_scheduled_logout.dart';
 import '../../../../common/logger/logger.dart';
 
 part 'auth_event.dart';
@@ -41,6 +42,13 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     final isValid = await AuthRepository.isLoggedInAndValid(log: _log);
 
     if (!isValid) {
+      AuthScheduledLogout.cancel();
+      if (emit.isDone) return;
+      emit(state.copyWith(status: BaseStateStatus.init));
+      return;
+    }
+
+    if (await AuthScheduledLogout.logoutIfMissedDailyBoundary(log: _log)) {
       if (emit.isDone) return;
       emit(state.copyWith(status: BaseStateStatus.init));
       return;
@@ -59,6 +67,12 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         user: user,
       ),
     );
+
+    if (user != null) {
+      AuthScheduledLogout.arm(log: _log);
+    } else {
+      AuthScheduledLogout.cancel();
+    }
   }
 
   Future<void> _onLogin(
@@ -113,6 +127,7 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
   }
 
   Future<void> _onLogout(Emitter<AuthState> emit) async {
+    AuthScheduledLogout.cancel();
     await AuthRepository.clearAll(log: _log);
     PermissionService.reset();
     if (emit.isDone) return;

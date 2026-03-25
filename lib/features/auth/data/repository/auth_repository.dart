@@ -16,6 +16,18 @@ class AuthRepository {
 
   static const _userKey = 'current_user';
 
+  /// Ngày (local yyyy-MM-dd) neo phiên cho logout 23:30 + cơ chế bù hôm sau.
+  static const _sessionAnchorLocalDateKey = 'auth_session_anchor_local_date';
+
+  static String _localDateString(DateTime local) {
+    final y = local.year.toString().padLeft(4, '0');
+    final m = local.month.toString().padLeft(2, '0');
+    final d = local.day.toString().padLeft(2, '0');
+    return '$y-$m-$d';
+  }
+
+  static String todayLocalDateString() => _localDateString(DateTime.now());
+
   /// ==========================
   /// SAVE LOGIN INFO
   /// ==========================
@@ -28,6 +40,10 @@ class AuthRepository {
 
     await prefs.setString(_tokenKey, token);
     await prefs.setString(_expiresKey, expires.toUtc().toIso8601String());
+    await prefs.setString(
+      _sessionAnchorLocalDateKey,
+      _localDateString(DateTime.now()),
+    );
 
     log?.logI('AccessToken saved');
     log?.logD('Token expires at: $expires');
@@ -72,8 +88,25 @@ class AuthRepository {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_tokenKey);
     await prefs.remove(_expiresKey);
+    await prefs.remove(_sessionAnchorLocalDateKey);
 
     log?.logI('AccessToken cleared');
+  }
+
+  static Future<String?> getSessionAnchorLocalDate({LogUtils? log}) async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_sessionAnchorLocalDateKey);
+  }
+
+  /// Gán neo = hôm nay (local). Dùng khi upgrade app: đã có token nhưng chưa có neo.
+  static Future<void> ensureSessionAnchorLocalDate({LogUtils? log}) async {
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.getString(_sessionAnchorLocalDateKey) != null) return;
+    await prefs.setString(
+      _sessionAnchorLocalDateKey,
+      _localDateString(DateTime.now()),
+    );
+    log?.logI('Session anchor date initialized (legacy / first run)');
   }
 
   /// ==========================

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../app_theme/app_colors.dart';
 import 'app_config.dart';
 import 'app_env.dart';
 
@@ -15,9 +16,9 @@ class AppTheme {
   static Color _primaryColor() {
     switch (AppConfig.env) {
       case AppEnv.production:
-        return const Color(0xFF0057B8);
+        return AppColors.primaryERP;
       case AppEnv.debug:
-        return Colors.orange;
+        return AppColors.secondaryERP;
     }
   }
 
