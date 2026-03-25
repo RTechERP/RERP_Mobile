@@ -4,6 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'dart:async';
 
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
@@ -13,6 +14,8 @@ import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../../common/helpers/validate_helper.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../../di/injection.dart';
+import '../../../../../../../../../features/auth/data/repository/auth_repo.dart';
 import '../bloc/lunch_bloc.dart';
 
 class LunchAddScreen extends StatefulWidget {
@@ -26,6 +29,29 @@ class _LunchAddScreenState
     extends BaseState<LunchAddScreen, LunchEvent, LunchState, LunchBloc> {
   final _formKey = GlobalKey<FormBuilderState>();
 
+  late final DateTime _todayStart;
+  late DateTime _selectedDate;
+  int? _currentEmployeeId;
+  Timer? _saveStateTimer;
+
+  bool get _isSaveDisabled {
+    final now = DateTime.now();
+    final todayStart = DateTime(now.year, now.month, now.day);
+    final deadline = DateTime(
+      todayStart.year,
+      todayStart.month,
+      todayStart.day,
+      10,
+      0,
+    );
+
+    // Nhân viên đặc biệt luôn được phép lưu.
+    if (_currentEmployeeId == 4) return false;
+
+    // Khoá nút Lưu sau 10:00 (theo yêu cầu nghiệp vụ).
+    return !now.isBefore(deadline);
+  }
+
   int _mapLocation(String? value) {
     switch (value) {
       case 'dp':
@@ -34,6 +60,35 @@ class _LunchAddScreenState
       default:
         return 1;
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    final now = DateTime.now();
+    _todayStart = DateTime(now.year, now.month, now.day);
+    _selectedDate = _todayStart;
+
+    _loadCurrentEmployeeId();
+
+    // Tick mỗi phút để nút Lưu đổi trạng thái đúng thời điểm.
+    _saveStateTimer = Timer.periodic(const Duration(minutes: 1), (_) {
+      if (!mounted) return;
+      setState(() {});
+    });
+  }
+
+  Future<void> _loadCurrentEmployeeId() async {
+    final userRes = await getIt.get<AuthRepo>().getCurrentUser();
+    final user = userRes.getOrElse(() => null);
+    if (!mounted) return;
+    setState(() => _currentEmployeeId = user?.employeeId);
+  }
+
+  @override
+  void dispose() {
+    _saveStateTimer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -85,13 +140,22 @@ class _LunchAddScreenState
                               title: 'Thông tin cơm ca',
                               child: Column(
                                 children: [
-                                  FormReadonlyField(
-                                    initialValue: DateFormat(
-                                      'dd/MM/yyyy',
-                                    ).format(DateTime.now()),
+                                  FormDateTimePicker(
+                                    nameForm: 'lunch_add_date',
+                                    nameTimePicker: 'lunch_add_date_time',
                                     label: '',
-                                    name: 'lunch_add_date',
                                     icon: Icons.calendar_today_outlined,
+                                    inputType: InputType.date,
+                                    format: DateFormat('dd/MM/yyyy'),
+                                    initialValue: _selectedDate,
+                                    firstDate: _todayStart,
+                                    onChanged: (v) {
+                                      if (v == null) return;
+                                      final safe =
+                                          DateTime(v.year, v.month, v.day);
+                                      if (safe == _selectedDate) return;
+                                      setState(() => _selectedDate = safe);
+                                    },
                                   ),
                                   const SizedBox(height: 12),
                                   FormInputField(
@@ -133,50 +197,65 @@ class _LunchAddScreenState
                       ),
                       child: FormActions(
                         mode: FormActionMode.add,
-                        onSubmit: () {
-                          FocusScope.of(context).unfocus();
+                        onSubmit: _isSaveDisabled
+                            ? null
+                            : () {
+                                FocusScope.of(context).unfocus();
 
-                          final formState = _formKey.currentState;
-                          if (formState == null) return;
-                          if (!formState.saveAndValidate()) return;
+                                final formState = _formKey.currentState;
+                                if (formState == null) return;
+                                if (!formState.saveAndValidate()) return;
 
-                          final values = formState.value;
-                          final locationRaw = values['location'] as String?;
-                          if (locationRaw == null || locationRaw.isEmpty) {
-                            context.showMessage(
-                              'Vui lòng chọn địa điểm',
-                              type: SnackBarType.error,
-                            );
-                            return;
-                          }
+                                final values = formState.value;
+                                final locationRaw =
+                                    values['location'] as String?;
+                                if (locationRaw == null ||
+                                    locationRaw.isEmpty) {
+                                  context.showMessage(
+                                    'Vui lòng chọn địa điểm',
+                                    type: SnackBarType.error,
+                                  );
+                                  return;
+                                }
 
-                          final quantity = int.tryParse(
-                            '${values['regwork_lunch_add_quantity'] ?? ''}'
-                                .trim(),
-                          );
-                          final validation = ValidateHelper.validateLunch(
-                            quantity: quantity,
-                            location: locationRaw,
-                          );
-                          if (validation != null) {
-                            context.showMessage(
-                              validation,
-                              type: SnackBarType.error,
-                            );
-                            return;
-                          }
+                                final dateOrder =
+                                    values['lunch_add_date'] as DateTime?;
+                                if (dateOrder == null) {
+                                  context.showMessage(
+                                    'Vui lòng chọn ngày',
+                                    type: SnackBarType.error,
+                                  );
+                                  return;
+                                }
 
-                          final safeQuantity = quantity!;
+                                final quantity = int.tryParse(
+                                  '${values['regwork_lunch_add_quantity'] ?? ''}'
+                                      .trim(),
+                                );
+                                final validation =
+                                    ValidateHelper.validateLunch(
+                                  quantity: quantity,
+                                  location: locationRaw,
+                                );
+                                if (validation != null) {
+                                  context.showMessage(
+                                    validation,
+                                    type: SnackBarType.error,
+                                  );
+                                  return;
+                                }
 
-                          bloc.add(
-                            LunchEvent.submit(
-                              quantity: safeQuantity,
-                              location: _mapLocation(locationRaw),
-                              note: '${values['regwork_lunch_add_note'] ?? ''}',
-                              dateOrder: DateTime.now(),
-                            ),
-                          );
-                        },
+                                final safeQuantity = quantity!;
+
+                                bloc.add(
+                                  LunchEvent.submit(
+                                    quantity: safeQuantity,
+                                    location: _mapLocation(locationRaw),
+                                    note: '${values['regwork_lunch_add_note'] ?? ''}',
+                                    dateOrder: dateOrder,
+                                  ),
+                                );
+                              },
                       ),
                     ),
                   ],

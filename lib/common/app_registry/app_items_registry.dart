@@ -13,7 +13,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.restaurant_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
-      route: '/regwork/lunch',
+      route: RouteNames.regworkLunch,
       imageUrl: AppImages.app_lunch,
     ),
 

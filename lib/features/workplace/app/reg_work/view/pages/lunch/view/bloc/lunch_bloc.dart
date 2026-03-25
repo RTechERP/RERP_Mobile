@@ -35,6 +35,19 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
           note: note,
           dateOrder: dateOrder,
         ),
+        onCancelSubmit: (id) => _onCancelSubmit(
+          emit,
+          id: id,
+        ),
+        onEditSubmit: (id, quantity, location, note, dateOrder) =>
+            _onEditSubmit(
+              emit,
+              id: id,
+              quantity: quantity,
+              location: location,
+              note: note,
+              dateOrder: dateOrder,
+            ),
         clearSubmitState: () async => _onClearSubmitState(emit),
       );
     });
@@ -175,5 +188,215 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
 
   void _onClearSubmitState(Emitter<LunchState> emit) {
     emit(state.copyWith(submitSuccess: false, message: null));
+  }
+
+  Future<void> _onEditSubmit(
+    Emitter<LunchState> emit, {
+    required int id,
+    required int quantity,
+    required int location,
+    required String note,
+    DateTime? dateOrder,
+  }) async {
+    if (_isSubmittingReport) return;
+    _isSubmittingReport = true;
+
+    try {
+      emit(
+        state.copyWith(
+          isSubmitting: true,
+          submitSuccess: false,
+          message: null,
+          deleteSuccess: false,
+          isDeleting: false,
+        ),
+      );
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+
+      final item = state.lunch.where((e) => e.id == id).toList().firstOrNull;
+
+      // Fallback để tránh chặn lưu nếu getCurrentUser lỗi.
+      final effectiveEmployeeId =
+          user?.employeeId ?? item?.employeeId ?? 0;
+      final userName = user?.loginName ?? item?.fullName ?? '';
+
+      final baseDate = dateOrder ?? item?.dateOrder ?? DateTime.now();
+      final safeDate = DateTime(baseDate.year, baseDate.month, baseDate.day);
+      final dateStr = DateFormat('yyyy-MM-dd').format(safeDate);
+
+      final payload = <String, dynamic>{
+        "ID": id,
+        "EmployeeID": effectiveEmployeeId,
+        "Quantity": quantity,
+        "DateOrder": dateStr,
+        "Note": note,
+        "IsApproved": item?.isApproved ?? false,
+        "CreatedDate": dateStr,
+        "CreatedBy": userName,
+        "UpdateDate": dateStr,
+        "UpdateBy": userName,
+        "DecilineApprove": 0,
+        "ReasonDeciline": "",
+        "IsDeleted": false,
+        "Location": location,
+      };
+
+      final saveRes = await _lunchRepo.saveLunch(payload: payload);
+      await saveRes.fold(
+        (err) async {
+          _log.logE('❌ Edit Lunch API failed: $err');
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              submitSuccess: false,
+              status: BaseStateStatus.failed,
+              message: err.getErrorMessage,
+            ),
+          );
+        },
+        (_) async {
+          final updatedLunch = state.lunch.map((e) {
+            if (e.id != id) return e;
+            return e.copyWith(
+              quantity: quantity,
+              note: note,
+              dateOrder: safeDate,
+              location: location,
+            );
+          }).toList();
+
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              submitSuccess: true,
+              status: BaseStateStatus.success,
+              lunch: updatedLunch,
+              message: 'Cập nhật cơm ca thành công',
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      _log.logE('❌ Edit Lunch exception: $e');
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          submitSuccess: false,
+          status: BaseStateStatus.failed,
+          message: 'Có lỗi xảy ra khi gửi dữ liệu',
+        ),
+      );
+    } finally {
+      _isSubmittingReport = false;
+      _log.logI('🏁 End edit Lunch');
+    }
+  }
+
+  Future<void> _onCancelSubmit(
+    Emitter<LunchState> emit, {
+    required int id,
+  }) async {
+    if (_isSubmittingReport) return;
+    _isSubmittingReport = true;
+
+    try {
+      emit(
+        state.copyWith(
+          isDeleting: true,
+          deleteSuccess: false,
+          status: BaseStateStatus.loading,
+          message: null,
+        ),
+      );
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+
+      if (user == null) {
+        emit(
+          state.copyWith(
+            isDeleting: false,
+            deleteSuccess: false,
+            status: BaseStateStatus.failed,
+            message: 'Có lỗi xảy ra khi gửi dữ liệu',
+          ),
+        );
+        return;
+      }
+
+      final lunchItem = state.lunch.where((e) => e.id == id).toList();
+      final item = lunchItem.isNotEmpty ? lunchItem.first : null;
+
+      final quantity = item?.quantity ?? 0;
+      final location = item?.location ?? 1;
+      final note = item?.note ?? '';
+      final pickedDate = item?.dateOrder ?? DateTime.now();
+
+      final safeDate =
+          DateTime(pickedDate.year, pickedDate.month, pickedDate.day);
+      final dateStr = DateFormat('yyyy-MM-dd').format(safeDate);
+
+      final userName = user.loginName;
+      final employeeId = user.employeeId;
+
+      final payload = <String, dynamic>{
+        "ID": id,
+        "EmployeeID": employeeId,
+        "Quantity": quantity,
+        "DateOrder": dateStr,
+        "Note": note,
+        "IsApproved": false,
+        "CreatedDate": dateStr,
+        "CreatedBy": userName,
+        "UpdateDate": dateStr,
+        "UpdateBy": userName,
+        "DecilineApprove": 0,
+        "ReasonDeciline": "",
+        "IsDeleted": true,
+        "Location": location,
+      };
+
+      final saveRes = await _lunchRepo.saveLunch(payload: payload);
+      await saveRes.fold(
+        (err) async {
+          _log.logE('❌ Cancel Lunch API failed: $err');
+          emit(
+            state.copyWith(
+              isDeleting: false,
+              deleteSuccess: false,
+              status: BaseStateStatus.failed,
+              message: err.getErrorMessage,
+            ),
+          );
+        },
+        (_) async {
+          final updatedLunch = state.lunch.where((e) => e.id != id).toList();
+          emit(
+            state.copyWith(
+              isDeleting: false,
+              deleteSuccess: true,
+              status: BaseStateStatus.success,
+              lunch: updatedLunch,
+              message: null,
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      _log.logE('❌ Cancel Lunch exception: $e');
+      emit(
+        state.copyWith(
+          isDeleting: false,
+          deleteSuccess: false,
+          status: BaseStateStatus.failed,
+          message: 'Có lỗi xảy ra khi gửi dữ liệu',
+        ),
+      );
+    } finally {
+      _isSubmittingReport = false;
+      _log.logI('🏁 End cancel Lunch');
+    }
   }
 }

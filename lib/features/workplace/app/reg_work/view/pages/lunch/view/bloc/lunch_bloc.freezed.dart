@@ -22,6 +22,10 @@ mixin _$LunchEvent {
     required TResult Function(
             int quantity, int location, String note, DateTime? dateOrder)
         submit,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)
+        onEditSubmit,
     required TResult Function() clearSubmitState,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,6 +35,10 @@ mixin _$LunchEvent {
     TResult? Function(
             int quantity, int location, String note, DateTime? dateOrder)?
         submit,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
     TResult? Function()? clearSubmitState,
   }) =>
       throw _privateConstructorUsedError;
@@ -40,6 +48,10 @@ mixin _$LunchEvent {
     TResult Function(
             int quantity, int location, String note, DateTime? dateOrder)?
         submit,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) =>
@@ -48,6 +60,8 @@ mixin _$LunchEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_Submit value) submit,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_OnEditSubmit value) onEditSubmit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +69,8 @@ mixin _$LunchEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_Submit value)? submit,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_OnEditSubmit value)? onEditSubmit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +78,8 @@ mixin _$LunchEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_Submit value)? submit,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_OnEditSubmit value)? onEditSubmit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) =>
@@ -127,6 +145,10 @@ class _$InitImpl implements _Init {
     required TResult Function(
             int quantity, int location, String note, DateTime? dateOrder)
         submit,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)
+        onEditSubmit,
     required TResult Function() clearSubmitState,
   }) {
     return init();
@@ -139,6 +161,10 @@ class _$InitImpl implements _Init {
     TResult? Function(
             int quantity, int location, String note, DateTime? dateOrder)?
         submit,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
     TResult? Function()? clearSubmitState,
   }) {
     return init?.call();
@@ -151,6 +177,10 @@ class _$InitImpl implements _Init {
     TResult Function(
             int quantity, int location, String note, DateTime? dateOrder)?
         submit,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -165,6 +195,8 @@ class _$InitImpl implements _Init {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_Submit value) submit,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_OnEditSubmit value) onEditSubmit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return init(this);
@@ -175,6 +207,8 @@ class _$InitImpl implements _Init {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_Submit value)? submit,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_OnEditSubmit value)? onEditSubmit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return init?.call(this);
@@ -185,6 +219,8 @@ class _$InitImpl implements _Init {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_Submit value)? submit,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_OnEditSubmit value)? onEditSubmit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -299,6 +335,10 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(
             int quantity, int location, String note, DateTime? dateOrder)
         submit,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)
+        onEditSubmit,
     required TResult Function() clearSubmitState,
   }) {
     return submit(quantity, location, note, dateOrder);
@@ -311,6 +351,10 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(
             int quantity, int location, String note, DateTime? dateOrder)?
         submit,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
     TResult? Function()? clearSubmitState,
   }) {
     return submit?.call(quantity, location, note, dateOrder);
@@ -323,6 +367,10 @@ class _$SubmitImpl implements _Submit {
     TResult Function(
             int quantity, int location, String note, DateTime? dateOrder)?
         submit,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -337,6 +385,8 @@ class _$SubmitImpl implements _Submit {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_Submit value) submit,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_OnEditSubmit value) onEditSubmit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return submit(this);
@@ -347,6 +397,8 @@ class _$SubmitImpl implements _Submit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_Submit value)? submit,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_OnEditSubmit value)? onEditSubmit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return submit?.call(this);
@@ -357,6 +409,8 @@ class _$SubmitImpl implements _Submit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_Submit value)? submit,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_OnEditSubmit value)? onEditSubmit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -380,6 +434,384 @@ abstract class _Submit implements LunchEvent {
   DateTime? get dateOrder;
   @JsonKey(ignore: true)
   _$$SubmitImplCopyWith<_$SubmitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OnCancelSubmitImplCopyWith<$Res> {
+  factory _$$OnCancelSubmitImplCopyWith(_$OnCancelSubmitImpl value,
+          $Res Function(_$OnCancelSubmitImpl) then) =
+      __$$OnCancelSubmitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$OnCancelSubmitImplCopyWithImpl<$Res>
+    extends _$LunchEventCopyWithImpl<$Res, _$OnCancelSubmitImpl>
+    implements _$$OnCancelSubmitImplCopyWith<$Res> {
+  __$$OnCancelSubmitImplCopyWithImpl(
+      _$OnCancelSubmitImpl _value, $Res Function(_$OnCancelSubmitImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$OnCancelSubmitImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnCancelSubmitImpl implements _OnCancelSubmit {
+  const _$OnCancelSubmitImpl({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'LunchEvent.onCancelSubmit(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnCancelSubmitImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnCancelSubmitImplCopyWith<_$OnCancelSubmitImpl> get copyWith =>
+      __$$OnCancelSubmitImplCopyWithImpl<_$OnCancelSubmitImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(
+            int quantity, int location, String note, DateTime? dateOrder)
+        submit,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)
+        onEditSubmit,
+    required TResult Function() clearSubmitState,
+  }) {
+    return onCancelSubmit(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(
+            int quantity, int location, String note, DateTime? dateOrder)?
+        submit,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return onCancelSubmit?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(
+            int quantity, int location, String note, DateTime? dateOrder)?
+        submit,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (onCancelSubmit != null) {
+      return onCancelSubmit(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_OnEditSubmit value) onEditSubmit,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return onCancelSubmit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_OnEditSubmit value)? onEditSubmit,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return onCancelSubmit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_OnEditSubmit value)? onEditSubmit,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (onCancelSubmit != null) {
+      return onCancelSubmit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnCancelSubmit implements LunchEvent {
+  const factory _OnCancelSubmit({required final int id}) = _$OnCancelSubmitImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$OnCancelSubmitImplCopyWith<_$OnCancelSubmitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OnEditSubmitImplCopyWith<$Res> {
+  factory _$$OnEditSubmitImplCopyWith(
+          _$OnEditSubmitImpl value, $Res Function(_$OnEditSubmitImpl) then) =
+      __$$OnEditSubmitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int id, int quantity, int location, String note, DateTime? dateOrder});
+}
+
+/// @nodoc
+class __$$OnEditSubmitImplCopyWithImpl<$Res>
+    extends _$LunchEventCopyWithImpl<$Res, _$OnEditSubmitImpl>
+    implements _$$OnEditSubmitImplCopyWith<$Res> {
+  __$$OnEditSubmitImplCopyWithImpl(
+      _$OnEditSubmitImpl _value, $Res Function(_$OnEditSubmitImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? quantity = null,
+    Object? location = null,
+    Object? note = null,
+    Object? dateOrder = freezed,
+  }) {
+    return _then(_$OnEditSubmitImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as int,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      dateOrder: freezed == dateOrder
+          ? _value.dateOrder
+          : dateOrder // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnEditSubmitImpl implements _OnEditSubmit {
+  const _$OnEditSubmitImpl(
+      {required this.id,
+      required this.quantity,
+      required this.location,
+      required this.note,
+      this.dateOrder});
+
+  @override
+  final int id;
+  @override
+  final int quantity;
+  @override
+  final int location;
+  @override
+  final String note;
+  @override
+  final DateTime? dateOrder;
+
+  @override
+  String toString() {
+    return 'LunchEvent.onEditSubmit(id: $id, quantity: $quantity, location: $location, note: $note, dateOrder: $dateOrder)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnEditSubmitImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.dateOrder, dateOrder) ||
+                other.dateOrder == dateOrder));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, quantity, location, note, dateOrder);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnEditSubmitImplCopyWith<_$OnEditSubmitImpl> get copyWith =>
+      __$$OnEditSubmitImplCopyWithImpl<_$OnEditSubmitImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(
+            int quantity, int location, String note, DateTime? dateOrder)
+        submit,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)
+        onEditSubmit,
+    required TResult Function() clearSubmitState,
+  }) {
+    return onEditSubmit(id, quantity, location, note, dateOrder);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(
+            int quantity, int location, String note, DateTime? dateOrder)?
+        submit,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return onEditSubmit?.call(id, quantity, location, note, dateOrder);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(
+            int quantity, int location, String note, DateTime? dateOrder)?
+        submit,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (onEditSubmit != null) {
+      return onEditSubmit(id, quantity, location, note, dateOrder);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_OnEditSubmit value) onEditSubmit,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return onEditSubmit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_OnEditSubmit value)? onEditSubmit,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return onEditSubmit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_OnEditSubmit value)? onEditSubmit,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (onEditSubmit != null) {
+      return onEditSubmit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnEditSubmit implements LunchEvent {
+  const factory _OnEditSubmit(
+      {required final int id,
+      required final int quantity,
+      required final int location,
+      required final String note,
+      final DateTime? dateOrder}) = _$OnEditSubmitImpl;
+
+  int get id;
+  int get quantity;
+  int get location;
+  String get note;
+  DateTime? get dateOrder;
+  @JsonKey(ignore: true)
+  _$$OnEditSubmitImplCopyWith<_$OnEditSubmitImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -425,6 +857,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(
             int quantity, int location, String note, DateTime? dateOrder)
         submit,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)
+        onEditSubmit,
     required TResult Function() clearSubmitState,
   }) {
     return clearSubmitState();
@@ -437,6 +873,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(
             int quantity, int location, String note, DateTime? dateOrder)?
         submit,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
     TResult? Function()? clearSubmitState,
   }) {
     return clearSubmitState?.call();
@@ -449,6 +889,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(
             int quantity, int location, String note, DateTime? dateOrder)?
         submit,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -463,6 +907,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_Submit value) submit,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_OnEditSubmit value) onEditSubmit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return clearSubmitState(this);
@@ -473,6 +919,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_Submit value)? submit,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_OnEditSubmit value)? onEditSubmit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return clearSubmitState?.call(this);
@@ -483,6 +931,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_Submit value)? submit,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_OnEditSubmit value)? onEditSubmit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {

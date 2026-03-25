@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/base/bloc/index.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
@@ -8,6 +9,7 @@ import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
+import '../../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../../common/utils/card/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../routes/route_names.dart';
@@ -68,12 +70,18 @@ class _LunchScreenState
       child: BaseScaffold(
         appBar: AppBarCommon(
           title: Text('reg_work.lunch'.tr(), style: AppStyles.headingTitle2),
-          actions: const [Icon(Icons.search_outlined), SizedBox(width: 8)],
+          actions: const [Icon(Icons.calendar_month), SizedBox(width: 8)],
           onBackTap: () => context.pop(),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            context.push(RouteNames.lunchAdd);
+          onPressed: () async {
+            final reload = await context.push<bool?>(
+              RouteNames.regworkLunchAdd,
+            );
+            if (!mounted) return;
+            if (reload == true) {
+              bloc.add(const LunchEvent.init());
+            }
           },
           backgroundColor: AppColors.primaryERP,
           elevation: 6,
@@ -84,6 +92,10 @@ class _LunchScreenState
         body: BlocBuilder<LunchBloc, LunchState>(
           builder: (context, state) {
             if (state.status == BaseStateStatus.loading && state.lunch.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (state.isDeleting) {
               return const Center(child: CircularProgressIndicator());
             }
 
@@ -119,7 +131,9 @@ class _LunchScreenState
                   final quantityDisplay = item.quantity?.toString() ?? '0';
                   final locationText = item.locationText ?? '';
 
-                  return AppCardItem(
+                  final canSwipeDelete = item.isApproved == false;
+
+                  final card = AppCardItem(
                     status: status,
                     useStatusBackground: false,
                     useStatusBorder: false,
@@ -140,7 +154,47 @@ class _LunchScreenState
                         ],
                       ],
                     ),
-                    onTap: () => context.push(RouteNames.lunchDetail),
+                    onTap: () async {
+                      final reload = await context.push<bool?>(
+                        RouteNames.regworkLunchDetail,
+                        extra: item,
+                      );
+                      if (!mounted) return;
+                      if (reload == true) {
+                        bloc.add(const LunchEvent.init());
+                      }
+                    },
+                  );
+
+                  if (!canSwipeDelete) return card;
+
+                  return Slidable(
+                    key: ValueKey('lunch_${item.id}'),
+                    endActionPane: ActionPane(
+                      motion: const DrawerMotion(),
+                      extentRatio: 0.28,
+                      children: [
+                        SlidableAction(
+                          onPressed: (actionContext) async {
+                            Slidable.of(actionContext)?.close();
+                            if (!context.mounted) return;
+                            await DialogService.showCancelLunch(
+                              context: context,
+                              onConfirm: () {
+                                bloc.add(
+                                  LunchEvent.onCancelSubmit(id: item.id),
+                                );
+                              },
+                            );
+                          },
+                          backgroundColor: AppColors.alert,
+                          foregroundColor: Colors.white,
+                          icon: Icons.delete_outline,
+                          label: 'Xoá',
+                        ),
+                      ],
+                    ),
+                    child: card,
                   );
                 }),
               );

@@ -9,5 +9,15 @@ class LunchEvent with _$LunchEvent{
     required String note,
     DateTime? dateOrder,
   }) = _Submit;
+  const factory LunchEvent.onCancelSubmit({
+    required int id,
+  }) = _OnCancelSubmit;
+  const factory LunchEvent.onEditSubmit({
+    required int id,
+    required int quantity,
+    required int location,
+    required String note,
+    DateTime? dateOrder,
+  }) = _OnEditSubmit;
   const factory LunchEvent.clearSubmitState() = _ClearSubmitState;
 }

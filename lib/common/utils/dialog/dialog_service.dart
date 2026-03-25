@@ -442,9 +442,8 @@ class DialogService {
 
       /// 🔴 Nút xác nhận huỷ
       topButtonFunc: () {
-        context.pop(context);
-        onConfirm?.call();
         onBack(context);
+        onConfirm?.call();
       },
 
       /// ⚪ Nút thoát
@@ -490,6 +489,7 @@ class DialogService {
       leftButtonFunc: () async {
         onBack(context); // đóng dialog trước
         // return context.push(RouteNames.reportSaleAdmin);
+        return null;
       },
 
       contentRightButton: 'Nhân viên sale',
@@ -498,6 +498,7 @@ class DialogService {
       rightButtonFunc: () async {
         onBack(context);
         // return context.push(RouteNames.reportSaleStaff);
+        return null;
       },
     );
   }

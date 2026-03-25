@@ -137,17 +137,17 @@ class AppRouter {
         },
         routes: [
           GoRoute(
-            path: '/regwork/lunch',
+            path: RouteNames.regworkLunch,
             builder: (context, state) => const LunchScreen(),
           ),
 
           GoRoute(
-            path: '/regwork/lunch/detail',
+            path: RouteNames.regworkLunchDetail,
             builder: (context, state) => const LunchDetailScreen(),
           ),
 
           GoRoute(
-            path: RouteNames.lunchAdd,
+            path: RouteNames.regworkLunchAdd,
             builder: (context, state) => const LunchAddScreen(),
           ),
         ],
