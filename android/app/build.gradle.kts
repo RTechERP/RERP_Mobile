@@ -37,7 +37,9 @@ android {
     // ✅ FLAVOR DIMENSION
     flavorDimensions += "env"
 
-    // ✅ PRODUCT FLAVORS (KHÔNG TRÙNG buildType)
+    // dev → lib/main_debug.dart | prod → lib/main_production.dart
+    // Chạy: flutter run --flavor dev -t lib/main_debug.dart
+    //       flutter run --flavor prod -t lib/main_production.dart
     productFlavors {
         create("dev") {
             dimension = "env"
@@ -45,15 +47,8 @@ android {
             versionNameSuffix = "-dev"
         }
 
-        create("staging") {
-            dimension = "env"
-            applicationIdSuffix = ".staging"
-            versionNameSuffix = "-staging"
-        }
-
         create("prod") {
             dimension = "env"
-            // production → KHÔNG suffix
         }
     }
 

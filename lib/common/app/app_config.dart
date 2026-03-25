@@ -11,11 +11,11 @@ class AppConfig {
   static late String appName;
 
   static bool get isDebug => env == AppEnv.debug;
-  static bool get isStaging => env == AppEnv.staging;
   static bool get isProduction => env == AppEnv.production;
 
   static Future<void> load() async {
-    final envString = dotenv.env['APP_ENV'] ?? 'debug';
+    final envString =
+        dotenv.env['ENV'] ?? dotenv.env['APP_ENV'] ?? 'debug';
 
     env = AppEnv.fromString(envString);
 

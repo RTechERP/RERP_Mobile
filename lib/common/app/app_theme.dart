@@ -16,8 +16,6 @@ class AppTheme {
     switch (AppConfig.env) {
       case AppEnv.production:
         return const Color(0xFF0057B8);
-      case AppEnv.staging:
-        return Colors.blue;
       case AppEnv.debug:
         return Colors.orange;
     }

@@ -125,7 +125,6 @@ flutter:
   assets:
     # ENV
     - assets/env/.env.debug
-    - assets/env/.env.staging
     - assets/env/.env.production
 
     # Images

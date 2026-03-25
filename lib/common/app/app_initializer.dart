@@ -7,6 +7,6 @@ class AppInitializer {
   static Future<void> init(String envFile) async {
     await dotenv.load(fileName: envFile);
     await AppConfig.load();
-    configureDependencies(AppConfig.env);
+    configureDependencies();
   }
 }

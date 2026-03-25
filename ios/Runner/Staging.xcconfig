@@ -1,7 +1,0 @@
-#include "Generated.xcconfig"
-
-FLUTTER_TARGET=lib/main_staging.dart
-APP_ENV=staging
-
-PRODUCT_BUNDLE_IDENTIFIER=vn.rtc.erp.staging
-PRODUCT_NAME=RTC ERP Staging

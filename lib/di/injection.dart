@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import '../base/network/constants/constants.dart';
 import '../base/network/dio/dio_interceptor.dart';
-import '../common/app/app_env.dart';
+import '../common/app/app_config.dart';
+import '../common/config/api_config.dart';
 import '../common/local_data/shared_pref.dart';
 import '../common/logger/index.dart';
 import '../common/utils/snack_bar_helper.dart';
@@ -35,7 +35,7 @@ import '../features/workplace/view/bloc/workspace_bloc.dart';
 
 final getIt = GetIt.instance;
 
-void configureDependencies(AppEnv env) {
+void configureDependencies() {
   // ===== COMMON =====
   getIt.registerLazySingleton<LocalStorage>(() => LocalStorageImpl());
 
@@ -45,13 +45,32 @@ void configureDependencies(AppEnv env) {
 
   /// ===== NETWORK =====
   getIt.registerLazySingleton<Dio>(() {
+    final baseUrl = AppConfig.baseUrl;
+
     final dio = Dio(
       BaseOptions(
-        baseUrl: BaseApiUrl.baseUrl,
-        connectTimeout: const Duration(seconds: 30),
-        receiveTimeout: const Duration(seconds: 30),
+        baseUrl: baseUrl,
+        connectTimeout: Duration(seconds: ApiConfig.connectTimeout),
+        receiveTimeout: Duration(seconds: ApiConfig.receiveTimeout),
+        receiveDataWhenStatusError: true,
+        headers: const {
+          'accept': 'application/json',
+          'content-Type': 'Application/json',
+        },
       ),
     );
+    if (AppConfig.enableDioLog) {
+      dio.interceptors.add(
+        PrettyDioLogger(
+          requestHeader: false,
+          responseHeader: false,
+          requestBody: false,
+          responseBody: false,
+          request: false,
+          logPrint: printDebug,
+        ),
+      );
+    }
     dio.interceptors.add(DioInterceptor());
     return dio;
   });
@@ -140,13 +159,4 @@ void configureDependencies(AppEnv env) {
   getIt.registerFactory<LunchBloc>(
     () => LunchBloc(getIt<LunchRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
-  // ===== THEO ENV =====
-  switch (env) {
-    case AppEnv.debug:
-      break;
-    case AppEnv.production:
-      break;
-    case AppEnv.staging:
-      break;
-  }
 }
