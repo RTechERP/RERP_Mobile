@@ -48,6 +48,12 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
               note: note,
               dateOrder: dateOrder,
             ),
+        changeDateRange: (dateStart, dateEnd) =>
+            _onChangeDateRange(
+              emit,
+              dateStart: dateStart,
+              dateEnd: dateEnd,
+            ),
         clearSubmitState: () async => _onClearSubmitState(emit),
       );
     });
@@ -68,10 +74,32 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
         final todayStart = DateTime(now.year, now.month, now.day);
         final tomorrow = todayStart.add(const Duration(days: 1));
 
-        // Khoảng lọc: cả ngày hôm nay và cả ngày hôm sau (đến 23:59:59).
-        final startStr = DateFormat('yyyy-MM-dd').format(todayStart);
+        final startCandidate = state.dateStart ?? todayStart;
+        final endCandidate = state.dateEnd ?? tomorrow;
+
+        // Chuẩn hoá thứ tự (tránh trường hợp user/flow set ngược).
+        final effectiveStart =
+            startCandidate.isAfter(endCandidate) ? endCandidate : startCandidate;
+        final effectiveEnd =
+            startCandidate.isAfter(endCandidate) ? startCandidate : endCandidate;
+
+        // Khoảng lọc: cả ngày start và end (format chỉ lấy ngày).
+        final startStr = DateFormat('yyyy-MM-dd').format(
+          DateTime(
+            effectiveStart.year,
+            effectiveStart.month,
+            effectiveStart.day,
+          ),
+        );
         final endStr = DateFormat('yyyy-MM-dd').format(
-          DateTime(tomorrow.year, tomorrow.month, tomorrow.day, 23, 59, 59),
+          DateTime(
+            effectiveEnd.year,
+            effectiveEnd.month,
+            effectiveEnd.day,
+            23,
+            59,
+            59,
+          ),
         );
 
         final payload = {
@@ -94,7 +122,78 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
           },
           (r) async {
             _log.logI('✅ API success - total: $r');
-            emit(state.copyWith(status: BaseStateStatus.success, lunch: r));
+            emit(
+              state.copyWith(
+                status: BaseStateStatus.success,
+                lunch: r,
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Future<void> _onChangeDateRange(
+    Emitter<LunchState> emit, {
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) async {
+    final start = DateTime(dateStart.year, dateStart.month, dateStart.day);
+    final end = DateTime(dateEnd.year, dateEnd.month, dateEnd.day);
+
+    // Chuẩn hoá thứ tự (nếu user chọn ngược).
+    final effectiveStart =
+        start.isAfter(end) ? end : start;
+    final effectiveEnd =
+        start.isAfter(end) ? start : end;
+
+    emit(
+      state.copyWith(
+        status: BaseStateStatus.loading,
+        dateStart: effectiveStart,
+        dateEnd: effectiveEnd,
+      ),
+    );
+
+    final userRes = await _authRepo.getCurrentUser();
+    await userRes.fold(
+      (err) async {
+        _log.logE('❌ Get user failed: $err');
+        emit(state.copyWith(status: BaseStateStatus.failed));
+      },
+      (user) async {
+        final startStr = DateFormat('yyyy-MM-dd').format(effectiveStart);
+        final endStr = DateFormat('yyyy-MM-dd')
+            .format(DateTime(effectiveEnd.year, effectiveEnd.month, effectiveEnd.day, 23, 59, 59));
+
+        final payload = {
+          "dateStart": startStr,
+          "dateEnd": endStr,
+          "employeeId": user!.employeeId,
+          "keyWord": '',
+          "pageNumber": 1,
+          "pageSize": 10,
+        };
+
+        _log.logI('Payload: $payload');
+
+        final res = await _lunchRepo.getLunch(payload: payload);
+        await res.fold(
+          (l) async {
+            _log.logE('❌ API failed: $l');
+            emit(state.copyWith(status: BaseStateStatus.failed));
+          },
+          (r) async {
+            _log.logI('✅ API success - total: $r');
+            emit(
+              state.copyWith(
+                status: BaseStateStatus.success,
+                lunch: r,
+                dateStart: effectiveStart,
+                dateEnd: effectiveEnd,
+              ),
+            );
           },
         );
       },

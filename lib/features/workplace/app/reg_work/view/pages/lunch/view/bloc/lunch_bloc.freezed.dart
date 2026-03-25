@@ -26,6 +26,8 @@ mixin _$LunchEvent {
     required TResult Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)
         onEditSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function() clearSubmitState,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,6 +41,7 @@ mixin _$LunchEvent {
     TResult? Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)?
         onEditSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +55,7 @@ mixin _$LunchEvent {
     TResult Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)?
         onEditSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) =>
@@ -62,6 +66,7 @@ mixin _$LunchEvent {
     required TResult Function(_Submit value) submit,
     required TResult Function(_OnCancelSubmit value) onCancelSubmit,
     required TResult Function(_OnEditSubmit value) onEditSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) =>
       throw _privateConstructorUsedError;
@@ -71,6 +76,7 @@ mixin _$LunchEvent {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult? Function(_OnEditSubmit value)? onEditSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) =>
       throw _privateConstructorUsedError;
@@ -80,6 +86,7 @@ mixin _$LunchEvent {
     TResult Function(_Submit value)? submit,
     TResult Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult Function(_OnEditSubmit value)? onEditSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) =>
@@ -149,6 +156,8 @@ class _$InitImpl implements _Init {
     required TResult Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)
         onEditSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function() clearSubmitState,
   }) {
     return init();
@@ -165,6 +174,7 @@ class _$InitImpl implements _Init {
     TResult? Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)?
         onEditSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
   }) {
     return init?.call();
@@ -181,6 +191,7 @@ class _$InitImpl implements _Init {
     TResult Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)?
         onEditSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -197,6 +208,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_Submit value) submit,
     required TResult Function(_OnCancelSubmit value) onCancelSubmit,
     required TResult Function(_OnEditSubmit value) onEditSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return init(this);
@@ -209,6 +221,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult? Function(_OnEditSubmit value)? onEditSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return init?.call(this);
@@ -221,6 +234,7 @@ class _$InitImpl implements _Init {
     TResult Function(_Submit value)? submit,
     TResult Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult Function(_OnEditSubmit value)? onEditSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -339,6 +353,8 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)
         onEditSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function() clearSubmitState,
   }) {
     return submit(quantity, location, note, dateOrder);
@@ -355,6 +371,7 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)?
         onEditSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
   }) {
     return submit?.call(quantity, location, note, dateOrder);
@@ -371,6 +388,7 @@ class _$SubmitImpl implements _Submit {
     TResult Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)?
         onEditSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -387,6 +405,7 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(_Submit value) submit,
     required TResult Function(_OnCancelSubmit value) onCancelSubmit,
     required TResult Function(_OnEditSubmit value) onEditSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return submit(this);
@@ -399,6 +418,7 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult? Function(_OnEditSubmit value)? onEditSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return submit?.call(this);
@@ -411,6 +431,7 @@ class _$SubmitImpl implements _Submit {
     TResult Function(_Submit value)? submit,
     TResult Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult Function(_OnEditSubmit value)? onEditSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -510,6 +531,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)
         onEditSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function() clearSubmitState,
   }) {
     return onCancelSubmit(id);
@@ -526,6 +549,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)?
         onEditSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
   }) {
     return onCancelSubmit?.call(id);
@@ -542,6 +566,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)?
         onEditSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -558,6 +583,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function(_Submit value) submit,
     required TResult Function(_OnCancelSubmit value) onCancelSubmit,
     required TResult Function(_OnEditSubmit value) onEditSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return onCancelSubmit(this);
@@ -570,6 +596,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult? Function(_OnEditSubmit value)? onEditSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return onCancelSubmit?.call(this);
@@ -582,6 +609,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function(_Submit value)? submit,
     TResult Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult Function(_OnEditSubmit value)? onEditSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -715,6 +743,8 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
     required TResult Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)
         onEditSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function() clearSubmitState,
   }) {
     return onEditSubmit(id, quantity, location, note, dateOrder);
@@ -731,6 +761,7 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
     TResult? Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)?
         onEditSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
   }) {
     return onEditSubmit?.call(id, quantity, location, note, dateOrder);
@@ -747,6 +778,7 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
     TResult Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)?
         onEditSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -763,6 +795,7 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
     required TResult Function(_Submit value) submit,
     required TResult Function(_OnCancelSubmit value) onCancelSubmit,
     required TResult Function(_OnEditSubmit value) onEditSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return onEditSubmit(this);
@@ -775,6 +808,7 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult? Function(_OnEditSubmit value)? onEditSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return onEditSubmit?.call(this);
@@ -787,6 +821,7 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
     TResult Function(_Submit value)? submit,
     TResult Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult Function(_OnEditSubmit value)? onEditSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -812,6 +847,189 @@ abstract class _OnEditSubmit implements LunchEvent {
   DateTime? get dateOrder;
   @JsonKey(ignore: true)
   _$$OnEditSubmitImplCopyWith<_$OnEditSubmitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeDateRangeImplCopyWith<$Res> {
+  factory _$$ChangeDateRangeImplCopyWith(_$ChangeDateRangeImpl value,
+          $Res Function(_$ChangeDateRangeImpl) then) =
+      __$$ChangeDateRangeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime dateStart, DateTime dateEnd});
+}
+
+/// @nodoc
+class __$$ChangeDateRangeImplCopyWithImpl<$Res>
+    extends _$LunchEventCopyWithImpl<$Res, _$ChangeDateRangeImpl>
+    implements _$$ChangeDateRangeImplCopyWith<$Res> {
+  __$$ChangeDateRangeImplCopyWithImpl(
+      _$ChangeDateRangeImpl _value, $Res Function(_$ChangeDateRangeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dateStart = null,
+    Object? dateEnd = null,
+  }) {
+    return _then(_$ChangeDateRangeImpl(
+      dateStart: null == dateStart
+          ? _value.dateStart
+          : dateStart // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      dateEnd: null == dateEnd
+          ? _value.dateEnd
+          : dateEnd // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeDateRangeImpl implements _ChangeDateRange {
+  const _$ChangeDateRangeImpl({required this.dateStart, required this.dateEnd});
+
+  @override
+  final DateTime dateStart;
+  @override
+  final DateTime dateEnd;
+
+  @override
+  String toString() {
+    return 'LunchEvent.changeDateRange(dateStart: $dateStart, dateEnd: $dateEnd)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeDateRangeImpl &&
+            (identical(other.dateStart, dateStart) ||
+                other.dateStart == dateStart) &&
+            (identical(other.dateEnd, dateEnd) || other.dateEnd == dateEnd));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, dateStart, dateEnd);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeDateRangeImplCopyWith<_$ChangeDateRangeImpl> get copyWith =>
+      __$$ChangeDateRangeImplCopyWithImpl<_$ChangeDateRangeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(
+            int quantity, int location, String note, DateTime? dateOrder)
+        submit,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)
+        onEditSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearSubmitState,
+  }) {
+    return changeDateRange(dateStart, dateEnd);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(
+            int quantity, int location, String note, DateTime? dateOrder)?
+        submit,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return changeDateRange?.call(dateStart, dateEnd);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(
+            int quantity, int location, String note, DateTime? dateOrder)?
+        submit,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(int id, int quantity, int location, String note,
+            DateTime? dateOrder)?
+        onEditSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (changeDateRange != null) {
+      return changeDateRange(dateStart, dateEnd);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_OnEditSubmit value) onEditSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return changeDateRange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_OnEditSubmit value)? onEditSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return changeDateRange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_OnEditSubmit value)? onEditSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (changeDateRange != null) {
+      return changeDateRange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeDateRange implements LunchEvent {
+  const factory _ChangeDateRange(
+      {required final DateTime dateStart,
+      required final DateTime dateEnd}) = _$ChangeDateRangeImpl;
+
+  DateTime get dateStart;
+  DateTime get dateEnd;
+  @JsonKey(ignore: true)
+  _$$ChangeDateRangeImplCopyWith<_$ChangeDateRangeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -861,6 +1079,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)
         onEditSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function() clearSubmitState,
   }) {
     return clearSubmitState();
@@ -877,6 +1097,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)?
         onEditSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
   }) {
     return clearSubmitState?.call();
@@ -893,6 +1114,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(int id, int quantity, int location, String note,
             DateTime? dateOrder)?
         onEditSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
@@ -909,6 +1131,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_Submit value) submit,
     required TResult Function(_OnCancelSubmit value) onCancelSubmit,
     required TResult Function(_OnEditSubmit value) onEditSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return clearSubmitState(this);
@@ -921,6 +1144,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult? Function(_OnEditSubmit value)? onEditSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return clearSubmitState?.call(this);
@@ -933,6 +1157,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_Submit value)? submit,
     TResult Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult Function(_OnEditSubmit value)? onEditSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {

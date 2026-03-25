@@ -19,5 +19,9 @@ class LunchEvent with _$LunchEvent{
     required String note,
     DateTime? dateOrder,
   }) = _OnEditSubmit;
+  const factory LunchEvent.changeDateRange({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) = _ChangeDateRange;
   const factory LunchEvent.clearSubmitState() = _ClearSubmitState;
 }
