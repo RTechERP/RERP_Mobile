@@ -11,6 +11,8 @@ class AppCardItem extends StatelessWidget {
   final VoidCallback? onView;
 
   final VoidCallback? onCancel;
+  final bool useStatusBackground;
+  final bool useStatusBorder;
 
   const AppCardItem({
     super.key,
@@ -20,23 +22,27 @@ class AppCardItem extends StatelessWidget {
     this.onEdit,
     this.onView,
     this.onCancel,
+    this.useStatusBackground = true,
+    this.useStatusBorder = true,
   });
 
   @override
   Widget build(BuildContext context) {
     final colors = _statusColors(status);
+    final backgroundColor = useStatusBackground ? colors.background : Colors.white;
+    final borderColor = useStatusBorder ? colors.border : const Color(0xFFE0E0E0);
 
     return Material(
-      color: colors.background,
-      borderRadius: BorderRadius.circular(16),
+      color: backgroundColor,
+      borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: onTap ?? (status == ApprovalStatus.approved ? onView : onEdit),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: colors.border),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: borderColor),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,15 +102,15 @@ class _StatusBadge extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
         color: _backgroundColor,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Text(
         _label,
         style: const TextStyle(
-          fontSize: 11,
+          fontSize: 10,
           color: Colors.white,
           fontWeight: FontWeight.w600,
         ),

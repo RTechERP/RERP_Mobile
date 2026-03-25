@@ -25,6 +25,10 @@ abstract class _$LunchStateCWProxy {
 
   LunchState loginName(String? loginName);
 
+  LunchState dateStart(DateTime? dateStart);
+
+  LunchState dateEnd(DateTime? dateEnd);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LunchState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -41,6 +45,8 @@ abstract class _$LunchStateCWProxy {
     bool? isDeleting,
     int? employeeId,
     String? loginName,
+    DateTime? dateStart,
+    DateTime? dateEnd,
   });
 }
 
@@ -81,6 +87,12 @@ class _$LunchStateCWProxyImpl implements _$LunchStateCWProxy {
   LunchState loginName(String? loginName) => this(loginName: loginName);
 
   @override
+  LunchState dateStart(DateTime? dateStart) => this(dateStart: dateStart);
+
+  @override
+  LunchState dateEnd(DateTime? dateEnd) => this(dateEnd: dateEnd);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LunchState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -98,6 +110,8 @@ class _$LunchStateCWProxyImpl implements _$LunchStateCWProxy {
     Object? isDeleting = const $CopyWithPlaceholder(),
     Object? employeeId = const $CopyWithPlaceholder(),
     Object? loginName = const $CopyWithPlaceholder(),
+    Object? dateStart = const $CopyWithPlaceholder(),
+    Object? dateEnd = const $CopyWithPlaceholder(),
   }) {
     return LunchState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -140,6 +154,14 @@ class _$LunchStateCWProxyImpl implements _$LunchStateCWProxy {
           ? _value.loginName
           // ignore: cast_nullable_to_non_nullable
           : loginName as String?,
+      dateStart: dateStart == const $CopyWithPlaceholder()
+          ? _value.dateStart
+          // ignore: cast_nullable_to_non_nullable
+          : dateStart as DateTime?,
+      dateEnd: dateEnd == const $CopyWithPlaceholder()
+          ? _value.dateEnd
+          // ignore: cast_nullable_to_non_nullable
+          : dateEnd as DateTime?,
     );
   }
 }

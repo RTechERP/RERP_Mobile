@@ -9,9 +9,9 @@ class LunchState extends BaseBlocState {
   final bool deleteSuccess;
   final bool isDeleting;
   final int? employeeId;
-
   final String? loginName;
-
+  final DateTime? dateStart;
+  final DateTime? dateEnd;
   const LunchState({
     required super.status,
     super.message,
@@ -22,6 +22,8 @@ class LunchState extends BaseBlocState {
     this.isDeleting = false,
     this.employeeId,
     this.loginName,
+    this.dateStart,
+    this.dateEnd,
   });
 
   factory LunchState.init() => const LunchState(
@@ -33,6 +35,8 @@ class LunchState extends BaseBlocState {
     lunch: [],
     employeeId: null,
     loginName: null,
+    dateStart: null,
+    dateEnd: null,
   );
 
   @override
@@ -46,5 +50,7 @@ class LunchState extends BaseBlocState {
     isDeleting,
     employeeId,
     loginName,
+    dateStart,
+    dateEnd,
   ];
 }

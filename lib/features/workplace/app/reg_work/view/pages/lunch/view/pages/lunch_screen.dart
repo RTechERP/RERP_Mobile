@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rtc_erp/base/bloc/index.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 
 import '../../../../../../../../../base/widgets/base_widget.dart';
@@ -10,6 +11,7 @@ import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../../common/utils/card/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../routes/route_names.dart';
+import '../../../../../../reg_general/view/pages/booking_vehicle/view/widgets/date_header.dart';
 import '../bloc/lunch_bloc.dart';
 
 class LunchScreen extends StatefulWidget {
@@ -21,6 +23,19 @@ class LunchScreen extends StatefulWidget {
 
 class _LunchScreenState
     extends BaseState<LunchScreen, LunchEvent, LunchState, LunchBloc> {
+  ApprovalStatus _mapApprovalStatus(bool? isApproved) {
+    if (isApproved == true) return ApprovalStatus.approved;
+    if (isApproved == false) return ApprovalStatus.pending;
+    return ApprovalStatus.prepare;
+  }
+
+  String _formatDate(DateTime? date) {
+    if (date == null) return '--/--/----';
+    return DateFormat('dd/MM/yyyy').format(date);
+  }
+
+  DateTime _dateOnly(DateTime date) => DateTime(date.year, date.month, date.day);
+
   @override
   void initState() {
     super.initState();
@@ -66,88 +81,77 @@ class _LunchScreenState
           child: const Icon(Icons.add, color: Colors.white, size: 28),
         ),
 
-        body: AppCardList(
-          children: [
-            AppCardItem(
-              status: ApprovalStatus.pending,
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'Mã nhân viên: 000000',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(height: 4),
-                  Text('Ngày: 27/01/2026'),
-                  SizedBox(height: 4),
-                  Text('Số lượng: 5'),
-                ],
-              ),
-              onEdit: () {
-                print('Edit pending item');
-              },
-            ),
+        body: BlocBuilder<LunchBloc, LunchState>(
+          builder: (context, state) {
+            if (state.status == BaseStateStatus.loading && state.lunch.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-            AppCardItem(
-              status: ApprovalStatus.approved,
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'Mã nhân viên: 000000',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(height: 4),
-                  Text('Ngày: 27/01/2026'),
+            if (state.lunch.isEmpty) {
+              return const Center(
+                child: Text('Chưa có dữ liệu cơm ca'),
+              );
+            }
 
-                  SizedBox(height: 4),
-                  Text('Số lượng: 5'),
-                ],
-              ),
-              onView: () {
-                print('View approved item');
-              },
-            ),
+            final grouped = <DateTime, List<dynamic>>{};
+            for (final item in state.lunch) {
+              final day = _dateOnly(item.dateOrder ?? DateTime.now());
+              grouped.putIfAbsent(day, () => []).add(item);
+            }
 
-            AppCardItem(
-              status: ApprovalStatus.cancelled,
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'Mã nhân viên: 000000',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(height: 4),
-                  Text('Ngày: 27/01/2026'),
+            final sortedDays = grouped.keys.toList()
+              ..sort((a, b) => b.compareTo(a));
 
-                  SizedBox(height: 4),
-                  Text('Số lượng: 5'),
-                ],
-              ),
-              onView: () {
-                print('Cancelled item');
-              },
-            ),
+            final children = <Widget>[];
+            for (final day in sortedDays) {
+              children.add(
+                DateHeader(
+                  dateStart: day,
+                  dateEnd: day,
+                ),
+              );
 
-            AppCardItem(
-              status: ApprovalStatus.prepare,
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'Mã nhân viên: 000000',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(height: 4),
-                  Text('Ngày: 27/01/2026'),
-                  SizedBox(height: 4),
-                  Text('Số lượng: 5'),
-                ],
-              ),
-              onTap: () => context.push('/regwork/lunch/detail'),
-            ),
-          ],
+              final dayItems = grouped[day]!;
+              children.addAll(
+                dayItems.map((item) {
+                  final status = _mapApprovalStatus(item.isApproved);
+                  final employeeDisplay = item.employeeId?.toString() ?? '--';
+                  final quantityDisplay = item.quantity?.toString() ?? '0';
+                  final locationText = item.locationText ?? '';
+
+                  return AppCardItem(
+                    status: status,
+                    useStatusBackground: false,
+                    useStatusBorder: false,
+                    content: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Mã nhân viên: $employeeDisplay',
+                          style: const TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                        const SizedBox(height: 4),
+                        Text('Ngày: ${_formatDate(item.dateOrder)}'),
+                        const SizedBox(height: 4),
+                        Text('Số lượng: $quantityDisplay'),
+                        if (locationText.isNotEmpty) ...[
+                          const SizedBox(height: 4),
+                          Text('Địa điểm: $locationText'),
+                        ],
+                      ],
+                    ),
+                    onTap: () => context.push(RouteNames.lunchDetail),
+                  );
+                }),
+              );
+            }
+
+            return AppCardList(
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
+              spacing: 8,
+              children: children,
+            );
+          },
         ),
       ),
     );
