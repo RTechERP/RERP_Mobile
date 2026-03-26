@@ -73,6 +73,7 @@ class _InOutAddScreenPageState
     _todayStart = DateTime(now.year, now.month, now.day);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
+
       bloc.add(const InOutEvent.clearSubmitState());
       bloc.add(const InOutEvent.initAdd());
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -125,9 +126,12 @@ class _InOutAddScreenPageState
     if (form == null) return;
 
     DateTime time(int h, int m) {
-      final now = DateTime.now();
-      final today = DateTime(now.year, now.month, now.day);
-      return DateTime(today.year, today.month, today.day, h, m);
+      final selectedDate =
+      form.fields['regwork_inout_add_date']?.value as DateTime?;
+
+      final base = selectedDate ?? DateTime.now();
+
+      return DateTime(base.year, base.month, base.day, h, m);
     }
 
     late final DateTime from;
@@ -240,7 +244,8 @@ class _InOutAddScreenPageState
                                     children: [
                                       FormDateTimePicker(
                                         nameForm: 'regwork_inout_add_date',
-                                        nameTimePicker: 'input_add_date_time',
+                                        // Inner field: không dùng khi submit (chỉ dùng `nameForm`).
+                                        nameTimePicker: 'inout_add_date_time_inner_unused',
                                         label: 'Ngày',
                                         icon: Icons.date_range_outlined,
                                         inputType: InputType.date,
@@ -365,12 +370,16 @@ class _InOutAddScreenPageState
 
                             final values = formState.value;
 
-                            final date =
-                                values['regwork_inout_add_date'] as DateTime?;
-                            final from =
-                                values['regwork_inout_add_from'] as DateTime?;
-                            final to =
-                                values['regwork_inout_add_to'] as DateTime?;
+                            // Ngày: chỉ lấy `regwork_inout_add_date` (outer) -> fallback hôm nay nếu null.
+                            // Giờ: lấy theo `inout_add_from` / `inout_add_to` (inner) như auto-set.
+                            final dateOuter =
+                            values['regwork_inout_add_date'] as DateTime?;
+                            final date = dateOuter ?? _todayStart;
+
+                            final fromInner =
+                                values['inout_add_from'] as DateTime?;
+                            final toInner =
+                                values['inout_add_to'] as DateTime?;
                             final typeRaw =
                                 '${values['regwork_inout_add_type'] ?? ''}'
                                     .trim();
@@ -379,6 +388,25 @@ class _InOutAddScreenPageState
                                     .trim();
                             final reason =
                                 '${values['regwork_inout_add_reason'] ?? ''}';
+
+                            DateTime time(int h, int m) => DateTime(
+                                  date.year,
+                                  date.month,
+                                  date.day,
+                                  h,
+                                  m,
+                                );
+
+                            final (defaultFrom, defaultTo) = switch (typeRaw) {
+                              final t when t.contains('early') =>
+                                (time(16, 30), time(17, 30)),
+                              final t when t.contains('late') =>
+                                (time(8, 0), time(9, 0)),
+                              _ => (time(8, 0), time(9, 0)),
+                            };
+
+                            final from = fromInner ?? defaultFrom;
+                            final to = toInner ?? defaultTo;
                             final validateErr = ValidateHelper.validateInOut(
                               todayStart: _todayStart,
                               date: date,
@@ -397,17 +425,17 @@ class _InOutAddScreenPageState
                             }
 
                             final dateStart = DateTime(
-                              date!.year,
+                              date.year,
                               date.month,
                               date.day,
-                              from!.hour,
+                              from.hour,
                               from.minute,
                             );
                             final dateEnd = DateTime(
                               date.year,
                               date.month,
                               date.day,
-                              to!.hour,
+                              to.hour,
                               to.minute,
                             );
 
@@ -417,7 +445,6 @@ class _InOutAddScreenPageState
 
                             final type = _mapType(typeRaw);
                             final approvedTP = int.tryParse(approverTpRaw) ?? 0;
-
                             context.read<InOutBloc>().add(
                               InOutEvent.submit(
                                 type: type,
