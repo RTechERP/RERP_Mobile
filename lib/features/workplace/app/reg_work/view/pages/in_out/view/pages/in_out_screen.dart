@@ -158,9 +158,7 @@ class _InOutScreenPageState
                 dayItems.map((item) {
                   final tbpApproved = item.isApprovedTP == true;
                   final hrApproved = _isHrApproved(item);
-                  final canSwipeDelete = item.isApproved == false &&
-                      !tbpApproved &&
-                      !hrApproved;
+                  final canSwipeDelete = !tbpApproved && !hrApproved;
 
                   if (!canSwipeDelete) {
                     return InOutCard(

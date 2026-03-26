@@ -4,6 +4,8 @@ part of 'in_out_bloc.dart';
 class InOutEvent with _$InOutEvent{
   const factory InOutEvent.init() = _Init;
   const factory InOutEvent.initAdd() = _InitAdd;
+  /// Chỉ tải danh sách người duyệt, không đổi [BaseStateStatus] (tránh list bị nháy loading).
+  const factory InOutEvent.fetchApprovers() = _FetchApprovers;
   const factory InOutEvent.submit({
     required int type,
     required int approvedTP,

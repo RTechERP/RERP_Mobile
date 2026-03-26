@@ -899,11 +899,15 @@ class ValidateHelper {
     required String? typeRaw,
     required String? approverTpRaw,
     required String? reason,
+    /// Màn tạo mới: `true`. Màn chi tiết / sửa đơn cũ: `false` để cho phép ngày đã qua.
+    bool disallowPastDates = true,
   }) {
     if (date == null) return 'Vui lòng chọn ngày';
 
     final pickedDay = DateTime(date.year, date.month, date.day);
-    if (pickedDay.isBefore(todayStart)) return 'Không được chọn ngày cũ';
+    if (disallowPastDates && pickedDay.isBefore(todayStart)) {
+      return 'Không được chọn ngày cũ';
+    }
 
     if (from == null || to == null) return 'Vui lòng chọn thời gian';
 

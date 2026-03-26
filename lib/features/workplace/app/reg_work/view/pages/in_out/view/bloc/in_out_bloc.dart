@@ -29,6 +29,7 @@ class InOutBloc extends BaseBloc<InOutEvent, InOutState> {
       await event.when(
         init: () => _onInit(emit),
         initAdd: () => _onInitAdd(emit),
+        fetchApprovers: () => _onFetchApprovers(emit),
         submit: (type, approvedTP, dateStart, dateEnd, timeRegister, reason) =>
             _onSubmit(
               emit,
@@ -88,6 +89,20 @@ class InOutBloc extends BaseBloc<InOutEvent, InOutState> {
     } finally {
       _isInitAddInFlight = false;
     }
+  }
+
+  Future<void> _onFetchApprovers(Emitter<InOutState> emit) async {
+    final approverRes = await _InOutRepo.getApprover();
+    await approverRes.fold(
+      (l) async {
+        _log.logE('❌ fetchApprovers failed: $l');
+        emit(state.copyWith(message: l.getErrorMessage));
+      },
+      (r) async {
+        _log.logI('✅ fetchApprovers success');
+        emit(state.copyWith(approvers: r));
+      },
+    );
   }
 
   Future<void> _onInit(Emitter<InOutState> emit) async {
