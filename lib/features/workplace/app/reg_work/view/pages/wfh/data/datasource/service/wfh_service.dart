@@ -3,25 +3,26 @@ import 'package:rtc_erp/base/network/dio/dio_base_api_service.dart';
 
 import '../../../../../../../../../../base/network/models/base_data.dart';
 import '../../../../../../../../../../common/constants.dart';
-import '../models/in_out_model.dart';
+import '../models/wfh_model.dart';
 
 @injectable
-class InOutService extends DioBaseApiService {
-  InOutService(super.dio);
+class WfhService extends DioBaseApiService {
+  WfhService(super.dio);
 
-  Future<BaseData<List<InOutItem>>> getInOut({
+  Future<BaseData<List<WfhItem>>> getWfh({
     required Map<String, dynamic> payload,
   }) async {
-    return post<BaseData<List<InOutItem>>>(
-      ApiEndPoint.getEarlyLate,
+    return post<BaseData<List<WfhItem>>>(
+      ApiEndPoint.getWfh,
       body: payload,
-      parser: (json) =>
-      BaseData<List<InOutItem>>.fromJson(
+      parser: (json) => BaseData<List<WfhItem>>.fromJson(
         json,
-            (data) =>
-            ((data as List?) ?? const <dynamic>[])
-                .map((e) => InOutItem.fromJson(e as Map<String, dynamic>))
-                .toList(),
+            (data) {
+          final list = (data as Map<String, dynamic>?)?['data'] as List? ?? [];
+          return list
+              .map((e) => WfhItem.fromJson(e as Map<String, dynamic>))
+              .toList();
+        },
       ),
     );
   }
@@ -38,11 +39,11 @@ class InOutService extends DioBaseApiService {
     );
   }
 
-  Future<BaseData<void>> saveInOut({
+  Future<BaseData<void>> saveWfh({
     required Map<String, dynamic> payload,
   }) async {
     return post<BaseData<void>>(
-      ApiEndPoint.saveEarlyLate,
+      ApiEndPoint.saveWfh,
       body: payload,
       parser: (json) => BaseData<void>.fromJson(json, (_) {}),
     );

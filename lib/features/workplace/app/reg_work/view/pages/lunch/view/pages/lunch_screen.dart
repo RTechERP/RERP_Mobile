@@ -8,6 +8,7 @@ import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../../common/utils/card/index.dart';
@@ -129,11 +130,29 @@ class _LunchScreenState
             }
 
             if (state.status == BaseStateStatus.failed) {
-              return const Center(child: Text('Load dữ liệu thất bại'));
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset(AppImages.error, width: 320),
+                    const SizedBox(height: 12),
+                    const Text('Load dữ liệu thất bại'),
+                  ],
+                ),
+              );
             }
 
             if (state.lunch.isEmpty) {
-              return const Center(child: Text('Chưa có dữ liệu cơm ca'));
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset(AppImages.missing, width: 320),
+                    const SizedBox(height: 12),
+                    const Text('Không có dữ liệu'),
+                  ],
+                ),
+              );
             }
 
             final hasFilter =

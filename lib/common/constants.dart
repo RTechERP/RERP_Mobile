@@ -192,8 +192,9 @@ class ApiEndPoint {
   static const String saveLunch = '/EmployeeFoodOrder/save-data';
 
   static const String getEarlyLate = '/EmployeeEarlyLate';
-
   static const String saveEarlyLate = '/EmployeeEarlyLate/save-data';
+  static const String getApprover = '/Employee/get-approve';
 
-  static const String getEarlyLateApprover = '/Employee/get-approve';
+  static const String getWfh = '/EmployeeWFH/get-wfh';
+  static const String saveWfh = '/EmployeeWFH/save-data';
 }

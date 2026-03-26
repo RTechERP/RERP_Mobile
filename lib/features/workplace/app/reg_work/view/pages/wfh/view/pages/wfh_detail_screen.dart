@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../../base/widgets/base_scaffold.dart';
-import '../../../../../../../common/app_theme/index.dart';
-import '../../../../../../../common/enums/index.dart';
-import '../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../../base/widgets/base_scaffold.dart';
+import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/enums/index.dart';
+import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../data/datasource/models/wfh_model.dart';
 
 class WfhDetailScreen extends StatefulWidget {
-  const WfhDetailScreen({super.key});
+  const WfhDetailScreen({super.key, this.item});
+
+  /// Khi có dữ liệu: TBP đã duyệt (`IsApproved`) thì không cho bật chế độ sửa.
+  final WfhItem? item;
 
   @override
   State<WfhDetailScreen> createState() => _WfhDetailScreenState();
@@ -18,7 +22,10 @@ class _WfhDetailScreenState extends State<WfhDetailScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
   bool _isEditing = false;
 
+  bool get _tbpApproved => widget.item?.isApproved == true;
+
   void _toggleEdit() {
+    if (_tbpApproved) return;
     setState(() => _isEditing = true);
   }
 
@@ -41,12 +48,13 @@ class _WfhDetailScreenState extends State<WfhDetailScreen> {
         title: const Text('Chi tiết đơn WFH'),
         automaticallyImplyLeading: !_isEditing,
         actions: [
-          IconButton(
-            icon: Icon(_isEditing ? Icons.close : Icons.create_outlined),
-            onPressed: () {
-              _isEditing ? _cancelEdit() : _toggleEdit();
-            },
-          ),
+          if (!_tbpApproved)
+            IconButton(
+              icon: Icon(_isEditing ? Icons.close : Icons.create_outlined),
+              onPressed: () {
+                _isEditing ? _cancelEdit() : _toggleEdit();
+              },
+            ),
         ],
       ),
       body: Padding(

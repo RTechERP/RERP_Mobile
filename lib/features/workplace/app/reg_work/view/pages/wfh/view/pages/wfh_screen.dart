@@ -1,36 +1,43 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rtc_erp/base/bloc/index.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 
+import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
+import '../../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
-import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../../../../../../reg_general/view/pages/booking_vehicle/view/widgets/date_header.dart';
 import '../../../../../../reg_general/view/pages/booking_vehicle/view/widgets/date_range_picker.dart';
-import '../../data/datasource/models/in_out_model.dart';
-import '../widgets/in_out_card.dart';
-import '../bloc/in_out_bloc.dart';
+import '../../data/datasource/models/wfh_model.dart';
+import '../bloc/wfh_bloc.dart';
+import '../widgets/wfh_card.dart';
 
-class InOutScreenPage extends StatefulWidget {
-  const InOutScreenPage({super.key});
+class WfhScreen extends StatefulWidget {
+  const WfhScreen({super.key});
 
   @override
-  State<InOutScreenPage> createState() => _InOutScreenPageState();
+  State<WfhScreen> createState() => _WfhScreenState();
 }
 
-class _InOutScreenPageState
-    extends BaseState<InOutScreenPage, InOutEvent, InOutState, InOutBloc> {
+class _WfhScreenState
+    extends BaseState<WfhScreen, WfhEvent, WfhState, WfhBloc> {
   DateTime _dateOnly(DateTime d) => DateTime(d.year, d.month, d.day);
 
-  /// Khớp logic hiển thị badge HR trong [InOutCard].
-  bool _isHrApproved(InOutItem item) {
+  /// Chỉ cho phép xóa phiếu có ngày thực hiện (`DateWFH`) là ngày tương lai (sau hôm nay).
+  bool _canDeleteWfhByDate(WfhItem item) {
+    final d = item.dateWFH;
+    if (d == null) return false;
+    final today = _dateOnly(DateTime.now());
+    return _dateOnly(d).isAfter(today);
+  }
+
+  bool _isHrApproved(WfhItem item) {
     if (item.statusHRNumber == 1) return true;
     final text = (item.statusHRText ?? '').toLowerCase();
     if (text.contains('duyệt') && !text.contains('chờ')) return true;
@@ -39,13 +46,14 @@ class _InOutScreenPageState
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    bloc.add(const InOutEvent.init());
+    bloc.add(const WfhEvent.init());
   }
 
   @override
   Widget renderUI(BuildContext context) {
-    return BlocListener<InOutBloc, InOutState>(
+    return BlocListener<WfhBloc, WfhState>(
       listenWhen: (prev, curr) =>
           // delete
           prev.deleteSuccess != curr.deleteSuccess ||
@@ -68,7 +76,10 @@ class _InOutScreenPageState
       },
       child: BaseScaffold(
         appBar: AppBarCommon(
-          title: Text('reg_work.in_out'.tr(), style: AppStyles.headingTitle2),
+          title: Text(
+            'reg_work.wfh'.tr(), // key WFH
+            style: AppStyles.headingTitle2,
+          ),
           actions: [
             IconButton(
               icon: const Icon(Icons.calendar_month),
@@ -85,7 +96,7 @@ class _InOutScreenPageState
                     initialEnd: bloc.state.dateEnd ?? tomorrow,
                     onApply: (start, end) {
                       bloc.add(
-                        InOutEvent.changeDateRange(
+                        WfhEvent.changeDateRange(
                           dateStart: start,
                           dateEnd: end,
                         ),
@@ -97,16 +108,15 @@ class _InOutScreenPageState
             ),
             const SizedBox(width: 8),
           ],
-          onBackTap: () => context.pop(),
         ),
+
+        /// ===== FAB: tạo đơn WFH =====
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            final reload = await context.push<bool?>(
-              RouteNames.regworkInOutAdd,
-            );
+            final reload = await context.push<bool?>(RouteNames.regworkWfhAdd);
             if (!mounted) return;
             if (reload == true) {
-              bloc.add(const InOutEvent.init());
+              bloc.add(const WfhEvent.init());
             }
           },
           backgroundColor: AppColors.primaryERP,
@@ -114,7 +124,9 @@ class _InOutScreenPageState
           shape: const CircleBorder(),
           child: const Icon(Icons.add, color: Colors.white, size: 28),
         ),
-        body: BlocBuilder<InOutBloc, InOutState>(
+
+        /// ===== DANH SÁCH ĐƠN WFH =====
+        body: BlocBuilder<WfhBloc, WfhState>(
           builder: (context, state) {
             if (state.status == BaseStateStatus.loading) {
               return const Center(child: CircularProgressIndicator());
@@ -131,7 +143,7 @@ class _InOutScreenPageState
                 ),
               );
             }
-            if (state.inOut.isEmpty) {
+            if (state.wfh.isEmpty) {
               return Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -162,9 +174,9 @@ class _InOutScreenPageState
                   );
 
             // Sắp xếp theo ngày giảm dần giống lunch_screen.
-            final grouped = <DateTime, List<InOutItem>>{};
-            for (final item in state.inOut) {
-              final day = _dateOnly(item.dateStart ?? DateTime.now());
+            final grouped = <DateTime, List<WfhItem>>{};
+            for (final item in state.wfh) {
+              final day = _dateOnly(item.dateWFH ?? DateTime.now());
               grouped.putIfAbsent(day, () => []).add(item);
             }
             final sortedDays = grouped.keys.toList()
@@ -175,22 +187,27 @@ class _InOutScreenPageState
               final dayItems = grouped[day]!;
               listWidgets.addAll(
                 dayItems.map((item) {
-                  final tbpApproved = item.isApprovedTP == true;
+                  // TBP (`IsApproved`): đã duyệt thì không xóa / không sửa từ danh sách (chi tiết cũng khóa sửa).
+                  final tbpApproved = item.isApproved == true;
                   final hrApproved = _isHrApproved(item);
-                  final canSwipeDelete = !tbpApproved && !hrApproved;
+                  final bgdApproved = item.isApprovedBGD == true;
+                  final canSwipeDelete = !bgdApproved &&
+                      !tbpApproved &&
+                      !hrApproved &&
+                      _canDeleteWfhByDate(item);
 
                   if (!canSwipeDelete) {
-                    return InOutCard(
+                    return WfhCard(
                       item: item,
                       onTap: () {
                         () async {
                           final reload = await context.push<bool?>(
-                            RouteNames.regworkInOutDetail,
+                            RouteNames.regworkWfhDetail,
                             extra: item,
                           );
                           if (!mounted) return;
                           if (reload == true) {
-                            bloc.add(const InOutEvent.init());
+                            bloc.add(const WfhEvent.init());
                           }
                         }();
                       },
@@ -198,8 +215,8 @@ class _InOutScreenPageState
                   }
 
                   return Slidable(
-                    key: ValueKey('inout_${item.id}'),
-                    groupTag: 'inout_slidable',
+                    key: ValueKey('wfh_${item.id}'),
+                    groupTag: 'wfh_slidable',
                     endActionPane: ActionPane(
                       motion: const DrawerMotion(),
                       extentRatio: 0.28,
@@ -213,7 +230,7 @@ class _InOutScreenPageState
                                 );
                             if (!mounted) return;
                             if (confirmed) {
-                              bloc.add(InOutEvent.onCancelSubmit(id: item.id));
+                              bloc.add(WfhEvent.onCancelSubmit(id: item.id));
                             }
                           },
                           backgroundColor: AppColors.alert,
@@ -224,18 +241,18 @@ class _InOutScreenPageState
                       ],
                     ),
                     child: Builder(
-                      builder: (slidableCtx) => InOutCard(
+                      builder: (slidableCtx) => WfhCard(
                         item: item,
                         onTap: () {
                           () async {
                             Slidable.of(slidableCtx)?.close();
                             final reload = await context.push<bool?>(
-                              RouteNames.regworkInOutDetail,
+                              RouteNames.regworkWfhDetail,
                               extra: item,
                             );
                             if (!mounted) return;
                             if (reload == true) {
-                              bloc.add(const InOutEvent.init());
+                              bloc.add(const WfhEvent.init());
                             }
                           }();
                         },
@@ -252,7 +269,7 @@ class _InOutScreenPageState
                 Expanded(
                   child: RefreshIndicator(
                     onRefresh: () async {
-                      bloc.add(const InOutEvent.init());
+                      bloc.add(const WfhEvent.init());
                       await bloc.stream.firstWhere(
                         (s) => s.status != BaseStateStatus.loading,
                       );

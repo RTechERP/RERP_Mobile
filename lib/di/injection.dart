@@ -26,6 +26,10 @@ import '../features/workplace/app/reg_work/view/pages/in_out/data/datasource/ser
 import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/bloc/in_out_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/wfh/data/datasource/service/wfh_service.dart';
+import '../features/workplace/app/reg_work/view/pages/wfh/data/repository/wfh_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/wfh/data/repository/wfh_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/wfh/view/bloc/wfh_bloc.dart';
 import '../features/workplace/app/reports/data/datasource/service/report_service.dart';
 import '../features/workplace/app/reports/data/repository/report_repo.dart';
 import '../features/workplace/app/reports/data/repository/report_repo_impl.dart';
@@ -94,6 +98,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<LunchService>(() => LunchService(getIt<Dio>()));
 
+  getIt.registerLazySingleton<InOutService>(() => InOutService(getIt<Dio>()));
+
+  getIt.registerLazySingleton<WfhService>(() => WfhService(getIt<Dio>()));
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(getIt<AuthService>()),
@@ -115,13 +123,11 @@ void configureDependencies() {
     () => LunchRepoImpl(getIt<LunchService>()),
   );
 
-  getIt.registerLazySingleton<InOutService>(
-    () => InOutService(getIt<Dio>()),
-  );
-
   getIt.registerLazySingleton<InOutRepo>(
     () => InOutRepoImpl(getIt<InOutService>()),
   );
+
+  getIt.registerLazySingleton<WfhRepo>(() => WfhRepoImpl(getIt<WfhService>()));
 
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
@@ -174,5 +180,9 @@ void configureDependencies() {
 
   getIt.registerFactory<InOutBloc>(
     () => InOutBloc(getIt<InOutRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<WfhBloc>(
+        () => WfhBloc(getIt<WfhRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 }
