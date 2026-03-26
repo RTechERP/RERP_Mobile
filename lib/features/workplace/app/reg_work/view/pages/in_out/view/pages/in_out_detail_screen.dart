@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../../base/widgets/base_scaffold.dart';
-import '../../../../../../../common/app_theme/index.dart';
-import '../../../../../../../common/enums/index.dart';
-import '../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../../base/widgets/base_scaffold.dart';
+import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/enums/index.dart';
+import '../../../../../../../../../common/widgets/form/index.dart';
 
 class InOutDetailScreenPage extends StatefulWidget {
   const InOutDetailScreenPage({super.key});
@@ -104,26 +104,26 @@ class _InOutDetailScreenPageState extends State<InOutDetailScreenPage> {
                               items: const [
                                 DropdownMenuItem(
                                   value: 'early_company',
-                                  child: Text('Về sớm - Việc công ty'),
+                                  child: Text('Về sớm việc công ty'),
                                 ),
                                 DropdownMenuItem(
                                   value: 'early_personal',
-                                  child: Text('Về sớm - Việc cá nhân'),
+                                  child: Text('Về sớm việc cá nhân'),
                                 ),
                                 DropdownMenuItem(
                                   value: 'late_company',
-                                  child: Text('Đi muộn - Việc công ty'),
+                                  child: Text('Đi muộn việc công ty'),
                                 ),
                                 DropdownMenuItem(
                                   value: 'late_personal',
-                                  child: Text('Đi muộn - Việc cá nhân'),
+                                  child: Text('Đi muộn việc cá nhân'),
                                 ),
                               ],
                             )
                                 : const FormReadonlyField(
                               label: '',
 
-                              name: 'Về sớm - Việc công ty',
+                              name: 'Về sớm việc công ty',
                               icon: Icons.swap_vert_outlined,
                             ),
 

@@ -28,9 +28,10 @@ import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pa
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_edit_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/in_out/in_out_add_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/in_out/in_out_detail_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/in_out/in_out_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_add_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_detail_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/view/bloc/in_out_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/view/bloc/lunch_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/view/pages/lunch_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/missed_add_screen.dart';
@@ -167,19 +168,24 @@ class AppRouter {
         builder: (context, state) => const LeaveAddScreenPage(),
       ),
 
-      GoRoute(
-        path: '/regwork/in_out',
-        builder: (context, state) => const InOutScreenPage(),
-      ),
-
-      GoRoute(
-        path: '/regwork/in_out/detail',
-        builder: (context, state) => const InOutDetailScreenPage(),
-      ),
-
-      GoRoute(
-        path: '/regwork/in_out/add',
-        builder: (context, state) => const InOutAddScreenPage(),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<InOutBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: '/regwork/in_out',
+            builder: (context, state) => const InOutScreenPage(),
+          ),
+          GoRoute(
+            path: '/regwork/in_out/detail',
+            builder: (context, state) => const InOutDetailScreenPage(),
+          ),
+          GoRoute(
+            path: '/regwork/in_out/add',
+            builder: (context, state) => const InOutAddScreenPage(),
+          ),
+        ],
       ),
 
       GoRoute(

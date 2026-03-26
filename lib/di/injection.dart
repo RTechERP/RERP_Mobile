@@ -22,6 +22,10 @@ import '../features/workplace/app/reg_work/view/pages/lunch/data/datasource/serv
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/view/bloc/lunch_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/data/datasource/service/in_out_service.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/in_out/view/bloc/in_out_bloc.dart';
 import '../features/workplace/app/reports/data/datasource/service/report_service.dart';
 import '../features/workplace/app/reports/data/repository/report_repo.dart';
 import '../features/workplace/app/reports/data/repository/report_repo_impl.dart';
@@ -111,6 +115,14 @@ void configureDependencies() {
     () => LunchRepoImpl(getIt<LunchService>()),
   );
 
+  getIt.registerLazySingleton<InOutService>(
+    () => InOutService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<InOutRepo>(
+    () => InOutRepoImpl(getIt<InOutService>()),
+  );
+
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
     () => AuthBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
@@ -158,5 +170,9 @@ void configureDependencies() {
 
   getIt.registerFactory<LunchBloc>(
     () => LunchBloc(getIt<LunchRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<InOutBloc>(
+    () => InOutBloc(getIt<InOutRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 }

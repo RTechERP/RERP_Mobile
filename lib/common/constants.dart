@@ -190,11 +190,10 @@ class ApiEndPoint {
 
   static const String getLunch = '/EmployeeFoodOrder';
   static const String saveLunch = '/EmployeeFoodOrder/save-data';
-}
 
-/// Field [Key] multipart upload-file đặt xe; [subPath] do [bookingVehicleUploadSubPath] build.
-abstract final class BookingVehicleUploadForm {
-  BookingVehicleUploadForm._();
+  static const String getEarlyLate = '/EmployeeEarlyLate';
 
-  static const String keyFieldValue = 'VehicleBookingFile';
+  static const String saveEarlyLate = '/EmployeeEarlyLate/save-data';
+
+  static const String getEarlyLateApprover = '/Employee/get-approve';
 }

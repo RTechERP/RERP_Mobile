@@ -887,4 +887,66 @@ class ValidateHelper {
 
     return null;
   }
+
+  /// Validate form tạo mới `InOut` (đi muộn - về sớm).
+  ///
+  /// Trả về `String` mô tả lỗi (nếu có), ngược lại `null` nếu form hợp lệ.
+  static String? validateInOut({
+    required DateTime todayStart,
+    required DateTime? date,
+    required DateTime? from,
+    required DateTime? to,
+    required String? typeRaw,
+    required String? approverTpRaw,
+    required String? reason,
+  }) {
+    if (date == null) return 'Vui lòng chọn ngày';
+
+    final pickedDay = DateTime(date.year, date.month, date.day);
+    if (pickedDay.isBefore(todayStart)) return 'Không được chọn ngày cũ';
+
+    if (from == null || to == null) return 'Vui lòng chọn thời gian';
+
+    final typeTrim = typeRaw?.trim() ?? '';
+    if (typeTrim.isEmpty) return 'Vui lòng chọn loại';
+
+    final approverTrim = approverTpRaw?.trim() ?? '';
+    if (approverTrim.isEmpty) return 'Vui lòng chọn người duyệt';
+
+    if ((reason ?? '').trim().isEmpty) return 'Vui lòng nhập lý do';
+
+    final dateStart = DateTime(
+      date.year,
+      date.month,
+      date.day,
+      from.hour,
+      from.minute,
+    );
+    final dateEnd = DateTime(
+      date.year,
+      date.month,
+      date.day,
+      to.hour,
+      to.minute,
+    );
+
+    if (!dateEnd.isAfter(dateStart)) {
+      return 'Giờ kết thúc phải lớn hơn giờ bắt đầu';
+    }
+
+    // Map loại form -> payload API.
+    final type = switch (typeTrim) {
+      'late_company' => 1,
+      'early_company' => 2,
+      'late_personal' => 3,
+      'early_personal' => 4,
+      _ => 0,
+    };
+    if (type == 0) return 'Loại không hợp lệ';
+
+    final approvedTP = int.tryParse(approverTrim) ?? 0;
+    if (approvedTP == 0) return 'Người duyệt không hợp lệ';
+
+    return null;
+  }
 }
