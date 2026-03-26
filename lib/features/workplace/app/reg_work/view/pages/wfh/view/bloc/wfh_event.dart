@@ -7,24 +7,26 @@ class WfhEvent with _$WfhEvent{
   /// Chỉ tải danh sách người duyệt, không đổi [BaseStateStatus] (tránh list bị nháy loading).
   const factory WfhEvent.fetchApprovers() = _FetchApprovers;
   const factory WfhEvent.submit({
-    required int type,
-    required int approvedTP,
-    required DateTime dateStart,
-    required DateTime dateEnd,
-    required int timeRegister,
+    required int approvedId,
+    required DateTime dateWFH,
+    required int timeWFH,
+    required double totalDay,
+    required String contentWork,
     required String reason,
+    String? note,
   }) = _Submit;
   const factory WfhEvent.onCancelSubmit({
     required int id,
   }) = _OnCancelSubmit;
   const factory WfhEvent.onEditSubmit({
     required int id,
-    required int type,
-    required int approvedTP,
-    required DateTime dateStart,
-    required DateTime dateEnd,
-    required int timeRegister,
+    required int approvedId,
+    required DateTime dateWFH,
+    required int timeWFH,
+    required double totalDay,
+    required String contentWork,
     required String reason,
+    String? note,
   }) = _OnEditSubmit;
   const factory WfhEvent.changeDateRange({
     required DateTime dateStart,

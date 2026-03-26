@@ -953,4 +953,62 @@ class ValidateHelper {
 
     return null;
   }
+
+  static String? validateWfhContentField(String? value) {
+    final t = value?.trim() ?? '';
+    if (t.isEmpty) return 'Vui lòng nhập nội dung/kế hoạch công việc';
+    if (t.length < 10) return 'Nội dung tối thiểu 10 ký tự';
+    return null;
+  }
+
+  static String? validateWfhReasonField(String? value) {
+    if ((value?.trim() ?? '').isEmpty) return 'Vui lòng nhập lý do';
+    return null;
+  }
+
+  /// Ngày WFH phải **sau** [todayStart] (0h local của hôm nay).
+  static String? validateWfhDateField(
+    DateTime? value, {
+    required DateTime todayStart,
+  }) {
+    if (value == null) return 'Vui lòng chọn ngày';
+    final d = DateTime(value.year, value.month, value.day);
+    if (!d.isAfter(todayStart)) {
+      return 'Chỉ được đăng ký WFH cho các ngày sau hôm nay';
+    }
+    return null;
+  }
+
+  /// Validate tổng hợp trước khi gửi tạo đơn WFH (đồng bộ với field validators).
+  static String? validateWfh({
+    required DateTime todayStart,
+    required DateTime? date,
+    required String? sessionRaw,
+    required String? approverIdRaw,
+    required String? content,
+    required String? reason,
+  }) {
+    final dateErr = validateWfhDateField(date, todayStart: todayStart);
+    if (dateErr != null) return dateErr;
+
+    final sessionTrim = (sessionRaw ?? '').trim();
+    if (sessionTrim.isEmpty) return 'Vui lòng chọn thời gian';
+    const knownSessions = {'morning', 'afternoon', 'full_day'};
+    if (!knownSessions.contains(sessionTrim)) {
+      return 'Thời gian không hợp lệ';
+    }
+
+    final approverTrim = (approverIdRaw ?? '').trim();
+    if (approverTrim.isEmpty) return 'Vui lòng chọn người duyệt';
+    final approvedId = int.tryParse(approverTrim) ?? 0;
+    if (approvedId <= 0) return 'Người duyệt không hợp lệ';
+
+    final contentErr = validateWfhContentField(content);
+    if (contentErr != null) return contentErr;
+
+    final reasonErr = validateWfhReasonField(reason);
+    if (reasonErr != null) return reasonErr;
+
+    return null;
+  }
 }

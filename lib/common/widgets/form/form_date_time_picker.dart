@@ -18,6 +18,9 @@ class FormDateTimePicker extends StatelessWidget {
   final DateTime? initialValue;
   final DateTime? firstDate;
   final DateTime? lastDate;
+  /// Ngày lịch mở ra khi bấm chọn (Material date picker).
+  final DateTime? initialDate;
+  final SelectableDayPredicate? selectableDayPredicate;
   final ValueChanged<DateTime?>? onChanged;
   final ValueChanged<DateTime?>? onSaved;
   final FormFieldValidator<DateTime?>? validator;
@@ -34,6 +37,8 @@ class FormDateTimePicker extends StatelessWidget {
     this.initialValue,
     this.firstDate,
     this.lastDate,
+    this.initialDate,
+    this.selectableDayPredicate,
     this.onChanged,
     this.onSaved,
     this.validator,
@@ -54,8 +59,10 @@ class FormDateTimePicker extends StatelessWidget {
           format: format,
           enabled: enabled,
           initialValue: initialValue,
+          initialDate: initialDate,
           firstDate: firstDate,
           lastDate: lastDate,
+          selectableDayPredicate: selectableDayPredicate,
           autovalidateMode: AutovalidateMode.onUserInteraction,
 
           onChanged: (v) {

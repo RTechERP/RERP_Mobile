@@ -30,29 +30,49 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
         init: () => _onInit(emit),
         initAdd: () => _onInitAdd(emit),
         fetchApprovers: () => _onFetchApprovers(emit),
-        submit: (type, approvedTP, dateStart, dateEnd, timeRegister, reason) =>
-            _onSubmit(
-              emit,
-              type: type,
-              approvedTP: approvedTP,
-              dateStart: dateStart,
-              dateEnd: dateEnd,
-              timeRegister: timeRegister,
-              reason: reason,
-            ),
+        submit:
+            (
+              approvedId,
+              dateWFH,
+              timeWFH,
+              totalDay,
+              contentWork,
+              reason,
+              note,
+            ) =>
+                _onSubmit(
+                  emit,
+                  approvedId: approvedId,
+                  dateWFH: dateWFH,
+                  timeWFH: timeWFH,
+                  totalDay: totalDay,
+                  contentWork: contentWork,
+                  reason: reason,
+                  note: note,
+                ),
         onCancelSubmit: (id) => _onCancelSubmit(emit, id: id),
         onEditSubmit:
-            (id, type, approvedTP, dateStart, dateEnd, timeRegister, reason) =>
-            _onEditSubmit(
-              emit,
-              id: id,
-              type: type,
-              approvedTP: approvedTP,
-              dateStart: dateStart,
-              dateEnd: dateEnd,
-              timeRegister: timeRegister,
-              reason: reason,
-            ),
+            (
+              id,
+              approvedId,
+              dateWFH,
+              timeWFH,
+              totalDay,
+              contentWork,
+              reason,
+              note,
+            ) =>
+                _onEditSubmit(
+                  emit,
+                  id: id,
+                  approvedId: approvedId,
+                  dateWFH: dateWFH,
+                  timeWFH: timeWFH,
+                  totalDay: totalDay,
+                  contentWork: contentWork,
+                  reason: reason,
+                  note: note,
+                ),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
         clearSubmitState: () async => _onClearSubmitState(emit),
@@ -230,15 +250,73 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
     );
   }
 
+  String? _validateWfhSubmit({
+    required DateTime dateWFH,
+    required String contentWork,
+  }) {
+    final dateOnly = DateTime(dateWFH.year, dateWFH.month, dateWFH.day);
+    final today = DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day,
+    );
+    if (!dateOnly.isAfter(today)) {
+      return 'Chỉ được đăng ký WFH cho các ngày sau hôm nay';
+    }
+    if (contentWork.trim().length < 10) {
+      return 'Nội dung/kế hoạch công việc tối thiểu 10 ký tự';
+    }
+    return null;
+  }
+
+  Map<String, dynamic> _wfhSavePayload({
+    required int id,
+    required int employeeId,
+    required int approvedId,
+    required DateTime dateWFH,
+    required int timeWFH,
+    required double totalDay,
+    required String contentWork,
+    required String reason,
+    String? note,
+  }) {
+    final d = dateWFH;
+    final dateIso = DateTime.utc(d.year, d.month, d.day, 12).toIso8601String();
+    return <String, dynamic>{
+      'ID': id,
+      'ApprovedBGDID': 0,
+      'ApprovedHR': 0,
+      'ApprovedID': approvedId,
+      'ContentWork': contentWork.trim(),
+      'DateApprovedBGD': null,
+      'DateWFH': dateIso,
+      'DecilineApprove': 0,
+      'EmployeeID': employeeId,
+      'EvaluateResults': '',
+      'IsApproved': false,
+      'IsApprovedBGD': false,
+      'IsApprovedHR': false,
+      'IsDeleted': false,
+      'IsProblem': false,
+      'Note': (note ?? '').trim(),
+      'Reason': reason.trim(),
+      'ReasonDeciline': '',
+      'ReasonHREdit': '',
+      'TimeWFH': timeWFH,
+      'TotalDay': totalDay,
+    };
+  }
+
   Future<void> _onSubmit(
-      Emitter<WfhState> emit, {
-        required int type,
-        required int approvedTP,
-        required DateTime dateStart,
-        required DateTime dateEnd,
-        required int timeRegister,
-        required String reason,
-      }) async {
+    Emitter<WfhState> emit, {
+    required int approvedId,
+    required DateTime dateWFH,
+    required int timeWFH,
+    required double totalDay,
+    required String contentWork,
+    required String reason,
+    String? note,
+  }) async {
     if (_isSubmittingReport) return;
     _isSubmittingReport = true;
 
@@ -261,37 +339,38 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
         return;
       }
 
-      final employeeId = user.employeeId;
-      final now = DateTime.now();
-
-      final dateRegister = DateTime(
-        dateStart.year,
-        dateStart.month,
-        dateStart.day,
-        now.hour,
-        now.minute,
-        now.second,
-        now.millisecond,
+      final validation = _validateWfhSubmit(
+        dateWFH: dateWFH,
+        contentWork: contentWork,
       );
-      final payload = <String, dynamic>{
-        "ID": 0,
-        "ApprovedID": 0,
-        "ApprovedTP": approvedTP,
-        "DateEnd": dateEnd.toIso8601String(),
-        "DateRegister": dateRegister.toIso8601String(),
-        "DateStart": dateStart.toIso8601String(),
-        "EmployeeID": employeeId,
-        "IsApproved": false,
-        "IsDeleted": false,
-        "Reason": reason,
-        "ReasonHREdit": "",
-        "TimeRegister": timeRegister,
-        "Type": type,
-      };
+      if (validation != null) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            submitSuccess: false,
+            status: BaseStateStatus.failed,
+            message: validation,
+          ),
+        );
+        return;
+      }
+
+      final employeeId = user.employeeId;
+      final payload = _wfhSavePayload(
+        id: 0,
+        employeeId: employeeId,
+        approvedId: approvedId,
+        dateWFH: dateWFH,
+        timeWFH: timeWFH,
+        totalDay: totalDay,
+        contentWork: contentWork,
+        reason: reason,
+        note: note,
+      );
 
       final saveRes = await _WfhRepo.saveWfh(payload: payload);
       await saveRes.fold(
-            (err) async {
+        (err) async {
           _log.logE('❌ Submit Wfh API failed: $err');
           emit(
             state.copyWith(
@@ -302,7 +381,7 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
             ),
           );
         },
-            (_) async {
+        (_) async {
           _log.logI('✅ Submit Wfh success');
           emit(
             state.copyWith(
@@ -310,7 +389,7 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
               submitSuccess: true,
               status: BaseStateStatus.success,
               employeeId: employeeId,
-              message: 'Tạo đơn ra/vào thành công',
+              message: 'Tạo đơn WFH thành công',
             ),
           );
         },
@@ -336,15 +415,16 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
   }
 
   Future<void> _onEditSubmit(
-      Emitter<WfhState> emit, {
-        required int id,
-        required int type,
-        required int approvedTP,
-        required DateTime dateStart,
-        required DateTime dateEnd,
-        required int timeRegister,
-        required String reason,
-      }) async {
+    Emitter<WfhState> emit, {
+    required int id,
+    required int approvedId,
+    required DateTime dateWFH,
+    required int timeWFH,
+    required double totalDay,
+    required String contentWork,
+    required String reason,
+    String? note,
+  }) async {
     if (_isSubmittingReport) return;
     _isSubmittingReport = true;
 
@@ -374,33 +454,37 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
         return;
       }
 
-      final payload = <String, dynamic>{
-        "ID": id,
-        "ApprovedID": 0,
-        "ApprovedTP": approvedTP,
-        "DateEnd": dateEnd.toIso8601String(),
-        "DateRegister": DateTime(
-          dateStart.year,
-          dateStart.month,
-          dateStart.day,
-          DateTime.now().hour,
-          DateTime.now().minute,
-          DateTime.now().second,
-          DateTime.now().millisecond,
-        ).toIso8601String(),
-        "DateStart": dateStart.toIso8601String(),
-        "EmployeeID": user.employeeId,
-        "IsApproved": false,
-        "IsDeleted": false,
-        "Reason": reason,
-        "ReasonHREdit": "",
-        "TimeRegister": timeRegister,
-        "Type": type,
-      };
+      final validation = _validateWfhSubmit(
+        dateWFH: dateWFH,
+        contentWork: contentWork,
+      );
+      if (validation != null) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            submitSuccess: false,
+            status: BaseStateStatus.failed,
+            message: validation,
+          ),
+        );
+        return;
+      }
+
+      final payload = _wfhSavePayload(
+        id: id,
+        employeeId: user.employeeId,
+        approvedId: approvedId,
+        dateWFH: dateWFH,
+        timeWFH: timeWFH,
+        totalDay: totalDay,
+        contentWork: contentWork,
+        reason: reason,
+        note: note,
+      );
 
       final saveRes = await _WfhRepo.saveWfh(payload: payload);
       await saveRes.fold(
-            (err) async {
+        (err) async {
           _log.logE('❌ Edit Wfh API failed: $err');
           emit(
             state.copyWith(
@@ -411,12 +495,17 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
             ),
           );
         },
-            (_) async {
+        (_) async {
           final updatedWfh = state.wfh.map((e) {
             if (e.id != id) return e;
             return e.copyWith(
-
-              reason: reason,
+              reason: reason.trim(),
+              contentWork: contentWork.trim(),
+              note: (note ?? '').trim(),
+              dateWFH: dateWFH,
+              timeWFH: timeWFH,
+              totalDay: totalDay,
+              approvedId: approvedId,
             );
           }).toList();
 
@@ -426,7 +515,7 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
               submitSuccess: true,
               status: BaseStateStatus.success,
               wfh: updatedWfh,
-              message: 'Cập nhật đơn ra/vào thành công',
+              message: 'Cập nhật đơn WFH thành công',
             ),
           );
         },

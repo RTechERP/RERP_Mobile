@@ -21,18 +21,19 @@ mixin _$WfhEvent {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() fetchApprovers,
-    required TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)
+    required TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
             int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int approvedId,
+            DateTime dateWFH,
+            int timeWFH,
+            double totalDay,
+            String contentWork,
+            String reason,
+            String? note)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -44,12 +45,12 @@ mixin _$WfhEvent {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? fetchApprovers,
-    TResult? Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -60,12 +61,12 @@ mixin _$WfhEvent {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? fetchApprovers,
-    TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -168,18 +169,19 @@ class _$InitImpl implements _Init {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() fetchApprovers,
-    required TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)
+    required TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
             int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int approvedId,
+            DateTime dateWFH,
+            int timeWFH,
+            double totalDay,
+            String contentWork,
+            String reason,
+            String? note)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -194,12 +196,12 @@ class _$InitImpl implements _Init {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? fetchApprovers,
-    TResult? Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -213,12 +215,12 @@ class _$InitImpl implements _Init {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? fetchApprovers,
-    TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -325,18 +327,19 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() fetchApprovers,
-    required TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)
+    required TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
             int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int approvedId,
+            DateTime dateWFH,
+            int timeWFH,
+            double totalDay,
+            String contentWork,
+            String reason,
+            String? note)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -351,12 +354,12 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? fetchApprovers,
-    TResult? Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -370,12 +373,12 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? fetchApprovers,
-    TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -482,18 +485,19 @@ class _$FetchApproversImpl implements _FetchApprovers {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() fetchApprovers,
-    required TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)
+    required TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
             int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int approvedId,
+            DateTime dateWFH,
+            int timeWFH,
+            double totalDay,
+            String contentWork,
+            String reason,
+            String? note)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -508,12 +512,12 @@ class _$FetchApproversImpl implements _FetchApprovers {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? fetchApprovers,
-    TResult? Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -527,12 +531,12 @@ class _$FetchApproversImpl implements _FetchApprovers {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? fetchApprovers,
-    TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -605,12 +609,13 @@ abstract class _$$SubmitImplCopyWith<$Res> {
       __$$SubmitImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {int type,
-      int approvedTP,
-      DateTime dateStart,
-      DateTime dateEnd,
-      int timeRegister,
-      String reason});
+      {int approvedId,
+      DateTime dateWFH,
+      int timeWFH,
+      double totalDay,
+      String contentWork,
+      String reason,
+      String? note});
 }
 
 /// @nodoc
@@ -624,38 +629,43 @@ class __$$SubmitImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
-    Object? approvedTP = null,
-    Object? dateStart = null,
-    Object? dateEnd = null,
-    Object? timeRegister = null,
+    Object? approvedId = null,
+    Object? dateWFH = null,
+    Object? timeWFH = null,
+    Object? totalDay = null,
+    Object? contentWork = null,
     Object? reason = null,
+    Object? note = freezed,
   }) {
     return _then(_$SubmitImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      approvedId: null == approvedId
+          ? _value.approvedId
+          : approvedId // ignore: cast_nullable_to_non_nullable
               as int,
-      approvedTP: null == approvedTP
-          ? _value.approvedTP
-          : approvedTP // ignore: cast_nullable_to_non_nullable
-              as int,
-      dateStart: null == dateStart
-          ? _value.dateStart
-          : dateStart // ignore: cast_nullable_to_non_nullable
+      dateWFH: null == dateWFH
+          ? _value.dateWFH
+          : dateWFH // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      dateEnd: null == dateEnd
-          ? _value.dateEnd
-          : dateEnd // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      timeRegister: null == timeRegister
-          ? _value.timeRegister
-          : timeRegister // ignore: cast_nullable_to_non_nullable
+      timeWFH: null == timeWFH
+          ? _value.timeWFH
+          : timeWFH // ignore: cast_nullable_to_non_nullable
               as int,
+      totalDay: null == totalDay
+          ? _value.totalDay
+          : totalDay // ignore: cast_nullable_to_non_nullable
+              as double,
+      contentWork: null == contentWork
+          ? _value.contentWork
+          : contentWork // ignore: cast_nullable_to_non_nullable
+              as String,
       reason: null == reason
           ? _value.reason
           : reason // ignore: cast_nullable_to_non_nullable
               as String,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -664,29 +674,32 @@ class __$$SubmitImplCopyWithImpl<$Res>
 
 class _$SubmitImpl implements _Submit {
   const _$SubmitImpl(
-      {required this.type,
-      required this.approvedTP,
-      required this.dateStart,
-      required this.dateEnd,
-      required this.timeRegister,
-      required this.reason});
+      {required this.approvedId,
+      required this.dateWFH,
+      required this.timeWFH,
+      required this.totalDay,
+      required this.contentWork,
+      required this.reason,
+      this.note});
 
   @override
-  final int type;
+  final int approvedId;
   @override
-  final int approvedTP;
+  final DateTime dateWFH;
   @override
-  final DateTime dateStart;
+  final int timeWFH;
   @override
-  final DateTime dateEnd;
+  final double totalDay;
   @override
-  final int timeRegister;
+  final String contentWork;
   @override
   final String reason;
+  @override
+  final String? note;
 
   @override
   String toString() {
-    return 'WfhEvent.submit(type: $type, approvedTP: $approvedTP, dateStart: $dateStart, dateEnd: $dateEnd, timeRegister: $timeRegister, reason: $reason)';
+    return 'WfhEvent.submit(approvedId: $approvedId, dateWFH: $dateWFH, timeWFH: $timeWFH, totalDay: $totalDay, contentWork: $contentWork, reason: $reason, note: $note)';
   }
 
   @override
@@ -694,20 +707,21 @@ class _$SubmitImpl implements _Submit {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SubmitImpl &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.approvedTP, approvedTP) ||
-                other.approvedTP == approvedTP) &&
-            (identical(other.dateStart, dateStart) ||
-                other.dateStart == dateStart) &&
-            (identical(other.dateEnd, dateEnd) || other.dateEnd == dateEnd) &&
-            (identical(other.timeRegister, timeRegister) ||
-                other.timeRegister == timeRegister) &&
-            (identical(other.reason, reason) || other.reason == reason));
+            (identical(other.approvedId, approvedId) ||
+                other.approvedId == approvedId) &&
+            (identical(other.dateWFH, dateWFH) || other.dateWFH == dateWFH) &&
+            (identical(other.timeWFH, timeWFH) || other.timeWFH == timeWFH) &&
+            (identical(other.totalDay, totalDay) ||
+                other.totalDay == totalDay) &&
+            (identical(other.contentWork, contentWork) ||
+                other.contentWork == contentWork) &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.note, note) || other.note == note));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, type, approvedTP, dateStart, dateEnd, timeRegister, reason);
+  int get hashCode => Object.hash(runtimeType, approvedId, dateWFH, timeWFH,
+      totalDay, contentWork, reason, note);
 
   @JsonKey(ignore: true)
   @override
@@ -721,24 +735,26 @@ class _$SubmitImpl implements _Submit {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() fetchApprovers,
-    required TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)
+    required TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
             int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int approvedId,
+            DateTime dateWFH,
+            int timeWFH,
+            double totalDay,
+            String contentWork,
+            String reason,
+            String? note)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearSubmitState,
   }) {
-    return submit(type, approvedTP, dateStart, dateEnd, timeRegister, reason);
+    return submit(
+        approvedId, dateWFH, timeWFH, totalDay, contentWork, reason, note);
   }
 
   @override
@@ -747,18 +763,18 @@ class _$SubmitImpl implements _Submit {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? fetchApprovers,
-    TResult? Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
   }) {
     return submit?.call(
-        type, approvedTP, dateStart, dateEnd, timeRegister, reason);
+        approvedId, dateWFH, timeWFH, totalDay, contentWork, reason, note);
   }
 
   @override
@@ -767,19 +783,20 @@ class _$SubmitImpl implements _Submit {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? fetchApprovers,
-    TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (submit != null) {
-      return submit(type, approvedTP, dateStart, dateEnd, timeRegister, reason);
+      return submit(
+          approvedId, dateWFH, timeWFH, totalDay, contentWork, reason, note);
     }
     return orElse();
   }
@@ -836,19 +853,21 @@ class _$SubmitImpl implements _Submit {
 
 abstract class _Submit implements WfhEvent {
   const factory _Submit(
-      {required final int type,
-      required final int approvedTP,
-      required final DateTime dateStart,
-      required final DateTime dateEnd,
-      required final int timeRegister,
-      required final String reason}) = _$SubmitImpl;
+      {required final int approvedId,
+      required final DateTime dateWFH,
+      required final int timeWFH,
+      required final double totalDay,
+      required final String contentWork,
+      required final String reason,
+      final String? note}) = _$SubmitImpl;
 
-  int get type;
-  int get approvedTP;
-  DateTime get dateStart;
-  DateTime get dateEnd;
-  int get timeRegister;
+  int get approvedId;
+  DateTime get dateWFH;
+  int get timeWFH;
+  double get totalDay;
+  String get contentWork;
   String get reason;
+  String? get note;
   @JsonKey(ignore: true)
   _$$SubmitImplCopyWith<_$SubmitImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -922,18 +941,19 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() fetchApprovers,
-    required TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)
+    required TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
             int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int approvedId,
+            DateTime dateWFH,
+            int timeWFH,
+            double totalDay,
+            String contentWork,
+            String reason,
+            String? note)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -948,12 +968,12 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? fetchApprovers,
-    TResult? Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -967,12 +987,12 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? fetchApprovers,
-    TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -1051,12 +1071,13 @@ abstract class _$$OnEditSubmitImplCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      int type,
-      int approvedTP,
-      DateTime dateStart,
-      DateTime dateEnd,
-      int timeRegister,
-      String reason});
+      int approvedId,
+      DateTime dateWFH,
+      int timeWFH,
+      double totalDay,
+      String contentWork,
+      String reason,
+      String? note});
 }
 
 /// @nodoc
@@ -1071,42 +1092,47 @@ class __$$OnEditSubmitImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? type = null,
-    Object? approvedTP = null,
-    Object? dateStart = null,
-    Object? dateEnd = null,
-    Object? timeRegister = null,
+    Object? approvedId = null,
+    Object? dateWFH = null,
+    Object? timeWFH = null,
+    Object? totalDay = null,
+    Object? contentWork = null,
     Object? reason = null,
+    Object? note = freezed,
   }) {
     return _then(_$OnEditSubmitImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      approvedId: null == approvedId
+          ? _value.approvedId
+          : approvedId // ignore: cast_nullable_to_non_nullable
               as int,
-      approvedTP: null == approvedTP
-          ? _value.approvedTP
-          : approvedTP // ignore: cast_nullable_to_non_nullable
-              as int,
-      dateStart: null == dateStart
-          ? _value.dateStart
-          : dateStart // ignore: cast_nullable_to_non_nullable
+      dateWFH: null == dateWFH
+          ? _value.dateWFH
+          : dateWFH // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      dateEnd: null == dateEnd
-          ? _value.dateEnd
-          : dateEnd // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      timeRegister: null == timeRegister
-          ? _value.timeRegister
-          : timeRegister // ignore: cast_nullable_to_non_nullable
+      timeWFH: null == timeWFH
+          ? _value.timeWFH
+          : timeWFH // ignore: cast_nullable_to_non_nullable
               as int,
+      totalDay: null == totalDay
+          ? _value.totalDay
+          : totalDay // ignore: cast_nullable_to_non_nullable
+              as double,
+      contentWork: null == contentWork
+          ? _value.contentWork
+          : contentWork // ignore: cast_nullable_to_non_nullable
+              as String,
       reason: null == reason
           ? _value.reason
           : reason // ignore: cast_nullable_to_non_nullable
               as String,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -1116,31 +1142,34 @@ class __$$OnEditSubmitImplCopyWithImpl<$Res>
 class _$OnEditSubmitImpl implements _OnEditSubmit {
   const _$OnEditSubmitImpl(
       {required this.id,
-      required this.type,
-      required this.approvedTP,
-      required this.dateStart,
-      required this.dateEnd,
-      required this.timeRegister,
-      required this.reason});
+      required this.approvedId,
+      required this.dateWFH,
+      required this.timeWFH,
+      required this.totalDay,
+      required this.contentWork,
+      required this.reason,
+      this.note});
 
   @override
   final int id;
   @override
-  final int type;
+  final int approvedId;
   @override
-  final int approvedTP;
+  final DateTime dateWFH;
   @override
-  final DateTime dateStart;
+  final int timeWFH;
   @override
-  final DateTime dateEnd;
+  final double totalDay;
   @override
-  final int timeRegister;
+  final String contentWork;
   @override
   final String reason;
+  @override
+  final String? note;
 
   @override
   String toString() {
-    return 'WfhEvent.onEditSubmit(id: $id, type: $type, approvedTP: $approvedTP, dateStart: $dateStart, dateEnd: $dateEnd, timeRegister: $timeRegister, reason: $reason)';
+    return 'WfhEvent.onEditSubmit(id: $id, approvedId: $approvedId, dateWFH: $dateWFH, timeWFH: $timeWFH, totalDay: $totalDay, contentWork: $contentWork, reason: $reason, note: $note)';
   }
 
   @override
@@ -1149,20 +1178,21 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
         (other.runtimeType == runtimeType &&
             other is _$OnEditSubmitImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.approvedTP, approvedTP) ||
-                other.approvedTP == approvedTP) &&
-            (identical(other.dateStart, dateStart) ||
-                other.dateStart == dateStart) &&
-            (identical(other.dateEnd, dateEnd) || other.dateEnd == dateEnd) &&
-            (identical(other.timeRegister, timeRegister) ||
-                other.timeRegister == timeRegister) &&
-            (identical(other.reason, reason) || other.reason == reason));
+            (identical(other.approvedId, approvedId) ||
+                other.approvedId == approvedId) &&
+            (identical(other.dateWFH, dateWFH) || other.dateWFH == dateWFH) &&
+            (identical(other.timeWFH, timeWFH) || other.timeWFH == timeWFH) &&
+            (identical(other.totalDay, totalDay) ||
+                other.totalDay == totalDay) &&
+            (identical(other.contentWork, contentWork) ||
+                other.contentWork == contentWork) &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.note, note) || other.note == note));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, type, approvedTP, dateStart,
-      dateEnd, timeRegister, reason);
+  int get hashCode => Object.hash(runtimeType, id, approvedId, dateWFH, timeWFH,
+      totalDay, contentWork, reason, note);
 
   @JsonKey(ignore: true)
   @override
@@ -1176,25 +1206,26 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() fetchApprovers,
-    required TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)
+    required TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
             int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int approvedId,
+            DateTime dateWFH,
+            int timeWFH,
+            double totalDay,
+            String contentWork,
+            String reason,
+            String? note)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearSubmitState,
   }) {
     return onEditSubmit(
-        id, type, approvedTP, dateStart, dateEnd, timeRegister, reason);
+        id, approvedId, dateWFH, timeWFH, totalDay, contentWork, reason, note);
   }
 
   @override
@@ -1203,18 +1234,18 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? fetchApprovers,
-    TResult? Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
   }) {
     return onEditSubmit?.call(
-        id, type, approvedTP, dateStart, dateEnd, timeRegister, reason);
+        id, approvedId, dateWFH, timeWFH, totalDay, contentWork, reason, note);
   }
 
   @override
@@ -1223,20 +1254,20 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? fetchApprovers,
-    TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (onEditSubmit != null) {
-      return onEditSubmit(
-          id, type, approvedTP, dateStart, dateEnd, timeRegister, reason);
+      return onEditSubmit(id, approvedId, dateWFH, timeWFH, totalDay,
+          contentWork, reason, note);
     }
     return orElse();
   }
@@ -1294,20 +1325,22 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
 abstract class _OnEditSubmit implements WfhEvent {
   const factory _OnEditSubmit(
       {required final int id,
-      required final int type,
-      required final int approvedTP,
-      required final DateTime dateStart,
-      required final DateTime dateEnd,
-      required final int timeRegister,
-      required final String reason}) = _$OnEditSubmitImpl;
+      required final int approvedId,
+      required final DateTime dateWFH,
+      required final int timeWFH,
+      required final double totalDay,
+      required final String contentWork,
+      required final String reason,
+      final String? note}) = _$OnEditSubmitImpl;
 
   int get id;
-  int get type;
-  int get approvedTP;
-  DateTime get dateStart;
-  DateTime get dateEnd;
-  int get timeRegister;
+  int get approvedId;
+  DateTime get dateWFH;
+  int get timeWFH;
+  double get totalDay;
+  String get contentWork;
   String get reason;
+  String? get note;
   @JsonKey(ignore: true)
   _$$OnEditSubmitImplCopyWith<_$OnEditSubmitImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1390,18 +1423,19 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() fetchApprovers,
-    required TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)
+    required TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
             int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int approvedId,
+            DateTime dateWFH,
+            int timeWFH,
+            double totalDay,
+            String contentWork,
+            String reason,
+            String? note)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -1416,12 +1450,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? fetchApprovers,
-    TResult? Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -1435,12 +1469,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? fetchApprovers,
-    TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -1555,18 +1589,19 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() fetchApprovers,
-    required TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)
+    required TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
             int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int approvedId,
+            DateTime dateWFH,
+            int timeWFH,
+            double totalDay,
+            String contentWork,
+            String reason,
+            String? note)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -1581,12 +1616,12 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? fetchApprovers,
-    TResult? Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -1600,12 +1635,12 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? fetchApprovers,
-    TResult Function(int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         submit,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int id, int approvedId, DateTime dateWFH, int timeWFH,
+            double totalDay, String contentWork, String reason, String? note)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
