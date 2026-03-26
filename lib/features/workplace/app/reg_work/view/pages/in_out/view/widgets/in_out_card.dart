@@ -109,7 +109,7 @@ class InOutCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 12),
                   _RoleBadges(
-                    senior: senior,
+                    // senior: senior,
                     tbp: tbp,
                     hr: hr,
                   ),
@@ -124,12 +124,12 @@ class InOutCard extends StatelessWidget {
 }
 
 class _RoleBadges extends StatelessWidget {
-  final ApprovalStatus senior;
+  // final ApprovalStatus senior;
   final ApprovalStatus tbp;
   final ApprovalStatus hr;
 
   const _RoleBadges({
-    required this.senior,
+    // required this.senior,
     required this.tbp,
     required this.hr,
   });
@@ -140,8 +140,8 @@ class _RoleBadges extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        _RoleBadge(role: 'Senior', status: senior),
-        const SizedBox(height: 6),
+        // _RoleBadge(role: 'Senior', status: senior),
+        // const SizedBox(height: 6),
         _RoleBadge(role: 'TBP', status: tbp),
         const SizedBox(height: 6),
         _RoleBadge(role: 'HR', status: hr),
