@@ -966,20 +966,21 @@ class ValidateHelper {
     return null;
   }
 
-  /// Ngày WFH phải **sau** [todayStart] (0h local của hôm nay).
+  /// [requireAfterToday]: `true` khi tạo mới (chỉ ngày tương lai); `false` khi sửa đơn (cho phép ngày hiện tại / quá khứ).
   static String? validateWfhDateField(
     DateTime? value, {
     required DateTime todayStart,
+    bool requireAfterToday = true,
   }) {
     if (value == null) return 'Vui lòng chọn ngày';
     final d = DateTime(value.year, value.month, value.day);
-    if (!d.isAfter(todayStart)) {
+    if (requireAfterToday && !d.isAfter(todayStart)) {
       return 'Chỉ được đăng ký WFH cho các ngày sau hôm nay';
     }
     return null;
   }
 
-  /// Validate tổng hợp trước khi gửi tạo đơn WFH (đồng bộ với field validators).
+  /// Validate tổng hợp trước khi gửi WFH (tạo mới hoặc sửa — [requireFutureWfhDate] giống In/Out `disallowPastDates`).
   static String? validateWfh({
     required DateTime todayStart,
     required DateTime? date,
@@ -987,8 +988,13 @@ class ValidateHelper {
     required String? approverIdRaw,
     required String? content,
     required String? reason,
+    bool requireFutureWfhDate = true,
   }) {
-    final dateErr = validateWfhDateField(date, todayStart: todayStart);
+    final dateErr = validateWfhDateField(
+      date,
+      todayStart: todayStart,
+      requireAfterToday: requireFutureWfhDate,
+    );
     if (dateErr != null) return dateErr;
 
     final sessionTrim = (sessionRaw ?? '').trim();

@@ -253,15 +253,18 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
   String? _validateWfhSubmit({
     required DateTime dateWFH,
     required String contentWork,
+    bool requireFutureDateOnly = true,
   }) {
-    final dateOnly = DateTime(dateWFH.year, dateWFH.month, dateWFH.day);
-    final today = DateTime(
-      DateTime.now().year,
-      DateTime.now().month,
-      DateTime.now().day,
-    );
-    if (!dateOnly.isAfter(today)) {
-      return 'Chỉ được đăng ký WFH cho các ngày sau hôm nay';
+    if (requireFutureDateOnly) {
+      final dateOnly = DateTime(dateWFH.year, dateWFH.month, dateWFH.day);
+      final today = DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+      );
+      if (!dateOnly.isAfter(today)) {
+        return 'Chỉ được đăng ký WFH cho các ngày sau hôm nay';
+      }
     }
     if (contentWork.trim().length < 10) {
       return 'Nội dung/kế hoạch công việc tối thiểu 10 ký tự';
@@ -457,6 +460,7 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
       final validation = _validateWfhSubmit(
         dateWFH: dateWFH,
         contentWork: contentWork,
+        requireFutureDateOnly: false,
       );
       if (validation != null) {
         emit(

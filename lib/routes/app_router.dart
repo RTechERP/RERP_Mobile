@@ -42,7 +42,6 @@ import '../features/workplace/app/reg_work/view/pages/overnight/overnight_screen
 import '../features/workplace/app/reg_work/view/pages/overtime/overtime_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/overtime_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/overtime_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/wfh/data/datasource/models/wfh_model.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_screen.dart';
@@ -211,12 +210,7 @@ class AppRouter {
 
       GoRoute(
         path: '/regwork/wfh/detail',
-        builder: (context, state) {
-          final extra = state.extra;
-          return WfhDetailScreen(
-            item: extra is WfhItem ? extra : null,
-          );
-        },
+        builder: (context, state) => const WfhDetailScreen(),
       ),
 
       GoRoute(
