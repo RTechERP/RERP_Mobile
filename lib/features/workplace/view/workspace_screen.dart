@@ -67,8 +67,7 @@ class _WorkPlaceScreenState
       // }
 
       if (roles.contains(AppRole.hr)) {
-
-        if(employeeId == 5 ) return RouteNames.reportHRAdmin;
+        if (employeeId == 5) return RouteNames.reportHRAdmin;
 
         /// ===== HR LXCP (ưu tiên position trước) =====
         if (PositionGroups.positionLxs.contains(posId) ||
@@ -80,7 +79,6 @@ class _WorkPlaceScreenState
         if (DepartmentGroups.hr.contains(deptId)) {
           return RouteNames.reportHRAdmin;
         }
-
 
         return RouteNames.reportHRAdmin;
       }
@@ -189,90 +187,85 @@ class _WorkPlaceScreenState
 
                   const SizedBox(height: 8),
 
-                    WpActionCard(
-                      onItemTap: (item) {
-                        final user = state.user;
-                        if (user == null) return;
+                  WpActionCard(
+                    onItemTap: (item) {
+                      final user = state.user;
+                      if (user == null) return;
 
-                        /// ===== ONLY HANDLE REPORT =====
-                        if (item.id == 'report') {
-                          final route = resolveReportRoute(user);
+                      /// ===== ONLY HANDLE REPORT =====
+                      if (item.id == 'report') {
+                        final route = resolveReportRoute(user);
 
-                          if (route != null) {
-                            context.push(route);
-                            return;
-                          }
-
-                          DialogService.showProcessing(context: context);
+                        if (route != null) {
+                          context.push(route);
                           return;
                         }
 
-                        /// ===== DEFAULT =====
-                        final route = item.route;
-                        if (route == null || route.isEmpty) {
-                          DialogService.showProcessing(context: context);
-                          return;
-                        }
+                        DialogService.showProcessing(context: context);
+                        return;
+                      }
 
-                        context.push(route);
-                      },
-                      title: 'tab.applications'.tr(),
-                      expandable: true,
-                      collapsedItemCount: 11,
-                      items: [
-                        AppItemModel(
-                          id: 'general_forms',
-                          name: 'applications.general_forms'.tr(),
-                          iconCodePoint:
-                          Icons.assignment_outlined.codePoint,
-                          imageUrl: AppImages.app_menu_general_form,
-                        ),
-                        AppItemModel(
-                          id: 'summary_work',
-                          iconCodePoint:
-                          Icons.content_paste_search_outlined.codePoint,
-                          name: 'applications.summary_work'.tr(),
-                          imageUrl: AppImages.app_menu_summary_work,
-                        ),
-                        AppItemModel(
-                          id: 'reg_work',
-                          iconCodePoint:
-                          Icons.person_pin_outlined.codePoint,
-                          name: 'applications.reg_work'.tr(),
-                          route: '/regwork',
-                          imageUrl: AppImages.app_menu_reg_work,
-                        ),
-                        AppItemModel(
-                          id: 'reg_general',
-                          iconCodePoint: Icons.dvr_outlined.codePoint,
-                          name: 'applications.reg_general'.tr(),
-                          imageUrl: AppImages.app_menu_reg_general,
-                          route: RouteNames.reggeneral,
-                        ),
-                        AppItemModel(
-                          id: 'report',
-                          iconCodePoint:
-                          Icons.description_outlined.codePoint,
-                          name: 'applications.report'.tr(),
-                          route: '/report',
-                          imageUrl: AppImages.app_menu_report,
-                        ),
-                        AppItemModel(
-                          id: 'week_plan',
-                          iconCodePoint:
-                          Icons.newspaper_outlined.codePoint,
-                          name: 'applications.week_plan'.tr(),
-                          imageUrl: AppImages.app_menu_week_plan,
-                        ),
-                        AppItemModel(
-                          id: 'stock',
-                          iconCodePoint:
-                          Icons.shopping_cart_outlined.codePoint,
-                          name: 'applications.stock'.tr(),
-                          imageUrl: AppImages.app_menu_stock,
-                        ),
-                      ],
-                    ),
+                      /// ===== DEFAULT =====
+                      final route = item.route;
+                      if (route == null || route.isEmpty) {
+                        DialogService.showProcessing(context: context);
+                        return;
+                      }
+
+                      context.push(route);
+                    },
+                    title: 'tab.applications'.tr(),
+                    expandable: true,
+                    collapsedItemCount: 11,
+                    items: [
+                      AppItemModel(
+                        id: 'reg_work',
+                        iconCodePoint: Icons.person_pin_outlined.codePoint,
+                        name: 'applications.reg_work'.tr(),
+                        route: '/regwork',
+                        imageUrl: AppImages.app_menu_reg_work,
+                      ),
+                      AppItemModel(
+                        id: 'reg_general',
+                        iconCodePoint: Icons.dvr_outlined.codePoint,
+                        name: 'applications.reg_general'.tr(),
+                        imageUrl: AppImages.app_menu_reg_general,
+                        route: RouteNames.reggeneral,
+                      ),
+                      AppItemModel(
+                        id: 'report',
+                        iconCodePoint: Icons.description_outlined.codePoint,
+                        name: 'applications.report'.tr(),
+                        route: '/report',
+                        imageUrl: AppImages.app_menu_report,
+                      ),
+                      AppItemModel(
+                        id: 'general_forms',
+                        name: 'applications.general_forms'.tr(),
+                        iconCodePoint: Icons.assignment_outlined.codePoint,
+                        imageUrl: AppImages.app_menu_general_form,
+                      ),
+                      AppItemModel(
+                        id: 'summary_work',
+                        iconCodePoint:
+                            Icons.content_paste_search_outlined.codePoint,
+                        name: 'applications.summary_work'.tr(),
+                        imageUrl: AppImages.app_menu_summary_work,
+                      ),
+                      AppItemModel(
+                        id: 'week_plan',
+                        iconCodePoint: Icons.newspaper_outlined.codePoint,
+                        name: 'applications.week_plan'.tr(),
+                        imageUrl: AppImages.app_menu_week_plan,
+                      ),
+                      AppItemModel(
+                        id: 'stock',
+                        iconCodePoint: Icons.shopping_cart_outlined.codePoint,
+                        name: 'applications.stock'.tr(),
+                        imageUrl: AppImages.app_menu_stock,
+                      ),
+                    ],
+                  ),
 
                   const SizedBox(height: 8),
 

@@ -34,14 +34,16 @@ import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_s
 import '../features/workplace/app/reg_work/view/pages/in_out/view/bloc/in_out_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/view/bloc/lunch_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/view/pages/lunch_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/missed/missed_add_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/missed/missed_detail_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/missed/missed_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/missed/view/bloc/missed_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_add_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_detail_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/overnight_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/overnight_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/overtime_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/overtime_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/overtime_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/wfh/view/bloc/wfh_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_screen.dart';
@@ -203,35 +205,52 @@ class AppRouter {
         builder: (context, state) => const OvertimeAddScreenPage(),
       ),
 
-      GoRoute(
-        path: '/regwork/wfh',
-        builder: (context, state) => const WfhScreen(),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<WfhBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.regworkWfh,
+            builder: (context, state) => const WfhScreen(),
+          ),
+
+          GoRoute(
+            path: RouteNames.regworkWfhDetail,
+
+            builder: (context, state) => const WfhDetailScreen(),
+          ),
+
+          GoRoute(
+            path: RouteNames.regworkWfhAdd,
+
+            builder: (context, state) => const WfhAddScreen(),
+          ),
+        ],
       ),
 
-      GoRoute(
-        path: '/regwork/wfh/detail',
-        builder: (context, state) => const WfhDetailScreen(),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<MissedBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.regworkMissed,
+            builder: (context, state) => const MissedScreen(),
+          ),
+
+          GoRoute(
+            path: RouteNames.regworkMissedDetail,
+            builder: (context, state) => const MissedDetailScreen(),
+          ),
+
+          GoRoute(
+            path: RouteNames.regworkMissedAdd,
+            builder: (context, state) => const MissedAddScreen(),
+          ),
+        ],
       ),
 
-      GoRoute(
-        path: '/regwork/wfh/add',
-        builder: (context, state) => const WfhAddScreen(),
-      ),
-
-      GoRoute(
-        path: '/regwork/missed',
-        builder: (context, state) => const MissedScreen(),
-      ),
-
-      GoRoute(
-        path: '/regwork/missed/detail',
-        builder: (context, state) => const MissedDetailScreen(),
-      ),
-
-      GoRoute(
-        path: '/regwork/missed/add',
-        builder: (context, state) => const MissedAddScreen(),
-      ),
 
       GoRoute(
         path: '/regwork/work_trip',
@@ -506,7 +525,10 @@ class AppRouter {
 
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(value: getIt<MeetingRoomBloc>(), child: child);
+          return BlocProvider.value(
+            value: getIt<MeetingRoomBloc>(),
+            child: child,
+          );
         },
         routes: [
           GoRoute(
@@ -519,7 +541,10 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final startTime = extra['startTime'] as DateTime?;
 
-              return MeetingRoomAddScreen(startTime: startTime ?? DateTime.now());},
+              return MeetingRoomAddScreen(
+                startTime: startTime ?? DateTime.now(),
+              );
+            },
           ),
           GoRoute(
             path: RouteNames.meetingRoomEdit,
@@ -530,7 +555,8 @@ class AppRouter {
               final endTime = extra['endTime'] as DateTime?;
 
               final safeStart = startTime ?? DateTime.now();
-              final safeEnd = endTime ?? safeStart.add(const Duration(hours: 2));
+              final safeEnd =
+                  endTime ?? safeStart.add(const Duration(hours: 2));
 
               return MeetingRoomEditScreen(
                 roomId: roomId,
@@ -544,7 +570,10 @@ class AppRouter {
 
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(value: getIt<BookingVehicleBloc>(), child: child);
+          return BlocProvider.value(
+            value: getIt<BookingVehicleBloc>(),
+            child: child,
+          );
         },
         routes: [
           GoRoute(

@@ -1017,4 +1017,60 @@ class ValidateHelper {
 
     return null;
   }
+
+  // --- Quên chấm công (Missed)
+
+  /// [earliestSelectableDay]: nếu có, ngày chọn phải ≥ ngày này (thường là hôm nay — chặn quá khứ).
+  static String? validateMissedDateField(
+    DateTime? value, {
+    DateTime? earliestSelectableDay,
+  }) {
+    if (value == null) return 'Vui lòng chọn ngày';
+    if (earliestSelectableDay != null) {
+      final picked = DateTime(value.year, value.month, value.day);
+      final min = DateTime(
+        earliestSelectableDay.year,
+        earliestSelectableDay.month,
+        earliestSelectableDay.day,
+      );
+      if (picked.isBefore(min)) return 'Không được chọn ngày quá khứ';
+    }
+    return null;
+  }
+
+  /// Giá trị radio form: `check_in` / `check_out`.
+  static String? validateMissedTypeField(String? value) {
+    final t = value?.trim() ?? '';
+    if (t.isEmpty) return 'Vui lòng chọn loại';
+    if (t != 'check_in' && t != 'check_out') return 'Loại không hợp lệ';
+    return null;
+  }
+
+  /// Hidden field lưu id gửi API (`ApprovedTP`, chuỗi số).
+  static String? validateMissedApproverIdField(String? value) {
+    final raw = value?.trim() ?? '';
+    if (raw.isEmpty) return 'Vui lòng chọn người duyệt';
+    final id = int.tryParse(raw) ?? 0;
+    if (id <= 0) return 'Người duyệt không hợp lệ';
+    return null;
+  }
+
+  /// Validate tổng hợp map form trước khi gửi bloc (đồng bộ với các field validator).
+  static String? validateMissed({
+    required DateTime? dateMissed,
+    required String? typeRaw,
+    required String? approverIdRaw,
+    DateTime? earliestSelectableDay,
+  }) {
+    final dErr = validateMissedDateField(
+      dateMissed,
+      earliestSelectableDay: earliestSelectableDay,
+    );
+    if (dErr != null) return dErr;
+    final typeErr = validateMissedTypeField(typeRaw);
+    if (typeErr != null) return typeErr;
+    final apErr = validateMissedApproverIdField(approverIdRaw);
+    if (apErr != null) return apErr;
+    return null;
+  }
 }

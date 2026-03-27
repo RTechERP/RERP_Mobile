@@ -26,6 +26,10 @@ import '../features/workplace/app/reg_work/view/pages/in_out/data/datasource/ser
 import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/bloc/in_out_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/missed/data/datasource/service/missed_service.dart';
+import '../features/workplace/app/reg_work/view/pages/missed/data/repository/missed_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/missed/data/repository/missed_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/missed/view/bloc/missed_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/data/datasource/service/wfh_service.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/data/repository/wfh_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/data/repository/wfh_repo_impl.dart';
@@ -102,6 +106,8 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<WfhService>(() => WfhService(getIt<Dio>()));
 
+  getIt.registerLazySingleton<MissedService>(() => MissedService(getIt<Dio>()));
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(getIt<AuthService>()),
@@ -128,6 +134,8 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<WfhRepo>(() => WfhRepoImpl(getIt<WfhService>()));
+
+  getIt.registerLazySingleton<MissedRepo>(()=> MissedRepoImpl(getIt<MissedService>()));
 
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
@@ -185,4 +193,9 @@ void configureDependencies() {
   getIt.registerFactory<WfhBloc>(
         () => WfhBloc(getIt<WfhRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
+
+  getIt.registerFactory<MissedBloc>(
+        () => MissedBloc(getIt<MissedRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
+
 }

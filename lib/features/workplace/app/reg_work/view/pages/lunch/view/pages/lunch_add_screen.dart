@@ -171,19 +171,32 @@ class _LunchAddScreenState
                                         ValidateHelper.validateLunchQuantityField,
                                   ),
                                   const SizedBox(height: 8),
-                                  const FormRadioGroup(),
+                                  FormRadioGroup(
+                                    name: 'location',
+                                    label: 'Địa điểm',
+                                    options: const [
+                                      FormRadioOption(
+                                        value: 'hn',
+                                        icon: Icons.location_city,
+                                        label: 'VP Hà Nội',
+                                      ),
+                                      FormRadioOption(
+                                        value: 'dp',
+                                        icon: Icons.factory_outlined,
+                                        label: 'Xưởng Đan Phượng',
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8),
+
+                                  FormInputField(
+                                    nameForm: 'regwork_lunch_add_note',
+                                    nameTextField: 'regwork_lunch_add_note_field',
+                                    label: 'Ghi chú',
+                                    icon: Icons.note_alt_outlined,
+                                    maxLines: 3,
+                                  ),
                                 ],
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            FormCard(
-                              title: 'Ghi chú',
-                              child: FormInputField(
-                                nameForm: 'regwork_lunch_add_note',
-                                nameTextField: 'regwork_lunch_add_note_field',
-                                label: 'Ghi chú',
-                                icon: Icons.note_alt_outlined,
-                                maxLines: 3,
                               ),
                             ),
                           ],
