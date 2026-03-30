@@ -209,6 +209,8 @@ class ApiEndPoint {
       '/EmployeeNoFingerprint/check-duplicate-enf';
 
   static const String getLeave = '/EmployeeOnLeave';
+  /// GET …/get-multi/{EmployeeOnLeavePhaseID}
+  static const String getLeavePhaseMulti = '/EmployeeOnLeave/get-multi';
   static const String saveLeave = '/EmployeeOnLeave/save-data';
 
   static const String getLeaveTime =

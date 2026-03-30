@@ -19,6 +19,9 @@ class FormActions extends StatelessWidget {
   /// Chỉ áp dụng [FormActionMode.add]: `false` = vô hiệu hoá nút gửi.
   final bool submitEnabled;
 
+  /// Chỉ áp dụng [FormActionMode.edit]: `false` = vô hiệu hoá nút lưu.
+  final bool saveEnabled;
+
   const FormActions({
     super.key,
     required this.mode,
@@ -31,6 +34,7 @@ class FormActions extends StatelessWidget {
     this.saveText = 'Cập nhật',
     this.submitText = 'Lưu',
     this.submitEnabled = true,
+    this.saveEnabled = true,
   });
 
   @override
@@ -87,9 +91,10 @@ class FormActions extends StatelessWidget {
         const SizedBox(width: 12),
         Expanded(
           child: ElevatedButton(
-            onPressed: onSave,
+            onPressed: saveEnabled ? onSave : null,
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primaryERP,
+              disabledBackgroundColor: Colors.grey.shade300,
               padding: const EdgeInsets.symmetric(vertical: 14),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14),
@@ -97,8 +102,8 @@ class FormActions extends StatelessWidget {
             ),
             child: Text(
               saveText,
-              style: const TextStyle(
-                color: AppColors.white,
+              style: TextStyle(
+                color: saveEnabled ? AppColors.white : Colors.grey.shade600,
                 fontWeight: FontWeight.w600,
               ),
             ),

@@ -57,6 +57,22 @@ class LeaveService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<LeavePhaseMultiDto?>> getLeavePhaseMulti(int phaseId) {
+    return get<BaseData<LeavePhaseMultiDto?>>(
+      '${ApiEndPoint.getLeavePhaseMulti}/$phaseId',
+      parser: (dynamic json) {
+        final root = Map<String, dynamic>.from(json as Map);
+        return BaseData<LeavePhaseMultiDto?>.fromJson(
+          root,
+          (data) => LeavePhaseMultiDto.tryParse(
+            data ?? root,
+            fallbackPhaseId: phaseId,
+          ),
+        );
+      },
+    );
+  }
+
   Future<BaseData<List<ApproverItem>>> getApprover() {
     return get<BaseData<List<ApproverItem>>>(
       ApiEndPoint.getApprover,

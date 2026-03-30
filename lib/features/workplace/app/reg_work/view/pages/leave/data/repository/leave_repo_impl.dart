@@ -53,6 +53,25 @@ class LeaveRepoImpl implements LeaveRepo {
   }
 
   @override
+  Future<Either<BaseError, LeavePhaseMultiDto>> getLeavePhaseMulti({
+    required int phaseId,
+  }) async {
+    try {
+      final res = await _service.getLeavePhaseMulti(phaseId);
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Không tải được chi tiết đơn nghỉ',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
   Future<Either<BaseError, List<ApproverItem>>> getApprover() async {
     try {
       final res = await _service.getApprover();

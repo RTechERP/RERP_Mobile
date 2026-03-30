@@ -20,6 +20,10 @@ mixin _$LeaveEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(int phaseId, int detailId,
+            DateTime? listStartDate, int? listTimeOnLeave)
+        initDetail,
+    required TResult Function() clearDetailForm,
     required TResult Function() fetchApprovers,
     required TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)
@@ -28,13 +32,7 @@ mixin _$LeaveEvent {
         submitBatch,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
-            int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int phaseId, int approvedTP, List<LeaveEditSlip> slips)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -45,14 +43,17 @@ mixin _$LeaveEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult? Function()? clearDetailForm,
     TResult? Function()? fetchApprovers,
     TResult? Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult? Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -62,14 +63,17 @@ mixin _$LeaveEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult Function()? clearDetailForm,
     TResult Function()? fetchApprovers,
     TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -80,6 +84,8 @@ mixin _$LeaveEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_ClearDetailForm value) clearDetailForm,
     required TResult Function(_FetchApprovers value) fetchApprovers,
     required TResult Function(_Submit value) submit,
     required TResult Function(_SubmitBatch value) submitBatch,
@@ -93,6 +99,8 @@ mixin _$LeaveEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_ClearDetailForm value)? clearDetailForm,
     TResult? Function(_FetchApprovers value)? fetchApprovers,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_SubmitBatch value)? submitBatch,
@@ -106,6 +114,8 @@ mixin _$LeaveEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_ClearDetailForm value)? clearDetailForm,
     TResult Function(_FetchApprovers value)? fetchApprovers,
     TResult Function(_Submit value)? submit,
     TResult Function(_SubmitBatch value)? submitBatch,
@@ -175,6 +185,10 @@ class _$InitImpl implements _Init {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(int phaseId, int detailId,
+            DateTime? listStartDate, int? listTimeOnLeave)
+        initDetail,
+    required TResult Function() clearDetailForm,
     required TResult Function() fetchApprovers,
     required TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)
@@ -183,13 +197,7 @@ class _$InitImpl implements _Init {
         submitBatch,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
-            int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int phaseId, int approvedTP, List<LeaveEditSlip> slips)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -203,14 +211,17 @@ class _$InitImpl implements _Init {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult? Function()? clearDetailForm,
     TResult? Function()? fetchApprovers,
     TResult? Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult? Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -223,14 +234,17 @@ class _$InitImpl implements _Init {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult Function()? clearDetailForm,
     TResult Function()? fetchApprovers,
     TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -247,6 +261,8 @@ class _$InitImpl implements _Init {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_ClearDetailForm value) clearDetailForm,
     required TResult Function(_FetchApprovers value) fetchApprovers,
     required TResult Function(_Submit value) submit,
     required TResult Function(_SubmitBatch value) submitBatch,
@@ -263,6 +279,8 @@ class _$InitImpl implements _Init {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_ClearDetailForm value)? clearDetailForm,
     TResult? Function(_FetchApprovers value)? fetchApprovers,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_SubmitBatch value)? submitBatch,
@@ -279,6 +297,8 @@ class _$InitImpl implements _Init {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_ClearDetailForm value)? clearDetailForm,
     TResult Function(_FetchApprovers value)? fetchApprovers,
     TResult Function(_Submit value)? submit,
     TResult Function(_SubmitBatch value)? submitBatch,
@@ -339,6 +359,10 @@ class _$InitAddImpl implements _InitAdd {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(int phaseId, int detailId,
+            DateTime? listStartDate, int? listTimeOnLeave)
+        initDetail,
+    required TResult Function() clearDetailForm,
     required TResult Function() fetchApprovers,
     required TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)
@@ -347,13 +371,7 @@ class _$InitAddImpl implements _InitAdd {
         submitBatch,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
-            int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int phaseId, int approvedTP, List<LeaveEditSlip> slips)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -367,14 +385,17 @@ class _$InitAddImpl implements _InitAdd {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult? Function()? clearDetailForm,
     TResult? Function()? fetchApprovers,
     TResult? Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult? Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -387,14 +408,17 @@ class _$InitAddImpl implements _InitAdd {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult Function()? clearDetailForm,
     TResult Function()? fetchApprovers,
     TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -411,6 +435,8 @@ class _$InitAddImpl implements _InitAdd {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_ClearDetailForm value) clearDetailForm,
     required TResult Function(_FetchApprovers value) fetchApprovers,
     required TResult Function(_Submit value) submit,
     required TResult Function(_SubmitBatch value) submitBatch,
@@ -427,6 +453,8 @@ class _$InitAddImpl implements _InitAdd {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_ClearDetailForm value)? clearDetailForm,
     TResult? Function(_FetchApprovers value)? fetchApprovers,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_SubmitBatch value)? submitBatch,
@@ -443,6 +471,8 @@ class _$InitAddImpl implements _InitAdd {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_ClearDetailForm value)? clearDetailForm,
     TResult Function(_FetchApprovers value)? fetchApprovers,
     TResult Function(_Submit value)? submit,
     TResult Function(_SubmitBatch value)? submitBatch,
@@ -461,6 +491,428 @@ class _$InitAddImpl implements _InitAdd {
 
 abstract class _InitAdd implements LeaveEvent {
   const factory _InitAdd() = _$InitAddImpl;
+}
+
+/// @nodoc
+abstract class _$$InitDetailImplCopyWith<$Res> {
+  factory _$$InitDetailImplCopyWith(
+          _$InitDetailImpl value, $Res Function(_$InitDetailImpl) then) =
+      __$$InitDetailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int phaseId,
+      int detailId,
+      DateTime? listStartDate,
+      int? listTimeOnLeave});
+}
+
+/// @nodoc
+class __$$InitDetailImplCopyWithImpl<$Res>
+    extends _$LeaveEventCopyWithImpl<$Res, _$InitDetailImpl>
+    implements _$$InitDetailImplCopyWith<$Res> {
+  __$$InitDetailImplCopyWithImpl(
+      _$InitDetailImpl _value, $Res Function(_$InitDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? phaseId = null,
+    Object? detailId = null,
+    Object? listStartDate = freezed,
+    Object? listTimeOnLeave = freezed,
+  }) {
+    return _then(_$InitDetailImpl(
+      phaseId: null == phaseId
+          ? _value.phaseId
+          : phaseId // ignore: cast_nullable_to_non_nullable
+              as int,
+      detailId: null == detailId
+          ? _value.detailId
+          : detailId // ignore: cast_nullable_to_non_nullable
+              as int,
+      listStartDate: freezed == listStartDate
+          ? _value.listStartDate
+          : listStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      listTimeOnLeave: freezed == listTimeOnLeave
+          ? _value.listTimeOnLeave
+          : listTimeOnLeave // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitDetailImpl implements _InitDetail {
+  const _$InitDetailImpl(
+      {required this.phaseId,
+      required this.detailId,
+      this.listStartDate,
+      this.listTimeOnLeave});
+
+  @override
+  final int phaseId;
+  @override
+  final int detailId;
+  @override
+  final DateTime? listStartDate;
+  @override
+  final int? listTimeOnLeave;
+
+  @override
+  String toString() {
+    return 'LeaveEvent.initDetail(phaseId: $phaseId, detailId: $detailId, listStartDate: $listStartDate, listTimeOnLeave: $listTimeOnLeave)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitDetailImpl &&
+            (identical(other.phaseId, phaseId) || other.phaseId == phaseId) &&
+            (identical(other.detailId, detailId) ||
+                other.detailId == detailId) &&
+            (identical(other.listStartDate, listStartDate) ||
+                other.listStartDate == listStartDate) &&
+            (identical(other.listTimeOnLeave, listTimeOnLeave) ||
+                other.listTimeOnLeave == listTimeOnLeave));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, phaseId, detailId, listStartDate, listTimeOnLeave);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitDetailImplCopyWith<_$InitDetailImpl> get copyWith =>
+      __$$InitDetailImplCopyWithImpl<_$InitDetailImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(int phaseId, int detailId,
+            DateTime? listStartDate, int? listTimeOnLeave)
+        initDetail,
+    required TResult Function() clearDetailForm,
+    required TResult Function() fetchApprovers,
+    required TResult Function(int type, int approvedTP, DateTime dateStart,
+            DateTime dateEnd, int timeRegister, String reason)
+        submit,
+    required TResult Function(int approvedTP, List<LeaveAddSlip> slips)
+        submitBatch,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(
+            int phaseId, int approvedTP, List<LeaveEditSlip> slips)
+        onEditSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearSubmitState,
+  }) {
+    return initDetail(phaseId, detailId, listStartDate, listTimeOnLeave);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult? Function()? clearDetailForm,
+    TResult? Function()? fetchApprovers,
+    TResult? Function(int type, int approvedTP, DateTime dateStart,
+            DateTime dateEnd, int timeRegister, String reason)?
+        submit,
+    TResult? Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
+        onEditSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return initDetail?.call(phaseId, detailId, listStartDate, listTimeOnLeave);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult Function()? clearDetailForm,
+    TResult Function()? fetchApprovers,
+    TResult Function(int type, int approvedTP, DateTime dateStart,
+            DateTime dateEnd, int timeRegister, String reason)?
+        submit,
+    TResult Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
+        onEditSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (initDetail != null) {
+      return initDetail(phaseId, detailId, listStartDate, listTimeOnLeave);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_ClearDetailForm value) clearDetailForm,
+    required TResult Function(_FetchApprovers value) fetchApprovers,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_SubmitBatch value) submitBatch,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_OnEditSubmit value) onEditSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return initDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_ClearDetailForm value)? clearDetailForm,
+    TResult? Function(_FetchApprovers value)? fetchApprovers,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_SubmitBatch value)? submitBatch,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_OnEditSubmit value)? onEditSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return initDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_ClearDetailForm value)? clearDetailForm,
+    TResult Function(_FetchApprovers value)? fetchApprovers,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_SubmitBatch value)? submitBatch,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_OnEditSubmit value)? onEditSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (initDetail != null) {
+      return initDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitDetail implements LeaveEvent {
+  const factory _InitDetail(
+      {required final int phaseId,
+      required final int detailId,
+      final DateTime? listStartDate,
+      final int? listTimeOnLeave}) = _$InitDetailImpl;
+
+  int get phaseId;
+  int get detailId;
+  DateTime? get listStartDate;
+  int? get listTimeOnLeave;
+  @JsonKey(ignore: true)
+  _$$InitDetailImplCopyWith<_$InitDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearDetailFormImplCopyWith<$Res> {
+  factory _$$ClearDetailFormImplCopyWith(_$ClearDetailFormImpl value,
+          $Res Function(_$ClearDetailFormImpl) then) =
+      __$$ClearDetailFormImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearDetailFormImplCopyWithImpl<$Res>
+    extends _$LeaveEventCopyWithImpl<$Res, _$ClearDetailFormImpl>
+    implements _$$ClearDetailFormImplCopyWith<$Res> {
+  __$$ClearDetailFormImplCopyWithImpl(
+      _$ClearDetailFormImpl _value, $Res Function(_$ClearDetailFormImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearDetailFormImpl implements _ClearDetailForm {
+  const _$ClearDetailFormImpl();
+
+  @override
+  String toString() {
+    return 'LeaveEvent.clearDetailForm()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearDetailFormImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(int phaseId, int detailId,
+            DateTime? listStartDate, int? listTimeOnLeave)
+        initDetail,
+    required TResult Function() clearDetailForm,
+    required TResult Function() fetchApprovers,
+    required TResult Function(int type, int approvedTP, DateTime dateStart,
+            DateTime dateEnd, int timeRegister, String reason)
+        submit,
+    required TResult Function(int approvedTP, List<LeaveAddSlip> slips)
+        submitBatch,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(
+            int phaseId, int approvedTP, List<LeaveEditSlip> slips)
+        onEditSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearSubmitState,
+  }) {
+    return clearDetailForm();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult? Function()? clearDetailForm,
+    TResult? Function()? fetchApprovers,
+    TResult? Function(int type, int approvedTP, DateTime dateStart,
+            DateTime dateEnd, int timeRegister, String reason)?
+        submit,
+    TResult? Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
+        onEditSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return clearDetailForm?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult Function()? clearDetailForm,
+    TResult Function()? fetchApprovers,
+    TResult Function(int type, int approvedTP, DateTime dateStart,
+            DateTime dateEnd, int timeRegister, String reason)?
+        submit,
+    TResult Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
+        onEditSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (clearDetailForm != null) {
+      return clearDetailForm();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_ClearDetailForm value) clearDetailForm,
+    required TResult Function(_FetchApprovers value) fetchApprovers,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_SubmitBatch value) submitBatch,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_OnEditSubmit value) onEditSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return clearDetailForm(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_ClearDetailForm value)? clearDetailForm,
+    TResult? Function(_FetchApprovers value)? fetchApprovers,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_SubmitBatch value)? submitBatch,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_OnEditSubmit value)? onEditSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return clearDetailForm?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_ClearDetailForm value)? clearDetailForm,
+    TResult Function(_FetchApprovers value)? fetchApprovers,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_SubmitBatch value)? submitBatch,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_OnEditSubmit value)? onEditSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (clearDetailForm != null) {
+      return clearDetailForm(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearDetailForm implements LeaveEvent {
+  const factory _ClearDetailForm() = _$ClearDetailFormImpl;
 }
 
 /// @nodoc
@@ -503,6 +955,10 @@ class _$FetchApproversImpl implements _FetchApprovers {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(int phaseId, int detailId,
+            DateTime? listStartDate, int? listTimeOnLeave)
+        initDetail,
+    required TResult Function() clearDetailForm,
     required TResult Function() fetchApprovers,
     required TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)
@@ -511,13 +967,7 @@ class _$FetchApproversImpl implements _FetchApprovers {
         submitBatch,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
-            int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int phaseId, int approvedTP, List<LeaveEditSlip> slips)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -531,14 +981,17 @@ class _$FetchApproversImpl implements _FetchApprovers {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult? Function()? clearDetailForm,
     TResult? Function()? fetchApprovers,
     TResult? Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult? Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -551,14 +1004,17 @@ class _$FetchApproversImpl implements _FetchApprovers {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult Function()? clearDetailForm,
     TResult Function()? fetchApprovers,
     TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -575,6 +1031,8 @@ class _$FetchApproversImpl implements _FetchApprovers {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_ClearDetailForm value) clearDetailForm,
     required TResult Function(_FetchApprovers value) fetchApprovers,
     required TResult Function(_Submit value) submit,
     required TResult Function(_SubmitBatch value) submitBatch,
@@ -591,6 +1049,8 @@ class _$FetchApproversImpl implements _FetchApprovers {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_ClearDetailForm value)? clearDetailForm,
     TResult? Function(_FetchApprovers value)? fetchApprovers,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_SubmitBatch value)? submitBatch,
@@ -607,6 +1067,8 @@ class _$FetchApproversImpl implements _FetchApprovers {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_ClearDetailForm value)? clearDetailForm,
     TResult Function(_FetchApprovers value)? fetchApprovers,
     TResult Function(_Submit value)? submit,
     TResult Function(_SubmitBatch value)? submitBatch,
@@ -749,6 +1211,10 @@ class _$SubmitImpl implements _Submit {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(int phaseId, int detailId,
+            DateTime? listStartDate, int? listTimeOnLeave)
+        initDetail,
+    required TResult Function() clearDetailForm,
     required TResult Function() fetchApprovers,
     required TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)
@@ -757,13 +1223,7 @@ class _$SubmitImpl implements _Submit {
         submitBatch,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
-            int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int phaseId, int approvedTP, List<LeaveEditSlip> slips)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -777,14 +1237,17 @@ class _$SubmitImpl implements _Submit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult? Function()? clearDetailForm,
     TResult? Function()? fetchApprovers,
     TResult? Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult? Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -798,14 +1261,17 @@ class _$SubmitImpl implements _Submit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult Function()? clearDetailForm,
     TResult Function()? fetchApprovers,
     TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -822,6 +1288,8 @@ class _$SubmitImpl implements _Submit {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_ClearDetailForm value) clearDetailForm,
     required TResult Function(_FetchApprovers value) fetchApprovers,
     required TResult Function(_Submit value) submit,
     required TResult Function(_SubmitBatch value) submitBatch,
@@ -838,6 +1306,8 @@ class _$SubmitImpl implements _Submit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_ClearDetailForm value)? clearDetailForm,
     TResult? Function(_FetchApprovers value)? fetchApprovers,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_SubmitBatch value)? submitBatch,
@@ -854,6 +1324,8 @@ class _$SubmitImpl implements _Submit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_ClearDetailForm value)? clearDetailForm,
     TResult Function(_FetchApprovers value)? fetchApprovers,
     TResult Function(_Submit value)? submit,
     TResult Function(_SubmitBatch value)? submitBatch,
@@ -973,6 +1445,10 @@ class _$SubmitBatchImpl implements _SubmitBatch {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(int phaseId, int detailId,
+            DateTime? listStartDate, int? listTimeOnLeave)
+        initDetail,
+    required TResult Function() clearDetailForm,
     required TResult Function() fetchApprovers,
     required TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)
@@ -981,13 +1457,7 @@ class _$SubmitBatchImpl implements _SubmitBatch {
         submitBatch,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
-            int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int phaseId, int approvedTP, List<LeaveEditSlip> slips)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -1001,14 +1471,17 @@ class _$SubmitBatchImpl implements _SubmitBatch {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult? Function()? clearDetailForm,
     TResult? Function()? fetchApprovers,
     TResult? Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult? Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -1021,14 +1494,17 @@ class _$SubmitBatchImpl implements _SubmitBatch {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult Function()? clearDetailForm,
     TResult Function()? fetchApprovers,
     TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -1045,6 +1521,8 @@ class _$SubmitBatchImpl implements _SubmitBatch {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_ClearDetailForm value) clearDetailForm,
     required TResult Function(_FetchApprovers value) fetchApprovers,
     required TResult Function(_Submit value) submit,
     required TResult Function(_SubmitBatch value) submitBatch,
@@ -1061,6 +1539,8 @@ class _$SubmitBatchImpl implements _SubmitBatch {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_ClearDetailForm value)? clearDetailForm,
     TResult? Function(_FetchApprovers value)? fetchApprovers,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_SubmitBatch value)? submitBatch,
@@ -1077,6 +1557,8 @@ class _$SubmitBatchImpl implements _SubmitBatch {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_ClearDetailForm value)? clearDetailForm,
     TResult Function(_FetchApprovers value)? fetchApprovers,
     TResult Function(_Submit value)? submit,
     TResult Function(_SubmitBatch value)? submitBatch,
@@ -1172,6 +1654,10 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(int phaseId, int detailId,
+            DateTime? listStartDate, int? listTimeOnLeave)
+        initDetail,
+    required TResult Function() clearDetailForm,
     required TResult Function() fetchApprovers,
     required TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)
@@ -1180,13 +1666,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
         submitBatch,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
-            int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int phaseId, int approvedTP, List<LeaveEditSlip> slips)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -1200,14 +1680,17 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult? Function()? clearDetailForm,
     TResult? Function()? fetchApprovers,
     TResult? Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult? Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -1220,14 +1703,17 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult Function()? clearDetailForm,
     TResult Function()? fetchApprovers,
     TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -1244,6 +1730,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_ClearDetailForm value) clearDetailForm,
     required TResult Function(_FetchApprovers value) fetchApprovers,
     required TResult Function(_Submit value) submit,
     required TResult Function(_SubmitBatch value) submitBatch,
@@ -1260,6 +1748,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_ClearDetailForm value)? clearDetailForm,
     TResult? Function(_FetchApprovers value)? fetchApprovers,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_SubmitBatch value)? submitBatch,
@@ -1276,6 +1766,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_ClearDetailForm value)? clearDetailForm,
     TResult Function(_FetchApprovers value)? fetchApprovers,
     TResult Function(_Submit value)? submit,
     TResult Function(_SubmitBatch value)? submitBatch,
@@ -1307,14 +1799,7 @@ abstract class _$$OnEditSubmitImplCopyWith<$Res> {
           _$OnEditSubmitImpl value, $Res Function(_$OnEditSubmitImpl) then) =
       __$$OnEditSubmitImplCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {int id,
-      int type,
-      int approvedTP,
-      DateTime dateStart,
-      DateTime dateEnd,
-      int timeRegister,
-      String reason});
+  $Res call({int phaseId, int approvedTP, List<LeaveEditSlip> slips});
 }
 
 /// @nodoc
@@ -1328,43 +1813,23 @@ class __$$OnEditSubmitImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? type = null,
+    Object? phaseId = null,
     Object? approvedTP = null,
-    Object? dateStart = null,
-    Object? dateEnd = null,
-    Object? timeRegister = null,
-    Object? reason = null,
+    Object? slips = null,
   }) {
     return _then(_$OnEditSubmitImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      phaseId: null == phaseId
+          ? _value.phaseId
+          : phaseId // ignore: cast_nullable_to_non_nullable
               as int,
       approvedTP: null == approvedTP
           ? _value.approvedTP
           : approvedTP // ignore: cast_nullable_to_non_nullable
               as int,
-      dateStart: null == dateStart
-          ? _value.dateStart
-          : dateStart // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      dateEnd: null == dateEnd
-          ? _value.dateEnd
-          : dateEnd // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      timeRegister: null == timeRegister
-          ? _value.timeRegister
-          : timeRegister // ignore: cast_nullable_to_non_nullable
-              as int,
-      reason: null == reason
-          ? _value.reason
-          : reason // ignore: cast_nullable_to_non_nullable
-              as String,
+      slips: null == slips
+          ? _value._slips
+          : slips // ignore: cast_nullable_to_non_nullable
+              as List<LeaveEditSlip>,
     ));
   }
 }
@@ -1373,32 +1838,26 @@ class __$$OnEditSubmitImplCopyWithImpl<$Res>
 
 class _$OnEditSubmitImpl implements _OnEditSubmit {
   const _$OnEditSubmitImpl(
-      {required this.id,
-      required this.type,
+      {required this.phaseId,
       required this.approvedTP,
-      required this.dateStart,
-      required this.dateEnd,
-      required this.timeRegister,
-      required this.reason});
+      required final List<LeaveEditSlip> slips})
+      : _slips = slips;
 
   @override
-  final int id;
-  @override
-  final int type;
+  final int phaseId;
   @override
   final int approvedTP;
+  final List<LeaveEditSlip> _slips;
   @override
-  final DateTime dateStart;
-  @override
-  final DateTime dateEnd;
-  @override
-  final int timeRegister;
-  @override
-  final String reason;
+  List<LeaveEditSlip> get slips {
+    if (_slips is EqualUnmodifiableListView) return _slips;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_slips);
+  }
 
   @override
   String toString() {
-    return 'LeaveEvent.onEditSubmit(id: $id, type: $type, approvedTP: $approvedTP, dateStart: $dateStart, dateEnd: $dateEnd, timeRegister: $timeRegister, reason: $reason)';
+    return 'LeaveEvent.onEditSubmit(phaseId: $phaseId, approvedTP: $approvedTP, slips: $slips)';
   }
 
   @override
@@ -1406,21 +1865,15 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OnEditSubmitImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.type, type) || other.type == type) &&
+            (identical(other.phaseId, phaseId) || other.phaseId == phaseId) &&
             (identical(other.approvedTP, approvedTP) ||
                 other.approvedTP == approvedTP) &&
-            (identical(other.dateStart, dateStart) ||
-                other.dateStart == dateStart) &&
-            (identical(other.dateEnd, dateEnd) || other.dateEnd == dateEnd) &&
-            (identical(other.timeRegister, timeRegister) ||
-                other.timeRegister == timeRegister) &&
-            (identical(other.reason, reason) || other.reason == reason));
+            const DeepCollectionEquality().equals(other._slips, _slips));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, type, approvedTP, dateStart,
-      dateEnd, timeRegister, reason);
+  int get hashCode => Object.hash(runtimeType, phaseId, approvedTP,
+      const DeepCollectionEquality().hash(_slips));
 
   @JsonKey(ignore: true)
   @override
@@ -1433,6 +1886,10 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(int phaseId, int detailId,
+            DateTime? listStartDate, int? listTimeOnLeave)
+        initDetail,
+    required TResult Function() clearDetailForm,
     required TResult Function() fetchApprovers,
     required TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)
@@ -1441,20 +1898,13 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
         submitBatch,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
-            int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int phaseId, int approvedTP, List<LeaveEditSlip> slips)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearSubmitState,
   }) {
-    return onEditSubmit(
-        id, type, approvedTP, dateStart, dateEnd, timeRegister, reason);
+    return onEditSubmit(phaseId, approvedTP, slips);
   }
 
   @override
@@ -1462,20 +1912,22 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult? Function()? clearDetailForm,
     TResult? Function()? fetchApprovers,
     TResult? Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult? Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
   }) {
-    return onEditSubmit?.call(
-        id, type, approvedTP, dateStart, dateEnd, timeRegister, reason);
+    return onEditSubmit?.call(phaseId, approvedTP, slips);
   }
 
   @override
@@ -1483,22 +1935,24 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult Function()? clearDetailForm,
     TResult Function()? fetchApprovers,
     TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (onEditSubmit != null) {
-      return onEditSubmit(
-          id, type, approvedTP, dateStart, dateEnd, timeRegister, reason);
+      return onEditSubmit(phaseId, approvedTP, slips);
     }
     return orElse();
   }
@@ -1508,6 +1962,8 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_ClearDetailForm value) clearDetailForm,
     required TResult Function(_FetchApprovers value) fetchApprovers,
     required TResult Function(_Submit value) submit,
     required TResult Function(_SubmitBatch value) submitBatch,
@@ -1524,6 +1980,8 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_ClearDetailForm value)? clearDetailForm,
     TResult? Function(_FetchApprovers value)? fetchApprovers,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_SubmitBatch value)? submitBatch,
@@ -1540,6 +1998,8 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_ClearDetailForm value)? clearDetailForm,
     TResult Function(_FetchApprovers value)? fetchApprovers,
     TResult Function(_Submit value)? submit,
     TResult Function(_SubmitBatch value)? submitBatch,
@@ -1558,21 +2018,13 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
 
 abstract class _OnEditSubmit implements LeaveEvent {
   const factory _OnEditSubmit(
-      {required final int id,
-      required final int type,
+      {required final int phaseId,
       required final int approvedTP,
-      required final DateTime dateStart,
-      required final DateTime dateEnd,
-      required final int timeRegister,
-      required final String reason}) = _$OnEditSubmitImpl;
+      required final List<LeaveEditSlip> slips}) = _$OnEditSubmitImpl;
 
-  int get id;
-  int get type;
+  int get phaseId;
   int get approvedTP;
-  DateTime get dateStart;
-  DateTime get dateEnd;
-  int get timeRegister;
-  String get reason;
+  List<LeaveEditSlip> get slips;
   @JsonKey(ignore: true)
   _$$OnEditSubmitImplCopyWith<_$OnEditSubmitImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1654,6 +2106,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(int phaseId, int detailId,
+            DateTime? listStartDate, int? listTimeOnLeave)
+        initDetail,
+    required TResult Function() clearDetailForm,
     required TResult Function() fetchApprovers,
     required TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)
@@ -1662,13 +2118,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         submitBatch,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
-            int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int phaseId, int approvedTP, List<LeaveEditSlip> slips)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -1682,14 +2132,17 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult? Function()? clearDetailForm,
     TResult? Function()? fetchApprovers,
     TResult? Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult? Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -1702,14 +2155,17 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult Function()? clearDetailForm,
     TResult Function()? fetchApprovers,
     TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -1726,6 +2182,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_ClearDetailForm value) clearDetailForm,
     required TResult Function(_FetchApprovers value) fetchApprovers,
     required TResult Function(_Submit value) submit,
     required TResult Function(_SubmitBatch value) submitBatch,
@@ -1742,6 +2200,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_ClearDetailForm value)? clearDetailForm,
     TResult? Function(_FetchApprovers value)? fetchApprovers,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_SubmitBatch value)? submitBatch,
@@ -1758,6 +2218,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_ClearDetailForm value)? clearDetailForm,
     TResult Function(_FetchApprovers value)? fetchApprovers,
     TResult Function(_Submit value)? submit,
     TResult Function(_SubmitBatch value)? submitBatch,
@@ -1826,6 +2288,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(int phaseId, int detailId,
+            DateTime? listStartDate, int? listTimeOnLeave)
+        initDetail,
+    required TResult Function() clearDetailForm,
     required TResult Function() fetchApprovers,
     required TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)
@@ -1834,13 +2300,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
         submitBatch,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(
-            int id,
-            int type,
-            int approvedTP,
-            DateTime dateStart,
-            DateTime dateEnd,
-            int timeRegister,
-            String reason)
+            int phaseId, int approvedTP, List<LeaveEditSlip> slips)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -1854,14 +2314,17 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult? Function()? clearDetailForm,
     TResult? Function()? fetchApprovers,
     TResult? Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult? Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult? Function(int id)? onCancelSubmit,
-    TResult? Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult? Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -1874,14 +2337,17 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(int phaseId, int detailId, DateTime? listStartDate,
+            int? listTimeOnLeave)?
+        initDetail,
+    TResult Function()? clearDetailForm,
     TResult Function()? fetchApprovers,
     TResult Function(int type, int approvedTP, DateTime dateStart,
             DateTime dateEnd, int timeRegister, String reason)?
         submit,
     TResult Function(int approvedTP, List<LeaveAddSlip> slips)? submitBatch,
     TResult Function(int id)? onCancelSubmit,
-    TResult Function(int id, int type, int approvedTP, DateTime dateStart,
-            DateTime dateEnd, int timeRegister, String reason)?
+    TResult Function(int phaseId, int approvedTP, List<LeaveEditSlip> slips)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -1898,6 +2364,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_ClearDetailForm value) clearDetailForm,
     required TResult Function(_FetchApprovers value) fetchApprovers,
     required TResult Function(_Submit value) submit,
     required TResult Function(_SubmitBatch value) submitBatch,
@@ -1914,6 +2382,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_ClearDetailForm value)? clearDetailForm,
     TResult? Function(_FetchApprovers value)? fetchApprovers,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_SubmitBatch value)? submitBatch,
@@ -1930,6 +2400,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_ClearDetailForm value)? clearDetailForm,
     TResult Function(_FetchApprovers value)? fetchApprovers,
     TResult Function(_Submit value)? submit,
     TResult Function(_SubmitBatch value)? submitBatch,

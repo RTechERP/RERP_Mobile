@@ -15,6 +15,10 @@ abstract class LeaveRepo{
 
   Future<Either<BaseError, List<ApproverItem>>> getApprover();
 
+  Future<Either<BaseError, LeavePhaseMultiDto>> getLeavePhaseMulti({
+    required int phaseId,
+  });
+
   Future<Either<BaseError, void>> saveMultiLeave({
     required Map<String, dynamic> payload,
   });

@@ -15,6 +15,8 @@ import '../../../../../../../../../routes/route_names.dart';
 import '../../../../../../reg_general/view/pages/booking_vehicle/view/widgets/date_header.dart';
 import '../../../../../../reg_general/view/pages/booking_vehicle/view/widgets/date_range_picker.dart';
 import '../../data/datasource/models/leave_model.dart';
+import '../../domain/leave_swipe_rules.dart';
+import '../../leave_detail_route_args.dart';
 import '../bloc/leave_bloc.dart';
 import '../widgets/leave_card.dart';
 
@@ -34,64 +36,6 @@ class _LeaveScreenPageState
     return (DateTime(y, m, 1), DateTime(y, m + 1, 0));
   }
 
-  /// Không cho xoá: (1) ngày/quá khứ; (2) hôm nay nhưng đã quá mốc đăng ký theo buổi.
-  /// Sáng (1) / cả ngày (3): từ 8:01 cùng ngày bắt đầu không xoá. Chiều (2): từ 13:31.
-  bool _isLeaveSwipeBlockedByDateTime(LeaveItem item) {
-    final startRaw = item.startDate;
-    if (startRaw == null) return true;
-
-    final now = DateTime.now();
-    final today = _dateOnly(now);
-    final start = startRaw.toLocal();
-    final startDay = _dateOnly(start);
-
-    final endRaw = item.endDate ?? item.startDate;
-    if (endRaw == null) return true;
-    final endDay = _dateOnly(endRaw.toLocal());
-
-    // Kết thúc trước hôm nay → quá khứ
-    if (endDay.isBefore(today)) return true;
-
-    // Đã bắt đầu trước hôm nay → có ngày nghỉ đã qua
-    if (startDay.isBefore(today)) return true;
-
-    // Chỉ bắt đầu trong tương lai → chưa tới ngày, không chặn theo giờ hôm nay
-    if (startDay.isAfter(today)) return false;
-
-    // Bắt đầu đúng hôm nay: chặn sau mốc theo buổi
-    final y = today.year, m = today.month, d = today.day;
-    final session = item.timeOnLeave;
-    final DateTime deadline = session == 2
-        ? DateTime(y, m, d, 13, 31)
-        : DateTime(y, m, d, 8, 1);
-
-    return !now.isBefore(deadline);
-  }
-
-  bool _leaveIsCancelled(LeaveItem item) {
-    return item.deleteFlag == true ||
-        item.isCancelRegister == true ||
-        item.isCancelTP == true;
-  }
-
-  bool _hrApproved(LeaveItem item) {
-    if (item.isApprovedHR == true) return true;
-    if (item.statusHRNumber == 1) return true;
-    final text = (item.statusHRText ?? '').toLowerCase();
-    if (text.contains('duyệt') && !text.contains('chờ')) return true;
-    return false;
-  }
-
-  bool _canSwipeDeleteLeave(LeaveItem item) {
-    if (_isLeaveSwipeBlockedByDateTime(item) || _leaveIsCancelled(item)) {
-      return false;
-    }
-    final bgdApproved = item.isApprovedBGD == true;
-    final tbpApproved = item.isApprovedTP == true;
-    final hrApproved = _hrApproved(item);
-    return !bgdApproved && !tbpApproved && !hrApproved;
-  }
-
   @override
   void initState() {
     super.initState();
@@ -102,9 +46,23 @@ class _LeaveScreenPageState
   }
 
   Future<void> _openLeaveDetail(BuildContext context, LeaveItem item) async {
+    final phaseId = item.employeeOnLeavePhaseId;
+    if (phaseId == null || phaseId <= 0) {
+      showMessage(
+        context,
+        'Thiếu mã đợt nghỉ (EmployeeOnLeavePhaseID).',
+        type: SnackBarType.error,
+      );
+      return;
+    }
     final reload = await context.push<bool?>(
       RouteNames.regworkLeaveDetail,
-      extra: item,
+      extra: LeaveDetailRouteArgs(
+        phaseId: phaseId,
+        detailId: item.id,
+        listStartDate: item.startDate,
+        listTimeOnLeave: item.timeOnLeave,
+      ),
     );
     if (!mounted) return;
     if (reload == true) {
@@ -180,7 +138,7 @@ class _LeaveScreenPageState
     for (final day in sortedDays) {
       final dayItems = grouped[day]!;
       for (final item in dayItems) {
-        final canSwipe = _canSwipeDeleteLeave(item);
+        final canSwipe = LeaveSwipeRules.canSwipeDeleteLeave(item);
 
         if (!canSwipe) {
           listWidgets.add(

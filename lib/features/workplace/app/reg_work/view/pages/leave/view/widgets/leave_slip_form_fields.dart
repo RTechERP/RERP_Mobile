@@ -6,6 +6,9 @@ import '../../../../../../../../../common/helpers/validate_helper.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
 
 /// Một phiếu: ngày, buổi, loại, lý do. Validate nghiệp vụ chỉ khi bấm Gửi (màn hình).
+///
+/// [initialLeaveDate] / session & type từ API: dùng màn chi tiết để khớp ngay lần mount
+/// (không phụ thuộc [DateTime.now] làm ngày phiếu).
 class LeaveSlipFormFields extends StatelessWidget {
   const LeaveSlipFormFields({
     super.key,
@@ -14,6 +17,14 @@ class LeaveSlipFormFields extends StatelessWidget {
     required this.bypassDateRules,
     required this.onSessionTap,
     required this.onTypeTap,
+    this.readOnly = false,
+    this.dateRangeLine,
+    this.initialLeaveDate,
+    this.initialSessionCode,
+    this.initialSessionLabel,
+    this.initialTypeCode,
+    this.initialTypeLabel,
+    this.initialReason,
   });
 
   final String slipKey;
@@ -21,6 +32,30 @@ class LeaveSlipFormFields extends StatelessWidget {
   final bool bypassDateRules;
   final void Function(String slipKey) onSessionTap;
   final void Function(String slipKey) onTypeTap;
+  final bool readOnly;
+  /// Dòng phụ dưới nhãn ngày (vd. khoảng Start–End từ API).
+  final String? dateRangeLine;
+  final DateTime? initialLeaveDate;
+  final String? initialSessionCode;
+  final String? initialSessionLabel;
+  final String? initialTypeCode;
+  final String? initialTypeLabel;
+  final String? initialReason;
+
+  DateTime get _leaveDayCalendar =>
+      initialLeaveDate ?? todayStart;
+
+  /// Cho phép mở picker khi sửa đơn có ngày trong quá khứ (so với “hôm nay”).
+  DateTime get _pickerFirstDate {
+    if (bypassDateRules) return DateTime(1900);
+    final slip = initialLeaveDate;
+    if (slip != null) {
+      final sd = DateTime(slip.year, slip.month, slip.day);
+      final td = DateTime(todayStart.year, todayStart.month, todayStart.day);
+      if (sd.isBefore(td)) return sd;
+    }
+    return todayStart;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +64,15 @@ class LeaveSlipFormFields extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          if (dateRangeLine != null && dateRangeLine!.isNotEmpty) ...[
+            Text(
+              dateRangeLine!,
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+            const SizedBox(height: 6),
+          ],
           FormDateTimePicker(
             nameForm: 'leave_slip_${slipKey}_date',
             nameTimePicker: 'leave_slip_${slipKey}_date_inner',
@@ -36,10 +80,11 @@ class LeaveSlipFormFields extends StatelessWidget {
             icon: Icons.date_range_outlined,
             inputType: InputType.date,
             format: DateFormat('dd/MM/yyyy'),
-            initialValue: todayStart,
-            initialDate: todayStart,
-            firstDate: bypassDateRules ? DateTime(1900) : todayStart,
-            selectableDayPredicate: bypassDateRules
+            initialValue: _leaveDayCalendar,
+            initialDate: _leaveDayCalendar,
+            enabled: !readOnly,
+            firstDate: _pickerFirstDate,
+            selectableDayPredicate: bypassDateRules || readOnly
                 ? null
                 : (day) => ValidateHelper.leaveDateSelectable(
                       day,
@@ -51,12 +96,12 @@ class LeaveSlipFormFields extends StatelessWidget {
           const SizedBox(height: 12),
           FormBuilderField<String>(
             name: 'leave_slip_${slipKey}_session',
-            initialValue: '1',
+            initialValue: initialSessionCode ?? '1',
             autovalidateMode: AutovalidateMode.disabled,
             builder: (_) => const SizedBox.shrink(),
           ),
           GestureDetector(
-            onTap: () => onSessionTap(slipKey),
+            onTap: readOnly ? null : () => onSessionTap(slipKey),
             child: AbsorbPointer(
               child: FormInputField(
                 readOnly: true,
@@ -64,7 +109,7 @@ class LeaveSlipFormFields extends StatelessWidget {
                 nameTextField: 'leave_slip_${slipKey}_session_text_tf',
                 label: 'Buổi nghỉ',
                 icon: Icons.access_time_outlined,
-                initialValue: 'Buổi sáng',
+                initialValue: initialSessionLabel ?? 'Buổi sáng',
                 autovalidateMode: AutovalidateMode.disabled,
               ),
             ),
@@ -72,12 +117,12 @@ class LeaveSlipFormFields extends StatelessWidget {
           const SizedBox(height: 12),
           FormBuilderField<String>(
             name: 'leave_slip_${slipKey}_type',
-            initialValue: '1',
+            initialValue: initialTypeCode ?? '1',
             autovalidateMode: AutovalidateMode.disabled,
             builder: (_) => const SizedBox.shrink(),
           ),
           GestureDetector(
-            onTap: () => onTypeTap(slipKey),
+            onTap: readOnly ? null : () => onTypeTap(slipKey),
             child: AbsorbPointer(
               child: FormInputField(
                 readOnly: true,
@@ -85,7 +130,7 @@ class LeaveSlipFormFields extends StatelessWidget {
                 nameTextField: 'leave_slip_${slipKey}_type_text_tf',
                 label: 'Loại nghỉ',
                 icon: Icons.assignment_outlined,
-                initialValue: 'Nghỉ không lương',
+                initialValue: initialTypeLabel ?? 'Nghỉ không lương',
                 autovalidateMode: AutovalidateMode.disabled,
               ),
             ),
@@ -97,6 +142,8 @@ class LeaveSlipFormFields extends StatelessWidget {
             nameTextField: 'leave_slip_${slipKey}_reason_tf',
             icon: Icons.note_alt_outlined,
             maxLines: 2,
+            readOnly: readOnly,
+            initialValue: initialReason,
             autovalidateMode: AutovalidateMode.disabled,
           ),
         ],

@@ -31,6 +31,8 @@ import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_d
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/bloc/in_out_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/view/bloc/leave_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/leave/data/datasource/models/leave_model.dart';
+import '../features/workplace/app/reg_work/view/pages/leave/leave_detail_route_args.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/view/pages/leave_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/view/pages/leave_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/view/bloc/lunch_bloc.dart';
@@ -169,7 +171,27 @@ class AppRouter {
 
           GoRoute(
             path: '/regwork/leave/detail',
-            builder: (context, state) => const LeaveDetailScreenPage(),
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is LeaveDetailRouteArgs) {
+                return LeaveDetailScreenPage(
+                  phaseId: extra.phaseId,
+                  detailId: extra.detailId,
+                  listStartDate: extra.listStartDate,
+                  listTimeOnLeave: extra.listTimeOnLeave,
+                );
+              }
+              if (extra is LeaveItem) {
+                final phaseId = extra.employeeOnLeavePhaseId ?? 0;
+                return LeaveDetailScreenPage(
+                  phaseId: phaseId,
+                  detailId: extra.id,
+                  listStartDate: extra.startDate,
+                  listTimeOnLeave: extra.timeOnLeave,
+                );
+              }
+              return const LeaveDetailScreenPage(phaseId: 0, detailId: 0);
+            },
           ),
           GoRoute(
             path: '/regwork/leave/add',

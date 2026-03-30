@@ -39,6 +39,15 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
       await event.when(
         init: () => _onInit(emit),
         initAdd: () => _onInitAdd(emit),
+        initDetail: (phaseId, detailId, listStartDate, listTimeOnLeave) =>
+            _onInitDetail(
+              emit,
+              phaseId: phaseId,
+              detailId: detailId,
+              listStartDate: listStartDate,
+              listTimeOnLeave: listTimeOnLeave,
+            ),
+        clearDetailForm: () async => _onClearDetailForm(emit),
         fetchApprovers: () => _onFetchApprovers(emit),
         submit: (type, approvedTP, dateStart, dateEnd, timeRegister, reason) =>
             _onSubmit(
@@ -53,17 +62,11 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         submitBatch: (approvedTP, slips) =>
             _onSubmitBatch(emit, approvedTP: approvedTP, slips: slips),
         onCancelSubmit: (id) => _onCancelSubmit(emit, id: id),
-        onEditSubmit:
-            (id, type, approvedTP, dateStart, dateEnd, timeRegister, reason) =>
-            _onEditSubmit(
+        onEditSubmit: (phaseId, approvedTP, slips) => _onEditSubmit(
               emit,
-              id: id,
-              type: type,
+              phaseId: phaseId,
               approvedTP: approvedTP,
-              dateStart: dateStart,
-              dateEnd: dateEnd,
-              timeRegister: timeRegister,
-              reason: reason,
+              slips: slips,
             ),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
@@ -159,6 +162,201 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
     } finally {
       _isInitAddInFlight = false;
     }
+  }
+
+  List<LeaveEditSlip> _pickDetailSlips({
+    required LeavePhaseMultiDto dto,
+    required int detailId,
+    DateTime? listStartDate,
+    int? listTimeOnLeave,
+  }) {
+    var picked = dto.slips.where((s) => s.detailId == detailId).toList();
+    if (picked.isNotEmpty) return picked;
+
+    if (listStartDate != null) {
+      final day = DateTime(
+        listStartDate.year,
+        listStartDate.month,
+        listStartDate.day,
+      );
+      final candidates = dto.slips.where((s) {
+        final sd = DateTime(s.date.year, s.date.month, s.date.day);
+        if (sd != day) return false;
+        if (listTimeOnLeave != null && listTimeOnLeave > 0) {
+          return s.timeRegister == listTimeOnLeave;
+        }
+        return true;
+      }).toList();
+      if (candidates.length == 1) return candidates;
+    }
+    return picked;
+  }
+
+  Future<void> _onInitDetail(
+    Emitter<LeaveState> emit, {
+    required int phaseId,
+    required int detailId,
+    DateTime? listStartDate,
+    int? listTimeOnLeave,
+  }) async {
+    emit(
+      state.copyWith(
+        isDetailLoading: true,
+        detailPhaseId: phaseId,
+        detailFocusDetailId: detailId,
+        detailEditSlips: const [],
+        detailPhaseAllSlips: const [],
+        message: null,
+      ),
+    );
+    try {
+      final multiRes = await _leaveRepo.getLeavePhaseMulti(phaseId: phaseId);
+      await multiRes.fold(
+        (err) async {
+          _log.logE('❌ initDetail get-multi failed: $err');
+          emit(
+            state.copyWith(
+              isDetailLoading: false,
+              detailEditSlips: const [],
+              detailPhaseAllSlips: const [],
+              message: err.getErrorMessage,
+            ),
+          );
+        },
+        (dto) async {
+          final picked = _pickDetailSlips(
+            dto: dto,
+            detailId: detailId,
+            listStartDate: listStartDate,
+            listTimeOnLeave: listTimeOnLeave,
+          );
+          if (picked.isEmpty) {
+            _log.logE('❌ initDetail: no detail id=$detailId in phase=$phaseId');
+            emit(
+              state.copyWith(
+                isDetailLoading: false,
+                detailEditSlips: const [],
+                detailPhaseAllSlips: const [],
+                message:
+                    'Không tìm thấy phiếu #$detailId trong đợt nghỉ #$phaseId.',
+              ),
+            );
+            return;
+          }
+
+          final userRes = await _authRepo.getCurrentUser();
+          final user = userRes.fold((_) => null, (u) => u);
+          if (user == null) {
+            emit(
+              state.copyWith(
+                isDetailLoading: false,
+                message: 'Không lấy được thông tin người dùng',
+              ),
+            );
+            return;
+          }
+
+          final roles = RoleResolver.resolve(user);
+          final skipDateRules = roles.contains(AppRole.admin) ||
+              roles.contains(AppRole.hr);
+
+          final dateForStats = picked.first.date;
+
+          final approverRes = await _leaveRepo.getApprover();
+          final leaveTimeRes = await _leaveRepo.getLeaveTimeItem(
+            dateStart: dateForStats,
+            employeeId: user.employeeId,
+          );
+
+          BaseError? err;
+          var approvers = <ApproverItem>[];
+          var leaveTimeItems = <LeaveTimeItem>[];
+
+          approverRes.fold((l) => err = l, (r) => approvers = r);
+          if (err != null) {
+            emit(
+              state.copyWith(
+                isDetailLoading: false,
+                message: err!.getErrorMessage,
+              ),
+            );
+            return;
+          }
+
+          leaveTimeRes.fold((l) => err = l, (r) => leaveTimeItems = r);
+          if (err != null) {
+            emit(
+              state.copyWith(
+                isDetailLoading: false,
+                message: err!.getErrorMessage,
+              ),
+            );
+            return;
+          }
+
+          _log.logI(
+            '✅ initDetail phase=$phaseId detail=$detailId '
+            '(phaseSlips=${dto.slips.length})',
+          );
+          final phaseTp = dto.approvedTP;
+          final rowTp = picked.first.approvedPayloadFromRow;
+          final mergedApprovedTp =
+              phaseTp > 0 ? phaseTp : (rowTp ?? 0);
+          emit(
+            state.copyWith(
+              isDetailLoading: false,
+              status: BaseStateStatus.success,
+              approvers: approvers,
+              leaveTime: leaveTimeItems,
+              employeeId: user.employeeId,
+              loginName: user.loginName,
+              departmentName: user.departmentName,
+              employeeDisplayLine: '${user.code} - ${user.fullName}'.trim(),
+              skipLeaveDateConstraints: skipDateRules,
+              detailPhaseId: dto.phaseId,
+              detailPhaseDateRegister: dto.dateRegister,
+              detailApprovedTP: mergedApprovedTp,
+              detailEditSlips: picked,
+              detailPhaseAllSlips: dto.slips,
+              detailFocusDetailId: detailId,
+              detailPhaseIsApprovedBGD: dto.phaseIsApprovedBGD,
+              detailPhaseIsApprovedTP: dto.phaseIsApprovedTP,
+              detailPhaseIsApprovedHR: dto.phaseIsApprovedHR,
+              detailPhaseStatusHRNumber: dto.phaseStatusHRNumber,
+              detailPhaseStatusHRText: dto.phaseStatusHRText,
+              message: null,
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      _log.logE('❌ initDetail exception: $e');
+      emit(
+        state.copyWith(
+          isDetailLoading: false,
+          message: 'Có lỗi khi tải chi tiết đơn',
+        ),
+      );
+    }
+  }
+
+  void _onClearDetailForm(Emitter<LeaveState> emit) {
+    emit(
+      state.copyWith(
+        isDetailLoading: false,
+        detailPhaseId: null,
+        detailPhaseDateRegister: null,
+        detailApprovedTP: null,
+        detailEditSlips: const [],
+        detailPhaseAllSlips: const [],
+        detailFocusDetailId: null,
+        detailPhaseIsApprovedBGD: null,
+        detailPhaseIsApprovedTP: null,
+        detailPhaseIsApprovedHR: null,
+        detailPhaseStatusHRNumber: null,
+        detailPhaseStatusHRText: null,
+      ),
+    );
   }
 
   Future<void> _onFetchApprovers(Emitter<LeaveState> emit) async {
@@ -407,6 +605,77 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
     };
   }
 
+  Map<String, dynamic> _leaveEditSubmitBody({
+    required int employeeId,
+    required int phaseId,
+    required DateTime? phaseDateRegister,
+    required int approvedTP,
+    required List<LeaveEditSlip> slips,
+  }) {
+    final details = <Map<String, dynamic>>[];
+    var totalDayPhase = 0.0;
+    final regIso = (phaseDateRegister ?? DateTime.now()).toIso8601String();
+
+    for (final s in slips) {
+      final y = s.date.year, m = s.date.month, d = s.date.day;
+      late DateTime start, end;
+      late int totalTime;
+      late double dayFrac;
+      switch (s.timeRegister) {
+        case 1:
+          start = DateTime(y, m, d, 8);
+          end = DateTime(y, m, d, 12);
+          totalTime = 4;
+          dayFrac = 0.5;
+          break;
+        case 2:
+          start = DateTime(y, m, d, 13, 30);
+          end = DateTime(y, m, d, 17, 30);
+          totalTime = 4;
+          dayFrac = 0.5;
+          break;
+        default:
+          start = DateTime(y, m, d, 8);
+          end = DateTime(y, m, d, 17, 30);
+          totalTime = 8;
+          dayFrac = 1;
+      }
+      totalDayPhase += dayFrac;
+
+      details.add({
+        'ID': s.detailId,
+        'StartDate': start.toIso8601String(),
+        'EndDate': end.toIso8601String(),
+        'TimeOnLeave': s.timeRegister,
+        'Type': s.type,
+        'TypeIsReal': s.type,
+        'Reason': s.reason,
+        'EmployeeID': employeeId,
+        'ApprovedTP': approvedTP,
+        'TotalTime': totalTime,
+        'TotalDay': dayFrac,
+        'IsApprovedTP': false,
+        'IsApprovedHR': false,
+        'IsCancelTP': false,
+        'DeleteFlag': false,
+      });
+    }
+
+    return {
+      'Phase': {
+        'ID': phaseId,
+        'Code': '',
+        'EmployeeID': employeeId,
+        'DateRegister': regIso,
+        'Reason': '',
+        'TotalDay': totalDayPhase,
+        'IsDeleted': false,
+      },
+      'Details': details,
+      'IsPartialUpdate': true,
+    };
+  }
+
   Future<void> _onSubmitBatch(
     Emitter<LeaveState> emit, {
     required int approvedTP,
@@ -572,16 +841,12 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
   }
 
   Future<void> _onEditSubmit(
-      Emitter<LeaveState> emit, {
-        required int id,
-        required int type,
-        required int approvedTP,
-        required DateTime dateStart,
-        required DateTime dateEnd,
-        required int timeRegister,
-        required String reason,
-      }) async {
-    if (_isSubmittingReport) return;
+    Emitter<LeaveState> emit, {
+    required int phaseId,
+    required int approvedTP,
+    required List<LeaveEditSlip> slips,
+  }) async {
+    if (_isSubmittingReport || slips.isEmpty) return;
     _isSubmittingReport = true;
 
     try {
@@ -610,19 +875,17 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         return;
       }
 
-      final saveRes = await _saveLeaveRecord(
+      final payload = _leaveEditSubmitBody(
         employeeId: user.employeeId,
-        id: id,
-        type: type,
+        phaseId: phaseId,
+        phaseDateRegister: state.detailPhaseDateRegister,
         approvedTP: approvedTP,
-        dateStart: dateStart,
-        dateEnd: dateEnd,
-        timeRegister: timeRegister,
-        reason: reason,
+        slips: slips,
       );
+      final saveRes = await _leaveRepo.saveMultiLeave(payload: payload);
       await saveRes.fold(
-            (err) async {
-          _log.logE('❌ Edit Leave API failed: $err');
+        (err) async {
+          _log.logE('❌ Edit Leave batch failed: $err');
           emit(
             state.copyWith(
               isSubmitting: false,
@@ -632,22 +895,13 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
             ),
           );
         },
-            (_) async {
-          final updatedLeave = state.leave.map((e) {
-            if (e.id != id) return e;
-            return e.copyWith(
-              type: type,
-              approvedTP: approvedTP,
-              reason: reason,
-            );
-          }).toList();
-
+        (_) async {
+          _log.logI('✅ Edit Leave batch success');
           emit(
             state.copyWith(
               isSubmitting: false,
               submitSuccess: true,
               status: BaseStateStatus.success,
-              leave: updatedLeave,
               message: 'Cập nhật đơn xin nghỉ thành công',
             ),
           );
@@ -665,7 +919,7 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
       );
     } finally {
       _isSubmittingReport = false;
-      _log.logI('🏁 End edit Leave');
+      _log.logI('🏁 End edit Leave batch');
     }
   }
 

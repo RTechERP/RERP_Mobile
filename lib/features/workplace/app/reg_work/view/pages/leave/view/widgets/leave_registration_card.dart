@@ -12,10 +12,12 @@ class LeaveRegistrationCard extends StatelessWidget {
     super.key,
     required this.todayStart,
     required this.onPickApprover,
+    this.approverPickerEnabled = true,
   });
 
   final DateTime todayStart;
   final VoidCallback onPickApprover;
+  final bool approverPickerEnabled;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,7 @@ class LeaveRegistrationCard extends StatelessWidget {
           },
         ),
         GestureDetector(
-          onTap: onPickApprover,
+          onTap: approverPickerEnabled ? onPickApprover : null,
           child: AbsorbPointer(
             child: FormInputField(
               readOnly: true,

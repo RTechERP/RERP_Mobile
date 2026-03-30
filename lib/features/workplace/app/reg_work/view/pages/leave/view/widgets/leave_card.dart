@@ -124,7 +124,7 @@ class LeaveCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  _LeaveRoleBadges(bgd: bgd, hr: hr, tbp: tbp),
+                  _LeaveRoleBadges(hr: hr, tbp: tbp),
                 ],
               ),
             ],
@@ -137,12 +137,12 @@ class LeaveCard extends StatelessWidget {
 
 class _LeaveRoleBadges extends StatelessWidget {
   const _LeaveRoleBadges({
-    required this.bgd,
+    // required this.bgd,
     required this.hr,
     required this.tbp,
   });
 
-  final ApprovalStatus bgd;
+  // final ApprovalStatus bgd;
   final ApprovalStatus hr;
   final ApprovalStatus tbp;
 
@@ -152,8 +152,8 @@ class _LeaveRoleBadges extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        _LeaveRoleBadge(role: 'BGD', status: bgd),
-        const SizedBox(height: 6),
+        // _LeaveRoleBadge(role: 'BGD', status: bgd),
+        // const SizedBox(height: 6),
         _LeaveRoleBadge(role: 'HR', status: hr),
         const SizedBox(height: 6),
         _LeaveRoleBadge(role: 'TBP', status: tbp),

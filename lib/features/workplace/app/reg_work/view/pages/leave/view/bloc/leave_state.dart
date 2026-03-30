@@ -19,6 +19,24 @@ class LeaveState extends BaseBlocState {
   final String? employeeDisplayLine;
   /// Admin / HR: bỏ ràng buộc chọn ngày (quá khứ, 19h ngày mai).
   final bool skipLeaveDateConstraints;
+
+  /// Màn chi tiết: đang tải get-multi.
+  final bool isDetailLoading;
+  final int? detailPhaseId;
+  final DateTime? detailPhaseDateRegister;
+  final int? detailApprovedTP;
+  final List<LeaveEditSlip> detailEditSlips;
+  /// Toàn bộ phiếu trong phase (get-multi) — dùng merge khi gửi [onEditSubmit].
+  final List<LeaveEditSlip> detailPhaseAllSlips;
+  /// Phiếu đang mở (ID detail).
+  final int? detailFocusDetailId;
+  /// Cờ cấp phase từ get-multi (khi detail không có field).
+  final bool? detailPhaseIsApprovedBGD;
+  final bool? detailPhaseIsApprovedTP;
+  final bool? detailPhaseIsApprovedHR;
+  final int? detailPhaseStatusHRNumber;
+  final String? detailPhaseStatusHRText;
+
   const LeaveState({
     required super.status,
     super.message,
@@ -36,6 +54,18 @@ class LeaveState extends BaseBlocState {
     this.departmentName,
     this.employeeDisplayLine,
     this.skipLeaveDateConstraints = false,
+    this.isDetailLoading = false,
+    this.detailPhaseId,
+    this.detailPhaseDateRegister,
+    this.detailApprovedTP,
+    this.detailEditSlips = const [],
+    this.detailPhaseAllSlips = const [],
+    this.detailFocusDetailId,
+    this.detailPhaseIsApprovedBGD,
+    this.detailPhaseIsApprovedTP,
+    this.detailPhaseIsApprovedHR,
+    this.detailPhaseStatusHRNumber,
+    this.detailPhaseStatusHRText,
   });
 
   factory LeaveState.init() => const LeaveState(
@@ -54,6 +84,18 @@ class LeaveState extends BaseBlocState {
     departmentName: null,
     employeeDisplayLine: null,
     skipLeaveDateConstraints: false,
+    isDetailLoading: false,
+    detailPhaseId: null,
+    detailPhaseDateRegister: null,
+    detailApprovedTP: null,
+    detailEditSlips: [],
+    detailPhaseAllSlips: [],
+    detailFocusDetailId: null,
+    detailPhaseIsApprovedBGD: null,
+    detailPhaseIsApprovedTP: null,
+    detailPhaseIsApprovedHR: null,
+    detailPhaseStatusHRNumber: null,
+    detailPhaseStatusHRText: null,
   );
 
   @override
@@ -74,5 +116,17 @@ class LeaveState extends BaseBlocState {
     departmentName,
     employeeDisplayLine,
     skipLeaveDateConstraints,
+    isDetailLoading,
+    detailPhaseId,
+    detailPhaseDateRegister,
+    detailApprovedTP,
+    detailEditSlips,
+    detailPhaseAllSlips,
+    detailFocusDetailId,
+    detailPhaseIsApprovedBGD,
+    detailPhaseIsApprovedTP,
+    detailPhaseIsApprovedHR,
+    detailPhaseStatusHRNumber,
+    detailPhaseStatusHRText,
   ];
 }
