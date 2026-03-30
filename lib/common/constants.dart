@@ -198,12 +198,21 @@ class ApiEndPoint {
   static const String getWfh = '/EmployeeWFH/get-wfh';
   static const String saveWfh = '/EmployeeWFH/save-data';
 
-  static const String getMissed ='/EmployeeNoFingerprint/get-employee-no-fingerprint';
+  static const String getMissed =
+      '/EmployeeNoFingerprint/get-employee-no-fingerprint';
 
-  static const String saveMissed ='/EmployeeNoFingerprint/savedata';
+  static const String saveMissed = '/EmployeeNoFingerprint/savedata';
 
   /// GET …/check-duplicate-enf/{contextId}/{employeeId}/{yyyy-MM-dd}/{type}
   /// — `contextId`: 0 = tạo mới; khi sửa thường truyền [id] bản ghi để backend loại trừ chính nó.
   static const String checkDuplicateEnfMissed =
       '/EmployeeNoFingerprint/check-duplicate-enf';
+
+  static const String getLeave = '/EmployeeOnLeave';
+  static const String saveLeave = '/EmployeeOnLeave/save-data';
+
+  static const String getLeaveTime =
+      '/employeeonleave/list-summary-employee-on-leave';
+
+  static const String saveMultiLeave= '/EmployeeOnLeave/SaveMultiPhase';
 }

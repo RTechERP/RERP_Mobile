@@ -7,9 +7,7 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_ve
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/reg_general_screen.dart';
-import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_add_screen.dart';
-import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_detail_screen.dart';
-import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/leave_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/view/pages/leave_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/view/pages/lunch_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/view/pages/lunch_detail_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/reg_work_screen.dart';
@@ -32,6 +30,9 @@ import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_a
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/bloc/in_out_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/leave/view/bloc/leave_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/leave/view/pages/leave_detail_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/leave/view/pages/leave_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/view/bloc/lunch_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/view/pages/lunch_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/view/bloc/missed_bloc.dart';
@@ -156,18 +157,25 @@ class AppRouter {
         ],
       ),
 
-      GoRoute(
-        path: '/regwork/leave',
-        builder: (context, state) => const LeaveScreenPage(),
-      ),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<LeaveBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: '/regwork/leave',
+            builder: (context, state) => const LeaveScreenPage(),
+          ),
 
-      GoRoute(
-        path: '/regwork/leave/detail',
-        builder: (context, state) => const LeaveDetailScreenPage(),
-      ),
-      GoRoute(
-        path: '/regwork/leave/add',
-        builder: (context, state) => const LeaveAddScreenPage(),
+          GoRoute(
+            path: '/regwork/leave/detail',
+            builder: (context, state) => const LeaveDetailScreenPage(),
+          ),
+          GoRoute(
+            path: '/regwork/leave/add',
+            builder: (context, state) => const LeaveAddScreenPage(),
+          ),
+        ],
       ),
 
       ShellRoute(
@@ -250,7 +258,6 @@ class AppRouter {
           ),
         ],
       ),
-
 
       GoRoute(
         path: '/regwork/work_trip',

@@ -18,6 +18,10 @@ import '../features/workplace/app/reg_general/view/pages/meeting_room/data/datas
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/leave/data/datasource/service/leave_service.dart';
+import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/leave/view/bloc/leave_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/datasource/service/lunch_service.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo_impl.dart';
@@ -108,6 +112,8 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<MissedService>(() => MissedService(getIt<Dio>()));
 
+  getIt.registerLazySingleton<LeaveService>(() => LeaveService(getIt<Dio>()));
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(getIt<AuthService>()),
@@ -135,7 +141,13 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<WfhRepo>(() => WfhRepoImpl(getIt<WfhService>()));
 
-  getIt.registerLazySingleton<MissedRepo>(()=> MissedRepoImpl(getIt<MissedService>()));
+  getIt.registerLazySingleton<MissedRepo>(
+    () => MissedRepoImpl(getIt<MissedService>()),
+  );
+
+  getIt.registerLazySingleton<LeaveRepo>(
+    () => LeaveRepoImpl(getIt<LeaveService>()),
+  );
 
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
@@ -191,11 +203,14 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<WfhBloc>(
-        () => WfhBloc(getIt<WfhRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+    () => WfhBloc(getIt<WfhRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<MissedBloc>(
-        () => MissedBloc(getIt<MissedRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+    () => MissedBloc(getIt<MissedRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 
+  getIt.registerFactory<LeaveBloc>(
+    () => LeaveBloc(getIt<LeaveRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
 }

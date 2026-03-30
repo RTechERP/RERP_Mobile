@@ -34,6 +34,8 @@ class FormInputField extends StatefulWidget {
 
   final ValueChanged<FormFieldState<String>>? onFieldCreated;
 
+  final AutovalidateMode autovalidateMode;
+
   const FormInputField({
     super.key,
     required this.nameForm,
@@ -54,6 +56,7 @@ class FormInputField extends StatefulWidget {
     this.initialValue,
     this.onChanged,
     this.onFieldCreated,
+    this.autovalidateMode = AutovalidateMode.onUserInteraction,
   });
 
   @override
@@ -82,7 +85,7 @@ class _FormInputFieldState extends State<FormInputField> {
       initialValue: widget.initialValue,
       validator: widget.validator,
       enabled: widget.enabled,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: widget.autovalidateMode,
       builder: (field) {
         widget.onFieldCreated?.call(field);
 
@@ -114,7 +117,7 @@ class _FormInputFieldState extends State<FormInputField> {
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction,
           validator: widget.validator,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autovalidateMode: widget.autovalidateMode,
           onSubmitted: widget.onSubmitted,
           maxLines: effectiveMaxLines,
           decoration: formInputDecoration(

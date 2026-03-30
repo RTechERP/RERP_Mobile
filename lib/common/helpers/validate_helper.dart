@@ -6,6 +6,14 @@ enum BookingVehicleValidationVariant {
   commercialPickup,
 }
 
+/// Một dòng phiếu nghỉ khi validate form (map từ form).
+typedef LeaveAddSlipRow = ({
+  DateTime? date,
+  int timeRegister,
+  int type,
+  String reason,
+});
+
 class ValidateHelper {
   static String? validateLunch({
     required int? quantity,
@@ -1073,4 +1081,264 @@ class ValidateHelper {
     if (apErr != null) return apErr;
     return null;
   }
+
+  // --- Xin nghỉ (Leave add)
+
+  /// Trùng buổi trong cùng ngày — [day] đã chuẩn hoá lịch (0h).
+  static String leaveDuplicateDayMessage(DateTime day) {
+    final d = DateTime(day.year, day.month, day.day);
+    final dd = d.day.toString().padLeft(2, '0');
+    final mm = d.month.toString().padLeft(2, '0');
+    final yyyy = d.year.toString();
+    return 'Bạn đã đăng ký cho ngày $dd/$mm/$yyyy rồi';
+  }
+
+  static String? _leaveDayKeyToDuplicateMessage(String key) {
+    final p = key.split('-');
+    if (p.length != 3) return null;
+    final y = int.tryParse(p[0]);
+    final m = int.tryParse(p[1]);
+    final d = int.tryParse(p[2]);
+    if (y == null || m == null || d == null) return null;
+    return leaveDuplicateDayMessage(DateTime(y, m, d));
+  }
+
+  static DateTime _leaveFirstDateForDayKey(
+    List<({DateTime date, int timeRegister})> slips,
+    String key,
+  ) {
+    for (final s in slips) {
+      final k = '${s.date.year}-${s.date.month}-${s.date.day}';
+      if (k == key) return s.date;
+    }
+    return slips.first.date;
+  }
+
+  static const String leaveAnnualBalanceInsufficientMessage =
+      'Số dư phép không đủ';
+
+  static const String leavePast19hTomorrowMessage =
+      'Đã qua 19h00, không thể đăng ký nghỉ cho ngày mai.';
+
+  /// Sáng/Chiều = 0.5 ngày, Cả ngày = 1.0 ([timeRegister]: 1,2,3).
+  static double leaveDayUnitsForSession(int timeRegister) {
+    switch (timeRegister) {
+      case 1:
+      case 2:
+        return 0.5;
+      case 3:
+        return 1.0;
+      default:
+        return 0;
+    }
+  }
+
+  static bool _leaveSameCalendarDate(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
+
+  /// `true` khi giờ thiết bị đã từ 19:00 trở đi trong ngày.
+  static bool leaveIsDeviceTimePastSevenPm(DateTime clock) =>
+      clock.hour > 19 || (clock.hour == 19);
+
+  static String? validateLeaveRequiredText(String? value, String label) {
+    if ((value?.trim() ?? '').isEmpty) return 'Vui lòng điền $label';
+    return null;
+  }
+
+  static String? validateLeaveApproverIdField(String? value) {
+    final raw = value?.trim() ?? '';
+    if (raw.isEmpty) return 'Vui lòng chọn Người duyệt';
+    final id = int.tryParse(raw) ?? 0;
+    if (id <= 0) return 'Người duyệt không hợp lệ';
+    return null;
+  }
+
+  /// Chặn quá khứ; sau 19:00 chặn ngày mai (trừ [bypassDateRules]).
+  static String? validateLeaveDateField(
+    DateTime? value, {
+    required DateTime todayStart,
+    required bool bypassDateRules,
+    DateTime? clock,
+  }) {
+    if (value == null) return 'Vui lòng chọn Ngày nghỉ';
+    if (bypassDateRules) return null;
+    final d = DateTime(value.year, value.month, value.day);
+    if (d.isBefore(todayStart)) {
+      return 'Không được chọn ngày quá khứ';
+    }
+    final now = clock ?? DateTime.now();
+    final tomorrow = todayStart.add(const Duration(days: 1));
+    if (_leaveSameCalendarDate(d, tomorrow) &&
+        leaveIsDeviceTimePastSevenPm(now)) {
+      return leavePast19hTomorrowMessage;
+    }
+    return null;
+  }
+
+  /// Dùng cho [FormDateTimePicker.selectableDayPredicate].
+  static bool leaveDateSelectable(
+    DateTime day, {
+    required DateTime todayStart,
+    required bool bypassDateRules,
+    DateTime? clock,
+  }) {
+    if (bypassDateRules) return true;
+    final d = DateTime(day.year, day.month, day.day);
+    if (d.isBefore(todayStart)) return false;
+    final now = clock ?? DateTime.now();
+    final tomorrow = todayStart.add(const Duration(days: 1));
+    if (_leaveSameCalendarDate(d, tomorrow) &&
+        leaveIsDeviceTimePastSevenPm(now)) {
+      return false;
+    }
+    return true;
+  }
+
+  /// Trùng ngày/buổi trong danh sách chờ gửi.
+  static String? validateLeaveSlipsDuplicateSessions(
+    List<({DateTime date, int timeRegister})> slips,
+  ) {
+    if (slips.isEmpty) return null;
+    final byDay = <String, List<int>>{};
+    for (final s in slips) {
+      final k = '${s.date.year}-${s.date.month}-${s.date.day}';
+      byDay.putIfAbsent(k, () => []).add(s.timeRegister);
+    }
+    for (final e in byDay.entries) {
+      final sessions = e.value;
+      if (sessions.contains(3)) {
+        if (sessions.length > 1) {
+          return _leaveDayKeyToDuplicateMessage(e.key) ??
+              leaveDuplicateDayMessage(
+                _leaveFirstDateForDayKey(slips, e.key),
+              );
+        }
+        continue;
+      }
+      final n1 = sessions.where((x) => x == 1).length;
+      final n2 = sessions.where((x) => x == 2).length;
+      if (n1 > 1 || n2 > 1) {
+        return _leaveDayKeyToDuplicateMessage(e.key) ??
+            leaveDuplicateDayMessage(
+              _leaveFirstDateForDayKey(slips, e.key),
+            );
+      }
+    }
+    return null;
+  }
+
+  /// Chỉ khi loại nghỉ == nghỉ phép (2). [totalDayRemain] null = bỏ qua kiểm tra.
+  static String? validateLeaveAnnualBalance({
+    required int? totalDayRemain,
+    required List<({int type, int timeRegister})> slips,
+  }) {
+    if (totalDayRemain == null) return null;
+    var sum = 0.0;
+    for (final s in slips) {
+      if (s.type == 2) {
+        sum += leaveDayUnitsForSession(s.timeRegister);
+      }
+    }
+    if (sum > totalDayRemain) return leaveAnnualBalanceInsufficientMessage;
+    return null;
+  }
+
+  static String? validateLeaveAddSubmit({
+    required String? departmentName,
+    required String? employeeDisplay,
+    required String? approverIdRaw,
+    required List<LeaveAddSlipRow> slips,
+    required DateTime todayStart,
+    required bool bypassDateRules,
+    required int? totalDayRemain,
+    DateTime? clock,
+  }) {
+    final deptErr = validateLeaveRequiredText(departmentName, 'Phòng ban');
+    if (deptErr != null) return deptErr;
+    final empErr = validateLeaveRequiredText(employeeDisplay, 'Nhân viên');
+    if (empErr != null) return empErr;
+    final apErr = validateLeaveApproverIdField(approverIdRaw);
+    if (apErr != null) return apErr;
+
+    if (slips.isEmpty) {
+      return 'Vui lòng thêm ít nhất một phiếu nghỉ';
+    }
+
+    final forDup = <({DateTime date, int timeRegister})>[];
+    final forBal = <({int type, int timeRegister})>[];
+
+    for (var i = 0; i < slips.length; i++) {
+      final s = slips[i];
+      final prefix = 'Phiếu ${i + 1}: ';
+      final dateErr = validateLeaveDateField(
+        s.date,
+        todayStart: todayStart,
+        bypassDateRules: bypassDateRules,
+        clock: clock,
+      );
+      if (dateErr != null) return '$prefix$dateErr';
+
+      if (s.timeRegister < 1 || s.timeRegister > 3) {
+        return '${prefix}Vui lòng chọn Buổi nghỉ';
+      }
+      if (s.type < 1 || s.type > 3) {
+        return '${prefix}Vui lòng chọn Loại nghỉ';
+      }
+      if (s.reason.trim().isEmpty) {
+        return '${prefix}Vui lòng nhập Lý do';
+      }
+
+      final d = DateTime(s.date!.year, s.date!.month, s.date!.day);
+      forDup.add((date: d, timeRegister: s.timeRegister));
+      forBal.add((type: s.type, timeRegister: s.timeRegister));
+    }
+
+    final dupErr = validateLeaveSlipsDuplicateSessions(forDup);
+    if (dupErr != null) return dupErr;
+
+    final balErr = validateLeaveAnnualBalance(
+      totalDayRemain: totalDayRemain,
+      slips: forBal,
+    );
+    if (balErr != null) return balErr;
+
+    return null;
+  }
+
+  /// Chỉ kiểm tra đã điền đủ trường bắt buộc — **không** chạy rule ngày / trùng / phép (chạy khi bấm Gửi).
+  static bool isLeaveAddDraftReadyForSubmitButton({
+    required String? departmentName,
+    required String? employeeDisplay,
+    required String? approverIdRaw,
+    required List<LeaveAddSlipRow> slips,
+  }) {
+    if ((departmentName ?? '').trim().isEmpty) return false;
+    if ((employeeDisplay ?? '').trim().isEmpty) return false;
+    final ap = int.tryParse((approverIdRaw ?? '').trim()) ?? 0;
+    if (ap <= 0) return false;
+    if (slips.isEmpty) return false;
+    for (final s in slips) {
+      if (s.date == null) return false;
+      if (s.timeRegister < 1 || s.timeRegister > 3) return false;
+      if (s.type < 1 || s.type > 3) return false;
+      if (s.reason.trim().isEmpty) return false;
+    }
+    return true;
+  }
+
+  /// `true` khi đủ điều kiện **bật** nút Gửi (không validate nghiệp vụ trên UI).
+  static bool isLeaveAddSubmitEnabled({
+    required String? departmentName,
+    required String? employeeDisplay,
+    required String? approverIdRaw,
+    required List<LeaveAddSlipRow> slips,
+  }) {
+    return isLeaveAddDraftReadyForSubmitButton(
+      departmentName: departmentName,
+      employeeDisplay: employeeDisplay,
+      approverIdRaw: approverIdRaw,
+      slips: slips,
+    );
+  }
+
 }

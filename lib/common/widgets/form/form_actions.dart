@@ -16,6 +16,9 @@ class FormActions extends StatelessWidget {
   final String saveText;
   final String submitText;
 
+  /// Chỉ áp dụng [FormActionMode.add]: `false` = vô hiệu hoá nút gửi.
+  final bool submitEnabled;
+
   const FormActions({
     super.key,
     required this.mode,
@@ -27,6 +30,7 @@ class FormActions extends StatelessWidget {
     this.cancelText = 'Huỷ',
     this.saveText = 'Cập nhật',
     this.submitText = 'Lưu',
+    this.submitEnabled = true,
   });
 
   @override
@@ -107,9 +111,10 @@ class FormActions extends StatelessWidget {
   /// ===== ADD MODE =====
   Widget _buildAdd() {
     return ElevatedButton(
-      onPressed: onSubmit,
+      onPressed: submitEnabled ? onSubmit : null,
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primaryERP,
+        disabledBackgroundColor: Colors.grey.shade300,
         padding: const EdgeInsets.symmetric(vertical: 14),
         minimumSize: const Size.fromHeight(48),
         shape: RoundedRectangleBorder(
@@ -118,8 +123,8 @@ class FormActions extends StatelessWidget {
       ),
       child: Text(
         submitText,
-        style: const TextStyle(
-          color: AppColors.white,
+        style: TextStyle(
+          color: submitEnabled ? AppColors.white : Colors.grey.shade600,
           fontWeight: FontWeight.w600,
         ),
       ),

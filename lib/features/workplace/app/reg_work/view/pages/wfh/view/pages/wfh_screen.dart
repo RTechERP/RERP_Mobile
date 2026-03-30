@@ -46,7 +46,6 @@ class _WfhScreenState
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     bloc.add(const WfhEvent.init());
   }
@@ -76,6 +75,7 @@ class _WfhScreenState
       },
       child: BaseScaffold(
         appBar: AppBarCommon(
+          onBackTap: () => context.pop(),
           title: Text(
             'reg_work.wfh'.tr(), // key WFH
             style: AppStyles.headingTitle2,

@@ -16,6 +16,7 @@ import '../../app_theme/index.dart';
 import '../../constants/index.dart';
 import '../../services/custom_toast.dart';
 
+import '../../widgets/form/index.dart';
 import '../navigation/navigation_utils.dart';
 import 'base_dialog/base_dialog.dart';
 
@@ -123,26 +124,21 @@ class DialogService {
 
       await _waitUntil(
         bloc,
-            (s) => s.submitSuccess == true || s.saveSuccess == true,
+        (s) => s.submitSuccess == true || s.saveSuccess == true,
       );
 
       if (!context.mounted) return;
 
       await onSendMail();
 
-      await _waitUntil(
-        bloc,
-            (s) => s.sendMailSuccess == true,
-      );
+      await _waitUntil(bloc, (s) => s.sendMailSuccess == true);
 
       if (!context.mounted) return;
 
       final latestState = bloc.state;
       final text = buildMailPreviewText(latestState, dateReport);
 
-      await Clipboard.setData(
-        ClipboardData(text: text),
-      );
+      await Clipboard.setData(ClipboardData(text: text));
 
       await Future.delayed(const Duration(milliseconds: 150));
 
@@ -151,8 +147,7 @@ class DialogService {
         await Share.share(
           text,
           subject: 'Báo cáo công việc',
-          sharePositionOrigin:
-          box.localToGlobal(Offset.zero) & box.size,
+          sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
         );
       }
 
@@ -208,10 +203,9 @@ class DialogService {
     final contents = <String>[];
     for (final p in projects) {
       for (final w in p.works) {
-        final lines = _clean(w.content)
-            .split('\n')
-            .map((e) => e.trim())
-            .where((e) => e.isNotEmpty);
+        final lines = _clean(
+          w.content,
+        ).split('\n').map((e) => e.trim()).where((e) => e.isNotEmpty);
         if (lines.isNotEmpty) {
           contents.add('${w.code}:');
           contents.addAll(lines);
@@ -225,10 +219,9 @@ class DialogService {
     final results = <String>[];
     for (final p in projects) {
       for (final w in p.works) {
-        final lines = _clean(w.results)
-            .split('\n')
-            .map((e) => e.trim())
-            .where((e) => e.isNotEmpty);
+        final lines = _clean(
+          w.results,
+        ).split('\n').map((e) => e.trim()).where((e) => e.isNotEmpty);
         if (lines.isNotEmpty) {
           results.add('${w.code}:');
           results.addAll(lines);
@@ -248,54 +241,45 @@ class DialogService {
         }
       }
     }
+
     /// Tồn đọng
     _writeSection(
       'Tồn đọng',
-      _clean(state.backlog).isNotEmpty
-          ? [state.backlog!.trim()]
-          : [],
+      _clean(state.backlog).isNotEmpty ? [state.backlog!.trim()] : [],
     );
 
     /// Ghi chú
     _writeSection(
       'Ghi chú',
-      _clean(state.note).isNotEmpty
-          ? [state.note!.trim()]
-          : [],
+      _clean(state.note).isNotEmpty ? [state.note!.trim()] : [],
     );
 
     /// Vấn đề phát sinh
     _writeSection(
       'Vấn đề phát sinh',
-      _clean(state.problem).isNotEmpty
-          ? [state.problem!.trim()]
-          : [],
+      _clean(state.problem).isNotEmpty ? [state.problem!.trim()] : [],
     );
 
     /// Giải pháp
     _writeSection(
       'Giải pháp cho vấn đề phát sinh',
-      _clean(state.problemSolve).isNotEmpty
-          ? [state.problemSolve!.trim()]
-          : [],
+      _clean(state.problemSolve).isNotEmpty ? [state.problemSolve!.trim()] : [],
     );
 
     /// Kế hoạch ngày tiếp theo
     _writeSection(
       'Kế hoạch ngày tiếp theo',
-      _clean(state.planNextDay).isNotEmpty
-          ? [state.planNextDay!.trim()]
-          : [],
+      _clean(state.planNextDay).isNotEmpty ? [state.planNextDay!.trim()] : [],
     );
 
     return b.toString().trimRight();
   }
 
   static Widget buildMailPreview(
-      BuildContext context,
-      TechState state,
-      DateTime dateReport,
-      ) {
+    BuildContext context,
+    TechState state,
+    DateTime dateReport,
+  ) {
     final projects = state.projects;
 
     String _clean(String? v) => (v ?? '').trim();
@@ -306,10 +290,7 @@ class DialogService {
         children: [
           const SizedBox(height: 8),
           _h('* $title:'),
-          if (children.isEmpty)
-            _p('- Không có')
-          else
-            ...children,
+          if (children.isEmpty) _p('- Không có') else ...children,
         ],
       );
     }
@@ -327,8 +308,7 @@ class DialogService {
           _section(
             'Mã dự án - Tên dự án',
             projects
-                .map((p) =>
-            '${_clean(p.projectCode)} - ${_clean(p.name)}')
+                .map((p) => '${_clean(p.projectCode)} - ${_clean(p.name)}')
                 .where((e) => e.trim() != '-')
                 .map((e) => _p(e))
                 .toList(),
@@ -342,13 +322,10 @@ class DialogService {
                 .where((w) => _clean(w.content).isNotEmpty)
                 .map(
                   (w) => Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _b('${w.code}:'),
-                  _p(_clean(w.content)),
-                ],
-              ),
-            )
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [_b('${w.code}:'), _p(_clean(w.content))],
+                  ),
+                )
                 .toList(),
           ),
 
@@ -360,38 +337,29 @@ class DialogService {
                 .where((w) => _clean(w.results).isNotEmpty)
                 .map(
                   (w) => Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _b('${w.code}:'),
-                  _p(_clean(w.results)),
-                ],
-              ),
-            )
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [_b('${w.code}:'), _p(_clean(w.results))],
+                  ),
+                )
                 .toList(),
           ),
 
           /// Tồn đọng
           _section(
             'Tồn đọng',
-            _clean(state.backlog).isNotEmpty
-                ? [_p(_clean(state.backlog))]
-                : [],
+            _clean(state.backlog).isNotEmpty ? [_p(_clean(state.backlog))] : [],
           ),
 
           /// Ghi chú
           _section(
             'Ghi chú',
-            _clean(state.note).isNotEmpty
-                ? [_p(_clean(state.note))]
-                : [],
+            _clean(state.note).isNotEmpty ? [_p(_clean(state.note))] : [],
           ),
 
           /// Vấn đề phát sinh
           _section(
             'Vấn đề phát sinh',
-            _clean(state.problem).isNotEmpty
-                ? [_p(_clean(state.problem))]
-                : [],
+            _clean(state.problem).isNotEmpty ? [_p(_clean(state.problem))] : [],
           ),
 
           /// Giải pháp
@@ -594,6 +562,73 @@ class DialogService {
       },
 
       /// ⚪ Nút thoát
+      bottomButtonFunc: () {
+        onBack(context);
+      },
+    );
+  }
+
+  static Future<void> showNotificationLeave({
+    required BuildContext context,
+    VoidCallback? onConfirm,
+  }) {
+    return BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      title: "Ghi chú",
+      descriptionWidget: FormLeftBorderCard(
+        icon: Icons.warning_amber_outlined,
+        borderColor: Colors.red,
+        backgroundColor: Colors.red.shade50,
+        borderWidth: 4,
+        child: RichText(
+          text: const TextSpan(
+            style: TextStyle(
+              fontSize: 13,
+              color: Colors.black87,
+              height: 1.4,
+            ),
+            children: [
+              TextSpan(
+                text: '• Nghỉ phép (P): ',
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+              TextSpan(
+                text:
+                'Đăng ký trên ứng dụng trước 19h ngày liền trước ngày nghỉ, '
+                    'quỹ phép phải còn dương tại thời điểm xin nghỉ (không ứng phép). '
+                    'Nhân sự đang thử việc được tính phép nhưng chưa được sử dụng, '
+                    'không hoàn phép nếu không ký HĐLĐ chính thức.\n\n',
+              ),
+              TextSpan(
+                text: '• Nghỉ không lương (Ro): ',
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+              TextSpan(
+                text:
+                'Xin nghỉ sau 19h của ngày liền trước ngày nghỉ hoặc khi không còn phép.\n\n',
+              ),
+              TextSpan(
+                text: '• Nghỉ việc riêng có hưởng lương (R): ',
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+              TextSpan(
+                text:
+                'NLĐ kết hôn (03 ngày); Con NLĐ kết hôn (01 ngày); '
+                    'Cha/Mẹ/Vợ/Chồng/Con mất (03 ngày).',
+              ),
+            ],
+          ),
+        ),
+      ),
+      image: Image.asset(
+        AppImages.logo_login,
+        width: 40,
+        height: 40,
+      ),
+      topButtonFunc: () {
+        onBack(context);
+        onConfirm?.call();
+      },
       bottomButtonFunc: () {
         onBack(context);
       },

@@ -24,6 +24,7 @@ class FormDateTimePicker extends StatelessWidget {
   final ValueChanged<DateTime?>? onChanged;
   final ValueChanged<DateTime?>? onSaved;
   final FormFieldValidator<DateTime?>? validator;
+  final AutovalidateMode autovalidateMode;
 
   const FormDateTimePicker({
     super.key,
@@ -42,6 +43,7 @@ class FormDateTimePicker extends StatelessWidget {
     this.onChanged,
     this.onSaved,
     this.validator,
+    this.autovalidateMode = AutovalidateMode.onUserInteraction,
   });
 
   @override
@@ -51,7 +53,7 @@ class FormDateTimePicker extends StatelessWidget {
       initialValue: initialValue,
       validator: validator,
       enabled: enabled,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: autovalidateMode,
       builder: (field) {
         return FormBuilderDateTimePicker(
           name: nameTimePicker,
@@ -63,7 +65,7 @@ class FormDateTimePicker extends StatelessWidget {
           firstDate: firstDate,
           lastDate: lastDate,
           selectableDayPredicate: selectableDayPredicate,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autovalidateMode: autovalidateMode,
 
           onChanged: (v) {
             field.didChange(v);       // 🔑 sync state cho validator
