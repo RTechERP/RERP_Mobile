@@ -18,6 +18,12 @@ part 'leave_state.dart';
 part 'leave_bloc.g.dart';
 part 'leave_bloc.freezed.dart';
 
+/// Ngày 1 và ngày cuối của tháng chứa [anyDayInMonth].
+(DateTime start, DateTime end) _calendarMonthBounds(DateTime anyDayInMonth) {
+  final y = anyDayInMonth.year, m = anyDayInMonth.month;
+  return (DateTime(y, m, 1), DateTime(y, m + 1, 0));
+}
+
 @injectable
 class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
   final LogUtils _log;
@@ -181,30 +187,30 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
       },
           (user) async {
         final now = DateTime.now();
-        final todayStart = DateTime(now.year, now.month, now.day);
-        final tomorrow = todayStart.add(const Duration(days: 1));
+        final (defaultStart, defaultEnd) = _calendarMonthBounds(now);
 
-        final startCandidate = state.dateStart ?? todayStart;
-        final endCandidate = state.dateEnd ?? tomorrow;
+        late final DateTime rangeStart;
+        late final DateTime rangeEnd;
+        if (state.dateStart != null && state.dateEnd != null) {
+          final a = state.dateStart!;
+          final b = state.dateEnd!;
+          final lo = a.isAfter(b) ? b : a;
+          (rangeStart, rangeEnd) = _calendarMonthBounds(lo);
+        } else {
+          rangeStart = defaultStart;
+          rangeEnd = defaultEnd;
+        }
 
-        // Chuẩn hoá thứ tự (tránh trường hợp user/flow set ngược).
-        final effectiveStart = startCandidate.isAfter(endCandidate)
-            ? endCandidate
-            : startCandidate;
-        final effectiveEnd = startCandidate.isAfter(endCandidate)
-            ? startCandidate
-            : endCandidate;
-
-        // Payload theo contract API (filter theo month/year).
+        // Payload theo contract API (filter theo month/year của tháng đang xem).
         final payload = <String, dynamic>{
           "IDApprovedTP": 0,
           "departmentId": 0,
           "keyWord": '',
-          "month": effectiveStart.month,
+          "month": rangeStart.month,
           "pageNumber": 1,
           "pageSize": 1000,
           "status": -1,
-          "year": effectiveStart.year,
+          "year": rangeStart.year,
         };
 
         _log.logI('Payload: $payload'); // debug thêm
@@ -222,8 +228,8 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
               state.copyWith(
                 status: BaseStateStatus.success,
                 leave: r,
-                dateStart: effectiveStart,
-                dateEnd: effectiveEnd,
+                dateStart: rangeStart,
+                dateEnd: rangeEnd,
               ),
             );
           },
@@ -240,15 +246,14 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
     final start = DateTime(dateStart.year, dateStart.month, dateStart.day);
     final end = DateTime(dateEnd.year, dateEnd.month, dateEnd.day);
 
-    // Chuẩn hoá thứ tự (nếu user chọn ngược).
-    final effectiveStart = start.isAfter(end) ? end : start;
-    final effectiveEnd = start.isAfter(end) ? start : end;
+    final lo = start.isAfter(end) ? end : start;
+    final (rangeStart, rangeEnd) = _calendarMonthBounds(lo);
 
     emit(
       state.copyWith(
         status: BaseStateStatus.loading,
-        dateStart: effectiveStart,
-        dateEnd: effectiveEnd,
+        dateStart: rangeStart,
+        dateEnd: rangeEnd,
       ),
     );
 
@@ -263,11 +268,11 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
           "IDApprovedTP": 0,
           "departmentId": 0,
           "keyWord": '',
-          "month": effectiveStart.month,
+          "month": rangeStart.month,
           "pageNumber": 1,
           "pageSize": 10000,
           "status": -1,
-          "year": effectiveStart.year,
+          "year": rangeStart.year,
         };
 
         _log.logI('Payload: $payload');
@@ -284,8 +289,8 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
               state.copyWith(
                 status: BaseStateStatus.success,
                 leave: r,
-                dateStart: effectiveStart,
-                dateEnd: effectiveEnd,
+                dateStart: rangeStart,
+                dateEnd: rangeEnd,
               ),
             );
           },
@@ -696,25 +701,14 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         return;
       }
 
-      final item = state.leave.where((e) => e.id == id).toList().firstOrNull;
-      final dateStart = item?.startDate ?? DateTime.now();
-      final dateEnd = item?.dateCancel ?? DateTime.now();
 
       final payload = <String, dynamic>{
         "ID": id,
-        // "ApprovedID": item?. ?? 0,
-        "ApprovedTP": item?.approvedTP ?? 0,
-        "DateEnd": dateEnd.toIso8601String(),
-        "DateStart": dateStart.toIso8601String(),
         "EmployeeID": user.employeeId,
-        "IsApproved": false,
-        "IsDeleted": true,
-        "Reason": item?.reason ?? '',
-        "ReasonHREdit": item?.reasonHREdit ?? '',
-        "Type": item?.type ?? 0,
+        "DeleteFlag": true,
       };
 
-      final saveRes = await _leaveRepo.saveMultiLeave(payload: payload);
+      final saveRes = await _leaveRepo.saveLeave(payload: payload);
       await saveRes.fold(
             (err) async {
           _log.logE('❌ Cancel Leave API failed: $err');
