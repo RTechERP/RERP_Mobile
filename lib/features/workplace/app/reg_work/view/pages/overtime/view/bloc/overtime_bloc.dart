@@ -434,30 +434,28 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
         ),
       );
 
-      final userRes = await _authRepo.getCurrentUser();
-      final user = userRes.getOrElse(() => null);
-      if (user == null) {
-        emit(
-          state.copyWith(
-            isDeleting: false,
-            deleteSuccess: false,
-            status: BaseStateStatus.failed,
-            message: 'Không lấy được thông tin người dùng',
-          ),
-        );
-        return;
-      }
-
       final payload = <String, dynamic>{
-        'ID': id,
-        'EmployeeID': user.employeeId,
-        'DeleteFlag': true,
+        'EmployeeOvertimes': [
+          <String, dynamic>{
+            'ID': id,
+            'IsDeleted': true,
+          },
+        ],
+        'employeeOvertimeFile': <String, dynamic>{
+          'ID': 0,
+          'EmployeeOvertimeID': id,
+          'FileName': null,
+          'OriginPath': null,
+          'ServerPath': null,
+        },
       };
+
+      _log.logI('OvertimeBloc cancelSubmit ID=$id payload: $payload');
 
       final saveRes = await _overtimeRepo.saveOvertime(payload: payload);
       await saveRes.fold(
         (err) async {
-          _log.logE('❌ OvertimeBloc cancel API failed: $err');
+          _log.logE('❌ OvertimeBloc cancelSubmit failed: $err');
           emit(
             state.copyWith(
               isDeleting: false,
@@ -468,6 +466,7 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
           );
         },
         (_) async {
+          _log.logI('✅ OvertimeBloc cancelSubmit success ID=$id');
           final updated = state.overtime.where((e) => e.id != id).toList();
           emit(
             state.copyWith(
@@ -481,7 +480,7 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
         },
       );
     } catch (e) {
-      _log.logE('❌ OvertimeBloc cancel exception: $e');
+      _log.logE('❌ OvertimeBloc cancelSubmit exception: $e');
       emit(
         state.copyWith(
           isDeleting: false,
