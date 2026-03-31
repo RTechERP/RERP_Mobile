@@ -86,6 +86,12 @@ class _MeetingRoomAddScreenState
     return Stack(
       children: [
         BlocListener<MeetingRoomBloc, MeetingRoomState>(
+          listenWhen: (prev, curr) =>
+              prev.submitSuccess != curr.submitSuccess ||
+              prev.status != curr.status ||
+              (prev.departs != curr.departs && curr.departs.isNotEmpty) ||
+              (prev.departmentId != curr.departmentId &&
+                  curr.departmentId != null),
           listener: (context, state) {
             if (state.submitSuccess) {
               context.pop(true);
@@ -95,11 +101,25 @@ class _MeetingRoomAddScreenState
             if (state.status == BaseStateStatus.failed) {
               context.showMessage(state.message ?? 'Có lỗi xảy ra');
             }
+
+            /// Auto-fill phòng ban theo departmentId của user hiện tại
+            if (state.departs.isNotEmpty && state.departmentId != null) {
+              final matched = state.departs.where(
+                (d) => d.id == state.departmentId,
+              );
+              if (matched.isNotEmpty) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  departField?.didChange(matched.first.name);
+                });
+              }
+            }
           },
           child: BaseScaffold(
             appBar: AppBarCommon(title: const Text('Đặt phòng họp')),
             body: BlocBuilder<MeetingRoomBloc, MeetingRoomState>(
-              buildWhen: (prev, curr) => prev.departs != curr.departs,
+              buildWhen: (prev, curr) =>
+                  prev.departs != curr.departs ||
+                  prev.departmentId != curr.departmentId,
               builder: (context, state) {
                 return FormBuilder(
                   key: _formKey,
