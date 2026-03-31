@@ -222,6 +222,13 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
       f.fields['leave_add_employee']
           ?.didChange(state.employeeDisplayLine ?? '');
 
+      if (state.skipLeaveDateConstraints) {
+        f.fields['regwork_leave_employee_text']
+            ?.didChange(state.employeeDisplayLine ?? '');
+        f.fields['regwork_leave_employee_id']
+            ?.didChange('${state.employeeId ?? ''}');
+      }
+
       final rawTp = state.detailApprovedTP ?? 0;
       final appr = leaveResolveApproverForForm(state.approvers, rawTp);
       f.fields['regwork_leave_add_approver_id']?.didChange(
@@ -255,6 +262,38 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
     }
 
     WidgetsBinding.instance.addPostFrameCallback((_) => patchForm());
+  }
+
+  Future<void> _openEmployeeSheet() async {
+    final form = _formKey.currentState;
+    if (form == null) return;
+
+    final items = bloc.state.employeeLeave;
+    if (items.isEmpty) {
+      context.showMessage('Chưa có danh sách nhân viên', type: SnackBarType.error);
+      return;
+    }
+
+    await openSelectBottomSheet<EmployeeLeave>(
+      context: context,
+      title: 'Chọn nhân viên',
+      items: items,
+      displayText: (e) => '${e.code ?? ''} - ${e.fullName ?? ''}'.trim(),
+      onSelected: (item) {
+        final line = '${item.code ?? ''} - ${item.fullName ?? ''}'.trim();
+        form.fields['regwork_leave_employee_id']?.didChange('${item.id}');
+        form.fields['regwork_leave_employee_text']?.didChange(line);
+        form.fields['leave_add_department']?.didChange(item.departmentName ?? '');
+        form.fields['leave_add_employee']?.didChange(line);
+
+        bloc.updateSelectedEmployee(
+          employeeId: item.id,
+          departmentName: item.departmentName,
+          employeeDisplay: line,
+        );
+        setState(() {});
+      },
+    );
   }
 
   Future<void> _openApproverSheet() async {
@@ -578,6 +617,19 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
                                               onPickApprover:
                                                   _openApproverSheet,
                                               approverPickerEnabled: !ro,
+                                              regDatePickerEnabled: !ro &&
+                                                  state
+                                                      .skipLeaveDateConstraints,
+                                              regDateInitialValue:
+                                                  state.detailPhaseDateRegister,
+                                              isAdminOrHr:
+                                                  state.skipLeaveDateConstraints,
+                                              onPickEmployee: !ro
+                                                  ? _openEmployeeSheet
+                                                  : null,
+                                              employeePickerEnabled: !ro &&
+                                                  state
+                                                      .skipLeaveDateConstraints,
                                             ),
                                             const SizedBox(height: 8),
                                             LeaveSlipFormFields(

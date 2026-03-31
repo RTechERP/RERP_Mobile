@@ -85,6 +85,18 @@ class LeaveService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<List<EmployeeLeave>>> getEmployeeLeave() {
+    return get<BaseData<List<EmployeeLeave>>>(
+      ApiEndPoint.getEmployeeLeave,
+      parser: (json) => BaseData<List<EmployeeLeave>>.fromJson(
+        json,
+            (data) => (data as List)
+            .map((e) => EmployeeLeave.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
   Future<BaseData<void>> saveMultiLeave({
     required Map<String, dynamic> payload,
   }) async {

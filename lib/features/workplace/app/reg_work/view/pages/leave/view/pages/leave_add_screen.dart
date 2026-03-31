@@ -128,6 +128,38 @@ class _LeaveAddScreenPageState
     return DateFormat('dd/MM/yyyy').format(v);
   }
 
+  Future<void> _openEmployeeSheet() async {
+    final form = _formKey.currentState;
+    if (form == null) return;
+
+    final items = bloc.state.employeeLeave;
+    if (items.isEmpty) {
+      context.showMessage('Chưa có danh sách nhân viên', type: SnackBarType.error);
+      return;
+    }
+
+    await openSelectBottomSheet<EmployeeLeave>(
+      context: context,
+      title: 'Chọn nhân viên',
+      items: items,
+      displayText: (e) => '${e.code ?? ''} - ${e.fullName ?? ''}'.trim(),
+      onSelected: (item) {
+        final line = '${item.code ?? ''} - ${item.fullName ?? ''}'.trim();
+        form.fields['regwork_leave_employee_id']?.didChange('${item.id}');
+        form.fields['regwork_leave_employee_text']?.didChange(line);
+        form.fields['leave_add_department']?.didChange(item.departmentName ?? '');
+        form.fields['leave_add_employee']?.didChange(line);
+
+        bloc.updateSelectedEmployee(
+          employeeId: item.id,
+          departmentName: item.departmentName,
+          employeeDisplay: line,
+        );
+        setState(() {});
+      },
+    );
+  }
+
   Future<void> _openApproverSheet() async {
     final form = _formKey.currentState;
     if (form == null) return;
@@ -205,7 +237,9 @@ class _LeaveAddScreenPageState
         BlocListener<LeaveBloc, LeaveState>(
           listenWhen: (p, c) =>
               p.departmentName != c.departmentName ||
-              p.employeeDisplayLine != c.employeeDisplayLine,
+              p.employeeDisplayLine != c.employeeDisplayLine ||
+              p.employeeId != c.employeeId ||
+              p.skipLeaveDateConstraints != c.skipLeaveDateConstraints,
           listener: (context, state) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               if (!mounted) return;
@@ -215,6 +249,13 @@ class _LeaveAddScreenPageState
                   ?.didChange(state.departmentName ?? '');
               f.fields['leave_add_employee']
                   ?.didChange(state.employeeDisplayLine ?? '');
+              // Admin / HR: tự điền ô nhân viên bằng thông tin user hiện tại.
+              if (state.skipLeaveDateConstraints) {
+                f.fields['regwork_leave_employee_text']
+                    ?.didChange(state.employeeDisplayLine ?? '');
+                f.fields['regwork_leave_employee_id']
+                    ?.didChange('${state.employeeId ?? ''}');
+              }
               setState(() {});
             });
           },
@@ -285,6 +326,13 @@ class _LeaveAddScreenPageState
                                         LeaveRegistrationCard(
                                           todayStart: _todayStart,
                                           onPickApprover: _openApproverSheet,
+                                          regDatePickerEnabled:
+                                              state.skipLeaveDateConstraints,
+                                          isAdminOrHr:
+                                              state.skipLeaveDateConstraints,
+                                          onPickEmployee: _openEmployeeSheet,
+                                          employeePickerEnabled:
+                                              state.skipLeaveDateConstraints,
                                         ),
                                         const SizedBox(height: 8),
                                         LeaveSlipTabsBar(

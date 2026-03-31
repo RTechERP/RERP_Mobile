@@ -15,6 +15,8 @@ abstract class LeaveRepo{
 
   Future<Either<BaseError, List<ApproverItem>>> getApprover();
 
+  Future<Either<BaseError, List<EmployeeLeave>>> getEmployeeLeave();
+
   Future<Either<BaseError, LeavePhaseMultiDto>> getLeavePhaseMulti({
     required int phaseId,
   });

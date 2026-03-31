@@ -4,6 +4,8 @@ part of 'leave_bloc.dart';
 class LeaveState extends BaseBlocState {
   final List<LeaveItem> leave;
   final List<ApproverItem> approvers;
+  /// Danh sách nhân viên — chỉ tải khi user là Admin / HR.
+  final List<EmployeeLeave> employeeLeave;
 
   final List<LeaveTimeItem> leaveTime;
   final bool isSubmitting;
@@ -42,6 +44,7 @@ class LeaveState extends BaseBlocState {
     super.message,
     this.leave = const [],
     this.approvers = const [],
+    this.employeeLeave = const [],
     this.leaveTime = const [],
     this.isSubmitting = false,
     this.submitSuccess = false,
@@ -76,6 +79,7 @@ class LeaveState extends BaseBlocState {
     isDeleting: false,
     leave: [],
     approvers: [],
+    employeeLeave: [],
     leaveTime: [],
     employeeId: null,
     loginName: null,
@@ -104,6 +108,7 @@ class LeaveState extends BaseBlocState {
     message,
     leave,
     approvers,
+    employeeLeave,
     leaveTime,
     isSubmitting,
     submitSuccess,

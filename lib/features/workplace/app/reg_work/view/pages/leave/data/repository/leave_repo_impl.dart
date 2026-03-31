@@ -128,4 +128,19 @@ class LeaveRepoImpl implements LeaveRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<EmployeeLeave>>> getEmployeeLeave() async {
+    try {
+      final res = await _service.getEmployeeLeave();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

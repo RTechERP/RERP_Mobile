@@ -217,4 +217,6 @@ class ApiEndPoint {
       '/employeeonleave/list-summary-employee-on-leave';
 
   static const String saveMultiLeave= '/EmployeeOnLeave/SaveMultiPhase';
+
+  static const String getEmployeeLeave = '/Employee';
 }

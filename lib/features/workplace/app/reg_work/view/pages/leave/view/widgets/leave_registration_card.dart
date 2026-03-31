@@ -6,24 +6,38 @@ import '../../../../../../../../../common/widgets/form/index.dart';
 import 'leave_add_constants.dart';
 
 /// Ngày đăng ký, Phòng ban, Nhân viên (readonly), Người duyệt.
-/// Validate nghiệp vụ chỉ khi bấm Gửi (màn hình).
+/// Khi [isAdminOrHr] == true, thêm ô chọn nhân viên (Admin/HR đăng ký hộ).
 class LeaveRegistrationCard extends StatelessWidget {
   const LeaveRegistrationCard({
     super.key,
     required this.todayStart,
     required this.onPickApprover,
     this.approverPickerEnabled = true,
+    /// Admin / HR: bật picker "Ngày đăng ký" — chọn ngày tự do.
+    this.regDatePickerEnabled = false,
+    this.regDateInitialValue,
+    this.isAdminOrHr = false,
+    this.onPickEmployee,
+    this.employeePickerEnabled = true,
   });
 
   final DateTime todayStart;
-  final VoidCallback onPickApprover;
+  final VoidCallback? onPickApprover;
   final bool approverPickerEnabled;
+  final bool regDatePickerEnabled;
+  /// Giá trị khởi tạo cho ô ngày đăng ký (màn chi tiết lấy từ API).
+  final DateTime? regDateInitialValue;
+  /// Hiện ô chọn nhân viên (chỉ Admin / HR).
+  final bool isAdminOrHr;
+  final VoidCallback? onPickEmployee;
+  final bool employeePickerEnabled;
 
   @override
   Widget build(BuildContext context) {
+    final regDate = regDateInitialValue ?? todayStart;
     return Column(
       children: [
-        // Đồng bộ bloc → form để `_computeSubmitEnabled` đọc được qua `form.value`.
+        // Field ẩn đồng bộ bloc → form.
         FormBuilderField<String>(
           name: 'leave_add_department',
           initialValue: '',
@@ -43,19 +57,41 @@ class LeaveRegistrationCard extends StatelessWidget {
           icon: Icons.date_range,
           inputType: InputType.date,
           format: DateFormat('dd/MM/yyyy'),
-          initialValue: todayStart,
-          initialDate: todayStart,
-          enabled: false,
+          initialValue: regDate,
+          initialDate: regDate,
+          enabled: regDatePickerEnabled,
+          firstDate: regDatePickerEnabled ? DateTime(1900) : todayStart,
           autovalidateMode: AutovalidateMode.disabled,
         ),
+        if (isAdminOrHr) ...[
+          const SizedBox(height: 12),
+          // Field ẩn lưu ID nhân viên (dùng khi submit).
+          FormBuilderField<String>(
+            name: 'regwork_leave_employee_id',
+            initialValue: '',
+            autovalidateMode: AutovalidateMode.disabled,
+            builder: (_) => const SizedBox.shrink(),
+          ),
+          GestureDetector(
+            onTap: employeePickerEnabled ? onPickEmployee : null,
+            child: AbsorbPointer(
+              child: FormInputField(
+                readOnly: true,
+                nameForm: 'regwork_leave_employee_text',
+                nameTextField: 'regwork_leave_employee_text_tf',
+                label: 'Nhân viên',
+                icon: Icons.person_outline,
+                autovalidateMode: AutovalidateMode.disabled,
+              ),
+            ),
+          ),
+        ],
         const SizedBox(height: 12),
         FormBuilderField<String>(
           name: 'regwork_leave_add_approver_id',
           initialValue: '',
           autovalidateMode: AutovalidateMode.disabled,
-          builder: (state) {
-            return const SizedBox.shrink();
-          },
+          builder: (_) => const SizedBox.shrink(),
         ),
         GestureDetector(
           onTap: approverPickerEnabled ? onPickApprover : null,

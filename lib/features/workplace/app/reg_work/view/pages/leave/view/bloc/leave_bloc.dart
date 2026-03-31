@@ -111,10 +111,11 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         dateStart: todayStart,
         employeeId: user.employeeId,
       );
-
+      final employeeRes = await _leaveRepo.getEmployeeLeave();
       BaseError? err;
       List<ApproverItem> approvers = [];
       List<LeaveTimeItem> leaveTimeItems = [];
+      List<EmployeeLeave> employeeItems = [];
 
       approverRes.fold(
         (l) => err = l,
@@ -145,13 +146,28 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         );
         return;
       }
+      employeeRes.fold(
+            (l) => err = l,
+            (r) => employeeItems = r,
+      );
+      if (err != null) {
+        _log.logE('❌ Get employee failed: $err');
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.failed,
+            message: err!.getErrorMessage,
+          ),
+        );
+        return;
+      }
 
-      _log.logI('✅ initAdd: approver + leaveTime success');
+      _log.logI('✅ initAdd: approver + leaveTime + employee success');
       emit(
         state.copyWith(
           status: BaseStateStatus.success,
           approvers: approvers,
           leaveTime: leaveTimeItems,
+          employeeLeave: skipDateRules ? employeeItems : [],
           employeeId: user.employeeId,
           loginName: user.loginName,
           departmentName: user.departmentName,
@@ -271,6 +287,7 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
           BaseError? err;
           var approvers = <ApproverItem>[];
           var leaveTimeItems = <LeaveTimeItem>[];
+          var employeeItems = <EmployeeLeave>[];
 
           approverRes.fold((l) => err = l, (r) => approvers = r);
           if (err != null) {
@@ -294,6 +311,35 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
             return;
           }
 
+          if (skipDateRules) {
+            final empRes = await _leaveRepo.getEmployeeLeave();
+            empRes.fold((l) => err = l, (r) => employeeItems = r);
+            if (err != null) {
+              _log.logE('❌ initDetail getEmployeeLeave failed: $err');
+              err = null; // không chặn màn hình, chỉ log
+            }
+          }
+
+          // Khi admin/HR xem đơn của người khác: dùng EmployeeID từ phase.
+          final targetEmployeeId =
+              (skipDateRules && dto.employeeId != null && dto.employeeId! > 0)
+                  ? dto.employeeId!
+                  : user.employeeId;
+
+          // Tìm thông tin hiển thị cho nhân viên được chọn (nếu khác user).
+          String displayLine = '${user.code} - ${user.fullName}'.trim();
+          String? deptName = user.departmentName;
+          if (targetEmployeeId != user.employeeId && employeeItems.isNotEmpty) {
+            final found = employeeItems
+                .where((e) => e.id == targetEmployeeId)
+                .firstOrNull;
+            if (found != null) {
+              displayLine =
+                  '${found.code ?? ''} - ${found.fullName ?? ''}'.trim();
+              deptName = found.departmentName;
+            }
+          }
+
           _log.logI(
             '✅ initDetail phase=$phaseId detail=$detailId '
             '(phaseSlips=${dto.slips.length})',
@@ -308,10 +354,11 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
               status: BaseStateStatus.success,
               approvers: approvers,
               leaveTime: leaveTimeItems,
-              employeeId: user.employeeId,
+              employeeLeave: skipDateRules ? employeeItems : [],
+              employeeId: targetEmployeeId,
               loginName: user.loginName,
-              departmentName: user.departmentName,
-              employeeDisplayLine: '${user.code} - ${user.fullName}'.trim(),
+              departmentName: deptName,
+              employeeDisplayLine: displayLine,
               skipLeaveDateConstraints: skipDateRules,
               detailPhaseId: dto.phaseId,
               detailPhaseDateRegister: dto.dateRegister,
@@ -338,6 +385,24 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         ),
       );
     }
+  }
+
+  /// Admin / HR chọn nhân viên khác từ picker: cập nhật state (không qua event).
+  // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+  void updateSelectedEmployee({
+    required int employeeId,
+    required String? departmentName,
+    required String? employeeDisplay,
+  }) {
+    if (isClosed) return;
+    // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+    emit(
+      state.copyWith(
+        employeeId: employeeId,
+        departmentName: departmentName,
+        employeeDisplayLine: employeeDisplay,
+      ),
+    );
   }
 
   void _onClearDetailForm(Emitter<LeaveState> emit) {
@@ -703,7 +768,8 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         return;
       }
 
-      final employeeId = user.employeeId;
+      // Ưu tiên employeeId đã chọn trong state (admin/HR đại diện nộp cho người khác).
+      final employeeId = state.employeeId ?? user.employeeId;
       final payload = _leaveSubmitBody(
         employeeId: employeeId,
         approvedTP: approvedTP,
@@ -876,7 +942,8 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
       }
 
       final payload = _leaveEditSubmitBody(
-        employeeId: user.employeeId,
+        // Ưu tiên employeeId trong state (admin/HR đại diện sửa).
+        employeeId: state.employeeId ?? user.employeeId,
         phaseId: phaseId,
         phaseDateRegister: state.detailPhaseDateRegister,
         approvedTP: approvedTP,

@@ -15,6 +15,8 @@ abstract class _$LeaveStateCWProxy {
 
   LeaveState approvers(List<ApproverItem> approvers);
 
+  LeaveState employeeLeave(List<EmployeeLeave> employeeLeave);
+
   LeaveState leaveTime(List<LeaveTimeItem> leaveTime);
 
   LeaveState isSubmitting(bool isSubmitting);
@@ -74,6 +76,7 @@ abstract class _$LeaveStateCWProxy {
     String? message,
     List<LeaveItem>? leave,
     List<ApproverItem>? approvers,
+    List<EmployeeLeave>? employeeLeave,
     List<LeaveTimeItem>? leaveTime,
     bool? isSubmitting,
     bool? submitSuccess,
@@ -119,6 +122,10 @@ class _$LeaveStateCWProxyImpl implements _$LeaveStateCWProxy {
   @override
   LeaveState approvers(List<ApproverItem> approvers) =>
       this(approvers: approvers);
+
+  @override
+  LeaveState employeeLeave(List<EmployeeLeave> employeeLeave) =>
+      this(employeeLeave: employeeLeave);
 
   @override
   LeaveState leaveTime(List<LeaveTimeItem> leaveTime) =>
@@ -224,6 +231,7 @@ class _$LeaveStateCWProxyImpl implements _$LeaveStateCWProxy {
     Object? message = const $CopyWithPlaceholder(),
     Object? leave = const $CopyWithPlaceholder(),
     Object? approvers = const $CopyWithPlaceholder(),
+    Object? employeeLeave = const $CopyWithPlaceholder(),
     Object? leaveTime = const $CopyWithPlaceholder(),
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
@@ -266,6 +274,11 @@ class _$LeaveStateCWProxyImpl implements _$LeaveStateCWProxy {
           ? _value.approvers
           // ignore: cast_nullable_to_non_nullable
           : approvers as List<ApproverItem>,
+      employeeLeave:
+          employeeLeave == const $CopyWithPlaceholder() || employeeLeave == null
+              ? _value.employeeLeave
+              // ignore: cast_nullable_to_non_nullable
+              : employeeLeave as List<EmployeeLeave>,
       leaveTime: leaveTime == const $CopyWithPlaceholder() || leaveTime == null
           ? _value.leaveTime
           // ignore: cast_nullable_to_non_nullable
