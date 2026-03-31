@@ -17,4 +17,6 @@ abstract class OvertimeRepo {
   Future<Either<BaseError, void>> saveOvertime({
     required Map<String, dynamic> payload,
   });
+
+  Future<Either<BaseError, OvertimeDetailItem>> getOvertimeById(int id);
 }

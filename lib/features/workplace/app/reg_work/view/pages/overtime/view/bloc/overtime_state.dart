@@ -16,6 +16,9 @@ class OvertimeState extends BaseBlocState {
   final DateTime? dateEnd;
   /// Nhân sự đã mở cổng đăng ký bổ sung hay chưa.
   final bool isSupplementaryRegistrationOpen;
+  final OvertimeDetailItem? detailItem;
+  final bool isFetchingDetail;
+  final bool editSuccess;
 
   const OvertimeState({
     required super.status,
@@ -33,6 +36,9 @@ class OvertimeState extends BaseBlocState {
     this.dateStart,
     this.dateEnd,
     this.isSupplementaryRegistrationOpen = false,
+    this.detailItem,
+    this.isFetchingDetail = false,
+    this.editSuccess = false,
   });
 
   factory OvertimeState.init() => const OvertimeState(
@@ -50,6 +56,9 @@ class OvertimeState extends BaseBlocState {
     dateStart: null,
     dateEnd: null,
     isSupplementaryRegistrationOpen: false,
+    detailItem: null,
+    isFetchingDetail: false,
+    editSuccess: false,
   );
 
   @override
@@ -69,5 +78,8 @@ class OvertimeState extends BaseBlocState {
     dateStart,
     dateEnd,
     isSupplementaryRegistrationOpen,
+    detailItem,
+    isFetchingDetail,
+    editSuccess,
   ];
 }

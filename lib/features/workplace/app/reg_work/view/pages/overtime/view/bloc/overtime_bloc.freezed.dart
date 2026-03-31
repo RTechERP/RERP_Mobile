@@ -31,6 +31,15 @@ mixin _$OvertimeEvent {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)
+        submitEdit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,6 +52,15 @@ mixin _$OvertimeEvent {
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +73,15 @@ mixin _$OvertimeEvent {
     TResult Function(int id)? onCancelSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -66,6 +93,8 @@ mixin _$OvertimeEvent {
     required TResult Function(_OnCancelSubmit value) onCancelSubmit,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_SubmitEdit value) submitEdit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +105,8 @@ mixin _$OvertimeEvent {
     TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_SubmitEdit value)? submitEdit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -86,6 +117,8 @@ mixin _$OvertimeEvent {
     TResult Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_SubmitEdit value)? submitEdit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -159,6 +192,15 @@ class _$InitImpl implements _Init {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)
+        submitEdit,
   }) {
     return init();
   }
@@ -174,6 +216,15 @@ class _$InitImpl implements _Init {
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
   }) {
     return init?.call();
   }
@@ -189,6 +240,15 @@ class _$InitImpl implements _Init {
     TResult Function(int id)? onCancelSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -206,6 +266,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_OnCancelSubmit value) onCancelSubmit,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_SubmitEdit value) submitEdit,
   }) {
     return init(this);
   }
@@ -219,6 +281,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_SubmitEdit value)? submitEdit,
   }) {
     return init?.call(this);
   }
@@ -232,6 +296,8 @@ class _$InitImpl implements _Init {
     TResult Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_SubmitEdit value)? submitEdit,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -296,6 +362,15 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)
+        submitEdit,
   }) {
     return initAdd();
   }
@@ -311,6 +386,15 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
   }) {
     return initAdd?.call();
   }
@@ -326,6 +410,15 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(int id)? onCancelSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -343,6 +436,8 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_OnCancelSubmit value) onCancelSubmit,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_SubmitEdit value) submitEdit,
   }) {
     return initAdd(this);
   }
@@ -356,6 +451,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_SubmitEdit value)? submitEdit,
   }) {
     return initAdd?.call(this);
   }
@@ -369,6 +466,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_SubmitEdit value)? submitEdit,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -528,6 +627,15 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)
+        submitEdit,
   }) {
     return submitBatch(approvedId, dateRegister, isProblem, slips, fileInfo);
   }
@@ -543,6 +651,15 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
   }) {
     return submitBatch?.call(
         approvedId, dateRegister, isProblem, slips, fileInfo);
@@ -559,6 +676,15 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult Function(int id)? onCancelSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
     required TResult orElse(),
   }) {
     if (submitBatch != null) {
@@ -576,6 +702,8 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     required TResult Function(_OnCancelSubmit value) onCancelSubmit,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_SubmitEdit value) submitEdit,
   }) {
     return submitBatch(this);
   }
@@ -589,6 +717,8 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_SubmitEdit value)? submitEdit,
   }) {
     return submitBatch?.call(this);
   }
@@ -602,6 +732,8 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_SubmitEdit value)? submitEdit,
     required TResult orElse(),
   }) {
     if (submitBatch != null) {
@@ -709,6 +841,15 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)
+        submitEdit,
   }) {
     return onCancelSubmit(id);
   }
@@ -724,6 +865,15 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
   }) {
     return onCancelSubmit?.call(id);
   }
@@ -739,6 +889,15 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function(int id)? onCancelSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
     required TResult orElse(),
   }) {
     if (onCancelSubmit != null) {
@@ -756,6 +915,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function(_OnCancelSubmit value) onCancelSubmit,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_SubmitEdit value) submitEdit,
   }) {
     return onCancelSubmit(this);
   }
@@ -769,6 +930,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_SubmitEdit value)? submitEdit,
   }) {
     return onCancelSubmit?.call(this);
   }
@@ -782,6 +945,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_SubmitEdit value)? submitEdit,
     required TResult orElse(),
   }) {
     if (onCancelSubmit != null) {
@@ -887,6 +1052,15 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)
+        submitEdit,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -902,6 +1076,15 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -917,6 +1100,15 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int id)? onCancelSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -934,6 +1126,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_OnCancelSubmit value) onCancelSubmit,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_SubmitEdit value) submitEdit,
   }) {
     return changeDateRange(this);
   }
@@ -947,6 +1141,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_SubmitEdit value)? submitEdit,
   }) {
     return changeDateRange?.call(this);
   }
@@ -960,6 +1156,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_SubmitEdit value)? submitEdit,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1032,6 +1230,15 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)
+        submitEdit,
   }) {
     return clearSubmitState();
   }
@@ -1047,6 +1254,15 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
   }) {
     return clearSubmitState?.call();
   }
@@ -1062,6 +1278,15 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(int id)? onCancelSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -1079,6 +1304,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_OnCancelSubmit value) onCancelSubmit,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_SubmitEdit value) submitEdit,
   }) {
     return clearSubmitState(this);
   }
@@ -1092,6 +1319,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_SubmitEdit value)? submitEdit,
   }) {
     return clearSubmitState?.call(this);
   }
@@ -1105,6 +1334,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_OnCancelSubmit value)? onCancelSubmit,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_SubmitEdit value)? submitEdit,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -1116,4 +1347,483 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
 
 abstract class _ClearSubmitState implements OvertimeEvent {
   const factory _ClearSubmitState() = _$ClearSubmitStateImpl;
+}
+
+/// @nodoc
+abstract class _$$FetchDetailImplCopyWith<$Res> {
+  factory _$$FetchDetailImplCopyWith(
+          _$FetchDetailImpl value, $Res Function(_$FetchDetailImpl) then) =
+      __$$FetchDetailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$FetchDetailImplCopyWithImpl<$Res>
+    extends _$OvertimeEventCopyWithImpl<$Res, _$FetchDetailImpl>
+    implements _$$FetchDetailImplCopyWith<$Res> {
+  __$$FetchDetailImplCopyWithImpl(
+      _$FetchDetailImpl _value, $Res Function(_$FetchDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$FetchDetailImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchDetailImpl implements _FetchDetail {
+  const _$FetchDetailImpl({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'OvertimeEvent.fetchDetail(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchDetailImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchDetailImplCopyWith<_$FetchDetailImpl> get copyWith =>
+      __$$FetchDetailImplCopyWithImpl<_$FetchDetailImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            List<OvertimeAddSlip> slips,
+            Map<String, String?>? fileInfo)
+        submitBatch,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)
+        submitEdit,
+  }) {
+    return fetchDetail(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(int approvedId, DateTime dateRegister, bool isProblem,
+            List<OvertimeAddSlip> slips, Map<String, String?>? fileInfo)?
+        submitBatch,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
+  }) {
+    return fetchDetail?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(int approvedId, DateTime dateRegister, bool isProblem,
+            List<OvertimeAddSlip> slips, Map<String, String?>? fileInfo)?
+        submitBatch,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
+    required TResult orElse(),
+  }) {
+    if (fetchDetail != null) {
+      return fetchDetail(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_SubmitBatch value) submitBatch,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_SubmitEdit value) submitEdit,
+  }) {
+    return fetchDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_SubmitBatch value)? submitBatch,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_SubmitEdit value)? submitEdit,
+  }) {
+    return fetchDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_SubmitBatch value)? submitBatch,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_SubmitEdit value)? submitEdit,
+    required TResult orElse(),
+  }) {
+    if (fetchDetail != null) {
+      return fetchDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchDetail implements OvertimeEvent {
+  const factory _FetchDetail({required final int id}) = _$FetchDetailImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$FetchDetailImplCopyWith<_$FetchDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SubmitEditImplCopyWith<$Res> {
+  factory _$$SubmitEditImplCopyWith(
+          _$SubmitEditImpl value, $Res Function(_$SubmitEditImpl) then) =
+      __$$SubmitEditImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int id,
+      int approvedId,
+      DateTime dateRegister,
+      bool isProblem,
+      OvertimeAddSlip slip,
+      Map<String, String?>? fileInfo});
+}
+
+/// @nodoc
+class __$$SubmitEditImplCopyWithImpl<$Res>
+    extends _$OvertimeEventCopyWithImpl<$Res, _$SubmitEditImpl>
+    implements _$$SubmitEditImplCopyWith<$Res> {
+  __$$SubmitEditImplCopyWithImpl(
+      _$SubmitEditImpl _value, $Res Function(_$SubmitEditImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? approvedId = null,
+    Object? dateRegister = null,
+    Object? isProblem = null,
+    Object? slip = null,
+    Object? fileInfo = freezed,
+  }) {
+    return _then(_$SubmitEditImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      approvedId: null == approvedId
+          ? _value.approvedId
+          : approvedId // ignore: cast_nullable_to_non_nullable
+              as int,
+      dateRegister: null == dateRegister
+          ? _value.dateRegister
+          : dateRegister // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      isProblem: null == isProblem
+          ? _value.isProblem
+          : isProblem // ignore: cast_nullable_to_non_nullable
+              as bool,
+      slip: null == slip
+          ? _value.slip
+          : slip // ignore: cast_nullable_to_non_nullable
+              as OvertimeAddSlip,
+      fileInfo: freezed == fileInfo
+          ? _value._fileInfo
+          : fileInfo // ignore: cast_nullable_to_non_nullable
+              as Map<String, String?>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SubmitEditImpl implements _SubmitEdit {
+  const _$SubmitEditImpl(
+      {required this.id,
+      required this.approvedId,
+      required this.dateRegister,
+      required this.isProblem,
+      required this.slip,
+      final Map<String, String?>? fileInfo})
+      : _fileInfo = fileInfo;
+
+  @override
+  final int id;
+  @override
+  final int approvedId;
+  @override
+  final DateTime dateRegister;
+  @override
+  final bool isProblem;
+  @override
+  final OvertimeAddSlip slip;
+  final Map<String, String?>? _fileInfo;
+  @override
+  Map<String, String?>? get fileInfo {
+    final value = _fileInfo;
+    if (value == null) return null;
+    if (_fileInfo is EqualUnmodifiableMapView) return _fileInfo;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  String toString() {
+    return 'OvertimeEvent.submitEdit(id: $id, approvedId: $approvedId, dateRegister: $dateRegister, isProblem: $isProblem, slip: $slip, fileInfo: $fileInfo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SubmitEditImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.approvedId, approvedId) ||
+                other.approvedId == approvedId) &&
+            (identical(other.dateRegister, dateRegister) ||
+                other.dateRegister == dateRegister) &&
+            (identical(other.isProblem, isProblem) ||
+                other.isProblem == isProblem) &&
+            (identical(other.slip, slip) || other.slip == slip) &&
+            const DeepCollectionEquality().equals(other._fileInfo, _fileInfo));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, approvedId, dateRegister,
+      isProblem, slip, const DeepCollectionEquality().hash(_fileInfo));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SubmitEditImplCopyWith<_$SubmitEditImpl> get copyWith =>
+      __$$SubmitEditImplCopyWithImpl<_$SubmitEditImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            List<OvertimeAddSlip> slips,
+            Map<String, String?>? fileInfo)
+        submitBatch,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)
+        submitEdit,
+  }) {
+    return submitEdit(id, approvedId, dateRegister, isProblem, slip, fileInfo);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(int approvedId, DateTime dateRegister, bool isProblem,
+            List<OvertimeAddSlip> slips, Map<String, String?>? fileInfo)?
+        submitBatch,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
+  }) {
+    return submitEdit?.call(
+        id, approvedId, dateRegister, isProblem, slip, fileInfo);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(int approvedId, DateTime dateRegister, bool isProblem,
+            List<OvertimeAddSlip> slips, Map<String, String?>? fileInfo)?
+        submitBatch,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
+    required TResult orElse(),
+  }) {
+    if (submitEdit != null) {
+      return submitEdit(
+          id, approvedId, dateRegister, isProblem, slip, fileInfo);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_SubmitBatch value) submitBatch,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_SubmitEdit value) submitEdit,
+  }) {
+    return submitEdit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_SubmitBatch value)? submitBatch,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_SubmitEdit value)? submitEdit,
+  }) {
+    return submitEdit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_SubmitBatch value)? submitBatch,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_SubmitEdit value)? submitEdit,
+    required TResult orElse(),
+  }) {
+    if (submitEdit != null) {
+      return submitEdit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SubmitEdit implements OvertimeEvent {
+  const factory _SubmitEdit(
+      {required final int id,
+      required final int approvedId,
+      required final DateTime dateRegister,
+      required final bool isProblem,
+      required final OvertimeAddSlip slip,
+      final Map<String, String?>? fileInfo}) = _$SubmitEditImpl;
+
+  int get id;
+  int get approvedId;
+  DateTime get dateRegister;
+  bool get isProblem;
+  OvertimeAddSlip get slip;
+  Map<String, String?>? get fileInfo;
+  @JsonKey(ignore: true)
+  _$$SubmitEditImplCopyWith<_$SubmitEditImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

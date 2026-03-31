@@ -38,6 +38,12 @@ abstract class _$OvertimeStateCWProxy {
   OvertimeState isSupplementaryRegistrationOpen(
       bool isSupplementaryRegistrationOpen);
 
+  OvertimeState detailItem(OvertimeDetailItem? detailItem);
+
+  OvertimeState isFetchingDetail(bool isFetchingDetail);
+
+  OvertimeState editSuccess(bool editSuccess);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OvertimeState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -60,6 +66,9 @@ abstract class _$OvertimeStateCWProxy {
     DateTime? dateStart,
     DateTime? dateEnd,
     bool? isSupplementaryRegistrationOpen,
+    OvertimeDetailItem? detailItem,
+    bool? isFetchingDetail,
+    bool? editSuccess,
   });
 }
 
@@ -124,6 +133,17 @@ class _$OvertimeStateCWProxyImpl implements _$OvertimeStateCWProxy {
       this(isSupplementaryRegistrationOpen: isSupplementaryRegistrationOpen);
 
   @override
+  OvertimeState detailItem(OvertimeDetailItem? detailItem) =>
+      this(detailItem: detailItem);
+
+  @override
+  OvertimeState isFetchingDetail(bool isFetchingDetail) =>
+      this(isFetchingDetail: isFetchingDetail);
+
+  @override
+  OvertimeState editSuccess(bool editSuccess) => this(editSuccess: editSuccess);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OvertimeState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -147,6 +167,9 @@ class _$OvertimeStateCWProxyImpl implements _$OvertimeStateCWProxy {
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? isSupplementaryRegistrationOpen = const $CopyWithPlaceholder(),
+    Object? detailItem = const $CopyWithPlaceholder(),
+    Object? isFetchingDetail = const $CopyWithPlaceholder(),
+    Object? editSuccess = const $CopyWithPlaceholder(),
   }) {
     return OvertimeState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -217,6 +240,20 @@ class _$OvertimeStateCWProxyImpl implements _$OvertimeStateCWProxy {
               ? _value.isSupplementaryRegistrationOpen
               // ignore: cast_nullable_to_non_nullable
               : isSupplementaryRegistrationOpen as bool,
+      detailItem: detailItem == const $CopyWithPlaceholder()
+          ? _value.detailItem
+          // ignore: cast_nullable_to_non_nullable
+          : detailItem as OvertimeDetailItem?,
+      isFetchingDetail: isFetchingDetail == const $CopyWithPlaceholder() ||
+              isFetchingDetail == null
+          ? _value.isFetchingDetail
+          // ignore: cast_nullable_to_non_nullable
+          : isFetchingDetail as bool,
+      editSuccess:
+          editSuccess == const $CopyWithPlaceholder() || editSuccess == null
+              ? _value.editSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : editSuccess as bool,
     );
   }
 }

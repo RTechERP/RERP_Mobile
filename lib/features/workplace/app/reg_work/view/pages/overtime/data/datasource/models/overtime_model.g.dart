@@ -42,6 +42,8 @@ _$OvertimeItemImpl _$$OvertimeItemImplFromJson(Map<String, dynamic> json) =>
       fileName: json['FileName'] as String?,
       statusTbpText: json['StatusTBPText'] as String?,
       statusHrText: json['StatusHRText'] as String?,
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      approvedId: (json['ApprovedID'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$OvertimeItemImplToJson(_$OvertimeItemImpl instance) =>
@@ -74,6 +76,8 @@ Map<String, dynamic> _$$OvertimeItemImplToJson(_$OvertimeItemImpl instance) =>
       'FileName': instance.fileName,
       'StatusTBPText': instance.statusTbpText,
       'StatusHRText': instance.statusHrText,
+      'ProjectID': instance.projectId,
+      'ApprovedID': instance.approvedId,
     };
 
 _$ApproverItemImpl _$$ApproverItemImplFromJson(Map<String, dynamic> json) =>
@@ -230,4 +234,80 @@ Map<String, dynamic> _$$OvertimeTypeImplToJson(_$OvertimeTypeImpl instance) =>
       'UpdatedBy': instance.updatedBy,
       'Note': instance.note,
       'IsDeleted': instance.isDeleted,
+    };
+
+_$OvertimeDetailItemImpl _$$OvertimeDetailItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$OvertimeDetailItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      isApprovedTbp: json['IsApprovedTBP'] as bool?,
+      isApprovedHr: json['IsApprovedHR'] as bool?,
+      employeeFullName: json['EmployeeFullName'] as String?,
+      approvedTbp: json['ApprovedTBP'] as String?,
+      approvedHr: json['ApprovedHR'] as String?,
+      dateRegister: json['DateRegister'] == null
+          ? null
+          : DateTime.parse(json['DateRegister'] as String),
+      typeId: (json['TypeID'] as num?)?.toInt(),
+      timeStart: json['TimeStart'] == null
+          ? null
+          : DateTime.parse(json['TimeStart'] as String),
+      endTime: json['EndTime'] == null
+          ? null
+          : DateTime.parse(json['EndTime'] as String),
+      timeReality: (json['TimeReality'] as num?)?.toDouble(),
+      totalTime: (json['TotalTime'] as num?)?.toDouble(),
+      location: (json['Location'] as num?)?.toInt(),
+      locationText: json['LocationText'] as String?,
+      typeName: json['TypeName'] as String?,
+      note: json['Note'] as String?,
+      isApprovedText: json['IsApprovedText'] as String?,
+      reason: json['Reason'] as String?,
+      statusHr: (json['StatusHR'] as num?)?.toInt(),
+      statusTbp: (json['StatusTBP'] as num?)?.toInt(),
+      costOvernight: (json['CostOvernight'] as num?)?.toDouble(),
+      projectName: json['ProjectName'] as String?,
+      reasonDeciline: json['ReasonDeciline'] as String?,
+      overnight: json['Overnight'] as bool?,
+      isProblem: json['IsProblem'] as bool?,
+      fileName: json['FileName'] as String?,
+      statusTbpText: json['StatusTBPText'] as String?,
+      statusHrText: json['StatusHRText'] as String?,
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      approvedId: (json['ApprovedID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$OvertimeDetailItemImplToJson(
+        _$OvertimeDetailItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'IsApprovedTBP': instance.isApprovedTbp,
+      'IsApprovedHR': instance.isApprovedHr,
+      'EmployeeFullName': instance.employeeFullName,
+      'ApprovedTBP': instance.approvedTbp,
+      'ApprovedHR': instance.approvedHr,
+      'DateRegister': instance.dateRegister?.toIso8601String(),
+      'TypeID': instance.typeId,
+      'TimeStart': instance.timeStart?.toIso8601String(),
+      'EndTime': instance.endTime?.toIso8601String(),
+      'TimeReality': instance.timeReality,
+      'TotalTime': instance.totalTime,
+      'Location': instance.location,
+      'LocationText': instance.locationText,
+      'TypeName': instance.typeName,
+      'Note': instance.note,
+      'IsApprovedText': instance.isApprovedText,
+      'Reason': instance.reason,
+      'StatusHR': instance.statusHr,
+      'StatusTBP': instance.statusTbp,
+      'CostOvernight': instance.costOvernight,
+      'ProjectName': instance.projectName,
+      'ReasonDeciline': instance.reasonDeciline,
+      'Overnight': instance.overnight,
+      'IsProblem': instance.isProblem,
+      'FileName': instance.fileName,
+      'StatusTBPText': instance.statusTbpText,
+      'StatusHRText': instance.statusHrText,
+      'ProjectID': instance.projectId,
+      'ApprovedID': instance.approvedId,
     };

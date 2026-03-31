@@ -35,6 +35,8 @@ class OvertimeItem with _$OvertimeItem {
     @JsonKey(name: 'FileName') String? fileName,
     @JsonKey(name: 'StatusTBPText') String? statusTbpText,
     @JsonKey(name: 'StatusHRText') String? statusHrText,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'ApprovedID') int? approvedId,
   }) = _OvertimeItem;
 
   factory OvertimeItem.fromJson(Map<String, dynamic> json) =>
@@ -121,6 +123,44 @@ class OvertimeType with _$OvertimeType {
       _$OvertimeTypeFromJson(json);
 }
 
+@freezed
+class OvertimeDetailItem with _$OvertimeDetailItem {
+  const factory OvertimeDetailItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTbp,
+    @JsonKey(name: 'IsApprovedHR') bool? isApprovedHr,
+    @JsonKey(name: 'EmployeeFullName') String? employeeFullName,
+    @JsonKey(name: 'ApprovedTBP') String? approvedTbp,
+    @JsonKey(name: 'ApprovedHR') String? approvedHr,
+    @JsonKey(name: 'DateRegister') DateTime? dateRegister,
+    @JsonKey(name: 'TypeID') int? typeId,
+    @JsonKey(name: 'TimeStart') DateTime? timeStart,
+    @JsonKey(name: 'EndTime') DateTime? endTime,
+    @JsonKey(name: 'TimeReality') double? timeReality,
+    @JsonKey(name: 'TotalTime') double? totalTime,
+    @JsonKey(name: 'Location') int? location,
+    @JsonKey(name: 'LocationText') String? locationText,
+    @JsonKey(name: 'TypeName') String? typeName,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'IsApprovedText') String? isApprovedText,
+    @JsonKey(name: 'Reason') String? reason,
+    @JsonKey(name: 'StatusHR') int? statusHr,
+    @JsonKey(name: 'StatusTBP') int? statusTbp,
+    @JsonKey(name: 'CostOvernight') double? costOvernight,
+    @JsonKey(name: 'ProjectName') String? projectName,
+    @JsonKey(name: 'ReasonDeciline') String? reasonDeciline,
+    @JsonKey(name: 'Overnight') bool? overnight,
+    @JsonKey(name: 'IsProblem') bool? isProblem,
+    @JsonKey(name: 'FileName') String? fileName,
+    @JsonKey(name: 'StatusTBPText') String? statusTbpText,
+    @JsonKey(name: 'StatusHRText') String? statusHrText,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'ApprovedID') int? approvedId,
+  }) = _OvertimeDetailItem;
+
+  factory OvertimeDetailItem.fromJson(Map<String, dynamic> json) =>
+      _$OvertimeDetailItemFromJson(json);
+}
 /// Một khoảng thời gian làm thêm khi tạo mới phiếu (không freezed — dùng trong event/form).
 class OvertimeAddSlip {
   const OvertimeAddSlip({

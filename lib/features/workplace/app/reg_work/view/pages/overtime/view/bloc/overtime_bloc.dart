@@ -47,6 +47,17 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
         clearSubmitState: () async => _onClearSubmitState(emit),
+        fetchDetail: (id) => _onFetchDetail(emit, id: id),
+        submitEdit: (id, approvedId, dateRegister, isProblem, slip, fileInfo) =>
+            _onSubmitEdit(
+              emit,
+              id: id,
+              approvedId: approvedId,
+              dateRegister: dateRegister,
+              isProblem: isProblem,
+              slip: slip,
+              fileInfo: fileInfo,
+            ),
       );
     });
   }
@@ -485,6 +496,140 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
   }
 
   void _onClearSubmitState(Emitter<OvertimeState> emit) {
-    emit(state.copyWith(submitSuccess: false, message: null));
+    emit(state.copyWith(submitSuccess: false, editSuccess: false, message: null));
+  }
+
+  Future<void> _onFetchDetail(
+    Emitter<OvertimeState> emit, {
+    required int id,
+  }) async {
+    emit(state.copyWith(isFetchingDetail: true, detailItem: null, message: null));
+    try {
+      final res = await _overtimeRepo.getOvertimeById(id);
+      res.fold(
+        (err) {
+          _log.logE('❌ OvertimeBloc fetchDetail failed: $err');
+          emit(state.copyWith(
+            isFetchingDetail: false,
+            message: err.getErrorMessage,
+            status: BaseStateStatus.failed,
+          ));
+        },
+        (item) {
+          _log.logI('✅ OvertimeBloc fetchDetail success: ${item.id}');
+          emit(state.copyWith(isFetchingDetail: false, detailItem: item));
+        },
+      );
+    } catch (e) {
+      _log.logE('❌ OvertimeBloc fetchDetail exception: $e');
+      emit(state.copyWith(
+        isFetchingDetail: false,
+        status: BaseStateStatus.failed,
+        message: 'Không tải được chi tiết đơn',
+      ));
+    }
+  }
+
+  Future<void> _onSubmitEdit(
+    Emitter<OvertimeState> emit, {
+    required int id,
+    required int approvedId,
+    required DateTime dateRegister,
+    required bool isProblem,
+    required OvertimeAddSlip slip,
+    Map<String, String?>? fileInfo,
+  }) async {
+    if (_isSubmittingReport) return;
+    _isSubmittingReport = true;
+    try {
+      emit(state.copyWith(isSubmitting: true, editSuccess: false, message: null));
+
+      int? employeeId = state.employeeId;
+      if (employeeId == null || employeeId <= 0) {
+        final userRes = await _authRepo.getCurrentUser();
+        employeeId = userRes.fold((_) => null, (u) => u?.employeeId);
+      }
+      if (employeeId == null || employeeId <= 0) {
+        emit(state.copyWith(
+          isSubmitting: false,
+          editSuccess: false,
+          status: BaseStateStatus.failed,
+          message: 'Không lấy được ID nhân viên, vui lòng thử lại',
+        ));
+        return;
+      }
+
+      final ts = _normalizeToMinute(slip.timeStart);
+      final te = _normalizeToMinute(slip.endTime);
+      final totalMinutes = te.difference(ts).inMinutes;
+      final timeReality =
+          totalMinutes % 60 == 0 ? totalMinutes ~/ 60 : totalMinutes / 60.0;
+
+      final slipObject = <String, dynamic>{
+        'ID': id,
+        'EmployeeID': employeeId,
+        'ApprovedID': approvedId,
+        'DateRegister': _toLocalIso8601(_normalizeToMinute(dateRegister)),
+        'TimeStart': _toLocalIso8601(ts),
+        'EndTime': _toLocalIso8601(te),
+        'TimeReality': timeReality,
+        'Location': slip.location,
+        'ProjectID': slip.projectId ?? 0,
+        'Overnight': slip.overnight,
+        'CostOvernight': slip.overnight ? 30000 : 0,
+        'TypeID': slip.typeId,
+        'Reason': slip.reason.isEmpty ? ' ' : slip.reason,
+        'IsProblem': isProblem,
+        'IsApproved': false,
+        'IsApprovedHR': false,
+        'ApproveHR': 0,
+        'IsDeleted': false,
+      };
+
+      final payload = <String, dynamic>{
+        'EmployeeOvertimes': [slipObject],
+        'employeeOvertimeFile': <String, dynamic>{
+          'ID': 0,
+          'EmployeeOvertimeID': id,
+          'FileName': fileInfo?['fileName'],
+          'OriginPath': fileInfo?['originPath'],
+          'ServerPath': null,
+        },
+      };
+
+      _log.logI('OvertimeBloc submitEdit ID=$id payload: $payload');
+
+      final saveRes = await _overtimeRepo.saveOvertime(payload: payload);
+      saveRes.fold(
+        (err) {
+          _log.logE('❌ OvertimeBloc submitEdit failed: $err');
+          emit(state.copyWith(
+            isSubmitting: false,
+            editSuccess: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ));
+        },
+        (_) {
+          _log.logI('✅ OvertimeBloc submitEdit success ID=$id');
+          emit(state.copyWith(
+            isSubmitting: false,
+            editSuccess: true,
+            status: BaseStateStatus.success,
+            message: 'Cập nhật đơn làm thêm giờ thành công',
+          ));
+        },
+      );
+    } catch (e) {
+      _log.logE('❌ OvertimeBloc submitEdit exception: $e');
+      emit(state.copyWith(
+        isSubmitting: false,
+        editSuccess: false,
+        status: BaseStateStatus.failed,
+        message: 'Có lỗi xảy ra khi cập nhật dữ liệu',
+      ));
+    } finally {
+      _isSubmittingReport = false;
+    }
   }
 }

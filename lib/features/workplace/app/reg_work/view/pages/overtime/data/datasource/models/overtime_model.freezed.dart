@@ -76,6 +76,10 @@ mixin _$OvertimeItem {
   String? get statusTbpText => throw _privateConstructorUsedError;
   @JsonKey(name: 'StatusHRText')
   String? get statusHrText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedID')
+  int? get approvedId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -117,7 +121,9 @@ abstract class $OvertimeItemCopyWith<$Res> {
       @JsonKey(name: 'IsProblem') bool? isProblem,
       @JsonKey(name: 'FileName') String? fileName,
       @JsonKey(name: 'StatusTBPText') String? statusTbpText,
-      @JsonKey(name: 'StatusHRText') String? statusHrText});
+      @JsonKey(name: 'StatusHRText') String? statusHrText,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ApprovedID') int? approvedId});
 }
 
 /// @nodoc
@@ -161,6 +167,8 @@ class _$OvertimeItemCopyWithImpl<$Res, $Val extends OvertimeItem>
     Object? fileName = freezed,
     Object? statusTbpText = freezed,
     Object? statusHrText = freezed,
+    Object? projectId = freezed,
+    Object? approvedId = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -275,6 +283,14 @@ class _$OvertimeItemCopyWithImpl<$Res, $Val extends OvertimeItem>
           ? _value.statusHrText
           : statusHrText // ignore: cast_nullable_to_non_nullable
               as String?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedId: freezed == approvedId
+          ? _value.approvedId
+          : approvedId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -315,7 +331,9 @@ abstract class _$$OvertimeItemImplCopyWith<$Res>
       @JsonKey(name: 'IsProblem') bool? isProblem,
       @JsonKey(name: 'FileName') String? fileName,
       @JsonKey(name: 'StatusTBPText') String? statusTbpText,
-      @JsonKey(name: 'StatusHRText') String? statusHrText});
+      @JsonKey(name: 'StatusHRText') String? statusHrText,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ApprovedID') int? approvedId});
 }
 
 /// @nodoc
@@ -357,6 +375,8 @@ class __$$OvertimeItemImplCopyWithImpl<$Res>
     Object? fileName = freezed,
     Object? statusTbpText = freezed,
     Object? statusHrText = freezed,
+    Object? projectId = freezed,
+    Object? approvedId = freezed,
   }) {
     return _then(_$OvertimeItemImpl(
       id: null == id
@@ -471,6 +491,14 @@ class __$$OvertimeItemImplCopyWithImpl<$Res>
           ? _value.statusHrText
           : statusHrText // ignore: cast_nullable_to_non_nullable
               as String?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedId: freezed == approvedId
+          ? _value.approvedId
+          : approvedId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -506,7 +534,9 @@ class _$OvertimeItemImpl implements _OvertimeItem {
       @JsonKey(name: 'IsProblem') this.isProblem,
       @JsonKey(name: 'FileName') this.fileName,
       @JsonKey(name: 'StatusTBPText') this.statusTbpText,
-      @JsonKey(name: 'StatusHRText') this.statusHrText});
+      @JsonKey(name: 'StatusHRText') this.statusHrText,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'ApprovedID') this.approvedId});
 
   factory _$OvertimeItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$OvertimeItemImplFromJson(json);
@@ -595,10 +625,16 @@ class _$OvertimeItemImpl implements _OvertimeItem {
   @override
   @JsonKey(name: 'StatusHRText')
   final String? statusHrText;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+  @override
+  @JsonKey(name: 'ApprovedID')
+  final int? approvedId;
 
   @override
   String toString() {
-    return 'OvertimeItem(id: $id, isApprovedTbp: $isApprovedTbp, isApprovedHr: $isApprovedHr, employeeFullName: $employeeFullName, approvedTbp: $approvedTbp, approvedHr: $approvedHr, dateRegister: $dateRegister, typeId: $typeId, timeStart: $timeStart, endTime: $endTime, timeReality: $timeReality, totalTime: $totalTime, location: $location, locationText: $locationText, typeName: $typeName, note: $note, isApprovedText: $isApprovedText, reason: $reason, statusHr: $statusHr, statusTbp: $statusTbp, costOvernight: $costOvernight, projectName: $projectName, reasonDeciline: $reasonDeciline, overnight: $overnight, isProblem: $isProblem, fileName: $fileName, statusTbpText: $statusTbpText, statusHrText: $statusHrText)';
+    return 'OvertimeItem(id: $id, isApprovedTbp: $isApprovedTbp, isApprovedHr: $isApprovedHr, employeeFullName: $employeeFullName, approvedTbp: $approvedTbp, approvedHr: $approvedHr, dateRegister: $dateRegister, typeId: $typeId, timeStart: $timeStart, endTime: $endTime, timeReality: $timeReality, totalTime: $totalTime, location: $location, locationText: $locationText, typeName: $typeName, note: $note, isApprovedText: $isApprovedText, reason: $reason, statusHr: $statusHr, statusTbp: $statusTbp, costOvernight: $costOvernight, projectName: $projectName, reasonDeciline: $reasonDeciline, overnight: $overnight, isProblem: $isProblem, fileName: $fileName, statusTbpText: $statusTbpText, statusHrText: $statusHrText, projectId: $projectId, approvedId: $approvedId)';
   }
 
   @override
@@ -656,7 +692,11 @@ class _$OvertimeItemImpl implements _OvertimeItem {
             (identical(other.statusTbpText, statusTbpText) ||
                 other.statusTbpText == statusTbpText) &&
             (identical(other.statusHrText, statusHrText) ||
-                other.statusHrText == statusHrText));
+                other.statusHrText == statusHrText) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.approvedId, approvedId) ||
+                other.approvedId == approvedId));
   }
 
   @JsonKey(ignore: true)
@@ -690,7 +730,9 @@ class _$OvertimeItemImpl implements _OvertimeItem {
         isProblem,
         fileName,
         statusTbpText,
-        statusHrText
+        statusHrText,
+        projectId,
+        approvedId
       ]);
 
   @JsonKey(ignore: true)
@@ -709,35 +751,36 @@ class _$OvertimeItemImpl implements _OvertimeItem {
 
 abstract class _OvertimeItem implements OvertimeItem {
   const factory _OvertimeItem(
-          {@JsonKey(name: 'ID') required final int id,
-          @JsonKey(name: 'IsApprovedTBP') final bool? isApprovedTbp,
-          @JsonKey(name: 'IsApprovedHR') final bool? isApprovedHr,
-          @JsonKey(name: 'EmployeeFullName') final String? employeeFullName,
-          @JsonKey(name: 'ApprovedTBP') final String? approvedTbp,
-          @JsonKey(name: 'ApprovedHR') final String? approvedHr,
-          @JsonKey(name: 'DateRegister') final DateTime? dateRegister,
-          @JsonKey(name: 'TypeID') final int? typeId,
-          @JsonKey(name: 'TimeStart') final DateTime? timeStart,
-          @JsonKey(name: 'EndTime') final DateTime? endTime,
-          @JsonKey(name: 'TimeReality') final double? timeReality,
-          @JsonKey(name: 'TotalTime') final double? totalTime,
-          @JsonKey(name: 'Location') final int? location,
-          @JsonKey(name: 'LocationText') final String? locationText,
-          @JsonKey(name: 'TypeName') final String? typeName,
-          @JsonKey(name: 'Note') final String? note,
-          @JsonKey(name: 'IsApprovedText') final String? isApprovedText,
-          @JsonKey(name: 'Reason') final String? reason,
-          @JsonKey(name: 'StatusHR') final int? statusHr,
-          @JsonKey(name: 'StatusTBP') final int? statusTbp,
-          @JsonKey(name: 'CostOvernight') final double? costOvernight,
-          @JsonKey(name: 'ProjectName') final String? projectName,
-          @JsonKey(name: 'ReasonDeciline') final String? reasonDeciline,
-          @JsonKey(name: 'Overnight') final bool? overnight,
-          @JsonKey(name: 'IsProblem') final bool? isProblem,
-          @JsonKey(name: 'FileName') final String? fileName,
-          @JsonKey(name: 'StatusTBPText') final String? statusTbpText,
-          @JsonKey(name: 'StatusHRText') final String? statusHrText}) =
-      _$OvertimeItemImpl;
+      {@JsonKey(name: 'ID') required final int id,
+      @JsonKey(name: 'IsApprovedTBP') final bool? isApprovedTbp,
+      @JsonKey(name: 'IsApprovedHR') final bool? isApprovedHr,
+      @JsonKey(name: 'EmployeeFullName') final String? employeeFullName,
+      @JsonKey(name: 'ApprovedTBP') final String? approvedTbp,
+      @JsonKey(name: 'ApprovedHR') final String? approvedHr,
+      @JsonKey(name: 'DateRegister') final DateTime? dateRegister,
+      @JsonKey(name: 'TypeID') final int? typeId,
+      @JsonKey(name: 'TimeStart') final DateTime? timeStart,
+      @JsonKey(name: 'EndTime') final DateTime? endTime,
+      @JsonKey(name: 'TimeReality') final double? timeReality,
+      @JsonKey(name: 'TotalTime') final double? totalTime,
+      @JsonKey(name: 'Location') final int? location,
+      @JsonKey(name: 'LocationText') final String? locationText,
+      @JsonKey(name: 'TypeName') final String? typeName,
+      @JsonKey(name: 'Note') final String? note,
+      @JsonKey(name: 'IsApprovedText') final String? isApprovedText,
+      @JsonKey(name: 'Reason') final String? reason,
+      @JsonKey(name: 'StatusHR') final int? statusHr,
+      @JsonKey(name: 'StatusTBP') final int? statusTbp,
+      @JsonKey(name: 'CostOvernight') final double? costOvernight,
+      @JsonKey(name: 'ProjectName') final String? projectName,
+      @JsonKey(name: 'ReasonDeciline') final String? reasonDeciline,
+      @JsonKey(name: 'Overnight') final bool? overnight,
+      @JsonKey(name: 'IsProblem') final bool? isProblem,
+      @JsonKey(name: 'FileName') final String? fileName,
+      @JsonKey(name: 'StatusTBPText') final String? statusTbpText,
+      @JsonKey(name: 'StatusHRText') final String? statusHrText,
+      @JsonKey(name: 'ProjectID') final int? projectId,
+      @JsonKey(name: 'ApprovedID') final int? approvedId}) = _$OvertimeItemImpl;
 
   factory _OvertimeItem.fromJson(Map<String, dynamic> json) =
       _$OvertimeItemImpl.fromJson;
@@ -826,6 +869,12 @@ abstract class _OvertimeItem implements OvertimeItem {
   @override
   @JsonKey(name: 'StatusHRText')
   String? get statusHrText;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(name: 'ApprovedID')
+  int? get approvedId;
   @override
   @JsonKey(ignore: true)
   _$$OvertimeItemImplCopyWith<_$OvertimeItemImpl> get copyWith =>
@@ -2518,5 +2567,874 @@ abstract class _OvertimeType implements OvertimeType {
   @override
   @JsonKey(ignore: true)
   _$$OvertimeTypeImplCopyWith<_$OvertimeTypeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+OvertimeDetailItem _$OvertimeDetailItemFromJson(Map<String, dynamic> json) {
+  return _OvertimeDetailItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OvertimeDetailItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTbp => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedHR')
+  bool? get isApprovedHr => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeFullName')
+  String? get employeeFullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedTBP')
+  String? get approvedTbp => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedHR')
+  String? get approvedHr => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateRegister')
+  DateTime? get dateRegister => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TypeID')
+  int? get typeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TimeStart')
+  DateTime? get timeStart => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EndTime')
+  DateTime? get endTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TimeReality')
+  double? get timeReality => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalTime')
+  double? get totalTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Location')
+  int? get location => throw _privateConstructorUsedError;
+  @JsonKey(name: 'LocationText')
+  String? get locationText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TypeName')
+  String? get typeName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedText')
+  String? get isApprovedText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Reason')
+  String? get reason => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StatusHR')
+  int? get statusHr => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StatusTBP')
+  int? get statusTbp => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CostOvernight')
+  double? get costOvernight => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectName')
+  String? get projectName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReasonDeciline')
+  String? get reasonDeciline => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Overnight')
+  bool? get overnight => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsProblem')
+  bool? get isProblem => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileName')
+  String? get fileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StatusTBPText')
+  String? get statusTbpText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StatusHRText')
+  String? get statusHrText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedID')
+  int? get approvedId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OvertimeDetailItemCopyWith<OvertimeDetailItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OvertimeDetailItemCopyWith<$Res> {
+  factory $OvertimeDetailItemCopyWith(
+          OvertimeDetailItem value, $Res Function(OvertimeDetailItem) then) =
+      _$OvertimeDetailItemCopyWithImpl<$Res, OvertimeDetailItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTbp,
+      @JsonKey(name: 'IsApprovedHR') bool? isApprovedHr,
+      @JsonKey(name: 'EmployeeFullName') String? employeeFullName,
+      @JsonKey(name: 'ApprovedTBP') String? approvedTbp,
+      @JsonKey(name: 'ApprovedHR') String? approvedHr,
+      @JsonKey(name: 'DateRegister') DateTime? dateRegister,
+      @JsonKey(name: 'TypeID') int? typeId,
+      @JsonKey(name: 'TimeStart') DateTime? timeStart,
+      @JsonKey(name: 'EndTime') DateTime? endTime,
+      @JsonKey(name: 'TimeReality') double? timeReality,
+      @JsonKey(name: 'TotalTime') double? totalTime,
+      @JsonKey(name: 'Location') int? location,
+      @JsonKey(name: 'LocationText') String? locationText,
+      @JsonKey(name: 'TypeName') String? typeName,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'IsApprovedText') String? isApprovedText,
+      @JsonKey(name: 'Reason') String? reason,
+      @JsonKey(name: 'StatusHR') int? statusHr,
+      @JsonKey(name: 'StatusTBP') int? statusTbp,
+      @JsonKey(name: 'CostOvernight') double? costOvernight,
+      @JsonKey(name: 'ProjectName') String? projectName,
+      @JsonKey(name: 'ReasonDeciline') String? reasonDeciline,
+      @JsonKey(name: 'Overnight') bool? overnight,
+      @JsonKey(name: 'IsProblem') bool? isProblem,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'StatusTBPText') String? statusTbpText,
+      @JsonKey(name: 'StatusHRText') String? statusHrText,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ApprovedID') int? approvedId});
+}
+
+/// @nodoc
+class _$OvertimeDetailItemCopyWithImpl<$Res, $Val extends OvertimeDetailItem>
+    implements $OvertimeDetailItemCopyWith<$Res> {
+  _$OvertimeDetailItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? isApprovedTbp = freezed,
+    Object? isApprovedHr = freezed,
+    Object? employeeFullName = freezed,
+    Object? approvedTbp = freezed,
+    Object? approvedHr = freezed,
+    Object? dateRegister = freezed,
+    Object? typeId = freezed,
+    Object? timeStart = freezed,
+    Object? endTime = freezed,
+    Object? timeReality = freezed,
+    Object? totalTime = freezed,
+    Object? location = freezed,
+    Object? locationText = freezed,
+    Object? typeName = freezed,
+    Object? note = freezed,
+    Object? isApprovedText = freezed,
+    Object? reason = freezed,
+    Object? statusHr = freezed,
+    Object? statusTbp = freezed,
+    Object? costOvernight = freezed,
+    Object? projectName = freezed,
+    Object? reasonDeciline = freezed,
+    Object? overnight = freezed,
+    Object? isProblem = freezed,
+    Object? fileName = freezed,
+    Object? statusTbpText = freezed,
+    Object? statusHrText = freezed,
+    Object? projectId = freezed,
+    Object? approvedId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApprovedTbp: freezed == isApprovedTbp
+          ? _value.isApprovedTbp
+          : isApprovedTbp // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isApprovedHr: freezed == isApprovedHr
+          ? _value.isApprovedHr
+          : isApprovedHr // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      employeeFullName: freezed == employeeFullName
+          ? _value.employeeFullName
+          : employeeFullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approvedTbp: freezed == approvedTbp
+          ? _value.approvedTbp
+          : approvedTbp // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approvedHr: freezed == approvedHr
+          ? _value.approvedHr
+          : approvedHr // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateRegister: freezed == dateRegister
+          ? _value.dateRegister
+          : dateRegister // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      typeId: freezed == typeId
+          ? _value.typeId
+          : typeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      timeStart: freezed == timeStart
+          ? _value.timeStart
+          : timeStart // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endTime: freezed == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      timeReality: freezed == timeReality
+          ? _value.timeReality
+          : timeReality // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalTime: freezed == totalTime
+          ? _value.totalTime
+          : totalTime // ignore: cast_nullable_to_non_nullable
+              as double?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as int?,
+      locationText: freezed == locationText
+          ? _value.locationText
+          : locationText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      typeName: freezed == typeName
+          ? _value.typeName
+          : typeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isApprovedText: freezed == isApprovedText
+          ? _value.isApprovedText
+          : isApprovedText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusHr: freezed == statusHr
+          ? _value.statusHr
+          : statusHr // ignore: cast_nullable_to_non_nullable
+              as int?,
+      statusTbp: freezed == statusTbp
+          ? _value.statusTbp
+          : statusTbp // ignore: cast_nullable_to_non_nullable
+              as int?,
+      costOvernight: freezed == costOvernight
+          ? _value.costOvernight
+          : costOvernight // ignore: cast_nullable_to_non_nullable
+              as double?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reasonDeciline: freezed == reasonDeciline
+          ? _value.reasonDeciline
+          : reasonDeciline // ignore: cast_nullable_to_non_nullable
+              as String?,
+      overnight: freezed == overnight
+          ? _value.overnight
+          : overnight // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isProblem: freezed == isProblem
+          ? _value.isProblem
+          : isProblem // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusTbpText: freezed == statusTbpText
+          ? _value.statusTbpText
+          : statusTbpText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusHrText: freezed == statusHrText
+          ? _value.statusHrText
+          : statusHrText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedId: freezed == approvedId
+          ? _value.approvedId
+          : approvedId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$OvertimeDetailItemImplCopyWith<$Res>
+    implements $OvertimeDetailItemCopyWith<$Res> {
+  factory _$$OvertimeDetailItemImplCopyWith(_$OvertimeDetailItemImpl value,
+          $Res Function(_$OvertimeDetailItemImpl) then) =
+      __$$OvertimeDetailItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTbp,
+      @JsonKey(name: 'IsApprovedHR') bool? isApprovedHr,
+      @JsonKey(name: 'EmployeeFullName') String? employeeFullName,
+      @JsonKey(name: 'ApprovedTBP') String? approvedTbp,
+      @JsonKey(name: 'ApprovedHR') String? approvedHr,
+      @JsonKey(name: 'DateRegister') DateTime? dateRegister,
+      @JsonKey(name: 'TypeID') int? typeId,
+      @JsonKey(name: 'TimeStart') DateTime? timeStart,
+      @JsonKey(name: 'EndTime') DateTime? endTime,
+      @JsonKey(name: 'TimeReality') double? timeReality,
+      @JsonKey(name: 'TotalTime') double? totalTime,
+      @JsonKey(name: 'Location') int? location,
+      @JsonKey(name: 'LocationText') String? locationText,
+      @JsonKey(name: 'TypeName') String? typeName,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'IsApprovedText') String? isApprovedText,
+      @JsonKey(name: 'Reason') String? reason,
+      @JsonKey(name: 'StatusHR') int? statusHr,
+      @JsonKey(name: 'StatusTBP') int? statusTbp,
+      @JsonKey(name: 'CostOvernight') double? costOvernight,
+      @JsonKey(name: 'ProjectName') String? projectName,
+      @JsonKey(name: 'ReasonDeciline') String? reasonDeciline,
+      @JsonKey(name: 'Overnight') bool? overnight,
+      @JsonKey(name: 'IsProblem') bool? isProblem,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'StatusTBPText') String? statusTbpText,
+      @JsonKey(name: 'StatusHRText') String? statusHrText,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ApprovedID') int? approvedId});
+}
+
+/// @nodoc
+class __$$OvertimeDetailItemImplCopyWithImpl<$Res>
+    extends _$OvertimeDetailItemCopyWithImpl<$Res, _$OvertimeDetailItemImpl>
+    implements _$$OvertimeDetailItemImplCopyWith<$Res> {
+  __$$OvertimeDetailItemImplCopyWithImpl(_$OvertimeDetailItemImpl _value,
+      $Res Function(_$OvertimeDetailItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? isApprovedTbp = freezed,
+    Object? isApprovedHr = freezed,
+    Object? employeeFullName = freezed,
+    Object? approvedTbp = freezed,
+    Object? approvedHr = freezed,
+    Object? dateRegister = freezed,
+    Object? typeId = freezed,
+    Object? timeStart = freezed,
+    Object? endTime = freezed,
+    Object? timeReality = freezed,
+    Object? totalTime = freezed,
+    Object? location = freezed,
+    Object? locationText = freezed,
+    Object? typeName = freezed,
+    Object? note = freezed,
+    Object? isApprovedText = freezed,
+    Object? reason = freezed,
+    Object? statusHr = freezed,
+    Object? statusTbp = freezed,
+    Object? costOvernight = freezed,
+    Object? projectName = freezed,
+    Object? reasonDeciline = freezed,
+    Object? overnight = freezed,
+    Object? isProblem = freezed,
+    Object? fileName = freezed,
+    Object? statusTbpText = freezed,
+    Object? statusHrText = freezed,
+    Object? projectId = freezed,
+    Object? approvedId = freezed,
+  }) {
+    return _then(_$OvertimeDetailItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApprovedTbp: freezed == isApprovedTbp
+          ? _value.isApprovedTbp
+          : isApprovedTbp // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isApprovedHr: freezed == isApprovedHr
+          ? _value.isApprovedHr
+          : isApprovedHr // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      employeeFullName: freezed == employeeFullName
+          ? _value.employeeFullName
+          : employeeFullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approvedTbp: freezed == approvedTbp
+          ? _value.approvedTbp
+          : approvedTbp // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approvedHr: freezed == approvedHr
+          ? _value.approvedHr
+          : approvedHr // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateRegister: freezed == dateRegister
+          ? _value.dateRegister
+          : dateRegister // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      typeId: freezed == typeId
+          ? _value.typeId
+          : typeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      timeStart: freezed == timeStart
+          ? _value.timeStart
+          : timeStart // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endTime: freezed == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      timeReality: freezed == timeReality
+          ? _value.timeReality
+          : timeReality // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalTime: freezed == totalTime
+          ? _value.totalTime
+          : totalTime // ignore: cast_nullable_to_non_nullable
+              as double?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as int?,
+      locationText: freezed == locationText
+          ? _value.locationText
+          : locationText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      typeName: freezed == typeName
+          ? _value.typeName
+          : typeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isApprovedText: freezed == isApprovedText
+          ? _value.isApprovedText
+          : isApprovedText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusHr: freezed == statusHr
+          ? _value.statusHr
+          : statusHr // ignore: cast_nullable_to_non_nullable
+              as int?,
+      statusTbp: freezed == statusTbp
+          ? _value.statusTbp
+          : statusTbp // ignore: cast_nullable_to_non_nullable
+              as int?,
+      costOvernight: freezed == costOvernight
+          ? _value.costOvernight
+          : costOvernight // ignore: cast_nullable_to_non_nullable
+              as double?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reasonDeciline: freezed == reasonDeciline
+          ? _value.reasonDeciline
+          : reasonDeciline // ignore: cast_nullable_to_non_nullable
+              as String?,
+      overnight: freezed == overnight
+          ? _value.overnight
+          : overnight // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isProblem: freezed == isProblem
+          ? _value.isProblem
+          : isProblem // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusTbpText: freezed == statusTbpText
+          ? _value.statusTbpText
+          : statusTbpText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusHrText: freezed == statusHrText
+          ? _value.statusHrText
+          : statusHrText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedId: freezed == approvedId
+          ? _value.approvedId
+          : approvedId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$OvertimeDetailItemImpl implements _OvertimeDetailItem {
+  const _$OvertimeDetailItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'IsApprovedTBP') this.isApprovedTbp,
+      @JsonKey(name: 'IsApprovedHR') this.isApprovedHr,
+      @JsonKey(name: 'EmployeeFullName') this.employeeFullName,
+      @JsonKey(name: 'ApprovedTBP') this.approvedTbp,
+      @JsonKey(name: 'ApprovedHR') this.approvedHr,
+      @JsonKey(name: 'DateRegister') this.dateRegister,
+      @JsonKey(name: 'TypeID') this.typeId,
+      @JsonKey(name: 'TimeStart') this.timeStart,
+      @JsonKey(name: 'EndTime') this.endTime,
+      @JsonKey(name: 'TimeReality') this.timeReality,
+      @JsonKey(name: 'TotalTime') this.totalTime,
+      @JsonKey(name: 'Location') this.location,
+      @JsonKey(name: 'LocationText') this.locationText,
+      @JsonKey(name: 'TypeName') this.typeName,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'IsApprovedText') this.isApprovedText,
+      @JsonKey(name: 'Reason') this.reason,
+      @JsonKey(name: 'StatusHR') this.statusHr,
+      @JsonKey(name: 'StatusTBP') this.statusTbp,
+      @JsonKey(name: 'CostOvernight') this.costOvernight,
+      @JsonKey(name: 'ProjectName') this.projectName,
+      @JsonKey(name: 'ReasonDeciline') this.reasonDeciline,
+      @JsonKey(name: 'Overnight') this.overnight,
+      @JsonKey(name: 'IsProblem') this.isProblem,
+      @JsonKey(name: 'FileName') this.fileName,
+      @JsonKey(name: 'StatusTBPText') this.statusTbpText,
+      @JsonKey(name: 'StatusHRText') this.statusHrText,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'ApprovedID') this.approvedId});
+
+  factory _$OvertimeDetailItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OvertimeDetailItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'IsApprovedTBP')
+  final bool? isApprovedTbp;
+  @override
+  @JsonKey(name: 'IsApprovedHR')
+  final bool? isApprovedHr;
+  @override
+  @JsonKey(name: 'EmployeeFullName')
+  final String? employeeFullName;
+  @override
+  @JsonKey(name: 'ApprovedTBP')
+  final String? approvedTbp;
+  @override
+  @JsonKey(name: 'ApprovedHR')
+  final String? approvedHr;
+  @override
+  @JsonKey(name: 'DateRegister')
+  final DateTime? dateRegister;
+  @override
+  @JsonKey(name: 'TypeID')
+  final int? typeId;
+  @override
+  @JsonKey(name: 'TimeStart')
+  final DateTime? timeStart;
+  @override
+  @JsonKey(name: 'EndTime')
+  final DateTime? endTime;
+  @override
+  @JsonKey(name: 'TimeReality')
+  final double? timeReality;
+  @override
+  @JsonKey(name: 'TotalTime')
+  final double? totalTime;
+  @override
+  @JsonKey(name: 'Location')
+  final int? location;
+  @override
+  @JsonKey(name: 'LocationText')
+  final String? locationText;
+  @override
+  @JsonKey(name: 'TypeName')
+  final String? typeName;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'IsApprovedText')
+  final String? isApprovedText;
+  @override
+  @JsonKey(name: 'Reason')
+  final String? reason;
+  @override
+  @JsonKey(name: 'StatusHR')
+  final int? statusHr;
+  @override
+  @JsonKey(name: 'StatusTBP')
+  final int? statusTbp;
+  @override
+  @JsonKey(name: 'CostOvernight')
+  final double? costOvernight;
+  @override
+  @JsonKey(name: 'ProjectName')
+  final String? projectName;
+  @override
+  @JsonKey(name: 'ReasonDeciline')
+  final String? reasonDeciline;
+  @override
+  @JsonKey(name: 'Overnight')
+  final bool? overnight;
+  @override
+  @JsonKey(name: 'IsProblem')
+  final bool? isProblem;
+  @override
+  @JsonKey(name: 'FileName')
+  final String? fileName;
+  @override
+  @JsonKey(name: 'StatusTBPText')
+  final String? statusTbpText;
+  @override
+  @JsonKey(name: 'StatusHRText')
+  final String? statusHrText;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+  @override
+  @JsonKey(name: 'ApprovedID')
+  final int? approvedId;
+
+  @override
+  String toString() {
+    return 'OvertimeDetailItem(id: $id, isApprovedTbp: $isApprovedTbp, isApprovedHr: $isApprovedHr, employeeFullName: $employeeFullName, approvedTbp: $approvedTbp, approvedHr: $approvedHr, dateRegister: $dateRegister, typeId: $typeId, timeStart: $timeStart, endTime: $endTime, timeReality: $timeReality, totalTime: $totalTime, location: $location, locationText: $locationText, typeName: $typeName, note: $note, isApprovedText: $isApprovedText, reason: $reason, statusHr: $statusHr, statusTbp: $statusTbp, costOvernight: $costOvernight, projectName: $projectName, reasonDeciline: $reasonDeciline, overnight: $overnight, isProblem: $isProblem, fileName: $fileName, statusTbpText: $statusTbpText, statusHrText: $statusHrText, projectId: $projectId, approvedId: $approvedId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OvertimeDetailItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isApprovedTbp, isApprovedTbp) ||
+                other.isApprovedTbp == isApprovedTbp) &&
+            (identical(other.isApprovedHr, isApprovedHr) ||
+                other.isApprovedHr == isApprovedHr) &&
+            (identical(other.employeeFullName, employeeFullName) ||
+                other.employeeFullName == employeeFullName) &&
+            (identical(other.approvedTbp, approvedTbp) ||
+                other.approvedTbp == approvedTbp) &&
+            (identical(other.approvedHr, approvedHr) ||
+                other.approvedHr == approvedHr) &&
+            (identical(other.dateRegister, dateRegister) ||
+                other.dateRegister == dateRegister) &&
+            (identical(other.typeId, typeId) || other.typeId == typeId) &&
+            (identical(other.timeStart, timeStart) ||
+                other.timeStart == timeStart) &&
+            (identical(other.endTime, endTime) || other.endTime == endTime) &&
+            (identical(other.timeReality, timeReality) ||
+                other.timeReality == timeReality) &&
+            (identical(other.totalTime, totalTime) ||
+                other.totalTime == totalTime) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.locationText, locationText) ||
+                other.locationText == locationText) &&
+            (identical(other.typeName, typeName) ||
+                other.typeName == typeName) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.isApprovedText, isApprovedText) ||
+                other.isApprovedText == isApprovedText) &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.statusHr, statusHr) ||
+                other.statusHr == statusHr) &&
+            (identical(other.statusTbp, statusTbp) ||
+                other.statusTbp == statusTbp) &&
+            (identical(other.costOvernight, costOvernight) ||
+                other.costOvernight == costOvernight) &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName) &&
+            (identical(other.reasonDeciline, reasonDeciline) ||
+                other.reasonDeciline == reasonDeciline) &&
+            (identical(other.overnight, overnight) ||
+                other.overnight == overnight) &&
+            (identical(other.isProblem, isProblem) ||
+                other.isProblem == isProblem) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
+            (identical(other.statusTbpText, statusTbpText) ||
+                other.statusTbpText == statusTbpText) &&
+            (identical(other.statusHrText, statusHrText) ||
+                other.statusHrText == statusHrText) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.approvedId, approvedId) ||
+                other.approvedId == approvedId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        isApprovedTbp,
+        isApprovedHr,
+        employeeFullName,
+        approvedTbp,
+        approvedHr,
+        dateRegister,
+        typeId,
+        timeStart,
+        endTime,
+        timeReality,
+        totalTime,
+        location,
+        locationText,
+        typeName,
+        note,
+        isApprovedText,
+        reason,
+        statusHr,
+        statusTbp,
+        costOvernight,
+        projectName,
+        reasonDeciline,
+        overnight,
+        isProblem,
+        fileName,
+        statusTbpText,
+        statusHrText,
+        projectId,
+        approvedId
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OvertimeDetailItemImplCopyWith<_$OvertimeDetailItemImpl> get copyWith =>
+      __$$OvertimeDetailItemImplCopyWithImpl<_$OvertimeDetailItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OvertimeDetailItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OvertimeDetailItem implements OvertimeDetailItem {
+  const factory _OvertimeDetailItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'IsApprovedTBP') final bool? isApprovedTbp,
+          @JsonKey(name: 'IsApprovedHR') final bool? isApprovedHr,
+          @JsonKey(name: 'EmployeeFullName') final String? employeeFullName,
+          @JsonKey(name: 'ApprovedTBP') final String? approvedTbp,
+          @JsonKey(name: 'ApprovedHR') final String? approvedHr,
+          @JsonKey(name: 'DateRegister') final DateTime? dateRegister,
+          @JsonKey(name: 'TypeID') final int? typeId,
+          @JsonKey(name: 'TimeStart') final DateTime? timeStart,
+          @JsonKey(name: 'EndTime') final DateTime? endTime,
+          @JsonKey(name: 'TimeReality') final double? timeReality,
+          @JsonKey(name: 'TotalTime') final double? totalTime,
+          @JsonKey(name: 'Location') final int? location,
+          @JsonKey(name: 'LocationText') final String? locationText,
+          @JsonKey(name: 'TypeName') final String? typeName,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'IsApprovedText') final String? isApprovedText,
+          @JsonKey(name: 'Reason') final String? reason,
+          @JsonKey(name: 'StatusHR') final int? statusHr,
+          @JsonKey(name: 'StatusTBP') final int? statusTbp,
+          @JsonKey(name: 'CostOvernight') final double? costOvernight,
+          @JsonKey(name: 'ProjectName') final String? projectName,
+          @JsonKey(name: 'ReasonDeciline') final String? reasonDeciline,
+          @JsonKey(name: 'Overnight') final bool? overnight,
+          @JsonKey(name: 'IsProblem') final bool? isProblem,
+          @JsonKey(name: 'FileName') final String? fileName,
+          @JsonKey(name: 'StatusTBPText') final String? statusTbpText,
+          @JsonKey(name: 'StatusHRText') final String? statusHrText,
+          @JsonKey(name: 'ProjectID') final int? projectId,
+          @JsonKey(name: 'ApprovedID') final int? approvedId}) =
+      _$OvertimeDetailItemImpl;
+
+  factory _OvertimeDetailItem.fromJson(Map<String, dynamic> json) =
+      _$OvertimeDetailItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTbp;
+  @override
+  @JsonKey(name: 'IsApprovedHR')
+  bool? get isApprovedHr;
+  @override
+  @JsonKey(name: 'EmployeeFullName')
+  String? get employeeFullName;
+  @override
+  @JsonKey(name: 'ApprovedTBP')
+  String? get approvedTbp;
+  @override
+  @JsonKey(name: 'ApprovedHR')
+  String? get approvedHr;
+  @override
+  @JsonKey(name: 'DateRegister')
+  DateTime? get dateRegister;
+  @override
+  @JsonKey(name: 'TypeID')
+  int? get typeId;
+  @override
+  @JsonKey(name: 'TimeStart')
+  DateTime? get timeStart;
+  @override
+  @JsonKey(name: 'EndTime')
+  DateTime? get endTime;
+  @override
+  @JsonKey(name: 'TimeReality')
+  double? get timeReality;
+  @override
+  @JsonKey(name: 'TotalTime')
+  double? get totalTime;
+  @override
+  @JsonKey(name: 'Location')
+  int? get location;
+  @override
+  @JsonKey(name: 'LocationText')
+  String? get locationText;
+  @override
+  @JsonKey(name: 'TypeName')
+  String? get typeName;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'IsApprovedText')
+  String? get isApprovedText;
+  @override
+  @JsonKey(name: 'Reason')
+  String? get reason;
+  @override
+  @JsonKey(name: 'StatusHR')
+  int? get statusHr;
+  @override
+  @JsonKey(name: 'StatusTBP')
+  int? get statusTbp;
+  @override
+  @JsonKey(name: 'CostOvernight')
+  double? get costOvernight;
+  @override
+  @JsonKey(name: 'ProjectName')
+  String? get projectName;
+  @override
+  @JsonKey(name: 'ReasonDeciline')
+  String? get reasonDeciline;
+  @override
+  @JsonKey(name: 'Overnight')
+  bool? get overnight;
+  @override
+  @JsonKey(name: 'IsProblem')
+  bool? get isProblem;
+  @override
+  @JsonKey(name: 'FileName')
+  String? get fileName;
+  @override
+  @JsonKey(name: 'StatusTBPText')
+  String? get statusTbpText;
+  @override
+  @JsonKey(name: 'StatusHRText')
+  String? get statusHrText;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(name: 'ApprovedID')
+  int? get approvedId;
+  @override
+  @JsonKey(ignore: true)
+  _$$OvertimeDetailItemImplCopyWith<_$OvertimeDetailItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

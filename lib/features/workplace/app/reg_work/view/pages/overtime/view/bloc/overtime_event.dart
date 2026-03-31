@@ -18,4 +18,13 @@ class OvertimeEvent with _$OvertimeEvent {
     required DateTime dateEnd,
   }) = _ChangeDateRange;
   const factory OvertimeEvent.clearSubmitState() = _ClearSubmitState;
+  const factory OvertimeEvent.fetchDetail({required int id}) = _FetchDetail;
+  const factory OvertimeEvent.submitEdit({
+    required int id,
+    required int approvedId,
+    required DateTime dateRegister,
+    required bool isProblem,
+    required OvertimeAddSlip slip,
+    Map<String, String?>? fileInfo,
+  }) = _SubmitEdit;
 }

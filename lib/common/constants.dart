@@ -228,4 +228,8 @@ class ApiEndPoint {
 
   static const String saveOvertime = '/EmployeeOverTime/save-data-employee';
 
+  static const String getOvertimeById = '/EmployeeOverTime/get-by-id';
+
+  static const String getApproverOvertime = '/EmployeeOverTime/get-approver';
+
 }

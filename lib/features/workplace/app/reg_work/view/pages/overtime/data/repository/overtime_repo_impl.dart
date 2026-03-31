@@ -94,4 +94,19 @@ class OvertimeRepoImpl implements OvertimeRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, OvertimeDetailItem>> getOvertimeById(int id) async {
+    try {
+      final res = await _service.getOvertimeById(id);
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

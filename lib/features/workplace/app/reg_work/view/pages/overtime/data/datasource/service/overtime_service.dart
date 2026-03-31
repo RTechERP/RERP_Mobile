@@ -125,4 +125,19 @@ class OvertimeService extends DioBaseApiService {
       parser: (json) => BaseData<void>.fromJson(json, (_) {}),
     );
   }
+
+  Future<BaseData<OvertimeDetailItem>> getOvertimeById(int id) {
+    return get<BaseData<OvertimeDetailItem>>(
+      '${ApiEndPoint.getOvertimeById}?ID=$id',
+      parser: (json) => BaseData<OvertimeDetailItem>.fromJson(
+        json,
+        (data) {
+          // Response: { "employeeOverTime": {...}, "overTimeFile": {...} }
+          final map = data as Map<String, dynamic>;
+          final inner = (map['employeeOverTime'] ?? map) as Map<String, dynamic>;
+          return OvertimeDetailItem.fromJson(inner);
+        },
+      ),
+    );
+  }
 }
