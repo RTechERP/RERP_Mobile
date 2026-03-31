@@ -3,13 +3,16 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_file_picker/form_builder_file_picker.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../../base/widgets/base_scaffold.dart';
-import '../../../../../../../common/app_theme/index.dart';
-import '../../../../../../../common/enums/index.dart';
-import '../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../../base/widgets/base_scaffold.dart';
+import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/enums/index.dart';
+import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../data/datasource/models/overtime_model.dart';
 
 class OvertimeDetailScreenPage extends StatefulWidget {
-  const OvertimeDetailScreenPage({super.key});
+  const OvertimeDetailScreenPage({super.key, this.item});
+
+  final OvertimeItem? item;
 
   @override
   State<OvertimeDetailScreenPage> createState() =>

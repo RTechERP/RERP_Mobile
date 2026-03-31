@@ -219,4 +219,13 @@ class ApiEndPoint {
   static const String saveMultiLeave= '/EmployeeOnLeave/SaveMultiPhase';
 
   static const String getEmployeeLeave = '/Employee';
+
+  static const String getOvertime = '/EmployeeOverTime/get-over-time-by-employee';
+
+  static const String getOvertimeType = '/EmployeeTypeOverTime';
+
+  static const String getOvertimeProject = '/project/get-project-modal';
+
+  static const String saveOvertime = '/EmployeeOverTime/save-data-employee';
+
 }

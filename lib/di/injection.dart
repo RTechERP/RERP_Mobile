@@ -22,6 +22,10 @@ import '../features/workplace/app/reg_work/view/pages/leave/data/datasource/serv
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/view/bloc/leave_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/data/datasource/service/overtime_service.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/data/repository/overtime_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/data/repository/overtime_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/view/bloc/overtime_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/datasource/service/lunch_service.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo_impl.dart';
@@ -114,6 +118,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<LeaveService>(() => LeaveService(getIt<Dio>()));
 
+  getIt.registerLazySingleton<OvertimeService>(
+    () => OvertimeService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(getIt<AuthService>()),
@@ -147,6 +155,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<LeaveRepo>(
     () => LeaveRepoImpl(getIt<LeaveService>()),
+  );
+
+  getIt.registerLazySingleton<OvertimeRepo>(
+    () => OvertimeRepoImpl(getIt<OvertimeService>()),
   );
 
   /// ===== BLOCS =====
@@ -212,5 +224,13 @@ void configureDependencies() {
 
   getIt.registerFactory<LeaveBloc>(
     () => LeaveBloc(getIt<LeaveRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<OvertimeBloc>(
+    () => OvertimeBloc(
+      getIt<OvertimeRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
   );
 }

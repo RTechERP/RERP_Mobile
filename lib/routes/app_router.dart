@@ -43,9 +43,11 @@ import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_d
 import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/overnight_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/overnight_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/overtime/overtime_add_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/overtime/overtime_detail_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/overtime/overtime_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/view/bloc/overtime_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_add_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_detail_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overtime/data/datasource/models/overtime_model.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/bloc/wfh_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_detail_screen.dart';
@@ -220,19 +222,30 @@ class AppRouter {
         ],
       ),
 
-      GoRoute(
-        path: '/regwork/overtime',
-        builder: (context, state) => const OvertimeScreenPage(),
-      ),
-
-      GoRoute(
-        path: '/regwork/overtime/detail',
-        builder: (context, state) => const OvertimeDetailScreenPage(),
-      ),
-
-      GoRoute(
-        path: '/regwork/overtime/add',
-        builder: (context, state) => const OvertimeAddScreenPage(),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<OvertimeBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: '/regwork/overtime',
+            builder: (context, state) => const OvertimeScreenPage(),
+          ),
+          GoRoute(
+            path: '/regwork/overtime/detail',
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is OvertimeItem) {
+                return OvertimeDetailScreenPage(item: extra);
+              }
+              return const OvertimeDetailScreenPage();
+            },
+          ),
+          GoRoute(
+            path: '/regwork/overtime/add',
+            builder: (context, state) => const OvertimeAddScreenPage(),
+          ),
+        ],
       ),
 
       ShellRoute(

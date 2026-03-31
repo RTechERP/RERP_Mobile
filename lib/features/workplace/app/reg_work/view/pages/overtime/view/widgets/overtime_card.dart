@@ -1,0 +1,188 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import '../../../../../../../../../common/enums/index.dart';
+import '../../data/datasource/models/overtime_model.dart';
+
+/// Card hiển thị một đơn tăng ca trong danh sách.
+class OvertimeCard extends StatelessWidget {
+  const OvertimeCard({
+    super.key,
+    required this.item,
+    this.onTap,
+  });
+
+  final OvertimeItem item;
+  final VoidCallback? onTap;
+
+  static final _dateFmt = DateFormat('dd/MM/yyyy');
+  static final _timeFmt = DateFormat('HH:mm');
+
+  /// Có thể xoá / huỷ: cả TBP và HR đều chưa duyệt.
+  static bool canDelete(OvertimeItem item) {
+    final tbpPending = item.isApprovedTbp != true && (item.statusTbp ?? 0) == 0;
+    final hrPending = item.isApprovedHr != true && (item.statusHr ?? 0) == 0;
+    return tbpPending && hrPending;
+  }
+
+  String _formatDate(DateTime? d) =>
+      d == null ? '--/--/----' : _dateFmt.format(d.toLocal());
+
+  String _formatTime(DateTime? d) =>
+      d == null ? '--:--' : _timeFmt.format(d.toLocal());
+
+  ApprovalStatus _mapStatus(bool? isApproved, int? status, String? statusText) {
+    if (isApproved == true) return ApprovalStatus.approved;
+    final text = (statusText ?? '').toLowerCase();
+    if (text.contains('huỷ') || text.contains('hủy') || text.contains('cancel')) {
+      return ApprovalStatus.cancelled;
+    }
+    if (status != null) {
+      if (status == 1) return ApprovalStatus.approved;
+      if (status == 2) return ApprovalStatus.cancelled;
+      if (status == 0) return ApprovalStatus.pending;
+    }
+    return ApprovalStatus.pending;
+  }
+
+  ApprovalStatus _tbpStatus() =>
+      _mapStatus(item.isApprovedTbp, item.statusTbp, item.statusTbpText);
+
+  ApprovalStatus _hrStatus() =>
+      _mapStatus(item.isApprovedHr, item.statusHr, item.statusHrText);
+
+  @override
+  Widget build(BuildContext context) {
+    final tbp = _tbpStatus();
+    final hr = _hrStatus();
+
+    return Material(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(12),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: const Color(0xFFE0E0E0)),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Loại tăng ca: ${item.typeName ?? '—'}',
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    const SizedBox(height: 4),
+                    Text('Ngày: ${_formatDate(item.dateRegister)}'),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Thời gian: ${_formatTime(item.timeStart)} - ${_formatTime(item.endTime)}',
+                    ),
+                    const SizedBox(height: 4),
+                    if (item.totalTime != null)
+                      Text('Số giờ: ${item.totalTime!.toStringAsFixed(1)}'),
+                    if (item.projectName != null && item.projectName!.isNotEmpty) ...[
+                      const SizedBox(height: 4),
+                      Text('Dự án: ${item.projectName}'),
+                    ],
+                  ],
+                ),
+              ),
+              const SizedBox(width: 12),
+              _OvertimeRoleBadges(tbp: tbp, hr: hr),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _OvertimeRoleBadges extends StatelessWidget {
+  const _OvertimeRoleBadges({required this.tbp, required this.hr});
+
+  final ApprovalStatus tbp;
+  final ApprovalStatus hr;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        _OvertimeRoleBadge(role: 'TBP', status: tbp),
+        const SizedBox(height: 6),
+        _OvertimeRoleBadge(role: 'HR', status: hr),
+      ],
+    );
+  }
+}
+
+class _OvertimeRoleBadge extends StatelessWidget {
+  const _OvertimeRoleBadge({required this.role, required this.status});
+
+  final String role;
+  final ApprovalStatus status;
+
+  String get _statusText {
+    switch (status) {
+      case ApprovalStatus.approved:
+        return 'Đã duyệt';
+      case ApprovalStatus.pending:
+        return 'Chờ duyệt';
+      case ApprovalStatus.cancelled:
+        return 'Đã huỷ';
+      case ApprovalStatus.prepare:
+        return '';
+    }
+  }
+
+  Color get _bgColor {
+    switch (status) {
+      case ApprovalStatus.approved:
+        return Colors.green;
+      case ApprovalStatus.pending:
+        return Colors.orange;
+      case ApprovalStatus.cancelled:
+        return Colors.red;
+      case ApprovalStatus.prepare:
+        return const Color(0xFFF5F7F8);
+    }
+  }
+
+  Color get _textColor {
+    switch (status) {
+      case ApprovalStatus.prepare:
+        return Colors.black87;
+      default:
+        return Colors.white;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final label = _statusText.isEmpty ? role : '$role - $_statusText';
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: _bgColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 10,
+          color: _textColor,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+}

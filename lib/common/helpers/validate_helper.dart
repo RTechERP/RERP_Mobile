@@ -14,6 +14,17 @@ typedef LeaveAddSlipRow = ({
   String reason,
 });
 
+/// Một khoảng thời gian làm thêm khi validate form (map từ form).
+typedef OvertimeAddSlipRow = ({
+  DateTime? timeStart,
+  DateTime? endTime,
+  int typeId,
+  int location,
+  int? projectId,
+  bool overnight,
+  String reason,
+});
+
 class ValidateHelper {
   static String? validateLunch({
     required int? quantity,
@@ -1339,6 +1350,127 @@ class ValidateHelper {
       approverIdRaw: approverIdRaw,
       slips: slips,
     );
+  }
+
+  // --- Làm thêm giờ (Overtime add)
+
+  /// Validate tổng hợp form tạo mới làm thêm giờ.
+  ///
+  /// [departmentId]: nếu = 2 (kỹ thuật/dự án) thì dự án là bắt buộc.
+  /// [hasAttachment]: `true` khi đã chọn ít nhất 1 file.
+  static String? validateOvertimeAddSubmit({
+    required String? approverIdRaw,
+    required DateTime? dateRegister,
+    required bool isProblem,
+    required List<OvertimeAddSlipRow> slips,
+    bool hasAttachment = false,
+    int? departmentId,
+  }) {
+    final apTrim = (approverIdRaw ?? '').trim();
+    if (apTrim.isEmpty) return 'Vui lòng chọn người duyệt';
+    final approvedId = int.tryParse(apTrim) ?? 0;
+    if (approvedId <= 0) return 'Người duyệt không hợp lệ';
+
+    if (dateRegister == null) return 'Vui lòng chọn ngày đăng ký';
+
+    if (!isProblem) {
+      final now = DateTime.now();
+      final today = DateTime(now.year, now.month, now.day);
+      final yesterday = today.subtract(const Duration(days: 1));
+      final regDay = DateTime(
+          dateRegister.year, dateRegister.month, dateRegister.day);
+      if (regDay != today && regDay != yesterday) {
+        return 'Ngày đăng ký chỉ được chọn hôm nay hoặc hôm qua';
+      }
+    }
+
+    if (isProblem && !hasAttachment) {
+      return 'Vui lòng đính kèm file khi đăng ký bổ sung';
+    }
+
+    if (slips.isEmpty) return 'Vui lòng thêm ít nhất một khoảng thời gian';
+
+    final dayStart = DateTime(
+        dateRegister.year, dateRegister.month, dateRegister.day);
+    final dayEnd = dayStart.add(const Duration(days: 1));
+    int overnightCount = 0;
+
+    for (var i = 0; i < slips.length; i++) {
+      final s = slips[i];
+      final prefix = 'Phiếu ${i + 1}: ';
+
+      if (s.timeStart == null) return '${prefix}Vui lòng chọn thời gian bắt đầu';
+      if (s.endTime == null) return '${prefix}Vui lòng chọn thời gian kết thúc';
+
+      final ts = s.timeStart!;
+      final te = s.endTime!;
+
+      // timeStart phải nằm trong ngày đăng ký.
+      if (ts.isBefore(dayStart) || !ts.isBefore(dayEnd)) {
+        return '${prefix}Thời gian bắt đầu phải nằm trong ngày đăng ký';
+      }
+      // endTime cho phép qua đêm đến tối đa 5:00 sáng ngày hôm sau.
+      final dayEndOvernight = dayEnd.add(const Duration(hours: 5));
+      if (te.isBefore(dayStart) || te.isAfter(dayEndOvernight)) {
+        return '${prefix}Thời gian kết thúc tối đa đến 5:00 sáng ngày hôm sau';
+      }
+
+      if (!te.isAfter(ts)) {
+        return '${prefix}Thời gian kết thúc phải lớn hơn thời gian bắt đầu';
+      }
+
+      if (s.typeId <= 0) return '${prefix}Vui lòng chọn loại làm thêm';
+      if (s.location <= 0) return '${prefix}Vui lòng chọn địa điểm';
+
+      if (departmentId == 2 && (s.projectId == null || s.projectId! <= 0)) {
+        return '${prefix}Vui lòng chọn dự án';
+      }
+
+      if (s.reason.trim().isEmpty) return '${prefix}Vui lòng nhập lý do';
+
+      if (s.overnight) overnightCount++;
+    }
+
+    if (overnightCount > 1) {
+      return 'Chỉ được chọn một khoảng thời gian hưởng phụ cấp ăn tối';
+    }
+
+    for (var i = 0; i < slips.length; i++) {
+      for (var j = i + 1; j < slips.length; j++) {
+        final a = slips[i];
+        final b = slips[j];
+        if (a.timeStart == null ||
+            a.endTime == null ||
+            b.timeStart == null ||
+            b.endTime == null) continue;
+        if (a.timeStart!.isBefore(b.endTime!) &&
+            b.timeStart!.isBefore(a.endTime!)) {
+          return 'Phiếu ${i + 1} và phiếu ${j + 1} bị trùng thời gian';
+        }
+      }
+    }
+
+    return null;
+  }
+
+  /// `true` khi đủ điều kiện **bật** nút Gửi cho form làm thêm giờ.
+  static bool isOvertimeAddSubmitEnabled({
+    required String? approverIdRaw,
+    required DateTime? dateRegister,
+    required List<OvertimeAddSlipRow> slips,
+  }) {
+    if (dateRegister == null) return false;
+    final ap = int.tryParse((approverIdRaw ?? '').trim()) ?? 0;
+    if (ap <= 0) return false;
+    if (slips.isEmpty) return false;
+    for (final s in slips) {
+      if (s.timeStart == null || s.endTime == null) return false;
+      if (!s.endTime!.isAfter(s.timeStart!)) return false;
+      if (s.typeId <= 0) return false;
+      if (s.location <= 0) return false;
+      if (s.reason.trim().isEmpty) return false;
+    }
+    return true;
   }
 
 }

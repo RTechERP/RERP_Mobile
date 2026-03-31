@@ -635,6 +635,54 @@ class DialogService {
     );
   }
 
+  static Future<void> showNotificationOvertime({
+    required BuildContext context,
+    VoidCallback? onConfirm,
+  }) {
+    return BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      title: "Lưu ý",
+      descriptionWidget: FormLeftBorderCard(
+        icon: Icons.warning_amber_outlined,
+        borderColor: Colors.red,
+        backgroundColor: Colors.red.shade50,
+        borderWidth: 4,
+        child: RichText(
+          text: const TextSpan(
+            style: TextStyle(
+              fontSize: 13,
+              color: Colors.black87,
+              height: 1.4,
+            ),
+            children: [
+              TextSpan(
+                text:
+                '• Thời gian làm thêm không tính thời gian ăn ca, nghỉ giữa giờ, đợi xe, '
+                'ngồi trên xe khi đi công tác (không bao gồm Lái xe).\n\n'
+                '• Thời gian làm thêm tại văn phòng được tính từ 18:00.\n\n'
+                '• Làm thêm đến 20:00 được hưởng phụ cấp ăn tối.\n\n'
+                '• CBNV cần khai báo đúng quy định. Trường hợp quên khai báo công có thể '
+                'khai báo bổ sung. Nếu quên khai báo/chấm công từ 3 lần/tháng sẽ bị trừ 100% PCCC.',
+              ),
+            ],
+          ),
+        ),
+      ),
+      image: Image.asset(
+        AppImages.logo_login,
+        width: 40,
+        height: 40,
+      ),
+      topButtonFunc: () {
+        onBack(context);
+        onConfirm?.call();
+      },
+      bottomButtonFunc: () {
+        onBack(context);
+      },
+    );
+  }
+
   // static Future<dynamic> showRequestStoragePermissionDialog(
   //     BuildContext context,
   //     ) {
