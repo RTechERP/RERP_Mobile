@@ -29,7 +29,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
   TechBloc(this._reportRepo, this._authRepo, this._log)
     : super(TechState.init()) {
-    on<TechEvent>((event, emit) async {
+    on<TechEvent>(
+      (event, emit) async {
       await event.when(
         init: () => _onInit(emit),
 
@@ -121,7 +122,9 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         updateExtraInfo: (problem, problemSolve, backlog, note) =>
             _onUpdateExtraInfo(problem, problemSolve, backlog, note, emit),
       );
-    });
+    },
+      transformer: (events, mapper) => events.asyncExpand(mapper),
+    );
   }
 
   // ================== HANDLERS ==================
@@ -252,12 +255,26 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     final projects = [...state.projects];
     final index = projects.length + 1;
 
+    final dateStr = state.dateStart != null
+        ? DateFormat('yyyy-MM-dd').format(state.dateStart!)
+        : '';
+
+    final emptyWork = TechWork.empty(
+      code: '',
+      projectId: 0,
+      userId: state.userId ?? 0,
+      fullName: state.fullName ?? '',
+      dateReport: dateStr,
+      createdDate: DateTime.now(),
+      projectItemId: 0,
+    );
+
     final newProject = TechProject(
       tempId: const Uuid().v4(),
       projectId: null,
       projectCode: '${'report.project'.tr()} $index',
       name: '${'report.project'.tr()} $index',
-      works: const [],
+      works: [emptyWork],
     );
 
     emit(

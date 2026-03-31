@@ -44,6 +44,7 @@ class _TechAddScreenState
   void initState() {
     super.initState();
     bloc.add(const TechEvent.init());
+    bloc.add(const TechEvent.addEmptyProject());
   }
 
   @override
@@ -200,11 +201,14 @@ class _TechAddScreenState
                                     /// ===== SELECT PROJECT NAME (bind API) =====
                                     if (state.selectedProject != null)
                                       GestureDetector(
+                                        key: ValueKey(
+                                          'project_${state.selectedProject!.tempId}_${state.selectedProject?.projectId}',
+                                        ),
                                         onTap: () {
                                           openSelectBottomSheet(
                                             context: context,
                                             title: 'Chọn dự án',
-                                            items: state.rtcProject, // List<Project>
+                                            items: state.rtcProject,
                                             displayText: (v) =>
                                                 '${v.projectCode} - ${v.projectName}',
                                             onSelected: (v) {
@@ -231,10 +235,12 @@ class _TechAddScreenState
                                                 'tech_add_project_${state.selectedProject!.tempId}',
                                             nameTextField:
                                                 'tech_project_${state.selectedProject!.tempId}',
-                                            label: state.selectedProject?.name ?? '',
+                                            label: 'Chọn dự án',
                                             readOnly: true,
                                             icon: Icons.work_outline,
-                                            initialValue: state.selectedProject!.name,
+                                            initialValue: state.selectedProject!.projectId != null
+                                                ? '${state.selectedProject!.projectCode} - ${state.selectedProject!.name}'
+                                                : null,
                                           ),
                                         ),
                                       ),
