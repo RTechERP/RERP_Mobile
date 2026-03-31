@@ -145,6 +145,7 @@ class _LeaveScreenPageState
             LeaveCard(
               item: item,
               onTap: () => _openLeaveDetail(context, item),
+              showEmployee: state.skipLeaveDateConstraints,
             ),
           );
           continue;
@@ -179,6 +180,7 @@ class _LeaveScreenPageState
             child: Builder(
               builder: (slidableCtx) => LeaveCard(
                 item: item,
+                showEmployee: state.skipLeaveDateConstraints,
                 onTap: () {
                   Slidable.of(slidableCtx)?.close();
                   _openLeaveDetail(context, item);

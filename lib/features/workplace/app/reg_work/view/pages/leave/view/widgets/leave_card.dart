@@ -7,18 +7,19 @@ import 'leave_add_constants.dart';
 
 /// Card đơn nghỉ (layout tương tự [WfhCard]): nội dung + badge BGD / HR / TBP.
 class LeaveCard extends StatelessWidget {
-  const LeaveCard({super.key, required this.item, this.onTap});
+  const LeaveCard({
+    super.key,
+    required this.item,
+    this.onTap,
+    this.showEmployee = false,
+  });
 
   final LeaveItem item;
   final VoidCallback? onTap;
+  /// Admin / HR: hiển thị thêm dòng tên nhân viên trên card.
+  final bool showEmployee;
 
   static final _dateFmt = DateFormat('dd/MM/yyyy');
-
-  ApprovalStatus _mapBoolToStatus(bool? v) {
-    if (v == true) return ApprovalStatus.approved;
-    if (v == false) return ApprovalStatus.pending;
-    return ApprovalStatus.prepare;
-  }
 
   ApprovalStatus _mapHrStatus(int? statusHRNumber, String? statusHRText) {
     final text = (statusHRText ?? '').toLowerCase();
@@ -40,8 +41,6 @@ class LeaveCard extends StatelessWidget {
     return ApprovalStatus.prepare;
   }
 
-  ApprovalStatus _bgdStatus() => _mapBoolToStatus(item.isApprovedBGD);
-
   ApprovalStatus _hrStatus() {
     if (item.isApprovedHR == true) return ApprovalStatus.approved;
     return _mapHrStatus(item.statusHRNumber, item.statusHRText);
@@ -58,6 +57,15 @@ class LeaveCard extends StatelessWidget {
   String _formatDate(DateTime? d) {
     if (d == null) return '--/--/----';
     return _dateFmt.format(d.toLocal());
+  }
+
+  String _employeeLine() {
+    final code = item.code?.trim() ?? '';
+    final name = item.fullName?.trim() ?? '';
+    if (code.isNotEmpty && name.isNotEmpty) return '$code - $name';
+    if (name.isNotEmpty) return name;
+    if (code.isNotEmpty) return code;
+    return 'Nhân viên';
   }
 
   String _typeLine() {
@@ -84,7 +92,6 @@ class LeaveCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bgd = _bgdStatus();
     final hr = _hrStatus();
     final tbp = _tbpStatus();
 
@@ -110,6 +117,16 @@ class LeaveCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        if (showEmployee) ...[
+                          Text(
+                            _employeeLine(),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 13,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                        ],
                         Text(
                           'Loại nghỉ: ${_typeLine()}',
                           style: const TextStyle(fontWeight: FontWeight.w600),

@@ -449,6 +449,13 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         emit(state.copyWith(status: BaseStateStatus.failed));
       },
           (user) async {
+        final resolvedUser = userRes.fold((_) => null, (u) => u);
+        final roles = resolvedUser != null
+            ? RoleResolver.resolve(resolvedUser)
+            : <AppRole>{};
+        final skipDateRules = roles.contains(AppRole.admin) ||
+            roles.contains(AppRole.hr);
+
         final now = DateTime.now();
         final (defaultStart, defaultEnd) = _calendarMonthBounds(now);
 
@@ -493,6 +500,7 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
                 leave: r,
                 dateStart: rangeStart,
                 dateEnd: rangeEnd,
+                skipLeaveDateConstraints: skipDateRules,
               ),
             );
           },
