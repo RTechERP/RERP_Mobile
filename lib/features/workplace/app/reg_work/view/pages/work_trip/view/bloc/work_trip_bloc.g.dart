@@ -48,6 +48,10 @@ abstract class _$WorkTripStateCWProxy {
 
   WorkTripState isEditing(bool isEditing);
 
+  WorkTripState copyData(WorkTripDetailItem? copyData);
+
+  WorkTripState isFetchingCopy(bool isFetchingCopy);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkTripState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -75,6 +79,8 @@ abstract class _$WorkTripStateCWProxy {
     bool? isSupplementaryRegistrationOpen,
     bool? editSuccess,
     bool? isEditing,
+    WorkTripDetailItem? copyData,
+    bool? isFetchingCopy,
   });
 }
 
@@ -157,6 +163,14 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
   WorkTripState isEditing(bool isEditing) => this(isEditing: isEditing);
 
   @override
+  WorkTripState copyData(WorkTripDetailItem? copyData) =>
+      this(copyData: copyData);
+
+  @override
+  WorkTripState isFetchingCopy(bool isFetchingCopy) =>
+      this(isFetchingCopy: isFetchingCopy);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkTripState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -185,6 +199,8 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
     Object? isSupplementaryRegistrationOpen = const $CopyWithPlaceholder(),
     Object? editSuccess = const $CopyWithPlaceholder(),
     Object? isEditing = const $CopyWithPlaceholder(),
+    Object? copyData = const $CopyWithPlaceholder(),
+    Object? isFetchingCopy = const $CopyWithPlaceholder(),
   }) {
     return WorkTripState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -278,6 +294,15 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
           ? _value.isEditing
           // ignore: cast_nullable_to_non_nullable
           : isEditing as bool,
+      copyData: copyData == const $CopyWithPlaceholder()
+          ? _value.copyData
+          // ignore: cast_nullable_to_non_nullable
+          : copyData as WorkTripDetailItem?,
+      isFetchingCopy: isFetchingCopy == const $CopyWithPlaceholder() ||
+              isFetchingCopy == null
+          ? _value.isFetchingCopy
+          // ignore: cast_nullable_to_non_nullable
+          : isFetchingCopy as bool,
     );
   }
 }

@@ -23,7 +23,10 @@ import '../bloc/work_trip_bloc.dart';
 import '../widgets/work_trip_add_constants.dart';
 
 class WorkTripAddScreenPage extends StatefulWidget {
-  const WorkTripAddScreenPage({super.key});
+  const WorkTripAddScreenPage({super.key, this.copyFrom});
+
+  /// Dữ liệu sao chép từ đơn cũ (nếu có).
+  final WorkTripDetailItem? copyFrom;
 
   @override
   State<WorkTripAddScreenPage> createState() => _WorkTripAddScreenPageState();
@@ -51,6 +54,8 @@ class _WorkTripAddScreenPageState
 
   int? _selectedProjectId;
   String _selectedProjectText = '';
+
+  bool _copyApplied = false;
 
   // ── Computed ───────────────────────────────────────────────────────────────
   double get _earlyDepartFee => _workEarly ? 50000.0 : 0.0;
@@ -227,6 +232,62 @@ class _WorkTripAddScreenPageState
     });
   }
 
+  /// Áp dụng dữ liệu sao chép vào form sau khi lookup lists đã được tải.
+  void _applyCopyFrom(WorkTripState state) {
+    final copy = widget.copyFrom;
+    if (copy == null) return;
+    final form = _formKey.currentState;
+    if (form == null) return;
+
+    // Người duyệt
+    try {
+      final approver = state.approvers.firstWhere(
+        (a) => (a.employeeId ?? a.id) == copy.approvedId || a.id == copy.approvedId,
+      );
+      final id = approvedWorkTripPayloadValue(approver);
+      final label = '${approver.code ?? ''} - ${approver.fullName ?? ''}'.trim();
+      form.fields['wt_approver_id']?.didChange(id.toString());
+      form.fields['wt_approver_text']?.didChange(label);
+    } catch (_) {}
+
+    // Địa điểm
+    form.fields['wt_location']?.didChange(copy.location ?? '');
+
+    // Loại công tác
+    try {
+      final type = state.workTripTypes.firstWhere((t) => t.id == copy.typeBusiness);
+      setState(() {
+        _selectedTypeId = type.id;
+        _selectedTypeName = type.typeName ?? '';
+        _selectedTypeCost = type.cost ?? 0;
+      });
+      form.fields['wt_type_id']?.didChange(type.id.toString());
+      form.fields['wt_type_text']?.didChange(type.typeName ?? '');
+    } catch (_) {}
+
+    // Xuất phát trước 7h15
+    final workEarly = copy.workEarly ?? false;
+    setState(() => _workEarly = workEarly);
+    form.fields['wt_work_early']?.didChange(workEarly);
+
+    // Phụ cấp ăn tối
+    final overnightType = copy.overnightType ?? 0;
+    final overnightOpt = kDinnerAllowanceOptions.firstWhere(
+      (o) => o.value == overnightType,
+      orElse: () => kDinnerAllowanceOptions.first,
+    );
+    setState(() {
+      _overnightType = overnightType;
+      _overnightLabel = overnightOpt.label;
+    });
+    form.fields['wt_overnight_type']?.didChange(overnightType.toString());
+    form.fields['wt_overnight_text']?.didChange(overnightOpt.label);
+
+    // Lý do & ghi chú
+    form.fields['wt_reason']?.didChange(copy.reason ?? '');
+    form.fields['wt_note']?.didChange(copy.note ?? '');
+  }
+
   Future<void> _openVehicleDialog() async {
     final vehicles = _vehicleListWithOther();
     final result = await DialogService.showVehicle(
@@ -278,6 +339,7 @@ class _WorkTripAddScreenPageState
     return approverId.isNotEmpty &&
         date != null &&
         _selectedTypeId != null &&
+        (_selectedProjectId != null && _selectedProjectId! > 0) &&
         location.isNotEmpty &&
         reason.isNotEmpty;
   }
@@ -301,7 +363,7 @@ class _WorkTripAddScreenPageState
     if (formState == null) return;
     if (!_computeSubmitEnabled()) {
       context.showMessage(
-        'Vui lòng điền đầy đủ: Người duyệt, Ngày đăng ký, Loại công tác, Địa điểm, Lý do công tác',
+        'Vui lòng điền đầy đủ: Người duyệt, Ngày đăng ký, Dự án, Loại công tác, Địa điểm, Lý do công tác',
         type: SnackBarType.error,
       );
       return;
@@ -358,7 +420,9 @@ class _WorkTripAddScreenPageState
               p.submitSuccess != c.submitSuccess ||
               p.message != c.message ||
               p.status != c.status ||
-              (p.workTripVehicles.isEmpty && c.workTripVehicles.isNotEmpty),
+              (p.workTripVehicles.isEmpty && c.workTripVehicles.isNotEmpty) ||
+              (p.approvers.isEmpty && c.approvers.isNotEmpty) ||
+              (p.workTripTypes.isEmpty && c.workTripTypes.isNotEmpty),
           listener: (context, state) {
             if (state.status == BaseStateStatus.failed &&
                 (state.message ?? '').isNotEmpty &&
@@ -373,9 +437,19 @@ class _WorkTripAddScreenPageState
               context.pop(true);
             }
             // Tự động chọn "Ô tô công ty" khi vehicles được tải lần đầu
-            if (!_defaultVehicleSet &&
-                state.workTripVehicles.isNotEmpty) {
+            if (!_defaultVehicleSet && state.workTripVehicles.isNotEmpty) {
               _setDefaultVehicle(state.workTripVehicles);
+            }
+            // Áp dụng dữ liệu sao chép sau khi lookup lists đã sẵn sàng
+            if (!_copyApplied &&
+                widget.copyFrom != null &&
+                state.approvers.isNotEmpty &&
+                state.workTripTypes.isNotEmpty) {
+              _copyApplied = true;
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (!mounted) return;
+                _applyCopyFrom(state);
+              });
             }
           },
           child: BaseScaffold(

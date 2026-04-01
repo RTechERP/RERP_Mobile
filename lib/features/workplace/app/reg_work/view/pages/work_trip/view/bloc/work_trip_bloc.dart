@@ -42,6 +42,9 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
         clearSubmitState: () async => _onClearSubmitState(emit),
         fetchDetail: (id) => _onFetchDetail(emit, id: id),
         editSubmit: (id, data) => _onEditSubmit(emit, id: id, data: data),
+        fetchCopy: (id) => _onFetchCopy(emit, id: id),
+        clearCopyData: () async =>
+            emit(state.copyWith(copyData: null, isFetchingCopy: false)),
       );
     });
   }
@@ -592,6 +595,37 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
       ));
     } finally {
       _isBusy = false;
+    }
+  }
+
+  Future<void> _onFetchCopy(
+    Emitter<WorkTripState> emit, {
+    required int id,
+  }) async {
+    emit(state.copyWith(isFetchingCopy: true, copyData: null));
+    try {
+      final res = await _workTripRepo.getWorkTripById(id);
+      res.fold(
+        (err) {
+          _log.logE('❌ WorkTripBloc fetchCopy failed: $err');
+          emit(state.copyWith(
+            isFetchingCopy: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ));
+        },
+        (item) {
+          _log.logI('✅ WorkTripBloc fetchCopy success: ${item.id}');
+          emit(state.copyWith(isFetchingCopy: false, copyData: item));
+        },
+      );
+    } catch (e) {
+      _log.logE('❌ WorkTripBloc fetchCopy exception: $e');
+      emit(state.copyWith(
+        isFetchingCopy: false,
+        status: BaseStateStatus.failed,
+        message: 'Không tải được dữ liệu để sao chép',
+      ));
     }
   }
 

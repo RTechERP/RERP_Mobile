@@ -10,10 +10,12 @@ class WorkTripCard extends StatelessWidget {
     super.key,
     required this.item,
     this.onTap,
+    this.onLongPress,
   });
 
   final WorkTripItem item;
   final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
 
   static final _dateFmt = DateFormat('dd/MM/yyyy');
 
@@ -60,6 +62,7 @@ class WorkTripCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: onTap,
+        onLongPress: onLongPress,
         borderRadius: BorderRadius.circular(12),
         child: Container(
           padding: const EdgeInsets.all(12),

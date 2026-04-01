@@ -27,6 +27,8 @@ mixin _$WorkTripEvent {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+    required TResult Function(int id) fetchCopy,
+    required TResult Function() clearCopyData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,6 +41,8 @@ mixin _$WorkTripEvent {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult? Function(int id)? fetchCopy,
+    TResult? Function()? clearCopyData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +55,8 @@ mixin _$WorkTripEvent {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult Function(int id)? fetchCopy,
+    TResult Function()? clearCopyData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +70,8 @@ mixin _$WorkTripEvent {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_FetchCopy value) fetchCopy,
+    required TResult Function(_ClearCopyData value) clearCopyData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +84,8 @@ mixin _$WorkTripEvent {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_FetchCopy value)? fetchCopy,
+    TResult? Function(_ClearCopyData value)? clearCopyData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -88,6 +98,8 @@ mixin _$WorkTripEvent {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_FetchCopy value)? fetchCopy,
+    TResult Function(_ClearCopyData value)? clearCopyData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -157,6 +169,8 @@ class _$InitImpl implements _Init {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+    required TResult Function(int id) fetchCopy,
+    required TResult Function() clearCopyData,
   }) {
     return init();
   }
@@ -172,6 +186,8 @@ class _$InitImpl implements _Init {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult? Function(int id)? fetchCopy,
+    TResult? Function()? clearCopyData,
   }) {
     return init?.call();
   }
@@ -187,6 +203,8 @@ class _$InitImpl implements _Init {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult Function(int id)? fetchCopy,
+    TResult Function()? clearCopyData,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -206,6 +224,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_FetchCopy value) fetchCopy,
+    required TResult Function(_ClearCopyData value) clearCopyData,
   }) {
     return init(this);
   }
@@ -221,6 +241,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_FetchCopy value)? fetchCopy,
+    TResult? Function(_ClearCopyData value)? clearCopyData,
   }) {
     return init?.call(this);
   }
@@ -236,6 +258,8 @@ class _$InitImpl implements _Init {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_FetchCopy value)? fetchCopy,
+    TResult Function(_ClearCopyData value)? clearCopyData,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -296,6 +320,8 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+    required TResult Function(int id) fetchCopy,
+    required TResult Function() clearCopyData,
   }) {
     return initAdd();
   }
@@ -311,6 +337,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult? Function(int id)? fetchCopy,
+    TResult? Function()? clearCopyData,
   }) {
     return initAdd?.call();
   }
@@ -326,6 +354,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult Function(int id)? fetchCopy,
+    TResult Function()? clearCopyData,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -345,6 +375,8 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_FetchCopy value) fetchCopy,
+    required TResult Function(_ClearCopyData value) clearCopyData,
   }) {
     return initAdd(this);
   }
@@ -360,6 +392,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_FetchCopy value)? fetchCopy,
+    TResult? Function(_ClearCopyData value)? clearCopyData,
   }) {
     return initAdd?.call(this);
   }
@@ -375,6 +409,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_FetchCopy value)? fetchCopy,
+    TResult Function(_ClearCopyData value)? clearCopyData,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -461,6 +497,8 @@ class _$SubmitImpl implements _Submit {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+    required TResult Function(int id) fetchCopy,
+    required TResult Function() clearCopyData,
   }) {
     return submit(data);
   }
@@ -476,6 +514,8 @@ class _$SubmitImpl implements _Submit {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult? Function(int id)? fetchCopy,
+    TResult? Function()? clearCopyData,
   }) {
     return submit?.call(data);
   }
@@ -491,6 +531,8 @@ class _$SubmitImpl implements _Submit {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult Function(int id)? fetchCopy,
+    TResult Function()? clearCopyData,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -510,6 +552,8 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_FetchCopy value) fetchCopy,
+    required TResult Function(_ClearCopyData value) clearCopyData,
   }) {
     return submit(this);
   }
@@ -525,6 +569,8 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_FetchCopy value)? fetchCopy,
+    TResult? Function(_ClearCopyData value)? clearCopyData,
   }) {
     return submit?.call(this);
   }
@@ -540,6 +586,8 @@ class _$SubmitImpl implements _Submit {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_FetchCopy value)? fetchCopy,
+    TResult Function(_ClearCopyData value)? clearCopyData,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -632,6 +680,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+    required TResult Function(int id) fetchCopy,
+    required TResult Function() clearCopyData,
   }) {
     return onCancelSubmit(id);
   }
@@ -647,6 +697,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult? Function(int id)? fetchCopy,
+    TResult? Function()? clearCopyData,
   }) {
     return onCancelSubmit?.call(id);
   }
@@ -662,6 +714,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult Function(int id)? fetchCopy,
+    TResult Function()? clearCopyData,
     required TResult orElse(),
   }) {
     if (onCancelSubmit != null) {
@@ -681,6 +735,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_FetchCopy value) fetchCopy,
+    required TResult Function(_ClearCopyData value) clearCopyData,
   }) {
     return onCancelSubmit(this);
   }
@@ -696,6 +752,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_FetchCopy value)? fetchCopy,
+    TResult? Function(_ClearCopyData value)? clearCopyData,
   }) {
     return onCancelSubmit?.call(this);
   }
@@ -711,6 +769,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_FetchCopy value)? fetchCopy,
+    TResult Function(_ClearCopyData value)? clearCopyData,
     required TResult orElse(),
   }) {
     if (onCancelSubmit != null) {
@@ -812,6 +872,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+    required TResult Function(int id) fetchCopy,
+    required TResult Function() clearCopyData,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -827,6 +889,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult? Function(int id)? fetchCopy,
+    TResult? Function()? clearCopyData,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -842,6 +906,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult Function(int id)? fetchCopy,
+    TResult Function()? clearCopyData,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -861,6 +927,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_FetchCopy value) fetchCopy,
+    required TResult Function(_ClearCopyData value) clearCopyData,
   }) {
     return changeDateRange(this);
   }
@@ -876,6 +944,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_FetchCopy value)? fetchCopy,
+    TResult? Function(_ClearCopyData value)? clearCopyData,
   }) {
     return changeDateRange?.call(this);
   }
@@ -891,6 +961,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_FetchCopy value)? fetchCopy,
+    TResult Function(_ClearCopyData value)? clearCopyData,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -959,6 +1031,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+    required TResult Function(int id) fetchCopy,
+    required TResult Function() clearCopyData,
   }) {
     return clearSubmitState();
   }
@@ -974,6 +1048,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult? Function(int id)? fetchCopy,
+    TResult? Function()? clearCopyData,
   }) {
     return clearSubmitState?.call();
   }
@@ -989,6 +1065,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult Function(int id)? fetchCopy,
+    TResult Function()? clearCopyData,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -1008,6 +1086,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_FetchCopy value) fetchCopy,
+    required TResult Function(_ClearCopyData value) clearCopyData,
   }) {
     return clearSubmitState(this);
   }
@@ -1023,6 +1103,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_FetchCopy value)? fetchCopy,
+    TResult? Function(_ClearCopyData value)? clearCopyData,
   }) {
     return clearSubmitState?.call(this);
   }
@@ -1038,6 +1120,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_FetchCopy value)? fetchCopy,
+    TResult Function(_ClearCopyData value)? clearCopyData,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -1124,6 +1208,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+    required TResult Function(int id) fetchCopy,
+    required TResult Function() clearCopyData,
   }) {
     return fetchDetail(id);
   }
@@ -1139,6 +1225,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult? Function(int id)? fetchCopy,
+    TResult? Function()? clearCopyData,
   }) {
     return fetchDetail?.call(id);
   }
@@ -1154,6 +1242,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult Function(int id)? fetchCopy,
+    TResult Function()? clearCopyData,
     required TResult orElse(),
   }) {
     if (fetchDetail != null) {
@@ -1173,6 +1263,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_FetchCopy value) fetchCopy,
+    required TResult Function(_ClearCopyData value) clearCopyData,
   }) {
     return fetchDetail(this);
   }
@@ -1188,6 +1280,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_FetchCopy value)? fetchCopy,
+    TResult? Function(_ClearCopyData value)? clearCopyData,
   }) {
     return fetchDetail?.call(this);
   }
@@ -1203,6 +1297,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_FetchCopy value)? fetchCopy,
+    TResult Function(_ClearCopyData value)? clearCopyData,
     required TResult orElse(),
   }) {
     if (fetchDetail != null) {
@@ -1302,6 +1398,8 @@ class _$EditSubmitImpl implements _EditSubmit {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+    required TResult Function(int id) fetchCopy,
+    required TResult Function() clearCopyData,
   }) {
     return editSubmit(id, data);
   }
@@ -1317,6 +1415,8 @@ class _$EditSubmitImpl implements _EditSubmit {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult? Function(int id)? fetchCopy,
+    TResult? Function()? clearCopyData,
   }) {
     return editSubmit?.call(id, data);
   }
@@ -1332,6 +1432,8 @@ class _$EditSubmitImpl implements _EditSubmit {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult Function(int id)? fetchCopy,
+    TResult Function()? clearCopyData,
     required TResult orElse(),
   }) {
     if (editSubmit != null) {
@@ -1351,6 +1453,8 @@ class _$EditSubmitImpl implements _EditSubmit {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_FetchCopy value) fetchCopy,
+    required TResult Function(_ClearCopyData value) clearCopyData,
   }) {
     return editSubmit(this);
   }
@@ -1366,6 +1470,8 @@ class _$EditSubmitImpl implements _EditSubmit {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_FetchCopy value)? fetchCopy,
+    TResult? Function(_ClearCopyData value)? clearCopyData,
   }) {
     return editSubmit?.call(this);
   }
@@ -1381,6 +1487,8 @@ class _$EditSubmitImpl implements _EditSubmit {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_FetchCopy value)? fetchCopy,
+    TResult Function(_ClearCopyData value)? clearCopyData,
     required TResult orElse(),
   }) {
     if (editSubmit != null) {
@@ -1400,4 +1508,337 @@ abstract class _EditSubmit implements WorkTripEvent {
   @JsonKey(ignore: true)
   _$$EditSubmitImplCopyWith<_$EditSubmitImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchCopyImplCopyWith<$Res> {
+  factory _$$FetchCopyImplCopyWith(
+          _$FetchCopyImpl value, $Res Function(_$FetchCopyImpl) then) =
+      __$$FetchCopyImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$FetchCopyImplCopyWithImpl<$Res>
+    extends _$WorkTripEventCopyWithImpl<$Res, _$FetchCopyImpl>
+    implements _$$FetchCopyImplCopyWith<$Res> {
+  __$$FetchCopyImplCopyWithImpl(
+      _$FetchCopyImpl _value, $Res Function(_$FetchCopyImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$FetchCopyImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchCopyImpl implements _FetchCopy {
+  const _$FetchCopyImpl({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'WorkTripEvent.fetchCopy(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchCopyImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchCopyImplCopyWith<_$FetchCopyImpl> get copyWith =>
+      __$$FetchCopyImplCopyWithImpl<_$FetchCopyImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(WorkTripSubmitData data) submit,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+    required TResult Function(int id) fetchCopy,
+    required TResult Function() clearCopyData,
+  }) {
+    return fetchCopy(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(WorkTripSubmitData data)? submit,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult? Function(int id)? fetchCopy,
+    TResult? Function()? clearCopyData,
+  }) {
+    return fetchCopy?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(WorkTripSubmitData data)? submit,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult Function(int id)? fetchCopy,
+    TResult Function()? clearCopyData,
+    required TResult orElse(),
+  }) {
+    if (fetchCopy != null) {
+      return fetchCopy(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_FetchCopy value) fetchCopy,
+    required TResult Function(_ClearCopyData value) clearCopyData,
+  }) {
+    return fetchCopy(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_FetchCopy value)? fetchCopy,
+    TResult? Function(_ClearCopyData value)? clearCopyData,
+  }) {
+    return fetchCopy?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_FetchCopy value)? fetchCopy,
+    TResult Function(_ClearCopyData value)? clearCopyData,
+    required TResult orElse(),
+  }) {
+    if (fetchCopy != null) {
+      return fetchCopy(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchCopy implements WorkTripEvent {
+  const factory _FetchCopy({required final int id}) = _$FetchCopyImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$FetchCopyImplCopyWith<_$FetchCopyImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearCopyDataImplCopyWith<$Res> {
+  factory _$$ClearCopyDataImplCopyWith(
+          _$ClearCopyDataImpl value, $Res Function(_$ClearCopyDataImpl) then) =
+      __$$ClearCopyDataImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearCopyDataImplCopyWithImpl<$Res>
+    extends _$WorkTripEventCopyWithImpl<$Res, _$ClearCopyDataImpl>
+    implements _$$ClearCopyDataImplCopyWith<$Res> {
+  __$$ClearCopyDataImplCopyWithImpl(
+      _$ClearCopyDataImpl _value, $Res Function(_$ClearCopyDataImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearCopyDataImpl implements _ClearCopyData {
+  const _$ClearCopyDataImpl();
+
+  @override
+  String toString() {
+    return 'WorkTripEvent.clearCopyData()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearCopyDataImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(WorkTripSubmitData data) submit,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+    required TResult Function(int id) fetchCopy,
+    required TResult Function() clearCopyData,
+  }) {
+    return clearCopyData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(WorkTripSubmitData data)? submit,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult? Function(int id)? fetchCopy,
+    TResult? Function()? clearCopyData,
+  }) {
+    return clearCopyData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(WorkTripSubmitData data)? submit,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult Function(int id)? fetchCopy,
+    TResult Function()? clearCopyData,
+    required TResult orElse(),
+  }) {
+    if (clearCopyData != null) {
+      return clearCopyData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_FetchCopy value) fetchCopy,
+    required TResult Function(_ClearCopyData value) clearCopyData,
+  }) {
+    return clearCopyData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_FetchCopy value)? fetchCopy,
+    TResult? Function(_ClearCopyData value)? clearCopyData,
+  }) {
+    return clearCopyData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_FetchCopy value)? fetchCopy,
+    TResult Function(_ClearCopyData value)? clearCopyData,
+    required TResult orElse(),
+  }) {
+    if (clearCopyData != null) {
+      return clearCopyData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearCopyData implements WorkTripEvent {
+  const factory _ClearCopyData() = _$ClearCopyDataImpl;
 }

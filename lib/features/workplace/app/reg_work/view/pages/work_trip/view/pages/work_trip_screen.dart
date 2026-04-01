@@ -52,6 +52,10 @@ class _WorkTripScreenPageState
     }
   }
 
+  void _onLongPress(BuildContext context, WorkTripItem item) {
+    bloc.add(WorkTripEvent.fetchCopy(id: item.id));
+  }
+
   Widget _buildBody(BuildContext context, WorkTripState state) {
     final items = state.workTrips;
     final loading = state.status == BaseStateStatus.loading;
@@ -125,6 +129,7 @@ class _WorkTripScreenPageState
             WorkTripCard(
               item: item,
               onTap: () => _openDetail(context, item),
+              onLongPress: () => _onLongPress(context, item),
             ),
           );
           continue;
@@ -162,6 +167,10 @@ class _WorkTripScreenPageState
                 onTap: () {
                   Slidable.of(slidableCtx)?.close();
                   _openDetail(context, item);
+                },
+                onLongPress: () {
+                  Slidable.of(slidableCtx)?.close();
+                  _onLongPress(context, item);
                 },
               ),
             ),
@@ -202,26 +211,48 @@ class _WorkTripScreenPageState
     final now = DateTime.now();
     final (monthStart, monthEnd) = _calendarMonthBounds(now);
 
-    return BlocListener<WorkTripBloc, WorkTripState>(
-      listenWhen: (prev, curr) =>
-          prev.deleteSuccess != curr.deleteSuccess ||
-          (curr.message != null &&
-              curr.message!.isNotEmpty &&
-              prev.message != curr.message &&
-              !curr.isDeleting),
-      listener: (context, state) {
-        if (state.deleteSuccess) {
-          showMessage(context, 'Xoá thành công', type: SnackBarType.success);
-          return;
-        }
-        if ((state.message ?? '').isNotEmpty) {
-          showMessage(context, state.message!, type: SnackBarType.error);
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<WorkTripBloc, WorkTripState>(
+          listenWhen: (prev, curr) =>
+              prev.deleteSuccess != curr.deleteSuccess ||
+              (curr.message != null &&
+                  curr.message!.isNotEmpty &&
+                  prev.message != curr.message &&
+                  !curr.isDeleting),
+          listener: (context, state) {
+            if (state.deleteSuccess) {
+              showMessage(context, 'Xoá thành công', type: SnackBarType.success);
+              return;
+            }
+            if ((state.message ?? '').isNotEmpty) {
+              showMessage(context, state.message!, type: SnackBarType.error);
+            }
+          },
+        ),
+        BlocListener<WorkTripBloc, WorkTripState>(
+          listenWhen: (prev, curr) =>
+              prev.copyData != curr.copyData && curr.copyData != null,
+          listener: (context, state) async {
+            final copy = state.copyData!;
+            bloc.add(const WorkTripEvent.clearCopyData());
+            final reload = await context.push<bool?>(
+              '/regwork/work_trip/add',
+              extra: copy,
+            );
+            if (!mounted) return;
+            if (reload == true) {
+              bloc.add(const WorkTripEvent.init());
+            }
+          },
+        ),
+      ],
       child: BlocBuilder<WorkTripBloc, WorkTripState>(
         bloc: bloc,
         builder: (context, state) {
-          return BaseScaffold(
+          return Stack(
+            children: [
+              BaseScaffold(
             appBar: AppBarCommon(
               onBackTap: () => context.pop(),
               title: Text(
@@ -267,6 +298,15 @@ class _WorkTripScreenPageState
               child: const Icon(Icons.add, color: Colors.white, size: 28),
             ),
             body: _buildBody(context, state),
+          ),
+              if (state.isFetchingCopy)
+                const Positioned.fill(
+                  child: ColoredBox(
+                    color: Color(0x55000000),
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
+                ),
+            ],
           );
         },
       ),

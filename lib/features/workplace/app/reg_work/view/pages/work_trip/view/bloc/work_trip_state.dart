@@ -27,6 +27,12 @@ class WorkTripState extends BaseBlocState {
   /// Đang cập nhật đơn.
   final bool isEditing;
 
+  /// Dữ liệu chi tiết để sao chép sang trang thêm mới.
+  final WorkTripDetailItem? copyData;
+
+  /// Đang tải dữ liệu sao chép.
+  final bool isFetchingCopy;
+
   const WorkTripState({
     required super.status,
     super.message,
@@ -48,6 +54,8 @@ class WorkTripState extends BaseBlocState {
     this.isSupplementaryRegistrationOpen = false,
     this.editSuccess = false,
     this.isEditing = false,
+    this.copyData,
+    this.isFetchingCopy = false,
   });
 
   factory WorkTripState.init() => const WorkTripState(
@@ -70,6 +78,8 @@ class WorkTripState extends BaseBlocState {
         isSupplementaryRegistrationOpen: false,
         editSuccess: false,
         isEditing: false,
+        copyData: null,
+        isFetchingCopy: false,
       );
 
   @override
@@ -94,5 +104,7 @@ class WorkTripState extends BaseBlocState {
         isSupplementaryRegistrationOpen,
         editSuccess,
         isEditing,
+        copyData,
+        isFetchingCopy,
       ];
 }

@@ -308,7 +308,13 @@ class AppRouter {
           ),
           GoRoute(
             path: '/regwork/work_trip/add',
-            builder: (context, state) => const WorkTripAddScreenPage(),
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is WorkTripDetailItem) {
+                return WorkTripAddScreenPage(copyFrom: extra);
+              }
+              return const WorkTripAddScreenPage();
+            },
           ),
           GoRoute(
             path: '/regwork/work_trip/detail',

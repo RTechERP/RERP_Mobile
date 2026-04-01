@@ -17,4 +17,8 @@ class WorkTripEvent with _$WorkTripEvent {
     required int id,
     required WorkTripSubmitData data,
   }) = _EditSubmit;
+  /// Lấy chi tiết để sao chép sang trang thêm mới.
+  const factory WorkTripEvent.fetchCopy({required int id}) = _FetchCopy;
+  /// Xoá dữ liệu sao chép sau khi đã navigate.
+  const factory WorkTripEvent.clearCopyData() = _ClearCopyData;
 }
