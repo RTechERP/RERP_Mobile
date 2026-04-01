@@ -41,8 +41,8 @@ import '../features/workplace/app/reg_work/view/pages/missed/view/bloc/missed_bl
 import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/overnight/overnight_add_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/overnight/overnight_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overnight/view/pages/overnight_add_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overnight/view/pages/overnight_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/view/bloc/overtime_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_detail_screen.dart';
