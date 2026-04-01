@@ -232,4 +232,15 @@ class ApiEndPoint {
 
   static const String getApproverOvertime = '/EmployeeOverTime/get-approver';
 
+  static const String getWorkTrip = '/EmployeeBussiness/get-employee-bussinesss-person';
+
+  static const String getWorkTripProject ='/project/get-project-modal';
+
+  static const String getWorkTripTypeBussiness = '/EmployeeTypeBussiness';
+
+  static const String getWorkTripTypeVehicle = '/EmployeeVehicleBussiness';
+
+  static const String saveWorkTrip = '/EmployeeBussiness/save-data-employee';
+
+  static const String getWorkTripById = '/EmployeeBussiness/get-by-id';
 }

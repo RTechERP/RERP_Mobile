@@ -42,6 +42,10 @@ import '../features/workplace/app/reg_work/view/pages/wfh/data/datasource/servic
 import '../features/workplace/app/reg_work/view/pages/wfh/data/repository/wfh_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/data/repository/wfh_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/bloc/wfh_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/work_trip/data/datasource/service/work_trip_service.dart';
+import '../features/workplace/app/reg_work/view/pages/work_trip/data/repository/work_trip_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/work_trip/data/repository/work_trip_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/work_trip/view/bloc/work_trip_bloc.dart';
 import '../features/workplace/app/reports/data/datasource/service/report_service.dart';
 import '../features/workplace/app/reports/data/repository/report_repo.dart';
 import '../features/workplace/app/reports/data/repository/report_repo_impl.dart';
@@ -122,6 +126,10 @@ void configureDependencies() {
     () => OvertimeService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<WorkTripService>(
+    () => WorkTripService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(getIt<AuthService>()),
@@ -159,6 +167,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<OvertimeRepo>(
     () => OvertimeRepoImpl(getIt<OvertimeService>()),
+  );
+
+  getIt.registerLazySingleton<WorkTripRepo>(
+    () => WorkTripRepoImpl(getIt<WorkTripService>()),
   );
 
   /// ===== BLOCS =====
@@ -229,6 +241,14 @@ void configureDependencies() {
   getIt.registerFactory<OvertimeBloc>(
     () => OvertimeBloc(
       getIt<OvertimeRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<WorkTripBloc>(
+    () => WorkTripBloc(
+      getIt<WorkTripRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

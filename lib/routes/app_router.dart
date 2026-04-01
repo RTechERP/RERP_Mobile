@@ -11,7 +11,7 @@ import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/view/pa
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/view/pages/lunch_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/view/pages/lunch_detail_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/reg_work_screen.dart';
-import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/work_trip/work_trip_detail_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/work_trip/view/pages/work_trip_detail_screen.dart';
 import 'package:rtc_erp/routes/route_names.dart';
 
 import '../app_init_screen.dart';
@@ -52,8 +52,10 @@ import '../features/workplace/app/reg_work/view/pages/wfh/view/bloc/wfh_bloc.dar
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/work_trip/work_trip_add_screen.dart';
-import '../features/workplace/app/reg_work/view/pages/work_trip/work_trip_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/work_trip/data/datasource/models/work_trip_model.dart';
+import '../features/workplace/app/reg_work/view/pages/work_trip/view/bloc/work_trip_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/work_trip/view/pages/work_trip_add_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/work_trip/view/pages/work_trip_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/bloc/ad_bloc.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_add_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_detail_screen.dart';
@@ -294,19 +296,31 @@ class AppRouter {
         ],
       ),
 
-      GoRoute(
-        path: '/regwork/work_trip',
-        builder: (context, state) => const WorkTripScreen(),
-      ),
-
-      GoRoute(
-        path: '/regwork/work_trip/add',
-        builder: (context, state) => const WorkTripAddScreen(),
-      ),
-
-      GoRoute(
-        path: '/regwork/work_trip/detail',
-        builder: (context, state) => const WorkTripDetailScreen(),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+              value: getIt<WorkTripBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: '/regwork/work_trip',
+            builder: (context, state) => const WorkTripScreenPage(),
+          ),
+          GoRoute(
+            path: '/regwork/work_trip/add',
+            builder: (context, state) => const WorkTripAddScreenPage(),
+          ),
+          GoRoute(
+            path: '/regwork/work_trip/detail',
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is WorkTripItem) {
+                return WorkTripDetailScreen(item: extra);
+              }
+              return const WorkTripDetailScreen();
+            },
+          ),
+        ],
       ),
 
       GoRoute(

@@ -3,14 +3,16 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_file_picker/form_builder_file_picker.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../../base/widgets/base_scaffold.dart';
-import '../../../../../../../common/app_theme/index.dart';
-import '../../../../../../../common/widgets/form/index.dart';
-import '../../../../../../../common/enums/index.dart';
-import 'widgets/work_trip_type.dart';
+import '../../../../../../../../../base/widgets/base_scaffold.dart';
+import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../../common/enums/index.dart';
+import '../../data/datasource/models/work_trip_model.dart';
 
 class WorkTripDetailScreen extends StatefulWidget {
-  const WorkTripDetailScreen({super.key});
+  const WorkTripDetailScreen({super.key, this.item});
+
+  final WorkTripItem? item;
 
   @override
   State<WorkTripDetailScreen> createState() =>
@@ -34,14 +36,6 @@ class _WorkTripDetailScreenState
       debugPrint(_formKey.currentState!.value.toString());
       setState(() => _isEditing = false);
     }
-  }
-
-  int _dinnerFee(int value) => value == 0 ? 0 : 35000;
-
-  String _dinnerLabel(int value) {
-    if (value == 0) return 'Không có';
-    if (value == -1) return 'Theo loại công tác (35.000đ)';
-    return 'Về VP sau 20h (35.000đ)';
   }
 
   @override
@@ -109,30 +103,30 @@ class _WorkTripDetailScreenState
                               icon: Icons
                                   .category_outlined,
                               items: const [
-                                DropdownMenuItem(
-                                  value:
-                                  WorkTripType.day,
-                                  child: Text(
-                                      'Công tác ngày'),
-                                ),
-                                DropdownMenuItem(
-                                  value:
-                                  WorkTripType.night,
-                                  child: Text(
-                                      'Công tác đêm'),
-                                ),
-                                DropdownMenuItem(
-                                  value:
-                                  WorkTripType.near,
-                                  child: Text(
-                                      'Công tác gần'),
-                                ),
-                                DropdownMenuItem(
-                                  value:
-                                  WorkTripType.far,
-                                  child: Text(
-                                      'Công tác xa'),
-                                ),
+                                // DropdownMenuItem(
+                                //   value:
+                                //   WorkTripType.day,
+                                //   child: Text(
+                                //       'Công tác ngày'),
+                                // ),
+                                // DropdownMenuItem(
+                                //   value:
+                                //   WorkTripType.night,
+                                //   child: Text(
+                                //       'Công tác đêm'),
+                                // ),
+                                // DropdownMenuItem(
+                                //   value:
+                                //   WorkTripType.near,
+                                //   child: Text(
+                                //       'Công tác gần'),
+                                // ),
+                                // DropdownMenuItem(
+                                //   value:
+                                //   WorkTripType.far,
+                                //   child: Text(
+                                //       'Công tác xa'),
+                                // ),
                               ],
                             )
                                 : const FormReadonlyField(

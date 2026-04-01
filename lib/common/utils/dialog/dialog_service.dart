@@ -10,6 +10,9 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../features/workplace/app/reg_work/view/pages/work_trip/data/datasource/models/work_trip_model.dart';
+import '../../../features/workplace/app/reg_work/view/pages/work_trip/view/widgets/work_trip_add_constants.dart';
+import '../../../features/workplace/app/reg_work/view/pages/work_trip/view/widgets/work_trip_vehicle_dialog.dart';
 import '../../../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../../../routes/route_names.dart';
 import '../../app_theme/index.dart';
@@ -520,6 +523,19 @@ class DialogService {
       },
     );
   }
+
+  /// Hiển thị dialog chọn phương tiện công tác.
+  /// Trả về [List<WorkTripVehicleEntry>] đã được lưu, hoặc null nếu huỷ.
+  static Future<List<WorkTripVehicleEntry>?> showVehicle({
+    required BuildContext context,
+    required List<WorkTripTypeVehicle> vehicleTypes,
+    List<WorkTripVehicleEntry> initialEntries = const [],
+  }) =>
+      showWorkTripVehicleDialog(
+        context: context,
+        vehicleTypes: vehicleTypes,
+        initialEntries: initialEntries,
+      );
 
   static Future<bool> showConfirmDelete({required BuildContext context}) async {
     bool confirmed = false;
