@@ -44,6 +44,10 @@ abstract class _$WorkTripStateCWProxy {
   WorkTripState isSupplementaryRegistrationOpen(
       bool isSupplementaryRegistrationOpen);
 
+  WorkTripState editSuccess(bool editSuccess);
+
+  WorkTripState isEditing(bool isEditing);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkTripState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -69,6 +73,8 @@ abstract class _$WorkTripStateCWProxy {
     WorkTripDetailItem? detailItem,
     bool? isFetchingDetail,
     bool? isSupplementaryRegistrationOpen,
+    bool? editSuccess,
+    bool? isEditing,
   });
 }
 
@@ -145,6 +151,12 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
       this(isSupplementaryRegistrationOpen: isSupplementaryRegistrationOpen);
 
   @override
+  WorkTripState editSuccess(bool editSuccess) => this(editSuccess: editSuccess);
+
+  @override
+  WorkTripState isEditing(bool isEditing) => this(isEditing: isEditing);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkTripState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -171,6 +183,8 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
     Object? detailItem = const $CopyWithPlaceholder(),
     Object? isFetchingDetail = const $CopyWithPlaceholder(),
     Object? isSupplementaryRegistrationOpen = const $CopyWithPlaceholder(),
+    Object? editSuccess = const $CopyWithPlaceholder(),
+    Object? isEditing = const $CopyWithPlaceholder(),
   }) {
     return WorkTripState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -255,6 +269,15 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
               ? _value.isSupplementaryRegistrationOpen
               // ignore: cast_nullable_to_non_nullable
               : isSupplementaryRegistrationOpen as bool,
+      editSuccess:
+          editSuccess == const $CopyWithPlaceholder() || editSuccess == null
+              ? _value.editSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : editSuccess as bool,
+      isEditing: isEditing == const $CopyWithPlaceholder() || isEditing == null
+          ? _value.isEditing
+          // ignore: cast_nullable_to_non_nullable
+          : isEditing as bool,
     );
   }
 }

@@ -84,7 +84,8 @@ class WorkTripSubmitData {
     required this.location,
     this.projectId,
     required this.costBussiness,
-    required this.vehicles,
+    this.vehicles = const [],
+    this.costVehicleOverride,
     required this.notCheckIn,
     required this.workEarly,
     required this.overnightType,
@@ -104,6 +105,9 @@ class WorkTripSubmitData {
   /// Danh sách phương tiện người dùng chọn.
   final List<WorkTripVehicleEntry> vehicles;
 
+  /// Ghi đè chi phí phương tiện (dùng khi edit mà không thay đổi phương tiện).
+  final double? costVehicleOverride;
+
   final bool notCheckIn;
   final bool workEarly;
   final int overnightType;
@@ -112,8 +116,9 @@ class WorkTripSubmitData {
   final Map<String, String?>? fileInfo;
 
   /// Tổng chi phí phương tiện.
+  /// Nếu có [costVehicleOverride] thì dùng giá trị đó (edit mode giữ nguyên cost cũ).
   double get costVehicle =>
-      vehicles.fold(0.0, (sum, v) => sum + v.cost);
+      costVehicleOverride ?? vehicles.fold(0.0, (sum, v) => sum + v.cost);
 
   bool get hasMotorbike => vehicles.any(
         (v) =>

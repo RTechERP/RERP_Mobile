@@ -85,11 +85,11 @@ class WorkTripCard extends StatelessWidget {
                       const SizedBox(height: 4),
                       Text('Địa điểm: ${item.location}'),
                     ],
-                    if (item.vehicleName != null &&
-                        item.vehicleName!.isNotEmpty) ...[
-                      const SizedBox(height: 4),
-                      Text('Phương tiện: ${item.vehicleName}'),
-                    ],
+                    // if (item.vehicleName != null &&
+                    //     item.vehicleName!.isNotEmpty) ...[
+                    //   const SizedBox(height: 4),
+                    //   Text('Phương tiện: ${item.vehicleName}'),
+                    // ],
                     if (item.totalMoney != null) ...[
                       const SizedBox(height: 4),
                       Text(

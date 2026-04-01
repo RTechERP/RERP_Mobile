@@ -41,6 +41,7 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
             _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
         clearSubmitState: () async => _onClearSubmitState(emit),
         fetchDetail: (id) => _onFetchDetail(emit, id: id),
+        editSubmit: (id, data) => _onEditSubmit(emit, id: id, data: data),
       );
     });
   }
@@ -463,8 +464,135 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
   void _onClearSubmitState(Emitter<WorkTripState> emit) {
     emit(state.copyWith(
       submitSuccess: false,
+      editSuccess: false,
       message: null,
     ));
+  }
+
+  Future<void> _onEditSubmit(
+    Emitter<WorkTripState> emit, {
+    required int id,
+    required WorkTripSubmitData data,
+  }) async {
+    if (_isBusy) return;
+    _isBusy = true;
+
+    try {
+      emit(state.copyWith(
+        isEditing: true,
+        editSuccess: false,
+        message: null,
+      ));
+
+      int? employeeId = state.employeeId;
+      if (employeeId == null || employeeId <= 0) {
+        final userRes = await _authRepo.getCurrentUser();
+        employeeId = userRes.fold((_) => null, (u) => u?.employeeId);
+      }
+      if (employeeId == null || employeeId <= 0) {
+        emit(state.copyWith(
+          isEditing: false,
+          editSuccess: false,
+          status: BaseStateStatus.failed,
+          message: 'Không lấy được ID nhân viên, vui lòng thử lại',
+        ));
+        return;
+      }
+
+      final costWorkEarly = data.workEarly ? 50000.0 : 0.0;
+      final costOvernight = data.overnightType > 0 ? 35000.0 : 0.0;
+      final overnight = data.overnightType > 0;
+      final costVehicle = data.costVehicle;
+      final totalMoney =
+          data.costBussiness + costVehicle + costWorkEarly + costOvernight;
+
+      final dayStr = _toLocalIso8601(_normalizeToMinute(data.dayBussiness));
+
+      final bussinessObject = <String, dynamic>{
+        'ID': id,
+        'EmployeeID': employeeId,
+        'ApprovedID': data.approvedId,
+        'DayBussiness': dayStr,
+        'TypeBusiness': data.typeBusiness,
+        'Location': data.location.isEmpty ? ' ' : data.location,
+        'VehicleID': 0,
+        'ProjectID': data.projectId ?? 0,
+        'CostVehicle': costVehicle,
+        'CostBussiness': data.costBussiness,
+        'TotalMoney': totalMoney,
+        'NotChekIn': data.notCheckIn,
+        'Note': data.note.isEmpty ? ' ' : data.note,
+        'Overnight': overnight,
+        'CostOvernight': costOvernight,
+        'WorkEarly': data.workEarly,
+        'CostWorkEarly': costWorkEarly,
+        'OvernightType': data.overnightType,
+        'IsProblem': data.isProblem,
+        'Reason': data.reason.isEmpty ? ' ' : data.reason,
+      };
+
+      final payload = <String, dynamic>{
+        'employeeBussiness': bussinessObject,
+        'employeeBussinessFiles':
+            data.fileInfo != null
+                ? <String, dynamic>{
+                    'ID': 0,
+                    'EmployeeBussinesID': id,
+                    'FileName': data.fileInfo?['fileName'],
+                    'OriginPath': data.fileInfo?['originPath'],
+                    'ServerPath': null,
+                  }
+                : null,
+      };
+
+      if (data.needsVehicleRecord) {
+        final v = data.vehicleRecord!;
+        final vehicleRecordTypeId = v.vehicleTypeId < 0 ? 0 : v.vehicleTypeId;
+        payload['employeeBussinessVehicle'] = <String, dynamic>{
+          'ID': 0,
+          'EmployeeBussinesID': id,
+          'EmployeeVehicleBussinessID': vehicleRecordTypeId,
+          'Cost': v.cost,
+          'BillImage': '',
+          'Note': v.note,
+          'VehicleName': v.displayName,
+        };
+      }
+
+      _log.logI('WorkTripBloc editSubmit payload: $payload');
+
+      final saveRes = await _workTripRepo.saveWorkTrip(payload: payload);
+      saveRes.fold(
+        (err) {
+          _log.logE('❌ WorkTripBloc editSubmit failed: $err');
+          emit(state.copyWith(
+            isEditing: false,
+            editSuccess: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ));
+        },
+        (_) {
+          _log.logI('✅ WorkTripBloc editSubmit success');
+          emit(state.copyWith(
+            isEditing: false,
+            editSuccess: true,
+            status: BaseStateStatus.success,
+            message: 'Cập nhật đơn công tác thành công',
+          ));
+        },
+      );
+    } catch (e) {
+      _log.logE('❌ WorkTripBloc editSubmit exception: $e');
+      emit(state.copyWith(
+        isEditing: false,
+        editSuccess: false,
+        status: BaseStateStatus.failed,
+        message: 'Có lỗi xảy ra khi cập nhật',
+      ));
+    } finally {
+      _isBusy = false;
+    }
   }
 
   Future<void> _onFetchDetail(

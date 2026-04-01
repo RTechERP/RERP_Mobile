@@ -13,4 +13,8 @@ class WorkTripEvent with _$WorkTripEvent {
   }) = _ChangeDateRange;
   const factory WorkTripEvent.clearSubmitState() = _ClearSubmitState;
   const factory WorkTripEvent.fetchDetail({required int id}) = _FetchDetail;
+  const factory WorkTripEvent.editSubmit({
+    required int id,
+    required WorkTripSubmitData data,
+  }) = _EditSubmit;
 }

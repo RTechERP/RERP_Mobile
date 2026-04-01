@@ -21,6 +21,12 @@ class WorkTripState extends BaseBlocState {
   /// Nhân sự đã mở cổng đăng ký bổ sung hay chưa.
   final bool isSupplementaryRegistrationOpen;
 
+  /// Cập nhật đơn thành công.
+  final bool editSuccess;
+
+  /// Đang cập nhật đơn.
+  final bool isEditing;
+
   const WorkTripState({
     required super.status,
     super.message,
@@ -40,6 +46,8 @@ class WorkTripState extends BaseBlocState {
     this.detailItem,
     this.isFetchingDetail = false,
     this.isSupplementaryRegistrationOpen = false,
+    this.editSuccess = false,
+    this.isEditing = false,
   });
 
   factory WorkTripState.init() => const WorkTripState(
@@ -60,6 +68,8 @@ class WorkTripState extends BaseBlocState {
         detailItem: null,
         isFetchingDetail: false,
         isSupplementaryRegistrationOpen: false,
+        editSuccess: false,
+        isEditing: false,
       );
 
   @override
@@ -82,5 +92,7 @@ class WorkTripState extends BaseBlocState {
         detailItem,
         isFetchingDetail,
         isSupplementaryRegistrationOpen,
+        editSuccess,
+        isEditing,
       ];
 }

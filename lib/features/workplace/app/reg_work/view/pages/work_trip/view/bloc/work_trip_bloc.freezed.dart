@@ -26,6 +26,7 @@ mixin _$WorkTripEvent {
         changeDateRange,
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
+    required TResult Function(int id, WorkTripSubmitData data) editSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,6 +38,7 @@ mixin _$WorkTripEvent {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
+    TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -48,6 +50,7 @@ mixin _$WorkTripEvent {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
+    TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +63,7 @@ mixin _$WorkTripEvent {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,6 +75,7 @@ mixin _$WorkTripEvent {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +87,7 @@ mixin _$WorkTripEvent {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,6 +156,7 @@ class _$InitImpl implements _Init {
         changeDateRange,
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
+    required TResult Function(int id, WorkTripSubmitData data) editSubmit,
   }) {
     return init();
   }
@@ -164,6 +171,7 @@ class _$InitImpl implements _Init {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
+    TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
   }) {
     return init?.call();
   }
@@ -178,6 +186,7 @@ class _$InitImpl implements _Init {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
+    TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -196,6 +205,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return init(this);
   }
@@ -210,6 +220,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return init?.call(this);
   }
@@ -224,6 +235,7 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -283,6 +295,7 @@ class _$InitAddImpl implements _InitAdd {
         changeDateRange,
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
+    required TResult Function(int id, WorkTripSubmitData data) editSubmit,
   }) {
     return initAdd();
   }
@@ -297,6 +310,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
+    TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
   }) {
     return initAdd?.call();
   }
@@ -311,6 +325,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
+    TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -329,6 +344,7 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return initAdd(this);
   }
@@ -343,6 +359,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return initAdd?.call(this);
   }
@@ -357,6 +374,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -442,6 +460,7 @@ class _$SubmitImpl implements _Submit {
         changeDateRange,
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
+    required TResult Function(int id, WorkTripSubmitData data) editSubmit,
   }) {
     return submit(data);
   }
@@ -456,6 +475,7 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
+    TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
   }) {
     return submit?.call(data);
   }
@@ -470,6 +490,7 @@ class _$SubmitImpl implements _Submit {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
+    TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -488,6 +509,7 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return submit(this);
   }
@@ -502,6 +524,7 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return submit?.call(this);
   }
@@ -516,6 +539,7 @@ class _$SubmitImpl implements _Submit {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -607,6 +631,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
         changeDateRange,
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
+    required TResult Function(int id, WorkTripSubmitData data) editSubmit,
   }) {
     return onCancelSubmit(id);
   }
@@ -621,6 +646,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
+    TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
   }) {
     return onCancelSubmit?.call(id);
   }
@@ -635,6 +661,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
+    TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     required TResult orElse(),
   }) {
     if (onCancelSubmit != null) {
@@ -653,6 +680,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return onCancelSubmit(this);
   }
@@ -667,6 +695,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return onCancelSubmit?.call(this);
   }
@@ -681,6 +710,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (onCancelSubmit != null) {
@@ -781,6 +811,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         changeDateRange,
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
+    required TResult Function(int id, WorkTripSubmitData data) editSubmit,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -795,6 +826,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
+    TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -809,6 +841,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
+    TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -827,6 +860,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return changeDateRange(this);
   }
@@ -841,6 +875,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return changeDateRange?.call(this);
   }
@@ -855,6 +890,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -922,6 +958,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
         changeDateRange,
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
+    required TResult Function(int id, WorkTripSubmitData data) editSubmit,
   }) {
     return clearSubmitState();
   }
@@ -936,6 +973,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
+    TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
   }) {
     return clearSubmitState?.call();
   }
@@ -950,6 +988,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
+    TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -968,6 +1007,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return clearSubmitState(this);
   }
@@ -982,6 +1022,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return clearSubmitState?.call(this);
   }
@@ -996,6 +1037,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -1081,6 +1123,7 @@ class _$FetchDetailImpl implements _FetchDetail {
         changeDateRange,
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
+    required TResult Function(int id, WorkTripSubmitData data) editSubmit,
   }) {
     return fetchDetail(id);
   }
@@ -1095,6 +1138,7 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
+    TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
   }) {
     return fetchDetail?.call(id);
   }
@@ -1109,6 +1153,7 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
+    TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     required TResult orElse(),
   }) {
     if (fetchDetail != null) {
@@ -1127,6 +1172,7 @@ class _$FetchDetailImpl implements _FetchDetail {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return fetchDetail(this);
   }
@@ -1141,6 +1187,7 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return fetchDetail?.call(this);
   }
@@ -1155,6 +1202,7 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (fetchDetail != null) {
@@ -1170,5 +1218,186 @@ abstract class _FetchDetail implements WorkTripEvent {
   int get id;
   @JsonKey(ignore: true)
   _$$FetchDetailImplCopyWith<_$FetchDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditSubmitImplCopyWith<$Res> {
+  factory _$$EditSubmitImplCopyWith(
+          _$EditSubmitImpl value, $Res Function(_$EditSubmitImpl) then) =
+      __$$EditSubmitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id, WorkTripSubmitData data});
+}
+
+/// @nodoc
+class __$$EditSubmitImplCopyWithImpl<$Res>
+    extends _$WorkTripEventCopyWithImpl<$Res, _$EditSubmitImpl>
+    implements _$$EditSubmitImplCopyWith<$Res> {
+  __$$EditSubmitImplCopyWithImpl(
+      _$EditSubmitImpl _value, $Res Function(_$EditSubmitImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? data = null,
+  }) {
+    return _then(_$EditSubmitImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as WorkTripSubmitData,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EditSubmitImpl implements _EditSubmit {
+  const _$EditSubmitImpl({required this.id, required this.data});
+
+  @override
+  final int id;
+  @override
+  final WorkTripSubmitData data;
+
+  @override
+  String toString() {
+    return 'WorkTripEvent.editSubmit(id: $id, data: $data)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditSubmitImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditSubmitImplCopyWith<_$EditSubmitImpl> get copyWith =>
+      __$$EditSubmitImplCopyWithImpl<_$EditSubmitImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(WorkTripSubmitData data) submit,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+  }) {
+    return editSubmit(id, data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(WorkTripSubmitData data)? submit,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+  }) {
+    return editSubmit?.call(id, data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(WorkTripSubmitData data)? submit,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (editSubmit != null) {
+      return editSubmit(id, data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_EditSubmit value) editSubmit,
+  }) {
+    return editSubmit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_EditSubmit value)? editSubmit,
+  }) {
+    return editSubmit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_EditSubmit value)? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (editSubmit != null) {
+      return editSubmit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EditSubmit implements WorkTripEvent {
+  const factory _EditSubmit(
+      {required final int id,
+      required final WorkTripSubmitData data}) = _$EditSubmitImpl;
+
+  int get id;
+  WorkTripSubmitData get data;
+  @JsonKey(ignore: true)
+  _$$EditSubmitImplCopyWith<_$EditSubmitImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
