@@ -24,7 +24,7 @@ class OverNightService extends DioBaseApiService {
                 .toList();
           }
           final list =
-              (data as Map<String, dynamic>?)?['data'] as List? ?? [];
+              (data as Map<String, dynamic>?)?['nightShiftdata'] as List? ?? [];
           return list
               .map((e) => OvernightItem.fromJson(e as Map<String, dynamic>))
               .toList();

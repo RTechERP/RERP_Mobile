@@ -74,24 +74,15 @@ class OvernightCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Ca qua đêm',
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                    const SizedBox(height: 4),
                     Text('Ngày: ${_formatDate(item.dateRegister)}'),
                     const SizedBox(height: 4),
                     Text(
                       'Thời gian: ${_formatTime(item.dateStart)} - ${_formatTime(item.dateEnd)}',
                     ),
-                    if (item.totalHours != null) ...[
+                    if (item.workTime != null) ...[
                       const SizedBox(height: 4),
                       Text(
-                          'Tổng giờ: ${item.totalHours!.toStringAsFixed(2)}'),
-                    ],
-                    if (item.location != null && item.location!.isNotEmpty) ...[
-                      const SizedBox(height: 4),
-                      Text('Địa điểm: ${item.location}'),
+                          'Số giờ làm: ${item.workTime!.toStringAsFixed(2)}'),
                     ],
                   ],
                 ),

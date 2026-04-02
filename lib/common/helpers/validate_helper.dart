@@ -20,6 +20,7 @@ typedef OvernightAddSlipRow = ({
   DateTime? timeStart,
   DateTime? timeEnd,
   double breakHours,
+  String location,
 });
 
 /// Một khoảng thời gian làm thêm khi validate form (map từ form).
@@ -1571,6 +1572,10 @@ class ValidateHelper {
       return '$label Tổng giờ làm việc không được vượt quá ${overnightMaxTotalHours.toInt()} tiếng.';
     }
 
+    if (slip.location.trim().isEmpty) {
+      return '$label Vui lòng nhập địa điểm.';
+    }
+
     return null;
   }
 
@@ -1604,7 +1609,6 @@ class ValidateHelper {
     return null;
   }
 
-  /// `true` khi đủ điều kiện **bật** nút Gửi cho form làm đêm.
   static bool isOvernightAddSubmitEnabled({
     required String? approverIdRaw,
     required List<OvernightAddSlipRow> slips,
@@ -1614,6 +1618,8 @@ class ValidateHelper {
     if (slips.isEmpty) return false;
     for (final s in slips) {
       if (s.timeStart == null || s.timeEnd == null) return false;
+      if (s.location.trim().isEmpty) return false;
+      if (s.breakHours < 0) return false;
     }
     return true;
   }

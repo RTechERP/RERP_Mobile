@@ -428,71 +428,65 @@ class OvernightBloc extends BaseBloc<OvernightEvent, OvernightState> {
     if (_isSubmittingReport) return;
     _isSubmittingReport = true;
 
-    // try {
-    //   emit(
-    //     state.copyWith(
-    //       isDeleting: true,
-    //       deleteSuccess: false,
-    //       status: BaseStateStatus.loading,
-    //       message: null,
-    //     ),
-    //   );
-    //
-    //   final payload = <String, dynamic>{
-    //     'EmployeeOvertimes': [
-    //       <String, dynamic>{'ID': id, 'IsDeleted': true},
-    //     ],
-    //     'employeeOvertimeFile': <String, dynamic>{
-    //       'ID': 0,
-    //       'EmployeeOvertimeID': id,
-    //       'FileName': null,
-    //       'OriginPath': null,
-    //       'ServerPath': null,
-    //     },
-    //   };
-    //
-    //   _log.logI('OvernightBloc cancelSubmit ID=$id payload: $payload');
-    //
-    //   final saveRes = await _overnightRepo.saveOverNight(payload: payload);
-    //   await saveRes.fold(
-    //     (err) async {
-    //       _log.logE('❌ OvernightBloc cancelSubmit failed: $err');
-    //       emit(
-    //         state.copyWith(
-    //           isDeleting: false,
-    //           deleteSuccess: false,
-    //           status: BaseStateStatus.failed,
-    //           message: err.getErrorMessage,
-    //         ),
-    //       );
-    //     },
-    //     (_) async {
-    //       _log.logI('✅ OvernightBloc cancelSubmit success ID=$id');
-    //       final updated = state.overtime.where((e) => e.id != id).toList();
-    //       emit(
-    //         state.copyWith(
-    //           isDeleting: false,
-    //           deleteSuccess: true,
-    //           status: BaseStateStatus.success,
-    //           overtime: updated,
-    //           message: null,
-    //         ),
-    //       );
-    //     },
-    //   );
-    // } catch (e) {
-    //   _log.logE('❌ OvernightBloc cancelSubmit exception: $e');
-    //   emit(
-    //     state.copyWith(
-    //       isDeleting: false,
-    //       deleteSuccess: false,
-    //       status: BaseStateStatus.failed,
-    //       message: 'Có lỗi xảy ra khi gửi dữ liệu',
-    //     ),
-    //   );
-    // } finally {
-    //   _isSubmittingReport = false;
-    // }
+    try {
+      emit(
+        state.copyWith(
+          isDeleting: true,
+          deleteSuccess: false,
+          status: BaseStateStatus.loading,
+          message: null,
+        ),
+      );
+
+      final payload = [
+        <String, dynamic>{
+          'ID': id,
+          'IsDeleted': true,
+        }
+      ];
+
+      _log.logI('OvernightBloc cancelSubmit ID=$id payload: $payload');
+
+      final saveRes = await _overnightRepo.saveOverNight(payload: payload);
+      await saveRes.fold(
+        (err) async {
+          _log.logE('❌ OvernightBloc cancelSubmit failed: $err');
+          emit(
+            state.copyWith(
+              isDeleting: false,
+              deleteSuccess: false,
+              status: BaseStateStatus.failed,
+              message: err.getErrorMessage,
+            ),
+          );
+        },
+        (_) async {
+          _log.logI('✅ OvernightBloc cancelSubmit success ID=$id');
+          final updated = state.overnight.where((e) => e.id != id).toList();
+          emit(
+            state.copyWith(
+              isDeleting: false,
+              deleteSuccess: true,
+              status: BaseStateStatus.success,
+              overnight: updated,
+              message: null,
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      _log.logE('❌ OvernightBloc cancelSubmit exception: $e');
+      emit(
+        state.copyWith(
+          isDeleting: false,
+          deleteSuccess: false,
+          status: BaseStateStatus.failed,
+          message: 'Có lỗi xảy ra khi gửi dữ liệu',
+        ),
+      );
+    } finally {
+      _isSubmittingReport = false;
+    }
   }
 
   void _onClearSubmitState(Emitter<OvernightState> emit) {

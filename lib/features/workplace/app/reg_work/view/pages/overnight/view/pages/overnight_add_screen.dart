@@ -127,11 +127,14 @@ class _OvernightAddScreenState
     form.save();
     final v = form.value;
     final List<OvernightAddSlipRow> rows = _slips.map((s) {
+      final breakRaw = v['on_slip_${s.key}_break_hours'];
+      final breakHours = double.tryParse('${breakRaw ?? '0'}') ?? 0;
       return (
         date: s.date,
         timeStart: v['on_slip_${s.key}_time_start'] as DateTime?,
         timeEnd: v['on_slip_${s.key}_time_end'] as DateTime?,
-        breakHours: 0.0, // light check \u2014 kh\u00f4ng c\u1ea7n gi\u00e1 tr\u1ecb th\u1ef1c
+        breakHours: breakHours,
+        location: '${v['on_slip_${s.key}_location'] ?? ''}',
       );
     }).toList();
     return ValidateHelper.isOvernightAddSubmitEnabled(
@@ -213,6 +216,7 @@ class _OvernightAddScreenState
         timeStart: v['on_slip_${slip.key}_time_start'] as DateTime?,
         timeEnd: v['on_slip_${slip.key}_time_end'] as DateTime?,
         breakHours: breakHours,
+        location: '${v['on_slip_${slip.key}_location'] ?? ''}',
       ));
     }
 
