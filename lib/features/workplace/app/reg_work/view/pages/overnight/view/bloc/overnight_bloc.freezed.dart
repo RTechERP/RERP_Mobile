@@ -40,7 +40,17 @@ mixin _$OvernightEvent {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)
         submitEdit,
   }) =>
       throw _privateConstructorUsedError;
@@ -67,7 +77,17 @@ mixin _$OvernightEvent {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
   }) =>
       throw _privateConstructorUsedError;
@@ -94,7 +114,17 @@ mixin _$OvernightEvent {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
     required TResult orElse(),
   }) =>
@@ -215,7 +245,17 @@ class _$InitImpl implements _Init {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)
         submitEdit,
   }) {
     return init();
@@ -245,7 +285,17 @@ class _$InitImpl implements _Init {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
   }) {
     return init?.call();
@@ -275,7 +325,17 @@ class _$InitImpl implements _Init {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
     required TResult orElse(),
   }) {
@@ -399,7 +459,17 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)
         submitEdit,
   }) {
     return initAdd();
@@ -429,7 +499,17 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
   }) {
     return initAdd?.call();
@@ -459,7 +539,17 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
     required TResult orElse(),
   }) {
@@ -688,7 +778,17 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)
         submitEdit,
   }) {
     return submitBatch(approvedId, dateRegister, isProblem, slips);
@@ -718,7 +818,17 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
   }) {
     return submitBatch?.call(approvedId, dateRegister, isProblem, slips);
@@ -748,7 +858,17 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
     required TResult orElse(),
   }) {
@@ -926,7 +1046,17 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)
         submitEdit,
   }) {
     return onCancelSubmit(id);
@@ -956,7 +1086,17 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
   }) {
     return onCancelSubmit?.call(id);
@@ -986,7 +1126,17 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
     required TResult orElse(),
   }) {
@@ -1151,7 +1301,17 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)
         submitEdit,
   }) {
     return changeDateRange(dateStart, dateEnd);
@@ -1181,7 +1341,17 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
@@ -1211,7 +1381,17 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
     required TResult orElse(),
   }) {
@@ -1343,7 +1523,17 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)
         submitEdit,
   }) {
     return clearSubmitState();
@@ -1373,7 +1563,17 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
   }) {
     return clearSubmitState?.call();
@@ -1403,7 +1603,17 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
     required TResult orElse(),
   }) {
@@ -1553,7 +1763,17 @@ class _$FetchDetailImpl implements _FetchDetail {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)
         submitEdit,
   }) {
     return fetchDetail(id);
@@ -1583,7 +1803,17 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
   }) {
     return fetchDetail?.call(id);
@@ -1613,7 +1843,17 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
     required TResult orElse(),
   }) {
@@ -1688,7 +1928,18 @@ abstract class _$$SubmitEditImplCopyWith<$Res> {
           _$SubmitEditImpl value, $Res Function(_$SubmitEditImpl) then) =
       __$$SubmitEditImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int id, int approvedId, DateTime dateRegister, bool isProblem});
+  $Res call(
+      {int id,
+      int approvedId,
+      DateTime dateRegister,
+      bool isProblem,
+      ({
+        double breakHours,
+        DateTime endTime,
+        String location,
+        String reason,
+        DateTime timeStart
+      }) slip});
 }
 
 /// @nodoc
@@ -1706,6 +1957,7 @@ class __$$SubmitEditImplCopyWithImpl<$Res>
     Object? approvedId = null,
     Object? dateRegister = null,
     Object? isProblem = null,
+    Object? slip = null,
   }) {
     return _then(_$SubmitEditImpl(
       id: null == id
@@ -1724,6 +1976,16 @@ class __$$SubmitEditImplCopyWithImpl<$Res>
           ? _value.isProblem
           : isProblem // ignore: cast_nullable_to_non_nullable
               as bool,
+      slip: null == slip
+          ? _value.slip
+          : slip // ignore: cast_nullable_to_non_nullable
+              as ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }),
     ));
   }
 }
@@ -1735,7 +1997,8 @@ class _$SubmitEditImpl implements _SubmitEdit {
       {required this.id,
       required this.approvedId,
       required this.dateRegister,
-      required this.isProblem});
+      required this.isProblem,
+      required this.slip});
 
   @override
   final int id;
@@ -1745,10 +2008,18 @@ class _$SubmitEditImpl implements _SubmitEdit {
   final DateTime dateRegister;
   @override
   final bool isProblem;
+  @override
+  final ({
+    double breakHours,
+    DateTime endTime,
+    String location,
+    String reason,
+    DateTime timeStart
+  }) slip;
 
   @override
   String toString() {
-    return 'OvernightEvent.submitEdit(id: $id, approvedId: $approvedId, dateRegister: $dateRegister, isProblem: $isProblem)';
+    return 'OvernightEvent.submitEdit(id: $id, approvedId: $approvedId, dateRegister: $dateRegister, isProblem: $isProblem, slip: $slip)';
   }
 
   @override
@@ -1762,12 +2033,13 @@ class _$SubmitEditImpl implements _SubmitEdit {
             (identical(other.dateRegister, dateRegister) ||
                 other.dateRegister == dateRegister) &&
             (identical(other.isProblem, isProblem) ||
-                other.isProblem == isProblem));
+                other.isProblem == isProblem) &&
+            (identical(other.slip, slip) || other.slip == slip));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, approvedId, dateRegister, isProblem);
+      Object.hash(runtimeType, id, approvedId, dateRegister, isProblem, slip);
 
   @JsonKey(ignore: true)
   @override
@@ -1800,10 +2072,20 @@ class _$SubmitEditImpl implements _SubmitEdit {
     required TResult Function() clearSubmitState,
     required TResult Function(int id) fetchDetail,
     required TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)
         submitEdit,
   }) {
-    return submitEdit(id, approvedId, dateRegister, isProblem);
+    return submitEdit(id, approvedId, dateRegister, isProblem, slip);
   }
 
   @override
@@ -1830,10 +2112,20 @@ class _$SubmitEditImpl implements _SubmitEdit {
     TResult? Function()? clearSubmitState,
     TResult? Function(int id)? fetchDetail,
     TResult? Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
   }) {
-    return submitEdit?.call(id, approvedId, dateRegister, isProblem);
+    return submitEdit?.call(id, approvedId, dateRegister, isProblem, slip);
   }
 
   @override
@@ -1860,12 +2152,22 @@ class _$SubmitEditImpl implements _SubmitEdit {
     TResult Function()? clearSubmitState,
     TResult Function(int id)? fetchDetail,
     TResult Function(
-            int id, int approvedId, DateTime dateRegister, bool isProblem)?
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            ({
+              double breakHours,
+              DateTime endTime,
+              String location,
+              String reason,
+              DateTime timeStart
+            }) slip)?
         submitEdit,
     required TResult orElse(),
   }) {
     if (submitEdit != null) {
-      return submitEdit(id, approvedId, dateRegister, isProblem);
+      return submitEdit(id, approvedId, dateRegister, isProblem, slip);
     }
     return orElse();
   }
@@ -1925,12 +2227,26 @@ abstract class _SubmitEdit implements OvernightEvent {
       {required final int id,
       required final int approvedId,
       required final DateTime dateRegister,
-      required final bool isProblem}) = _$SubmitEditImpl;
+      required final bool isProblem,
+      required final ({
+        double breakHours,
+        DateTime endTime,
+        String location,
+        String reason,
+        DateTime timeStart
+      }) slip}) = _$SubmitEditImpl;
 
   int get id;
   int get approvedId;
   DateTime get dateRegister;
   bool get isProblem;
+  ({
+    double breakHours,
+    DateTime endTime,
+    String location,
+    String reason,
+    DateTime timeStart
+  }) get slip;
   @JsonKey(ignore: true)
   _$$SubmitEditImplCopyWith<_$SubmitEditImpl> get copyWith =>
       throw _privateConstructorUsedError;

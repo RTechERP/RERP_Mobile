@@ -41,8 +41,10 @@ import '../features/workplace/app/reg_work/view/pages/missed/view/bloc/missed_bl
 import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overnight/data/datasource/models/overnight_model.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/view/bloc/overnight_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/view/pages/overnight_add_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overnight/view/pages/overnight_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/view/pages/overnight_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/view/bloc/overtime_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_add_screen.dart';
@@ -342,7 +344,13 @@ class AppRouter {
 
           GoRoute(
             path: '/regwork/overnight/detail',
-            builder: (context, state) => const OvertimeDetailScreenPage(),
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is OvernightItem) {
+                return OvernightDetailScreen(item: extra);
+              }
+              return const OvernightDetailScreen();
+            },
           ),
 
           GoRoute(

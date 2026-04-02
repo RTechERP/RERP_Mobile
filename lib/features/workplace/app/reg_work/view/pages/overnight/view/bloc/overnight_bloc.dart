@@ -46,12 +46,13 @@ class OvernightBloc extends BaseBloc<OvernightEvent, OvernightState> {
             _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
         clearSubmitState: () async => _onClearSubmitState(emit),
         fetchDetail: (id) => _onFetchDetail(emit, id: id),
-        submitEdit: (id, approvedId, dateRegister, isProblem) => _onSubmitEdit(
+        submitEdit: (id, approvedId, dateRegister, isProblem, slip) => _onSubmitEdit(
           emit,
           id: id,
           approvedId: approvedId,
           dateRegister: dateRegister,
           isProblem: isProblem,
+          slip: slip,
         ),
       );
     });
@@ -534,109 +535,121 @@ class OvernightBloc extends BaseBloc<OvernightEvent, OvernightState> {
     required int approvedId,
     required DateTime dateRegister,
     required bool isProblem,
+    required OvernightSubmitSlip slip,
   }) async {
     if (_isSubmittingReport) return;
     _isSubmittingReport = true;
-    // try {
-    //   emit(
-    //     state.copyWith(isSubmitting: true, editSuccess: false, message: null),
-    //   );
-    //
-    //   int? employeeId = state.employeeId;
-    //   if (employeeId == null || employeeId <= 0) {
-    //     final userRes = await _authRepo.getCurrentUser();
-    //     employeeId = userRes.fold((_) => null, (u) => u?.employeeId);
-    //   }
-    //   if (employeeId == null || employeeId <= 0) {
-    //     emit(
-    //       state.copyWith(
-    //         isSubmitting: false,
-    //         editSuccess: false,
-    //         status: BaseStateStatus.failed,
-    //         message: 'Không lấy được ID nhân viên, vui lòng thử lại',
-    //       ),
-    //     );
-    //     return;
-    //   }
-    //
-    //   final ts = _normalizeToMinute(slip.timeStart);
-    //   final te = _normalizeToMinute(slip.endTime);
-    //   final totalMinutes = te.difference(ts).inMinutes;
-    //   final timeReality = totalMinutes % 60 == 0
-    //       ? totalMinutes ~/ 60
-    //       : totalMinutes / 60.0;
-    //
-    //   final slipObject = <String, dynamic>{
-    //     'ID': id,
-    //     'EmployeeID': employeeId,
-    //     'ApprovedID': approvedId,
-    //     'DateRegister': _toLocalIso8601(_normalizeToMinute(dateRegister)),
-    //     'TimeStart': _toLocalIso8601(ts),
-    //     'EndTime': _toLocalIso8601(te),
-    //     'TimeReality': timeReality,
-    //     'Location': slip.location,
-    //     'ProjectID': slip.projectId ?? 0,
-    //     'Overnight': slip.overnight,
-    //     'CostOvernight': slip.overnight ? 30000 : 0,
-    //     'TypeID': slip.typeId,
-    //     'Reason': slip.reason.isEmpty ? ' ' : slip.reason,
-    //     'IsProblem': isProblem,
-    //     'IsApproved': false,
-    //     'IsApprovedHR': false,
-    //     'ApproveHR': 0,
-    //     'IsDeleted': false,
-    //   };
-    //
-    //   final payload = <String, dynamic>{
-    //     'EmployeeOvertimes': [slipObject],
-    //     'employeeOvertimeFile': <String, dynamic>{
-    //       'ID': 0,
-    //       'EmployeeOvertimeID': id,
-    //       'FileName': fileInfo?['fileName'],
-    //       'OriginPath': fileInfo?['originPath'],
-    //       'ServerPath': null,
-    //     },
-    //   };
-    //
-    //   _log.logI('OvernightBloc submitEdit ID=$id payload: $payload');
-    //
-    //   final saveRes = await _overnightRepo.saveOverNight(payload: payload);
-    //   saveRes.fold(
-    //     (err) {
-    //       _log.logE('❌ OvernightBloc submitEdit failed: $err');
-    //       emit(
-    //         state.copyWith(
-    //           isSubmitting: false,
-    //           editSuccess: false,
-    //           status: BaseStateStatus.failed,
-    //           message: err.getErrorMessage,
-    //         ),
-    //       );
-    //     },
-    //     (_) {
-    //       _log.logI('✅ OvernightBloc submitEdit success ID=$id');
-    //       emit(
-    //         state.copyWith(
-    //           isSubmitting: false,
-    //           editSuccess: true,
-    //           status: BaseStateStatus.success,
-    //           message: 'Cập nhật đơn làm đêm thành công',
-    //         ),
-    //       );
-    //     },
-    //   );
-    // } catch (e) {
-    //   _log.logE('❌ OvernightBloc submitEdit exception: $e');
-    //   emit(
-    //     state.copyWith(
-    //       isSubmitting: false,
-    //       editSuccess: false,
-    //       status: BaseStateStatus.failed,
-    //       message: 'Có lỗi xảy ra khi cập nhật dữ liệu',
-    //     ),
-    //   );
-    // } finally {
-    //   _isSubmittingReport = false;
-    // }
+    try {
+      emit(
+        state.copyWith(
+          isSubmitting: true,
+          editSuccess: false,
+          message: null,
+        ),
+      );
+
+      int? employeeId = state.employeeId;
+
+      if (employeeId == null || employeeId <= 0) {
+        final userRes = await _authRepo.getCurrentUser();
+        employeeId = userRes.fold((_) => null, (u) => u?.employeeId);
+      }
+
+      if (employeeId == null || employeeId <= 0) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            editSuccess: false,
+            status: BaseStateStatus.failed,
+            message: 'Không lấy được ID nhân viên',
+          ),
+        );
+        return;
+      }
+
+      final dateRegisterStr = _toLocalIso8601(_normalizeToMinute(dateRegister));
+
+      final start = _normalizeToMinute(slip.timeStart);
+      final end = _normalizeToMinute(slip.endTime);
+      final totalMinutes = end.difference(start).inMinutes;
+
+      if (totalMinutes <= 0) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            editSuccess: false,
+            status: BaseStateStatus.failed,
+            message: 'Thời gian kết thúc phải lớn hơn thời gian bắt đầu',
+          ),
+        );
+        return;
+      }
+
+      final totalHours = totalMinutes / 60.0;
+      final breaksTime = slip.breakHours;
+      final workTime = totalHours - breaksTime;
+
+      final item = {
+        'ID': id,
+        'EmployeeID': employeeId,
+        'ApprovedTBP': approvedId,
+        'DateRegister': dateRegisterStr,
+        'DateStart': _toLocalIso8601(start),
+        'DateEnd': _toLocalIso8601(end),
+        'TotalHours': totalHours % 1 == 0 ? totalHours.toInt() : totalHours,
+        'BreaksTime': breaksTime,
+        'Location': slip.location,
+        'Note': slip.reason.isEmpty ? '' : slip.reason,
+        'IsProblem': isProblem,
+        'ReasonHREdit': '',
+        'IsDeleted': false,
+        'WorkTime': workTime,
+        'IsApprovedTBP': 0,
+        'IsApprovedHR': 0,
+        'ApprovedHR': 0,
+      };
+
+      _log.logI('OvernightBloc submitEdit payload: [$item]');
+
+      final result = await _overnightRepo.saveOverNight(
+        payload: [item],
+      );
+
+      final failed = result.fold((err) => err, (_) => null);
+
+      if (failed != null) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            editSuccess: false,
+            status: BaseStateStatus.failed,
+            message: failed.getErrorMessage,
+          ),
+        );
+        return;
+      }
+
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          editSuccess: true,
+          status: BaseStateStatus.success,
+          message: 'Cập nhật đơn qua đêm thành công',
+        ),
+      );
+    } catch (e) {
+      _log.logE('❌ OvernightBloc submitEdit exception: $e');
+
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          editSuccess: false,
+          status: BaseStateStatus.failed,
+          message: 'Có lỗi xảy ra khi cập nhật dữ liệu',
+        ),
+      );
+    } finally {
+      _isSubmittingReport = false;
+    }
   }
 }

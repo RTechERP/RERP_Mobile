@@ -31,5 +31,6 @@ class OvernightEvent with _$OvernightEvent {
     required int approvedId,
     required DateTime dateRegister,
     required bool isProblem,
+    required OvernightSubmitSlip slip,
   }) = _SubmitEdit;
 }
