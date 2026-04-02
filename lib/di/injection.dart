@@ -22,6 +22,10 @@ import '../features/workplace/app/reg_work/view/pages/leave/data/datasource/serv
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/view/bloc/leave_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/overnight/data/datasource/service/overnight_service.dart';
+import '../features/workplace/app/reg_work/view/pages/overnight/data/repository/overnight_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/overnight/data/repository/overnight_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/overnight/view/bloc/overnight_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/data/datasource/service/overtime_service.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/data/repository/overtime_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/data/repository/overtime_repo_impl.dart';
@@ -130,6 +134,10 @@ void configureDependencies() {
     () => WorkTripService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<OverNightService>(
+    () => OverNightService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(getIt<AuthService>()),
@@ -171,6 +179,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<WorkTripRepo>(
     () => WorkTripRepoImpl(getIt<WorkTripService>()),
+  );
+
+  getIt.registerLazySingleton<OvernightRepo>(
+    () => OvernightRepoImpl(getIt<OverNightService>()),
   );
 
   /// ===== BLOCS =====
@@ -249,6 +261,14 @@ void configureDependencies() {
   getIt.registerFactory<WorkTripBloc>(
     () => WorkTripBloc(
       getIt<WorkTripRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<OvernightBloc>(
+    () => OvernightBloc(
+      getIt<OvernightRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

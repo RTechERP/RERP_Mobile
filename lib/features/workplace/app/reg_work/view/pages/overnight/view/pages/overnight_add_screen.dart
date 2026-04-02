@@ -1,260 +1,817 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 
+import '../../../../../../../../../base/bloc/index.dart';
+import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
+import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
+import '../../../../../../../../../common/helpers/index.dart';
+import '../../../../../../../../../common/utils/snack_bar_helper.dart'
+    show SnackBarType;
 import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../data/datasource/models/overnight_model.dart';
+import '../bloc/overnight_bloc.dart';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Constants (giờ giới hạn tái sử dụng từ ValidateHelper)
+// ─────────────────────────────────────────────────────────────────────────────
+
+const _kStartHourMin = ValidateHelper.overnightStartHourMin;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Main screen
+// ─────────────────────────────────────────────────────────────────────────────
 
 class OvernightAddScreen extends StatefulWidget {
   const OvernightAddScreen({super.key});
 
   @override
-  State<OvernightAddScreen> createState() =>
-      _OvernightAddScreenState();
+  State<OvernightAddScreen> createState() => _OvernightAddScreenState();
 }
 
 class _OvernightAddScreenState
-    extends State<OvernightAddScreen> {
-
-  bool _dateSelected = false;
+    extends BaseState<OvernightAddScreen, OvernightEvent, OvernightState,
+        OvernightBloc> {
   final _formKey = GlobalKey<FormBuilderState>();
 
-  double _maxBreakHours = 0;
-  void _recalculateTotalHours() {
+  late final List<_SlipMeta> _slips;
+  int _selectedSlipIndex = 0;
+
+  // ── isProblem getter ────────────────────────────────────────────────────
+  bool get _isProblem =>
+      (_formKey.currentState?.fields['on_is_problem']?.value as bool?) ?? false;
+
+  @override
+  void initState() {
+    super.initState();
+    final today = _dateOnly(DateTime.now());
+    _slips = [_SlipMeta(date: today)];
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      bloc.add(const OvernightEvent.clearSubmitState());
+      bloc.add(const OvernightEvent.initAdd());
+    });
+  }
+
+  static DateTime _dateOnly(DateTime d) =>
+      DateTime(d.year, d.month, d.day);
+
+  // ── Slip management ─────────────────────────────────────────────────────
+  int get _safeSlipIndex {
+    if (_slips.isEmpty) return 0;
+    return _selectedSlipIndex.clamp(0, _slips.length - 1);
+  }
+
+  void _addSlip() {
+    final lastDate = _slips.last.date;
+    final nextDate = lastDate.add(const Duration(days: 1));
+    setState(() {
+      _slips.add(_SlipMeta(date: nextDate));
+      _selectedSlipIndex = _slips.length - 1;
+    });
+  }
+
+  void _removeSlipAt(int index) {
+    if (_slips.length <= 1 || index < 0 || index >= _slips.length) return;
+    setState(() {
+      _slips.removeAt(index);
+      if (_selectedSlipIndex >= _slips.length) {
+        _selectedSlipIndex = _slips.length - 1;
+      } else if (index < _selectedSlipIndex) {
+        _selectedSlipIndex -= 1;
+      }
+    });
+  }
+
+  void _selectSlip(int index) {
+    if (index < 0 || index >= _slips.length) return;
+    setState(() => _selectedSlipIndex = index);
+  }
+
+  String _slipTabLabel(int index) =>
+      DateFormat('dd/MM/yyyy').format(_slips[index].date);
+
+  // ── Hours calculation ───────────────────────────────────────────────────
+
+  /// TotalHours = (DateEnd - DateStart) - BreaksTime
+  /// Trả về null nếu thiếu dữ liệu, trả về giá trị âm nếu invalid (hiển thị lỗi).
+  double? _computeSlipHours(_SlipMeta slip) {
+    final form = _formKey.currentState;
+    if (form == null) return null;
+    final start =
+        form.fields['on_slip_${slip.key}_time_start']?.value as DateTime?;
+    final end =
+        form.fields['on_slip_${slip.key}_time_end']?.value as DateTime?;
+    if (start == null || end == null) return null;
+
+    final breakHours = double.tryParse(
+            '${form.fields['on_slip_${slip.key}_break_hours']?.value ?? '0'}') ??
+        0;
+    final diff = end.difference(start).inMinutes / 60.0;
+    if (diff <= 0) return null; // end không sau start
+    return (diff - breakHours).clamp(0.0, diff);
+  }
+
+  // ── Submit enabled (light check) ────────────────────────────────────────
+  bool _computeSubmitEnabled() {
+    final form = _formKey.currentState;
+    if (form == null) return false;
+    form.save();
+    final v = form.value;
+    final List<OvernightAddSlipRow> rows = _slips.map((s) {
+      return (
+        date: s.date,
+        timeStart: v['on_slip_${s.key}_time_start'] as DateTime?,
+        timeEnd: v['on_slip_${s.key}_time_end'] as DateTime?,
+        breakHours: 0.0, // light check \u2014 kh\u00f4ng c\u1ea7n gi\u00e1 tr\u1ecb th\u1ef1c
+      );
+    }).toList();
+    return ValidateHelper.isOvernightAddSubmitEnabled(
+      approverIdRaw: '${v['on_approver_id'] ?? ''}',
+      slips: rows,
+    );
+  }
+
+  // ── Callbacks ───────────────────────────────────────────────────────────
+  void _onDateChanged(_SlipMeta slip, DateTime? date) {
+    if (date == null) return;
+    // Nếu không phải đăng ký bổ sung, ép về hôm nay
+    final today = _dateOnly(DateTime.now());
+    final selected = _dateOnly(date);
+    if (!_isProblem && selected != today) {
+      context.showMessage(
+        'Chỉ được đăng ký làm đêm cho ngày hôm nay khi không tích đăng ký bổ sung.',
+        type: SnackBarType.error,
+      );
+      // Reset field về ngày slip hiện tại
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _formKey.currentState
+            ?.fields['on_slip_${slip.key}_date']
+            ?.didChange(slip.date);
+      });
+      return;
+    }
+    setState(() => slip.date = selected);
+  }
+
+  void _onTimeChanged(_SlipMeta slip) => setState(() {});
+
+  // ── Approver sheet ──────────────────────────────────────────────────────
+  Future<void> _openApproverSheet() async {
     final form = _formKey.currentState;
     if (form == null) return;
 
-    final start = form.fields['overnight_start']?.value as DateTime?;
-    final end   = form.fields['overnight_end']?.value as DateTime?;
-    final breakHours =
-        (form.fields['break_hours']?.value as double?) ?? 0;
+    final items =
+        bloc.state.approvers.where((e) => e.isDeleted != true).toList();
+    if (items.isEmpty) {
+      context.showMessage('Chưa có người kiểm duyệt', type: SnackBarType.error);
+      return;
+    }
 
-    if (start == null || end == null) return;
-
-    final rawHours = end.difference(start).inMinutes / 60;
-
-    setState(() {
-      _maxBreakHours = rawHours.clamp(0, rawHours);
-    });
-
-    final total = (rawHours - breakHours).clamp(0, rawHours);
-
-    form.fields['total_hours']?.didChange(total);
+    await openSelectBottomSheet<ApproverItem>(
+      context: context,
+      title: 'Chọn người duyệt',
+      items: items,
+      displayText: (a) => '${a.code ?? ''} - ${a.fullName ?? ''}'.trim(),
+      onSelected: (item) {
+        final idValue = item.employeeId ?? item.id;
+        final line = '${item.code ?? ''} - ${item.fullName ?? ''}'.trim();
+        form.fields['on_approver_id']?.didChange(idValue.toString());
+        form.fields['on_approver_text']?.didChange(line);
+        setState(() {});
+      },
+    );
   }
+
+  // ── Submit ──────────────────────────────────────────────────────────────
+  void _onSubmit(OvernightState state) {
+    FocusScope.of(context).unfocus();
+    final formState = _formKey.currentState;
+    if (formState == null) return;
+    if (!_computeSubmitEnabled()) return;
+    formState.save();
+    final v = formState.value;
+
+    final isProblem = (v['on_is_problem'] as bool?) ?? false;
+
+    // Xây danh sách phiếu để validate
+    final rows = <OvernightAddSlipRow>[];
+    for (final slip in _slips) {
+      final breakRaw = v['on_slip_${slip.key}_break_hours'];
+      final breakHours = double.tryParse('${breakRaw ?? '0'}') ?? 0;
+      rows.add((
+        date: slip.date,
+        timeStart: v['on_slip_${slip.key}_time_start'] as DateTime?,
+        timeEnd: v['on_slip_${slip.key}_time_end'] as DateTime?,
+        breakHours: breakHours,
+      ));
+    }
+
+    // Full validation với business rules qua ValidateHelper
+    final err = ValidateHelper.validateOvernightAddSubmit(
+      approverIdRaw: '${v['on_approver_id'] ?? ''}',
+      slips: rows,
+      isProblem: isProblem,
+    );
+    if (err != null) {
+      context.showMessage(err, type: SnackBarType.error);
+      // Chuyển sang tab phiếu lỗi (dựa vào index từ danh sách)
+      for (var i = 0; i < rows.length; i++) {
+        final slipErr = ValidateHelper.overnightValidateSlip(
+          slip: rows[i],
+          label: '',
+          isProblem: isProblem,
+        );
+        if (slipErr != null) {
+          setState(() => _selectedSlipIndex = i);
+          break;
+        }
+      }
+      return;
+    }
+
+    final approvedId =
+        int.tryParse('${v['on_approver_id'] ?? ''}') ?? 0;
+    final dateRegister = _slips.first.date;
+
+    final payloadSlips = <OvernightSubmitSlip>[];
+    for (final slip in _slips) {
+      final breakRaw = v['on_slip_${slip.key}_break_hours'];
+      final breakHours = double.tryParse('${breakRaw ?? '0'}') ?? 0;
+      final location = '${v['on_slip_${slip.key}_location'] ?? ''}';
+      final note = '${v['on_slip_${slip.key}_note'] ?? ''}';
+
+      payloadSlips.add((
+        timeStart: v['on_slip_${slip.key}_time_start'] as DateTime,
+        endTime: v['on_slip_${slip.key}_time_end'] as DateTime,
+        breakHours: breakHours,
+        location: location,
+        reason: note,
+      ));
+    }
+
+    bloc.add(OvernightEvent.submitBatch(
+      approvedId: approvedId,
+      dateRegister: dateRegister,
+      isProblem: isProblem,
+      slips: payloadSlips,
+    ));
+  }
+
+  // ── UI ──────────────────────────────────────────────────────────────────
+  @override
+  Widget renderUI(BuildContext context) {
+    return Stack(
+      children: [
+        BlocListener<OvernightBloc, OvernightState>(
+          listenWhen: (p, c) =>
+              p.submitSuccess != c.submitSuccess ||
+              p.message != c.message ||
+              p.status != c.status,
+          listener: (context, state) {
+            if (state.status == BaseStateStatus.failed &&
+                (state.message ?? '').isNotEmpty &&
+                !state.isSubmitting) {
+              context.showMessage(state.message!, type: SnackBarType.error);
+            }
+            if ((state.message ?? '').isNotEmpty && state.submitSuccess) {
+              context.showMessage(state.message!, type: SnackBarType.success);
+            }
+            if (state.submitSuccess) {
+              bloc.add(const OvernightEvent.clearSubmitState());
+              context.pop(true);
+            }
+          },
+          child: BaseScaffold(
+            appBar: AppBarCommon(
+              title: const Text('Tạo đơn qua đêm'),
+            ),
+            body: Padding(
+              padding: const EdgeInsets.all(12),
+              child: BlocBuilder<OvernightBloc, OvernightState>(
+                builder: (context, state) {
+                  final submitOk = _computeSubmitEnabled();
+
+                  return FormBuilder(
+                    key: _formKey,
+                    onChanged: () => setState(() {}),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                // ── Card 1: Người duyệt + Bổ sung ──────
+                                FormCard(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(height: 4),
+
+                                      // Hidden approver id
+                                      FormBuilderField<String>(
+                                        name: 'on_approver_id',
+                                        initialValue: '',
+                                        autovalidateMode:
+                                            AutovalidateMode.disabled,
+                                        builder: (_) =>
+                                            const SizedBox.shrink(),
+                                      ),
+
+                                      // Người duyệt
+                                      GestureDetector(
+                                        onTap: state.status ==
+                                                BaseStateStatus.loading
+                                            ? null
+                                            : _openApproverSheet,
+                                        child: AbsorbPointer(
+                                          child: FormInputField(
+                                            readOnly: true,
+                                            nameForm: 'on_approver_text',
+                                            nameTextField:
+                                                'on_approver_text_tf',
+                                            label: 'Người duyệt',
+                                            icon: Icons.person_outlined,
+                                            initialValue: '',
+                                            autovalidateMode:
+                                                AutovalidateMode.disabled,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8),
+
+                                      // Checkbox đăng ký bổ sung
+                                      FormCheckbox(
+                                        name: 'on_is_problem',
+                                        title: const Text(
+                                          'Đăng ký bổ sung',
+                                          style: TextStyle(fontSize: 14),
+                                        ),
+                                        onChanged: (value) {
+                                          if (value == true &&
+                                              !state
+                                                  .isSupplementaryRegistrationOpen) {
+                                            WidgetsBinding.instance
+                                                .addPostFrameCallback((_) {
+                                              if (!mounted) return;
+                                              _formKey.currentState
+                                                  ?.fields['on_is_problem']
+                                                  ?.didChange(false);
+                                            });
+                                            context.showMessage(
+                                              'Nhân sự chưa mở đăng ký bổ sung',
+                                              type: SnackBarType.error,
+                                            );
+                                            return;
+                                          }
+                                          setState(() {});
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+
+                                // ── Card 2: Các phiếu ngày ──────────────
+                                FormCard(
+                                  title: 'Thông tin đăng ký',
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(height: 4),
+
+                                      // Tab bar phiếu ngày
+                                      _OvernightSlipTabsBar(
+                                        labels: List.generate(
+                                          _slips.length,
+                                          _slipTabLabel,
+                                        ),
+                                        selectedIndex: _safeSlipIndex,
+                                        onSelect: _selectSlip,
+                                        onRemoveAt: _removeSlipAt,
+                                        onAdd: _addSlip,
+                                      ),
+                                      const SizedBox(height: 12),
+
+                                      // Nội dung từng phiếu
+                                      IndexedStack(
+                                        index: _safeSlipIndex,
+                                        sizing: StackFit.loose,
+                                        children: [
+                                          for (final slip in _slips)
+                                            _OvernightSlipFormFields(
+                                              key: ValueKey(slip.key),
+                                              slip: slip,
+                                              computedHours:
+                                                  _computeSlipHours(slip),
+                                              isProblem: _isProblem,
+                                              onDateChanged: _onDateChanged,
+                                              onTimeChanged: _onTimeChanged,
+                                            ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                              ],
+                            ),
+                          ),
+                        ),
+
+                        // Submit button
+                        FormActions(
+                          mode: FormActionMode.add,
+                          submitEnabled: submitOk,
+                          onSubmit: () => _onSubmit(state),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
+
+        // Loading overlay
+        BlocBuilder<OvernightBloc, OvernightState>(
+          buildWhen: (p, c) => p.isSubmitting != c.isSubmitting,
+          builder: (context, state) {
+            if (!state.isSubmitting) return const SizedBox.shrink();
+            return Positioned.fill(
+              child: AbsorbPointer(
+                child: Container(
+                  color: Colors.black.withOpacity(0.45),
+                  alignment: Alignment.center,
+                  child: Lottie.asset(
+                    'assets/lotties/Loading.json',
+                    width: 240,
+                    height: 240,
+                    repeat: true,
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Slip metadata
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _SlipMeta {
+  _SlipMeta({required DateTime date})
+      : _date = date,
+        key = 'k_${date.millisecondsSinceEpoch}';
+
+  final String key;
+
+  DateTime _date;
+  DateTime get date => _date;
+  set date(DateTime v) => _date = v;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Widget: Tab bar phiếu theo ngày
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _OvernightSlipTabsBar extends StatelessWidget {
+  const _OvernightSlipTabsBar({
+    required this.labels,
+    required this.selectedIndex,
+    required this.onSelect,
+    required this.onRemoveAt,
+    required this.onAdd,
+  });
+
+  final List<String> labels;
+  final int selectedIndex;
+  final void Function(int) onSelect;
+  final void Function(int) onRemoveAt;
+  final VoidCallback onAdd;
 
   @override
   Widget build(BuildContext context) {
-    return BaseScaffold(
-      appBar: AppBarCommon(
-        title: const Text('Tạo đơn qua đêm'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: FormBuilder(
-          key: _formKey,
-          child: Column(
-            children: [
-              /// ===== SCROLL =====
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (var i = 0; i < labels.length; i++)
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: GestureDetector(
+                onTap: () => onSelect(i),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: i == selectedIndex
+                        ? AppColors.primaryERP.withOpacity(0.1)
+                        : Colors.transparent,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: i == selectedIndex
+                          ? AppColors.primaryERP
+                          : Colors.grey.shade300,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      /// ===== THÔNG TIN QUA ĐÊM =====
-                      FormCard(
-                        title: 'Thông tin ca qua đêm',
-                        child: Column(
-                          children: [
-                            /// CA HIỆN TẠI
-                            FormReadonlyField(
-                              name: 'current_date',
-                              label: 'Ngày',
-                              initialValue: DateFormat('dd/MM/yyyy').format(DateTime.now()),
-                              icon: Icons.access_time_outlined,
-                            ),
-
-                            const SizedBox(height: 12),
-
-                            /// NGÀY
-                            /// ===== NGÀY QUA ĐÊM =====
-                            FormBuilderDateTimePicker(
-                              name: 'overnight_date',
-                              inputType: InputType.date,
-                              format: DateFormat('dd/MM/yyyy'), // ✅ FIX FORMAT
-                              decoration: formInputDecoration(
-                                context,
-                                label: 'Ca hiện tại',
-                                icon: Icons.date_range_outlined,
-                              ),
-                              onChanged: (date) {
-                                if (date == null) return;
-
-                                final start = DateTime(date.year, date.month, date.day, 20, 0);
-                                final end   = DateTime(date.year, date.month, date.day, 23, 0);
-
-                                setState(() => _dateSelected = true);
-
-                                WidgetsBinding.instance.addPostFrameCallback((_) {
-                                  _formKey.currentState?.fields['overnight_start']?.didChange(start);
-                                  _formKey.currentState?.fields['overnight_end']?.didChange(end);
-                                  _recalculateTotalHours();
-                                });
-                              },
-                            ),
-
-                            const SizedBox(height: 12),
-
-                            /// BẮT ĐẦU - KẾT THÚC
-                            if (_dateSelected) ...[
-                              const SizedBox(height: 12),
-
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: FormBuilderDateTimePicker(
-                                      name: 'overnight_start',
-                                      inputType: InputType.time,
-                                      format: DateFormat('HH:mm'),
-                                      decoration: formInputDecoration(
-                                        context,
-                                        label: 'Thời gian bắt đầu',
-                                        icon: Icons.schedule_outlined,
-                                      ),
-                                      onChanged: (_) => _recalculateTotalHours(),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  Expanded(
-                                    child: FormBuilderDateTimePicker(
-                                      name: 'overnight_end',
-                                      inputType: InputType.time,
-                                      format: DateFormat('HH:mm'),
-                                      decoration: formInputDecoration(
-                                        context,
-                                        label: 'Thời gian kết thúc',
-                                        icon: Icons.schedule_outlined,
-                                      ),
-                                      onChanged: (_) => _recalculateTotalHours(),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-
-                            const SizedBox(height: 12),
-
-                            /// GIỜ NGHỈ
-                            FormBuilderSlider(
-                              name: 'break_hours',
-                              initialValue: 0,
-                              min: 0,
-                              max: _maxBreakHours, // = tổng giờ làm
-                              divisions: _maxBreakHours > 0
-                                  ? (_maxBreakHours * 2).round()
-                                  : null,
-                              decoration: const InputDecoration(
-                                labelText: 'Giờ nghỉ giữa giờ',
-                                border: InputBorder.none,
-                              ),
-                              displayValues: DisplayValues.current,
-                              valueTransformer: (value) => value ?? 0,
-                              onChanged: (value) {
-                                _recalculateTotalHours();
-                              },
-                            ),
-
-                            const SizedBox(height: 12),
-
-                            /// TỔNG GIỜ
-                            const FormReadonlyField(
-                              name: 'total_hours',
-                              label: 'Tổng số giờ',
-                              icon: Icons
-                                  .calculate_outlined,
-                            ),
-                          ],
+                      Text(
+                        labels[i],
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: i == selectedIndex
+                              ? AppColors.primaryERP
+                              : Colors.black87,
+                          fontWeight: i == selectedIndex
+                              ? FontWeight.w600
+                              : FontWeight.normal,
                         ),
                       ),
-
-                      const SizedBox(height: 8),
-
-                      /// ===== ĐỊA ĐIỂM =====
-                      FormCard(
-                        title: 'Địa điểm',
-                        child: FormInputField(
-                          nameForm: 'overnight',
-                          nameTextField: 'location',
-                          label: '',
-                          icon: Icons.place_outlined,
-                          maxLines: 2,
+                      if (labels.length > 1) ...[
+                        const SizedBox(width: 6),
+                        GestureDetector(
+                          onTap: () => onRemoveAt(i),
+                          child: const Icon(
+                            Icons.close,
+                            size: 15,
+                            color: Colors.redAccent,
+                          ),
                         ),
-                      ),
-
-                      const SizedBox(height: 8),
-
-                      /// ===== GHI CHÚ =====
-                      FormCard(
-                        title: 'Ghi chú',
-                        child: FormInputField(
-                          nameForm: 'overnight',
-                          nameTextField: 'note',
-                          label: '',
-                          icon: Icons.note_alt_outlined,
-                          maxLines: 3,
-                        ),
-                      ),
-
-                      const SizedBox(height: 8),
-
-                      /// ===== NGƯỜI DUYỆT =====
-                      FormCard(
-                        title: 'Người kiểm duyệt',
-                        child: FormTypeDropDown<String>(
-                          name: 'approver',
-                          label: 'Người duyệt',
-                          icon: Icons
-                              .supervisor_account_outlined,
-                          items: const [
-                            DropdownMenuItem(
-                              value: 'manager',
-                              child:
-                              Text('Quản lý trực tiếp'),
-                            ),
-                            DropdownMenuItem(
-                              value: 'hr',
-                              child:
-                              Text('Phòng nhân sự'),
-                            ),
-                            DropdownMenuItem(
-                              value: 'director',
-                              child:
-                              Text('Ban giám đốc'),
-                            ),
-                          ],
-                        ),
-                      ),
+                      ],
                     ],
                   ),
                 ),
               ),
+            ),
+          IconButton(
+            onPressed: onAdd,
+            icon: const Icon(Icons.add_circle_outline),
+            color: AppColors.primaryERP,
+          ),
+        ],
+      ),
+    );
+  }
+}
 
-              /// ===== SUBMIT =====
-              FormActions(
-                mode: FormActionMode.add,
-                onSubmit: () {
-                  if (_formKey.currentState
-                      ?.saveAndValidate() ??
-                      false) {
-                    debugPrint(
-                        _formKey.currentState!.value
-                            .toString());
-                  }
-                },
+// ═══════════════════════════════════════════════════════════════════════════
+// Widget: Form fields cho 1 phiếu ngày
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _OvernightSlipFormFields extends StatefulWidget {
+  const _OvernightSlipFormFields({
+    super.key,
+    required this.slip,
+    required this.isProblem,
+    required this.onDateChanged,
+    required this.onTimeChanged,
+    this.computedHours,
+  });
+
+  final _SlipMeta slip;
+
+  /// isProblem = true → cho phép chọn ngày trong quá khứ (trong tháng).
+  final bool isProblem;
+
+  final void Function(_SlipMeta slip, DateTime? date) onDateChanged;
+  final void Function(_SlipMeta slip) onTimeChanged;
+  final double? computedHours;
+
+  @override
+  State<_OvernightSlipFormFields> createState() =>
+      _OvernightSlipFormFieldsState();
+}
+
+class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
+  final _breakController = TextEditingController(text: '0.00');
+  late final FocusNode _breakFocusNode;
+
+  String get _pref => 'on_slip_${widget.slip.key}';
+
+  @override
+  void initState() {
+    super.initState();
+    _breakFocusNode = FocusNode();
+    _breakFocusNode.addListener(_onBreakFocusChange);
+  }
+
+  void _onBreakFocusChange() {
+    if (_breakFocusNode.hasFocus) {
+      // Select all khi focus để người dùng không cần xóa thủ công
+      _breakController.selection = TextSelection(
+        baseOffset: 0,
+        extentOffset: _breakController.text.length,
+      );
+    } else {
+      // Restore '0.00' nếu bỏ trống
+      final v = _breakController.text.trim();
+      if (v.isEmpty || double.tryParse(v) == null) {
+        _breakController.text = '0.00';
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _breakFocusNode.removeListener(_onBreakFocusChange);
+    _breakFocusNode.dispose();
+    _breakController.dispose();
+    super.dispose();
+  }
+
+  // ── Date bounds ─────────────────────────────────────────────────────────
+  DateTime get _today {
+    final n = DateTime.now();
+    return DateTime(n.year, n.month, n.day);
+  }
+
+  /// firstDate cho ô ngày:
+  /// - isProblem = true → đầu tháng hiện tại.
+  /// - isProblem = false → chỉ hôm nay.
+  DateTime get _firstDateAllowed =>
+      widget.isProblem ? DateTime(_today.year, _today.month, 1) : _today;
+
+  /// lastDate = hôm nay (không cho chọn tương lai).
+  DateTime get _lastDateAllowed => _today;
+
+  // ── firstDate cho ô giờ kết thúc (cho phép sang ngày hôm sau) ──────────
+  DateTime get _endFirstDate => widget.slip.date;
+  DateTime get _endLastDate =>
+      widget.slip.date.add(const Duration(days: 1, hours: 8));
+
+  @override
+  Widget build(BuildContext context) {
+    final dateFmt = DateFormat('dd/MM/yyyy');
+    final bothFmt = DateFormat('dd/MM/yyyy HH:mm');
+
+    // Hiển thị tổng giờ
+    final h = widget.computedHours;
+    final totalText = (h != null && h >= 0) ? h.toStringAsFixed(2) : '0.00';
+
+    return KeyedSubtree(
+      key: ValueKey(widget.slip.key),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // ── Ngày ────────────────────────────────────────────────────────
+          FormBuilderDateTimePicker(
+            name: '${_pref}_date',
+            inputType: InputType.date,
+            format: dateFmt,
+            initialValue: widget.slip.date,
+            firstDate: _firstDateAllowed,
+            lastDate: _lastDateAllowed,
+            decoration: formInputDecoration(
+              context,
+              label: 'Ngày',
+              icon: Icons.date_range_outlined,
+            ),
+            onChanged: (date) => widget.onDateChanged(widget.slip, date),
+          ),
+          const SizedBox(height: 12),
+
+          // ── Thời gian bắt đầu (>= 20:00, cùng ngày DateRegister) ────────
+          FormDateTimePicker(
+            nameForm: '${_pref}_time_start',
+            nameTimePicker: '${_pref}_time_start_inner',
+            label: 'Thời gian bắt đầu',
+            icon: Icons.access_time_outlined,
+            inputType: InputType.both,
+            format: bothFmt,
+            initialValue: DateTime(
+              widget.slip.date.year,
+              widget.slip.date.month,
+              widget.slip.date.day,
+              _kStartHourMin,
+            ),
+            initialDate: widget.slip.date,
+            // Giới hạn chọn: chỉ trong ngày đăng ký (không qua đêm cho start)
+            firstDate: widget.slip.date,
+            lastDate: widget.slip.date
+                .add(const Duration(hours: 23, minutes: 59)),
+            autovalidateMode: AutovalidateMode.disabled,
+            onChanged: (_) => widget.onTimeChanged(widget.slip),
+          ),
+          const SizedBox(height: 12),
+
+          // ── Thời gian kết thúc (> start, có thể sang ngày hôm sau) ──────
+          FormDateTimePicker(
+            nameForm: '${_pref}_time_end',
+            nameTimePicker: '${_pref}_time_end_inner',
+            label: 'Thời gian kết thúc',
+            icon: Icons.access_time_filled_outlined,
+            inputType: InputType.both,
+            format: bothFmt,
+            initialValue: DateTime(
+              widget.slip.date.year,
+              widget.slip.date.month,
+              widget.slip.date.day,
+              _kStartHourMin,
+            ),
+            initialDate: widget.slip.date,
+            firstDate: _endFirstDate,
+            lastDate: _endLastDate, // tối đa +1 ngày +8h
+            autovalidateMode: AutovalidateMode.disabled,
+            onChanged: (_) => widget.onTimeChanged(widget.slip),
+          ),
+          const SizedBox(height: 12),
+
+          // ── Row: Giờ nghỉ + Tổng giờ ────────────────────────────────────
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Giờ nghỉ giữa giờ (0 → 8, < totalHours)
+              Expanded(
+                child: FormBuilderField<String>(
+                  name: '${_pref}_break_hours',
+                  initialValue: '0.00',
+                  autovalidateMode: AutovalidateMode.disabled,
+                  builder: (field) {
+                    return TextFormField(
+                      controller: _breakController,
+                      focusNode: _breakFocusNode,
+                      keyboardType: const TextInputType.numberWithOptions(
+                          decimal: true),
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(
+                            RegExp(r'^\d*\.?\d{0,2}')),
+                      ],
+                      decoration: formInputDecoration(
+                        context,
+                        label: 'Giờ nghỉ giữa giờ',
+                        icon: Icons.free_breakfast_outlined,
+                      ),
+                      onChanged: (v) {
+                        field.didChange(v);
+                        widget.onTimeChanged(widget.slip);
+                      },
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(width: 12),
+
+              // Tổng số giờ (disabled, tự động tính)
+              Expanded(
+                child: TextFormField(
+                  key: ValueKey(totalText),
+                  initialValue: totalText,
+                  enabled: false,
+                  decoration: formInputDecoration(
+                    context,
+                    label: 'Tổng số giờ',
+                    icon: Icons.more_time_outlined,
+                  ),
+                  style: TextStyle(
+                    color: Colors.grey.shade700,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ],
           ),
-        ),
+          const SizedBox(height: 12),
+
+          // ── Địa điểm ────────────────────────────────────────────────────
+          FormInputField(
+            label: 'Địa điểm',
+            nameForm: '${_pref}_location',
+            nameTextField: '${_pref}_location_tf',
+            icon: Icons.location_on_outlined,
+            maxLines: 1,
+            autovalidateMode: AutovalidateMode.disabled,
+          ),
+          const SizedBox(height: 12),
+
+          // ── Ghi chú ─────────────────────────────────────────────────────
+          FormInputField(
+            label: 'Ghi chú',
+            nameForm: '${_pref}_note',
+            nameTextField: '${_pref}_note_tf',
+            icon: Icons.note_alt_outlined,
+            maxLines: 3,
+            autovalidateMode: AutovalidateMode.disabled,
+          ),
+        ],
       ),
     );
   }

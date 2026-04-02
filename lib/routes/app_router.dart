@@ -41,6 +41,7 @@ import '../features/workplace/app/reg_work/view/pages/missed/view/bloc/missed_bl
 import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/missed/view/pages/missed_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/overnight/view/bloc/overnight_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/view/pages/overnight_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/view/pages/overnight_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/view/bloc/overtime_bloc.dart';
@@ -329,20 +330,29 @@ class AppRouter {
         ],
       ),
 
-      GoRoute(
-        path: '/regwork/overnight',
-        builder: (context, state) => const OvernightScreen(),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<OvernightBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: '/regwork/overnight',
+            builder: (context, state) => const OvernightScreenPage(),
+          ),
+
+          GoRoute(
+            path: '/regwork/overnight/detail',
+            builder: (context, state) => const OvertimeDetailScreenPage(),
+          ),
+
+          GoRoute(
+            path: '/regwork/overnight/add',
+            builder: (context, state) => const OvernightAddScreen(),
+          ),
+        ],
       ),
 
-      GoRoute(
-        path: '/regwork/overnight/detail',
-        builder: (context, state) => const OvertimeDetailScreenPage(),
-      ),
 
-      GoRoute(
-        path: '/regwork/overnight/add',
-        builder: (context, state) => const OvernightAddScreen(),
-      ),
 
       /// Report Route
       GoRoute(

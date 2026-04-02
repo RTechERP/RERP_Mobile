@@ -243,4 +243,8 @@ class ApiEndPoint {
   static const String saveWorkTrip = '/EmployeeBussiness/save-data-employee';
 
   static const String getWorkTripById = '/EmployeeBussiness/get-by-id';
+
+  static const String getOvernight = '/EmployeeNightShift/get-employee-night-shift';
+
+  static const String saveOvernight = '/EmployeeNightShift/save-data';
 }

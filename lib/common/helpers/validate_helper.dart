@@ -14,6 +14,14 @@ typedef LeaveAddSlipRow = ({
   String reason,
 });
 
+/// Một phiếu làm đêm khi validate form (map từ form).
+typedef OvernightAddSlipRow = ({
+  DateTime date,
+  DateTime? timeStart,
+  DateTime? timeEnd,
+  double breakHours,
+});
+
 /// Một khoảng thời gian làm thêm khi validate form (map từ form).
 typedef OvertimeAddSlipRow = ({
   DateTime? timeStart,
@@ -1469,6 +1477,143 @@ class ValidateHelper {
       if (s.typeId <= 0) return false;
       if (s.location <= 0) return false;
       if (s.reason.trim().isEmpty) return false;
+    }
+    return true;
+  }
+
+  // --- Làm đêm (Overnight add)
+
+  /// Số giờ làm tối thiểu bắt buộc cho một phiếu overtime.
+  static const int overnightStartHourMin = 20;
+  static const int overnightEndHourMin = 23;
+
+  /// Tổng giờ làm tối đa cho một phiếu làm đêm.
+  static const double overnightMaxTotalHours = 8.0;
+
+  /// Validate một phiếu làm đêm đơn lẻ.
+  ///
+  /// [label]: nhãn hiển thị trước thông báo lỗi (ví dụ: `'Phiếu 01/04/2026:'`).
+  /// [isProblem]: `true` → cho phép chọn ngày trong tháng; `false` → chỉ hôm nay.
+  static String? overnightValidateSlip({
+    required OvernightAddSlipRow slip,
+    required String label,
+    required bool isProblem,
+  }) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final slipDate = DateTime(slip.date.year, slip.date.month, slip.date.day);
+
+    // Kiểm tra ngày hợp lệ
+    if (!isProblem) {
+      if (slipDate != today) {
+        return '$label Ngày không hợp lệ (chỉ được chọn hôm nay khi không đăng ký bổ sung).';
+      }
+    } else {
+      final firstOfMonth = DateTime(today.year, today.month, 1);
+      if (slipDate.isBefore(firstOfMonth) || slipDate.isAfter(today)) {
+        return '$label Ngày không hợp lệ (chỉ chọn trong tháng hiện tại).';
+      }
+    }
+
+    // Giờ bắt đầu bắt buộc
+    if (slip.timeStart == null) return '$label Chưa chọn giờ bắt đầu.';
+
+    // Giờ bắt đầu phải >= overnightStartHourMin:00
+    if (slip.timeStart!.hour < overnightStartHourMin) {
+      return '$label Giờ bắt đầu phải từ $overnightStartHourMin:00 trở đi.';
+    }
+
+    // Giờ bắt đầu phải cùng ngày với DateRegister
+    final startDateOnly = DateTime(
+      slip.timeStart!.year,
+      slip.timeStart!.month,
+      slip.timeStart!.day,
+    );
+    if (startDateOnly != slipDate) {
+      final dd = slipDate.day.toString().padLeft(2, '0');
+      final mm = slipDate.month.toString().padLeft(2, '0');
+      final yyyy = slipDate.year.toString();
+      return '$label Giờ bắt đầu phải nằm cùng ngày đăng ký ($dd/$mm/$yyyy).';
+    }
+
+    // Giờ kết thúc bắt buộc
+    if (slip.timeEnd == null) return '$label Chưa chọn giờ kết thúc.';
+
+    // Giờ kết thúc > giờ bắt đầu
+    if (!slip.timeEnd!.isAfter(slip.timeStart!)) {
+      return '$label Giờ kết thúc phải sau giờ bắt đầu.';
+    }
+
+    // Khoảng cách <= overnightMaxTotalHours tiếng
+    final diffHours =
+        slip.timeEnd!.difference(slip.timeStart!).inMinutes / 60.0;
+    if (diffHours > overnightMaxTotalHours) {
+      return '$label Khoảng thời gian không được vượt quá ${overnightMaxTotalHours.toInt()} tiếng.';
+    }
+
+    // Giờ nghỉ: 0 <= breakHours < diffHours, và <= overnightMaxTotalHours
+    if (slip.breakHours < 0) {
+      return '$label Giờ nghỉ không được âm.';
+    }
+    if (slip.breakHours >= diffHours) {
+      return '$label Giờ nghỉ phải nhỏ hơn tổng thời gian làm việc.';
+    }
+    if (slip.breakHours > overnightMaxTotalHours) {
+      return '$label Giờ nghỉ không được vượt quá ${overnightMaxTotalHours.toInt()} tiếng.';
+    }
+
+    // Tổng giờ > 0 và <= overnightMaxTotalHours
+    final total = diffHours - slip.breakHours;
+    if (total <= 0) {
+      return '$label Tổng giờ làm việc phải lớn hơn 0.';
+    }
+    if (total > overnightMaxTotalHours) {
+      return '$label Tổng giờ làm việc không được vượt quá ${overnightMaxTotalHours.toInt()} tiếng.';
+    }
+
+    return null;
+  }
+
+  /// Validate tổng hợp form tạo mới làm đêm trước khi gửi.
+  static String? validateOvernightAddSubmit({
+    required String? approverIdRaw,
+    required List<OvernightAddSlipRow> slips,
+    required bool isProblem,
+  }) {
+    final apTrim = (approverIdRaw ?? '').trim();
+    if (apTrim.isEmpty) return 'Vui lòng chọn người duyệt';
+    final approvedId = int.tryParse(apTrim) ?? 0;
+    if (approvedId <= 0) return 'Người duyệt không hợp lệ';
+
+    if (slips.isEmpty) return 'Vui lòng thêm ít nhất một phiếu';
+
+    for (var i = 0; i < slips.length; i++) {
+      final s = slips[i];
+      final dd = s.date.day.toString().padLeft(2, '0');
+      final mm = s.date.month.toString().padLeft(2, '0');
+      final yyyy = s.date.year.toString();
+      final label = 'Phiếu $dd/$mm/$yyyy:';
+      final err = overnightValidateSlip(
+        slip: s,
+        label: label,
+        isProblem: isProblem,
+      );
+      if (err != null) return err;
+    }
+
+    return null;
+  }
+
+  /// `true` khi đủ điều kiện **bật** nút Gửi cho form làm đêm.
+  static bool isOvernightAddSubmitEnabled({
+    required String? approverIdRaw,
+    required List<OvernightAddSlipRow> slips,
+  }) {
+    final ap = int.tryParse((approverIdRaw ?? '').trim()) ?? 0;
+    if (ap <= 0) return false;
+    if (slips.isEmpty) return false;
+    for (final s in slips) {
+      if (s.timeStart == null || s.timeEnd == null) return false;
     }
     return true;
   }
