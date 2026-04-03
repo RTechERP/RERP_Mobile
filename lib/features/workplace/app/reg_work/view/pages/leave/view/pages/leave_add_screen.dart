@@ -23,7 +23,6 @@ import '../widgets/leave_add_constants.dart';
 import '../widgets/leave_registration_card.dart';
 import '../widgets/leave_slip_form_fields.dart';
 import '../widgets/leave_slip_tabs_bar.dart';
-import '../widgets/leave_time_stats_section.dart';
 
 LeaveTimeItem? _firstLeaveTime(LeaveState s) {
   if (s.leaveTime.isEmpty) return null;
@@ -300,7 +299,6 @@ class _LeaveAddScreenPageState
                 padding: const EdgeInsets.all(12),
                 child: BlocBuilder<LeaveBloc, LeaveState>(
                   builder: (context, state) {
-                    final stat = _firstLeaveTime(state);
                     final submitOk = _computeSubmitEnabled();
 
                     return FormBuilder(
@@ -312,12 +310,6 @@ class _LeaveAddScreenPageState
                             child: SingleChildScrollView(
                               child: Column(
                                 children: [
-                                  LeaveTimeStatsSection(
-                                    stat: stat,
-                                    showLoading: false,
-                                  ),
-                                  const SizedBox(height: 8),
-
                                   FormCard(
                                     child: Column(
                                       crossAxisAlignment:

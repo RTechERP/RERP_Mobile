@@ -16,12 +16,11 @@ import '../../../../../../../../../common/utils/snack_bar_helper.dart'
     show SnackBarType;
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../data/datasource/models/leave_model.dart';
-import '../../domain/leave_swipe_rules.dart';
+
 import '../bloc/leave_bloc.dart';
 import '../widgets/leave_add_constants.dart';
 import '../widgets/leave_registration_card.dart';
 import '../widgets/leave_slip_form_fields.dart';
-import '../widgets/leave_time_stats_section.dart';
 
 LeaveTimeItem? _firstLeaveTime(LeaveState s) {
   if (s.leaveTime.isEmpty) return null;
@@ -104,7 +103,7 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
   bool _slipReadOnly(LeaveState state) {
     final slip = _focusedSlip(state);
     if (slip == null) return true;
-    if (LeaveSwipeRules.isPhaseApprovalLocked(
+    if (SwipeHelper.isPhaseApprovalLocked(
           phaseIsApprovedBGD: state.detailPhaseIsApprovedBGD,
           phaseIsApprovedTP: state.detailPhaseIsApprovedTP,
           phaseIsApprovedHR: state.detailPhaseIsApprovedHR,
@@ -113,7 +112,7 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
         )) {
       return true;
     }
-    return LeaveSwipeRules.isDetailSlipReadOnly(
+    return SwipeHelper.isDetailSlipReadOnly(
       slip,
       phaseIsApprovedBGD: state.detailPhaseIsApprovedBGD,
       phaseIsApprovedTP: state.detailPhaseIsApprovedTP,
@@ -131,7 +130,7 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
         int.tryParse('${v['leave_slip_${_kDetailSlipKey}_session'] ?? ''}') ??
             0;
     if (date == null) return true;
-    return LeaveSwipeRules.isSwipeBlockedByDateTime(
+    return SwipeHelper.isSwipeBlockedByDateTime(
       startDate: date,
       endDate: date,
       timeOnLeave: session,
@@ -580,7 +579,6 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
                         );
                       }
 
-                      final stat = _firstLeaveTime(state);
                       final ro = _slipReadOnly(state);
                       final slipForForm = state.detailEditSlips.isEmpty
                           ? null
@@ -602,11 +600,6 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
                                 child: SingleChildScrollView(
                                   child: Column(
                                     children: [
-                                      LeaveTimeStatsSection(
-                                        stat: stat,
-                                        showLoading: false,
-                                      ),
-                                      const SizedBox(height: 8),
                                       FormCard(
                                         child: Column(
                                           crossAxisAlignment:

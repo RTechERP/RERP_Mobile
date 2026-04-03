@@ -4,9 +4,7 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../data/datasource/models/leave_model.dart';
 
-String formatLeaveStat(int? v) => v == null ? '—' : '$v';
 
-/// Các thẻ thống kê phép từ [LeaveTimeItem] (API getLeaveTime).
 class LeaveTimeStatsSection extends StatelessWidget {
   const LeaveTimeStatsSection({
     super.key,
@@ -19,6 +17,8 @@ class LeaveTimeStatsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String formatLeaveStat(int? v) => v == null ? '0' : '$v';
+
     return Column(
       children: [
         if (showLoading)
@@ -59,7 +59,7 @@ class LeaveTimeStatsSection extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
         Row(
           children: [
             Expanded(
@@ -135,7 +135,7 @@ class LeaveTimeStatsSection extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
         Row(
           children: [
             Expanded(

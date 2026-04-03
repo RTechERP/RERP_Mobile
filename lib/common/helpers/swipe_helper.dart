@@ -1,14 +1,9 @@
-import '../data/datasource/models/leave_model.dart';
+import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/data/datasource/models/leave_model.dart';
+import 'package:rtc_erp/common/utils/formatter/date_formatter.dart';
 
-/// Quy tắc giống màn danh sách (xoá swipe): ngày/giờ, huỷ, đã duyệt.
-/// Dùng chung cho [LeaveItem] (một dòng list) và từng [LeaveEditSlip] (chi tiết / multi-ID).
-class LeaveSwipeRules {
-  LeaveSwipeRules._();
+class SwipeHelper {
+  SwipeHelper._();
 
-  static DateTime _dateOnly(DateTime d) => DateTime(d.year, d.month, d.day);
-
-  /// Không cho xoá/sửa: (1) ngày/quá khứ; (2) hôm nay nhưng đã quá mốc đăng ký theo buổi.
-  /// Sáng (1) / cả ngày (3): từ 8:01 cùng ngày bắt đầu không xoá. Chiều (2): từ 13:31.
   static bool isSwipeBlockedByDateTime({
     required DateTime? startDate,
     DateTime? endDate,
@@ -19,13 +14,13 @@ class LeaveSwipeRules {
     if (startRaw == null) return true;
 
     final now = clock ?? DateTime.now();
-    final today = _dateOnly(now);
+    final today = DateFormatter.dateOnly(now);
     final start = startRaw.toLocal();
-    final startDay = _dateOnly(start);
+    final startDay = DateFormatter.dateOnly(start);
 
     final endRaw = endDate ?? startDate;
     if (endRaw == null) return true;
-    final endDay = _dateOnly(endRaw.toLocal());
+    final endDay = DateFormatter.dateOnly(endRaw.toLocal());
 
     if (endDay.isBefore(today)) return true;
     if (startDay.isBefore(today)) return true;
@@ -62,7 +57,6 @@ class LeaveSwipeRules {
     return false;
   }
 
-  /// Một dòng danh sách [LeaveItem] có được phép xoá (swipe) không.
   static bool canSwipeDeleteLeave(LeaveItem item) {
     if (isSwipeBlockedByDateTime(
           startDate: item.startDate,
@@ -86,8 +80,6 @@ class LeaveSwipeRules {
     return !bgdApproved && !tbpApproved && !hrApproved;
   }
 
-  /// Phiếu chi tiết (một detail trong phase) có bị khoá sửa không — cùng logic với xoá list.
-  /// Cờ cấp phase dùng khi detail không gửi kèm field.
   static bool isDetailSlipReadOnly(
     LeaveEditSlip slip, {
     bool? phaseIsApprovedBGD,
@@ -124,7 +116,6 @@ class LeaveSwipeRules {
     return false;
   }
 
-  /// Đợt đã duyệt (BGĐ / TP / HR) — chặn thêm phiếu, đổi người duyệt, gửi cập nhật toàn form.
   static bool isPhaseApprovalLocked({
     bool? phaseIsApprovedBGD,
     bool? phaseIsApprovedTP,

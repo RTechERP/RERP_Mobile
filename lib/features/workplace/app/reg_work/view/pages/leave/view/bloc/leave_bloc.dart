@@ -9,6 +9,7 @@ import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/enums/role_enum.dart';
 import '../../../../../../../../../common/logger/index.dart';
 import '../../../../../../../../../common/services/permissions/role_resolver.dart';
+import '../../../../../../../../../common/utils/formatter/date_formatter.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../data/datasource/models/leave_model.dart';
 import '../../data/repository/leave_repo.dart';
@@ -18,11 +19,7 @@ part 'leave_state.dart';
 part 'leave_bloc.g.dart';
 part 'leave_bloc.freezed.dart';
 
-/// Ngày 1 và ngày cuối của tháng chứa [anyDayInMonth].
-(DateTime start, DateTime end) _calendarMonthBounds(DateTime anyDayInMonth) {
-  final y = anyDayInMonth.year, m = anyDayInMonth.month;
-  return (DateTime(y, m, 1), DateTime(y, m + 1, 0));
-}
+
 
 @injectable
 class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
@@ -441,6 +438,9 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
   Future<void> _onInit(Emitter<LeaveState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
+    final today = DateTime.now();
+    final todayStart = DateTime(today.year, today.month, today.day);
+
     final userRes = await _authRepo.getCurrentUser();
 
     await userRes.fold(
@@ -449,59 +449,81 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         emit(state.copyWith(status: BaseStateStatus.failed));
       },
           (user) async {
-        final resolvedUser = userRes.fold((_) => null, (u) => u);
-        final roles = resolvedUser != null
-            ? RoleResolver.resolve(resolvedUser)
-            : <AppRole>{};
+        final roles = RoleResolver.resolve(user!);
+
         final skipDateRules = roles.contains(AppRole.admin) ||
             roles.contains(AppRole.hr);
 
-        final now = DateTime.now();
-        final (defaultStart, defaultEnd) = _calendarMonthBounds(now);
+        final (defaultStart, defaultEnd) = DateFormatter.calendarMonthBounds(today);
 
-        late final DateTime rangeStart;
-        late final DateTime rangeEnd;
+        late final DateTime queryDate;
+        late final DateTime exactStart;
+        late final DateTime exactEnd;
+
         if (state.dateStart != null && state.dateEnd != null) {
           final a = state.dateStart!;
           final b = state.dateEnd!;
-          final lo = a.isAfter(b) ? b : a;
-          (rangeStart, rangeEnd) = _calendarMonthBounds(lo);
+          queryDate = a.isAfter(b) ? b : a;
+          exactStart = a.isAfter(b) ? b : a;
+          exactEnd = a.isAfter(b) ? a : b;
         } else {
-          rangeStart = defaultStart;
-          rangeEnd = defaultEnd;
+          queryDate = today;
+          exactStart = defaultStart;
+          exactEnd = defaultEnd;
         }
 
-        // Payload theo contract API (filter theo month/year của tháng đang xem).
         final payload = <String, dynamic>{
           "IDApprovedTP": 0,
           "departmentId": 0,
           "keyWord": '',
-          "month": rangeStart.month,
+          "month": queryDate.month,
           "pageNumber": 1,
           "pageSize": 1000,
           "status": -1,
-          "year": rangeStart.year,
+          "year": queryDate.year,
         };
 
-        _log.logI('Payload: $payload'); // debug thêm
+        _log.logI('Payload: $payload');
 
-        final res = await _leaveRepo.getLeave(payload: payload);
+        final leaveRes = await _leaveRepo.getLeave(payload: payload);
 
-        await res.fold(
-              (l) async {
-            _log.logE('❌ API failed: $l');
+        await leaveRes.fold(
+              (err) async {
+            _log.logE('❌ Get leave failed: $err');
             emit(state.copyWith(status: BaseStateStatus.failed));
           },
-              (r) async {
-            _log.logI('✅ API success - total: $r');
-            emit(
-              state.copyWith(
-                status: BaseStateStatus.success,
-                leave: r,
-                dateStart: rangeStart,
-                dateEnd: rangeEnd,
-                skipLeaveDateConstraints: skipDateRules,
-              ),
+              (leaveData) async {
+            final leaveTimeRes = await _leaveRepo.getLeaveTimeItem(
+              dateStart: todayStart,
+              employeeId: user.employeeId ,
+            );
+
+            await leaveTimeRes.fold(
+                  (err) async {
+                _log.logE('❌ Get leave time failed: $err');
+
+                emit(
+                  state.copyWith(
+                    status: BaseStateStatus.success,
+                    leave: leaveData,
+                    dateStart: exactStart,
+                    dateEnd: exactEnd,
+                    skipLeaveDateConstraints: skipDateRules,
+                  ),
+                );
+              },
+                  (leaveTimeItem) async {
+                emit(
+                  state.copyWith(
+                    status: BaseStateStatus.success,
+                    leave: leaveData,
+                    leaveTime: leaveTimeItem,
+                    dateStart: exactStart,
+                    dateEnd: exactEnd,
+                    skipLeaveDateConstraints: skipDateRules,
+                  ),
+                );
+              },
             );
           },
         );
@@ -518,13 +540,13 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
     final end = DateTime(dateEnd.year, dateEnd.month, dateEnd.day);
 
     final lo = start.isAfter(end) ? end : start;
-    final (rangeStart, rangeEnd) = _calendarMonthBounds(lo);
+    final hi = start.isAfter(end) ? start : end;
 
     emit(
       state.copyWith(
         status: BaseStateStatus.loading,
-        dateStart: rangeStart,
-        dateEnd: rangeEnd,
+        dateStart: lo,
+        dateEnd: hi,
       ),
     );
 
@@ -539,11 +561,11 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
           "IDApprovedTP": 0,
           "departmentId": 0,
           "keyWord": '',
-          "month": rangeStart.month,
+          "month": lo.month,
           "pageNumber": 1,
           "pageSize": 10000,
           "status": -1,
-          "year": rangeStart.year,
+          "year": lo.year,
         };
 
         _log.logI('Payload: $payload');
@@ -560,8 +582,8 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
               state.copyWith(
                 status: BaseStateStatus.success,
                 leave: r,
-                dateStart: rangeStart,
-                dateEnd: rangeEnd,
+                dateStart: lo,
+                dateEnd: hi,
               ),
             );
           },

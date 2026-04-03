@@ -19,7 +19,7 @@ class LeaveCard extends StatelessWidget {
   /// Admin / HR: hiển thị thêm dòng tên nhân viên trên card.
   final bool showEmployee;
 
-  static final _dateFmt = DateFormat('dd/MM/yyyy');
+  static final _dateFmt = DateFormat('dd/MM/yyyy - HH:mm');
 
   ApprovalStatus _mapHrStatus(int? statusHRNumber, String? statusHRText) {
     final text = (statusHRText ?? '').toLowerCase();
@@ -55,7 +55,7 @@ class LeaveCard extends StatelessWidget {
   }
 
   String _formatDate(DateTime? d) {
-    if (d == null) return '--/--/----';
+    if (d == null) return '--/--/---- - 00:00';
     return _dateFmt.format(d.toLocal());
   }
 
