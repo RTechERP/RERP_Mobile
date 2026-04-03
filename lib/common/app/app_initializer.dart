@@ -1,6 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../../di/injection.dart';
+import '../services/firebase/firebase_initializer.dart';
 import 'app_config.dart';
 
 class AppInitializer {
@@ -8,5 +9,6 @@ class AppInitializer {
     await dotenv.load(fileName: envFile);
     await AppConfig.load();
     configureDependencies();
+    await FirebaseInitializer.init();
   }
 }

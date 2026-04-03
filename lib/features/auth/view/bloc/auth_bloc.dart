@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../common/constants.dart';
 
@@ -107,6 +108,18 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         }
 
         final user = await AuthRepository.fetchAndSaveCurrentUser(log: _log);
+
+        if (user != null) {
+          // Sync FCM Token khi login thành công
+          try {
+            final fcmToken = await FirebaseMessaging.instance.getToken();
+            if (fcmToken != null) {
+              await _authRepo.updateDeviceToken(fcmToken);
+            }
+          } catch (e) {
+            _log.logE('Lỗi đồng bộ FCM Token: $e');
+          }
+        }
 
         if (emit.isDone) return;
 

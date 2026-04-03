@@ -43,5 +43,12 @@ class AuthService extends DioBaseApiService {
 
     );
   }
+
+  Future<dynamic> updateDeviceToken(String fcmToken) async {
+    return post(
+      ApiEndPoint.updateDeviceToken,
+      body: {'token': fcmToken}, // sửa body theo chuẩn backend
+    );
+  }
 }
 

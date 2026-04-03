@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "638927268417",
+    "project_id": "rerpapi-6d50c",
+    "storage_bucket": "rerpapi-6d50c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638927268417:android:9e217b6f52ba2a2d32f4c0",
+        "android_client_info": {
+          "package_name": "com.rtc.erp.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLtdjrnuerc-U_1q9v5WnrdnCbkPKjvpY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

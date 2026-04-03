@@ -247,4 +247,7 @@ class ApiEndPoint {
   static const String getOvernight = '/EmployeeNightShift/get-employee-night-shift';
 
   static const String saveOvernight = '/EmployeeNightShift/save-data';
+
+  // TODO: Thay đường dẫn API thực tế của Backend tại đây
+  static const String updateDeviceToken = '/home/update-fcm-token';
 }

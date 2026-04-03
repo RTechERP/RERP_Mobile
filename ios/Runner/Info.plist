@@ -53,5 +53,13 @@
 		<false/>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>Ứng dụng cần truy cập thư viện ảnh để bạn chọn ảnh kiện hàng khi đăng ký giao hoặc lấy hàng.</string>
+		<!-- FCM: Background delivery -->
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>fetch</string>
+			<string>remote-notification</string>
+		</array>
+		<key>FirebaseAppDelegateProxyEnabled</key>
+		<false/>
 	</dict>
 </plist>
