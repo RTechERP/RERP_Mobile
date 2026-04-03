@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -112,6 +114,9 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         if (user != null) {
           // Sync FCM Token khi login thành công
           try {
+            if (Platform.isIOS) {
+              await FirebaseMessaging.instance.getAPNSToken();
+            }
             final fcmToken = await FirebaseMessaging.instance.getToken();
             if (fcmToken != null) {
               await _authRepo.updateDeviceToken(fcmToken);

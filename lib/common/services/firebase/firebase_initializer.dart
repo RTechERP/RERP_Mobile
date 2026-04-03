@@ -56,9 +56,19 @@ class FirebaseInitializer {
     }
 
     // Lấy & in FCM token
-    final token = await FirebaseMessaging.instance.getToken();
-    if (kDebugMode) {
-      print('[FCM] Token: $token');
+    try {
+      if (Platform.isIOS) {
+        // Trên iOS (đặc biệt là simulator), cần đợi hệ thống cấp APNS token trước khi lấy FCM token
+        await FirebaseMessaging.instance.getAPNSToken();
+      }
+      final token = await FirebaseMessaging.instance.getToken();
+      if (kDebugMode) {
+        print('[FCM] Token: $token');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('[FCM] Lỗi lấy token (Thường xảy ra trên iOS Simulator): $e');
+      }
     }
 
     // Lắng nghe khi token được refresh
