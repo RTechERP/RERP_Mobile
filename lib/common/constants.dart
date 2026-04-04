@@ -250,4 +250,14 @@ class ApiEndPoint {
 
   // TODO: Thay đường dẫn API thực tế của Backend tại đây
   static const String updateDeviceToken = '/home/update-fcm-token';
+
+  static const String getWorkCategory = '/projectitemnew/get-project-item-person';
+
+  static const String getWorkProjectType = '/WorkItem/get-type-project-item';
+
+  static const String getWorkAssigner = '/projectitemnew/get-employee-request';
+
+  static const String getWorkParent = '/projectitemnew/get-project-item-parent';
+
+  static const String saveWorkCategory = '';
 }

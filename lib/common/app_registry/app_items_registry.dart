@@ -186,7 +186,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.category_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/work-category',
+      route: RouteNames.workCategory,
       imageUrl: AppImages.reg_general_work,
     ),
 

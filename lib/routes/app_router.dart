@@ -7,6 +7,7 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_ve
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/reg_general_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/leave/view/pages/leave_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/view/pages/lunch_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_work/view/pages/lunch/view/pages/lunch_detail_screen.dart';
@@ -26,6 +27,9 @@ import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pa
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_edit_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/work_category/view/bloc/work_category_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_add_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_screen.dart';
@@ -726,6 +730,32 @@ class AppRouter {
           // ),
         ],
       ),
+
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<WorkCategoryBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.workCategory,
+            builder: (context, state) => const WorkCategoryScreen(),
+          ),
+
+          GoRoute(
+            path: RouteNames.workCategoryAdd,
+            builder: (context, state) => const WorkCategoryAddScreen(),
+          ),
+
+          GoRoute(
+            path: RouteNames.workCategoryDetail,
+            builder: (context, state) => const WorkCategoryDetailScreen(),
+          ),
+        ],
+      ),
+
     ],
   );
 }

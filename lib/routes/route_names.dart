@@ -73,6 +73,7 @@ class RouteNames {
   static const reportSaledepart = '/report/sale';
 
   static const reportSaleAdd = '/report/sale/add';
+
   ///**** Admin Sale ****///
   static const reportSaledAdminDetail = '/report/sale_admin/detail';
 
@@ -87,13 +88,11 @@ class RouteNames {
 
   static const reportSaleStaffEdit = '/report/sale_staff/edit';
 
-
   ///*** Marketing Department ***///
   static const reportMarketingdepart = '/report/marketing';
   static const reportMarketingdepartDetail = '/report/marketing/detail';
   static const reportMarketingdepartAdd = '/report/marketing/add';
   static const reportMarketingdepartEdit = '/report/marketing/edit';
-
 
   ///*** HR Department ***///
   static const reportHRAdd = '/report/hr/add';
@@ -123,10 +122,8 @@ class RouteNames {
 
   static const reportADdepartEdit = '/report/ad/edit';
 
-
   // Favorites
   static const favorites = '/favorites';
-
 
   // Reg General
   static const meetingRoom = '/reg_general/meeting_room';
@@ -141,4 +138,10 @@ class RouteNames {
   static const bookingVehicleDetail = '/reg_general/booking_vehicle/detail';
 
   static const bookingVehicleEdit = '/reg_general/booking_vehicle/Edit';
+
+  static const workCategory = '/reg_general/work_category';
+
+  static const workCategoryAdd = '/reg_general/work_category/add';
+
+  static const workCategoryDetail = '/reg_general/work_category/detail';
 }

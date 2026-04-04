@@ -18,6 +18,10 @@ import '../features/workplace/app/reg_general/view/pages/meeting_room/data/datas
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/work_category/data/datasource/service/work_category_service.dart';
+import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/work_category/view/bloc/work_category_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/data/datasource/service/leave_service.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo_impl.dart';
@@ -138,6 +142,10 @@ void configureDependencies() {
     () => OverNightService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<WorkCategoryService>(
+    () => WorkCategoryService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(getIt<AuthService>()),
@@ -183,6 +191,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<OvernightRepo>(
     () => OvernightRepoImpl(getIt<OverNightService>()),
+  );
+
+  getIt.registerLazySingleton<WorkCategoryRepo>(
+    () => WorkCategoryRepoImpl(getIt<WorkCategoryService>()),
   );
 
   /// ===== BLOCS =====
@@ -269,6 +281,14 @@ void configureDependencies() {
   getIt.registerFactory<OvernightBloc>(
     () => OvernightBloc(
       getIt<OvernightRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<WorkCategoryBloc>(
+    () => WorkCategoryBloc(
+      getIt<WorkCategoryRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),
