@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAYTodSFO4Jyo_jiI6FVJItRy_APAphqPk',
-    appId: '1:943014622206:android:f0b0f7a90a0c10c83a86af',
-    messagingSenderId: '943014622206',
-    projectId: 'rtc-erp',
-    storageBucket: 'rtc-erp.firebasestorage.app',
+    apiKey: 'AIzaSyAg4xh0QtuBDkuyl3B5t669OLPtHqC23SI',
+    appId: '1:812626362987:android:ac66bb0807a5a773ac272e',
+    messagingSenderId: '812626362987',
+    projectId: 'rtc---erp-mobile',
+    storageBucket: 'rtc---erp-mobile.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCIuUnKlAWnj1Jwkyd3-nzXTX5ocJ462qk',
-    appId: '1:943014622206:ios:e85701b0015053703a86af',
-    messagingSenderId: '943014622206',
-    projectId: 'rtc-erp',
-    storageBucket: 'rtc-erp.firebasestorage.app',
+    apiKey: 'AIzaSyDRlezdYkPp0iH-XE_PjV5x-Q8gJNOt14k',
+    appId: '1:812626362987:ios:14e1658857134aeeac272e',
+    messagingSenderId: '812626362987',
+    projectId: 'rtc---erp-mobile',
+    storageBucket: 'rtc---erp-mobile.firebasestorage.app',
     iosBundleId: 'com.rtc.erp',
   );
+
 }

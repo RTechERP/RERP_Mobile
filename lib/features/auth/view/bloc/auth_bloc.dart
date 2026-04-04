@@ -9,13 +9,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../common/constants.dart';
 
+import '../../../../common/helpers/index.dart';
 import '../../../../common/services/permissions/permission_service.dart';
 import '../../data/datasource/models/auth_model.dart';
 import '../../data/datasource/models/user_model.dart';
 import '../../data/repository/auth_repo.dart';
 import '../../../../../../../../base/network/errors/extension.dart';
 import '../../data/repository/auth_repository.dart';
-import '../../helper/auth_scheduled_logout.dart';
 import '../../../../common/logger/logger.dart';
 
 part 'auth_event.dart';
@@ -119,7 +119,8 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
             }
             final fcmToken = await FirebaseMessaging.instance.getToken();
             if (fcmToken != null) {
-              await _authRepo.updateDeviceToken(fcmToken);
+              final deviceId = await DeviceInfoHelper.getDeviceId();
+              await _authRepo.updateDeviceToken(fcmToken, deviceId);
             }
           } catch (e) {
             _log.logE('Lỗi đồng bộ FCM Token: $e');

@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyCIuUnKlAWnj1Jwkyd3-nzXTX5ocJ462qk</string>
+	<string>AIzaSyDRlezdYkPp0iH-XE_PjV5x-Q8gJNOt14k</string>
 	<key>GCM_SENDER_ID</key>
-	<string>943014622206</string>
+	<string>812626362987</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.rtc.erp</string>
 	<key>PROJECT_ID</key>
-	<string>rtc-erp</string>
+	<string>rtc---erp-mobile</string>
 	<key>STORAGE_BUCKET</key>
-	<string>rtc-erp.firebasestorage.app</string>
+	<string>rtc---erp-mobile.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:943014622206:ios:e85701b0015053703a86af</string>
+	<string>1:812626362987:ios:14e1658857134aeeac272e</string>
 </dict>
 </plist>

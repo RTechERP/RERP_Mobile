@@ -3,9 +3,6 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
-/// Quản lý hiển thị local notification khi nhận FCM message.
-/// Singleton – truy cập qua [NotificationService.instance].
 class NotificationService {
   NotificationService._();
 

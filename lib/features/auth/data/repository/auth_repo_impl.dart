@@ -44,9 +44,9 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<BaseError, void>> updateDeviceToken(String fcmToken) async {
+  Future<Either<BaseError, void>> updateDeviceToken(String fcmToken, String deviceId) async {
     try {
-      await _service.updateDeviceToken(fcmToken);
+      await _service.updateDeviceToken(fcmToken, deviceId);
       return right(null);
     } on DioException catch (e) {
       return left(e.baseError);

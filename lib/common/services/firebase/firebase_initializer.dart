@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import '../notification/notification_service.dart';
 import '../../../di/injection.dart';
 import '../../../features/auth/data/repository/auth_repo.dart';
+import '../../helpers/device_info_helper.dart';
 
 /// Background message handler – phải là top-level function.
 @pragma('vm:entry-point')
@@ -23,6 +25,13 @@ class FirebaseInitializer {
   /// Gọi trong [bootstrap] sau [WidgetsFlutterBinding.ensureInitialized].
   static Future<void> init() async {
     await Firebase.initializeApp();
+
+    // Khởi tạo Firebase Crashlytics
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+    PlatformDispatcher.instance.onError = (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
+    };
 
     // Đăng ký background handler
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
@@ -72,12 +81,13 @@ class FirebaseInitializer {
     }
 
     // Lắng nghe khi token được refresh
-    FirebaseMessaging.instance.onTokenRefresh.listen((newToken) {
+    FirebaseMessaging.instance.onTokenRefresh.listen((newToken) async {
       if (kDebugMode) {
         print('[FCM] Token refreshed: $newToken');
       }
       try {
-        getIt<AuthRepo>().updateDeviceToken(newToken);
+        final deviceId = await DeviceInfoHelper.getDeviceId();
+        getIt<AuthRepo>().updateDeviceToken(newToken, deviceId);
       } catch (e) {
         if (kDebugMode) {
           print('[FCM] Lỗi cập nhật token mới lên server: $e');

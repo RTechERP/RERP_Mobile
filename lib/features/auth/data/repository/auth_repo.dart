@@ -12,5 +12,5 @@ abstract class AuthRepo {
 
   Future<Either<BaseError, User?>> getCurrentUser();
 
-  Future<Either<BaseError, void>> updateDeviceToken(String fcmToken);
+  Future<Either<BaseError, void>> updateDeviceToken(String fcmToken, String deviceId);
 }

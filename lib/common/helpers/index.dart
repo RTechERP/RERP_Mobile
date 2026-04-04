@@ -3,3 +3,5 @@ export 'select_bottom_sheet_helper.dart';
 export 'validate_helper.dart';
 export 'sort_days_helper.dart';
 export 'swipe_helper.dart';
+export 'device_info_helper.dart';
+export 'scheduled_logout_helper.dart';

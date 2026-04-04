@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "943014622206",
-    "project_id": "rtc-erp",
-    "storage_bucket": "rtc-erp.firebasestorage.app"
+    "project_number": "812626362987",
+    "project_id": "rtc---erp-mobile",
+    "storage_bucket": "rtc---erp-mobile.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:943014622206:android:f0b0f7a90a0c10c83a86af",
+        "mobilesdk_app_id": "1:812626362987:android:ac66bb0807a5a773ac272e",
         "android_client_info": {
           "package_name": "com.rtc.erp"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAYTodSFO4Jyo_jiI6FVJItRy_APAphqPk"
+          "current_key": "AIzaSyAg4xh0QtuBDkuyl3B5t669OLPtHqC23SI"
         }
       ],
       "services": {
@@ -26,7 +26,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:943014622206:android:f79c7e50e9591c893a86af",
+        "mobilesdk_app_id": "1:812626362987:android:dcb4cadd070c3d41ac272e",
         "android_client_info": {
           "package_name": "com.rtc.erp.debug"
         }
@@ -34,7 +34,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAYTodSFO4Jyo_jiI6FVJItRy_APAphqPk"
+          "current_key": "AIzaSyAg4xh0QtuBDkuyl3B5t669OLPtHqC23SI"
         }
       ],
       "services": {
