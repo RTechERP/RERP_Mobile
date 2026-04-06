@@ -61,7 +61,12 @@ class LeaveRegistrationCard extends StatelessWidget {
           initialDate: regDate,
           enabled: regDatePickerEnabled,
           firstDate: regDatePickerEnabled ? DateTime(1900) : todayStart,
-          autovalidateMode: AutovalidateMode.disabled,
+          isRequired: true,
+          validator: (v) {
+            if (v == null) return 'Vui lòng chọn ngày đăng ký';
+            return null;
+          },
+          autovalidateMode: AutovalidateMode.onUserInteraction,
         ),
         if (isAdminOrHr) ...[
           const SizedBox(height: 12),
@@ -102,7 +107,12 @@ class LeaveRegistrationCard extends StatelessWidget {
               nameTextField: 'regwork_leave_add_approver_text_tf',
               label: 'Người duyệt',
               icon: Icons.supervisor_account_outlined,
-              autovalidateMode: AutovalidateMode.disabled,
+              isRequired: true,
+              validator: (v) {
+                if (v == null || v.trim().isEmpty) return 'Vui lòng chọn người duyệt';
+                return null;
+              },
+              autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
           ),
         ),

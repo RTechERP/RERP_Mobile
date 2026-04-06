@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
@@ -183,18 +184,7 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
     return out;
   }
 
-  bool _computeFormReady() {
-    final form = _formKey.currentState;
-    if (form == null) return false;
-    form.save();
-    final v = form.value;
-    return ValidateHelper.isLeaveAddSubmitEnabled(
-      departmentName: '${v['leave_add_department'] ?? ''}',
-      employeeDisplay: '${v['leave_add_employee'] ?? ''}',
-      approverIdRaw: '${v['regwork_leave_add_approver_id'] ?? ''}',
-      slips: _collectOneSlipRow(v),
-    );
-  }
+
 
   String _sessionLabel(int code) {
     for (final o in kLeaveSessionOptions) {
@@ -371,8 +361,24 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
     final formState = _formKey.currentState;
     if (formState == null) return;
     if (state.detailPhaseAllSlips.isEmpty) return;
-    if (!_computeFormReady()) return;
-    formState.save();
+    
+    if (!formState.saveAndValidate()) {
+      final fieldsToCheck = [
+        'leave_slip_${_kDetailSlipKey}_date',
+        'leave_slip_${_kDetailSlipKey}_session_text_tf',
+        'leave_slip_${_kDetailSlipKey}_type_text_tf',
+        'leave_slip_${_kDetailSlipKey}_reason_tf',
+      ];
+      final hasError = fieldsToCheck.any((f) => formState.fields[f]?.hasError == true);
+      
+      if (hasError) {
+        final dateValue = formState.fields['leave_slip_${_kDetailSlipKey}_date']?.value as DateTime?;
+        final dateStr = dateValue != null ? DateFormat('dd/MM/yyyy').format(dateValue) : '';
+        context.showMessage('Vui lòng nhập đầy đủ thông tin ở phiếu $dateStr', type: SnackBarType.error);
+        return;
+      }
+      return;
+    }
 
     final values = formState.value;
     if (_pastSessionDeadline(values, state)) return;
@@ -587,9 +593,8 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
                       final form = _formKey.currentState;
                       form?.save();
                       final v = form?.value ?? {};
-                      final formReady = _computeFormReady();
                       final pastDeadline = _pastSessionDeadline(v, state);
-                      final saveEnabled = formReady && !pastDeadline && !ro;
+                      final saveEnabled = !pastDeadline && !ro;
 
                       return FormBuilder(
                         key: _formKey,

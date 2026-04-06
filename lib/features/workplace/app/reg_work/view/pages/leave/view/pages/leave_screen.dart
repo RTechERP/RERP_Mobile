@@ -288,6 +288,7 @@ class _LeaveScreenPageState
                       }
 
                       return Skeletonizer(
+                        containersColor: AppColors.white,
                         enabled: isInitialLoading,
                         child: RefreshIndicator(
                           onRefresh: () async {

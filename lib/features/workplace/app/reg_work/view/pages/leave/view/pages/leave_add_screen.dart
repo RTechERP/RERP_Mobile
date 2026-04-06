@@ -12,7 +12,6 @@ import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../../common/helpers/index.dart';
-import '../../../../../../../../../common/helpers/validate_helper.dart';
 import '../../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart'
     show SnackBarType;
@@ -79,18 +78,7 @@ class _LeaveAddScreenPageState
     ];
   }
 
-  bool _computeSubmitEnabled() {
-    final form = _formKey.currentState;
-    if (form == null) return false;
-    form.save();
-    final v = form.value;
-    return ValidateHelper.isLeaveAddSubmitEnabled(
-      departmentName: '${v['leave_add_department'] ?? ''}',
-      employeeDisplay: '${v['leave_add_employee'] ?? ''}',
-      approverIdRaw: '${v['regwork_leave_add_approver_id'] ?? ''}',
-      slips: _collectSlipRows(v),
-    );
-  }
+
 
   void _addSlip() {
     setState(() {
@@ -299,8 +287,6 @@ class _LeaveAddScreenPageState
                 padding: const EdgeInsets.all(12),
                 child: BlocBuilder<LeaveBloc, LeaveState>(
                   builder: (context, state) {
-                    final submitOk = _computeSubmitEnabled();
-
                     return FormBuilder(
                       key: _formKey,
                       onChanged: () => setState(() {}),
@@ -371,14 +357,32 @@ class _LeaveAddScreenPageState
                           ),
                           FormActions(
                             mode: FormActionMode.add,
-                            submitEnabled: submitOk,
+                            submitEnabled: true,
                             onSubmit: () {
                               FocusScope.of(context).unfocus();
 
                               final formState = _formKey.currentState;
                               if (formState == null) return;
-                              if (!_computeSubmitEnabled()) return;
-                              formState.save();
+                              
+                              if (!formState.saveAndValidate()) {
+                                for (final key in _slipKeys) {
+                                  final fieldsToCheck = [
+                                    'leave_slip_${key}_date',
+                                    'leave_slip_${key}_session_text_tf',
+                                    'leave_slip_${key}_type_text_tf',
+                                    'leave_slip_${key}_reason_tf',
+                                  ];
+                                  final hasError = fieldsToCheck.any((f) => formState.fields[f]?.hasError == true);
+                                  
+                                  if (hasError) {
+                                    final dateValue = formState.fields['leave_slip_${key}_date']?.value as DateTime?;
+                                    final dateStr = dateValue != null ? DateFormat('dd/MM/yyyy').format(dateValue) : '';
+                                    context.showMessage('Vui lòng nhập đầy đủ thông tin ở phiếu $dateStr', type: SnackBarType.error);
+                                    return;
+                                  }
+                                }
+                                return;
+                              }
 
                               final values = formState.value;
                               final stat = _firstLeaveTime(state);
