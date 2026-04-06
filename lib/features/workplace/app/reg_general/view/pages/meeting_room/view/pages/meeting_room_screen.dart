@@ -160,11 +160,11 @@ class _MeetingRoomScreenState
       showDatePickerButton: true,
       onTap: (details) => _onTap(details, roomIndex),
       timeSlotViewSettings: const TimeSlotViewSettings(
-        startHour: 7.5,
-        endHour: 17.5,
+        startHour: 8,
+        endHour: 18,
         timeInterval: Duration(minutes: 30),
         timeFormat: 'HH:mm',
-        timeIntervalHeight: 50,
+        timeIntervalHeight: 33,
       ),
       showCurrentTimeIndicator: true,
     );

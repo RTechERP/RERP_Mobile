@@ -12,7 +12,6 @@ import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../../common/helpers/index.dart';
-import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../bloc/meeting_room_bloc.dart';
 
@@ -141,6 +140,17 @@ class _MeetingRoomAddScreenState
                                     inputType: InputType.date,
                                     initialValue: _selectedDate,
                                     format: DateFormat('dd/MM/yyyy'),
+                                    isRequired: true,
+                                    validator: (v) {
+                                      if (v == null) return 'Vui lòng chọn ngày';
+                                      final today = DateTime.now();
+                                      final todayOnly = DateTime(today.year, today.month, today.day);
+                                      final pickedDate = DateTime(v.year, v.month, v.day);
+                                      if (pickedDate.isBefore(todayOnly)) {
+                                        return 'Không được chọn ngày trước hiện tại';
+                                      }
+                                      return null;
+                                    },
                                     onChanged: (v) {
                                       if (v != null) {
                                         _selectedDate = v;
@@ -169,6 +179,15 @@ class _MeetingRoomAddScreenState
                                           inputType: InputType.time,
                                           initialValue: _startTime,
                                           format: DateFormat('HH:mm'),
+                                          isRequired: true,
+                                          validator: (v) {
+                                            if (v == null) return 'Vui lòng chọn giờ bắt đầu';
+                                            if (v.hour < 8) return 'Giờ bắt đầu không được trước 08:00';
+                                            if (v.hour > 17 || (v.hour == 17 && v.minute > 0)) {
+                                              return 'Giờ bắt đầu không được quá 17:00';
+                                            }
+                                            return null;
+                                          },
                                           onChanged: (v) {
                                             if (v != null && _selectedDate != null) {
                                               final newStart = combine(_selectedDate!, v);
@@ -209,6 +228,14 @@ class _MeetingRoomAddScreenState
                                           inputType: InputType.time,
                                           initialValue: _endTime,
                                           format: DateFormat('HH:mm'),
+                                          isRequired: true,
+                                          validator: (v) {
+                                            if (v == null) return 'Vui lòng chọn giờ kết thúc';
+                                            if (_startTime != null && !v.isAfter(_startTime!)) {
+                                              return 'Giờ kết thúc phải lớn hơn giờ bắt đầu';
+                                            }
+                                            return null;
+                                          },
                                           onChanged: (v) {
                                             if (v != null && _selectedDate != null) {
                                               _isEndTimeManuallyChanged = true;
@@ -249,6 +276,11 @@ class _MeetingRoomAddScreenState
                                             departField = field,
                                         readOnly: true,
                                         icon: Icons.apartment,
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (v == null || v.isEmpty) return 'Vui lòng chọn phòng ban';
+                                          return null;
+                                        },
                                       ),
                                     ),
                                   ),
@@ -292,6 +324,11 @@ class _MeetingRoomAddScreenState
                                             meetingRoomField = field,
                                         icon: Icons.meeting_room_outlined,
                                         readOnly: true,
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (v == null || v.isEmpty) return 'Vui lòng chọn phòng họp';
+                                          return null;
+                                        },
                                       ),
                                     ),
                                   ),
@@ -306,6 +343,11 @@ class _MeetingRoomAddScreenState
                                     label: 'Nội dung cuộc họp',
                                     maxLines: 3,
                                     controller: _contentController,
+                                    isRequired: true,
+                                    validator: (v) {
+                                      if (v == null || v.trim().isEmpty) return 'Vui lòng nhập nội dung cuộc họp';
+                                      return null;
+                                    },
                                     onChanged: (v) {
                                       bloc.add(
                                         MeetingRoomEvent.updateInfo(content: v),
@@ -330,20 +372,7 @@ class _MeetingRoomAddScreenState
                           onSubmit: () {
                             FocusScope.of(context).unfocus();
 
-                            final error = ValidateHelper.validateMeetingRoom(
-                              date: _selectedDate,
-                              startTime: _startTime,
-                              endTime: _endTime,
-                              roomId: bloc.state.selectedRoomId,
-                              departmentId: bloc.state.departmentId,
-                              content: _contentController.text,
-                            );
-
-                            if (error != null) {
-                              context.showMessage(
-                                error,
-                                type: SnackBarType.error,
-                              );
+                            if (!(_formKey.currentState?.saveAndValidate() ?? false)) {
                               return;
                             }
 
