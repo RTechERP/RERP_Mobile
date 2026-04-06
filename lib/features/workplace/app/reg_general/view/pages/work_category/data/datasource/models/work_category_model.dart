@@ -1,4 +1,4 @@
-
+// ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'work_category_model.freezed.dart';
@@ -79,29 +79,29 @@ class WorkProjectItem with _$WorkProjectItem {
     @JsonKey(name: 'ProjectShortName') required String projectShortName,
     @JsonKey(name: 'ProjectStatus') required int projectStatus,
     @JsonKey(name: 'UserID') required int userId,
-    @JsonKey(name: 'UserTechnicalID') required int userTechnicalId,
+    @JsonKey(name: 'UserTechnicalID') int? userTechnicalId,
     @JsonKey(name: 'Note') required String note,
-    @JsonKey(name: 'IsApproved') int? isApproved,
+    @JsonKey(name: 'IsApproved') bool? isApproved,
     @JsonKey(name: 'ContactID') int? contactId,
     @JsonKey(name: 'PO') String? po,
     @JsonKey(name: 'ProjectType') int? projectType,
-    @JsonKey(name: 'ListCostID') String? listCostId,
+    @JsonKey(name: 'ListCostID') int? listCostId,
     @JsonKey(name: 'PlanDateStart') DateTime? planDateStart,
     @JsonKey(name: 'PlanDateEnd') DateTime? planDateEnd,
     @JsonKey(name: 'ActualDateStart') DateTime? actualDateStart,
     @JsonKey(name: 'ActualDateEnd') DateTime? actualDateEnd,
     @JsonKey(name: 'EU') String? eu,
-    @JsonKey(name: 'ProjectManager') required int projectManager,
-    @JsonKey(name: 'CurrentState') int? currentState,
-    @JsonKey(name: 'Priotity') required double priotity,
+    @JsonKey(name: 'ProjectManager') int? projectManager,
+    @JsonKey(name: 'CurrentState') String? currentState,
+    @JsonKey(name: 'Priotity')  double? priotity,
     @JsonKey(name: 'PODate') DateTime? poDate,
-    @JsonKey(name: 'EndUser') required int endUser,
+    @JsonKey(name: 'EndUser') int? endUser,
     @JsonKey(name: 'CreatedBy') required String createdBy,
     @JsonKey(name: 'CreatedDate') DateTime? createdDate,
     @JsonKey(name: 'UpdatedBy') required String updatedBy,
     @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
-    @JsonKey(name: 'BusinessFieldID') required int businessFieldId,
-    @JsonKey(name: 'TypeProject') required int typeProject,
+    @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
+    @JsonKey(name: 'TypeProject')  int? typeProject,
     @JsonKey(name: 'IsDeleted') required bool isDeleted,
   }) = _WorkProjectItem;
 
@@ -191,4 +191,15 @@ class WorkAssignItem with _$WorkAssignItem {
 
   factory WorkAssignItem.fromJson(Map<String, dynamic> json) =>
       _$WorkAssignItemFromJson(json);
+}
+
+@freezed
+class WorkAssignResponse with _$WorkAssignResponse {
+  const factory WorkAssignResponse({
+    @JsonKey(name: 'Rows') required List<WorkAssignItem> rows,
+    @JsonKey(name: 'EmployeeRequest') int? employeeRequest,
+  }) = _WorkAssignResponse;
+
+  factory WorkAssignResponse.fromJson(Map<String, dynamic> json) =>
+      _$WorkAssignResponseFromJson(json);
 }

@@ -17,6 +17,7 @@ class WorkCategoryState extends BaseBlocState {
   final DateTime? dateEnd;
   final bool isFetchingDetail;
   final bool editSuccess;
+  final int? defaultAssignerId;
 
   const WorkCategoryState({
     required super.status,
@@ -36,6 +37,7 @@ class WorkCategoryState extends BaseBlocState {
     this.dateEnd,
     this.isFetchingDetail = false,
     this.editSuccess = false,
+    this.defaultAssignerId,
   });
 
   factory WorkCategoryState.init() => const WorkCategoryState(
@@ -55,6 +57,7 @@ class WorkCategoryState extends BaseBlocState {
         dateEnd: null,
         isFetchingDetail: false,
         editSuccess: false,
+        defaultAssignerId: null,
       );
 
   @override
@@ -76,5 +79,6 @@ class WorkCategoryState extends BaseBlocState {
         dateEnd,
         isFetchingDetail,
         editSuccess,
+        defaultAssignerId,
       ];
 }

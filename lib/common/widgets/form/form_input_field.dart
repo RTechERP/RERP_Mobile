@@ -23,6 +23,7 @@ class FormInputField extends StatefulWidget {
 
   final bool enabled;
   final bool readOnly;
+  final bool isRequired;
 
   final VoidCallback? onTap;
 
@@ -51,6 +52,7 @@ class FormInputField extends StatefulWidget {
     this.maxLines,
     this.enabled = true,
     this.readOnly = false,
+    this.isRequired = false,
     this.onTap,
     this.controller,
     this.initialValue,
@@ -126,6 +128,7 @@ class _FormInputFieldState extends State<FormInputField> {
             icon: widget.icon,
             hasError: showError,
             errorText: field.errorText,
+            isRequired: widget.isRequired,
           ),
           onChanged: (v) {
             field.didChange(v);

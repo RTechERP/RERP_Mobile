@@ -14,6 +14,7 @@ class FormDateTimePicker extends StatelessWidget {
   final InputType inputType;
   final DateFormat format;
   final bool enabled;
+  final bool isRequired;
 
   final DateTime? initialValue;
   final DateTime? firstDate;
@@ -35,6 +36,7 @@ class FormDateTimePicker extends StatelessWidget {
     required this.inputType,
     required this.format,
     this.enabled = true,
+    this.isRequired = false,
     this.initialValue,
     this.firstDate,
     this.lastDate,
@@ -81,6 +83,7 @@ class FormDateTimePicker extends StatelessWidget {
             icon: icon,
             hasError: field.hasError,     // ✅ đổi màu icon khi lỗi
             errorText: field.errorText,   // ✅ show text lỗi
+            isRequired: isRequired,
           ),
           validator: validator,
         );

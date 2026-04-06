@@ -8,6 +8,7 @@ InputDecoration formInputDecoration(
       IconData? icon,
       bool hasError = false,
       String? errorText,
+      bool isRequired = false,
     }) {
   final error = Colors.redAccent;
   final normal = AppColors.hintText;
@@ -19,7 +20,16 @@ InputDecoration formInputDecoration(
 
 
   return InputDecoration(
-    labelText: label,
+    label: isRequired
+        ? Text.rich(
+            TextSpan(
+              text: label,
+              children: const [
+                TextSpan(text: ' *', style: TextStyle(color: Colors.red)),
+              ],
+            ),
+          )
+        : Text(label),
     floatingLabelBehavior: FloatingLabelBehavior.auto,
 
     /// ICON đổi màu theo error

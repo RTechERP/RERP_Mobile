@@ -157,13 +157,13 @@ _$WorkProjectItemImpl _$$WorkProjectItemImplFromJson(
       projectShortName: json['ProjectShortName'] as String,
       projectStatus: (json['ProjectStatus'] as num).toInt(),
       userId: (json['UserID'] as num).toInt(),
-      userTechnicalId: (json['UserTechnicalID'] as num).toInt(),
+      userTechnicalId: (json['UserTechnicalID'] as num?)?.toInt(),
       note: json['Note'] as String,
-      isApproved: (json['IsApproved'] as num?)?.toInt(),
+      isApproved: json['IsApproved'] as bool?,
       contactId: (json['ContactID'] as num?)?.toInt(),
       po: json['PO'] as String?,
       projectType: (json['ProjectType'] as num?)?.toInt(),
-      listCostId: json['ListCostID'] as String?,
+      listCostId: (json['ListCostID'] as num?)?.toInt(),
       planDateStart: json['PlanDateStart'] == null
           ? null
           : DateTime.parse(json['PlanDateStart'] as String),
@@ -177,13 +177,13 @@ _$WorkProjectItemImpl _$$WorkProjectItemImplFromJson(
           ? null
           : DateTime.parse(json['ActualDateEnd'] as String),
       eu: json['EU'] as String?,
-      projectManager: (json['ProjectManager'] as num).toInt(),
-      currentState: (json['CurrentState'] as num?)?.toInt(),
-      priotity: (json['Priotity'] as num).toDouble(),
+      projectManager: (json['ProjectManager'] as num?)?.toInt(),
+      currentState: json['CurrentState'] as String?,
+      priotity: (json['Priotity'] as num?)?.toDouble(),
       poDate: json['PODate'] == null
           ? null
           : DateTime.parse(json['PODate'] as String),
-      endUser: (json['EndUser'] as num).toInt(),
+      endUser: (json['EndUser'] as num?)?.toInt(),
       createdBy: json['CreatedBy'] as String,
       createdDate: json['CreatedDate'] == null
           ? null
@@ -192,8 +192,8 @@ _$WorkProjectItemImpl _$$WorkProjectItemImplFromJson(
       updatedDate: json['UpdatedDate'] == null
           ? null
           : DateTime.parse(json['UpdatedDate'] as String),
-      businessFieldId: (json['BusinessFieldID'] as num).toInt(),
-      typeProject: (json['TypeProject'] as num).toInt(),
+      businessFieldId: (json['BusinessFieldID'] as num?)?.toInt(),
+      typeProject: (json['TypeProject'] as num?)?.toInt(),
       isDeleted: json['IsDeleted'] as bool,
     );
 
@@ -380,4 +380,20 @@ Map<String, dynamic> _$$WorkAssignItemImplToJson(
       'ID': instance.id,
       'Code': instance.code,
       'FullName': instance.fullName,
+    };
+
+_$WorkAssignResponseImpl _$$WorkAssignResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WorkAssignResponseImpl(
+      rows: (json['rows'] as List<dynamic>)
+          .map((e) => WorkAssignItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      employeeRequest: (json['employeeRequest'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$WorkAssignResponseImplToJson(
+        _$WorkAssignResponseImpl instance) =>
+    <String, dynamic>{
+      'rows': instance.rows,
+      'employeeRequest': instance.employeeRequest,
     };

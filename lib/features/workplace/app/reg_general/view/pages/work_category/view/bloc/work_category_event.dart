@@ -2,15 +2,21 @@ part of 'work_category_bloc.dart';
 
 typedef WorkCategorySubmitSlip = ({
   int projectId,
+  String projectCode,
   int typeProjectItem,
   int parentId,
   String mission,
+  int status,
   DateTime planStartDate,
   DateTime planEndDate,
+  DateTime? actualStartDate,
+  DateTime? actualEndDate,
+  double percentageActual,
   int employeeIdRequest,
   int employeeCreateId,
   double totalDayPlan,
   String note,
+  String location,
 });
 
 @freezed

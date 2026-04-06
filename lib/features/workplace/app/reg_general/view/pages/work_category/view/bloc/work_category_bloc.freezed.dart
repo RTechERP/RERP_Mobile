@@ -24,14 +24,20 @@ mixin _$WorkCategoryEvent {
     required TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -45,14 +51,20 @@ mixin _$WorkCategoryEvent {
     required TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)
@@ -67,14 +79,20 @@ mixin _$WorkCategoryEvent {
     TResult? Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -87,14 +105,20 @@ mixin _$WorkCategoryEvent {
     TResult? Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -109,14 +133,20 @@ mixin _$WorkCategoryEvent {
     TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -129,14 +159,20 @@ mixin _$WorkCategoryEvent {
     TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -247,14 +283,20 @@ class _$InitImpl implements _Init {
     required TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -268,14 +310,20 @@ class _$InitImpl implements _Init {
     required TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)
@@ -293,14 +341,20 @@ class _$InitImpl implements _Init {
     TResult? Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -313,14 +367,20 @@ class _$InitImpl implements _Init {
     TResult? Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -338,14 +398,20 @@ class _$InitImpl implements _Init {
     TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -358,14 +424,20 @@ class _$InitImpl implements _Init {
     TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -479,14 +551,20 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -500,14 +578,20 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)
@@ -525,14 +609,20 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -545,14 +635,20 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -570,14 +666,20 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -590,14 +692,20 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -738,14 +846,20 @@ class _$FetchParentsImpl implements _FetchParents {
     required TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -759,14 +873,20 @@ class _$FetchParentsImpl implements _FetchParents {
     required TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)
@@ -784,14 +904,20 @@ class _$FetchParentsImpl implements _FetchParents {
     TResult? Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -804,14 +930,20 @@ class _$FetchParentsImpl implements _FetchParents {
     TResult? Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -829,14 +961,20 @@ class _$FetchParentsImpl implements _FetchParents {
     TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -849,14 +987,20 @@ class _$FetchParentsImpl implements _FetchParents {
     TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -940,14 +1084,20 @@ abstract class _$$SubmitBatchImplCopyWith<$Res> {
   $Res call(
       {List<
               ({
+                DateTime? actualEndDate,
+                DateTime? actualStartDate,
                 int employeeCreateId,
                 int employeeIdRequest,
+                String location,
                 String mission,
                 String note,
                 int parentId,
+                double percentageActual,
                 DateTime planEndDate,
                 DateTime planStartDate,
+                String projectCode,
                 int projectId,
+                int status,
                 double totalDayPlan,
                 int typeProjectItem
               })>
@@ -973,14 +1123,20 @@ class __$$SubmitBatchImplCopyWithImpl<$Res>
           : slips // ignore: cast_nullable_to_non_nullable
               as List<
                   ({
+                    DateTime? actualEndDate,
+                    DateTime? actualStartDate,
                     int employeeCreateId,
                     int employeeIdRequest,
+                    String location,
                     String mission,
                     String note,
                     int parentId,
+                    double percentageActual,
                     DateTime planEndDate,
                     DateTime planStartDate,
+                    String projectCode,
                     int projectId,
+                    int status,
                     double totalDayPlan,
                     int typeProjectItem
                   })>,
@@ -994,14 +1150,20 @@ class _$SubmitBatchImpl implements _SubmitBatch {
   const _$SubmitBatchImpl(
       {required final List<
               ({
+                DateTime? actualEndDate,
+                DateTime? actualStartDate,
                 int employeeCreateId,
                 int employeeIdRequest,
+                String location,
                 String mission,
                 String note,
                 int parentId,
+                double percentageActual,
                 DateTime planEndDate,
                 DateTime planStartDate,
+                String projectCode,
                 int projectId,
+                int status,
                 double totalDayPlan,
                 int typeProjectItem
               })>
@@ -1010,28 +1172,40 @@ class _$SubmitBatchImpl implements _SubmitBatch {
 
   final List<
       ({
+        DateTime? actualEndDate,
+        DateTime? actualStartDate,
         int employeeCreateId,
         int employeeIdRequest,
+        String location,
         String mission,
         String note,
         int parentId,
+        double percentageActual,
         DateTime planEndDate,
         DateTime planStartDate,
+        String projectCode,
         int projectId,
+        int status,
         double totalDayPlan,
         int typeProjectItem
       })> _slips;
   @override
   List<
       ({
+        DateTime? actualEndDate,
+        DateTime? actualStartDate,
         int employeeCreateId,
         int employeeIdRequest,
+        String location,
         String mission,
         String note,
         int parentId,
+        double percentageActual,
         DateTime planEndDate,
         DateTime planStartDate,
+        String projectCode,
         int projectId,
+        int status,
         double totalDayPlan,
         int typeProjectItem
       })> get slips {
@@ -1072,14 +1246,20 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     required TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -1093,14 +1273,20 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     required TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)
@@ -1118,14 +1304,20 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult? Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -1138,14 +1330,20 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult? Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -1163,14 +1361,20 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -1183,14 +1387,20 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -1260,14 +1470,20 @@ abstract class _SubmitBatch implements WorkCategoryEvent {
   const factory _SubmitBatch(
       {required final List<
               ({
+                DateTime? actualEndDate,
+                DateTime? actualStartDate,
                 int employeeCreateId,
                 int employeeIdRequest,
+                String location,
                 String mission,
                 String note,
                 int parentId,
+                double percentageActual,
                 DateTime planEndDate,
                 DateTime planStartDate,
+                String projectCode,
                 int projectId,
+                int status,
                 double totalDayPlan,
                 int typeProjectItem
               })>
@@ -1275,14 +1491,20 @@ abstract class _SubmitBatch implements WorkCategoryEvent {
 
   List<
       ({
+        DateTime? actualEndDate,
+        DateTime? actualStartDate,
         int employeeCreateId,
         int employeeIdRequest,
+        String location,
         String mission,
         String note,
         int parentId,
+        double percentageActual,
         DateTime planEndDate,
         DateTime planStartDate,
+        String projectCode,
         int projectId,
+        int status,
         double totalDayPlan,
         int typeProjectItem
       })> get slips;
@@ -1362,14 +1584,20 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -1383,14 +1611,20 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)
@@ -1408,14 +1642,20 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -1428,14 +1668,20 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -1453,14 +1699,20 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -1473,14 +1725,20 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -1635,14 +1893,20 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -1656,14 +1920,20 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)
@@ -1681,14 +1951,20 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -1701,14 +1977,20 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -1726,14 +2008,20 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -1746,14 +2034,20 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -1875,14 +2169,20 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -1896,14 +2196,20 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)
@@ -1921,14 +2227,20 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -1941,14 +2253,20 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -1966,14 +2284,20 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -1986,14 +2310,20 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -2133,14 +2463,20 @@ class _$FetchDetailImpl implements _FetchDetail {
     required TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -2154,14 +2490,20 @@ class _$FetchDetailImpl implements _FetchDetail {
     required TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)
@@ -2179,14 +2521,20 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult? Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -2199,14 +2547,20 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult? Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -2224,14 +2578,20 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -2244,14 +2604,20 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -2335,14 +2701,20 @@ abstract class _$$SubmitEditImplCopyWith<$Res> {
   $Res call(
       {int id,
       ({
+        DateTime? actualEndDate,
+        DateTime? actualStartDate,
         int employeeCreateId,
         int employeeIdRequest,
+        String location,
         String mission,
         String note,
         int parentId,
+        double percentageActual,
         DateTime planEndDate,
         DateTime planStartDate,
+        String projectCode,
         int projectId,
+        int status,
         double totalDayPlan,
         int typeProjectItem
       }) slip});
@@ -2371,14 +2743,20 @@ class __$$SubmitEditImplCopyWithImpl<$Res>
           ? _value.slip
           : slip // ignore: cast_nullable_to_non_nullable
               as ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }),
@@ -2395,14 +2773,20 @@ class _$SubmitEditImpl implements _SubmitEdit {
   final int id;
   @override
   final ({
+    DateTime? actualEndDate,
+    DateTime? actualStartDate,
     int employeeCreateId,
     int employeeIdRequest,
+    String location,
     String mission,
     String note,
     int parentId,
+    double percentageActual,
     DateTime planEndDate,
     DateTime planStartDate,
+    String projectCode,
     int projectId,
+    int status,
     double totalDayPlan,
     int typeProjectItem
   }) slip;
@@ -2439,14 +2823,20 @@ class _$SubmitEditImpl implements _SubmitEdit {
     required TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -2460,14 +2850,20 @@ class _$SubmitEditImpl implements _SubmitEdit {
     required TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)
@@ -2485,14 +2881,20 @@ class _$SubmitEditImpl implements _SubmitEdit {
     TResult? Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -2505,14 +2907,20 @@ class _$SubmitEditImpl implements _SubmitEdit {
     TResult? Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -2530,14 +2938,20 @@ class _$SubmitEditImpl implements _SubmitEdit {
     TResult Function(
             List<
                     ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
                       int employeeCreateId,
                       int employeeIdRequest,
+                      String location,
                       String mission,
                       String note,
                       int parentId,
+                      double percentageActual,
                       DateTime planEndDate,
                       DateTime planStartDate,
+                      String projectCode,
                       int projectId,
+                      int status,
                       double totalDayPlan,
                       int typeProjectItem
                     })>
@@ -2550,14 +2964,20 @@ class _$SubmitEditImpl implements _SubmitEdit {
     TResult Function(
             int id,
             ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
               int employeeCreateId,
               int employeeIdRequest,
+              String location,
               String mission,
               String note,
               int parentId,
+              double percentageActual,
               DateTime planEndDate,
               DateTime planStartDate,
+              String projectCode,
               int projectId,
+              int status,
               double totalDayPlan,
               int typeProjectItem
             }) slip)?
@@ -2627,28 +3047,40 @@ abstract class _SubmitEdit implements WorkCategoryEvent {
   const factory _SubmitEdit(
       {required final int id,
       required final ({
+        DateTime? actualEndDate,
+        DateTime? actualStartDate,
         int employeeCreateId,
         int employeeIdRequest,
+        String location,
         String mission,
         String note,
         int parentId,
+        double percentageActual,
         DateTime planEndDate,
         DateTime planStartDate,
+        String projectCode,
         int projectId,
+        int status,
         double totalDayPlan,
         int typeProjectItem
       }) slip}) = _$SubmitEditImpl;
 
   int get id;
   ({
+    DateTime? actualEndDate,
+    DateTime? actualStartDate,
     int employeeCreateId,
     int employeeIdRequest,
+    String location,
     String mission,
     String note,
     int parentId,
+    double percentageActual,
     DateTime planEndDate,
     DateTime planStartDate,
+    String projectCode,
     int projectId,
+    int status,
     double totalDayPlan,
     int typeProjectItem
   }) get slip;

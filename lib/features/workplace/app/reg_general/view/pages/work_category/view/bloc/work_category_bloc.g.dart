@@ -41,6 +41,8 @@ abstract class _$WorkCategoryStateCWProxy {
 
   WorkCategoryState editSuccess(bool editSuccess);
 
+  WorkCategoryState defaultAssignerId(int? defaultAssignerId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkCategoryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -65,6 +67,7 @@ abstract class _$WorkCategoryStateCWProxy {
     DateTime? dateEnd,
     bool? isFetchingDetail,
     bool? editSuccess,
+    int? defaultAssignerId,
   });
 }
 
@@ -137,6 +140,10 @@ class _$WorkCategoryStateCWProxyImpl implements _$WorkCategoryStateCWProxy {
       this(editSuccess: editSuccess);
 
   @override
+  WorkCategoryState defaultAssignerId(int? defaultAssignerId) =>
+      this(defaultAssignerId: defaultAssignerId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkCategoryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -162,6 +169,7 @@ class _$WorkCategoryStateCWProxyImpl implements _$WorkCategoryStateCWProxy {
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? isFetchingDetail = const $CopyWithPlaceholder(),
     Object? editSuccess = const $CopyWithPlaceholder(),
+    Object? defaultAssignerId = const $CopyWithPlaceholder(),
   }) {
     return WorkCategoryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -240,6 +248,10 @@ class _$WorkCategoryStateCWProxyImpl implements _$WorkCategoryStateCWProxy {
               ? _value.editSuccess
               // ignore: cast_nullable_to_non_nullable
               : editSuccess as bool,
+      defaultAssignerId: defaultAssignerId == const $CopyWithPlaceholder()
+          ? _value.defaultAssignerId
+          // ignore: cast_nullable_to_non_nullable
+          : defaultAssignerId as int?,
     );
   }
 }

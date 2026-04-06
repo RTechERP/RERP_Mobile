@@ -8,7 +8,7 @@ abstract class WorkCategoryRepo {
     required Map<String, dynamic> payload,
   });
 
-  Future<Either<BaseError, List<WorkAssignItem>>> getAssigner();
+  Future<Either<BaseError, WorkAssignResponse>> getAssigner();
 
   Future<Either<BaseError, List<WorkProjectItem>>> getWorkProject();
 

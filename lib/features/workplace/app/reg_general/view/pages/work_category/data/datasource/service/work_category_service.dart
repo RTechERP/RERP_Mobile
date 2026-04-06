@@ -24,14 +24,12 @@ class WorkCategoryService extends DioBaseApiService {
     );
   }
 
-  Future<BaseData<List<WorkAssignItem>>> getAssigner() {
-    return get<BaseData<List<WorkAssignItem>>>(
+  Future<BaseData<WorkAssignResponse>> getAssigner() {
+    return get<BaseData<WorkAssignResponse>>(
       ApiEndPoint.getWorkAssigner,
-      parser: (json) => BaseData<List<WorkAssignItem>>.fromJson(
+      parser: (json) => BaseData<WorkAssignResponse>.fromJson(
         json,
-            (data) => (data as List)
-            .map((e) => WorkAssignItem.fromJson(e as Map<String, dynamic>))
-            .toList(),
+        (data) => WorkAssignResponse.fromJson(data as Map<String, dynamic>),
       ),
     );
   }

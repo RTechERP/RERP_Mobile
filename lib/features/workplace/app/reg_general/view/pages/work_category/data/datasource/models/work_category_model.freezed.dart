@@ -1550,11 +1550,11 @@ mixin _$WorkProjectItem {
   @JsonKey(name: 'UserID')
   int get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'UserTechnicalID')
-  int get userTechnicalId => throw _privateConstructorUsedError;
+  int? get userTechnicalId => throw _privateConstructorUsedError;
   @JsonKey(name: 'Note')
   String get note => throw _privateConstructorUsedError;
   @JsonKey(name: 'IsApproved')
-  int? get isApproved => throw _privateConstructorUsedError;
+  bool? get isApproved => throw _privateConstructorUsedError;
   @JsonKey(name: 'ContactID')
   int? get contactId => throw _privateConstructorUsedError;
   @JsonKey(name: 'PO')
@@ -1562,7 +1562,7 @@ mixin _$WorkProjectItem {
   @JsonKey(name: 'ProjectType')
   int? get projectType => throw _privateConstructorUsedError;
   @JsonKey(name: 'ListCostID')
-  String? get listCostId => throw _privateConstructorUsedError;
+  int? get listCostId => throw _privateConstructorUsedError;
   @JsonKey(name: 'PlanDateStart')
   DateTime? get planDateStart => throw _privateConstructorUsedError;
   @JsonKey(name: 'PlanDateEnd')
@@ -1574,15 +1574,15 @@ mixin _$WorkProjectItem {
   @JsonKey(name: 'EU')
   String? get eu => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProjectManager')
-  int get projectManager => throw _privateConstructorUsedError;
+  int? get projectManager => throw _privateConstructorUsedError;
   @JsonKey(name: 'CurrentState')
-  int? get currentState => throw _privateConstructorUsedError;
+  String? get currentState => throw _privateConstructorUsedError;
   @JsonKey(name: 'Priotity')
-  double get priotity => throw _privateConstructorUsedError;
+  double? get priotity => throw _privateConstructorUsedError;
   @JsonKey(name: 'PODate')
   DateTime? get poDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'EndUser')
-  int get endUser => throw _privateConstructorUsedError;
+  int? get endUser => throw _privateConstructorUsedError;
   @JsonKey(name: 'CreatedBy')
   String get createdBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'CreatedDate')
@@ -1592,9 +1592,9 @@ mixin _$WorkProjectItem {
   @JsonKey(name: 'UpdatedDate')
   DateTime? get updatedDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'BusinessFieldID')
-  int get businessFieldId => throw _privateConstructorUsedError;
+  int? get businessFieldId => throw _privateConstructorUsedError;
   @JsonKey(name: 'TypeProject')
-  int get typeProject => throw _privateConstructorUsedError;
+  int? get typeProject => throw _privateConstructorUsedError;
   @JsonKey(name: 'IsDeleted')
   bool get isDeleted => throw _privateConstructorUsedError;
 
@@ -1618,29 +1618,29 @@ abstract class $WorkProjectItemCopyWith<$Res> {
       @JsonKey(name: 'ProjectShortName') String projectShortName,
       @JsonKey(name: 'ProjectStatus') int projectStatus,
       @JsonKey(name: 'UserID') int userId,
-      @JsonKey(name: 'UserTechnicalID') int userTechnicalId,
+      @JsonKey(name: 'UserTechnicalID') int? userTechnicalId,
       @JsonKey(name: 'Note') String note,
-      @JsonKey(name: 'IsApproved') int? isApproved,
+      @JsonKey(name: 'IsApproved') bool? isApproved,
       @JsonKey(name: 'ContactID') int? contactId,
       @JsonKey(name: 'PO') String? po,
       @JsonKey(name: 'ProjectType') int? projectType,
-      @JsonKey(name: 'ListCostID') String? listCostId,
+      @JsonKey(name: 'ListCostID') int? listCostId,
       @JsonKey(name: 'PlanDateStart') DateTime? planDateStart,
       @JsonKey(name: 'PlanDateEnd') DateTime? planDateEnd,
       @JsonKey(name: 'ActualDateStart') DateTime? actualDateStart,
       @JsonKey(name: 'ActualDateEnd') DateTime? actualDateEnd,
       @JsonKey(name: 'EU') String? eu,
-      @JsonKey(name: 'ProjectManager') int projectManager,
-      @JsonKey(name: 'CurrentState') int? currentState,
-      @JsonKey(name: 'Priotity') double priotity,
+      @JsonKey(name: 'ProjectManager') int? projectManager,
+      @JsonKey(name: 'CurrentState') String? currentState,
+      @JsonKey(name: 'Priotity') double? priotity,
       @JsonKey(name: 'PODate') DateTime? poDate,
-      @JsonKey(name: 'EndUser') int endUser,
+      @JsonKey(name: 'EndUser') int? endUser,
       @JsonKey(name: 'CreatedBy') String createdBy,
       @JsonKey(name: 'CreatedDate') DateTime? createdDate,
       @JsonKey(name: 'UpdatedBy') String updatedBy,
       @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
-      @JsonKey(name: 'BusinessFieldID') int businessFieldId,
-      @JsonKey(name: 'TypeProject') int typeProject,
+      @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
+      @JsonKey(name: 'TypeProject') int? typeProject,
       @JsonKey(name: 'IsDeleted') bool isDeleted});
 }
 
@@ -1664,7 +1664,7 @@ class _$WorkProjectItemCopyWithImpl<$Res, $Val extends WorkProjectItem>
     Object? projectShortName = null,
     Object? projectStatus = null,
     Object? userId = null,
-    Object? userTechnicalId = null,
+    Object? userTechnicalId = freezed,
     Object? note = null,
     Object? isApproved = freezed,
     Object? contactId = freezed,
@@ -1676,17 +1676,17 @@ class _$WorkProjectItemCopyWithImpl<$Res, $Val extends WorkProjectItem>
     Object? actualDateStart = freezed,
     Object? actualDateEnd = freezed,
     Object? eu = freezed,
-    Object? projectManager = null,
+    Object? projectManager = freezed,
     Object? currentState = freezed,
-    Object? priotity = null,
+    Object? priotity = freezed,
     Object? poDate = freezed,
-    Object? endUser = null,
+    Object? endUser = freezed,
     Object? createdBy = null,
     Object? createdDate = freezed,
     Object? updatedBy = null,
     Object? updatedDate = freezed,
-    Object? businessFieldId = null,
-    Object? typeProject = null,
+    Object? businessFieldId = freezed,
+    Object? typeProject = freezed,
     Object? isDeleted = null,
   }) {
     return _then(_value.copyWith(
@@ -1718,10 +1718,10 @@ class _$WorkProjectItemCopyWithImpl<$Res, $Val extends WorkProjectItem>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
-      userTechnicalId: null == userTechnicalId
+      userTechnicalId: freezed == userTechnicalId
           ? _value.userTechnicalId
           : userTechnicalId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       note: null == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -1729,7 +1729,7 @@ class _$WorkProjectItemCopyWithImpl<$Res, $Val extends WorkProjectItem>
       isApproved: freezed == isApproved
           ? _value.isApproved
           : isApproved // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as bool?,
       contactId: freezed == contactId
           ? _value.contactId
           : contactId // ignore: cast_nullable_to_non_nullable
@@ -1745,7 +1745,7 @@ class _$WorkProjectItemCopyWithImpl<$Res, $Val extends WorkProjectItem>
       listCostId: freezed == listCostId
           ? _value.listCostId
           : listCostId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       planDateStart: freezed == planDateStart
           ? _value.planDateStart
           : planDateStart // ignore: cast_nullable_to_non_nullable
@@ -1766,26 +1766,26 @@ class _$WorkProjectItemCopyWithImpl<$Res, $Val extends WorkProjectItem>
           ? _value.eu
           : eu // ignore: cast_nullable_to_non_nullable
               as String?,
-      projectManager: null == projectManager
+      projectManager: freezed == projectManager
           ? _value.projectManager
           : projectManager // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       currentState: freezed == currentState
           ? _value.currentState
           : currentState // ignore: cast_nullable_to_non_nullable
-              as int?,
-      priotity: null == priotity
+              as String?,
+      priotity: freezed == priotity
           ? _value.priotity
           : priotity // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       poDate: freezed == poDate
           ? _value.poDate
           : poDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      endUser: null == endUser
+      endUser: freezed == endUser
           ? _value.endUser
           : endUser // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       createdBy: null == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -1802,14 +1802,14 @@ class _$WorkProjectItemCopyWithImpl<$Res, $Val extends WorkProjectItem>
           ? _value.updatedDate
           : updatedDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      businessFieldId: null == businessFieldId
+      businessFieldId: freezed == businessFieldId
           ? _value.businessFieldId
           : businessFieldId // ignore: cast_nullable_to_non_nullable
-              as int,
-      typeProject: null == typeProject
+              as int?,
+      typeProject: freezed == typeProject
           ? _value.typeProject
           : typeProject // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       isDeleted: null == isDeleted
           ? _value.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
@@ -1834,29 +1834,29 @@ abstract class _$$WorkProjectItemImplCopyWith<$Res>
       @JsonKey(name: 'ProjectShortName') String projectShortName,
       @JsonKey(name: 'ProjectStatus') int projectStatus,
       @JsonKey(name: 'UserID') int userId,
-      @JsonKey(name: 'UserTechnicalID') int userTechnicalId,
+      @JsonKey(name: 'UserTechnicalID') int? userTechnicalId,
       @JsonKey(name: 'Note') String note,
-      @JsonKey(name: 'IsApproved') int? isApproved,
+      @JsonKey(name: 'IsApproved') bool? isApproved,
       @JsonKey(name: 'ContactID') int? contactId,
       @JsonKey(name: 'PO') String? po,
       @JsonKey(name: 'ProjectType') int? projectType,
-      @JsonKey(name: 'ListCostID') String? listCostId,
+      @JsonKey(name: 'ListCostID') int? listCostId,
       @JsonKey(name: 'PlanDateStart') DateTime? planDateStart,
       @JsonKey(name: 'PlanDateEnd') DateTime? planDateEnd,
       @JsonKey(name: 'ActualDateStart') DateTime? actualDateStart,
       @JsonKey(name: 'ActualDateEnd') DateTime? actualDateEnd,
       @JsonKey(name: 'EU') String? eu,
-      @JsonKey(name: 'ProjectManager') int projectManager,
-      @JsonKey(name: 'CurrentState') int? currentState,
-      @JsonKey(name: 'Priotity') double priotity,
+      @JsonKey(name: 'ProjectManager') int? projectManager,
+      @JsonKey(name: 'CurrentState') String? currentState,
+      @JsonKey(name: 'Priotity') double? priotity,
       @JsonKey(name: 'PODate') DateTime? poDate,
-      @JsonKey(name: 'EndUser') int endUser,
+      @JsonKey(name: 'EndUser') int? endUser,
       @JsonKey(name: 'CreatedBy') String createdBy,
       @JsonKey(name: 'CreatedDate') DateTime? createdDate,
       @JsonKey(name: 'UpdatedBy') String updatedBy,
       @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
-      @JsonKey(name: 'BusinessFieldID') int businessFieldId,
-      @JsonKey(name: 'TypeProject') int typeProject,
+      @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
+      @JsonKey(name: 'TypeProject') int? typeProject,
       @JsonKey(name: 'IsDeleted') bool isDeleted});
 }
 
@@ -1878,7 +1878,7 @@ class __$$WorkProjectItemImplCopyWithImpl<$Res>
     Object? projectShortName = null,
     Object? projectStatus = null,
     Object? userId = null,
-    Object? userTechnicalId = null,
+    Object? userTechnicalId = freezed,
     Object? note = null,
     Object? isApproved = freezed,
     Object? contactId = freezed,
@@ -1890,17 +1890,17 @@ class __$$WorkProjectItemImplCopyWithImpl<$Res>
     Object? actualDateStart = freezed,
     Object? actualDateEnd = freezed,
     Object? eu = freezed,
-    Object? projectManager = null,
+    Object? projectManager = freezed,
     Object? currentState = freezed,
-    Object? priotity = null,
+    Object? priotity = freezed,
     Object? poDate = freezed,
-    Object? endUser = null,
+    Object? endUser = freezed,
     Object? createdBy = null,
     Object? createdDate = freezed,
     Object? updatedBy = null,
     Object? updatedDate = freezed,
-    Object? businessFieldId = null,
-    Object? typeProject = null,
+    Object? businessFieldId = freezed,
+    Object? typeProject = freezed,
     Object? isDeleted = null,
   }) {
     return _then(_$WorkProjectItemImpl(
@@ -1932,10 +1932,10 @@ class __$$WorkProjectItemImplCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
-      userTechnicalId: null == userTechnicalId
+      userTechnicalId: freezed == userTechnicalId
           ? _value.userTechnicalId
           : userTechnicalId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       note: null == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -1943,7 +1943,7 @@ class __$$WorkProjectItemImplCopyWithImpl<$Res>
       isApproved: freezed == isApproved
           ? _value.isApproved
           : isApproved // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as bool?,
       contactId: freezed == contactId
           ? _value.contactId
           : contactId // ignore: cast_nullable_to_non_nullable
@@ -1959,7 +1959,7 @@ class __$$WorkProjectItemImplCopyWithImpl<$Res>
       listCostId: freezed == listCostId
           ? _value.listCostId
           : listCostId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       planDateStart: freezed == planDateStart
           ? _value.planDateStart
           : planDateStart // ignore: cast_nullable_to_non_nullable
@@ -1980,26 +1980,26 @@ class __$$WorkProjectItemImplCopyWithImpl<$Res>
           ? _value.eu
           : eu // ignore: cast_nullable_to_non_nullable
               as String?,
-      projectManager: null == projectManager
+      projectManager: freezed == projectManager
           ? _value.projectManager
           : projectManager // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       currentState: freezed == currentState
           ? _value.currentState
           : currentState // ignore: cast_nullable_to_non_nullable
-              as int?,
-      priotity: null == priotity
+              as String?,
+      priotity: freezed == priotity
           ? _value.priotity
           : priotity // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       poDate: freezed == poDate
           ? _value.poDate
           : poDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      endUser: null == endUser
+      endUser: freezed == endUser
           ? _value.endUser
           : endUser // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       createdBy: null == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -2016,14 +2016,14 @@ class __$$WorkProjectItemImplCopyWithImpl<$Res>
           ? _value.updatedDate
           : updatedDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      businessFieldId: null == businessFieldId
+      businessFieldId: freezed == businessFieldId
           ? _value.businessFieldId
           : businessFieldId // ignore: cast_nullable_to_non_nullable
-              as int,
-      typeProject: null == typeProject
+              as int?,
+      typeProject: freezed == typeProject
           ? _value.typeProject
           : typeProject // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       isDeleted: null == isDeleted
           ? _value.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
@@ -2043,7 +2043,7 @@ class _$WorkProjectItemImpl implements _WorkProjectItem {
       @JsonKey(name: 'ProjectShortName') required this.projectShortName,
       @JsonKey(name: 'ProjectStatus') required this.projectStatus,
       @JsonKey(name: 'UserID') required this.userId,
-      @JsonKey(name: 'UserTechnicalID') required this.userTechnicalId,
+      @JsonKey(name: 'UserTechnicalID') this.userTechnicalId,
       @JsonKey(name: 'Note') required this.note,
       @JsonKey(name: 'IsApproved') this.isApproved,
       @JsonKey(name: 'ContactID') this.contactId,
@@ -2055,17 +2055,17 @@ class _$WorkProjectItemImpl implements _WorkProjectItem {
       @JsonKey(name: 'ActualDateStart') this.actualDateStart,
       @JsonKey(name: 'ActualDateEnd') this.actualDateEnd,
       @JsonKey(name: 'EU') this.eu,
-      @JsonKey(name: 'ProjectManager') required this.projectManager,
+      @JsonKey(name: 'ProjectManager') this.projectManager,
       @JsonKey(name: 'CurrentState') this.currentState,
-      @JsonKey(name: 'Priotity') required this.priotity,
+      @JsonKey(name: 'Priotity') this.priotity,
       @JsonKey(name: 'PODate') this.poDate,
-      @JsonKey(name: 'EndUser') required this.endUser,
+      @JsonKey(name: 'EndUser') this.endUser,
       @JsonKey(name: 'CreatedBy') required this.createdBy,
       @JsonKey(name: 'CreatedDate') this.createdDate,
       @JsonKey(name: 'UpdatedBy') required this.updatedBy,
       @JsonKey(name: 'UpdatedDate') this.updatedDate,
-      @JsonKey(name: 'BusinessFieldID') required this.businessFieldId,
-      @JsonKey(name: 'TypeProject') required this.typeProject,
+      @JsonKey(name: 'BusinessFieldID') this.businessFieldId,
+      @JsonKey(name: 'TypeProject') this.typeProject,
       @JsonKey(name: 'IsDeleted') required this.isDeleted});
 
   factory _$WorkProjectItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -2094,13 +2094,13 @@ class _$WorkProjectItemImpl implements _WorkProjectItem {
   final int userId;
   @override
   @JsonKey(name: 'UserTechnicalID')
-  final int userTechnicalId;
+  final int? userTechnicalId;
   @override
   @JsonKey(name: 'Note')
   final String note;
   @override
   @JsonKey(name: 'IsApproved')
-  final int? isApproved;
+  final bool? isApproved;
   @override
   @JsonKey(name: 'ContactID')
   final int? contactId;
@@ -2112,7 +2112,7 @@ class _$WorkProjectItemImpl implements _WorkProjectItem {
   final int? projectType;
   @override
   @JsonKey(name: 'ListCostID')
-  final String? listCostId;
+  final int? listCostId;
   @override
   @JsonKey(name: 'PlanDateStart')
   final DateTime? planDateStart;
@@ -2130,19 +2130,19 @@ class _$WorkProjectItemImpl implements _WorkProjectItem {
   final String? eu;
   @override
   @JsonKey(name: 'ProjectManager')
-  final int projectManager;
+  final int? projectManager;
   @override
   @JsonKey(name: 'CurrentState')
-  final int? currentState;
+  final String? currentState;
   @override
   @JsonKey(name: 'Priotity')
-  final double priotity;
+  final double? priotity;
   @override
   @JsonKey(name: 'PODate')
   final DateTime? poDate;
   @override
   @JsonKey(name: 'EndUser')
-  final int endUser;
+  final int? endUser;
   @override
   @JsonKey(name: 'CreatedBy')
   final String createdBy;
@@ -2157,10 +2157,10 @@ class _$WorkProjectItemImpl implements _WorkProjectItem {
   final DateTime? updatedDate;
   @override
   @JsonKey(name: 'BusinessFieldID')
-  final int businessFieldId;
+  final int? businessFieldId;
   @override
   @JsonKey(name: 'TypeProject')
-  final int typeProject;
+  final int? typeProject;
   @override
   @JsonKey(name: 'IsDeleted')
   final bool isDeleted;
@@ -2293,29 +2293,29 @@ abstract class _WorkProjectItem implements WorkProjectItem {
       @JsonKey(name: 'ProjectShortName') required final String projectShortName,
       @JsonKey(name: 'ProjectStatus') required final int projectStatus,
       @JsonKey(name: 'UserID') required final int userId,
-      @JsonKey(name: 'UserTechnicalID') required final int userTechnicalId,
+      @JsonKey(name: 'UserTechnicalID') final int? userTechnicalId,
       @JsonKey(name: 'Note') required final String note,
-      @JsonKey(name: 'IsApproved') final int? isApproved,
+      @JsonKey(name: 'IsApproved') final bool? isApproved,
       @JsonKey(name: 'ContactID') final int? contactId,
       @JsonKey(name: 'PO') final String? po,
       @JsonKey(name: 'ProjectType') final int? projectType,
-      @JsonKey(name: 'ListCostID') final String? listCostId,
+      @JsonKey(name: 'ListCostID') final int? listCostId,
       @JsonKey(name: 'PlanDateStart') final DateTime? planDateStart,
       @JsonKey(name: 'PlanDateEnd') final DateTime? planDateEnd,
       @JsonKey(name: 'ActualDateStart') final DateTime? actualDateStart,
       @JsonKey(name: 'ActualDateEnd') final DateTime? actualDateEnd,
       @JsonKey(name: 'EU') final String? eu,
-      @JsonKey(name: 'ProjectManager') required final int projectManager,
-      @JsonKey(name: 'CurrentState') final int? currentState,
-      @JsonKey(name: 'Priotity') required final double priotity,
+      @JsonKey(name: 'ProjectManager') final int? projectManager,
+      @JsonKey(name: 'CurrentState') final String? currentState,
+      @JsonKey(name: 'Priotity') final double? priotity,
       @JsonKey(name: 'PODate') final DateTime? poDate,
-      @JsonKey(name: 'EndUser') required final int endUser,
+      @JsonKey(name: 'EndUser') final int? endUser,
       @JsonKey(name: 'CreatedBy') required final String createdBy,
       @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
       @JsonKey(name: 'UpdatedBy') required final String updatedBy,
       @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
-      @JsonKey(name: 'BusinessFieldID') required final int businessFieldId,
-      @JsonKey(name: 'TypeProject') required final int typeProject,
+      @JsonKey(name: 'BusinessFieldID') final int? businessFieldId,
+      @JsonKey(name: 'TypeProject') final int? typeProject,
       @JsonKey(name: 'IsDeleted')
       required final bool isDeleted}) = _$WorkProjectItemImpl;
 
@@ -2345,13 +2345,13 @@ abstract class _WorkProjectItem implements WorkProjectItem {
   int get userId;
   @override
   @JsonKey(name: 'UserTechnicalID')
-  int get userTechnicalId;
+  int? get userTechnicalId;
   @override
   @JsonKey(name: 'Note')
   String get note;
   @override
   @JsonKey(name: 'IsApproved')
-  int? get isApproved;
+  bool? get isApproved;
   @override
   @JsonKey(name: 'ContactID')
   int? get contactId;
@@ -2363,7 +2363,7 @@ abstract class _WorkProjectItem implements WorkProjectItem {
   int? get projectType;
   @override
   @JsonKey(name: 'ListCostID')
-  String? get listCostId;
+  int? get listCostId;
   @override
   @JsonKey(name: 'PlanDateStart')
   DateTime? get planDateStart;
@@ -2381,19 +2381,19 @@ abstract class _WorkProjectItem implements WorkProjectItem {
   String? get eu;
   @override
   @JsonKey(name: 'ProjectManager')
-  int get projectManager;
+  int? get projectManager;
   @override
   @JsonKey(name: 'CurrentState')
-  int? get currentState;
+  String? get currentState;
   @override
   @JsonKey(name: 'Priotity')
-  double get priotity;
+  double? get priotity;
   @override
   @JsonKey(name: 'PODate')
   DateTime? get poDate;
   @override
   @JsonKey(name: 'EndUser')
-  int get endUser;
+  int? get endUser;
   @override
   @JsonKey(name: 'CreatedBy')
   String get createdBy;
@@ -2408,10 +2408,10 @@ abstract class _WorkProjectItem implements WorkProjectItem {
   DateTime? get updatedDate;
   @override
   @JsonKey(name: 'BusinessFieldID')
-  int get businessFieldId;
+  int? get businessFieldId;
   @override
   @JsonKey(name: 'TypeProject')
-  int get typeProject;
+  int? get typeProject;
   @override
   @JsonKey(name: 'IsDeleted')
   bool get isDeleted;
@@ -4066,5 +4066,182 @@ abstract class _WorkAssignItem implements WorkAssignItem {
   @override
   @JsonKey(ignore: true)
   _$$WorkAssignItemImplCopyWith<_$WorkAssignItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+WorkAssignResponse _$WorkAssignResponseFromJson(Map<String, dynamic> json) {
+  return _WorkAssignResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WorkAssignResponse {
+  @JsonKey(name: 'Rows')
+  List<WorkAssignItem> get rows => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeRequest')
+  int? get employeeRequest => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WorkAssignResponseCopyWith<WorkAssignResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WorkAssignResponseCopyWith<$Res> {
+  factory $WorkAssignResponseCopyWith(
+          WorkAssignResponse value, $Res Function(WorkAssignResponse) then) =
+      _$WorkAssignResponseCopyWithImpl<$Res, WorkAssignResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'Rows') List<WorkAssignItem> rows,
+      @JsonKey(name: 'EmployeeRequest') int? employeeRequest});
+}
+
+/// @nodoc
+class _$WorkAssignResponseCopyWithImpl<$Res, $Val extends WorkAssignResponse>
+    implements $WorkAssignResponseCopyWith<$Res> {
+  _$WorkAssignResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? rows = null,
+    Object? employeeRequest = freezed,
+  }) {
+    return _then(_value.copyWith(
+      rows: null == rows
+          ? _value.rows
+          : rows // ignore: cast_nullable_to_non_nullable
+              as List<WorkAssignItem>,
+      employeeRequest: freezed == employeeRequest
+          ? _value.employeeRequest
+          : employeeRequest // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WorkAssignResponseImplCopyWith<$Res>
+    implements $WorkAssignResponseCopyWith<$Res> {
+  factory _$$WorkAssignResponseImplCopyWith(_$WorkAssignResponseImpl value,
+          $Res Function(_$WorkAssignResponseImpl) then) =
+      __$$WorkAssignResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'Rows') List<WorkAssignItem> rows,
+      @JsonKey(name: 'EmployeeRequest') int? employeeRequest});
+}
+
+/// @nodoc
+class __$$WorkAssignResponseImplCopyWithImpl<$Res>
+    extends _$WorkAssignResponseCopyWithImpl<$Res, _$WorkAssignResponseImpl>
+    implements _$$WorkAssignResponseImplCopyWith<$Res> {
+  __$$WorkAssignResponseImplCopyWithImpl(_$WorkAssignResponseImpl _value,
+      $Res Function(_$WorkAssignResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? rows = null,
+    Object? employeeRequest = freezed,
+  }) {
+    return _then(_$WorkAssignResponseImpl(
+      rows: null == rows
+          ? _value._rows
+          : rows // ignore: cast_nullable_to_non_nullable
+              as List<WorkAssignItem>,
+      employeeRequest: freezed == employeeRequest
+          ? _value.employeeRequest
+          : employeeRequest // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WorkAssignResponseImpl implements _WorkAssignResponse {
+  const _$WorkAssignResponseImpl(
+      {@JsonKey(name: 'Rows') required final List<WorkAssignItem> rows,
+      @JsonKey(name: 'EmployeeRequest') this.employeeRequest})
+      : _rows = rows;
+
+  factory _$WorkAssignResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WorkAssignResponseImplFromJson(json);
+
+  final List<WorkAssignItem> _rows;
+  @override
+  @JsonKey(name: 'Rows')
+  List<WorkAssignItem> get rows {
+    if (_rows is EqualUnmodifiableListView) return _rows;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_rows);
+  }
+
+  @override
+  @JsonKey(name: 'EmployeeRequest')
+  final int? employeeRequest;
+
+  @override
+  String toString() {
+    return 'WorkAssignResponse(rows: $rows, employeeRequest: $employeeRequest)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WorkAssignResponseImpl &&
+            const DeepCollectionEquality().equals(other._rows, _rows) &&
+            (identical(other.employeeRequest, employeeRequest) ||
+                other.employeeRequest == employeeRequest));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_rows), employeeRequest);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WorkAssignResponseImplCopyWith<_$WorkAssignResponseImpl> get copyWith =>
+      __$$WorkAssignResponseImplCopyWithImpl<_$WorkAssignResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WorkAssignResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WorkAssignResponse implements WorkAssignResponse {
+  const factory _WorkAssignResponse(
+          {@JsonKey(name: 'Rows') required final List<WorkAssignItem> rows,
+          @JsonKey(name: 'EmployeeRequest') final int? employeeRequest}) =
+      _$WorkAssignResponseImpl;
+
+  factory _WorkAssignResponse.fromJson(Map<String, dynamic> json) =
+      _$WorkAssignResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'Rows')
+  List<WorkAssignItem> get rows;
+  @override
+  @JsonKey(name: 'EmployeeRequest')
+  int? get employeeRequest;
+  @override
+  @JsonKey(ignore: true)
+  _$$WorkAssignResponseImplCopyWith<_$WorkAssignResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

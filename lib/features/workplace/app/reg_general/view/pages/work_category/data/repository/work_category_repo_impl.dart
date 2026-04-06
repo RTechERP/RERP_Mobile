@@ -15,7 +15,7 @@ class WorkCategoryRepoImpl implements WorkCategoryRepo {
   WorkCategoryRepoImpl(this._service);
 
   @override
-  Future<Either<BaseError, List<WorkAssignItem>>> getAssigner() async {
+  Future<Either<BaseError, WorkAssignResponse>> getAssigner() async {
     try {
       final res = await _service.getAssigner();
       if (res.status == 1 && res.data != null) {
