@@ -11,7 +11,7 @@ import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
-import '../../../../../../../../../common/helpers/validate_helper.dart';
+
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../../../../../../../../di/injection.dart';
@@ -143,10 +143,15 @@ class _LunchAddScreenState
                                   FormDateTimePicker(
                                     nameForm: 'lunch_add_date',
                                     nameTimePicker: 'lunch_add_date_time',
-                                    label: '',
+                                    label: 'Ngày đặt',
                                     icon: Icons.calendar_today_outlined,
                                     inputType: InputType.date,
                                     format: DateFormat('dd/MM/yyyy'),
+                                    isRequired: true,
+                                    validator: (v) {
+                                      if (v == null) return 'Vui lòng chọn ngày đặt';
+                                      return null;
+                                    },
                                     initialValue: _selectedDate,
                                     firstDate: _todayStart,
                                     onChanged: (v) {
@@ -165,15 +170,26 @@ class _LunchAddScreenState
                                         'regwork_lunch_add_quantity_field',
                                     keyboardType: TextInputType.number,
                                     label: 'Số lượng',
-                                    icon: Icons
-                                        .confirmation_number_outlined,
-                                    validator:
-                                        ValidateHelper.validateLunchQuantityField,
+                                    icon: Icons.confirmation_number_outlined,
+                                    initialValue: '1',
+                                    isRequired: true,
+                                    validator: (v) {
+                                      if (v == null || v.isEmpty) return 'Vui lòng nhập số lượng';
+                                      final number = int.tryParse(v);
+                                      if (number == null || number <= 0) return 'Số lượng không hợp lệ';
+                                      return null;
+                                    },
                                   ),
                                   const SizedBox(height: 8),
                                   FormRadioGroup(
                                     name: 'location',
                                     label: 'Địa điểm',
+                                    initialValue: 'hn',
+                                    isRequired: true,
+                                    validator: (v) {
+                                      if (v == null || v.isEmpty) return 'Vui lòng chọn địa điểm';
+                                      return null;
+                                    },
                                     options: const [
                                       FormRadioOption(
                                         value: 'hn',
@@ -220,52 +236,16 @@ class _LunchAddScreenState
                                 if (!formState.saveAndValidate()) return;
 
                                 final values = formState.value;
-                                final locationRaw =
-                                    values['location'] as String?;
-                                if (locationRaw == null ||
-                                    locationRaw.isEmpty) {
-                                  context.showMessage(
-                                    'Vui lòng chọn địa điểm',
-                                    type: SnackBarType.error,
-                                  );
-                                  return;
-                                }
-
-                                final dateOrder =
-                                    values['lunch_add_date'] as DateTime?;
-                                if (dateOrder == null) {
-                                  context.showMessage(
-                                    'Vui lòng chọn ngày',
-                                    type: SnackBarType.error,
-                                  );
-                                  return;
-                                }
-
-                                final quantity = int.tryParse(
-                                  '${values['regwork_lunch_add_quantity'] ?? ''}'
-                                      .trim(),
-                                );
-                                final validation =
-                                    ValidateHelper.validateLunch(
-                                  quantity: quantity,
-                                  location: locationRaw,
-                                );
-                                if (validation != null) {
-                                  context.showMessage(
-                                    validation,
-                                    type: SnackBarType.error,
-                                  );
-                                  return;
-                                }
-
-                                final safeQuantity = quantity!;
+                                final locationRaw = values['location'] as String?;
+                                final dateOrder = values['lunch_add_date'] as DateTime?;
+                                final quantity = int.tryParse('${values['regwork_lunch_add_quantity'] ?? ''}'.trim());
 
                                 bloc.add(
                                   LunchEvent.submit(
-                                    quantity: safeQuantity,
+                                    quantity: quantity!,
                                     location: _mapLocation(locationRaw),
                                     note: '${values['regwork_lunch_add_note'] ?? ''}',
-                                    dateOrder: dateOrder,
+                                    dateOrder: dateOrder!,
                                   ),
                                 );
                               },

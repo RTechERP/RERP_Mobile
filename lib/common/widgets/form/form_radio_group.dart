@@ -30,6 +30,7 @@ class FormRadioGroup extends StatelessWidget {
   final double optionSpacing;
   /// Tuỳ chỉnh viền/nền từng ô; mặc định [vertical] dùng ô trong suốt chỉ để tạo [optionSpacing].
   final BoxDecoration? itemDecoration;
+  final bool isRequired;
 
   const FormRadioGroup({
     super.key,
@@ -45,6 +46,7 @@ class FormRadioGroup extends StatelessWidget {
     this.controlAffinity = ControlAffinity.leading,
     this.optionSpacing = 8,
     this.itemDecoration,
+    this.isRequired = false,
   });
 
   @override
@@ -67,7 +69,18 @@ class FormRadioGroup extends StatelessWidget {
       itemDecoration: effectiveItemDecoration,
       decoration: decoration ??
           InputDecoration(
-            labelText: label,
+            label: label != null
+                ? (isRequired
+                    ? Text.rich(
+                        TextSpan(
+                          text: label,
+                          children: const [
+                            TextSpan(text: ' *', style: TextStyle(color: Colors.red)),
+                          ],
+                        ),
+                      )
+                    : Text(label!))
+                : null,
             border: InputBorder.none,
           ),
       options: [
