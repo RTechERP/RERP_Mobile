@@ -313,6 +313,7 @@ class _WorkCategoryTabBody extends StatelessWidget {
     }
 
     return Skeletonizer(
+      containersColor: AppColors.white,
       enabled: isInitialLoading,
       child: RefreshIndicator(
         onRefresh: onRefresh,

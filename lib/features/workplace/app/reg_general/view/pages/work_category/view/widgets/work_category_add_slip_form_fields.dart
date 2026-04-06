@@ -3,7 +3,9 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../../di/injection.dart';
 import 'work_category_add_constants.dart';
 
 class WorkCategorySlipFormFields extends StatelessWidget {
@@ -323,16 +325,105 @@ class _PlanActualSection extends StatelessWidget {
   final String slipKey;
   final DateFormat dateFmt;
 
+  bool _isBeforeDay(DateTime a, DateTime b) {
+    return DateTime(a.year, a.month, a.day).isBefore(DateTime(b.year, b.month, b.day));
+  }
+
+  bool _isSameDay(DateTime a, DateTime b) {
+    return a.year == b.year && a.month == b.month && a.day == b.day;
+  }
+
+  void _showError(BuildContext context, String msg) {
+    getIt<SnackBarHelper>().showError(context, msg);
+  }
+
+  void _onPlanDateChanged(BuildContext context, DateTime? val, bool isStart) {
+    final form = FormBuilder.of(context);
+    final start = form?.instantValue[kPlanStart(slipKey)] as DateTime?;
+    final end = form?.instantValue[kPlanEnd(slipKey)] as DateTime?;
+    if (start != null && end != null && _isBeforeDay(end, start)) {
+      _showError(context, 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu');
+      if (isStart) {
+        form?.fields[kPlanStart(slipKey)]?.didChange(null);
+        form?.fields['${kPlanStart(slipKey)}_inner']?.didChange(null);
+      } else {
+        form?.fields[kPlanEnd(slipKey)]?.didChange(null);
+        form?.fields['${kPlanEnd(slipKey)}_inner']?.didChange(null);
+      }
+    } else {
+      _calcPlanDays(context, slipKey);
+    }
+  }
+
+  void _onPlanDaysChanged(BuildContext context, String? val) {
+    final form = FormBuilder.of(context);
+    final start = form?.instantValue[kPlanStart(slipKey)] as DateTime?;
+    if (start != null && val != null && val.trim().isNotEmpty) {
+      final days = double.tryParse(val.trim());
+      if (days != null) {
+        // days = 0 or 1 means start and end are the same day (1 inclusive working day)
+        final durationDays = days > 1 ? days.toInt() - 1 : 0;
+        final newEnd = start.add(Duration(days: durationDays));
+        form?.fields[kPlanEnd(slipKey)]?.didChange(newEnd);
+        form?.fields['${kPlanEnd(slipKey)}_inner']?.didChange(newEnd);
+      }
+    }
+  }
+
+  void _evaluateActualStatus(BuildContext context, {bool fromPercent = false}) {
+    final form = FormBuilder.of(context);
+    if (form == null) return;
+    
+    final start = form.instantValue[kActualStart(slipKey)] as DateTime?;
+    final end = form.instantValue[kActualEnd(slipKey)] as DateTime?;
+    final pStr = form.instantValue[kPercent(slipKey)]?.toString() ?? '';
+    final percent = double.tryParse(pStr) ?? 0.0;
+
+    if (start == null) {
+      form.fields[kStatus(slipKey)]?.didChange('0');
+    } else {
+      if (end == null) {
+        form.fields[kStatus(slipKey)]?.didChange('1');
+      } else {
+        if (_isSameDay(start, end) && !fromPercent) {
+          form.fields[kStatus(slipKey)]?.didChange('2');
+          form.fields[kPercent(slipKey)]?.didChange('100');
+        } else {
+          if (percent >= 0 && percent < 100) {
+            form.fields[kStatus(slipKey)]?.didChange('1');
+          } else if (percent == 100) {
+            form.fields[kStatus(slipKey)]?.didChange('2');
+          }
+        }
+      }
+    }
+  }
+
+  void _onActualDateChanged(BuildContext context, DateTime? val, bool isStart) {
+    final form = FormBuilder.of(context);
+    final start = form?.instantValue[kActualStart(slipKey)] as DateTime?;
+    final end = form?.instantValue[kActualEnd(slipKey)] as DateTime?;
+    
+    if (start != null && end != null && _isBeforeDay(end, start)) {
+      _showError(context, 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu');
+      if (isStart) {
+        form?.fields[kActualStart(slipKey)]?.didChange(null);
+        form?.fields['${kActualStart(slipKey)}_inner']?.didChange(null);
+      } else {
+        form?.fields[kActualEnd(slipKey)]?.didChange(null);
+        form?.fields['${kActualEnd(slipKey)}_inner']?.didChange(null);
+      }
+    } else {
+      _evaluateActualStatus(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Determine the initial component logic based on default status ('1')
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
     
-    // Default initial logic for Plan dates
-
-    // final defaultPlanDate = today;
-    final defaultActualStart = today; // vì default status = 1 (Đang làm)
+    final defaultActualStart = today;
     final defaultActualEnd = null;
 
     return Column(
@@ -355,7 +446,7 @@ class _PlanActualSection extends StatelessWidget {
                 initialDate: today,
                 validator: (v) => v == null ? 'Vui lòng chọn ngày' : null,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                onChanged: (val) => _calcPlanDays(context, slipKey),
+                onChanged: (val) => _onPlanDateChanged(context, val, true),
               ),
             ),
             const SizedBox(width: 10),
@@ -371,7 +462,7 @@ class _PlanActualSection extends StatelessWidget {
                 initialDate: today,
                 validator: (v) => v == null ? 'Vui lòng chọn ngày' : null,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                onChanged: (val) => _calcPlanDays(context, slipKey),
+                onChanged: (val) => _onPlanDateChanged(context, val, false),
               ),
             ),
           ],
@@ -383,7 +474,8 @@ class _PlanActualSection extends StatelessWidget {
           label: 'Số ngày',
           icon: Icons.calendar_today_outlined,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
-          initialValue: '1',
+          initialValue: '0',
+          onChanged: (val) => _onPlanDaysChanged(context, val),
           autovalidateMode: AutovalidateMode.onUserInteraction,
         ),
         const SizedBox(height: 16),
@@ -404,6 +496,7 @@ class _PlanActualSection extends StatelessWidget {
                 initialValue: defaultActualStart,
                 initialDate: today,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
+                onChanged: (val) => _onActualDateChanged(context, val, true),
               ),
             ),
             const SizedBox(width: 10),
@@ -418,6 +511,7 @@ class _PlanActualSection extends StatelessWidget {
                 initialValue: defaultActualEnd,
                 initialDate: today,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
+                onChanged: (val) => _onActualDateChanged(context, val, false),
               ),
             ),
           ],
@@ -430,6 +524,7 @@ class _PlanActualSection extends StatelessWidget {
           icon: Icons.pie_chart_outline,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
           initialValue: '0',
+          onChanged: (val) => _evaluateActualStatus(context, fromPercent: true),
           validator: (v) {
             final val = double.tryParse('${v ?? ''}'.trim());
             if (val == null || val < 0 || val > 100) return 'Giá trị 0-100';
@@ -445,7 +540,7 @@ class _PlanActualSection extends StatelessWidget {
     final form = FormBuilder.of(context);
     final start = form?.instantValue[kPlanStart(slipId)] as DateTime?;
     final end = form?.instantValue[kPlanEnd(slipId)] as DateTime?;
-    if (start != null && end != null && !end.isBefore(start)) {
+    if (start != null && end != null && !_isBeforeDay(end, start)) {
       final days = end.difference(start).inDays + 1;
       form?.fields[kPlanDays(slipId)]?.didChange(days.toString());
     } else {
