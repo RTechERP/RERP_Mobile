@@ -69,6 +69,7 @@ mixin _$WorkCategoryEvent {
               int typeProjectItem
             }) slip)
         submitEdit,
+    required TResult Function(int projectItemId, String content) saveProblem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -123,6 +124,7 @@ mixin _$WorkCategoryEvent {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult? Function(int projectItemId, String content)? saveProblem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -177,6 +179,7 @@ mixin _$WorkCategoryEvent {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult Function(int projectItemId, String content)? saveProblem,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -191,6 +194,7 @@ mixin _$WorkCategoryEvent {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_SaveProblem value) saveProblem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -204,6 +208,7 @@ mixin _$WorkCategoryEvent {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_SaveProblem value)? saveProblem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -217,6 +222,7 @@ mixin _$WorkCategoryEvent {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_SaveProblem value)? saveProblem,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -328,6 +334,7 @@ class _$InitImpl implements _Init {
               int typeProjectItem
             }) slip)
         submitEdit,
+    required TResult Function(int projectItemId, String content) saveProblem,
   }) {
     return init();
   }
@@ -385,6 +392,7 @@ class _$InitImpl implements _Init {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult? Function(int projectItemId, String content)? saveProblem,
   }) {
     return init?.call();
   }
@@ -442,6 +450,7 @@ class _$InitImpl implements _Init {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult Function(int projectItemId, String content)? saveProblem,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -462,6 +471,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_SaveProblem value) saveProblem,
   }) {
     return init(this);
   }
@@ -478,6 +488,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_SaveProblem value)? saveProblem,
   }) {
     return init?.call(this);
   }
@@ -494,6 +505,7 @@ class _$InitImpl implements _Init {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_SaveProblem value)? saveProblem,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -596,6 +608,7 @@ class _$InitAddImpl implements _InitAdd {
               int typeProjectItem
             }) slip)
         submitEdit,
+    required TResult Function(int projectItemId, String content) saveProblem,
   }) {
     return initAdd();
   }
@@ -653,6 +666,7 @@ class _$InitAddImpl implements _InitAdd {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult? Function(int projectItemId, String content)? saveProblem,
   }) {
     return initAdd?.call();
   }
@@ -710,6 +724,7 @@ class _$InitAddImpl implements _InitAdd {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult Function(int projectItemId, String content)? saveProblem,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -730,6 +745,7 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_SaveProblem value) saveProblem,
   }) {
     return initAdd(this);
   }
@@ -746,6 +762,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_SaveProblem value)? saveProblem,
   }) {
     return initAdd?.call(this);
   }
@@ -762,6 +779,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_SaveProblem value)? saveProblem,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -891,6 +909,7 @@ class _$FetchParentsImpl implements _FetchParents {
               int typeProjectItem
             }) slip)
         submitEdit,
+    required TResult Function(int projectItemId, String content) saveProblem,
   }) {
     return fetchParents(projectId);
   }
@@ -948,6 +967,7 @@ class _$FetchParentsImpl implements _FetchParents {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult? Function(int projectItemId, String content)? saveProblem,
   }) {
     return fetchParents?.call(projectId);
   }
@@ -1005,6 +1025,7 @@ class _$FetchParentsImpl implements _FetchParents {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult Function(int projectItemId, String content)? saveProblem,
     required TResult orElse(),
   }) {
     if (fetchParents != null) {
@@ -1025,6 +1046,7 @@ class _$FetchParentsImpl implements _FetchParents {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_SaveProblem value) saveProblem,
   }) {
     return fetchParents(this);
   }
@@ -1041,6 +1063,7 @@ class _$FetchParentsImpl implements _FetchParents {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_SaveProblem value)? saveProblem,
   }) {
     return fetchParents?.call(this);
   }
@@ -1057,6 +1080,7 @@ class _$FetchParentsImpl implements _FetchParents {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_SaveProblem value)? saveProblem,
     required TResult orElse(),
   }) {
     if (fetchParents != null) {
@@ -1291,6 +1315,7 @@ class _$SubmitBatchImpl implements _SubmitBatch {
               int typeProjectItem
             }) slip)
         submitEdit,
+    required TResult Function(int projectItemId, String content) saveProblem,
   }) {
     return submitBatch(slips);
   }
@@ -1348,6 +1373,7 @@ class _$SubmitBatchImpl implements _SubmitBatch {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult? Function(int projectItemId, String content)? saveProblem,
   }) {
     return submitBatch?.call(slips);
   }
@@ -1405,6 +1431,7 @@ class _$SubmitBatchImpl implements _SubmitBatch {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult Function(int projectItemId, String content)? saveProblem,
     required TResult orElse(),
   }) {
     if (submitBatch != null) {
@@ -1425,6 +1452,7 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_SaveProblem value) saveProblem,
   }) {
     return submitBatch(this);
   }
@@ -1441,6 +1469,7 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_SaveProblem value)? saveProblem,
   }) {
     return submitBatch?.call(this);
   }
@@ -1457,6 +1486,7 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_SaveProblem value)? saveProblem,
     required TResult orElse(),
   }) {
     if (submitBatch != null) {
@@ -1629,6 +1659,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
               int typeProjectItem
             }) slip)
         submitEdit,
+    required TResult Function(int projectItemId, String content) saveProblem,
   }) {
     return onCancelSubmit(id);
   }
@@ -1686,6 +1717,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult? Function(int projectItemId, String content)? saveProblem,
   }) {
     return onCancelSubmit?.call(id);
   }
@@ -1743,6 +1775,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult Function(int projectItemId, String content)? saveProblem,
     required TResult orElse(),
   }) {
     if (onCancelSubmit != null) {
@@ -1763,6 +1796,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_SaveProblem value) saveProblem,
   }) {
     return onCancelSubmit(this);
   }
@@ -1779,6 +1813,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_SaveProblem value)? saveProblem,
   }) {
     return onCancelSubmit?.call(this);
   }
@@ -1795,6 +1830,7 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_SaveProblem value)? saveProblem,
     required TResult orElse(),
   }) {
     if (onCancelSubmit != null) {
@@ -1938,6 +1974,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
               int typeProjectItem
             }) slip)
         submitEdit,
+    required TResult Function(int projectItemId, String content) saveProblem,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -1995,6 +2032,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult? Function(int projectItemId, String content)? saveProblem,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -2052,6 +2090,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult Function(int projectItemId, String content)? saveProblem,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -2072,6 +2111,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_SaveProblem value) saveProblem,
   }) {
     return changeDateRange(this);
   }
@@ -2088,6 +2128,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_SaveProblem value)? saveProblem,
   }) {
     return changeDateRange?.call(this);
   }
@@ -2104,6 +2145,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_SaveProblem value)? saveProblem,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -2214,6 +2256,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
               int typeProjectItem
             }) slip)
         submitEdit,
+    required TResult Function(int projectItemId, String content) saveProblem,
   }) {
     return clearSubmitState();
   }
@@ -2271,6 +2314,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult? Function(int projectItemId, String content)? saveProblem,
   }) {
     return clearSubmitState?.call();
   }
@@ -2328,6 +2372,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult Function(int projectItemId, String content)? saveProblem,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -2348,6 +2393,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_SaveProblem value) saveProblem,
   }) {
     return clearSubmitState(this);
   }
@@ -2364,6 +2410,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_SaveProblem value)? saveProblem,
   }) {
     return clearSubmitState?.call(this);
   }
@@ -2380,6 +2427,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_SaveProblem value)? saveProblem,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -2508,6 +2556,7 @@ class _$FetchDetailImpl implements _FetchDetail {
               int typeProjectItem
             }) slip)
         submitEdit,
+    required TResult Function(int projectItemId, String content) saveProblem,
   }) {
     return fetchDetail(id);
   }
@@ -2565,6 +2614,7 @@ class _$FetchDetailImpl implements _FetchDetail {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult? Function(int projectItemId, String content)? saveProblem,
   }) {
     return fetchDetail?.call(id);
   }
@@ -2622,6 +2672,7 @@ class _$FetchDetailImpl implements _FetchDetail {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult Function(int projectItemId, String content)? saveProblem,
     required TResult orElse(),
   }) {
     if (fetchDetail != null) {
@@ -2642,6 +2693,7 @@ class _$FetchDetailImpl implements _FetchDetail {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_SaveProblem value) saveProblem,
   }) {
     return fetchDetail(this);
   }
@@ -2658,6 +2710,7 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_SaveProblem value)? saveProblem,
   }) {
     return fetchDetail?.call(this);
   }
@@ -2674,6 +2727,7 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_SaveProblem value)? saveProblem,
     required TResult orElse(),
   }) {
     if (fetchDetail != null) {
@@ -2868,6 +2922,7 @@ class _$SubmitEditImpl implements _SubmitEdit {
               int typeProjectItem
             }) slip)
         submitEdit,
+    required TResult Function(int projectItemId, String content) saveProblem,
   }) {
     return submitEdit(id, slip);
   }
@@ -2925,6 +2980,7 @@ class _$SubmitEditImpl implements _SubmitEdit {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult? Function(int projectItemId, String content)? saveProblem,
   }) {
     return submitEdit?.call(id, slip);
   }
@@ -2982,6 +3038,7 @@ class _$SubmitEditImpl implements _SubmitEdit {
               int typeProjectItem
             }) slip)?
         submitEdit,
+    TResult Function(int projectItemId, String content)? saveProblem,
     required TResult orElse(),
   }) {
     if (submitEdit != null) {
@@ -3002,6 +3059,7 @@ class _$SubmitEditImpl implements _SubmitEdit {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_SaveProblem value) saveProblem,
   }) {
     return submitEdit(this);
   }
@@ -3018,6 +3076,7 @@ class _$SubmitEditImpl implements _SubmitEdit {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_SaveProblem value)? saveProblem,
   }) {
     return submitEdit?.call(this);
   }
@@ -3034,6 +3093,7 @@ class _$SubmitEditImpl implements _SubmitEdit {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_SaveProblem value)? saveProblem,
     required TResult orElse(),
   }) {
     if (submitEdit != null) {
@@ -3086,5 +3146,322 @@ abstract class _SubmitEdit implements WorkCategoryEvent {
   }) get slip;
   @JsonKey(ignore: true)
   _$$SubmitEditImplCopyWith<_$SubmitEditImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SaveProblemImplCopyWith<$Res> {
+  factory _$$SaveProblemImplCopyWith(
+          _$SaveProblemImpl value, $Res Function(_$SaveProblemImpl) then) =
+      __$$SaveProblemImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int projectItemId, String content});
+}
+
+/// @nodoc
+class __$$SaveProblemImplCopyWithImpl<$Res>
+    extends _$WorkCategoryEventCopyWithImpl<$Res, _$SaveProblemImpl>
+    implements _$$SaveProblemImplCopyWith<$Res> {
+  __$$SaveProblemImplCopyWithImpl(
+      _$SaveProblemImpl _value, $Res Function(_$SaveProblemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projectItemId = null,
+    Object? content = null,
+  }) {
+    return _then(_$SaveProblemImpl(
+      projectItemId: null == projectItemId
+          ? _value.projectItemId
+          : projectItemId // ignore: cast_nullable_to_non_nullable
+              as int,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SaveProblemImpl implements _SaveProblem {
+  const _$SaveProblemImpl({required this.projectItemId, required this.content});
+
+  @override
+  final int projectItemId;
+  @override
+  final String content;
+
+  @override
+  String toString() {
+    return 'WorkCategoryEvent.saveProblem(projectItemId: $projectItemId, content: $content)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaveProblemImpl &&
+            (identical(other.projectItemId, projectItemId) ||
+                other.projectItemId == projectItemId) &&
+            (identical(other.content, content) || other.content == content));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, projectItemId, content);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SaveProblemImplCopyWith<_$SaveProblemImpl> get copyWith =>
+      __$$SaveProblemImplCopyWithImpl<_$SaveProblemImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(int? projectId) fetchParents,
+    required TResult Function(
+            List<
+                    ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
+                      int employeeCreateId,
+                      int employeeIdRequest,
+                      String location,
+                      String mission,
+                      String note,
+                      int parentId,
+                      double percentageActual,
+                      DateTime planEndDate,
+                      DateTime planStartDate,
+                      String projectCode,
+                      int projectId,
+                      int status,
+                      double totalDayPlan,
+                      int typeProjectItem
+                    })>
+                slips)
+        submitBatch,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(
+            int id,
+            ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
+              int employeeCreateId,
+              int employeeIdRequest,
+              String location,
+              String mission,
+              String note,
+              int parentId,
+              double percentageActual,
+              DateTime planEndDate,
+              DateTime planStartDate,
+              String projectCode,
+              int projectId,
+              int status,
+              double totalDayPlan,
+              int typeProjectItem
+            }) slip)
+        submitEdit,
+    required TResult Function(int projectItemId, String content) saveProblem,
+  }) {
+    return saveProblem(projectItemId, content);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(int? projectId)? fetchParents,
+    TResult? Function(
+            List<
+                    ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
+                      int employeeCreateId,
+                      int employeeIdRequest,
+                      String location,
+                      String mission,
+                      String note,
+                      int parentId,
+                      double percentageActual,
+                      DateTime planEndDate,
+                      DateTime planStartDate,
+                      String projectCode,
+                      int projectId,
+                      int status,
+                      double totalDayPlan,
+                      int typeProjectItem
+                    })>
+                slips)?
+        submitBatch,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(
+            int id,
+            ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
+              int employeeCreateId,
+              int employeeIdRequest,
+              String location,
+              String mission,
+              String note,
+              int parentId,
+              double percentageActual,
+              DateTime planEndDate,
+              DateTime planStartDate,
+              String projectCode,
+              int projectId,
+              int status,
+              double totalDayPlan,
+              int typeProjectItem
+            }) slip)?
+        submitEdit,
+    TResult? Function(int projectItemId, String content)? saveProblem,
+  }) {
+    return saveProblem?.call(projectItemId, content);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(int? projectId)? fetchParents,
+    TResult Function(
+            List<
+                    ({
+                      DateTime? actualEndDate,
+                      DateTime? actualStartDate,
+                      int employeeCreateId,
+                      int employeeIdRequest,
+                      String location,
+                      String mission,
+                      String note,
+                      int parentId,
+                      double percentageActual,
+                      DateTime planEndDate,
+                      DateTime planStartDate,
+                      String projectCode,
+                      int projectId,
+                      int status,
+                      double totalDayPlan,
+                      int typeProjectItem
+                    })>
+                slips)?
+        submitBatch,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(
+            int id,
+            ({
+              DateTime? actualEndDate,
+              DateTime? actualStartDate,
+              int employeeCreateId,
+              int employeeIdRequest,
+              String location,
+              String mission,
+              String note,
+              int parentId,
+              double percentageActual,
+              DateTime planEndDate,
+              DateTime planStartDate,
+              String projectCode,
+              int projectId,
+              int status,
+              double totalDayPlan,
+              int typeProjectItem
+            }) slip)?
+        submitEdit,
+    TResult Function(int projectItemId, String content)? saveProblem,
+    required TResult orElse(),
+  }) {
+    if (saveProblem != null) {
+      return saveProblem(projectItemId, content);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_FetchParents value) fetchParents,
+    required TResult Function(_SubmitBatch value) submitBatch,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_SaveProblem value) saveProblem,
+  }) {
+    return saveProblem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_FetchParents value)? fetchParents,
+    TResult? Function(_SubmitBatch value)? submitBatch,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_SaveProblem value)? saveProblem,
+  }) {
+    return saveProblem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_FetchParents value)? fetchParents,
+    TResult Function(_SubmitBatch value)? submitBatch,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_SaveProblem value)? saveProblem,
+    required TResult orElse(),
+  }) {
+    if (saveProblem != null) {
+      return saveProblem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SaveProblem implements WorkCategoryEvent {
+  const factory _SaveProblem(
+      {required final int projectItemId,
+      required final String content}) = _$SaveProblemImpl;
+
+  int get projectItemId;
+  String get content;
+  @JsonKey(ignore: true)
+  _$$SaveProblemImplCopyWith<_$SaveProblemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

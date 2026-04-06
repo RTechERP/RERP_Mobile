@@ -39,4 +39,8 @@ class WorkCategoryEvent with _$WorkCategoryEvent {
     required int id,
     required WorkCategorySubmitSlip slip,
   }) = _SubmitEdit;
+  const factory WorkCategoryEvent.saveProblem({
+    required int projectItemId,
+    required String content,
+  }) = _SaveProblem;
 }

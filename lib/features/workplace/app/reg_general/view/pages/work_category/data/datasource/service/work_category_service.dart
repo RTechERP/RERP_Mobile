@@ -82,4 +82,42 @@ class WorkCategoryService extends DioBaseApiService {
       parser: (json) => BaseData<void>.fromJson(json, (_) {}),
     );
   }
+
+  Future<BaseData<WorkCategoryDetailItem>> getDetailById({
+    required int projectItemId,
+  }) {
+    return get<BaseData<WorkCategoryDetailItem>>(
+      ApiEndPoint.getWorkCategoryDetail,
+      query: {'projectItemID': projectItemId},
+      parser: (json) => BaseData<WorkCategoryDetailItem>.fromJson(
+        json,
+        (data) => WorkCategoryDetailItem.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  Future<BaseData<List<WorkProblemItem>>> getProblemById({
+    required int projectItemId,
+  }) {
+    return get<BaseData<List<WorkProblemItem>>>(
+      ApiEndPoint.getWorkCategoryProblem,
+      query: {'projectItem': projectItemId},
+      parser: (json) => BaseData<List<WorkProblemItem>>.fromJson(
+        json,
+        (data) => (data as List)
+            .map((e) => WorkProblemItem.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  Future<BaseData<void>> saveProblem({
+    required dynamic payload,
+  }) async {
+    return post<BaseData<void>>(
+      ApiEndPoint.saveWorkCategoryProblem,
+      body: payload,
+      parser: (json) => BaseData<void>.fromJson(json, (_) {}),
+    );
+  }
 }

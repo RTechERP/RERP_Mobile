@@ -18,6 +18,9 @@ class WorkCategoryState extends BaseBlocState {
   final bool isFetchingDetail;
   final bool editSuccess;
   final int? defaultAssignerId;
+  final WorkCategoryDetailItem? detailItem;
+  final List<WorkProblemItem> problems;
+  final bool saveProblemSuccess;
 
   const WorkCategoryState({
     required super.status,
@@ -38,6 +41,9 @@ class WorkCategoryState extends BaseBlocState {
     this.isFetchingDetail = false,
     this.editSuccess = false,
     this.defaultAssignerId,
+    this.detailItem,
+    this.problems = const [],
+    this.saveProblemSuccess = false,
   });
 
   factory WorkCategoryState.init() => const WorkCategoryState(
@@ -58,6 +64,9 @@ class WorkCategoryState extends BaseBlocState {
         isFetchingDetail: false,
         editSuccess: false,
         defaultAssignerId: null,
+        detailItem: null,
+        problems: const [],
+        saveProblemSuccess: false,
       );
 
   @override
@@ -80,5 +89,8 @@ class WorkCategoryState extends BaseBlocState {
         isFetchingDetail,
         editSuccess,
         defaultAssignerId,
+        detailItem,
+        problems,
+        saveProblemSuccess,
       ];
 }

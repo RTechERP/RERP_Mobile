@@ -260,4 +260,10 @@ class ApiEndPoint {
   static const String getWorkParent = '/projectitemnew/get-project-item-parent';
 
   static const String saveWorkCategory = '/projectitemnew/save-data-person';
+
+  static const String getWorkCategoryDetail = '/projectitemnew/get-by-id';
+  
+  static const String getWorkCategoryProblem = '/ProjectItem/get-project-item-problem';
+  
+  static const String saveWorkCategoryProblem = '/ProjectItem/save-problem';
 }

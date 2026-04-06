@@ -43,6 +43,12 @@ abstract class _$WorkCategoryStateCWProxy {
 
   WorkCategoryState defaultAssignerId(int? defaultAssignerId);
 
+  WorkCategoryState detailItem(WorkCategoryDetailItem? detailItem);
+
+  WorkCategoryState problems(List<WorkProblemItem> problems);
+
+  WorkCategoryState saveProblemSuccess(bool saveProblemSuccess);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkCategoryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -68,6 +74,9 @@ abstract class _$WorkCategoryStateCWProxy {
     bool? isFetchingDetail,
     bool? editSuccess,
     int? defaultAssignerId,
+    WorkCategoryDetailItem? detailItem,
+    List<WorkProblemItem>? problems,
+    bool? saveProblemSuccess,
   });
 }
 
@@ -144,6 +153,18 @@ class _$WorkCategoryStateCWProxyImpl implements _$WorkCategoryStateCWProxy {
       this(defaultAssignerId: defaultAssignerId);
 
   @override
+  WorkCategoryState detailItem(WorkCategoryDetailItem? detailItem) =>
+      this(detailItem: detailItem);
+
+  @override
+  WorkCategoryState problems(List<WorkProblemItem> problems) =>
+      this(problems: problems);
+
+  @override
+  WorkCategoryState saveProblemSuccess(bool saveProblemSuccess) =>
+      this(saveProblemSuccess: saveProblemSuccess);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkCategoryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -170,6 +191,9 @@ class _$WorkCategoryStateCWProxyImpl implements _$WorkCategoryStateCWProxy {
     Object? isFetchingDetail = const $CopyWithPlaceholder(),
     Object? editSuccess = const $CopyWithPlaceholder(),
     Object? defaultAssignerId = const $CopyWithPlaceholder(),
+    Object? detailItem = const $CopyWithPlaceholder(),
+    Object? problems = const $CopyWithPlaceholder(),
+    Object? saveProblemSuccess = const $CopyWithPlaceholder(),
   }) {
     return WorkCategoryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -252,6 +276,19 @@ class _$WorkCategoryStateCWProxyImpl implements _$WorkCategoryStateCWProxy {
           ? _value.defaultAssignerId
           // ignore: cast_nullable_to_non_nullable
           : defaultAssignerId as int?,
+      detailItem: detailItem == const $CopyWithPlaceholder()
+          ? _value.detailItem
+          // ignore: cast_nullable_to_non_nullable
+          : detailItem as WorkCategoryDetailItem?,
+      problems: problems == const $CopyWithPlaceholder() || problems == null
+          ? _value.problems
+          // ignore: cast_nullable_to_non_nullable
+          : problems as List<WorkProblemItem>,
+      saveProblemSuccess: saveProblemSuccess == const $CopyWithPlaceholder() ||
+              saveProblemSuccess == null
+          ? _value.saveProblemSuccess
+          // ignore: cast_nullable_to_non_nullable
+          : saveProblemSuccess as bool,
     );
   }
 }

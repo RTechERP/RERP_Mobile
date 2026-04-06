@@ -28,6 +28,7 @@ import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_edit_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/bloc/work_category_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/work_category/data/datasource/models/work_category_model.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_add_screen.dart';
@@ -751,7 +752,18 @@ class AppRouter {
 
           GoRoute(
             path: RouteNames.workCategoryDetail,
-            builder: (context, state) => const WorkCategoryDetailScreen(),
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is WorkCategoryItem) {
+                return WorkCategoryDetailScreen(item: extra);
+              }
+              return Scaffold(
+                appBar: AppBar(title: const Text('Chi tiết hạng mục')),
+                body: const Center(
+                  child: Text('Không có dữ liệu hạng mục. Vui lòng thử lại.'),
+                ),
+              );
+            },
           ),
         ],
       ),

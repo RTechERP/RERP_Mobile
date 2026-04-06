@@ -21,4 +21,16 @@ abstract class WorkCategoryRepo {
   Future<Either<BaseError, void>> saveWorkCategory({
     required dynamic payload,
   });
+
+  Future<Either<BaseError, WorkCategoryDetailItem>> getDetailById({
+    required int id,
+  });
+
+  Future<Either<BaseError, List<WorkProblemItem>>> getProblemById({
+    required int id,
+  });
+
+  Future<Either<BaseError, void>> saveProblem({
+    required dynamic payload,
+  });
 }

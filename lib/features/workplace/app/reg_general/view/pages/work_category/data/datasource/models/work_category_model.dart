@@ -196,10 +196,77 @@ class WorkAssignItem with _$WorkAssignItem {
 @freezed
 class WorkAssignResponse with _$WorkAssignResponse {
   const factory WorkAssignResponse({
-    @JsonKey(name: 'Rows') required List<WorkAssignItem> rows,
-    @JsonKey(name: 'EmployeeRequest') int? employeeRequest,
+    @JsonKey(name: 'rows') required List<WorkAssignItem> rows,
+    @JsonKey(name: 'employeeRequest') int? employeeRequest,
   }) = _WorkAssignResponse;
 
   factory WorkAssignResponse.fromJson(Map<String, dynamic> json) =>
       _$WorkAssignResponseFromJson(json);
+}
+
+@freezed
+class WorkCategoryDetailItem with _$WorkCategoryDetailItem {
+  const factory WorkCategoryDetailItem({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'Status') required int status,
+    @JsonKey(name: 'STT') required String stt,
+    @JsonKey(name: 'UserID') required int userId,
+    @JsonKey(name: 'ProjectID') required int projectId,
+    @JsonKey(name: 'Mission') required String mission,
+    @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
+    @JsonKey(name: 'PlanEndDate') DateTime? planEndDate,
+    @JsonKey(name: 'ActualStartDate') DateTime? actualStartDate,
+    @JsonKey(name: 'ActualEndDate') DateTime? actualEndDate,
+    @JsonKey(name: 'Note') required String note,
+    @JsonKey(name: 'TotalDayPlan') required double totalDayPlan,
+    @JsonKey(name: 'PercentItem') required double percentItem,
+    @JsonKey(name: 'ParentID') required int parentId,
+    @JsonKey(name: 'TotalDayActual') required double totalDayActual,
+    @JsonKey(name: 'ItemLate') required int itemLate,
+    @JsonKey(name: 'TimeSpan') required double timeSpan,
+    @JsonKey(name: 'TypeProjectItem') required int typeProjectItem,
+    @JsonKey(name: 'PercentageActual') required double percentageActual,
+    @JsonKey(name: 'EmployeeIDRequest') required int employeeIdRequest,
+    @JsonKey(name: 'UpdatedDateActual') DateTime? updatedDateActual,
+    @JsonKey(name: 'IsApproved') required int isApproved,
+    @JsonKey(name: 'Code') required String code,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') required String createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') required String updatedBy,
+    @JsonKey(name: 'IsUpdateLate') required bool isUpdateLate,
+    @JsonKey(name: 'ReasonLate') required String reasonLate,
+    @JsonKey(name: 'UpdatedDateReasonLate') DateTime? updatedDateReasonLate,
+    @JsonKey(name: 'IsApprovedLate') required bool isApprovedLate,
+    @JsonKey(name: 'EmployeeRequestID') required int employeeRequestId,
+    @JsonKey(name: 'EmployeeRequestName') String? employeeRequestName,
+    @JsonKey(name: 'IsDeleted') required bool isDeleted,
+    @JsonKey(name: 'Location') required String location,
+    @JsonKey(name: 'EmployeeCreateID') int? employeeCreateId,
+    @JsonKey(name: 'Description') String? description,
+    @JsonKey(name: 'IsPersonalProject') required bool isPersonalProject,
+    @JsonKey(name: 'IsAdditional') required bool isAdditional,
+    @JsonKey(name: 'TaskComplexity') int? taskComplexity,
+    @JsonKey(name: 'PercentOverTime') double? percentOverTime,
+  }) = _WorkCategoryDetailItem;
+
+  factory WorkCategoryDetailItem.fromJson(Map<String, dynamic> json) =>
+      _$WorkCategoryDetailItemFromJson(json);
+}
+
+@freezed
+class WorkProblemItem with _$WorkProblemItem {
+  const factory WorkProblemItem({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'ProjectItemID') required int projectItemId,
+    @JsonKey(name: 'ContentProblem') required String contentProblem,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') required String createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') required String updatedBy,
+  }) = _WorkProblemItem;
+
+  factory WorkProblemItem.fromJson(Map<String, dynamic> json) =>
+      _$WorkProblemItemFromJson(json);
 }

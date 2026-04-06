@@ -44,6 +44,8 @@ class WorkCategoryBloc extends BaseBloc<WorkCategoryEvent, WorkCategoryState> {
         clearSubmitState: () async => _onClearSubmitState(emit),
         fetchDetail: (id) => _onFetchDetail(emit, id: id),
         submitEdit: (id, slip) => _onSubmitEdit(emit, id: id, slip: slip),
+        saveProblem: (projectItemId, content) =>
+            _onSaveProblem(emit, projectItemId: projectItemId, content: content),
       );
     });
   }
@@ -607,6 +609,34 @@ class WorkCategoryBloc extends BaseBloc<WorkCategoryEvent, WorkCategoryState> {
     required int id,
   }) async {
     emit(state.copyWith(isFetchingDetail: true, message: null));
+    try {
+      final detailRes = await _workCategoryRepo.getDetailById(id: id);
+      final problemRes = await _workCategoryRepo.getProblemById(id: id);
+
+      final detail = detailRes.fold((l) => null, (r) => r);
+      final problems = problemRes.fold((l) => <WorkProblemItem>[], (r) => r);
+
+      if (detail == null) {
+        emit(state.copyWith(
+          isFetchingDetail: false,
+          status: BaseStateStatus.failed,
+          message: 'Không tải được dữ liệu hạng mục',
+        ));
+        return;
+      }
+
+      emit(state.copyWith(
+        isFetchingDetail: false,
+        detailItem: detail,
+        problems: problems,
+      ));
+    } catch (e) {
+      emit(state.copyWith(
+        isFetchingDetail: false,
+        status: BaseStateStatus.failed,
+        message: 'Có lỗi xảy ra khi tải dữ liệu',
+      ));
+    }
   }
 
   Future<void> _onSubmitEdit(
@@ -637,22 +667,41 @@ class WorkCategoryBloc extends BaseBloc<WorkCategoryEvent, WorkCategoryState> {
         return;
       }
 
-      final existingItem = state.workCategories.firstWhere((e) => e.id == id);
+      final existingItem = state.detailItem;
+      if (existingItem == null) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            editSuccess: false,
+            status: BaseStateStatus.failed,
+            message: 'Không tìm thấy dữ liệu chi tiết báo cáo',
+          ),
+        );
+        return;
+      }
       final item = existingItem.toJson();
       item['ProjectID'] = slip.projectId;
       item['TypeProjectItem'] = slip.typeProjectItem;
       item['ParentID'] = slip.parentId;
       item['Mission'] = slip.mission;
+      item['Status'] = slip.status;
       item['PlanStartDate'] = ConvertDateHelper.toLocalIso8601(start);
       item['PlanEndDate'] = ConvertDateHelper.toLocalIso8601(end);
+      item['ActualStartDate'] = slip.actualStartDate != null
+          ? ConvertDateHelper.toLocalIso8601(slip.actualStartDate!)
+          : null;
+      item['ActualEndDate'] = slip.actualEndDate != null
+          ? ConvertDateHelper.toLocalIso8601(slip.actualEndDate!)
+          : null;
       item['EmployeeIDRequest'] = slip.employeeIdRequest;
       item['EmployeeCreateID'] = slip.employeeCreateId;
       item['TotalDayPlan'] = slip.totalDayPlan;
+      item['PercentageActual'] = slip.percentageActual;
       item['Note'] = slip.note;
+      item['Location'] = slip.location;
       item['IsDeleted'] = false;
 
       final payload = {
-        'projectItem': item,
         'projectItems': [item],
         'projectItemProblem': null,
         'ProjectItemFile': null,
@@ -697,6 +746,47 @@ class WorkCategoryBloc extends BaseBloc<WorkCategoryEvent, WorkCategoryState> {
       );
     } finally {
       _isSubmittingReport = false;
+    }
+  }
+
+  Future<void> _onSaveProblem(
+    Emitter<WorkCategoryState> emit, {
+    required int projectItemId,
+    required String content,
+  }) async {
+    try {
+      final payload = {
+        'ID': 0,
+        'ProjectItemID': projectItemId,
+        'ContentProblem': content,
+        'Note': null,
+      };
+
+      final res = await _workCategoryRepo.saveProblem(payload: payload);
+
+      await res.fold(
+        (l) async {
+          emit(state.copyWith(
+            status: BaseStateStatus.failed,
+            message: l.getErrorMessage,
+          ));
+        },
+        (r) async {
+          // Reload problems list after saving
+          final problemRes = await _workCategoryRepo.getProblemById(id: projectItemId);
+          final problems = problemRes.fold((l) => state.problems, (r) => r);
+          emit(state.copyWith(
+            saveProblemSuccess: true,
+            problems: problems,
+          ));
+        },
+      );
+    } catch (e) {
+      _log.logE('❌ WorkCategoryBloc saveProblem exception: $e');
+      emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: 'Có lỗi xảy ra khi lưu vấn đề',
+      ));
     }
   }
 }

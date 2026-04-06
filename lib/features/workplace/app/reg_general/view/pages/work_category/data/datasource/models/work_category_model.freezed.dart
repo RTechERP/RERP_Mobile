@@ -4075,9 +4075,9 @@ WorkAssignResponse _$WorkAssignResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WorkAssignResponse {
-  @JsonKey(name: 'Rows')
+  @JsonKey(name: 'rows')
   List<WorkAssignItem> get rows => throw _privateConstructorUsedError;
-  @JsonKey(name: 'EmployeeRequest')
+  @JsonKey(name: 'employeeRequest')
   int? get employeeRequest => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -4093,8 +4093,8 @@ abstract class $WorkAssignResponseCopyWith<$Res> {
       _$WorkAssignResponseCopyWithImpl<$Res, WorkAssignResponse>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'Rows') List<WorkAssignItem> rows,
-      @JsonKey(name: 'EmployeeRequest') int? employeeRequest});
+      {@JsonKey(name: 'rows') List<WorkAssignItem> rows,
+      @JsonKey(name: 'employeeRequest') int? employeeRequest});
 }
 
 /// @nodoc
@@ -4135,8 +4135,8 @@ abstract class _$$WorkAssignResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'Rows') List<WorkAssignItem> rows,
-      @JsonKey(name: 'EmployeeRequest') int? employeeRequest});
+      {@JsonKey(name: 'rows') List<WorkAssignItem> rows,
+      @JsonKey(name: 'employeeRequest') int? employeeRequest});
 }
 
 /// @nodoc
@@ -4170,8 +4170,8 @@ class __$$WorkAssignResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WorkAssignResponseImpl implements _WorkAssignResponse {
   const _$WorkAssignResponseImpl(
-      {@JsonKey(name: 'Rows') required final List<WorkAssignItem> rows,
-      @JsonKey(name: 'EmployeeRequest') this.employeeRequest})
+      {@JsonKey(name: 'rows') required final List<WorkAssignItem> rows,
+      @JsonKey(name: 'employeeRequest') this.employeeRequest})
       : _rows = rows;
 
   factory _$WorkAssignResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -4179,7 +4179,7 @@ class _$WorkAssignResponseImpl implements _WorkAssignResponse {
 
   final List<WorkAssignItem> _rows;
   @override
-  @JsonKey(name: 'Rows')
+  @JsonKey(name: 'rows')
   List<WorkAssignItem> get rows {
     if (_rows is EqualUnmodifiableListView) return _rows;
     // ignore: implicit_dynamic_type
@@ -4187,7 +4187,7 @@ class _$WorkAssignResponseImpl implements _WorkAssignResponse {
   }
 
   @override
-  @JsonKey(name: 'EmployeeRequest')
+  @JsonKey(name: 'employeeRequest')
   final int? employeeRequest;
 
   @override
@@ -4227,21 +4227,1482 @@ class _$WorkAssignResponseImpl implements _WorkAssignResponse {
 
 abstract class _WorkAssignResponse implements WorkAssignResponse {
   const factory _WorkAssignResponse(
-          {@JsonKey(name: 'Rows') required final List<WorkAssignItem> rows,
-          @JsonKey(name: 'EmployeeRequest') final int? employeeRequest}) =
+          {@JsonKey(name: 'rows') required final List<WorkAssignItem> rows,
+          @JsonKey(name: 'employeeRequest') final int? employeeRequest}) =
       _$WorkAssignResponseImpl;
 
   factory _WorkAssignResponse.fromJson(Map<String, dynamic> json) =
       _$WorkAssignResponseImpl.fromJson;
 
   @override
-  @JsonKey(name: 'Rows')
+  @JsonKey(name: 'rows')
   List<WorkAssignItem> get rows;
   @override
-  @JsonKey(name: 'EmployeeRequest')
+  @JsonKey(name: 'employeeRequest')
   int? get employeeRequest;
   @override
   @JsonKey(ignore: true)
   _$$WorkAssignResponseImplCopyWith<_$WorkAssignResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+WorkCategoryDetailItem _$WorkCategoryDetailItemFromJson(
+    Map<String, dynamic> json) {
+  return _WorkCategoryDetailItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WorkCategoryDetailItem {
+  @JsonKey(name: 'ID')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Status')
+  int get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  String get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UserID')
+  int get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Mission')
+  String get mission => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PlanStartDate')
+  DateTime? get planStartDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PlanEndDate')
+  DateTime? get planEndDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ActualStartDate')
+  DateTime? get actualStartDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ActualEndDate')
+  DateTime? get actualEndDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalDayPlan')
+  double get totalDayPlan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PercentItem')
+  double get percentItem => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ParentID')
+  int get parentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalDayActual')
+  double get totalDayActual => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ItemLate')
+  int get itemLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TimeSpan')
+  double get timeSpan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TypeProjectItem')
+  int get typeProjectItem => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PercentageActual')
+  double get percentageActual => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeIDRequest')
+  int get employeeIdRequest => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDateActual')
+  DateTime? get updatedDateActual => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApproved')
+  int get isApproved => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsUpdateLate')
+  bool get isUpdateLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReasonLate')
+  String get reasonLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDateReasonLate')
+  DateTime? get updatedDateReasonLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedLate')
+  bool get isApprovedLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeRequestID')
+  int get employeeRequestId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeRequestName')
+  String? get employeeRequestName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Location')
+  String get location => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeCreateID')
+  int? get employeeCreateId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Description')
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsPersonalProject')
+  bool get isPersonalProject => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsAdditional')
+  bool get isAdditional => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaskComplexity')
+  int? get taskComplexity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PercentOverTime')
+  double? get percentOverTime => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WorkCategoryDetailItemCopyWith<WorkCategoryDetailItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WorkCategoryDetailItemCopyWith<$Res> {
+  factory $WorkCategoryDetailItemCopyWith(WorkCategoryDetailItem value,
+          $Res Function(WorkCategoryDetailItem) then) =
+      _$WorkCategoryDetailItemCopyWithImpl<$Res, WorkCategoryDetailItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'Status') int status,
+      @JsonKey(name: 'STT') String stt,
+      @JsonKey(name: 'UserID') int userId,
+      @JsonKey(name: 'ProjectID') int projectId,
+      @JsonKey(name: 'Mission') String mission,
+      @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
+      @JsonKey(name: 'PlanEndDate') DateTime? planEndDate,
+      @JsonKey(name: 'ActualStartDate') DateTime? actualStartDate,
+      @JsonKey(name: 'ActualEndDate') DateTime? actualEndDate,
+      @JsonKey(name: 'Note') String note,
+      @JsonKey(name: 'TotalDayPlan') double totalDayPlan,
+      @JsonKey(name: 'PercentItem') double percentItem,
+      @JsonKey(name: 'ParentID') int parentId,
+      @JsonKey(name: 'TotalDayActual') double totalDayActual,
+      @JsonKey(name: 'ItemLate') int itemLate,
+      @JsonKey(name: 'TimeSpan') double timeSpan,
+      @JsonKey(name: 'TypeProjectItem') int typeProjectItem,
+      @JsonKey(name: 'PercentageActual') double percentageActual,
+      @JsonKey(name: 'EmployeeIDRequest') int employeeIdRequest,
+      @JsonKey(name: 'UpdatedDateActual') DateTime? updatedDateActual,
+      @JsonKey(name: 'IsApproved') int isApproved,
+      @JsonKey(name: 'Code') String code,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String updatedBy,
+      @JsonKey(name: 'IsUpdateLate') bool isUpdateLate,
+      @JsonKey(name: 'ReasonLate') String reasonLate,
+      @JsonKey(name: 'UpdatedDateReasonLate') DateTime? updatedDateReasonLate,
+      @JsonKey(name: 'IsApprovedLate') bool isApprovedLate,
+      @JsonKey(name: 'EmployeeRequestID') int employeeRequestId,
+      @JsonKey(name: 'EmployeeRequestName') String? employeeRequestName,
+      @JsonKey(name: 'IsDeleted') bool isDeleted,
+      @JsonKey(name: 'Location') String location,
+      @JsonKey(name: 'EmployeeCreateID') int? employeeCreateId,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'IsPersonalProject') bool isPersonalProject,
+      @JsonKey(name: 'IsAdditional') bool isAdditional,
+      @JsonKey(name: 'TaskComplexity') int? taskComplexity,
+      @JsonKey(name: 'PercentOverTime') double? percentOverTime});
+}
+
+/// @nodoc
+class _$WorkCategoryDetailItemCopyWithImpl<$Res,
+        $Val extends WorkCategoryDetailItem>
+    implements $WorkCategoryDetailItemCopyWith<$Res> {
+  _$WorkCategoryDetailItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? status = null,
+    Object? stt = null,
+    Object? userId = null,
+    Object? projectId = null,
+    Object? mission = null,
+    Object? planStartDate = freezed,
+    Object? planEndDate = freezed,
+    Object? actualStartDate = freezed,
+    Object? actualEndDate = freezed,
+    Object? note = null,
+    Object? totalDayPlan = null,
+    Object? percentItem = null,
+    Object? parentId = null,
+    Object? totalDayActual = null,
+    Object? itemLate = null,
+    Object? timeSpan = null,
+    Object? typeProjectItem = null,
+    Object? percentageActual = null,
+    Object? employeeIdRequest = null,
+    Object? updatedDateActual = freezed,
+    Object? isApproved = null,
+    Object? code = null,
+    Object? createdDate = freezed,
+    Object? createdBy = null,
+    Object? updatedDate = freezed,
+    Object? updatedBy = null,
+    Object? isUpdateLate = null,
+    Object? reasonLate = null,
+    Object? updatedDateReasonLate = freezed,
+    Object? isApprovedLate = null,
+    Object? employeeRequestId = null,
+    Object? employeeRequestName = freezed,
+    Object? isDeleted = null,
+    Object? location = null,
+    Object? employeeCreateId = freezed,
+    Object? description = freezed,
+    Object? isPersonalProject = null,
+    Object? isAdditional = null,
+    Object? taskComplexity = freezed,
+    Object? percentOverTime = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int,
+      stt: null == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      projectId: null == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int,
+      mission: null == mission
+          ? _value.mission
+          : mission // ignore: cast_nullable_to_non_nullable
+              as String,
+      planStartDate: freezed == planStartDate
+          ? _value.planStartDate
+          : planStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      planEndDate: freezed == planEndDate
+          ? _value.planEndDate
+          : planEndDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      actualStartDate: freezed == actualStartDate
+          ? _value.actualStartDate
+          : actualStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      actualEndDate: freezed == actualEndDate
+          ? _value.actualEndDate
+          : actualEndDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalDayPlan: null == totalDayPlan
+          ? _value.totalDayPlan
+          : totalDayPlan // ignore: cast_nullable_to_non_nullable
+              as double,
+      percentItem: null == percentItem
+          ? _value.percentItem
+          : percentItem // ignore: cast_nullable_to_non_nullable
+              as double,
+      parentId: null == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalDayActual: null == totalDayActual
+          ? _value.totalDayActual
+          : totalDayActual // ignore: cast_nullable_to_non_nullable
+              as double,
+      itemLate: null == itemLate
+          ? _value.itemLate
+          : itemLate // ignore: cast_nullable_to_non_nullable
+              as int,
+      timeSpan: null == timeSpan
+          ? _value.timeSpan
+          : timeSpan // ignore: cast_nullable_to_non_nullable
+              as double,
+      typeProjectItem: null == typeProjectItem
+          ? _value.typeProjectItem
+          : typeProjectItem // ignore: cast_nullable_to_non_nullable
+              as int,
+      percentageActual: null == percentageActual
+          ? _value.percentageActual
+          : percentageActual // ignore: cast_nullable_to_non_nullable
+              as double,
+      employeeIdRequest: null == employeeIdRequest
+          ? _value.employeeIdRequest
+          : employeeIdRequest // ignore: cast_nullable_to_non_nullable
+              as int,
+      updatedDateActual: freezed == updatedDateActual
+          ? _value.updatedDateActual
+          : updatedDateActual // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApproved: null == isApproved
+          ? _value.isApproved
+          : isApproved // ignore: cast_nullable_to_non_nullable
+              as int,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: null == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: null == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      isUpdateLate: null == isUpdateLate
+          ? _value.isUpdateLate
+          : isUpdateLate // ignore: cast_nullable_to_non_nullable
+              as bool,
+      reasonLate: null == reasonLate
+          ? _value.reasonLate
+          : reasonLate // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedDateReasonLate: freezed == updatedDateReasonLate
+          ? _value.updatedDateReasonLate
+          : updatedDateReasonLate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApprovedLate: null == isApprovedLate
+          ? _value.isApprovedLate
+          : isApprovedLate // ignore: cast_nullable_to_non_nullable
+              as bool,
+      employeeRequestId: null == employeeRequestId
+          ? _value.employeeRequestId
+          : employeeRequestId // ignore: cast_nullable_to_non_nullable
+              as int,
+      employeeRequestName: freezed == employeeRequestName
+          ? _value.employeeRequestName
+          : employeeRequestName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: null == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String,
+      employeeCreateId: freezed == employeeCreateId
+          ? _value.employeeCreateId
+          : employeeCreateId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isPersonalProject: null == isPersonalProject
+          ? _value.isPersonalProject
+          : isPersonalProject // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAdditional: null == isAdditional
+          ? _value.isAdditional
+          : isAdditional // ignore: cast_nullable_to_non_nullable
+              as bool,
+      taskComplexity: freezed == taskComplexity
+          ? _value.taskComplexity
+          : taskComplexity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      percentOverTime: freezed == percentOverTime
+          ? _value.percentOverTime
+          : percentOverTime // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WorkCategoryDetailItemImplCopyWith<$Res>
+    implements $WorkCategoryDetailItemCopyWith<$Res> {
+  factory _$$WorkCategoryDetailItemImplCopyWith(
+          _$WorkCategoryDetailItemImpl value,
+          $Res Function(_$WorkCategoryDetailItemImpl) then) =
+      __$$WorkCategoryDetailItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'Status') int status,
+      @JsonKey(name: 'STT') String stt,
+      @JsonKey(name: 'UserID') int userId,
+      @JsonKey(name: 'ProjectID') int projectId,
+      @JsonKey(name: 'Mission') String mission,
+      @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
+      @JsonKey(name: 'PlanEndDate') DateTime? planEndDate,
+      @JsonKey(name: 'ActualStartDate') DateTime? actualStartDate,
+      @JsonKey(name: 'ActualEndDate') DateTime? actualEndDate,
+      @JsonKey(name: 'Note') String note,
+      @JsonKey(name: 'TotalDayPlan') double totalDayPlan,
+      @JsonKey(name: 'PercentItem') double percentItem,
+      @JsonKey(name: 'ParentID') int parentId,
+      @JsonKey(name: 'TotalDayActual') double totalDayActual,
+      @JsonKey(name: 'ItemLate') int itemLate,
+      @JsonKey(name: 'TimeSpan') double timeSpan,
+      @JsonKey(name: 'TypeProjectItem') int typeProjectItem,
+      @JsonKey(name: 'PercentageActual') double percentageActual,
+      @JsonKey(name: 'EmployeeIDRequest') int employeeIdRequest,
+      @JsonKey(name: 'UpdatedDateActual') DateTime? updatedDateActual,
+      @JsonKey(name: 'IsApproved') int isApproved,
+      @JsonKey(name: 'Code') String code,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String updatedBy,
+      @JsonKey(name: 'IsUpdateLate') bool isUpdateLate,
+      @JsonKey(name: 'ReasonLate') String reasonLate,
+      @JsonKey(name: 'UpdatedDateReasonLate') DateTime? updatedDateReasonLate,
+      @JsonKey(name: 'IsApprovedLate') bool isApprovedLate,
+      @JsonKey(name: 'EmployeeRequestID') int employeeRequestId,
+      @JsonKey(name: 'EmployeeRequestName') String? employeeRequestName,
+      @JsonKey(name: 'IsDeleted') bool isDeleted,
+      @JsonKey(name: 'Location') String location,
+      @JsonKey(name: 'EmployeeCreateID') int? employeeCreateId,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'IsPersonalProject') bool isPersonalProject,
+      @JsonKey(name: 'IsAdditional') bool isAdditional,
+      @JsonKey(name: 'TaskComplexity') int? taskComplexity,
+      @JsonKey(name: 'PercentOverTime') double? percentOverTime});
+}
+
+/// @nodoc
+class __$$WorkCategoryDetailItemImplCopyWithImpl<$Res>
+    extends _$WorkCategoryDetailItemCopyWithImpl<$Res,
+        _$WorkCategoryDetailItemImpl>
+    implements _$$WorkCategoryDetailItemImplCopyWith<$Res> {
+  __$$WorkCategoryDetailItemImplCopyWithImpl(
+      _$WorkCategoryDetailItemImpl _value,
+      $Res Function(_$WorkCategoryDetailItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? status = null,
+    Object? stt = null,
+    Object? userId = null,
+    Object? projectId = null,
+    Object? mission = null,
+    Object? planStartDate = freezed,
+    Object? planEndDate = freezed,
+    Object? actualStartDate = freezed,
+    Object? actualEndDate = freezed,
+    Object? note = null,
+    Object? totalDayPlan = null,
+    Object? percentItem = null,
+    Object? parentId = null,
+    Object? totalDayActual = null,
+    Object? itemLate = null,
+    Object? timeSpan = null,
+    Object? typeProjectItem = null,
+    Object? percentageActual = null,
+    Object? employeeIdRequest = null,
+    Object? updatedDateActual = freezed,
+    Object? isApproved = null,
+    Object? code = null,
+    Object? createdDate = freezed,
+    Object? createdBy = null,
+    Object? updatedDate = freezed,
+    Object? updatedBy = null,
+    Object? isUpdateLate = null,
+    Object? reasonLate = null,
+    Object? updatedDateReasonLate = freezed,
+    Object? isApprovedLate = null,
+    Object? employeeRequestId = null,
+    Object? employeeRequestName = freezed,
+    Object? isDeleted = null,
+    Object? location = null,
+    Object? employeeCreateId = freezed,
+    Object? description = freezed,
+    Object? isPersonalProject = null,
+    Object? isAdditional = null,
+    Object? taskComplexity = freezed,
+    Object? percentOverTime = freezed,
+  }) {
+    return _then(_$WorkCategoryDetailItemImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int,
+      stt: null == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      projectId: null == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int,
+      mission: null == mission
+          ? _value.mission
+          : mission // ignore: cast_nullable_to_non_nullable
+              as String,
+      planStartDate: freezed == planStartDate
+          ? _value.planStartDate
+          : planStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      planEndDate: freezed == planEndDate
+          ? _value.planEndDate
+          : planEndDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      actualStartDate: freezed == actualStartDate
+          ? _value.actualStartDate
+          : actualStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      actualEndDate: freezed == actualEndDate
+          ? _value.actualEndDate
+          : actualEndDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalDayPlan: null == totalDayPlan
+          ? _value.totalDayPlan
+          : totalDayPlan // ignore: cast_nullable_to_non_nullable
+              as double,
+      percentItem: null == percentItem
+          ? _value.percentItem
+          : percentItem // ignore: cast_nullable_to_non_nullable
+              as double,
+      parentId: null == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalDayActual: null == totalDayActual
+          ? _value.totalDayActual
+          : totalDayActual // ignore: cast_nullable_to_non_nullable
+              as double,
+      itemLate: null == itemLate
+          ? _value.itemLate
+          : itemLate // ignore: cast_nullable_to_non_nullable
+              as int,
+      timeSpan: null == timeSpan
+          ? _value.timeSpan
+          : timeSpan // ignore: cast_nullable_to_non_nullable
+              as double,
+      typeProjectItem: null == typeProjectItem
+          ? _value.typeProjectItem
+          : typeProjectItem // ignore: cast_nullable_to_non_nullable
+              as int,
+      percentageActual: null == percentageActual
+          ? _value.percentageActual
+          : percentageActual // ignore: cast_nullable_to_non_nullable
+              as double,
+      employeeIdRequest: null == employeeIdRequest
+          ? _value.employeeIdRequest
+          : employeeIdRequest // ignore: cast_nullable_to_non_nullable
+              as int,
+      updatedDateActual: freezed == updatedDateActual
+          ? _value.updatedDateActual
+          : updatedDateActual // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApproved: null == isApproved
+          ? _value.isApproved
+          : isApproved // ignore: cast_nullable_to_non_nullable
+              as int,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: null == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: null == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      isUpdateLate: null == isUpdateLate
+          ? _value.isUpdateLate
+          : isUpdateLate // ignore: cast_nullable_to_non_nullable
+              as bool,
+      reasonLate: null == reasonLate
+          ? _value.reasonLate
+          : reasonLate // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedDateReasonLate: freezed == updatedDateReasonLate
+          ? _value.updatedDateReasonLate
+          : updatedDateReasonLate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApprovedLate: null == isApprovedLate
+          ? _value.isApprovedLate
+          : isApprovedLate // ignore: cast_nullable_to_non_nullable
+              as bool,
+      employeeRequestId: null == employeeRequestId
+          ? _value.employeeRequestId
+          : employeeRequestId // ignore: cast_nullable_to_non_nullable
+              as int,
+      employeeRequestName: freezed == employeeRequestName
+          ? _value.employeeRequestName
+          : employeeRequestName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: null == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String,
+      employeeCreateId: freezed == employeeCreateId
+          ? _value.employeeCreateId
+          : employeeCreateId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isPersonalProject: null == isPersonalProject
+          ? _value.isPersonalProject
+          : isPersonalProject // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAdditional: null == isAdditional
+          ? _value.isAdditional
+          : isAdditional // ignore: cast_nullable_to_non_nullable
+              as bool,
+      taskComplexity: freezed == taskComplexity
+          ? _value.taskComplexity
+          : taskComplexity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      percentOverTime: freezed == percentOverTime
+          ? _value.percentOverTime
+          : percentOverTime // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WorkCategoryDetailItemImpl implements _WorkCategoryDetailItem {
+  const _$WorkCategoryDetailItemImpl(
+      {@JsonKey(name: 'ID') required this.id,
+      @JsonKey(name: 'Status') required this.status,
+      @JsonKey(name: 'STT') required this.stt,
+      @JsonKey(name: 'UserID') required this.userId,
+      @JsonKey(name: 'ProjectID') required this.projectId,
+      @JsonKey(name: 'Mission') required this.mission,
+      @JsonKey(name: 'PlanStartDate') this.planStartDate,
+      @JsonKey(name: 'PlanEndDate') this.planEndDate,
+      @JsonKey(name: 'ActualStartDate') this.actualStartDate,
+      @JsonKey(name: 'ActualEndDate') this.actualEndDate,
+      @JsonKey(name: 'Note') required this.note,
+      @JsonKey(name: 'TotalDayPlan') required this.totalDayPlan,
+      @JsonKey(name: 'PercentItem') required this.percentItem,
+      @JsonKey(name: 'ParentID') required this.parentId,
+      @JsonKey(name: 'TotalDayActual') required this.totalDayActual,
+      @JsonKey(name: 'ItemLate') required this.itemLate,
+      @JsonKey(name: 'TimeSpan') required this.timeSpan,
+      @JsonKey(name: 'TypeProjectItem') required this.typeProjectItem,
+      @JsonKey(name: 'PercentageActual') required this.percentageActual,
+      @JsonKey(name: 'EmployeeIDRequest') required this.employeeIdRequest,
+      @JsonKey(name: 'UpdatedDateActual') this.updatedDateActual,
+      @JsonKey(name: 'IsApproved') required this.isApproved,
+      @JsonKey(name: 'Code') required this.code,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'CreatedBy') required this.createdBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'UpdatedBy') required this.updatedBy,
+      @JsonKey(name: 'IsUpdateLate') required this.isUpdateLate,
+      @JsonKey(name: 'ReasonLate') required this.reasonLate,
+      @JsonKey(name: 'UpdatedDateReasonLate') this.updatedDateReasonLate,
+      @JsonKey(name: 'IsApprovedLate') required this.isApprovedLate,
+      @JsonKey(name: 'EmployeeRequestID') required this.employeeRequestId,
+      @JsonKey(name: 'EmployeeRequestName') this.employeeRequestName,
+      @JsonKey(name: 'IsDeleted') required this.isDeleted,
+      @JsonKey(name: 'Location') required this.location,
+      @JsonKey(name: 'EmployeeCreateID') this.employeeCreateId,
+      @JsonKey(name: 'Description') this.description,
+      @JsonKey(name: 'IsPersonalProject') required this.isPersonalProject,
+      @JsonKey(name: 'IsAdditional') required this.isAdditional,
+      @JsonKey(name: 'TaskComplexity') this.taskComplexity,
+      @JsonKey(name: 'PercentOverTime') this.percentOverTime});
+
+  factory _$WorkCategoryDetailItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WorkCategoryDetailItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int id;
+  @override
+  @JsonKey(name: 'Status')
+  final int status;
+  @override
+  @JsonKey(name: 'STT')
+  final String stt;
+  @override
+  @JsonKey(name: 'UserID')
+  final int userId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int projectId;
+  @override
+  @JsonKey(name: 'Mission')
+  final String mission;
+  @override
+  @JsonKey(name: 'PlanStartDate')
+  final DateTime? planStartDate;
+  @override
+  @JsonKey(name: 'PlanEndDate')
+  final DateTime? planEndDate;
+  @override
+  @JsonKey(name: 'ActualStartDate')
+  final DateTime? actualStartDate;
+  @override
+  @JsonKey(name: 'ActualEndDate')
+  final DateTime? actualEndDate;
+  @override
+  @JsonKey(name: 'Note')
+  final String note;
+  @override
+  @JsonKey(name: 'TotalDayPlan')
+  final double totalDayPlan;
+  @override
+  @JsonKey(name: 'PercentItem')
+  final double percentItem;
+  @override
+  @JsonKey(name: 'ParentID')
+  final int parentId;
+  @override
+  @JsonKey(name: 'TotalDayActual')
+  final double totalDayActual;
+  @override
+  @JsonKey(name: 'ItemLate')
+  final int itemLate;
+  @override
+  @JsonKey(name: 'TimeSpan')
+  final double timeSpan;
+  @override
+  @JsonKey(name: 'TypeProjectItem')
+  final int typeProjectItem;
+  @override
+  @JsonKey(name: 'PercentageActual')
+  final double percentageActual;
+  @override
+  @JsonKey(name: 'EmployeeIDRequest')
+  final int employeeIdRequest;
+  @override
+  @JsonKey(name: 'UpdatedDateActual')
+  final DateTime? updatedDateActual;
+  @override
+  @JsonKey(name: 'IsApproved')
+  final int isApproved;
+  @override
+  @JsonKey(name: 'Code')
+  final String code;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String updatedBy;
+  @override
+  @JsonKey(name: 'IsUpdateLate')
+  final bool isUpdateLate;
+  @override
+  @JsonKey(name: 'ReasonLate')
+  final String reasonLate;
+  @override
+  @JsonKey(name: 'UpdatedDateReasonLate')
+  final DateTime? updatedDateReasonLate;
+  @override
+  @JsonKey(name: 'IsApprovedLate')
+  final bool isApprovedLate;
+  @override
+  @JsonKey(name: 'EmployeeRequestID')
+  final int employeeRequestId;
+  @override
+  @JsonKey(name: 'EmployeeRequestName')
+  final String? employeeRequestName;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool isDeleted;
+  @override
+  @JsonKey(name: 'Location')
+  final String location;
+  @override
+  @JsonKey(name: 'EmployeeCreateID')
+  final int? employeeCreateId;
+  @override
+  @JsonKey(name: 'Description')
+  final String? description;
+  @override
+  @JsonKey(name: 'IsPersonalProject')
+  final bool isPersonalProject;
+  @override
+  @JsonKey(name: 'IsAdditional')
+  final bool isAdditional;
+  @override
+  @JsonKey(name: 'TaskComplexity')
+  final int? taskComplexity;
+  @override
+  @JsonKey(name: 'PercentOverTime')
+  final double? percentOverTime;
+
+  @override
+  String toString() {
+    return 'WorkCategoryDetailItem(id: $id, status: $status, stt: $stt, userId: $userId, projectId: $projectId, mission: $mission, planStartDate: $planStartDate, planEndDate: $planEndDate, actualStartDate: $actualStartDate, actualEndDate: $actualEndDate, note: $note, totalDayPlan: $totalDayPlan, percentItem: $percentItem, parentId: $parentId, totalDayActual: $totalDayActual, itemLate: $itemLate, timeSpan: $timeSpan, typeProjectItem: $typeProjectItem, percentageActual: $percentageActual, employeeIdRequest: $employeeIdRequest, updatedDateActual: $updatedDateActual, isApproved: $isApproved, code: $code, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, isUpdateLate: $isUpdateLate, reasonLate: $reasonLate, updatedDateReasonLate: $updatedDateReasonLate, isApprovedLate: $isApprovedLate, employeeRequestId: $employeeRequestId, employeeRequestName: $employeeRequestName, isDeleted: $isDeleted, location: $location, employeeCreateId: $employeeCreateId, description: $description, isPersonalProject: $isPersonalProject, isAdditional: $isAdditional, taskComplexity: $taskComplexity, percentOverTime: $percentOverTime)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WorkCategoryDetailItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.mission, mission) || other.mission == mission) &&
+            (identical(other.planStartDate, planStartDate) ||
+                other.planStartDate == planStartDate) &&
+            (identical(other.planEndDate, planEndDate) ||
+                other.planEndDate == planEndDate) &&
+            (identical(other.actualStartDate, actualStartDate) ||
+                other.actualStartDate == actualStartDate) &&
+            (identical(other.actualEndDate, actualEndDate) ||
+                other.actualEndDate == actualEndDate) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.totalDayPlan, totalDayPlan) ||
+                other.totalDayPlan == totalDayPlan) &&
+            (identical(other.percentItem, percentItem) ||
+                other.percentItem == percentItem) &&
+            (identical(other.parentId, parentId) ||
+                other.parentId == parentId) &&
+            (identical(other.totalDayActual, totalDayActual) ||
+                other.totalDayActual == totalDayActual) &&
+            (identical(other.itemLate, itemLate) ||
+                other.itemLate == itemLate) &&
+            (identical(other.timeSpan, timeSpan) ||
+                other.timeSpan == timeSpan) &&
+            (identical(other.typeProjectItem, typeProjectItem) ||
+                other.typeProjectItem == typeProjectItem) &&
+            (identical(other.percentageActual, percentageActual) ||
+                other.percentageActual == percentageActual) &&
+            (identical(other.employeeIdRequest, employeeIdRequest) ||
+                other.employeeIdRequest == employeeIdRequest) &&
+            (identical(other.updatedDateActual, updatedDateActual) ||
+                other.updatedDateActual == updatedDateActual) &&
+            (identical(other.isApproved, isApproved) ||
+                other.isApproved == isApproved) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.isUpdateLate, isUpdateLate) ||
+                other.isUpdateLate == isUpdateLate) &&
+            (identical(other.reasonLate, reasonLate) ||
+                other.reasonLate == reasonLate) &&
+            (identical(other.updatedDateReasonLate, updatedDateReasonLate) ||
+                other.updatedDateReasonLate == updatedDateReasonLate) &&
+            (identical(other.isApprovedLate, isApprovedLate) ||
+                other.isApprovedLate == isApprovedLate) &&
+            (identical(other.employeeRequestId, employeeRequestId) ||
+                other.employeeRequestId == employeeRequestId) &&
+            (identical(other.employeeRequestName, employeeRequestName) ||
+                other.employeeRequestName == employeeRequestName) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.employeeCreateId, employeeCreateId) ||
+                other.employeeCreateId == employeeCreateId) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.isPersonalProject, isPersonalProject) ||
+                other.isPersonalProject == isPersonalProject) &&
+            (identical(other.isAdditional, isAdditional) ||
+                other.isAdditional == isAdditional) &&
+            (identical(other.taskComplexity, taskComplexity) ||
+                other.taskComplexity == taskComplexity) &&
+            (identical(other.percentOverTime, percentOverTime) ||
+                other.percentOverTime == percentOverTime));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        status,
+        stt,
+        userId,
+        projectId,
+        mission,
+        planStartDate,
+        planEndDate,
+        actualStartDate,
+        actualEndDate,
+        note,
+        totalDayPlan,
+        percentItem,
+        parentId,
+        totalDayActual,
+        itemLate,
+        timeSpan,
+        typeProjectItem,
+        percentageActual,
+        employeeIdRequest,
+        updatedDateActual,
+        isApproved,
+        code,
+        createdDate,
+        createdBy,
+        updatedDate,
+        updatedBy,
+        isUpdateLate,
+        reasonLate,
+        updatedDateReasonLate,
+        isApprovedLate,
+        employeeRequestId,
+        employeeRequestName,
+        isDeleted,
+        location,
+        employeeCreateId,
+        description,
+        isPersonalProject,
+        isAdditional,
+        taskComplexity,
+        percentOverTime
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WorkCategoryDetailItemImplCopyWith<_$WorkCategoryDetailItemImpl>
+      get copyWith => __$$WorkCategoryDetailItemImplCopyWithImpl<
+          _$WorkCategoryDetailItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WorkCategoryDetailItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WorkCategoryDetailItem implements WorkCategoryDetailItem {
+  const factory _WorkCategoryDetailItem(
+      {@JsonKey(name: 'ID') required final int id,
+      @JsonKey(name: 'Status') required final int status,
+      @JsonKey(name: 'STT') required final String stt,
+      @JsonKey(name: 'UserID') required final int userId,
+      @JsonKey(name: 'ProjectID') required final int projectId,
+      @JsonKey(name: 'Mission') required final String mission,
+      @JsonKey(name: 'PlanStartDate') final DateTime? planStartDate,
+      @JsonKey(name: 'PlanEndDate') final DateTime? planEndDate,
+      @JsonKey(name: 'ActualStartDate') final DateTime? actualStartDate,
+      @JsonKey(name: 'ActualEndDate') final DateTime? actualEndDate,
+      @JsonKey(name: 'Note') required final String note,
+      @JsonKey(name: 'TotalDayPlan') required final double totalDayPlan,
+      @JsonKey(name: 'PercentItem') required final double percentItem,
+      @JsonKey(name: 'ParentID') required final int parentId,
+      @JsonKey(name: 'TotalDayActual') required final double totalDayActual,
+      @JsonKey(name: 'ItemLate') required final int itemLate,
+      @JsonKey(name: 'TimeSpan') required final double timeSpan,
+      @JsonKey(name: 'TypeProjectItem') required final int typeProjectItem,
+      @JsonKey(name: 'PercentageActual') required final double percentageActual,
+      @JsonKey(name: 'EmployeeIDRequest') required final int employeeIdRequest,
+      @JsonKey(name: 'UpdatedDateActual') final DateTime? updatedDateActual,
+      @JsonKey(name: 'IsApproved') required final int isApproved,
+      @JsonKey(name: 'Code') required final String code,
+      @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') required final String createdBy,
+      @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') required final String updatedBy,
+      @JsonKey(name: 'IsUpdateLate') required final bool isUpdateLate,
+      @JsonKey(name: 'ReasonLate') required final String reasonLate,
+      @JsonKey(name: 'UpdatedDateReasonLate')
+      final DateTime? updatedDateReasonLate,
+      @JsonKey(name: 'IsApprovedLate') required final bool isApprovedLate,
+      @JsonKey(name: 'EmployeeRequestID') required final int employeeRequestId,
+      @JsonKey(name: 'EmployeeRequestName') final String? employeeRequestName,
+      @JsonKey(name: 'IsDeleted') required final bool isDeleted,
+      @JsonKey(name: 'Location') required final String location,
+      @JsonKey(name: 'EmployeeCreateID') final int? employeeCreateId,
+      @JsonKey(name: 'Description') final String? description,
+      @JsonKey(name: 'IsPersonalProject') required final bool isPersonalProject,
+      @JsonKey(name: 'IsAdditional') required final bool isAdditional,
+      @JsonKey(name: 'TaskComplexity') final int? taskComplexity,
+      @JsonKey(name: 'PercentOverTime')
+      final double? percentOverTime}) = _$WorkCategoryDetailItemImpl;
+
+  factory _WorkCategoryDetailItem.fromJson(Map<String, dynamic> json) =
+      _$WorkCategoryDetailItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int get id;
+  @override
+  @JsonKey(name: 'Status')
+  int get status;
+  @override
+  @JsonKey(name: 'STT')
+  String get stt;
+  @override
+  @JsonKey(name: 'UserID')
+  int get userId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int get projectId;
+  @override
+  @JsonKey(name: 'Mission')
+  String get mission;
+  @override
+  @JsonKey(name: 'PlanStartDate')
+  DateTime? get planStartDate;
+  @override
+  @JsonKey(name: 'PlanEndDate')
+  DateTime? get planEndDate;
+  @override
+  @JsonKey(name: 'ActualStartDate')
+  DateTime? get actualStartDate;
+  @override
+  @JsonKey(name: 'ActualEndDate')
+  DateTime? get actualEndDate;
+  @override
+  @JsonKey(name: 'Note')
+  String get note;
+  @override
+  @JsonKey(name: 'TotalDayPlan')
+  double get totalDayPlan;
+  @override
+  @JsonKey(name: 'PercentItem')
+  double get percentItem;
+  @override
+  @JsonKey(name: 'ParentID')
+  int get parentId;
+  @override
+  @JsonKey(name: 'TotalDayActual')
+  double get totalDayActual;
+  @override
+  @JsonKey(name: 'ItemLate')
+  int get itemLate;
+  @override
+  @JsonKey(name: 'TimeSpan')
+  double get timeSpan;
+  @override
+  @JsonKey(name: 'TypeProjectItem')
+  int get typeProjectItem;
+  @override
+  @JsonKey(name: 'PercentageActual')
+  double get percentageActual;
+  @override
+  @JsonKey(name: 'EmployeeIDRequest')
+  int get employeeIdRequest;
+  @override
+  @JsonKey(name: 'UpdatedDateActual')
+  DateTime? get updatedDateActual;
+  @override
+  @JsonKey(name: 'IsApproved')
+  int get isApproved;
+  @override
+  @JsonKey(name: 'Code')
+  String get code;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String get updatedBy;
+  @override
+  @JsonKey(name: 'IsUpdateLate')
+  bool get isUpdateLate;
+  @override
+  @JsonKey(name: 'ReasonLate')
+  String get reasonLate;
+  @override
+  @JsonKey(name: 'UpdatedDateReasonLate')
+  DateTime? get updatedDateReasonLate;
+  @override
+  @JsonKey(name: 'IsApprovedLate')
+  bool get isApprovedLate;
+  @override
+  @JsonKey(name: 'EmployeeRequestID')
+  int get employeeRequestId;
+  @override
+  @JsonKey(name: 'EmployeeRequestName')
+  String? get employeeRequestName;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool get isDeleted;
+  @override
+  @JsonKey(name: 'Location')
+  String get location;
+  @override
+  @JsonKey(name: 'EmployeeCreateID')
+  int? get employeeCreateId;
+  @override
+  @JsonKey(name: 'Description')
+  String? get description;
+  @override
+  @JsonKey(name: 'IsPersonalProject')
+  bool get isPersonalProject;
+  @override
+  @JsonKey(name: 'IsAdditional')
+  bool get isAdditional;
+  @override
+  @JsonKey(name: 'TaskComplexity')
+  int? get taskComplexity;
+  @override
+  @JsonKey(name: 'PercentOverTime')
+  double? get percentOverTime;
+  @override
+  @JsonKey(ignore: true)
+  _$$WorkCategoryDetailItemImplCopyWith<_$WorkCategoryDetailItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+WorkProblemItem _$WorkProblemItemFromJson(Map<String, dynamic> json) {
+  return _WorkProblemItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WorkProblemItem {
+  @JsonKey(name: 'ID')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectItemID')
+  int get projectItemId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ContentProblem')
+  String get contentProblem => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String get updatedBy => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WorkProblemItemCopyWith<WorkProblemItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WorkProblemItemCopyWith<$Res> {
+  factory $WorkProblemItemCopyWith(
+          WorkProblemItem value, $Res Function(WorkProblemItem) then) =
+      _$WorkProblemItemCopyWithImpl<$Res, WorkProblemItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'ProjectItemID') int projectItemId,
+      @JsonKey(name: 'ContentProblem') String contentProblem,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String updatedBy});
+}
+
+/// @nodoc
+class _$WorkProblemItemCopyWithImpl<$Res, $Val extends WorkProblemItem>
+    implements $WorkProblemItemCopyWith<$Res> {
+  _$WorkProblemItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? projectItemId = null,
+    Object? contentProblem = null,
+    Object? note = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = null,
+    Object? updatedDate = freezed,
+    Object? updatedBy = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      projectItemId: null == projectItemId
+          ? _value.projectItemId
+          : projectItemId // ignore: cast_nullable_to_non_nullable
+              as int,
+      contentProblem: null == contentProblem
+          ? _value.contentProblem
+          : contentProblem // ignore: cast_nullable_to_non_nullable
+              as String,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: null == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: null == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WorkProblemItemImplCopyWith<$Res>
+    implements $WorkProblemItemCopyWith<$Res> {
+  factory _$$WorkProblemItemImplCopyWith(_$WorkProblemItemImpl value,
+          $Res Function(_$WorkProblemItemImpl) then) =
+      __$$WorkProblemItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'ProjectItemID') int projectItemId,
+      @JsonKey(name: 'ContentProblem') String contentProblem,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String updatedBy});
+}
+
+/// @nodoc
+class __$$WorkProblemItemImplCopyWithImpl<$Res>
+    extends _$WorkProblemItemCopyWithImpl<$Res, _$WorkProblemItemImpl>
+    implements _$$WorkProblemItemImplCopyWith<$Res> {
+  __$$WorkProblemItemImplCopyWithImpl(
+      _$WorkProblemItemImpl _value, $Res Function(_$WorkProblemItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? projectItemId = null,
+    Object? contentProblem = null,
+    Object? note = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = null,
+    Object? updatedDate = freezed,
+    Object? updatedBy = null,
+  }) {
+    return _then(_$WorkProblemItemImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      projectItemId: null == projectItemId
+          ? _value.projectItemId
+          : projectItemId // ignore: cast_nullable_to_non_nullable
+              as int,
+      contentProblem: null == contentProblem
+          ? _value.contentProblem
+          : contentProblem // ignore: cast_nullable_to_non_nullable
+              as String,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: null == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: null == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WorkProblemItemImpl implements _WorkProblemItem {
+  const _$WorkProblemItemImpl(
+      {@JsonKey(name: 'ID') required this.id,
+      @JsonKey(name: 'ProjectItemID') required this.projectItemId,
+      @JsonKey(name: 'ContentProblem') required this.contentProblem,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'CreatedBy') required this.createdBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'UpdatedBy') required this.updatedBy});
+
+  factory _$WorkProblemItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WorkProblemItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int id;
+  @override
+  @JsonKey(name: 'ProjectItemID')
+  final int projectItemId;
+  @override
+  @JsonKey(name: 'ContentProblem')
+  final String contentProblem;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String updatedBy;
+
+  @override
+  String toString() {
+    return 'WorkProblemItem(id: $id, projectItemId: $projectItemId, contentProblem: $contentProblem, note: $note, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WorkProblemItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.projectItemId, projectItemId) ||
+                other.projectItemId == projectItemId) &&
+            (identical(other.contentProblem, contentProblem) ||
+                other.contentProblem == contentProblem) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, projectItemId,
+      contentProblem, note, createdDate, createdBy, updatedDate, updatedBy);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WorkProblemItemImplCopyWith<_$WorkProblemItemImpl> get copyWith =>
+      __$$WorkProblemItemImplCopyWithImpl<_$WorkProblemItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WorkProblemItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WorkProblemItem implements WorkProblemItem {
+  const factory _WorkProblemItem(
+          {@JsonKey(name: 'ID') required final int id,
+          @JsonKey(name: 'ProjectItemID') required final int projectItemId,
+          @JsonKey(name: 'ContentProblem') required final String contentProblem,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'CreatedBy') required final String createdBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'UpdatedBy') required final String updatedBy}) =
+      _$WorkProblemItemImpl;
+
+  factory _WorkProblemItem.fromJson(Map<String, dynamic> json) =
+      _$WorkProblemItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int get id;
+  @override
+  @JsonKey(name: 'ProjectItemID')
+  int get projectItemId;
+  @override
+  @JsonKey(name: 'ContentProblem')
+  String get contentProblem;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String get updatedBy;
+  @override
+  @JsonKey(ignore: true)
+  _$$WorkProblemItemImplCopyWith<_$WorkProblemItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

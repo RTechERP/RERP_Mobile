@@ -397,3 +397,142 @@ Map<String, dynamic> _$$WorkAssignResponseImplToJson(
       'rows': instance.rows,
       'employeeRequest': instance.employeeRequest,
     };
+
+_$WorkCategoryDetailItemImpl _$$WorkCategoryDetailItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WorkCategoryDetailItemImpl(
+      id: (json['ID'] as num).toInt(),
+      status: (json['Status'] as num).toInt(),
+      stt: json['STT'] as String,
+      userId: (json['UserID'] as num).toInt(),
+      projectId: (json['ProjectID'] as num).toInt(),
+      mission: json['Mission'] as String,
+      planStartDate: json['PlanStartDate'] == null
+          ? null
+          : DateTime.parse(json['PlanStartDate'] as String),
+      planEndDate: json['PlanEndDate'] == null
+          ? null
+          : DateTime.parse(json['PlanEndDate'] as String),
+      actualStartDate: json['ActualStartDate'] == null
+          ? null
+          : DateTime.parse(json['ActualStartDate'] as String),
+      actualEndDate: json['ActualEndDate'] == null
+          ? null
+          : DateTime.parse(json['ActualEndDate'] as String),
+      note: json['Note'] as String,
+      totalDayPlan: (json['TotalDayPlan'] as num).toDouble(),
+      percentItem: (json['PercentItem'] as num).toDouble(),
+      parentId: (json['ParentID'] as num).toInt(),
+      totalDayActual: (json['TotalDayActual'] as num).toDouble(),
+      itemLate: (json['ItemLate'] as num).toInt(),
+      timeSpan: (json['TimeSpan'] as num).toDouble(),
+      typeProjectItem: (json['TypeProjectItem'] as num).toInt(),
+      percentageActual: (json['PercentageActual'] as num).toDouble(),
+      employeeIdRequest: (json['EmployeeIDRequest'] as num).toInt(),
+      updatedDateActual: json['UpdatedDateActual'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDateActual'] as String),
+      isApproved: (json['IsApproved'] as num).toInt(),
+      code: json['Code'] as String,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      createdBy: json['CreatedBy'] as String,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String,
+      isUpdateLate: json['IsUpdateLate'] as bool,
+      reasonLate: json['ReasonLate'] as String,
+      updatedDateReasonLate: json['UpdatedDateReasonLate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDateReasonLate'] as String),
+      isApprovedLate: json['IsApprovedLate'] as bool,
+      employeeRequestId: (json['EmployeeRequestID'] as num).toInt(),
+      employeeRequestName: json['EmployeeRequestName'] as String?,
+      isDeleted: json['IsDeleted'] as bool,
+      location: json['Location'] as String,
+      employeeCreateId: (json['EmployeeCreateID'] as num?)?.toInt(),
+      description: json['Description'] as String?,
+      isPersonalProject: json['IsPersonalProject'] as bool,
+      isAdditional: json['IsAdditional'] as bool,
+      taskComplexity: (json['TaskComplexity'] as num?)?.toInt(),
+      percentOverTime: (json['PercentOverTime'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$$WorkCategoryDetailItemImplToJson(
+        _$WorkCategoryDetailItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Status': instance.status,
+      'STT': instance.stt,
+      'UserID': instance.userId,
+      'ProjectID': instance.projectId,
+      'Mission': instance.mission,
+      'PlanStartDate': instance.planStartDate?.toIso8601String(),
+      'PlanEndDate': instance.planEndDate?.toIso8601String(),
+      'ActualStartDate': instance.actualStartDate?.toIso8601String(),
+      'ActualEndDate': instance.actualEndDate?.toIso8601String(),
+      'Note': instance.note,
+      'TotalDayPlan': instance.totalDayPlan,
+      'PercentItem': instance.percentItem,
+      'ParentID': instance.parentId,
+      'TotalDayActual': instance.totalDayActual,
+      'ItemLate': instance.itemLate,
+      'TimeSpan': instance.timeSpan,
+      'TypeProjectItem': instance.typeProjectItem,
+      'PercentageActual': instance.percentageActual,
+      'EmployeeIDRequest': instance.employeeIdRequest,
+      'UpdatedDateActual': instance.updatedDateActual?.toIso8601String(),
+      'IsApproved': instance.isApproved,
+      'Code': instance.code,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'IsUpdateLate': instance.isUpdateLate,
+      'ReasonLate': instance.reasonLate,
+      'UpdatedDateReasonLate':
+          instance.updatedDateReasonLate?.toIso8601String(),
+      'IsApprovedLate': instance.isApprovedLate,
+      'EmployeeRequestID': instance.employeeRequestId,
+      'EmployeeRequestName': instance.employeeRequestName,
+      'IsDeleted': instance.isDeleted,
+      'Location': instance.location,
+      'EmployeeCreateID': instance.employeeCreateId,
+      'Description': instance.description,
+      'IsPersonalProject': instance.isPersonalProject,
+      'IsAdditional': instance.isAdditional,
+      'TaskComplexity': instance.taskComplexity,
+      'PercentOverTime': instance.percentOverTime,
+    };
+
+_$WorkProblemItemImpl _$$WorkProblemItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WorkProblemItemImpl(
+      id: (json['ID'] as num).toInt(),
+      projectItemId: (json['ProjectItemID'] as num).toInt(),
+      contentProblem: json['ContentProblem'] as String,
+      note: json['Note'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      createdBy: json['CreatedBy'] as String,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String,
+    );
+
+Map<String, dynamic> _$$WorkProblemItemImplToJson(
+        _$WorkProblemItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProjectItemID': instance.projectItemId,
+      'ContentProblem': instance.contentProblem,
+      'Note': instance.note,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+    };

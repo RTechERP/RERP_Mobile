@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:intl/intl.dart';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +24,7 @@ import '../../services/custom_toast.dart';
 import '../../widgets/form/index.dart';
 import '../navigation/navigation_utils.dart';
 import 'base_dialog/base_dialog.dart';
+import '../../../features/workplace/app/reg_general/view/pages/work_category/view/widgets/work_problem_dialog.dart';
 
 class DialogService {
   static DateTime? _lastToastTime;
@@ -74,6 +77,23 @@ class DialogService {
       barrierDismissible: true,
     );
   }
+
+  static Future<String?> showProblemDialog({
+    required BuildContext context,
+    String? initialProblems,
+    List<dynamic> problems = const [],
+    void Function(String content)? onSave,
+  }) async {
+    return showDialog<String>(
+      context: context,
+      builder: (_) => WorkProblemDialog(
+        problems: problems,
+        initialProblems: initialProblems,
+        onSave: onSave,
+      ),
+    );
+  }
+
 
   static Future<void> showMailReport({
     required BuildContext context,
