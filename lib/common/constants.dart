@@ -203,13 +203,10 @@ class ApiEndPoint {
 
   static const String saveMissed = '/EmployeeNoFingerprint/savedata';
 
-  /// GET …/check-duplicate-enf/{contextId}/{employeeId}/{yyyy-MM-dd}/{type}
-  /// — `contextId`: 0 = tạo mới; khi sửa thường truyền [id] bản ghi để backend loại trừ chính nó.
   static const String checkDuplicateEnfMissed =
       '/EmployeeNoFingerprint/check-duplicate-enf';
 
   static const String getLeave = '/EmployeeOnLeave';
-  /// GET …/get-multi/{EmployeeOnLeavePhaseID}
   static const String getLeavePhaseMulti = '/EmployeeOnLeave/get-multi';
   static const String saveLeave = '/EmployeeOnLeave/save-data';
 
@@ -266,4 +263,6 @@ class ApiEndPoint {
   static const String getWorkCategoryProblem = '/ProjectItem/get-project-item-problem';
   
   static const String saveWorkCategoryProblem = '/ProjectItem/save-problem';
+
+  static const String getFillAprrover = '/employeeonleave/get-approve-id';
 }

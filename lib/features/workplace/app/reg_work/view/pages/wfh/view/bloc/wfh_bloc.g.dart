@@ -31,6 +31,8 @@ abstract class _$WfhStateCWProxy {
 
   WfhState dateEnd(DateTime? dateEnd);
 
+  WfhState approveId(FillApproverItem? approveId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WfhState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -50,6 +52,7 @@ abstract class _$WfhStateCWProxy {
     String? loginName,
     DateTime? dateStart,
     DateTime? dateEnd,
+    FillApproverItem? approveId,
   });
 }
 
@@ -99,6 +102,9 @@ class _$WfhStateCWProxyImpl implements _$WfhStateCWProxy {
   WfhState dateEnd(DateTime? dateEnd) => this(dateEnd: dateEnd);
 
   @override
+  WfhState approveId(FillApproverItem? approveId) => this(approveId: approveId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WfhState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -119,6 +125,7 @@ class _$WfhStateCWProxyImpl implements _$WfhStateCWProxy {
     Object? loginName = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
+    Object? approveId = const $CopyWithPlaceholder(),
   }) {
     return WfhState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -173,6 +180,10 @@ class _$WfhStateCWProxyImpl implements _$WfhStateCWProxy {
           ? _value.dateEnd
           // ignore: cast_nullable_to_non_nullable
           : dateEnd as DateTime?,
+      approveId: approveId == const $CopyWithPlaceholder()
+          ? _value.approveId
+          // ignore: cast_nullable_to_non_nullable
+          : approveId as FillApproverItem?,
     );
   }
 }

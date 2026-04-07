@@ -15,15 +15,12 @@ class WfhService extends DioBaseApiService {
     return post<BaseData<List<WfhItem>>>(
       ApiEndPoint.getWfh,
       body: payload,
-      parser: (json) => BaseData<List<WfhItem>>.fromJson(
-        json,
-            (data) {
-          final list = (data as Map<String, dynamic>?)?['data'] as List? ?? [];
-          return list
-              .map((e) => WfhItem.fromJson(e as Map<String, dynamic>))
-              .toList();
-        },
-      ),
+      parser: (json) => BaseData<List<WfhItem>>.fromJson(json, (data) {
+        final list = (data as Map<String, dynamic>?)?['data'] as List? ?? [];
+        return list
+            .map((e) => WfhItem.fromJson(e as Map<String, dynamic>))
+            .toList();
+      }),
     );
   }
 
@@ -32,7 +29,7 @@ class WfhService extends DioBaseApiService {
       ApiEndPoint.getApprover,
       parser: (json) => BaseData<List<ApproverItem>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map((e) => ApproverItem.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
@@ -46,6 +43,20 @@ class WfhService extends DioBaseApiService {
       ApiEndPoint.saveWfh,
       body: payload,
       parser: (json) => BaseData<void>.fromJson(json, (_) {}),
+    );
+  }
+
+  Future<BaseData<FillApproverItem>> getFillApprover({
+    required int employeeID,
+    required String tableName,
+  }) async {
+    return get<BaseData<FillApproverItem>>(
+      ApiEndPoint.getFillAprrover,
+      query: {'employeeID': employeeID, 'tableName': tableName},
+      parser: (json) => BaseData<FillApproverItem>.fromJson(
+        json,
+        (data) => FillApproverItem.fromJson(data as Map<String, dynamic>),
+      ),
     );
   }
 }

@@ -19,12 +19,11 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
   final LogUtils _log;
   final AuthRepo _authRepo;
 
-  final WfhRepo _WfhRepo;
+  final WfhRepo _wfhRepo;
   bool _isSubmittingReport = false;
   bool _isInitAddInFlight = false;
 
-  WfhBloc(this._WfhRepo, this._authRepo, this._log)
-      : super(WfhState.init()) {
+  WfhBloc(this._wfhRepo, this._authRepo, this._log) : super(WfhState.init()) {
     on<WfhEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
@@ -39,17 +38,16 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
               contentWork,
               reason,
               note,
-            ) =>
-                _onSubmit(
-                  emit,
-                  approvedId: approvedId,
-                  dateWFH: dateWFH,
-                  timeWFH: timeWFH,
-                  totalDay: totalDay,
-                  contentWork: contentWork,
-                  reason: reason,
-                  note: note,
-                ),
+            ) => _onSubmit(
+              emit,
+              approvedId: approvedId,
+              dateWFH: dateWFH,
+              timeWFH: timeWFH,
+              totalDay: totalDay,
+              contentWork: contentWork,
+              reason: reason,
+              note: note,
+            ),
         onCancelSubmit: (id) => _onCancelSubmit(emit, id: id),
         onEditSubmit:
             (
@@ -61,18 +59,17 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
               contentWork,
               reason,
               note,
-            ) =>
-                _onEditSubmit(
-                  emit,
-                  id: id,
-                  approvedId: approvedId,
-                  dateWFH: dateWFH,
-                  timeWFH: timeWFH,
-                  totalDay: totalDay,
-                  contentWork: contentWork,
-                  reason: reason,
-                  note: note,
-                ),
+            ) => _onEditSubmit(
+              emit,
+              id: id,
+              approvedId: approvedId,
+              dateWFH: dateWFH,
+              timeWFH: timeWFH,
+              totalDay: totalDay,
+              contentWork: contentWork,
+              reason: reason,
+              note: note,
+            ),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
         clearSubmitState: () async => _onClearSubmitState(emit),
@@ -90,9 +87,34 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
     try {
       emit(state.copyWith(status: BaseStateStatus.loading));
 
-      final approverRes = await _WfhRepo.getApprover();
-      await approverRes.fold(
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+      final employeeID = user?.employeeId ?? state.employeeId ?? 0;
+
+      final fillApproverRes = await _wfhRepo.getFillApprover(
+        employeeID: employeeID,
+        tableName: 'EmployeeWFH',
+      );
+
+      final approverRes = await _wfhRepo.getApprover();
+
+      await fillApproverRes.fold(
             (l) async {
+          _log.logE('❌ Get approverID failed: $l');
+          emit(
+            state.copyWith(
+              status: BaseStateStatus.failed,
+              // message: l.getErrorMessage,
+            ),
+          );
+        },
+            (r) async {
+          _log.logI('✅ Get approverID success');
+          emit(state.copyWith(status: BaseStateStatus.success, approveId: r));
+        },
+      );
+      await approverRes.fold(
+        (l) async {
           _log.logE('❌ Get approver failed: $l');
           emit(
             state.copyWith(
@@ -101,7 +123,7 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
             ),
           );
         },
-            (r) async {
+        (r) async {
           _log.logI('✅ Get approver success');
           emit(state.copyWith(status: BaseStateStatus.success, approvers: r));
         },
@@ -112,13 +134,13 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
   }
 
   Future<void> _onFetchApprovers(Emitter<WfhState> emit) async {
-    final approverRes = await _WfhRepo.getApprover();
+    final approverRes = await _wfhRepo.getApprover();
     await approverRes.fold(
-          (l) async {
+      (l) async {
         _log.logE('❌ fetchApprovers failed: $l');
         emit(state.copyWith(message: l.getErrorMessage));
       },
-          (r) async {
+      (r) async {
         _log.logI('✅ fetchApprovers success');
         emit(state.copyWith(approvers: r));
       },
@@ -131,11 +153,11 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
     final userRes = await _authRepo.getCurrentUser();
 
     await userRes.fold(
-          (err) async {
+      (err) async {
         _log.logE('❌ Get user failed: $err');
         emit(state.copyWith(status: BaseStateStatus.failed));
       },
-          (user) async {
+      (user) async {
         final now = DateTime.now();
         final todayStart = DateTime(now.year, now.month, now.day);
         final tomorrow = todayStart.add(const Duration(days: 1));
@@ -165,14 +187,14 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
 
         _log.logI('Payload: $payload'); // debug thêm
 
-        final res = await _WfhRepo.getWfh(payload: payload);
+        final res = await _wfhRepo.getWfh(payload: payload);
 
         await res.fold(
-              (l) async {
+          (l) async {
             _log.logE('❌ API failed: $l');
             emit(state.copyWith(status: BaseStateStatus.failed));
           },
-              (r) async {
+          (r) async {
             _log.logI('✅ API success - total: $r');
             emit(
               state.copyWith(
@@ -189,10 +211,10 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
   }
 
   Future<void> _onChangeDateRange(
-      Emitter<WfhState> emit, {
-        required DateTime dateStart,
-        required DateTime dateEnd,
-      }) async {
+    Emitter<WfhState> emit, {
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) async {
     final start = DateTime(dateStart.year, dateStart.month, dateStart.day);
     final end = DateTime(dateEnd.year, dateEnd.month, dateEnd.day);
 
@@ -210,11 +232,11 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
 
     final userRes = await _authRepo.getCurrentUser();
     await userRes.fold(
-          (err) async {
+      (err) async {
         _log.logE('❌ Get user failed: $err');
         emit(state.copyWith(status: BaseStateStatus.failed));
       },
-          (user) async {
+      (user) async {
         final payload = <String, dynamic>{
           "IDApprovedTP": 0,
           "departmentId": 0,
@@ -228,13 +250,13 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
 
         _log.logI('Payload: $payload');
 
-        final res = await _WfhRepo.getWfh(payload: payload);
+        final res = await _wfhRepo.getWfh(payload: payload);
         await res.fold(
-              (l) async {
+          (l) async {
             _log.logE('❌ API failed: $l');
             emit(state.copyWith(status: BaseStateStatus.failed));
           },
-              (r) async {
+          (r) async {
             _log.logI('✅ API success - total: $r');
             emit(
               state.copyWith(
@@ -371,7 +393,7 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
         note: note,
       );
 
-      final saveRes = await _WfhRepo.saveWfh(payload: payload);
+      final saveRes = await _wfhRepo.saveWfh(payload: payload);
       await saveRes.fold(
         (err) async {
           _log.logE('❌ Submit Wfh API failed: $err');
@@ -486,7 +508,7 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
         note: note,
       );
 
-      final saveRes = await _WfhRepo.saveWfh(payload: payload);
+      final saveRes = await _wfhRepo.saveWfh(payload: payload);
       await saveRes.fold(
         (err) async {
           _log.logE('❌ Edit Wfh API failed: $err');
@@ -541,9 +563,9 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
   }
 
   Future<void> _onCancelSubmit(
-      Emitter<WfhState> emit, {
-        required int id,
-      }) async {
+    Emitter<WfhState> emit, {
+    required int id,
+  }) async {
     if (_isSubmittingReport) return;
     _isSubmittingReport = true;
 
@@ -572,14 +594,11 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
         return;
       }
 
-      final payload = <String, dynamic>{
-        "ID": id,
-        "IsDeleted": true,
-      };
+      final payload = <String, dynamic>{"ID": id, "IsDeleted": true};
 
-      final saveRes = await _WfhRepo.saveWfh(payload: payload);
+      final saveRes = await _wfhRepo.saveWfh(payload: payload);
       await saveRes.fold(
-            (err) async {
+        (err) async {
           _log.logE('❌ Cancel Wfh API failed: $err');
           emit(
             state.copyWith(
@@ -590,7 +609,7 @@ class WfhBloc extends BaseBloc<WfhEvent, WfhState> {
             ),
           );
         },
-            (_) async {
+        (_) async {
           final updatedWfh = state.wfh.where((e) => e.id != id).toList();
           emit(
             state.copyWith(

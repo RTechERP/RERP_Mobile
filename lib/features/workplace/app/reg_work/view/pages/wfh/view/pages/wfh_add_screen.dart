@@ -141,24 +141,58 @@ class _WfhAddScreenState
 
     return Stack(
       children: [
-        BlocListener<WfhBloc, WfhState>(
-          listenWhen: (previous, current) =>
-              previous.submitSuccess != current.submitSuccess ||
-              previous.message != current.message,
-          listener: (context, state) {
-            if ((state.message ?? '').isNotEmpty) {
-              context.showMessage(
-                state.message!,
-                type: state.submitSuccess
-                    ? SnackBarType.success
-                    : SnackBarType.error,
-              );
-            }
-            if (state.submitSuccess) {
-              bloc.add(const WfhEvent.clearSubmitState());
-              context.pop(true);
-            }
-          },
+        MultiBlocListener(
+          listeners: [
+            BlocListener<WfhBloc, WfhState>(
+              listenWhen: (previous, current) =>
+                  previous.submitSuccess != current.submitSuccess ||
+                  previous.message != current.message,
+              listener: (context, state) {
+                if ((state.message ?? '').isNotEmpty) {
+                  context.showMessage(
+                    state.message!,
+                    type: state.submitSuccess
+                        ? SnackBarType.success
+                        : SnackBarType.error,
+                  );
+                }
+                if (state.submitSuccess) {
+                  bloc.add(const WfhEvent.clearSubmitState());
+                  context.pop(true);
+                }
+              },
+            ),
+            BlocListener<WfhBloc, WfhState>(
+              listenWhen: (previous, current) =>
+                  previous.approveId != current.approveId ||
+                  previous.approvers != current.approvers,
+              listener: (context, state) {
+                if (state.approveId != null && state.approvers.isNotEmpty) {
+                  final form = _formKey.currentState;
+                  if (form == null) return;
+
+                  final targetId = state.approveId!.approveId;
+                  final match = state.approvers.cast<ApproverItem?>().firstWhere(
+                    (a) {
+                      if (a == null || a.isDeleted == true) return false;
+                      return _approvedWfhPayloadValue(a) == targetId;
+                    },
+                    orElse: () => null,
+                  );
+
+                  if (match != null) {
+                    final idValue = _approvedWfhPayloadValue(match);
+                    final line =
+                        '${match.code ?? ''} - ${match.fullName ?? ''}'.trim();
+                    form.fields['regwork_wfh_add_approver_id']?.didChange(
+                      idValue.toString(),
+                    );
+                    form.fields['regwork_wfh_add_approver_text']?.didChange(line);
+                  }
+                }
+              },
+            ),
+          ],
           child: BaseScaffold(
             appBar: AppBarCommon(title: const Text('Tạo đơn WFH')),
             body: Padding(
@@ -190,6 +224,12 @@ class _WfhAddScreenState
                                         lastDate: lastDate,
                                         selectableDayPredicate:
                                             _isWfhSelectableDay,
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (v == null) return 'Vui lòng chọn ngày';
+                                          return null;
+                                        },
+                                        autovalidateMode: AutovalidateMode.onUserInteraction,
                                       ),
 
                                       const SizedBox(height: 12),
@@ -211,6 +251,12 @@ class _WfhAddScreenState
                                             label: 'Thời gian',
                                             icon: Icons.schedule_outlined,
                                             initialValue: 'Buổi sáng',
+                                            isRequired: true,
+                                            validator: (v) {
+                                              if (v == null || v.isEmpty) return 'Vui lòng chọn thời gian';
+                                              return null;
+                                            },
+                                            autovalidateMode: AutovalidateMode.onUserInteraction,
                                           ),
                                         ),
                                       ),
@@ -233,6 +279,12 @@ class _WfhAddScreenState
                                             label: 'Người duyệt',
                                             icon: Icons
                                                 .supervisor_account_outlined,
+                                            isRequired: true,
+                                            validator: (v) {
+                                              if (v == null || v.trim().isEmpty) return 'Vui lòng chọn người duyệt';
+                                              return null;
+                                            },
+                                            autovalidateMode: AutovalidateMode.onUserInteraction,
                                           ),
                                         ),
                                       ),
@@ -244,6 +296,12 @@ class _WfhAddScreenState
                                         label: 'Nội dung/Kế hoạch',
                                         icon: Icons.content_paste,
                                         maxLines: 4,
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (v == null || v.trim().isEmpty) return 'Vui lòng nhập nội dung/kế hoạch';
+                                          return null;
+                                        },
+                                        autovalidateMode: AutovalidateMode.onUserInteraction,
                                       ),
                                       const SizedBox(height: 12),
 
@@ -253,6 +311,12 @@ class _WfhAddScreenState
                                         label: 'Lý do',
                                         icon: Icons.note_alt_outlined,
                                         maxLines: 4,
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do';
+                                          return null;
+                                        },
+                                        autovalidateMode: AutovalidateMode.onUserInteraction,
                                       ),
                                       const SizedBox(height: 12),
 
@@ -296,21 +360,6 @@ class _WfhAddScreenState
                             final reason = '${values['wfh_add_reason'] ?? ''}';
                             final note = '${values['wfh_add_note'] ?? ''}';
 
-                            final validateErr = ValidateHelper.validateWfh(
-                              todayStart: _todayStart,
-                              date: date,
-                              sessionRaw: sessionRaw,
-                              approverIdRaw: approverIdRaw,
-                              content: content,
-                              reason: reason,
-                            );
-                            if (validateErr != null) {
-                              context.showMessage(
-                                validateErr,
-                                type: SnackBarType.error,
-                              );
-                              return;
-                            }
 
                             final approvedId =
                                 int.tryParse(approverIdRaw.trim()) ?? 0;

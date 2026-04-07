@@ -4,6 +4,8 @@ part of 'wfh_bloc.dart';
 class WfhState extends BaseBlocState {
   final List<WfhItem> wfh;
   final List<ApproverItem> approvers;
+
+  final FillApproverItem? approveId;
   final bool isSubmitting;
   final bool submitSuccess;
   final bool deleteSuccess;
@@ -25,6 +27,7 @@ class WfhState extends BaseBlocState {
     this.loginName,
     this.dateStart,
     this.dateEnd,
+    this.approveId,
   });
 
   factory WfhState.init() => const WfhState(
@@ -39,6 +42,7 @@ class WfhState extends BaseBlocState {
     loginName: null,
     dateStart: null,
     dateEnd: null,
+    approveId: null,
   );
 
   @override
@@ -55,5 +59,6 @@ class WfhState extends BaseBlocState {
     loginName,
     dateStart,
     dateEnd,
+    approveId,
   ];
 }

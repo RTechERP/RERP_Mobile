@@ -14,4 +14,6 @@ abstract class WfhRepo{
   Future<Either<BaseError, void>> saveWfh({
     required Map<String, dynamic> payload,
   });
+
+  Future<Either<BaseError, FillApproverItem>> getFillApprover({required int employeeID, required String tableName});
 }

@@ -296,6 +296,12 @@ class _WfhDetailScreenState
                                           icon: Icons.schedule_outlined,
                                           initialValue:
                                               _sessionDisplayLabel(item),
+                                          isRequired: true,
+                                          validator: (v) {
+                                            if (v == null || v.isEmpty) return 'Vui lòng chọn thời gian';
+                                            return null;
+                                          },
+                                          autovalidateMode: AutovalidateMode.onUserInteraction,
                                         ),
                                       ),
                                     ),
@@ -318,6 +324,12 @@ class _WfhDetailScreenState
                                     firstDate: DateTime(2000),
                                     lastDate: lastDate,
                                     enabled: _canEdit,
+                                    isRequired: true,
+                                    validator: (v) {
+                                      if (v == null) return 'Vui lòng chọn ngày';
+                                      return null;
+                                    },
+                                    autovalidateMode: AutovalidateMode.onUserInteraction,
                                     onChanged: (v) {
                                       if (v == null) return;
                                       final safe =
@@ -354,6 +366,12 @@ class _WfhDetailScreenState
                                                 .supervisor_account_outlined,
                                             initialValue:
                                             _approverDisplayLine(item),
+                                            isRequired: true,
+                                            validator: (v) {
+                                              if (v == null || v.trim().isEmpty) return 'Vui lòng chọn người duyệt';
+                                              return null;
+                                            },
+                                            autovalidateMode: AutovalidateMode.onUserInteraction,
                                           ),
                                         ),
                                       ),
@@ -378,6 +396,12 @@ class _WfhDetailScreenState
                                     icon: Icons.content_paste,
                                     maxLines: 4,
                                     initialValue: item.contentWork ?? '',
+                                    isRequired: true,
+                                    validator: (v) {
+                                      if (v == null || v.trim().isEmpty) return 'Vui lòng nhập nội dung/kế hoạch';
+                                      return null;
+                                    },
+                                    autovalidateMode: AutovalidateMode.onUserInteraction,
                                   ),
                                   const SizedBox(height: 12),
 
@@ -389,6 +413,12 @@ class _WfhDetailScreenState
                                     icon: Icons.note_alt_outlined,
                                     maxLines: 3,
                                     initialValue: item.reason ?? '',
+                                    isRequired: true,
+                                    validator: (v) {
+                                      if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do';
+                                      return null;
+                                    },
+                                    autovalidateMode: AutovalidateMode.onUserInteraction,
                                   ),
                                   const SizedBox(height: 12),
 
@@ -443,22 +473,7 @@ class _WfhDetailScreenState
                                   final note =
                                       '${values['wfh_detail_note'] ?? ''}';
 
-                                  final validateErr = ValidateHelper.validateWfh(
-                                    todayStart: _todayStart,
-                                    date: date,
-                                    sessionRaw: sessionRaw,
-                                    approverIdRaw: approverIdRaw,
-                                    content: content,
-                                    reason: reason,
-                                    requireFutureWfhDate: false,
-                                  );
-                                  if (validateErr != null) {
-                                    context.showMessage(
-                                      validateErr,
-                                      type: SnackBarType.error,
-                                    );
-                                    return;
-                                  }
+
 
                                   final approvedId =
                                       int.tryParse(approverIdRaw.trim()) ?? 0;
