@@ -311,7 +311,6 @@ class _InOutAddScreenPageState
                                 const SizedBox(height: 8),
 
                                 FormCard(
-                                  title: 'Người kiểm duyệt',
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
@@ -333,27 +332,33 @@ class _InOutAddScreenPageState
                                             label: 'Người duyệt',
                                             icon: Icons
                                                 .supervisor_account_outlined,
+                                            isRequired: true,
+                                            validator: (v) {
+                                              if (v == null || v.trim().isEmpty) return 'Vui lòng chọn người duyệt';
+                                              return null;
+                                            },
+                                            autovalidateMode: AutovalidateMode.onUserInteraction,
                                           ),
                                         ),
+                                      ),
+                                      const SizedBox(height: 8),
+
+                                      FormInputField(
+                                        nameForm: 'regwork',
+                                        nameTextField: 'regwork_inout_add_reason',
+                                        label: 'Lý do',
+                                        icon: Icons.note_alt_outlined,
+                                        maxLines: 5,
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do';
+                                          return null;
+                                        },
+                                        autovalidateMode: AutovalidateMode.onUserInteraction,
                                       ),
                                     ],
                                   ),
                                 ),
-
-                                const SizedBox(height: 8),
-
-                                FormCard(
-                                  title: 'Lý do',
-                                  child: FormInputField(
-                                    nameForm: 'regwork',
-                                    nameTextField: 'regwork_inout_add_reason',
-                                    label: '',
-                                    icon: Icons.note_alt_outlined,
-                                    maxLines: 5,
-                                  ),
-                                ),
-
-                                const SizedBox(height: 8),
                               ],
                             ),
                           ),
@@ -407,22 +412,6 @@ class _InOutAddScreenPageState
 
                             final from = fromInner ?? defaultFrom;
                             final to = toInner ?? defaultTo;
-                            final validateErr = ValidateHelper.validateInOut(
-                              todayStart: _todayStart,
-                              date: date,
-                              from: from,
-                              to: to,
-                              typeRaw: typeRaw,
-                              approverTpRaw: approverTpRaw,
-                              reason: reason,
-                            );
-                            if (validateErr != null) {
-                              context.showMessage(
-                                validateErr,
-                                type: SnackBarType.error,
-                              );
-                              return;
-                            }
 
                             final dateStart = DateTime(
                               date.year,

@@ -409,7 +409,6 @@ class _InOutDetailScreenPageState extends BaseState<
                             ),
                             const SizedBox(height: 8),
                             FormCard(
-                              title: 'Người kiểm duyệt',
                               child: _canEdit
                                   ? Column(
                                       crossAxisAlignment:
@@ -435,6 +434,12 @@ class _InOutDetailScreenPageState extends BaseState<
                                                   .supervisor_account_outlined,
                                               initialValue:
                                                   _approverDisplayLine(item),
+                                              isRequired: true,
+                                              validator: (v) {
+                                                if (v == null || v.trim().isEmpty) return 'Vui lòng chọn người duyệt';
+                                                return null;
+                                              },
+                                              autovalidateMode: AutovalidateMode.onUserInteraction,
                                             ),
                                           ),
                                         ),
@@ -458,6 +463,12 @@ class _InOutDetailScreenPageState extends BaseState<
                                 icon: Icons.note_alt_outlined,
                                 maxLines: 3,
                                 initialValue: item.reason ?? '',
+                                isRequired: true,
+                                validator: (v) {
+                                  if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do';
+                                  return null;
+                                },
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
                               ),
                             ),
                           ],
@@ -521,25 +532,6 @@ class _InOutDetailScreenPageState extends BaseState<
 
                                 final from = fromInner ?? defaultFrom;
                                 final to = toInner ?? defaultTo;
-
-                                final validateErr =
-                                    ValidateHelper.validateInOut(
-                                  todayStart: _todayStart,
-                                  date: date,
-                                  from: from,
-                                  to: to,
-                                  typeRaw: typeRaw,
-                                  approverTpRaw: approverTpRaw,
-                                  reason: reason,
-                                  disallowPastDates: false,
-                                );
-                                if (validateErr != null) {
-                                  context.showMessage(
-                                    validateErr,
-                                    type: SnackBarType.error,
-                                  );
-                                  return;
-                                }
 
                                 final dateStart = DateTime(
                                   date.year,
