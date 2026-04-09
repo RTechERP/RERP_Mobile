@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../../common/helpers/index.dart';
@@ -87,6 +88,10 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
                 nameTextField: 'pickup_project_text',
                 label: 'Dự án',
                 onFieldCreated: (field) => projectField = field,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn dự án',
+                ),
                 readOnly: true,
               ),
             ),
@@ -100,6 +105,10 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
             label: 'Thời gian cần đến lấy',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn thời gian cần đến lấy',
+            ),
           ),
           const SizedBox(height: 8),
           FormDateTimePicker(
@@ -109,6 +118,10 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
             label: 'Thời gian xuất phát',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn thời gian xuất phát',
+            ),
           ),
           const SizedBox(height: 8),
 
@@ -117,6 +130,10 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
             nameForm: 'pickup_company',
             nameTextField: 'pickup_company_text',
             label: 'Công ty đến lấy',
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập công ty đến lấy',
+            ),
           ),
           const SizedBox(height: 8),
           GestureDetector(
@@ -128,6 +145,10 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
                 nameTextField: 'pickup_province_text',
                 label: 'Tỉnh đến lấy',
                 onFieldCreated: (field) => provinceField = field,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn tỉnh đến lấy',
+                ),
                 readOnly: true,
               ),
             ),
@@ -139,6 +160,10 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
             nameTextField: 'pickup_address_text',
             label: 'Địa chỉ cụ thể đến lấy',
             maxLines: 3,
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập địa chỉ cụ thể đến lấy',
+            ),
           ),
           const SizedBox(height: 8),
           GestureDetector(
@@ -150,6 +175,10 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
                 nameTextField: 'type_transport_text',
                 label: 'Loại phương tiện',
                 onFieldCreated: (field) => typeTransportField = field,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn loại phương tiện',
+                ),
                 readOnly: true,
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../../common/helpers/index.dart';
@@ -150,6 +151,10 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
                 nameTextField: 'project_text',
                 label: 'Dự án',
                 onFieldCreated: (field) => projectField = field,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn dự án',
+                ),
                 readOnly: true,
               ),
             ),
@@ -163,6 +168,10 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
             label: 'Thời gian cần đến',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn thời gian cần đến',
+            ),
           ),
           const SizedBox(height: 8),
 
@@ -171,6 +180,10 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
             nameForm: 'location_address',
             nameTextField: 'location_address_text',
             label: 'Công ty cần đến',
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập công ty cần đến',
+            ),
           ),
           const SizedBox(height: 8),
 
@@ -183,6 +196,10 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
                 nameTextField: 'provinces_text',
                 label: 'Tỉnh cần đến',
                 onFieldCreated: (field) => provincesField = field,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn tỉnh cần đến',
+                ),
                 readOnly: true,
               ),
             ),
@@ -195,6 +212,10 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
             nameForm: 'address',
             nameTextField: 'address_text',
             label: 'Địa chỉ cụ thể',
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập địa chỉ cụ thể',
+            ),
           ),
           const SizedBox(height: 8),
 
@@ -205,6 +226,10 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
             label: 'Thời gian xuất phát',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn thời gian xuất phát',
+            ),
             firstDate: startOfToday,
           ),
           const SizedBox(height: 8),
@@ -231,6 +256,10 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
                       nameTextField: 'starting_point_text',
                       label: 'Xuất phát',
                       onFieldCreated: (f) => startingPointField = f,
+                      isRequired: true,
+                      validator: FormBuilderValidators.required(
+                        errorText: 'Vui lòng chọn điểm xuất phát',
+                      ),
                       readOnly: true,
                     ),
                   ),
@@ -247,6 +276,10 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
                       nameTextField: 'return_point_text',
                       label: 'Điểm về',
                       onFieldCreated: (f) => returnPointField = f,
+                      isRequired: true,
+                      validator: FormBuilderValidators.required(
+                        errorText: 'Vui lòng chọn điểm về',
+                      ),
                       readOnly: true,
                     ),
                   ),
@@ -264,6 +297,13 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
             enabled: _isStartingPointOther,
             readOnly: !_isStartingPointOther,
             onFieldCreated: (f) => destinationAddressField = f,
+            isRequired: true,
+            validator: (v) {
+              if (_isStartingPointOther && (v == null || v.trim().isEmpty)) {
+                return 'Vui lòng nhập địa chỉ xuất phát cụ thể';
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 8),
           FormInputField(
@@ -274,6 +314,13 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
             enabled: _isReturnPointOther,
             readOnly: !_isReturnPointOther,
             onFieldCreated: (f) => returnAddressField = f,
+            isRequired: true,
+            validator: (v) {
+              if (_isReturnPointOther && (v == null || v.trim().isEmpty)) {
+                return 'Vui lòng nhập địa chỉ quay về cụ thể';
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 8),
 
@@ -286,6 +333,10 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
                 nameTextField: 'type_transport_text',
                 label: 'Loại phương tiện',
                 onFieldCreated: (field) => typeTransportField = field,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn loại phương tiện',
+                ),
                 readOnly: true,
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../../common/helpers/index.dart';
@@ -134,6 +135,10 @@ class _TypeFormCommercialDeliveryState
                 nameTextField: 'project_text',
                 label: 'Dự án',
                 onFieldCreated: (field) => projectField = field,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn dự án',
+                ),
                 readOnly: true,
               ),
             ),
@@ -147,6 +152,10 @@ class _TypeFormCommercialDeliveryState
             label: 'Thời gian cần giao đến',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn thời gian cần giao đến',
+            ),
           ),
           const SizedBox(height: 8),
 
@@ -155,6 +164,10 @@ class _TypeFormCommercialDeliveryState
             nameForm: 'location_address',
             nameTextField: 'location_address_text',
             label: 'Công ty giao đến',
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập công ty giao đến',
+            ),
           ),
           const SizedBox(height: 8),
 
@@ -167,6 +180,10 @@ class _TypeFormCommercialDeliveryState
                 nameTextField: 'provinces_text',
                 label: 'Tỉnh giao đến',
                 onFieldCreated: (field) => provincesField = field,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn tỉnh giao đến',
+                ),
                 readOnly: true,
               ),
             ),
@@ -178,6 +195,10 @@ class _TypeFormCommercialDeliveryState
             nameForm: 'address',
             nameTextField: 'address_text',
             label: 'Địa chỉ cụ thể',
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập địa chỉ cụ thể',
+            ),
           ),
           const SizedBox(height: 8),
 
@@ -188,6 +209,10 @@ class _TypeFormCommercialDeliveryState
             label: 'Thời gian lấy hàng',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn thời gian lấy hàng',
+            ),
           ),
           const SizedBox(height: 8),
 
@@ -200,6 +225,10 @@ class _TypeFormCommercialDeliveryState
                 nameTextField: 'return_point_text',
                 label: 'Điểm lấy hàng',
                 onFieldCreated: (field) => returnPointField = field,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn điểm lấy hàng',
+                ),
                 readOnly: true,
               ),
             ),
@@ -214,6 +243,13 @@ class _TypeFormCommercialDeliveryState
             enabled: _isReturnPointOther,
             readOnly: !_isReturnPointOther,
             onFieldCreated: (field) => returnAddressField = field,
+            isRequired: true,
+            validator: (v) {
+              if (_isReturnPointOther && (v == null || v.trim().isEmpty)) {
+                return 'Vui lòng nhập địa chỉ lấy hàng cụ thể';
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 8),
 
@@ -226,6 +262,10 @@ class _TypeFormCommercialDeliveryState
                 nameTextField: 'type_transport_text',
                 label: 'Loại phương tiện',
                 onFieldCreated: (field) => typeTransportField = field,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn loại phương tiện',
+                ),
                 readOnly: true,
               ),
             ),

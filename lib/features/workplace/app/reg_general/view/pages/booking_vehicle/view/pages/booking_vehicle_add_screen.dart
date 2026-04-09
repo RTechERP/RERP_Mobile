@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
@@ -179,7 +180,10 @@ class _BookingVehicleAddScreenState
 
     final formState = _formKey.currentState;
     if (formState == null) return;
-    if (!formState.saveAndValidate()) return;
+    if (!formState.saveAndValidate()) {
+      FormHelper.focusFirstError(formState: formState);
+      return;
+    }
 
     final values = Map<String, dynamic>.from(formState.value);
     final createdOriginal = widget.existingBookingItem?.createdDate;
@@ -187,77 +191,8 @@ class _BookingVehicleAddScreenState
       values[kBookingVehicleProblemRuleRegistrationKey] = createdOriginal;
     }
 
-    final state = bloc.state;
     final group = _bookingTypeGroup;
     if (group == null) return;
-
-    final (BookingVehicleValidationVariant variant, int apiCat, int lines) =
-        switch (group) {
-      _BookingVehicleTypeGroup.passengerGo => (
-          BookingVehicleValidationVariant.passengerGo,
-          1,
-          bookingVehicleEffectivePassengerLineCount(
-            form: values,
-            stateCount: state.passengerGoLineCount,
-          ),
-        ),
-      _BookingVehicleTypeGroup.passengerReturn => (
-          BookingVehicleValidationVariant.passengerReturn,
-          5,
-          bookingVehicleEffectivePassengerLineCount(
-            form: values,
-            stateCount: state.passengerGoLineCount,
-          ),
-        ),
-      _BookingVehicleTypeGroup.commercialDelivery => (
-          BookingVehicleValidationVariant.commercialDelivery,
-          bookingVehicleApiCategoryForCommercialDeliveryBookingType(
-            values['booking_type']?.toString(),
-          ),
-          bookingVehicleEffectiveCommercialReceiverLineCount(
-            form: values,
-            stateCount: state.commercialReceiverLineCount,
-          ),
-        ),
-      _BookingVehicleTypeGroup.commercialPickupAndDemoPickup => (
-          BookingVehicleValidationVariant.commercialPickup,
-          bookingVehicleApiCategoryForPickupBookingType(
-            values['booking_type']?.toString(),
-          ),
-          bookingVehicleEffectivePickupGiverLineCount(
-            form: values,
-            stateCount: state.pickupGiverLineCount,
-          ),
-        ),
-    };
-
-    final projectId = variant == BookingVehicleValidationVariant.commercialPickup
-        ? resolveBookingVehicleProjectId(
-            values['pickup_project'],
-            state.projects,
-          )
-        : resolveBookingVehicleProjectId(values['project'], state.projects);
-
-    final vehicleType =
-        bookingVehicleVehicleTypeFromForm(values['type_transport']);
-
-    final validateErr = ValidateHelper.validateBookingVehicle(
-      variant: variant,
-      apiCategory: apiCat,
-      form: values,
-      lineCount: lines,
-      projectId: projectId,
-      vehicleType: vehicleType,
-    );
-    if (validateErr != null) {
-      showMessage(
-        context,
-        validateErr,
-        type: SnackBarType.error,
-      );
-      return;
-    }
-
     final editId = _existingBookingId;
     switch (group) {
       case _BookingVehicleTypeGroup.passengerGo:
@@ -370,6 +305,15 @@ class _BookingVehicleAddScreenState
                   initialValue: {
                     'booking_type': 'Đăng ký người đi',
                     'booking_type_text': 'Đăng ký người đi',
+                    'time_need_present': DateTime.now()
+                        .add(const Duration(days: 1))
+                        .copyWith(
+                          hour: 9,
+                          minute: 0,
+                          second: 0,
+                          millisecond: 0,
+                          microsecond: 0,
+                        ),
                     'type_transport': 'Ô tô, xe máy ...',
                     'type_transport_text': 'Ô tô, xe máy ...',
                     'starting_point': 'Khác',
@@ -468,6 +412,10 @@ class _BookingVehicleAddScreenState
                                     onFieldCreated: (field) =>
                                         _bookingTypeField = field,
                                     icon: Icons.directions_car_outlined,
+                                    isRequired: true,
+                                    validator: FormBuilderValidators.required(
+                                      errorText: 'Vui lòng chọn hình thức đặt',
+                                    ),
                                     readOnly: true,
                                   ),
                                 ),
@@ -1041,7 +989,7 @@ class _BookingVehicleAddScreenState
               child: AbsorbPointer(
                 absorbing: true,
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha: 0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',

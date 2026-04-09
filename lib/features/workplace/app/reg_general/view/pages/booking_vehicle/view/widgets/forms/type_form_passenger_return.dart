@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../../common/helpers/index.dart';
@@ -129,6 +130,10 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
                 nameTextField: 'project_text',
                 label: 'Dự án',
                 onFieldCreated: (field) => projectField = field,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn dự án',
+                ),
                 readOnly: true,
               ),
             ),
@@ -142,6 +147,10 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
             label: 'Thời gian cần về',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn thời gian cần về',
+            ),
           ),
           const SizedBox(height: 8),
 
@@ -150,6 +159,10 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
             nameForm: 'location_address',
             nameTextField: 'location_address_text',
             label: 'Công ty cần về',
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập công ty cần về',
+            ),
           ),
           const SizedBox(height: 8),
 
@@ -162,6 +175,10 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
                 nameTextField: 'provinces_text',
                 label: 'Tỉnh cần về',
                 onFieldCreated: (field) => provincesField = field,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn tỉnh cần về',
+                ),
                 readOnly: true,
               ),
             ),
@@ -173,6 +190,10 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
             nameForm: 'address',
             nameTextField: 'address_text',
             label: 'Địa chỉ cụ thể',
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập địa chỉ cụ thể',
+            ),
           ),
           const SizedBox(height: 8),
 
@@ -183,6 +204,10 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
             label: 'Thời gian đón',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn thời gian đón',
+            ),
             firstDate: startOfToday,
           ),
           const SizedBox(height: 8),
@@ -196,6 +221,10 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
                 nameTextField: 'return_point_text',
                 label: 'Điểm đón',
                 onFieldCreated: (f) => returnPointField = f,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn điểm đón',
+                ),
                 readOnly: true,
               ),
             ),
@@ -211,6 +240,13 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
             enabled: _isReturnPointOther,
             readOnly: !_isReturnPointOther,
             onFieldCreated: (f) => returnAddressField = f,
+            isRequired: true,
+            validator: (v) {
+              if (_isReturnPointOther && (v == null || v.trim().isEmpty)) {
+                return 'Vui lòng nhập địa chỉ đón cụ thể';
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 8),
 
@@ -223,6 +259,10 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
                 nameTextField: 'type_transport_text',
                 label: 'Loại phương tiện',
                 onFieldCreated: (field) => typeTransportField = field,
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn loại phương tiện',
+                ),
                 readOnly: true,
               ),
             ),
