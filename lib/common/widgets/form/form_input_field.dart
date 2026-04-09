@@ -67,9 +67,15 @@ class FormInputField extends StatefulWidget {
 
 class _FormInputFieldState extends State<FormInputField> {
   TextEditingController? _internalController;
+  FocusNode? _internalFocusNode;
 
   TextEditingController get _effectiveController {
-    return widget.controller ?? (_internalController ??= TextEditingController());
+    return widget.controller ??
+        (_internalController ??= TextEditingController());
+  }
+
+  FocusNode get _effectiveFocusNode {
+    return widget.focusNode ?? (_internalFocusNode ??= FocusNode());
   }
 
   @override
@@ -77,6 +83,7 @@ class _FormInputFieldState extends State<FormInputField> {
     if (widget.controller == null) {
       _internalController?.dispose();
     }
+    _internalFocusNode?.dispose();
     super.dispose();
   }
 
@@ -88,6 +95,7 @@ class _FormInputFieldState extends State<FormInputField> {
       validator: widget.validator,
       enabled: widget.enabled,
       autovalidateMode: widget.autovalidateMode,
+      focusNode: _effectiveFocusNode,
       builder: (field) {
         widget.onFieldCreated?.call(field);
 
@@ -99,6 +107,7 @@ class _FormInputFieldState extends State<FormInputField> {
         final effectiveMaxLines = widget.obscureText ? 1 : (widget.maxLines ?? 1);
 
         final controller = _effectiveController;
+        final fNode = _effectiveFocusNode;
 
         /// sync value -> controller (bottomsheet / initialValue)
         if (controller.text != rawValue) {
@@ -114,7 +123,7 @@ class _FormInputFieldState extends State<FormInputField> {
           readOnly: widget.readOnly,
           onTap: widget.onTap,
           enabled: widget.enabled,
-          focusNode: widget.focusNode,
+          focusNode: fNode,
           obscureText: widget.obscureText,
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction,

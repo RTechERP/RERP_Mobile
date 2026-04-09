@@ -125,28 +125,7 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
     return (diff - breakHours).clamp(0.0, diff);
   }
 
-  // Submit enabled check
-  bool _computeSubmitEnabled() {
-    final form = _formKey.currentState;
-    if (form == null) return false;
-    form.save();
-    final v = form.value;
-
-    final breakHours = double.tryParse(_breakController.text) ?? 0;
-    final rows = <OvernightAddSlipRow>[
-      (
-        date: _slipDate,
-        timeStart: v['det_time_start'] as DateTime?,
-        timeEnd: v['det_time_end'] as DateTime?,
-        breakHours: breakHours,
-        location: '${v['det_location'] ?? ''}',
-      ),
-    ];
-    return ValidateHelper.isOvernightAddSubmitEnabled(
-      approverIdRaw: '${v['det_approver_id'] ?? ''}',
-      slips: rows,
-    );
-  }
+  // ── Submit logic ──────────────────────────────────────────────────────────
 
   void _onDateChanged(DateTime? date) {
     if (date == null) return;
@@ -197,7 +176,16 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
     FocusScope.of(context).unfocus();
     final formState = _formKey.currentState;
     if (formState == null) return;
-    if (!_computeSubmitEnabled()) return;
+
+    if (!formState.validate()) {
+      FormHelper.focusFirstError(formState: formState);
+      context.showMessage(
+        'Vui lòng điền đầy đủ thông tin các phiếu',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
     formState.save();
     final v = formState.value;
 
@@ -219,11 +207,8 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
     );
 
     if (err != null) {
-      context.showMessage(err, type: SnackBarType.error);
-      final slipErr = ValidateHelper.overnightValidateSlip(
-          slip: row, label: '', isProblem: isProblem);
-      if (slipErr != null) {
-        context.showMessage(slipErr, type: SnackBarType.error);
+      if (err.contains('Phiếu')) {
+        context.showMessage(err, type: SnackBarType.error);
       }
       return;
     }
@@ -299,7 +284,7 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
               padding: const EdgeInsets.all(12),
               child: BlocBuilder<OvernightBloc, OvernightState>(
                 builder: (context, state) {
-                  final submitOk = _computeSubmitEnabled();
+                  // final submitOk = _computeSubmitEnabled();
                   final dateFmt = DateFormat('dd/MM/yyyy');
                   final bothFmt = DateFormat('dd/MM/yyyy HH:mm');
                   final h = _computeSlipHours();
@@ -338,7 +323,7 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                                             ?.toString() ??
                                             '',
                                         autovalidateMode:
-                                            AutovalidateMode.disabled,
+                                            AutovalidateMode.onUserInteraction,
                                         builder: (_) => const SizedBox.shrink(),
                                       ),
                                       GestureDetector(
@@ -357,7 +342,14 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                                             icon: Icons.person_outlined,
                                             initialValue: approverText,
                                             autovalidateMode:
-                                                AutovalidateMode.disabled,
+                                                AutovalidateMode.onUserInteraction,
+                                            isRequired: true,
+                                            validator: (v) {
+                                              if (v == null || v.isEmpty) {
+                                                return 'Vui lòng chọn người duyệt';
+                                              }
+                                              return null;
+                                            },
                                           ),
                                         ),
                                       ),
@@ -414,7 +406,12 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                                           context,
                                           label: 'Ngày',
                                           icon: Icons.date_range_outlined,
+                                          isRequired: true,
                                         ),
+                                        validator: (v) {
+                                          if (v == null) return 'Vui lòng chọn ngày';
+                                          return null;
+                                        },
                                         onChanged: _onDateChanged,
                                       ),
                                       const SizedBox(height: 12),
@@ -431,7 +428,12 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                                         lastDate: _slipDate.add(const Duration(
                                             hours: 23, minutes: 59)),
                                         autovalidateMode:
-                                            AutovalidateMode.disabled,
+                                            AutovalidateMode.onUserInteraction,
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (v == null) return 'Vui lòng chọn thời gian bắt đầu';
+                                          return null;
+                                        },
                                         onChanged: (_) => setState(() {}),
                                       ),
                                       const SizedBox(height: 12),
@@ -448,7 +450,12 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                                         lastDate: _slipDate.add(const Duration(
                                             days: 1, hours: 8)),
                                         autovalidateMode:
-                                            AutovalidateMode.disabled,
+                                            AutovalidateMode.onUserInteraction,
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (v == null) return 'Vui lòng chọn thời gian kết thúc';
+                                          return null;
+                                        },
                                         onChanged: (_) => setState(() {}),
                                       ),
                                       const SizedBox(height: 12),
@@ -457,25 +464,65 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                                             CrossAxisAlignment.start,
                                         children: [
                                           Expanded(
-                                            child: TextFormField(
-                                              controller: _breakController,
+                                            child: FormBuilderField<String>(
+                                              name: 'det_break_hours',
+                                              initialValue: _breakController.text,
+                                              autovalidateMode:
+                                                  AutovalidateMode.onUserInteraction,
                                               focusNode: _breakFocusNode,
-                                              keyboardType:
-                                                  const TextInputType
-                                                      .numberWithOptions(
-                                                      decimal: true),
-                                              inputFormatters: [
-                                                FilteringTextInputFormatter
-                                                    .allow(RegExp(
-                                                        r'^\d*\.?\d{0,2}')),
-                                              ],
-                                              decoration: formInputDecoration(
-                                                context,
-                                                label: 'Giờ nghỉ giữa giờ',
-                                                icon: Icons
-                                                    .free_breakfast_outlined,
-                                              ),
-                                              onChanged: (_) => setState(() {}),
+                                              validator: (v) {
+                                                if (v == null || v.isEmpty) {
+                                                  return 'Vui lòng nhập giờ nghỉ';
+                                                }
+                                                final br = double.tryParse(v);
+                                                if (br == null || br < 0) {
+                                                  return 'Giờ nghỉ không hợp lệ';
+                                                }
+                                                if (br > ValidateHelper.overnightMaxTotalHours) {
+                                                  return 'Giờ nghỉ không vượt quá ${ValidateHelper.overnightMaxTotalHours.toInt()}h';
+                                                }
+                                                final fState = _formKey.currentState;
+                                                if (fState != null) {
+                                                  final start = fState.fields['det_time_start']?.value as DateTime?;
+                                                  final end = fState.fields['det_time_end']?.value as DateTime?;
+                                                  if (start != null && end != null) {
+                                                    final diffHours = end.difference(start).inMinutes / 60.0;
+                                                    if (br >= diffHours && diffHours > 0) {
+                                                      return 'Giờ nghỉ phải nhỏ hơn thời gian làm';
+                                                    }
+                                                  }
+                                                }
+                                                return null;
+                                              },
+                                              builder: (field) {
+                                                return TextFormField(
+                                                  controller: _breakController,
+                                                  focusNode: _breakFocusNode,
+                                                  keyboardType:
+                                                      const TextInputType
+                                                          .numberWithOptions(
+                                                          decimal: true),
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter
+                                                        .allow(RegExp(
+                                                            r'^\d*\.?\d{0,2}')),
+                                                  ],
+                                                  decoration:
+                                                      formInputDecoration(
+                                                    context,
+                                                    label: 'Giờ nghỉ giữa giờ',
+                                                    icon: Icons
+                                                        .free_breakfast_outlined,
+                                                    isRequired: true,
+                                                    hasError: field.hasError,
+                                                    errorText: field.errorText,
+                                                  ),
+                                                  onChanged: (v) {
+                                                    field.didChange(v);
+                                                    setState(() {});
+                                                  },
+                                                );
+                                              },
                                             ),
                                           ),
                                           const SizedBox(width: 12),
@@ -506,7 +553,12 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                                         maxLines: 1,
                                         initialValue: widget.item!.location ?? '',
                                         autovalidateMode:
-                                            AutovalidateMode.disabled,
+                                            AutovalidateMode.onUserInteraction,
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (v == null || v.isEmpty) return 'Vui lòng nhập địa điểm';
+                                          return null;
+                                        },
                                       ),
                                       const SizedBox(height: 12),
                                       FormInputField(
@@ -517,7 +569,7 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                                         maxLines: 3,
                                         initialValue: widget.item!.note ?? '',
                                         autovalidateMode:
-                                            AutovalidateMode.disabled,
+                                            AutovalidateMode.onUserInteraction,
                                       ),
                                     ],
                                   ),
@@ -531,7 +583,7 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                         // Form Actions
                         FormActions(
                           mode: FormActionMode.edit,
-                          saveEnabled: submitOk && !state.isSubmitting,
+                          saveEnabled: !state.isSubmitting,
                           onSave: () => _onSubmit(state),
                           onCancel: () => context.pop(),
                         ),

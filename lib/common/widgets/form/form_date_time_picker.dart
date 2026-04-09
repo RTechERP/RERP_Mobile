@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 import 'index.dart';
 
-class FormDateTimePicker extends StatelessWidget {
+class FormDateTimePicker extends StatefulWidget {
   final String nameForm;
 
   final String nameTimePicker;
@@ -26,6 +26,7 @@ class FormDateTimePicker extends StatelessWidget {
   final ValueChanged<DateTime?>? onSaved;
   final FormFieldValidator<DateTime?>? validator;
   final AutovalidateMode autovalidateMode;
+  final FocusNode? focusNode;
 
   const FormDateTimePicker({
     super.key,
@@ -46,50 +47,68 @@ class FormDateTimePicker extends StatelessWidget {
     this.onSaved,
     this.validator,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
+    this.focusNode,
   });
+
+  @override
+  State<FormDateTimePicker> createState() => _FormDateTimePickerState();
+}
+
+class _FormDateTimePickerState extends State<FormDateTimePicker> {
+  FocusNode? _internalFocusNode;
+
+  FocusNode get _effectiveFocusNode {
+    return widget.focusNode ?? (_internalFocusNode ??= FocusNode());
+  }
+
+  @override
+  void dispose() {
+    _internalFocusNode?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return FormBuilderField<DateTime?>(
-      name: nameForm,
-      initialValue: initialValue,
-      validator: validator,
-      enabled: enabled,
-      autovalidateMode: autovalidateMode,
+      name: widget.nameForm,
+      initialValue: widget.initialValue,
+      validator: widget.validator,
+      enabled: widget.enabled,
+      autovalidateMode: widget.autovalidateMode,
+      focusNode: _effectiveFocusNode,
       builder: (field) {
         return FormBuilderDateTimePicker(
-          name: nameTimePicker,
-          inputType: inputType,
-          format: format,
-          enabled: enabled,
-          initialValue: initialValue,
-          initialDate: initialDate,
-          firstDate: firstDate,
-          lastDate: lastDate,
-          selectableDayPredicate: selectableDayPredicate,
-          autovalidateMode: autovalidateMode,
+          name: widget.nameTimePicker,
+          inputType: widget.inputType,
+          format: widget.format,
+          enabled: widget.enabled,
+          initialValue: widget.initialValue,
+          initialDate: widget.initialDate,
+          firstDate: widget.firstDate,
+          lastDate: widget.lastDate,
+          selectableDayPredicate: widget.selectableDayPredicate,
+          autovalidateMode: widget.autovalidateMode,
+          focusNode: _effectiveFocusNode,
 
           onChanged: (v) {
             field.didChange(v);       // 🔑 sync state cho validator
-            onChanged?.call(v);
+            widget.onChanged?.call(v);
           },
           onSaved: (v) {
-            onSaved?.call(v);
+            widget.onSaved?.call(v);
           },
 
           decoration: formInputDecoration(
             context,
-            label: label,
-            icon: icon,
+            label: widget.label,
+            icon: widget.icon,
             hasError: field.hasError,     // ✅ đổi màu icon khi lỗi
             errorText: field.errorText,   // ✅ show text lỗi
-            isRequired: isRequired,
+            isRequired: widget.isRequired,
           ),
-          validator: validator,
+          validator: widget.validator,
         );
       },
     );
   }
 }
-
-

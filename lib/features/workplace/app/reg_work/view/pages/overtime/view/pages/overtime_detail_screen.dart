@@ -271,10 +271,7 @@ class _OvertimeDetailScreenPageState
 
     // Validate form first (inline errors)
     if (!formState.validate()) {
-      try {
-        final invalidField = formState.fields.values.firstWhere((f) => f.hasError);
-        invalidField.focus();
-      } catch (_) {}
+      FormHelper.focusFirstError(formState: formState);
 
       context.showMessage(
         'Vui lòng điền đầy đủ thông tin các phiếu',
@@ -434,7 +431,7 @@ class _OvertimeDetailScreenPageState
               padding: const EdgeInsets.all(12),
               child: FormBuilder(
                 key: _formKey,
-                autovalidateMode: AutovalidateMode.disabled,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 onChanged: () => setState(() {}),
                 child: Column(
                   children: [
@@ -483,7 +480,7 @@ class _OvertimeDetailScreenPageState
                                         initialValue:
                                             _approverText(state, detail.approvedId),
                                         autovalidateMode:
-                                            AutovalidateMode.disabled,
+                                            AutovalidateMode.onUserInteraction,
                                         isRequired: true,
                                         validator: (v) {
                                           if (v == null || v.isEmpty) return 'Vui lòng chọn người duyệt';

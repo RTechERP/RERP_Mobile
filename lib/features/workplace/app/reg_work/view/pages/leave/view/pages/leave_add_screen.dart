@@ -41,6 +41,7 @@ class _LeaveAddScreenPageState
 
   late final DateTime _todayStart;
   late final List<String> _slipKeys;
+  late final Map<String, DateTime> _slipDates;
   int _selectedSlipIndex = 0;
 
   @override
@@ -48,7 +49,9 @@ class _LeaveAddScreenPageState
     super.initState();
     final now = DateTime.now();
     _todayStart = DateTime(now.year, now.month, now.day);
-    _slipKeys = ['k_${now.millisecondsSinceEpoch}'];
+    final initialKey = 'k_${now.millisecondsSinceEpoch}';
+    _slipKeys = [initialKey];
+    _slipDates = {initialKey: _todayStart};
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
@@ -81,10 +84,11 @@ class _LeaveAddScreenPageState
 
 
   void _addSlip() {
+    final newKey =
+        'k_${DateTime.now().microsecondsSinceEpoch}_${_slipKeys.length}';
     setState(() {
-      _slipKeys.add(
-        'k_${DateTime.now().microsecondsSinceEpoch}_${_slipKeys.length}',
-      );
+      _slipKeys.add(newKey);
+      _slipDates[newKey] = _todayStart;
       _selectedSlipIndex = _slipKeys.length - 1;
     });
   }
@@ -93,8 +97,10 @@ class _LeaveAddScreenPageState
     if (_slipKeys.length <= 1 || index < 0 || index >= _slipKeys.length) {
       return;
     }
+    final key = _slipKeys[index];
     setState(() {
       _slipKeys.removeAt(index);
+      _slipDates.remove(key);
       if (_selectedSlipIndex >= _slipKeys.length) {
         _selectedSlipIndex = _slipKeys.length - 1;
       } else if (index < _selectedSlipIndex) {
@@ -109,9 +115,7 @@ class _LeaveAddScreenPageState
   }
 
   String _slipTabLabel(String slipKey) {
-    final st = _formKey.currentState;
-    final v = st?.fields['leave_slip_${slipKey}_date']?.value;
-    if (v is! DateTime) return '—';
+    final v = _slipDates[slipKey] ?? _todayStart;
     return DateFormat('dd/MM/yyyy').format(v);
   }
 
@@ -179,43 +183,6 @@ class _LeaveAddScreenPageState
     );
   }
 
-  Future<void> _openSessionSheet(String slipKey) async {
-    final form = _formKey.currentState;
-    if (form == null) return;
-
-    await openSelectBottomSheet<LeaveSessionOption>(
-      context: context,
-      title: 'Chọn buổi nghỉ',
-      items: kLeaveSessionOptions,
-      displayText: (o) => o.label,
-      onSelected: (o) {
-        form.fields['leave_slip_${slipKey}_session']?.didChange(
-          o.value.toString(),
-        );
-        form.fields['leave_slip_${slipKey}_session_text']?.didChange(o.label);
-        setState(() {});
-      },
-    );
-  }
-
-  Future<void> _openLeaveTypeSheet(String slipKey) async {
-    final form = _formKey.currentState;
-    if (form == null) return;
-
-    await openSelectBottomSheet<LeaveTypeOption>(
-      context: context,
-      title: 'Chọn loại nghỉ',
-      items: kLeaveTypeOptions,
-      displayText: (o) => o.label,
-      onSelected: (o) {
-        form.fields['leave_slip_${slipKey}_type']?.didChange(
-          o.value.toString(),
-        );
-        form.fields['leave_slip_${slipKey}_type_text']?.didChange(o.label);
-        setState(() {});
-      },
-    );
-  }
 
   @override
   Widget renderUI(BuildContext context) {
@@ -273,7 +240,7 @@ class _LeaveAddScreenPageState
             },
             child: BaseScaffold(
               appBar: AppBarCommon(
-                title: const Text('Tạo đơn xin nghỉ'),
+                title: const Text('Tạo đơn'),
                 actions: [
                   IconButton(
                     onPressed: () {
@@ -289,7 +256,7 @@ class _LeaveAddScreenPageState
                   builder: (context, state) {
                     return FormBuilder(
                       key: _formKey,
-                      autovalidateMode: AutovalidateMode.disabled,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       onChanged: () => setState(() {}),
                       child: Column(
                         children: [
@@ -335,16 +302,22 @@ class _LeaveAddScreenPageState
                                             sizing: StackFit.loose,
                                             children: [
                                               for (final key in _slipKeys)
-                                                LeaveSlipFormFields(
-                                                  slipKey: key,
-                                                  todayStart: _todayStart,
-                                                  bypassDateRules: state
-                                                      .skipLeaveDateConstraints,
-                                                  onSessionTap:
-                                                      _openSessionSheet,
-                                                  onTypeTap:
-                                                      _openLeaveTypeSheet,
-                                                ),
+                                                  LeaveSlipFormFields(
+                                                    slipKey: key,
+                                                    todayStart: _todayStart,
+                                                    initialLeaveDate:
+                                                        _slipDates[key],
+                                                    onDateChanged: (newDate) {
+                                                      if (newDate != null) {
+                                                        setState(() {
+                                                          _slipDates[key] =
+                                                              newDate;
+                                                        });
+                                                      }
+                                                    },
+                                                    bypassDateRules: state
+                                                        .skipLeaveDateConstraints,
+                                                  ),
                                             ],
                                           ),
                                         ),
@@ -366,33 +339,20 @@ class _LeaveAddScreenPageState
                               if (formState == null) return;
                               
                               if (!formState.validate()) {
-                                try {
-                                  final entry = formState.fields.entries.firstWhere((e) => e.value.hasError);
-                                  final name = entry.key;
-                                  final invalidField = entry.value;
-
-                                  // If field is in a slip (leave_slip_${key}_...), switch to that tab
-                                  if (name.startsWith('leave_slip_')) {
-                                    final slipKey = _slipKeys.firstWhere((k) => name.contains('_${k}_'), orElse: () => '');
-                                    final idx = _slipKeys.indexOf(slipKey);
-                                    
-                                    if (idx != -1 && idx != _selectedSlipIndex) {
-                                      setState(() => _selectedSlipIndex = idx);
-                                      WidgetsBinding.instance.addPostFrameCallback((_) {
-                                        invalidField.focus();
-                                      });
-                                    } else {
-                                      invalidField.focus();
-                                    }
-                                  } else {
-                                    invalidField.focus();
-                                  }
-                                } catch (_) {}
-
-                                context.showMessage(
-                                  'Vui lòng điền đầy đủ thông tin các phiếu',
-                                  type: SnackBarType.error,
+                                FormHelper.focusFirstError(
+                                  formState: formState,
+                                  slipPrefix: 'leave_slip_',
+                                  slipKeys: _slipKeys,
+                                  onSlipError: (idx) =>
+                                      setState(() => _selectedSlipIndex = idx),
                                 );
+
+                                if (_slipKeys.length >= 2) {
+                                  context.showMessage(
+                                    'Vui lòng điền đầy đủ thông tin các phiếu',
+                                    type: SnackBarType.error,
+                                  );
+                                }
                                 return;
                               }
                               formState.save();

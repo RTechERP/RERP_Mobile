@@ -2,48 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/helpers/validate_helper.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
+import 'leave_add_constants.dart';
 
-/// Một phiếu: ngày, buổi, loại, lý do. Validate nghiệp vụ chỉ khi bấm Gửi (màn hình).
-///
-/// [initialLeaveDate] / session & type từ API: dùng màn chi tiết để khớp ngay lần mount
-/// (không phụ thuộc [DateTime.now] làm ngày phiếu).
+/// Một phiếu: ngày, buổi, loại, lý do.
 class LeaveSlipFormFields extends StatelessWidget {
   const LeaveSlipFormFields({
     super.key,
     required this.slipKey,
     required this.todayStart,
     required this.bypassDateRules,
-    required this.onSessionTap,
-    required this.onTypeTap,
     this.readOnly = false,
     this.dateRangeLine,
     this.initialLeaveDate,
     this.initialSessionCode,
-    this.initialSessionLabel,
     this.initialTypeCode,
-    this.initialTypeLabel,
     this.initialReason,
+    this.onDateChanged,
   });
 
   final String slipKey;
   final DateTime todayStart;
   final bool bypassDateRules;
-  final void Function(String slipKey) onSessionTap;
-  final void Function(String slipKey) onTypeTap;
   final bool readOnly;
+
   /// Dòng phụ dưới nhãn ngày (vd. khoảng Start–End từ API).
   final String? dateRangeLine;
   final DateTime? initialLeaveDate;
   final String? initialSessionCode;
-  final String? initialSessionLabel;
   final String? initialTypeCode;
-  final String? initialTypeLabel;
   final String? initialReason;
+  final void Function(DateTime?)? onDateChanged;
 
-  DateTime get _leaveDayCalendar =>
-      initialLeaveDate ?? todayStart;
+  DateTime get _leaveDayCalendar => initialLeaveDate ?? todayStart;
 
   /// Cho phép mở picker khi sửa đơn có ngày trong quá khứ (so với “hôm nay”).
   DateTime get _pickerFirstDate {
@@ -92,65 +85,52 @@ class LeaveSlipFormFields extends StatelessWidget {
                       bypassDateRules: false,
                     ),
             isRequired: true,
+            onChanged: onDateChanged,
             validator: (v) {
               if (v == null) return 'Vui lòng chọn ngày nghỉ';
               return null;
             },
-            autovalidateMode: AutovalidateMode.disabled,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
-          const SizedBox(height: 12),
-          FormBuilderField<String>(
+          const SizedBox(height: 16),
+
+          // ── Buổi nghỉ ──
+          _buildChoiceGroup<String>(
+            context: context,
             name: 'leave_slip_${slipKey}_session',
+            label: 'Buổi nghỉ',
+            icon: Icons.access_time_outlined,
             initialValue: initialSessionCode ?? '1',
-            autovalidateMode: AutovalidateMode.disabled,
-            builder: (_) => const SizedBox.shrink(),
+            enabled: !readOnly,
+            options: kLeaveSessionOptions
+                .map((o) => _ChoiceOption(value: o.value.toString(), label: o.label))
+                .toList(),
           ),
-          GestureDetector(
-            onTap: readOnly ? null : () => onSessionTap(slipKey),
-            child: AbsorbPointer(
-              child: FormInputField(
-                readOnly: true,
-                nameForm: 'leave_slip_${slipKey}_session_text',
-                nameTextField: 'leave_slip_${slipKey}_session_text_tf',
-                label: 'Buổi nghỉ',
-                icon: Icons.access_time_outlined,
-                initialValue: initialSessionLabel ?? 'Buổi sáng',
-                isRequired: true,
-                validator: (v) {
-                  if (v == null || v.isEmpty) return 'Vui lòng chọn buổi nghỉ';
-                  return null;
-                },
-                autovalidateMode: AutovalidateMode.disabled,
-              ),
-            ),
-          ),
-          const SizedBox(height: 12),
-          FormBuilderField<String>(
+          const SizedBox(height: 16),
+
+          // ── Loại nghỉ ──
+          _buildChoiceGroup<String>(
+            context: context,
             name: 'leave_slip_${slipKey}_type',
+            label: 'Loại nghỉ',
+            icon: Icons.assignment_outlined,
             initialValue: initialTypeCode ?? '1',
-            autovalidateMode: AutovalidateMode.disabled,
-            builder: (_) => const SizedBox.shrink(),
+            enabled: !readOnly,
+            options: kLeaveTypeOptions
+                .map((o) => _ChoiceOption(
+                      value: o.value.toString(),
+                      label: o.label,
+                      // Màu sắc tương ứng theo loại nghỉ
+                      selectedColor: o.value == 1
+                          ? AppColors.stateErrorColor
+                          : o.value == 2
+                              ? AppColors.stateSuccessColor
+                              : AppColors.stateWarningColor,
+                    ))
+                .toList(),
           ),
-          GestureDetector(
-            onTap: readOnly ? null : () => onTypeTap(slipKey),
-            child: AbsorbPointer(
-              child: FormInputField(
-                readOnly: true,
-                nameForm: 'leave_slip_${slipKey}_type_text',
-                nameTextField: 'leave_slip_${slipKey}_type_text_tf',
-                label: 'Loại nghỉ',
-                icon: Icons.assignment_outlined,
-                initialValue: initialTypeLabel ?? 'Nghỉ không lương',
-                isRequired: true,
-                validator: (v) {
-                  if (v == null || v.isEmpty) return 'Vui lòng chọn loại nghỉ';
-                  return null;
-                },
-                autovalidateMode: AutovalidateMode.disabled,
-              ),
-            ),
-          ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
+
           FormInputField(
             label: 'Lý do',
             nameForm: 'leave_slip_${slipKey}_reason',
@@ -164,10 +144,95 @@ class LeaveSlipFormFields extends StatelessWidget {
               if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do';
               return null;
             },
-            autovalidateMode: AutovalidateMode.disabled,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ],
       ),
     );
   }
+
+  Widget _buildChoiceGroup<T>({
+    required BuildContext context,
+    required String name,
+    required String label,
+    required IconData icon,
+    required List<_ChoiceOption<T>> options,
+    T? initialValue,
+    bool enabled = true,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(icon, size: 18, color: AppColors.primaryERP),
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: AppColors.neutralText,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        FormBuilderField<T>(
+          name: name,
+          initialValue: initialValue,
+          enabled: enabled,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          builder: (FormFieldState<T?> field) {
+            return Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: options.map((option) {
+                final isSelected = field.value == option.value;
+                final primaryColor = option.selectedColor ?? AppColors.primaryERP;
+                
+                return GestureDetector(
+                  onTap: enabled ? () => field.didChange(option.value) : null,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? primaryColor.withValues(alpha: 0.1)
+                          : AppColors.white.withValues(alpha:0.1),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: isSelected ? primaryColor : AppColors.black.withValues(alpha: 0.1),
+                        width: 1.5,
+                      ),
+                    ),
+                    child: Text(
+                      option.label,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                        color: isSelected ? primaryColor : AppColors.textSecondaryColor,
+                      ),
+                    ),
+                  ),
+                );
+              }).toList(),
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class _ChoiceOption<T> {
+  final T value;
+  final String label;
+  final Color? selectedColor;
+
+  _ChoiceOption({
+    required this.value,
+    required this.label,
+    this.selectedColor,
+  });
 }

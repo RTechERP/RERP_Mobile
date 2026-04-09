@@ -183,15 +183,6 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
     return out;
   }
 
-
-
-  String _sessionLabel(int code) {
-    for (final o in kLeaveSessionOptions) {
-      if (o.value == code) return o.label;
-    }
-    return '—';
-  }
-
   void _applyDetailToForm(LeaveState state, VoidCallback onApplied) {
     final slip = _focusedSlip(state);
     if (slip == null) return;
@@ -234,15 +225,7 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
       f.fields['leave_slip_${_kDetailSlipKey}_date_inner']?.didChange(slip.date);
       f.fields['leave_slip_${_kDetailSlipKey}_session']
           ?.didChange('${slip.timeRegister}');
-      f.fields['leave_slip_${_kDetailSlipKey}_session_text']
-          ?.didChange(_sessionLabel(slip.timeRegister));
       f.fields['leave_slip_${_kDetailSlipKey}_type']?.didChange('${slip.type}');
-      f.fields['leave_slip_${_kDetailSlipKey}_type_text']?.didChange(
-        leaveTypeDisplayLabel(
-          typeIsReal: slip.apiTypeIsReal,
-          typePlain: slip.apiType,
-        ),
-      );
       f.fields['leave_slip_${_kDetailSlipKey}_reason']?.didChange(slip.reason);
 
       setState(() {});
@@ -316,44 +299,6 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
     );
   }
 
-  Future<void> _openSessionSheet(String slipKey) async {
-    final form = _formKey.currentState;
-    if (form == null) return;
-
-    await openSelectBottomSheet<LeaveSessionOption>(
-      context: context,
-      title: 'Chọn buổi nghỉ',
-      items: kLeaveSessionOptions,
-      displayText: (o) => o.label,
-      onSelected: (o) {
-        form.fields['leave_slip_${slipKey}_session']?.didChange(
-          o.value.toString(),
-        );
-        form.fields['leave_slip_${slipKey}_session_text']?.didChange(o.label);
-        setState(() {});
-      },
-    );
-  }
-
-  Future<void> _openLeaveTypeSheet(String slipKey) async {
-    final form = _formKey.currentState;
-    if (form == null) return;
-
-    await openSelectBottomSheet<LeaveTypeOption>(
-      context: context,
-      title: 'Chọn loại nghỉ',
-      items: kLeaveTypeOptions,
-      displayText: (o) => o.label,
-      onSelected: (o) {
-        form.fields['leave_slip_${slipKey}_type']?.didChange(
-          o.value.toString(),
-        );
-        form.fields['leave_slip_${slipKey}_type_text']?.didChange(o.label);
-        setState(() {});
-      },
-    );
-  }
-
   void _submit(LeaveState state) {
     FocusScope.of(context).unfocus();
 
@@ -362,11 +307,7 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
     if (state.detailPhaseAllSlips.isEmpty) return;
     
     if (!formState.validate()) {
-      try {
-        final entry = formState.fields.entries.firstWhere((e) => e.value.hasError);
-        final invalidField = entry.value;
-        invalidField.focus();
-      } catch (_) {}
+      FormHelper.focusFirstError(formState: formState);
 
       context.showMessage(
         'Vui lòng điền đầy đủ thông tin các phiếu',
@@ -593,7 +534,7 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
 
                       return FormBuilder(
                         key: _formKey,
-                        autovalidateMode: AutovalidateMode.disabled,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         onChanged: () => setState(() {}),
                         child: Column(
                             children: [
@@ -635,31 +576,18 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
                                               bypassDateRules: state
                                                   .skipLeaveDateConstraints,
                                               readOnly: ro,
-                                              initialLeaveDate: slipForForm?.date,
-                                              initialSessionCode: slipForForm !=
-                                                      null
-                                                  ? '${slipForForm.timeRegister}'
-                                                  : null,
-                                              initialSessionLabel: slipForForm !=
-                                                      null
-                                                  ? _sessionLabel(
-                                                      slipForForm.timeRegister,
-                                                    )
-                                                  : null,
-                                              initialTypeCode: slipForForm != null
-                                                  ? '${slipForForm.type}'
-                                                  : null,
-                                              initialTypeLabel: slipForForm != null
-                                                  ? leaveTypeDisplayLabel(
-                                                      typeIsReal: slipForForm
-                                                          .apiTypeIsReal,
-                                                      typePlain:
-                                                          slipForForm.apiType,
-                                                    )
-                                                  : null,
-                                              initialReason: slipForForm?.reason,
-                                              onSessionTap: _openSessionSheet,
-                                              onTypeTap: _openLeaveTypeSheet,
+                                              initialLeaveDate:
+                                                  slipForForm?.date,
+                                              initialSessionCode:
+                                                  slipForForm != null
+                                                      ? '${slipForForm.timeRegister}'
+                                                      : null,
+                                              initialTypeCode:
+                                                  slipForForm != null
+                                                      ? '${slipForForm.type}'
+                                                      : null,
+                                              initialReason:
+                                                  slipForForm?.reason,
                                             ),
                                           ],
                                         ),

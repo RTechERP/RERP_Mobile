@@ -5,4 +5,5 @@ export 'sort_days_helper.dart';
 export 'swipe_helper.dart';
 export 'device_info_helper.dart';
 export 'scheduled_logout_helper.dart';
+export 'form_helper.dart';
 export 'get_days_helper.dart';

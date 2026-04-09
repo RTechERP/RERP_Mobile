@@ -33,6 +33,7 @@ class _OvertimeAddScreenPageState
     extends BaseState<OvertimeAddScreenPage, OvertimeEvent, OvertimeState,
         OvertimeBloc> {
   final _formKey = GlobalKey<FormBuilderState>();
+  bool _autoValidate = false;
 
   late final DateTime _todayStart;
   late final List<String> _slipKeys;
@@ -100,7 +101,13 @@ class _OvertimeAddScreenPageState
     setState(() => _selectedSlipIndex = index);
   }
 
-  String _slipTabLabel(int index) => 'Phiếu ${index + 1}';
+  String _slipTabLabel(int index) {
+    if (index < 0 || index >= _slipKeys.length) return '—';
+    final key = _slipKeys[index];
+    final v = _formKey.currentState?.fields['ot_slip_${key}_time_start']?.value;
+    if (v is DateTime) return DateFormat('dd/MM/yyyy').format(v);
+    return DateFormat('dd/MM/yyyy').format(_getDateRegister());
+  }
 
   // ── Hours calculation ─────────────────────────────────────────────────
   double? _computeSlipHours(String slipKey) {
@@ -342,36 +349,21 @@ class _OvertimeAddScreenPageState
     
     // Validate form first
     if (!formState.validate()) {
-      // Find FIRST invalid field to focus
-      try {
-        final entry = formState.fields.entries.firstWhere((e) => e.value.hasError);
-        final name = entry.key;
-        final invalidField = entry.value;
+      if (!_autoValidate) setState(() => _autoValidate = true);
 
-        // If field is in a slip (ot_slip_${key}_...), switch to that tab
-        if (name.startsWith('ot_slip_')) {
-          // Accurate extraction of slipKey from _slipKeys
-          final slipKey = _slipKeys.firstWhere((k) => name.contains('_${k}_'), orElse: () => '');
-          final idx = _slipKeys.indexOf(slipKey);
-          
-          if (idx != -1 && idx != _selectedSlipIndex) {
-            setState(() => _selectedSlipIndex = idx);
-            // Wait for IndexedStack to switch before focusing
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              invalidField.focus();
-            });
-          } else {
-            invalidField.focus();
-          }
-        } else {
-          invalidField.focus();
-        }
-      } catch (_) {}
-
-      context.showMessage(
-        'Vui lòng điền đầy đủ thông tin các phiếu',
-        type: SnackBarType.error,
+      FormHelper.focusFirstError(
+        formState: formState,
+        slipPrefix: '_slip_',
+        slipKeys: _slipKeys,
+        onSlipError: (idx) => setState(() => _selectedSlipIndex = idx),
       );
+
+      if (_slipKeys.length >= 2) {
+        context.showMessage(
+          'Vui lòng điền đầy đủ thông tin các phiếu',
+          type: SnackBarType.error,
+        );
+      }
       return;
     }
     
@@ -466,6 +458,7 @@ class _OvertimeAddScreenPageState
           child: BaseScaffold(
             appBar: AppBarCommon(
               title: const Text('Tạo đơn làm thêm giờ'),
+              onBackTap: () => context.pop(),
             ),
             body: Padding(
               padding: const EdgeInsets.all(12),
@@ -473,7 +466,9 @@ class _OvertimeAddScreenPageState
                 builder: (context, state) {
                   return FormBuilder(
                     key: _formKey,
-                    autovalidateMode: AutovalidateMode.disabled,
+                    autovalidateMode: _autoValidate
+                        ? AutovalidateMode.onUserInteraction
+                        : AutovalidateMode.onUserInteraction,
                     onChanged: () => setState(() {}),
                     child: Column(
                       children: [
@@ -501,7 +496,7 @@ class _OvertimeAddScreenPageState
                                         initialValue: _todayStart,
                                         initialDate: _todayStart,
                                         autovalidateMode:
-                                            AutovalidateMode.disabled,
+                                            AutovalidateMode.onUserInteraction,
                                         isRequired: true,
                                         validator: (v) {
                                           if (v == null) return 'Vui lòng chọn ngày đăng ký';
@@ -515,7 +510,7 @@ class _OvertimeAddScreenPageState
                                         name: 'ot_approver_id',
                                         initialValue: '',
                                         autovalidateMode:
-                                            AutovalidateMode.disabled,
+                                            AutovalidateMode.onUserInteraction,
                                         builder: (_) =>
                                             const SizedBox.shrink(),
                                       ),
@@ -534,7 +529,7 @@ class _OvertimeAddScreenPageState
                                             icon: Icons.person_outlined,
                                             initialValue: '',
                                             autovalidateMode:
-                                                AutovalidateMode.disabled,
+                                                AutovalidateMode.onUserInteraction,
                                             isRequired: true,
                                             validator: (v) {
                                               if (v == null || v.isEmpty) return 'Vui lòng chọn người duyệt';
