@@ -261,6 +261,41 @@ class _MissedDetailScreenState extends BaseState<MissedDetailScreen, MissedEvent
                               ),
                               const SizedBox(height: 12),
                               if (_canEdit) ...[
+                                FormBuilderField<String>(
+                                  name: 'regwork_missed_detail_approver_id',
+                                  initialValue: approverIdStr,
+                                  builder: (_) => const SizedBox.shrink(),
+                                ),
+                                GestureDetector(
+                                  onTap: _openApproverSheet,
+                                  child: AbsorbPointer(
+                                    child: FormInputField(
+                                      readOnly: true,
+                                      nameForm:
+                                      'regwork_missed_detail_approver_text',
+                                      nameTextField:
+                                      'regwork_missed_detail_approver_text_field',
+                                      label: 'Người duyệt',
+                                      icon: Icons.supervisor_account_outlined,
+                                      initialValue:
+                                      _approverDisplayLine(item),
+                                      isRequired: true,
+                                      validator: (v){
+                                        if (v == null || v.trim().isEmpty) return 'Vui lòng chọn người duyệt';
+                                        return null;
+                                      }
+                                    ),
+                                  ),
+                                ),
+                              ] else
+                                FormReadonlyField(
+                                  name: 'regwork_missed_detail_approver_ro',
+                                  label: 'Người duyệt',
+                                  icon: Icons.supervisor_account_outlined,
+                                  initialValue: _approverDisplayLine(item),
+                                ),
+                              const SizedBox(height: 12),
+                              if (_canEdit) ...[
                                 FormRadioGroup(
                                   name: 'regwork_missed_detail_type',
                                   label: 'Loại',
@@ -287,36 +322,7 @@ class _MissedDetailScreenState extends BaseState<MissedDetailScreen, MissedEvent
                                   initialValue: _typeDisplayLabel(item),
                                 ),
                               ],
-                              const SizedBox(height: 12),
-                              if (_canEdit) ...[
-                                FormBuilderField<String>(
-                                  name: 'regwork_missed_detail_approver_id',
-                                  initialValue: approverIdStr,
-                                  builder: (_) => const SizedBox.shrink(),
-                                ),
-                                GestureDetector(
-                                  onTap: _openApproverSheet,
-                                  child: AbsorbPointer(
-                                    child: FormInputField(
-                                      readOnly: true,
-                                      nameForm:
-                                          'regwork_missed_detail_approver_text',
-                                      nameTextField:
-                                          'regwork_missed_detail_approver_text_field',
-                                      label: 'Người duyệt',
-                                      icon: Icons.supervisor_account_outlined,
-                                      initialValue:
-                                          _approverDisplayLine(item),
-                                    ),
-                                  ),
-                                ),
-                              ] else
-                                FormReadonlyField(
-                                  name: 'regwork_missed_detail_approver_ro',
-                                  label: 'Người duyệt',
-                                  icon: Icons.supervisor_account_outlined,
-                                  initialValue: _approverDisplayLine(item),
-                                ),
+
                             ],
                           ),
                         ),
@@ -418,7 +424,7 @@ class _MissedDetailScreenState extends BaseState<MissedDetailScreen, MissedEvent
             return Positioned.fill(
               child: AbsorbPointer(
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha: 0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',

@@ -145,9 +145,35 @@ class _MissedAddScreenState
                                 lastDate: _lastSelectableDate,
                               ),
                               const SizedBox(height: 12),
+                              FormBuilderField<String>(
+                                name: 'regwork_missed_add_approver_id',
+                                initialValue: '',
+                                builder: (_) => const SizedBox.shrink(),
+                              ),
+                              GestureDetector(
+                                onTap: _openApproverSheet,
+                                child: AbsorbPointer(
+                                  child: FormInputField(
+                                    readOnly: true,
+                                    nameForm:
+                                    'regwork_missed_add_approver_text',
+                                    nameTextField:
+                                    'regwork_missed_add_approver_text_field',
+                                    label: 'Người duyệt',
+                                    icon: Icons.supervisor_account_outlined,
+                                    isRequired: true,
+                                    validator: (v) {
+                                      if (v == null || v.trim().isEmpty) return 'Vui lòng chọn người duyệt';
+                                      return null;
+                                    }
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 12),
                               FormRadioGroup(
                                 name: 'regwork_missed_add_type',
                                 label: 'Loại',
+                                initialValue: 'check_in',
                                 options: const [
                                   FormRadioOption(
                                     value: 'check_in',
@@ -161,26 +187,7 @@ class _MissedAddScreenState
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 12),
-                              FormBuilderField<String>(
-                                name: 'regwork_missed_add_approver_id',
-                                initialValue: '',
-                                builder: (_) => const SizedBox.shrink(),
-                              ),
-                              GestureDetector(
-                                onTap: _openApproverSheet,
-                                child: AbsorbPointer(
-                                  child: FormInputField(
-                                    readOnly: true,
-                                    nameForm:
-                                        'regwork_missed_add_approver_text',
-                                    nameTextField:
-                                        'regwork_missed_add_approver_text_field',
-                                    label: 'Người duyệt',
-                                    icon: Icons.supervisor_account_outlined,
-                                  ),
-                                ),
-                              ),
+
                             ],
                           ),
                         ),
@@ -276,7 +283,7 @@ class _MissedAddScreenState
             return Positioned.fill(
               child: AbsorbPointer(
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha: 0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',
