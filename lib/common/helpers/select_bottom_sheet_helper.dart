@@ -157,21 +157,11 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
                   horizontal: 16,
                   vertical: 12,
                 ),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Text(
-                      widget.title,
-                      style: AppStyles.headingTitle2,
-                    ),
-                    Positioned(
-                      right: -12,
-                      child: IconButton(
-                        icon: const Icon(Icons.close),
-                        onPressed: () => Navigator.pop(context),
-                      ),
-                    ),
-                  ],
+                child: Center(
+                  child: Text(
+                    widget.title,
+                    style: AppStyles.headingTitle2,
+                  ),
                 ),
               ),
 

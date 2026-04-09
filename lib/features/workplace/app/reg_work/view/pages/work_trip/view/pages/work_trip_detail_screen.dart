@@ -54,22 +54,6 @@ class _WorkTripDetailScreenState
   double get _overnightFee => _overnightType > 0 ? 35000.0 : 0.0;
   double get _totalCost => _selectedTypeCost + _earlyDepartFee + _overnightFee;
 
-  bool get _submitEnabled {
-    final form = _formKey.currentState;
-    if (form == null) return false;
-    form.save();
-    final v = form.value;
-    final approverId = '${v['wtd_approver_id'] ?? ''}'.trim();
-    final date = v['wtd_date_register'] as DateTime?;
-    final location = '${v['wtd_location'] ?? ''}'.trim();
-    final reason = '${v['wtd_reason'] ?? ''}'.trim();
-    return approverId.isNotEmpty &&
-        date != null &&
-        _selectedTypeId != null &&
-        location.isNotEmpty &&
-        reason.isNotEmpty;
-  }
-
   @override
   void initState() {
     super.initState();
@@ -209,25 +193,6 @@ class _WorkTripDetailScreenState
         });
         form.fields['wtd_project_id']?.didChange(p.id.toString());
         form.fields['wtd_project_text']?.didChange(text);
-      },
-    );
-  }
-
-  Future<void> _openDinnerAllowanceSheet() async {
-    final form = _formKey.currentState;
-    if (form == null) return;
-    await openSelectBottomSheet<DinnerAllowanceOption>(
-      context: context,
-      title: 'Phụ cấp ăn tối',
-      items: kDinnerAllowanceOptions,
-      displayText: (o) => o.label,
-      onSelected: (o) {
-        setState(() {
-          _overnightType = o.value;
-          _overnightLabel = o.label;
-        });
-        form.fields['wtd_overnight_type']?.didChange(o.value.toString());
-        form.fields['wtd_overnight_text']?.didChange(o.label);
       },
     );
   }
@@ -500,7 +465,6 @@ class _WorkTripDetailScreenState
 
   Widget _buildCard2(WorkTripState state, WorkTripDetailItem detail) {
     return FormCard(
-      title: 'Thông tin công tác',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -530,6 +494,22 @@ class _WorkTripDetailScreenState
           ),
           const SizedBox(height: 12),
 
+          // Lý do công tác
+          FormInputField(
+            nameForm: 'wtd_reason',
+            nameTextField: 'wtd_reason_tf',
+            label: 'Lý do công tác',
+            icon: Icons.note_alt_outlined,
+            initialValue: detail.reason ?? '',
+            maxLines: 2,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            isRequired: true,
+            validator: (v) {
+              if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do công tác';
+              return null;
+            },
+          ),
+          const SizedBox(height: 12),
           // Địa điểm
           FormInputField(
             nameForm: 'wtd_location',
@@ -651,23 +631,6 @@ class _WorkTripDetailScreenState
 
           // Tổng chi phí
           _TotalCostRow(total: _totalCost),
-          const SizedBox(height: 12),
-
-          // Lý do công tác
-          FormInputField(
-            nameForm: 'wtd_reason',
-            nameTextField: 'wtd_reason_tf',
-            label: 'Lý do công tác',
-            icon: Icons.note_alt_outlined,
-            initialValue: detail.reason ?? '',
-            maxLines: 2,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            isRequired: true,
-            validator: (v) {
-              if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do công tác';
-              return null;
-            },
-          ),
           const SizedBox(height: 12),
 
           // Ghi chú

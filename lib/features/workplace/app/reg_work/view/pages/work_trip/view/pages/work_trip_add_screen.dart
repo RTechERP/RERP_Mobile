@@ -307,47 +307,7 @@ class _WorkTripAddScreenPageState
     });
   }
 
-  Future<void> _openDinnerAllowanceSheet() async {
-    final form = _formKey.currentState;
-    if (form == null) return;
-
-    await openSelectBottomSheet<DinnerAllowanceOption>(
-      context: context,
-      title: 'Phụ cấp ăn tối',
-      items: kDinnerAllowanceOptions,
-      displayText: (o) => o.label,
-      onSelected: (o) {
-        setState(() {
-          _overnightType = o.value;
-          _overnightLabel = o.label;
-        });
-        form.fields['wt_overnight_type']?.didChange(o.value.toString());
-        form.fields['wt_overnight_text']?.didChange(o.label);
-      },
-    );
-  }
-
   // ── Validation / submit ────────────────────────────────────────────────────
-
-  bool _computeSubmitEnabled() {
-    final form = _formKey.currentState;
-    if (form == null) return false;
-    form.save();
-    final v = form.value;
-
-    final approverId = '${v['wt_approver_id'] ?? ''}'.trim();
-    final date = v['wt_date_register'] as DateTime?;
-    final location = '${v['wt_location'] ?? ''}'.trim();
-    final reason = '${v['wt_reason'] ?? ''}'.trim();
-
-    return approverId.isNotEmpty &&
-        date != null &&
-        _selectedTypeId != null &&
-        (_selectedProjectId != null && _selectedProjectId! > 0) &&
-        location.isNotEmpty &&
-        reason.isNotEmpty;
-  }
-
   bool _getIsProblem() {
     final v =
         _formKey.currentState?.fields['wt_is_problem']?.value as bool?;
@@ -463,8 +423,6 @@ class _WorkTripAddScreenPageState
               padding: const EdgeInsets.all(12),
               child: BlocBuilder<WorkTripBloc, WorkTripState>(
                 builder: (context, state) {
-                  final submitOk = _computeSubmitEnabled();
-
                   return FormBuilder(
                     key: _formKey,
                     autovalidateMode: _autoValidate
@@ -622,7 +580,6 @@ class _WorkTripAddScreenPageState
 
   Widget _buildCard2(WorkTripState state) {
     return FormCard(
-      title: 'Thông tin công tác',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -651,7 +608,21 @@ class _WorkTripAddScreenPageState
             },
           ),
           const SizedBox(height: 12),
-
+          // Lý do công tác
+          FormInputField(
+            nameForm: 'wt_reason',
+            nameTextField: 'wt_reason_tf',
+            label: 'Lý do công tác',
+            icon: Icons.note_alt_outlined,
+            maxLines: 2,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            isRequired: true,
+            validator: (v) {
+              if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do công tác';
+              return null;
+            },
+          ),
+          const SizedBox(height: 12),
           // Địa điểm
           FormInputField(
             nameForm: 'wt_location',
@@ -788,22 +759,6 @@ class _WorkTripAddScreenPageState
 
           // Tổng chi phí (reactive)
           _TotalCostRow(total: _totalCost),
-          const SizedBox(height: 12),
-
-          // Lý do công tác
-          FormInputField(
-            nameForm: 'wt_reason',
-            nameTextField: 'wt_reason_tf',
-            label: 'Lý do công tác',
-            icon: Icons.note_alt_outlined,
-            maxLines: 2,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            isRequired: true,
-            validator: (v) {
-              if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do công tác';
-              return null;
-            },
-          ),
           const SizedBox(height: 12),
 
           // Ghi chú
