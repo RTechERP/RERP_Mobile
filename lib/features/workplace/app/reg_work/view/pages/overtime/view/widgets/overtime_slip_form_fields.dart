@@ -129,9 +129,14 @@ class OvertimeSlipFormFields extends StatelessWidget {
             firstDate: yesterdayStart,
             lastDate: tomorrowStart,
             autovalidateMode: AutovalidateMode.disabled,
+            isRequired: true,
             onChanged: onTimeStartChanged == null
                 ? null
                 : (v) => onTimeStartChanged!(slipKey, v),
+            validator: (v) {
+              if (v == null) return 'Vui lòng chọn thời gian bắt đầu';
+              return null;
+            },
           ),
           const SizedBox(height: 12),
 
@@ -149,9 +154,14 @@ class OvertimeSlipFormFields extends StatelessWidget {
             firstDate: yesterdayStart,
             lastDate: endDateMax,
             autovalidateMode: AutovalidateMode.disabled,
+            isRequired: true,
             onChanged: onEndTimeChanged == null
                 ? null
                 : (v) => onEndTimeChanged!(slipKey, v),
+            validator: (v) {
+              if (v == null) return 'Vui lòng chọn thời gian kết thúc';
+              return null;
+            },
           ),
           const SizedBox(height: 12),
 
@@ -236,6 +246,11 @@ class OvertimeSlipFormFields extends StatelessWidget {
                 icon: Icons.category_outlined,
                 initialValue: initialTypeLabel ?? '',
                 autovalidateMode: AutovalidateMode.disabled,
+                isRequired: true,
+                validator: (v) {
+                  if (v == null || v.isEmpty) return 'Vui lòng chọn loại làm thêm';
+                  return null;
+                },
               ),
             ),
           ),
@@ -260,6 +275,11 @@ class OvertimeSlipFormFields extends StatelessWidget {
                 icon: Icons.work_outline,
                 initialValue: initialProjectLabel ?? '',
                 autovalidateMode: AutovalidateMode.disabled,
+                isRequired: true,
+                validator: (v) {
+                  if (v == null || v.isEmpty) return 'Vui lòng chọn dự án';
+                  return null;
+                },
               ),
             ),
           ),
@@ -286,6 +306,11 @@ class OvertimeSlipFormFields extends StatelessWidget {
                 initialValue:
                     initialLocationLabel ?? _defaultLocationLabel,
                 autovalidateMode: AutovalidateMode.disabled,
+                isRequired: true,
+                validator: (v) {
+                  if (v == null || v.isEmpty) return 'Vui lòng chọn địa điểm';
+                  return null;
+                },
               ),
             ),
           ),
@@ -301,6 +326,11 @@ class OvertimeSlipFormFields extends StatelessWidget {
             readOnly: readOnly,
             initialValue: initialReason,
             autovalidateMode: AutovalidateMode.disabled,
+            isRequired: true,
+            validator: (v) {
+              if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do';
+              return null;
+            },
           ),
         ],
       ),

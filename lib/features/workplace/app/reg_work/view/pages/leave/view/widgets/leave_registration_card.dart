@@ -66,7 +66,7 @@ class LeaveRegistrationCard extends StatelessWidget {
             if (v == null) return 'Vui lòng chọn ngày đăng ký';
             return null;
           },
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autovalidateMode: AutovalidateMode.disabled,
         ),
         if (isAdminOrHr) ...[
           const SizedBox(height: 12),
@@ -87,6 +87,11 @@ class LeaveRegistrationCard extends StatelessWidget {
                 label: 'Nhân viên',
                 icon: Icons.person_outline,
                 autovalidateMode: AutovalidateMode.disabled,
+                isRequired: true,
+                validator: (v) {
+                  if (v == null || v.isEmpty) return 'Vui lòng chọn nhân viên';
+                  return null;
+                },
               ),
             ),
           ),
@@ -112,7 +117,7 @@ class LeaveRegistrationCard extends StatelessWidget {
                 if (v == null || v.trim().isEmpty) return 'Vui lòng chọn người duyệt';
                 return null;
               },
-              autovalidateMode: AutovalidateMode.onUserInteraction,
+              autovalidateMode: AutovalidateMode.disabled,
             ),
           ),
         ),

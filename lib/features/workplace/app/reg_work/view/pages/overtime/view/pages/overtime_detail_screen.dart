@@ -268,10 +268,28 @@ class _OvertimeDetailScreenPageState
       hasAttachment: attachedFiles.isNotEmpty,
       departmentId: null,
     );
+
+    // Validate form first (inline errors)
+    if (!formState.validate()) {
+      try {
+        final invalidField = formState.fields.values.firstWhere((f) => f.hasError);
+        invalidField.focus();
+      } catch (_) {}
+
+      context.showMessage(
+        'Vui lòng điền đầy đủ thông tin các phiếu',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    // Then check complex logic from helper
     if (err != null) {
       context.showMessage(err, type: SnackBarType.error);
       return;
     }
+
+    formState.save();
 
     Map<String, String?>? fileInfo;
     if (attachedFiles.isNotEmpty) {
@@ -416,6 +434,7 @@ class _OvertimeDetailScreenPageState
               padding: const EdgeInsets.all(12),
               child: FormBuilder(
                 key: _formKey,
+                autovalidateMode: AutovalidateMode.disabled,
                 onChanged: () => setState(() {}),
                 child: Column(
                   children: [
@@ -433,7 +452,7 @@ class _OvertimeDetailScreenPageState
                                   // Ngày đăng ký (readonly)
                                   FormReadonlyField(
                                     name: 'det_date_display',
-                                    label: 'Ngày đăng ký',
+                                    label: 'Ngày đăng ký *', // Manually added asterisk for consistency
                                     icon: Icons.date_range_outlined,
                                     initialValue: detail.dateRegister,
                                     valueTransformer: (v) => v is DateTime
@@ -465,6 +484,11 @@ class _OvertimeDetailScreenPageState
                                             _approverText(state, detail.approvedId),
                                         autovalidateMode:
                                             AutovalidateMode.disabled,
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (v == null || v.isEmpty) return 'Vui lòng chọn người duyệt';
+                                          return null;
+                                        },
                                       ),
                                     ),
                                   ),

@@ -289,6 +289,7 @@ class _LeaveAddScreenPageState
                   builder: (context, state) {
                     return FormBuilder(
                       key: _formKey,
+                      autovalidateMode: AutovalidateMode.disabled,
                       onChanged: () => setState(() {}),
                       child: Column(
                         children: [
@@ -364,25 +365,37 @@ class _LeaveAddScreenPageState
                               final formState = _formKey.currentState;
                               if (formState == null) return;
                               
-                              if (!formState.saveAndValidate()) {
-                                for (final key in _slipKeys) {
-                                  final fieldsToCheck = [
-                                    'leave_slip_${key}_date',
-                                    'leave_slip_${key}_session_text_tf',
-                                    'leave_slip_${key}_type_text_tf',
-                                    'leave_slip_${key}_reason_tf',
-                                  ];
-                                  final hasError = fieldsToCheck.any((f) => formState.fields[f]?.hasError == true);
-                                  
-                                  if (hasError) {
-                                    final dateValue = formState.fields['leave_slip_${key}_date']?.value as DateTime?;
-                                    final dateStr = dateValue != null ? DateFormat('dd/MM/yyyy').format(dateValue) : '';
-                                    context.showMessage('Vui lòng nhập đầy đủ thông tin ở phiếu $dateStr', type: SnackBarType.error);
-                                    return;
+                              if (!formState.validate()) {
+                                try {
+                                  final entry = formState.fields.entries.firstWhere((e) => e.value.hasError);
+                                  final name = entry.key;
+                                  final invalidField = entry.value;
+
+                                  // If field is in a slip (leave_slip_${key}_...), switch to that tab
+                                  if (name.startsWith('leave_slip_')) {
+                                    final slipKey = _slipKeys.firstWhere((k) => name.contains('_${k}_'), orElse: () => '');
+                                    final idx = _slipKeys.indexOf(slipKey);
+                                    
+                                    if (idx != -1 && idx != _selectedSlipIndex) {
+                                      setState(() => _selectedSlipIndex = idx);
+                                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                                        invalidField.focus();
+                                      });
+                                    } else {
+                                      invalidField.focus();
+                                    }
+                                  } else {
+                                    invalidField.focus();
                                   }
-                                }
+                                } catch (_) {}
+
+                                context.showMessage(
+                                  'Vui lòng điền đầy đủ thông tin các phiếu',
+                                  type: SnackBarType.error,
+                                );
                                 return;
                               }
+                              formState.save();
 
                               final values = formState.value;
                               final stat = _firstLeaveTime(state);

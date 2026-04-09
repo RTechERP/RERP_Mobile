@@ -96,7 +96,7 @@ class LeaveSlipFormFields extends StatelessWidget {
               if (v == null) return 'Vui lòng chọn ngày nghỉ';
               return null;
             },
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autovalidateMode: AutovalidateMode.disabled,
           ),
           const SizedBox(height: 12),
           FormBuilderField<String>(
@@ -120,7 +120,7 @@ class LeaveSlipFormFields extends StatelessWidget {
                   if (v == null || v.isEmpty) return 'Vui lòng chọn buổi nghỉ';
                   return null;
                 },
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+                autovalidateMode: AutovalidateMode.disabled,
               ),
             ),
           ),
@@ -146,7 +146,7 @@ class LeaveSlipFormFields extends StatelessWidget {
                   if (v == null || v.isEmpty) return 'Vui lòng chọn loại nghỉ';
                   return null;
                 },
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+                autovalidateMode: AutovalidateMode.disabled,
               ),
             ),
           ),
@@ -164,7 +164,7 @@ class LeaveSlipFormFields extends StatelessWidget {
               if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do';
               return null;
             },
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autovalidateMode: AutovalidateMode.disabled,
           ),
         ],
       ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
@@ -362,21 +361,17 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
     if (formState == null) return;
     if (state.detailPhaseAllSlips.isEmpty) return;
     
-    if (!formState.saveAndValidate()) {
-      final fieldsToCheck = [
-        'leave_slip_${_kDetailSlipKey}_date',
-        'leave_slip_${_kDetailSlipKey}_session_text_tf',
-        'leave_slip_${_kDetailSlipKey}_type_text_tf',
-        'leave_slip_${_kDetailSlipKey}_reason_tf',
-      ];
-      final hasError = fieldsToCheck.any((f) => formState.fields[f]?.hasError == true);
-      
-      if (hasError) {
-        final dateValue = formState.fields['leave_slip_${_kDetailSlipKey}_date']?.value as DateTime?;
-        final dateStr = dateValue != null ? DateFormat('dd/MM/yyyy').format(dateValue) : '';
-        context.showMessage('Vui lòng nhập đầy đủ thông tin ở phiếu $dateStr', type: SnackBarType.error);
-        return;
-      }
+    if (!formState.validate()) {
+      try {
+        final entry = formState.fields.entries.firstWhere((e) => e.value.hasError);
+        final invalidField = entry.value;
+        invalidField.focus();
+      } catch (_) {}
+
+      context.showMessage(
+        'Vui lòng điền đầy đủ thông tin các phiếu',
+        type: SnackBarType.error,
+      );
       return;
     }
 
@@ -598,6 +593,7 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
 
                       return FormBuilder(
                         key: _formKey,
+                        autovalidateMode: AutovalidateMode.disabled,
                         onChanged: () => setState(() {}),
                         child: Column(
                             children: [

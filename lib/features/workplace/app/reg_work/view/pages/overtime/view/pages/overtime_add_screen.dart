@@ -220,18 +220,6 @@ class _OvertimeAddScreenPageState
     ];
   }
 
-  bool _computeSubmitEnabled() {
-    final form = _formKey.currentState;
-    if (form == null) return false;
-    form.save();
-    final v = form.value;
-    return ValidateHelper.isOvertimeAddSubmitEnabled(
-      approverIdRaw: '${v['ot_approver_id'] ?? ''}',
-      dateRegister: v['ot_date_register'] as DateTime?,
-      slips: _collectSlipRows(v),
-    );
-  }
-
   bool _getIsProblem() {
     final v =
         _formKey.currentState?.fields['ot_is_problem']?.value as bool?;
@@ -351,7 +339,42 @@ class _OvertimeAddScreenPageState
 
     final formState = _formKey.currentState;
     if (formState == null) return;
-    if (!_computeSubmitEnabled()) return;
+    
+    // Validate form first
+    if (!formState.validate()) {
+      // Find FIRST invalid field to focus
+      try {
+        final entry = formState.fields.entries.firstWhere((e) => e.value.hasError);
+        final name = entry.key;
+        final invalidField = entry.value;
+
+        // If field is in a slip (ot_slip_${key}_...), switch to that tab
+        if (name.startsWith('ot_slip_')) {
+          // Accurate extraction of slipKey from _slipKeys
+          final slipKey = _slipKeys.firstWhere((k) => name.contains('_${k}_'), orElse: () => '');
+          final idx = _slipKeys.indexOf(slipKey);
+          
+          if (idx != -1 && idx != _selectedSlipIndex) {
+            setState(() => _selectedSlipIndex = idx);
+            // Wait for IndexedStack to switch before focusing
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              invalidField.focus();
+            });
+          } else {
+            invalidField.focus();
+          }
+        } else {
+          invalidField.focus();
+        }
+      } catch (_) {}
+
+      context.showMessage(
+        'Vui lòng điền đầy đủ thông tin các phiếu',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+    
     formState.save();
 
     final values = formState.value;
@@ -448,10 +471,9 @@ class _OvertimeAddScreenPageState
               padding: const EdgeInsets.all(12),
               child: BlocBuilder<OvertimeBloc, OvertimeState>(
                 builder: (context, state) {
-                  final submitOk = _computeSubmitEnabled();
-
                   return FormBuilder(
                     key: _formKey,
+                    autovalidateMode: AutovalidateMode.disabled,
                     onChanged: () => setState(() {}),
                     child: Column(
                       children: [
@@ -480,6 +502,11 @@ class _OvertimeAddScreenPageState
                                         initialDate: _todayStart,
                                         autovalidateMode:
                                             AutovalidateMode.disabled,
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (v == null) return 'Vui lòng chọn ngày đăng ký';
+                                          return null;
+                                        },
                                       ),
                                       const SizedBox(height: 12),
 
@@ -508,6 +535,11 @@ class _OvertimeAddScreenPageState
                                             initialValue: '',
                                             autovalidateMode:
                                                 AutovalidateMode.disabled,
+                                            isRequired: true,
+                                            validator: (v) {
+                                              if (v == null || v.isEmpty) return 'Vui lòng chọn người duyệt';
+                                              return null;
+                                            },
                                           ),
                                         ),
                                       ),
@@ -615,7 +647,7 @@ class _OvertimeAddScreenPageState
                         ),
                         FormActions(
                           mode: FormActionMode.add,
-                          submitEnabled: submitOk,
+                          submitEnabled: true,
                           onSubmit: () => _onSubmit(state),
                         ),
                       ],
