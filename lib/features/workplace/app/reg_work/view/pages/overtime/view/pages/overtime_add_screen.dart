@@ -241,6 +241,7 @@ class _OvertimeAddScreenPageState
 
   // ── Bottom sheets ─────────────────────────────────────────────────────
   Future<void> _openApproverSheet() async {
+    FocusScope.of(context).unfocus();
     final form = _formKey.currentState;
     if (form == null) return;
 
@@ -313,6 +314,7 @@ class _OvertimeAddScreenPageState
   }
 
   Future<void> _openProjectSheet(String slipKey) async {
+    FocusScope.of(context).unfocus();
     final form = _formKey.currentState;
     if (form == null) return;
 
@@ -514,29 +516,20 @@ class _OvertimeAddScreenPageState
                                         builder: (_) =>
                                             const SizedBox.shrink(),
                                       ),
-                                      GestureDetector(
-                                        onTap: state.status ==
-                                                BaseStateStatus.loading
-                                            ? null
-                                            : _openApproverSheet,
-                                        child: AbsorbPointer(
-                                          child: FormInputField(
-                                            readOnly: true,
-                                            nameForm: 'ot_approver_text',
-                                            nameTextField:
-                                                'ot_approver_text_tf',
-                                            label: 'Người duyệt',
-                                            icon: Icons.person_outlined,
-                                            initialValue: '',
-                                            autovalidateMode:
-                                                AutovalidateMode.onUserInteraction,
-                                            isRequired: true,
-                                            validator: (v) {
-                                              if (v == null || v.isEmpty) return 'Vui lòng chọn người duyệt';
-                                              return null;
-                                            },
-                                          ),
-                                        ),
+                                      FormInputField(
+                                        readOnly: true,
+                                        nameForm: 'ot_approver_text',
+                                        nameTextField: 'ot_approver_text_tf',
+                                        label: 'Người duyệt',
+                                        icon: Icons.person_outlined,
+                                        initialValue: '',
+                                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                                        isRequired: true,
+                                        onTap: state.status == BaseStateStatus.loading ? null : _openApproverSheet,
+                                        validator: (v) {
+                                          if (v == null || v.isEmpty) return 'Vui lòng chọn người duyệt';
+                                          return null;
+                                        },
                                       ),
                                       const SizedBox(height: 8),
 
@@ -662,7 +655,7 @@ class _OvertimeAddScreenPageState
             return Positioned.fill(
               child: AbsorbPointer(
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha: 0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',
@@ -693,9 +686,9 @@ class _TotalHoursRow extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: AppColors.primaryERP.withOpacity(0.07),
+        color: AppColors.primaryERP.withValues(alpha: 0.07),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppColors.primaryERP.withOpacity(0.25)),
+        border: Border.all(color: AppColors.primaryERP.withValues(alpha: 0.25)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

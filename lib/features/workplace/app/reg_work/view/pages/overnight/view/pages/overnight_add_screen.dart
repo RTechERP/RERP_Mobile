@@ -150,6 +150,7 @@ class _OvernightAddScreenState
 
   // ── Approver sheet ──────────────────────────────────────────────────────
   Future<void> _openApproverSheet() async {
+    FocusScope.of(context).unfocus();
     final form = _formKey.currentState;
     if (form == null) return;
 
@@ -340,32 +341,22 @@ class _OvernightAddScreenState
                                             const SizedBox.shrink(),
                                       ),
 
-                                      // Người duyệt
-                                      GestureDetector(
-                                        onTap: state.status ==
-                                                BaseStateStatus.loading
-                                            ? null
-                                            : _openApproverSheet,
-                                        child: AbsorbPointer(
-                                          child: FormInputField(
-                                            readOnly: true,
-                                            nameForm: 'on_approver_text',
-                                            nameTextField:
-                                                'on_approver_text_tf',
-                                            label: 'Người duyệt',
-                                            icon: Icons.person_outlined,
-                                            initialValue: '',
-                                            autovalidateMode:
-                                                AutovalidateMode.onUserInteraction,
-                                            isRequired: true,
-                                            validator: (v) {
-                                              if (v == null || v.isEmpty) {
-                                                return 'Vui lòng chọn người duyệt';
-                                              }
-                                              return null;
-                                            }
-                                          ),
-                                        ),
+                                      FormInputField(
+                                        readOnly: true,
+                                        nameForm: 'on_approver_text',
+                                        nameTextField: 'on_approver_text_tf',
+                                        label: 'Người duyệt',
+                                        icon: Icons.person_outlined,
+                                        initialValue: '',
+                                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                                        isRequired: true,
+                                        onTap: state.status == BaseStateStatus.loading ? null : _openApproverSheet,
+                                        validator: (v) {
+                                          if (v == null || v.isEmpty) {
+                                            return 'Vui lòng chọn người duyệt';
+                                          }
+                                          return null;
+                                        },
                                       ),
                                       const SizedBox(height: 8),
 
@@ -472,7 +463,7 @@ class _OvernightAddScreenState
             return Positioned.fill(
               child: AbsorbPointer(
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha: 0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',
@@ -495,15 +486,11 @@ class _OvernightAddScreenState
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _SlipMeta {
-  _SlipMeta({required DateTime date})
-      : _date = date,
-        key = 'k_${date.millisecondsSinceEpoch}';
+  _SlipMeta({required this.date})
+      : key = 'k_${date.millisecondsSinceEpoch}';
 
   final String key;
-
-  DateTime _date;
-  DateTime get date => _date;
-  set date(DateTime v) => _date = v;
+  DateTime date;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -541,7 +528,7 @@ class _OvernightSlipTabsBar extends StatelessWidget {
                       horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
                     color: i == selectedIndex
-                        ? AppColors.primaryERP.withOpacity(0.1)
+                        ? AppColors.primaryERP.withValues(alpha: 0.1)
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(

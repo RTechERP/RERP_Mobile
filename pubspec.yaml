@@ -86,6 +86,7 @@ dependencies:
   syncfusion_flutter_datepicker: ^32.2.4
   syncfusion_flutter_calendar: ^32.2.4
   flutter_speed_dial: ^7.0.0
+  smooth_sheets: ^1.0.0
 
 flutter_native_splash:
   color: "#FFFFFF"

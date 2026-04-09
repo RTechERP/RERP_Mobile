@@ -235,24 +235,20 @@ class OvertimeSlipFormFields extends StatelessWidget {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             builder: (_) => const SizedBox.shrink(),
           ),
-          GestureDetector(
+          FormInputField(
+            readOnly: true,
+            nameForm: 'ot_slip_${slipKey}_type_text',
+            nameTextField: 'ot_slip_${slipKey}_type_text_tf',
+            label: 'Loại làm thêm',
+            icon: Icons.category_outlined,
+            initialValue: initialTypeLabel ?? '',
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            isRequired: true,
             onTap: readOnly ? null : () => onTypeTap(slipKey),
-            child: AbsorbPointer(
-              child: FormInputField(
-                readOnly: true,
-                nameForm: 'ot_slip_${slipKey}_type_text',
-                nameTextField: 'ot_slip_${slipKey}_type_text_tf',
-                label: 'Loại làm thêm',
-                icon: Icons.category_outlined,
-                initialValue: initialTypeLabel ?? '',
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                isRequired: true,
-                validator: (v) {
-                  if (v == null || v.isEmpty) return 'Vui lòng chọn loại làm thêm';
-                  return null;
-                },
-              ),
-            ),
+            validator: (v) {
+              if (v == null || v.isEmpty) return 'Vui lòng chọn loại làm thêm';
+              return null;
+            },
           ),
           const SizedBox(height: 12),
 
@@ -264,24 +260,20 @@ class OvertimeSlipFormFields extends StatelessWidget {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             builder: (_) => const SizedBox.shrink(),
           ),
-          GestureDetector(
+          FormInputField(
+            readOnly: true,
+            nameForm: 'ot_slip_${slipKey}_project_text',
+            nameTextField: 'ot_slip_${slipKey}_project_text_tf',
+            label: 'Dự án',
+            icon: Icons.work_outline,
+            initialValue: initialProjectLabel ?? '',
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            isRequired: true,
             onTap: readOnly ? null : () => onProjectTap(slipKey),
-            child: AbsorbPointer(
-              child: FormInputField(
-                readOnly: true,
-                nameForm: 'ot_slip_${slipKey}_project_text',
-                nameTextField: 'ot_slip_${slipKey}_project_text_tf',
-                label: 'Dự án',
-                icon: Icons.work_outline,
-                initialValue: initialProjectLabel ?? '',
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                isRequired: true,
-                validator: (v) {
-                  if (v == null || v.isEmpty) return 'Vui lòng chọn dự án';
-                  return null;
-                },
-              ),
-            ),
+            validator: (v) {
+              if (v == null || v.isEmpty) return 'Vui lòng chọn dự án';
+              return null;
+            },
           ),
           const SizedBox(height: 12),
 
@@ -294,25 +286,21 @@ class OvertimeSlipFormFields extends StatelessWidget {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             builder: (_) => const SizedBox.shrink(),
           ),
-          GestureDetector(
+          FormInputField(
+            readOnly: true,
+            nameForm: 'ot_slip_${slipKey}_location_text',
+            nameTextField: 'ot_slip_${slipKey}_location_text_tf',
+            label: 'Địa điểm',
+            icon: Icons.location_on_outlined,
+            initialValue:
+                initialLocationLabel ?? _defaultLocationLabel,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            isRequired: true,
             onTap: readOnly ? null : () => onLocationTap(slipKey),
-            child: AbsorbPointer(
-              child: FormInputField(
-                readOnly: true,
-                nameForm: 'ot_slip_${slipKey}_location_text',
-                nameTextField: 'ot_slip_${slipKey}_location_text_tf',
-                label: 'Địa điểm',
-                icon: Icons.location_on_outlined,
-                initialValue:
-                    initialLocationLabel ?? _defaultLocationLabel,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                isRequired: true,
-                validator: (v) {
-                  if (v == null || v.isEmpty) return 'Vui lòng chọn địa điểm';
-                  return null;
-                },
-              ),
-            ),
+            validator: (v) {
+              if (v == null || v.isEmpty) return 'Vui lòng chọn địa điểm';
+              return null;
+            },
           ),
           const SizedBox(height: 12),
 

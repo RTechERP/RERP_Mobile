@@ -77,23 +77,19 @@ class LeaveRegistrationCard extends StatelessWidget {
             autovalidateMode: AutovalidateMode.disabled,
             builder: (_) => const SizedBox.shrink(),
           ),
-          GestureDetector(
+          FormInputField(
+            readOnly: true,
+            nameForm: 'regwork_leave_employee_text',
+            nameTextField: 'regwork_leave_employee_text_tf',
+            label: 'Nhân viên',
+            icon: Icons.person_outline,
+            autovalidateMode: AutovalidateMode.disabled,
+            isRequired: true,
             onTap: employeePickerEnabled ? onPickEmployee : null,
-            child: AbsorbPointer(
-              child: FormInputField(
-                readOnly: true,
-                nameForm: 'regwork_leave_employee_text',
-                nameTextField: 'regwork_leave_employee_text_tf',
-                label: 'Nhân viên',
-                icon: Icons.person_outline,
-                autovalidateMode: AutovalidateMode.disabled,
-                isRequired: true,
-                validator: (v) {
-                  if (v == null || v.isEmpty) return 'Vui lòng chọn nhân viên';
-                  return null;
-                },
-              ),
-            ),
+            validator: (v) {
+              if (v == null || v.isEmpty) return 'Vui lòng chọn nhân viên';
+              return null;
+            },
           ),
         ],
         const SizedBox(height: 12),
@@ -103,23 +99,19 @@ class LeaveRegistrationCard extends StatelessWidget {
           autovalidateMode: AutovalidateMode.disabled,
           builder: (_) => const SizedBox.shrink(),
         ),
-        GestureDetector(
+        FormInputField(
+          readOnly: true,
+          nameForm: 'regwork_leave_add_approver_text',
+          nameTextField: 'regwork_leave_add_approver_text_tf',
+          label: 'Người duyệt',
+          icon: Icons.supervisor_account_outlined,
+          isRequired: true,
           onTap: approverPickerEnabled ? onPickApprover : null,
-          child: AbsorbPointer(
-            child: FormInputField(
-              readOnly: true,
-              nameForm: 'regwork_leave_add_approver_text',
-              nameTextField: 'regwork_leave_add_approver_text_tf',
-              label: 'Người duyệt',
-              icon: Icons.supervisor_account_outlined,
-              isRequired: true,
-              validator: (v) {
-                if (v == null || v.trim().isEmpty) return 'Vui lòng chọn người duyệt';
-                return null;
-              },
-              autovalidateMode: AutovalidateMode.disabled,
-            ),
-          ),
+          validator: (v) {
+            if (v == null || v.trim().isEmpty) return 'Vui lòng chọn người duyệt';
+            return null;
+          },
+          autovalidateMode: AutovalidateMode.disabled,
         ),
       ],
     );

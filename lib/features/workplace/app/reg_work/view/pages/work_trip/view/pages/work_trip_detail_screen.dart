@@ -35,6 +35,7 @@ class _WorkTripDetailScreenState
         WorkTripBloc> {
   final _formKey = GlobalKey<FormBuilderState>();
   bool _detailApplied = false;
+  bool _autoValidate = false;
 
   // ── Reactive state ─────────────────────────────────────────────────────────
   int? _selectedTypeId;
@@ -150,6 +151,7 @@ class _WorkTripDetailScreenState
   // ── Bottom sheets ──────────────────────────────────────────────────────────
 
   Future<void> _openApproverSheet() async {
+    FocusScope.of(context).unfocus();
     final form = _formKey.currentState;
     if (form == null) return;
     await openSelectBottomSheet<ApproverItem>(
@@ -168,6 +170,7 @@ class _WorkTripDetailScreenState
   }
 
   Future<void> _openTypeSheet() async {
+    FocusScope.of(context).unfocus();
     final form = _formKey.currentState;
     if (form == null) return;
     await openSelectBottomSheet<WorkTripTypeItem>(
@@ -188,6 +191,7 @@ class _WorkTripDetailScreenState
   }
 
   Future<void> _openProjectSheet() async {
+    FocusScope.of(context).unfocus();
     final form = _formKey.currentState;
     if (form == null) return;
     await openSelectBottomSheet<WorkTripProject>(
@@ -246,11 +250,9 @@ class _WorkTripDetailScreenState
     FocusScope.of(context).unfocus();
     final formState = _formKey.currentState;
     if (formState == null) return;
-    if (!_submitEnabled) {
-      context.showMessage(
-        'Vui lòng điền đầy đủ: Người duyệt, Ngày đăng ký, Loại công tác, Địa điểm, Lý do công tác',
-        type: SnackBarType.error,
-      );
+    if (!formState.validate()) {
+      if (!_autoValidate) setState(() => _autoValidate = true);
+      FormHelper.focusFirstError(formState: formState);
       return;
     }
     formState.save();
@@ -339,6 +341,9 @@ class _WorkTripDetailScreenState
                         padding: const EdgeInsets.all(12),
                         child: FormBuilder(
                           key: _formKey,
+                          autovalidateMode: _autoValidate
+                              ? AutovalidateMode.onUserInteraction
+                              : AutovalidateMode.disabled,
                           onChanged: () => setState(() {}),
                           child: Column(
                             children: [
@@ -356,7 +361,7 @@ class _WorkTripDetailScreenState
                               ),
                               FormActions(
                                 mode: FormActionMode.edit,
-                                saveEnabled: _submitEnabled,
+                                saveEnabled: true,
                                 onCancel: () => GoRouter.of(context).pop(),
                                 onSave: () => _onSave(detail),
                               ),
@@ -416,7 +421,12 @@ class _WorkTripDetailScreenState
             format: DateFormat('dd/MM/yyyy'),
             initialValue: detail.dayBussiness,
             initialDate: detail.dayBussiness,
-            autovalidateMode: AutovalidateMode.disabled,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            isRequired: true,
+            validator: (v) {
+              if (v == null) return 'Vui lòng chọn ngày đăng ký';
+              return null;
+            },
           ),
           const SizedBox(height: 12),
 
@@ -427,21 +437,20 @@ class _WorkTripDetailScreenState
             autovalidateMode: AutovalidateMode.disabled,
             builder: (_) => const SizedBox.shrink(),
           ),
-          GestureDetector(
-            onTap: state.status == BaseStateStatus.loading
-                ? null
-                : _openApproverSheet,
-            child: AbsorbPointer(
-              child: FormInputField(
-                readOnly: true,
-                nameForm: 'wtd_approver_text',
-                nameTextField: 'wtd_approver_text_tf',
-                label: 'Người duyệt',
-                icon: Icons.person_outlined,
-                initialValue: approverName,
-                autovalidateMode: AutovalidateMode.disabled,
-              ),
-            ),
+          FormInputField(
+            readOnly: true,
+            nameForm: 'wtd_approver_text',
+            nameTextField: 'wtd_approver_text_tf',
+            label: 'Người duyệt',
+            icon: Icons.person_outlined,
+            initialValue: approverName,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            isRequired: true,
+            onTap: state.status == BaseStateStatus.loading ? null : _openApproverSheet,
+            validator: (v) {
+              if (v == null || v.isEmpty) return 'Vui lòng chọn người duyệt';
+              return null;
+            },
           ),
           const SizedBox(height: 8),
 
@@ -504,19 +513,20 @@ class _WorkTripDetailScreenState
             autovalidateMode: AutovalidateMode.disabled,
             builder: (_) => const SizedBox.shrink(),
           ),
-          GestureDetector(
+          FormInputField(
+            readOnly: true,
+            nameForm: 'wtd_project_text',
+            nameTextField: 'wtd_project_text_tf',
+            label: 'Dự án',
+            icon: Icons.work_outline,
+            initialValue: _selectedProjectText,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            isRequired: true,
             onTap: _openProjectSheet,
-            child: AbsorbPointer(
-              child: FormInputField(
-                readOnly: true,
-                nameForm: 'wtd_project_text',
-                nameTextField: 'wtd_project_text_tf',
-                label: 'Dự án',
-                icon: Icons.work_outline,
-                initialValue: _selectedProjectText,
-                autovalidateMode: AutovalidateMode.disabled,
-              ),
-            ),
+            validator: (v) {
+              if (v == null || v.isEmpty) return 'Vui lòng chọn dự án';
+              return null;
+            },
           ),
           const SizedBox(height: 12),
 
@@ -527,7 +537,12 @@ class _WorkTripDetailScreenState
             label: 'Địa điểm',
             icon: Icons.location_on_outlined,
             initialValue: detail.location ?? '',
-            autovalidateMode: AutovalidateMode.disabled,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            isRequired: true,
+            validator: (v) {
+              if (v == null || v.isEmpty) return 'Vui lòng nhập địa điểm';
+              return null;
+            },
           ),
           const SizedBox(height: 12),
 
@@ -538,19 +553,20 @@ class _WorkTripDetailScreenState
             autovalidateMode: AutovalidateMode.disabled,
             builder: (_) => const SizedBox.shrink(),
           ),
-          GestureDetector(
+          FormInputField(
+            readOnly: true,
+            nameForm: 'wtd_type_text',
+            nameTextField: 'wtd_type_text_tf',
+            label: 'Loại công tác',
+            icon: Icons.category_outlined,
+            initialValue: _selectedTypeName,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            isRequired: true,
             onTap: _openTypeSheet,
-            child: AbsorbPointer(
-              child: FormInputField(
-                readOnly: true,
-                nameForm: 'wtd_type_text',
-                nameTextField: 'wtd_type_text_tf',
-                label: 'Loại công tác',
-                icon: Icons.category_outlined,
-                initialValue: _selectedTypeName,
-                autovalidateMode: AutovalidateMode.disabled,
-              ),
-            ),
+            validator: (v) {
+              if (v == null || v.isEmpty) return 'Vui lòng chọn loại công tác';
+              return null;
+            },
           ),
           const SizedBox(height: 12),
 
@@ -607,25 +623,29 @@ class _WorkTripDetailScreenState
           const SizedBox(height: 12),
 
           // Phụ cấp ăn tối
-          FormBuilderField<String>(
+          _buildChoiceGroup<int>(
+            context: context,
             name: 'wtd_overnight_type',
-            initialValue: _overnightType.toString(),
-            autovalidateMode: AutovalidateMode.disabled,
-            builder: (_) => const SizedBox.shrink(),
+            label: 'Phụ cấp ăn tối',
+            icon: Icons.restaurant_outlined,
+            options: kDinnerAllowanceOptions
+                .map((o) => _ChoiceOption<int>(value: o.value, label: o.label))
+                .toList(),
+            initialValue: _overnightType,
+            onChanged: (val) {
+              if (val == null) return;
+              final opt = kDinnerAllowanceOptions.firstWhere((o) => o.value == val);
+              setState(() {
+                _overnightType = val;
+                _overnightLabel = opt.label;
+              });
+              _formKey.currentState?.fields['wtd_overnight_text']?.didChange(opt.label);
+            },
           ),
-          GestureDetector(
-            onTap: _openDinnerAllowanceSheet,
-            child: AbsorbPointer(
-              child: FormInputField(
-                readOnly: true,
-                nameForm: 'wtd_overnight_text',
-                nameTextField: 'wtd_overnight_text_tf',
-                label: 'Phụ cấp ăn tối',
-                icon: Icons.restaurant_outlined,
-                initialValue: _overnightLabel,
-                autovalidateMode: AutovalidateMode.disabled,
-              ),
-            ),
+          FormBuilderField<String>(
+            name: 'wtd_overnight_text',
+            initialValue: _overnightLabel,
+            builder: (_) => const SizedBox.shrink(),
           ),
           const SizedBox(height: 12),
 
@@ -641,7 +661,12 @@ class _WorkTripDetailScreenState
             icon: Icons.note_alt_outlined,
             initialValue: detail.reason ?? '',
             maxLines: 2,
-            autovalidateMode: AutovalidateMode.disabled,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            isRequired: true,
+            validator: (v) {
+              if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do công tác';
+              return null;
+            },
           ),
           const SizedBox(height: 12),
 
@@ -659,7 +684,105 @@ class _WorkTripDetailScreenState
       ),
     );
   }
+
+  Widget _buildChoiceGroup<T>({
+    required BuildContext context,
+    required String name,
+    required String label,
+    required IconData icon,
+    required List<_ChoiceOption<T>> options,
+    T? initialValue,
+    bool enabled = true,
+    void Function(T? value)? onChanged,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(icon, size: 18, color: AppColors.primaryERP),
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: AppColors.neutralText,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        FormBuilderField<T>(
+          name: name,
+          initialValue: initialValue,
+          enabled: enabled,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          builder: (FormFieldState<T?> field) {
+            return Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: options.map((option) {
+                final isSelected = field.value == option.value;
+                final primaryColor = option.selectedColor ?? AppColors.primaryERP;
+
+                return GestureDetector(
+                  onTap: enabled
+                      ? () {
+                          field.didChange(option.value);
+                          onChanged?.call(option.value);
+                        }
+                      : null,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? primaryColor.withValues(alpha: 0.1)
+                          : AppColors.white.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: isSelected
+                            ? primaryColor
+                            : AppColors.black.withValues(alpha: 0.1),
+                        width: 1.5,
+                      ),
+                    ),
+                    child: Text(
+                      option.label,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight:
+                            isSelected ? FontWeight.w600 : FontWeight.w500,
+                        color: isSelected
+                            ? primaryColor
+                            : AppColors.textSecondaryColor,
+                      ),
+                    ),
+                  ),
+                );
+              }).toList(),
+            );
+          },
+        ),
+      ],
+    );
+  }
 }
+
+class _ChoiceOption<T> {
+  final T value;
+  final String label;
+  final Color? selectedColor;
+
+  _ChoiceOption({
+    required this.value,
+    required this.label,
+    this.selectedColor,
+  });
+}
+
 
 // ── Helper widgets (identical to add screen) ───────────────────────────────────
 
@@ -721,9 +844,9 @@ class _TotalCostRow extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: AppColors.primaryERP.withOpacity(0.07),
+        color: AppColors.primaryERP.withValues(alpha: 0.07),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppColors.primaryERP.withOpacity(0.25)),
+        border: Border.all(color: AppColors.primaryERP.withValues(alpha: 0.25)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

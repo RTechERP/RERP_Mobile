@@ -38,7 +38,8 @@ class LeaveAddScreenPage extends StatefulWidget {
 class _LeaveAddScreenPageState
     extends BaseState<LeaveAddScreenPage, LeaveEvent, LeaveState, LeaveBloc> {
   final _formKey = GlobalKey<FormBuilderState>();
-
+  bool _autoValidate = false;
+  
   late final DateTime _todayStart;
   late final List<String> _slipKeys;
   late final Map<String, DateTime> _slipDates;
@@ -120,6 +121,7 @@ class _LeaveAddScreenPageState
   }
 
   Future<void> _openEmployeeSheet() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     final form = _formKey.currentState;
     if (form == null) return;
 
@@ -152,6 +154,7 @@ class _LeaveAddScreenPageState
   }
 
   Future<void> _openApproverSheet() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     final form = _formKey.currentState;
     if (form == null) return;
 
@@ -256,7 +259,9 @@ class _LeaveAddScreenPageState
                   builder: (context, state) {
                     return FormBuilder(
                       key: _formKey,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      autovalidateMode: _autoValidate
+                          ? AutovalidateMode.onUserInteraction
+                          : AutovalidateMode.disabled,
                       onChanged: () => setState(() {}),
                       child: Column(
                         children: [
@@ -339,6 +344,7 @@ class _LeaveAddScreenPageState
                               if (formState == null) return;
                               
                               if (!formState.validate()) {
+                                if (!_autoValidate) setState(() => _autoValidate = true);
                                 FormHelper.focusFirstError(
                                   formState: formState,
                                   slipPrefix: 'leave_slip_',
