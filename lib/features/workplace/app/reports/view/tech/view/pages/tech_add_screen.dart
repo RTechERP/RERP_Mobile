@@ -67,10 +67,12 @@ class _TechAddScreenState
             title: const Text('Tạo báo cáo'),
             actions: [
               IconButton(
-                icon: const Icon(Icons.add_circle_outline),
+                icon: const Icon(Icons.add_circle_outline, ),
                 onPressed: () {
                   context.push(RouteNames.regworkOvertimeAdd);
                 },
+                color: AppColors.primaryERP,
+
               ),
             ],
           ),
@@ -169,7 +171,7 @@ class _TechAddScreenState
                                                     decoration: BoxDecoration(
                                                       color: isActive
                                                           ? AppColors.primaryERP
-                                                                .withOpacity(
+                                                                .withValues(alpha:
                                                                   0.1,
                                                                 )
                                                           : Colors.transparent,
@@ -242,6 +244,8 @@ class _TechAddScreenState
                                               icon: const Icon(
                                                 Icons.add_circle_outline,
                                               ),
+                                              color: AppColors.primaryERP,
+
                                             ),
                                           ],
                                         ),
@@ -723,7 +727,7 @@ class _TechAddScreenState
               child: AbsorbPointer(
                 absorbing: true,
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha: 0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',
