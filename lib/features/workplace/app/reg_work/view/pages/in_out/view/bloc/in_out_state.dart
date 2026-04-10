@@ -12,6 +12,9 @@ class InOutState extends BaseBlocState {
   final String? loginName;
   final DateTime? dateStart;
   final DateTime? dateEnd;
+
+  final FillApproverItem? approveId;
+
   const InOutState({
     required super.status,
     super.message,
@@ -25,6 +28,7 @@ class InOutState extends BaseBlocState {
     this.loginName,
     this.dateStart,
     this.dateEnd,
+    this.approveId,
   });
 
   factory InOutState.init() => const InOutState(
@@ -39,6 +43,7 @@ class InOutState extends BaseBlocState {
     loginName: null,
     dateStart: null,
     dateEnd: null,
+    approveId: null,
   );
 
   @override
@@ -55,5 +60,6 @@ class InOutState extends BaseBlocState {
     loginName,
     dateStart,
     dateEnd,
+    approveId,
   ];
 }

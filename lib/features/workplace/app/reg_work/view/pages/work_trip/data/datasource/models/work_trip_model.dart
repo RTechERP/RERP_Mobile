@@ -188,3 +188,13 @@ class WorkTripDetailItem with _$WorkTripDetailItem {
   factory WorkTripDetailItem.fromJson(Map<String, dynamic> json) =>
       _$WorkTripDetailItemFromJson(json);
 }
+
+@freezed
+class FillApproverItem with _$FillApproverItem {
+  const factory FillApproverItem({
+    @JsonKey(name: 'ApproveID') required int approveId,
+  }) = _FillApproverItem;
+
+  factory FillApproverItem.fromJson(Map<String, dynamic> json) =>
+      _$FillApproverItemFromJson(json);
+}

@@ -52,6 +52,8 @@ abstract class _$WorkTripStateCWProxy {
 
   WorkTripState isFetchingCopy(bool isFetchingCopy);
 
+  WorkTripState approveId(FillApproverItem? approveId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkTripState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -81,6 +83,7 @@ abstract class _$WorkTripStateCWProxy {
     bool? isEditing,
     WorkTripDetailItem? copyData,
     bool? isFetchingCopy,
+    FillApproverItem? approveId,
   });
 }
 
@@ -171,6 +174,10 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
       this(isFetchingCopy: isFetchingCopy);
 
   @override
+  WorkTripState approveId(FillApproverItem? approveId) =>
+      this(approveId: approveId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkTripState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -201,6 +208,7 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
     Object? isEditing = const $CopyWithPlaceholder(),
     Object? copyData = const $CopyWithPlaceholder(),
     Object? isFetchingCopy = const $CopyWithPlaceholder(),
+    Object? approveId = const $CopyWithPlaceholder(),
   }) {
     return WorkTripState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -303,6 +311,10 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
           ? _value.isFetchingCopy
           // ignore: cast_nullable_to_non_nullable
           : isFetchingCopy as bool,
+      approveId: approveId == const $CopyWithPlaceholder()
+          ? _value.approveId
+          // ignore: cast_nullable_to_non_nullable
+          : approveId as FillApproverItem?,
     );
   }
 }

@@ -87,21 +87,57 @@ class MissedBloc extends BaseBloc<MissedEvent, MissedState> {
     try {
       emit(state.copyWith(status: BaseStateStatus.loading));
 
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.fold((_) => null, (u) => u);
+
+      if (user == null) {
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.failed,
+            message: 'Không lấy được thông tin người dùng',
+          ),
+        );
+        return;
+      }
+
       final approverRes = await _missedRepo.getApprover();
-      await approverRes.fold(
-        (l) async {
-          _log.logE('❌ Get approver failed: $l');
-          emit(
-            state.copyWith(
-              status: BaseStateStatus.failed,
-              message: l.getErrorMessage,
-            ),
-          );
-        },
-        (r) async {
-          _log.logI('✅ Get approver success');
-          emit(state.copyWith(status: BaseStateStatus.success, approvers: r));
-        },
+      final fillApproverRes = await _missedRepo.getFillApprover(
+        employeeID: user.employeeId,
+        tableName: 'EmployeeNoFingerprint',
+      );
+
+      FillApproverItem? fillApprover;
+      List<ApproverItem> approvers = [];
+      String? errorMsg;
+
+      approverRes.fold(
+        (l) => errorMsg = l.getErrorMessage,
+        (r) => approvers = r,
+      );
+
+      if (errorMsg != null) {
+        _log.logE('❌ Get approver failed: $errorMsg');
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.failed,
+            message: errorMsg,
+          ),
+        );
+        return;
+      }
+
+      fillApproverRes.fold(
+        (l) => _log.logE('❌ Get fill approver failed: $l'),
+        (r) => fillApprover = r,
+      );
+
+      _log.logI('✅ Get init add success');
+      emit(
+        state.copyWith(
+          status: BaseStateStatus.success,
+          approvers: approvers,
+          approveId: fillApprover,
+        ),
       );
     } finally {
       _isInitAddInFlight = false;

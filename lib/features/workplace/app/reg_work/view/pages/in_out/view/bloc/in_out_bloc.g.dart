@@ -31,6 +31,8 @@ abstract class _$InOutStateCWProxy {
 
   InOutState dateEnd(DateTime? dateEnd);
 
+  InOutState approveId(FillApproverItem? approveId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `InOutState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -50,6 +52,7 @@ abstract class _$InOutStateCWProxy {
     String? loginName,
     DateTime? dateStart,
     DateTime? dateEnd,
+    FillApproverItem? approveId,
   });
 }
 
@@ -100,6 +103,10 @@ class _$InOutStateCWProxyImpl implements _$InOutStateCWProxy {
   InOutState dateEnd(DateTime? dateEnd) => this(dateEnd: dateEnd);
 
   @override
+  InOutState approveId(FillApproverItem? approveId) =>
+      this(approveId: approveId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `InOutState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -120,6 +127,7 @@ class _$InOutStateCWProxyImpl implements _$InOutStateCWProxy {
     Object? loginName = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
+    Object? approveId = const $CopyWithPlaceholder(),
   }) {
     return InOutState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -174,6 +182,10 @@ class _$InOutStateCWProxyImpl implements _$InOutStateCWProxy {
           ? _value.dateEnd
           // ignore: cast_nullable_to_non_nullable
           : dateEnd as DateTime?,
+      approveId: approveId == const $CopyWithPlaceholder()
+          ? _value.approveId
+          // ignore: cast_nullable_to_non_nullable
+          : approveId as FillApproverItem?,
     );
   }
 }

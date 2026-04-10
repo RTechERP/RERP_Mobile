@@ -14,4 +14,7 @@ abstract class InOutRepo{
   Future<Either<BaseError, void>> saveInOut({
     required Map<String, dynamic> payload,
   });
+
+  Future<Either<BaseError, FillApproverItem>> getFillApprover({required int employeeID, required String tableName});
+
 }

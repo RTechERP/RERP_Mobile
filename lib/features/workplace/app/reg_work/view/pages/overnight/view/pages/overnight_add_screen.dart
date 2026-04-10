@@ -281,25 +281,59 @@ class _OvernightAddScreenState
   Widget renderUI(BuildContext context) {
     return Stack(
       children: [
-        BlocListener<OvernightBloc, OvernightState>(
-          listenWhen: (p, c) =>
-              p.submitSuccess != c.submitSuccess ||
-              p.message != c.message ||
-              p.status != c.status,
-          listener: (context, state) {
-            if (state.status == BaseStateStatus.failed &&
-                (state.message ?? '').isNotEmpty &&
-                !state.isSubmitting) {
-              context.showMessage(state.message!, type: SnackBarType.error);
-            }
-            if ((state.message ?? '').isNotEmpty && state.submitSuccess) {
-              context.showMessage(state.message!, type: SnackBarType.success);
-            }
-            if (state.submitSuccess) {
-              bloc.add(const OvernightEvent.clearSubmitState());
-              context.pop(true);
-            }
-          },
+        MultiBlocListener(
+          listeners: [
+            BlocListener<OvernightBloc, OvernightState>(
+              listenWhen: (p, c) =>
+                  p.submitSuccess != c.submitSuccess ||
+                  p.message != c.message ||
+                  p.status != c.status,
+              listener: (context, state) {
+                if (state.status == BaseStateStatus.failed &&
+                    (state.message ?? '').isNotEmpty &&
+                    !state.isSubmitting) {
+                  context.showMessage(state.message!, type: SnackBarType.error);
+                }
+                if ((state.message ?? '').isNotEmpty && state.submitSuccess) {
+                  context.showMessage(state.message!, type: SnackBarType.success);
+                }
+                if (state.submitSuccess) {
+                  bloc.add(const OvernightEvent.clearSubmitState());
+                  context.pop(true);
+                }
+              },
+            ),
+            BlocListener<OvernightBloc, OvernightState>(
+              listenWhen: (previous, current) =>
+                  previous.approveId != current.approveId ||
+                  previous.approvers != current.approvers,
+              listener: (context, state) {
+                if (state.approveId != null && state.approvers.isNotEmpty) {
+                  final form = _formKey.currentState;
+                  if (form == null) return;
+
+                  final targetId = state.approveId!.approveId;
+                  final match = state.approvers.cast<ApproverItem?>().firstWhere(
+                    (a) {
+                      if (a == null || a.isDeleted == true) return false;
+                      final idValue = a.employeeId ?? a.id;
+                      return idValue == targetId;
+                    },
+                    orElse: () => null,
+                  );
+
+                  if (match != null) {
+                    final idValue = match.employeeId ?? match.id;
+                    final line =
+                        '${match.code ?? ''} - ${match.fullName ?? ''}'.trim();
+                    form.fields['on_approver_id']?.didChange(idValue.toString());
+                    form.fields['on_approver_text']?.didChange(line);
+                    setState(() {});
+                  }
+                }
+              },
+            ),
+          ],
           child: BaseScaffold(
             appBar: AppBarCommon(
               title: const Text('Tạo đơn làm đêm'),

@@ -38,6 +38,8 @@ abstract class _$OvernightStateCWProxy {
 
   OvernightState editSuccess(bool editSuccess);
 
+  OvernightState approveId(FillApproverItem? approveId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OvernightState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -60,6 +62,7 @@ abstract class _$OvernightStateCWProxy {
     bool? isSupplementaryRegistrationOpen,
     bool? isFetchingDetail,
     bool? editSuccess,
+    FillApproverItem? approveId,
   });
 }
 
@@ -124,6 +127,10 @@ class _$OvernightStateCWProxyImpl implements _$OvernightStateCWProxy {
       this(editSuccess: editSuccess);
 
   @override
+  OvernightState approveId(FillApproverItem? approveId) =>
+      this(approveId: approveId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OvernightState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -147,6 +154,7 @@ class _$OvernightStateCWProxyImpl implements _$OvernightStateCWProxy {
     Object? isSupplementaryRegistrationOpen = const $CopyWithPlaceholder(),
     Object? isFetchingDetail = const $CopyWithPlaceholder(),
     Object? editSuccess = const $CopyWithPlaceholder(),
+    Object? approveId = const $CopyWithPlaceholder(),
   }) {
     return OvernightState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -217,6 +225,10 @@ class _$OvernightStateCWProxyImpl implements _$OvernightStateCWProxy {
               ? _value.editSuccess
               // ignore: cast_nullable_to_non_nullable
               : editSuccess as bool,
+      approveId: approveId == const $CopyWithPlaceholder()
+          ? _value.approveId
+          // ignore: cast_nullable_to_non_nullable
+          : approveId as FillApproverItem?,
     );
   }
 }

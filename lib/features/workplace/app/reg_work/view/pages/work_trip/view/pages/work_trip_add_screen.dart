@@ -378,43 +378,77 @@ class _WorkTripAddScreenPageState
   Widget renderUI(BuildContext context) {
     return Stack(
       children: [
-        BlocListener<WorkTripBloc, WorkTripState>(
-          listenWhen: (p, c) =>
-              p.submitSuccess != c.submitSuccess ||
-              p.message != c.message ||
-              p.status != c.status ||
-              (p.workTripVehicles.isEmpty && c.workTripVehicles.isNotEmpty) ||
-              (p.approvers.isEmpty && c.approvers.isNotEmpty) ||
-              (p.workTripTypes.isEmpty && c.workTripTypes.isNotEmpty),
-          listener: (context, state) {
-            if (state.status == BaseStateStatus.failed &&
-                (state.message ?? '').isNotEmpty &&
-                !state.isSubmitting) {
-              context.showMessage(state.message!, type: SnackBarType.error);
-            }
-            if ((state.message ?? '').isNotEmpty && state.submitSuccess) {
-              context.showMessage(state.message!, type: SnackBarType.success);
-            }
-            if (state.submitSuccess) {
-              bloc.add(const WorkTripEvent.clearSubmitState());
-              context.pop(true);
-            }
-            // Tự động chọn "Ô tô công ty" khi vehicles được tải lần đầu
-            if (!_defaultVehicleSet && state.workTripVehicles.isNotEmpty) {
-              _setDefaultVehicle(state.workTripVehicles);
-            }
-            // Áp dụng dữ liệu sao chép sau khi lookup lists đã sẵn sàng
-            if (!_copyApplied &&
-                widget.copyFrom != null &&
-                state.approvers.isNotEmpty &&
-                state.workTripTypes.isNotEmpty) {
-              _copyApplied = true;
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                if (!mounted) return;
-                _applyCopyFrom(state);
-              });
-            }
-          },
+        MultiBlocListener(
+          listeners: [
+            BlocListener<WorkTripBloc, WorkTripState>(
+              listenWhen: (p, c) =>
+                  p.submitSuccess != c.submitSuccess ||
+                  p.message != c.message ||
+                  p.status != c.status ||
+                  (p.workTripVehicles.isEmpty && c.workTripVehicles.isNotEmpty) ||
+                  (p.approvers.isEmpty && c.approvers.isNotEmpty) ||
+                  (p.workTripTypes.isEmpty && c.workTripTypes.isNotEmpty),
+              listener: (context, state) {
+                if (state.status == BaseStateStatus.failed &&
+                    (state.message ?? '').isNotEmpty &&
+                    !state.isSubmitting) {
+                  context.showMessage(state.message!, type: SnackBarType.error);
+                }
+                if ((state.message ?? '').isNotEmpty && state.submitSuccess) {
+                  context.showMessage(state.message!, type: SnackBarType.success);
+                }
+                if (state.submitSuccess) {
+                  bloc.add(const WorkTripEvent.clearSubmitState());
+                  context.pop(true);
+                }
+                // Tự động chọn "Ô tô công ty" khi vehicles được tải lần đầu
+                if (!_defaultVehicleSet && state.workTripVehicles.isNotEmpty) {
+                  _setDefaultVehicle(state.workTripVehicles);
+                }
+                // Áp dụng dữ liệu sao chép sau khi lookup lists đã sẵn sàng
+                if (!_copyApplied &&
+                    widget.copyFrom != null &&
+                    state.approvers.isNotEmpty &&
+                    state.workTripTypes.isNotEmpty) {
+                  _copyApplied = true;
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    if (!mounted) return;
+                    _applyCopyFrom(state);
+                  });
+                }
+              },
+            ),
+            BlocListener<WorkTripBloc, WorkTripState>(
+              listenWhen: (previous, current) =>
+                  previous.approveId != current.approveId ||
+                  previous.approvers != current.approvers,
+              listener: (context, state) {
+                if (state.approveId != null && state.approvers.isNotEmpty) {
+                  final form = _formKey.currentState;
+                  if (form == null) return;
+
+                  final targetId = state.approveId!.approveId;
+                  final match = state.approvers.cast<ApproverItem?>().firstWhere(
+                    (a) {
+                      if (a == null || a.isDeleted == true) return false;
+                      final idValue = a.employeeId ?? a.id;
+                      return idValue == targetId;
+                    },
+                    orElse: () => null,
+                  );
+
+                  if (match != null) {
+                    final idValue = match.employeeId ?? match.id;
+                    final line =
+                        '${match.code ?? ''} - ${match.fullName ?? ''}'.trim();
+                    form.fields['wt_approver_id']?.didChange(idValue.toString());
+                    form.fields['wt_approver_text']?.didChange(line);
+                    setState(() {});
+                  }
+                }
+              },
+            ),
+          ],
           child: BaseScaffold(
             appBar: AppBarCommon(
               title: const Text('Tạo đơn công tác'),
@@ -468,7 +502,7 @@ class _WorkTripAddScreenPageState
             return Positioned.fill(
               child: AbsorbPointer(
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha: 0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',

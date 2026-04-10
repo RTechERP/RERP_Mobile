@@ -46,7 +46,7 @@ class _MissedAddScreenState
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       bloc.add(const MissedEvent.clearSubmitState());
-      bloc.add(const MissedEvent.fetchApprovers());
+      bloc.add(const MissedEvent.initAdd());
     });
   }
 
@@ -96,24 +96,62 @@ class _MissedAddScreenState
   Widget renderUI(BuildContext context) {
     return Stack(
       children: [
-        BlocListener<MissedBloc, MissedState>(
-          listenWhen: (previous, current) =>
-              previous.submitSuccess != current.submitSuccess ||
-              previous.message != current.message,
-          listener: (context, state) {
-            if ((state.message ?? '').isNotEmpty) {
-              context.showMessage(
-                state.message!,
-                type: state.submitSuccess
-                    ? SnackBarType.success
-                    : SnackBarType.error,
-              );
-            }
-            if (state.submitSuccess) {
-              bloc.add(const MissedEvent.clearSubmitState());
-              context.pop(true);
-            }
-          },
+        MultiBlocListener(
+          listeners: [
+            BlocListener<MissedBloc, MissedState>(
+              listenWhen: (previous, current) =>
+                  previous.submitSuccess != current.submitSuccess ||
+                  previous.message != current.message,
+              listener: (context, state) {
+                if ((state.message ?? '').isNotEmpty) {
+                  context.showMessage(
+                    state.message!,
+                    type: state.submitSuccess
+                        ? SnackBarType.success
+                        : SnackBarType.error,
+                  );
+                }
+                if (state.submitSuccess) {
+                  bloc.add(const MissedEvent.clearSubmitState());
+                  context.pop(true);
+                }
+              },
+            ),
+            BlocListener<MissedBloc, MissedState>(
+              listenWhen: (previous, current) =>
+                  previous.approveId != current.approveId ||
+                  previous.approvers != current.approvers,
+              listener: (context, state) {
+                if (state.approveId != null && state.approvers.isNotEmpty) {
+                  final form = _formKey.currentState;
+                  if (form == null) return;
+
+                  final targetId = state.approveId!.approveId;
+                  final match = state.approvers.cast<ApproverItem?>().firstWhere(
+                    (a) {
+                      if (a == null || a.isDeleted == true) return false;
+                      final idValue = _approvedMissedPayloadValue(a);
+                      return idValue == targetId;
+                    },
+                    orElse: () => null,
+                  );
+
+                  if (match != null) {
+                    final idValue = _approvedMissedPayloadValue(match);
+                    final line =
+                        '${match.code ?? ''} - ${match.fullName ?? ''}'.trim();
+                    form.fields['regwork_missed_add_approver_id']?.didChange(
+                      idValue.toString(),
+                    );
+                    form.fields['regwork_missed_add_approver_text']?.didChange(
+                      line,
+                    );
+                    setState(() {});
+                  }
+                }
+              },
+            ),
+          ],
           child: BaseScaffold(
             appBar: AppBarCommon(
               title: const Text('Tạo đơn quên chấm công'),

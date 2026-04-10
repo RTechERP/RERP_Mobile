@@ -1373,3 +1373,147 @@ abstract class _ApproverItem implements ApproverItem {
   _$$ApproverItemImplCopyWith<_$ApproverItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+FillApproverItem _$FillApproverItemFromJson(Map<String, dynamic> json) {
+  return _FillApproverItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$FillApproverItem {
+  @JsonKey(name: 'ApproveID')
+  int get approveId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FillApproverItemCopyWith<FillApproverItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FillApproverItemCopyWith<$Res> {
+  factory $FillApproverItemCopyWith(
+          FillApproverItem value, $Res Function(FillApproverItem) then) =
+      _$FillApproverItemCopyWithImpl<$Res, FillApproverItem>;
+  @useResult
+  $Res call({@JsonKey(name: 'ApproveID') int approveId});
+}
+
+/// @nodoc
+class _$FillApproverItemCopyWithImpl<$Res, $Val extends FillApproverItem>
+    implements $FillApproverItemCopyWith<$Res> {
+  _$FillApproverItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? approveId = null,
+  }) {
+    return _then(_value.copyWith(
+      approveId: null == approveId
+          ? _value.approveId
+          : approveId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$FillApproverItemImplCopyWith<$Res>
+    implements $FillApproverItemCopyWith<$Res> {
+  factory _$$FillApproverItemImplCopyWith(_$FillApproverItemImpl value,
+          $Res Function(_$FillApproverItemImpl) then) =
+      __$$FillApproverItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'ApproveID') int approveId});
+}
+
+/// @nodoc
+class __$$FillApproverItemImplCopyWithImpl<$Res>
+    extends _$FillApproverItemCopyWithImpl<$Res, _$FillApproverItemImpl>
+    implements _$$FillApproverItemImplCopyWith<$Res> {
+  __$$FillApproverItemImplCopyWithImpl(_$FillApproverItemImpl _value,
+      $Res Function(_$FillApproverItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? approveId = null,
+  }) {
+    return _then(_$FillApproverItemImpl(
+      approveId: null == approveId
+          ? _value.approveId
+          : approveId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$FillApproverItemImpl implements _FillApproverItem {
+  const _$FillApproverItemImpl(
+      {@JsonKey(name: 'ApproveID') required this.approveId});
+
+  factory _$FillApproverItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FillApproverItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ApproveID')
+  final int approveId;
+
+  @override
+  String toString() {
+    return 'FillApproverItem(approveId: $approveId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FillApproverItemImpl &&
+            (identical(other.approveId, approveId) ||
+                other.approveId == approveId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, approveId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FillApproverItemImplCopyWith<_$FillApproverItemImpl> get copyWith =>
+      __$$FillApproverItemImplCopyWithImpl<_$FillApproverItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$FillApproverItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _FillApproverItem implements FillApproverItem {
+  const factory _FillApproverItem(
+          {@JsonKey(name: 'ApproveID') required final int approveId}) =
+      _$FillApproverItemImpl;
+
+  factory _FillApproverItem.fromJson(Map<String, dynamic> json) =
+      _$FillApproverItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ApproveID')
+  int get approveId;
+  @override
+  @JsonKey(ignore: true)
+  _$$FillApproverItemImplCopyWith<_$FillApproverItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

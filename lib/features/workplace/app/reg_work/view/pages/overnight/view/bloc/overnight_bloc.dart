@@ -163,8 +163,13 @@ class OvernightBloc extends BaseBloc<OvernightEvent, OvernightState> {
       }
 
       final approverRes = await _overnightRepo.getApprover();
+      final fillApproverRes = await _overnightRepo.getFillApprover(
+        employeeID: user.employeeId,
+        tableName: 'EmployeeNighShift',
+      );
 
       var approvers = <ApproverItem>[];
+      FillApproverItem? fillApprover;
       String? errorMsg;
 
       approverRes.fold(
@@ -177,11 +182,10 @@ class OvernightBloc extends BaseBloc<OvernightEvent, OvernightState> {
         return;
       }
 
-      if (errorMsg != null) {
-        _log.logE('❌ OvernightBloc initAdd getOvertimeType failed: $errorMsg');
-        emit(state.copyWith(status: BaseStateStatus.failed, message: errorMsg));
-        return;
-      }
+      fillApproverRes.fold(
+        (l) => _log.logE('❌ OvernightBloc initAdd getFillApprover failed: $l'),
+        (r) => fillApprover = r,
+      );
 
       _log.logI('✅ OvernightBloc initAdd success');
       emit(
@@ -190,6 +194,7 @@ class OvernightBloc extends BaseBloc<OvernightEvent, OvernightState> {
           approvers: approvers,
           employeeId: user.employeeId,
           loginName: user.loginName,
+          approveId: fillApprover,
         ),
       );
     } finally {

@@ -124,4 +124,18 @@ class WorkTripService extends DioBaseApiService {
       ),
     );
   }
+
+  Future<BaseData<FillApproverItem>> getFillApprover({
+    required int employeeID,
+    required String tableName,
+  }) async {
+    return get<BaseData<FillApproverItem>>(
+      ApiEndPoint.getFillAprrover,
+      query: {'employeeID': employeeID, 'tableName': tableName},
+      parser: (json) => BaseData<FillApproverItem>.fromJson(
+        json,
+        (data) => FillApproverItem.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
 }

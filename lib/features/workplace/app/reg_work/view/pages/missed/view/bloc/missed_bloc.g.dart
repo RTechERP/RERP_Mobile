@@ -31,6 +31,8 @@ abstract class _$MissedStateCWProxy {
 
   MissedState dateEnd(DateTime? dateEnd);
 
+  MissedState approveId(FillApproverItem? approveId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `MissedState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -50,6 +52,7 @@ abstract class _$MissedStateCWProxy {
     String? loginName,
     DateTime? dateStart,
     DateTime? dateEnd,
+    FillApproverItem? approveId,
   });
 }
 
@@ -100,6 +103,10 @@ class _$MissedStateCWProxyImpl implements _$MissedStateCWProxy {
   MissedState dateEnd(DateTime? dateEnd) => this(dateEnd: dateEnd);
 
   @override
+  MissedState approveId(FillApproverItem? approveId) =>
+      this(approveId: approveId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `MissedState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -120,6 +127,7 @@ class _$MissedStateCWProxyImpl implements _$MissedStateCWProxy {
     Object? loginName = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
+    Object? approveId = const $CopyWithPlaceholder(),
   }) {
     return MissedState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -174,6 +182,10 @@ class _$MissedStateCWProxyImpl implements _$MissedStateCWProxy {
           ? _value.dateEnd
           // ignore: cast_nullable_to_non_nullable
           : dateEnd as DateTime?,
+      approveId: approveId == const $CopyWithPlaceholder()
+          ? _value.approveId
+          // ignore: cast_nullable_to_non_nullable
+          : approveId as FillApproverItem?,
     );
   }
 }

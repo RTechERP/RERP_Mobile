@@ -168,11 +168,16 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
       final typeRes = await _workTripRepo.getWorkTripType();
       final vehicleRes = await _workTripRepo.getWorkTripVehicleType();
       final projectRes = await _workTripRepo.getWorkTripProject();
+      final fillApproverRes = await _workTripRepo.getFillApprover(
+        employeeID: user.employeeId,
+        tableName: 'EmployeeBussiness',
+      );
 
       var approvers = <ApproverItem>[];
       var types = <WorkTripTypeItem>[];
       var vehicles = <WorkTripTypeVehicle>[];
       var projects = <WorkTripProject>[];
+      FillApproverItem? fillApprover;
       String? errorMsg;
 
       approverRes.fold(
@@ -211,6 +216,11 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
         (r) => projects = r,
       );
 
+      fillApproverRes.fold(
+        (l) => _log.logE('❌ WorkTripBloc initAdd getFillApprover failed: $l'),
+        (r) => fillApprover = r,
+      );
+
       _log.logI('✅ WorkTripBloc initAdd success');
       emit(state.copyWith(
         status: BaseStateStatus.success,
@@ -220,6 +230,7 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
         workTripProjects: projects,
         employeeId: user.employeeId,
         loginName: user.loginName,
+        approveId: fillApprover,
       ));
     } finally {
       _isInitAddInFlight = false;

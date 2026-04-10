@@ -17,6 +17,7 @@ class OvernightState extends BaseBlocState {
   final bool isFetchingDetail;
   final bool editSuccess;
 
+  final FillApproverItem? approveId;
   const OvernightState({
     required super.status,
     super.message,
@@ -33,6 +34,7 @@ class OvernightState extends BaseBlocState {
     this.isSupplementaryRegistrationOpen = false,
     this.isFetchingDetail = false,
     this.editSuccess = false,
+    this.approveId,
   });
 
   factory OvernightState.init() => const OvernightState(
@@ -50,6 +52,7 @@ class OvernightState extends BaseBlocState {
     isSupplementaryRegistrationOpen: false,
     isFetchingDetail: false,
     editSuccess: false,
+    approveId: null,
   );
 
   @override
@@ -69,5 +72,6 @@ class OvernightState extends BaseBlocState {
     isSupplementaryRegistrationOpen,
     isFetchingDetail,
     editSuccess,
+    approveId,
   ];
 }

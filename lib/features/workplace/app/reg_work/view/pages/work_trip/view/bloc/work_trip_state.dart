@@ -33,6 +33,8 @@ class WorkTripState extends BaseBlocState {
   /// Đang tải dữ liệu sao chép.
   final bool isFetchingCopy;
 
+  final FillApproverItem? approveId;
+
   const WorkTripState({
     required super.status,
     super.message,
@@ -56,6 +58,7 @@ class WorkTripState extends BaseBlocState {
     this.isEditing = false,
     this.copyData,
     this.isFetchingCopy = false,
+    this.approveId,
   });
 
   factory WorkTripState.init() => const WorkTripState(
@@ -80,6 +83,7 @@ class WorkTripState extends BaseBlocState {
         isEditing: false,
         copyData: null,
         isFetchingCopy: false,
+        approveId: null,
       );
 
   @override
@@ -106,5 +110,6 @@ class WorkTripState extends BaseBlocState {
         isEditing,
         copyData,
         isFetchingCopy,
+        approveId,
       ];
 }

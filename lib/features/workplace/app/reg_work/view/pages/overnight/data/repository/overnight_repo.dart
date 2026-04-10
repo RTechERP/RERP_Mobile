@@ -13,4 +13,9 @@ abstract class OvernightRepo {
   Future<Either<BaseError, void>> saveOverNight({
     required dynamic payload,
   });
+
+  Future<Either<BaseError, FillApproverItem>> getFillApprover({
+    required int employeeID,
+    required String tableName,
+  });
 }

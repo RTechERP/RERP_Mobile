@@ -16,6 +16,8 @@ import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../data/datasource/models/in_out_model.dart';
 import '../bloc/in_out_bloc.dart';
 
+int approvedInOutPayloadValue(ApproverItem item) => item.employeeId ?? item.id;
+
 class _InOutTypeOption {
   const _InOutTypeOption({required this.key, required this.label});
 
@@ -87,8 +89,8 @@ class _InOutAddScreenPageState
     final form = _formKey.currentState;
     if (form == null) return;
 
-    final rawType =
-        '${form.fields['regwork_inout_add_type']?.value ?? ''}'.trim();
+    final rawType = '${form.fields['regwork_inout_add_type']?.value ?? ''}'
+        .trim();
 
     // User đã chọn sẵn thì không auto override.
     if (rawType.isNotEmpty) return;
@@ -127,7 +129,7 @@ class _InOutAddScreenPageState
 
     DateTime time(int h, int m) {
       final selectedDate =
-      form.fields['regwork_inout_add_date']?.value as DateTime?;
+          form.fields['regwork_inout_add_date']?.value as DateTime?;
 
       final base = selectedDate ?? DateTime.now();
 
@@ -174,14 +176,12 @@ class _InOutAddScreenPageState
     final form = _formKey.currentState;
     if (form == null) return;
 
-    final items =
-        bloc.state.approvers.where((e) => e.isDeleted != true).toList();
+    final items = bloc.state.approvers
+        .where((e) => e.isDeleted != true)
+        .toList();
 
     if (items.isEmpty) {
-      context.showMessage(
-        'Chưa có người duyệt',
-        type: SnackBarType.error,
-      );
+      context.showMessage('Chưa có người duyệt', type: SnackBarType.error);
       return;
     }
 
@@ -189,8 +189,7 @@ class _InOutAddScreenPageState
       context: context,
       title: 'Chọn người duyệt',
       items: items,
-      displayText: (a) =>
-          '${a.code ?? ''} - ${a.fullName ?? ''}'.trim(),
+      displayText: (a) => '${a.code ?? ''} - ${a.fullName ?? ''}'.trim(),
       onSelected: (item) {
         final tpValue = _approvedTpPayloadValue(item);
         final line = '${item.code ?? ''} - ${item.fullName ?? ''}'.trim();
@@ -206,26 +205,60 @@ class _InOutAddScreenPageState
   Widget renderUI(BuildContext context) {
     return Stack(
       children: [
-        BlocListener<InOutBloc, InOutState>(
-          listenWhen: (previous, current) =>
-              previous.submitSuccess != current.submitSuccess ||
-              previous.message != current.message,
-          listener: (context, state) {
-            if ((state.message ?? '').isNotEmpty) {
-              context.showMessage(
-                state.message!,
-                type: state.submitSuccess
-                    ? SnackBarType.success
-                    : SnackBarType.error,
-              );
-            }
-            if (state.submitSuccess) {
-              bloc.add(const InOutEvent.clearSubmitState());
-              context.pop(true);
-            }
-          },
+        MultiBlocListener(
+          listeners: [
+            BlocListener<InOutBloc, InOutState>(
+              listenWhen: (previous, current) =>
+                  previous.submitSuccess != current.submitSuccess ||
+                  previous.message != current.message,
+              listener: (context, state) {
+                if ((state.message ?? '').isNotEmpty) {
+                  context.showMessage(
+                    state.message!,
+                    type: state.submitSuccess
+                        ? SnackBarType.success
+                        : SnackBarType.error,
+                  );
+                }
+                if (state.submitSuccess) {
+                  bloc.add(const InOutEvent.clearSubmitState());
+                  context.pop(true);
+                }
+              },
+            ),
+              BlocListener<InOutBloc, InOutState>(
+                listenWhen: (previous, current) =>
+                    previous.approveId != current.approveId ||
+                    previous.approvers != current.approvers,
+                listener: (context, state) {
+                  if (state.approveId != null && state.approvers.isNotEmpty) {
+                    final form = _formKey.currentState;
+                    if (form == null) return;
+
+                    final targetId = state.approveId!.approveId;
+                    final match = state.approvers.cast<ApproverItem?>().firstWhere(
+                      (a) {
+                        if (a == null || a.isDeleted == true) return false;
+                        return _approvedTpPayloadValue(a) == targetId;
+                      },
+                      orElse: () => null,
+                    );
+
+                    if (match != null) {
+                      final tpValue = _approvedTpPayloadValue(match);
+                      final line =
+                          '${match.code ?? ''} - ${match.fullName ?? ''}'.trim();
+                      form.fields['regwork_inout_add_approver_tp']?.didChange(
+                        tpValue.toString(),
+                      );
+                      form.fields['regwork_inout_add_approver_text']?.didChange(line);
+                    }
+                  }
+                },
+              ),
+          ],
           child: BaseScaffold(
-            appBar: AppBarCommon(title: const Text('Tạo đơn')),
+            appBar: AppBarCommon(title: const Text('Tạo đơn đi muộn - về sớm')),
             body: Padding(
               padding: const EdgeInsets.all(16),
               child: BlocBuilder<InOutBloc, InOutState>(
@@ -245,7 +278,8 @@ class _InOutAddScreenPageState
                                       FormDateTimePicker(
                                         nameForm: 'regwork_inout_add_date',
                                         // Inner field: không dùng khi submit (chỉ dùng `nameForm`).
-                                        nameTimePicker: 'inout_add_date_time_inner_unused',
+                                        nameTimePicker:
+                                            'inout_add_date_time_inner_unused',
                                         label: 'Ngày',
                                         icon: Icons.date_range_outlined,
                                         inputType: InputType.date,
@@ -334,10 +368,12 @@ class _InOutAddScreenPageState
                                                 .supervisor_account_outlined,
                                             isRequired: true,
                                             validator: (v) {
-                                              if (v == null || v.trim().isEmpty) return 'Vui lòng chọn người duyệt';
+                                              if (v == null || v.trim().isEmpty)
+                                                return 'Vui lòng chọn người duyệt';
                                               return null;
                                             },
-                                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
                                           ),
                                         ),
                                       ),
@@ -345,16 +381,19 @@ class _InOutAddScreenPageState
 
                                       FormInputField(
                                         nameForm: 'regwork',
-                                        nameTextField: 'regwork_inout_add_reason',
+                                        nameTextField:
+                                            'regwork_inout_add_reason',
                                         label: 'Lý do',
                                         icon: Icons.note_alt_outlined,
                                         maxLines: 5,
                                         isRequired: true,
                                         validator: (v) {
-                                          if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do';
+                                          if (v == null || v.trim().isEmpty)
+                                            return 'Vui lòng nhập lý do';
                                           return null;
                                         },
-                                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
                                       ),
                                     ],
                                   ),
@@ -378,13 +417,12 @@ class _InOutAddScreenPageState
                             // Ngày: chỉ lấy `regwork_inout_add_date` (outer) -> fallback hôm nay nếu null.
                             // Giờ: lấy theo `inout_add_from` / `inout_add_to` (inner) như auto-set.
                             final dateOuter =
-                            values['regwork_inout_add_date'] as DateTime?;
+                                values['regwork_inout_add_date'] as DateTime?;
                             final date = dateOuter ?? _todayStart;
 
                             final fromInner =
                                 values['inout_add_from'] as DateTime?;
-                            final toInner =
-                                values['inout_add_to'] as DateTime?;
+                            final toInner = values['inout_add_to'] as DateTime?;
                             final typeRaw =
                                 '${values['regwork_inout_add_type'] ?? ''}'
                                     .trim();
@@ -394,19 +432,18 @@ class _InOutAddScreenPageState
                             final reason =
                                 '${values['regwork_inout_add_reason'] ?? ''}';
 
-                            DateTime time(int h, int m) => DateTime(
-                                  date.year,
-                                  date.month,
-                                  date.day,
-                                  h,
-                                  m,
-                                );
+                            DateTime time(int h, int m) =>
+                                DateTime(date.year, date.month, date.day, h, m);
 
                             final (defaultFrom, defaultTo) = switch (typeRaw) {
-                              final t when t.contains('early') =>
-                                (time(16, 30), time(17, 30)),
-                              final t when t.contains('late') =>
-                                (time(8, 0), time(9, 0)),
+                              final t when t.contains('early') => (
+                                time(16, 30),
+                                time(17, 30),
+                              ),
+                              final t when t.contains('late') => (
+                                time(8, 0),
+                                time(9, 0),
+                              ),
                               _ => (time(8, 0), time(9, 0)),
                             };
 
@@ -461,7 +498,7 @@ class _InOutAddScreenPageState
             return Positioned.fill(
               child: AbsorbPointer(
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha: 0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',

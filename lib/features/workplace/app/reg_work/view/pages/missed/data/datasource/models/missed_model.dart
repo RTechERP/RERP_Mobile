@@ -65,3 +65,13 @@ class ApproverItem with _$ApproverItem {
   factory ApproverItem.fromJson(Map<String, dynamic> json) =>
       _$ApproverItemFromJson(json);
 }
+
+@freezed
+class FillApproverItem with _$FillApproverItem {
+  const factory FillApproverItem({
+    @JsonKey(name: 'ApproveID') required int approveId,
+  }) = _FillApproverItem;
+
+  factory FillApproverItem.fromJson(Map<String, dynamic> json) =>
+      _$FillApproverItemFromJson(json);
+}

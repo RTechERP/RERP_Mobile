@@ -21,4 +21,9 @@ abstract class WorkTripRepo {
   });
 
   Future<Either<BaseError, WorkTripDetailItem>> getWorkTripById(int id);
+
+  Future<Either<BaseError, FillApproverItem>> getFillApprover({
+    required int employeeID,
+    required String tableName,
+  });
 }

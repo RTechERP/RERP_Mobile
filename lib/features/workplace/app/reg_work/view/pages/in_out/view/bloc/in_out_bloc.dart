@@ -69,7 +69,41 @@ class InOutBloc extends BaseBloc<InOutEvent, InOutState> {
     _isInitAddInFlight = true;
     try {
       emit(state.copyWith(status: BaseStateStatus.loading));
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.fold((_) => null, (u) => u);
 
+
+      if (user == null) {
+        _log.logE('❌ initAdd: no current user');
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.failed,
+            message: 'Không lấy được thông tin người dùng',
+          ),
+        );
+        return;
+      }
+      final employeeID = user.employeeId;
+
+      final fillApproverRes = await _InOutRepo.getFillApprover(
+        employeeID: employeeID,
+        tableName: 'EmployeeEarlyLate',
+      );
+      await fillApproverRes.fold(
+            (l) async {
+          _log.logE('❌ Get approverID failed: $l');
+          emit(
+            state.copyWith(
+              status: BaseStateStatus.failed,
+              // message: l.getErrorMessage,
+            ),
+          );
+        },
+            (r) async {
+          _log.logI('✅ Get approverID success');
+          emit(state.copyWith(status: BaseStateStatus.success, approveId: r));
+        },
+      );
       final approverRes = await _InOutRepo.getApprover();
       await approverRes.fold(
         (l) async {

@@ -12,6 +12,7 @@ class MissedState extends BaseBlocState {
   final String? loginName;
   final DateTime? dateStart;
   final DateTime? dateEnd;
+  final FillApproverItem? approveId;
   const MissedState({
     required super.status,
     super.message,
@@ -25,6 +26,7 @@ class MissedState extends BaseBlocState {
     this.loginName,
     this.dateStart,
     this.dateEnd,
+    this.approveId,
   });
 
   factory MissedState.init() => const MissedState(
@@ -39,6 +41,7 @@ class MissedState extends BaseBlocState {
     loginName: null,
     dateStart: null,
     dateEnd: null,
+    approveId: null,
   );
 
   @override
@@ -55,5 +58,6 @@ class MissedState extends BaseBlocState {
     loginName,
     dateStart,
     dateEnd,
+    approveId,
   ];
 }

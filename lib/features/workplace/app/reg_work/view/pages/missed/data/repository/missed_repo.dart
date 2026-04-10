@@ -22,4 +22,9 @@ abstract class MissedRepo{
     required DateTime dateMissed,
     required int type,
   });
+
+  Future<Either<BaseError, FillApproverItem>> getFillApprover({
+    required int employeeID,
+    required String tableName,
+  });
 }
