@@ -602,3 +602,14 @@ class LeavePhaseMultiDto {
     return 3;
   }
 }
+
+@freezed
+class FillApproverItem with _$FillApproverItem {
+  const factory FillApproverItem({
+    @JsonKey(name: 'ApproveID') required int approveId,
+  }) = _FillApproverItem;
+
+  factory FillApproverItem.fromJson(Map<String, dynamic> json) =>
+      _$FillApproverItemFromJson(json);
+}
+

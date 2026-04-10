@@ -28,4 +28,6 @@ abstract class LeaveRepo{
     required Map<String, dynamic> payload,
   });
 
+  Future<Either<BaseError, FillApproverItem>> getFillApprover({required int employeeID, required String tableName});
+
 }

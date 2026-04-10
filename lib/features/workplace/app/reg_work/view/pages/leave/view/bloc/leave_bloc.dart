@@ -82,6 +82,8 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
     try {
       final userRes = await _authRepo.getCurrentUser();
       final user = userRes.fold((_) => null, (u) => u);
+
+
       if (user == null) {
         _log.logE('❌ initAdd: no current user');
         emit(
@@ -92,6 +94,26 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         );
         return;
       }
+      final employeeID = user.employeeId;
+      final fillApproverRes = await _leaveRepo.getFillApprover(
+        employeeID: employeeID,
+        tableName: 'EmployeeOnLeave',
+      );
+      await fillApproverRes.fold(
+            (l) async {
+          _log.logE('❌ Get approverID failed: $l');
+          emit(
+            state.copyWith(
+              status: BaseStateStatus.failed,
+              // message: l.getErrorMessage,
+            ),
+          );
+        },
+            (r) async {
+          _log.logI('✅ Get approverID success');
+          emit(state.copyWith(status: BaseStateStatus.success, approveId: r));
+        },
+      );
 
       final roles = RoleResolver.resolve(user);
       final skipDateRules = roles.contains(AppRole.admin) ||

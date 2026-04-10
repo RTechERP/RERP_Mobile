@@ -65,6 +65,8 @@ abstract class _$LeaveStateCWProxy {
 
   LeaveState detailPhaseStatusHRText(String? detailPhaseStatusHRText);
 
+  LeaveState approveId(FillApproverItem? approveId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeaveState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -101,6 +103,7 @@ abstract class _$LeaveStateCWProxy {
     bool? detailPhaseIsApprovedHR,
     int? detailPhaseStatusHRNumber,
     String? detailPhaseStatusHRText,
+    FillApproverItem? approveId,
   });
 }
 
@@ -219,6 +222,10 @@ class _$LeaveStateCWProxyImpl implements _$LeaveStateCWProxy {
       this(detailPhaseStatusHRText: detailPhaseStatusHRText);
 
   @override
+  LeaveState approveId(FillApproverItem? approveId) =>
+      this(approveId: approveId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeaveState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -256,6 +263,7 @@ class _$LeaveStateCWProxyImpl implements _$LeaveStateCWProxy {
     Object? detailPhaseIsApprovedHR = const $CopyWithPlaceholder(),
     Object? detailPhaseStatusHRNumber = const $CopyWithPlaceholder(),
     Object? detailPhaseStatusHRText = const $CopyWithPlaceholder(),
+    Object? approveId = const $CopyWithPlaceholder(),
   }) {
     return LeaveState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -391,6 +399,10 @@ class _$LeaveStateCWProxyImpl implements _$LeaveStateCWProxy {
               ? _value.detailPhaseStatusHRText
               // ignore: cast_nullable_to_non_nullable
               : detailPhaseStatusHRText as String?,
+      approveId: approveId == const $CopyWithPlaceholder()
+          ? _value.approveId
+          // ignore: cast_nullable_to_non_nullable
+          : approveId as FillApproverItem?,
     );
   }
 }

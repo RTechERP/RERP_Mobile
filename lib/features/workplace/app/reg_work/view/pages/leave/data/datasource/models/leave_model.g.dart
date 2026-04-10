@@ -605,3 +605,15 @@ Map<String, dynamic> _$$EmployeeLeaveImplToJson(_$EmployeeLeaveImpl instance) =>
       'EmployeeID': instance.employeeId,
       'IsExcludedFromSalary1': instance.isExcludedFromSalary1,
     };
+
+_$FillApproverItemImpl _$$FillApproverItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$FillApproverItemImpl(
+      approveId: (json['ApproveID'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$$FillApproverItemImplToJson(
+        _$FillApproverItemImpl instance) =>
+    <String, dynamic>{
+      'ApproveID': instance.approveId,
+    };

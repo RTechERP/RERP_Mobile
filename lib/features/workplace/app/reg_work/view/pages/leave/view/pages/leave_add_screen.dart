@@ -163,7 +163,7 @@ class _LeaveAddScreenPageState
 
     if (items.isEmpty) {
       context.showMessage(
-        'Chưa có người kiểm duyệt',
+        'Chưa có người duyệt',
         type: SnackBarType.error,
       );
       return;
@@ -171,7 +171,7 @@ class _LeaveAddScreenPageState
 
     await openSelectBottomSheet<ApproverItem>(
       context: context,
-      title: 'Chọn người kiểm duyệt',
+      title: 'Chọn người duyệt',
       items: items,
       displayText: (a) => '${a.code ?? ''} - ${a.fullName ?? ''}'.trim(),
       onSelected: (item) {
@@ -216,34 +216,67 @@ class _LeaveAddScreenPageState
               setState(() {});
             });
           },
-          child: BlocListener<LeaveBloc, LeaveState>(
-            listenWhen: (previous, current) =>
-                previous.submitSuccess != current.submitSuccess ||
-                previous.message != current.message ||
-                previous.status != current.status,
-            listener: (context, state) {
-              if (state.status == BaseStateStatus.failed &&
-                  (state.message ?? '').isNotEmpty &&
-                  !state.isSubmitting) {
-                context.showMessage(
-                  state.message!,
-                  type: SnackBarType.error,
-                );
-              }
-              if ((state.message ?? '').isNotEmpty && state.submitSuccess) {
-                context.showMessage(
-                  state.message!,
-                  type: SnackBarType.success,
-                );
-              }
-              if (state.submitSuccess) {
-                bloc.add(const LeaveEvent.clearSubmitState());
-                context.pop(true);
-              }
-            },
+          child: MultiBlocListener(
+            listeners: [
+              BlocListener<LeaveBloc, LeaveState>(
+                listenWhen: (previous, current) =>
+                    previous.submitSuccess != current.submitSuccess ||
+                    previous.message != current.message ||
+                    previous.status != current.status,
+                listener: (context, state) {
+                  if (state.status == BaseStateStatus.failed &&
+                      (state.message ?? '').isNotEmpty &&
+                      !state.isSubmitting) {
+                    context.showMessage(
+                      state.message!,
+                      type: SnackBarType.error,
+                    );
+                  }
+                  if ((state.message ?? '').isNotEmpty && state.submitSuccess) {
+                    context.showMessage(
+                      state.message!,
+                      type: SnackBarType.success,
+                    );
+                  }
+                  if (state.submitSuccess) {
+                    bloc.add(const LeaveEvent.clearSubmitState());
+                    context.pop(true);
+                  }
+                },
+              ),
+              BlocListener<LeaveBloc, LeaveState>(
+                listenWhen: (previous, current) =>
+                    previous.approveId != current.approveId ||
+                    previous.approvers != current.approvers,
+                listener: (context, state) {
+                  if (state.approveId != null && state.approvers.isNotEmpty) {
+                    final form = _formKey.currentState;
+                    if (form == null) return;
+
+                    final targetId = state.approveId!.approveId;
+                    final match = state.approvers.cast<ApproverItem?>().firstWhere(
+                      (a) {
+                        if (a == null || a.isDeleted == true) return false;
+                        return approvedLeavePayloadValue(a) == targetId;
+                      },
+                      orElse: () => null,
+                    );
+
+                    if (match != null) {
+                      final idValue = approvedLeavePayloadValue(match);
+                      final line = '${match.code ?? ''} - ${match.fullName ?? ''}'.trim();
+                      form.fields['regwork_leave_add_approver_id']?.didChange(
+                        idValue.toString(),
+                      );
+                      form.fields['regwork_leave_add_approver_text']?.didChange(line);
+                    }
+                  }
+                },
+              ),
+            ],
             child: BaseScaffold(
               appBar: AppBarCommon(
-                title: const Text('Tạo đơn'),
+                title: const Text('Tạo đơn xin nghỉ'),
                 actions: [
                   IconButton(
                     onPressed: () {
@@ -423,7 +456,7 @@ class _LeaveAddScreenPageState
             return Positioned.fill(
               child: AbsorbPointer(
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha: 0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',

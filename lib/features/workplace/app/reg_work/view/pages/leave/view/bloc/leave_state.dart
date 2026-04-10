@@ -8,6 +8,8 @@ class LeaveState extends BaseBlocState {
   final List<EmployeeLeave> employeeLeave;
 
   final List<LeaveTimeItem> leaveTime;
+
+  final FillApproverItem? approveId;
   final bool isSubmitting;
   final bool submitSuccess;
   final bool deleteSuccess;
@@ -69,6 +71,7 @@ class LeaveState extends BaseBlocState {
     this.detailPhaseIsApprovedHR,
     this.detailPhaseStatusHRNumber,
     this.detailPhaseStatusHRText,
+    this.approveId,
   });
 
   factory LeaveState.init() => const LeaveState(
@@ -100,6 +103,7 @@ class LeaveState extends BaseBlocState {
     detailPhaseIsApprovedHR: null,
     detailPhaseStatusHRNumber: null,
     detailPhaseStatusHRText: null,
+    approveId: null,
   );
 
   @override
@@ -133,5 +137,6 @@ class LeaveState extends BaseBlocState {
     detailPhaseIsApprovedHR,
     detailPhaseStatusHRNumber,
     detailPhaseStatusHRText,
+    approveId,
   ];
 }
