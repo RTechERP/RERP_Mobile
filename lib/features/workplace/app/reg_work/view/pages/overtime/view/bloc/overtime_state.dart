@@ -20,6 +20,7 @@ class OvertimeState extends BaseBlocState {
   final bool isFetchingDetail;
   final bool editSuccess;
 
+  final FillApproverItem? approveId;
   const OvertimeState({
     required super.status,
     super.message,
@@ -39,6 +40,7 @@ class OvertimeState extends BaseBlocState {
     this.detailItem,
     this.isFetchingDetail = false,
     this.editSuccess = false,
+    this.approveId,
   });
 
   factory OvertimeState.init() => const OvertimeState(
@@ -59,6 +61,7 @@ class OvertimeState extends BaseBlocState {
     detailItem: null,
     isFetchingDetail: false,
     editSuccess: false,
+    approveId: null,
   );
 
   @override
@@ -81,5 +84,6 @@ class OvertimeState extends BaseBlocState {
     detailItem,
     isFetchingDetail,
     editSuccess,
+    approveId,
   ];
 }

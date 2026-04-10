@@ -167,10 +167,15 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
       final approverRes = await _overtimeRepo.getApprover();
       final typeRes = await _overtimeRepo.getOvertimeType();
       final projectRes = await _overtimeRepo.getOvertimeProject();
+      final fillApproverRes = await _overtimeRepo.getFillApprover(
+        employeeID: user.employeeId,
+        tableName: 'EmployeeOverTime',
+      );
 
       var approvers = <ApproverItem>[];
       var overtimeTypes = <OvertimeType>[];
       var overtimeProjects = <OvertimeProject>[];
+      FillApproverItem? fillApprover;
       String? errorMsg;
 
       approverRes.fold(
@@ -210,6 +215,11 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
         (r) => overtimeProjects = r,
       );
 
+      fillApproverRes.fold(
+        (l) => _log.logE('❌ OvertimeBloc initAdd getFillApprover failed: $l'),
+        (r) => fillApprover = r,
+      );
+
       _log.logI('✅ OvertimeBloc initAdd success');
       emit(
         state.copyWith(
@@ -219,6 +229,7 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
           overtimeProjects: overtimeProjects,
           employeeId: user.employeeId,
           loginName: user.loginName,
+          approveId: fillApprover,
         ),
       );
     } finally {

@@ -311,3 +311,15 @@ Map<String, dynamic> _$$OvertimeDetailItemImplToJson(
       'ProjectID': instance.projectId,
       'ApprovedID': instance.approvedId,
     };
+
+_$FillApproverItemImpl _$$FillApproverItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$FillApproverItemImpl(
+      approveId: (json['ApproveID'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$$FillApproverItemImplToJson(
+        _$FillApproverItemImpl instance) =>
+    <String, dynamic>{
+      'ApproveID': instance.approveId,
+    };

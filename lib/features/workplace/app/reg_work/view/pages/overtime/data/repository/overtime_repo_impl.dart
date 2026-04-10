@@ -109,4 +109,26 @@ class OvertimeRepoImpl implements OvertimeRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, FillApproverItem>> getFillApprover({
+    required int employeeID,
+    required String tableName,
+  }) async {
+    try {
+      final res =
+          await _service.getFillApprover(
+            employeeID: employeeID,
+            tableName: tableName,
+          );
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

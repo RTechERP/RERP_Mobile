@@ -19,4 +19,8 @@ abstract class OvertimeRepo {
   });
 
   Future<Either<BaseError, OvertimeDetailItem>> getOvertimeById(int id);
+  Future<Either<BaseError, FillApproverItem>> getFillApprover({
+    required int employeeID,
+    required String tableName,
+  });
 }

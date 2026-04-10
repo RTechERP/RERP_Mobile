@@ -128,7 +128,7 @@ class OvertimeSlipFormFields extends StatelessWidget {
             enabled: !readOnly,
             firstDate: yesterdayStart,
             lastDate: tomorrowStart,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+
             isRequired: true,
             onChanged: onTimeStartChanged == null
                 ? null
@@ -153,7 +153,7 @@ class OvertimeSlipFormFields extends StatelessWidget {
             enabled: !readOnly,
             firstDate: yesterdayStart,
             lastDate: endDateMax,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+
             isRequired: true,
             onChanged: onEndTimeChanged == null
                 ? null
@@ -232,7 +232,7 @@ class OvertimeSlipFormFields extends StatelessWidget {
             name: 'ot_slip_${slipKey}_type_id',
             initialValue:
                 initialTypeId != null ? initialTypeId.toString() : '',
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+
             builder: (_) => const SizedBox.shrink(),
           ),
           FormInputField(
@@ -242,7 +242,7 @@ class OvertimeSlipFormFields extends StatelessWidget {
             label: 'Loại làm thêm',
             icon: Icons.category_outlined,
             initialValue: initialTypeLabel ?? '',
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+
             isRequired: true,
             onTap: readOnly ? null : () => onTypeTap(slipKey),
             validator: (v) {
@@ -257,7 +257,7 @@ class OvertimeSlipFormFields extends StatelessWidget {
             name: 'ot_slip_${slipKey}_project_id',
             initialValue:
                 initialProjectId != null ? initialProjectId.toString() : '',
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+
             builder: (_) => const SizedBox.shrink(),
           ),
           FormInputField(
@@ -267,7 +267,7 @@ class OvertimeSlipFormFields extends StatelessWidget {
             label: 'Dự án',
             icon: Icons.work_outline,
             initialValue: initialProjectLabel ?? '',
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+
             isRequired: true,
             onTap: readOnly ? null : () => onProjectTap(slipKey),
             validator: (v) {
@@ -283,7 +283,7 @@ class OvertimeSlipFormFields extends StatelessWidget {
             initialValue: initialLocationId != null
                 ? initialLocationId.toString()
                 : '',
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+
             builder: (_) => const SizedBox.shrink(),
           ),
           FormInputField(
@@ -294,7 +294,7 @@ class OvertimeSlipFormFields extends StatelessWidget {
             icon: Icons.location_on_outlined,
             initialValue:
                 initialLocationLabel ?? _defaultLocationLabel,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+
             isRequired: true,
             onTap: readOnly ? null : () => onLocationTap(slipKey),
             validator: (v) {
@@ -313,7 +313,7 @@ class OvertimeSlipFormFields extends StatelessWidget {
             maxLines: 3,
             readOnly: readOnly,
             initialValue: initialReason,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+
             isRequired: true,
             validator: (v) {
               if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do';

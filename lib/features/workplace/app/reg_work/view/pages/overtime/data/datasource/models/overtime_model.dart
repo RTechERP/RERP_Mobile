@@ -186,3 +186,13 @@ class OvertimeAddSlip {
       'OvertimeAddSlip(timeStart: $timeStart, endTime: $endTime, typeId: $typeId, '
       'location: $location, overnight: $overnight, projectId: $projectId, reason: $reason)';
 }
+
+@freezed
+class FillApproverItem with _$FillApproverItem {
+  const factory FillApproverItem({
+    @JsonKey(name: 'ApproveID') required int approveId,
+  }) = _FillApproverItem;
+
+  factory FillApproverItem.fromJson(Map<String, dynamic> json) =>
+      _$FillApproverItemFromJson(json);
+}

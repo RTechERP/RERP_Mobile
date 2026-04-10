@@ -438,25 +438,58 @@ class _OvertimeAddScreenPageState
   Widget renderUI(BuildContext context) {
     return Stack(
       children: [
-        BlocListener<OvertimeBloc, OvertimeState>(
-          listenWhen: (p, c) =>
-              p.submitSuccess != c.submitSuccess ||
-              p.message != c.message ||
-              p.status != c.status,
-          listener: (context, state) {
-            if (state.status == BaseStateStatus.failed &&
-                (state.message ?? '').isNotEmpty &&
-                !state.isSubmitting) {
-              context.showMessage(state.message!, type: SnackBarType.error);
-            }
-            if ((state.message ?? '').isNotEmpty && state.submitSuccess) {
-              context.showMessage(state.message!, type: SnackBarType.success);
-            }
-            if (state.submitSuccess) {
-              bloc.add(const OvertimeEvent.clearSubmitState());
-              context.pop(true);
-            }
-          },
+        MultiBlocListener(
+          listeners: [
+            BlocListener<OvertimeBloc, OvertimeState>(
+              listenWhen: (p, c) =>
+                  p.submitSuccess != c.submitSuccess ||
+                  p.message != c.message ||
+                  p.status != c.status,
+              listener: (context, state) {
+                if (state.status == BaseStateStatus.failed &&
+                    (state.message ?? '').isNotEmpty &&
+                    !state.isSubmitting) {
+                  context.showMessage(state.message!, type: SnackBarType.error);
+                }
+                if ((state.message ?? '').isNotEmpty && state.submitSuccess) {
+                  context.showMessage(state.message!, type: SnackBarType.success);
+                }
+                if (state.submitSuccess) {
+                  bloc.add(const OvertimeEvent.clearSubmitState());
+                  context.pop(true);
+                }
+              },
+            ),
+            BlocListener<OvertimeBloc, OvertimeState>(
+              listenWhen: (previous, current) =>
+                  previous.approveId != current.approveId ||
+                  previous.approvers != current.approvers,
+              listener: (context, state) {
+                if (state.approveId != null && state.approvers.isNotEmpty) {
+                  final form = _formKey.currentState;
+                  if (form == null) return;
+
+                  final targetId = state.approveId!.approveId;
+                  final match = state.approvers.cast<ApproverItem?>().firstWhere(
+                    (a) {
+                      if (a == null || a.isDeleted == true) return false;
+                      return approvedOvertimePayloadValue(a) == targetId;
+                    },
+                    orElse: () => null,
+                  );
+
+                  if (match != null) {
+                    final idValue = approvedOvertimePayloadValue(match);
+                    final line =
+                        '${match.code ?? ''} - ${match.fullName ?? ''}'.trim();
+                    form.fields['ot_approver_id']?.didChange(idValue.toString());
+                    form.fields['ot_approver_text']?.didChange(line);
+                    setState(() {});
+                  }
+                }
+              },
+            ),
+          ],
           child: BaseScaffold(
             appBar: AppBarCommon(
               title: const Text('Tạo đơn làm thêm giờ'),
@@ -470,7 +503,7 @@ class _OvertimeAddScreenPageState
                     key: _formKey,
                     autovalidateMode: _autoValidate
                         ? AutovalidateMode.onUserInteraction
-                        : AutovalidateMode.onUserInteraction,
+                        : AutovalidateMode.disabled,
                     onChanged: () => setState(() {}),
                     child: Column(
                       children: [
@@ -497,8 +530,9 @@ class _OvertimeAddScreenPageState
                                         format: DateFormat('dd/MM/yyyy'),
                                         initialValue: _todayStart,
                                         initialDate: _todayStart,
-                                        autovalidateMode:
-                                            AutovalidateMode.onUserInteraction,
+                                        autovalidateMode: _autoValidate
+                                            ? AutovalidateMode.onUserInteraction
+                                            : AutovalidateMode.disabled,
                                         isRequired: true,
                                         validator: (v) {
                                           if (v == null) return 'Vui lòng chọn ngày đăng ký';
@@ -511,8 +545,9 @@ class _OvertimeAddScreenPageState
                                       FormBuilderField<String>(
                                         name: 'ot_approver_id',
                                         initialValue: '',
-                                        autovalidateMode:
-                                            AutovalidateMode.onUserInteraction,
+                                        autovalidateMode: _autoValidate
+                                            ? AutovalidateMode.onUserInteraction
+                                            : AutovalidateMode.disabled,
                                         builder: (_) =>
                                             const SizedBox.shrink(),
                                       ),
@@ -523,7 +558,9 @@ class _OvertimeAddScreenPageState
                                         label: 'Người duyệt',
                                         icon: Icons.person_outlined,
                                         initialValue: '',
-                                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                                        autovalidateMode: _autoValidate
+                                            ? AutovalidateMode.onUserInteraction
+                                            : AutovalidateMode.disabled,
                                         isRequired: true,
                                         onTap: state.status == BaseStateStatus.loading ? null : _openApproverSheet,
                                         validator: (v) {
@@ -749,7 +786,7 @@ class _OvertimeSlipTabsBar extends StatelessWidget {
                       horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
                     color: i == selectedIndex
-                        ? AppColors.primaryERP.withOpacity(0.1)
+                        ? AppColors.primaryERP.withValues(alpha: 0.1)
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
