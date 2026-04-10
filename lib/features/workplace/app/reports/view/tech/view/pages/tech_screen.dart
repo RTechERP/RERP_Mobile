@@ -60,11 +60,11 @@ class _TechScreenState
     _searchController.dispose();
     super.dispose();
   }
-  String _buildCopyContent(List<CopyResponse> reports) {
+  String _buildCopyContent(List<CopyNullResponse> reports) {
     if (reports.isEmpty) return '';
 
     final buffer = StringBuffer();
-    final date = DateTime.tryParse(reports.first.dateReport);
+    final date = DateTime.tryParse(reports.first.dateReport ?? '');
     final formattedDate = date != null
         ? '${date.day.toString().padLeft(2, '0')}/'
               '${date.month.toString().padLeft(2, '0')}/'
@@ -215,10 +215,35 @@ class _TechScreenState
             type: SnackBarType.success,
           );
 
-          await Share.share(content);
+          // Prepare payload for auto-fill navigation
+          final payload = List<CopyNullResponse>.from(state.copyReports);
 
-          // reset sau khi xử lý xong
+          // Xóa trạng thái copy
           bloc.add(const TechEvent.resetCopyReport());
+
+          // Nhảy qua màn Add Screen luôn, KHÔNG chờ Share
+          if (context.mounted) {
+            context.push<bool>(
+              RouteNames.reportITdepartAdd,
+              extra: {
+                'copyItems': payload,
+                'projects': bloc.state.rtcProject,
+              },
+            ).then((reload) {
+              if (reload == true) {
+                if (context.mounted) {
+                  context.read<TechBloc>().add(const TechEvent.init());
+                }
+              }
+            });
+          }
+
+          // Hiện Share panel ở phía trên (nếu được) mà không chặn luồng code
+          try {
+            Share.share(content);
+          } catch (e) {
+            debugPrint('Lỗi khi share: $e');
+          }
         }
       },
       child: BaseScaffold(
@@ -251,6 +276,12 @@ class _TechScreenState
                   _searchController.clear();
                   _filteredReports = [];
                 });
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.date_range, size: 22),
+              onPressed: () {
+                TechDateRangePicker.open(context, bloc);
               },
             ),
           ],
@@ -395,7 +426,12 @@ class _TechScreenState
               child: const Icon(Icons.add),
               label: 'Thêm',
               onTap: () async {
-                final reload = await context.push(RouteNames.reportITdepartAdd);
+                final reload = await context.push(
+                  RouteNames.reportITdepartAdd,
+                  extra: {
+                    'projects': bloc.state.rtcProject,
+                  },
+                );
 
                 if (reload == true) {
                   bloc.add(const TechEvent.init());
@@ -404,13 +440,13 @@ class _TechScreenState
             ),
 
             /// ===== LỌC THEO NGÀY =====
-            SpeedDialChild(
-              child: const Icon(Icons.date_range),
-              label: 'Lọc ngày',
-              onTap: () {
-                TechDateRangePicker.open(context, bloc);
-              },
-            ),
+            // SpeedDialChild(
+            //   child: const Icon(Icons.date_range),
+            //   label: 'Lọc ngày',
+            //   onTap: () {
+            //     TechDateRangePicker.open(context, bloc);
+            //   },
+            // ),
 
             /// ===== COPY =====
             SpeedDialChild(

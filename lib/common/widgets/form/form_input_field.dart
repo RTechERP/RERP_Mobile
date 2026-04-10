@@ -91,7 +91,7 @@ class _FormInputFieldState extends State<FormInputField> {
   Widget build(BuildContext context) {
     return FormBuilderField<String>(
       name: widget.nameForm,
-      initialValue: widget.initialValue,
+      initialValue: widget.initialValue ?? (widget.controller?.text.isNotEmpty == true ? widget.controller!.text : null),
       validator: widget.validator,
       enabled: widget.enabled,
       autovalidateMode: widget.autovalidateMode,
@@ -103,18 +103,33 @@ class _FormInputFieldState extends State<FormInputField> {
         final rawValue = field.value ?? '';
         final hasValue = rawValue.trim().isNotEmpty;
 
-        final showError = field.hasError && !hasValue;
+        final showError = field.hasError;
         final effectiveMaxLines = widget.obscureText ? 1 : (widget.maxLines ?? 1);
 
         final controller = _effectiveController;
         final fNode = _effectiveFocusNode;
 
-        /// sync value -> controller (bottomsheet / initialValue)
-        if (controller.text != rawValue) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (!mounted) return;
-            controller.text = rawValue;
-          });
+        /// Sync giữa field value và controller:
+        /// - External controller (widget.controller != null): controller là source-of-truth
+        ///   → sync controller -> field (tránh ghi đè giá trị sẵn có trong controller).
+        /// - Internal controller: field value là source-of-truth (bottomsheet / initialValue)
+        ///   → sync field -> controller.
+        if (widget.controller != null) {
+          // External controller → sync controller -> field
+          if (controller.text != rawValue && controller.text.isNotEmpty) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (!mounted) return;
+              field.didChange(controller.text);
+            });
+          }
+        } else {
+          // Internal controller → sync field -> controller
+          if (controller.text != rawValue) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (!mounted) return;
+              controller.text = rawValue;
+            });
+          }
         }
 
         return FormBuilderTextField(

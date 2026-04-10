@@ -186,7 +186,7 @@ class ReportService extends DioBaseApiService {
   }
 
   /// Copy báo cáo
-  Future<BaseData<List<CopyResponse>>> copyReport({
+  Future<BaseData<List<CopyNullResponse>>> copyReport({
     required DateTime dateStart,
     required DateTime dateEnd,
     required int teamId,
@@ -210,13 +210,13 @@ class ReportService extends DioBaseApiService {
       'departmentid': departmentId,
     };
 
-    return post<BaseData<List<CopyResponse>>>(
+    return post<BaseData<List<CopyNullResponse>>>(
       ApiEndPoint.copyReport, // sửa đúng endpoint của bạn
       body: body,
-      parser: (json) => BaseData<List<CopyResponse>>.fromJson(
+      parser: (json) => BaseData<List<CopyNullResponse>>.fromJson(
         json,
         (data) => (data as List)
-            .map((e) => CopyResponse.fromJson(e as Map<String, dynamic>))
+            .map((e) => CopyNullResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
     );

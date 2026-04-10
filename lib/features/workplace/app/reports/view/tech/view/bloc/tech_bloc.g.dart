@@ -89,7 +89,7 @@ abstract class _$TechStateCWProxy {
 
   TechState deleteSuccess(bool deleteSuccess);
 
-  TechState copyReports(List<CopyResponse> copyReports);
+  TechState copyReports(List<CopyNullResponse> copyReports);
 
   TechState isCopyLoading(bool isCopyLoading);
 
@@ -149,7 +149,7 @@ abstract class _$TechStateCWProxy {
     bool? saveSuccess,
     bool? isDeleting,
     bool? deleteSuccess,
-    List<CopyResponse>? copyReports,
+    List<CopyNullResponse>? copyReports,
     bool? isCopyLoading,
     int? teamId,
     int? departmentId,
@@ -307,7 +307,7 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
       this(deleteSuccess: deleteSuccess);
 
   @override
-  TechState copyReports(List<CopyResponse> copyReports) =>
+  TechState copyReports(List<CopyNullResponse> copyReports) =>
       this(copyReports: copyReports);
 
   @override
@@ -562,7 +562,7 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
           copyReports == const $CopyWithPlaceholder() || copyReports == null
               ? _value.copyReports
               // ignore: cast_nullable_to_non_nullable
-              : copyReports as List<CopyResponse>,
+              : copyReports as List<CopyNullResponse>,
       isCopyLoading:
           isCopyLoading == const $CopyWithPlaceholder() || isCopyLoading == null
               ? _value.isCopyLoading

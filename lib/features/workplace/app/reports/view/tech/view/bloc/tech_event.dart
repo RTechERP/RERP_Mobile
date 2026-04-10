@@ -3,6 +3,12 @@ part of 'tech_bloc.dart';
 @freezed
 class TechEvent with _$TechEvent {
   const factory TechEvent.init() = _Init;
+  
+  /// Khởi tạo với list các báo cáo được copy
+  const factory TechEvent.initAdd({
+    required List<CopyNullResponse> copyItems,
+    required List<ProjectResponse> rtcProject,
+  }) = _InitAdd;
 
   /// ===== PROJECT =====
   /// Tạo project trống để hiển thị UI

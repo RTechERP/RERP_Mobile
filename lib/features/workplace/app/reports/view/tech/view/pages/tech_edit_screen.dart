@@ -1,10 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:share_plus/share_plus.dart';
 
+import '../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
@@ -102,6 +105,7 @@ class _TechEditScreenState
                     Expanded(
                       child: FormBuilder(
                         key: _screenFormKey,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         initialValue: {'location_type': state.locationType},
                         child: ListView(
                           padding: const EdgeInsets.all(8),
@@ -116,6 +120,11 @@ class _TechEditScreenState
                                 inputType: InputType.date,
                                 format: DateFormat('dd/MM/yyyy'),
                                 initialValue: state.dateReport,
+                                isRequired: true,
+                                validator: (v) {
+                                  if (v == null) return 'Vui lòng chọn ngày';
+                                  return null;
+                                },
                               ),
                             ),
 
@@ -243,6 +252,14 @@ class _TechEditScreenState
                                               icon: Icons.work_outline,
                                               initialValue:
                                                   state.selectedProject!.name,
+                                              isRequired: true,
+                                              validator: (v) {
+                                                if (v == null ||
+                                                    v.trim().isEmpty) {
+                                                  return 'Vui lòng chọn dự án';
+                                                }
+                                                return null;
+                                              },
                                             ),
                                           ),
                                         ),
@@ -329,6 +346,13 @@ class _TechEditScreenState
                                       nameTextField: 'tech_edit_other_location',
                                       label: 'Địa điểm làm việc',
                                       controller: _locationController,
+                                      isRequired: true,
+                                      validator: (v) {
+                                        if (v == null || v.trim().isEmpty) {
+                                          return 'Vui lòng nhập địa điểm';
+                                        }
+                                        return null;
+                                      },
                                       onChanged: (v) {
                                         bloc.add(
                                           TechEvent.updateLocation(
@@ -356,6 +380,13 @@ class _TechEditScreenState
                                 textInputAction: TextInputAction
                                     .newline, // ⬅ Enter xuống dòng
                                 controller: _planNextDayController,
+                                isRequired: true,
+                                validator: (v) {
+                                  if (v == null || v.trim().isEmpty) {
+                                    return 'Vui lòng nhập kế hoạch';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (v) {
                                   if (v == null) return;
 
@@ -521,7 +552,21 @@ class _TechEditScreenState
                           if (formState == null) return;
 
                           final isValid = formState.saveAndValidate();
-                          if (!isValid) return;
+                          if (!isValid) {
+                            FormHelper.focusFirstError(
+                              formState: formState,
+                              priorityFields: [
+                                'tech_edit_date',
+                                'tech_edit_project',
+                                'tech_edit_category',
+                                'tech_edit_total',
+                                'tech_edit_percent',
+                                'tech_edit_content',
+                                'tech_edit_result',
+                              ],
+                            );
+                            return;
+                          }
 
                           final values = formState.value;
 
@@ -552,27 +597,12 @@ class _TechEditScreenState
                           final pickedDate =
                               values['tech_edit_date'] as DateTime;
 
-                          await DialogService.showMailReport(
-                            context: context,
-                            state: state,
-                            dateReport: pickedDate,
-                            onSubmit: () async {
-                              bloc.add(const TechEvent.resetSubmitFlags());
-                              bloc.add(
-                                TechEvent.submitEditReport(
-                                  pickedDate,
-                                  widget.dailyId,
-                                ),
-                              );
-                            },
-                            onSendMail: () async {
-                              bloc.add(
-                                TechEvent.sendMailReport(
-                                  pickedDate: pickedDate,
-                                  context: context,
-                                ),
-                              );
-                            },
+                          bloc.add(const TechEvent.resetSubmitFlags());
+                          bloc.add(
+                            TechEvent.submitEditReport(
+                              pickedDate,
+                              widget.dailyId,
+                            ),
                           );
                         },
                       ),
@@ -581,6 +611,73 @@ class _TechEditScreenState
                 );
               },
             ),
+          ),
+          BlocListener<TechBloc, TechState>(
+            listenWhen: (p, c) =>
+                p.saveSuccess != c.saveSuccess ||
+                p.sendMailSuccess != c.sendMailSuccess ||
+                p.status != c.status ||
+                p.message != c.message,
+            listener: (context, state) async {
+              // Hiển thị lỗi nếu có
+              if (state.status == BaseStateStatus.failed &&
+                  state.message != null &&
+                  state.message!.isNotEmpty) {
+                showMessage(context, state.message!, type: SnackBarType.error);
+                return;
+              }
+
+              // Sau khi Submit (Save) thành công, tự động gọi hàm Send Mail
+              if (state.saveSuccess == true &&
+                  state.sendMailSuccess == false) {
+                final formState = _screenFormKey.currentState;
+                final pickedDate =
+                    formState?.value['tech_edit_date'] as DateTime?;
+                if (pickedDate != null) {
+                  bloc.add(
+                    TechEvent.sendMailReport(
+                      pickedDate: pickedDate,
+                      context: context,
+                    ),
+                  );
+                }
+              }
+
+              // Sau khi Send Mail thành công, copy text, chia sẻ và thoát màn hình
+              if (state.sendMailSuccess == true) {
+                final formState = _screenFormKey.currentState;
+                final pickedDate =
+                    formState?.value['tech_edit_date'] as DateTime?;
+
+                if (pickedDate != null) {
+                  final text = DialogService.buildMailPreviewText(
+                    state,
+                    pickedDate,
+                  );
+
+                  await Clipboard.setData(ClipboardData(text: text));
+
+                  if (context.mounted) {
+                    final box = context.findRenderObject() as RenderBox?;
+                    if (box != null) {
+                      try {
+                        Share.share(
+                          text,
+                          subject: 'Báo cáo công việc',
+                          sharePositionOrigin: box.localToGlobal(Offset.zero) &
+                              box.size,
+                        );
+                      } catch (e) {
+                        debugPrint('Lỗi share: $e');
+                      }
+                    }
+
+                    context.pop(true);
+                  }
+                }
+              }
+            },
+            child: const SizedBox.shrink(),
           ),
           BlocBuilder<TechBloc, TechState>(
             buildWhen: (p, c) => p.isSaving != c.isSaving,

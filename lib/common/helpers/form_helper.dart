@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:collection/collection.dart';
 
 class FormHelper {
   /// Tự động tìm trường lỗi đầu tiên trong [formState] và thực hiện focus.
@@ -13,12 +14,38 @@ class FormHelper {
     String? slipPrefix,
     List<String>? slipKeys,
     void Function(int index)? onSlipError,
+    List<String>? priorityFields,
   }) {
     try {
       final entries = formState.fields.entries.toList();
-      final firstInvalid = entries.firstWhere((e) => e.value.hasError);
-      final name = firstInvalid.key;
-      final field = firstInvalid.value;
+      
+      FormBuilderFieldState? firstInvalidField;
+      String? firstInvalidName;
+
+      // 1. Kiểm tra các trường ưu tiên theo thứ tự truyền vào
+      if (priorityFields != null) {
+        for (final pName in priorityFields) {
+          // Tìm trường có tên khớp hoặc chứa pName (hỗ trợ dynamic name)
+          final match = formState.fields.entries.firstWhereOrNull(
+            (e) => e.key == pName || e.key.startsWith('${pName}_') || e.key.startsWith(pName),
+          );
+          if (match != null && match.value.hasError) {
+            firstInvalidName = match.key;
+            firstInvalidField = match.value;
+            break;
+          }
+        }
+      }
+
+      // 2. Nếu chưa tìm thấy trong ưu tiên, lấy cái đầu tiên trong map (default)
+      if (firstInvalidField == null) {
+        final firstInvalid = entries.firstWhere((e) => e.value.hasError);
+        firstInvalidName = firstInvalid.key;
+        firstInvalidField = firstInvalid.value;
+      }
+
+      final name = firstInvalidName!;
+      final field = firstInvalidField;
 
       // Nếu có thông tin về slip và trường lỗi thuộc về slip
       if (slipPrefix != null &&

@@ -33,6 +33,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       (event, emit) async {
       await event.when(
         init: () => _onInit(emit),
+        initAdd: (copyItems, rtcProject) => _onInitAdd(copyItems, rtcProject, emit),
 
         /// ===== PROJECT =====
         addEmptyProject: () => _onAddEmptyProject(emit),
@@ -232,10 +233,14 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         );
 
         final now = DateTime.now();
-        final start = now;
-        final end = DateTime(now.year, now.month, now.day + 1);
+        final startWeek = now.subtract(Duration(days: now.weekday - 1));
+        final endWeek = startWeek.add(const Duration(days: 6));
 
-        await _loadDailyReport(start: start, end: end, emit: emit);
+        await _loadDailyReport(
+           start: DateTime(startWeek.year, startWeek.month, startWeek.day),
+           end: DateTime(endWeek.year, endWeek.month, endWeek.day, 23, 59, 59),
+           emit: emit,
+        );
       },
     );
 
@@ -248,6 +253,136 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       (l) => _log.logE('Get project failed: ${l.getErrorMessage}'),
       (r) => emit(state.copyWith(rtcProject: r)),
     );
+  }
+
+  Future<void> _onInitAdd(
+    List<CopyNullResponse> copyItems,
+    List<ProjectResponse> rtcProject,
+    Emitter<TechState> emit,
+  ) async {
+    var projectList = rtcProject.isNotEmpty ? rtcProject : state.rtcProject;
+
+    if (projectList.isEmpty) {
+      final projectRes = await _reportRepo.getProject();
+      projectList = projectRes.getOrElse(() => []);
+      
+      final departRes = await _reportRepo.getDepart();
+      final departs = departRes.getOrElse(() => []);
+
+      final userRes = await _authRepo.getCurrentUser();
+      
+      userRes.fold(
+        (l) {
+          emit(state.copyWith(
+            rtcProject: projectList,
+            departs: departs,
+          ));
+        },
+        (user) {
+          emit(state.copyWith(
+            rtcProject: projectList,
+            departs: departs,
+            userId: user?.id,
+            fullName: user?.fullName,
+            departmentId: user?.departmentId,
+            teamId: user?.teamOfUser,
+            employeeID: user?.employeeId,
+          ));
+        },
+      );
+    } else {
+      emit(state.copyWith(rtcProject: rtcProject));
+    }
+
+    if (copyItems.isEmpty) {
+      add(const TechEvent.addEmptyProject());
+      return;
+    }
+
+    emit(state.copyWith(status: BaseStateStatus.loading));
+
+    final dateStr = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    List<TechProject> newProjects = [];
+    var index = 1;
+
+    final resolvedList = projectList;
+
+    for (var copyItem in copyItems) {
+      final apiProject = resolvedList.where((p) => p.projectCode == copyItem.projectCode).firstOrNull;
+      
+      int? projectId;
+      int projectItemId = 0;
+      String pName = copyItem.projectName ?? '';
+      
+      String missionName = '';
+      double percentComplete = 0.0;
+      
+      if (apiProject != null) {
+        projectId = apiProject.id;
+        pName = apiProject.projectName;
+        
+        final pitRes = await _reportRepo.getProjectItemByUser(projectId: projectId);
+        final listPit = pitRes.getOrElse(() => []);
+        
+        final apiPit = listPit.where((pit) => pit.code == copyItem.projectItemCode).firstOrNull;
+        if (apiPit != null) {
+           projectItemId = apiPit.id;
+           missionName = apiPit.mission ?? '';
+           percentComplete = apiPit.percentageActual ?? 0;
+        }
+      } else {
+        pName = copyItem.projectCode ?? '${'report.project'.tr()} $index';
+      }
+      
+      final work = TechWork.empty(
+        code: copyItem.projectItemCode ?? '',
+        projectId: projectId ?? 0,
+        projectCode: copyItem.projectCode ?? '',
+        projectName: pName,
+        projectText: pName,
+        userId: state.userId ?? 0,
+        fullName: state.fullName ?? '',
+        dateReport: dateStr,
+        createdDate: DateTime.now(),
+        projectItemId: projectItemId,
+      ).copyWith(
+         content: copyItem.mission ?? '',
+         results: copyItem.results ?? '',
+         backlog: copyItem.backlog ?? '',
+         problem: copyItem.problem ?? '',
+         problemSolve: copyItem.problemSolve ?? '',
+         note: copyItem.note ?? '',
+         mission: missionName,
+         percentComplete: percentComplete,
+      );
+      
+      final project = TechProject(
+        tempId: const Uuid().v4(),
+        projectId: projectId,
+        projectCode: copyItem.projectCode ?? '...',
+        name: pName,
+        works: [work],
+      );
+      newProjects.add(project);
+      index++;
+    }
+    
+    emit(state.copyWith(
+      projects: newProjects,
+      selectedProject: newProjects.isNotEmpty ? newProjects.first : null,
+      expandedWorkIndex: 0,
+      status: BaseStateStatus.success,
+      planNextDay: copyItems.isNotEmpty ? copyItems.first.planNextDay : '',
+      problem: copyItems.isNotEmpty ? copyItems.first.problem : '',
+      problemSolve: copyItems.isNotEmpty ? copyItems.first.problemSolve : '',
+      note: copyItems.isNotEmpty ? copyItems.first.note : '',
+      backlog: copyItems.isNotEmpty ? copyItems.first.backlog : '',
+    ));
+
+    if (newProjects.isNotEmpty && newProjects.first.projectId != null) {
+       final pitRes = await _reportRepo.getProjectItemByUser(projectId: newProjects.first.projectId!);
+       emit(state.copyWith(projectItem: pitRes.getOrElse(() => [])));
+    }
   }
   // ================= PROJECT =================
 
@@ -387,6 +522,13 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           projectId: apiProject.id,
           projectCode: apiProject.projectCode,
           name: apiProject.projectName,
+          works: p.works.map((w) => w.copyWith(
+            projectCode: apiProject.projectCode,
+            projectName: apiProject.projectName,
+            projectItemId: 0,
+            mission: '',
+            percentComplete: 0.0,
+          )).toList(),
         );
       }
       return p;
@@ -498,7 +640,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     late TechProject newSelectedProject;
 
     final newProjects = state.projects.map((p) {
-      if (p.projectId == project.projectId) {
+      if (p.tempId == project.tempId) {
         final newWorks = [...p.works];
 
         if (index < 0 || index >= newWorks.length) return p;
@@ -590,7 +732,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     emit(
       state.copyWith(
         projects: state.projects.map((p) {
-          if (p.projectId == selected.projectId) {
+          if (p.tempId == selected.tempId) {
             return p.copyWith(works: newWorks);
           }
           return p;
@@ -620,7 +762,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     late TechProject newSelected;
 
     final projects = state.projects.map((p) {
-      if (p.projectId == selected.projectId) {
+      if (p.tempId == selected.tempId) {
         final works = p.works
             .map((w) => w.copyWith(dateReport: dateStr))
             .toList();
@@ -720,12 +862,19 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           final res = await _reportRepo.saveReportTech(payload: payload);
 
           final isFailed = await res.fold(
-            (l) async => true,
+            (l) async {
+              emit(state.copyWith(
+                isSubmitting: false,
+                submitSuccess: false,
+                status: BaseStateStatus.failed,
+                message: l.getErrorMessage,
+              ));
+              return true;
+            },
             (r) async => false,
           );
 
           if (isFailed) {
-            emit(state.copyWith(isSubmitting: false, submitSuccess: false));
             return;
           }
         }
@@ -763,7 +912,11 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
       await res.fold(
         (l) async {
-          emit(state.copyWith(isSubmitting: false, sendMailSuccess: false));
+          emit(state.copyWith(
+            isSubmitting: false,
+            sendMailSuccess: false,
+            message: l.getErrorMessage,
+          ));
           // _log.logE('❌ Send mail failed: ${l.getErrorMessage}');
         },
         (r) async {
@@ -785,8 +938,14 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
   }
 
   _onResetSubmitFlags(Emitter<TechState> emit) {
-    emit(state.copyWith(submitSuccess: false, sendMailSuccess: false));
-    emit(state.copyWith(isSubmitting: false, sendMailSuccess: false));
+    emit(state.copyWith(
+      submitSuccess: false,
+      saveSuccess: false,
+      sendMailSuccess: false,
+      message: null,
+      isSubmitting: false,
+      isSaving: false,
+    ));
   }
 
   Future<void> _onSelectReport(int dailyID, Emitter<TechState> emit) async {
@@ -953,10 +1112,20 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
       final res = await _reportRepo.saveReportTech(payload: payload);
 
-      final isFailed = res.fold((l) => true, (r) => false);
+      final isFailed = await res.fold(
+        (l) async {
+          emit(state.copyWith(
+            isSaving: false,
+            saveSuccess: false,
+            status: BaseStateStatus.failed,
+            message: l.getErrorMessage,
+          ));
+          return true;
+        },
+        (r) async => false,
+      );
 
       if (isFailed) {
-        emit(state.copyWith(isSaving: false, saveSuccess: false));
         return;
       }
 

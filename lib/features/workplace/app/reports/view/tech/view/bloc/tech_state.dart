@@ -65,7 +65,7 @@ class TechState extends BaseBlocState {
   final bool isDeleting;
   final bool deleteSuccess;
 
-  final List<CopyResponse> copyReports;
+  final List<CopyNullResponse> copyReports;
   final bool isCopyLoading;
 
   final String? copyError;

@@ -167,7 +167,7 @@ class ReportRepoImpl implements ReportRepo {
   }
 
   @override
-  Future<Either<BaseError, List<CopyResponse>>> copyReport({
+  Future<Either<BaseError, List<CopyNullResponse>>> copyReport({
     required DateTime dateStart,
     required DateTime dateEnd,
     required int teamId,

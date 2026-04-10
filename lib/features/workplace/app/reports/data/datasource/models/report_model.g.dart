@@ -628,7 +628,7 @@ _$CopyNullResponseImpl _$$CopyNullResponseImplFromJson(
       projectCode: json['ProjectCode'] as String?,
       projectName: json['ProjectName'] as String?,
       projectItemCode: json['ProjectItemCode'] as String?,
-      dateReport: json['DateReport'] as String,
+      dateReport: json['DateReport'] as String?,
       mission: json['Mission'] as String?,
       results: json['Results'] as String?,
       backlog: json['Backlog'] as String,

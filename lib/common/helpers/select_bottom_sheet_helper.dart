@@ -11,11 +11,11 @@ Future<void> openSelectBottomSheet<T>({
   String? hintText,
   String? secondaryActionLabel,
   VoidCallback? onSecondaryAction,
+  VoidCallback? onAdd,
 }) async {
   final parentFocusScope = FocusScope.of(context);
   final previousCanRequestFocus = parentFocusScope.canRequestFocus;
-  final previousDescendantsFocusable =
-      parentFocusScope.descendantsAreFocusable;
+  final previousDescendantsFocusable = parentFocusScope.descendantsAreFocusable;
 
   // Khóa toàn bộ focus của màn hình phía sau
   parentFocusScope.canRequestFocus = false;
@@ -37,17 +37,15 @@ Future<void> openSelectBottomSheet<T>({
           hintText: hintText,
           secondaryActionLabel: secondaryActionLabel,
           onSecondaryAction: onSecondaryAction,
+          onAdd: onAdd,
         ),
       ),
     );
   } finally {
     // Trả lại khả năng focus cho màn hình cũ sau khi sheet đóng
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!context.mounted) return;
-
       parentFocusScope.canRequestFocus = previousCanRequestFocus;
-      parentFocusScope.descendantsAreFocusable =
-          previousDescendantsFocusable;
+      parentFocusScope.descendantsAreFocusable = previousDescendantsFocusable;
     });
   }
 }
@@ -60,6 +58,7 @@ class _SelectSheet<T> extends StatefulWidget {
   final String? hintText;
   final String? secondaryActionLabel;
   final VoidCallback? onSecondaryAction;
+  final VoidCallback? onAdd;
 
   const _SelectSheet({
     required this.title,
@@ -69,6 +68,7 @@ class _SelectSheet<T> extends StatefulWidget {
     this.hintText,
     this.secondaryActionLabel,
     this.onSecondaryAction,
+    this.onAdd,
   });
 
   @override
@@ -113,8 +113,8 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
   Widget build(BuildContext context) {
     final sheetMaxHeight = MediaQuery.of(context).size.height * 0.65;
     final isEmpty = widget.items.isEmpty;
-    final hasSecondary = widget.secondaryActionLabel != null &&
-        widget.onSecondaryAction != null;
+    final hasSecondary =
+        widget.secondaryActionLabel != null && widget.onSecondaryAction != null;
     final showSearch = !isEmpty;
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -137,9 +137,7 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
         initialOffset: const SheetOffset(1.0),
         decoration: const MaterialSheetDecoration(
           size: SheetSize.fit,
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(20),
-          ),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           clipBehavior: Clip.antiAlias,
           color: Colors.white,
         ),
@@ -147,21 +145,43 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
           bottom: MediaQuery.viewInsetsOf(context).bottom,
         ),
         child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: sheetMaxHeight,
-          ),
+          constraints: BoxConstraints(maxHeight: sheetMaxHeight),
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
+                padding: const EdgeInsets.only(
+                  left: 16,
+                  right: 8,
+                  top: 12,
+                  bottom: 12,
                 ),
-                child: Center(
-                  child: Text(
-                    widget.title,
-                    style: AppStyles.headingTitle2,
-                  ),
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 40,
+                    ), // Spacer cho cân đối với IconButton
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          widget.title,
+                          style: AppStyles.headingTitle2,
+                        ),
+                      ),
+                    ),
+                    if (widget.onAdd != null)
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          widget.onAdd?.call();
+                        },
+                        icon: const Icon(
+                          Icons.add_circle_outline,
+                          color: AppColors.primaryERP,
+                        ),
+                      )
+                    else
+                      const SizedBox(width: 40),
+                  ],
                 ),
               ),
 
@@ -179,9 +199,7 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
                       prefixIcon: const Icon(Icons.search),
                       hintText: widget.hintText ?? 'Tìm kiếm...',
                       border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8),
-                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
                       isDense: true,
                       filled: true,
@@ -196,59 +214,50 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
               Expanded(
                 child: isEmpty && !hasSecondary
                     ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
-                      Icons.insert_drive_file_outlined,
-                      size: 56,
-                      color: Colors.grey,
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      'Không có dữ liệu',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ],
-                )
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.insert_drive_file_outlined,
+                            size: 56,
+                            color: Colors.grey,
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Không có dữ liệu',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ],
+                      )
                     : ListView.separated(
-                  keyboardDismissBehavior:
-                  ScrollViewKeyboardDismissBehavior.onDrag,
-                  padding: const EdgeInsets.fromLTRB(
-                    16,
-                    6,
-                    16,
-                    24,
-                  ),
-                  itemCount:
-                  (hasSecondary ? 1 : 0) + _filtered.length,
-                  separatorBuilder: (_, __) =>
-                  const Divider(height: 1),
-                  itemBuilder: (context, index) {
-                    if (hasSecondary && index == 0) {
-                      return ListTile(
-                        leading:
-                        const Icon(Icons.edit_outlined),
-                        title:
-                        Text(widget.secondaryActionLabel!),
-                        onTap: () {
-                          Navigator.pop(context);
-                          widget.onSecondaryAction?.call();
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
+                        padding: const EdgeInsets.fromLTRB(16, 6, 16, 24),
+                        itemCount: (hasSecondary ? 1 : 0) + _filtered.length,
+                        separatorBuilder: (_, __) => const Divider(height: 1),
+                        itemBuilder: (context, index) {
+                          if (hasSecondary && index == 0) {
+                            return ListTile(
+                              leading: const Icon(Icons.edit_outlined),
+                              title: Text(widget.secondaryActionLabel!),
+                              onTap: () {
+                                Navigator.pop(context);
+                                widget.onSecondaryAction?.call();
+                              },
+                            );
+                          }
+
+                          final fi = index - (hasSecondary ? 1 : 0);
+                          final item = _filtered[fi];
+
+                          return ListTile(
+                            title: Text(widget.displayText(item)),
+                            onTap: () {
+                              Navigator.pop(context);
+                              widget.onSelected(item);
+                            },
+                          );
                         },
-                      );
-                    }
-
-                    final fi = index - (hasSecondary ? 1 : 0);
-                    final item = _filtered[fi];
-
-                    return ListTile(
-                      title: Text(widget.displayText(item)),
-                      onTap: () {
-                        Navigator.pop(context);
-                        widget.onSelected(item);
-                      },
-                    );
-                  },
-                ),
+                      ),
               ),
             ],
           ),

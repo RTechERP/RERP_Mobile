@@ -64,6 +64,7 @@ import '../features/workplace/app/reg_work/view/pages/work_trip/data/datasource/
 import '../features/workplace/app/reg_work/view/pages/work_trip/view/bloc/work_trip_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/work_trip/view/pages/work_trip_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/work_trip/view/pages/work_trip_screen.dart';
+import '../features/workplace/app/reports/data/datasource/models/report_model.dart';
 import '../features/workplace/app/reports/view/ad/view/bloc/ad_bloc.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_add_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_detail_screen.dart';
@@ -385,7 +386,15 @@ class AppRouter {
           ),
           GoRoute(
             path: RouteNames.reportITdepartAdd,
-            builder: (context, state) => const TechAddScreen(),
+            builder: (context, state) {
+              final payload = state.extra as Map<String, dynamic>?;
+              final copyItems = payload?['copyItems'] as List<CopyNullResponse>?;
+              final projects = payload?['projects'] as List<ProjectResponse>?;
+              return TechAddScreen(
+                copyItems: copyItems,
+                rtcProject: projects,
+              );
+            },
           ),
           GoRoute(
             path: RouteNames.reportITdepartDetail,

@@ -7426,7 +7426,7 @@ mixin _$CopyNullResponse {
   @JsonKey(name: 'ProjectItemCode')
   String? get projectItemCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'DateReport')
-  String get dateReport => throw _privateConstructorUsedError;
+  String? get dateReport => throw _privateConstructorUsedError;
   @JsonKey(name: 'Mission')
   String? get mission => throw _privateConstructorUsedError;
   @JsonKey(name: 'Results')
@@ -7458,7 +7458,7 @@ abstract class $CopyNullResponseCopyWith<$Res> {
       {@JsonKey(name: 'ProjectCode') String? projectCode,
       @JsonKey(name: 'ProjectName') String? projectName,
       @JsonKey(name: 'ProjectItemCode') String? projectItemCode,
-      @JsonKey(name: 'DateReport') String dateReport,
+      @JsonKey(name: 'DateReport') String? dateReport,
       @JsonKey(name: 'Mission') String? mission,
       @JsonKey(name: 'Results') String? results,
       @JsonKey(name: 'Backlog') String backlog,
@@ -7484,7 +7484,7 @@ class _$CopyNullResponseCopyWithImpl<$Res, $Val extends CopyNullResponse>
     Object? projectCode = freezed,
     Object? projectName = freezed,
     Object? projectItemCode = freezed,
-    Object? dateReport = null,
+    Object? dateReport = freezed,
     Object? mission = freezed,
     Object? results = freezed,
     Object? backlog = null,
@@ -7506,10 +7506,10 @@ class _$CopyNullResponseCopyWithImpl<$Res, $Val extends CopyNullResponse>
           ? _value.projectItemCode
           : projectItemCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      dateReport: null == dateReport
+      dateReport: freezed == dateReport
           ? _value.dateReport
           : dateReport // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       mission: freezed == mission
           ? _value.mission
           : mission // ignore: cast_nullable_to_non_nullable
@@ -7554,7 +7554,7 @@ abstract class _$$CopyNullResponseImplCopyWith<$Res>
       {@JsonKey(name: 'ProjectCode') String? projectCode,
       @JsonKey(name: 'ProjectName') String? projectName,
       @JsonKey(name: 'ProjectItemCode') String? projectItemCode,
-      @JsonKey(name: 'DateReport') String dateReport,
+      @JsonKey(name: 'DateReport') String? dateReport,
       @JsonKey(name: 'Mission') String? mission,
       @JsonKey(name: 'Results') String? results,
       @JsonKey(name: 'Backlog') String backlog,
@@ -7578,7 +7578,7 @@ class __$$CopyNullResponseImplCopyWithImpl<$Res>
     Object? projectCode = freezed,
     Object? projectName = freezed,
     Object? projectItemCode = freezed,
-    Object? dateReport = null,
+    Object? dateReport = freezed,
     Object? mission = freezed,
     Object? results = freezed,
     Object? backlog = null,
@@ -7600,10 +7600,10 @@ class __$$CopyNullResponseImplCopyWithImpl<$Res>
           ? _value.projectItemCode
           : projectItemCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      dateReport: null == dateReport
+      dateReport: freezed == dateReport
           ? _value.dateReport
           : dateReport // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       mission: freezed == mission
           ? _value.mission
           : mission // ignore: cast_nullable_to_non_nullable
@@ -7643,7 +7643,7 @@ class _$CopyNullResponseImpl implements _CopyNullResponse {
       {@JsonKey(name: 'ProjectCode') this.projectCode,
       @JsonKey(name: 'ProjectName') this.projectName,
       @JsonKey(name: 'ProjectItemCode') this.projectItemCode,
-      @JsonKey(name: 'DateReport') required this.dateReport,
+      @JsonKey(name: 'DateReport') this.dateReport,
       @JsonKey(name: 'Mission') this.mission,
       @JsonKey(name: 'Results') this.results,
       @JsonKey(name: 'Backlog') required this.backlog,
@@ -7666,7 +7666,7 @@ class _$CopyNullResponseImpl implements _CopyNullResponse {
   final String? projectItemCode;
   @override
   @JsonKey(name: 'DateReport')
-  final String dateReport;
+  final String? dateReport;
   @override
   @JsonKey(name: 'Mission')
   final String? mission;
@@ -7754,7 +7754,7 @@ abstract class _CopyNullResponse implements CopyNullResponse {
           {@JsonKey(name: 'ProjectCode') final String? projectCode,
           @JsonKey(name: 'ProjectName') final String? projectName,
           @JsonKey(name: 'ProjectItemCode') final String? projectItemCode,
-          @JsonKey(name: 'DateReport') required final String dateReport,
+          @JsonKey(name: 'DateReport') final String? dateReport,
           @JsonKey(name: 'Mission') final String? mission,
           @JsonKey(name: 'Results') final String? results,
           @JsonKey(name: 'Backlog') required final String backlog,
@@ -7778,7 +7778,7 @@ abstract class _CopyNullResponse implements CopyNullResponse {
   String? get projectItemCode;
   @override
   @JsonKey(name: 'DateReport')
-  String get dateReport;
+  String? get dateReport;
   @override
   @JsonKey(name: 'Mission')
   String? get mission;

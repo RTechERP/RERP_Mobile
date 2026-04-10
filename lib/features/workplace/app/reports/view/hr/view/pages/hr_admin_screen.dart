@@ -66,7 +66,7 @@ class _HrAdminScreenState
     if (reports.isEmpty) return '';
 
     final buffer = StringBuffer();
-    final date = DateTime.tryParse(reports.first.dateReport);
+    final date = DateTime.tryParse(reports.first.dateReport ?? '');
     final formattedDate = date != null
         ? '${date.day.toString().padLeft(2, '0')}/'
               '${date.month.toString().padLeft(2, '0')}/'
