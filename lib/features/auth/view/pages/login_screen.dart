@@ -5,10 +5,11 @@ import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 
 import '../../../../base/bloc/index.dart';
+import '../../../../base/network/errors/extension.dart';
 import '../../../../base/widgets/base_widget.dart';
 import '../../../../common/app_theme/index.dart';
 import '../../../../common/constants/index.dart';
-import '../../../../common/utils/dialog/index.dart';
+import '../../../../common/utils/snack_bar_helper.dart';
 import '../../../../common/widgets/form/index.dart';
 import '../bloc/auth_bloc.dart';
 
@@ -26,11 +27,14 @@ class _LoginScreenState
   late final FocusNode _accountFocus;
   late final FocusNode _passwordFocus;
 
+  bool _hasPrefilled = false;
+
   @override
   void initState() {
     super.initState();
     _accountFocus = FocusNode();
     _passwordFocus = FocusNode();
+    bloc.add(const AuthEvent.init());
   }
 
   @override
@@ -50,18 +54,27 @@ class _LoginScreenState
     }
 
     if (state.status == BaseStateStatus.failed) {
-      DialogService.showToastFailed(
-        context: context,
-        mess: state.message,
-      );
+      context.showMessage(state.message ?? '', type: SnackBarType.error);
     }
 
-
-    if (state.status == BaseStateStatus.success &&
-        state.user != null) {
+    if (state.status == BaseStateStatus.success && state.user != null) {
       context.go('/dashboard');
     }
 
+    if (!_hasPrefilled &&
+        (state.savedUsername != null || state.savedPassword != null)) {
+      _hasPrefilled = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _formKey.currentState?.fields['auth_account']
+            ?.didChange(state.savedUsername ?? '');
+
+        _formKey.currentState?.fields['auth_password']
+            ?.didChange(state.savedPassword ?? '');
+
+        _formKey.currentState?.fields['remember_me']
+            ?.didChange(state.rememberMe);
+      });
+    }
   }
 
   @override
@@ -130,14 +143,24 @@ class _LoginScreenState
                       ),
                     ),
 
-                    const SizedBox(height: 18),
+                    /// ===== REMEMBER ME =====
+                    blocBuilder((context, state) {
+                      return FormBuilderCheckbox(
+                        name: 'remember_me',
+                        title: const Text('Ghi nhớ đăng nhập'),
+                        onChanged: (value) {
+                          bloc.add(AuthEvent.toggleRememberMe(value ?? false));
+                        },
+                      );
+                    }),
 
                     /// ===== SUBMIT =====
                     SizedBox(
                       width: double.infinity,
                       height: 48,
                       child: blocBuilder((context, state) {
-                        final isLoading = state.status == BaseStateStatus.loading;
+                        final isLoading =
+                            state.status == BaseStateStatus.loading;
 
                         return ElevatedButton(
                           onPressed: isLoading ? null : _onSubmitLogin,
@@ -149,31 +172,29 @@ class _LoginScreenState
                           ),
                           child: isLoading
                               ? const SizedBox(
-                            width: 22,
-                            height: 22,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              color: Colors.white,
-                            ),
-                          )
+                                  width: 22,
+                                  height: 22,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: Colors.white,
+                                  ),
+                                )
                               : const Text(
-                            'Đăng nhập',
-                            style: TextStyle(
-                              color: AppColors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
+                                  'Đăng nhập',
+                                  style: TextStyle(
+                                    color: AppColors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                         );
                       }, buildWhen: (p, n) => p.status != n.status),
                     ),
-
                   ],
                 ),
               ),
             ),
           ),
-
         ],
       ),
     );
@@ -187,8 +208,9 @@ class _LoginScreenState
     final values = _formKey.currentState!.value;
     final loginName = values['auth_account'] as String;
     final password = values['auth_password'] as String;
+    final rememberMe = values['remember_me'] as bool? ?? false;
 
-    bloc.add(AuthEvent.login(loginName, password));
+    bloc.add(AuthEvent.login(loginName, password, rememberMe));
   }
 }
 
@@ -203,7 +225,7 @@ class _Circle extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: AppColors.primaryERPlight.withOpacity(0.25),
+        color: AppColors.primaryERPlight.withValues(alpha: 0.25),
         shape: BoxShape.circle,
       ),
     );

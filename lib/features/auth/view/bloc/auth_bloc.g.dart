@@ -15,6 +15,12 @@ abstract class _$AuthStateCWProxy {
 
   AuthState user(User? user);
 
+  AuthState rememberMe(bool rememberMe);
+
+  AuthState savedUsername(String? savedUsername);
+
+  AuthState savedPassword(String? savedPassword);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AuthState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -26,6 +32,9 @@ abstract class _$AuthStateCWProxy {
     String? message,
     LoginResponse? loginResponse,
     User? user,
+    bool? rememberMe,
+    String? savedUsername,
+    String? savedPassword,
   });
 }
 
@@ -49,6 +58,17 @@ class _$AuthStateCWProxyImpl implements _$AuthStateCWProxy {
   AuthState user(User? user) => this(user: user);
 
   @override
+  AuthState rememberMe(bool rememberMe) => this(rememberMe: rememberMe);
+
+  @override
+  AuthState savedUsername(String? savedUsername) =>
+      this(savedUsername: savedUsername);
+
+  @override
+  AuthState savedPassword(String? savedPassword) =>
+      this(savedPassword: savedPassword);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AuthState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -61,6 +81,9 @@ class _$AuthStateCWProxyImpl implements _$AuthStateCWProxy {
     Object? message = const $CopyWithPlaceholder(),
     Object? loginResponse = const $CopyWithPlaceholder(),
     Object? user = const $CopyWithPlaceholder(),
+    Object? rememberMe = const $CopyWithPlaceholder(),
+    Object? savedUsername = const $CopyWithPlaceholder(),
+    Object? savedPassword = const $CopyWithPlaceholder(),
   }) {
     return AuthState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -79,6 +102,19 @@ class _$AuthStateCWProxyImpl implements _$AuthStateCWProxy {
           ? _value.user
           // ignore: cast_nullable_to_non_nullable
           : user as User?,
+      rememberMe:
+          rememberMe == const $CopyWithPlaceholder() || rememberMe == null
+              ? _value.rememberMe
+              // ignore: cast_nullable_to_non_nullable
+              : rememberMe as bool,
+      savedUsername: savedUsername == const $CopyWithPlaceholder()
+          ? _value.savedUsername
+          // ignore: cast_nullable_to_non_nullable
+          : savedUsername as String?,
+      savedPassword: savedPassword == const $CopyWithPlaceholder()
+          ? _value.savedPassword
+          // ignore: cast_nullable_to_non_nullable
+          : savedPassword as String?,
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../common/constants.dart';
 
@@ -14,7 +15,6 @@ import '../../../../common/services/permissions/permission_service.dart';
 import '../../data/datasource/models/auth_model.dart';
 import '../../data/datasource/models/user_model.dart';
 import '../../data/repository/auth_repo.dart';
-import '../../../../../../../../base/network/errors/extension.dart';
 import '../../data/repository/auth_repository.dart';
 import '../../../../common/logger/logger.dart';
 
@@ -32,9 +32,10 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     on<AuthEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
-        login: (loginName, passwordHash) =>
-            _onLogin(loginName, passwordHash, emit),
+        login: (loginName, passwordHash, rememberMe) =>
+            _onLogin(loginName, passwordHash, rememberMe, emit),
         logout: () => _onLogout(emit),
+        toggleRememberMe: (value) => _onToggleRememberMe(value, emit),
       );
     });
   }
@@ -42,18 +43,37 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
   Future<void> _onInit(Emitter<AuthState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
-    final isValid = await AuthRepository.isLoggedInAndValid(log: _log);
+    final prefs = await SharedPreferences.getInstance();
+
+    final rememberMe =
+        prefs.getBool(SharedKeys.rememberMe) ?? false;
+
+    final savedUsername =
+    prefs.getString(SharedKeys.savedUsername);
+
+    final savedPassword =
+    prefs.getString(SharedKeys.savedPassword);
+
+    emit(
+      state.copyWith(
+        status: BaseStateStatus.init,
+        rememberMe: rememberMe,
+        savedUsername: savedUsername,
+        savedPassword: savedPassword,
+      ),
+    );
+
+    final isValid =
+    await AuthRepository.isLoggedInAndValid(log: _log);
 
     if (!isValid) {
       AuthScheduledLogout.cancel();
-      if (emit.isDone) return;
-      emit(state.copyWith(status: BaseStateStatus.init));
       return;
     }
 
     if (await AuthScheduledLogout.logoutIfMissedDailyBoundary(log: _log)) {
       if (emit.isDone) return;
-      emit(state.copyWith(status: BaseStateStatus.init));
+      emit(state.copyWith(status: BaseStateStatus.init, user: null));
       return;
     }
 
@@ -66,7 +86,9 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
 
     emit(
       state.copyWith(
-        status: user != null ? BaseStateStatus.success : BaseStateStatus.init,
+        status: user != null
+            ? BaseStateStatus.success
+            : BaseStateStatus.init,
         user: user,
       ),
     );
@@ -81,14 +103,28 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
   Future<void> _onLogin(
     String loginName,
     String passwordHash,
+    bool rememberMe,
     Emitter<AuthState> emit,
   ) async {
-    emit(state.copyWith(status: BaseStateStatus.loading));
+    emit(state.copyWith(status: BaseStateStatus.loading, rememberMe: rememberMe));
 
     final res = await _authRepo.login(
       loginName: loginName,
       passwordHash: passwordHash,
     );
+
+    final prefs = await SharedPreferences.getInstance();
+
+
+    if (rememberMe) {
+      await prefs.setBool(SharedKeys.rememberMe, true);
+      await prefs.setString(SharedKeys.savedUsername, loginName);
+      await prefs.setString(SharedKeys.savedPassword, passwordHash);
+    } else {
+      await prefs.remove(SharedKeys.rememberMe);
+      await prefs.remove(SharedKeys.savedUsername);
+      await prefs.remove(SharedKeys.savedPassword);
+    }
 
     await res.fold(
       (l) async {
@@ -96,7 +132,7 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         emit(
           state.copyWith(
             status: BaseStateStatus.failed,
-            message: l.getErrorMessage,
+            message: 'Sai tài khoản hoặc mật khẩu!',
           ),
         );
       },
@@ -139,6 +175,9 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
                 : 'Login success but fetch user failed',
             loginResponse: r,
             user: user,
+            rememberMe: rememberMe,
+            savedUsername: rememberMe ? loginName : null,
+            savedPassword: rememberMe ? passwordHash : null,
           ),
         );
       },
@@ -146,10 +185,37 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
   }
 
   Future<void> _onLogout(Emitter<AuthState> emit) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final rememberMe =
+        prefs.getBool(SharedKeys.rememberMe) ?? false;
+
+    final savedUsername =
+    prefs.getString(SharedKeys.savedUsername);
+
+    final savedPassword =
+    prefs.getString(SharedKeys.savedPassword);
+
     AuthScheduledLogout.cancel();
     await AuthRepository.clearAll(log: _log);
     PermissionService.reset();
+
     if (emit.isDone) return;
-    emit(AuthState.init());
+
+    emit(
+      AuthState.init().copyWith(
+        rememberMe: rememberMe,
+        savedUsername: savedUsername,
+        savedPassword: savedPassword,
+      ),
+    );
+
+    _log.logI('rememberMe=$rememberMe');
+    _log.logI('savedUsername=$savedUsername');
+    _log.logI('savedPassword=$savedPassword');
+  }
+
+  _onToggleRememberMe(bool value, Emitter<AuthState> emit) {
+    emit(state.copyWith(rememberMe: value));
   }
 }

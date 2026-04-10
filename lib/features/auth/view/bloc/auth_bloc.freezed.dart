@@ -19,22 +19,29 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(String loginName, String passwordHash) login,
+    required TResult Function(
+            String loginName, String passwordHash, bool rememberMe)
+        login,
     required TResult Function() logout,
+    required TResult Function(bool value) toggleRememberMe,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(String loginName, String passwordHash)? login,
+    TResult? Function(String loginName, String passwordHash, bool rememberMe)?
+        login,
     TResult? Function()? logout,
+    TResult? Function(bool value)? toggleRememberMe,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(String loginName, String passwordHash)? login,
+    TResult Function(String loginName, String passwordHash, bool rememberMe)?
+        login,
     TResult Function()? logout,
+    TResult Function(bool value)? toggleRememberMe,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +50,7 @@ mixin _$AuthEvent {
     required TResult Function(_Init value) init,
     required TResult Function(_Login value) login,
     required TResult Function(_Logout value) logout,
+    required TResult Function(_ToggleRememberMe value) toggleRememberMe,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +58,7 @@ mixin _$AuthEvent {
     TResult? Function(_Init value)? init,
     TResult? Function(_Login value)? login,
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_ToggleRememberMe value)? toggleRememberMe,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +66,7 @@ mixin _$AuthEvent {
     TResult Function(_Init value)? init,
     TResult Function(_Login value)? login,
     TResult Function(_Logout value)? logout,
+    TResult Function(_ToggleRememberMe value)? toggleRememberMe,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -117,8 +127,11 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(String loginName, String passwordHash) login,
+    required TResult Function(
+            String loginName, String passwordHash, bool rememberMe)
+        login,
     required TResult Function() logout,
+    required TResult Function(bool value) toggleRememberMe,
   }) {
     return init();
   }
@@ -127,8 +140,10 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(String loginName, String passwordHash)? login,
+    TResult? Function(String loginName, String passwordHash, bool rememberMe)?
+        login,
     TResult? Function()? logout,
+    TResult? Function(bool value)? toggleRememberMe,
   }) {
     return init?.call();
   }
@@ -137,8 +152,10 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(String loginName, String passwordHash)? login,
+    TResult Function(String loginName, String passwordHash, bool rememberMe)?
+        login,
     TResult Function()? logout,
+    TResult Function(bool value)? toggleRememberMe,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -153,6 +170,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_Init value) init,
     required TResult Function(_Login value) login,
     required TResult Function(_Logout value) logout,
+    required TResult Function(_ToggleRememberMe value) toggleRememberMe,
   }) {
     return init(this);
   }
@@ -163,6 +181,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_Init value)? init,
     TResult? Function(_Login value)? login,
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_ToggleRememberMe value)? toggleRememberMe,
   }) {
     return init?.call(this);
   }
@@ -173,6 +192,7 @@ class _$InitImpl implements _Init {
     TResult Function(_Init value)? init,
     TResult Function(_Login value)? login,
     TResult Function(_Logout value)? logout,
+    TResult Function(_ToggleRememberMe value)? toggleRememberMe,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -192,7 +212,7 @@ abstract class _$$LoginImplCopyWith<$Res> {
           _$LoginImpl value, $Res Function(_$LoginImpl) then) =
       __$$LoginImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String loginName, String passwordHash});
+  $Res call({String loginName, String passwordHash, bool rememberMe});
 }
 
 /// @nodoc
@@ -208,6 +228,7 @@ class __$$LoginImplCopyWithImpl<$Res>
   $Res call({
     Object? loginName = null,
     Object? passwordHash = null,
+    Object? rememberMe = null,
   }) {
     return _then(_$LoginImpl(
       null == loginName
@@ -218,6 +239,10 @@ class __$$LoginImplCopyWithImpl<$Res>
           ? _value.passwordHash
           : passwordHash // ignore: cast_nullable_to_non_nullable
               as String,
+      null == rememberMe
+          ? _value.rememberMe
+          : rememberMe // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -225,16 +250,18 @@ class __$$LoginImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoginImpl implements _Login {
-  const _$LoginImpl(this.loginName, this.passwordHash);
+  const _$LoginImpl(this.loginName, this.passwordHash, this.rememberMe);
 
   @override
   final String loginName;
   @override
   final String passwordHash;
+  @override
+  final bool rememberMe;
 
   @override
   String toString() {
-    return 'AuthEvent.login(loginName: $loginName, passwordHash: $passwordHash)';
+    return 'AuthEvent.login(loginName: $loginName, passwordHash: $passwordHash, rememberMe: $rememberMe)';
   }
 
   @override
@@ -245,11 +272,14 @@ class _$LoginImpl implements _Login {
             (identical(other.loginName, loginName) ||
                 other.loginName == loginName) &&
             (identical(other.passwordHash, passwordHash) ||
-                other.passwordHash == passwordHash));
+                other.passwordHash == passwordHash) &&
+            (identical(other.rememberMe, rememberMe) ||
+                other.rememberMe == rememberMe));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loginName, passwordHash);
+  int get hashCode =>
+      Object.hash(runtimeType, loginName, passwordHash, rememberMe);
 
   @JsonKey(ignore: true)
   @override
@@ -261,32 +291,39 @@ class _$LoginImpl implements _Login {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(String loginName, String passwordHash) login,
+    required TResult Function(
+            String loginName, String passwordHash, bool rememberMe)
+        login,
     required TResult Function() logout,
+    required TResult Function(bool value) toggleRememberMe,
   }) {
-    return login(loginName, passwordHash);
+    return login(loginName, passwordHash, rememberMe);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(String loginName, String passwordHash)? login,
+    TResult? Function(String loginName, String passwordHash, bool rememberMe)?
+        login,
     TResult? Function()? logout,
+    TResult? Function(bool value)? toggleRememberMe,
   }) {
-    return login?.call(loginName, passwordHash);
+    return login?.call(loginName, passwordHash, rememberMe);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(String loginName, String passwordHash)? login,
+    TResult Function(String loginName, String passwordHash, bool rememberMe)?
+        login,
     TResult Function()? logout,
+    TResult Function(bool value)? toggleRememberMe,
     required TResult orElse(),
   }) {
     if (login != null) {
-      return login(loginName, passwordHash);
+      return login(loginName, passwordHash, rememberMe);
     }
     return orElse();
   }
@@ -297,6 +334,7 @@ class _$LoginImpl implements _Login {
     required TResult Function(_Init value) init,
     required TResult Function(_Login value) login,
     required TResult Function(_Logout value) logout,
+    required TResult Function(_ToggleRememberMe value) toggleRememberMe,
   }) {
     return login(this);
   }
@@ -307,6 +345,7 @@ class _$LoginImpl implements _Login {
     TResult? Function(_Init value)? init,
     TResult? Function(_Login value)? login,
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_ToggleRememberMe value)? toggleRememberMe,
   }) {
     return login?.call(this);
   }
@@ -317,6 +356,7 @@ class _$LoginImpl implements _Login {
     TResult Function(_Init value)? init,
     TResult Function(_Login value)? login,
     TResult Function(_Logout value)? logout,
+    TResult Function(_ToggleRememberMe value)? toggleRememberMe,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -327,11 +367,12 @@ class _$LoginImpl implements _Login {
 }
 
 abstract class _Login implements AuthEvent {
-  const factory _Login(final String loginName, final String passwordHash) =
-      _$LoginImpl;
+  const factory _Login(final String loginName, final String passwordHash,
+      final bool rememberMe) = _$LoginImpl;
 
   String get loginName;
   String get passwordHash;
+  bool get rememberMe;
   @JsonKey(ignore: true)
   _$$LoginImplCopyWith<_$LoginImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -376,8 +417,11 @@ class _$LogoutImpl implements _Logout {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(String loginName, String passwordHash) login,
+    required TResult Function(
+            String loginName, String passwordHash, bool rememberMe)
+        login,
     required TResult Function() logout,
+    required TResult Function(bool value) toggleRememberMe,
   }) {
     return logout();
   }
@@ -386,8 +430,10 @@ class _$LogoutImpl implements _Logout {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(String loginName, String passwordHash)? login,
+    TResult? Function(String loginName, String passwordHash, bool rememberMe)?
+        login,
     TResult? Function()? logout,
+    TResult? Function(bool value)? toggleRememberMe,
   }) {
     return logout?.call();
   }
@@ -396,8 +442,10 @@ class _$LogoutImpl implements _Logout {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(String loginName, String passwordHash)? login,
+    TResult Function(String loginName, String passwordHash, bool rememberMe)?
+        login,
     TResult Function()? logout,
+    TResult Function(bool value)? toggleRememberMe,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -412,6 +460,7 @@ class _$LogoutImpl implements _Logout {
     required TResult Function(_Init value) init,
     required TResult Function(_Login value) login,
     required TResult Function(_Logout value) logout,
+    required TResult Function(_ToggleRememberMe value) toggleRememberMe,
   }) {
     return logout(this);
   }
@@ -422,6 +471,7 @@ class _$LogoutImpl implements _Logout {
     TResult? Function(_Init value)? init,
     TResult? Function(_Login value)? login,
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_ToggleRememberMe value)? toggleRememberMe,
   }) {
     return logout?.call(this);
   }
@@ -432,6 +482,7 @@ class _$LogoutImpl implements _Logout {
     TResult Function(_Init value)? init,
     TResult Function(_Login value)? login,
     TResult Function(_Logout value)? logout,
+    TResult Function(_ToggleRememberMe value)? toggleRememberMe,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -443,4 +494,154 @@ class _$LogoutImpl implements _Logout {
 
 abstract class _Logout implements AuthEvent {
   const factory _Logout() = _$LogoutImpl;
+}
+
+/// @nodoc
+abstract class _$$ToggleRememberMeImplCopyWith<$Res> {
+  factory _$$ToggleRememberMeImplCopyWith(_$ToggleRememberMeImpl value,
+          $Res Function(_$ToggleRememberMeImpl) then) =
+      __$$ToggleRememberMeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool value});
+}
+
+/// @nodoc
+class __$$ToggleRememberMeImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$ToggleRememberMeImpl>
+    implements _$$ToggleRememberMeImplCopyWith<$Res> {
+  __$$ToggleRememberMeImplCopyWithImpl(_$ToggleRememberMeImpl _value,
+      $Res Function(_$ToggleRememberMeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$ToggleRememberMeImpl(
+      null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToggleRememberMeImpl implements _ToggleRememberMe {
+  const _$ToggleRememberMeImpl(this.value);
+
+  @override
+  final bool value;
+
+  @override
+  String toString() {
+    return 'AuthEvent.toggleRememberMe(value: $value)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToggleRememberMeImpl &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToggleRememberMeImplCopyWith<_$ToggleRememberMeImpl> get copyWith =>
+      __$$ToggleRememberMeImplCopyWithImpl<_$ToggleRememberMeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(
+            String loginName, String passwordHash, bool rememberMe)
+        login,
+    required TResult Function() logout,
+    required TResult Function(bool value) toggleRememberMe,
+  }) {
+    return toggleRememberMe(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String loginName, String passwordHash, bool rememberMe)?
+        login,
+    TResult? Function()? logout,
+    TResult? Function(bool value)? toggleRememberMe,
+  }) {
+    return toggleRememberMe?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String loginName, String passwordHash, bool rememberMe)?
+        login,
+    TResult Function()? logout,
+    TResult Function(bool value)? toggleRememberMe,
+    required TResult orElse(),
+  }) {
+    if (toggleRememberMe != null) {
+      return toggleRememberMe(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Login value) login,
+    required TResult Function(_Logout value) logout,
+    required TResult Function(_ToggleRememberMe value) toggleRememberMe,
+  }) {
+    return toggleRememberMe(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Login value)? login,
+    TResult? Function(_Logout value)? logout,
+    TResult? Function(_ToggleRememberMe value)? toggleRememberMe,
+  }) {
+    return toggleRememberMe?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Login value)? login,
+    TResult Function(_Logout value)? logout,
+    TResult Function(_ToggleRememberMe value)? toggleRememberMe,
+    required TResult orElse(),
+  }) {
+    if (toggleRememberMe != null) {
+      return toggleRememberMe(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ToggleRememberMe implements AuthEvent {
+  const factory _ToggleRememberMe(final bool value) = _$ToggleRememberMeImpl;
+
+  bool get value;
+  @JsonKey(ignore: true)
+  _$$ToggleRememberMeImplCopyWith<_$ToggleRememberMeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

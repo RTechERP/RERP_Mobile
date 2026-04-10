@@ -51,6 +51,12 @@ class SharedKeys {
   static const userId = 'userId';
 
   static const isAppOpened = 'isAppOpened';
+
+  static const rememberMe = 'rememberMe';
+  static const savedUsername = 'savedUsername';
+  static const savedPassword = 'savedPassword';
+
+
 }
 
 class BlocMessages {
