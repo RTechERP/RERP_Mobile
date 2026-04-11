@@ -79,8 +79,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             activeColorPrimary: Colors.deepOrange,
           ),
           navItem(
-            Icons.add_circle_outline_outlined,
-            'dashboard.more'.tr(),
+            Icons.person,
+            'dashboard.personal'.tr(),
             activeColorPrimary: Colors.deepOrange,
           ),
         ],
