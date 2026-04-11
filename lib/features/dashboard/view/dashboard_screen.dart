@@ -10,6 +10,7 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../common/utils/bottom_bar.dart';
 import '../../../routes/route_names.dart';
 import '../../auth/view/bloc/auth_bloc.dart';
+import '../../message/view/message_screen.dart';
 import '../../more/view/more_screen.dart';
 import '../../workplace/view/workspace_screen.dart';
 import 'newsfeed/newsfeed_screen.dart';
@@ -49,7 +50,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         context: context,
         controller: _tabController,
         screens: const [
-          _MessageTab(),
+          MessageScreen(),
           WorkPlaceScreen(),
           NewsFeedScreen(),
           _ContactsTab(),
@@ -84,16 +85,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ],
       ),
     );
-  }
-}
-
-/// Tab tin nhắn - hiển thị màn hình chat (placeholder).
-class _MessageTab extends StatelessWidget {
-  const _MessageTab();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('Tin nhắn')));
   }
 }
 
