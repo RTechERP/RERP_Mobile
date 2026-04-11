@@ -159,90 +159,22 @@ class _MessageScreenState extends State<MessageScreen>
         ),
         actions: [
           IconButton(
-            icon: Icon(
-              _isSearchVisible ? Icons.close_outlined : Icons.search_outlined,
+            icon: const Icon(
+              Icons.search_outlined,
               color: AppColors.heading,
               size: 26,
             ),
             onPressed: () {
               setState(() {
-                _isSearchVisible = !_isSearchVisible;
-                if (!_isSearchVisible) {
-                  _searchQuery = '';
-                  _searchController.clear();
-                }
+                _isSearchVisible = true;
               });
             },
           ),
           const SizedBox(width: 4),
         ],
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(48),
-          child: Column(
-            children: [
-              // Thanh tìm kiếm (ẩn/hiện)
-              if (_isSearchVisible)
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                  child: TextField(
-                    controller: _searchController,
-                    autofocus: true,
-                    decoration: InputDecoration(
-                      hintText: 'Tìm kiếm cuộc trò chuyện...',
-                      hintStyle: const TextStyle(
-                        color: AppColors.hintText,
-                        fontSize: 14,
-                      ),
-                      prefixIcon: const Icon(
-                        Icons.search_outlined,
-                        color: AppColors.hintText,
-                        size: 22,
-                      ),
-                      filled: true,
-                      fillColor: AppColors.bgCard,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 12,
-                      ),
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        _searchQuery = value.trim();
-                      });
-                    },
-                  ),
-                ),
-
-              // Tabs
-              TabBar(
-                controller: _tabController,
-                labelColor: AppColors.primaryERP,
-                unselectedLabelColor: AppColors.gray,
-                labelStyle: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                ),
-                unselectedLabelStyle: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-                indicatorColor: AppColors.primaryERP,
-                indicatorWeight: 2.5,
-                dividerColor: Colors.transparent,
-                onTap: (_) => setState(() {}),
-                tabs: const [
-                  Tab(text: 'Tất cả'),
-                  Tab(text: 'Cá nhân'),
-                  Tab(text: 'Nhóm'),
-                ],
-              ),
-            ],
-          ),
+          preferredSize: Size.fromHeight(_isSearchVisible ? 60 : 48),
+          child: _isSearchVisible ? _buildSearchField() : _buildTabBar(),
         ),
       ),
       body: TabBarView(
@@ -253,6 +185,94 @@ class _MessageScreenState extends State<MessageScreen>
           _buildConversationList(),
         ],
       ),
+    );
+  }
+
+  /// Thanh tìm kiếm trong AppBar.
+  Widget _buildSearchField() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: _searchController,
+              autofocus: true,
+              decoration: InputDecoration(
+                hintText: 'Tìm kiếm cuộc trò chuyện...',
+                hintStyle: const TextStyle(
+                  color: AppColors.hintText,
+                  fontSize: 14,
+                ),
+                prefixIcon: const Icon(
+                  Icons.search_outlined,
+                  color: AppColors.hintText,
+                  size: 22,
+                ),
+                filled: true,
+                fillColor: AppColors.bgCard,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
+              ),
+              onChanged: (value) {
+                setState(() {
+                  _searchQuery = value.trim();
+                });
+              },
+            ),
+          ),
+          const SizedBox(width: 8),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                _isSearchVisible = false;
+                _searchQuery = '';
+                _searchController.clear();
+              });
+            },
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              child: const Icon(
+                Icons.close,
+                color: AppColors.heading,
+                size: 24,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// TabBar lọc cuộc trò chuyện.
+  Widget _buildTabBar() {
+    return TabBar(
+      controller: _tabController,
+      labelColor: AppColors.primaryERP,
+      unselectedLabelColor: AppColors.gray,
+      labelStyle: const TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+      ),
+      unselectedLabelStyle: const TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+      ),
+      indicatorColor: AppColors.primaryERP,
+      indicatorWeight: 2.5,
+      dividerColor: Colors.transparent,
+      onTap: (_) => setState(() {}),
+      tabs: const [
+        Tab(text: 'Tất cả'),
+        Tab(text: 'Cá nhân'),
+        Tab(text: 'Nhóm'),
+      ],
     );
   }
 

@@ -10,6 +10,7 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../common/utils/bottom_bar.dart';
 import '../../../routes/route_names.dart';
 import '../../auth/view/bloc/auth_bloc.dart';
+import '../../contact/view/contact_screen.dart';
 import '../../message/view/message_screen.dart';
 import '../../more/view/more_screen.dart';
 import '../../workplace/view/workspace_screen.dart';
@@ -53,7 +54,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           MessageScreen(),
           WorkPlaceScreen(),
           NewsFeedScreen(),
-          _ContactsTab(),
+          ContactScreen(),
           MoreScreen(),
         ],
         items: [
@@ -85,15 +86,5 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ],
       ),
     );
-  }
-}
-
-/// Tab danh bạ - hiển thị danh sách liên hệ (placeholder).
-class _ContactsTab extends StatelessWidget {
-  const _ContactsTab();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('Danh bạ')));
   }
 }
