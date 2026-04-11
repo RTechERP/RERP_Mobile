@@ -139,28 +139,28 @@ class _WorkPlaceScreenState
         }, buildWhen: (p, n) => p.user != n.user || p.status != n.status),
 
         actions: [
-          Stack(
-            clipBehavior: Clip.none,
-            children: [
-              WpCircleButton(
-                icon: Icons.notifications_none_outlined,
-                onPressed: () {},
-              ),
-              Positioned(
-                right: 2,
-                top: 2,
-                child: Container(
-                  width: 10,
-                  height: 10,
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(width: 12),
+          // Stack(
+          //   clipBehavior: Clip.none,
+          //   children: [
+          //     WpCircleButton(
+          //       icon: Icons.notifications_none_outlined,
+          //       onPressed: () {},
+          //     ),
+          //     Positioned(
+          //       right: 2,
+          //       top: 2,
+          //       child: Container(
+          //         width: 10,
+          //         height: 10,
+          //         decoration: const BoxDecoration(
+          //           color: Colors.red,
+          //           shape: BoxShape.circle,
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          // const SizedBox(width: 12),
           WpCircleButton(
             icon: Icons.qr_code_scanner_outlined,
             onPressed: () {},

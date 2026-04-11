@@ -1,3 +1,6 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Màn hình dashboard chính - quản lý bottom navigation và khởi tạo các tabs (tin nhắn, workplace, newsfeed, danh bạ, more)
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +12,13 @@ import '../../../routes/route_names.dart';
 import '../../auth/view/bloc/auth_bloc.dart';
 import '../../more/view/more_screen.dart';
 import '../../workplace/view/workspace_screen.dart';
+import 'newsfeed/newsfeed_screen.dart';
 
+/// DashboardScreen là màn hình chính sau khi đăng nhập.
+///
+/// Chứa 5 tabs: Tin nhắn, Workplace, Newsfeed (Bảng tin), Danh bạ, More.
+/// Mỗi tab được render trong PersistentBottomNavBar.
+/// AuthBloc lắng nghe trạng thái đăng nhập, tự động navigate về login nếu hết phiên.
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
 
@@ -42,7 +51,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         screens: const [
           _MessageTab(),
           WorkPlaceScreen(),
-          _HomeTab(),
+          NewsFeedScreen(),
           _ContactsTab(),
           MoreScreen(),
         ],
@@ -78,29 +87,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 }
 
-class _HomeTab extends StatelessWidget {
-  const _HomeTab();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('Home')));
-  }
-}
-
-class _ContactsTab extends StatelessWidget {
-  const _ContactsTab();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('Danh bạ')));
-  }
-}
-
+/// Tab tin nhắn - hiển thị màn hình chat (placeholder).
 class _MessageTab extends StatelessWidget {
   const _MessageTab();
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(body: Center(child: Text('Tin nhắn')));
+  }
+}
+
+/// Tab danh bạ - hiển thị danh sách liên hệ (placeholder).
+class _ContactsTab extends StatelessWidget {
+  const _ContactsTab();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(body: Center(child: Text('Danh bạ')));
   }
 }
