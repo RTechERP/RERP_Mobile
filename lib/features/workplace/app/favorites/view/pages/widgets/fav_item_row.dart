@@ -1,7 +1,14 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Widget row hiển thị một item trong danh sách favorites - icon, tên, checkbox
+
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import '../../../../../../../common/models/index.dart';
 
+/// Widget row hiển thị một item trong danh sách.
+///
+/// Gồm: icon/image, tên item, checkbox để toggle favorite.
+/// Tap vào row hoặc checkbox để thay đổi trạng thái yêu thích.
 class FavItemRow extends StatelessWidget {
   final AppItemModel item;
   final bool isFavorite;
@@ -20,7 +27,6 @@ class FavItemRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final willCheck = !isFavorite;
 
     return InkWell(
       borderRadius: BorderRadius.circular(12),

@@ -207,6 +207,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
       route: '/reg-general/stamp',
+      imageUrl: AppImages.reg_general_stamp,
     ),
   ];
 
@@ -354,9 +355,9 @@ class AppItemRegistry {
     ...regwork,
     ...weekplan,
     ...reggeneral,
-    ...summaryword,
-    ...generalforms,
-    ...reports,
+    // ...summaryword,
+    // ...generalforms,
+    // ...reports,
   ];
 
   /// 🔍 Lookup theo id (quan trọng cho favorites)
