@@ -1,3 +1,6 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Định nghĩa route path constants cho toàn app
+
 class RouteNames {
   // Splash
   static const splash = '/';
@@ -10,11 +13,10 @@ class RouteNames {
 
   // Applications
   static const attendance = '/attendance';
-
   static const workspace = '';
   static const generalforms = '/general_forms';
   static const summarywork = '/summary_work';
-  static const regwork = '/reg_work';
+  static const regwork = '/regwork';
   static const reggeneral = '/reg_general';
   static const report = '/report';
   static const weekplan = '/week_plan';
@@ -124,6 +126,11 @@ class RouteNames {
 
   // Favorites
   static const favorites = '/favorites';
+
+  // Reg Work - Work Trip
+  static const regworkWorkTrip = '/regwork/work_trip';
+  static const regworkWorkTripDetail = '/regwork/work_trip/detail';
+  static const regworkWorkTripAdd = '/regwork/work_trip/add';
 
   // Reg General
   static const meetingRoom = '/reg_general/meeting_room';

@@ -1,3 +1,6 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Cấu hình go_router - định nghĩa routes, ShellRoute, BlocProvider
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -110,8 +113,10 @@ class AppRouter {
     initialLocation: '/',
 
     routes: [
-      GoRoute(path: '/', builder: (_, __) => const AppInitScreen()),
+      //---(Splash)---//
+      GoRoute(path: RouteNames.splash, builder: (context, state) => const AppInitScreen()),
 
+      //---(Auth)---//
       GoRoute(
         path: RouteNames.login,
         builder: (context, state) {
@@ -122,6 +127,7 @@ class AppRouter {
         },
       ),
 
+      //---(Dashboard)---//
       ShellRoute(
         builder: (context, state, child) {
           return MultiBlocProvider(
@@ -145,11 +151,13 @@ class AppRouter {
         ],
       ),
 
+      //---(RegWork)---//
       GoRoute(
-        path: '/regwork',
+        path: RouteNames.regwork,
         builder: (context, state) => const RegWorkScreen(),
       ),
 
+      //---(Lunch)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<LunchBloc>(), child: child);
@@ -159,31 +167,28 @@ class AppRouter {
             path: RouteNames.regworkLunch,
             builder: (context, state) => const LunchScreen(),
           ),
-
           GoRoute(
             path: RouteNames.regworkLunchDetail,
             builder: (context, state) => const LunchDetailScreen(),
           ),
-
           GoRoute(
             path: RouteNames.regworkLunchAdd,
             builder: (context, state) => const LunchAddScreen(),
           ),
         ],
       ),
-
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<LeaveBloc>(), child: child);
         },
         routes: [
           GoRoute(
-            path: '/regwork/leave',
+            path: RouteNames.regworkLeave,
             builder: (context, state) => const LeaveScreenPage(),
           ),
 
           GoRoute(
-            path: '/regwork/leave/detail',
+            path: RouteNames.regworkLeaveDetail,
             builder: (context, state) {
               final extra = state.extra;
               if (extra is LeaveDetailRouteArgs) {
@@ -207,43 +212,45 @@ class AppRouter {
             },
           ),
           GoRoute(
-            path: '/regwork/leave/add',
+            path: RouteNames.regworkLeaveAdd,
             builder: (context, state) => const LeaveAddScreenPage(),
           ),
         ],
       ),
 
+      //---(InOut)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<InOutBloc>(), child: child);
         },
         routes: [
           GoRoute(
-            path: '/regwork/in_out',
+            path: RouteNames.regworkInOut,
             builder: (context, state) => const InOutScreenPage(),
           ),
           GoRoute(
-            path: '/regwork/in_out/detail',
+            path: RouteNames.regworkInOutDetail,
             builder: (context, state) => const InOutDetailScreenPage(),
           ),
           GoRoute(
-            path: '/regwork/in_out/add',
+            path: RouteNames.regworkInOutAdd,
             builder: (context, state) => const InOutAddScreenPage(),
           ),
         ],
       ),
 
+      //---(Overtime)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<OvertimeBloc>(), child: child);
         },
         routes: [
           GoRoute(
-            path: '/regwork/overtime',
+            path: RouteNames.regworkOvertime,
             builder: (context, state) => const OvertimeScreenPage(),
           ),
           GoRoute(
-            path: '/regwork/overtime/detail',
+            path: RouteNames.regworkOvertimeDetail,
             builder: (context, state) {
               final extra = state.extra;
               if (extra is OvertimeItem) {
@@ -253,12 +260,13 @@ class AppRouter {
             },
           ),
           GoRoute(
-            path: '/regwork/overtime/add',
+            path: RouteNames.regworkOvertimeAdd,
             builder: (context, state) => const OvertimeAddScreenPage(),
           ),
         ],
       ),
 
+      //---(Wfh)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<WfhBloc>(), child: child);
@@ -268,21 +276,18 @@ class AppRouter {
             path: RouteNames.regworkWfh,
             builder: (context, state) => const WfhScreen(),
           ),
-
           GoRoute(
             path: RouteNames.regworkWfhDetail,
-
             builder: (context, state) => const WfhDetailScreen(),
           ),
-
           GoRoute(
             path: RouteNames.regworkWfhAdd,
-
             builder: (context, state) => const WfhAddScreen(),
           ),
         ],
       ),
 
+      //---(Missed)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<MissedBloc>(), child: child);
@@ -292,12 +297,10 @@ class AppRouter {
             path: RouteNames.regworkMissed,
             builder: (context, state) => const MissedScreen(),
           ),
-
           GoRoute(
             path: RouteNames.regworkMissedDetail,
             builder: (context, state) => const MissedDetailScreen(),
           ),
-
           GoRoute(
             path: RouteNames.regworkMissedAdd,
             builder: (context, state) => const MissedAddScreen(),
@@ -305,6 +308,7 @@ class AppRouter {
         ],
       ),
 
+      //---(WorkTrip)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(
@@ -312,11 +316,11 @@ class AppRouter {
         },
         routes: [
           GoRoute(
-            path: '/regwork/work_trip',
+            path: RouteNames.regworkWorkTrip,
             builder: (context, state) => const WorkTripScreenPage(),
           ),
           GoRoute(
-            path: '/regwork/work_trip/add',
+            path: RouteNames.regworkWorkTripAdd,
             builder: (context, state) {
               final extra = state.extra;
               if (extra is WorkTripDetailItem) {
@@ -326,7 +330,7 @@ class AppRouter {
             },
           ),
           GoRoute(
-            path: '/regwork/work_trip/detail',
+            path: RouteNames.regworkWorkTripDetail,
             builder: (context, state) {
               final extra = state.extra;
               if (extra is WorkTripItem) {
@@ -338,18 +342,18 @@ class AppRouter {
         ],
       ),
 
+      //---(Overnight)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<OvernightBloc>(), child: child);
         },
         routes: [
           GoRoute(
-            path: '/regwork/overnight',
+            path: RouteNames.regworkOvernight,
             builder: (context, state) => const OvernightScreenPage(),
           ),
-
           GoRoute(
-            path: '/regwork/overnight/detail',
+            path: RouteNames.regworkOvernightDetail,
             builder: (context, state) {
               final extra = state.extra;
               if (extra is OvernightItem) {
@@ -358,23 +362,20 @@ class AppRouter {
               return const OvernightDetailScreen();
             },
           ),
-
           GoRoute(
-            path: '/regwork/overnight/add',
+            path: RouteNames.regworkOvernightAdd,
             builder: (context, state) => const OvernightAddScreen(),
           ),
         ],
       ),
 
-
-
-      /// Report Route
+      //---(Report)---//
       GoRoute(
-        path: '/report',
+        path: RouteNames.report,
         builder: (context, state) => const ReportScreen(),
       ),
 
-      /// Tech Route
+      //---(Tech)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<TechBloc>(), child: child);
@@ -410,7 +411,7 @@ class AppRouter {
         ],
       ),
 
-      /// Hr Route
+      //---(Hr)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<HrBloc>(), child: child);
@@ -465,7 +466,7 @@ class AppRouter {
         ],
       ),
 
-      /// Marketing Route
+      //---(Marketing)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(
@@ -482,12 +483,10 @@ class AppRouter {
             path: RouteNames.reportMarketingdepartAdd,
             builder: (context, state) => const MarketingAddScreen(),
           ),
-
           GoRoute(
             path: RouteNames.reportMarketingdepartDetail,
             builder: (context, state) => const MarketingDetailScreen(),
           ),
-
           GoRoute(
             path: RouteNames.reportMarketingdepartEdit,
             builder: (context, state) {
@@ -498,7 +497,7 @@ class AppRouter {
         ],
       ),
 
-      /// Assembly - Project Implementation Route
+      //---(Ad)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<AdBloc>(), child: child);
@@ -508,12 +507,10 @@ class AppRouter {
             path: RouteNames.reportADdepart,
             builder: (context, state) => const AdScreen(),
           ),
-
           GoRoute(
             path: RouteNames.reportADdepartAdd,
             builder: (context, state) => const AdAddScreen(),
           ),
-
           GoRoute(
             path: RouteNames.reportADdepartDetail,
             builder: (context, state) => const AdDetailScreen(),
@@ -528,7 +525,7 @@ class AppRouter {
         ],
       ),
 
-      /// AGV Route
+      //---(Agv)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<AgvBloc>(), child: child);
@@ -538,12 +535,10 @@ class AppRouter {
             path: RouteNames.reportAGVdepart,
             builder: (context, state) => const AgvScreen(),
           ),
-
           GoRoute(
             path: RouteNames.reportAGVdepartAdd,
             builder: (context, state) => const AgvAddScreen(),
           ),
-
           GoRoute(
             path: RouteNames.reportAGVdepartDetail,
             builder: (context, state) => const AgvDetailScreen(),
@@ -558,7 +553,7 @@ class AppRouter {
         ],
       ),
 
-      /// Sale Route
+      //---(Sale)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(value: getIt<SaleBloc>(), child: child);
@@ -568,27 +563,22 @@ class AppRouter {
             path: RouteNames.reportSaledepart,
             builder: (context, state) => const SaleScreen(),
           ),
-
           GoRoute(
             path: RouteNames.reportSaleStaffAdd,
             builder: (context, state) => const SaleStaffAddScreen(),
           ),
-
           GoRoute(
             path: RouteNames.reportSaleAdminAdd,
             builder: (context, state) => const SaleAdminAddScreen(),
           ),
-
           GoRoute(
             path: RouteNames.reportSaleStaffDetail,
             builder: (context, state) => const SaleStaffDetailScreen(),
           ),
-
           GoRoute(
             path: RouteNames.reportSaledAdminDetail,
             builder: (context, state) => const SaleAdminDetailScreen(),
           ),
-
           GoRoute(
             path: RouteNames.reportSaleStaffEdit,
             builder: (context, state) {
@@ -596,7 +586,6 @@ class AppRouter {
               return SaleStaffEditScreen(dailyId: dailyId);
             },
           ),
-
           GoRoute(
             path: RouteNames.reportSaleAdminEdit,
             builder: (context, state) {
@@ -607,16 +596,19 @@ class AppRouter {
         ],
       ),
 
+      //---(Favorites)---//
       GoRoute(
-        path: '/favorites',
+        path: RouteNames.favorites,
         builder: (context, state) => const FavoritesAddingScreen(),
       ),
 
+      //---(RegGeneral)---//
       GoRoute(
         path: RouteNames.reggeneral,
         builder: (context, state) => const RegGeneralScreen(),
       ),
 
+      //---(MeetingRoom)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(
@@ -634,7 +626,6 @@ class AppRouter {
             builder: (context, state) {
               final extra = state.extra as Map<String, dynamic>;
               final startTime = extra['startTime'] as DateTime?;
-
               return MeetingRoomAddScreen(
                 startTime: startTime ?? DateTime.now(),
               );
@@ -647,11 +638,9 @@ class AppRouter {
               final roomId = extra['roomId'] as int;
               final startTime = extra['startTime'] as DateTime?;
               final endTime = extra['endTime'] as DateTime?;
-
               final safeStart = startTime ?? DateTime.now();
               final safeEnd =
                   endTime ?? safeStart.add(const Duration(hours: 2));
-
               return MeetingRoomEditScreen(
                 roomId: roomId,
                 startTime: safeStart,
@@ -662,6 +651,7 @@ class AppRouter {
         ],
       ),
 
+      //---(BookingVehicle)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(
@@ -720,24 +710,41 @@ class AppRouter {
               );
             },
           ),
-          // GoRoute(
-          //   path: RouteNames.meetingRoomEdit,
-          //   builder: (context, state) {
-          //     final extra = state.extra as Map<String, dynamic>;
-          //     final roomId = extra['roomId'] as int;
-          //     final startTime = extra['startTime'] as DateTime?;
-          //     final endTime = extra['endTime'] as DateTime?;
-          //
-          //     final safeStart = startTime ?? DateTime.now();
-          //     final safeEnd = endTime ?? safeStart.add(const Duration(hours: 2));
-          //
-          //     return MeetingRoomEditScreen(
-          //       roomId: roomId,
-          //       startTime: safeStart,
-          //       endTime: safeEnd,
-          //     );
-          //   },
-          // ),
+        ],
+      ),
+
+      //---(WorkCategory)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<WorkCategoryBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.workCategory,
+            builder: (context, state) => const WorkCategoryScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.workCategoryAdd,
+            builder: (context, state) => const WorkCategoryAddScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.workCategoryDetail,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is WorkCategoryItem) {
+                return WorkCategoryDetailScreen(item: extra);
+              }
+              return Scaffold(
+                appBar: AppBar(title: const Text('Chi tiết hạng mục')),
+                body: const Center(
+                  child: Text('Không có dữ liệu hạng mục. Vui lòng thử lại.'),
+                ),
+              );
+            },
+          ),
         ],
       ),
 
