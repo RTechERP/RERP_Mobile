@@ -1,10 +1,12 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: BLoC quản lý workspace - load user, resolve role, navigate
+
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
-
 import '../../../../common/logger/logger.dart';
 import '../../../../common/services/permissions/permission_service.dart';
 import '../../../auth/data/datasource/models/user_model.dart';
@@ -28,13 +30,16 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
     });
   }
 
+  //---(Init)---//
+
+  /// Handles init event — load user từ cache trước, nếu không có thì fetch từ API.
   Future<void> _onInit(Emitter<WorkspaceState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
     final cached = await AuthRepository.getCurrentUser(log: _log);
 
     if (cached != null) {
-      await PermissionService.init();   // ✅ thêm dòng này
+      await PermissionService.init();
 
       emit(
         state.copyWith(
@@ -50,7 +55,7 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
     if (emit.isDone) return;
 
     if (user != null) {
-      await PermissionService.init();   // ✅ thêm dòng này
+      await PermissionService.init();
     }
 
     emit(
@@ -64,7 +69,9 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
     );
   }
 
+  //---(Refresh)---//
 
+  /// Handles refresh event — force fetch user từ API, bỏ qua cache.
   Future<void> _onRefresh(Emitter<WorkspaceState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
@@ -76,7 +83,7 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
     if (emit.isDone) return;
 
     if (user != null) {
-      await PermissionService.init();   // ✅ thêm dòng này
+      await PermissionService.init();
     }
 
     emit(
@@ -88,5 +95,4 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
       ),
     );
   }
-
 }

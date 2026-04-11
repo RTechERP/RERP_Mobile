@@ -1,3 +1,6 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Màn hình workspace chính - hiển thị user info, menu ứng dụng, tính năng
+
 import "package:easy_localization/easy_localization.dart";
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
@@ -14,12 +17,17 @@ import "../../../common/utils/dialog/index.dart";
 
 import "../../../routes/route_names.dart";
 import "../../auth/data/datasource/models/user_model.dart";
+
 import "bloc/workspace_bloc.dart";
 import "widgets/wp_action_card.dart";
 import "widgets/wp_circle_button.dart";
 import "widgets/wp_favorite_add.dart";
 import "widgets/wp_info_card.dart";
 
+/// Màn hình workspace chính.
+///
+/// Hiển thị thông tin user (avatar, tên, mã), các ứng dụng (Đơn từ, Báo cáo),
+/// và tính năng (Quy trình). Xử lý navigate đến route phù hợp theo role của user.
 class WorkPlaceScreen extends StatefulWidget {
   const WorkPlaceScreen({super.key});
 
@@ -41,7 +49,6 @@ class _WorkPlaceScreenState
     bloc.add(const WorkspaceEvent.init());
   }
 
-  /// ===== LISTEN STATE =====
   @override
   void listener(BuildContext context, WorkspaceState state) {
     super.listener(context, state);
@@ -54,58 +61,56 @@ class _WorkPlaceScreenState
     }
   }
 
-  @override
-  Widget renderUI(BuildContext context) {
-    String? resolveReportRoute(User user) {
-      final roles = RoleResolver.resolve(user);
-      final employeeId = user.employeeId;
-      final deptId = user.departmentId;
-      final posId = user.positionId;
+  /// Resolve route báo cáo dựa trên role của user.
+  ///
+  /// Thứ tự ưu tiên: HR > Sale > Tech > AGV > AD > Marketing.
+  /// Với HR: ưu tiên position (LXCP, CP) trước department, fallback về HR Admin.
+  String? resolveReportRoute(User user) {
+    final roles = RoleResolver.resolve(user);
+    final employeeId = user.employeeId;
+    final deptId = user.departmentId;
+    final posId = user.positionId;
 
-      // if (roles.contains(AppRole.admin)) {
-      //   return RouteNames.reportHRAdmin;
-      // }
+    if (roles.contains(AppRole.hr)) {
+      if (employeeId == 5) return RouteNames.reportHRAdmin;
 
-      if (roles.contains(AppRole.hr)) {
-        if (employeeId == 5) return RouteNames.reportHRAdmin;
+      if (PositionGroups.positionLxs.contains(posId) ||
+          PositionGroups.positionCps.contains(posId)) {
+        return RouteNames.reportHRLXCP;
+      }
 
-        /// ===== HR LXCP (ưu tiên position trước) =====
-        if (PositionGroups.positionLxs.contains(posId) ||
-            PositionGroups.positionCps.contains(posId)) {
-          return RouteNames.reportHRLXCP;
-        }
-
-        /// ===== HR ADMIN =====
-        if (DepartmentGroups.hr.contains(deptId)) {
-          return RouteNames.reportHRAdmin;
-        }
-
+      if (DepartmentGroups.hr.contains(deptId)) {
         return RouteNames.reportHRAdmin;
       }
 
-      if (roles.contains(AppRole.sale)) {
-        return RouteNames.reportSaledepart;
-      }
-
-      if (roles.contains(AppRole.tech)) {
-        return RouteNames.reportITdepart;
-      }
-
-      if (roles.contains(AppRole.agv)) {
-        return RouteNames.reportAGVdepart;
-      }
-
-      if (roles.contains(AppRole.ad)) {
-        return RouteNames.reportADdepart;
-      }
-
-      if (roles.contains(AppRole.marketing)) {
-        return RouteNames.reportMarketingdepart;
-      }
-
-      return null;
+      return RouteNames.reportHRAdmin;
     }
 
+    if (roles.contains(AppRole.sale)) {
+      return RouteNames.reportSaledepart;
+    }
+
+    if (roles.contains(AppRole.tech)) {
+      return RouteNames.reportITdepart;
+    }
+
+    if (roles.contains(AppRole.agv)) {
+      return RouteNames.reportAGVdepart;
+    }
+
+    if (roles.contains(AppRole.ad)) {
+      return RouteNames.reportADdepart;
+    }
+
+    if (roles.contains(AppRole.marketing)) {
+      return RouteNames.reportMarketingdepart;
+    }
+
+    return null;
+  }
+
+  @override
+  Widget renderUI(BuildContext context) {
     return BaseScaffold(
       onRefresh: () async {
         bloc.add(const WorkspaceEvent.refresh());
@@ -116,7 +121,6 @@ class _WorkPlaceScreenState
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.white,
 
-        /// ===== HEADER USER INFO =====
         title: blocBuilder((context, state) {
           final user = state.user;
 
@@ -192,7 +196,6 @@ class _WorkPlaceScreenState
                       final user = state.user;
                       if (user == null) return;
 
-                      /// ===== ONLY HANDLE REPORT =====
                       if (item.id == 'report') {
                         final route = resolveReportRoute(user);
 
@@ -205,7 +208,6 @@ class _WorkPlaceScreenState
                         return;
                       }
 
-                      /// ===== DEFAULT =====
                       final route = item.route;
                       if (route == null || route.isEmpty) {
                         DialogService.showProcessing(context: context);

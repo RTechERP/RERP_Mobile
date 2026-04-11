@@ -1,20 +1,38 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Widget card chứa grid menu ứng dụng/tính năng, có expand/collapse
+
 import 'package:flutter/material.dart';
 
 import '../../../../common/app_theme/index.dart';
 import '../../../../common/models/index.dart';
 import '../../../../common/utils/action_icon_tile.dart';
 
+/// Widget card hiển thị danh sách menu dạng grid 3 cột.
+///
+/// Hỗ trợ expand/collapse khi số item vượt quá [collapsedItemCount].
+/// Tap vào item sẽ gọi [onItemTap] callback.
 class WpActionCard extends StatefulWidget {
+  /// Tiêu đề của card (ví dụ: "Ứng dụng", "Tính năng").
   final String title;
+
+  /// Danh sách items hiển thị trong grid.
   final List<AppItemModel> items;
 
+  /// Bật/tắt chế độ expand-collapse.
   final bool expandable;
+
+  /// Số item hiển thị khi ở trạng thái collapsed.
   final int collapsedItemCount;
+
+  /// Padding bên ngoài card.
   final EdgeInsets outerPadding;
+
+  /// Padding bên trong card.
   final EdgeInsets innerPadding;
 
-  /// 👉 callback xử lý tap item
+  /// Callback khi user tap vào một item.
   final ValueChanged<AppItemModel>? onItemTap;
+
   const WpActionCard({
     super.key,
     required this.title,
@@ -105,6 +123,7 @@ class _WpActionCardState extends State<WpActionCard> {
     setState(() => _expanded = !_expanded);
   }
 
+  /// Build danh sách items hiển thị (đã cắt nếu collapsed, thêm nút toggle ở cuối).
   List<AppItemModel?> _buildVisibleItems() {
     if (!widget.expandable ||
         widget.items.length <= widget.collapsedItemCount) {
@@ -122,6 +141,7 @@ class _WpActionCardState extends State<WpActionCard> {
   }
 }
 
+/// Item nút expand/collapse trong grid.
 class _ToggleGridItem extends StatelessWidget {
   final bool expanded;
   final VoidCallback onTap;

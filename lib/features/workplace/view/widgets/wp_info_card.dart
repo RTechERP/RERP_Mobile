@@ -1,9 +1,23 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Widget thông tin user (avatar + tên + mã) trong workspace appBar
+
 import 'package:flutter/material.dart';
 
+/// Widget hiển thị thông tin user trong appBar của workspace.
+///
+/// Gồm avatar (circle) bên trái và tên + mã nhân viên bên phải.
+/// Dùng làm title của AppBar.
 class WpInfoCard extends StatelessWidget {
+  /// Tên hiển thị của user.
   final String name;
+
+  /// Mã nhân viên.
   final String code;
+
+  /// URL avatar. Nếu null hoặc rỗng thì hiển thị icon default.
   final String? avatarUrl;
+
+  /// Chiều cao tổng của card.
   final double height;
 
   const WpInfoCard({
@@ -52,7 +66,6 @@ class WpInfoCard extends StatelessWidget {
           : const Icon(Icons.person, color: Colors.grey),
     );
   }
-
 
   Widget _buildInfo() {
     return Flexible(

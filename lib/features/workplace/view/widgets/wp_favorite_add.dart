@@ -1,3 +1,6 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Widget hiển thị danh sách favorites (yêu thích) có nút thêm
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -5,10 +8,18 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../../../../common/utils/action_icon_tile.dart';
 import '../../app/favorites/data/datasource/service/favorites_service.dart';
 
-
+/// Widget hiển thị danh sách favorites của user.
+///
+/// Nếu chưa có favorite nào → hiển thị nút "Thêm yêu thích".
+/// Nếu đã có → hiển thị grid favorites với nút "Thêm" ở cuối.
 class WpFavoriteAdd extends StatelessWidget {
+  /// Callback khi user tap vào nút thêm favorite.
   final VoidCallback onAddTap;
+
+  /// Padding bên ngoài card.
   final EdgeInsets outerPadding;
+
+  /// Padding bên trong card.
   final EdgeInsets innerPadding;
 
   const WpFavoriteAdd({
@@ -28,7 +39,6 @@ class WpFavoriteAdd extends StatelessWidget {
         builder: (context, box, _) {
           final favorites = FavoriteService.load();
 
-          /// 🟡 CHƯA CÓ FAVORITE
           if (favorites.isEmpty) {
             return InkWell(
               onTap: onAddTap,
@@ -59,7 +69,6 @@ class WpFavoriteAdd extends StatelessWidget {
             );
           }
 
-          /// 🟢 ĐÃ CÓ FAVORITE
           return Container(
             padding: innerPadding,
             decoration: BoxDecoration(
@@ -79,7 +88,6 @@ class WpFavoriteAdd extends StatelessWidget {
                 childAspectRatio: 1,
               ),
               itemBuilder: (_, index) {
-                /// ➕ NÚT ADD
                 if (index == favorites.length) {
                   return ActionIconTile(
                     icon: Icons.add,
@@ -89,7 +97,6 @@ class WpFavoriteAdd extends StatelessWidget {
                   );
                 }
 
-                /// ⭐ FAVORITE ITEM
                 final item = favorites[index];
                 return ActionIconTile(
                   icon: IconData(
