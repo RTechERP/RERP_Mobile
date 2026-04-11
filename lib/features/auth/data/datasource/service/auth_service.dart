@@ -1,3 +1,6 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Auth API service - login, getCurrentUser, updateDeviceToken
+
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/common/constants.dart';
@@ -10,6 +13,8 @@ import '../models/user_model.dart';
 @injectable
 class AuthService extends DioBaseApiService {
   AuthService(super.dio);
+
+  /// Gọi API login - trả về LoginResponse.
   Future<LoginResponse> loginByPlatform(
       String loginName,
       String passwordHash,
@@ -26,6 +31,7 @@ class AuthService extends DioBaseApiService {
     );
   }
 
+  /// Gọi API lấy thông tin user hiện tại.
   Future<User> getCurrentUser() async {
     final token = await AuthRepository.getToken();
 
@@ -40,15 +46,14 @@ class AuthService extends DioBaseApiService {
       parser: (json) => User.fromJson(
         (json['data'] ?? json) as Map<String, dynamic>,
       ),
-
     );
   }
 
+  /// Gửi FCM device token lên server.
   Future<dynamic> updateDeviceToken(String fcmToken, String deviceId) async {
     return post(
       ApiEndPoint.updateDeviceToken,
-      body: {'token': fcmToken, 'device_id': deviceId}, // sửa body theo chuẩn backend
+      body: {'token': fcmToken, 'device_id': deviceId},
     );
   }
 }
-

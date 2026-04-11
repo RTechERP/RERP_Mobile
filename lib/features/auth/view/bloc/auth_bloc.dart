@@ -1,3 +1,6 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: BLoC quản lý auth - login, logout, init, remember me
+
 import 'dart:io';
 
 import 'package:copy_with_extension/copy_with_extension.dart';
@@ -40,6 +43,11 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     });
   }
 
+  //---(Init)---//
+
+  /// Handles init event - kiểm tra token đã lưu, validate expiry, lấy cached user.
+  /// Nếu token hết hạn hoặc không hợp lệ → xóa session.
+  /// Arm scheduled logout nếu có user đang đăng nhập.
   Future<void> _onInit(Emitter<AuthState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
@@ -49,10 +57,10 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         prefs.getBool(SharedKeys.rememberMe) ?? false;
 
     final savedUsername =
-    prefs.getString(SharedKeys.savedUsername);
+        prefs.getString(SharedKeys.savedUsername);
 
     final savedPassword =
-    prefs.getString(SharedKeys.savedPassword);
+        prefs.getString(SharedKeys.savedPassword);
 
     emit(
       state.copyWith(
@@ -64,19 +72,21 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     );
 
     final isValid =
-    await AuthRepository.isLoggedInAndValid(log: _log);
+        await AuthRepository.isLoggedInAndValid(log: _log);
 
     if (!isValid) {
       AuthScheduledLogout.cancel();
       return;
     }
 
+    // Kiểm tra logout tự động khi qua ngày mới (23:30 local)
     if (await AuthScheduledLogout.logoutIfMissedDailyBoundary(log: _log)) {
       if (emit.isDone) return;
       emit(state.copyWith(status: BaseStateStatus.init, user: null));
       return;
     }
 
+    // Ưu tiên user từ cache, không có thì fetch từ API
     final cached = await AuthRepository.getCurrentUser(log: _log);
 
     final user =
@@ -100,6 +110,10 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     }
   }
 
+  //---(Login)---//
+
+  /// Handles login event - gọi API login, lưu token, fetch user, sync FCM token.
+  /// Nếu rememberMe = true → lưu username/password vào SharedPreferences.
   Future<void> _onLogin(
     String loginName,
     String passwordHash,
@@ -114,7 +128,6 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     );
 
     final prefs = await SharedPreferences.getInstance();
-
 
     if (rememberMe) {
       await prefs.setBool(SharedKeys.rememberMe, true);
@@ -184,6 +197,10 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     );
   }
 
+  //---(Logout)---//
+
+  /// Handles logout event - xóa token, xóa cached user, reset permissions.
+  /// Giữ lại rememberMe + saved credentials nếu user đã tick "ghi nhớ đăng nhập".
   Future<void> _onLogout(Emitter<AuthState> emit) async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -191,10 +208,10 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         prefs.getBool(SharedKeys.rememberMe) ?? false;
 
     final savedUsername =
-    prefs.getString(SharedKeys.savedUsername);
+        prefs.getString(SharedKeys.savedUsername);
 
     final savedPassword =
-    prefs.getString(SharedKeys.savedPassword);
+        prefs.getString(SharedKeys.savedPassword);
 
     AuthScheduledLogout.cancel();
     await AuthRepository.clearAll(log: _log);
@@ -215,6 +232,9 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     _log.logI('savedPassword=$savedPassword');
   }
 
+  //---(RememberMe)---//
+
+  /// Handles toggleRememberMe event - cập nhật flag rememberMe vào state (không gọi API).
   _onToggleRememberMe(bool value, Emitter<AuthState> emit) {
     emit(state.copyWith(rememberMe: value));
   }

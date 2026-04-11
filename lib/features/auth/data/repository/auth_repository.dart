@@ -1,3 +1,6 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Static helper cho auth local storage - token, user cache, scheduled logout
+
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,6 +11,8 @@ import '../../../../di/injection.dart';
 import '../datasource/models/user_model.dart';
 import 'auth_repo.dart';
 
+/// Static helper xử lý local storage cho auth (token, user cache).
+/// Không dùng @injectable - chỉ static methods, lấy AuthRepo qua getIt.
 class AuthRepository {
   AuthRepository._();
 
@@ -28,9 +33,12 @@ class AuthRepository {
 
   static String todayLocalDateString() => _localDateString(DateTime.now());
 
-  /// ==========================
-  /// SAVE LOGIN INFO
-  /// ==========================
+  //====================================//
+  // SAVE LOGIN INFO
+  //====================================//
+
+  /// Lưu access token + expires vào SharedPreferences.
+  /// Gán luôn sessionAnchor = hôm nay để tính logout tự động.
   static Future<void> saveLogin({
     required String token,
     required DateTime expires,
@@ -49,9 +57,11 @@ class AuthRepository {
     log?.logD('Token expires at: $expires');
   }
 
-  /// ==========================
-  /// GET TOKEN
-  /// ==========================
+  //====================================//
+  // GET TOKEN
+  //====================================//
+
+  /// Lấy access token từ SharedPreferences.
   static Future<String?> getToken({LogUtils? log}) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(_tokenKey);
@@ -63,9 +73,11 @@ class AuthRepository {
     return token;
   }
 
-  /// ==========================
-  /// GET EXPIRES
-  /// ==========================
+  //====================================//
+  // GET EXPIRES
+  //====================================//
+
+  /// Lấy expires DateTime (UTC) từ SharedPreferences.
   static Future<DateTime?> getExpires({LogUtils? log}) async {
     final prefs = await SharedPreferences.getInstance();
     final raw = prefs.getString(_expiresKey);
@@ -81,9 +93,11 @@ class AuthRepository {
     return expires;
   }
 
-  /// ==========================
-  /// CLEAR LOGIN
-  /// ==========================
+  //====================================//
+  // CLEAR LOGIN
+  //====================================//
+
+  /// Xóa access token và expires khỏi SharedPreferences.
   static Future<void> clearToken({LogUtils? log}) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_tokenKey);
@@ -93,12 +107,13 @@ class AuthRepository {
     log?.logI('AccessToken cleared');
   }
 
+  /// Lấy ngày anchor local (đã lưu khi login).
   static Future<String?> getSessionAnchorLocalDate({LogUtils? log}) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(_sessionAnchorLocalDateKey);
   }
 
-  /// Gán neo = hôm nay (local). Dùng khi upgrade app: đã có token nhưng chưa có neo.
+  /// Gán anchor = hôm nay (local). Dùng khi upgrade app: đã có token nhưng chưa có anchor.
   static Future<void> ensureSessionAnchorLocalDate({LogUtils? log}) async {
     final prefs = await SharedPreferences.getInstance();
     if (prefs.getString(_sessionAnchorLocalDateKey) != null) return;
@@ -109,9 +124,11 @@ class AuthRepository {
     log?.logI('Session anchor date initialized (legacy / first run)');
   }
 
-  /// ==========================
-  /// CHECK LOGIN + AUTO LOGOUT
-  /// ==========================
+  //====================================//
+  // CHECK LOGIN + AUTO LOGOUT
+  //====================================//
+
+  /// Kiểm tra token + expires còn hạn không. Nếu hết hạn → xóa token.
   static Future<bool> checkLogin({LogUtils? log}) async {
     final token = await getToken(log: log);
     final expires = await getExpires(log: log);
@@ -136,9 +153,11 @@ class AuthRepository {
     return true;
   }
 
-  /// ==========================
-  /// SAVE + GET + CLEAR CURRENT USER
-  /// ==========================
+  //====================================//
+  // SAVE + GET + CLEAR CURRENT USER
+  //====================================//
+
+  /// Lưu user vào SharedPreferences (JSON).
   static Future<void> saveCurrentUser({
     required User user,
     LogUtils? log,
@@ -150,6 +169,8 @@ class AuthRepository {
     log?.logI('Current user saved');
   }
 
+  /// Lấy user từ SharedPreferences, parse JSON → User model.
+  /// Parse fail → xóa cache và trả về null.
   static Future<User?> getCurrentUser({LogUtils? log}) async {
     final prefs = await SharedPreferences.getInstance();
     final raw = prefs.getString(_userKey);
@@ -172,12 +193,16 @@ class AuthRepository {
     }
   }
 
+  /// Xóa user khỏi SharedPreferences.
   static Future<void> clearUser({LogUtils? log}) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_userKey);
     log?.logI('Current user cleared');
   }
 
+  /// Fetch user từ API và lưu vào cache.
+  /// Ưu tiên trả về cached user nếu có và forceRefresh = false.
+  /// Xử lý 401 → tự động clearAll.
   static Future<User?> fetchAndSaveCurrentUser({
     LogUtils? log,
     bool forceRefresh = false,
@@ -198,7 +223,6 @@ class AuthRepository {
         (l) async {
           log?.logE('Get current user failed: ${l.getErrorMessage}');
 
-          /// ✅ Xử lý 401 theo BaseError hiện tại
           l.when(
             httpInternalServerError: (_) {},
             httpUnAuthorizedError: () async {
@@ -227,6 +251,7 @@ class AuthRepository {
     }
   }
 
+  /// Kiểm tra token còn hạn, hết hạn → xóa hết token + user.
   static Future<bool> isLoggedInAndValid({LogUtils? log}) async {
     final token = await getToken(log: log);
     final expires = await getExpires(log: log);
@@ -248,6 +273,7 @@ class AuthRepository {
     return true;
   }
 
+  /// Xóa toàn bộ auth data (token + user) khỏi SharedPreferences.
   static Future<void> clearAll({LogUtils? log}) async {
     await clearToken(log: log);
     await clearUser(log: log);

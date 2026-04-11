@@ -1,3 +1,6 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Auth repository implementation - gọi AuthService, handle errors
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -25,8 +28,6 @@ class AuthRepoImpl implements AuthRepo {
         loginName,
         passwordHash,
       );
-
-      // 🔥 res LÀ LoginResponse
       return right(res);
     } on DioException catch (e) {
       return left(e.baseError);

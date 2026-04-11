@@ -1,3 +1,6 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Màn hình login - form tài khoản, mật khẩu, remember me, gọi AuthBloc
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -13,6 +16,10 @@ import '../../../../common/utils/snack_bar_helper.dart';
 import '../../../../common/widgets/form/index.dart';
 import '../bloc/auth_bloc.dart';
 
+/// Màn hình đăng nhập.
+///
+/// Kết nối với [AuthBloc] để quản lý state.
+/// Navigate đến /dashboard khi login thành công.
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -44,7 +51,7 @@ class _LoginScreenState
     super.dispose();
   }
 
-  /// ===== LISTEN STATE =====
+  /// Lắng nghe state changes - xử lý loading, error, navigate.
   @override
   void listener(BuildContext context, AuthState state) {
     super.listener(context, state);
@@ -61,6 +68,7 @@ class _LoginScreenState
       context.go('/dashboard');
     }
 
+    // Pre-fill credentials khi load từ SharedPreferences (remember me)
     if (!_hasPrefilled &&
         (state.savedUsername != null || state.savedPassword != null)) {
       _hasPrefilled = true;
@@ -82,6 +90,7 @@ class _LoginScreenState
     return BaseScaffold(
       body: Stack(
         children: [
+          // Background circles decoration
           MediaQuery.removeViewInsets(
             context: context,
             removeBottom: true,
@@ -114,7 +123,7 @@ class _LoginScreenState
                     ),
                     const SizedBox(height: 8),
 
-                    /// ===== ACCOUNT =====
+                    // Account field
                     FormInputField(
                       nameForm: 'auth',
                       nameTextField: 'auth_account',
@@ -130,7 +139,7 @@ class _LoginScreenState
 
                     const SizedBox(height: 12),
 
-                    /// ===== PASSWORD =====
+                    // Password field
                     FormInputField(
                       nameForm: 'auth',
                       nameTextField: 'auth_password',
@@ -143,7 +152,7 @@ class _LoginScreenState
                       ),
                     ),
 
-                    /// ===== REMEMBER ME =====
+                    // Remember me checkbox
                     blocBuilder((context, state) {
                       return FormBuilderCheckbox(
                         name: 'remember_me',
@@ -154,7 +163,7 @@ class _LoginScreenState
                       );
                     }),
 
-                    /// ===== SUBMIT =====
+                    // Submit button
                     SizedBox(
                       width: double.infinity,
                       height: 48,
@@ -200,7 +209,7 @@ class _LoginScreenState
     );
   }
 
-  /// ===== SUBMIT LOGIN =====
+  /// Lấy giá trị form và gửi login event.
   void _onSubmitLogin() {
     final isValid = _formKey.currentState?.saveAndValidate() ?? false;
     if (!isValid) return;
@@ -214,6 +223,7 @@ class _LoginScreenState
   }
 }
 
+/// Decorative background circle.
 class _Circle extends StatelessWidget {
   final double size;
 
