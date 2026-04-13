@@ -92,7 +92,9 @@ class MoreScreen extends StatelessWidget {
                       icon: Icons.notifications_outlined,
                       title: 'Thông báo',
                       subtitle: 'Âm thanh, tin nhắn, nhắc nhở',
-                      onTap: () {},
+                      onTap: () {
+                        context.push(RouteNames.notificationSettings);
+                      },
                     ),
                     _SettingsTile(
                       icon: Icons.lock_outline,

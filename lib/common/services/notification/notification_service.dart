@@ -1,8 +1,20 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Service quản lý FCM notifications và cài đặt thông báo
+//
+// Chức năng:
+// - Hiển thị FCM notifications
+// - Quản lý cài đặt thông báo (bật/tắt từng loại)
+// - Lưu trữ cài đặt vào SharedPreferences
+// - Điều khiển âm thanh, rung, kiểu âm thanh, kiểu rung
+
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 class NotificationService {
   NotificationService._();
 
@@ -22,10 +34,24 @@ class NotificationService {
   );
 
   /// Callback được gọi khi người dùng tap vào notification.
-  /// Inject từ ngoài (ví dụ từ router) để navigate đúng màn hình.
   void Function(RemoteMessage message)? onNotificationTap;
 
-  /// Khởi tạo plugin và tạo Android channel.
+  // Keys cho SharedPreferences
+  static const String _keyLeaveNotifications = 'notif_leave_enabled';
+  static const String _keyMeetingNotifications = 'notif_meeting_enabled';
+  static const String _keyReminderNotifications = 'notif_reminder_enabled';
+  static const String _keyMessageNotifications = 'notif_message_enabled';
+  static const String _keyReportNotifications = 'notif_report_enabled';
+  static const String _keySystemNotifications = 'notif_system_enabled';
+  static const String _keySoundEnabled = 'notif_sound_enabled';
+  static const String _keySoundType = 'notif_sound_type';
+  static const String _keyVibrateEnabled = 'notif_vibrate_enabled';
+  static const String _keyVibratePattern = 'notif_vibrate_pattern';
+
+  /// Trạng thái các cài đặt (cached).
+  Map<String, bool>? _cachedSettings;
+
+  /// Khởi tạo plugin, tạo Android channel và tải cài đặt.
   Future<void> init() async {
     // ── Android settings ──────────────────────────────────────────────────
     const androidSettings = AndroidInitializationSettings(
@@ -34,7 +60,7 @@ class NotificationService {
 
     // ── iOS / macOS settings ──────────────────────────────────────────────
     const darwinSettings = DarwinInitializationSettings(
-      requestAlertPermission: false, // quyền đã xin qua FirebaseMessaging
+      requestAlertPermission: false,
       requestBadgePermission: false,
       requestSoundPermission: false,
     );
@@ -56,16 +82,298 @@ class NotificationService {
     if (Platform.isAndroid) {
       await _localNotifications
           .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin
-          >()
+              AndroidFlutterLocalNotificationsPlugin>()
           ?.createNotificationChannel(_channel);
+    }
+
+    // Tải cài đặt đã lưu
+    await _loadSettings();
+  }
+
+  /// Tải cài đặt từ SharedPreferences.
+  Future<void> _loadSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    _cachedSettings = {
+      'leave': prefs.getBool(_keyLeaveNotifications) ?? true,
+      'meeting': prefs.getBool(_keyMeetingNotifications) ?? true,
+      'reminder': prefs.getBool(_keyReminderNotifications) ?? true,
+      'message': prefs.getBool(_keyMessageNotifications) ?? true,
+      'report': prefs.getBool(_keyReportNotifications) ?? false,
+      'system': prefs.getBool(_keySystemNotifications) ?? true,
+      'sound': prefs.getBool(_keySoundEnabled) ?? true,
+      'vibrate': prefs.getBool(_keyVibrateEnabled) ?? true,
+    };
+  }
+
+  /// Lấy trạng thái tất cả cài đặt.
+  Future<Map<String, bool>> getAllSettings() async {
+    if (_cachedSettings == null) {
+      await _loadSettings();
+    }
+    return _cachedSettings!;
+  }
+
+  //═══════════════════════════════════════════════════════════════════════════
+  // PERMISSION HANDLING - Dùng permission_handler trực tiếp
+  //═══════════════════════════════════════════════════════════════════════════
+
+  /// Kiểm tra xem có quyền notification không.
+  Future<PermissionStatus> getNotificationStatus() async {
+    return await Permission.notification.status;
+  }
+
+  /// Kiểm tra xem đã được cấp quyền notification chưa.
+  Future<bool> hasNotificationPermission() async {
+    final status = await Permission.notification.status;
+    return status.isGranted;
+  }
+
+  /// Yêu cầu quyền notification.
+  /// Trả về trạng thái permission sau khi request.
+  Future<PermissionStatus> requestNotificationPermission() async {
+    return await Permission.notification.request();
+  }
+
+  /// Mở cài đặt notification của ứng dụng trong hệ thống.
+  Future<void> openAppNotificationSettings() async {
+    await openAppSettings();
+  }
+
+  /// Kiểm tra xem notification permission có bị từ chối vĩnh viễn không.
+  Future<bool> isNotificationPermanentlyDenied() async {
+    final status = await Permission.notification.status;
+    return status.isPermanentlyDenied;
+  }
+
+  /// Mở app settings (nơi có toggle notification).
+  /// Dùng cho cả bật và tắt notification.
+  Future<bool> openNotificationSettings() async {
+    return await openAppSettings();
+  }
+
+  //═══════════════════════════════════════════════════════════════════════════
+  // NOTIFICATION TYPE SETTINGS
+  //═══════════════════════════════════════════════════════════════════════════
+
+  Future<void> setLeaveNotifications(bool enabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyLeaveNotifications, enabled);
+    _cachedSettings?['leave'] = enabled;
+    await _updateNativeNotificationSettings();
+  }
+
+  Future<bool> getLeaveNotifications() async {
+    await getAllSettings();
+    return _cachedSettings?['leave'] ?? true;
+  }
+
+  Future<void> setMeetingNotifications(bool enabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyMeetingNotifications, enabled);
+    _cachedSettings?['meeting'] = enabled;
+    await _updateNativeNotificationSettings();
+  }
+
+  Future<bool> getMeetingNotifications() async {
+    await getAllSettings();
+    return _cachedSettings?['meeting'] ?? true;
+  }
+
+  Future<void> setReminderNotifications(bool enabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyReminderNotifications, enabled);
+    _cachedSettings?['reminder'] = enabled;
+    await _updateNativeNotificationSettings();
+  }
+
+  Future<bool> getReminderNotifications() async {
+    await getAllSettings();
+    return _cachedSettings?['reminder'] ?? true;
+  }
+
+  Future<void> setMessageNotifications(bool enabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyMessageNotifications, enabled);
+    _cachedSettings?['message'] = enabled;
+    await _updateNativeNotificationSettings();
+  }
+
+  Future<bool> getMessageNotifications() async {
+    await getAllSettings();
+    return _cachedSettings?['message'] ?? true;
+  }
+
+  Future<void> setReportNotifications(bool enabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyReportNotifications, enabled);
+    _cachedSettings?['report'] = enabled;
+    await _updateNativeNotificationSettings();
+  }
+
+  Future<bool> getReportNotifications() async {
+    await getAllSettings();
+    return _cachedSettings?['report'] ?? false;
+  }
+
+  Future<void> setSystemNotifications(bool enabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keySystemNotifications, enabled);
+    _cachedSettings?['system'] = enabled;
+    await _updateNativeNotificationSettings();
+  }
+
+  Future<bool> getSystemNotifications() async {
+    await getAllSettings();
+    return _cachedSettings?['system'] ?? true;
+  }
+
+  //═══════════════════════════════════════════════════════════════════════════
+  // SOUND & VIBRATION SETTINGS
+  //═══════════════════════════════════════════════════════════════════════════
+
+  Future<void> setSoundEnabled(bool enabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keySoundEnabled, enabled);
+    _cachedSettings?['sound'] = enabled;
+  }
+
+  Future<bool> getSoundEnabled() async {
+    await getAllSettings();
+    return _cachedSettings?['sound'] ?? true;
+  }
+
+  /// Đặt kiểu âm thanh. 0: Mặc định, 1: Ngắn, 2: Dài.
+  Future<void> setSoundType(int type) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_keySoundType, type);
+  }
+
+  Future<int> getSoundType() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getInt(_keySoundType) ?? 0;
+  }
+
+  Future<void> setVibrateEnabled(bool enabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyVibrateEnabled, enabled);
+    _cachedSettings?['vibrate'] = enabled;
+  }
+
+  Future<bool> getVibrateEnabled() async {
+    await getAllSettings();
+    return _cachedSettings?['vibrate'] ?? true;
+  }
+
+  /// Đặt kiểu rung. 0: Mặc định, 1: Ngắn, 2: Dài.
+  Future<void> setVibratePattern(int pattern) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_keyVibratePattern, pattern);
+  }
+
+  Future<int> getVibratePattern() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getInt(_keyVibratePattern) ?? 0;
+  }
+
+  //═══════════════════════════════════════════════════════════════════════════
+  // INTERNAL METHODS
+  //═══════════════════════════════════════════════════════════════════════════
+
+  Future<void> _updateNativeNotificationSettings() async {
+    final settings = await getAllSettings();
+
+    final anyNotificationEnabled = settings['leave'] == true ||
+        settings['meeting'] == true ||
+        settings['reminder'] == true ||
+        settings['message'] == true ||
+        settings['report'] == true ||
+        settings['system'] == true;
+
+    if (!anyNotificationEnabled) {
+      await _disableNotifications();
+    } else {
+      await _ensureNotificationPermission();
     }
   }
 
-  /// Hiển thị local notification từ một [RemoteMessage] FCM.
+  Future<void> _disableNotifications() async {
+    if (Platform.isAndroid) {
+      await _localNotifications.cancelAll();
+    }
+  }
+
+  Future<void> _ensureNotificationPermission() async {
+    final status = await Permission.notification.status;
+    if (!status.isGranted) {
+      await Permission.notification.request();
+    }
+  }
+
+  /// Reset tất cả cài đặt về mặc định.
+  Future<void> resetToDefault() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyLeaveNotifications, true);
+    await prefs.setBool(_keyMeetingNotifications, true);
+    await prefs.setBool(_keyReminderNotifications, true);
+    await prefs.setBool(_keyMessageNotifications, true);
+    await prefs.setBool(_keyReportNotifications, false);
+    await prefs.setBool(_keySystemNotifications, true);
+    await prefs.setBool(_keySoundEnabled, true);
+    await prefs.setInt(_keySoundType, 0);
+    await prefs.setBool(_keyVibrateEnabled, true);
+    await prefs.setInt(_keyVibratePattern, 0);
+    await _loadSettings();
+  }
+
+  /// Kiểm tra xem có nên hiển thị notification không.
+  Future<bool> shouldShowNotification(String type) async {
+    final settings = await getAllSettings();
+
+    switch (type) {
+      case 'leave':
+        return settings['leave'] ?? true;
+      case 'meeting':
+        return settings['meeting'] ?? true;
+      case 'reminder':
+        return settings['reminder'] ?? true;
+      case 'message':
+        return settings['message'] ?? true;
+      case 'report':
+        return settings['report'] ?? false;
+      case 'system':
+        return settings['system'] ?? true;
+      default:
+        return true;
+    }
+  }
+
+  /// Hiển thị local notification từ FCM message.
   Future<void> showNotification(RemoteMessage message) async {
     final notification = message.notification;
     if (notification == null) return;
+
+    final type = message.data['type'] ?? 'system';
+    final shouldShow = await shouldShowNotification(type);
+    if (!shouldShow) return;
+
+    final soundEnabled = _cachedSettings?['sound'] ?? true;
+    final vibrateEnabled = _cachedSettings?['vibrate'] ?? true;
+    final soundType = await getSoundType();
+
+    String? soundName;
+    if (soundEnabled) {
+      switch (soundType) {
+        case 1:
+          soundName = 'short_sound';
+          break;
+        case 2:
+          soundName = 'long_sound';
+          break;
+        default:
+          soundName = null;
+      }
+    }
 
     final androidDetails = AndroidNotificationDetails(
       _channel.id,
@@ -74,12 +382,17 @@ class NotificationService {
       importance: Importance.high,
       priority: Priority.high,
       icon: '@mipmap/ic_launcher',
+      playSound: soundEnabled,
+      enableVibration: vibrateEnabled,
+      sound: soundName != null
+          ? RawResourceAndroidNotificationSound(soundName)
+          : null,
     );
 
-    const darwinDetails = DarwinNotificationDetails(
+    final darwinDetails = DarwinNotificationDetails(
       presentAlert: true,
       presentBadge: true,
-      presentSound: true,
+      presentSound: soundEnabled,
     );
 
     final details = NotificationDetails(
@@ -97,10 +410,9 @@ class NotificationService {
     );
   }
 
-  /// Xử lý khi người dùng tap vào notification (router / deeplink).
   void handleNotificationTap(RemoteMessage message) {
     if (kDebugMode) {
-      print('[Notification] Tap – data: ${message.data}');
+      print('[Notification] Tap - data: ${message.data}');
     }
     onNotificationTap?.call(message);
   }

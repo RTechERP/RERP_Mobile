@@ -24,6 +24,7 @@ import '../di/injection.dart';
 import '../features/auth/view/bloc/auth_bloc.dart';
 import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
+import '../features/more/view/notification_settings_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_edit_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_detail_screen.dart';
@@ -782,6 +783,12 @@ class AppRouter {
             },
           ),
         ],
+      ),
+
+      //---(Notification Settings)---//
+      GoRoute(
+        path: RouteNames.notificationSettings,
+        builder: (context, state) => const NotificationSettingsScreen(),
       ),
 
     ],
