@@ -81,10 +81,10 @@ class _TechAddScreenState
               return Column(
                 children: [
                   Expanded(
-                    child: FormBuilder(
-                      key: _screenFormKey,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      initialValue: {'location_type': state.locationType},
+                      child: FormBuilder(
+                        key: _screenFormKey,
+                        autovalidateMode: AutovalidateMode.disabled,
+                        initialValue: {'location_type': state.locationType},
                       child: SingleChildScrollView(
                         padding: const EdgeInsets.all(8),
                         child: Column(

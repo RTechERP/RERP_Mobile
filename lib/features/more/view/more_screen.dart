@@ -62,87 +62,88 @@ class MoreScreen extends StatelessWidget {
 
             final isLoading = state.status == BaseStateStatus.loading;
 
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
+            return ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              children: [
+                const SizedBox(height: 10),
 
-                children: [
-                  //---(Profile Header)---//
+                //---(Profile Header)---//
+                _ProfileCard(
+                  name: name,
+                  email: email,
+                  department: department,
+                ),
 
-                  _ProfileCard(
-                    name: name,
-                    email: email,
-                    department: department,
-                  ),
+                const SizedBox(height: 20),
 
-                  const SizedBox(height: 20),
+                //---(Cài đặt)---//
 
-                  //---(Cài đặt)---//
+                _SectionCard(
+                  title: 'Cài đặt',
+                  icon: Icons.settings_outlined,
+                  children: [
+                    _SettingsTile(
+                      icon: Icons.tune_outlined,
+                      title: 'Cài đặt chung',
+                      subtitle: 'Ngôn ngữ, giao diện, đơn vị',
+                      onTap: () {},
+                    ),
+                    _SettingsTile(
+                      icon: Icons.notifications_outlined,
+                      title: 'Thông báo',
+                      subtitle: 'Âm thanh, tin nhắn, nhắc nhở',
+                      onTap: () {},
+                    ),
+                    _SettingsTile(
+                      icon: Icons.lock_outline,
+                      title: 'Bảo mật & quyền riêng tư',
+                      subtitle: 'Đổi mật khẩu, xác thực',
+                      onTap: () {},
+                      showDivider: false,
+                    ),
+                  ],
+                ),
 
-                  _SectionCard(
-                    title: 'Cài đặt',
-                    icon: Icons.settings_outlined,
-                    children: [
-                      _SettingsTile(
-                        icon: Icons.tune_outlined,
-                        title: 'Cài đặt chung',
-                        subtitle: 'Ngôn ngữ, giao diện, đơn vị',
-                        onTap: () {},
-                      ),
-                      _SettingsTile(
-                        icon: Icons.notifications_outlined,
-                        title: 'Thông báo',
-                        subtitle: 'Âm thanh, tin nhắn, nhắc nhở',
-                        onTap: () {},
-                      ),
-                      _SettingsTile(
-                        icon: Icons.lock_outline,
-                        title: 'Bảo mật & quyền riêng tư',
-                        subtitle: 'Đổi mật khẩu, xác thực',
-                        onTap: () {},
-                        showDivider: false,
-                      ),
-                    ],
-                  ),
+                const SizedBox(height: 14),
 
-                  const SizedBox(height: 14),
+                //---(Hỗ trợ)---//
 
-                  //---(Hỗ trợ)---//
+                _SectionCard(
+                  title: 'Hỗ trợ',
+                  icon: Icons.help_outline,
+                  children: [
+                    _SettingsTile(
+                      icon: Icons.menu_book_outlined,
+                      title: 'Hướng dẫn sử dụng',
+                      subtitle: 'Tìm hiểu các tính năng',
+                      onTap: () {},
+                    ),
+                    _SettingsTile(
+                      icon: Icons.chat_bubble_outline_outlined,
+                      title: 'Liên hệ hỗ trợ',
+                      subtitle: ' Hotline: 1900 xxxx',
+                      onTap: () {},
+                    ),
+                    _SettingsTile(
+                      icon: Icons.info_outline,
+                      title: 'Giới thiệu ứng dụng',
+                      subtitle: 'RERP 1.0.0',
+                      onTap: () {},
+                      showDivider: false,
+                    ),
+                  ],
+                ),
 
-                  _SectionCard(
-                    title: 'Hỗ trợ',
-                    icon: Icons.help_outline,
-                    children: [
-                      _SettingsTile(
-                        icon: Icons.menu_book_outlined,
-                        title: 'Hướng dẫn sử dụng',
-                        subtitle: 'Tìm hiểu các tính năng',
-                        onTap: () {},
-                      ),
-                      _SettingsTile(
-                        icon: Icons.chat_bubble_outline_outlined,
-                        title: 'Liên hệ hỗ trợ',
-                        subtitle: ' Hotline: 1900 xxxx',
-                        onTap: () {},
-                      ),
-                      _SettingsTile(
-                        icon: Icons.info_outline,
-                        title: 'Giới thiệu ứng dụng',
-                        subtitle: 'RERP 1.0.0',
-                        onTap: () {},
-                        showDivider: false,
-                      ),
-                    ],
-                  ),
+                const SizedBox(height: 14),
 
-                  const SizedBox(height: 14),
+                //---(Đăng xuất)---//
 
-                  //---(Đăng xuất)---//
+                _LogoutButton(isLoading: isLoading),
 
-                  _LogoutButton(isLoading: isLoading),
+                const SizedBox(height: 10),
 
-                ],
-              ),
+
+              ],
             );
           },
         ),

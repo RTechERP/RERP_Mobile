@@ -203,44 +203,28 @@ class _TechScreenState
           return;
         }
 
-        /// COPY SUCCESS
+        /// COPY SUCCESS → copy + share, KHÔNG navigate sang Add
         if (state.copyReports.isNotEmpty) {
           final content = _buildCopyContent(state.copyReports);
 
+          // Copy vào clipboard
           await Clipboard.setData(ClipboardData(text: content));
 
           showMessage(
             context,
-            'Đã copy nội dung thành công',
+            'Đã copy và chia sẻ nội dung',
             type: SnackBarType.success,
           );
-
-          // Prepare payload for auto-fill navigation
-          final payload = List<CopyNullResponse>.from(state.copyReports);
 
           // Xóa trạng thái copy
           bloc.add(const TechEvent.resetCopyReport());
 
-          // Nhảy qua màn Add Screen luôn, KHÔNG chờ Share
-          if (context.mounted) {
-            context.push<bool>(
-              RouteNames.reportITdepartAdd,
-              extra: {
-                'copyItems': payload,
-                'projects': bloc.state.rtcProject,
-              },
-            ).then((reload) {
-              if (reload == true) {
-                if (context.mounted) {
-                  context.read<TechBloc>().add(const TechEvent.init());
-                }
-              }
-            });
-          }
-
-          // Hiện Share panel ở phía trên (nếu được) mà không chặn luồng code
+          // Share nội dung ra ứng dụng khác
           try {
-            Share.share(content);
+            await Share.share(
+              content,
+              subject: 'Báo cáo công việc',
+            );
           } catch (e) {
             debugPrint('Lỗi khi share: $e');
           }
