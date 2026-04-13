@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
@@ -13,13 +12,13 @@ import '../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/constants/index.dart';
-import '../../../../../../../../common/utils/card/index.dart';
 import '../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../routes/route_names.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../bloc/tech_bloc.dart';
+import '../widgets/tech_report_card.dart';
 
 class TechScreen extends StatefulWidget {
   const TechScreen({super.key});
@@ -47,6 +46,50 @@ class _TechScreenState
       final name = (r.projectName ?? '').toLowerCase();
       return code.contains(lower) || name.contains(lower);
     }).toList();
+  }
+
+  List<ReportResponse> _sortByDateDesc(List<ReportResponse> reports) {
+    final now = DateTime.now();
+    final todayStart = DateTime(now.year, now.month, now.day);
+
+    final sorted = List<ReportResponse>.from(reports);
+    sorted.sort((a, b) {
+      final da = DateTime.tryParse(a.dateReport);
+      final db = DateTime.tryParse(b.dateReport);
+
+      // Cùng ngày → so sánh giờ tạo mới nhất lên đầu
+      if (da != null && db != null && _sameDay(da, db)) {
+        final ha = a.createdDate;
+        final hb = b.createdDate;
+        if (ha != null && hb != null) return hb.compareTo(ha);
+        if (ha != null) return -1;
+        if (hb != null) return 1;
+        return 0;
+      }
+
+      // Ưu tiên ngày hiện tại và tương lai (chronological ASC)
+      final aIsPast = da == null || da.isBefore(todayStart);
+      final bIsPast = db == null || db.isBefore(todayStart);
+
+      if (aIsPast && !bIsPast) return 1;  // a là quá khứ → xuống dưới
+      if (!aIsPast && bIsPast) return -1; // b là quá khứ → a lên trên
+
+      if (!aIsPast && !bIsPast) {
+        // Hôm nay → ngày mai → ngày kia (ASC)
+        return da.compareTo(db);
+      }
+
+      // Quá khứ: mới nhất lên đầu (DESC)
+      if (da != null && db != null) return db.compareTo(da);
+      if (da != null) return -1;
+      if (db != null) return 1;
+      return 0;
+    });
+    return sorted;
+  }
+
+  bool _sameDay(DateTime a, DateTime b) {
+    return a.year == b.year && a.month == b.month && a.day == b.day;
   }
 
   @override
@@ -306,11 +349,13 @@ class _TechScreenState
               );
             }
 
-            final displayList = _isSearching ? _filteredReports : state.reports;
-
             if (!_isSearching) {
-              _filteredReports = state.reports;
+              _filteredReports = _sortByDateDesc(state.reports);
             }
+
+            final displayList = _isSearching
+                ? _filteredReports
+                : _sortByDateDesc(state.reports);
             return Column(
               children: [
                 Padding(
@@ -331,59 +376,66 @@ class _TechScreenState
                       itemCount: displayList.length,
                       itemBuilder: (context, index) {
                         final r = displayList[index];
-                        final hasData =
-                            (r.projectCode?.isNotEmpty == true) &&
-                            (r.projectName?.isNotEmpty == true);
 
-                        final parsedDate = DateTime.tryParse(r.dateReport);
+                        return TechReportCard(
+                          report: r,
+                          onTap: () async {
+                            final result = await context.push(
+                              RouteNames.reportITdepartEdit,
+                              extra: r.id,
+                            );
 
-                        Widget card = AppCardReport(
-                          projectCode: r.projectCode,
-                          projectName: r.projectName,
-                          time: parsedDate,
-                          progress: (r.percentComplete / 100).clamp(0.0, 1.0),
-                          onTap: hasData
-                              ? () async {
-                                  final reload = await context.push(
-                                    RouteNames.reportITdepartDetail,
-                                    extra: r.id,
-                                  );
+                            if (result != null) {
+                              showMessage(
+                                context,
+                                'Cập nhật báo cáo thành công',
+                                type: SnackBarType.success,
+                              );
 
-                                  if (reload == true) {
-                                    bloc.add(const TechEvent.init());
-                                  }
-                                }
-                              : null,
-                        );
+                              final extra = result as Map<String, dynamic>?;
+                              final pendingDate = extra?['date'] as DateTime?;
+                              final shareText = extra?['shareText'] as String?;
 
-                        if (!hasData) {
-                          return Opacity(opacity: 0.5, child: card);
-                        }
+                              bloc.add(const TechEvent.init());
 
-                        return Slidable(
-                          key: ValueKey(r.id),
-                          endActionPane: ActionPane(
-                            motion: const DrawerMotion(),
-                            extentRatio: 0.25,
-                            children: [
-                              SlidableAction(
-                                onPressed: (_) async {
-                                  final confirmed =
-                                      await DialogService.showConfirmDelete(
-                                        context: context,
-                                      );
-                                  if (!confirmed) return;
+                              if (pendingDate != null) {
+                                bloc.add(
+                                  TechEvent.sendMailReport(
+                                    pickedDate: pendingDate,
+                                    context: context,
+                                    shareText: shareText,
+                                  ),
+                                );
+                              }
 
-                                  bloc.add(TechEvent.deleteReport(r.id));
-                                },
-                                backgroundColor: Colors.red,
-                                foregroundColor: Colors.white,
-                                icon: Icons.delete,
-                                label: 'Xoá',
-                              ),
-                            ],
-                          ),
-                          child: card,
+                              if (shareText != null && shareText.isNotEmpty) {
+                                await Clipboard.setData(
+                                    ClipboardData(text: shareText));
+
+                                await SharePlus.instance.share(
+                                  ShareParams(
+                                    subject: 'Báo cáo công việc',
+                                    text: shareText,
+                                    sharePositionOrigin: Rect.fromLTWH(
+                                      0,
+                                      0,
+                                      MediaQuery.of(context).size.width,
+                                      MediaQuery.of(context).size.height / 2,
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
+                          },
+                          onDelete: () async {
+                            final confirmed =
+                                await DialogService.showConfirmDelete(
+                                  context: context,
+                                );
+                            if (!confirmed) return;
+
+                            bloc.add(TechEvent.deleteReport(r.id));
+                          },
                         );
                       },
                     ),

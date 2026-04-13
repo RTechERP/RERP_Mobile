@@ -228,6 +228,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           return;
         }
 
+        final now = DateTime.now();
+        final startWeek = now.subtract(Duration(days: now.weekday - 1));
+        final endWeek = startWeek.add(const Duration(days: 6));
+
         emit(
           state.copyWith(
             userId: user.id,
@@ -235,12 +239,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
             departmentId: user.departmentId,
             teamId: user.teamOfUser,
             employeeID: user.employeeId,
+            dateStart: DateTime(startWeek.year, startWeek.month, startWeek.day),
+            dateEnd: DateTime(endWeek.year, endWeek.month, endWeek.day, 23, 59, 59),
           ),
         );
-
-        final now = DateTime.now();
-        final startWeek = now.subtract(Duration(days: now.weekday - 1));
-        final endWeek = startWeek.add(const Duration(days: 6));
 
         await _loadDailyReport(
            start: DateTime(startWeek.year, startWeek.month, startWeek.day),
@@ -1086,7 +1088,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     _isSavingReport = true;
 
     try {
-      emit(state.copyWith(isSaving: true, saveSuccess: false));
+      emit(state.copyWith(isSaving: true, saveSuccess: false, submitSuccess: false));
 
       final userRes = await _authRepo.getCurrentUser();
       final user = userRes.getOrElse(() => null);
@@ -1142,6 +1144,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           emit(state.copyWith(
             isSaving: false,
             saveSuccess: false,
+            submitSuccess: false,
             status: BaseStateStatus.failed,
             message: l.getErrorMessage,
           ));
@@ -1154,9 +1157,16 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         return;
       }
 
-      emit(state.copyWith(isSaving: false, saveSuccess: true));
+      // Giống _onSubmitReport: set submitSuccess + pending data
+      emit(state.copyWith(
+        isSaving: false,
+        saveSuccess: true,
+        submitSuccess: true,
+        pendingMailDate: safeDate,
+        pendingShareText: DialogService.buildMailPreviewText(state, safeDate),
+      ));
     } catch (_) {
-      emit(state.copyWith(isSaving: false, saveSuccess: false));
+      emit(state.copyWith(isSaving: false, saveSuccess: false, submitSuccess: false));
     } finally {
       _isSavingReport = false;
     }

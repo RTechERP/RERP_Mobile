@@ -234,7 +234,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                     },
               child: AbsorbPointer(
                 child: FormInputField(
-                  maxLines: 3,
+                  autoExpand: true,
                   key: ValueKey('work_${widget.report.id}'),
                   nameForm: 'tech_add_category_${widget.report.id}',
                   nameTextField: 'category_${widget.report.id}',
@@ -344,7 +344,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
               nameTextField: 'content_${widget.report.id}',
 
               label: 'Nội dung công việc',
-              maxLines: 4,
+              autoExpand: true,
               keyboardType: TextInputType.multiline,
               textInputAction: TextInputAction.newline,
               initialValue: widget.report.content,
@@ -370,9 +370,9 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
               nameForm: 'tech_add_result_${widget.report.id}',
               nameTextField: 'result_${widget.report.id}',
               label: 'Kết quả',
-              maxLines: 4,
+              autoExpand: true,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.newline, // ⬅ Enter xuống dòng
+              textInputAction: TextInputAction.newline,
               initialValue: widget.report.results,
               onChanged: (v) {
                 context.read<TechBloc>().add(

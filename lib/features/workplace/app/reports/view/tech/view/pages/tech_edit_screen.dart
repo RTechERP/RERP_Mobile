@@ -1,11 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
@@ -13,7 +11,7 @@ import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../common/helpers/index.dart';
-import '../../../../../../../../common/utils/dialog/index.dart';
+import '../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../../data/tech_model.dart';
@@ -75,8 +73,7 @@ class _TechEditScreenState
           },
         ),
         BlocListener<TechBloc, TechState>(
-          listenWhen: (p, c) =>
-              p.selectedProject != c.selectedProject,
+          listenWhen: (p, c) => p.selectedProject != c.selectedProject,
           listener: (context, state) {
             final work = state.selectedProject?.works.firstOrNull;
             if (work == null) return;
@@ -172,7 +169,7 @@ class _TechEditScreenState
                                                     decoration: BoxDecoration(
                                                       color: AppColors
                                                           .primaryERP
-                                                          .withOpacity(0.1),
+                                                          .withValues(alpha:0.1),
 
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -212,6 +209,9 @@ class _TechEditScreenState
                                       /// ===== SELECT PROJECT NAME (bind API) =====
                                       if (state.selectedProject != null)
                                         GestureDetector(
+                                          key: ValueKey(
+                                            'project_${state.selectedProject!.tempId}_${state.selectedProject?.projectId}',
+                                          ),
                                           onTap: () {
                                             openSelectBottomSheet(
                                               context: context,
@@ -242,12 +242,10 @@ class _TechEditScreenState
                                           child: AbsorbPointer(
                                             child: FormInputField(
                                               nameForm:
-                                                  'tech_edit_project_${state.selectedProject!.tempId}',
+                                                  'tech_edit_project_${state.selectedProject!.tempId}_${state.selectedProject?.projectId}',
                                               nameTextField:
-                                                  'tech_project_${state.selectedProject!.tempId}',
-                                              label:
-                                                  state.selectedProject?.name ??
-                                                  '',
+                                                  'tech_project_${state.selectedProject!.tempId}_${state.selectedProject?.projectId}',
+                                              label: 'Dự án',
                                               readOnly: true,
                                               icon: Icons.work_outline,
                                               initialValue:
@@ -299,6 +297,34 @@ class _TechEditScreenState
                                             }),
                                     ],
                                   );
+                                },
+                              ),
+                            ),
+
+                            const SizedBox(height: 8),
+
+                            FormCard(
+                              child: FormInputField(
+                                icon: Icons.next_plan_outlined,
+                                nameForm: 'tech_edit_next_plan',
+                                nameTextField: 'next_plan',
+                                label: 'Kế hoạch ngày tiếp theo',
+                                autoExpand: true,
+                                keyboardType: TextInputType.multiline,
+                                textInputAction: TextInputAction
+                                    .newline, // ⬅ Enter xuống dòng
+                                controller: _planNextDayController,
+                                isRequired: true,
+                                validator: (v) {
+                                  if (v == null || v.trim().isEmpty) {
+                                    return 'Vui lòng nhập kế hoạch';
+                                  }
+                                  return null;
+                                },
+                                onChanged: (v) {
+                                  if (v == null) return;
+
+                                  bloc.add(TechEvent.updatePlanNextDay(v));
                                 },
                               ),
                             ),
@@ -368,35 +394,6 @@ class _TechEditScreenState
 
                             const SizedBox(height: 8),
 
-                            FormCard(
-                              title: 'Kế hoạch ngày tiếp theo',
-                              child: FormInputField(
-                                icon: Icons.next_plan_outlined,
-                                nameForm: 'tech_edit_next_plan',
-                                nameTextField: 'next_plan',
-                                label: 'Kế hoạch ngày tiếp theo',
-                                maxLines: 3,
-                                keyboardType: TextInputType.multiline,
-                                textInputAction: TextInputAction
-                                    .newline, // ⬅ Enter xuống dòng
-                                controller: _planNextDayController,
-                                isRequired: true,
-                                validator: (v) {
-                                  if (v == null || v.trim().isEmpty) {
-                                    return 'Vui lòng nhập kế hoạch';
-                                  }
-                                  return null;
-                                },
-                                onChanged: (v) {
-                                  if (v == null) return;
-
-                                  bloc.add(TechEvent.updatePlanNextDay(v));
-                                },
-                              ),
-                            ),
-
-                            const SizedBox(height: 8),
-
                             /// ===== EXTRA INFO =====
                             FormCard(
                               title: 'Thông tin bổ sung',
@@ -437,7 +434,7 @@ class _TechEditScreenState
                                       nameForm: 'tech_edit_problem',
                                       nameTextField: 'problem',
                                       label: 'Vấn đề phát sinh',
-                                      maxLines: 1,
+                                      autoExpand: true,
                                       keyboardType: TextInputType.multiline,
                                       textInputAction: TextInputAction
                                           .newline, // ⬅ Enter xuống dòng
@@ -461,7 +458,7 @@ class _TechEditScreenState
                                       nameForm: 'tech_edit_problem_solve',
                                       nameTextField: 'problem_solve',
                                       label: 'Hướng giải quyết',
-                                      maxLines: 1,
+                                      autoExpand: true,
                                       keyboardType: TextInputType.multiline,
                                       textInputAction: TextInputAction
                                           .newline, // ⬅ Enter xuống dòng
@@ -485,7 +482,7 @@ class _TechEditScreenState
                                       nameForm: 'tech_edit_backlog',
                                       nameTextField: 'block',
                                       label: 'Tồn động',
-                                      maxLines: 1,
+                                      autoExpand: true,
                                       keyboardType: TextInputType.multiline,
                                       textInputAction: TextInputAction.newline,
                                       controller: _backlogController,
@@ -508,7 +505,7 @@ class _TechEditScreenState
                                       nameForm: 'tech_edit_note',
                                       nameTextField: 'note',
                                       label: 'Ghi chú/Lý do tồn đọng',
-                                      maxLines: 1,
+                                      autoExpand: true,
                                       keyboardType: TextInputType.multiline,
                                       textInputAction: TextInputAction
                                           .newline, // ⬅ Enter xuống dòng
@@ -614,8 +611,7 @@ class _TechEditScreenState
           ),
           BlocListener<TechBloc, TechState>(
             listenWhen: (p, c) =>
-                p.saveSuccess != c.saveSuccess ||
-                p.sendMailSuccess != c.sendMailSuccess ||
+                p.submitSuccess != c.submitSuccess ||
                 p.status != c.status ||
                 p.message != c.message,
             listener: (context, state) async {
@@ -627,53 +623,21 @@ class _TechEditScreenState
                 return;
               }
 
-              // Sau khi Submit (Save) thành công, tự động gọi hàm Send Mail
-              if (state.saveSuccess == true &&
-                  state.sendMailSuccess == false) {
-                final formState = _screenFormKey.currentState;
-                final pickedDate =
-                    formState?.value['tech_edit_date'] as DateTime?;
-                if (pickedDate != null) {
-                  bloc.add(
-                    TechEvent.sendMailReport(
-                      pickedDate: pickedDate,
-                      context: context,
-                    ),
-                  );
-                }
-              }
-
-              // Sau khi Send Mail thành công, copy text, chia sẻ và thoát màn hình
-              if (state.sendMailSuccess == true) {
-                final formState = _screenFormKey.currentState;
-                final pickedDate =
-                    formState?.value['tech_edit_date'] as DateTime?;
-
-                if (pickedDate != null) {
-                  final text = DialogService.buildMailPreviewText(
-                    state,
-                    pickedDate,
-                  );
-
-                  await Clipboard.setData(ClipboardData(text: text));
-
-                  if (context.mounted) {
-                    final box = context.findRenderObject() as RenderBox?;
-                    if (box != null) {
-                      try {
-                        Share.share(
-                          text,
-                          subject: 'Báo cáo công việc',
-                          sharePositionOrigin: box.localToGlobal(Offset.zero) &
-                              box.size,
-                        );
-                      } catch (e) {
-                        debugPrint('Lỗi share: $e');
-                      }
-                    }
-
-                    context.pop(true);
-                  }
+              // Sau khi Submit thành công, build shareText và trả về màn hình trước
+              if (state.submitSuccess == true) {
+                if (context.mounted) {
+                  final formState = _screenFormKey.currentState;
+                  final pickedDate =
+                      formState?.value['tech_edit_date'] as DateTime?;
+                  // Build shareText từ state TRƯỚC KHI pop — tránh timing issue
+                  final shareText = pickedDate != null
+                      ? DialogService.buildMailPreviewText(state, pickedDate)
+                      : null;
+                  // Truyền date + shareText qua pop()
+                  context.pop({
+                    'date': pickedDate,
+                    'shareText': shareText,
+                  });
                 }
               }
             },
@@ -690,7 +654,7 @@ class _TechEditScreenState
                 child: AbsorbPointer(
                   absorbing: true,
                   child: Container(
-                    color: Colors.black.withOpacity(0.45),
+                    color: Colors.black.withValues(alpha:0.45),
                     alignment: Alignment.center,
                     child: Lottie.asset(
                       'assets/lotties/Loading.json',

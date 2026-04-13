@@ -37,6 +37,9 @@ class FormInputField extends StatefulWidget {
 
   final AutovalidateMode autovalidateMode;
 
+  /// Khi true → maxLines = null, TextField tự mở rộng theo nội dung.
+  final bool autoExpand;
+
   const FormInputField({
     super.key,
     required this.nameForm,
@@ -59,6 +62,7 @@ class FormInputField extends StatefulWidget {
     this.onChanged,
     this.onFieldCreated,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
+    this.autoExpand = false,
   });
 
   @override
@@ -101,10 +105,11 @@ class _FormInputFieldState extends State<FormInputField> {
 
         // Không trim khi đồng bộ controller — trim làm mất space đang gõ (kéo ngược con trỏ).
         final rawValue = field.value ?? '';
-        final hasValue = rawValue.trim().isNotEmpty;
 
         final showError = field.hasError;
-        final effectiveMaxLines = widget.obscureText ? 1 : (widget.maxLines ?? 1);
+        final effectiveMaxLines = widget.obscureText
+            ? 1
+            : (widget.autoExpand ? null : (widget.maxLines ?? 1));
 
         final controller = _effectiveController;
         final fNode = _effectiveFocusNode;

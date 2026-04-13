@@ -289,7 +289,7 @@ class _TechAddScreenState
                                                   'tech_add_project_${state.selectedProject!.tempId}_${state.selectedProject?.projectId}',
                                               nameTextField:
                                                   'tech_project_${state.selectedProject!.tempId}_${state.selectedProject?.projectId}',
-                                              label: 'Chọn dự án',
+                                              label: 'Dự án',
                                               readOnly: true,
                                               icon: Icons.work_outline,
                                               initialValue:
@@ -386,6 +386,34 @@ class _TechAddScreenState
 
                             const SizedBox(height: 8),
 
+                            FormCard(
+                              child: FormInputField(
+                                icon: Icons.next_plan_outlined,
+                                nameForm: 'tech_add_next_plan',
+                                nameTextField: 'next_plan',
+                                label: 'Kế hoạch ngày tiếp theo',
+                                autoExpand: true,
+                                keyboardType: TextInputType.multiline,
+                                textInputAction: TextInputAction
+                                    .newline, // ⬅ Enter xuống dòng
+                                initialValue: state.planNextDay ?? '',
+                                onChanged: (v) {
+                                  if (v == null) return;
+
+                                  bloc.add(TechEvent.updatePlanNextDay(v));
+                                },
+                                isRequired: true,
+                                validator: (v) {
+                                  if (v == null || v.trim().isEmpty) {
+                                    return 'Vui lòng nhập kế hoạch ngày tiếp theo';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+
+                            const SizedBox(height: 8),
+
                             /// ===== LOCATION =====
                             FormCard(
                               title: 'Nơi làm việc',
@@ -437,35 +465,6 @@ class _TechAddScreenState
                                       },
                                     ),
                                 ],
-                              ),
-                            ),
-
-                            const SizedBox(height: 8),
-
-                            FormCard(
-                              title: 'Kế hoạch ngày tiếp theo',
-                              child: FormInputField(
-                                icon: Icons.next_plan_outlined,
-                                nameForm: 'tech_add_next_plan',
-                                nameTextField: 'next_plan',
-                                label: 'Kế hoạch ngày tiếp theo',
-                                maxLines: 3,
-                                keyboardType: TextInputType.multiline,
-                                textInputAction: TextInputAction
-                                    .newline, // ⬅ Enter xuống dòng
-                                initialValue: state.planNextDay ?? '',
-                                onChanged: (v) {
-                                  if (v == null) return;
-
-                                  bloc.add(TechEvent.updatePlanNextDay(v));
-                                },
-                                isRequired: true,
-                                validator: (v) {
-                                  if (v == null || v.trim().isEmpty) {
-                                    return 'Vui lòng nhập kế hoạch ngày tiếp theo';
-                                  }
-                                  return null;
-                                },
                               ),
                             ),
 

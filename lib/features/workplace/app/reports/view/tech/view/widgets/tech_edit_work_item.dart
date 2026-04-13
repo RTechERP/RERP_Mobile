@@ -75,10 +75,13 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
         String newText,
         ) {
       if (controller.text != newText) {
-        controller.value = TextEditingValue(
-          text: newText,
-          selection: TextSelection.collapsed(offset: newText.length),
-        );
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          controller.value = TextEditingValue(
+            text: newText,
+            selection: TextSelection.collapsed(offset: newText.length),
+          );
+        });
       }
     }
 
@@ -173,6 +176,7 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
               },
               child: AbsorbPointer(
                 child: FormInputField(
+                  autoExpand: true,
                   key: ValueKey('edit_category_${widget.report.id}'),
                   nameForm: 'tech_edit_category_${widget.report.id}',
                   nameTextField: 'edit_category_${widget.report.id}',
@@ -293,7 +297,7 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
               'edit_content_${widget.report.id}',
               icon: Icons.note_outlined,
               label: 'Nội dung công việc',
-              maxLines: 3,
+              autoExpand: true,
               controller: _contentController,
               isRequired: true,
               validator: (v) {
@@ -322,7 +326,7 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
               'edit_result_${widget.report.id}',
               icon: Icons.note_outlined,
               label: 'Kết quả',
-              maxLines: 3,
+              autoExpand: true,
               controller: _resultController,
               isRequired: true,
               validator: (v) {
