@@ -1,11 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
@@ -655,11 +653,9 @@ class _TechAddScreenState
         BlocListener<TechBloc, TechState>(
           listenWhen: (p, c) =>
               p.submitSuccess != c.submitSuccess ||
-              p.sendMailSuccess != c.sendMailSuccess ||
               p.status != c.status ||
               p.message != c.message,
           listener: (context, state) async {
-            // Hiển thị lỗi nếu có
             if (state.status == BaseStateStatus.failed &&
                 state.message != null &&
                 state.message!.isNotEmpty) {
@@ -667,50 +663,19 @@ class _TechAddScreenState
               return;
             }
 
-            // Sau khi Submit thành công, tự động gọi hàm Send Mail
-            if (state.submitSuccess == true && state.sendMailSuccess == false) {
-              final formState = _screenFormKey.currentState;
-              final pickedDate = formState?.value['tech_add_date'] as DateTime?;
-              if (pickedDate != null) {
-                bloc.add(
-                  TechEvent.sendMailReport(
-                    pickedDate: pickedDate,
-                    context: context,
-                  ),
-                );
-              }
-            }
-
-            // Sau khi Send Mail thành công, copy text, chia sẻ và thoát màn hình
-            if (state.sendMailSuccess == true) {
-              final formState = _screenFormKey.currentState;
-              final pickedDate = formState?.value['tech_add_date'] as DateTime?;
-              
-              if (pickedDate != null) {
-                final text = DialogService.buildMailPreviewText(
-                  state,
-                  pickedDate,
-                );
-
-                await Clipboard.setData(ClipboardData(text: text));
-
-                if (context.mounted) {
-                  final box = context.findRenderObject() as RenderBox?;
-                  if (box != null) {
-                    try {
-                      Share.share(
-                        text,
-                        subject: 'Báo cáo công việc',
-                        sharePositionOrigin: box.localToGlobal(Offset.zero) &
-                            box.size,
-                      );
-                    } catch (e) {
-                      debugPrint('Lỗi share: $e');
-                    }
-                  }
-                  
-                  context.pop(true);
-                }
+            if (state.submitSuccess == true) {
+              if (context.mounted) {
+                final formState = _screenFormKey.currentState;
+                final pickedDate = formState?.value['tech_add_date'] as DateTime?;
+                // Build shareText từ state TRƯỚC KHI pop — tránh timing issue
+                final shareText = pickedDate != null
+                    ? DialogService.buildMailPreviewText(state, pickedDate)
+                    : null;
+                // Truyền date + shareText qua pop()
+                context.pop({
+                  'date': pickedDate,
+                  'shareText': shareText,
+                });
               }
             }
           },

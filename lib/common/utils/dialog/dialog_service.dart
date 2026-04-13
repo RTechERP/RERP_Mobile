@@ -167,10 +167,17 @@ class DialogService {
 
       final box = context.findRenderObject() as RenderBox?;
       if (box != null) {
-        await Share.share(
-          text,
-          subject: 'Báo cáo công việc',
-          sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+        await SharePlus.instance.share(
+            ShareParams(
+              subject: 'Báo cáo công việc',
+              text: text,
+              sharePositionOrigin: Rect.fromLTWH(
+                0,
+                0,
+                MediaQuery.of(context).size.width,
+                MediaQuery.of(context).size.height / 2,
+              ),
+            ),
         );
       }
 
@@ -190,6 +197,12 @@ class DialogService {
     Duration timeout = const Duration(seconds: 30),
   }) async {
     await bloc.stream.firstWhere(predicate).timeout(timeout);
+  }
+
+  /// Chờ sendMailSuccess = true từ bloc.
+  static Future<void> waitUntilMailSuccess(TechBloc bloc) async {
+    await bloc.stream.firstWhere((s) => s.sendMailSuccess == true)
+        .timeout(const Duration(seconds: 30));
   }
 
   static String buildMailPreviewText(TechState state, DateTime dateReport) {

@@ -20,7 +20,6 @@ import "../../auth/data/datasource/models/user_model.dart";
 
 import "bloc/workspace_bloc.dart";
 import "widgets/wp_action_card.dart";
-import "widgets/wp_circle_button.dart";
 import "widgets/wp_favorite_add.dart";
 import "widgets/wp_info_card.dart";
 
@@ -137,38 +136,6 @@ class _WorkPlaceScreenState
             code: user?.code ?? '---',
           );
         }, buildWhen: (p, n) => p.user != n.user || p.status != n.status),
-
-        actions: [
-          // Stack(
-          //   clipBehavior: Clip.none,
-          //   children: [
-          //     WpCircleButton(
-          //       icon: Icons.notifications_none_outlined,
-          //       onPressed: () {},
-          //     ),
-          //     Positioned(
-          //       right: 2,
-          //       top: 2,
-          //       child: Container(
-          //         width: 10,
-          //         height: 10,
-          //         decoration: const BoxDecoration(
-          //           color: Colors.red,
-          //           shape: BoxShape.circle,
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          // const SizedBox(width: 12),
-          WpCircleButton(
-            icon: Icons.qr_code_scanner_outlined,
-            onPressed: () {},
-            borderColor: Colors.grey.shade300,
-            iconColor: Colors.black87,
-          ),
-          const SizedBox(width: 12),
-        ],
       ),
 
       body: blocBuilder((context, state) {
@@ -269,28 +236,28 @@ class _WorkPlaceScreenState
                     ],
                   ),
 
-                  const SizedBox(height: 8),
-
-                  WpActionCard(
-                    onItemTap: (item) {
-                      final route = item.route;
-                      if (route == null || route.isEmpty) {
-                        DialogService.showProcessing(context: context);
-                        return;
-                      }
-                      context.push(route);
-                    },
-                    title: 'tab.features'.tr(),
-                    expandable: true,
-                    collapsedItemCount: 11,
-                    items: [
-                      AppItemModel(
-                        id: 'process',
-                        name: 'common.process'.tr(),
-                        iconCodePoint: Icons.error_outline_outlined.codePoint,
-                      ),
-                    ],
-                  ),
+                  // const SizedBox(height: 8),
+                  //
+                  // WpActionCard(
+                  //   onItemTap: (item) {
+                  //     final route = item.route;
+                  //     if (route == null || route.isEmpty) {
+                  //       DialogService.showProcessing(context: context);
+                  //       return;
+                  //     }
+                  //     context.push(route);
+                  //   },
+                  //   title: 'tab.features'.tr(),
+                  //   expandable: true,
+                  //   collapsedItemCount: 11,
+                  //   items: [
+                  //     AppItemModel(
+                  //       id: 'process',
+                  //       name: 'common.process'.tr(),
+                  //       iconCodePoint: Icons.error_outline_outlined.codePoint,
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

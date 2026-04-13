@@ -1,6 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -97,8 +98,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
         updatePlanNextDay: (planNextDay) =>
             _onUpdatePlanNextDay(planNextDay, emit),
-        sendMailReport: (pickedDate, context) =>
-            _onSendMailReport(pickedDate, context, emit),
+        sendMailReport: (pickedDate, context, shareText) =>
+            _onSendMailReport(pickedDate, context, emit, shareText),
         resetSubmitFlags: () => _onResetSubmitFlags(emit),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(dateStart, dateEnd, emit),
@@ -206,7 +207,12 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
   }
 
   Future<void> _onInit(Emitter<TechState> emit) async {
-    emit(state.copyWith(status: BaseStateStatus.loading));
+    emit(state.copyWith(
+        status: BaseStateStatus.loading,
+        pendingMailDate: null,
+        deleteSuccess: false,
+        submitSuccess: false,
+      ));
 
     final userRes = await _authRepo.getCurrentUser();
     final departRes = await _reportRepo.getDepart();
@@ -348,10 +354,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       ).copyWith(
          content: copyItem.mission ?? '',
          results: copyItem.results ?? '',
-         backlog: copyItem.backlog ?? '',
+         backlog: copyItem.backlog,
          problem: copyItem.problem ?? '',
          problemSolve: copyItem.problemSolve ?? '',
-         note: copyItem.note ?? '',
+         note: copyItem.note,
          mission: missionName,
          percentComplete: percentComplete,
       );
@@ -828,9 +834,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         pickedDate.month,
         pickedDate.day,
       );
-      final dateStr = DateFormat('yyyy-MM-dd').format(safeDate);
 
       for (final project in submitProjects) {
+        final dateStr = DateFormat('yyyy-MM-dd').format(safeDate);
+
         for (final work in project.works) {
           final payload = <String, dynamic>{
             'ID': 0,
@@ -880,8 +887,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         }
       }
 
-      emit(state.copyWith(isSubmitting: false, submitSuccess: true));
-    } catch (e, st) {
+      // ignore: avoid_print
+      print('DEBUG BLOC: pendingShareText length = ${DialogService.buildMailPreviewText(state, safeDate).length}');
+      emit(state.copyWith(isSubmitting: false, submitSuccess: true, pendingMailDate: safeDate, pendingShareText: DialogService.buildMailPreviewText(state, safeDate)));
+    } catch (e) {
       emit(state.copyWith(isSubmitting: false, submitSuccess: false));
       // _log.logE('❌ Submit error: $e\n$st');
     } finally {
@@ -893,11 +902,13 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     DateTime pickedDate,
     BuildContext context,
     Emitter<TechState> emit,
+    String? shareText,
   ) async {
     try {
       emit(state.copyWith(isSubmitting: true, sendMailSuccess: false));
 
-      final body = DialogService.buildMailPreviewText(state, pickedDate);
+      // Ưu tiên dùng shareText đã lưu trước khi init(), fallback build từ state
+      final body = shareText ?? DialogService.buildMailPreviewText(state, pickedDate);
 
       final safeDate = DateTime(
         pickedDate.year,
@@ -922,18 +933,29 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         (r) async {
           emit(state.copyWith(isSubmitting: false, sendMailSuccess: true));
 
-          // _log.logI('✅ Send mail success: $r');
+          // Copy + share sau khi send mail thành công
+          if (shareText != null) {
+            await Clipboard.setData(ClipboardData(text: shareText));
+          }
 
-          // 3. Giữ success đủ lâu để chạy animation
-          await Future.delayed(const Duration(milliseconds: 900));
+          await Future.delayed(const Duration(milliseconds: 500));
 
-          // 4. Reset overlay (tránh kẹt màn)
-          emit(state.copyWith(sendMailSuccess: false));
+          // Reset flags TRONG BLOC — tránh snackbar "Xóa báo cáo" bị fire lại từ listener
+          emit(state.copyWith(
+            sendMailSuccess: false,
+            deleteSuccess: false,
+            submitSuccess: false,
+            saveSuccess: false,
+            pendingMailDate: null,
+            pendingShareText: null,
+            message: null,
+            isSubmitting: false,
+            isSaving: false,
+          ));
         },
       );
-    } catch (e, st) {
+    } catch (e) {
       emit(state.copyWith(isSubmitting: false, sendMailSuccess: false));
-      // _log.logE('❌ Send mail error: $e\n$st');
     }
   }
 
@@ -942,6 +964,9 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       submitSuccess: false,
       saveSuccess: false,
       sendMailSuccess: false,
+      deleteSuccess: false,
+      pendingMailDate: null,
+      pendingShareText: null,
       message: null,
       isSubmitting: false,
       isSaving: false,

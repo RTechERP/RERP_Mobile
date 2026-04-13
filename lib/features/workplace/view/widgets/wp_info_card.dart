@@ -69,7 +69,7 @@ class WpInfoCard extends StatelessWidget {
 
   Widget _buildInfo() {
     return Flexible(
-      fit: FlexFit.loose,
+      fit: FlexFit.tight,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,

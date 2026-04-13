@@ -54,7 +54,8 @@ mixin _$TechEvent {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -108,7 +109,8 @@ mixin _$TechEvent {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -160,7 +162,9 @@ mixin _$TechEvent {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -354,7 +358,8 @@ class _$InitImpl implements _Init {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -411,7 +416,8 @@ class _$InitImpl implements _Init {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -466,7 +472,9 @@ class _$InitImpl implements _Init {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -719,7 +727,8 @@ class _$InitAddImpl implements _InitAdd {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -776,7 +785,8 @@ class _$InitAddImpl implements _InitAdd {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -831,7 +841,9 @@ class _$InitAddImpl implements _InitAdd {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -1037,7 +1049,8 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -1094,7 +1107,8 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -1149,7 +1163,9 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -1394,7 +1410,8 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -1451,7 +1468,8 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -1506,7 +1524,9 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -1738,7 +1758,8 @@ class _$RemoveProjectImpl implements _RemoveProject {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -1795,7 +1816,8 @@ class _$RemoveProjectImpl implements _RemoveProject {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -1850,7 +1872,9 @@ class _$RemoveProjectImpl implements _RemoveProject {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -2080,7 +2104,8 @@ class _$SelectProjectImpl implements _SelectProject {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -2137,7 +2162,8 @@ class _$SelectProjectImpl implements _SelectProject {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -2192,7 +2218,9 @@ class _$SelectProjectImpl implements _SelectProject {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -2431,7 +2459,8 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -2488,7 +2517,8 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -2543,7 +2573,9 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -2749,7 +2781,8 @@ class _$AddWorkImpl implements _AddWork {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -2806,7 +2839,8 @@ class _$AddWorkImpl implements _AddWork {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -2861,7 +2895,9 @@ class _$AddWorkImpl implements _AddWork {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -3085,7 +3121,8 @@ class _$RemoveWorkImpl implements _RemoveWork {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -3142,7 +3179,8 @@ class _$RemoveWorkImpl implements _RemoveWork {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -3197,7 +3235,9 @@ class _$RemoveWorkImpl implements _RemoveWork {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -3426,7 +3466,8 @@ class _$ExpandWorkImpl implements _ExpandWork {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -3483,7 +3524,8 @@ class _$ExpandWorkImpl implements _ExpandWork {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -3538,7 +3580,9 @@ class _$ExpandWorkImpl implements _ExpandWork {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -3920,7 +3964,8 @@ class _$UpdateWorkImpl implements _UpdateWork {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -3991,7 +4036,8 @@ class _$UpdateWorkImpl implements _UpdateWork {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -4060,7 +4106,9 @@ class _$UpdateWorkImpl implements _UpdateWork {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -4330,7 +4378,8 @@ class _$UpdateDateImpl implements _UpdateDate {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -4387,7 +4436,8 @@ class _$UpdateDateImpl implements _UpdateDate {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -4442,7 +4492,9 @@ class _$UpdateDateImpl implements _UpdateDate {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -4680,7 +4732,8 @@ class _$UpdateLocationImpl implements _UpdateLocation {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -4737,7 +4790,8 @@ class _$UpdateLocationImpl implements _UpdateLocation {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -4792,7 +4846,9 @@ class _$UpdateLocationImpl implements _UpdateLocation {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -5024,7 +5080,8 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -5081,7 +5138,8 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -5136,7 +5194,9 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -5395,7 +5455,8 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -5452,7 +5513,8 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -5507,7 +5569,9 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -5746,7 +5810,8 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -5803,7 +5868,8 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -5858,7 +5924,9 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -5994,7 +6062,7 @@ abstract class _$$SendMailReportImplCopyWith<$Res> {
           $Res Function(_$SendMailReportImpl) then) =
       __$$SendMailReportImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({DateTime pickedDate, BuildContext context});
+  $Res call({DateTime pickedDate, BuildContext context, String? shareText});
 }
 
 /// @nodoc
@@ -6010,6 +6078,7 @@ class __$$SendMailReportImplCopyWithImpl<$Res>
   $Res call({
     Object? pickedDate = null,
     Object? context = null,
+    Object? shareText = freezed,
   }) {
     return _then(_$SendMailReportImpl(
       pickedDate: null == pickedDate
@@ -6020,6 +6089,10 @@ class __$$SendMailReportImplCopyWithImpl<$Res>
           ? _value.context
           : context // ignore: cast_nullable_to_non_nullable
               as BuildContext,
+      shareText: freezed == shareText
+          ? _value.shareText
+          : shareText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -6027,16 +6100,19 @@ class __$$SendMailReportImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SendMailReportImpl implements _SendMailReport {
-  const _$SendMailReportImpl({required this.pickedDate, required this.context});
+  const _$SendMailReportImpl(
+      {required this.pickedDate, required this.context, this.shareText});
 
   @override
   final DateTime pickedDate;
   @override
   final BuildContext context;
+  @override
+  final String? shareText;
 
   @override
   String toString() {
-    return 'TechEvent.sendMailReport(pickedDate: $pickedDate, context: $context)';
+    return 'TechEvent.sendMailReport(pickedDate: $pickedDate, context: $context, shareText: $shareText)';
   }
 
   @override
@@ -6046,11 +6122,13 @@ class _$SendMailReportImpl implements _SendMailReport {
             other is _$SendMailReportImpl &&
             (identical(other.pickedDate, pickedDate) ||
                 other.pickedDate == pickedDate) &&
-            (identical(other.context, context) || other.context == context));
+            (identical(other.context, context) || other.context == context) &&
+            (identical(other.shareText, shareText) ||
+                other.shareText == shareText));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pickedDate, context);
+  int get hashCode => Object.hash(runtimeType, pickedDate, context, shareText);
 
   @JsonKey(ignore: true)
   @override
@@ -6098,7 +6176,8 @@ class _$SendMailReportImpl implements _SendMailReport {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -6113,7 +6192,7 @@ class _$SendMailReportImpl implements _SendMailReport {
         copyReport,
     required TResult Function() resetCopyReport,
   }) {
-    return sendMailReport(pickedDate, context);
+    return sendMailReport(pickedDate, context, shareText);
   }
 
   @override
@@ -6155,7 +6234,8 @@ class _$SendMailReportImpl implements _SendMailReport {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -6168,7 +6248,7 @@ class _$SendMailReportImpl implements _SendMailReport {
         copyReport,
     TResult? Function()? resetCopyReport,
   }) {
-    return sendMailReport?.call(pickedDate, context);
+    return sendMailReport?.call(pickedDate, context, shareText);
   }
 
   @override
@@ -6210,7 +6290,9 @@ class _$SendMailReportImpl implements _SendMailReport {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -6224,7 +6306,7 @@ class _$SendMailReportImpl implements _SendMailReport {
     required TResult orElse(),
   }) {
     if (sendMailReport != null) {
-      return sendMailReport(pickedDate, context);
+      return sendMailReport(pickedDate, context, shareText);
     }
     return orElse();
   }
@@ -6333,10 +6415,12 @@ class _$SendMailReportImpl implements _SendMailReport {
 abstract class _SendMailReport implements TechEvent {
   const factory _SendMailReport(
       {required final DateTime pickedDate,
-      required final BuildContext context}) = _$SendMailReportImpl;
+      required final BuildContext context,
+      final String? shareText}) = _$SendMailReportImpl;
 
   DateTime get pickedDate;
   BuildContext get context;
+  String? get shareText;
   @JsonKey(ignore: true)
   _$$SendMailReportImplCopyWith<_$SendMailReportImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -6416,7 +6500,8 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -6473,7 +6558,8 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -6528,7 +6614,9 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -6762,7 +6850,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -6819,7 +6908,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -6874,7 +6964,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -7106,7 +7198,8 @@ class _$SelectReportImpl implements _SelectReport {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -7163,7 +7256,8 @@ class _$SelectReportImpl implements _SelectReport {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -7218,7 +7312,9 @@ class _$SelectReportImpl implements _SelectReport {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -7449,7 +7545,8 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -7506,7 +7603,8 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -7561,7 +7659,9 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -7803,7 +7903,8 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -7860,7 +7961,8 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -7915,7 +8017,9 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -8147,7 +8251,8 @@ class _$DeleteReportImpl implements _DeleteReport {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -8204,7 +8309,8 @@ class _$DeleteReportImpl implements _DeleteReport {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -8259,7 +8365,9 @@ class _$DeleteReportImpl implements _DeleteReport {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -8543,7 +8651,8 @@ class _$CopyReportImpl implements _CopyReport {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -8601,7 +8710,8 @@ class _$CopyReportImpl implements _CopyReport {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -8657,7 +8767,9 @@ class _$CopyReportImpl implements _CopyReport {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -8872,7 +8984,8 @@ class _$ResetCopyImpl implements _ResetCopy {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -8929,7 +9042,8 @@ class _$ResetCopyImpl implements _ResetCopy {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -8984,7 +9098,9 @@ class _$ResetCopyImpl implements _ResetCopy {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,

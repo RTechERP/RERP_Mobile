@@ -196,8 +196,17 @@ class _HrAdminScreenState
             type: SnackBarType.success,
           );
 
-          await Share.share(content);
-
+          await SharePlus.instance.share(
+              ShareParams(
+                text: content,
+                sharePositionOrigin: Rect.fromLTWH(
+                  0,
+                  0,
+                  MediaQuery.of(context).size.width,
+                  MediaQuery.of(context).size.height / 2,
+                ),
+              ),
+          );
           // reset sau khi xử lý xong
           // bloc.add(const HrEvent.resetCopyReport());
         }

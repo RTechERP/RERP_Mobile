@@ -30,7 +30,6 @@ class TechScreen extends StatefulWidget {
 
 class _TechScreenState
     extends BaseState<TechScreen, TechEvent, TechState, TechBloc> {
-
   bool _isSearching = false;
   final TextEditingController _searchController = TextEditingController();
   List<ReportResponse> _filteredReports = [];
@@ -49,6 +48,7 @@ class _TechScreenState
       return code.contains(lower) || name.contains(lower);
     }).toList();
   }
+
   @override
   void initState() {
     super.initState();
@@ -60,6 +60,7 @@ class _TechScreenState
     _searchController.dispose();
     super.dispose();
   }
+
   String _buildCopyContent(List<CopyNullResponse> reports) {
     if (reports.isEmpty) return '';
 
@@ -95,7 +96,6 @@ class _TechScreenState
       buffer.writeln('* Ghi chú:');
       buffer.writeln(_cleanOrDefault(r.note));
       buffer.writeln('');
-
 
       buffer.writeln('* Vấn đề phát sinh:');
       buffer.writeln(_cleanOrDefault(r.problem));
@@ -152,9 +152,7 @@ class _TechScreenState
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       alignment: Alignment.center,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
+      decoration: const BoxDecoration(color: Colors.white),
       child: Text(
         text,
         style: const TextStyle(
@@ -172,14 +170,14 @@ class _TechScreenState
         '${d.year}';
   }
 
-
   @override
   Widget renderUI(BuildContext context) {
     return BlocListener<TechBloc, TechState>(
       listenWhen: (p, c) =>
-      p.deleteSuccess != c.deleteSuccess ||
+          p.deleteSuccess != c.deleteSuccess ||
           p.copyReports != c.copyReports ||
-          p.copyError != c.copyError,
+          p.copyError != c.copyError ||
+          p.sendMailSuccess != c.sendMailSuccess,
       listener: (context, state) async {
         if (state.deleteSuccess) {
           showMessage(
@@ -193,13 +191,12 @@ class _TechScreenState
           showMessage(context, state.message!, type: SnackBarType.error);
         }
 
+        // Send mail hoàn tất → snackbar "Tạo báo cáo thành công" đã show trong tech_add_screen
+        // Flags được reset TRONG BLOC sau khi copy + share
+
         /// COPY ERROR
         if (state.copyError != null) {
-          showMessage(
-            context,
-            state.copyError!,
-            type: SnackBarType.error,
-          );
+          showMessage(context, state.copyError!, type: SnackBarType.error);
           return;
         }
 
@@ -212,7 +209,7 @@ class _TechScreenState
 
           showMessage(
             context,
-            'Đã copy và chia sẻ nội dung',
+            'Đã copy thành công',
             type: SnackBarType.success,
           );
 
@@ -220,40 +217,42 @@ class _TechScreenState
           bloc.add(const TechEvent.resetCopyReport());
 
           // Share nội dung ra ứng dụng khác
-          try {
-            await Share.share(
-              content,
+
+          await SharePlus.instance.share(
+            ShareParams(
               subject: 'Báo cáo công việc',
-            );
-          } catch (e) {
-            debugPrint('Lỗi khi share: $e');
-          }
+              text: content,
+              sharePositionOrigin: Rect.fromLTWH(
+                0,
+                0,
+                MediaQuery.of(context).size.width,
+                MediaQuery.of(context).size.height / 2,
+              ),
+            ),
+          );
         }
       },
       child: BaseScaffold(
         appBar: AppBarCommon(
           title: _isSearching
               ? TextField(
-            controller: _searchController,
-            autofocus: true,
-            decoration: const InputDecoration(
-              hintText: 'Tìm theo mã hoặc tên dự án',
-              border: InputBorder.none,
-            ),
-            onChanged: (value) {
-              setState(() {
-                _filterReports(value, bloc.state.reports);
-              });
-            },
-          )
+                  controller: _searchController,
+                  autofocus: true,
+                  decoration: const InputDecoration(
+                    hintText: 'Tìm theo mã hoặc tên dự án',
+                    border: InputBorder.none,
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      _filterReports(value, bloc.state.reports);
+                    });
+                  },
+                )
               : Text('report.tech'.tr()),
           onBackTap: () => onBack(context),
           actions: [
             IconButton(
-              icon: Icon(
-                _isSearching ? Icons.close : Icons.search,
-                size: 22,
-              ),
+              icon: Icon(_isSearching ? Icons.close : Icons.search, size: 22),
               onPressed: () {
                 setState(() {
                   _isSearching = !_isSearching;
@@ -307,8 +306,7 @@ class _TechScreenState
               );
             }
 
-            final displayList =
-            _isSearching ? _filteredReports : state.reports;
+            final displayList = _isSearching ? _filteredReports : state.reports;
 
             if (!_isSearching) {
               _filteredReports = state.reports;
@@ -412,25 +410,52 @@ class _TechScreenState
               onTap: () async {
                 final reload = await context.push(
                   RouteNames.reportITdepartAdd,
-                  extra: {
-                    'projects': bloc.state.rtcProject,
-                  },
+                  extra: {'projects': bloc.state.rtcProject},
                 );
 
-                if (reload == true) {
+                if (reload != null) {
+                  showMessage(
+                    context,
+                    'Tạo báo cáo thành công',
+                    type: SnackBarType.success,
+                  );
+
+                  final extra = reload as Map<String, dynamic>?;
+                  final pendingDate = extra?['date'] as DateTime?;
+                  final shareText = extra?['shareText'] as String?;
+
                   bloc.add(const TechEvent.init());
+
+                  if (pendingDate != null) {
+                    bloc.add(
+                      TechEvent.sendMailReport(
+                        pickedDate: pendingDate,
+                        context: context,
+                        shareText: shareText,
+                      ),
+                    );
+                  }
+
+                  // Bật share ngay lập tức sau khi tạo thành công
+                  if (shareText != null && shareText.isNotEmpty) {
+                    await Clipboard.setData(ClipboardData(text: shareText));
+
+                    await SharePlus.instance.share(
+                      ShareParams(
+                        subject: 'Báo cáo công việc',
+                        text: shareText,
+                        sharePositionOrigin: Rect.fromLTWH(
+                          0,
+                          0,
+                          MediaQuery.of(context).size.width,
+                          MediaQuery.of(context).size.height / 2,
+                        ),
+                      ),
+                    );
+                  }
                 }
               },
             ),
-
-            /// ===== LỌC THEO NGÀY =====
-            // SpeedDialChild(
-            //   child: const Icon(Icons.date_range),
-            //   label: 'Lọc ngày',
-            //   onTap: () {
-            //     TechDateRangePicker.open(context, bloc);
-            //   },
-            // ),
 
             /// ===== COPY =====
             SpeedDialChild(

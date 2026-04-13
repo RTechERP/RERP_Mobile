@@ -83,6 +83,7 @@ class TechEvent with _$TechEvent {
   const factory TechEvent.sendMailReport({
     required DateTime pickedDate,
     required BuildContext context,
+    String? shareText,
   }) = _SendMailReport;
 
   /// ===== RESET SUBMIT FLAGS ====

@@ -73,6 +73,10 @@ abstract class _$TechStateCWProxy {
 
   TechState sendMailSuccess(bool sendMailSuccess);
 
+  TechState pendingMailDate(DateTime? pendingMailDate);
+
+  TechState pendingShareText(String? pendingShareText);
+
   TechState lastPickedDate(DateTime? lastPickedDate);
 
   TechState isLoadingDetail(bool isLoadingDetail);
@@ -141,6 +145,8 @@ abstract class _$TechStateCWProxy {
     String? percentError,
     int? userId,
     bool? sendMailSuccess,
+    DateTime? pendingMailDate,
+    String? pendingShareText,
     DateTime? lastPickedDate,
     bool? isLoadingDetail,
     DetailReportResponse? selectedReportDetail,
@@ -279,6 +285,14 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
       this(sendMailSuccess: sendMailSuccess);
 
   @override
+  TechState pendingMailDate(DateTime? pendingMailDate) =>
+      this(pendingMailDate: pendingMailDate);
+
+  @override
+  TechState pendingShareText(String? pendingShareText) =>
+      this(pendingShareText: pendingShareText);
+
+  @override
   TechState lastPickedDate(DateTime? lastPickedDate) =>
       this(lastPickedDate: lastPickedDate);
 
@@ -368,6 +382,8 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
     Object? percentError = const $CopyWithPlaceholder(),
     Object? userId = const $CopyWithPlaceholder(),
     Object? sendMailSuccess = const $CopyWithPlaceholder(),
+    Object? pendingMailDate = const $CopyWithPlaceholder(),
+    Object? pendingShareText = const $CopyWithPlaceholder(),
     Object? lastPickedDate = const $CopyWithPlaceholder(),
     Object? isLoadingDetail = const $CopyWithPlaceholder(),
     Object? selectedReportDetail = const $CopyWithPlaceholder(),
@@ -522,6 +538,14 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
           ? _value.sendMailSuccess
           // ignore: cast_nullable_to_non_nullable
           : sendMailSuccess as bool,
+      pendingMailDate: pendingMailDate == const $CopyWithPlaceholder()
+          ? _value.pendingMailDate
+          // ignore: cast_nullable_to_non_nullable
+          : pendingMailDate as DateTime?,
+      pendingShareText: pendingShareText == const $CopyWithPlaceholder()
+          ? _value.pendingShareText
+          // ignore: cast_nullable_to_non_nullable
+          : pendingShareText as String?,
       lastPickedDate: lastPickedDate == const $CopyWithPlaceholder()
           ? _value.lastPickedDate
           // ignore: cast_nullable_to_non_nullable
