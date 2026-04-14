@@ -64,7 +64,7 @@ class BookingVehicleItem with _$BookingVehicleItem {
     @JsonKey(name: 'PackageQuantity') int? packageQuantity,
     @JsonKey(name: 'VehicleType') int? vehicleType,
     @JsonKey(name: 'StartTimeActual') DateTime? startTimeActual,
-    @JsonKey(name: 'DecilineApproveSenior') String? decilineApproveSenior,
+    @JsonKey(name: 'DecilineApproveSenior') int? decilineApproveSenior,
     @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
     @JsonKey(name: 'VehicleInformation') String? vehicleInformation,
     @JsonKey(name: 'CategoryText') String? categoryText,

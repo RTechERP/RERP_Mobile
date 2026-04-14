@@ -137,7 +137,7 @@ mixin _$BookingVehicleItem {
   @JsonKey(name: 'StartTimeActual')
   DateTime? get startTimeActual => throw _privateConstructorUsedError;
   @JsonKey(name: 'DecilineApproveSenior')
-  String? get decilineApproveSenior => throw _privateConstructorUsedError;
+  int? get decilineApproveSenior => throw _privateConstructorUsedError;
   @JsonKey(name: 'ReasonDecilineSenior')
   String? get reasonDecilineSenior => throw _privateConstructorUsedError;
   @JsonKey(name: 'VehicleInformation')
@@ -244,7 +244,7 @@ abstract class $BookingVehicleItemCopyWith<$Res> {
       @JsonKey(name: 'PackageQuantity') int? packageQuantity,
       @JsonKey(name: 'VehicleType') int? vehicleType,
       @JsonKey(name: 'StartTimeActual') DateTime? startTimeActual,
-      @JsonKey(name: 'DecilineApproveSenior') String? decilineApproveSenior,
+      @JsonKey(name: 'DecilineApproveSenior') int? decilineApproveSenior,
       @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
       @JsonKey(name: 'VehicleInformation') String? vehicleInformation,
       @JsonKey(name: 'CategoryText') String? categoryText,
@@ -589,7 +589,7 @@ class _$BookingVehicleItemCopyWithImpl<$Res, $Val extends BookingVehicleItem>
       decilineApproveSenior: freezed == decilineApproveSenior
           ? _value.decilineApproveSenior
           : decilineApproveSenior // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       reasonDecilineSenior: freezed == reasonDecilineSenior
           ? _value.reasonDecilineSenior
           : reasonDecilineSenior // ignore: cast_nullable_to_non_nullable
@@ -727,7 +727,7 @@ abstract class _$$BookingVehicleItemImplCopyWith<$Res>
       @JsonKey(name: 'PackageQuantity') int? packageQuantity,
       @JsonKey(name: 'VehicleType') int? vehicleType,
       @JsonKey(name: 'StartTimeActual') DateTime? startTimeActual,
-      @JsonKey(name: 'DecilineApproveSenior') String? decilineApproveSenior,
+      @JsonKey(name: 'DecilineApproveSenior') int? decilineApproveSenior,
       @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
       @JsonKey(name: 'VehicleInformation') String? vehicleInformation,
       @JsonKey(name: 'CategoryText') String? categoryText,
@@ -1070,7 +1070,7 @@ class __$$BookingVehicleItemImplCopyWithImpl<$Res>
       decilineApproveSenior: freezed == decilineApproveSenior
           ? _value.decilineApproveSenior
           : decilineApproveSenior // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       reasonDecilineSenior: freezed == reasonDecilineSenior
           ? _value.reasonDecilineSenior
           : reasonDecilineSenior // ignore: cast_nullable_to_non_nullable
@@ -1400,7 +1400,7 @@ class _$BookingVehicleItemImpl implements _BookingVehicleItem {
   final DateTime? startTimeActual;
   @override
   @JsonKey(name: 'DecilineApproveSenior')
-  final String? decilineApproveSenior;
+  final int? decilineApproveSenior;
   @override
   @JsonKey(name: 'ReasonDecilineSenior')
   final String? reasonDecilineSenior;
@@ -1733,8 +1733,7 @@ abstract class _BookingVehicleItem implements BookingVehicleItem {
       @JsonKey(name: 'PackageQuantity') final int? packageQuantity,
       @JsonKey(name: 'VehicleType') final int? vehicleType,
       @JsonKey(name: 'StartTimeActual') final DateTime? startTimeActual,
-      @JsonKey(name: 'DecilineApproveSenior')
-      final String? decilineApproveSenior,
+      @JsonKey(name: 'DecilineApproveSenior') final int? decilineApproveSenior,
       @JsonKey(name: 'ReasonDecilineSenior') final String? reasonDecilineSenior,
       @JsonKey(name: 'VehicleInformation') final String? vehicleInformation,
       @JsonKey(name: 'CategoryText') final String? categoryText,
@@ -1932,7 +1931,7 @@ abstract class _BookingVehicleItem implements BookingVehicleItem {
   DateTime? get startTimeActual;
   @override
   @JsonKey(name: 'DecilineApproveSenior')
-  String? get decilineApproveSenior;
+  int? get decilineApproveSenior;
   @override
   @JsonKey(name: 'ReasonDecilineSenior')
   String? get reasonDecilineSenior;
