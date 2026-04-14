@@ -18,6 +18,10 @@ import '../features/workplace/app/reg_general/view/pages/meeting_room/data/datas
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/personal_assets/data/datasource/service/personal_asset_service.dart';
+import '../features/workplace/app/reg_general/view/pages/personal_assets/data/repository/personal_asset_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/personal_assets/data/repository/pesonal_asset_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/personal_assets/view/bloc/personal_asset_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/datasource/service/work_category_service.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo_impl.dart';
@@ -146,6 +150,10 @@ void configureDependencies() {
     () => WorkCategoryService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<PersonalAssetService>(
+    () => PersonalAssetService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(getIt<AuthService>()),
@@ -195,6 +203,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<WorkCategoryRepo>(
     () => WorkCategoryRepoImpl(getIt<WorkCategoryService>()),
+  );
+
+  getIt.registerLazySingleton<PersonalAssetRepo>(
+    () => PersonalAssetRepoImpl(getIt<PersonalAssetService>()),
   );
 
   /// ===== BLOCS =====
@@ -289,6 +301,14 @@ void configureDependencies() {
   getIt.registerFactory<WorkCategoryBloc>(
     () => WorkCategoryBloc(
       getIt<WorkCategoryRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<PersonalAssetBloc>(
+    () => PersonalAssetBloc(
+      getIt<PersonalAssetRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

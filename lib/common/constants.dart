@@ -271,4 +271,8 @@ class ApiEndPoint {
   static const String saveWorkCategoryProblem = '/ProjectItem/save-problem';
 
   static const String getFillAprrover = '/employeeonleave/get-approve-id';
+
+  static const String getPersonalAsset = '/Assets/get-asset-person';
+
+  static const String getPersonalProperty = '/Assets/get-personal-property';
 }

@@ -31,6 +31,8 @@ import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pa
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_edit_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/personal_assets/view/bloc/personal_asset_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/pesonal_asset_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/bloc/work_category_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/datasource/models/work_category_model.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_add_screen.dart';
@@ -115,7 +117,10 @@ class AppRouter {
 
     routes: [
       //---(Splash)---//
-      GoRoute(path: RouteNames.splash, builder: (context, state) => const AppInitScreen()),
+      GoRoute(
+        path: RouteNames.splash,
+        builder: (context, state) => const AppInitScreen(),
+      ),
 
       //---(Auth)---//
       GoRoute(
@@ -312,8 +317,7 @@ class AppRouter {
       //---(WorkTrip)---//
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(
-              value: getIt<WorkTripBloc>(), child: child);
+          return BlocProvider.value(value: getIt<WorkTripBloc>(), child: child);
         },
         routes: [
           GoRoute(
@@ -346,7 +350,10 @@ class AppRouter {
       //---(Overnight)---//
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(value: getIt<OvernightBloc>(), child: child);
+          return BlocProvider.value(
+            value: getIt<OvernightBloc>(),
+            child: child,
+          );
         },
         routes: [
           GoRoute(
@@ -390,12 +397,10 @@ class AppRouter {
             path: RouteNames.reportITdepartAdd,
             builder: (context, state) {
               final payload = state.extra as Map<String, dynamic>?;
-              final copyItems = payload?['copyItems'] as List<CopyNullResponse>?;
+              final copyItems =
+                  payload?['copyItems'] as List<CopyNullResponse>?;
               final projects = payload?['projects'] as List<ProjectResponse>?;
-              return TechAddScreen(
-                copyItems: copyItems,
-                rtcProject: projects,
-              );
+              return TechAddScreen(copyItems: copyItems, rtcProject: projects);
             },
           ),
           GoRoute(
@@ -791,6 +796,21 @@ class AppRouter {
         builder: (context, state) => const NotificationSettingsScreen(),
       ),
 
+      //---(Personal Asset)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<PersonalAssetBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.personalAsset,
+            builder: (context, state) => const PersonalAssetScreen(),
+          ),
+        ],
+      ),
     ],
   );
 }

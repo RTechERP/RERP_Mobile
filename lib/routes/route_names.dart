@@ -152,6 +152,8 @@ class RouteNames {
 
   static const workCategoryDetail = '/reg_general/work_category/detail';
 
+  static const personalAsset = '/reg_general/personal_asset';
+
   // More - Settings
   static const notificationSettings = '/more/notification_settings';
 }

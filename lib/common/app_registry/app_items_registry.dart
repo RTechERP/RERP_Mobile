@@ -196,7 +196,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.inventory_2_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/personal-asset',
+      route: RouteNames.personalAsset,
       imageUrl: AppImages.reg_general_personal_asset,
     ),
 
