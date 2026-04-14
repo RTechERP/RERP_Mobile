@@ -5,11 +5,10 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../notification/notification_service.dart';
-import '../../../di/injection.dart';
-import '../../../features/auth/data/repository/auth_repo.dart';
-import '../../helpers/device_info_helper.dart';
+import '../../constants.dart';
 
 /// Background message handler – phải là top-level function.
 @pragma('vm:entry-point')
@@ -80,19 +79,14 @@ class FirebaseInitializer {
       }
     }
 
-    // Lắng nghe khi token được refresh
+    // Lắng nghe khi token được refresh — lưu vào SharedPreferences.
+    // AuthBloc sẽ gửi token này lên server khi user login tiếp theo.
     FirebaseMessaging.instance.onTokenRefresh.listen((newToken) async {
       if (kDebugMode) {
         print('[FCM] Token refreshed: $newToken');
       }
-      try {
-        final deviceId = await DeviceInfoHelper.getDeviceId();
-        getIt<AuthRepo>().updateDeviceToken(newToken, deviceId);
-      } catch (e) {
-        if (kDebugMode) {
-          print('[FCM] Lỗi cập nhật token mới lên server: $e');
-        }
-      }
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(SharedKeys.savedFcmToken, newToken);
     });
   }
 

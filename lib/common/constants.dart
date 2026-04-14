@@ -56,7 +56,8 @@ class SharedKeys {
   static const savedUsername = 'savedUsername';
   static const savedPassword = 'savedPassword';
 
-
+  /// FCM token đã refresh nhưng chưa gửi lên server (user đang logged-in).
+  static const savedFcmToken = 'savedFcmToken';
 }
 
 class BlocMessages {
@@ -73,6 +74,7 @@ class FireBaseLog {
 class ApiEndPoint {
   static const String login = '/home/login';
 
+  static const String loginMobile = '/homemobile/login-mobile';
   static const String currentUser = '/home/current-user';
   static const String getDailyReportTech =
       '/DailyReportTech/get-daily-report-tech';
@@ -252,7 +254,6 @@ class ApiEndPoint {
   static const String saveOvernight = '/EmployeeNightShift/save-data';
 
   // TODO: Thay đường dẫn API thực tế của Backend tại đây
-  static const String updateDeviceToken = '/home/update-fcm-token';
 
   static const String getWorkCategory = '/projectitemnew/get-project-item-person';
 
@@ -275,4 +276,8 @@ class ApiEndPoint {
   static const String getPersonalAsset = '/Assets/get-asset-person';
 
   static const String getPersonalProperty = '/Assets/get-personal-property';
+
+  static const String getTypeNotification = '/notificationtype/get-data-by-userid';
+
+  static const String saveNotificationType = '/notificationtype/save-data';
 }

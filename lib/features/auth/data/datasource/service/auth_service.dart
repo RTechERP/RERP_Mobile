@@ -1,5 +1,5 @@
 // Date: 11/04/2026 - Dev: NQHung
-// Nội dung/Chức năng: Auth API service - login, getCurrentUser, updateDeviceToken
+// Nội dung/Chức năng: Auth API service - login, getCurrentUser
 
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -15,19 +15,24 @@ class AuthService extends DioBaseApiService {
   AuthService(super.dio);
 
   /// Gọi API login - trả về LoginResponse.
-  Future<LoginResponse> loginByPlatform(
-      String loginName,
-      String passwordHash,
-      ) {
+  /// [fcmToken] và [deviceId] được gửi kèm để server tự đăng ký FCM token.
+  Future<LoginResponse> loginByPlatform(String loginName,
+      String passwordHash, {
+        String? fcmToken,
+        String? deviceId,
+      }) {
     return post<LoginResponse>(
-      ApiEndPoint.login,
+      ApiEndPoint.loginMobile,
       body: {
         'LoginName': loginName,
         'PasswordHash': passwordHash,
+        if (fcmToken != null) 'fcmToken': fcmToken,
+        if (deviceId != null) 'deviceId': deviceId,
       },
-      parser: (json) => LoginResponse.fromJson(
-        json as Map<String, dynamic>,
-      ),
+      parser: (json) =>
+          LoginResponse.fromJson(
+            json as Map<String, dynamic>,
+          ),
     );
   }
 
@@ -46,14 +51,6 @@ class AuthService extends DioBaseApiService {
       parser: (json) => User.fromJson(
         (json['data'] ?? json) as Map<String, dynamic>,
       ),
-    );
-  }
-
-  /// Gửi FCM device token lên server.
-  Future<dynamic> updateDeviceToken(String fcmToken, String deviceId) async {
-    return post(
-      ApiEndPoint.updateDeviceToken,
-      body: {'token': fcmToken, 'device_id': deviceId},
     );
   }
 }

@@ -10,6 +10,10 @@ import '../features/auth/data/datasource/service/auth_service.dart';
 import '../features/auth/data/repository/auth_repo.dart';
 import '../features/auth/data/repository/auth_repo_impl.dart';
 import '../features/auth/view/bloc/auth_bloc.dart';
+import '../features/more/data/datasource/service/more_service.dart';
+import '../features/more/data/repository/more_repo.dart';
+import '../features/more/data/repository/more_repo_impl.dart';
+import '../features/more/view/settings/notification/bloc/notification_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/service/booking_vehicle_service.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
@@ -154,9 +158,15 @@ void configureDependencies() {
     () => PersonalAssetService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<MoreService>(() => MoreService(getIt<Dio>()));
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
-    () => AuthRepoImpl(getIt<AuthService>()),
+    () => AuthRepoImpl(
+      getIt<AuthService>(),
+      getIt<MoreRepo>(),
+      getIt<LocalStorage>(),
+    ),
   );
 
   getIt.registerLazySingleton<ReportRepo>(
@@ -207,6 +217,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<PersonalAssetRepo>(
     () => PersonalAssetRepoImpl(getIt<PersonalAssetService>()),
+  );
+
+  getIt.registerLazySingleton<MoreRepo>(
+    () => MoreRepoImpl(getIt<MoreService>()),
   );
 
   /// ===== BLOCS =====
@@ -309,6 +323,14 @@ void configureDependencies() {
   getIt.registerFactory<PersonalAssetBloc>(
     () => PersonalAssetBloc(
       getIt<PersonalAssetRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<NotificationBloc>(
+    () => NotificationBloc(
+      getIt<MoreRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

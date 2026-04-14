@@ -112,8 +112,8 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
 
   //---(Login)---//
 
-  /// Handles login event - gọi API login, lưu token, fetch user, sync FCM token.
-  /// Nếu rememberMe = true → lưu username/password vào SharedPreferences.
+  /// Handles login event - lấy FCM token + deviceId trước, gửi kèm payload login.
+  /// Server tự đăng ký FCM token khi login thành công.
   Future<void> _onLogin(
     String loginName,
     String passwordHash,
@@ -122,12 +122,32 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
   ) async {
     emit(state.copyWith(status: BaseStateStatus.loading, rememberMe: rememberMe));
 
+    // Lấy FCM token + deviceId trước khi login
+    String? fcmToken;
+    String? deviceId;
+    try {
+      if (Platform.isIOS) {
+        await FirebaseMessaging.instance.getAPNSToken();
+      }
+      fcmToken = await FirebaseMessaging.instance.getToken();
+      deviceId = await DeviceInfoHelper.getDeviceId();
+    } catch (e) {
+      _log.logW('Không lấy được FCM token hoặc deviceId: $e');
+    }
+
+    // Lấy savedFcmToken (token đã refresh khi user đang logged-in)
+    final prefs = await SharedPreferences.getInstance();
+    final savedFcmToken = prefs.getString(SharedKeys.savedFcmToken);
+
+    // Ưu tiên fcmToken hiện tại, fallback sang savedFcmToken
+    final effectiveFcmToken = fcmToken ?? savedFcmToken;
+
     final res = await _authRepo.login(
       loginName: loginName,
       passwordHash: passwordHash,
+      fcmToken: effectiveFcmToken,
+      deviceId: deviceId,
     );
-
-    final prefs = await SharedPreferences.getInstance();
 
     if (rememberMe) {
       await prefs.setBool(SharedKeys.rememberMe, true);
@@ -160,20 +180,15 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
 
         final user = await AuthRepository.fetchAndSaveCurrentUser(log: _log);
 
+        if (emit.isDone) return;
+
+        // Xóa savedFcmToken sau khi login thành công (đã gửi lên server)
         if (user != null) {
-          // Sync FCM Token khi login thành công
-          try {
-            if (Platform.isIOS) {
-              await FirebaseMessaging.instance.getAPNSToken();
-            }
-            final fcmToken = await FirebaseMessaging.instance.getToken();
-            if (fcmToken != null) {
-              final deviceId = await DeviceInfoHelper.getDeviceId();
-              await _authRepo.updateDeviceToken(fcmToken, deviceId);
-            }
-          } catch (e) {
-            _log.logE('Lỗi đồng bộ FCM Token: $e');
-          }
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.remove(SharedKeys.savedFcmToken);
+
+          // Init notification mặc định cho user mới (chạy background, không block UI)
+          _initDefaultNotificationsForNewUser(user);
         }
 
         if (emit.isDone) return;
@@ -195,6 +210,11 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         );
       },
     );
+  }
+
+  /// Init notification mặc định cho user mới - chỉ chạy 1 lần duy nhất.
+  Future<void> _initDefaultNotificationsForNewUser(User user) async {
+    await _authRepo.initDefaultNotificationsForNewUser(userId: user.employeeId);
   }
 
   //---(Logout)---//
