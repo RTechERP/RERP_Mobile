@@ -284,4 +284,9 @@ class ApiEndPoint {
   static const String getTypeNotification = '/notificationtype/get-data-by-userid';
 
   static const String saveNotificationType = '/notificationtype/save-data';
+
+  static const String getStationery = '/OfficeSupplyRequests/get-office-supply-request';
+  static const String getStationerySupply = '/officesupply/get-office-supply';
+
+  static const String getStationeryDetail = '/OfficeSupplyRequests/get-office-supply-request-detail';
 }

@@ -62,5 +62,5 @@ class AppImages {
   static const reg_general_personal_asset =
       'assets/images/icons/apps/reg_general/20.png';
   static const reg_general_stamp =
-      'assets/images/icons/apps/reg_general/21.png';
+      'assets/images/icons/apps/21.png';
 }

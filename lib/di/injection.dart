@@ -26,6 +26,10 @@ import '../features/workplace/app/reg_general/view/pages/personal_assets/data/da
 import '../features/workplace/app/reg_general/view/pages/personal_assets/data/repository/personal_asset_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/data/repository/pesonal_asset_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/bloc/personal_asset_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/stationery/data/datasource/service/stationery_service.dart';
+import '../features/workplace/app/reg_general/view/pages/stationery/data/repository/stationery_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/stationery/data/repository/stationery_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/stationery/view/bloc/stationery_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/datasource/service/work_category_service.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo_impl.dart';
@@ -160,6 +164,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<MoreService>(() => MoreService(getIt<Dio>()));
 
+  getIt.registerLazySingleton<StationeryService>(
+    () => StationeryService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -221,6 +229,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<MoreRepo>(
     () => MoreRepoImpl(getIt<MoreService>()),
+  );
+
+  getIt.registerLazySingleton<StationeryRepo>(
+    () => StationeryRepoImpl(getIt<StationeryService>()),
   );
 
   /// ===== BLOCS =====
@@ -334,5 +346,13 @@ void configureDependencies() {
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),
+  );
+
+  getIt.registerFactory<StationeryBloc>(
+      () => StationeryBloc(
+        getIt<StationeryRepo>(),
+        getIt<AuthRepo>(),
+        getIt<LogUtils>(),
+      ),
   );
 }

@@ -154,7 +154,13 @@ class RouteNames {
 
   static const personalAsset = '/reg_general/personal_asset';
   static const personalAssetDetail = '/reg_general/personal_asset/detail';
-  static const personalPropertyDetail = '/reg_general/personal_asset/property/detail';
+  static const personalPropertyDetail =
+      '/reg_general/personal_asset/property/detail';
+
+  static const stationery = '/reg_general/stationery';
+
+  static const stationeryAdd = '/reg_general/stationery/add';
+  static const stationeryDetail = '/reg_general/stationery/detail';
 
   // More - Settings
   static const notificationSettings = '/more/notification_settings';

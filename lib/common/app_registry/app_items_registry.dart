@@ -176,7 +176,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.edit_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/stationery',
+      route: RouteNames.stationery,
       imageUrl: AppImages.reg_general_stationery,
     ),
 

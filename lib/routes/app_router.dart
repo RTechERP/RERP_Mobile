@@ -37,6 +37,11 @@ import '../features/workplace/app/reg_general/view/pages/personal_assets/view/bl
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_asset_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_asset_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_property_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/stationery/data/datasource/models/stationery_model.dart';
+import '../features/workplace/app/reg_general/view/pages/stationery/view/bloc/stationery_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/stationery/view/pages/stationery_add_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/stationery/view/pages/stationery_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/stationery/view/pages/stationery_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/bloc/work_category_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/datasource/models/work_category_model.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_add_screen.dart';
@@ -832,9 +837,7 @@ class AppRouter {
               }
               return Scaffold(
                 appBar: AppBar(title: const Text('Chi tiết tài sản')),
-                body: const Center(
-                  child: Text('Không có dữ liệu tài sản.'),
-                ),
+                body: const Center(child: Text('Không có dữ liệu tài sản.')),
               );
             },
           ),
@@ -847,11 +850,42 @@ class AppRouter {
               }
               return Scaffold(
                 appBar: AppBar(title: const Text('Chi tiết biên bản')),
-                body: const Center(
-                  child: Text('Không có dữ liệu biên bản.'),
-                ),
+                body: const Center(child: Text('Không có dữ liệu biên bản.')),
               );
             },
+          ),
+        ],
+      ),
+
+      //---(Stationery)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<StationeryBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.stationery,
+            builder: (context, state) => const StationeryScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.stationeryDetail,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is StationeryItem) {
+                return StationeryDetailScreen(item: extra);
+              }
+              return Scaffold(
+                appBar: AppBar(title: const Text('Chi tiết VPP')),
+                body: const Center(child: Text('Không có dữ liệu VPP.')),
+              );
+            },
+          ),
+          GoRoute(
+            path: RouteNames.stationeryAdd,
+            builder: (context, state) => const StationeryAddScreen(),
           ),
         ],
       ),
