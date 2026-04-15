@@ -1,4 +1,4 @@
-// Date: 15/04/2026 - Dev: admin
+// Date: 15/04/2026 - Dev: NQHung
 // Nội dung/Chức năng: BLoC quản lý đăng ký văn phòng phẩm - list, add slips, submit
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';

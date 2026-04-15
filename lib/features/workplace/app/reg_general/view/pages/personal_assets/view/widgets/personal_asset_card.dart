@@ -1,4 +1,4 @@
-// Date: 14/04/2026 - Dev: Claude
+// Date: 14/04/2026 - Dev: NQHung
 // Nội dung/Chức năng: Card widget cho tài sản cá nhân - tap để xem chi tiết
 
 import 'package:flutter/material.dart';

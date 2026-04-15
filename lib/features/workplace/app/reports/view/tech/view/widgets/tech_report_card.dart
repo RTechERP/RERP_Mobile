@@ -1,4 +1,4 @@
-// Date: 13/04/2026 - Dev: Claude
+// Date: 13/04/2026 - Dev: NQHung
 // Nội dung/Chức năng: Card báo cáo tech - gọn, đẹp, swipe để xóa
 
 import 'package:flutter/material.dart';

@@ -1,4 +1,4 @@
-// Date: 15/04/2026 - Dev: Claude
+// Date: 15/04/2026 - Dev: NQHung
 // Nội dung/Chức năng: Màn hình chi tiết biên bản bàn giao / thu hồi tài sản
 
 import 'package:flutter/material.dart';

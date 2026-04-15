@@ -1,4 +1,4 @@
-// Date: 14/04/2026 - Dev: Claude
+// Date: 14/04/2026 - Dev: NQHung
 // Nội dung/Chức năng: Màn hình chi tiết tài sản cá nhân - hiển thị thông tin đầy đủ của 1 tài sản
 
 import 'package:flutter/material.dart';

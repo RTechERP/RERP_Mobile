@@ -1,4 +1,4 @@
-// Date: 13/04/2026 - Dev: Claude
+// Date: 13/04/2026 - Dev: NQHung
 // Nội dung/Chức năng: Màn chi tiết báo cáo tech - UI/UX hiện đại, rõ ràng
 
 import 'package:flutter/material.dart';

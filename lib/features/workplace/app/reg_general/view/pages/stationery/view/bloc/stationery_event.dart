@@ -1,4 +1,4 @@
-// Date: 15/04/2026 - Dev: admin
+// Date: 15/04/2026 - Dev: NQHung
 // Nội dung/Chức năng: Events cho stationery bloc - init, load supply, slip management
 
 part of 'stationery_bloc.dart';

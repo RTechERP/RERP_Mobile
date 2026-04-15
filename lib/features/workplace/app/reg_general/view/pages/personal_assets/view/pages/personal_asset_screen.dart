@@ -1,4 +1,4 @@
-// Date: 14/04/2026 - Dev: Claude
+// Date: 14/04/2026 - Dev: NQHung
 // Nội dung/Chức năng: Màn hình tài sản cá nhân - 2 tab biên bản & tài sản
 
 import 'dart:async';

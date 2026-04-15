@@ -1,4 +1,4 @@
-// Date: 15/04/2026 - Dev: Claude
+// Date: 15/04/2026 - Dev: NQHung
 // Nội dung/Chức năng: Card widget cho biên bản bàn giao / thu hồi tài sản - có nút duyệt
 
 import 'package:flutter/material.dart';

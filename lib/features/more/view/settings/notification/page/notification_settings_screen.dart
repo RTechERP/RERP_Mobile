@@ -1,4 +1,4 @@
-// Date: 13/04/2026 - Dev: Claude
+// Date: 13/04/2026 - Dev: NQHung
 // Nội dung/Chức năng: Màn hình cài đặt thông báo - bật/tắt notification types từ API
 
 import 'package:flutter/material.dart';

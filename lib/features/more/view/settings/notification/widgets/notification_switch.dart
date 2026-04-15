@@ -1,4 +1,4 @@
-// Date: 14/04/2026 - Dev: Claude
+// Date: 14/04/2026 - Dev: NQHung
 // Nội dung/Chức năng: Custom switch với animation cho notification settings
 
 import 'package:flutter/material.dart';
