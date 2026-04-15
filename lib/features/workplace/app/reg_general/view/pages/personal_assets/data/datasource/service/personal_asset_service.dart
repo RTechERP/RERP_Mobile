@@ -16,7 +16,6 @@ class PersonalAssetService extends DioBaseApiService {
       ApiEndPoint.getPersonalAsset,
       body: payload,
       parser: (json) {
-        // API trả: { data: [[{...}]] } — nested list
         if (json is Map) {
           final data = json['data'];
           if (data is List && data.isNotEmpty) {
@@ -25,13 +24,15 @@ class PersonalAssetService extends DioBaseApiService {
               return BaseData(
                 status: 1,
                 data: inner
-                    .map((e) => PersonalAssetItem.fromJson(e as Map<String, dynamic>))
+                    .map(
+                      (e) =>
+                          PersonalAssetItem.fromJson(e as Map<String, dynamic>),
+                    )
                     .toList(),
               );
             }
           }
         }
-        // Fallback: API trả: { data: [{...}] } — wrapped object
         return BaseData<List<PersonalAssetItem>>.fromJson(
           json as Map<String, dynamic>,
           (data) {
@@ -39,7 +40,10 @@ class PersonalAssetService extends DioBaseApiService {
               final first = data.first;
               if (first is List) {
                 return first
-                    .map((e) => PersonalAssetItem.fromJson(e as Map<String, dynamic>))
+                    .map(
+                      (e) =>
+                          PersonalAssetItem.fromJson(e as Map<String, dynamic>),
+                    )
                     .toList();
               }
             }
@@ -51,9 +55,12 @@ class PersonalAssetService extends DioBaseApiService {
     return res;
   }
 
-  Future<BaseData<List<PersonalPropertyItem>>> getPersonalProperty() async {
-    final res = await post<BaseData<List<PersonalPropertyItem>>>(
+  Future<BaseData<List<PersonalPropertyItem>>> getPersonalProperty({
+    required Map<String, dynamic> payload,
+  }) async {
+    final res = await get<BaseData<List<PersonalPropertyItem>>>(
       ApiEndPoint.getPersonalProperty,
+      query: payload,
       parser: (json) {
         if (json is Map) {
           final data = json['data'];
@@ -63,7 +70,11 @@ class PersonalAssetService extends DioBaseApiService {
               return BaseData(
                 status: 1,
                 data: inner
-                    .map((e) => PersonalPropertyItem.fromJson(e as Map<String, dynamic>))
+                    .map(
+                      (e) => PersonalPropertyItem.fromJson(
+                        e as Map<String, dynamic>,
+                      ),
+                    )
                     .toList(),
               );
             }
@@ -76,12 +87,64 @@ class PersonalAssetService extends DioBaseApiService {
               final first = data.first;
               if (first is List) {
                 return first
-                    .map((e) => PersonalPropertyItem.fromJson(e as Map<String, dynamic>))
+                    .map(
+                      (e) => PersonalPropertyItem.fromJson(
+                        e as Map<String, dynamic>,
+                      ),
+                    )
                     .toList();
               }
             }
             return <PersonalPropertyItem>[];
           },
+        );
+      },
+    );
+    return res;
+  }
+
+  Future<BaseData<void>> approvePersonalProperty({
+    required Map<String, dynamic> payload,
+  }) async {
+    final res = await post<BaseData<void>>(
+      ApiEndPoint.savePersonalProperty,
+      body: payload,
+      parser: (json) {
+        return BaseData<void>.fromJson(json as Map<String, dynamic>, (_) {});
+      },
+    );
+    return res;
+  }
+
+  Future<BaseData<List<DetailPersonalPropertyItem>>> getPersonalPropertyDetail({
+    required Map<String, dynamic> query,
+  }) async {
+    final res = await get<BaseData<List<DetailPersonalPropertyItem>>>(
+      ApiEndPoint.getPersonalPropertyDetail,
+      query: query,
+      parser: (json) {
+        // Response: { data: [[{...}]] } - nested array
+        if (json is Map) {
+          final data = json['data'];
+          if (data is List && data.isNotEmpty) {
+            final inner = data.first;
+            if (inner is List) {
+              return BaseData<List<DetailPersonalPropertyItem>>(
+                status: 1,
+                data: inner
+                    .map(
+                      (e) => DetailPersonalPropertyItem.fromJson(
+                        e as Map<String, dynamic>,
+                      ),
+                    )
+                    .toList(),
+              );
+            }
+          }
+        }
+        return BaseData<List<DetailPersonalPropertyItem>>(
+          status: 0,
+          data: [],
         );
       },
     );

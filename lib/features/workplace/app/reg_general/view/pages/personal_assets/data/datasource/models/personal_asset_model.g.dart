@@ -41,39 +41,103 @@ Map<String, dynamic> _$$PersonalAssetItemImplToJson(
 _$PersonalPropertyItemImpl _$$PersonalPropertyItemImplFromJson(
         Map<String, dynamic> json) =>
     _$PersonalPropertyItemImpl(
-      assetCategory: json['AssetCategory'] as String?,
-      assetCategoryText: json['AssetCategorytext'] as String?,
-      assetCode: json['AssetCode'] as String?,
       assetId: (json['AssetID'] as num?)?.toInt(),
-      assetNote: json['AssetNote'] as String?,
       deliverId: (json['DeliverID'] as num?)?.toInt(),
-      deliverName: json['DeliverName'] as String?,
-      departmentDeliver: json['DepartmentDeliver'] as String?,
-      departmentReceiver: json['DepartmentReceiver'] as String?,
+      receiverId: (json['ReceiverID'] as num?)?.toInt(),
+      isApprovedPersonalProperty: json['IsApprovedPersonalProperty'] as bool?,
+      assetCategory: (json['AssetCategory'] as num?)?.toInt(),
+      assetCode: json['AssetCode'] as String?,
       implementationDate: json['ImplementationDate'] == null
           ? null
           : DateTime.parse(json['ImplementationDate'] as String),
-      isApproveAccountant: json['IsApproveAccountant'] as bool?,
+      assetNote: json['AssetNote'] as String?,
       isApproved: json['IsApproved'] as bool?,
-      isApprovedPersonalProperty: json['IsApprovedPersonalProperty'] as bool?,
+      isApproveAccountant: json['IsApproveAccountant'] as bool?,
+      deliverName: json['DeliverName'] as String?,
+      departmentDeliver: json['DepartmentDeliver'] as String?,
       possitionDeliver: json['PossitionDeliver'] as String?,
+      receiverName: json['ReceiverName'] as String?,
+      departmentReceiver: json['DepartmentReceiver'] as String?,
+      possitionReceiver: json['PossitionReceiver'] as String?,
+      assetCategoryText: json['AssetCategorytext'] as String?,
     );
 
 Map<String, dynamic> _$$PersonalPropertyItemImplToJson(
         _$PersonalPropertyItemImpl instance) =>
     <String, dynamic>{
-      'AssetCategory': instance.assetCategory,
-      'AssetCategorytext': instance.assetCategoryText,
-      'AssetCode': instance.assetCode,
       'AssetID': instance.assetId,
-      'AssetNote': instance.assetNote,
       'DeliverID': instance.deliverId,
+      'ReceiverID': instance.receiverId,
+      'IsApprovedPersonalProperty': instance.isApprovedPersonalProperty,
+      'AssetCategory': instance.assetCategory,
+      'AssetCode': instance.assetCode,
+      'ImplementationDate': instance.implementationDate?.toIso8601String(),
+      'AssetNote': instance.assetNote,
+      'IsApproved': instance.isApproved,
+      'IsApproveAccountant': instance.isApproveAccountant,
       'DeliverName': instance.deliverName,
       'DepartmentDeliver': instance.departmentDeliver,
-      'DepartmentReceiver': instance.departmentReceiver,
-      'ImplementationDate': instance.implementationDate?.toIso8601String(),
-      'IsApproveAccountant': instance.isApproveAccountant,
-      'IsApproved': instance.isApproved,
-      'IsApprovedPersonalProperty': instance.isApprovedPersonalProperty,
       'PossitionDeliver': instance.possitionDeliver,
+      'ReceiverName': instance.receiverName,
+      'DepartmentReceiver': instance.departmentReceiver,
+      'PossitionReceiver': instance.possitionReceiver,
+      'AssetCategorytext': instance.assetCategoryText,
+    };
+
+_$DetailPersonalPropertyItemImpl _$$DetailPersonalPropertyItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$DetailPersonalPropertyItemImpl(
+      id: (json['ID'] as num).toInt(),
+      tsAssetAllocationId: (json['TSAssetAllocationID'] as num?)?.toInt(),
+      assetManagementId: (json['AssetManagementID'] as num).toInt(),
+      stt: (json['STT'] as num).toInt(),
+      quantity: (json['Quantity'] as num).toInt(),
+      note: json['Note'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      isDeleted: json['IsDeleted'] as bool?,
+      tsAllAssetId: (json['TSAllAssetID'] as num?)?.toInt(),
+      tsCodeNcc: json['TSCodeNCC'] as String?,
+      tsAssetName: json['TSAssetName'] as String?,
+      unitName: json['UnitName'] as String?,
+      status: json['Status'] as String?,
+      fullName: json['FullName'] as String?,
+      departmentName: json['DepartmentName'] as String?,
+      positionName: json['PositionName'] as String?,
+      chucVuHdId: (json['ChucVuHDID'] as num?)?.toInt(),
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$DetailPersonalPropertyItemImplToJson(
+        _$DetailPersonalPropertyItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'TSAssetAllocationID': instance.tsAssetAllocationId,
+      'AssetManagementID': instance.assetManagementId,
+      'STT': instance.stt,
+      'Quantity': instance.quantity,
+      'Note': instance.note,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'EmployeeID': instance.employeeId,
+      'IsDeleted': instance.isDeleted,
+      'TSAllAssetID': instance.tsAllAssetId,
+      'TSCodeNCC': instance.tsCodeNcc,
+      'TSAssetName': instance.tsAssetName,
+      'UnitName': instance.unitName,
+      'Status': instance.status,
+      'FullName': instance.fullName,
+      'DepartmentName': instance.departmentName,
+      'PositionName': instance.positionName,
+      'ChucVuHDID': instance.chucVuHdId,
+      'DepartmentID': instance.departmentId,
     };

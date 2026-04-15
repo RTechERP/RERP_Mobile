@@ -1,5 +1,5 @@
 // Date: 14/04/2026 - Dev: Claude
-// Nội dung/Chức năng: Card widget cho tài sản cá nhân
+// Nội dung/Chức năng: Card widget cho tài sản cá nhân - tap để xem chi tiết
 
 import 'package:flutter/material.dart';
 
@@ -43,7 +43,7 @@ class PersonalAssetCard extends StatelessWidget {
                       children: [
                         // Mã tài sản
                         Text(
-                          item.assetCode ?? '—',
+                          item.seri ?? '—',
                           style: const TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 15,
@@ -80,25 +80,6 @@ class PersonalAssetCard extends StatelessWidget {
                 label: 'Loại tài sản',
                 value: item.assetType ?? '—',
               ),
-
-              const SizedBox(height: 10),
-
-              // --- Thông tin: Mã loại tài sản ---
-              _InfoRow(
-                icon: Icons.qr_code_outlined,
-                label: 'Mã loại tài sản',
-                value: item.tsAssetCode ?? '—',
-              ),
-
-              const SizedBox(height: 10),
-
-              // --- Thông tin: Serial ---
-              if (item.seri != null && item.seri!.isNotEmpty)
-                _InfoRow(
-                  icon: Icons.tag_outlined,
-                  label: 'Số serial',
-                  value: item.seri!,
-                ),
             ],
           ),
         ),

@@ -34,9 +34,49 @@ class PersonalAssetRepoImpl implements PersonalAssetRepo {
   }
 
   @override
-  Future<Either<BaseError, List<PersonalPropertyItem>>> getPersonalProperty() async {
+  Future<Either<BaseError, List<PersonalPropertyItem>>> getPersonalProperty({
+    required Map<String, dynamic> payload,
+  }) async {
     try {
-      final res = await _service.getPersonalProperty();
+      final res = await _service.getPersonalProperty(payload: payload);
+
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, void>> approvePersonalProperty({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.approvePersonalProperty(payload: payload);
+
+      if (res.status == 1) {
+        return right(null);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<DetailPersonalPropertyItem>>> getPersonalPropertyDetail({
+    required Map<String, dynamic> query,
+  }) async {
+    try {
+      final res = await _service.getPersonalPropertyDetail(query: query);
 
       if (res.status == 1 && res.data != null) {
         return right(res.data!);

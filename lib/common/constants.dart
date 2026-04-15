@@ -275,7 +275,11 @@ class ApiEndPoint {
 
   static const String getPersonalAsset = '/Assets/get-asset-person';
 
-  static const String getPersonalProperty = '/Assets/get-personal-property';
+  static const String getPersonalProperty = '/Assets/get-personal-properties';
+
+  static const String getPersonalPropertyDetail = '/Assets/get-personal-property-details';
+
+  static const String savePersonalProperty = '/Assets/save-personal-property';
 
   static const String getTypeNotification = '/notificationtype/get-data-by-userid';
 

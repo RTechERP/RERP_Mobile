@@ -21,6 +21,12 @@ mixin _$PersonalAssetEvent {
     required TResult Function() init,
     required TResult Function() fetchAssets,
     required TResult Function() fetchProperties,
+    required TResult Function(String filterText) searchAssets,
+    required TResult Function(int category) filterPropertyCategory,
+    required TResult Function(int assetId, int assetCategory)
+        fetchPropertyDetail,
+    required TResult Function(int deliverId, int assetId, int approveType)
+        approveProperty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +34,11 @@ mixin _$PersonalAssetEvent {
     TResult? Function()? init,
     TResult? Function()? fetchAssets,
     TResult? Function()? fetchProperties,
+    TResult? Function(String filterText)? searchAssets,
+    TResult? Function(int category)? filterPropertyCategory,
+    TResult? Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult? Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +46,11 @@ mixin _$PersonalAssetEvent {
     TResult Function()? init,
     TResult Function()? fetchAssets,
     TResult Function()? fetchProperties,
+    TResult Function(String filterText)? searchAssets,
+    TResult Function(int category)? filterPropertyCategory,
+    TResult Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +59,11 @@ mixin _$PersonalAssetEvent {
     required TResult Function(_Init value) init,
     required TResult Function(_FetchAssets value) fetchAssets,
     required TResult Function(_FetchProperties value) fetchProperties,
+    required TResult Function(_SearchAssets value) searchAssets,
+    required TResult Function(_FilterPropertyCategory value)
+        filterPropertyCategory,
+    required TResult Function(_FetchPropertyDetail value) fetchPropertyDetail,
+    required TResult Function(_ApproveProperty value) approveProperty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +71,10 @@ mixin _$PersonalAssetEvent {
     TResult? Function(_Init value)? init,
     TResult? Function(_FetchAssets value)? fetchAssets,
     TResult? Function(_FetchProperties value)? fetchProperties,
+    TResult? Function(_SearchAssets value)? searchAssets,
+    TResult? Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult? Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult? Function(_ApproveProperty value)? approveProperty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +82,10 @@ mixin _$PersonalAssetEvent {
     TResult Function(_Init value)? init,
     TResult Function(_FetchAssets value)? fetchAssets,
     TResult Function(_FetchProperties value)? fetchProperties,
+    TResult Function(_SearchAssets value)? searchAssets,
+    TResult Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult Function(_ApproveProperty value)? approveProperty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +149,12 @@ class _$InitImpl implements _Init {
     required TResult Function() init,
     required TResult Function() fetchAssets,
     required TResult Function() fetchProperties,
+    required TResult Function(String filterText) searchAssets,
+    required TResult Function(int category) filterPropertyCategory,
+    required TResult Function(int assetId, int assetCategory)
+        fetchPropertyDetail,
+    required TResult Function(int deliverId, int assetId, int approveType)
+        approveProperty,
   }) {
     return init();
   }
@@ -130,6 +165,11 @@ class _$InitImpl implements _Init {
     TResult? Function()? init,
     TResult? Function()? fetchAssets,
     TResult? Function()? fetchProperties,
+    TResult? Function(String filterText)? searchAssets,
+    TResult? Function(int category)? filterPropertyCategory,
+    TResult? Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult? Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
   }) {
     return init?.call();
   }
@@ -140,6 +180,11 @@ class _$InitImpl implements _Init {
     TResult Function()? init,
     TResult Function()? fetchAssets,
     TResult Function()? fetchProperties,
+    TResult Function(String filterText)? searchAssets,
+    TResult Function(int category)? filterPropertyCategory,
+    TResult Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -154,6 +199,11 @@ class _$InitImpl implements _Init {
     required TResult Function(_Init value) init,
     required TResult Function(_FetchAssets value) fetchAssets,
     required TResult Function(_FetchProperties value) fetchProperties,
+    required TResult Function(_SearchAssets value) searchAssets,
+    required TResult Function(_FilterPropertyCategory value)
+        filterPropertyCategory,
+    required TResult Function(_FetchPropertyDetail value) fetchPropertyDetail,
+    required TResult Function(_ApproveProperty value) approveProperty,
   }) {
     return init(this);
   }
@@ -164,6 +214,10 @@ class _$InitImpl implements _Init {
     TResult? Function(_Init value)? init,
     TResult? Function(_FetchAssets value)? fetchAssets,
     TResult? Function(_FetchProperties value)? fetchProperties,
+    TResult? Function(_SearchAssets value)? searchAssets,
+    TResult? Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult? Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult? Function(_ApproveProperty value)? approveProperty,
   }) {
     return init?.call(this);
   }
@@ -174,6 +228,10 @@ class _$InitImpl implements _Init {
     TResult Function(_Init value)? init,
     TResult Function(_FetchAssets value)? fetchAssets,
     TResult Function(_FetchProperties value)? fetchProperties,
+    TResult Function(_SearchAssets value)? searchAssets,
+    TResult Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult Function(_ApproveProperty value)? approveProperty,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -228,6 +286,12 @@ class _$FetchAssetsImpl implements _FetchAssets {
     required TResult Function() init,
     required TResult Function() fetchAssets,
     required TResult Function() fetchProperties,
+    required TResult Function(String filterText) searchAssets,
+    required TResult Function(int category) filterPropertyCategory,
+    required TResult Function(int assetId, int assetCategory)
+        fetchPropertyDetail,
+    required TResult Function(int deliverId, int assetId, int approveType)
+        approveProperty,
   }) {
     return fetchAssets();
   }
@@ -238,6 +302,11 @@ class _$FetchAssetsImpl implements _FetchAssets {
     TResult? Function()? init,
     TResult? Function()? fetchAssets,
     TResult? Function()? fetchProperties,
+    TResult? Function(String filterText)? searchAssets,
+    TResult? Function(int category)? filterPropertyCategory,
+    TResult? Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult? Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
   }) {
     return fetchAssets?.call();
   }
@@ -248,6 +317,11 @@ class _$FetchAssetsImpl implements _FetchAssets {
     TResult Function()? init,
     TResult Function()? fetchAssets,
     TResult Function()? fetchProperties,
+    TResult Function(String filterText)? searchAssets,
+    TResult Function(int category)? filterPropertyCategory,
+    TResult Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
     required TResult orElse(),
   }) {
     if (fetchAssets != null) {
@@ -262,6 +336,11 @@ class _$FetchAssetsImpl implements _FetchAssets {
     required TResult Function(_Init value) init,
     required TResult Function(_FetchAssets value) fetchAssets,
     required TResult Function(_FetchProperties value) fetchProperties,
+    required TResult Function(_SearchAssets value) searchAssets,
+    required TResult Function(_FilterPropertyCategory value)
+        filterPropertyCategory,
+    required TResult Function(_FetchPropertyDetail value) fetchPropertyDetail,
+    required TResult Function(_ApproveProperty value) approveProperty,
   }) {
     return fetchAssets(this);
   }
@@ -272,6 +351,10 @@ class _$FetchAssetsImpl implements _FetchAssets {
     TResult? Function(_Init value)? init,
     TResult? Function(_FetchAssets value)? fetchAssets,
     TResult? Function(_FetchProperties value)? fetchProperties,
+    TResult? Function(_SearchAssets value)? searchAssets,
+    TResult? Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult? Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult? Function(_ApproveProperty value)? approveProperty,
   }) {
     return fetchAssets?.call(this);
   }
@@ -282,6 +365,10 @@ class _$FetchAssetsImpl implements _FetchAssets {
     TResult Function(_Init value)? init,
     TResult Function(_FetchAssets value)? fetchAssets,
     TResult Function(_FetchProperties value)? fetchProperties,
+    TResult Function(_SearchAssets value)? searchAssets,
+    TResult Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult Function(_ApproveProperty value)? approveProperty,
     required TResult orElse(),
   }) {
     if (fetchAssets != null) {
@@ -336,6 +423,12 @@ class _$FetchPropertiesImpl implements _FetchProperties {
     required TResult Function() init,
     required TResult Function() fetchAssets,
     required TResult Function() fetchProperties,
+    required TResult Function(String filterText) searchAssets,
+    required TResult Function(int category) filterPropertyCategory,
+    required TResult Function(int assetId, int assetCategory)
+        fetchPropertyDetail,
+    required TResult Function(int deliverId, int assetId, int approveType)
+        approveProperty,
   }) {
     return fetchProperties();
   }
@@ -346,6 +439,11 @@ class _$FetchPropertiesImpl implements _FetchProperties {
     TResult? Function()? init,
     TResult? Function()? fetchAssets,
     TResult? Function()? fetchProperties,
+    TResult? Function(String filterText)? searchAssets,
+    TResult? Function(int category)? filterPropertyCategory,
+    TResult? Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult? Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
   }) {
     return fetchProperties?.call();
   }
@@ -356,6 +454,11 @@ class _$FetchPropertiesImpl implements _FetchProperties {
     TResult Function()? init,
     TResult Function()? fetchAssets,
     TResult Function()? fetchProperties,
+    TResult Function(String filterText)? searchAssets,
+    TResult Function(int category)? filterPropertyCategory,
+    TResult Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
     required TResult orElse(),
   }) {
     if (fetchProperties != null) {
@@ -370,6 +473,11 @@ class _$FetchPropertiesImpl implements _FetchProperties {
     required TResult Function(_Init value) init,
     required TResult Function(_FetchAssets value) fetchAssets,
     required TResult Function(_FetchProperties value) fetchProperties,
+    required TResult Function(_SearchAssets value) searchAssets,
+    required TResult Function(_FilterPropertyCategory value)
+        filterPropertyCategory,
+    required TResult Function(_FetchPropertyDetail value) fetchPropertyDetail,
+    required TResult Function(_ApproveProperty value) approveProperty,
   }) {
     return fetchProperties(this);
   }
@@ -380,6 +488,10 @@ class _$FetchPropertiesImpl implements _FetchProperties {
     TResult? Function(_Init value)? init,
     TResult? Function(_FetchAssets value)? fetchAssets,
     TResult? Function(_FetchProperties value)? fetchProperties,
+    TResult? Function(_SearchAssets value)? searchAssets,
+    TResult? Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult? Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult? Function(_ApproveProperty value)? approveProperty,
   }) {
     return fetchProperties?.call(this);
   }
@@ -390,6 +502,10 @@ class _$FetchPropertiesImpl implements _FetchProperties {
     TResult Function(_Init value)? init,
     TResult Function(_FetchAssets value)? fetchAssets,
     TResult Function(_FetchProperties value)? fetchProperties,
+    TResult Function(_SearchAssets value)? searchAssets,
+    TResult Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult Function(_ApproveProperty value)? approveProperty,
     required TResult orElse(),
   }) {
     if (fetchProperties != null) {
@@ -401,4 +517,724 @@ class _$FetchPropertiesImpl implements _FetchProperties {
 
 abstract class _FetchProperties implements PersonalAssetEvent {
   const factory _FetchProperties() = _$FetchPropertiesImpl;
+}
+
+/// @nodoc
+abstract class _$$SearchAssetsImplCopyWith<$Res> {
+  factory _$$SearchAssetsImplCopyWith(
+          _$SearchAssetsImpl value, $Res Function(_$SearchAssetsImpl) then) =
+      __$$SearchAssetsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String filterText});
+}
+
+/// @nodoc
+class __$$SearchAssetsImplCopyWithImpl<$Res>
+    extends _$PersonalAssetEventCopyWithImpl<$Res, _$SearchAssetsImpl>
+    implements _$$SearchAssetsImplCopyWith<$Res> {
+  __$$SearchAssetsImplCopyWithImpl(
+      _$SearchAssetsImpl _value, $Res Function(_$SearchAssetsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filterText = null,
+  }) {
+    return _then(_$SearchAssetsImpl(
+      filterText: null == filterText
+          ? _value.filterText
+          : filterText // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchAssetsImpl implements _SearchAssets {
+  const _$SearchAssetsImpl({required this.filterText});
+
+  @override
+  final String filterText;
+
+  @override
+  String toString() {
+    return 'PersonalAssetEvent.searchAssets(filterText: $filterText)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchAssetsImpl &&
+            (identical(other.filterText, filterText) ||
+                other.filterText == filterText));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filterText);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchAssetsImplCopyWith<_$SearchAssetsImpl> get copyWith =>
+      __$$SearchAssetsImplCopyWithImpl<_$SearchAssetsImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchAssets,
+    required TResult Function() fetchProperties,
+    required TResult Function(String filterText) searchAssets,
+    required TResult Function(int category) filterPropertyCategory,
+    required TResult Function(int assetId, int assetCategory)
+        fetchPropertyDetail,
+    required TResult Function(int deliverId, int assetId, int approveType)
+        approveProperty,
+  }) {
+    return searchAssets(filterText);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchAssets,
+    TResult? Function()? fetchProperties,
+    TResult? Function(String filterText)? searchAssets,
+    TResult? Function(int category)? filterPropertyCategory,
+    TResult? Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult? Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
+  }) {
+    return searchAssets?.call(filterText);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchAssets,
+    TResult Function()? fetchProperties,
+    TResult Function(String filterText)? searchAssets,
+    TResult Function(int category)? filterPropertyCategory,
+    TResult Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
+    required TResult orElse(),
+  }) {
+    if (searchAssets != null) {
+      return searchAssets(filterText);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchAssets value) fetchAssets,
+    required TResult Function(_FetchProperties value) fetchProperties,
+    required TResult Function(_SearchAssets value) searchAssets,
+    required TResult Function(_FilterPropertyCategory value)
+        filterPropertyCategory,
+    required TResult Function(_FetchPropertyDetail value) fetchPropertyDetail,
+    required TResult Function(_ApproveProperty value) approveProperty,
+  }) {
+    return searchAssets(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchAssets value)? fetchAssets,
+    TResult? Function(_FetchProperties value)? fetchProperties,
+    TResult? Function(_SearchAssets value)? searchAssets,
+    TResult? Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult? Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult? Function(_ApproveProperty value)? approveProperty,
+  }) {
+    return searchAssets?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchAssets value)? fetchAssets,
+    TResult Function(_FetchProperties value)? fetchProperties,
+    TResult Function(_SearchAssets value)? searchAssets,
+    TResult Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult Function(_ApproveProperty value)? approveProperty,
+    required TResult orElse(),
+  }) {
+    if (searchAssets != null) {
+      return searchAssets(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchAssets implements PersonalAssetEvent {
+  const factory _SearchAssets({required final String filterText}) =
+      _$SearchAssetsImpl;
+
+  String get filterText;
+  @JsonKey(ignore: true)
+  _$$SearchAssetsImplCopyWith<_$SearchAssetsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FilterPropertyCategoryImplCopyWith<$Res> {
+  factory _$$FilterPropertyCategoryImplCopyWith(
+          _$FilterPropertyCategoryImpl value,
+          $Res Function(_$FilterPropertyCategoryImpl) then) =
+      __$$FilterPropertyCategoryImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int category});
+}
+
+/// @nodoc
+class __$$FilterPropertyCategoryImplCopyWithImpl<$Res>
+    extends _$PersonalAssetEventCopyWithImpl<$Res, _$FilterPropertyCategoryImpl>
+    implements _$$FilterPropertyCategoryImplCopyWith<$Res> {
+  __$$FilterPropertyCategoryImplCopyWithImpl(
+      _$FilterPropertyCategoryImpl _value,
+      $Res Function(_$FilterPropertyCategoryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+  }) {
+    return _then(_$FilterPropertyCategoryImpl(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FilterPropertyCategoryImpl implements _FilterPropertyCategory {
+  const _$FilterPropertyCategoryImpl({required this.category});
+
+  @override
+  final int category;
+
+  @override
+  String toString() {
+    return 'PersonalAssetEvent.filterPropertyCategory(category: $category)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FilterPropertyCategoryImpl &&
+            (identical(other.category, category) ||
+                other.category == category));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, category);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FilterPropertyCategoryImplCopyWith<_$FilterPropertyCategoryImpl>
+      get copyWith => __$$FilterPropertyCategoryImplCopyWithImpl<
+          _$FilterPropertyCategoryImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchAssets,
+    required TResult Function() fetchProperties,
+    required TResult Function(String filterText) searchAssets,
+    required TResult Function(int category) filterPropertyCategory,
+    required TResult Function(int assetId, int assetCategory)
+        fetchPropertyDetail,
+    required TResult Function(int deliverId, int assetId, int approveType)
+        approveProperty,
+  }) {
+    return filterPropertyCategory(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchAssets,
+    TResult? Function()? fetchProperties,
+    TResult? Function(String filterText)? searchAssets,
+    TResult? Function(int category)? filterPropertyCategory,
+    TResult? Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult? Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
+  }) {
+    return filterPropertyCategory?.call(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchAssets,
+    TResult Function()? fetchProperties,
+    TResult Function(String filterText)? searchAssets,
+    TResult Function(int category)? filterPropertyCategory,
+    TResult Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
+    required TResult orElse(),
+  }) {
+    if (filterPropertyCategory != null) {
+      return filterPropertyCategory(category);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchAssets value) fetchAssets,
+    required TResult Function(_FetchProperties value) fetchProperties,
+    required TResult Function(_SearchAssets value) searchAssets,
+    required TResult Function(_FilterPropertyCategory value)
+        filterPropertyCategory,
+    required TResult Function(_FetchPropertyDetail value) fetchPropertyDetail,
+    required TResult Function(_ApproveProperty value) approveProperty,
+  }) {
+    return filterPropertyCategory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchAssets value)? fetchAssets,
+    TResult? Function(_FetchProperties value)? fetchProperties,
+    TResult? Function(_SearchAssets value)? searchAssets,
+    TResult? Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult? Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult? Function(_ApproveProperty value)? approveProperty,
+  }) {
+    return filterPropertyCategory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchAssets value)? fetchAssets,
+    TResult Function(_FetchProperties value)? fetchProperties,
+    TResult Function(_SearchAssets value)? searchAssets,
+    TResult Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult Function(_ApproveProperty value)? approveProperty,
+    required TResult orElse(),
+  }) {
+    if (filterPropertyCategory != null) {
+      return filterPropertyCategory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FilterPropertyCategory implements PersonalAssetEvent {
+  const factory _FilterPropertyCategory({required final int category}) =
+      _$FilterPropertyCategoryImpl;
+
+  int get category;
+  @JsonKey(ignore: true)
+  _$$FilterPropertyCategoryImplCopyWith<_$FilterPropertyCategoryImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchPropertyDetailImplCopyWith<$Res> {
+  factory _$$FetchPropertyDetailImplCopyWith(_$FetchPropertyDetailImpl value,
+          $Res Function(_$FetchPropertyDetailImpl) then) =
+      __$$FetchPropertyDetailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int assetId, int assetCategory});
+}
+
+/// @nodoc
+class __$$FetchPropertyDetailImplCopyWithImpl<$Res>
+    extends _$PersonalAssetEventCopyWithImpl<$Res, _$FetchPropertyDetailImpl>
+    implements _$$FetchPropertyDetailImplCopyWith<$Res> {
+  __$$FetchPropertyDetailImplCopyWithImpl(_$FetchPropertyDetailImpl _value,
+      $Res Function(_$FetchPropertyDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? assetId = null,
+    Object? assetCategory = null,
+  }) {
+    return _then(_$FetchPropertyDetailImpl(
+      assetId: null == assetId
+          ? _value.assetId
+          : assetId // ignore: cast_nullable_to_non_nullable
+              as int,
+      assetCategory: null == assetCategory
+          ? _value.assetCategory
+          : assetCategory // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchPropertyDetailImpl implements _FetchPropertyDetail {
+  const _$FetchPropertyDetailImpl(
+      {required this.assetId, required this.assetCategory});
+
+  @override
+  final int assetId;
+  @override
+  final int assetCategory;
+
+  @override
+  String toString() {
+    return 'PersonalAssetEvent.fetchPropertyDetail(assetId: $assetId, assetCategory: $assetCategory)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchPropertyDetailImpl &&
+            (identical(other.assetId, assetId) || other.assetId == assetId) &&
+            (identical(other.assetCategory, assetCategory) ||
+                other.assetCategory == assetCategory));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, assetId, assetCategory);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchPropertyDetailImplCopyWith<_$FetchPropertyDetailImpl> get copyWith =>
+      __$$FetchPropertyDetailImplCopyWithImpl<_$FetchPropertyDetailImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchAssets,
+    required TResult Function() fetchProperties,
+    required TResult Function(String filterText) searchAssets,
+    required TResult Function(int category) filterPropertyCategory,
+    required TResult Function(int assetId, int assetCategory)
+        fetchPropertyDetail,
+    required TResult Function(int deliverId, int assetId, int approveType)
+        approveProperty,
+  }) {
+    return fetchPropertyDetail(assetId, assetCategory);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchAssets,
+    TResult? Function()? fetchProperties,
+    TResult? Function(String filterText)? searchAssets,
+    TResult? Function(int category)? filterPropertyCategory,
+    TResult? Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult? Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
+  }) {
+    return fetchPropertyDetail?.call(assetId, assetCategory);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchAssets,
+    TResult Function()? fetchProperties,
+    TResult Function(String filterText)? searchAssets,
+    TResult Function(int category)? filterPropertyCategory,
+    TResult Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
+    required TResult orElse(),
+  }) {
+    if (fetchPropertyDetail != null) {
+      return fetchPropertyDetail(assetId, assetCategory);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchAssets value) fetchAssets,
+    required TResult Function(_FetchProperties value) fetchProperties,
+    required TResult Function(_SearchAssets value) searchAssets,
+    required TResult Function(_FilterPropertyCategory value)
+        filterPropertyCategory,
+    required TResult Function(_FetchPropertyDetail value) fetchPropertyDetail,
+    required TResult Function(_ApproveProperty value) approveProperty,
+  }) {
+    return fetchPropertyDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchAssets value)? fetchAssets,
+    TResult? Function(_FetchProperties value)? fetchProperties,
+    TResult? Function(_SearchAssets value)? searchAssets,
+    TResult? Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult? Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult? Function(_ApproveProperty value)? approveProperty,
+  }) {
+    return fetchPropertyDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchAssets value)? fetchAssets,
+    TResult Function(_FetchProperties value)? fetchProperties,
+    TResult Function(_SearchAssets value)? searchAssets,
+    TResult Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult Function(_ApproveProperty value)? approveProperty,
+    required TResult orElse(),
+  }) {
+    if (fetchPropertyDetail != null) {
+      return fetchPropertyDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchPropertyDetail implements PersonalAssetEvent {
+  const factory _FetchPropertyDetail(
+      {required final int assetId,
+      required final int assetCategory}) = _$FetchPropertyDetailImpl;
+
+  int get assetId;
+  int get assetCategory;
+  @JsonKey(ignore: true)
+  _$$FetchPropertyDetailImplCopyWith<_$FetchPropertyDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ApprovePropertyImplCopyWith<$Res> {
+  factory _$$ApprovePropertyImplCopyWith(_$ApprovePropertyImpl value,
+          $Res Function(_$ApprovePropertyImpl) then) =
+      __$$ApprovePropertyImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int deliverId, int assetId, int approveType});
+}
+
+/// @nodoc
+class __$$ApprovePropertyImplCopyWithImpl<$Res>
+    extends _$PersonalAssetEventCopyWithImpl<$Res, _$ApprovePropertyImpl>
+    implements _$$ApprovePropertyImplCopyWith<$Res> {
+  __$$ApprovePropertyImplCopyWithImpl(
+      _$ApprovePropertyImpl _value, $Res Function(_$ApprovePropertyImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? deliverId = null,
+    Object? assetId = null,
+    Object? approveType = null,
+  }) {
+    return _then(_$ApprovePropertyImpl(
+      deliverId: null == deliverId
+          ? _value.deliverId
+          : deliverId // ignore: cast_nullable_to_non_nullable
+              as int,
+      assetId: null == assetId
+          ? _value.assetId
+          : assetId // ignore: cast_nullable_to_non_nullable
+              as int,
+      approveType: null == approveType
+          ? _value.approveType
+          : approveType // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ApprovePropertyImpl implements _ApproveProperty {
+  const _$ApprovePropertyImpl(
+      {required this.deliverId,
+      required this.assetId,
+      required this.approveType});
+
+  @override
+  final int deliverId;
+  @override
+  final int assetId;
+  @override
+  final int approveType;
+
+  @override
+  String toString() {
+    return 'PersonalAssetEvent.approveProperty(deliverId: $deliverId, assetId: $assetId, approveType: $approveType)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApprovePropertyImpl &&
+            (identical(other.deliverId, deliverId) ||
+                other.deliverId == deliverId) &&
+            (identical(other.assetId, assetId) || other.assetId == assetId) &&
+            (identical(other.approveType, approveType) ||
+                other.approveType == approveType));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, deliverId, assetId, approveType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApprovePropertyImplCopyWith<_$ApprovePropertyImpl> get copyWith =>
+      __$$ApprovePropertyImplCopyWithImpl<_$ApprovePropertyImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchAssets,
+    required TResult Function() fetchProperties,
+    required TResult Function(String filterText) searchAssets,
+    required TResult Function(int category) filterPropertyCategory,
+    required TResult Function(int assetId, int assetCategory)
+        fetchPropertyDetail,
+    required TResult Function(int deliverId, int assetId, int approveType)
+        approveProperty,
+  }) {
+    return approveProperty(deliverId, assetId, approveType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchAssets,
+    TResult? Function()? fetchProperties,
+    TResult? Function(String filterText)? searchAssets,
+    TResult? Function(int category)? filterPropertyCategory,
+    TResult? Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult? Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
+  }) {
+    return approveProperty?.call(deliverId, assetId, approveType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchAssets,
+    TResult Function()? fetchProperties,
+    TResult Function(String filterText)? searchAssets,
+    TResult Function(int category)? filterPropertyCategory,
+    TResult Function(int assetId, int assetCategory)? fetchPropertyDetail,
+    TResult Function(int deliverId, int assetId, int approveType)?
+        approveProperty,
+    required TResult orElse(),
+  }) {
+    if (approveProperty != null) {
+      return approveProperty(deliverId, assetId, approveType);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchAssets value) fetchAssets,
+    required TResult Function(_FetchProperties value) fetchProperties,
+    required TResult Function(_SearchAssets value) searchAssets,
+    required TResult Function(_FilterPropertyCategory value)
+        filterPropertyCategory,
+    required TResult Function(_FetchPropertyDetail value) fetchPropertyDetail,
+    required TResult Function(_ApproveProperty value) approveProperty,
+  }) {
+    return approveProperty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchAssets value)? fetchAssets,
+    TResult? Function(_FetchProperties value)? fetchProperties,
+    TResult? Function(_SearchAssets value)? searchAssets,
+    TResult? Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult? Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult? Function(_ApproveProperty value)? approveProperty,
+  }) {
+    return approveProperty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchAssets value)? fetchAssets,
+    TResult Function(_FetchProperties value)? fetchProperties,
+    TResult Function(_SearchAssets value)? searchAssets,
+    TResult Function(_FilterPropertyCategory value)? filterPropertyCategory,
+    TResult Function(_FetchPropertyDetail value)? fetchPropertyDetail,
+    TResult Function(_ApproveProperty value)? approveProperty,
+    required TResult orElse(),
+  }) {
+    if (approveProperty != null) {
+      return approveProperty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApproveProperty implements PersonalAssetEvent {
+  const factory _ApproveProperty(
+      {required final int deliverId,
+      required final int assetId,
+      required final int approveType}) = _$ApprovePropertyImpl;
+
+  int get deliverId;
+  int get assetId;
+  int get approveType;
+  @JsonKey(ignore: true)
+  _$$ApprovePropertyImplCopyWith<_$ApprovePropertyImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

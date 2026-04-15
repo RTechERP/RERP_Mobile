@@ -16,6 +16,17 @@ abstract class _$PersonalAssetStateCWProxy {
   PersonalAssetState personalProperty(
       List<PersonalPropertyItem> personalProperty);
 
+  PersonalAssetState propertyDetailItems(
+      List<DetailPersonalPropertyItem> propertyDetailItems);
+
+  PersonalAssetState isApproving(bool isApproving);
+
+  PersonalAssetState isDetailLoading(bool isDetailLoading);
+
+  PersonalAssetState propertyCategoryFilter(int propertyCategoryFilter);
+
+  PersonalAssetState assetSearchQuery(String assetSearchQuery);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PersonalAssetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -27,6 +38,11 @@ abstract class _$PersonalAssetStateCWProxy {
     String? message,
     List<PersonalAssetItem>? personalAsset,
     List<PersonalPropertyItem>? personalProperty,
+    List<DetailPersonalPropertyItem>? propertyDetailItems,
+    bool? isApproving,
+    bool? isDetailLoading,
+    int? propertyCategoryFilter,
+    String? assetSearchQuery,
   });
 }
 
@@ -52,6 +68,27 @@ class _$PersonalAssetStateCWProxyImpl implements _$PersonalAssetStateCWProxy {
       this(personalProperty: personalProperty);
 
   @override
+  PersonalAssetState propertyDetailItems(
+          List<DetailPersonalPropertyItem> propertyDetailItems) =>
+      this(propertyDetailItems: propertyDetailItems);
+
+  @override
+  PersonalAssetState isApproving(bool isApproving) =>
+      this(isApproving: isApproving);
+
+  @override
+  PersonalAssetState isDetailLoading(bool isDetailLoading) =>
+      this(isDetailLoading: isDetailLoading);
+
+  @override
+  PersonalAssetState propertyCategoryFilter(int propertyCategoryFilter) =>
+      this(propertyCategoryFilter: propertyCategoryFilter);
+
+  @override
+  PersonalAssetState assetSearchQuery(String assetSearchQuery) =>
+      this(assetSearchQuery: assetSearchQuery);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PersonalAssetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -64,6 +101,11 @@ class _$PersonalAssetStateCWProxyImpl implements _$PersonalAssetStateCWProxy {
     Object? message = const $CopyWithPlaceholder(),
     Object? personalAsset = const $CopyWithPlaceholder(),
     Object? personalProperty = const $CopyWithPlaceholder(),
+    Object? propertyDetailItems = const $CopyWithPlaceholder(),
+    Object? isApproving = const $CopyWithPlaceholder(),
+    Object? isDetailLoading = const $CopyWithPlaceholder(),
+    Object? propertyCategoryFilter = const $CopyWithPlaceholder(),
+    Object? assetSearchQuery = const $CopyWithPlaceholder(),
   }) {
     return PersonalAssetState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -84,6 +126,33 @@ class _$PersonalAssetStateCWProxyImpl implements _$PersonalAssetStateCWProxy {
           ? _value.personalProperty
           // ignore: cast_nullable_to_non_nullable
           : personalProperty as List<PersonalPropertyItem>,
+      propertyDetailItems:
+          propertyDetailItems == const $CopyWithPlaceholder() ||
+                  propertyDetailItems == null
+              ? _value.propertyDetailItems
+              // ignore: cast_nullable_to_non_nullable
+              : propertyDetailItems as List<DetailPersonalPropertyItem>,
+      isApproving:
+          isApproving == const $CopyWithPlaceholder() || isApproving == null
+              ? _value.isApproving
+              // ignore: cast_nullable_to_non_nullable
+              : isApproving as bool,
+      isDetailLoading: isDetailLoading == const $CopyWithPlaceholder() ||
+              isDetailLoading == null
+          ? _value.isDetailLoading
+          // ignore: cast_nullable_to_non_nullable
+          : isDetailLoading as bool,
+      propertyCategoryFilter:
+          propertyCategoryFilter == const $CopyWithPlaceholder() ||
+                  propertyCategoryFilter == null
+              ? _value.propertyCategoryFilter
+              // ignore: cast_nullable_to_non_nullable
+              : propertyCategoryFilter as int,
+      assetSearchQuery: assetSearchQuery == const $CopyWithPlaceholder() ||
+              assetSearchQuery == null
+          ? _value.assetSearchQuery
+          // ignore: cast_nullable_to_non_nullable
+          : assetSearchQuery as String,
     );
   }
 }

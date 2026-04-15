@@ -32,8 +32,11 @@ import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pa
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_edit_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/personal_assets/data/datasource/models/personal_asset_model.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/bloc/personal_asset_bloc.dart';
-import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/pesonal_asset_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_asset_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_asset_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_property_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/bloc/work_category_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/datasource/models/work_category_model.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_add_screen.dart';
@@ -819,6 +822,36 @@ class AppRouter {
           GoRoute(
             path: RouteNames.personalAsset,
             builder: (context, state) => const PersonalAssetScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.personalAssetDetail,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is PersonalAssetItem) {
+                return PersonalAssetDetailScreen(item: extra);
+              }
+              return Scaffold(
+                appBar: AppBar(title: const Text('Chi tiết tài sản')),
+                body: const Center(
+                  child: Text('Không có dữ liệu tài sản.'),
+                ),
+              );
+            },
+          ),
+          GoRoute(
+            path: RouteNames.personalPropertyDetail,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is PersonalPropertyItem) {
+                return PersonalPropertyDetailScreen(item: extra);
+              }
+              return Scaffold(
+                appBar: AppBar(title: const Text('Chi tiết biên bản')),
+                body: const Center(
+                  child: Text('Không có dữ liệu biên bản.'),
+                ),
+              );
+            },
           ),
         ],
       ),

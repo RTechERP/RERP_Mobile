@@ -1,10 +1,12 @@
-// Date: 14/04/2026 - Dev: Claude
-// Nội dung/Chức năng: Card widget cho biên bản bàn giao / thu hồi tài sản
+// Date: 15/04/2026 - Dev: Claude
+// Nội dung/Chức năng: Card widget cho biên bản bàn giao / thu hồi tài sản - có nút duyệt
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/personal_asset_model.dart';
 
 class PersonalPropertyCard extends StatelessWidget {
@@ -12,10 +14,14 @@ class PersonalPropertyCard extends StatelessWidget {
     super.key,
     required this.item,
     this.onTap,
+    this.isApproving = false,
+    this.onApprove,
   });
 
   final PersonalPropertyItem item;
   final VoidCallback? onTap;
+  final bool isApproving;
+  final void Function(int approveType)? onApprove;
 
   static final _dateFmt = DateFormat('dd/MM/yyyy');
 
@@ -24,12 +30,11 @@ class PersonalPropertyCard extends StatelessWidget {
     return _dateFmt.format(d.toLocal());
   }
 
-  /// Trạng thái duyệt: kết hợp IsApproved + IsApprovedPersonalProperty + IsApproveAccountant.
   _ApproveStatus _approveStatus() {
-    final personal = item.isApprovedPersonalProperty ?? false;
-    final accountant = item.isApproveAccountant ?? false;
+    final personal = item.isApprovedPersonalProperty;
+    final accountant = item.isApproveAccountant;
 
-    if (personal && accountant) {
+    if (personal! && accountant!) {
       return _ApproveStatus('Đã duyệt', AppColors.stateSuccessColor);
     }
     if (personal) {
@@ -46,7 +51,9 @@ class PersonalPropertyCard extends StatelessWidget {
       color: AppColors.white,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
-        onTap: onTap,
+        onTap: () {
+          context.push(RouteNames.personalPropertyDetail, extra: item);
+        },
         borderRadius: BorderRadius.circular(12),
         child: Container(
           padding: const EdgeInsets.all(14),
@@ -65,9 +72,8 @@ class PersonalPropertyCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Mã biên bản
                         Text(
-                          item.assetCode ?? '—',
+                          item.assetCode ?? '',
                           style: const TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 15,
@@ -75,24 +81,18 @@ class PersonalPropertyCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 4),
-                        // Loại biên bản
-                        if (item.assetCategoryText != null)
-                          Text(
-                            item.assetCategoryText!,
-                            style: const TextStyle(
-                              fontSize: 13,
-                              color: AppColors.gray,
-                            ),
+                        Text(
+                          item.assetCategoryText ?? '—',
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: AppColors.gray,
                           ),
+                        ),
                       ],
                     ),
                   ),
-                  // Trạng thái duyệt badge
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 4,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
                       color: si.color.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(20),
@@ -117,88 +117,49 @@ class PersonalPropertyCard extends StatelessWidget {
               const Divider(height: 1, color: AppColors.borderColor),
               const SizedBox(height: 12),
 
-              // --- Thông tin: Ngày bàn giao ---
+              // --- Ngày bàn giao ---
               _InfoRow(
                 icon: Icons.calendar_today_outlined,
                 label: 'Ngày bàn giao',
                 value: _formatDate(item.implementationDate),
               ),
 
-              const SizedBox(height: 10),
+              const SizedBox(height: 8),
 
-              // --- Thông tin: Người giao ---
+              // --- Người giao ---
               _InfoRow(
                 icon: Icons.person_outline,
                 label: 'Người giao',
                 value: item.deliverName ?? '—',
               ),
 
-              const SizedBox(height: 10),
+              const SizedBox(height: 8),
 
-              // --- Thông tin: Người nhận ---
-              _InfoRow(
-                icon: Icons.person_pin_circle_outlined,
-                label: 'Người nhận',
-                value: _receiverText(),
+              // --- Phòng ban giao / nhận ---
+              _DepartmentRow(
+                departmentDeliver: item.departmentDeliver,
+                departmentReceiver: item.departmentReceiver,
               ),
 
-              const SizedBox(height: 10),
+              // --- Lý do ---
+              if (item.assetNote != null && item.assetNote!.isNotEmpty) ...[
+                const SizedBox(height: 8),
+                _InfoRow(
+                  icon: Icons.note_outlined,
+                  label: 'Lý do',
+                  value: item.assetNote!,
+                ),
+              ],
 
-              // --- Thông tin: Phòng ban liên quan ---
-              Row(
-                children: [
-                  const Icon(
-                    Icons.business_outlined,
-                    size: 16,
-                    color: AppColors.gray,
-                  ),
-                  const SizedBox(width: 6),
-                  if (item.departmentDeliver != null && item.departmentReceiver != null)
-                    Flexible(
-                      child: RichText(
-                        text: TextSpan(
-                          style: const TextStyle(
-                            fontSize: 12.5,
-                            color: AppColors.gray,
-                          ),
-                          children: [
-                            const TextSpan(text: 'Giao: '),
-                            TextSpan(
-                              text: item.departmentDeliver ?? '—',
-                              style: const TextStyle(fontWeight: FontWeight.w500),
-                            ),
-                            const TextSpan(text: '  →  Nhận: '),
-                            TextSpan(
-                              text: item.departmentReceiver ?? '—',
-                              style: const TextStyle(fontWeight: FontWeight.w500),
-                            ),
-                          ],
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    )
-                  else if (item.departmentDeliver != null)
-                    Flexible(
-                      child: RichText(
-                        text: TextSpan(
-                          style: const TextStyle(
-                            fontSize: 12.5,
-                            color: AppColors.gray,
-                          ),
-                          children: [
-                            const TextSpan(text: 'Phòng: '),
-                            TextSpan(
-                              text: item.departmentDeliver ?? '—',
-                              style: const TextStyle(fontWeight: FontWeight.w500),
-                            ),
-                          ],
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                ],
+              const SizedBox(height: 14),
+
+              // --- Trạng thái duyệt chi tiết ---
+              _ApproveStatusSection(
+                isApprovedHr: item.isApproved ?? false,
+                isApprovedPersonal: item.isApprovedPersonalProperty ?? false,
+                isApprovedAccountant: item.isApproveAccountant ?? false,
+                isApproving: isApproving,
+                onApprove: onApprove,
               ),
             ],
           ),
@@ -206,14 +167,149 @@ class PersonalPropertyCard extends StatelessWidget {
       ),
     );
   }
+}
 
-  String _receiverText() {
-    final parts = <String>[];
-    if (item.deliverName != null) parts.add(item.deliverName!);
-    if (item.possitionDeliver != null && item.possitionDeliver!.isNotEmpty) {
-      parts.add(item.possitionDeliver!);
-    }
-    return parts.isEmpty ? '—' : parts.join(' - ');
+// ---------------------------------------------------------------------------
+// Approve Status Section
+// ---------------------------------------------------------------------------
+
+class _ApproveStatusSection extends StatelessWidget {
+  const _ApproveStatusSection({
+    required this.isApprovedHr,
+    required this.isApprovedPersonal,
+    required this.isApprovedAccountant,
+    required this.isApproving,
+    required this.onApprove,
+  });
+
+  final bool isApprovedHr;
+  final bool isApprovedPersonal;
+  final bool isApprovedAccountant;
+  final bool isApproving;
+  final void Function(int approveType)? onApprove;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: AppColors.background,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppColors.borderColor, width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Trạng thái duyệt',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              color: AppColors.heading,
+            ),
+          ),
+          const SizedBox(height: 10),
+          _ApproveRow(
+            label: 'Hr',
+            isApproved: isApprovedHr,
+            isApproving: isApproving,
+            onApprove: onApprove != null ? () => onApprove!(1) : null,
+          ),
+          const SizedBox(height: 8),
+          _ApproveRow(
+            label: 'Kế toán',
+            isApproved: isApprovedAccountant,
+            isApproving: isApproving,
+            onApprove: onApprove != null ? () => onApprove!(2) : null,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ApproveRow extends StatelessWidget {
+  const _ApproveRow({
+    required this.label,
+    required this.isApproved,
+    required this.isApproving,
+    this.onApprove,
+  });
+
+  final String label;
+  final bool isApproved;
+  final bool isApproving;
+  final VoidCallback? onApprove;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(
+          isApproved ? Icons.check_circle : Icons.pending_outlined,
+          size: 18,
+          color: isApproved ? AppColors.stateSuccessColor : AppColors.gray,
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+              color: isApproved ? AppColors.stateSuccessColor : AppColors.gray,
+            ),
+          ),
+        ),
+        if (isApproved)
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+            decoration: BoxDecoration(
+              color: AppColors.stateSuccessColor.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Text(
+              'Đã duyệt',
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: AppColors.stateSuccessColor,
+              ),
+            ),
+          )
+        else if (onApprove != null)
+          SizedBox(
+            height: 28,
+            child: OutlinedButton(
+              onPressed: isApproving ? null : onApprove,
+              style: OutlinedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                side: const BorderSide(color: AppColors.primaryERP, width: 1.2),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              child: isApproving
+                  ? const SizedBox(
+                      width: 14,
+                      height: 14,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: AppColors.primaryERP,
+                      ),
+                    )
+                  : const Text(
+                      'Duyệt',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.primaryERP,
+                      ),
+                    ),
+            ),
+          ),
+      ],
+    );
   }
 }
 
@@ -225,6 +321,57 @@ class _ApproveStatus {
   const _ApproveStatus(this.label, this.color);
   final String label;
   final Color color;
+}
+
+class _DepartmentRow extends StatelessWidget {
+  const _DepartmentRow({
+    required this.departmentDeliver,
+    required this.departmentReceiver,
+  });
+
+  final String? departmentDeliver;
+  final String? departmentReceiver;
+
+  @override
+  Widget build(BuildContext context) {
+    if (departmentDeliver == null && departmentReceiver == null) {
+      return const SizedBox.shrink();
+    }
+
+    return Row(
+      children: [
+        const Icon(Icons.business_outlined, size: 16, color: AppColors.gray),
+        const SizedBox(width: 6),
+        Expanded(
+          child: RichText(
+            text: TextSpan(
+              style: const TextStyle(fontSize: 12.5, color: AppColors.gray),
+              children: [
+                if (departmentDeliver != null) ...[
+                  const TextSpan(text: 'Giao: '),
+                  TextSpan(
+                    text: departmentDeliver ?? '—',
+                    style: const TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ],
+                if (departmentDeliver != null && departmentReceiver != null)
+                  const TextSpan(text: '  →  '),
+                if (departmentReceiver != null) ...[
+                  const TextSpan(text: 'Nhận: '),
+                  TextSpan(
+                    text: departmentReceiver ?? '—',
+                    style: const TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ],
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 class _InfoRow extends StatelessWidget {
@@ -246,10 +393,7 @@ class _InfoRow extends StatelessWidget {
         const SizedBox(width: 6),
         Text(
           '$label: ',
-          style: const TextStyle(
-            fontSize: 12.5,
-            color: AppColors.gray,
-          ),
+          style: const TextStyle(fontSize: 12.5, color: AppColors.gray),
         ),
         Expanded(
           child: Text(

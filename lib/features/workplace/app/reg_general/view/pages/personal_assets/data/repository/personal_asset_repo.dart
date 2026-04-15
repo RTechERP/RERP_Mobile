@@ -8,6 +8,16 @@ abstract class PersonalAssetRepo {
     required Map<String, dynamic> payload,
   });
 
-  Future<Either<BaseError, List<PersonalPropertyItem>>> getPersonalProperty();
+  Future<Either<BaseError, List<PersonalPropertyItem>>> getPersonalProperty({
+    required Map<String, dynamic> payload,
+  });
+
+  Future<Either<BaseError, List<DetailPersonalPropertyItem>>> getPersonalPropertyDetail({
+    required Map<String, dynamic> query,
+  });
+
+  Future<Either<BaseError, void>> approvePersonalProperty({
+    required Map<String, dynamic> payload,
+  });
 }
 
