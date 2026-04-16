@@ -29,18 +29,6 @@ class _TypeFormCommercialDeliveryState
     extends State<TypeFormCommercialDelivery> {
   static const String _otherPointLabel = 'Khác';
 
-  FormFieldState<String>? projectField;
-  FormFieldState<String>? startingPointField;
-  FormFieldState<String>? returnPointField;
-  FormFieldState<String>? typeTransportField;
-
-  FormFieldState<String>? destinationAddressField;
-  FormFieldState<String>? returnAddressField;
-
-  FormFieldState<String>? provincesField;
-
-  // Route-level form only; receiver/package UI đã được tách ra widget khác.
-
   List<BookingVehicleProjectItem> get _projects => widget.projects;
   List<ProvinceDepartureItem> get _departureProvinces =>
       widget.departureProvinces;
@@ -58,25 +46,37 @@ class _TypeFormCommercialDeliveryState
         .where((e) => e.trim().isNotEmpty)
         .toSet()
         .toList();
-    // "Khác" luôn xếp đầu tiên
     return [_otherPointLabel, ...points];
   }
 
   Future<void> _pickProject() async {
+    final form = FormBuilder.of(context);
+    final currentProject = form?.fields['project']?.value as String? ?? '';
+    final currentProjectItem = _projects.cast<BookingVehicleProjectItem?>().firstWhere(
+      (p) => '${p!.projectCode ?? ''} - ${p.projectName ?? ''}'.trim() == currentProject,
+      orElse: () => null,
+    );
     await openSelectBottomSheet<BookingVehicleProjectItem>(
       context: context,
       title: 'Chọn dự án',
       items: _projects,
       displayText: (v) => '${v.projectCode ?? ''} - ${v.projectName ?? ''}',
       onSelected: (item) {
-        projectField?.didChange(
+        form?.fields['project']?.didChange(
           '${item.projectCode ?? ''} - ${item.projectName ?? ''}'.trim(),
         );
       },
+      initialSelectedItem: currentProjectItem,
     );
   }
 
   Future<void> _pickReturnPoint() async {
+    final form = FormBuilder.of(context);
+    final currentReturn = form?.fields['return_point']?.value as String? ?? '';
+    final currentReturnItem = _startingPointOptions.cast<String?>().firstWhere(
+      (p) => p == currentReturn,
+      orElse: () => null,
+    );
     await openSelectBottomSheet<String>(
       context: context,
       title: 'Chọn điểm lấy hàng',
@@ -87,37 +87,48 @@ class _TypeFormCommercialDeliveryState
         setState(() {
           _returnPointValue = selected;
         });
-        returnPointField?.didChange(selected);
-
-        // Nếu không phải "Khác" thì disable field cụ thể và copy giá trị.
+        form?.fields['return_point']?.didChange(selected);
         if (selected != _otherPointLabel) {
-          returnAddressField?.didChange(selected);
+          form?.fields['return_address']?.didChange(selected);
+        } else {
+          form?.fields['return_address']?.didChange('');
         }
       },
+      initialSelectedItem: currentReturnItem,
     );
   }
 
   Future<void> _pickTypeTransport() async {
+    final form = FormBuilder.of(context);
+    final current = form?.fields['type_transport']?.value as String? ?? '';
     await openSelectBottomSheet<String>(
       context: context,
       title: 'Chọn loại phương tiện',
       items: _types,
       displayText: (v) => v,
       onSelected: (item) {
-        typeTransportField?.didChange(item);
+        form?.fields['type_transport']?.didChange(item);
       },
+      initialSelectedItem: current,
     );
   }
 
   Future<void> _pickProvinces() async {
+    final form = FormBuilder.of(context);
+    final currentProvince = form?.fields['provinces']?.value as String? ?? '';
+    final currentItem = _arrivalProvinces.cast<ProvinceArrivesItem?>().firstWhere(
+      (p) => p!.provinceName == currentProvince,
+      orElse: () => null,
+    );
     await openSelectBottomSheet<ProvinceArrivesItem>(
       context: context,
       title: 'Chọn tỉnh giao đến',
       items: _arrivalProvinces,
       displayText: (v) => v.provinceName ?? '',
       onSelected: (item) {
-        provincesField?.didChange(item.provinceName ?? '');
+        form?.fields['provinces']?.didChange(item.provinceName ?? '');
       },
+      initialSelectedItem: currentItem,
     );
   }
 
@@ -126,22 +137,19 @@ class _TypeFormCommercialDeliveryState
     return FormCard(
       child: Column(
         children: [
-          GestureDetector(
-            onTap: _pickProject,
-            child: AbsorbPointer(
-              child: FormInputField(
-                icon: Icons.navigation_outlined,
-                nameForm: 'project',
-                nameTextField: 'project_text',
-                label: 'Dự án',
-                onFieldCreated: (field) => projectField = field,
-                isRequired: true,
-                validator: FormBuilderValidators.required(
-                  errorText: 'Vui lòng chọn dự án',
-                ),
-                readOnly: true,
-              ),
+          FormBuilderTextField(
+            name: 'project',
+            readOnly: true,
+            decoration: formInputDecoration(
+              context,
+              label: 'Dự án',
+              icon: Icons.navigation_outlined,
+              isRequired: true,
             ),
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn dự án',
+            ),
+            onTap: _pickProject,
           ),
           const SizedBox(height: 8),
 
@@ -171,22 +179,19 @@ class _TypeFormCommercialDeliveryState
           ),
           const SizedBox(height: 8),
 
-          GestureDetector(
-            onTap: _pickProvinces,
-            child: AbsorbPointer(
-              child: FormInputField(
-                icon: Icons.navigation_outlined,
-                nameForm: 'provinces',
-                nameTextField: 'provinces_text',
-                label: 'Tỉnh giao đến',
-                onFieldCreated: (field) => provincesField = field,
-                isRequired: true,
-                validator: FormBuilderValidators.required(
-                  errorText: 'Vui lòng chọn tỉnh giao đến',
-                ),
-                readOnly: true,
-              ),
+          FormBuilderTextField(
+            name: 'provinces',
+            readOnly: true,
+            decoration: formInputDecoration(
+              context,
+              label: 'Tỉnh giao đến',
+              icon: Icons.navigation_outlined,
+              isRequired: true,
             ),
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn tỉnh giao đến',
+            ),
+            onTap: _pickProvinces,
           ),
           const SizedBox(height: 8),
 
@@ -216,34 +221,33 @@ class _TypeFormCommercialDeliveryState
           ),
           const SizedBox(height: 8),
 
-          GestureDetector(
-            onTap: _pickReturnPoint,
-            child: AbsorbPointer(
-              child: FormInputField(
-                icon: Icons.navigation_outlined,
-                nameForm: 'return_point',
-                nameTextField: 'return_point_text',
-                label: 'Điểm lấy hàng',
-                onFieldCreated: (field) => returnPointField = field,
-                isRequired: true,
-                validator: FormBuilderValidators.required(
-                  errorText: 'Vui lòng chọn điểm lấy hàng',
-                ),
-                readOnly: true,
-              ),
+          FormBuilderTextField(
+            name: 'return_point',
+            readOnly: true,
+            decoration: formInputDecoration(
+              context,
+              label: 'Điểm lấy hàng',
+              icon: Icons.navigation_outlined,
+              isRequired: true,
             ),
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn điểm lấy hàng',
+            ),
+            onTap: _pickReturnPoint,
           ),
           const SizedBox(height: 8),
 
-          FormInputField(
-            icon: Icons.navigation_outlined,
-            nameForm: 'return_address',
-            nameTextField: 'return_address_text',
-            label: 'Địa chỉ lấy hàng cụ thể',
+          FormBuilderTextField(
+            name: 'return_address',
+            initialValue: _isReturnPointOther ? '' : _returnPointValue,
             enabled: _isReturnPointOther,
             readOnly: !_isReturnPointOther,
-            onFieldCreated: (field) => returnAddressField = field,
-            isRequired: true,
+            decoration: formInputDecoration(
+              context,
+              label: 'Địa chỉ lấy hàng cụ thể',
+              icon: Icons.navigation_outlined,
+              isRequired: _isReturnPointOther,
+            ),
             validator: (v) {
               if (_isReturnPointOther && (v == null || v.trim().isEmpty)) {
                 return 'Vui lòng nhập địa chỉ lấy hàng cụ thể';
@@ -253,22 +257,19 @@ class _TypeFormCommercialDeliveryState
           ),
           const SizedBox(height: 8),
 
-          GestureDetector(
-            onTap: _pickTypeTransport,
-            child: AbsorbPointer(
-              child: FormInputField(
-                icon: Icons.directions_car_outlined,
-                nameForm: 'type_transport',
-                nameTextField: 'type_transport_text',
-                label: 'Loại phương tiện',
-                onFieldCreated: (field) => typeTransportField = field,
-                isRequired: true,
-                validator: FormBuilderValidators.required(
-                  errorText: 'Vui lòng chọn loại phương tiện',
-                ),
-                readOnly: true,
-              ),
+          FormBuilderTextField(
+            name: 'type_transport',
+            readOnly: true,
+            decoration: formInputDecoration(
+              context,
+              label: 'Loại phương tiện',
+              icon: Icons.directions_car_outlined,
+              isRequired: true,
             ),
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn loại phương tiện',
+            ),
+            onTap: _pickTypeTransport,
           ),
         ],
       ),

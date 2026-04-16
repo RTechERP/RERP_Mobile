@@ -869,8 +869,6 @@ class BookingVehicleBloc
       existingBookingId: existingBookingId,
     );
 
-    print('Đây là payloads: $payloads');
-
     for (final payload in payloads) {
       final res = await _bookingVehicleRepo.createBookingVehicle(
         payload: payload,

@@ -35,10 +35,6 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
   bool get _isReturnPointOther =>
       _returnPointValue.trim() == _otherPointLabel;
 
-  FormFieldState<String>? projectField;
-  FormFieldState<String>? provincesField;
-  FormFieldState<String>? typeTransportField;
-
   List<BookingVehicleProjectItem> get _projects => widget.projects;
   List<ProvinceDepartureItem> get _departureProvinces =>
       widget.departureProvinces;
@@ -50,7 +46,6 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
         .where((e) => e.trim().isNotEmpty)
         .toSet()
         .toList();
-    // "Khác" luôn xếp đầu tiên
     return [_otherPointLabel, ...points];
   }
 
@@ -60,28 +55,42 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
   ];
 
   Future<void> _pickProject() async {
+    final form = FormBuilder.of(context);
+    final currentProject = form?.fields['project']?.value as String? ?? '';
+    final currentProjectItem = _projects.cast<BookingVehicleProjectItem?>().firstWhere(
+      (p) => '${p!.projectCode ?? ''} - ${p.projectName ?? ''}'.trim() == currentProject,
+      orElse: () => null,
+    );
     await openSelectBottomSheet<BookingVehicleProjectItem>(
       context: context,
       title: 'Chọn dự án',
       items: _projects,
       displayText: (v) => '${v.projectCode ?? ''} - ${v.projectName ?? ''}',
       onSelected: (item) {
-        projectField?.didChange(
+        form?.fields['project']?.didChange(
           '${item.projectCode ?? ''} - ${item.projectName ?? ''}'.trim(),
         );
       },
+      initialSelectedItem: currentProjectItem,
     );
   }
 
   Future<void> _pickProvinces() async {
+    final form = FormBuilder.of(context);
+    final currentProvince = form?.fields['provinces']?.value as String? ?? '';
+    final currentItem = _arrivalProvinces.cast<ProvinceArrivesItem?>().firstWhere(
+      (p) => p!.provinceName == currentProvince,
+      orElse: () => null,
+    );
     await openSelectBottomSheet<ProvinceArrivesItem>(
       context: context,
       title: 'Chọn tỉnh cần về',
       items: _arrivalProvinces,
       displayText: (v) => v.provinceName ?? '',
       onSelected: (item) {
-        provincesField?.didChange(item.provinceName ?? '');
+        form?.fields['provinces']?.didChange(item.provinceName ?? '');
       },
+      initialSelectedItem: currentItem,
     );
   }
 
@@ -98,10 +107,8 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
         setState(() => _returnPointValue = selected);
         form?.fields['return_point']?.didChange(selected);
         if (selected == _otherPointLabel) {
-          // Mở cho user nhập địa chỉ cụ thể
           form?.fields['return_address']?.didChange('');
         } else {
-          // Auto-fill theo điểm đã chọn
           form?.fields['return_address']?.didChange(selected);
         }
       },
@@ -110,14 +117,17 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
   }
 
   Future<void> _pickTypeTransport() async {
+    final form = FormBuilder.of(context);
+    final current = form?.fields['type_transport']?.value as String? ?? '';
     await openSelectBottomSheet<String>(
       context: context,
       title: 'Chọn loại phương tiện',
       items: _vehicleTypes,
       displayText: (v) => v,
       onSelected: (item) {
-        typeTransportField?.didChange(item);
+        form?.fields['type_transport']?.didChange(item);
       },
+      initialSelectedItem: current,
     );
   }
 
@@ -129,22 +139,19 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
     return FormCard(
       child: Column(
         children: [
-          GestureDetector(
-            onTap: _pickProject,
-            child: AbsorbPointer(
-              child: FormInputField(
-                icon: Icons.navigation_outlined,
-                nameForm: 'project',
-                nameTextField: 'project_text',
-                label: 'Dự án',
-                onFieldCreated: (field) => projectField = field,
-                isRequired: true,
-                validator: FormBuilderValidators.required(
-                  errorText: 'Vui lòng chọn dự án',
-                ),
-                readOnly: true,
-              ),
+          FormBuilderTextField(
+            name: 'project',
+            readOnly: true,
+            decoration: formInputDecoration(
+              context,
+              label: 'Dự án',
+              icon: Icons.navigation_outlined,
+              isRequired: true,
             ),
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn dự án',
+            ),
+            onTap: _pickProject,
           ),
           const SizedBox(height: 8),
 
@@ -174,22 +181,19 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
           ),
           const SizedBox(height: 8),
 
-          GestureDetector(
-            onTap: _pickProvinces,
-            child: AbsorbPointer(
-              child: FormInputField(
-                icon: Icons.navigation_outlined,
-                nameForm: 'provinces',
-                nameTextField: 'provinces_text',
-                label: 'Tỉnh cần về',
-                onFieldCreated: (field) => provincesField = field,
-                isRequired: true,
-                validator: FormBuilderValidators.required(
-                  errorText: 'Vui lòng chọn tỉnh cần về',
-                ),
-                readOnly: true,
-              ),
+          FormBuilderTextField(
+            name: 'provinces',
+            readOnly: true,
+            decoration: formInputDecoration(
+              context,
+              label: 'Tỉnh cần về',
+              icon: Icons.navigation_outlined,
+              isRequired: true,
             ),
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn tỉnh cần về',
+            ),
+            onTap: _pickProvinces,
           ),
           const SizedBox(height: 8),
 
@@ -259,22 +263,19 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
           ),
           const SizedBox(height: 8),
 
-          GestureDetector(
-            onTap: _pickTypeTransport,
-            child: AbsorbPointer(
-              child: FormInputField(
-                icon: Icons.directions_car_outlined,
-                nameForm: 'type_transport',
-                nameTextField: 'type_transport_text',
-                label: 'Loại phương tiện',
-                onFieldCreated: (field) => typeTransportField = field,
-                isRequired: true,
-                validator: FormBuilderValidators.required(
-                  errorText: 'Vui lòng chọn loại phương tiện',
-                ),
-                readOnly: true,
-              ),
+          FormBuilderTextField(
+            name: 'type_transport',
+            readOnly: true,
+            decoration: formInputDecoration(
+              context,
+              label: 'Loại phương tiện',
+              icon: Icons.directions_car_outlined,
+              isRequired: true,
             ),
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn loại phương tiện',
+            ),
+            onTap: _pickTypeTransport,
           ),
         ],
       ),

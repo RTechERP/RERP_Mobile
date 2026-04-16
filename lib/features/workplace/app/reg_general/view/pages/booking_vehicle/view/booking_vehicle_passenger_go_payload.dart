@@ -54,7 +54,7 @@ DateTime? bookingVehicleParseFormDateTime(dynamic v) {
 String? _formatApiDateTime(dynamic v) {
   if (v == null) return null;
   if (v is DateTime) {
-    return DateFormat("yyyy-MM-dd'T'HH:mm").format(v);
+    return DateFormat("yyyy-MM-dd'T'HH:mm:ss").format(v);
   }
   if (v is String) {
     final t = v.trim();
