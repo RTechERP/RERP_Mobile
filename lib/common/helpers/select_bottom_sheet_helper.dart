@@ -12,6 +12,7 @@ Future<void> openSelectBottomSheet<T>({
   String? secondaryActionLabel,
   VoidCallback? onSecondaryAction,
   VoidCallback? onAdd,
+  T? initialSelectedItem,
 }) async {
   final parentFocusScope = FocusScope.of(context);
   final previousCanRequestFocus = parentFocusScope.canRequestFocus;
@@ -38,6 +39,7 @@ Future<void> openSelectBottomSheet<T>({
           secondaryActionLabel: secondaryActionLabel,
           onSecondaryAction: onSecondaryAction,
           onAdd: onAdd,
+          initialSelectedItem: initialSelectedItem,
         ),
       ),
     );
@@ -59,6 +61,7 @@ class _SelectSheet<T> extends StatefulWidget {
   final String? secondaryActionLabel;
   final VoidCallback? onSecondaryAction;
   final VoidCallback? onAdd;
+  final T? initialSelectedItem;
 
   const _SelectSheet({
     required this.title,
@@ -69,6 +72,7 @@ class _SelectSheet<T> extends StatefulWidget {
     this.secondaryActionLabel,
     this.onSecondaryAction,
     this.onAdd,
+    this.initialSelectedItem,
   });
 
   @override
@@ -80,6 +84,8 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
   late final TextEditingController _searchController;
   late final FocusNode _searchFocusNode;
   late final FocusScopeNode _modalFocusScope;
+  late final ScrollController _scrollController;
+  int? _initialSelectedIndex;
 
   @override
   void initState() {
@@ -89,6 +95,12 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
     _searchController = TextEditingController();
     _searchFocusNode = FocusNode(debugLabel: 'BottomSheetSearchFocus');
     _modalFocusScope = FocusScopeNode();
+    _scrollController = ScrollController();
+
+    if (widget.initialSelectedItem != null) {
+      final idx = widget.items.indexOf(widget.initialSelectedItem as T);
+      if (idx >= 0) _initialSelectedIndex = idx;
+    }
   }
 
   @override
@@ -96,6 +108,7 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
     _searchController.dispose();
     _searchFocusNode.dispose();
     _modalFocusScope.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -117,7 +130,7 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
         widget.secondaryActionLabel != null && widget.onSecondaryAction != null;
     final showSearch = !isEmpty;
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
       if (!showSearch) return;
 
@@ -127,6 +140,21 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
       if (!mounted) return;
 
       _modalFocusScope.requestFocus(_searchFocusNode);
+
+      // Scroll đến item đã chọn trước đó
+      if (_initialSelectedIndex != null && _filtered.isNotEmpty) {
+        final actualIndex = (_initialSelectedIndex! < _filtered.length)
+            ? _initialSelectedIndex!
+            : _filtered.length - 1;
+        if (actualIndex >= 0 && _scrollController.hasClients) {
+          _scrollController.animateTo(
+            actualIndex * 56.0,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeOut,
+          );
+        }
+        _initialSelectedIndex = null;
+      }
     });
 
     return FocusScope(

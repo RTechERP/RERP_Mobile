@@ -23,9 +23,10 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
     required int index,
   }) = _ExpandPassengerGoInfo;
 
-  /// Xoá dòng theo index vị trí 0..n-1 (sau xoá các dòng sau đẩy lên, index lùi 1).
+  /// Xoá dòng theo index vị trí 0..n-1: patch form + merge shifted data vào state.
   const factory BookingVehicleEvent.deletePassengerGoInfo({
     required int index,
+    required Map<String, dynamic> shiftedFields,
   }) = _DeletePassengerGoInfo;
 
   /// init danh sách "người nhận n" cho form giao hàng thương mại.
@@ -41,9 +42,10 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
     required int index,
   }) = _ExpandCommercialReceiverInfo;
 
-  /// Xoá dòng theo index vị trí (field form được dịch lên trước khi emit).
+  /// Xoá dòng theo index vị trí: patch form + merge shifted data vào state.
   const factory BookingVehicleEvent.deleteCommercialReceiverInfo({
     required int index,
+    required Map<String, dynamic> shiftedFields,
   }) = _DeleteCommercialReceiverInfo;
 
   /// init danh sách "người giao n" (lấy hàng thương mại / Demo).
@@ -59,6 +61,7 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
 
   const factory BookingVehicleEvent.deletePickupGiverInfo({
     required int index,
+    required Map<String, dynamic> shiftedFields,
   }) = _DeletePickupGiverInfo;
 
   /// Merge snapshot field phần Form chung vào state (đồng bộ với [TypeFormPassengerGo] / …).
@@ -102,4 +105,16 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
   const factory BookingVehicleEvent.cancelBookingVehicle({
     required int vehicleBookingId,
   }) = _CancelBookingVehicle;
+
+  /// Thay đổi khoảng ngày lọc — trigger lại API với ngày mới.
+  const factory BookingVehicleEvent.changeDateRange({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) = _ChangeDateRange;
+
+  /// Đổi loại đặt xe: 0=passengerGo, 1=passengerReturn, 2=commercialDelivery, 3=commercialPickup.
+  /// Dùng trong screen để BlocBuilder rebuild khi loại đặt xe thay đổi.
+  const factory BookingVehicleEvent.changeBookingTypeGroup({
+    required int group,
+  }) = _ChangeBookingTypeGroup;
 }

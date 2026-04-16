@@ -58,8 +58,8 @@ class _TypeFormCommercialDeliveryState
         .where((e) => e.trim().isNotEmpty)
         .toSet()
         .toList();
-    points.add(_otherPointLabel);
-    return points;
+    // "Khác" luôn xếp đầu tiên
+    return [_otherPointLabel, ...points];
   }
 
   Future<void> _pickProject() async {

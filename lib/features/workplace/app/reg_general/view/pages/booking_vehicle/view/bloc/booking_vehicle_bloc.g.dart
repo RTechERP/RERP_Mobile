@@ -72,7 +72,9 @@ abstract class _$BookingVehicleStateCWProxy {
 
   BookingVehicleState formFieldValues(Map<String, dynamic> formFieldValues);
 
-  BookingVehicleState infoFieldValues(Map<String, dynamic> infoFieldValues);
+  BookingVehicleState infoFieldValues(dynamic infoFieldValues);
+
+  BookingVehicleState bookingTypeGroup(int bookingTypeGroup);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -110,7 +112,8 @@ abstract class _$BookingVehicleStateCWProxy {
     int? expandedPickupGiverIndex,
     int? pickupGiverFormGeneration,
     Map<String, dynamic>? formFieldValues,
-    Map<String, dynamic>? infoFieldValues,
+    dynamic infoFieldValues,
+    int? bookingTypeGroup,
   });
 }
 
@@ -245,8 +248,12 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
       this(formFieldValues: formFieldValues);
 
   @override
-  BookingVehicleState infoFieldValues(Map<String, dynamic> infoFieldValues) =>
+  BookingVehicleState infoFieldValues(dynamic infoFieldValues) =>
       this(infoFieldValues: infoFieldValues);
+
+  @override
+  BookingVehicleState bookingTypeGroup(int bookingTypeGroup) =>
+      this(bookingTypeGroup: bookingTypeGroup);
 
   @override
 
@@ -288,6 +295,7 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
     Object? pickupGiverFormGeneration = const $CopyWithPlaceholder(),
     Object? formFieldValues = const $CopyWithPlaceholder(),
     Object? infoFieldValues = const $CopyWithPlaceholder(),
+    Object? bookingTypeGroup = const $CopyWithPlaceholder(),
   }) {
     return BookingVehicleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -437,7 +445,12 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
               infoFieldValues == null
           ? _value.infoFieldValues
           // ignore: cast_nullable_to_non_nullable
-          : infoFieldValues as Map<String, dynamic>,
+          : infoFieldValues as dynamic,
+      bookingTypeGroup: bookingTypeGroup == const $CopyWithPlaceholder() ||
+              bookingTypeGroup == null
+          ? _value.bookingTypeGroup
+          // ignore: cast_nullable_to_non_nullable
+          : bookingTypeGroup as int,
     );
   }
 }

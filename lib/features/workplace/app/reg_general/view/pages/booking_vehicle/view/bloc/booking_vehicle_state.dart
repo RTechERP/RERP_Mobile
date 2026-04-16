@@ -57,8 +57,12 @@ class BookingVehicleState extends BaseBlocState {
   /// Snapshot field Form chung; cập nhật qua [BookingVehicleEvent.updateForm].
   final Map<String, dynamic> formFieldValues;
 
-  /// Snapshot field Info theo dòng; cập nhật qua [BookingVehicleEvent.updateInfo].
   final Map<String, dynamic> infoFieldValues;
+
+  /// Loại đặt xe: 0=passengerGo, 1=passengerReturn, 2=commercialDelivery, 3=commercialPickup.
+  /// Chuyển sang bloc state để BlocBuilder biết khi nào loại đặt xe thay đổi
+  /// (tránh `buildWhen` không trigger khi chỉ `setState` local ở screen).
+  final int bookingTypeGroup;
 
   const BookingVehicleState({
     required super.status,
@@ -93,6 +97,7 @@ class BookingVehicleState extends BaseBlocState {
     this.pickupGiverFormGeneration = 0,
     this.formFieldValues = const {},
     this.infoFieldValues = const {},
+    this.bookingTypeGroup = 0,
   });
 
   factory BookingVehicleState.init() => const BookingVehicleState(
@@ -125,6 +130,7 @@ class BookingVehicleState extends BaseBlocState {
     pickupGiverFormGeneration: 0,
     formFieldValues: {},
     infoFieldValues: {},
+    bookingTypeGroup: 0,
   );
 
   @override
@@ -159,5 +165,6 @@ class BookingVehicleState extends BaseBlocState {
     pickupGiverFormGeneration,
     formFieldValues,
     infoFieldValues,
+    bookingTypeGroup,
   ];
 }

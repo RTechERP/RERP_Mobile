@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
@@ -77,6 +76,30 @@ class _BookingVehicleScreenState
         appBar: AppBarCommon(
           title: const Text('Đặt xe'),
           onBackTap: () => onBack(context),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.calendar_month),
+              tooltip: 'Lọc ngày',
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (_) => DateRangePicker(
+                    initialStart: bloc.state.dateStart,
+                    initialEnd: bloc.state.dateEnd,
+                    onApply: (start, end) {
+                      bloc.add(
+                        BookingVehicleEvent.changeDateRange(
+                          dateStart: start,
+                          dateEnd: end,
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+          ],
         ),
         body: BlocBuilder<BookingVehicleBloc, BookingVehicleState>(
           builder: (context, state) {
@@ -150,53 +173,16 @@ class _BookingVehicleScreenState
             );
           },
         ),
-        floatingActionButton: SpeedDial(
-          icon: Icons.menu,
-          activeIcon: Icons.close,
+        floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.primaryERP,
           foregroundColor: Colors.white,
-          spacing: 8,
-          spaceBetweenChildren: 8,
-          overlayOpacity: 0.3,
-
-          children: [
-            /// ===== THÊM =====
-            SpeedDialChild(
-              child: const Icon(Icons.add),
-              label: 'Thêm',
-              onTap: () async {
-                final reload = await context.push(RouteNames.bookingVehicleAdd);
-
-                if (reload == true) {
-                  bloc.add(const BookingVehicleEvent.init());
-                }
-              },
-            ),
-
-            /// ===== LỌC THEO NGÀY =====
-            SpeedDialChild(
-              child: const Icon(Icons.date_range),
-              label: 'Lọc ngày',
-              onTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  builder: (_) => DateRangePicker(
-                    initialStart: bloc.state.dateStart,
-                    initialEnd: bloc.state.dateEnd,
-                    onApply: (start, end) {
-                      // bloc.add(
-                      //   BookingVehicleEvent.changeDateRange(
-                      //     dateStart: start,
-                      //     dateEnd: end,
-                      //   ),
-                      // );
-                    },
-                  ),
-                );
-              },
-            ),
-          ],
+          onPressed: () async {
+            final reload = await context.push(RouteNames.bookingVehicleAdd);
+            if (reload == true) {
+              bloc.add(const BookingVehicleEvent.init());
+            }
+          },
+          child: const Icon(Icons.add),
         ),
       ),
     );

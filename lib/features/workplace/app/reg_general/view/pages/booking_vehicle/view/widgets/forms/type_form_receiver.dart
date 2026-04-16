@@ -159,7 +159,7 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
             nameForm: 'pickup_address',
             nameTextField: 'pickup_address_text',
             label: 'Địa chỉ cụ thể đến lấy',
-            maxLines: 3,
+            autoExpand: true,
             isRequired: true,
             validator: FormBuilderValidators.required(
               errorText: 'Vui lòng nhập địa chỉ cụ thể đến lấy',

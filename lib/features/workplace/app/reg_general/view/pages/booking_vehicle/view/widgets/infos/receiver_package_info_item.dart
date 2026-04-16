@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import '../../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../../common/widgets/form/index.dart';
@@ -17,18 +18,23 @@ class ReceiverPackageInfoItem extends StatefulWidget {
     required this.isExpanded,
     required this.employeeOptions,
     required this.totalCount,
+    required this.infoFieldValues,
     this.prefillEmployee,
     required this.onToggleExpand,
     this.onDelete,
+    this.generation = 0,
   });
 
   final int index;
   final bool isExpanded;
   final int totalCount;
   final List<BookingVehiclePersonalItem> employeeOptions;
+  final Map<String, dynamic> infoFieldValues;
   final BookingVehiclePersonalItem? prefillEmployee;
   final VoidCallback onToggleExpand;
   final VoidCallback? onDelete;
+  /// Dùng để buộc Slidable + child rebuild khi generation thay đổi (sau xoá dòng).
+  final int generation;
 
   @override
   State<ReceiverPackageInfoItem> createState() =>
@@ -48,14 +54,9 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
   void initState() {
     super.initState();
     _selectedEmployee = widget.prefillEmployee;
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      if (widget.prefillEmployee != null) {
-        _syncFieldsToEmployee(_selectedEmployee);
-      } else {
-        _tryHydrateSelectionFromForm();
-      }
+      _hydrateFromState();
     });
   }
 
@@ -64,40 +65,53 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
     super.didUpdateWidget(oldWidget);
     if (widget.prefillEmployee != oldWidget.prefillEmployee) {
       _selectedEmployee = widget.prefillEmployee;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        _syncFieldsToEmployee(_selectedEmployee);
-      });
     }
     if (widget.employeeOptions != oldWidget.employeeOptions ||
-        widget.index != oldWidget.index) {
+        widget.index != oldWidget.index ||
+        widget.infoFieldValues != oldWidget.infoFieldValues) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
-        if (widget.prefillEmployee == null) {
-          _tryHydrateSelectionFromForm();
-        }
+        _hydrateFromState();
       });
     }
   }
 
-  void _tryHydrateSelectionFromForm() {
-    if (!mounted) return;
-    final form = context.findAncestorStateOfType<FormBuilderState>();
-    if (form == null) return;
-    final i = widget.index;
-    final name =
-        (form.fields['receiver_name_$i']?.value as String?)?.trim() ?? '';
-    final empPick =
-        (form.fields['receiver_employee_$i']?.value as String?)?.trim() ?? '';
-    if (name.isEmpty && empPick.isEmpty) return;
+  void _hydrateFromState() {
+    if (widget.infoFieldValues.isEmpty) {
+      if (widget.prefillEmployee != null) {
+        _syncFieldsToEmployee(_selectedEmployee);
+      }
+      return;
+    }
 
-    for (final e in widget.employeeOptions) {
-      final fn = (e.fullName ?? '').trim();
-      if (fn.isEmpty) continue;
-      if (name == fn || empPick == fn || empPick.contains(fn)) {
-        setState(() => _selectedEmployee = e);
-        _syncFieldsToEmployee(e);
-        return;
+    final i = widget.index;
+    final empVal =
+        widget.infoFieldValues['receiver_employee_$i'] as String? ?? '';
+    final nameVal =
+        widget.infoFieldValues['receiver_name_$i'] as String? ?? '';
+    final phoneVal =
+        widget.infoFieldValues['receiver_phone_number_$i'] as String? ?? '';
+
+    if (empVal.isNotEmpty) {
+      final options = widget.employeeOptions;
+      BookingVehiclePersonalItem? matched;
+      for (final o in options) {
+        if ((o.fullName ?? '').trim() == empVal) {
+          matched = o;
+          break;
+        }
+      }
+      if (matched != null) {
+        setState(() => _selectedEmployee = matched);
+        _syncFieldsToEmployee(matched);
+      } else if (nameVal.isNotEmpty || phoneVal.isNotEmpty) {
+        setState(() => _selectedEmployee = null);
+        if (receiverNameField?.value != nameVal) {
+          receiverNameField?.didChange(nameVal);
+        }
+        if (receiverPhoneField?.value != phoneVal) {
+          receiverPhoneField?.didChange(phoneVal);
+        }
       }
     }
   }
@@ -131,9 +145,8 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
         setState(() => _selectedEmployee = item);
         _syncFieldsToEmployee(item);
       },
-      secondaryActionLabel: hadEmployee
-          ? 'Nhập tay (bỏ chọn nhân viên)'
-          : null,
+      secondaryActionLabel:
+          hadEmployee ? 'Nhập tay (bỏ chọn nhân viên)' : null,
       onSecondaryAction:
           hadEmployee ? () => _switchToManualReceiverEntry() : null,
     );
@@ -144,14 +157,16 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
     final showExpanded = widget.isExpanded;
     final collapsed = !showExpanded;
     final canDelete = widget.totalCount > 1;
-    final nameFromField = (receiverNameField?.value ?? '').trim();
-    final headerTitle =
-        'Người nhận: ${nameFromField.isNotEmpty ? nameFromField : "Chưa chọn"}';
-
     final i = widget.index;
+    final gen = widget.generation;
+
+    final nameFromState =
+        (widget.infoFieldValues['receiver_name_$i'] as String?)?.trim() ?? '';
+    final headerTitle =
+        'Người nhận: ${nameFromState.isNotEmpty ? nameFromState : "Chưa chọn"}';
 
     return Slidable(
-      key: ValueKey('commercial_receiver_${widget.index}'),
+      key: ValueKey('commercial_receiver_${widget.index}_$gen'),
       enabled: !showExpanded && canDelete,
       endActionPane: showExpanded || !canDelete
           ? null
@@ -248,6 +263,10 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                         },
                         enabled: !_isReceiverFromEmployee,
                         readOnly: _isReceiverFromEmployee,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập tên người nhận',
+                        ),
                       ),
                       const SizedBox(height: 8),
                       FormInputField(
@@ -257,6 +276,10 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                         label: 'SDT liên hệ',
                         onFieldCreated: (field) =>
                             receiverPhoneField = field,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập SĐT liên hệ',
+                        ),
                       ),
                       const SizedBox(height: 16),
                       FormInputField(
@@ -264,7 +287,11 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                         nameForm: 'commercial_package_name_$i',
                         nameTextField: 'commercial_package_name_text_$i',
                         label: 'Tên kiện hàng',
-                        maxLines: 3,
+                        autoExpand: true,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập tên kiện hàng',
+                        ),
                       ),
                       const SizedBox(height: 8),
                       FormBuilderField<List<PlatformFile>>(
@@ -301,6 +328,10 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                               nameTextField: 'package_size_text_$i',
                               label: 'Kích thước (cm)',
                               keyboardType: TextInputType.number,
+                              isRequired: true,
+                              validator: FormBuilderValidators.required(
+                                errorText: 'Vui lòng nhập kích thước',
+                              ),
                             ),
                           ),
                           const SizedBox(width: 8),
@@ -311,6 +342,10 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                               nameTextField: 'package_weight_text_$i',
                               label: 'Cân nặng (kg)',
                               keyboardType: TextInputType.number,
+                              isRequired: true,
+                              validator: FormBuilderValidators.required(
+                                errorText: 'Vui lòng nhập cân nặng',
+                              ),
                             ),
                           ),
                         ],
@@ -324,6 +359,15 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                         label: 'Số lượng kiện hàng',
                         keyboardType: TextInputType.number,
                         initialValue: '1',
+                        isRequired: true,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                            errorText: 'Vui lòng nhập số lượng kiện hàng',
+                          ),
+                          FormBuilderValidators.numeric(
+                            errorText: 'Số lượng phải là số',
+                          ),
+                        ]),
                       ),
                       const SizedBox(height: 8),
                       FormInputField(
@@ -332,7 +376,7 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                         nameTextField:
                             'note_return_or_delivery_text_$i',
                         label: 'Ghi chú (nếu có)',
-                        maxLines: 3,
+                        autoExpand: true,
                         initialValue: '[Hàng đang chuẩn bị]',
                       ),
                     ],

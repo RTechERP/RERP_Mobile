@@ -56,9 +56,28 @@ class FormDateTimePicker extends StatefulWidget {
 
 class _FormDateTimePickerState extends State<FormDateTimePicker> {
   FocusNode? _internalFocusNode;
+  final GlobalKey<FormBuilderFieldState> _fieldKey =
+      GlobalKey<FormBuilderFieldState>();
 
   FocusNode get _effectiveFocusNode {
     return widget.focusNode ?? (_internalFocusNode ??= FocusNode());
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // FormBuilderDateTimePicker quản lý internal field riêng, không gọi didChange
+    // khi khởi tạo initialValue. Gọi didChange với initialValue để sync outer
+    // field state → icon/error hiển thị đúng ngay khi form mở (autovalidateMode
+    // onUserInteraction không tự trigger, cần sync thủ công).
+    // KHÔNG gọi validate() ở đây vì sẽ chạy validator trên TẤT CẢ required fields
+    // ngay khi mở màn, gây error icon sai cho các field chưa có giá trị.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final current = _fieldKey.currentState?.value;
+      if (current == null && widget.initialValue != null) {
+        _fieldKey.currentState?.didChange(widget.initialValue);
+      }
+    });
   }
 
   @override
@@ -70,6 +89,7 @@ class _FormDateTimePickerState extends State<FormDateTimePicker> {
   @override
   Widget build(BuildContext context) {
     return FormBuilderField<DateTime?>(
+      key: _fieldKey,
       name: widget.nameForm,
       initialValue: widget.initialValue,
       validator: widget.validator,

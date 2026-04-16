@@ -10,7 +10,6 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_ve
 import '../booking_vehicle_package_image_form.dart';
 import '../booking_vehicle_passenger_go_payload.dart';
 import '../booking_vehicle_upload_sub_path.dart';
-import '../../../../../../../../../common/helpers/validate_helper.dart';
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
@@ -44,22 +43,22 @@ class BookingVehicleBloc
         addPassengerGoInfo: () => _onAddPassengerGoInfo(emit),
         expandPassengerGoInfo: (index) =>
             _onExpandPassengerGoInfo(index, emit),
-        deletePassengerGoInfo: (index) =>
-            _onDeletePassengerGoInfo(index, emit),
+        deletePassengerGoInfo: (index, shiftedFields) =>
+            _onDeletePassengerGoInfo(index, shiftedFields, emit),
         initCommercialReceiverInfos: () =>
             _onInitCommercialReceiverInfos(emit),
         addCommercialReceiverInfo: () =>
             _onAddCommercialReceiverInfo(emit),
         expandCommercialReceiverInfo: (index) =>
             _onExpandCommercialReceiverInfo(index, emit),
-        deleteCommercialReceiverInfo: (index) =>
-            _onDeleteCommercialReceiverInfo(index, emit),
+        deleteCommercialReceiverInfo: (index, shiftedFields) =>
+            _onDeleteCommercialReceiverInfo(index, shiftedFields, emit),
         initPickupGiverInfos: () => _onInitPickupGiverInfos(emit),
         addPickupGiverInfo: () => _onAddPickupGiverInfo(emit),
         expandPickupGiverInfo: (index) =>
             _onExpandPickupGiverInfo(index, emit),
-        deletePickupGiverInfo: (index) =>
-            _onDeletePickupGiverInfo(index, emit),
+        deletePickupGiverInfo: (index, shiftedFields) =>
+            _onDeletePickupGiverInfo(index, shiftedFields, emit),
         updateForm: (values) async {
           _onUpdateForm(values, emit);
         },
@@ -105,6 +104,45 @@ class BookingVehicleBloc
         },
         cancelBookingVehicle: (vehicleBookingId) async {
           await _onCancelBookingVehicle(vehicleBookingId, emit);
+        },
+        changeDateRange: (dateStart, dateEnd) async {
+          await _onChangeDateRange(dateStart, dateEnd, emit);
+        },
+        changeBookingTypeGroup: (group) async {
+          // Khi đổi loại đặt xe: set lineCount=1 ngay để BlocBuilder trigger hiển thị form
+          // (không cần chờ `initXxxInfos` debounce). Reset các nhóm khác về 0.
+          switch (group) {
+            case 0:
+            case 1:
+              emit(state.copyWith(
+                bookingTypeGroup: group,
+                passengerGoLineCount: 1,
+                expandedPassengerGoIndex: 0,
+                commercialReceiverLineCount: 0,
+                pickupGiverLineCount: 0,
+              ));
+              break;
+            case 2:
+              emit(state.copyWith(
+                bookingTypeGroup: group,
+                passengerGoLineCount: 0,
+                commercialReceiverLineCount: 1,
+                expandedCommercialDeliveryReceiverIndex: 0,
+                pickupGiverLineCount: 0,
+              ));
+              break;
+            case 3:
+              emit(state.copyWith(
+                bookingTypeGroup: group,
+                passengerGoLineCount: 0,
+                commercialReceiverLineCount: 0,
+                pickupGiverLineCount: 1,
+                expandedPickupGiverIndex: 0,
+              ));
+              break;
+            default:
+              emit(state.copyWith(bookingTypeGroup: group));
+          }
         },
       );
     });
@@ -154,6 +192,28 @@ class BookingVehicleBloc
     );
   }
 
+  //---(Init)---//
+
+  /// Tính cận trên/dưới của tuần trong tháng chứa [d].
+  /// Tuần 1 = ngày 1–7, Tuần 2 = 8–14, Tuần 3 = 15–21, Tuần 4 = 22–cuối tháng.
+  static (DateTime start, DateTime end) _weekBoundsOfMonth(DateTime d) {
+    final y = d.year, m = d.month;
+    final dayOfMonth = d.day;
+    final weekIndex = ((dayOfMonth - 1) / 7).floor();
+
+    final startDay = weekIndex * 7 + 1;
+    int endDay;
+    if (weekIndex < 3) {
+      endDay = startDay + 6;
+    } else {
+      endDay = DateTime(y, m + 1, 0).day;
+    }
+
+    final start = DateTime(y, m, startDay);
+    final end = DateTime(y, m, endDay, 23, 59, 59);
+    return (start, end);
+  }
+
   Future<void> _onInit(Emitter<BookingVehicleState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
@@ -166,14 +226,69 @@ class BookingVehicleBloc
       },
           (user) async {
         final now = DateTime.now();
-        final todayStart = DateTime(now.year, now.month, now.day);
-        final tomorrow = todayStart.add(const Duration(days: 1));
-
-        // Khoảng lọc: cả ngày hôm nay và cả ngày hôm sau (đến 23:59:59).
+        // Theo tuần của tháng: T1→CN.
+        final (todayStart, weekEnd) = _weekBoundsOfMonth(now);
         final startStr =
             DateFormat('yyyy-MM-ddTHH:mm:ss').format(todayStart);
+        final endStr = DateFormat('yyyy-MM-ddTHH:mm:ss').format(weekEnd);
+
+        final payload = {
+          "StartDate": startStr,
+          "EndDate": endStr,
+          "EmployeeId": user!.employeeId,
+          "DriverEmployeeId": 0,
+          "Category": 0,
+          "Status": 0,
+          "Keyword": '',
+          "IsDeleted": false,
+        };
+
+        _log.logI('📋 init payload: $payload');
+
+        final res = await _bookingVehicleRepo.getBookingVehicle(
+          payload: payload,
+        );
+
+        await res.fold(
+              (l) async {
+            _log.logE('❌ API failed: $l');
+            emit(state.copyWith(status: BaseStateStatus.failed));
+          },
+              (r) async {
+            _log.logI('✅ API success - total: ${r.length}');
+            emit(
+              state.copyWith(
+                status: BaseStateStatus.success,
+                bookingVehicle: r,
+                dateStart: todayStart,
+                dateEnd: weekEnd,
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Future<void> _onChangeDateRange(
+    DateTime dateStart,
+    DateTime dateEnd,
+    Emitter<BookingVehicleState> emit,
+  ) async {
+    emit(state.copyWith(status: BaseStateStatus.loading));
+
+    final userRes = await _authRepo.getCurrentUser();
+
+    await userRes.fold(
+          (err) async {
+        _log.logE('❌ Get user failed: $err');
+        emit(state.copyWith(status: BaseStateStatus.failed));
+      },
+          (user) async {
+        final startStr =
+            DateFormat('yyyy-MM-ddTHH:mm:ss').format(dateStart);
         final endStr = DateFormat('yyyy-MM-ddTHH:mm:ss').format(
-          DateTime(tomorrow.year, tomorrow.month, tomorrow.day, 23, 59, 59),
+          DateTime(dateEnd.year, dateEnd.month, dateEnd.day, 23, 59, 59),
         );
 
         final payload = {
@@ -187,7 +302,7 @@ class BookingVehicleBloc
           "IsDeleted": false,
         };
 
-        _log.logI('Payload: $payload'); // debug thêm
+        _log.logI('📋 changeDateRange payload: $payload');
 
         final res = await _bookingVehicleRepo.getBookingVehicle(
           payload: payload,
@@ -195,15 +310,17 @@ class BookingVehicleBloc
 
         await res.fold(
               (l) async {
-            _log.logE('❌ API failed: $l');
+            _log.logE('❌ changeDateRange API failed: $l');
             emit(state.copyWith(status: BaseStateStatus.failed));
           },
               (r) async {
-            _log.logI('✅ API success - total: $r');
+            _log.logI('✅ changeDateRange success - total: ${r.length}');
             emit(
               state.copyWith(
                 status: BaseStateStatus.success,
                 bookingVehicle: r,
+                dateStart: dateStart,
+                dateEnd: dateEnd,
               ),
             );
           },
@@ -451,9 +568,10 @@ class BookingVehicleBloc
     );
   }
 
-  /// Xoá theo index vị trí 0..n-1; màn hình dịch field form (passenger_*) trước khi emit.
+  /// Xoá dòng: patch form + merge shifted data vào state trước khi emit.
   Future<void> _onDeletePassengerGoInfo(
     int index,
+    Map<String, dynamic> shiftedFields,
     Emitter<BookingVehicleState> emit,
   ) async {
     final n = state.passengerGoLineCount;
@@ -471,6 +589,9 @@ class BookingVehicleBloc
       nextExpanded = oldExpanded;
     }
 
+    final mergedInfo = Map<String, dynamic>.from(state.infoFieldValues)
+      ..addAll(shiftedFields);
+
     emit(
       state.copyWith(
         passengerGoLineCount: n - 1,
@@ -479,6 +600,7 @@ class BookingVehicleBloc
             ? false
             : state.passengerGoFirstRowIsCurrentUserSlot,
         passengerFormGeneration: state.passengerFormGeneration + 1,
+        infoFieldValues: mergedInfo,
       ),
     );
   }
@@ -523,6 +645,7 @@ class BookingVehicleBloc
 
   Future<void> _onDeleteCommercialReceiverInfo(
     int index,
+    Map<String, dynamic> shiftedFields,
     Emitter<BookingVehicleState> emit,
   ) async {
     final n = state.commercialReceiverLineCount;
@@ -540,12 +663,16 @@ class BookingVehicleBloc
       nextExpanded = oldExpanded;
     }
 
+    final mergedInfo = Map<String, dynamic>.from(state.infoFieldValues)
+      ..addAll(shiftedFields);
+
     emit(
       state.copyWith(
         commercialReceiverLineCount: n - 1,
         expandedCommercialDeliveryReceiverIndex: nextExpanded,
         commercialReceiverFormGeneration:
             state.commercialReceiverFormGeneration + 1,
+        infoFieldValues: mergedInfo,
       ),
     );
   }
@@ -588,6 +715,7 @@ class BookingVehicleBloc
 
   Future<void> _onDeletePickupGiverInfo(
     int index,
+    Map<String, dynamic> shiftedFields,
     Emitter<BookingVehicleState> emit,
   ) async {
     final n = state.pickupGiverLineCount;
@@ -605,11 +733,15 @@ class BookingVehicleBloc
       nextExpanded = oldExpanded;
     }
 
+    final mergedInfo = Map<String, dynamic>.from(state.infoFieldValues)
+      ..addAll(shiftedFields);
+
     emit(
       state.copyWith(
         pickupGiverLineCount: n - 1,
         expandedPickupGiverIndex: nextExpanded,
         pickupGiverFormGeneration: state.pickupGiverFormGeneration + 1,
+        infoFieldValues: mergedInfo,
       ),
     );
   }
@@ -632,30 +764,6 @@ class BookingVehicleBloc
     final merged = Map<String, dynamic>.from(state.infoFieldValues)
       ..addAll(values);
     emit(state.copyWith(infoFieldValues: merged));
-  }
-
-  /// Khi card phát sinh / TBP đang hiện trên UI (mốc cần đến là **hôm nay**).
-  String? _bookingVehicleProblemArisesSubmitError(
-    Map<String, dynamic> formValues, {
-    String needTimeFieldKey = 'time_need_present',
-  }) {
-    final need = bookingVehicleParseFormDateTime(
-      formValues[needTimeFieldKey],
-    );
-    if (!ValidateHelper.bookingVehicleProblemArisesCardVisibleForUi(need)) {
-      return null;
-    }
-    final raw = formValues['approved_tbp'];
-    final tbp = raw is int
-        ? raw
-        : int.tryParse(bookingVehicleTrimFormValue(raw)) ?? 0;
-    if (tbp == 0) {
-      return 'Vui lòng chọn người duyệt TBP.';
-    }
-    if (bookingVehicleTrimFormValue(formValues['problem_arises']).isEmpty) {
-      return 'Vui lòng nhập vấn đề phát sinh.';
-    }
-    return null;
   }
 
   Future<void> _onSubmitPassengerGo(
@@ -714,6 +822,10 @@ class BookingVehicleBloc
     }
 
     for (var i = 0; i < n; i++) {
+      // Bỏ qua dòng đã xóa/shift (computeShiftedFields dùng '' thay vì null
+      // sau khi shift → cần check thêm trim để skip dòng trống).
+      if (bookingVehicleIsPassengerRowEmpty(formValues, i)) continue;
+
       final name = bookingVehicleTrimFormValue(
         formValues['passenger_full_name_$i'],
       );
@@ -729,17 +841,6 @@ class BookingVehicleBloc
       }
     }
 
-    final problemErr = _bookingVehicleProblemArisesSubmitError(formValues);
-    if (problemErr != null) {
-      emit(
-        state.copyWith(
-          isSubmitting: false,
-          message: problemErr,
-        ),
-      );
-      return;
-    }
-
     final payloads = buildAllPassengerGoCreatePayloads(
       formValues: formValues,
       bookerEmployeeId: employeeId,
@@ -749,6 +850,8 @@ class BookingVehicleBloc
       passengerLineCount: n,
       existingBookingId: existingBookingId,
     );
+
+    print('Đây là payloads: $payloads');
 
     for (final payload in payloads) {
       final res = await _bookingVehicleRepo.createBookingVehicle(
@@ -861,6 +964,9 @@ class BookingVehicleBloc
     }
 
     for (var i = 0; i < n; i++) {
+      // Skip dòng trống sau khi shift.
+      if (bookingVehicleIsPassengerRowEmpty(formValues, i)) continue;
+
       final name = bookingVehicleTrimFormValue(
         formValues['passenger_full_name_$i'],
       );
@@ -1027,6 +1133,9 @@ class BookingVehicleBloc
     }
 
     for (var i = 0; i < n; i++) {
+      // Skip dòng trống sau khi shift.
+      if (bookingVehicleIsCommercialReceiverRowEmpty(formValues, i)) continue;
+
       final nameManual = bookingVehicleTrimFormValue(
         formValues['receiver_name_$i'],
       );
@@ -1070,6 +1179,7 @@ class BookingVehicleBloc
         return;
       }
 
+
       final size = bookingVehicleTrimFormValue(formValues['package_size_$i']);
       final weight =
           bookingVehicleTrimFormValue(formValues['package_weight_$i']);
@@ -1097,17 +1207,6 @@ class BookingVehicleBloc
         );
         return;
       }
-    }
-
-    final problemErr = _bookingVehicleProblemArisesSubmitError(formValues);
-    if (problemErr != null) {
-      emit(
-        state.copyWith(
-          isSubmitting: false,
-          message: problemErr,
-        ),
-      );
-      return;
     }
 
     final payloads = buildAllCommercialDeliveryCreatePayloads(
@@ -1332,6 +1431,9 @@ class BookingVehicleBloc
     }
 
     for (var i = 0; i < n; i++) {
+      // Skip dòng trống sau khi shift.
+      if (bookingVehicleIsPickupGiverRowEmpty(formValues, i)) continue;
+
       final nameManual = bookingVehicleTrimFormValue(
         formValues['pickup_giver_name_$i'],
       );
@@ -1403,21 +1505,7 @@ class BookingVehicleBloc
         );
         return;
       }
-    }
-
-    final problemErr = _bookingVehicleProblemArisesSubmitError(
-      formValues,
-      needTimeFieldKey: 'pickup_need_arrive_time',
-    );
-    if (problemErr != null) {
-      emit(
-        state.copyWith(
-          isSubmitting: false,
-          message: problemErr,
-        ),
-      );
-      return;
-    }
+      }
 
     final payloads = buildAllCommercialPickupCreatePayloads(
       formValues: formValues,

@@ -170,15 +170,6 @@ void _prefillPassengerGoLike(
     item.passengerPhoneNumber,
   );
   _putPair(m, 'passenger_note_0', 'passenger_note_text_0', item.note);
-
-  if (item.isProblemArises == true) {
-    _putStr(m, 'problem_arises', item.problemArises);
-    final tbp = item.approvedTBP ?? 0;
-    if (tbp > 0) {
-      m['approved_tbp'] = '$tbp';
-      _putStr(m, 'approved_tbp_text', item.fullNameTBP ?? item.approvedTBPText);
-    }
-  }
 }
 
 void _prefillPassengerReturnLike(Map<String, dynamic> m, BookingVehicleItem item) {
@@ -269,15 +260,6 @@ void _prefillCommercialDeliveryLike(Map<String, dynamic> m, BookingVehicleItem i
     'note_return_or_delivery_text_0',
     item.note,
   );
-
-  if (item.isProblemArises == true) {
-    _putStr(m, 'problem_arises', item.problemArises);
-    final tbp = item.approvedTBP ?? 0;
-    if (tbp > 0) {
-      m['approved_tbp'] = '$tbp';
-      _putStr(m, 'approved_tbp_text', item.fullNameTBP ?? item.approvedTBPText);
-    }
-  }
 }
 
 void _prefillPickupLike(Map<String, dynamic> m, BookingVehicleItem item) {
@@ -328,13 +310,4 @@ void _prefillPickupLike(Map<String, dynamic> m, BookingVehicleItem item) {
     'note_pickup_package_text_0',
     item.note,
   );
-
-  if (item.isProblemArises == true) {
-    _putStr(m, 'problem_arises', item.problemArises);
-    final tbp = item.approvedTBP ?? 0;
-    if (tbp > 0) {
-      m['approved_tbp'] = '$tbp';
-      _putStr(m, 'approved_tbp_text', item.fullNameTBP ?? item.approvedTBPText);
-    }
-  }
 }

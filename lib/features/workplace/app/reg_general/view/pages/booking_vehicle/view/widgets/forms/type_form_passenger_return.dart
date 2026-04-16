@@ -28,15 +28,16 @@ class TypeFormPassengerReturn extends StatefulWidget {
 class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
   static const String _otherPointLabel = 'Khác';
 
-  String _returnPointValue = _otherPointLabel;
+  String _returnPointValue = 'Khác';
 
-  bool get _isReturnPointOther => _returnPointValue.trim() == _otherPointLabel;
+  String get _returnPointDisplay => _returnPointValue;
+
+  bool get _isReturnPointOther =>
+      _returnPointValue.trim() == _otherPointLabel;
 
   FormFieldState<String>? projectField;
   FormFieldState<String>? provincesField;
   FormFieldState<String>? typeTransportField;
-  FormFieldState<String>? returnPointField;
-  FormFieldState<String>? returnAddressField;
 
   List<BookingVehicleProjectItem> get _projects => widget.projects;
   List<ProvinceDepartureItem> get _departureProvinces =>
@@ -49,8 +50,8 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
         .where((e) => e.trim().isNotEmpty)
         .toSet()
         .toList();
-    points.add(_otherPointLabel);
-    return points;
+    // "Khác" luôn xếp đầu tiên
+    return [_otherPointLabel, ...points];
   }
 
   static const List<String> _vehicleTypes = [
@@ -85,6 +86,8 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
   }
 
   Future<void> _pickReturnPoint() async {
+    final form = FormBuilder.of(context);
+    final currentReturn = form?.fields['return_point']?.value as String? ?? '';
     await openSelectBottomSheet<String>(
       context: context,
       title: 'Chọn điểm đón',
@@ -93,11 +96,16 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
       onSelected: (item) {
         final selected = item.trim();
         setState(() => _returnPointValue = selected);
-        returnPointField?.didChange(selected);
-        if (selected != _otherPointLabel) {
-          returnAddressField?.didChange(selected);
+        form?.fields['return_point']?.didChange(selected);
+        if (selected == _otherPointLabel) {
+          // Mở cho user nhập địa chỉ cụ thể
+          form?.fields['return_address']?.didChange('');
+        } else {
+          // Auto-fill theo điểm đã chọn
+          form?.fields['return_address']?.didChange(selected);
         }
       },
+      initialSelectedItem: currentReturn,
     );
   }
 
@@ -212,37 +220,38 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
           ),
           const SizedBox(height: 8),
 
-          GestureDetector(
-            onTap: _pickReturnPoint,
-            child: AbsorbPointer(
-              child: FormInputField(
-                icon: Icons.navigation_outlined,
-                nameForm: 'return_point',
-                nameTextField: 'return_point_text',
-                label: 'Điểm đón',
-                onFieldCreated: (f) => returnPointField = f,
-                isRequired: true,
-                validator: FormBuilderValidators.required(
-                  errorText: 'Vui lòng chọn điểm đón',
-                ),
-                readOnly: true,
-              ),
+          FormBuilderTextField(
+            name: 'return_point',
+            initialValue: _returnPointDisplay,
+            readOnly: true,
+            decoration: formInputDecoration(
+              context,
+              label: 'Điểm đón',
+              icon: Icons.navigation_outlined,
+              isRequired: true,
             ),
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn điểm đón',
+            ),
+            onTap: _pickReturnPoint,
           ),
 
           const SizedBox(height: 8),
 
-          FormInputField(
-            icon: Icons.navigation_outlined,
-            nameForm: 'return_address',
-            nameTextField: 'return_address_text',
-            label: 'Địa chỉ đón cụ thể',
+          FormBuilderTextField(
+            name: 'return_address',
+            initialValue: 'VP Hà Nội',
             enabled: _isReturnPointOther,
-            readOnly: !_isReturnPointOther,
-            onFieldCreated: (f) => returnAddressField = f,
-            isRequired: true,
+            decoration: formInputDecoration(
+              context,
+              label: 'Địa chỉ đón cụ thể',
+              icon: Icons.navigation_outlined,
+              isRequired: _isReturnPointOther,
+            ),
             validator: (v) {
-              if (_isReturnPointOther && (v == null || v.trim().isEmpty)) {
+              if (!(_isReturnPointOther)) return null;
+              final val = v?.trim() ?? '';
+              if (val.isEmpty) {
                 return 'Vui lòng nhập địa chỉ đón cụ thể';
               }
               return null;
