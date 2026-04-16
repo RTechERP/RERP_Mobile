@@ -162,6 +162,10 @@ class _BookingVehicleAddScreenState
     }
   }
 
+  /// Lưu currentEmployee từ SharedPreferences để prefill form ngay lần render đầu.
+  BookingVehiclePersonalItem? _cachedCurrentEmployee;
+
+  /// Chặn apply edit prefill nhiều lần.
   bool _editPrefillApplied = false;
 
   bool get _isEditMode => widget.existingBookingItem != null;
@@ -185,6 +189,16 @@ class _BookingVehicleAddScreenState
       );
     }
     super.initState();
+
+    // Đọc currentEmployee từ SharedPreferences NGAY — prefill form không cần chờ API.
+    BookingVehicleRepository.getCurrentUserCache().then((cached) {
+      if (!mounted) return;
+      _cachedCurrentEmployee = cached;
+      if (cached != null) {
+        bloc.add(BookingVehicleEvent.prefillCurrentEmployee(employee: cached));
+      }
+    });
+
     bloc.add(const BookingVehicleEvent.clearSubmitResult());
     bloc.add(const BookingVehicleEvent.initAdd());
     if (edit != null) {

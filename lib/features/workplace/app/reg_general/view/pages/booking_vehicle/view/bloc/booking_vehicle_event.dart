@@ -7,6 +7,11 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
   const factory BookingVehicleEvent.initAdd() = _InitAdd;
   const factory BookingVehicleEvent.preloadInitAdd() = _PreloadInitAdd;
 
+  /// Đọc từ SharedPreferences → emit currentEmployee ngay, không gọi API.
+  const factory BookingVehicleEvent.prefillCurrentEmployee({
+    required BookingVehiclePersonalItem? employee,
+  }) = _PrefillCurrentEmployee;
+
   /// init danh sách "nhân viên n" cho form Người đi.
   const factory BookingVehicleEvent.initPassengerGoInfos() =
       _InitPassengerGoInfos;

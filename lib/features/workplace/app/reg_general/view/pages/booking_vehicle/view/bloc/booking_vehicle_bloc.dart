@@ -37,6 +37,8 @@ class BookingVehicleBloc
         init: () => _onInit(emit),
         initAdd: () => _onInitAdd(emit),
         preloadInitAdd: () => _onPreloadInitAdd(emit),
+        prefillCurrentEmployee: (employee) =>
+            _onPrefillCurrentEmployee(emit, employee),
         initPassengerGoInfos: () => _onInitPassengerGoInfos(emit),
         initPassengerGoInfosForEdit: () =>
             _onInitPassengerGoInfosForEdit(emit),
@@ -330,11 +332,26 @@ class BookingVehicleBloc
   }
 
   Future<void> _onInitAdd(Emitter<BookingVehicleState> emit) async {
+    emit(state.copyWith(passengerGoFirstRowIsCurrentUserSlot: true));
     await _loadInitAdd(emit, silent: false);
   }
 
   Future<void> _onPreloadInitAdd(Emitter<BookingVehicleState> emit) async {
     await _loadInitAdd(emit, silent: true);
+  }
+
+  /// Emit currentEmployee ngay từ SharedPreferences — không gọi API.
+  _onPrefillCurrentEmployee(
+    Emitter<BookingVehicleState> emit,
+    BookingVehiclePersonalItem? employee,
+  ) {
+    if (employee == null) return;
+    emit(
+      state.copyWith(
+        currentEmployee: employee,
+        passengerGoFirstRowIsCurrentUserSlot: true,
+      ),
+    );
   }
 
   Future<void> _loadInitAdd(
@@ -367,12 +384,13 @@ class BookingVehicleBloc
           employee: cache.employees,
           projects: cache.projects,
           approver: cache.approvers,
-          currentEmployee: cache.currentEmployee,
-        ),
-      );
-      _log.logI('✅ initAdd served from SharedPreferences cache');
-      return;
-    }
+        currentEmployee: cache.currentEmployee,
+        passengerGoFirstRowIsCurrentUserSlot: true,
+      ),
+    );
+    _log.logI('✅ initAdd served from SharedPreferences cache');
+    return;
+  }
 
     _isInitAddInFlight = true;
     if (!silent) {
@@ -746,7 +764,7 @@ class BookingVehicleBloc
     );
   }
 
-  void _onUpdateForm(
+  _onUpdateForm(
     Map<String, dynamic> values,
     Emitter<BookingVehicleState> emit,
   ) {
@@ -756,7 +774,7 @@ class BookingVehicleBloc
     emit(state.copyWith(formFieldValues: merged));
   }
 
-  void _onUpdateInfo(
+  _onUpdateInfo(
     Map<String, dynamic> values,
     Emitter<BookingVehicleState> emit,
   ) {

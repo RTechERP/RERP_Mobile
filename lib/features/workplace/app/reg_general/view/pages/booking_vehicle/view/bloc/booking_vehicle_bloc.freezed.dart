@@ -21,6 +21,8 @@ mixin _$BookingVehicleEvent {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -63,6 +65,8 @@ mixin _$BookingVehicleEvent {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -100,6 +104,8 @@ mixin _$BookingVehicleEvent {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -138,6 +144,8 @@ mixin _$BookingVehicleEvent {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -181,6 +189,7 @@ mixin _$BookingVehicleEvent {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -217,6 +226,7 @@ mixin _$BookingVehicleEvent {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -308,6 +318,8 @@ class _$InitImpl implements _Init {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -353,6 +365,8 @@ class _$InitImpl implements _Init {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -393,6 +407,8 @@ class _$InitImpl implements _Init {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -437,6 +453,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -483,6 +501,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -522,6 +541,7 @@ class _$InitImpl implements _Init {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -604,6 +624,8 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -649,6 +671,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -689,6 +713,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -733,6 +759,8 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -779,6 +807,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -818,6 +847,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -900,6 +930,8 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -945,6 +977,8 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -985,6 +1019,8 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -1029,6 +1065,8 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -1075,6 +1113,7 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -1114,6 +1153,7 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -1153,6 +1193,364 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
 
 abstract class _PreloadInitAdd implements BookingVehicleEvent {
   const factory _PreloadInitAdd() = _$PreloadInitAddImpl;
+}
+
+/// @nodoc
+abstract class _$$PrefillCurrentEmployeeImplCopyWith<$Res> {
+  factory _$$PrefillCurrentEmployeeImplCopyWith(
+          _$PrefillCurrentEmployeeImpl value,
+          $Res Function(_$PrefillCurrentEmployeeImpl) then) =
+      __$$PrefillCurrentEmployeeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BookingVehiclePersonalItem? employee});
+
+  $BookingVehiclePersonalItemCopyWith<$Res>? get employee;
+}
+
+/// @nodoc
+class __$$PrefillCurrentEmployeeImplCopyWithImpl<$Res>
+    extends _$BookingVehicleEventCopyWithImpl<$Res,
+        _$PrefillCurrentEmployeeImpl>
+    implements _$$PrefillCurrentEmployeeImplCopyWith<$Res> {
+  __$$PrefillCurrentEmployeeImplCopyWithImpl(
+      _$PrefillCurrentEmployeeImpl _value,
+      $Res Function(_$PrefillCurrentEmployeeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? employee = freezed,
+  }) {
+    return _then(_$PrefillCurrentEmployeeImpl(
+      employee: freezed == employee
+          ? _value.employee
+          : employee // ignore: cast_nullable_to_non_nullable
+              as BookingVehiclePersonalItem?,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BookingVehiclePersonalItemCopyWith<$Res>? get employee {
+    if (_value.employee == null) {
+      return null;
+    }
+
+    return $BookingVehiclePersonalItemCopyWith<$Res>(_value.employee!, (value) {
+      return _then(_value.copyWith(employee: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$PrefillCurrentEmployeeImpl implements _PrefillCurrentEmployee {
+  const _$PrefillCurrentEmployeeImpl({required this.employee});
+
+  @override
+  final BookingVehiclePersonalItem? employee;
+
+  @override
+  String toString() {
+    return 'BookingVehicleEvent.prefillCurrentEmployee(employee: $employee)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PrefillCurrentEmployeeImpl &&
+            (identical(other.employee, employee) ||
+                other.employee == employee));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, employee);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PrefillCurrentEmployeeImplCopyWith<_$PrefillCurrentEmployeeImpl>
+      get copyWith => __$$PrefillCurrentEmployeeImplCopyWithImpl<
+          _$PrefillCurrentEmployeeImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
+    required TResult Function() initPassengerGoInfos,
+    required TResult Function() initPassengerGoInfosForEdit,
+    required TResult Function() addPassengerGoInfo,
+    required TResult Function(int index) expandPassengerGoInfo,
+    required TResult Function(int index, Map<String, dynamic> shiftedFields)
+        deletePassengerGoInfo,
+    required TResult Function() initCommercialReceiverInfos,
+    required TResult Function() addCommercialReceiverInfo,
+    required TResult Function(int index) expandCommercialReceiverInfo,
+    required TResult Function(int index, Map<String, dynamic> shiftedFields)
+        deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index, Map<String, dynamic> shiftedFields)
+        deletePickupGiverInfo,
+    required TResult Function(Map<String, dynamic> values) updateForm,
+    required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(
+            Map<String, dynamic> formValues, int? existingBookingId)
+        submitPassengerGo,
+    required TResult Function(
+            Map<String, dynamic> formValues, int? existingBookingId)
+        submitPassengerReturn,
+    required TResult Function(
+            Map<String, dynamic> formValues, int? existingBookingId)
+        submitCommercialDelivery,
+    required TResult Function(
+            Map<String, dynamic> formValues, int? existingBookingId)
+        submitCommercialPickup,
+    required TResult Function() clearSubmitResult,
+    required TResult Function(int vehicleBookingId) cancelBookingVehicle,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int group) changeBookingTypeGroup,
+  }) {
+    return prefillCurrentEmployee(employee);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
+    TResult? Function()? initPassengerGoInfos,
+    TResult? Function()? initPassengerGoInfosForEdit,
+    TResult? Function()? addPassengerGoInfo,
+    TResult? Function(int index)? expandPassengerGoInfo,
+    TResult? Function(int index, Map<String, dynamic> shiftedFields)?
+        deletePassengerGoInfo,
+    TResult? Function()? initCommercialReceiverInfos,
+    TResult? Function()? addCommercialReceiverInfo,
+    TResult? Function(int index)? expandCommercialReceiverInfo,
+    TResult? Function(int index, Map<String, dynamic> shiftedFields)?
+        deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index, Map<String, dynamic> shiftedFields)?
+        deletePickupGiverInfo,
+    TResult? Function(Map<String, dynamic> values)? updateForm,
+    TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitPassengerGo,
+    TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitCommercialPickup,
+    TResult? Function()? clearSubmitResult,
+    TResult? Function(int vehicleBookingId)? cancelBookingVehicle,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int group)? changeBookingTypeGroup,
+  }) {
+    return prefillCurrentEmployee?.call(employee);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
+    TResult Function()? initPassengerGoInfos,
+    TResult Function()? initPassengerGoInfosForEdit,
+    TResult Function()? addPassengerGoInfo,
+    TResult Function(int index)? expandPassengerGoInfo,
+    TResult Function(int index, Map<String, dynamic> shiftedFields)?
+        deletePassengerGoInfo,
+    TResult Function()? initCommercialReceiverInfos,
+    TResult Function()? addCommercialReceiverInfo,
+    TResult Function(int index)? expandCommercialReceiverInfo,
+    TResult Function(int index, Map<String, dynamic> shiftedFields)?
+        deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index, Map<String, dynamic> shiftedFields)?
+        deletePickupGiverInfo,
+    TResult Function(Map<String, dynamic> values)? updateForm,
+    TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitPassengerGo,
+    TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitCommercialPickup,
+    TResult Function()? clearSubmitResult,
+    TResult Function(int vehicleBookingId)? cancelBookingVehicle,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int group)? changeBookingTypeGroup,
+    required TResult orElse(),
+  }) {
+    if (prefillCurrentEmployee != null) {
+      return prefillCurrentEmployee(employee);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
+    required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
+    required TResult Function(_InitPassengerGoInfosForEdit value)
+        initPassengerGoInfosForEdit,
+    required TResult Function(_AddPassengerGoInfo value) addPassengerGoInfo,
+    required TResult Function(_ExpandPassengerGoInfo value)
+        expandPassengerGoInfo,
+    required TResult Function(_DeletePassengerGoInfo value)
+        deletePassengerGoInfo,
+    required TResult Function(_InitCommercialReceiverInfos value)
+        initCommercialReceiverInfos,
+    required TResult Function(_AddCommercialReceiverInfo value)
+        addCommercialReceiverInfo,
+    required TResult Function(_ExpandCommercialReceiverInfo value)
+        expandCommercialReceiverInfo,
+    required TResult Function(_DeleteCommercialReceiverInfo value)
+        deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
+    required TResult Function(_SubmitPassengerReturn value)
+        submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
+    required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_CancelBookingVehicle value) cancelBookingVehicle,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeBookingTypeGroup value)
+        changeBookingTypeGroup,
+  }) {
+    return prefillCurrentEmployee(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
+    TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult? Function(_InitPassengerGoInfosForEdit value)?
+        initPassengerGoInfosForEdit,
+    TResult? Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult? Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult? Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult? Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult? Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult? Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult? Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
+    TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
+    TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_CancelBookingVehicle value)? cancelBookingVehicle,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeBookingTypeGroup value)? changeBookingTypeGroup,
+  }) {
+    return prefillCurrentEmployee?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
+    TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult Function(_InitPassengerGoInfosForEdit value)?
+        initPassengerGoInfosForEdit,
+    TResult Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
+    TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
+    TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_CancelBookingVehicle value)? cancelBookingVehicle,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeBookingTypeGroup value)? changeBookingTypeGroup,
+    required TResult orElse(),
+  }) {
+    if (prefillCurrentEmployee != null) {
+      return prefillCurrentEmployee(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PrefillCurrentEmployee implements BookingVehicleEvent {
+  const factory _PrefillCurrentEmployee(
+          {required final BookingVehiclePersonalItem? employee}) =
+      _$PrefillCurrentEmployeeImpl;
+
+  BookingVehiclePersonalItem? get employee;
+  @JsonKey(ignore: true)
+  _$$PrefillCurrentEmployeeImplCopyWith<_$PrefillCurrentEmployeeImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1197,6 +1595,8 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -1242,6 +1642,8 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -1282,6 +1684,8 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -1326,6 +1730,8 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -1372,6 +1778,7 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -1411,6 +1818,7 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -1498,6 +1906,8 @@ class _$InitPassengerGoInfosForEditImpl
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -1543,6 +1953,8 @@ class _$InitPassengerGoInfosForEditImpl
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -1583,6 +1995,8 @@ class _$InitPassengerGoInfosForEditImpl
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -1627,6 +2041,8 @@ class _$InitPassengerGoInfosForEditImpl
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -1673,6 +2089,7 @@ class _$InitPassengerGoInfosForEditImpl
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -1712,6 +2129,7 @@ class _$InitPassengerGoInfosForEditImpl
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -1795,6 +2213,8 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -1840,6 +2260,8 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -1880,6 +2302,8 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -1924,6 +2348,8 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -1970,6 +2396,7 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -2009,6 +2436,7 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -2119,6 +2547,8 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -2164,6 +2594,8 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -2204,6 +2636,8 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -2248,6 +2682,8 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -2294,6 +2730,7 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -2333,6 +2770,7 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -2466,6 +2904,8 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -2511,6 +2951,8 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -2551,6 +2993,8 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -2595,6 +3039,8 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -2641,6 +3087,7 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -2680,6 +3127,7 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -2776,6 +3224,8 @@ class _$InitCommercialReceiverInfosImpl
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -2821,6 +3271,8 @@ class _$InitCommercialReceiverInfosImpl
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -2861,6 +3313,8 @@ class _$InitCommercialReceiverInfosImpl
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -2905,6 +3359,8 @@ class _$InitCommercialReceiverInfosImpl
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -2951,6 +3407,7 @@ class _$InitCommercialReceiverInfosImpl
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -2990,6 +3447,7 @@ class _$InitCommercialReceiverInfosImpl
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -3077,6 +3535,8 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -3122,6 +3582,8 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -3162,6 +3624,8 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -3206,6 +3670,8 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -3252,6 +3718,7 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -3291,6 +3758,7 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -3405,6 +3873,8 @@ class _$ExpandCommercialReceiverInfoImpl
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -3450,6 +3920,8 @@ class _$ExpandCommercialReceiverInfoImpl
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -3490,6 +3962,8 @@ class _$ExpandCommercialReceiverInfoImpl
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -3534,6 +4008,8 @@ class _$ExpandCommercialReceiverInfoImpl
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -3580,6 +4056,7 @@ class _$ExpandCommercialReceiverInfoImpl
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -3619,6 +4096,7 @@ class _$ExpandCommercialReceiverInfoImpl
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -3757,6 +4235,8 @@ class _$DeleteCommercialReceiverInfoImpl
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -3802,6 +4282,8 @@ class _$DeleteCommercialReceiverInfoImpl
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -3842,6 +4324,8 @@ class _$DeleteCommercialReceiverInfoImpl
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -3886,6 +4370,8 @@ class _$DeleteCommercialReceiverInfoImpl
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -3932,6 +4418,7 @@ class _$DeleteCommercialReceiverInfoImpl
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -3971,6 +4458,7 @@ class _$DeleteCommercialReceiverInfoImpl
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -4064,6 +4552,8 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -4109,6 +4599,8 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -4149,6 +4641,8 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -4193,6 +4687,8 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -4239,6 +4735,7 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -4278,6 +4775,7 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -4360,6 +4858,8 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -4405,6 +4905,8 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -4445,6 +4947,8 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -4489,6 +4993,8 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -4535,6 +5041,7 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -4574,6 +5081,7 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -4684,6 +5192,8 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -4729,6 +5239,8 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -4769,6 +5281,8 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -4813,6 +5327,8 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -4859,6 +5375,7 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -4898,6 +5415,7 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -5031,6 +5549,8 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -5076,6 +5596,8 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -5116,6 +5638,8 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -5160,6 +5684,8 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -5206,6 +5732,7 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -5245,6 +5772,7 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -5369,6 +5897,8 @@ class _$UpdateFormImpl implements _UpdateForm {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -5414,6 +5944,8 @@ class _$UpdateFormImpl implements _UpdateForm {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -5454,6 +5986,8 @@ class _$UpdateFormImpl implements _UpdateForm {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -5498,6 +6032,8 @@ class _$UpdateFormImpl implements _UpdateForm {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -5544,6 +6080,7 @@ class _$UpdateFormImpl implements _UpdateForm {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -5583,6 +6120,7 @@ class _$UpdateFormImpl implements _UpdateForm {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -5704,6 +6242,8 @@ class _$UpdateInfoImpl implements _UpdateInfo {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -5749,6 +6289,8 @@ class _$UpdateInfoImpl implements _UpdateInfo {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -5789,6 +6331,8 @@ class _$UpdateInfoImpl implements _UpdateInfo {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -5833,6 +6377,8 @@ class _$UpdateInfoImpl implements _UpdateInfo {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -5879,6 +6425,7 @@ class _$UpdateInfoImpl implements _UpdateInfo {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -5918,6 +6465,7 @@ class _$UpdateInfoImpl implements _UpdateInfo {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -6054,6 +6602,8 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -6099,6 +6649,8 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -6139,6 +6691,8 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -6183,6 +6737,8 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -6229,6 +6785,7 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -6268,6 +6825,7 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -6407,6 +6965,8 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -6452,6 +7012,8 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -6492,6 +7054,8 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -6536,6 +7100,8 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -6582,6 +7148,7 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -6621,6 +7188,7 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -6762,6 +7330,8 @@ class _$SubmitCommercialDeliveryImpl implements _SubmitCommercialDelivery {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -6807,6 +7377,8 @@ class _$SubmitCommercialDeliveryImpl implements _SubmitCommercialDelivery {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -6847,6 +7419,8 @@ class _$SubmitCommercialDeliveryImpl implements _SubmitCommercialDelivery {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -6891,6 +7465,8 @@ class _$SubmitCommercialDeliveryImpl implements _SubmitCommercialDelivery {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -6937,6 +7513,7 @@ class _$SubmitCommercialDeliveryImpl implements _SubmitCommercialDelivery {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -6976,6 +7553,7 @@ class _$SubmitCommercialDeliveryImpl implements _SubmitCommercialDelivery {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -7117,6 +7695,8 @@ class _$SubmitCommercialPickupImpl implements _SubmitCommercialPickup {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -7162,6 +7742,8 @@ class _$SubmitCommercialPickupImpl implements _SubmitCommercialPickup {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -7202,6 +7784,8 @@ class _$SubmitCommercialPickupImpl implements _SubmitCommercialPickup {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -7246,6 +7830,8 @@ class _$SubmitCommercialPickupImpl implements _SubmitCommercialPickup {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -7292,6 +7878,7 @@ class _$SubmitCommercialPickupImpl implements _SubmitCommercialPickup {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -7331,6 +7918,7 @@ class _$SubmitCommercialPickupImpl implements _SubmitCommercialPickup {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -7421,6 +8009,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -7466,6 +8056,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -7506,6 +8098,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -7550,6 +8144,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -7596,6 +8192,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -7635,6 +8232,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -7746,6 +8344,8 @@ class _$CancelBookingVehicleImpl implements _CancelBookingVehicle {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -7791,6 +8391,8 @@ class _$CancelBookingVehicleImpl implements _CancelBookingVehicle {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -7831,6 +8433,8 @@ class _$CancelBookingVehicleImpl implements _CancelBookingVehicle {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -7875,6 +8479,8 @@ class _$CancelBookingVehicleImpl implements _CancelBookingVehicle {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -7921,6 +8527,7 @@ class _$CancelBookingVehicleImpl implements _CancelBookingVehicle {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -7960,6 +8567,7 @@ class _$CancelBookingVehicleImpl implements _CancelBookingVehicle {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -8084,6 +8692,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -8129,6 +8739,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -8169,6 +8781,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -8213,6 +8827,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -8259,6 +8875,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -8298,6 +8915,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -8418,6 +9036,8 @@ class _$ChangeBookingTypeGroupImpl implements _ChangeBookingTypeGroup {
     required TResult Function() init,
     required TResult Function() initAdd,
     required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
     required TResult Function() initPassengerGoInfos,
     required TResult Function() initPassengerGoInfosForEdit,
     required TResult Function() addPassengerGoInfo,
@@ -8463,6 +9083,8 @@ class _$ChangeBookingTypeGroupImpl implements _ChangeBookingTypeGroup {
     TResult? Function()? init,
     TResult? Function()? initAdd,
     TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult? Function()? initPassengerGoInfos,
     TResult? Function()? initPassengerGoInfosForEdit,
     TResult? Function()? addPassengerGoInfo,
@@ -8503,6 +9125,8 @@ class _$ChangeBookingTypeGroupImpl implements _ChangeBookingTypeGroup {
     TResult Function()? init,
     TResult Function()? initAdd,
     TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
     TResult Function()? initPassengerGoInfos,
     TResult Function()? initPassengerGoInfosForEdit,
     TResult Function()? addPassengerGoInfo,
@@ -8547,6 +9171,8 @@ class _$ChangeBookingTypeGroupImpl implements _ChangeBookingTypeGroup {
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
     required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
     required TResult Function(_InitPassengerGoInfosForEdit value)
         initPassengerGoInfosForEdit,
@@ -8593,6 +9219,7 @@ class _$ChangeBookingTypeGroupImpl implements _ChangeBookingTypeGroup {
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult? Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,
@@ -8632,6 +9259,7 @@ class _$ChangeBookingTypeGroupImpl implements _ChangeBookingTypeGroup {
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
     TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
     TResult Function(_InitPassengerGoInfosForEdit value)?
         initPassengerGoInfosForEdit,

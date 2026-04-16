@@ -72,7 +72,7 @@ abstract class _$BookingVehicleStateCWProxy {
 
   BookingVehicleState formFieldValues(Map<String, dynamic> formFieldValues);
 
-  BookingVehicleState infoFieldValues(dynamic infoFieldValues);
+  BookingVehicleState infoFieldValues(Map<String, dynamic> infoFieldValues);
 
   BookingVehicleState bookingTypeGroup(int bookingTypeGroup);
 
@@ -112,7 +112,7 @@ abstract class _$BookingVehicleStateCWProxy {
     int? expandedPickupGiverIndex,
     int? pickupGiverFormGeneration,
     Map<String, dynamic>? formFieldValues,
-    dynamic infoFieldValues,
+    Map<String, dynamic>? infoFieldValues,
     int? bookingTypeGroup,
   });
 }
@@ -248,7 +248,7 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
       this(formFieldValues: formFieldValues);
 
   @override
-  BookingVehicleState infoFieldValues(dynamic infoFieldValues) =>
+  BookingVehicleState infoFieldValues(Map<String, dynamic> infoFieldValues) =>
       this(infoFieldValues: infoFieldValues);
 
   @override
@@ -445,7 +445,7 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
               infoFieldValues == null
           ? _value.infoFieldValues
           // ignore: cast_nullable_to_non_nullable
-          : infoFieldValues as dynamic,
+          : infoFieldValues as Map<String, dynamic>,
       bookingTypeGroup: bookingTypeGroup == const $CopyWithPlaceholder() ||
               bookingTypeGroup == null
           ? _value.bookingTypeGroup
