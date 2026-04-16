@@ -174,12 +174,15 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
 
           FormDateTimePicker(
             icon: Icons.access_time,
-            nameForm: 'time_need_present',
-            nameTimePicker: 'time_need_present_picker',
+            nameForm: 'passenger_go_time_present',
+            nameTimePicker: 'passenger_go_time_present_picker',
             label: 'Thời gian cần đến',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
             isRequired: true,
+            initialValue: DateTime.now()
+                .add(const Duration(days: 1))
+                .copyWith(hour: 9, minute: 0, second: 0, millisecond: 0, microsecond: 0),
             validator: FormBuilderValidators.required(
               errorText: 'Vui lòng chọn thời gian cần đến',
             ),

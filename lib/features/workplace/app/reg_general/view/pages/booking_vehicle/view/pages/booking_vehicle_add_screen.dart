@@ -396,15 +396,6 @@ class _BookingVehicleAddScreenState
                   initialValue: {
                     'booking_type': 'Đăng ký người đi',
                     'booking_type_text': 'Đăng ký người đi',
-                    'time_need_present': DateTime.now()
-                        .add(const Duration(days: 1))
-                        .copyWith(
-                          hour: 9,
-                          minute: 0,
-                          second: 0,
-                          millisecond: 0,
-                          microsecond: 0,
-                        ),
                     'type_transport': 'Ô tô, xe máy ...',
                     'type_transport_text': 'Ô tô, xe máy ...',
                     'starting_point': 'VP Hà Nội',
