@@ -681,7 +681,14 @@ class AppRouter {
           ),
           GoRoute(
             path: RouteNames.bookingVehicleAdd,
-            builder: (context, state) => const BookingVehicleAddScreen(),
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              return BookingVehicleAddScreen(
+                copiedItemId: extra?['_copied_item_id'] as int?,
+                copiedBookingTypeGroup: extra?['_copied_booking_type_group'] as int?,
+                copiedData: extra,
+              );
+            },
           ),
           GoRoute(
             path: RouteNames.bookingVehicleEdit,

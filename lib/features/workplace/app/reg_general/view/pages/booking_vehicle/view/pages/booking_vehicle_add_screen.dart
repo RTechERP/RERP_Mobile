@@ -29,10 +29,18 @@ class BookingVehicleAddScreen extends StatefulWidget {
   const BookingVehicleAddScreen({
     super.key,
     this.existingBookingItem,
+    this.copiedItemId,
+    this.copiedBookingTypeGroup,
+    this.copiedData,
   });
 
   /// Khi khác null: màn sửa — prefill từ item, submit gửi kèm `ID` bản ghi.
   final BookingVehicleItem? existingBookingItem;
+
+  /// Dữ liệu sao chép từ "Sao chép tạo mới" (truyền từ route extra).
+  final int? copiedItemId;
+  final int? copiedBookingTypeGroup;
+  final Map<String, dynamic>? copiedData;
 
   @override
   State<BookingVehicleAddScreen> createState() =>
@@ -178,19 +186,27 @@ class _BookingVehicleAddScreenState
 
   @override
   void initState() {
-    final edit = widget.existingBookingItem;
-    if (edit != null) {
-      bloc.add(
-        BookingVehicleEvent.changeBookingTypeGroup(
-          group: _bookingTypeGroupFromLabel(
-            bookingVehicleEditBookingTypeLabel(edit),
-          ),
-        ),
-      );
-    }
     super.initState();
 
-    // Đọc currentEmployee từ SharedPreferences NGAY — prefill form không cần chờ API.
+    // Dữ liệu copy từ "Sao chép tạo mới" — nhận qua constructor
+    final copiedData = widget.copiedData;
+    final copiedGroupNum = widget.copiedBookingTypeGroup;
+
+    // Xác định group: ưu tiên copy > edit > mặc định "người đi"
+    final isEdit = widget.existingBookingItem != null;
+    int effectiveGroup;
+
+    if (copiedData != null && copiedGroupNum != null) {
+      effectiveGroup = copiedGroupNum;
+    } else if (isEdit) {
+      effectiveGroup = _bookingTypeGroupFromLabel(
+        bookingVehicleEditBookingTypeLabel(widget.existingBookingItem!),
+      );
+    } else {
+      effectiveGroup = 0;
+    }
+
+    // Đọc currentEmployee từ SharedPreferences NGAY
     BookingVehicleRepository.getCurrentUserCache().then((cached) {
       if (!mounted) return;
       _cachedCurrentEmployee = cached;
@@ -201,31 +217,98 @@ class _BookingVehicleAddScreenState
 
     bloc.add(const BookingVehicleEvent.clearSubmitResult());
     bloc.add(const BookingVehicleEvent.initAdd());
-    if (edit != null) {
-      final g = bloc.state.bookingTypeGroup;
-      switch (_bookingTypeGroupEnum(g)) {
-        case _BookingVehicleTypeGroup.passengerGo:
-        case _BookingVehicleTypeGroup.passengerReturn:
-          bloc.add(const BookingVehicleEvent.initPassengerGoInfosForEdit());
-          break;
-        case _BookingVehicleTypeGroup.commercialDelivery:
-          bloc.add(const BookingVehicleEvent.initCommercialReceiverInfos());
-          bloc.add(const BookingVehicleEvent.preloadInitAdd());
-          break;
-        case _BookingVehicleTypeGroup.commercialPickupAndDemoPickup:
-          bloc.add(const BookingVehicleEvent.initPickupGiverInfos());
-          bloc.add(const BookingVehicleEvent.preloadInitAdd());
-          break;
-      }
+    bloc.add(BookingVehicleEvent.changeBookingTypeGroup(group: effectiveGroup));
+
+    // Fire init events theo mode
+    if (isEdit) {
+      _fireInitEventsForEdit(effectiveGroup);
+    } else if (copiedData != null) {
+      _fireInitEventsForCopy(effectiveGroup);
     } else {
       bloc.add(const BookingVehicleEvent.initPassengerGoInfos());
     }
-    if (edit != null) {
+
+    // Apply prefill
+    if (isEdit) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
         _tryApplyEditPrefill(context, bloc.state);
       });
+    } else if (copiedData != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _applyCopyFromExtra(copiedData!);
+      });
     }
+  }
+
+  void _fireInitEventsForEdit(int group) {
+    switch (_bookingTypeGroupEnum(group)) {
+      case _BookingVehicleTypeGroup.passengerGo:
+      case _BookingVehicleTypeGroup.passengerReturn:
+        bloc.add(const BookingVehicleEvent.initPassengerGoInfosForEdit());
+        break;
+      case _BookingVehicleTypeGroup.commercialDelivery:
+        bloc.add(const BookingVehicleEvent.initCommercialReceiverInfos());
+        bloc.add(const BookingVehicleEvent.preloadInitAdd());
+        break;
+      case _BookingVehicleTypeGroup.commercialPickupAndDemoPickup:
+        bloc.add(const BookingVehicleEvent.initPickupGiverInfos());
+        bloc.add(const BookingVehicleEvent.preloadInitAdd());
+        break;
+    }
+  }
+
+  void _fireInitEventsForCopy(int group) {
+    switch (_bookingTypeGroupEnum(group)) {
+      case _BookingVehicleTypeGroup.passengerGo:
+      case _BookingVehicleTypeGroup.passengerReturn:
+        bloc.add(const BookingVehicleEvent.initPassengerGoInfos());
+        bloc.add(const BookingVehicleEvent.preloadInitAdd());
+        break;
+      case _BookingVehicleTypeGroup.commercialDelivery:
+        bloc.add(const BookingVehicleEvent.initCommercialReceiverInfos());
+        bloc.add(const BookingVehicleEvent.preloadInitAdd());
+        break;
+      case _BookingVehicleTypeGroup.commercialPickupAndDemoPickup:
+        bloc.add(const BookingVehicleEvent.initPickupGiverInfos());
+        bloc.add(const BookingVehicleEvent.preloadInitAdd());
+        break;
+    }
+  }
+
+  void _applyCopyFromExtra(Map<String, dynamic> copiedData) {
+    if (_editPrefillApplied) return;
+
+    // Retry cho đến khi data sẵn sàng (projects đã load xong)
+    _retryApplyCopy(copiedData);
+  }
+
+  void _retryApplyCopy(Map<String, dynamic> copiedData) {
+    if (!mounted || _editPrefillApplied) return;
+    if (bloc.state.status != BaseStateStatus.success ||
+        bloc.state.projects.isEmpty) {
+      Future.delayed(const Duration(milliseconds: 100), () {
+        if (mounted && !_editPrefillApplied) {
+          _retryApplyCopy(copiedData);
+        }
+      });
+      return;
+    }
+
+    _editPrefillApplied = true;
+    final patch = Map<String, dynamic>.from(copiedData);
+    patch.remove('_copied_item_id');
+    patch.remove('_copied_booking_type_group');
+
+    final split = splitBookingVehicleFormAndInfo(patch);
+    if (split.form.isNotEmpty) {
+      bloc.add(BookingVehicleEvent.updateForm(values: split.form));
+    }
+    if (split.info.isNotEmpty) {
+      bloc.add(BookingVehicleEvent.updateInfo(values: split.info));
+    }
+    _formKey.currentState?.patchValue(patch);
   }
 
   @override

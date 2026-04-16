@@ -375,6 +375,8 @@ class BookingVehicleBloc
     // Luôn ưu tiên dữ liệu cache để UI có dữ liệu tức thì.
     final cache = await BookingVehicleRepository.getInitAddCache(log: _log);
     if (cache != null && cache.employeeId == employeeId) {
+      // Reset flag để lần gọi tiếp theo (preloadInitAdd / lần copy sau) không bị skip.
+      _isInitAddInFlight = false;
       emit(
         state.copyWith(
           status: BaseStateStatus.success,
@@ -384,13 +386,13 @@ class BookingVehicleBloc
           employee: cache.employees,
           projects: cache.projects,
           approver: cache.approvers,
-        currentEmployee: cache.currentEmployee,
-        passengerGoFirstRowIsCurrentUserSlot: true,
-      ),
-    );
-    _log.logI('✅ initAdd served from SharedPreferences cache');
-    return;
-  }
+          currentEmployee: cache.currentEmployee,
+          passengerGoFirstRowIsCurrentUserSlot: true,
+        ),
+      );
+      _log.logI('✅ initAdd served from SharedPreferences cache');
+      return;
+    }
 
     _isInitAddInFlight = true;
     if (!silent) {

@@ -1,22 +1,95 @@
+// Date: 16/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Card đặt xe chuyên nghiệp - hiển thị theo loại, hỗ trợ copy
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
+import '../../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/booking_vehicle_model.dart';
 import '../bloc/booking_vehicle_bloc.dart';
 import '../booking_vehicle_api_categories.dart';
+import '../booking_vehicle_item_form_prefill.dart';
 
-/// Màn chi tiết: ưu tiên [BookingVehicleItem.statusText] từ API, sau đó cùng logic list.
+/// Màn chi tiết: ưu tiên [BookingVehicleItem.statusText] từ API.
 String bookingVehicleDetailApprovalLabel(BookingVehicleItem item) {
   final st = (item.statusText ?? '').trim();
   if (st.isNotEmpty) return st;
   return _approvalBadgeLabel(item);
 }
 
-/// Card một dòng đặt xe: hàng badge (duyệt / xếp xe) phía trên, cột thông tin phía dưới.
+//---(Booking Type Helpers)---//
+
+String bookingVehicleEditBookingTypeLabel(BookingVehicleItem item) {
+  const options = <String>{
+    'Đăng ký người đi',
+    'Đăng ký người về',
+    'Đăng ký giao hàng thương mại',
+    'Đăng ký lấy hàng thương mại',
+    'Đăng ký giao hàng Demo/triển lãm',
+    'Đăng ký lấy hàng Demo/triển lãm',
+  };
+  final ct = (item.categoryText ?? '').trim();
+  if (options.contains(ct)) return ct;
+
+  switch (item.category) {
+    case BookingVehicleApiCategory.passengerGo:
+      return 'Đăng ký người đi';
+    case BookingVehicleApiCategory.passengerReturn:
+      return 'Đăng ký người về';
+    case BookingVehicleApiCategory.commercialDelivery:
+      return 'Đăng ký giao hàng thương mại';
+    case BookingVehicleApiCategory.demoExhibitionDelivery:
+      return 'Đăng ký giao hàng Demo/triển lãm';
+    case BookingVehicleApiCategory.commercialPickup:
+      return 'Đăng ký lấy hàng thương mại';
+    case BookingVehicleApiCategory.demoExhibitionPickup:
+      return 'Đăng ký lấy hàng Demo/triển lãm';
+    default:
+      return 'Đăng ký người đi';
+  }
+}
+
+Color _bookingTypeColor(BookingVehicleItem item) {
+  switch (item.category) {
+    case BookingVehicleApiCategory.passengerGo:
+      return AppColors.primaryERP;
+    case BookingVehicleApiCategory.passengerReturn:
+      return AppColors.secondaryERP;
+    case BookingVehicleApiCategory.commercialDelivery:
+    case BookingVehicleApiCategory.demoExhibitionDelivery:
+      return AppColors.success;
+    case BookingVehicleApiCategory.commercialPickup:
+    case BookingVehicleApiCategory.demoExhibitionPickup:
+      return const Color(0xFF9C27B0);
+    default:
+      return AppColors.primaryERP;
+  }
+}
+
+IconData _bookingTypeIcon(BookingVehicleItem item) {
+  switch (item.category) {
+    case BookingVehicleApiCategory.passengerGo:
+      return Icons.directions_car;
+    case BookingVehicleApiCategory.passengerReturn:
+      return Icons.directions_car_outlined;
+    case BookingVehicleApiCategory.commercialDelivery:
+    case BookingVehicleApiCategory.demoExhibitionDelivery:
+      return Icons.local_shipping;
+    case BookingVehicleApiCategory.commercialPickup:
+    case BookingVehicleApiCategory.demoExhibitionPickup:
+      return Icons.inbox;
+    default:
+      return Icons.directions_car;
+  }
+}
+
+//---(Card Widget)---//
+
 class BookingVehicleCard extends StatelessWidget {
   const BookingVehicleCard({
     super.key,
@@ -27,137 +100,194 @@ class BookingVehicleCard extends StatelessWidget {
   final BookingVehicleItem item;
   final VoidCallback? onTap;
 
-  static final DateFormat _returnTimeFormat = DateFormat('HH:mm - dd/MM/yyyy');
+  static final DateFormat _dateTimeFormat = DateFormat('HH:mm - dd/MM/yyyy');
 
   @override
   Widget build(BuildContext context) {
-    final categoryLabel = (item.categoryText ?? '-').trim();
-    final categoryDisplay = categoryLabel.isEmpty ? '-' : categoryLabel;
-
-    final projectParts = _splitProjectFullName(item.projectFullName);
-    final projectLine = _formatProjectLine(projectParts.$1, projectParts.$2);
+    final typeColor = _bookingTypeColor(item);
+    final typeLabel = bookingVehicleEditBookingTypeLabel(item);
+    final typeIcon = _bookingTypeIcon(item);
 
     final approvalBadge = _approvalBadgeLabel(item);
     final arrangementBadge = _arrangementBadgeLabel(item);
     final approvalColor = _approvalBadgeColor(approvalBadge);
     final arrangementColor = _arrangementBadgeColor(arrangementBadge);
 
-    final isPassengerReturn =
-        item.category == BookingVehicleApiCategory.passengerReturn;
-    final isCargoDelivery =
-        item.category == BookingVehicleApiCategory.commercialDelivery ||
-            item.category == BookingVehicleApiCategory.demoExhibitionDelivery;
-    final isCargoPickup =
-        item.category == BookingVehicleApiCategory.commercialPickup ||
-            item.category == BookingVehicleApiCategory.demoExhibitionPickup;
+    final isCancelled = item.isCancel == true;
+    final isRejected = approvalBadge == 'Từ chối';
+    final effectiveColor = isCancelled || isRejected
+        ? AppColors.gray
+        : typeColor;
 
-    final infoChildren = <Widget>[
-      _InfoLine(text: categoryDisplay, prefix: 'Hình thức đặt xe: '),
-      const SizedBox(height: 6),
-      _InfoLine(text: projectLine, prefix: 'Dự án: ', isEmphasis: true),
-    ];
+    // Định dạng project
+    final projectLine = _formatProject(item.projectFullName);
 
-    if (isPassengerReturn) {
-      infoChildren.add(const SizedBox(height: 6));
-      infoChildren.add(
-        _InfoLine(
-          text: _formatReturnDateTime(item.timeNeedPresent),
-          prefix: 'Thời gian cần đến: ',
-        ),
-      );
-      infoChildren.add(const SizedBox(height: 6));
-      infoChildren.add(
-        _InfoLine(
-          text: _formatReturnDateTime(
-            item.departureDate,
-          ),
-          prefix: 'Thời gian về: ',
-        ),
-      );
-    } else if (isCargoDelivery) {
-      infoChildren.add(const SizedBox(height: 6));
-      infoChildren.add(
-        _InfoLine(
-          text: _formatReturnDateTime(item.timeNeedPresent),
-          prefix: 'Thời gian giao đến: ',
-        ),
-      );
-      infoChildren.add(const SizedBox(height: 6));
-      infoChildren.add(
-        _InfoLine(
-          text: _formatReturnDateTime(item.departureDate),
-          prefix: 'Thời gian lấy hàng: ',
-        ),
-      );
-    } else if (isCargoPickup) {
-      infoChildren.add(const SizedBox(height: 6));
-      infoChildren.add(
-        _InfoLine(
-          text: _formatReturnDateTime(item.timeNeedPresent),
-          prefix: 'Thời gian cần đến lấy: ',
-        ),
-      );
-      infoChildren.add(const SizedBox(height: 6));
-      infoChildren.add(
-        _InfoLine(
-          text: _formatReturnDateTime(item.departureDate),
-          prefix: 'Thời gian xuất phát: ',
-        ),
-      );
-    } else {
-      infoChildren.add(const SizedBox(height: 6));
-      infoChildren.add(
-        _InfoLine(
-          text: _formatReturnDateTime(item.timeNeedPresent),
-          prefix: 'Thời gian cần đến: ',
-        ),
-      );
-      infoChildren.add(const SizedBox(height: 6));
-      infoChildren.add(
-        _InfoLine(
-          text: _formatReturnDateTime(item.departureDate),
-          prefix: 'Thời gian xuất phát: ',
-        ),
-      );
+    // Body content theo loại
+    final bodyRows = _buildBodyRows();
 
-      infoChildren.add(const SizedBox(height: 6));
-      infoChildren.add(
-        _InfoLine(
-          text: _formatReturnDateTime(item.timeReturn),
-          prefix: 'Thời gian về: ',
-        ),
-      );
-    }
+    // Bottom: thời gian chính
+    final bottomLabel = _primaryTimeLabel();
+    final bottomTime = _primaryTimeValue();
 
     final inner = Container(
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.borderColor),
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.06),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-        child: Column(
+      child: IntrinsicHeight(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                _StatusBadge(
-                  text: approvalBadge,
-                  color: approvalColor,
+            // Left color border
+            Container(
+              width: 5,
+              decoration: BoxDecoration(
+                color: effectiveColor,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(14),
+                  bottomLeft: Radius.circular(14),
                 ),
-                const SizedBox(width: 8),
-                _StatusBadge(
-                  text: arrangementBadge,
-                  color: arrangementColor,
-                ),
-              ],
+              ),
             ),
-            const SizedBox(height: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: infoChildren,
+            // Main content
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // Header: icon + type + copy button
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: effectiveColor.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Icon(
+                            typeIcon,
+                            size: 20,
+                            color: effectiveColor,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                typeLabel,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                  color: effectiveColor,
+                                ),
+                              ),
+                              if (projectLine.isNotEmpty) ...[
+                                const SizedBox(height: 2),
+                                Text(
+                                  projectLine,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.textSecondaryColor,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                        // Nút sao chép
+                        _CopyButton(item: item),
+                        const SizedBox(width: 6),
+                        // Status badges
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            _TinyBadge(
+                              text: approvalBadge,
+                              color: approvalColor,
+                            ),
+                            const SizedBox(height: 4),
+                            _TinyBadge(
+                              text: arrangementBadge,
+                              color: arrangementColor,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+
+                    if (bodyRows.isNotEmpty) ...[
+                      const SizedBox(height: 12),
+                      // Divider
+                      Container(
+                        height: 1,
+                        color: AppColors.borderColor.withOpacity(0.6),
+                      ),
+                      const SizedBox(height: 10),
+                      // Body rows
+                      ...bodyRows,
+                    ],
+
+                    if (bottomLabel.isNotEmpty && bottomTime.isNotEmpty) ...[
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.access_time,
+                            size: 14,
+                            color: AppColors.textTertiaryColor,
+                          ),
+                          const SizedBox(width: 6),
+                          Expanded(
+                            child: RichText(
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: '$bottomLabel: ',
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.textTertiaryColor,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: bottomTime,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                      color: effectiveColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+
+                    // Passenger / contact info strip
+                    // if (!_isCargoType(item)) ...[
+                    //   const SizedBox(height: 8),
+                    //   _PersonStrip(item: item, color: effectiveColor),
+                    // ],
+                  ],
+                ),
+              ),
             ),
           ],
         ),
@@ -169,7 +299,7 @@ class BookingVehicleCard extends StatelessWidget {
         : Material(
             color: Colors.transparent,
             child: InkWell(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(14),
               onTap: onTap,
               child: inner,
             ),
@@ -214,11 +344,395 @@ class BookingVehicleCard extends StatelessWidget {
     );
   }
 
-  String _formatReturnDateTime(DateTime? dt) {
+  List<Widget> _buildBodyRows() {
+    final rows = <Widget>[];
+    final isPassengerReturn =
+        item.category == BookingVehicleApiCategory.passengerReturn;
+    final isCargoDelivery = item.category == BookingVehicleApiCategory.commercialDelivery ||
+        item.category == BookingVehicleApiCategory.demoExhibitionDelivery;
+    final isCargoPickup = item.category == BookingVehicleApiCategory.commercialPickup ||
+        item.category == BookingVehicleApiCategory.demoExhibitionPickup;
+
+    if (isPassengerReturn) {
+      rows.addAll([
+        _InfoRow(
+          icon: Icons.place_outlined,
+          label: 'Cần đến',
+          value: _fmt(item.timeNeedPresent),
+        ),
+        const SizedBox(height: 6),
+        _InfoRow(
+          icon: Icons.history,
+          label: 'Thời gian về',
+          value: _fmt(item.departureDate),
+        ),
+      ]);
+    } else if (isCargoDelivery) {
+      rows.addAll([
+        _InfoRow(
+          icon: Icons.place_outlined,
+          label: 'Giao đến lúc',
+          value: _fmt(item.timeNeedPresent),
+        ),
+        const SizedBox(height: 6),
+        _InfoRow(
+          icon: Icons.inventory_2_outlined,
+          label: 'Lấy hàng lúc',
+          value: _fmt(item.departureDate),
+        ),
+        if (_cargoInfo.isNotEmpty) ...[
+          const SizedBox(height: 6),
+          _InfoRow(
+            icon: Icons.inventory_outlined,
+            label: 'Hàng hoá',
+            value: _cargoInfo,
+          ),
+        ],
+      ]);
+    } else if (isCargoPickup) {
+      rows.addAll([
+        _InfoRow(
+          icon: Icons.place_outlined,
+          label: 'Cần đến lấy',
+          value: _fmt(item.timeNeedPresent),
+        ),
+        const SizedBox(height: 6),
+        _InfoRow(
+          icon: Icons.directions_car_outlined,
+          label: 'Xuất phát lúc',
+          value: _fmt(item.departureDate),
+        ),
+        if (_cargoInfo.isNotEmpty) ...[
+          const SizedBox(height: 6),
+          _InfoRow(
+            icon: Icons.inventory_outlined,
+            label: 'Hàng hoá',
+            value: _cargoInfo,
+          ),
+        ],
+      ]);
+    } else {
+      // passengerGo default
+      rows.addAll([
+        _InfoRow(
+          icon: Icons.place_outlined,
+          label: 'Cần đến',
+          value: _fmt(item.timeNeedPresent),
+        ),
+        const SizedBox(height: 6),
+        _InfoRow(
+          icon: Icons.directions_car_outlined,
+          label: 'Xuất phát',
+          value: _fmt(item.departureDate),
+        ),
+        const SizedBox(height: 6),
+        _InfoRow(
+          icon: Icons.history,
+          label: 'Về',
+          value: _fmt(item.timeReturn),
+        ),
+      ]);
+    }
+
+    return rows;
+  }
+
+  String _primaryTimeLabel() {
+    switch (item.category) {
+      case BookingVehicleApiCategory.passengerGo:
+        return 'Xuất phát';
+      case BookingVehicleApiCategory.passengerReturn:
+        return 'Về';
+      case BookingVehicleApiCategory.commercialDelivery:
+        return 'Lấy hàng';
+      case BookingVehicleApiCategory.demoExhibitionDelivery:
+        return 'Lấy hàng';
+      case BookingVehicleApiCategory.commercialPickup:
+        return 'Xuất phát';
+      case BookingVehicleApiCategory.demoExhibitionPickup:
+        return 'Xuất phát';
+      default:
+        return 'Xuất phát';
+    }
+  }
+
+  String _primaryTimeValue() {
+    switch (item.category) {
+      case BookingVehicleApiCategory.passengerGo:
+        return _fmt(item.departureDate);
+      case BookingVehicleApiCategory.passengerReturn:
+        return _fmt(item.departureDate);
+      case BookingVehicleApiCategory.commercialDelivery:
+        return _fmt(item.departureDate);
+      case BookingVehicleApiCategory.demoExhibitionDelivery:
+        return _fmt(item.departureDate);
+      case BookingVehicleApiCategory.commercialPickup:
+        return _fmt(item.departureDate);
+      case BookingVehicleApiCategory.demoExhibitionPickup:
+        return _fmt(item.departureDate);
+      default:
+        return _fmt(item.departureDate);
+    }
+  }
+
+  String get _cargoInfo {
+    final parts = <String>[];
+    final name = item.packageName?.trim() ?? '';
+    final size = item.packageSize?.toString().trim() ?? '';
+    final weight = item.packageWeight?.toString().trim() ?? '';
+    if (name.isNotEmpty) parts.add(name);
+    if (size.isNotEmpty) parts.add(size);
+    if (weight.isNotEmpty) parts.add('$weight kg');
+    return parts.join(' · ');
+  }
+
+  bool _isCargoType(BookingVehicleItem item) {
+    return item.category == BookingVehicleApiCategory.commercialDelivery ||
+        item.category == BookingVehicleApiCategory.demoExhibitionDelivery ||
+        item.category == BookingVehicleApiCategory.commercialPickup ||
+        item.category == BookingVehicleApiCategory.demoExhibitionPickup;
+  }
+
+  String _fmt(DateTime? dt) {
     if (dt == null) return '-';
-    return _returnTimeFormat.format(dt);
+    return _dateTimeFormat.format(dt);
   }
 }
+
+//---( Copy Button )---//
+
+class _CopyButton extends StatelessWidget {
+  const _CopyButton({required this.item});
+
+  final BookingVehicleItem item;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () => _copyToAddScreen(context),
+      icon: const Icon(Icons.copy, size: 20),
+      tooltip: 'Sao chép tạo mới',
+      style: IconButton.styleFrom(
+        backgroundColor: AppColors.supportBtn,
+        foregroundColor: AppColors.textSecondaryColor,
+        padding: const EdgeInsets.all(8),
+        minimumSize: const Size(36, 36),
+      ),
+    );
+  }
+
+  void _copyToAddScreen(BuildContext context) async {
+    final bloc = context.read<BookingVehicleBloc>();
+    final projects = bloc.state.projects;
+
+    if (projects.isEmpty) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Vui lòng chờ dữ liệu dự án tải xong'),
+          backgroundColor: AppColors.alert,
+        ),
+      );
+      return;
+    }
+
+    final label = bookingVehicleEditBookingTypeLabel(item);
+    final groupNum = _bookingTypeGroupFromLabel(label);
+
+    final patch = buildBookingVehicleEditFormPatch(
+      item,
+      projects: projects,
+    );
+
+    final cache = <String, dynamic>{
+      ...patch,
+      '_copied_item_id': item.id,
+      '_copied_booking_type_group': groupNum,
+    };
+
+    if (!context.mounted) return;
+    final result = await context.push<bool?>(
+      RouteNames.bookingVehicleAdd,
+      extra: cache,
+    );
+
+    if (result == true && context.mounted) {
+      bloc.add(const BookingVehicleEvent.init());
+    }
+  }
+
+  int _bookingTypeGroupFromLabel(String label) {
+    switch (label) {
+      case 'Đăng ký người đi':
+        return 0;
+      case 'Đăng ký người về':
+        return 1;
+      case 'Đăng ký giao hàng thương mại':
+      case 'Đăng ký giao hàng Demo/triển lãm':
+        return 2;
+      case 'Đăng ký lấy hàng thương mại':
+      case 'Đăng ký lấy hàng Demo/triển lãm':
+        return 3;
+      default:
+        return 0;
+    }
+  }
+}
+
+//---( Person Strip )---//
+
+class _PersonStrip extends StatelessWidget {
+  const _PersonStrip({required this.item, required this.color});
+
+  final BookingVehicleItem item;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    final name = (item.passengerName ?? '').trim();
+    final dept = (item.passengerDepartment ?? '').trim();
+    final phone = (item.passengerPhoneNumber ?? '').trim();
+
+    if (name.isEmpty && dept.isEmpty && phone.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.06),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.person_outline, size: 14, color: color),
+          const SizedBox(width: 6),
+          Expanded(
+            child: Text(
+              name.isNotEmpty ? name : (dept.isNotEmpty ? dept : phone),
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: color,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          if (dept.isNotEmpty) ...[
+            const SizedBox(width: 6),
+            Text(
+              dept,
+              style: const TextStyle(
+                fontSize: 11,
+                color: AppColors.textTertiaryColor,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+          if (phone.isNotEmpty) ...[
+            const SizedBox(width: 6),
+            Text(
+              phone,
+              style: const TextStyle(
+                fontSize: 11,
+                color: AppColors.textTertiaryColor,
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+//---( Info Row )---//
+
+class _InfoRow extends StatelessWidget {
+  const _InfoRow({
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(icon, size: 14, color: AppColors.textTertiaryColor),
+        const SizedBox(width: 6),
+        SizedBox(
+          width: 90,
+          child: Text(
+            label,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: AppColors.textTertiaryColor,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            value,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: AppColors.text,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+//---( Tiny Badge )---//
+
+class _TinyBadge extends StatelessWidget {
+  const _TinyBadge({required this.text, required this.color});
+
+  final String text;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    final safeText = text.trim().isEmpty ? '-' : text.trim();
+    final bg = color.withOpacity(0.12);
+    final border = color.withOpacity(0.4);
+
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 80),
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: border),
+      ),
+      child: Text(
+        safeText,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 9,
+          fontWeight: FontWeight.w700,
+          color: color,
+          letterSpacing: 0.2,
+        ),
+      ),
+    );
+  }
+}
+
+//---( Status Helpers )---//
 
 bool _canShowCancelSlidable(BookingVehicleItem item) {
   final id = item.id;
@@ -228,12 +742,13 @@ bool _canShowCancelSlidable(BookingVehicleItem item) {
   return true;
 }
 
-String _formatProjectLine(String code, String name) {
-  final c = code.trim().isEmpty ? '-' : code.trim();
-  final n = name.trim().isEmpty ? '-' : name.trim();
-  if (c == '-' && n == '-') return '-';
-  if (c == n) return c;
-  return '$c - $n';
+String _formatProject(String? full) {
+  if (full == null || full.trim().isEmpty) return '';
+  final dashParts = full.trim().split(RegExp(r'\s[-–]\s'));
+  if (dashParts.length >= 2) {
+    return '${dashParts.first.trim()} - ${dashParts.sublist(1).join(' - ').trim()}';
+  }
+  return full.trim();
 }
 
 String _approvalBadgeLabel(BookingVehicleItem item) {
@@ -283,116 +798,4 @@ Color _approvalBadgeColor(String label) {
 
 Color _arrangementBadgeColor(String label) {
   return label == 'Đã xếp' ? AppColors.success : AppColors.gray;
-}
-
-class _InfoLine extends StatelessWidget {
-  const _InfoLine({
-    required this.text,
-    this.prefix = '',
-    this.isEmphasis = false,
-  });
-
-  final String text;
-  final String prefix;
-  final bool isEmphasis;
-
-  @override
-  Widget build(BuildContext context) {
-    final display = text.isEmpty ? '-' : text;
-    final style = isEmphasis
-        ? const TextStyle(
-            fontSize: 13,
-            fontWeight: FontWeight.w600,
-            color: AppColors.secondaryERP,
-            height: 1.2,
-          )
-        : const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w500,
-            color: AppColors.textSecondaryColor,
-            height: 1.2,
-          );
-
-    return Text.rich(
-      TextSpan(
-        children: [
-          if (prefix.isNotEmpty)
-            TextSpan(
-              text: prefix,
-              style: TextStyle(
-                fontSize: style.fontSize,
-                fontWeight: FontWeight.w500,
-                color: AppColors.textTertiaryColor,
-                height: style.height,
-              ),
-            ),
-          TextSpan(text: display, style: style),
-        ],
-      ),
-      maxLines: 3,
-      overflow: TextOverflow.ellipsis,
-    );
-  }
-}
-
-class _StatusBadge extends StatelessWidget {
-  const _StatusBadge({
-    required this.text,
-    required this.color,
-  });
-
-  final String text;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    final safeText = text.trim().isEmpty ? '-' : text.trim();
-    final bg = color.withOpacity(0.12);
-    final border = color.withOpacity(0.55);
-
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 88),
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-      decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: border),
-      ),
-      child: Text(
-        safeText,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 10,
-          fontWeight: FontWeight.w600,
-          color: color,
-        ),
-      ),
-    );
-  }
-}
-
-/// Trả về (projectCode, projectName).
-(String, String) _splitProjectFullName(String? full) {
-  final value = (full ?? '').trim();
-  if (value.isEmpty) return ('-', '-');
-
-  final dashParts = value.split(RegExp(r'\s[-–]\s'));
-  if (dashParts.length >= 2) {
-    final code = dashParts.first.trim();
-    final name = dashParts.sublist(1).join(' - ').trim();
-    return (code.isNotEmpty ? code : '-', name.isNotEmpty ? name : '-');
-  }
-
-  final lines = value
-      .split('\n')
-      .map((e) => e.trim())
-      .where((e) => e.isNotEmpty)
-      .toList();
-  if (lines.length >= 2) {
-    return (lines.first, lines.sublist(1).join(' ').trim());
-  }
-
-  return (value, value);
 }
