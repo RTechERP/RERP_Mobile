@@ -3,6 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../../common/widgets/form/index.dart';
 
@@ -27,9 +28,9 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
   List<BookingVehicleProjectItem> get _projects => widget.projects;
   List<ProvinceArrivesItem> get _arrivalProvinces => widget.arrivalProvinces;
 
-  static const List<String> _vehicleTypes = [
-    'Ô tô, xe máy ...',
-    'Máy bay',
+  static const List<FormChoiceOption<String>> _vehicleTypes = [
+    FormChoiceOption(value: 'Ô tô, xe máy ...', label: 'Ô tô, xe máy ...', selectedColor: AppColors.primaryERP),
+    FormChoiceOption(value: 'Máy bay', label: 'Máy bay', selectedColor: AppColors.primaryERP),
   ];
 
   Future<void> _pickProject() async {
@@ -69,21 +70,6 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
         form?.fields['pickup_province']?.didChange(item.provinceName ?? '');
       },
       initialSelectedItem: currentItem,
-    );
-  }
-
-  Future<void> _pickTypeTransport() async {
-    final form = FormBuilder.of(context);
-    final current = form?.fields['type_transport']?.value as String? ?? '';
-    await openSelectBottomSheet<String>(
-      context: context,
-      title: 'Chọn loại phương tiện',
-      items: _vehicleTypes,
-      displayText: (v) => v,
-      onSelected: (item) {
-        form?.fields['type_transport']?.didChange(item);
-      },
-      initialSelectedItem: current,
     );
   }
 
@@ -177,19 +163,15 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
           ),
           const SizedBox(height: 8),
 
-          FormBuilderTextField(
+          FormChoiceGroup<String>(
             name: 'type_transport',
-            readOnly: true,
-            decoration: formInputDecoration(
-              context,
-              label: 'Loại phương tiện',
-              icon: Icons.directions_car_outlined,
-              isRequired: true,
-            ),
+            label: 'Loại phương tiện',
+            icon: Icons.directions_car_outlined,
+            options: _vehicleTypes,
+            isRequired: true,
             validator: FormBuilderValidators.required(
               errorText: 'Vui lòng chọn loại phương tiện',
             ),
-            onTap: _pickTypeTransport,
           ),
         ],
       ),
