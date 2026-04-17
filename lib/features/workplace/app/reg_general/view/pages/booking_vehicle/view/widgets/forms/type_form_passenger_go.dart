@@ -150,6 +150,7 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
           FormBuilderTextField(
             name: 'project',
             readOnly: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Dự án',
@@ -195,6 +196,7 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
           FormBuilderTextField(
             name: 'provinces',
             readOnly: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Tỉnh cần đến',
@@ -252,6 +254,7 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
                 child: FormBuilderTextField(
                   name: 'starting_point',
                   readOnly: true,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: formInputDecoration(
                     context,
                     label: 'Xuất phát',
@@ -269,6 +272,7 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
                 child: FormBuilderTextField(
                   name: 'return_point',
                   readOnly: true,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: formInputDecoration(
                     context,
                     label: 'Điểm về',
@@ -289,6 +293,7 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
             name: 'destination_address',
             initialValue: 'VP Hà Nội',
             enabled: _isStartingPointOther,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Điểm xuất phát cụ thể',
@@ -309,6 +314,7 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
             name: 'return_address',
             initialValue: 'VP Hà Nội',
             enabled: _isReturnPointOther,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Địa chỉ quay về cụ thể',

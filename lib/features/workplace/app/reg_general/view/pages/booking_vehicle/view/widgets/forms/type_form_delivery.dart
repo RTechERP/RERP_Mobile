@@ -129,6 +129,7 @@ class _TypeFormCommercialDeliveryState
           FormBuilderTextField(
             name: 'project',
             readOnly: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Dự án',
@@ -171,6 +172,7 @@ class _TypeFormCommercialDeliveryState
           FormBuilderTextField(
             name: 'provinces',
             readOnly: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Tỉnh giao đến',
@@ -213,6 +215,7 @@ class _TypeFormCommercialDeliveryState
           FormBuilderTextField(
             name: 'return_point',
             readOnly: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Điểm lấy hàng',
@@ -231,6 +234,7 @@ class _TypeFormCommercialDeliveryState
             initialValue: _isReturnPointOther ? '' : _returnPointValue,
             enabled: _isReturnPointOther,
             readOnly: !_isReturnPointOther,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Địa chỉ lấy hàng cụ thể',

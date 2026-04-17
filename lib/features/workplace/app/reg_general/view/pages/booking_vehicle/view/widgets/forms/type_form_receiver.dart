@@ -81,6 +81,7 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
           FormBuilderTextField(
             name: 'pickup_project',
             readOnly: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Dự án',
@@ -137,6 +138,7 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
           FormBuilderTextField(
             name: 'pickup_province',
             readOnly: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Tỉnh đến lấy',

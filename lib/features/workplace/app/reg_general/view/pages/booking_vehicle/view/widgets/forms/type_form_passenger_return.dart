@@ -128,6 +128,7 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
           FormBuilderTextField(
             name: 'project',
             readOnly: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Dự án',
@@ -170,6 +171,7 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
           FormBuilderTextField(
             name: 'provinces',
             readOnly: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Tỉnh cần về',
@@ -214,6 +216,7 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
             name: 'return_point',
             initialValue: _returnPointDisplay,
             readOnly: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Điểm đón',
@@ -232,6 +235,7 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
             name: 'return_address',
             initialValue: 'VP Hà Nội',
             enabled: _isReturnPointOther,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: formInputDecoration(
               context,
               label: 'Địa chỉ đón cụ thể',
