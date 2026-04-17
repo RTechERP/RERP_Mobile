@@ -22,7 +22,7 @@ class AuthService extends DioBaseApiService {
         String? deviceId,
       }) {
     return post<LoginResponse>(
-      ApiEndPoint.loginMobile,
+      ApiEndPoint.login,
       body: {
         'LoginName': loginName,
         'PasswordHash': passwordHash,

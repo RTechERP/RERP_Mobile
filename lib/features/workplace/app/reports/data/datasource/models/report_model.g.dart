@@ -340,7 +340,7 @@ _$ProjectItemResponseImpl _$$ProjectItemResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$ProjectItemResponseImpl(
       id: (json['ID'] as num).toInt(),
-      code: json['Code'] as String,
+      code: json['Code'] as String?,
       mission: json['Mission'] as String?,
       percentageActual: (json['PercentageActual'] as num?)?.toDouble(),
       planStartDate: json['PlanStartDate'] == null

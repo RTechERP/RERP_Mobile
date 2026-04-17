@@ -3894,7 +3894,7 @@ mixin _$ProjectItemResponse {
   @JsonKey(name: 'ID')
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'Code')
-  String get code => throw _privateConstructorUsedError;
+  String? get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'Mission')
   String? get mission => throw _privateConstructorUsedError;
   @JsonKey(name: 'PercentageActual')
@@ -3924,7 +3924,7 @@ abstract class $ProjectItemResponseCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'ID') int id,
-      @JsonKey(name: 'Code') String code,
+      @JsonKey(name: 'Code') String? code,
       @JsonKey(name: 'Mission') String? mission,
       @JsonKey(name: 'PercentageActual') double? percentageActual,
       @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
@@ -3947,7 +3947,7 @@ class _$ProjectItemResponseCopyWithImpl<$Res, $Val extends ProjectItemResponse>
   @override
   $Res call({
     Object? id = null,
-    Object? code = null,
+    Object? code = freezed,
     Object? mission = freezed,
     Object? percentageActual = freezed,
     Object? planStartDate = freezed,
@@ -3960,10 +3960,10 @@ class _$ProjectItemResponseCopyWithImpl<$Res, $Val extends ProjectItemResponse>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      code: null == code
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       mission: freezed == mission
           ? _value.mission
           : mission // ignore: cast_nullable_to_non_nullable
@@ -4002,7 +4002,7 @@ abstract class _$$ProjectItemResponseImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'ID') int id,
-      @JsonKey(name: 'Code') String code,
+      @JsonKey(name: 'Code') String? code,
       @JsonKey(name: 'Mission') String? mission,
       @JsonKey(name: 'PercentageActual') double? percentageActual,
       @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
@@ -4023,7 +4023,7 @@ class __$$ProjectItemResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? code = null,
+    Object? code = freezed,
     Object? mission = freezed,
     Object? percentageActual = freezed,
     Object? planStartDate = freezed,
@@ -4036,10 +4036,10 @@ class __$$ProjectItemResponseImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      code: null == code
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       mission: freezed == mission
           ? _value.mission
           : mission // ignore: cast_nullable_to_non_nullable
@@ -4073,7 +4073,7 @@ class __$$ProjectItemResponseImplCopyWithImpl<$Res>
 class _$ProjectItemResponseImpl implements _ProjectItemResponse {
   const _$ProjectItemResponseImpl(
       {@JsonKey(name: 'ID') required this.id,
-      @JsonKey(name: 'Code') required this.code,
+      @JsonKey(name: 'Code') this.code,
       @JsonKey(name: 'Mission') this.mission,
       @JsonKey(name: 'PercentageActual') this.percentageActual,
       @JsonKey(name: 'PlanStartDate') this.planStartDate,
@@ -4089,7 +4089,7 @@ class _$ProjectItemResponseImpl implements _ProjectItemResponse {
   final int id;
   @override
   @JsonKey(name: 'Code')
-  final String code;
+  final String? code;
   @override
   @JsonKey(name: 'Mission')
   final String? mission;
@@ -4159,7 +4159,7 @@ class _$ProjectItemResponseImpl implements _ProjectItemResponse {
 abstract class _ProjectItemResponse implements ProjectItemResponse {
   const factory _ProjectItemResponse(
           {@JsonKey(name: 'ID') required final int id,
-          @JsonKey(name: 'Code') required final String code,
+          @JsonKey(name: 'Code') final String? code,
           @JsonKey(name: 'Mission') final String? mission,
           @JsonKey(name: 'PercentageActual') final double? percentageActual,
           @JsonKey(name: 'PlanStartDate') final DateTime? planStartDate,
@@ -4176,7 +4176,7 @@ abstract class _ProjectItemResponse implements ProjectItemResponse {
   int get id;
   @override
   @JsonKey(name: 'Code')
-  String get code;
+  String? get code;
   @override
   @JsonKey(name: 'Mission')
   String? get mission;

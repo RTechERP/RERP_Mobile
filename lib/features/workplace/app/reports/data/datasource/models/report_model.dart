@@ -219,7 +219,7 @@ class ProjectResponse with _$ProjectResponse {
 class ProjectItemResponse with _$ProjectItemResponse {
   const factory ProjectItemResponse({
     @JsonKey(name: 'ID') required int id,
-    @JsonKey(name: 'Code') required String code,
+    @JsonKey(name: 'Code') String? code,
     @JsonKey(name: 'Mission') String? mission,
     @JsonKey(name: 'PercentageActual') double? percentageActual,
     @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
