@@ -16,12 +16,14 @@ class TypeFormPassengerGo extends StatefulWidget {
     required this.departureProvinces,
     required this.arrivalProvinces,
     required this.formKey,
+    required this.typeTransportKey,
   });
 
   final List<BookingVehicleProjectItem> projects;
   final List<ProvinceDepartureItem> departureProvinces;
   final List<ProvinceArrivesItem> arrivalProvinces;
   final GlobalKey<FormBuilderState> formKey;
+  final GlobalKey<FormBuilderFieldState> typeTransportKey;
 
   @override
   State<TypeFormPassengerGo> createState() => _TypeFormPassengerGoState();
@@ -347,6 +349,7 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
           const SizedBox(height: 8),
 
           FormChoiceGroup<String>(
+            fieldKey: widget.typeTransportKey,
             name: 'type_transport',
             label: 'Loại phương tiện',
             icon: Icons.directions_car_outlined,

@@ -57,6 +57,10 @@ class _BookingVehicleAddScreenState
         > {
   final _formKey = GlobalKey<FormBuilderState>();
 
+  /// Key để force touch type_transport field sau patchValue
+  /// (FormBuilderField không tự sync sau patchValue nếu listener chưa attach).
+  final _typeTransportKey = GlobalKey<FormBuilderFieldState>();
+
   /// Thứ tự ưu tiên validate field: theo layout form từ trên xuống dưới.
   /// passengerGo: main form → passenger rows (index 0..n).
   static const List<String> _passengerGoPriority = [
@@ -303,26 +307,22 @@ class _BookingVehicleAddScreenState
     final groupRaw = patch.remove('_copied_booking_type_group');
     patch.remove('_copied_item_id');
 
-    // Đợi frame tiếp theo để widget tree (TypeForm) được build xong
-    // trước khi patchValue
+    // Đợi 1 frame để TypeForm mount xong rồi patchValue + force didChange.
     Future.delayed(Duration.zero, () {
       if (!mounted) return;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
 
-        final split = splitBookingVehicleFormAndInfo(patch);
-        if (split.form.isNotEmpty) {
-          bloc.add(BookingVehicleEvent.updateForm(values: split.form));
-        }
-        if (split.info.isNotEmpty) {
-          bloc.add(BookingVehicleEvent.updateInfo(values: split.info));
-        }
-        _formKey.currentState?.patchValue(patch);
-        final tv = patch['type_transport'] ?? patch['type_transport_text'];
-        if (tv != null) {
-          _formKey.currentState?.fields['type_transport']?.didChange(tv);
-        }
-      });
+      final split = splitBookingVehicleFormAndInfo(patch);
+      if (split.form.isNotEmpty) {
+        bloc.add(BookingVehicleEvent.updateForm(values: split.form));
+      }
+      if (split.info.isNotEmpty) {
+        bloc.add(BookingVehicleEvent.updateInfo(values: split.info));
+      }
+      _formKey.currentState?.patchValue(patch);
+      final tv = patch['type_transport'] ?? patch['type_transport_text'];
+      if (tv != null) {
+        (_typeTransportKey.currentState as dynamic)?.didChange(tv);
+      }
     });
 
     if (groupRaw is int) {
@@ -358,27 +358,23 @@ class _BookingVehicleAddScreenState
         projects: state.projects,
       );
 
-      // Đợi widget tree (TypeForm) build xong rồi mới patchValue
+      // Đợi 1 frame để TypeForm mount xong rồi patchValue + force didChange.
       Future.delayed(Duration.zero, () {
         if (!mounted || _editPrefillApplied) return;
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (!mounted) return;
 
-          final split = splitBookingVehicleFormAndInfo(patch);
-          if (split.form.isNotEmpty) {
-            bloc.add(BookingVehicleEvent.updateForm(values: split.form));
-          }
-          if (split.info.isNotEmpty) {
-            bloc.add(BookingVehicleEvent.updateInfo(values: split.info));
-          }
-          _formKey.currentState?.patchValue(patch);
-          // Force refresh type_transport field
-          final transportVal = patch['type_transport'];
-          if (transportVal != null) {
-            _formKey.currentState?.fields['type_transport']?.didChange(transportVal);
-          }
-          _editPrefillApplied = true;
-        });
+        final split = splitBookingVehicleFormAndInfo(patch);
+        if (split.form.isNotEmpty) {
+          bloc.add(BookingVehicleEvent.updateForm(values: split.form));
+        }
+        if (split.info.isNotEmpty) {
+          bloc.add(BookingVehicleEvent.updateInfo(values: split.info));
+        }
+        _formKey.currentState?.patchValue(patch);
+        final transportVal = patch['type_transport'];
+        if (transportVal != null) {
+          (_typeTransportKey.currentState as dynamic)?.didChange(transportVal);
+        }
+        _editPrefillApplied = true;
       });
     });
   }
@@ -645,6 +641,7 @@ class _BookingVehicleAddScreenState
                                       state.provinceDeparture,
                                   arrivalProvinces: state.provinceArrives,
                                   formKey: _formKey,
+                                  typeTransportKey: _typeTransportKey,
                                 ),
                               if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
                                   _BookingVehicleTypeGroup.passengerGo)
@@ -773,6 +770,7 @@ class _BookingVehicleAddScreenState
                                     );
                                   },
                                 ),
+
                               if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
                                   _BookingVehicleTypeGroup.passengerReturn)
                                 TypeFormPassengerReturn(
@@ -781,6 +779,7 @@ class _BookingVehicleAddScreenState
                                       state.provinceDeparture,
                                   arrivalProvinces: state.provinceArrives,
                                   formKey: _formKey,
+                                  typeTransportKey: _typeTransportKey,
                                 ),
                               if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
                                   _BookingVehicleTypeGroup.passengerReturn)
@@ -915,6 +914,7 @@ class _BookingVehicleAddScreenState
                                       state.provinceDeparture,
                                   arrivalProvinces: state.provinceArrives,
                                   formKey: _formKey,
+                                  typeTransportKey: _typeTransportKey,
                                 ),
                               if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
                                   _BookingVehicleTypeGroup.commercialDelivery)
@@ -1048,6 +1048,7 @@ class _BookingVehicleAddScreenState
                                   projects: state.projects,
                                   arrivalProvinces: state.provinceArrives,
                                   formKey: _formKey,
+                                  typeTransportKey: _typeTransportKey,
                                 ),
                               if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
                                   _BookingVehicleTypeGroup

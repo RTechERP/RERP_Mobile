@@ -20,6 +20,7 @@ class FormChoiceOption<T> {
 class FormChoiceGroup<T> extends StatefulWidget {
   const FormChoiceGroup({
     super.key,
+    this.fieldKey,
     required this.name,
     required this.label,
     required this.icon,
@@ -31,6 +32,10 @@ class FormChoiceGroup<T> extends StatefulWidget {
     this.onChanged,
     this.onFieldCreated,
   });
+
+  /// GlobalKey để screen có thể gọi didChange từ bên ngoài
+  /// (dùng sau patchValue khi FormBuilderField chưa mount).
+  final GlobalKey<FormBuilderFieldState>? fieldKey;
 
   /// Tên field trong FormBuilder.
   final String name;
@@ -59,7 +64,8 @@ class FormChoiceGroup<T> extends StatefulWidget {
   /// Callback khi giá trị thay đổi.
   final ValueChanged<T?>? onChanged;
 
-  /// Callback khi field được tạo.
+  /// Callback khi field được tạo, truyền field state để screen có thể
+  /// gọi didChange từ bên ngoài.
   final ValueChanged<FormFieldState<T>>? onFieldCreated;
 
   @override
@@ -79,27 +85,49 @@ class _FormChoiceGroupState<T> extends State<FormChoiceGroup<T>> {
     return widget.validator;
   }
 
-  /// Chuẩn hóa ellipsis: '...' → '…' (U+2026).
-  /// Dùng để so sánh value từ API/form với option values.
-  String _norm(String s) => s.replaceAll('...', '\u2026');
+  /// Chuẩn hóa ellipsis: '...' → '…' (U+2026), rồi trim.
+  String _norm(String s) => s.replaceAll('...', '\u2026').trim();
 
-  /// Normalize giá trị field để so sánh với options.
-  String? _normValue(T? v) => v == null ? null : _norm(v.toString());
-
-  /// Kiểm tra field value có khớp option nào không (so sánh sau khi normalize).
-  bool _isOptionSelected(T? fieldValue, T optionValue) {
-    if (fieldValue == null) return false;
-    return _normValue(fieldValue) == _normValue(optionValue);
+  /// Normalize giá trị để so sánh với options.
+  String? _normValue(Object? v) {
+    if (v == null) return null;
+    final s = v is T ? v.toString() : v.toString();
+    return _norm(s);
   }
 
-  /// Tìm index của option khớp với fieldValue (normalize trước khi so sánh).
-  int _matchOptionIndex(T? fieldValue) {
-    if (fieldValue == null) return -1;
-    final nv = _normValue(fieldValue);
+  /// Tìm index của option khớp với [raw] (normalize trước so sánh).
+  int _matchIndex(Object? raw) {
+    if (raw == null || widget.options.isEmpty) return -1;
+    final nv = _normValue(raw);
     for (int i = 0; i < widget.options.length; i++) {
       if (_normValue(widget.options[i].value) == nv) return i;
     }
     return -1;
+  }
+
+  /// Resolve giá trị hiển thị chip.
+  /// Ưu tiên: field.value đã sync (qua didChange / user tap).
+  /// Fallback: đọc từ FormBuilder state (initialValue map, patchValue).
+  T? _resolveDisplayValue(T? fieldValue) {
+    // 1. field.value đã sync → dùng trực tiếp
+    if (fieldValue != null) return fieldValue;
+
+    // 2. Fallback: đọc từ FormBuilder state
+    final formState = FormBuilder.of(context);
+    if (formState != null) {
+      final raw = formState.initialValue?[widget.name] ??
+                  formState.value?[widget.name];
+      if (raw != null) {
+        final idx = _matchIndex(raw);
+        if (idx >= 0) return widget.options[idx].value;
+        return _normValue(raw) as T?;
+      }
+    }
+
+    // 3. Fallback cuối: widget.initialValue
+    final idx = _matchIndex(widget.initialValue);
+    if (idx >= 0) return widget.options[idx].value;
+    return widget.options.isNotEmpty ? widget.options.first.value : null;
   }
 
   @override
@@ -132,6 +160,7 @@ class _FormChoiceGroupState<T> extends State<FormChoiceGroup<T>> {
         ),
         const SizedBox(height: 8),
         FormBuilderField<T>(
+          key: widget.fieldKey,
           name: widget.name,
           initialValue: widget.initialValue,
           enabled: widget.enabled,
@@ -140,40 +169,28 @@ class _FormChoiceGroupState<T> extends State<FormChoiceGroup<T>> {
           onChanged: widget.onChanged,
           onReset: () {},
           builder: (field) {
+            // Dùng trực tiếp field.value — didChange đã cập nhật rồi.
+            final displayValue = _resolveDisplayValue(field.value);
             WidgetsBinding.instance.addPostFrameCallback((_) {
               widget.onFieldCreated?.call(field);
-
-              if (field.value == null) {
-                if (widget.options.isNotEmpty) {
-                  field.didChange(widget.options.first.value);
-                }
-              } else {
-                final idx = _matchOptionIndex(field.value);
-                if (idx == -1) {
-                  final nv = _normValue(field.value);
-                  final matchIdx = widget.options.indexWhere(
-                    (o) => _normValue(o.value) == nv,
-                  );
-                  if (matchIdx >= 0) {
-                    field.didChange(widget.options[matchIdx].value);
-                  }
-                }
-              }
             });
-            return _buildChoiceChips(field);
+            return _buildChoiceChips(field, displayValue);
           },
         ),
       ],
     );
   }
 
-  Widget _buildChoiceChips(FormFieldState<T?> field) {
+  Widget _buildChoiceChips(FormFieldState<T?> field, T? displayValue) {
+    if (widget.options.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return Wrap(
       spacing: 8,
       runSpacing: 8,
       children: widget.options.map((option) {
-        // So sánh sau khi normalize để xử lý được '...' vs '…'
-        final isSelected = _isOptionSelected(field.value, option.value);
+        final isSelected = _normValue(displayValue) == _normValue(option.value);
         final selectedColor = option.selectedColor ?? Theme.of(context).primaryColor;
 
         return GestureDetector(

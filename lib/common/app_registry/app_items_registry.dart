@@ -146,7 +146,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.assignment_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/work-request',
+      route: '',
       imageUrl: AppImages.reg_general_work_request,
     ),
 
@@ -156,7 +156,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.lightbulb_outline.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/idea',
+      route: '',
       imageUrl: AppImages.reg_general_idea,
     ),
 
@@ -166,7 +166,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.description_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/contract',
+      route: '',
       imageUrl: AppImages.reg_general_contract,
     ),
 
@@ -206,7 +206,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.approval_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/stamp',
+      route: '',
       imageUrl: AppImages.reg_general_stamp,
     ),
   ];
