@@ -139,12 +139,17 @@ void _prefillPassengerGoLike(
     _putDt(m, 'time_return', item.timeReturn);
   }
 
+  const hanoiOffice = 'VP Hà Nội';
   const other = 'Khác';
-  m['starting_point'] = other;
-  m['starting_point_text'] = other;
+  m['starting_point'] = hanoiOffice;
+  m['starting_point_text'] = hanoiOffice;
   m['return_point'] = other;
-  m['return_point_text'] = other;
-  final dep = (item.departureAddressText ?? item.departureAddress ?? '').trim();
+  m['return_point_text'] = hanoiOffice;
+  final dep = (item.departureAddressActual ??
+          item.departureAddressText ??
+          item.departureAddress ??
+          '')
+      .trim();
   if (dep.isNotEmpty) {
     _putStr(m, 'destination_address', dep);
     _putStr(m, 'return_address', dep);

@@ -135,7 +135,7 @@ class BookingVehicleCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha:0.06),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -169,7 +169,7 @@ class BookingVehicleCard extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: effectiveColor.withOpacity(0.1),
+                            color: effectiveColor.withValues(alpha:0.1),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Icon(
@@ -233,7 +233,7 @@ class BookingVehicleCard extends StatelessWidget {
                       // Divider
                       Container(
                         height: 1,
-                        color: AppColors.borderColor.withOpacity(0.6),
+                        color: AppColors.borderColor.withValues(alpha: 0.6),
                       ),
                       const SizedBox(height: 10),
                       // Body rows
@@ -523,25 +523,12 @@ class _CopyButton extends StatelessWidget {
 
   void _copyToAddScreen(BuildContext context) async {
     final bloc = context.read<BookingVehicleBloc>();
-    final projects = bloc.state.projects;
-
-    if (projects.isEmpty) {
-      if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Vui lòng chờ dữ liệu dự án tải xong'),
-          backgroundColor: AppColors.alert,
-        ),
-      );
-      return;
-    }
-
     final label = bookingVehicleEditBookingTypeLabel(item);
     final groupNum = _bookingTypeGroupFromLabel(label);
 
     final patch = buildBookingVehicleEditFormPatch(
       item,
-      projects: projects,
+      projects: bloc.state.projects,
     );
 
     final cache = <String, dynamic>{
@@ -600,7 +587,7 @@ class _PersonStrip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.06),
+        color: color.withValues(alpha:0.06),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -705,8 +692,8 @@ class _TinyBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final safeText = text.trim().isEmpty ? '-' : text.trim();
-    final bg = color.withOpacity(0.12);
-    final border = color.withOpacity(0.4);
+    final bg = color.withValues(alpha:0.12);
+    final border = color.withValues(alpha:0.4);
 
     return Container(
       constraints: const BoxConstraints(maxWidth: 80),
