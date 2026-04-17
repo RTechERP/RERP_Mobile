@@ -120,25 +120,25 @@ class AppItemRegistry {
       imageUrl: AppImages.reg_regneral_booking,
     ),
 
-    AppItemModel(
-      id: 'reg_general:purchase',
-      name: 'reg_general.purchase'.tr(),
-      iconCodePoint: Icons.request_quote_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'reg_general',
-      route: '/reg-general/purchase',
-      imageUrl: AppImages.reg_general_purchase,
-    ),
-
-    AppItemModel(
-      id: 'reg_general:special_purchase',
-      name: 'reg_general.special_purchase'.tr(),
-      iconCodePoint: Icons.price_check_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'reg_general',
-      route: '/reg-general/special-purchase',
-      imageUrl: AppImages.reg_general_special_purchase,
-    ),
+    // AppItemModel(
+    //   id: 'reg_general:purchase',
+    //   name: 'reg_general.purchase'.tr(),
+    //   iconCodePoint: Icons.request_quote_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'reg_general',
+    //   route: '/reg-general/purchase',
+    //   imageUrl: AppImages.reg_general_purchase,
+    // ),
+    //
+    // AppItemModel(
+    //   id: 'reg_general:special_purchase',
+    //   name: 'reg_general.special_purchase'.tr(),
+    //   iconCodePoint: Icons.price_check_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'reg_general',
+    //   route: '/reg-general/special-purchase',
+    //   imageUrl: AppImages.reg_general_special_purchase,
+    // ),
 
     AppItemModel(
       id: 'reg_general:work_request',

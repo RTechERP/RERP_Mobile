@@ -15,11 +15,13 @@ class TypeFormCommercialDelivery extends StatefulWidget {
     required this.projects,
     required this.departureProvinces,
     required this.arrivalProvinces,
+    required this.formKey,
   });
 
   final List<BookingVehicleProjectItem> projects;
   final List<ProvinceDepartureItem> departureProvinces;
   final List<ProvinceArrivesItem> arrivalProvinces;
+  final GlobalKey<FormBuilderState> formKey;
 
   @override
   State<TypeFormCommercialDelivery> createState() =>
@@ -36,7 +38,7 @@ class _TypeFormCommercialDeliveryState
   List<ProvinceArrivesItem> get _arrivalProvinces => widget.arrivalProvinces;
 
   static const List<FormChoiceOption<String>> _vehicleTypes = [
-    FormChoiceOption(value: 'Ô tô, xe máy ...', label: 'Ô tô, xe máy ...', selectedColor: AppColors.primaryERP),
+    FormChoiceOption(value: 'Ô tô, xe máy …', label: 'Ô tô, xe máy …', selectedColor: AppColors.primaryERP),
     FormChoiceOption(value: 'Máy bay', label: 'Máy bay', selectedColor: AppColors.primaryERP),
   ];
 
@@ -54,8 +56,14 @@ class _TypeFormCommercialDeliveryState
   }
 
   Future<void> _pickProject() async {
-    final form = FormBuilder.of(context);
-    final currentProject = form?.fields['project']?.value as String? ?? '';
+    final form = widget.formKey.currentState;
+    if (form == null) {
+      print('⚠️ _pickProject: widget.formKey.currentState is null');
+      return;
+    }
+    print('✅ _pickProject: form found, field count=${form.fields.length}');
+    final currentProject = form.fields['project']?.value as String? ?? '';
+    print('📋 current project value: "$currentProject"');
     final currentProjectItem = _projects.cast<BookingVehicleProjectItem?>().firstWhere(
       (p) => '${p!.projectCode ?? ''} - ${p.projectName ?? ''}'.trim() == currentProject,
       orElse: () => null,
@@ -66,17 +74,19 @@ class _TypeFormCommercialDeliveryState
       items: _projects,
       displayText: (v) => '${v.projectCode ?? ''} - ${v.projectName ?? ''}',
       onSelected: (item) {
-        form?.fields['project']?.didChange(
-          '${item.projectCode ?? ''} - ${item.projectName ?? ''}'.trim(),
-        );
+        final val = '${item.projectCode ?? ''} - ${item.projectName ?? ''}'.trim();
+        print('📋 _pickProject onSelected: "$val"');
+        form.fields['project']?.didChange(val);
+        print('📋 didChange called, field value now: "${form.fields['project']?.value}"');
       },
       initialSelectedItem: currentProjectItem,
     );
   }
 
   Future<void> _pickReturnPoint() async {
-    final form = FormBuilder.of(context);
-    final currentReturn = form?.fields['return_point']?.value as String? ?? '';
+    final form = widget.formKey.currentState;
+    if (form == null) return;
+    final currentReturn = form.fields['return_point']?.value as String? ?? '';
     final currentReturnItem = _startingPointOptions.cast<String?>().firstWhere(
       (p) => p == currentReturn,
       orElse: () => null,
@@ -91,11 +101,11 @@ class _TypeFormCommercialDeliveryState
         setState(() {
           _returnPointValue = selected;
         });
-        form?.fields['return_point']?.didChange(selected);
+        form.fields['return_point']?.didChange(selected);
         if (selected != _otherPointLabel) {
-          form?.fields['return_address']?.didChange(selected);
+          form.fields['return_address']?.didChange(selected);
         } else {
-          form?.fields['return_address']?.didChange('');
+          form.fields['return_address']?.didChange('');
         }
       },
       initialSelectedItem: currentReturnItem,
@@ -103,8 +113,9 @@ class _TypeFormCommercialDeliveryState
   }
 
   Future<void> _pickProvinces() async {
-    final form = FormBuilder.of(context);
-    final currentProvince = form?.fields['provinces']?.value as String? ?? '';
+    final form = widget.formKey.currentState;
+    if (form == null) return;
+    final currentProvince = form.fields['provinces']?.value as String? ?? '';
     final currentItem = _arrivalProvinces.cast<ProvinceArrivesItem?>().firstWhere(
       (p) => p!.provinceName == currentProvince,
       orElse: () => null,
@@ -115,7 +126,7 @@ class _TypeFormCommercialDeliveryState
       items: _arrivalProvinces,
       displayText: (v) => v.provinceName ?? '',
       onSelected: (item) {
-        form?.fields['provinces']?.didChange(item.provinceName ?? '');
+        form.fields['provinces']?.didChange(item.provinceName ?? '');
       },
       initialSelectedItem: currentItem,
     );

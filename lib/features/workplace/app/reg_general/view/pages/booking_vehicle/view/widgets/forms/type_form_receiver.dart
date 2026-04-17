@@ -15,10 +15,12 @@ class TypeFormReceiver extends StatefulWidget {
     super.key,
     required this.projects,
     required this.arrivalProvinces,
+    required this.formKey,
   });
 
   final List<BookingVehicleProjectItem> projects;
   final List<ProvinceArrivesItem> arrivalProvinces;
+  final GlobalKey<FormBuilderState> formKey;
 
   @override
   State<TypeFormReceiver> createState() => _TypeFormReceiverState();
@@ -29,13 +31,19 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
   List<ProvinceArrivesItem> get _arrivalProvinces => widget.arrivalProvinces;
 
   static const List<FormChoiceOption<String>> _vehicleTypes = [
-    FormChoiceOption(value: 'Ô tô, xe máy ...', label: 'Ô tô, xe máy ...', selectedColor: AppColors.primaryERP),
+    FormChoiceOption(value: 'Ô tô, xe máy …', label: 'Ô tô, xe máy …', selectedColor: AppColors.primaryERP),
     FormChoiceOption(value: 'Máy bay', label: 'Máy bay', selectedColor: AppColors.primaryERP),
   ];
 
   Future<void> _pickProject() async {
-    final form = FormBuilder.of(context);
-    final currentProject = form?.fields['pickup_project']?.value as String? ?? '';
+    final form = widget.formKey.currentState;
+    if (form == null) {
+      print('⚠️ _pickProject: widget.formKey.currentState is null');
+      return;
+    }
+    print('✅ _pickProject: form found, field count=${form.fields.length}');
+    final currentProject = form.fields['pickup_project']?.value as String? ?? '';
+    print('📋 current pickup_project value: "$currentProject"');
     final currentProjectItem = _projects.cast<BookingVehicleProjectItem?>().firstWhere(
       (p) => '${p!.projectCode ?? ''} - ${p.projectName ?? ''}'.trim() == currentProject,
       orElse: () => null,
@@ -46,17 +54,19 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
       items: _projects,
       displayText: (v) => '${v.projectCode ?? ''} - ${v.projectName ?? ''}',
       onSelected: (item) {
-        form?.fields['pickup_project']?.didChange(
-          '${item.projectCode ?? ''} - ${item.projectName ?? ''}'.trim(),
-        );
+        final val = '${item.projectCode ?? ''} - ${item.projectName ?? ''}'.trim();
+        print('📋 _pickProject onSelected: "$val"');
+        form.fields['pickup_project']?.didChange(val);
+        print('📋 didChange called, field value now: "${form.fields['pickup_project']?.value}"');
       },
       initialSelectedItem: currentProjectItem,
     );
   }
 
   Future<void> _pickProvince() async {
-    final form = FormBuilder.of(context);
-    final currentProvince = form?.fields['pickup_province']?.value as String? ?? '';
+    final form = widget.formKey.currentState;
+    if (form == null) return;
+    final currentProvince = form.fields['pickup_province']?.value as String? ?? '';
     final currentItem = _arrivalProvinces.cast<ProvinceArrivesItem?>().firstWhere(
       (p) => p!.provinceName == currentProvince,
       orElse: () => null,
@@ -67,7 +77,7 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
       items: _arrivalProvinces,
       displayText: (v) => v.provinceName ?? '',
       onSelected: (item) {
-        form?.fields['pickup_province']?.didChange(item.provinceName ?? '');
+        form.fields['pickup_province']?.didChange(item.provinceName ?? '');
       },
       initialSelectedItem: currentItem,
     );

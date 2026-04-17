@@ -79,6 +79,29 @@ class _FormChoiceGroupState<T> extends State<FormChoiceGroup<T>> {
     return widget.validator;
   }
 
+  /// Chuẩn hóa ellipsis: '...' → '…' (U+2026).
+  /// Dùng để so sánh value từ API/form với option values.
+  String _norm(String s) => s.replaceAll('...', '\u2026');
+
+  /// Normalize giá trị field để so sánh với options.
+  String? _normValue(T? v) => v == null ? null : _norm(v.toString());
+
+  /// Kiểm tra field value có khớp option nào không (so sánh sau khi normalize).
+  bool _isOptionSelected(T? fieldValue, T optionValue) {
+    if (fieldValue == null) return false;
+    return _normValue(fieldValue) == _normValue(optionValue);
+  }
+
+  /// Tìm index của option khớp với fieldValue (normalize trước khi so sánh).
+  int _matchOptionIndex(T? fieldValue) {
+    if (fieldValue == null) return -1;
+    final nv = _normValue(fieldValue);
+    for (int i = 0; i < widget.options.length; i++) {
+      if (_normValue(widget.options[i].value) == nv) return i;
+    }
+    return -1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -119,6 +142,23 @@ class _FormChoiceGroupState<T> extends State<FormChoiceGroup<T>> {
           builder: (field) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               widget.onFieldCreated?.call(field);
+
+              if (field.value == null) {
+                if (widget.options.isNotEmpty) {
+                  field.didChange(widget.options.first.value);
+                }
+              } else {
+                final idx = _matchOptionIndex(field.value);
+                if (idx == -1) {
+                  final nv = _normValue(field.value);
+                  final matchIdx = widget.options.indexWhere(
+                    (o) => _normValue(o.value) == nv,
+                  );
+                  if (matchIdx >= 0) {
+                    field.didChange(widget.options[matchIdx].value);
+                  }
+                }
+              }
             });
             return _buildChoiceChips(field);
           },
@@ -132,7 +172,8 @@ class _FormChoiceGroupState<T> extends State<FormChoiceGroup<T>> {
       spacing: 8,
       runSpacing: 8,
       children: widget.options.map((option) {
-        final isSelected = field.value == option.value;
+        // So sánh sau khi normalize để xử lý được '...' vs '…'
+        final isSelected = _isOptionSelected(field.value, option.value);
         final selectedColor = option.selectedColor ?? Theme.of(context).primaryColor;
 
         return GestureDetector(

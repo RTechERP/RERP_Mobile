@@ -237,7 +237,7 @@ class _BookingVehicleAddScreenState
     } else if (copiedData != null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
-        _applyCopyFromExtra(copiedData!);
+        _applyCopyFromExtra(copiedData);
       });
     }
   }
@@ -298,17 +298,36 @@ class _BookingVehicleAddScreenState
 
     _editPrefillApplied = true;
     final patch = Map<String, dynamic>.from(copiedData);
-    patch.remove('_copied_item_id');
-    patch.remove('_copied_booking_type_group');
 
-    final split = splitBookingVehicleFormAndInfo(patch);
-    if (split.form.isNotEmpty) {
-      bloc.add(BookingVehicleEvent.updateForm(values: split.form));
+    // Fire booking type group TRƯỚC khi patch form (để vehicle type dropdown hiển thị đúng)
+    final groupRaw = patch.remove('_copied_booking_type_group');
+    patch.remove('_copied_item_id');
+
+    // Đợi frame tiếp theo để widget tree (TypeForm) được build xong
+    // trước khi patchValue
+    Future.delayed(Duration.zero, () {
+      if (!mounted) return;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+
+        final split = splitBookingVehicleFormAndInfo(patch);
+        if (split.form.isNotEmpty) {
+          bloc.add(BookingVehicleEvent.updateForm(values: split.form));
+        }
+        if (split.info.isNotEmpty) {
+          bloc.add(BookingVehicleEvent.updateInfo(values: split.info));
+        }
+        _formKey.currentState?.patchValue(patch);
+        final tv = patch['type_transport'] ?? patch['type_transport_text'];
+        if (tv != null) {
+          _formKey.currentState?.fields['type_transport']?.didChange(tv);
+        }
+      });
+    });
+
+    if (groupRaw is int) {
+      bloc.add(BookingVehicleEvent.changeBookingTypeGroup(group: groupRaw));
     }
-    if (split.info.isNotEmpty) {
-      bloc.add(BookingVehicleEvent.updateInfo(values: split.info));
-    }
-    _formKey.currentState?.patchValue(patch);
   }
 
   @override
@@ -327,19 +346,40 @@ class _BookingVehicleAddScreenState
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || _editPrefillApplied) return;
+
+      // Fire booking type group TRƯỚC khi patch form
+      final groupNum = _bookingTypeGroupFromLabel(
+        bookingVehicleEditBookingTypeLabel(edit),
+      );
+      bloc.add(BookingVehicleEvent.changeBookingTypeGroup(group: groupNum));
+
       final patch = buildBookingVehicleEditFormPatch(
         edit,
         projects: state.projects,
       );
-      final split = splitBookingVehicleFormAndInfo(patch);
-      if (split.form.isNotEmpty) {
-        bloc.add(BookingVehicleEvent.updateForm(values: split.form));
-      }
-      if (split.info.isNotEmpty) {
-        bloc.add(BookingVehicleEvent.updateInfo(values: split.info));
-      }
-      _formKey.currentState?.patchValue(patch);
-      _editPrefillApplied = true;
+
+      // Đợi widget tree (TypeForm) build xong rồi mới patchValue
+      Future.delayed(Duration.zero, () {
+        if (!mounted || _editPrefillApplied) return;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+
+          final split = splitBookingVehicleFormAndInfo(patch);
+          if (split.form.isNotEmpty) {
+            bloc.add(BookingVehicleEvent.updateForm(values: split.form));
+          }
+          if (split.info.isNotEmpty) {
+            bloc.add(BookingVehicleEvent.updateInfo(values: split.info));
+          }
+          _formKey.currentState?.patchValue(patch);
+          // Force refresh type_transport field
+          final transportVal = patch['type_transport'];
+          if (transportVal != null) {
+            _formKey.currentState?.fields['type_transport']?.didChange(transportVal);
+          }
+          _editPrefillApplied = true;
+        });
+      });
     });
   }
 
@@ -362,13 +402,10 @@ class _BookingVehicleAddScreenState
     final formState = _formKey.currentState;
     if (formState == null) return;
 
-    final values = Map<String, dynamic>.from(formState.value);
-    final g = bloc.state.bookingTypeGroup;
-    final group = _bookingTypeGroupEnum(g);
-    final editId = _existingBookingId;
-    final createdOriginal = widget.existingBookingItem?.createdDate;
+    print('📋 pre-saveAndValidate project="${formState.value['project']}"');
 
     if (!formState.saveAndValidate()) {
+      print('❌ saveAndValidate FAILED, formState.value now=${formState.value}');
       FormHelper.focusFirstError(
         formState: formState,
         priorityFields: _priorityFieldsForGroupInt(bloc.state.bookingTypeGroup),
@@ -376,15 +413,23 @@ class _BookingVehicleAddScreenState
       return;
     }
 
+    final savedValues = Map<String, dynamic>.from(formState.value);
+    print('✅ saveAndValidate OK, saved project="${savedValues['project']}"');
+
+    final g = bloc.state.bookingTypeGroup;
+    final group = _bookingTypeGroupEnum(g);
+    final editId = _existingBookingId;
+    final createdOriginal = widget.existingBookingItem?.createdDate;
+
     if (createdOriginal != null) {
-      values[kBookingVehicleProblemRuleRegistrationKey] = createdOriginal;
+      savedValues[kBookingVehicleProblemRuleRegistrationKey] = createdOriginal;
     }
 
     switch (group) {
       case _BookingVehicleTypeGroup.passengerGo:
         bloc.add(
           BookingVehicleEvent.submitPassengerGo(
-            formValues: values,
+            formValues: savedValues,
             existingBookingId: editId,
           ),
         );
@@ -392,7 +437,7 @@ class _BookingVehicleAddScreenState
       case _BookingVehicleTypeGroup.passengerReturn:
         bloc.add(
           BookingVehicleEvent.submitPassengerReturn(
-            formValues: values,
+            formValues: savedValues,
             existingBookingId: editId,
           ),
         );
@@ -400,7 +445,7 @@ class _BookingVehicleAddScreenState
       case _BookingVehicleTypeGroup.commercialDelivery:
         bloc.add(
           BookingVehicleEvent.submitCommercialDelivery(
-            formValues: values,
+            formValues: savedValues,
             existingBookingId: editId,
           ),
         );
@@ -408,7 +453,7 @@ class _BookingVehicleAddScreenState
       case _BookingVehicleTypeGroup.commercialPickupAndDemoPickup:
         bloc.add(
           BookingVehicleEvent.submitCommercialPickup(
-            formValues: values,
+            formValues: savedValues,
             existingBookingId: editId,
           ),
         );
@@ -599,6 +644,7 @@ class _BookingVehicleAddScreenState
                                   departureProvinces:
                                       state.provinceDeparture,
                                   arrivalProvinces: state.provinceArrives,
+                                  formKey: _formKey,
                                 ),
                               if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
                                   _BookingVehicleTypeGroup.passengerGo)
@@ -734,6 +780,7 @@ class _BookingVehicleAddScreenState
                                   departureProvinces:
                                       state.provinceDeparture,
                                   arrivalProvinces: state.provinceArrives,
+                                  formKey: _formKey,
                                 ),
                               if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
                                   _BookingVehicleTypeGroup.passengerReturn)
@@ -867,6 +914,7 @@ class _BookingVehicleAddScreenState
                                   departureProvinces:
                                       state.provinceDeparture,
                                   arrivalProvinces: state.provinceArrives,
+                                  formKey: _formKey,
                                 ),
                               if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
                                   _BookingVehicleTypeGroup.commercialDelivery)
@@ -999,6 +1047,7 @@ class _BookingVehicleAddScreenState
                                 TypeFormReceiver(
                                   projects: state.projects,
                                   arrivalProvinces: state.provinceArrives,
+                                  formKey: _formKey,
                                 ),
                               if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
                                   _BookingVehicleTypeGroup

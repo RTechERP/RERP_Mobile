@@ -32,8 +32,15 @@ String bookingVehicleEditBookingTypeLabel(BookingVehicleItem item) {
   }
 }
 
+String _normalizeEllipsis(String s) =>
+    s.replaceAll('...', '\u2026').replaceAll('\u2026 ', '\u2026').replaceAll(' \u2026', '\u2026').replaceAllMapped(
+          RegExp(r'(?<! )\u2026'),
+          (m) => ' \u2026',
+        );
+
 String _vehicleTransportLabel(BookingVehicleItem item) {
-  final t = (item.vehicleTypeText ?? '').trim();
+  final raw = (item.vehicleTypeText ?? '').trim();
+  final t = _normalizeEllipsis(raw);
   if (t.isNotEmpty) return t;
   return item.vehicleType == 2 ? 'Máy bay' : 'Ô tô, xe máy ...';
 }

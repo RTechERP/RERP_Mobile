@@ -827,11 +827,14 @@ class BookingVehicleBloc
     final bookerName =
         state.currentEmployee?.fullName?.trim() ?? '';
 
+    _log.logI('📋 Submit passengerGo — project display: "${formValues['project']}", projects count: ${state.projects.length}');
+
     final projectId = resolveBookingVehicleProjectId(
       formValues['project'],
       state.projects,
     );
     if (projectId == 0) {
+      _log.logE('❌ projectId=0 — raw="${formValues['project']}", projects.isEmpty=${state.projects.isEmpty}');
       emit(
         state.copyWith(
           isSubmitting: false,
@@ -946,11 +949,14 @@ class BookingVehicleBloc
     final bookerName =
         state.currentEmployee?.fullName?.trim() ?? '';
 
+    _log.logI('📋 Submit passengerGo — project display: "${formValues['project']}", projects count: ${state.projects.length}');
+
     final projectId = resolveBookingVehicleProjectId(
       formValues['project'],
       state.projects,
     );
     if (projectId == 0) {
+      _log.logE('❌ projectId=0 — raw="${formValues['project']}", projects.isEmpty=${state.projects.isEmpty}');
       emit(
         state.copyWith(
           isSubmitting: false,

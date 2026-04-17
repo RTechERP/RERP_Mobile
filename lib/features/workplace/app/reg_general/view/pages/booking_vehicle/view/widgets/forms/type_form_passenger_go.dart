@@ -15,11 +15,13 @@ class TypeFormPassengerGo extends StatefulWidget {
     required this.projects,
     required this.departureProvinces,
     required this.arrivalProvinces,
+    required this.formKey,
   });
 
   final List<BookingVehicleProjectItem> projects;
   final List<ProvinceDepartureItem> departureProvinces;
   final List<ProvinceArrivesItem> arrivalProvinces;
+  final GlobalKey<FormBuilderState> formKey;
 
   @override
   State<TypeFormPassengerGo> createState() => _TypeFormPassengerGoState();
@@ -51,13 +53,19 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
   }
 
   static const List<FormChoiceOption<String>> _vehicleTypes = [
-    FormChoiceOption(value: 'Ô tô, xe máy ...', label: 'Ô tô, xe máy ...', selectedColor: AppColors.primaryERP),
+    FormChoiceOption(value: 'Ô tô, xe máy …', label: 'Ô tô, xe máy …', selectedColor: AppColors.primaryERP),
     FormChoiceOption(value: 'Máy bay', label: 'Máy bay', selectedColor: AppColors.primaryERP),
   ];
 
   Future<void> _pickProject() async {
-    final form = FormBuilder.of(context);
-    final currentProject = form?.fields['project']?.value as String? ?? '';
+    final form = widget.formKey.currentState;
+    if (form == null) {
+      print('⚠️ _pickProject: widget.formKey.currentState is null');
+      return;
+    }
+    print('✅ _pickProject: form found, field count=${form.fields.length}');
+    final currentProject = form.fields['project']?.value as String? ?? '';
+    print('📋 current project value: "$currentProject"');
     final currentProjectItem = _projects.cast<BookingVehicleProjectItem?>().firstWhere(
       (p) => '${p!.projectCode ?? ''} - ${p.projectName ?? ''}'.trim() == currentProject,
       orElse: () => null,
@@ -68,17 +76,19 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
       items: _projects,
       displayText: (v) => '${v.projectCode ?? ''} - ${v.projectName ?? ''}',
       onSelected: (item) {
-        form?.fields['project']?.didChange(
-          '${item.projectCode ?? ''} - ${item.projectName ?? ''}'.trim(),
-        );
+        final val = '${item.projectCode ?? ''} - ${item.projectName ?? ''}'.trim();
+        print('📋 _pickProject onSelected: "$val"');
+        form.fields['project']?.didChange(val);
+        print('📋 didChange called, field value now: "${form.fields['project']?.value}"');
       },
       initialSelectedItem: currentProjectItem,
     );
   }
 
   Future<void> _pickProvinces() async {
-    final form = FormBuilder.of(context);
-    final currentProvince = form?.fields['provinces']?.value as String? ?? '';
+    final form = widget.formKey.currentState;
+    if (form == null) return;
+    final currentProvince = form.fields['provinces']?.value as String? ?? '';
     final currentItem = _arrivalProvinces.cast<ProvinceArrivesItem?>().firstWhere(
       (p) => p!.provinceName == currentProvince,
       orElse: () => null,
@@ -89,15 +99,16 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
       items: _arrivalProvinces,
       displayText: (v) => v.provinceName ?? '',
       onSelected: (item) {
-        form?.fields['provinces']?.didChange(item.provinceName ?? '');
+        form.fields['provinces']?.didChange(item.provinceName ?? '');
       },
       initialSelectedItem: currentItem,
     );
   }
 
   Future<void> _pickStartingPoint() async {
-    final form = FormBuilder.of(context);
-    final currentStarting = form?.fields['starting_point']?.value as String? ?? '';
+    final form = widget.formKey.currentState;
+    if (form == null) return;
+    final currentStarting = form.fields['starting_point']?.value as String? ?? '';
     await openSelectBottomSheet<String>(
       context: context,
       title: 'Chọn điểm xuất phát',
@@ -106,11 +117,11 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
       onSelected: (item) {
         final selected = item.trim();
         setState(() => _startingPointValue = selected);
-        form?.fields['starting_point']?.didChange(selected);
+        form.fields['starting_point']?.didChange(selected);
         if (selected == _otherPointLabel) {
-          form?.fields['destination_address']?.didChange('');
+          form.fields['destination_address']?.didChange('');
         } else {
-          form?.fields['destination_address']?.didChange(selected);
+          form.fields['destination_address']?.didChange(selected);
         }
       },
       initialSelectedItem: currentStarting,
@@ -118,8 +129,9 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
   }
 
   Future<void> _pickReturnPoint() async {
-    final form = FormBuilder.of(context);
-    final currentReturn = form?.fields['return_point']?.value as String? ?? '';
+    final form = widget.formKey.currentState;
+    if (form == null) return;
+    final currentReturn = form.fields['return_point']?.value as String? ?? '';
     await openSelectBottomSheet<String>(
       context: context,
       title: 'Chọn điểm về',
@@ -128,11 +140,11 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
       onSelected: (item) {
         final selected = item.trim();
         setState(() => _returnPointValue = selected);
-        form?.fields['return_point']?.didChange(selected);
+        form.fields['return_point']?.didChange(selected);
         if (selected == _otherPointLabel) {
-          form?.fields['return_address']?.didChange('');
+          form.fields['return_address']?.didChange('');
         } else {
-          form?.fields['return_address']?.didChange(selected);
+          form.fields['return_address']?.didChange(selected);
         }
       },
       initialSelectedItem: currentReturn,
