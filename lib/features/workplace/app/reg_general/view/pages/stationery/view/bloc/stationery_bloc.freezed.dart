@@ -20,6 +20,9 @@ mixin _$StationeryEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
     required TResult Function(int slipIndex, StationerySupplyItem supply)
         selectSupply,
     required TResult Function(int slipIndex, int quantity) updateQuantity,
@@ -28,14 +31,18 @@ mixin _$StationeryEvent {
     required TResult Function(int slipIndex, String note) updateNote,
     required TResult Function() addSlip,
     required TResult Function(int slipIndex) removeSlip,
-    required TResult Function() submitStationery,
+    required TResult Function(DateTime dateRegister) submitStationery,
     required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult? Function(int slipIndex, int quantity)? updateQuantity,
     TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -43,14 +50,18 @@ mixin _$StationeryEvent {
     TResult? Function(int slipIndex, String note)? updateNote,
     TResult? Function()? addSlip,
     TResult? Function(int slipIndex)? removeSlip,
-    TResult? Function()? submitStationery,
+    TResult? Function(DateTime dateRegister)? submitStationery,
     TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult Function(int slipIndex, int quantity)? updateQuantity,
     TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -58,8 +69,10 @@ mixin _$StationeryEvent {
     TResult Function(int slipIndex, String note)? updateNote,
     TResult Function()? addSlip,
     TResult Function(int slipIndex)? removeSlip,
-    TResult Function()? submitStationery,
+    TResult Function(DateTime dateRegister)? submitStationery,
     TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,6 +80,7 @@ mixin _$StationeryEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
     required TResult Function(_SelectSupply value) selectSupply,
     required TResult Function(_UpdateQuantity value) updateQuantity,
     required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
@@ -76,12 +90,15 @@ mixin _$StationeryEvent {
     required TResult Function(_RemoveSlip value) removeSlip,
     required TResult Function(_SubmitStationery value) submitStationery,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
     TResult? Function(_SelectSupply value)? selectSupply,
     TResult? Function(_UpdateQuantity value)? updateQuantity,
     TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -91,12 +108,15 @@ mixin _$StationeryEvent {
     TResult? Function(_RemoveSlip value)? removeSlip,
     TResult? Function(_SubmitStationery value)? submitStationery,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
     TResult Function(_SelectSupply value)? selectSupply,
     TResult Function(_UpdateQuantity value)? updateQuantity,
     TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -106,6 +126,8 @@ mixin _$StationeryEvent {
     TResult Function(_RemoveSlip value)? removeSlip,
     TResult Function(_SubmitStationery value)? submitStationery,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -168,6 +190,9 @@ class _$InitImpl implements _Init {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
     required TResult Function(int slipIndex, StationerySupplyItem supply)
         selectSupply,
     required TResult Function(int slipIndex, int quantity) updateQuantity,
@@ -176,8 +201,10 @@ class _$InitImpl implements _Init {
     required TResult Function(int slipIndex, String note) updateNote,
     required TResult Function() addSlip,
     required TResult Function(int slipIndex) removeSlip,
-    required TResult Function() submitStationery,
+    required TResult Function(DateTime dateRegister) submitStationery,
     required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
   }) {
     return init();
   }
@@ -187,6 +214,8 @@ class _$InitImpl implements _Init {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult? Function(int slipIndex, int quantity)? updateQuantity,
     TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -194,8 +223,10 @@ class _$InitImpl implements _Init {
     TResult? Function(int slipIndex, String note)? updateNote,
     TResult? Function()? addSlip,
     TResult? Function(int slipIndex)? removeSlip,
-    TResult? Function()? submitStationery,
+    TResult? Function(DateTime dateRegister)? submitStationery,
     TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
   }) {
     return init?.call();
   }
@@ -205,6 +236,8 @@ class _$InitImpl implements _Init {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult Function(int slipIndex, int quantity)? updateQuantity,
     TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -212,8 +245,10 @@ class _$InitImpl implements _Init {
     TResult Function(int slipIndex, String note)? updateNote,
     TResult Function()? addSlip,
     TResult Function(int slipIndex)? removeSlip,
-    TResult Function()? submitStationery,
+    TResult Function(DateTime dateRegister)? submitStationery,
     TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -227,6 +262,7 @@ class _$InitImpl implements _Init {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
     required TResult Function(_SelectSupply value) selectSupply,
     required TResult Function(_UpdateQuantity value) updateQuantity,
     required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
@@ -236,6 +272,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_RemoveSlip value) removeSlip,
     required TResult Function(_SubmitStationery value) submitStationery,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
   }) {
     return init(this);
   }
@@ -245,6 +283,7 @@ class _$InitImpl implements _Init {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
     TResult? Function(_SelectSupply value)? selectSupply,
     TResult? Function(_UpdateQuantity value)? updateQuantity,
     TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -254,6 +293,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_RemoveSlip value)? removeSlip,
     TResult? Function(_SubmitStationery value)? submitStationery,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
   }) {
     return init?.call(this);
   }
@@ -263,6 +304,7 @@ class _$InitImpl implements _Init {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
     TResult Function(_SelectSupply value)? selectSupply,
     TResult Function(_UpdateQuantity value)? updateQuantity,
     TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -272,6 +314,8 @@ class _$InitImpl implements _Init {
     TResult Function(_RemoveSlip value)? removeSlip,
     TResult Function(_SubmitStationery value)? submitStationery,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -325,6 +369,9 @@ class _$InitAddImpl implements _InitAdd {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
     required TResult Function(int slipIndex, StationerySupplyItem supply)
         selectSupply,
     required TResult Function(int slipIndex, int quantity) updateQuantity,
@@ -333,8 +380,10 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(int slipIndex, String note) updateNote,
     required TResult Function() addSlip,
     required TResult Function(int slipIndex) removeSlip,
-    required TResult Function() submitStationery,
+    required TResult Function(DateTime dateRegister) submitStationery,
     required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
   }) {
     return initAdd();
   }
@@ -344,6 +393,8 @@ class _$InitAddImpl implements _InitAdd {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult? Function(int slipIndex, int quantity)? updateQuantity,
     TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -351,8 +402,10 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(int slipIndex, String note)? updateNote,
     TResult? Function()? addSlip,
     TResult? Function(int slipIndex)? removeSlip,
-    TResult? Function()? submitStationery,
+    TResult? Function(DateTime dateRegister)? submitStationery,
     TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
   }) {
     return initAdd?.call();
   }
@@ -362,6 +415,8 @@ class _$InitAddImpl implements _InitAdd {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult Function(int slipIndex, int quantity)? updateQuantity,
     TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -369,8 +424,10 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(int slipIndex, String note)? updateNote,
     TResult Function()? addSlip,
     TResult Function(int slipIndex)? removeSlip,
-    TResult Function()? submitStationery,
+    TResult Function(DateTime dateRegister)? submitStationery,
     TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -384,6 +441,7 @@ class _$InitAddImpl implements _InitAdd {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
     required TResult Function(_SelectSupply value) selectSupply,
     required TResult Function(_UpdateQuantity value) updateQuantity,
     required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
@@ -393,6 +451,8 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_RemoveSlip value) removeSlip,
     required TResult Function(_SubmitStationery value) submitStationery,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
   }) {
     return initAdd(this);
   }
@@ -402,6 +462,7 @@ class _$InitAddImpl implements _InitAdd {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
     TResult? Function(_SelectSupply value)? selectSupply,
     TResult? Function(_UpdateQuantity value)? updateQuantity,
     TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -411,6 +472,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_RemoveSlip value)? removeSlip,
     TResult? Function(_SubmitStationery value)? submitStationery,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
   }) {
     return initAdd?.call(this);
   }
@@ -420,6 +483,7 @@ class _$InitAddImpl implements _InitAdd {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
     TResult Function(_SelectSupply value)? selectSupply,
     TResult Function(_UpdateQuantity value)? updateQuantity,
     TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -429,6 +493,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_RemoveSlip value)? removeSlip,
     TResult Function(_SubmitStationery value)? submitStationery,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -440,6 +506,245 @@ class _$InitAddImpl implements _InitAdd {
 
 abstract class _InitAdd implements StationeryEvent {
   const factory _InitAdd() = _$InitAddImpl;
+}
+
+/// @nodoc
+abstract class _$$InitEditImplCopyWith<$Res> {
+  factory _$$InitEditImplCopyWith(
+          _$InitEditImpl value, $Res Function(_$InitEditImpl) then) =
+      __$$InitEditImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({StationeryItem item, List<StationeryDetailItem> details});
+
+  $StationeryItemCopyWith<$Res> get item;
+}
+
+/// @nodoc
+class __$$InitEditImplCopyWithImpl<$Res>
+    extends _$StationeryEventCopyWithImpl<$Res, _$InitEditImpl>
+    implements _$$InitEditImplCopyWith<$Res> {
+  __$$InitEditImplCopyWithImpl(
+      _$InitEditImpl _value, $Res Function(_$InitEditImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? item = null,
+    Object? details = null,
+  }) {
+    return _then(_$InitEditImpl(
+      item: null == item
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as StationeryItem,
+      details: null == details
+          ? _value._details
+          : details // ignore: cast_nullable_to_non_nullable
+              as List<StationeryDetailItem>,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StationeryItemCopyWith<$Res> get item {
+    return $StationeryItemCopyWith<$Res>(_value.item, (value) {
+      return _then(_value.copyWith(item: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$InitEditImpl implements _InitEdit {
+  const _$InitEditImpl(
+      {required this.item, required final List<StationeryDetailItem> details})
+      : _details = details;
+
+  @override
+  final StationeryItem item;
+  final List<StationeryDetailItem> _details;
+  @override
+  List<StationeryDetailItem> get details {
+    if (_details is EqualUnmodifiableListView) return _details;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_details);
+  }
+
+  @override
+  String toString() {
+    return 'StationeryEvent.initEdit(item: $item, details: $details)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitEditImpl &&
+            (identical(other.item, item) || other.item == item) &&
+            const DeepCollectionEquality().equals(other._details, _details));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, item, const DeepCollectionEquality().hash(_details));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitEditImplCopyWith<_$InitEditImpl> get copyWith =>
+      __$$InitEditImplCopyWithImpl<_$InitEditImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
+    required TResult Function(int slipIndex, StationerySupplyItem supply)
+        selectSupply,
+    required TResult Function(int slipIndex, int quantity) updateQuantity,
+    required TResult Function(int slipIndex, bool exceeds) toggleExceedsLimit,
+    required TResult Function(int slipIndex, String reason) updateReason,
+    required TResult Function(int slipIndex, String note) updateNote,
+    required TResult Function() addSlip,
+    required TResult Function(int slipIndex) removeSlip,
+    required TResult Function(DateTime dateRegister) submitStationery,
+    required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
+  }) {
+    return initEdit(item, details);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
+    TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
+    TResult? Function(int slipIndex, int quantity)? updateQuantity,
+    TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
+    TResult? Function(int slipIndex, String reason)? updateReason,
+    TResult? Function(int slipIndex, String note)? updateNote,
+    TResult? Function()? addSlip,
+    TResult? Function(int slipIndex)? removeSlip,
+    TResult? Function(DateTime dateRegister)? submitStationery,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
+  }) {
+    return initEdit?.call(item, details);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
+    TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
+    TResult Function(int slipIndex, int quantity)? updateQuantity,
+    TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
+    TResult Function(int slipIndex, String reason)? updateReason,
+    TResult Function(int slipIndex, String note)? updateNote,
+    TResult Function()? addSlip,
+    TResult Function(int slipIndex)? removeSlip,
+    TResult Function(DateTime dateRegister)? submitStationery,
+    TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
+    required TResult orElse(),
+  }) {
+    if (initEdit != null) {
+      return initEdit(item, details);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_SelectSupply value) selectSupply,
+    required TResult Function(_UpdateQuantity value) updateQuantity,
+    required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
+    required TResult Function(_UpdateReason value) updateReason,
+    required TResult Function(_UpdateNote value) updateNote,
+    required TResult Function(_AddSlip value) addSlip,
+    required TResult Function(_RemoveSlip value) removeSlip,
+    required TResult Function(_SubmitStationery value) submitStationery,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
+  }) {
+    return initEdit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_SelectSupply value)? selectSupply,
+    TResult? Function(_UpdateQuantity value)? updateQuantity,
+    TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
+    TResult? Function(_UpdateReason value)? updateReason,
+    TResult? Function(_UpdateNote value)? updateNote,
+    TResult? Function(_AddSlip value)? addSlip,
+    TResult? Function(_RemoveSlip value)? removeSlip,
+    TResult? Function(_SubmitStationery value)? submitStationery,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
+  }) {
+    return initEdit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_SelectSupply value)? selectSupply,
+    TResult Function(_UpdateQuantity value)? updateQuantity,
+    TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
+    TResult Function(_UpdateReason value)? updateReason,
+    TResult Function(_UpdateNote value)? updateNote,
+    TResult Function(_AddSlip value)? addSlip,
+    TResult Function(_RemoveSlip value)? removeSlip,
+    TResult Function(_SubmitStationery value)? submitStationery,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
+    required TResult orElse(),
+  }) {
+    if (initEdit != null) {
+      return initEdit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitEdit implements StationeryEvent {
+  const factory _InitEdit(
+      {required final StationeryItem item,
+      required final List<StationeryDetailItem> details}) = _$InitEditImpl;
+
+  StationeryItem get item;
+  List<StationeryDetailItem> get details;
+  @JsonKey(ignore: true)
+  _$$InitEditImplCopyWith<_$InitEditImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -527,6 +832,9 @@ class _$SelectSupplyImpl implements _SelectSupply {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
     required TResult Function(int slipIndex, StationerySupplyItem supply)
         selectSupply,
     required TResult Function(int slipIndex, int quantity) updateQuantity,
@@ -535,8 +843,10 @@ class _$SelectSupplyImpl implements _SelectSupply {
     required TResult Function(int slipIndex, String note) updateNote,
     required TResult Function() addSlip,
     required TResult Function(int slipIndex) removeSlip,
-    required TResult Function() submitStationery,
+    required TResult Function(DateTime dateRegister) submitStationery,
     required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
   }) {
     return selectSupply(slipIndex, supply);
   }
@@ -546,6 +856,8 @@ class _$SelectSupplyImpl implements _SelectSupply {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult? Function(int slipIndex, int quantity)? updateQuantity,
     TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -553,8 +865,10 @@ class _$SelectSupplyImpl implements _SelectSupply {
     TResult? Function(int slipIndex, String note)? updateNote,
     TResult? Function()? addSlip,
     TResult? Function(int slipIndex)? removeSlip,
-    TResult? Function()? submitStationery,
+    TResult? Function(DateTime dateRegister)? submitStationery,
     TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
   }) {
     return selectSupply?.call(slipIndex, supply);
   }
@@ -564,6 +878,8 @@ class _$SelectSupplyImpl implements _SelectSupply {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult Function(int slipIndex, int quantity)? updateQuantity,
     TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -571,8 +887,10 @@ class _$SelectSupplyImpl implements _SelectSupply {
     TResult Function(int slipIndex, String note)? updateNote,
     TResult Function()? addSlip,
     TResult Function(int slipIndex)? removeSlip,
-    TResult Function()? submitStationery,
+    TResult Function(DateTime dateRegister)? submitStationery,
     TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
     required TResult orElse(),
   }) {
     if (selectSupply != null) {
@@ -586,6 +904,7 @@ class _$SelectSupplyImpl implements _SelectSupply {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
     required TResult Function(_SelectSupply value) selectSupply,
     required TResult Function(_UpdateQuantity value) updateQuantity,
     required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
@@ -595,6 +914,8 @@ class _$SelectSupplyImpl implements _SelectSupply {
     required TResult Function(_RemoveSlip value) removeSlip,
     required TResult Function(_SubmitStationery value) submitStationery,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
   }) {
     return selectSupply(this);
   }
@@ -604,6 +925,7 @@ class _$SelectSupplyImpl implements _SelectSupply {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
     TResult? Function(_SelectSupply value)? selectSupply,
     TResult? Function(_UpdateQuantity value)? updateQuantity,
     TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -613,6 +935,8 @@ class _$SelectSupplyImpl implements _SelectSupply {
     TResult? Function(_RemoveSlip value)? removeSlip,
     TResult? Function(_SubmitStationery value)? submitStationery,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
   }) {
     return selectSupply?.call(this);
   }
@@ -622,6 +946,7 @@ class _$SelectSupplyImpl implements _SelectSupply {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
     TResult Function(_SelectSupply value)? selectSupply,
     TResult Function(_UpdateQuantity value)? updateQuantity,
     TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -631,6 +956,8 @@ class _$SelectSupplyImpl implements _SelectSupply {
     TResult Function(_RemoveSlip value)? removeSlip,
     TResult Function(_SubmitStationery value)? submitStationery,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
     required TResult orElse(),
   }) {
     if (selectSupply != null) {
@@ -729,6 +1056,9 @@ class _$UpdateQuantityImpl implements _UpdateQuantity {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
     required TResult Function(int slipIndex, StationerySupplyItem supply)
         selectSupply,
     required TResult Function(int slipIndex, int quantity) updateQuantity,
@@ -737,8 +1067,10 @@ class _$UpdateQuantityImpl implements _UpdateQuantity {
     required TResult Function(int slipIndex, String note) updateNote,
     required TResult Function() addSlip,
     required TResult Function(int slipIndex) removeSlip,
-    required TResult Function() submitStationery,
+    required TResult Function(DateTime dateRegister) submitStationery,
     required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
   }) {
     return updateQuantity(slipIndex, quantity);
   }
@@ -748,6 +1080,8 @@ class _$UpdateQuantityImpl implements _UpdateQuantity {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult? Function(int slipIndex, int quantity)? updateQuantity,
     TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -755,8 +1089,10 @@ class _$UpdateQuantityImpl implements _UpdateQuantity {
     TResult? Function(int slipIndex, String note)? updateNote,
     TResult? Function()? addSlip,
     TResult? Function(int slipIndex)? removeSlip,
-    TResult? Function()? submitStationery,
+    TResult? Function(DateTime dateRegister)? submitStationery,
     TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
   }) {
     return updateQuantity?.call(slipIndex, quantity);
   }
@@ -766,6 +1102,8 @@ class _$UpdateQuantityImpl implements _UpdateQuantity {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult Function(int slipIndex, int quantity)? updateQuantity,
     TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -773,8 +1111,10 @@ class _$UpdateQuantityImpl implements _UpdateQuantity {
     TResult Function(int slipIndex, String note)? updateNote,
     TResult Function()? addSlip,
     TResult Function(int slipIndex)? removeSlip,
-    TResult Function()? submitStationery,
+    TResult Function(DateTime dateRegister)? submitStationery,
     TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
     required TResult orElse(),
   }) {
     if (updateQuantity != null) {
@@ -788,6 +1128,7 @@ class _$UpdateQuantityImpl implements _UpdateQuantity {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
     required TResult Function(_SelectSupply value) selectSupply,
     required TResult Function(_UpdateQuantity value) updateQuantity,
     required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
@@ -797,6 +1138,8 @@ class _$UpdateQuantityImpl implements _UpdateQuantity {
     required TResult Function(_RemoveSlip value) removeSlip,
     required TResult Function(_SubmitStationery value) submitStationery,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
   }) {
     return updateQuantity(this);
   }
@@ -806,6 +1149,7 @@ class _$UpdateQuantityImpl implements _UpdateQuantity {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
     TResult? Function(_SelectSupply value)? selectSupply,
     TResult? Function(_UpdateQuantity value)? updateQuantity,
     TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -815,6 +1159,8 @@ class _$UpdateQuantityImpl implements _UpdateQuantity {
     TResult? Function(_RemoveSlip value)? removeSlip,
     TResult? Function(_SubmitStationery value)? submitStationery,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
   }) {
     return updateQuantity?.call(this);
   }
@@ -824,6 +1170,7 @@ class _$UpdateQuantityImpl implements _UpdateQuantity {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
     TResult Function(_SelectSupply value)? selectSupply,
     TResult Function(_UpdateQuantity value)? updateQuantity,
     TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -833,6 +1180,8 @@ class _$UpdateQuantityImpl implements _UpdateQuantity {
     TResult Function(_RemoveSlip value)? removeSlip,
     TResult Function(_SubmitStationery value)? submitStationery,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
     required TResult orElse(),
   }) {
     if (updateQuantity != null) {
@@ -931,6 +1280,9 @@ class _$ToggleExceedsLimitImpl implements _ToggleExceedsLimit {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
     required TResult Function(int slipIndex, StationerySupplyItem supply)
         selectSupply,
     required TResult Function(int slipIndex, int quantity) updateQuantity,
@@ -939,8 +1291,10 @@ class _$ToggleExceedsLimitImpl implements _ToggleExceedsLimit {
     required TResult Function(int slipIndex, String note) updateNote,
     required TResult Function() addSlip,
     required TResult Function(int slipIndex) removeSlip,
-    required TResult Function() submitStationery,
+    required TResult Function(DateTime dateRegister) submitStationery,
     required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
   }) {
     return toggleExceedsLimit(slipIndex, exceeds);
   }
@@ -950,6 +1304,8 @@ class _$ToggleExceedsLimitImpl implements _ToggleExceedsLimit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult? Function(int slipIndex, int quantity)? updateQuantity,
     TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -957,8 +1313,10 @@ class _$ToggleExceedsLimitImpl implements _ToggleExceedsLimit {
     TResult? Function(int slipIndex, String note)? updateNote,
     TResult? Function()? addSlip,
     TResult? Function(int slipIndex)? removeSlip,
-    TResult? Function()? submitStationery,
+    TResult? Function(DateTime dateRegister)? submitStationery,
     TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
   }) {
     return toggleExceedsLimit?.call(slipIndex, exceeds);
   }
@@ -968,6 +1326,8 @@ class _$ToggleExceedsLimitImpl implements _ToggleExceedsLimit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult Function(int slipIndex, int quantity)? updateQuantity,
     TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -975,8 +1335,10 @@ class _$ToggleExceedsLimitImpl implements _ToggleExceedsLimit {
     TResult Function(int slipIndex, String note)? updateNote,
     TResult Function()? addSlip,
     TResult Function(int slipIndex)? removeSlip,
-    TResult Function()? submitStationery,
+    TResult Function(DateTime dateRegister)? submitStationery,
     TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
     required TResult orElse(),
   }) {
     if (toggleExceedsLimit != null) {
@@ -990,6 +1352,7 @@ class _$ToggleExceedsLimitImpl implements _ToggleExceedsLimit {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
     required TResult Function(_SelectSupply value) selectSupply,
     required TResult Function(_UpdateQuantity value) updateQuantity,
     required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
@@ -999,6 +1362,8 @@ class _$ToggleExceedsLimitImpl implements _ToggleExceedsLimit {
     required TResult Function(_RemoveSlip value) removeSlip,
     required TResult Function(_SubmitStationery value) submitStationery,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
   }) {
     return toggleExceedsLimit(this);
   }
@@ -1008,6 +1373,7 @@ class _$ToggleExceedsLimitImpl implements _ToggleExceedsLimit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
     TResult? Function(_SelectSupply value)? selectSupply,
     TResult? Function(_UpdateQuantity value)? updateQuantity,
     TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -1017,6 +1383,8 @@ class _$ToggleExceedsLimitImpl implements _ToggleExceedsLimit {
     TResult? Function(_RemoveSlip value)? removeSlip,
     TResult? Function(_SubmitStationery value)? submitStationery,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
   }) {
     return toggleExceedsLimit?.call(this);
   }
@@ -1026,6 +1394,7 @@ class _$ToggleExceedsLimitImpl implements _ToggleExceedsLimit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
     TResult Function(_SelectSupply value)? selectSupply,
     TResult Function(_UpdateQuantity value)? updateQuantity,
     TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -1035,6 +1404,8 @@ class _$ToggleExceedsLimitImpl implements _ToggleExceedsLimit {
     TResult Function(_RemoveSlip value)? removeSlip,
     TResult Function(_SubmitStationery value)? submitStationery,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
     required TResult orElse(),
   }) {
     if (toggleExceedsLimit != null) {
@@ -1131,6 +1502,9 @@ class _$UpdateReasonImpl implements _UpdateReason {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
     required TResult Function(int slipIndex, StationerySupplyItem supply)
         selectSupply,
     required TResult Function(int slipIndex, int quantity) updateQuantity,
@@ -1139,8 +1513,10 @@ class _$UpdateReasonImpl implements _UpdateReason {
     required TResult Function(int slipIndex, String note) updateNote,
     required TResult Function() addSlip,
     required TResult Function(int slipIndex) removeSlip,
-    required TResult Function() submitStationery,
+    required TResult Function(DateTime dateRegister) submitStationery,
     required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
   }) {
     return updateReason(slipIndex, reason);
   }
@@ -1150,6 +1526,8 @@ class _$UpdateReasonImpl implements _UpdateReason {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult? Function(int slipIndex, int quantity)? updateQuantity,
     TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -1157,8 +1535,10 @@ class _$UpdateReasonImpl implements _UpdateReason {
     TResult? Function(int slipIndex, String note)? updateNote,
     TResult? Function()? addSlip,
     TResult? Function(int slipIndex)? removeSlip,
-    TResult? Function()? submitStationery,
+    TResult? Function(DateTime dateRegister)? submitStationery,
     TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
   }) {
     return updateReason?.call(slipIndex, reason);
   }
@@ -1168,6 +1548,8 @@ class _$UpdateReasonImpl implements _UpdateReason {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult Function(int slipIndex, int quantity)? updateQuantity,
     TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -1175,8 +1557,10 @@ class _$UpdateReasonImpl implements _UpdateReason {
     TResult Function(int slipIndex, String note)? updateNote,
     TResult Function()? addSlip,
     TResult Function(int slipIndex)? removeSlip,
-    TResult Function()? submitStationery,
+    TResult Function(DateTime dateRegister)? submitStationery,
     TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
     required TResult orElse(),
   }) {
     if (updateReason != null) {
@@ -1190,6 +1574,7 @@ class _$UpdateReasonImpl implements _UpdateReason {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
     required TResult Function(_SelectSupply value) selectSupply,
     required TResult Function(_UpdateQuantity value) updateQuantity,
     required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
@@ -1199,6 +1584,8 @@ class _$UpdateReasonImpl implements _UpdateReason {
     required TResult Function(_RemoveSlip value) removeSlip,
     required TResult Function(_SubmitStationery value) submitStationery,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
   }) {
     return updateReason(this);
   }
@@ -1208,6 +1595,7 @@ class _$UpdateReasonImpl implements _UpdateReason {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
     TResult? Function(_SelectSupply value)? selectSupply,
     TResult? Function(_UpdateQuantity value)? updateQuantity,
     TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -1217,6 +1605,8 @@ class _$UpdateReasonImpl implements _UpdateReason {
     TResult? Function(_RemoveSlip value)? removeSlip,
     TResult? Function(_SubmitStationery value)? submitStationery,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
   }) {
     return updateReason?.call(this);
   }
@@ -1226,6 +1616,7 @@ class _$UpdateReasonImpl implements _UpdateReason {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
     TResult Function(_SelectSupply value)? selectSupply,
     TResult Function(_UpdateQuantity value)? updateQuantity,
     TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -1235,6 +1626,8 @@ class _$UpdateReasonImpl implements _UpdateReason {
     TResult Function(_RemoveSlip value)? removeSlip,
     TResult Function(_SubmitStationery value)? submitStationery,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
     required TResult orElse(),
   }) {
     if (updateReason != null) {
@@ -1331,6 +1724,9 @@ class _$UpdateNoteImpl implements _UpdateNote {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
     required TResult Function(int slipIndex, StationerySupplyItem supply)
         selectSupply,
     required TResult Function(int slipIndex, int quantity) updateQuantity,
@@ -1339,8 +1735,10 @@ class _$UpdateNoteImpl implements _UpdateNote {
     required TResult Function(int slipIndex, String note) updateNote,
     required TResult Function() addSlip,
     required TResult Function(int slipIndex) removeSlip,
-    required TResult Function() submitStationery,
+    required TResult Function(DateTime dateRegister) submitStationery,
     required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
   }) {
     return updateNote(slipIndex, note);
   }
@@ -1350,6 +1748,8 @@ class _$UpdateNoteImpl implements _UpdateNote {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult? Function(int slipIndex, int quantity)? updateQuantity,
     TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -1357,8 +1757,10 @@ class _$UpdateNoteImpl implements _UpdateNote {
     TResult? Function(int slipIndex, String note)? updateNote,
     TResult? Function()? addSlip,
     TResult? Function(int slipIndex)? removeSlip,
-    TResult? Function()? submitStationery,
+    TResult? Function(DateTime dateRegister)? submitStationery,
     TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
   }) {
     return updateNote?.call(slipIndex, note);
   }
@@ -1368,6 +1770,8 @@ class _$UpdateNoteImpl implements _UpdateNote {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult Function(int slipIndex, int quantity)? updateQuantity,
     TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -1375,8 +1779,10 @@ class _$UpdateNoteImpl implements _UpdateNote {
     TResult Function(int slipIndex, String note)? updateNote,
     TResult Function()? addSlip,
     TResult Function(int slipIndex)? removeSlip,
-    TResult Function()? submitStationery,
+    TResult Function(DateTime dateRegister)? submitStationery,
     TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
     required TResult orElse(),
   }) {
     if (updateNote != null) {
@@ -1390,6 +1796,7 @@ class _$UpdateNoteImpl implements _UpdateNote {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
     required TResult Function(_SelectSupply value) selectSupply,
     required TResult Function(_UpdateQuantity value) updateQuantity,
     required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
@@ -1399,6 +1806,8 @@ class _$UpdateNoteImpl implements _UpdateNote {
     required TResult Function(_RemoveSlip value) removeSlip,
     required TResult Function(_SubmitStationery value) submitStationery,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
   }) {
     return updateNote(this);
   }
@@ -1408,6 +1817,7 @@ class _$UpdateNoteImpl implements _UpdateNote {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
     TResult? Function(_SelectSupply value)? selectSupply,
     TResult? Function(_UpdateQuantity value)? updateQuantity,
     TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -1417,6 +1827,8 @@ class _$UpdateNoteImpl implements _UpdateNote {
     TResult? Function(_RemoveSlip value)? removeSlip,
     TResult? Function(_SubmitStationery value)? submitStationery,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
   }) {
     return updateNote?.call(this);
   }
@@ -1426,6 +1838,7 @@ class _$UpdateNoteImpl implements _UpdateNote {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
     TResult Function(_SelectSupply value)? selectSupply,
     TResult Function(_UpdateQuantity value)? updateQuantity,
     TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -1435,6 +1848,8 @@ class _$UpdateNoteImpl implements _UpdateNote {
     TResult Function(_RemoveSlip value)? removeSlip,
     TResult Function(_SubmitStationery value)? submitStationery,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
     required TResult orElse(),
   }) {
     if (updateNote != null) {
@@ -1496,6 +1911,9 @@ class _$AddSlipImpl implements _AddSlip {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
     required TResult Function(int slipIndex, StationerySupplyItem supply)
         selectSupply,
     required TResult Function(int slipIndex, int quantity) updateQuantity,
@@ -1504,8 +1922,10 @@ class _$AddSlipImpl implements _AddSlip {
     required TResult Function(int slipIndex, String note) updateNote,
     required TResult Function() addSlip,
     required TResult Function(int slipIndex) removeSlip,
-    required TResult Function() submitStationery,
+    required TResult Function(DateTime dateRegister) submitStationery,
     required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
   }) {
     return addSlip();
   }
@@ -1515,6 +1935,8 @@ class _$AddSlipImpl implements _AddSlip {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult? Function(int slipIndex, int quantity)? updateQuantity,
     TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -1522,8 +1944,10 @@ class _$AddSlipImpl implements _AddSlip {
     TResult? Function(int slipIndex, String note)? updateNote,
     TResult? Function()? addSlip,
     TResult? Function(int slipIndex)? removeSlip,
-    TResult? Function()? submitStationery,
+    TResult? Function(DateTime dateRegister)? submitStationery,
     TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
   }) {
     return addSlip?.call();
   }
@@ -1533,6 +1957,8 @@ class _$AddSlipImpl implements _AddSlip {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult Function(int slipIndex, int quantity)? updateQuantity,
     TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -1540,8 +1966,10 @@ class _$AddSlipImpl implements _AddSlip {
     TResult Function(int slipIndex, String note)? updateNote,
     TResult Function()? addSlip,
     TResult Function(int slipIndex)? removeSlip,
-    TResult Function()? submitStationery,
+    TResult Function(DateTime dateRegister)? submitStationery,
     TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
     required TResult orElse(),
   }) {
     if (addSlip != null) {
@@ -1555,6 +1983,7 @@ class _$AddSlipImpl implements _AddSlip {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
     required TResult Function(_SelectSupply value) selectSupply,
     required TResult Function(_UpdateQuantity value) updateQuantity,
     required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
@@ -1564,6 +1993,8 @@ class _$AddSlipImpl implements _AddSlip {
     required TResult Function(_RemoveSlip value) removeSlip,
     required TResult Function(_SubmitStationery value) submitStationery,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
   }) {
     return addSlip(this);
   }
@@ -1573,6 +2004,7 @@ class _$AddSlipImpl implements _AddSlip {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
     TResult? Function(_SelectSupply value)? selectSupply,
     TResult? Function(_UpdateQuantity value)? updateQuantity,
     TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -1582,6 +2014,8 @@ class _$AddSlipImpl implements _AddSlip {
     TResult? Function(_RemoveSlip value)? removeSlip,
     TResult? Function(_SubmitStationery value)? submitStationery,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
   }) {
     return addSlip?.call(this);
   }
@@ -1591,6 +2025,7 @@ class _$AddSlipImpl implements _AddSlip {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
     TResult Function(_SelectSupply value)? selectSupply,
     TResult Function(_UpdateQuantity value)? updateQuantity,
     TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -1600,6 +2035,8 @@ class _$AddSlipImpl implements _AddSlip {
     TResult Function(_RemoveSlip value)? removeSlip,
     TResult Function(_SubmitStationery value)? submitStationery,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
     required TResult orElse(),
   }) {
     if (addSlip != null) {
@@ -1680,6 +2117,9 @@ class _$RemoveSlipImpl implements _RemoveSlip {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
     required TResult Function(int slipIndex, StationerySupplyItem supply)
         selectSupply,
     required TResult Function(int slipIndex, int quantity) updateQuantity,
@@ -1688,8 +2128,10 @@ class _$RemoveSlipImpl implements _RemoveSlip {
     required TResult Function(int slipIndex, String note) updateNote,
     required TResult Function() addSlip,
     required TResult Function(int slipIndex) removeSlip,
-    required TResult Function() submitStationery,
+    required TResult Function(DateTime dateRegister) submitStationery,
     required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
   }) {
     return removeSlip(slipIndex);
   }
@@ -1699,6 +2141,8 @@ class _$RemoveSlipImpl implements _RemoveSlip {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult? Function(int slipIndex, int quantity)? updateQuantity,
     TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -1706,8 +2150,10 @@ class _$RemoveSlipImpl implements _RemoveSlip {
     TResult? Function(int slipIndex, String note)? updateNote,
     TResult? Function()? addSlip,
     TResult? Function(int slipIndex)? removeSlip,
-    TResult? Function()? submitStationery,
+    TResult? Function(DateTime dateRegister)? submitStationery,
     TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
   }) {
     return removeSlip?.call(slipIndex);
   }
@@ -1717,6 +2163,8 @@ class _$RemoveSlipImpl implements _RemoveSlip {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult Function(int slipIndex, int quantity)? updateQuantity,
     TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -1724,8 +2172,10 @@ class _$RemoveSlipImpl implements _RemoveSlip {
     TResult Function(int slipIndex, String note)? updateNote,
     TResult Function()? addSlip,
     TResult Function(int slipIndex)? removeSlip,
-    TResult Function()? submitStationery,
+    TResult Function(DateTime dateRegister)? submitStationery,
     TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
     required TResult orElse(),
   }) {
     if (removeSlip != null) {
@@ -1739,6 +2189,7 @@ class _$RemoveSlipImpl implements _RemoveSlip {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
     required TResult Function(_SelectSupply value) selectSupply,
     required TResult Function(_UpdateQuantity value) updateQuantity,
     required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
@@ -1748,6 +2199,8 @@ class _$RemoveSlipImpl implements _RemoveSlip {
     required TResult Function(_RemoveSlip value) removeSlip,
     required TResult Function(_SubmitStationery value) submitStationery,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
   }) {
     return removeSlip(this);
   }
@@ -1757,6 +2210,7 @@ class _$RemoveSlipImpl implements _RemoveSlip {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
     TResult? Function(_SelectSupply value)? selectSupply,
     TResult? Function(_UpdateQuantity value)? updateQuantity,
     TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -1766,6 +2220,8 @@ class _$RemoveSlipImpl implements _RemoveSlip {
     TResult? Function(_RemoveSlip value)? removeSlip,
     TResult? Function(_SubmitStationery value)? submitStationery,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
   }) {
     return removeSlip?.call(this);
   }
@@ -1775,6 +2231,7 @@ class _$RemoveSlipImpl implements _RemoveSlip {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
     TResult Function(_SelectSupply value)? selectSupply,
     TResult Function(_UpdateQuantity value)? updateQuantity,
     TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -1784,6 +2241,8 @@ class _$RemoveSlipImpl implements _RemoveSlip {
     TResult Function(_RemoveSlip value)? removeSlip,
     TResult Function(_SubmitStationery value)? submitStationery,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
     required TResult orElse(),
   }) {
     if (removeSlip != null) {
@@ -1807,6 +2266,8 @@ abstract class _$$SubmitStationeryImplCopyWith<$Res> {
   factory _$$SubmitStationeryImplCopyWith(_$SubmitStationeryImpl value,
           $Res Function(_$SubmitStationeryImpl) then) =
       __$$SubmitStationeryImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime dateRegister});
 }
 
 /// @nodoc
@@ -1816,32 +2277,61 @@ class __$$SubmitStationeryImplCopyWithImpl<$Res>
   __$$SubmitStationeryImplCopyWithImpl(_$SubmitStationeryImpl _value,
       $Res Function(_$SubmitStationeryImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dateRegister = null,
+  }) {
+    return _then(_$SubmitStationeryImpl(
+      dateRegister: null == dateRegister
+          ? _value.dateRegister
+          : dateRegister // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SubmitStationeryImpl implements _SubmitStationery {
-  const _$SubmitStationeryImpl();
+  const _$SubmitStationeryImpl({required this.dateRegister});
+
+  @override
+  final DateTime dateRegister;
 
   @override
   String toString() {
-    return 'StationeryEvent.submitStationery()';
+    return 'StationeryEvent.submitStationery(dateRegister: $dateRegister)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SubmitStationeryImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$SubmitStationeryImpl &&
+            (identical(other.dateRegister, dateRegister) ||
+                other.dateRegister == dateRegister));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, dateRegister);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SubmitStationeryImplCopyWith<_$SubmitStationeryImpl> get copyWith =>
+      __$$SubmitStationeryImplCopyWithImpl<_$SubmitStationeryImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
     required TResult Function(int slipIndex, StationerySupplyItem supply)
         selectSupply,
     required TResult Function(int slipIndex, int quantity) updateQuantity,
@@ -1850,10 +2340,12 @@ class _$SubmitStationeryImpl implements _SubmitStationery {
     required TResult Function(int slipIndex, String note) updateNote,
     required TResult Function() addSlip,
     required TResult Function(int slipIndex) removeSlip,
-    required TResult Function() submitStationery,
+    required TResult Function(DateTime dateRegister) submitStationery,
     required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
   }) {
-    return submitStationery();
+    return submitStationery(dateRegister);
   }
 
   @override
@@ -1861,6 +2353,8 @@ class _$SubmitStationeryImpl implements _SubmitStationery {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult? Function(int slipIndex, int quantity)? updateQuantity,
     TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -1868,10 +2362,12 @@ class _$SubmitStationeryImpl implements _SubmitStationery {
     TResult? Function(int slipIndex, String note)? updateNote,
     TResult? Function()? addSlip,
     TResult? Function(int slipIndex)? removeSlip,
-    TResult? Function()? submitStationery,
+    TResult? Function(DateTime dateRegister)? submitStationery,
     TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
   }) {
-    return submitStationery?.call();
+    return submitStationery?.call(dateRegister);
   }
 
   @override
@@ -1879,6 +2375,8 @@ class _$SubmitStationeryImpl implements _SubmitStationery {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult Function(int slipIndex, int quantity)? updateQuantity,
     TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -1886,12 +2384,14 @@ class _$SubmitStationeryImpl implements _SubmitStationery {
     TResult Function(int slipIndex, String note)? updateNote,
     TResult Function()? addSlip,
     TResult Function(int slipIndex)? removeSlip,
-    TResult Function()? submitStationery,
+    TResult Function(DateTime dateRegister)? submitStationery,
     TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
     required TResult orElse(),
   }) {
     if (submitStationery != null) {
-      return submitStationery();
+      return submitStationery(dateRegister);
     }
     return orElse();
   }
@@ -1901,6 +2401,7 @@ class _$SubmitStationeryImpl implements _SubmitStationery {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
     required TResult Function(_SelectSupply value) selectSupply,
     required TResult Function(_UpdateQuantity value) updateQuantity,
     required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
@@ -1910,6 +2411,8 @@ class _$SubmitStationeryImpl implements _SubmitStationery {
     required TResult Function(_RemoveSlip value) removeSlip,
     required TResult Function(_SubmitStationery value) submitStationery,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
   }) {
     return submitStationery(this);
   }
@@ -1919,6 +2422,7 @@ class _$SubmitStationeryImpl implements _SubmitStationery {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
     TResult? Function(_SelectSupply value)? selectSupply,
     TResult? Function(_UpdateQuantity value)? updateQuantity,
     TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -1928,6 +2432,8 @@ class _$SubmitStationeryImpl implements _SubmitStationery {
     TResult? Function(_RemoveSlip value)? removeSlip,
     TResult? Function(_SubmitStationery value)? submitStationery,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
   }) {
     return submitStationery?.call(this);
   }
@@ -1937,6 +2443,7 @@ class _$SubmitStationeryImpl implements _SubmitStationery {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
     TResult Function(_SelectSupply value)? selectSupply,
     TResult Function(_UpdateQuantity value)? updateQuantity,
     TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -1946,6 +2453,8 @@ class _$SubmitStationeryImpl implements _SubmitStationery {
     TResult Function(_RemoveSlip value)? removeSlip,
     TResult Function(_SubmitStationery value)? submitStationery,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
     required TResult orElse(),
   }) {
     if (submitStationery != null) {
@@ -1956,7 +2465,13 @@ class _$SubmitStationeryImpl implements _SubmitStationery {
 }
 
 abstract class _SubmitStationery implements StationeryEvent {
-  const factory _SubmitStationery() = _$SubmitStationeryImpl;
+  const factory _SubmitStationery({required final DateTime dateRegister}) =
+      _$SubmitStationeryImpl;
+
+  DateTime get dateRegister;
+  @JsonKey(ignore: true)
+  _$$SubmitStationeryImplCopyWith<_$SubmitStationeryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1999,6 +2514,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
     required TResult Function(int slipIndex, StationerySupplyItem supply)
         selectSupply,
     required TResult Function(int slipIndex, int quantity) updateQuantity,
@@ -2007,8 +2525,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(int slipIndex, String note) updateNote,
     required TResult Function() addSlip,
     required TResult Function(int slipIndex) removeSlip,
-    required TResult Function() submitStationery,
+    required TResult Function(DateTime dateRegister) submitStationery,
     required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
   }) {
     return clearSubmitState();
   }
@@ -2018,6 +2538,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult? Function(int slipIndex, int quantity)? updateQuantity,
     TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -2025,8 +2547,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(int slipIndex, String note)? updateNote,
     TResult? Function()? addSlip,
     TResult? Function(int slipIndex)? removeSlip,
-    TResult? Function()? submitStationery,
+    TResult? Function(DateTime dateRegister)? submitStationery,
     TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
   }) {
     return clearSubmitState?.call();
   }
@@ -2036,6 +2560,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
     TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
     TResult Function(int slipIndex, int quantity)? updateQuantity,
     TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
@@ -2043,8 +2569,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(int slipIndex, String note)? updateNote,
     TResult Function()? addSlip,
     TResult Function(int slipIndex)? removeSlip,
-    TResult Function()? submitStationery,
+    TResult Function(DateTime dateRegister)? submitStationery,
     TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -2058,6 +2586,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
     required TResult Function(_SelectSupply value) selectSupply,
     required TResult Function(_UpdateQuantity value) updateQuantity,
     required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
@@ -2067,6 +2596,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_RemoveSlip value) removeSlip,
     required TResult Function(_SubmitStationery value) submitStationery,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
   }) {
     return clearSubmitState(this);
   }
@@ -2076,6 +2607,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
     TResult? Function(_SelectSupply value)? selectSupply,
     TResult? Function(_UpdateQuantity value)? updateQuantity,
     TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -2085,6 +2617,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_RemoveSlip value)? removeSlip,
     TResult? Function(_SubmitStationery value)? submitStationery,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
   }) {
     return clearSubmitState?.call(this);
   }
@@ -2094,6 +2628,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
     TResult Function(_SelectSupply value)? selectSupply,
     TResult Function(_UpdateQuantity value)? updateQuantity,
     TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
@@ -2103,6 +2638,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_RemoveSlip value)? removeSlip,
     TResult Function(_SubmitStationery value)? submitStationery,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -2114,4 +2651,427 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
 
 abstract class _ClearSubmitState implements StationeryEvent {
   const factory _ClearSubmitState() = _$ClearSubmitStateImpl;
+}
+
+/// @nodoc
+abstract class _$$ChangeMonthImplCopyWith<$Res> {
+  factory _$$ChangeMonthImplCopyWith(
+          _$ChangeMonthImpl value, $Res Function(_$ChangeMonthImpl) then) =
+      __$$ChangeMonthImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime month});
+}
+
+/// @nodoc
+class __$$ChangeMonthImplCopyWithImpl<$Res>
+    extends _$StationeryEventCopyWithImpl<$Res, _$ChangeMonthImpl>
+    implements _$$ChangeMonthImplCopyWith<$Res> {
+  __$$ChangeMonthImplCopyWithImpl(
+      _$ChangeMonthImpl _value, $Res Function(_$ChangeMonthImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? month = null,
+  }) {
+    return _then(_$ChangeMonthImpl(
+      month: null == month
+          ? _value.month
+          : month // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeMonthImpl implements _ChangeMonth {
+  const _$ChangeMonthImpl({required this.month});
+
+  @override
+  final DateTime month;
+
+  @override
+  String toString() {
+    return 'StationeryEvent.changeMonth(month: $month)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeMonthImpl &&
+            (identical(other.month, month) || other.month == month));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, month);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeMonthImplCopyWith<_$ChangeMonthImpl> get copyWith =>
+      __$$ChangeMonthImplCopyWithImpl<_$ChangeMonthImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
+    required TResult Function(int slipIndex, StationerySupplyItem supply)
+        selectSupply,
+    required TResult Function(int slipIndex, int quantity) updateQuantity,
+    required TResult Function(int slipIndex, bool exceeds) toggleExceedsLimit,
+    required TResult Function(int slipIndex, String reason) updateReason,
+    required TResult Function(int slipIndex, String note) updateNote,
+    required TResult Function() addSlip,
+    required TResult Function(int slipIndex) removeSlip,
+    required TResult Function(DateTime dateRegister) submitStationery,
+    required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
+  }) {
+    return changeMonth(month);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
+    TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
+    TResult? Function(int slipIndex, int quantity)? updateQuantity,
+    TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
+    TResult? Function(int slipIndex, String reason)? updateReason,
+    TResult? Function(int slipIndex, String note)? updateNote,
+    TResult? Function()? addSlip,
+    TResult? Function(int slipIndex)? removeSlip,
+    TResult? Function(DateTime dateRegister)? submitStationery,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
+  }) {
+    return changeMonth?.call(month);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
+    TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
+    TResult Function(int slipIndex, int quantity)? updateQuantity,
+    TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
+    TResult Function(int slipIndex, String reason)? updateReason,
+    TResult Function(int slipIndex, String note)? updateNote,
+    TResult Function()? addSlip,
+    TResult Function(int slipIndex)? removeSlip,
+    TResult Function(DateTime dateRegister)? submitStationery,
+    TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
+    required TResult orElse(),
+  }) {
+    if (changeMonth != null) {
+      return changeMonth(month);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_SelectSupply value) selectSupply,
+    required TResult Function(_UpdateQuantity value) updateQuantity,
+    required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
+    required TResult Function(_UpdateReason value) updateReason,
+    required TResult Function(_UpdateNote value) updateNote,
+    required TResult Function(_AddSlip value) addSlip,
+    required TResult Function(_RemoveSlip value) removeSlip,
+    required TResult Function(_SubmitStationery value) submitStationery,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
+  }) {
+    return changeMonth(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_SelectSupply value)? selectSupply,
+    TResult? Function(_UpdateQuantity value)? updateQuantity,
+    TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
+    TResult? Function(_UpdateReason value)? updateReason,
+    TResult? Function(_UpdateNote value)? updateNote,
+    TResult? Function(_AddSlip value)? addSlip,
+    TResult? Function(_RemoveSlip value)? removeSlip,
+    TResult? Function(_SubmitStationery value)? submitStationery,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
+  }) {
+    return changeMonth?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_SelectSupply value)? selectSupply,
+    TResult Function(_UpdateQuantity value)? updateQuantity,
+    TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
+    TResult Function(_UpdateReason value)? updateReason,
+    TResult Function(_UpdateNote value)? updateNote,
+    TResult Function(_AddSlip value)? addSlip,
+    TResult Function(_RemoveSlip value)? removeSlip,
+    TResult Function(_SubmitStationery value)? submitStationery,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
+    required TResult orElse(),
+  }) {
+    if (changeMonth != null) {
+      return changeMonth(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeMonth implements StationeryEvent {
+  const factory _ChangeMonth({required final DateTime month}) =
+      _$ChangeMonthImpl;
+
+  DateTime get month;
+  @JsonKey(ignore: true)
+  _$$ChangeMonthImplCopyWith<_$ChangeMonthImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteStationeryImplCopyWith<$Res> {
+  factory _$$DeleteStationeryImplCopyWith(_$DeleteStationeryImpl value,
+          $Res Function(_$DeleteStationeryImpl) then) =
+      __$$DeleteStationeryImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int itemId});
+}
+
+/// @nodoc
+class __$$DeleteStationeryImplCopyWithImpl<$Res>
+    extends _$StationeryEventCopyWithImpl<$Res, _$DeleteStationeryImpl>
+    implements _$$DeleteStationeryImplCopyWith<$Res> {
+  __$$DeleteStationeryImplCopyWithImpl(_$DeleteStationeryImpl _value,
+      $Res Function(_$DeleteStationeryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? itemId = null,
+  }) {
+    return _then(_$DeleteStationeryImpl(
+      itemId: null == itemId
+          ? _value.itemId
+          : itemId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteStationeryImpl implements _DeleteStationery {
+  const _$DeleteStationeryImpl({required this.itemId});
+
+  @override
+  final int itemId;
+
+  @override
+  String toString() {
+    return 'StationeryEvent.deleteStationery(itemId: $itemId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteStationeryImpl &&
+            (identical(other.itemId, itemId) || other.itemId == itemId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, itemId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteStationeryImplCopyWith<_$DeleteStationeryImpl> get copyWith =>
+      __$$DeleteStationeryImplCopyWithImpl<_$DeleteStationeryImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(
+            StationeryItem item, List<StationeryDetailItem> details)
+        initEdit,
+    required TResult Function(int slipIndex, StationerySupplyItem supply)
+        selectSupply,
+    required TResult Function(int slipIndex, int quantity) updateQuantity,
+    required TResult Function(int slipIndex, bool exceeds) toggleExceedsLimit,
+    required TResult Function(int slipIndex, String reason) updateReason,
+    required TResult Function(int slipIndex, String note) updateNote,
+    required TResult Function() addSlip,
+    required TResult Function(int slipIndex) removeSlip,
+    required TResult Function(DateTime dateRegister) submitStationery,
+    required TResult Function() clearSubmitState,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function(int itemId) deleteStationery,
+  }) {
+    return deleteStationery(itemId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
+    TResult? Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
+    TResult? Function(int slipIndex, int quantity)? updateQuantity,
+    TResult? Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
+    TResult? Function(int slipIndex, String reason)? updateReason,
+    TResult? Function(int slipIndex, String note)? updateNote,
+    TResult? Function()? addSlip,
+    TResult? Function(int slipIndex)? removeSlip,
+    TResult? Function(DateTime dateRegister)? submitStationery,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function(int itemId)? deleteStationery,
+  }) {
+    return deleteStationery?.call(itemId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(StationeryItem item, List<StationeryDetailItem> details)?
+        initEdit,
+    TResult Function(int slipIndex, StationerySupplyItem supply)? selectSupply,
+    TResult Function(int slipIndex, int quantity)? updateQuantity,
+    TResult Function(int slipIndex, bool exceeds)? toggleExceedsLimit,
+    TResult Function(int slipIndex, String reason)? updateReason,
+    TResult Function(int slipIndex, String note)? updateNote,
+    TResult Function()? addSlip,
+    TResult Function(int slipIndex)? removeSlip,
+    TResult Function(DateTime dateRegister)? submitStationery,
+    TResult Function()? clearSubmitState,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function(int itemId)? deleteStationery,
+    required TResult orElse(),
+  }) {
+    if (deleteStationery != null) {
+      return deleteStationery(itemId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_SelectSupply value) selectSupply,
+    required TResult Function(_UpdateQuantity value) updateQuantity,
+    required TResult Function(_ToggleExceedsLimit value) toggleExceedsLimit,
+    required TResult Function(_UpdateReason value) updateReason,
+    required TResult Function(_UpdateNote value) updateNote,
+    required TResult Function(_AddSlip value) addSlip,
+    required TResult Function(_RemoveSlip value) removeSlip,
+    required TResult Function(_SubmitStationery value) submitStationery,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_DeleteStationery value) deleteStationery,
+  }) {
+    return deleteStationery(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_SelectSupply value)? selectSupply,
+    TResult? Function(_UpdateQuantity value)? updateQuantity,
+    TResult? Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
+    TResult? Function(_UpdateReason value)? updateReason,
+    TResult? Function(_UpdateNote value)? updateNote,
+    TResult? Function(_AddSlip value)? addSlip,
+    TResult? Function(_RemoveSlip value)? removeSlip,
+    TResult? Function(_SubmitStationery value)? submitStationery,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_DeleteStationery value)? deleteStationery,
+  }) {
+    return deleteStationery?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_SelectSupply value)? selectSupply,
+    TResult Function(_UpdateQuantity value)? updateQuantity,
+    TResult Function(_ToggleExceedsLimit value)? toggleExceedsLimit,
+    TResult Function(_UpdateReason value)? updateReason,
+    TResult Function(_UpdateNote value)? updateNote,
+    TResult Function(_AddSlip value)? addSlip,
+    TResult Function(_RemoveSlip value)? removeSlip,
+    TResult Function(_SubmitStationery value)? submitStationery,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_DeleteStationery value)? deleteStationery,
+    required TResult orElse(),
+  }) {
+    if (deleteStationery != null) {
+      return deleteStationery(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteStationery implements StationeryEvent {
+  const factory _DeleteStationery({required final int itemId}) =
+      _$DeleteStationeryImpl;
+
+  int get itemId;
+  @JsonKey(ignore: true)
+  _$$DeleteStationeryImplCopyWith<_$DeleteStationeryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

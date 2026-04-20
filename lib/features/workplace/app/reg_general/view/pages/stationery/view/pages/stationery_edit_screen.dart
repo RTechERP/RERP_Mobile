@@ -1,5 +1,5 @@
-// Date: 15/04/2026 - Dev: NQHung
-// Nội dung/Chức năng: Màn hình thêm đăng ký văn phòng phẩm - chọn VPP, số lượng, ghi chú
+// Date: 20/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Màn hình sửa đăng ký văn phòng phẩm - hiển thị dữ liệu từ detail, cho phép chỉnh sửa
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,27 +22,37 @@ import '../../data/datasource/models/stationery_model.dart';
 import '../bloc/stationery_bloc.dart';
 import '../widgets/stationery_slip_row.dart';
 
-class StationeryAddScreen extends StatefulWidget {
-  const StationeryAddScreen({super.key});
+class StationeryEditScreen extends StatefulWidget {
+  const StationeryEditScreen({
+    super.key,
+    required this.item,
+    required this.details,
+  });
+
+  final StationeryItem item;
+  final List<StationeryDetailItem> details;
 
   @override
-  State<StationeryAddScreen> createState() => _StationeryAddScreenState();
+  State<StationeryEditScreen> createState() => _StationeryEditScreenState();
 }
 
-class _StationeryAddScreenState
-    extends BaseState<StationeryAddScreen, StationeryEvent, StationeryState,
-        StationeryBloc> {
+class _StationeryEditScreenState extends BaseState<StationeryEditScreen,
+    StationeryEvent, StationeryState, StationeryBloc> {
   final _formKey = GlobalKey<FormBuilderState>();
-  DateTime? _dateRegister;
+  late DateTime _dateRegister;
 
   @override
   void initState() {
     super.initState();
-    _dateRegister = DateTime.now();
-    bloc.add(const StationeryEvent.initAdd());
+    _dateRegister = widget.item.dateRequest ?? DateTime.now();
+    bloc.add(StationeryEvent.initEdit(
+      item: widget.item,
+      details: widget.details,
+    ));
   }
 
-  void _openSupplySelector(int slipIndex, List<StationerySupplyItem> supplies) {
+  void _openSupplySelector(
+      int slipIndex, List<StationerySupplyItem> supplies) {
     openSelectBottomSheet<StationerySupplyItem>(
       context: context,
       title: 'Chọn văn phòng phẩm',
@@ -63,10 +73,8 @@ class _StationeryAddScreenState
     if (!(_formKey.currentState?.saveAndValidate() ?? false)) {
       return;
     }
-    final dateValue =
-        _formKey.currentState?.fields['date_register_picker']?.value;
     bloc.add(StationeryEvent.submitStationery(
-      dateRegister: dateValue ?? DateTime.now(),
+      dateRegister: _dateRegister,
     ));
   }
 
@@ -87,7 +95,7 @@ class _StationeryAddScreenState
             }
             if (state.submitSuccess) {
               context.showMessage(
-                state.message ?? 'Đăng ký thành công',
+                state.message ?? 'Cập nhật thành công',
                 type: SnackBarType.success,
               );
               context.pop(true);
@@ -95,7 +103,7 @@ class _StationeryAddScreenState
           },
           child: BaseScaffold(
             appBar: AppBarCommon(
-              title: const Text('Đăng ký VPP'),
+              title: const Text('Sửa đăng ký VPP'),
               onBackTap: () => onBack(context),
             ),
             body: BlocBuilder<StationeryBloc, StationeryState>(
@@ -103,8 +111,8 @@ class _StationeryAddScreenState
                   prev.status != curr.status ||
                   prev.slips != curr.slips ||
                   prev.stationerySupply != curr.stationerySupply ||
-                  prev.supplyRequiredValidated != curr.supplyRequiredValidated ||
-                  prev.isAdmin != curr.isAdmin,
+                  prev.supplyRequiredValidated !=
+                      curr.supplyRequiredValidated,
               builder: (context, state) {
                 if (state.status == BaseStateStatus.loading &&
                     state.slips.isEmpty) {
@@ -163,14 +171,11 @@ class _StationeryAddScreenState
                       format: DateFormat('dd/MM/yyyy'),
                       initialValue: _dateRegister,
                       isRequired: true,
-                      selectableDayPredicate: state.isAdmin
-                          ? null
-                          : (day) => day.day >= 1 && day.day <= 5,
+                      selectableDayPredicate: (day) =>
+                          day.day >= 1 && day.day <= 5,
                       validator: (v) {
                         if (v == null) return 'Vui lòng chọn ngày đăng ký';
-                        if (!state.isAdmin && v.day > 5) {
-                          return 'Hiện tại đã quá thời hạn đăng ký!';
-                        }
+                        if (v.day > 5) return 'Hiện tại đã quá thời hạn đăng ký!';
                         return null;
                       },
                       onChanged: (v) {
@@ -252,9 +257,9 @@ class _StationeryAddScreenState
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
           child: FormActions(
-            mode: FormActionMode.add,
-            submitText: 'Lưu',
-            onSubmit: _onSubmit,
+            mode: FormActionMode.edit,
+            saveText: 'Cập nhật',
+            onSave: _onSubmit,
             onCancel: () => onBack(context),
           ),
         ),

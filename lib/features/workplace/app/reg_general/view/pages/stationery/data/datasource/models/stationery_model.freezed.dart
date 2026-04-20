@@ -20,6 +20,8 @@ StationeryItem _$StationeryItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StationeryItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'EmployeeIDRequest')
   int? get employeeIdRequest => throw _privateConstructorUsedError;
   @JsonKey(name: 'UserName')
@@ -58,7 +60,8 @@ abstract class $StationeryItemCopyWith<$Res> {
       _$StationeryItemCopyWithImpl<$Res, StationeryItem>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'EmployeeIDRequest') int? employeeIdRequest,
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'EmployeeIDRequest') int? employeeIdRequest,
       @JsonKey(name: 'UserName') String? userName,
       @JsonKey(name: 'DateRequest') DateTime? dateRequest,
       @JsonKey(name: 'IsApproved') bool? isApproved,
@@ -85,6 +88,7 @@ class _$StationeryItemCopyWithImpl<$Res, $Val extends StationeryItem>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? employeeIdRequest = freezed,
     Object? userName = freezed,
     Object? dateRequest = freezed,
@@ -99,6 +103,10 @@ class _$StationeryItemCopyWithImpl<$Res, $Val extends StationeryItem>
     Object? adminApprovedId = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       employeeIdRequest: freezed == employeeIdRequest
           ? _value.employeeIdRequest
           : employeeIdRequest // ignore: cast_nullable_to_non_nullable
@@ -160,7 +168,8 @@ abstract class _$$StationeryItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'EmployeeIDRequest') int? employeeIdRequest,
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'EmployeeIDRequest') int? employeeIdRequest,
       @JsonKey(name: 'UserName') String? userName,
       @JsonKey(name: 'DateRequest') DateTime? dateRequest,
       @JsonKey(name: 'IsApproved') bool? isApproved,
@@ -185,6 +194,7 @@ class __$$StationeryItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? employeeIdRequest = freezed,
     Object? userName = freezed,
     Object? dateRequest = freezed,
@@ -199,6 +209,10 @@ class __$$StationeryItemImplCopyWithImpl<$Res>
     Object? adminApprovedId = freezed,
   }) {
     return _then(_$StationeryItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       employeeIdRequest: freezed == employeeIdRequest
           ? _value.employeeIdRequest
           : employeeIdRequest // ignore: cast_nullable_to_non_nullable
@@ -255,7 +269,8 @@ class __$$StationeryItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StationeryItemImpl implements _StationeryItem {
   const _$StationeryItemImpl(
-      {@JsonKey(name: 'EmployeeIDRequest') this.employeeIdRequest,
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'EmployeeIDRequest') this.employeeIdRequest,
       @JsonKey(name: 'UserName') this.userName,
       @JsonKey(name: 'DateRequest') this.dateRequest,
       @JsonKey(name: 'IsApproved') this.isApproved,
@@ -271,6 +286,9 @@ class _$StationeryItemImpl implements _StationeryItem {
   factory _$StationeryItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$StationeryItemImplFromJson(json);
 
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
   @override
   @JsonKey(name: 'EmployeeIDRequest')
   final int? employeeIdRequest;
@@ -310,7 +328,7 @@ class _$StationeryItemImpl implements _StationeryItem {
 
   @override
   String toString() {
-    return 'StationeryItem(employeeIdRequest: $employeeIdRequest, userName: $userName, dateRequest: $dateRequest, isApproved: $isApproved, approvedId: $approvedId, dateApproved: $dateApproved, fullNameApproved: $fullNameApproved, departmentName: $departmentName, departmentId: $departmentId, isAdminApproved: $isAdminApproved, dateAdminApproved: $dateAdminApproved, adminApprovedId: $adminApprovedId)';
+    return 'StationeryItem(id: $id, employeeIdRequest: $employeeIdRequest, userName: $userName, dateRequest: $dateRequest, isApproved: $isApproved, approvedId: $approvedId, dateApproved: $dateApproved, fullNameApproved: $fullNameApproved, departmentName: $departmentName, departmentId: $departmentId, isAdminApproved: $isAdminApproved, dateAdminApproved: $dateAdminApproved, adminApprovedId: $adminApprovedId)';
   }
 
   @override
@@ -318,6 +336,7 @@ class _$StationeryItemImpl implements _StationeryItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StationeryItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.employeeIdRequest, employeeIdRequest) ||
                 other.employeeIdRequest == employeeIdRequest) &&
             (identical(other.userName, userName) ||
@@ -348,6 +367,7 @@ class _$StationeryItemImpl implements _StationeryItem {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       employeeIdRequest,
       userName,
       dateRequest,
@@ -378,7 +398,8 @@ class _$StationeryItemImpl implements _StationeryItem {
 
 abstract class _StationeryItem implements StationeryItem {
   const factory _StationeryItem(
-          {@JsonKey(name: 'EmployeeIDRequest') final int? employeeIdRequest,
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'EmployeeIDRequest') final int? employeeIdRequest,
           @JsonKey(name: 'UserName') final String? userName,
           @JsonKey(name: 'DateRequest') final DateTime? dateRequest,
           @JsonKey(name: 'IsApproved') final bool? isApproved,
@@ -395,6 +416,9 @@ abstract class _StationeryItem implements StationeryItem {
   factory _StationeryItem.fromJson(Map<String, dynamic> json) =
       _$StationeryItemImpl.fromJson;
 
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
   @override
   @JsonKey(name: 'EmployeeIDRequest')
   int? get employeeIdRequest;
@@ -443,6 +467,8 @@ StationerySupplyItem _$StationerySupplyItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StationerySupplyItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'CodeNCC')
   String? get codeNCC => throw _privateConstructorUsedError;
   @JsonKey(name: 'CodeRTC')
@@ -467,7 +493,8 @@ abstract class $StationerySupplyItemCopyWith<$Res> {
       _$StationerySupplyItemCopyWithImpl<$Res, StationerySupplyItem>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'CodeNCC') String? codeNCC,
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'CodeNCC') String? codeNCC,
       @JsonKey(name: 'CodeRTC') String? codeRTC,
       @JsonKey(name: 'NameNCC') String? nameNCC,
       @JsonKey(name: 'Unit') String? unit,
@@ -488,6 +515,7 @@ class _$StationerySupplyItemCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? codeNCC = freezed,
     Object? codeRTC = freezed,
     Object? nameNCC = freezed,
@@ -495,6 +523,10 @@ class _$StationerySupplyItemCopyWithImpl<$Res,
     Object? requestLimit = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       codeNCC: freezed == codeNCC
           ? _value.codeNCC
           : codeNCC // ignore: cast_nullable_to_non_nullable
@@ -528,7 +560,8 @@ abstract class _$$StationerySupplyItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'CodeNCC') String? codeNCC,
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'CodeNCC') String? codeNCC,
       @JsonKey(name: 'CodeRTC') String? codeRTC,
       @JsonKey(name: 'NameNCC') String? nameNCC,
       @JsonKey(name: 'Unit') String? unit,
@@ -546,6 +579,7 @@ class __$$StationerySupplyItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? codeNCC = freezed,
     Object? codeRTC = freezed,
     Object? nameNCC = freezed,
@@ -553,6 +587,10 @@ class __$$StationerySupplyItemImplCopyWithImpl<$Res>
     Object? requestLimit = freezed,
   }) {
     return _then(_$StationerySupplyItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       codeNCC: freezed == codeNCC
           ? _value.codeNCC
           : codeNCC // ignore: cast_nullable_to_non_nullable
@@ -581,7 +619,8 @@ class __$$StationerySupplyItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StationerySupplyItemImpl implements _StationerySupplyItem {
   const _$StationerySupplyItemImpl(
-      {@JsonKey(name: 'CodeNCC') this.codeNCC,
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'CodeNCC') this.codeNCC,
       @JsonKey(name: 'CodeRTC') this.codeRTC,
       @JsonKey(name: 'NameNCC') this.nameNCC,
       @JsonKey(name: 'Unit') this.unit,
@@ -590,6 +629,9 @@ class _$StationerySupplyItemImpl implements _StationerySupplyItem {
   factory _$StationerySupplyItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$StationerySupplyItemImplFromJson(json);
 
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
   @override
   @JsonKey(name: 'CodeNCC')
   final String? codeNCC;
@@ -608,7 +650,7 @@ class _$StationerySupplyItemImpl implements _StationerySupplyItem {
 
   @override
   String toString() {
-    return 'StationerySupplyItem(codeNCC: $codeNCC, codeRTC: $codeRTC, nameNCC: $nameNCC, unit: $unit, requestLimit: $requestLimit)';
+    return 'StationerySupplyItem(id: $id, codeNCC: $codeNCC, codeRTC: $codeRTC, nameNCC: $nameNCC, unit: $unit, requestLimit: $requestLimit)';
   }
 
   @override
@@ -616,6 +658,7 @@ class _$StationerySupplyItemImpl implements _StationerySupplyItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StationerySupplyItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.codeNCC, codeNCC) || other.codeNCC == codeNCC) &&
             (identical(other.codeRTC, codeRTC) || other.codeRTC == codeRTC) &&
             (identical(other.nameNCC, nameNCC) || other.nameNCC == nameNCC) &&
@@ -626,8 +669,8 @@ class _$StationerySupplyItemImpl implements _StationerySupplyItem {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, codeNCC, codeRTC, nameNCC, unit, requestLimit);
+  int get hashCode => Object.hash(
+      runtimeType, id, codeNCC, codeRTC, nameNCC, unit, requestLimit);
 
   @JsonKey(ignore: true)
   @override
@@ -647,7 +690,8 @@ class _$StationerySupplyItemImpl implements _StationerySupplyItem {
 
 abstract class _StationerySupplyItem implements StationerySupplyItem {
   const factory _StationerySupplyItem(
-          {@JsonKey(name: 'CodeNCC') final String? codeNCC,
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'CodeNCC') final String? codeNCC,
           @JsonKey(name: 'CodeRTC') final String? codeRTC,
           @JsonKey(name: 'NameNCC') final String? nameNCC,
           @JsonKey(name: 'Unit') final String? unit,
@@ -657,6 +701,9 @@ abstract class _StationerySupplyItem implements StationerySupplyItem {
   factory _StationerySupplyItem.fromJson(Map<String, dynamic> json) =
       _$StationerySupplyItemImpl.fromJson;
 
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
   @override
   @JsonKey(name: 'CodeNCC')
   String? get codeNCC;
@@ -684,22 +731,26 @@ StationeryDetailItem _$StationeryDetailItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StationeryDetailItem {
-  @JsonKey(name: 'OfficeSupplyID')
-  int? get officeSupplyId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Note')
-  String? get note => throw _privateConstructorUsedError;
-  @JsonKey(name: 'OfficeSupplyName')
-  String? get officeSupplyName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'OfficeSupplyRequestsID')
   int? get officeSupplyRequestsId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OfficeSupplyID')
+  int? get officeSupplyId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OfficeSupplyName')
+  String? get officeSupplyName => throw _privateConstructorUsedError;
   @JsonKey(name: 'OfficeSupplyUnitID')
   int? get officeSupplyUnitId => throw _privateConstructorUsedError;
   @JsonKey(name: 'Quantity')
   int? get quantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'QuantityReceived')
+  int? get quantityReceived => throw _privateConstructorUsedError;
   @JsonKey(name: 'Reason')
   String? get reason => throw _privateConstructorUsedError;
   @JsonKey(name: 'ExceedsLimit')
   bool? get exceedsLimit => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
   @JsonKey(name: 'Code')
   String? get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'CodeName')
@@ -710,8 +761,6 @@ mixin _$StationeryDetailItem {
   int? get employeeId => throw _privateConstructorUsedError;
   @JsonKey(name: 'FullName')
   String? get fullName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ID')
-  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'Unit')
   String? get unit => throw _privateConstructorUsedError;
 
@@ -728,20 +777,21 @@ abstract class $StationeryDetailItemCopyWith<$Res> {
       _$StationeryDetailItemCopyWithImpl<$Res, StationeryDetailItem>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'OfficeSupplyID') int? officeSupplyId,
-      @JsonKey(name: 'Note') String? note,
-      @JsonKey(name: 'OfficeSupplyName') String? officeSupplyName,
+      {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'OfficeSupplyRequestsID') int? officeSupplyRequestsId,
+      @JsonKey(name: 'OfficeSupplyID') int? officeSupplyId,
+      @JsonKey(name: 'OfficeSupplyName') String? officeSupplyName,
       @JsonKey(name: 'OfficeSupplyUnitID') int? officeSupplyUnitId,
       @JsonKey(name: 'Quantity') int? quantity,
+      @JsonKey(name: 'QuantityReceived') int? quantityReceived,
       @JsonKey(name: 'Reason') String? reason,
       @JsonKey(name: 'ExceedsLimit') bool? exceedsLimit,
+      @JsonKey(name: 'Note') String? note,
       @JsonKey(name: 'Code') String? code,
       @JsonKey(name: 'CodeName') String? codeName,
       @JsonKey(name: 'DepartmentName') String? departmentName,
       @JsonKey(name: 'EmployeeID') int? employeeId,
       @JsonKey(name: 'FullName') String? fullName,
-      @JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'Unit') String? unit});
 }
 
@@ -759,39 +809,40 @@ class _$StationeryDetailItemCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? officeSupplyId = freezed,
-    Object? note = freezed,
-    Object? officeSupplyName = freezed,
+    Object? id = freezed,
     Object? officeSupplyRequestsId = freezed,
+    Object? officeSupplyId = freezed,
+    Object? officeSupplyName = freezed,
     Object? officeSupplyUnitId = freezed,
     Object? quantity = freezed,
+    Object? quantityReceived = freezed,
     Object? reason = freezed,
     Object? exceedsLimit = freezed,
+    Object? note = freezed,
     Object? code = freezed,
     Object? codeName = freezed,
     Object? departmentName = freezed,
     Object? employeeId = freezed,
     Object? fullName = freezed,
-    Object? id = freezed,
     Object? unit = freezed,
   }) {
     return _then(_value.copyWith(
-      officeSupplyId: freezed == officeSupplyId
-          ? _value.officeSupplyId
-          : officeSupplyId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      note: freezed == note
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String?,
-      officeSupplyName: freezed == officeSupplyName
-          ? _value.officeSupplyName
-          : officeSupplyName // ignore: cast_nullable_to_non_nullable
-              as String?,
       officeSupplyRequestsId: freezed == officeSupplyRequestsId
           ? _value.officeSupplyRequestsId
           : officeSupplyRequestsId // ignore: cast_nullable_to_non_nullable
               as int?,
+      officeSupplyId: freezed == officeSupplyId
+          ? _value.officeSupplyId
+          : officeSupplyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      officeSupplyName: freezed == officeSupplyName
+          ? _value.officeSupplyName
+          : officeSupplyName // ignore: cast_nullable_to_non_nullable
+              as String?,
       officeSupplyUnitId: freezed == officeSupplyUnitId
           ? _value.officeSupplyUnitId
           : officeSupplyUnitId // ignore: cast_nullable_to_non_nullable
@@ -799,6 +850,10 @@ class _$StationeryDetailItemCopyWithImpl<$Res,
       quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      quantityReceived: freezed == quantityReceived
+          ? _value.quantityReceived
+          : quantityReceived // ignore: cast_nullable_to_non_nullable
               as int?,
       reason: freezed == reason
           ? _value.reason
@@ -808,6 +863,10 @@ class _$StationeryDetailItemCopyWithImpl<$Res,
           ? _value.exceedsLimit
           : exceedsLimit // ignore: cast_nullable_to_non_nullable
               as bool?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -828,10 +887,6 @@ class _$StationeryDetailItemCopyWithImpl<$Res,
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       unit: freezed == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
@@ -849,20 +904,21 @@ abstract class _$$StationeryDetailItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'OfficeSupplyID') int? officeSupplyId,
-      @JsonKey(name: 'Note') String? note,
-      @JsonKey(name: 'OfficeSupplyName') String? officeSupplyName,
+      {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'OfficeSupplyRequestsID') int? officeSupplyRequestsId,
+      @JsonKey(name: 'OfficeSupplyID') int? officeSupplyId,
+      @JsonKey(name: 'OfficeSupplyName') String? officeSupplyName,
       @JsonKey(name: 'OfficeSupplyUnitID') int? officeSupplyUnitId,
       @JsonKey(name: 'Quantity') int? quantity,
+      @JsonKey(name: 'QuantityReceived') int? quantityReceived,
       @JsonKey(name: 'Reason') String? reason,
       @JsonKey(name: 'ExceedsLimit') bool? exceedsLimit,
+      @JsonKey(name: 'Note') String? note,
       @JsonKey(name: 'Code') String? code,
       @JsonKey(name: 'CodeName') String? codeName,
       @JsonKey(name: 'DepartmentName') String? departmentName,
       @JsonKey(name: 'EmployeeID') int? employeeId,
       @JsonKey(name: 'FullName') String? fullName,
-      @JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'Unit') String? unit});
 }
 
@@ -877,39 +933,40 @@ class __$$StationeryDetailItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? officeSupplyId = freezed,
-    Object? note = freezed,
-    Object? officeSupplyName = freezed,
+    Object? id = freezed,
     Object? officeSupplyRequestsId = freezed,
+    Object? officeSupplyId = freezed,
+    Object? officeSupplyName = freezed,
     Object? officeSupplyUnitId = freezed,
     Object? quantity = freezed,
+    Object? quantityReceived = freezed,
     Object? reason = freezed,
     Object? exceedsLimit = freezed,
+    Object? note = freezed,
     Object? code = freezed,
     Object? codeName = freezed,
     Object? departmentName = freezed,
     Object? employeeId = freezed,
     Object? fullName = freezed,
-    Object? id = freezed,
     Object? unit = freezed,
   }) {
     return _then(_$StationeryDetailItemImpl(
-      officeSupplyId: freezed == officeSupplyId
-          ? _value.officeSupplyId
-          : officeSupplyId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      note: freezed == note
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String?,
-      officeSupplyName: freezed == officeSupplyName
-          ? _value.officeSupplyName
-          : officeSupplyName // ignore: cast_nullable_to_non_nullable
-              as String?,
       officeSupplyRequestsId: freezed == officeSupplyRequestsId
           ? _value.officeSupplyRequestsId
           : officeSupplyRequestsId // ignore: cast_nullable_to_non_nullable
               as int?,
+      officeSupplyId: freezed == officeSupplyId
+          ? _value.officeSupplyId
+          : officeSupplyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      officeSupplyName: freezed == officeSupplyName
+          ? _value.officeSupplyName
+          : officeSupplyName // ignore: cast_nullable_to_non_nullable
+              as String?,
       officeSupplyUnitId: freezed == officeSupplyUnitId
           ? _value.officeSupplyUnitId
           : officeSupplyUnitId // ignore: cast_nullable_to_non_nullable
@@ -917,6 +974,10 @@ class __$$StationeryDetailItemImplCopyWithImpl<$Res>
       quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      quantityReceived: freezed == quantityReceived
+          ? _value.quantityReceived
+          : quantityReceived // ignore: cast_nullable_to_non_nullable
               as int?,
       reason: freezed == reason
           ? _value.reason
@@ -926,6 +987,10 @@ class __$$StationeryDetailItemImplCopyWithImpl<$Res>
           ? _value.exceedsLimit
           : exceedsLimit // ignore: cast_nullable_to_non_nullable
               as bool?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -946,10 +1011,6 @@ class __$$StationeryDetailItemImplCopyWithImpl<$Res>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       unit: freezed == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
@@ -962,37 +1023,38 @@ class __$$StationeryDetailItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StationeryDetailItemImpl implements _StationeryDetailItem {
   const _$StationeryDetailItemImpl(
-      {@JsonKey(name: 'OfficeSupplyID') this.officeSupplyId,
-      @JsonKey(name: 'Note') this.note,
-      @JsonKey(name: 'OfficeSupplyName') this.officeSupplyName,
+      {@JsonKey(name: 'ID') this.id,
       @JsonKey(name: 'OfficeSupplyRequestsID') this.officeSupplyRequestsId,
+      @JsonKey(name: 'OfficeSupplyID') this.officeSupplyId,
+      @JsonKey(name: 'OfficeSupplyName') this.officeSupplyName,
       @JsonKey(name: 'OfficeSupplyUnitID') this.officeSupplyUnitId,
       @JsonKey(name: 'Quantity') this.quantity,
+      @JsonKey(name: 'QuantityReceived') this.quantityReceived,
       @JsonKey(name: 'Reason') this.reason,
       @JsonKey(name: 'ExceedsLimit') this.exceedsLimit,
+      @JsonKey(name: 'Note') this.note,
       @JsonKey(name: 'Code') this.code,
       @JsonKey(name: 'CodeName') this.codeName,
       @JsonKey(name: 'DepartmentName') this.departmentName,
       @JsonKey(name: 'EmployeeID') this.employeeId,
       @JsonKey(name: 'FullName') this.fullName,
-      @JsonKey(name: 'ID') this.id,
       @JsonKey(name: 'Unit') this.unit});
 
   factory _$StationeryDetailItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$StationeryDetailItemImplFromJson(json);
 
   @override
-  @JsonKey(name: 'OfficeSupplyID')
-  final int? officeSupplyId;
-  @override
-  @JsonKey(name: 'Note')
-  final String? note;
-  @override
-  @JsonKey(name: 'OfficeSupplyName')
-  final String? officeSupplyName;
+  @JsonKey(name: 'ID')
+  final int? id;
   @override
   @JsonKey(name: 'OfficeSupplyRequestsID')
   final int? officeSupplyRequestsId;
+  @override
+  @JsonKey(name: 'OfficeSupplyID')
+  final int? officeSupplyId;
+  @override
+  @JsonKey(name: 'OfficeSupplyName')
+  final String? officeSupplyName;
   @override
   @JsonKey(name: 'OfficeSupplyUnitID')
   final int? officeSupplyUnitId;
@@ -1000,11 +1062,17 @@ class _$StationeryDetailItemImpl implements _StationeryDetailItem {
   @JsonKey(name: 'Quantity')
   final int? quantity;
   @override
+  @JsonKey(name: 'QuantityReceived')
+  final int? quantityReceived;
+  @override
   @JsonKey(name: 'Reason')
   final String? reason;
   @override
   @JsonKey(name: 'ExceedsLimit')
   final bool? exceedsLimit;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
   @override
   @JsonKey(name: 'Code')
   final String? code;
@@ -1021,15 +1089,12 @@ class _$StationeryDetailItemImpl implements _StationeryDetailItem {
   @JsonKey(name: 'FullName')
   final String? fullName;
   @override
-  @JsonKey(name: 'ID')
-  final int? id;
-  @override
   @JsonKey(name: 'Unit')
   final String? unit;
 
   @override
   String toString() {
-    return 'StationeryDetailItem(officeSupplyId: $officeSupplyId, note: $note, officeSupplyName: $officeSupplyName, officeSupplyRequestsId: $officeSupplyRequestsId, officeSupplyUnitId: $officeSupplyUnitId, quantity: $quantity, reason: $reason, exceedsLimit: $exceedsLimit, code: $code, codeName: $codeName, departmentName: $departmentName, employeeId: $employeeId, fullName: $fullName, id: $id, unit: $unit)';
+    return 'StationeryDetailItem(id: $id, officeSupplyRequestsId: $officeSupplyRequestsId, officeSupplyId: $officeSupplyId, officeSupplyName: $officeSupplyName, officeSupplyUnitId: $officeSupplyUnitId, quantity: $quantity, quantityReceived: $quantityReceived, reason: $reason, exceedsLimit: $exceedsLimit, note: $note, code: $code, codeName: $codeName, departmentName: $departmentName, employeeId: $employeeId, fullName: $fullName, unit: $unit)';
   }
 
   @override
@@ -1037,20 +1102,23 @@ class _$StationeryDetailItemImpl implements _StationeryDetailItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StationeryDetailItemImpl &&
-            (identical(other.officeSupplyId, officeSupplyId) ||
-                other.officeSupplyId == officeSupplyId) &&
-            (identical(other.note, note) || other.note == note) &&
-            (identical(other.officeSupplyName, officeSupplyName) ||
-                other.officeSupplyName == officeSupplyName) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.officeSupplyRequestsId, officeSupplyRequestsId) ||
                 other.officeSupplyRequestsId == officeSupplyRequestsId) &&
+            (identical(other.officeSupplyId, officeSupplyId) ||
+                other.officeSupplyId == officeSupplyId) &&
+            (identical(other.officeSupplyName, officeSupplyName) ||
+                other.officeSupplyName == officeSupplyName) &&
             (identical(other.officeSupplyUnitId, officeSupplyUnitId) ||
                 other.officeSupplyUnitId == officeSupplyUnitId) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
+            (identical(other.quantityReceived, quantityReceived) ||
+                other.quantityReceived == quantityReceived) &&
             (identical(other.reason, reason) || other.reason == reason) &&
             (identical(other.exceedsLimit, exceedsLimit) ||
                 other.exceedsLimit == exceedsLimit) &&
+            (identical(other.note, note) || other.note == note) &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.codeName, codeName) ||
                 other.codeName == codeName) &&
@@ -1060,7 +1128,6 @@ class _$StationeryDetailItemImpl implements _StationeryDetailItem {
                 other.employeeId == employeeId) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.unit, unit) || other.unit == unit));
   }
 
@@ -1068,20 +1135,21 @@ class _$StationeryDetailItemImpl implements _StationeryDetailItem {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      officeSupplyId,
-      note,
-      officeSupplyName,
+      id,
       officeSupplyRequestsId,
+      officeSupplyId,
+      officeSupplyName,
       officeSupplyUnitId,
       quantity,
+      quantityReceived,
       reason,
       exceedsLimit,
+      note,
       code,
       codeName,
       departmentName,
       employeeId,
       fullName,
-      id,
       unit);
 
   @JsonKey(ignore: true)
@@ -1102,38 +1170,39 @@ class _$StationeryDetailItemImpl implements _StationeryDetailItem {
 
 abstract class _StationeryDetailItem implements StationeryDetailItem {
   const factory _StationeryDetailItem(
-      {@JsonKey(name: 'OfficeSupplyID') final int? officeSupplyId,
-      @JsonKey(name: 'Note') final String? note,
-      @JsonKey(name: 'OfficeSupplyName') final String? officeSupplyName,
+      {@JsonKey(name: 'ID') final int? id,
       @JsonKey(name: 'OfficeSupplyRequestsID')
       final int? officeSupplyRequestsId,
+      @JsonKey(name: 'OfficeSupplyID') final int? officeSupplyId,
+      @JsonKey(name: 'OfficeSupplyName') final String? officeSupplyName,
       @JsonKey(name: 'OfficeSupplyUnitID') final int? officeSupplyUnitId,
       @JsonKey(name: 'Quantity') final int? quantity,
+      @JsonKey(name: 'QuantityReceived') final int? quantityReceived,
       @JsonKey(name: 'Reason') final String? reason,
       @JsonKey(name: 'ExceedsLimit') final bool? exceedsLimit,
+      @JsonKey(name: 'Note') final String? note,
       @JsonKey(name: 'Code') final String? code,
       @JsonKey(name: 'CodeName') final String? codeName,
       @JsonKey(name: 'DepartmentName') final String? departmentName,
       @JsonKey(name: 'EmployeeID') final int? employeeId,
       @JsonKey(name: 'FullName') final String? fullName,
-      @JsonKey(name: 'ID') final int? id,
       @JsonKey(name: 'Unit') final String? unit}) = _$StationeryDetailItemImpl;
 
   factory _StationeryDetailItem.fromJson(Map<String, dynamic> json) =
       _$StationeryDetailItemImpl.fromJson;
 
   @override
-  @JsonKey(name: 'OfficeSupplyID')
-  int? get officeSupplyId;
-  @override
-  @JsonKey(name: 'Note')
-  String? get note;
-  @override
-  @JsonKey(name: 'OfficeSupplyName')
-  String? get officeSupplyName;
+  @JsonKey(name: 'ID')
+  int? get id;
   @override
   @JsonKey(name: 'OfficeSupplyRequestsID')
   int? get officeSupplyRequestsId;
+  @override
+  @JsonKey(name: 'OfficeSupplyID')
+  int? get officeSupplyId;
+  @override
+  @JsonKey(name: 'OfficeSupplyName')
+  String? get officeSupplyName;
   @override
   @JsonKey(name: 'OfficeSupplyUnitID')
   int? get officeSupplyUnitId;
@@ -1141,11 +1210,17 @@ abstract class _StationeryDetailItem implements StationeryDetailItem {
   @JsonKey(name: 'Quantity')
   int? get quantity;
   @override
+  @JsonKey(name: 'QuantityReceived')
+  int? get quantityReceived;
+  @override
   @JsonKey(name: 'Reason')
   String? get reason;
   @override
   @JsonKey(name: 'ExceedsLimit')
   bool? get exceedsLimit;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
   @override
   @JsonKey(name: 'Code')
   String? get code;
@@ -1161,9 +1236,6 @@ abstract class _StationeryDetailItem implements StationeryDetailItem {
   @override
   @JsonKey(name: 'FullName')
   String? get fullName;
-  @override
-  @JsonKey(name: 'ID')
-  int? get id;
   @override
   @JsonKey(name: 'Unit')
   String? get unit;

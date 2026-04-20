@@ -161,6 +161,7 @@ class RouteNames {
 
   static const stationeryAdd = '/reg_general/stationery/add';
   static const stationeryDetail = '/reg_general/stationery/detail';
+  static const stationeryEdit = '/reg_general/stationery/edit';
 
   // More - Settings
   static const notificationSettings = '/more/notification_settings';

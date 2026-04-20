@@ -9,6 +9,12 @@ class StationeryEvent with _$StationeryEvent {
 
   const factory StationeryEvent.initAdd() = _InitAdd;
 
+  /// Khởi tạo form sửa từ dữ liệu chi tiết đơn.
+  const factory StationeryEvent.initEdit({
+    required StationeryItem item,
+    required List<StationeryDetailItem> details,
+  }) = _InitEdit;
+
   /// Chọn VPP từ bottom sheet — cập nhật 1 slip trong danh sách.
   const factory StationeryEvent.selectSupply({
     required int slipIndex,
@@ -46,7 +52,17 @@ class StationeryEvent with _$StationeryEvent {
   const factory StationeryEvent.removeSlip({required int slipIndex}) = _RemoveSlip;
 
   /// Submit toàn bộ đơn VPP.
-  const factory StationeryEvent.submitStationery() = _SubmitStationery;
+  const factory StationeryEvent.submitStationery({
+    required DateTime dateRegister,
+  }) = _SubmitStationery;
 
   const factory StationeryEvent.clearSubmitState() = _ClearSubmitState;
+
+  const factory StationeryEvent.changeMonth({
+    required DateTime month,
+  }) = _ChangeMonth;
+
+  const factory StationeryEvent.deleteStationery({
+    required int itemId,
+  }) = _DeleteStationery;
 }

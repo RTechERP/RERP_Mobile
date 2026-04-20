@@ -15,26 +15,17 @@ class StationeryRepoImpl implements StationeryRepo {
   StationeryRepoImpl(this._service);
 
   @override
-  Future<Either<BaseError, List<StationeryDetailItem>>> getStationeryDetailItem() async {
+  Future<Either<BaseError, List<StationeryItem>>> getStationeryItem({
+    String keyword = '',
+    String monthInput = '',
+    int departmentId = 0,
+  }) async {
     try {
-      final res = await _service.getStationeryDetailItem();
-
-      if (res.status == 1 && res.data != null) {
-        return right(res.data!);
-      } else {
-        return left(
-          BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
-        );
-      }
-    } on DioException catch (e) {
-      return left(e.baseError);
-    }
-  }
-
-  @override
-  Future<Either<BaseError, List<StationeryItem>>> getStationeryItem() async {
-    try {
-      final res = await _service.getStationeryItem();
+      final res = await _service.getStationeryItem(
+        keyword: keyword,
+        monthInput: monthInput,
+        departmentId: departmentId,
+      );
 
       if (res.status == 1 && res.data != null) {
         return right(res.data!);
@@ -58,6 +49,48 @@ class StationeryRepoImpl implements StationeryRepo {
       } else {
         return left(
           BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<StationeryDetailItem>>> getStationeryDetailItem({
+    required int officeSupplyRequestsId,
+  }) async {
+    try {
+      final res = await _service.getStationeryDetailItem(
+        officeSupplyRequestsId: officeSupplyRequestsId,
+      );
+
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, void>> saveStationery({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.saveStationery(payload: payload);
+
+      if (res.status == 1) {
+        return right(null);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Lưu dữ liệu thất bại',
+          ),
         );
       }
     } on DioException catch (e) {

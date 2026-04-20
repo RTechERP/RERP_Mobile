@@ -38,8 +38,10 @@ import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pa
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_asset_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_property_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/datasource/models/stationery_model.dart';
+import '../features/workplace/app/reg_general/view/pages/stationery/stationery_edit_route_args.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/view/bloc/stationery_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/view/pages/stationery_add_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/stationery/view/pages/stationery_edit_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/view/pages/stationery_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/view/pages/stationery_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/bloc/work_category_bloc.dart';
@@ -893,6 +895,22 @@ class AppRouter {
           GoRoute(
             path: RouteNames.stationeryAdd,
             builder: (context, state) => const StationeryAddScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.stationeryEdit,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is StationeryEditRouteArgs) {
+                return StationeryEditScreen(
+                  item: extra.item,
+                  details: extra.details,
+                );
+              }
+              return Scaffold(
+                appBar: AppBar(title: const Text('Sửa đăng ký VPP')),
+                body: const Center(child: Text('Không có dữ liệu VPP.')),
+              );
+            },
           ),
         ],
       ),

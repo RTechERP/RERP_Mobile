@@ -101,6 +101,26 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
       final idx = widget.items.indexOf(widget.initialSelectedItem as T);
       if (idx >= 0) _initialSelectedIndex = idx;
     }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _requestFocusAndScroll();
+    });
+  }
+
+  void _requestFocusAndScroll() {
+    if (!mounted) return;
+    if (!widget.items.isEmpty) {
+      _modalFocusScope.requestFocus(_searchFocusNode);
+      if (_initialSelectedIndex != null && _filtered.isNotEmpty) {
+        final actualIndex = (_initialSelectedIndex! < _filtered.length)
+            ? _initialSelectedIndex!
+            : _filtered.length - 1;
+        if (actualIndex >= 0 && _scrollController.hasClients) {
+          _scrollController.jumpTo(actualIndex * 56.0);
+        }
+        _initialSelectedIndex = null;
+      }
+    }
   }
 
   @override
@@ -130,39 +150,12 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
         widget.secondaryActionLabel != null && widget.onSecondaryAction != null;
     final showSearch = !isEmpty;
 
-      WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (!mounted) return;
-      if (!showSearch) return;
-
-      // ép focus lại sau khi toàn bộ sheet render xong
-      await Future.delayed(const Duration(milliseconds: 30));
-
-      if (!mounted) return;
-
-      _modalFocusScope.requestFocus(_searchFocusNode);
-
-      // Scroll đến item đã chọn trước đó
-      if (_initialSelectedIndex != null && _filtered.isNotEmpty) {
-        final actualIndex = (_initialSelectedIndex! < _filtered.length)
-            ? _initialSelectedIndex!
-            : _filtered.length - 1;
-        if (actualIndex >= 0 && _scrollController.hasClients) {
-          _scrollController.animateTo(
-            actualIndex * 56.0,
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.easeOut,
-          );
-        }
-        _initialSelectedIndex = null;
-      }
-    });
-
     return FocusScope(
       node: _modalFocusScope,
       canRequestFocus: true,
       autofocus: false,
       child: Sheet(
-        initialOffset: const SheetOffset(1.0),
+        initialOffset: const SheetOffset(0.0),
         decoration: const MaterialSheetDecoration(
           size: SheetSize.fit,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),

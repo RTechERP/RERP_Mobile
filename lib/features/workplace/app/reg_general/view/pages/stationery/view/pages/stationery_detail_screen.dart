@@ -3,14 +3,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
+import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
+import '../../../../../../../../../common/utils/snack_bar_helper.dart';
+import '../../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/stationery_model.dart';
+import '../../stationery_edit_route_args.dart';
 import '../bloc/stationery_bloc.dart';
 import '../widgets/stationery_detail_card.dart';
 
@@ -45,16 +51,53 @@ class _StationeryDetailScreenState
 
   @override
   Widget renderUI(BuildContext context) {
-    return BlocBuilder<StationeryBloc, StationeryState>(
-      builder: (context, state) {
-        return BaseScaffold(
-          appBar: AppBarCommon(
-            title: const Text('Chi tiết đăng ký VPP'),
-            onBackTap: () => onBack(context),
-          ),
-          body: _buildBody(context, state),
-        );
+    return BlocListener<StationeryBloc, StationeryState>(
+      listenWhen: (prev, curr) =>
+          prev.status != curr.status ||
+          prev.isDeleting != curr.isDeleting ||
+          (curr.message != null && prev.message != curr.message),
+      listener: (context, state) {
+        if (state.status == BaseStateStatus.removeSuccess) {
+          context.showMessage(state.message!, type: SnackBarType.success);
+          context.pop();
+        }
+        if (state.status == BaseStateStatus.failed && state.message != null) {
+          context.showMessage(state.message!, type: SnackBarType.error);
+        }
       },
+      child: BlocBuilder<StationeryBloc, StationeryState>(
+        builder: (context, state) {
+          return Stack(
+            children: [
+              BaseScaffold(
+                appBar: AppBarCommon(
+                  title: const Text('Chi tiết đăng ký VPP'),
+                  onBackTap: () => onBack(context),
+                ),
+                body: _buildBody(context, state),
+              ),
+
+              /// Loading overlay with Lottie
+              if (state.isDeleting)
+                Positioned.fill(
+                  child: AbsorbPointer(
+                    absorbing: true,
+                    child: Container(
+                      color: Colors.black.withValues(alpha: 0.45),
+                      alignment: Alignment.center,
+                      child: Lottie.asset(
+                        'assets/lotties/Loading.json',
+                        width: 240,
+                        height: 240,
+                        repeat: true,
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          );
+        },
+      ),
     );
   }
 
@@ -63,27 +106,36 @@ class _StationeryDetailScreenState
       return const Center(child: CircularProgressIndicator());
     }
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Card thông tin người đăng ký & trạng thái
-          _buildInfoCard(context),
+    return Column(
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Card thông tin người đăng ký & trạng thái
+                _buildInfoCard(context),
 
-          const SizedBox(height: 16),
+                const SizedBox(height: 16),
 
-          // Card trạng thái duyệt
-          _buildApprovalCard(context),
+                // Card trạng thái duyệt
+                _buildApprovalCard(context),
 
-          const SizedBox(height: 16),
+                const SizedBox(height: 16),
 
-          // Danh sách VPP
-          if (state.stationeryDetail.isNotEmpty) ...[
-            _buildSupplySection(context, state),
-          ],
-        ],
-      ),
+                // Danh sách VPP
+                if (state.stationeryDetail.isNotEmpty) ...[
+                  _buildSupplySection(context, state),
+                ],
+              ],
+            ),
+          ),
+        ),
+
+        // Nút sửa / xóa (chỉ khi chưa được duyệt)
+        if (_canEdit || _canDelete) _buildActionButtons(context, state),
+      ],
     );
   }
 
@@ -256,6 +308,106 @@ class _StationeryDetailScreenState
     if (item.isAdminApproved == true) return AppColors.success;
     if (item.isApproved == true) return AppColors.stateInfoColor;
     return AppColors.warning;
+  }
+
+  /// Chỉ cho phép sửa khi phiếu đang ở trạng thái chờ duyệt (chưa được TBP hay Admin duyệt).
+  bool get _canEdit {
+    final item = widget.item;
+    return item.isApproved != true && item.isAdminApproved != true;
+  }
+
+  /// Chỉ cho phép xóa khi phiếu chưa được TBP và chưa được Admin duyệt.
+  bool get _canDelete {
+    final item = widget.item;
+    return item.isApproved != true && item.isAdminApproved != true;
+  }
+
+  void _onEditTap(BuildContext context) {
+    final state = bloc.state;
+    context.push(
+      RouteNames.stationeryEdit,
+      extra: StationeryEditRouteArgs(
+        item: widget.item,
+        details: state.stationeryDetail,
+      ),
+    );
+  }
+
+  void _showDeleteDialog(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Xác nhận xóa'),
+        content: const Text('Bạn có chắc muốn xóa phiếu đăng ký này không?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Huỷ'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              bloc.add(StationeryEvent.deleteStationery(
+                itemId: widget.item.id ?? 0,
+              ));
+            },
+            child: const Text('Xóa', style: TextStyle(color: Colors.red)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActionButtons(BuildContext context, StationeryState state) {
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            if (_canDelete)
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: state.isDeleting ? null : () => _showDeleteDialog(context),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Colors.red,
+                    side: const BorderSide(color: Colors.red),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                  ),
+                  child: const Text(
+                    'Xóa',
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+            if (_canDelete && _canEdit) const SizedBox(width: 12),
+            if (_canEdit)
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () => _onEditTap(context),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryERP,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                  ),
+                  child: const Text(
+                    'Sửa',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

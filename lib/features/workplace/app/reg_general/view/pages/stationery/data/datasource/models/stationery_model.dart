@@ -7,6 +7,7 @@ part 'stationery_model.g.dart';
 @freezed
 class StationeryItem with _$StationeryItem {
   const factory StationeryItem({
+    @JsonKey(name: 'ID') int? id,
     @JsonKey(name: 'EmployeeIDRequest') int? employeeIdRequest,
     @JsonKey(name: 'UserName') String? userName,
     @JsonKey(name: 'DateRequest') DateTime? dateRequest,
@@ -28,6 +29,7 @@ class StationeryItem with _$StationeryItem {
 @freezed
 class StationerySupplyItem with _$StationerySupplyItem {
   const factory StationerySupplyItem({
+    @JsonKey(name: 'ID') int? id,
     @JsonKey(name: 'CodeNCC') String? codeNCC,
     @JsonKey(name: 'CodeRTC') String? codeRTC,
     @JsonKey(name: 'NameNCC') String? nameNCC,
@@ -42,20 +44,21 @@ class StationerySupplyItem with _$StationerySupplyItem {
 @freezed
 class StationeryDetailItem with _$StationeryDetailItem {
   const factory StationeryDetailItem({
-    @JsonKey(name: 'OfficeSupplyID') int? officeSupplyId,
-    @JsonKey(name: 'Note') String? note,
-    @JsonKey(name: 'OfficeSupplyName') String? officeSupplyName,
+    @JsonKey(name: 'ID') int? id,
     @JsonKey(name: 'OfficeSupplyRequestsID') int? officeSupplyRequestsId,
+    @JsonKey(name: 'OfficeSupplyID') int? officeSupplyId,
+    @JsonKey(name: 'OfficeSupplyName') String? officeSupplyName,
     @JsonKey(name: 'OfficeSupplyUnitID') int? officeSupplyUnitId,
     @JsonKey(name: 'Quantity') int? quantity,
+    @JsonKey(name: 'QuantityReceived') int? quantityReceived,
     @JsonKey(name: 'Reason') String? reason,
     @JsonKey(name: 'ExceedsLimit') bool? exceedsLimit,
+    @JsonKey(name: 'Note') String? note,
     @JsonKey(name: 'Code') String? code,
     @JsonKey(name: 'CodeName') String? codeName,
     @JsonKey(name: 'DepartmentName') String? departmentName,
     @JsonKey(name: 'EmployeeID') int? employeeId,
     @JsonKey(name: 'FullName') String? fullName,
-    @JsonKey(name: 'ID') int? id,
     @JsonKey(name: 'Unit') String? unit,
   }) = _StationeryDetailItem;
 
