@@ -30,7 +30,7 @@ jobs:
       - name: Build APK (production)
         run: |
           flutter build apk \
-            --flavor production \
+            --flavor prod \
             -t lib/main_production.dart
 
       # OPTIONAL – upload artifact
@@ -38,4 +38,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: erp-production-apk
-          path: build/app/outputs/flutter-apk/app-production-release.apk
+          path: build/app/outputs/flutter-apk/app-prod-release.apk

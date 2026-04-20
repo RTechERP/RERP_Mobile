@@ -16,18 +16,19 @@ abstract final class BookingVehicleDeliverFormShift {
     ['note_pickup_package', 'note_pickup_package_text'],
   ];
 
-  static void afterDeleteAt(
-    FormBuilderState? form, {
+  static Map<String, dynamic> computeShiftedFields({
+    FormBuilderState? form,
     required int deletedIndex,
     required int oldLineCount,
   }) {
-    if (form == null || oldLineCount <= 1) return;
-    if (deletedIndex < 0 || deletedIndex >= oldLineCount) return;
+    if (form == null || oldLineCount <= 1) return {};
+    if (deletedIndex < 0 || deletedIndex >= oldLineCount) return {};
 
     final newLength = oldLineCount - 1;
     final snap = form.instantValue;
     final patch = <String, dynamic>{};
 
+    // 1. Shift existing rows up
     for (var newIdx = deletedIndex; newIdx < newLength; newIdx++) {
       final oldIdx = newIdx + 1;
       for (final pair in _stringPairs) {
@@ -43,13 +44,30 @@ abstract final class BookingVehicleDeliverFormShift {
       patch['pickup_package_image_$newIdx'] = List<PlatformFile>.from(files);
     }
 
-    final lastIdx = oldLineCount - 1;
+    // 2. Clear (set null) deleted row fields so patchValue removes the keys
+    final deletedRowIdx = oldLineCount - 1;
     for (final pair in _stringPairs) {
-      patch['${pair[0]}_$lastIdx'] = '';
-      patch['${pair[1]}_$lastIdx'] = '';
+      patch['${pair[0]}_$deletedRowIdx'] = null;
+      patch['${pair[1]}_$deletedRowIdx'] = null;
     }
-    patch['pickup_package_image_$lastIdx'] = <PlatformFile>[];
+    patch['pickup_package_image_$deletedRowIdx'] = null;
 
-    form.patchValue(patch);
+    return patch;
+  }
+
+  /// @deprecated Dùng [computeShiftedFields] thay thế.
+  static void afterDeleteAt(
+    FormBuilderState? form, {
+    required int deletedIndex,
+    required int oldLineCount,
+  }) {
+    final patch = computeShiftedFields(
+      form: form,
+      deletedIndex: deletedIndex,
+      oldLineCount: oldLineCount,
+    );
+    if (patch.isNotEmpty) {
+      form?.patchValue(patch);
+    }
   }
 }

@@ -19,6 +19,9 @@ mixin _$TechEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -51,7 +54,8 @@ mixin _$TechEvent {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -70,6 +74,9 @@ mixin _$TechEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -102,7 +109,8 @@ mixin _$TechEvent {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -119,6 +127,9 @@ mixin _$TechEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -151,7 +162,9 @@ mixin _$TechEvent {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -168,6 +181,7 @@ mixin _$TechEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -196,6 +210,7 @@ mixin _$TechEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -224,6 +239,7 @@ mixin _$TechEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -307,6 +323,9 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -339,7 +358,8 @@ class _$InitImpl implements _Init {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -361,6 +381,9 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -393,7 +416,8 @@ class _$InitImpl implements _Init {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -413,6 +437,9 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -445,7 +472,9 @@ class _$InitImpl implements _Init {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -468,6 +497,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -499,6 +529,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -530,6 +561,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -564,6 +596,383 @@ class _$InitImpl implements _Init {
 
 abstract class _Init implements TechEvent {
   const factory _Init() = _$InitImpl;
+}
+
+/// @nodoc
+abstract class _$$InitAddImplCopyWith<$Res> {
+  factory _$$InitAddImplCopyWith(
+          _$InitAddImpl value, $Res Function(_$InitAddImpl) then) =
+      __$$InitAddImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject});
+}
+
+/// @nodoc
+class __$$InitAddImplCopyWithImpl<$Res>
+    extends _$TechEventCopyWithImpl<$Res, _$InitAddImpl>
+    implements _$$InitAddImplCopyWith<$Res> {
+  __$$InitAddImplCopyWithImpl(
+      _$InitAddImpl _value, $Res Function(_$InitAddImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? copyItems = null,
+    Object? rtcProject = null,
+  }) {
+    return _then(_$InitAddImpl(
+      copyItems: null == copyItems
+          ? _value._copyItems
+          : copyItems // ignore: cast_nullable_to_non_nullable
+              as List<CopyNullResponse>,
+      rtcProject: null == rtcProject
+          ? _value._rtcProject
+          : rtcProject // ignore: cast_nullable_to_non_nullable
+              as List<ProjectResponse>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitAddImpl implements _InitAdd {
+  const _$InitAddImpl(
+      {required final List<CopyNullResponse> copyItems,
+      required final List<ProjectResponse> rtcProject})
+      : _copyItems = copyItems,
+        _rtcProject = rtcProject;
+
+  final List<CopyNullResponse> _copyItems;
+  @override
+  List<CopyNullResponse> get copyItems {
+    if (_copyItems is EqualUnmodifiableListView) return _copyItems;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_copyItems);
+  }
+
+  final List<ProjectResponse> _rtcProject;
+  @override
+  List<ProjectResponse> get rtcProject {
+    if (_rtcProject is EqualUnmodifiableListView) return _rtcProject;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_rtcProject);
+  }
+
+  @override
+  String toString() {
+    return 'TechEvent.initAdd(copyItems: $copyItems, rtcProject: $rtcProject)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitAddImpl &&
+            const DeepCollectionEquality()
+                .equals(other._copyItems, _copyItems) &&
+            const DeepCollectionEquality()
+                .equals(other._rtcProject, _rtcProject));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_copyItems),
+      const DeepCollectionEquality().hash(_rtcProject));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitAddImplCopyWith<_$InitAddImpl> get copyWith =>
+      __$$InitAddImplCopyWithImpl<_$InitAddImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
+    required TResult Function() addEmptyProject,
+    required TResult Function(String tempId, ProjectResponse apiProject)
+        bindProjectFromApi,
+    required TResult Function(String tempId) removeProject,
+    required TResult Function(String tempId) selectProject,
+    required TResult Function(String tempId, String newName) updateProjectName,
+    required TResult Function() addWork,
+    required TResult Function(int index) removeWork,
+    required TResult Function(int index) expandWork,
+    required TResult Function(
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
+    required TResult Function(DateTime? picked) updateDate,
+    required TResult Function(String type, String? value) updateLocation,
+    required TResult Function(String value) updatePlanNextDay,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
+    required TResult Function(DateTime pickedDate) submitReport,
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int dailyID) selectReport,
+    required TResult Function(int dailyID) loadDetailData,
+    required TResult Function(DateTime pickedDate, int dailyID)
+        submitEditReport,
+    required TResult Function(int dailyID) deleteReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
+    required TResult Function() resetCopyReport,
+  }) {
+    return initAdd(copyItems, rtcProject);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
+    TResult? Function()? addEmptyProject,
+    TResult? Function(String tempId, ProjectResponse apiProject)?
+        bindProjectFromApi,
+    TResult? Function(String tempId)? removeProject,
+    TResult? Function(String tempId)? selectProject,
+    TResult? Function(String tempId, String newName)? updateProjectName,
+    TResult? Function()? addWork,
+    TResult? Function(int index)? removeWork,
+    TResult? Function(int index)? expandWork,
+    TResult? Function(
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
+    TResult? Function(DateTime? picked)? updateDate,
+    TResult? Function(String type, String? value)? updateLocation,
+    TResult? Function(String value)? updatePlanNextDay,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
+    TResult? Function(DateTime pickedDate)? submitReport,
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int dailyID)? selectReport,
+    TResult? Function(int dailyID)? loadDetailData,
+    TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(int dailyID)? deleteReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
+    TResult? Function()? resetCopyReport,
+  }) {
+    return initAdd?.call(copyItems, rtcProject);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
+    TResult Function()? addEmptyProject,
+    TResult Function(String tempId, ProjectResponse apiProject)?
+        bindProjectFromApi,
+    TResult Function(String tempId)? removeProject,
+    TResult Function(String tempId)? selectProject,
+    TResult Function(String tempId, String newName)? updateProjectName,
+    TResult Function()? addWork,
+    TResult Function(int index)? removeWork,
+    TResult Function(int index)? expandWork,
+    TResult Function(
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
+    TResult Function(DateTime? picked)? updateDate,
+    TResult Function(String type, String? value)? updateLocation,
+    TResult Function(String value)? updatePlanNextDay,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
+    TResult Function(DateTime pickedDate)? submitReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int dailyID)? selectReport,
+    TResult Function(int dailyID)? loadDetailData,
+    TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(int dailyID)? deleteReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
+    TResult Function()? resetCopyReport,
+    required TResult orElse(),
+  }) {
+    if (initAdd != null) {
+      return initAdd(copyItems, rtcProject);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_AddEmptyProject value) addEmptyProject,
+    required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
+    required TResult Function(_RemoveProject value) removeProject,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_UpdateProjectName value) updateProjectName,
+    required TResult Function(_AddWork value) addWork,
+    required TResult Function(_RemoveWork value) removeWork,
+    required TResult Function(_ExpandWork value) expandWork,
+    required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateDate value) updateDate,
+    required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
+    required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
+    required TResult Function(_SubmitReportWithDate value) submitReport,
+    required TResult Function(_SendMailReport value) sendMailReport,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_LoadDetailData value) loadDetailData,
+    required TResult Function(_SubmitEditReportWithDate value) submitEditReport,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_CopyReport value) copyReport,
+    required TResult Function(_ResetCopy value) resetCopyReport,
+  }) {
+    return initAdd(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_AddEmptyProject value)? addEmptyProject,
+    TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
+    TResult? Function(_RemoveProject value)? removeProject,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_UpdateProjectName value)? updateProjectName,
+    TResult? Function(_AddWork value)? addWork,
+    TResult? Function(_RemoveWork value)? removeWork,
+    TResult? Function(_ExpandWork value)? expandWork,
+    TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateDate value)? updateDate,
+    TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
+    TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
+    TResult? Function(_SubmitReportWithDate value)? submitReport,
+    TResult? Function(_SendMailReport value)? sendMailReport,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_LoadDetailData value)? loadDetailData,
+    TResult? Function(_SubmitEditReportWithDate value)? submitEditReport,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_CopyReport value)? copyReport,
+    TResult? Function(_ResetCopy value)? resetCopyReport,
+  }) {
+    return initAdd?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_AddEmptyProject value)? addEmptyProject,
+    TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
+    TResult Function(_RemoveProject value)? removeProject,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_UpdateProjectName value)? updateProjectName,
+    TResult Function(_AddWork value)? addWork,
+    TResult Function(_RemoveWork value)? removeWork,
+    TResult Function(_ExpandWork value)? expandWork,
+    TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateDate value)? updateDate,
+    TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
+    TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
+    TResult Function(_SubmitReportWithDate value)? submitReport,
+    TResult Function(_SendMailReport value)? sendMailReport,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_LoadDetailData value)? loadDetailData,
+    TResult Function(_SubmitEditReportWithDate value)? submitEditReport,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_CopyReport value)? copyReport,
+    TResult Function(_ResetCopy value)? resetCopyReport,
+    required TResult orElse(),
+  }) {
+    if (initAdd != null) {
+      return initAdd(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitAdd implements TechEvent {
+  const factory _InitAdd(
+      {required final List<CopyNullResponse> copyItems,
+      required final List<ProjectResponse> rtcProject}) = _$InitAddImpl;
+
+  List<CopyNullResponse> get copyItems;
+  List<ProjectResponse> get rtcProject;
+  @JsonKey(ignore: true)
+  _$$InitAddImplCopyWith<_$InitAddImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -605,6 +1014,9 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -637,7 +1049,8 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -659,6 +1072,9 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -691,7 +1107,8 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -711,6 +1128,9 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -743,7 +1163,9 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -766,6 +1188,7 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -797,6 +1220,7 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -828,6 +1252,7 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -950,6 +1375,9 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -982,7 +1410,8 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -1004,6 +1433,9 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -1036,7 +1468,8 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -1056,6 +1489,9 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -1088,7 +1524,9 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -1111,6 +1549,7 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -1142,6 +1581,7 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -1173,6 +1613,7 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -1282,6 +1723,9 @@ class _$RemoveProjectImpl implements _RemoveProject {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -1314,7 +1758,8 @@ class _$RemoveProjectImpl implements _RemoveProject {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -1336,6 +1781,9 @@ class _$RemoveProjectImpl implements _RemoveProject {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -1368,7 +1816,8 @@ class _$RemoveProjectImpl implements _RemoveProject {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -1388,6 +1837,9 @@ class _$RemoveProjectImpl implements _RemoveProject {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -1420,7 +1872,9 @@ class _$RemoveProjectImpl implements _RemoveProject {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -1443,6 +1897,7 @@ class _$RemoveProjectImpl implements _RemoveProject {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -1474,6 +1929,7 @@ class _$RemoveProjectImpl implements _RemoveProject {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -1505,6 +1961,7 @@ class _$RemoveProjectImpl implements _RemoveProject {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -1612,6 +2069,9 @@ class _$SelectProjectImpl implements _SelectProject {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -1644,7 +2104,8 @@ class _$SelectProjectImpl implements _SelectProject {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -1666,6 +2127,9 @@ class _$SelectProjectImpl implements _SelectProject {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -1698,7 +2162,8 @@ class _$SelectProjectImpl implements _SelectProject {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -1718,6 +2183,9 @@ class _$SelectProjectImpl implements _SelectProject {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -1750,7 +2218,9 @@ class _$SelectProjectImpl implements _SelectProject {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -1773,6 +2243,7 @@ class _$SelectProjectImpl implements _SelectProject {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -1804,6 +2275,7 @@ class _$SelectProjectImpl implements _SelectProject {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -1835,6 +2307,7 @@ class _$SelectProjectImpl implements _SelectProject {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -1951,6 +2424,9 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -1983,7 +2459,8 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -2005,6 +2482,9 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -2037,7 +2517,8 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -2057,6 +2538,9 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -2089,7 +2573,9 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -2112,6 +2598,7 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -2143,6 +2630,7 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -2174,6 +2662,7 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -2257,6 +2746,9 @@ class _$AddWorkImpl implements _AddWork {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -2289,7 +2781,8 @@ class _$AddWorkImpl implements _AddWork {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -2311,6 +2804,9 @@ class _$AddWorkImpl implements _AddWork {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -2343,7 +2839,8 @@ class _$AddWorkImpl implements _AddWork {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -2363,6 +2860,9 @@ class _$AddWorkImpl implements _AddWork {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -2395,7 +2895,9 @@ class _$AddWorkImpl implements _AddWork {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -2418,6 +2920,7 @@ class _$AddWorkImpl implements _AddWork {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -2449,6 +2952,7 @@ class _$AddWorkImpl implements _AddWork {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -2480,6 +2984,7 @@ class _$AddWorkImpl implements _AddWork {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -2581,6 +3086,9 @@ class _$RemoveWorkImpl implements _RemoveWork {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -2613,7 +3121,8 @@ class _$RemoveWorkImpl implements _RemoveWork {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -2635,6 +3144,9 @@ class _$RemoveWorkImpl implements _RemoveWork {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -2667,7 +3179,8 @@ class _$RemoveWorkImpl implements _RemoveWork {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -2687,6 +3200,9 @@ class _$RemoveWorkImpl implements _RemoveWork {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -2719,7 +3235,9 @@ class _$RemoveWorkImpl implements _RemoveWork {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -2742,6 +3260,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -2773,6 +3292,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -2804,6 +3324,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -2910,6 +3431,9 @@ class _$ExpandWorkImpl implements _ExpandWork {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -2942,7 +3466,8 @@ class _$ExpandWorkImpl implements _ExpandWork {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -2964,6 +3489,9 @@ class _$ExpandWorkImpl implements _ExpandWork {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -2996,7 +3524,8 @@ class _$ExpandWorkImpl implements _ExpandWork {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -3016,6 +3545,9 @@ class _$ExpandWorkImpl implements _ExpandWork {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -3048,7 +3580,9 @@ class _$ExpandWorkImpl implements _ExpandWork {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -3071,6 +3605,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -3102,6 +3637,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -3133,6 +3669,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -3392,6 +3929,9 @@ class _$UpdateWorkImpl implements _UpdateWork {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -3424,7 +3964,8 @@ class _$UpdateWorkImpl implements _UpdateWork {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -3460,6 +4001,9 @@ class _$UpdateWorkImpl implements _UpdateWork {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -3492,7 +4036,8 @@ class _$UpdateWorkImpl implements _UpdateWork {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -3526,6 +4071,9 @@ class _$UpdateWorkImpl implements _UpdateWork {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -3558,7 +4106,9 @@ class _$UpdateWorkImpl implements _UpdateWork {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -3595,6 +4145,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -3626,6 +4177,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -3657,6 +4209,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -3790,6 +4343,9 @@ class _$UpdateDateImpl implements _UpdateDate {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -3822,7 +4378,8 @@ class _$UpdateDateImpl implements _UpdateDate {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -3844,6 +4401,9 @@ class _$UpdateDateImpl implements _UpdateDate {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -3876,7 +4436,8 @@ class _$UpdateDateImpl implements _UpdateDate {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -3896,6 +4457,9 @@ class _$UpdateDateImpl implements _UpdateDate {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -3928,7 +4492,9 @@ class _$UpdateDateImpl implements _UpdateDate {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -3951,6 +4517,7 @@ class _$UpdateDateImpl implements _UpdateDate {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -3982,6 +4549,7 @@ class _$UpdateDateImpl implements _UpdateDate {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -4013,6 +4581,7 @@ class _$UpdateDateImpl implements _UpdateDate {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -4128,6 +4697,9 @@ class _$UpdateLocationImpl implements _UpdateLocation {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -4160,7 +4732,8 @@ class _$UpdateLocationImpl implements _UpdateLocation {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -4182,6 +4755,9 @@ class _$UpdateLocationImpl implements _UpdateLocation {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -4214,7 +4790,8 @@ class _$UpdateLocationImpl implements _UpdateLocation {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -4234,6 +4811,9 @@ class _$UpdateLocationImpl implements _UpdateLocation {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -4266,7 +4846,9 @@ class _$UpdateLocationImpl implements _UpdateLocation {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -4289,6 +4871,7 @@ class _$UpdateLocationImpl implements _UpdateLocation {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -4320,6 +4903,7 @@ class _$UpdateLocationImpl implements _UpdateLocation {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -4351,6 +4935,7 @@ class _$UpdateLocationImpl implements _UpdateLocation {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -4460,6 +5045,9 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -4492,7 +5080,8 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -4514,6 +5103,9 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -4546,7 +5138,8 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -4566,6 +5159,9 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -4598,7 +5194,9 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -4621,6 +5219,7 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -4652,6 +5251,7 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -4683,6 +5283,7 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -4819,6 +5420,9 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -4851,7 +5455,8 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -4873,6 +5478,9 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -4905,7 +5513,8 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -4925,6 +5534,9 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -4957,7 +5569,9 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -4980,6 +5594,7 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -5011,6 +5626,7 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -5042,6 +5658,7 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -5158,6 +5775,9 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -5190,7 +5810,8 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -5212,6 +5833,9 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -5244,7 +5868,8 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -5264,6 +5889,9 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -5296,7 +5924,9 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -5319,6 +5949,7 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -5350,6 +5981,7 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -5381,6 +6013,7 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -5429,7 +6062,7 @@ abstract class _$$SendMailReportImplCopyWith<$Res> {
           $Res Function(_$SendMailReportImpl) then) =
       __$$SendMailReportImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({DateTime pickedDate, BuildContext context});
+  $Res call({DateTime pickedDate, BuildContext context, String? shareText});
 }
 
 /// @nodoc
@@ -5445,6 +6078,7 @@ class __$$SendMailReportImplCopyWithImpl<$Res>
   $Res call({
     Object? pickedDate = null,
     Object? context = null,
+    Object? shareText = freezed,
   }) {
     return _then(_$SendMailReportImpl(
       pickedDate: null == pickedDate
@@ -5455,6 +6089,10 @@ class __$$SendMailReportImplCopyWithImpl<$Res>
           ? _value.context
           : context // ignore: cast_nullable_to_non_nullable
               as BuildContext,
+      shareText: freezed == shareText
+          ? _value.shareText
+          : shareText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -5462,16 +6100,19 @@ class __$$SendMailReportImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SendMailReportImpl implements _SendMailReport {
-  const _$SendMailReportImpl({required this.pickedDate, required this.context});
+  const _$SendMailReportImpl(
+      {required this.pickedDate, required this.context, this.shareText});
 
   @override
   final DateTime pickedDate;
   @override
   final BuildContext context;
+  @override
+  final String? shareText;
 
   @override
   String toString() {
-    return 'TechEvent.sendMailReport(pickedDate: $pickedDate, context: $context)';
+    return 'TechEvent.sendMailReport(pickedDate: $pickedDate, context: $context, shareText: $shareText)';
   }
 
   @override
@@ -5481,11 +6122,13 @@ class _$SendMailReportImpl implements _SendMailReport {
             other is _$SendMailReportImpl &&
             (identical(other.pickedDate, pickedDate) ||
                 other.pickedDate == pickedDate) &&
-            (identical(other.context, context) || other.context == context));
+            (identical(other.context, context) || other.context == context) &&
+            (identical(other.shareText, shareText) ||
+                other.shareText == shareText));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pickedDate, context);
+  int get hashCode => Object.hash(runtimeType, pickedDate, context, shareText);
 
   @JsonKey(ignore: true)
   @override
@@ -5498,6 +6141,9 @@ class _$SendMailReportImpl implements _SendMailReport {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -5530,7 +6176,8 @@ class _$SendMailReportImpl implements _SendMailReport {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -5545,13 +6192,16 @@ class _$SendMailReportImpl implements _SendMailReport {
         copyReport,
     required TResult Function() resetCopyReport,
   }) {
-    return sendMailReport(pickedDate, context);
+    return sendMailReport(pickedDate, context, shareText);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -5584,7 +6234,8 @@ class _$SendMailReportImpl implements _SendMailReport {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -5597,13 +6248,16 @@ class _$SendMailReportImpl implements _SendMailReport {
         copyReport,
     TResult? Function()? resetCopyReport,
   }) {
-    return sendMailReport?.call(pickedDate, context);
+    return sendMailReport?.call(pickedDate, context, shareText);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -5636,7 +6290,9 @@ class _$SendMailReportImpl implements _SendMailReport {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -5650,7 +6306,7 @@ class _$SendMailReportImpl implements _SendMailReport {
     required TResult orElse(),
   }) {
     if (sendMailReport != null) {
-      return sendMailReport(pickedDate, context);
+      return sendMailReport(pickedDate, context, shareText);
     }
     return orElse();
   }
@@ -5659,6 +6315,7 @@ class _$SendMailReportImpl implements _SendMailReport {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -5690,6 +6347,7 @@ class _$SendMailReportImpl implements _SendMailReport {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -5721,6 +6379,7 @@ class _$SendMailReportImpl implements _SendMailReport {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -5756,10 +6415,12 @@ class _$SendMailReportImpl implements _SendMailReport {
 abstract class _SendMailReport implements TechEvent {
   const factory _SendMailReport(
       {required final DateTime pickedDate,
-      required final BuildContext context}) = _$SendMailReportImpl;
+      required final BuildContext context,
+      final String? shareText}) = _$SendMailReportImpl;
 
   DateTime get pickedDate;
   BuildContext get context;
+  String? get shareText;
   @JsonKey(ignore: true)
   _$$SendMailReportImplCopyWith<_$SendMailReportImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -5804,6 +6465,9 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -5836,7 +6500,8 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -5858,6 +6523,9 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -5890,7 +6558,8 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -5910,6 +6579,9 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -5942,7 +6614,9 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -5965,6 +6639,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -5996,6 +6671,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -6027,6 +6703,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -6138,6 +6815,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -6170,7 +6850,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -6192,6 +6873,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -6224,7 +6908,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -6244,6 +6929,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -6276,7 +6964,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -6299,6 +6989,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -6330,6 +7021,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -6361,6 +7053,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -6470,6 +7163,9 @@ class _$SelectReportImpl implements _SelectReport {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -6502,7 +7198,8 @@ class _$SelectReportImpl implements _SelectReport {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -6524,6 +7221,9 @@ class _$SelectReportImpl implements _SelectReport {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -6556,7 +7256,8 @@ class _$SelectReportImpl implements _SelectReport {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -6576,6 +7277,9 @@ class _$SelectReportImpl implements _SelectReport {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -6608,7 +7312,9 @@ class _$SelectReportImpl implements _SelectReport {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -6631,6 +7337,7 @@ class _$SelectReportImpl implements _SelectReport {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -6662,6 +7369,7 @@ class _$SelectReportImpl implements _SelectReport {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -6693,6 +7401,7 @@ class _$SelectReportImpl implements _SelectReport {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -6801,6 +7510,9 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -6833,7 +7545,8 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -6855,6 +7568,9 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -6887,7 +7603,8 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -6907,6 +7624,9 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -6939,7 +7659,9 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -6962,6 +7684,7 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -6993,6 +7716,7 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -7024,6 +7748,7 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -7143,6 +7868,9 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -7175,7 +7903,8 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -7197,6 +7926,9 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -7229,7 +7961,8 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -7249,6 +7982,9 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -7281,7 +8017,9 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -7304,6 +8042,7 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -7335,6 +8074,7 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -7366,6 +8106,7 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -7475,6 +8216,9 @@ class _$DeleteReportImpl implements _DeleteReport {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -7507,7 +8251,8 @@ class _$DeleteReportImpl implements _DeleteReport {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -7529,6 +8274,9 @@ class _$DeleteReportImpl implements _DeleteReport {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -7561,7 +8309,8 @@ class _$DeleteReportImpl implements _DeleteReport {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -7581,6 +8330,9 @@ class _$DeleteReportImpl implements _DeleteReport {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -7613,7 +8365,9 @@ class _$DeleteReportImpl implements _DeleteReport {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -7636,6 +8390,7 @@ class _$DeleteReportImpl implements _DeleteReport {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -7667,6 +8422,7 @@ class _$DeleteReportImpl implements _DeleteReport {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -7698,6 +8454,7 @@ class _$DeleteReportImpl implements _DeleteReport {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -7859,6 +8616,9 @@ class _$CopyReportImpl implements _CopyReport {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -7891,7 +8651,8 @@ class _$CopyReportImpl implements _CopyReport {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -7914,6 +8675,9 @@ class _$CopyReportImpl implements _CopyReport {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -7946,7 +8710,8 @@ class _$CopyReportImpl implements _CopyReport {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -7967,6 +8732,9 @@ class _$CopyReportImpl implements _CopyReport {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -7999,7 +8767,9 @@ class _$CopyReportImpl implements _CopyReport {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -8023,6 +8793,7 @@ class _$CopyReportImpl implements _CopyReport {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -8054,6 +8825,7 @@ class _$CopyReportImpl implements _CopyReport {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -8085,6 +8857,7 @@ class _$CopyReportImpl implements _CopyReport {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,
@@ -8176,6 +8949,9 @@ class _$ResetCopyImpl implements _ResetCopy {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
         bindProjectFromApi,
@@ -8208,7 +8984,8 @@ class _$ResetCopyImpl implements _ResetCopy {
             String? backlog, String? note)
         updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
-    required TResult Function(DateTime pickedDate, BuildContext context)
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
         sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
@@ -8230,6 +9007,9 @@ class _$ResetCopyImpl implements _ResetCopy {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -8262,7 +9042,8 @@ class _$ResetCopyImpl implements _ResetCopy {
             String? note)?
         updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(DateTime pickedDate, BuildContext context)?
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
         sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
@@ -8282,6 +9063,9 @@ class _$ResetCopyImpl implements _ResetCopy {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
         bindProjectFromApi,
@@ -8314,7 +9098,9 @@ class _$ResetCopyImpl implements _ResetCopy {
             String? note)?
         updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(DateTime pickedDate, BuildContext context)? sendMailReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
@@ -8337,6 +9123,7 @@ class _$ResetCopyImpl implements _ResetCopy {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_AddEmptyProject value) addEmptyProject,
     required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
     required TResult Function(_RemoveProject value) removeProject,
@@ -8368,6 +9155,7 @@ class _$ResetCopyImpl implements _ResetCopy {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_AddEmptyProject value)? addEmptyProject,
     TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult? Function(_RemoveProject value)? removeProject,
@@ -8399,6 +9187,7 @@ class _$ResetCopyImpl implements _ResetCopy {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
     TResult Function(_AddEmptyProject value)? addEmptyProject,
     TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
     TResult Function(_RemoveProject value)? removeProject,

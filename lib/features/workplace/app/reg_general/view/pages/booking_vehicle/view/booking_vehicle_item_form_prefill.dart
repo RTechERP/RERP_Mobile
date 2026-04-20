@@ -32,8 +32,15 @@ String bookingVehicleEditBookingTypeLabel(BookingVehicleItem item) {
   }
 }
 
+String _normalizeEllipsis(String s) =>
+    s.replaceAll('...', '\u2026').replaceAll('\u2026 ', '\u2026').replaceAll(' \u2026', '\u2026').replaceAllMapped(
+          RegExp(r'(?<! )\u2026'),
+          (m) => ' \u2026',
+        );
+
 String _vehicleTransportLabel(BookingVehicleItem item) {
-  final t = (item.vehicleTypeText ?? '').trim();
+  final raw = (item.vehicleTypeText ?? '').trim();
+  final t = _normalizeEllipsis(raw);
   if (t.isNotEmpty) return t;
   return item.vehicleType == 2 ? 'Máy bay' : 'Ô tô, xe máy ...';
 }
@@ -139,12 +146,17 @@ void _prefillPassengerGoLike(
     _putDt(m, 'time_return', item.timeReturn);
   }
 
+  const hanoiOffice = 'VP Hà Nội';
   const other = 'Khác';
-  m['starting_point'] = other;
-  m['starting_point_text'] = other;
+  m['starting_point'] = hanoiOffice;
+  m['starting_point_text'] = hanoiOffice;
   m['return_point'] = other;
-  m['return_point_text'] = other;
-  final dep = (item.departureAddressText ?? item.departureAddress ?? '').trim();
+  m['return_point_text'] = hanoiOffice;
+  final dep = (item.departureAddressActual ??
+          item.departureAddressText ??
+          item.departureAddress ??
+          '')
+      .trim();
   if (dep.isNotEmpty) {
     _putStr(m, 'destination_address', dep);
     _putStr(m, 'return_address', dep);
@@ -170,15 +182,6 @@ void _prefillPassengerGoLike(
     item.passengerPhoneNumber,
   );
   _putPair(m, 'passenger_note_0', 'passenger_note_text_0', item.note);
-
-  if (item.isProblemArises == true) {
-    _putStr(m, 'problem_arises', item.problemArises);
-    final tbp = item.approvedTBP ?? 0;
-    if (tbp > 0) {
-      m['approved_tbp'] = '$tbp';
-      _putStr(m, 'approved_tbp_text', item.fullNameTBP ?? item.approvedTBPText);
-    }
-  }
 }
 
 void _prefillPassengerReturnLike(Map<String, dynamic> m, BookingVehicleItem item) {
@@ -269,15 +272,6 @@ void _prefillCommercialDeliveryLike(Map<String, dynamic> m, BookingVehicleItem i
     'note_return_or_delivery_text_0',
     item.note,
   );
-
-  if (item.isProblemArises == true) {
-    _putStr(m, 'problem_arises', item.problemArises);
-    final tbp = item.approvedTBP ?? 0;
-    if (tbp > 0) {
-      m['approved_tbp'] = '$tbp';
-      _putStr(m, 'approved_tbp_text', item.fullNameTBP ?? item.approvedTBPText);
-    }
-  }
 }
 
 void _prefillPickupLike(Map<String, dynamic> m, BookingVehicleItem item) {
@@ -328,13 +322,4 @@ void _prefillPickupLike(Map<String, dynamic> m, BookingVehicleItem item) {
     'note_pickup_package_text_0',
     item.note,
   );
-
-  if (item.isProblemArises == true) {
-    _putStr(m, 'problem_arises', item.problemArises);
-    final tbp = item.approvedTBP ?? 0;
-    if (tbp > 0) {
-      m['approved_tbp'] = '$tbp';
-      _putStr(m, 'approved_tbp_text', item.fullNameTBP ?? item.approvedTBPText);
-    }
-  }
 }

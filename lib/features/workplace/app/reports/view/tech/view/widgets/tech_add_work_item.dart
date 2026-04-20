@@ -5,6 +5,8 @@ import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../../data/tech_model.dart';
 import '../bloc/tech_bloc.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../../../../routes/route_names.dart';
 
 class TechAddWorkItem extends StatefulWidget {
   final String title;
@@ -38,24 +40,25 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
   late TextEditingController _percentController;
   late TextEditingController _totalController;
   late TextEditingController _otController;
+  late TextEditingController _categoryController;
 
   @override
   void initState() {
     super.initState();
+    _categoryController = TextEditingController(
+      text: widget.report.mission,
+    );
+    
     _percentController = TextEditingController(
       text: widget.report.percentComplete.toInt().toString(),
     );
 
     _totalController = TextEditingController(
-      text: (widget.report.totalHours)
-          .toInt()
-          .toString(),
+      text: (widget.report.totalHours).toInt().toString(),
     );
 
     _otController = TextEditingController(
-      text: (widget.report.totalHourOT ?? 0)
-          .toInt()
-          .toString(),
+      text: (widget.report.totalHourOT ?? 0).toInt().toString(),
     );
   }
 
@@ -63,22 +66,31 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
   void didUpdateWidget(covariant TechAddWorkItem oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (oldWidget.report.percentComplete !=
-        widget.report.percentComplete) {
-
+    if (oldWidget.report.mission != widget.report.mission) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
 
-        final newText = widget.report.percentComplete
-            .toInt()
-            .toString();
+        final newText = widget.report.mission;
+
+        if (_categoryController.text != newText) {
+          _categoryController.value = TextEditingValue(
+            text: newText,
+            selection: TextSelection.collapsed(offset: newText.length),
+          );
+        }
+      });
+    }
+
+    if (oldWidget.report.percentComplete != widget.report.percentComplete) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+
+        final newText = widget.report.percentComplete.toInt().toString();
 
         if (_percentController.text != newText) {
           _percentController.value = TextEditingValue(
             text: newText,
-            selection: TextSelection.collapsed(
-              offset: newText.length,
-            ),
+            selection: TextSelection.collapsed(offset: newText.length),
           );
         }
       });
@@ -88,17 +100,12 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
 
-        final newText =
-        (widget.report.totalHours)
-            .toInt()
-            .toString();
+        final newText = (widget.report.totalHours).toInt().toString();
 
         if (_totalController.text != newText) {
           _totalController.value = TextEditingValue(
             text: newText,
-            selection: TextSelection.collapsed(
-              offset: newText.length,
-            ),
+            selection: TextSelection.collapsed(offset: newText.length),
           );
         }
       });
@@ -108,29 +115,27 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
 
-        final newText =
-        (widget.report.totalHourOT ?? 0)
-            .toInt()
-            .toString();
+        final newText = (widget.report.totalHourOT ?? 0).toInt().toString();
 
         if (_otController.text != newText) {
           _otController.value = TextEditingValue(
             text: newText,
-            selection: TextSelection.collapsed(
-              offset: newText.length,
-            ),
+            selection: TextSelection.collapsed(offset: newText.length),
           );
         }
       });
     }
   }
+
   @override
   void dispose() {
+    _categoryController.dispose();
     _percentController.dispose();
     _totalController.dispose();
     _otController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     final showExpanded = widget.alwaysExpanded || widget.isExpanded;
@@ -141,19 +146,19 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
       endActionPane: showExpanded
           ? null
           : ActionPane(
-        motion: const DrawerMotion(),
-        extentRatio: 0.22,
-        children: [
-          SlidableAction(
-            onPressed: (_) => widget.onDelete?.call(),
-            backgroundColor: Colors.redAccent,
-            foregroundColor: Colors.white,
-            icon: Icons.delete_outline,
-            label: 'Xoá',
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ],
-      ),
+              motion: const DrawerMotion(),
+              extentRatio: 0.22,
+              children: [
+                SlidableAction(
+                  onPressed: (_) => widget.onDelete?.call(),
+                  backgroundColor: Colors.redAccent,
+                  foregroundColor: Colors.white,
+                  icon: Icons.delete_outline,
+                  label: 'Xoá',
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ],
+            ),
       child: Builder(
         // 👈 rất quan trọng: để lấy đúng context của Slidable
         builder: (slidableCtx) {
@@ -162,10 +167,10 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
             onTap: widget.alwaysExpanded
                 ? null
                 : () {
-              // 👇 Đóng Slidable trước khi expand
-              Slidable.of(slidableCtx)?.close();
-              widget.onToggleExpand();
-            },
+                    // 👇 Đóng Slidable trước khi expand
+                    Slidable.of(slidableCtx)?.close();
+                    widget.onToggleExpand();
+                  },
             child: FormCard(
               title: widget.title,
               collapsed: !showExpanded,
@@ -188,9 +193,9 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                 curve: Curves.easeInOut,
                 child: showExpanded
                     ? IgnorePointer(
-                  ignoring: widget.readonly,
-                  child: _buildContent(context),
-                )
+                        ignoring: widget.readonly,
+                        child: _buildContent(context),
+                      )
                     : const SizedBox.shrink(),
               ),
             ),
@@ -201,49 +206,47 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
   }
 
   Widget _buildContent(BuildContext context) {
-    return BlocBuilder<TechBloc, TechState>(
-      buildWhen: (prev, curr) =>
-      prev.selectedProject != curr.selectedProject ||
-          prev.expandedWorkIndex != curr.expandedWorkIndex ||
-          prev.projectItem != curr.projectItem,
-
-      builder: (context, state) {
-        return Column(
-          children: [
+    return Column(
+      children: [
             /// ===== CATEGORY (MISSION TỪ BE) =====
             GestureDetector(
               onTap: widget.readonly
                   ? null
                   : () {
-                openSelectBottomSheet(
-                  context: context,
-                  title: 'Chọn hạng mục',
-                  items: state.projectItem, // List<ProjectItem>
-                  displayText: (v) => '${v.code} - ${v.mission}',
-                  onSelected: (item) {
-                    context.read<TechBloc>().add(
-                      TechEvent.updateWork(
-                        index: widget.index,
-                        mission: item.mission,
-                        projectItemId: item.id,
-                        code: item.code,
-                        percentComplete: item.percentageActual,
-                      ),
-                    );
-                  },
-                );
-
-              },
+                      openSelectBottomSheet(
+                        context: context,
+                        title: 'Chọn hạng mục',
+                        items: context.read<TechBloc>().state.projectItem, // Lấy trực tiếp từ state
+                        displayText: (v) => '${v.code} - ${v.mission}',
+                        onAdd: () => context.push(RouteNames.workCategoryAdd),
+                        onSelected: (item) {
+                          context.read<TechBloc>().add(
+                            TechEvent.updateWork(
+                              index: widget.index,
+                              mission: item.mission,
+                              projectItemId: item.id,
+                              code: item.code,
+                              percentComplete: item.percentageActual,
+                            ),
+                          );
+                        },
+                      );
+                    },
               child: AbsorbPointer(
                 child: FormInputField(
+                  autoExpand: true,
                   key: ValueKey('work_${widget.report.id}'),
                   nameForm: 'tech_add_category_${widget.report.id}',
                   nameTextField: 'category_${widget.report.id}',
-                  label: (widget.report.mission.isNotEmpty == true)
-                      ? widget.report.mission
-                      : 'Hạng mục',
+                  label: 'Hạng mục',
+                  controller: _categoryController,
                   readOnly: true,
                   icon: Icons.category_outlined,
+                  isRequired: true,
+                  validator: (v) {
+                    if (v == null || v.trim().isEmpty) return 'Vui lòng chọn hạng mục';
+                    return null;
+                  },
                 ),
               ),
             ),
@@ -270,7 +273,14 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                         ),
                       );
                     },
-
+                    isRequired: true,
+                    validator: (v) {
+                      if (v == null || v.trim().isEmpty) return 'Nhập tổng giờ';
+                      final total = double.tryParse(v) ?? 0;
+                      if (total <= 0) return 'Tổng giờ phải > 0';
+                      if (total > 24) return 'Tổng giờ không > 24';
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -290,7 +300,6 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                         ),
                       );
                     },
-
                   ),
                 ),
               ],
@@ -315,6 +324,13 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                   ),
                 );
               },
+              isRequired: true,
+              validator: (v) {
+                if (v == null || v.trim().isEmpty) return 'Vui lòng nhập tiến độ hoàn thành';
+                final percent = double.tryParse(v) ?? 0;
+                if (percent <= 0 || percent > 100) return '% Hoàn thành phải từ 1 đến 100';
+                return null;
+              }
             ),
 
             const SizedBox(height: 8),
@@ -328,7 +344,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
               nameTextField: 'content_${widget.report.id}',
 
               label: 'Nội dung công việc',
-              maxLines: 3,
+              autoExpand: true,
               keyboardType: TextInputType.multiline,
               textInputAction: TextInputAction.newline,
               initialValue: widget.report.content,
@@ -337,6 +353,11 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                   TechEvent.updateWork(index: widget.index, content: v),
                 );
               },
+              isRequired: true,
+              validator: (v) {
+                if (v == null || v.trim().isEmpty) return 'Vui lòng nhập nội dung công việc';
+                return null;
+              }
             ),
 
             const SizedBox(height: 8),
@@ -349,19 +370,22 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
               nameForm: 'tech_add_result_${widget.report.id}',
               nameTextField: 'result_${widget.report.id}',
               label: 'Kết quả',
-              maxLines: 3,
+              autoExpand: true,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.newline, // ⬅ Enter xuống dòng
+              textInputAction: TextInputAction.newline,
               initialValue: widget.report.results,
               onChanged: (v) {
                 context.read<TechBloc>().add(
                   TechEvent.updateWork(index: widget.index, results: v),
                 );
               },
+              isRequired: true,
+              validator: (v) {
+                if (v == null || v.trim().isEmpty) return 'Vui lòng nhập kết quả';
+                return null;
+              }
             ),
           ],
         );
-      },
-    );
   }
 }

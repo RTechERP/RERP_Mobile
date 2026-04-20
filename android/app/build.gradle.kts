@@ -2,6 +2,9 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("dev.flutter.flutter-gradle-plugin")
+    // Google services Gradle plugin (Firebase)
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -31,13 +34,23 @@ android {
     }
 
     dependencies {
-        coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+        coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+
+        // Firebase BoM – quản lý version tập trung
+        implementation(platform("com.google.firebase:firebase-bom:34.11.0"))
+
+        // Firebase products (không cần version khi dùng BoM)
+        implementation("com.google.firebase:firebase-analytics")
+        implementation("com.google.firebase:firebase-messaging")
+        implementation("com.google.firebase:firebase-crashlytics")
     }
 
     // ✅ FLAVOR DIMENSION
     flavorDimensions += "env"
 
-    // ✅ PRODUCT FLAVORS (KHÔNG TRÙNG buildType)
+    // dev → lib/main_debug.dart | prod → lib/main_production.dart
+    // Chạy: flutter run --flavor dev -t lib/main_debug.dart
+    //       flutter run --flavor prod -t lib/main_production.dart
     productFlavors {
         create("dev") {
             dimension = "env"
@@ -45,15 +58,8 @@ android {
             versionNameSuffix = "-dev"
         }
 
-        create("staging") {
-            dimension = "env"
-            applicationIdSuffix = ".staging"
-            versionNameSuffix = "-staging"
-        }
-
         create("prod") {
             dimension = "env"
-            // production → KHÔNG suffix
         }
     }
 

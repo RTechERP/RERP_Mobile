@@ -14,18 +14,22 @@ abstract final class BookingVehiclePassengerFormShift {
     ['passenger_note', 'passenger_note_text'],
   ];
 
-  static void afterDeleteAt(
-    FormBuilderState? form, {
+  /// Trả về map dữ liệu đã dịch (shifted fields).
+  /// Deleted row fields = null để patchValue xoá key khỏi form state
+  /// (tránh _bookingVehicleMaxIndexFromFormKeys vẫn tìm thấy key đã xoá).
+  static Map<String, dynamic> computeShiftedFields({
+    required FormBuilderState form,
     required int deletedIndex,
     required int oldLineCount,
   }) {
-    if (form == null || oldLineCount <= 1) return;
-    if (deletedIndex < 0 || deletedIndex >= oldLineCount) return;
+    if (oldLineCount <= 1) return {};
+    if (deletedIndex < 0 || deletedIndex >= oldLineCount) return {};
 
     final newLength = oldLineCount - 1;
     final snap = form.instantValue;
-    final patch = <String, dynamic>{};
+    final result = <String, dynamic>{};
 
+    // 1. Shift existing rows up
     for (var newIdx = deletedIndex; newIdx < newLength; newIdx++) {
       final oldIdx = newIdx + 1;
       for (final pair in _pairs) {
@@ -35,19 +39,18 @@ abstract final class BookingVehiclePassengerFormShift {
         final tk = '${baseText}_$newIdx';
         final ofk = '${baseForm}_$oldIdx';
         final otk = '${baseText}_$oldIdx';
-        patch[fk] = snap[ofk] ?? '';
-        patch[tk] = snap[otk] ?? '';
+        result[fk] = snap[ofk] ?? '';
+        result[tk] = snap[otk] ?? '';
       }
     }
 
-    final lastIdx = oldLineCount - 1;
+    // 2. Clear (set null) deleted row fields so patchValue removes the keys
+    final deletedRowIdx = oldLineCount - 1;
     for (final pair in _pairs) {
-      final baseForm = pair[0];
-      final baseText = pair[1];
-      patch['${baseForm}_$lastIdx'] = '';
-      patch['${baseText}_$lastIdx'] = '';
+      result['${pair[0]}_$deletedRowIdx'] = null;
+      result['${pair[1]}_$deletedRowIdx'] = null;
     }
 
-    form.patchValue(patch);
+    return result;
   }
 }

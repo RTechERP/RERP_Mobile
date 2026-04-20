@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
@@ -11,6 +10,7 @@ import '../../../../../../../../../common/utils/navigation/navigation_utils.dart
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/booking_vehicle_model.dart';
+import '../../data/repository/booking_vehicle_repository.dart';
 import '../bloc/booking_vehicle_bloc.dart';
 import '../widgets/booking_vehicle_card.dart';
 import '../widgets/date_header.dart';
@@ -37,6 +37,14 @@ class _BookingVehicleScreenState
     bloc.add(const BookingVehicleEvent.init());
     // Preload cache cho màn add ngay khi vào module list.
     bloc.add(const BookingVehicleEvent.preloadInitAdd());
+  }
+
+  @override
+  void dispose() {
+    // Xóa cache currentUser khi thoát màn để đảm bảo dữ liệu luôn fresh
+    // khi user quay lại (tránh prefill stale data).
+    BookingVehicleRepository.clearCurrentUserCache();
+    super.dispose();
   }
 
   Future<void> _openDetail(BookingVehicleItem item) async {
@@ -77,9 +85,44 @@ class _BookingVehicleScreenState
         appBar: AppBarCommon(
           title: const Text('Đặt xe'),
           onBackTap: () => onBack(context),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.calendar_month),
+              tooltip: 'Lọc ngày',
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (_) => DateRangePicker(
+                    initialStart: bloc.state.dateStart,
+                    initialEnd: bloc.state.dateEnd,
+                    onApply: (start, end) {
+                      bloc.add(
+                        BookingVehicleEvent.changeDateRange(
+                          dateStart: start,
+                          dateEnd: end,
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+          ],
         ),
         body: BlocBuilder<BookingVehicleBloc, BookingVehicleState>(
+          buildWhen: (prev, curr) =>
+              prev.status != curr.status ||
+              prev.currentEmployee != curr.currentEmployee ||
+                  prev.bookingVehicle.length != curr.bookingVehicle.length,
           builder: (context, state) {
+            // Lưu currentEmployee vào SharedPreferences ngay khi có
+            // (từ preloadInitAdd cache/API) để add_screen đọc trực tiếp.
+            if (state.currentEmployee != null) {
+              BookingVehicleRepository.saveCurrentUserCache(
+                currentEmployee: state.currentEmployee!,
+              );
+            }
             if (state.status == BaseStateStatus.loading) {
               return const Center(child: CircularProgressIndicator());
             }
@@ -150,53 +193,16 @@ class _BookingVehicleScreenState
             );
           },
         ),
-        floatingActionButton: SpeedDial(
-          icon: Icons.menu,
-          activeIcon: Icons.close,
+        floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.primaryERP,
           foregroundColor: Colors.white,
-          spacing: 8,
-          spaceBetweenChildren: 8,
-          overlayOpacity: 0.3,
-
-          children: [
-            /// ===== THÊM =====
-            SpeedDialChild(
-              child: const Icon(Icons.add),
-              label: 'Thêm',
-              onTap: () async {
-                final reload = await context.push(RouteNames.bookingVehicleAdd);
-
-                if (reload == true) {
-                  bloc.add(const BookingVehicleEvent.init());
-                }
-              },
-            ),
-
-            /// ===== LỌC THEO NGÀY =====
-            SpeedDialChild(
-              child: const Icon(Icons.date_range),
-              label: 'Lọc ngày',
-              onTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  builder: (_) => DateRangePicker(
-                    initialStart: bloc.state.dateStart,
-                    initialEnd: bloc.state.dateEnd,
-                    onApply: (start, end) {
-                      // bloc.add(
-                      //   BookingVehicleEvent.changeDateRange(
-                      //     dateStart: start,
-                      //     dateEnd: end,
-                      //   ),
-                      // );
-                    },
-                  ),
-                );
-              },
-            ),
-          ],
+          onPressed: () async {
+            final reload = await context.push(RouteNames.bookingVehicleAdd);
+            if (reload == true) {
+              bloc.add(const BookingVehicleEvent.init());
+            }
+          },
+          child: const Icon(Icons.add),
         ),
       ),
     );

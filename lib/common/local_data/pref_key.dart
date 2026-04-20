@@ -5,4 +5,7 @@ class PrefKeys {
   static const introShowed = "introShowed";
   static const appType = "appType";
   static const listCarBrands = "listCarBrands";
+  static const workAssigners = "workAssigners";
+  static const workProjects = "workProjects";
+  static const workProjectTypes = "workProjectTypes";
 }

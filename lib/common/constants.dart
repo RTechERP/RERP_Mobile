@@ -51,6 +51,13 @@ class SharedKeys {
   static const userId = 'userId';
 
   static const isAppOpened = 'isAppOpened';
+
+  static const rememberMe = 'rememberMe';
+  static const savedUsername = 'savedUsername';
+  static const savedPassword = 'savedPassword';
+
+  /// FCM token đã refresh nhưng chưa gửi lên server (user đang logged-in).
+  static const savedFcmToken = 'savedFcmToken';
 }
 
 class BlocMessages {
@@ -67,6 +74,7 @@ class FireBaseLog {
 class ApiEndPoint {
   static const String login = '/home/login';
 
+  static const String loginMobile = '/homemobile/login-mobile';
   static const String currentUser = '/home/current-user';
   static const String getDailyReportTech =
       '/DailyReportTech/get-daily-report-tech';
@@ -187,11 +195,100 @@ class ApiEndPoint {
 
   static const String uploadBookingVehicleFile =
       '/vehiclebookingmanagement/upload-file';
-}
 
-/// Field [Key] multipart upload-file đặt xe; [subPath] do [bookingVehicleUploadSubPath] build.
-abstract final class BookingVehicleUploadForm {
-  BookingVehicleUploadForm._();
+  static const String getLunch = '/EmployeeFoodOrder';
+  static const String saveLunch = '/EmployeeFoodOrder/save-data';
 
-  static const String keyFieldValue = 'VehicleBookingFile';
+  static const String getEarlyLate = '/EmployeeEarlyLate';
+  static const String saveEarlyLate = '/EmployeeEarlyLate/save-data';
+  static const String getApprover = '/Employee/get-approve';
+
+  static const String getWfh = '/EmployeeWFH/get-wfh';
+  static const String saveWfh = '/EmployeeWFH/save-data';
+
+  static const String getMissed =
+      '/EmployeeNoFingerprint/get-employee-no-fingerprint';
+
+  static const String saveMissed = '/EmployeeNoFingerprint/savedata';
+
+  static const String checkDuplicateEnfMissed =
+      '/EmployeeNoFingerprint/check-duplicate-enf';
+
+  static const String getLeave = '/EmployeeOnLeave';
+  static const String getLeavePhaseMulti = '/EmployeeOnLeave/get-multi';
+  static const String saveLeave = '/EmployeeOnLeave/save-data';
+
+  static const String getLeaveTime =
+      '/employeeonleave/list-summary-employee-on-leave';
+
+  static const String saveMultiLeave= '/EmployeeOnLeave/SaveMultiPhase';
+
+  static const String getEmployeeLeave = '/Employee';
+
+  static const String getOvertime = '/EmployeeOverTime/get-over-time-by-employee';
+
+  static const String getOvertimeType = '/EmployeeTypeOverTime';
+
+  static const String getOvertimeProject = '/project/get-project-modal';
+
+  static const String saveOvertime = '/EmployeeOverTime/save-data-employee';
+
+  static const String getOvertimeById = '/EmployeeOverTime/get-by-id';
+
+  static const String getApproverOvertime = '/EmployeeOverTime/get-approver';
+
+  static const String getWorkTrip = '/EmployeeBussiness/get-employee-bussinesss-person';
+
+  static const String getWorkTripProject ='/project/get-project-modal';
+
+  static const String getWorkTripTypeBussiness = '/EmployeeTypeBussiness';
+
+  static const String getWorkTripTypeVehicle = '/EmployeeVehicleBussiness';
+
+  static const String saveWorkTrip = '/EmployeeBussiness/save-data-employee';
+
+  static const String getWorkTripById = '/EmployeeBussiness/get-by-id';
+
+  static const String getOvernight = '/EmployeeNightShift/get-employee-night-shift';
+
+  static const String saveOvernight = '/EmployeeNightShift/save-data';
+
+  // TODO: Thay đường dẫn API thực tế của Backend tại đây
+
+  static const String getWorkCategory = '/projectitemnew/get-project-item-person';
+
+  static const String getWorkProjectType = '/WorkItem/get-type-project-item';
+
+  static const String getWorkAssigner = '/projectitemnew/get-employee-request';
+
+  static const String getWorkParent = '/projectitemnew/get-project-item-parent';
+
+  static const String saveWorkCategory = '/projectitemnew/save-data-person';
+
+  static const String getWorkCategoryDetail = '/projectitemnew/get-by-id';
+  
+  static const String getWorkCategoryProblem = '/ProjectItem/get-project-item-problem';
+  
+  static const String saveWorkCategoryProblem = '/ProjectItem/save-problem';
+
+  static const String getFillAprrover = '/employeeonleave/get-approve-id';
+
+  static const String getPersonalAsset = '/Assets/get-asset-person';
+
+  static const String getPersonalProperty = '/Assets/get-personal-properties';
+
+  static const String getPersonalPropertyDetail = '/Assets/get-personal-property-details';
+
+  static const String savePersonalProperty = '/Assets/save-personal-property';
+
+  static const String getTypeNotification = '/notificationtype/get-data-by-userid';
+
+  static const String saveNotificationType = '/notificationtype/save-data';
+
+  static const String getStationery = '/OfficeSupplyRequests/get-office-supply-request';
+  static const String getStationerySupply = '/officesupply/get-office-supply';
+
+  static const String getStationeryDetail = '/OfficeSupplyRequests/get-office-supply-request-detail';
+
+  static const String saveStationery = '/OfficeSupplyRequests/save-data';
 }

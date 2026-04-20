@@ -1,6 +1,13 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Widget drawer hiển thị mục lục các tab dạng grid 2 cột
+
 import 'package:flutter/material.dart';
 import '../../model/favorite_tabs.dart';
 
+/// Widget drawer hiển thị mục lục (catalog) các tabs dưới dạng grid 2 cột.
+///
+/// Người dùng tap vào một tab trong drawer sẽ nhảy đến tab tương ứng
+/// và drawer sẽ đóng lại.
 class FavCatalogDrawer extends StatelessWidget {
   const FavCatalogDrawer({super.key});
 

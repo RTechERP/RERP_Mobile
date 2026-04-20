@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
@@ -13,13 +12,13 @@ import '../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/constants/index.dart';
-import '../../../../../../../../common/utils/card/index.dart';
 import '../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../routes/route_names.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../bloc/tech_bloc.dart';
+import '../widgets/tech_report_card.dart';
 
 class TechScreen extends StatefulWidget {
   const TechScreen({super.key});
@@ -30,7 +29,6 @@ class TechScreen extends StatefulWidget {
 
 class _TechScreenState
     extends BaseState<TechScreen, TechEvent, TechState, TechBloc> {
-
   bool _isSearching = false;
   final TextEditingController _searchController = TextEditingController();
   List<ReportResponse> _filteredReports = [];
@@ -49,6 +47,51 @@ class _TechScreenState
       return code.contains(lower) || name.contains(lower);
     }).toList();
   }
+
+  List<ReportResponse> _sortByDateDesc(List<ReportResponse> reports) {
+    final now = DateTime.now();
+    final todayStart = DateTime(now.year, now.month, now.day);
+
+    final sorted = List<ReportResponse>.from(reports);
+    sorted.sort((a, b) {
+      final da = DateTime.tryParse(a.dateReport);
+      final db = DateTime.tryParse(b.dateReport);
+
+      // Cùng ngày → so sánh giờ tạo mới nhất lên đầu
+      if (da != null && db != null && _sameDay(da, db)) {
+        final ha = a.createdDate;
+        final hb = b.createdDate;
+        if (ha != null && hb != null) return hb.compareTo(ha);
+        if (ha != null) return -1;
+        if (hb != null) return 1;
+        return 0;
+      }
+
+      // Ưu tiên ngày hiện tại và tương lai (chronological ASC)
+      final aIsPast = da == null || da.isBefore(todayStart);
+      final bIsPast = db == null || db.isBefore(todayStart);
+
+      if (aIsPast && !bIsPast) return 1;  // a là quá khứ → xuống dưới
+      if (!aIsPast && bIsPast) return -1; // b là quá khứ → a lên trên
+
+      if (!aIsPast && !bIsPast) {
+        // Hôm nay → ngày mai → ngày kia (ASC)
+        return da.compareTo(db);
+      }
+
+      // Quá khứ: mới nhất lên đầu (DESC)
+      if (da != null && db != null) return db.compareTo(da);
+      if (da != null) return -1;
+      if (db != null) return 1;
+      return 0;
+    });
+    return sorted;
+  }
+
+  bool _sameDay(DateTime a, DateTime b) {
+    return a.year == b.year && a.month == b.month && a.day == b.day;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -60,11 +103,12 @@ class _TechScreenState
     _searchController.dispose();
     super.dispose();
   }
-  String _buildCopyContent(List<CopyResponse> reports) {
+
+  String _buildCopyContent(List<CopyNullResponse> reports) {
     if (reports.isEmpty) return '';
 
     final buffer = StringBuffer();
-    final date = DateTime.tryParse(reports.first.dateReport);
+    final date = DateTime.tryParse(reports.first.dateReport ?? '');
     final formattedDate = date != null
         ? '${date.day.toString().padLeft(2, '0')}/'
               '${date.month.toString().padLeft(2, '0')}/'
@@ -95,7 +139,6 @@ class _TechScreenState
       buffer.writeln('* Ghi chú:');
       buffer.writeln(_cleanOrDefault(r.note));
       buffer.writeln('');
-
 
       buffer.writeln('* Vấn đề phát sinh:');
       buffer.writeln(_cleanOrDefault(r.problem));
@@ -152,9 +195,7 @@ class _TechScreenState
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       alignment: Alignment.center,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
+      decoration: const BoxDecoration(color: Colors.white),
       child: Text(
         text,
         style: const TextStyle(
@@ -172,14 +213,14 @@ class _TechScreenState
         '${d.year}';
   }
 
-
   @override
   Widget renderUI(BuildContext context) {
     return BlocListener<TechBloc, TechState>(
       listenWhen: (p, c) =>
-      p.deleteSuccess != c.deleteSuccess ||
+          p.deleteSuccess != c.deleteSuccess ||
           p.copyReports != c.copyReports ||
-          p.copyError != c.copyError,
+          p.copyError != c.copyError ||
+          p.sendMailSuccess != c.sendMailSuccess,
       listener: (context, state) async {
         if (state.deleteSuccess) {
           showMessage(
@@ -193,64 +234,80 @@ class _TechScreenState
           showMessage(context, state.message!, type: SnackBarType.error);
         }
 
+        // Send mail hoàn tất → snackbar "Tạo báo cáo thành công" đã show trong tech_add_screen
+        // Flags được reset TRONG BLOC sau khi copy + share
+
         /// COPY ERROR
         if (state.copyError != null) {
-          showMessage(
-            context,
-            state.copyError!,
-            type: SnackBarType.error,
-          );
+          showMessage(context, state.copyError!, type: SnackBarType.error);
           return;
         }
 
-        /// COPY SUCCESS
+        /// COPY SUCCESS → copy + share, KHÔNG navigate sang Add
         if (state.copyReports.isNotEmpty) {
           final content = _buildCopyContent(state.copyReports);
 
+          // Copy vào clipboard
           await Clipboard.setData(ClipboardData(text: content));
 
           showMessage(
             context,
-            'Đã copy nội dung thành công',
+            'Đã copy thành công',
             type: SnackBarType.success,
           );
 
-          await Share.share(content);
-
-          // reset sau khi xử lý xong
+          // Xóa trạng thái copy
           bloc.add(const TechEvent.resetCopyReport());
+
+          // Share nội dung ra ứng dụng khác
+
+          await SharePlus.instance.share(
+            ShareParams(
+              subject: 'Báo cáo công việc',
+              text: content,
+              sharePositionOrigin: Rect.fromLTWH(
+                0,
+                0,
+                MediaQuery.of(context).size.width,
+                MediaQuery.of(context).size.height / 2,
+              ),
+            ),
+          );
         }
       },
       child: BaseScaffold(
         appBar: AppBarCommon(
           title: _isSearching
               ? TextField(
-            controller: _searchController,
-            autofocus: true,
-            decoration: const InputDecoration(
-              hintText: 'Tìm theo mã hoặc tên dự án',
-              border: InputBorder.none,
-            ),
-            onChanged: (value) {
-              setState(() {
-                _filterReports(value, bloc.state.reports);
-              });
-            },
-          )
+                  controller: _searchController,
+                  autofocus: true,
+                  decoration: const InputDecoration(
+                    hintText: 'Tìm theo mã hoặc tên dự án',
+                    border: InputBorder.none,
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      _filterReports(value, bloc.state.reports);
+                    });
+                  },
+                )
               : Text('report.tech'.tr()),
           onBackTap: () => onBack(context),
           actions: [
             IconButton(
-              icon: Icon(
-                _isSearching ? Icons.close : Icons.search,
-                size: 22,
-              ),
+              icon: Icon(_isSearching ? Icons.close : Icons.search, size: 22),
               onPressed: () {
                 setState(() {
                   _isSearching = !_isSearching;
                   _searchController.clear();
                   _filteredReports = [];
                 });
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.date_range, size: 22),
+              onPressed: () {
+                TechDateRangePicker.open(context, bloc);
               },
             ),
           ],
@@ -292,12 +349,13 @@ class _TechScreenState
               );
             }
 
-            final displayList =
-            _isSearching ? _filteredReports : state.reports;
-
             if (!_isSearching) {
-              _filteredReports = state.reports;
+              _filteredReports = _sortByDateDesc(state.reports);
             }
+
+            final displayList = _isSearching
+                ? _filteredReports
+                : _sortByDateDesc(state.reports);
             return Column(
               children: [
                 Padding(
@@ -318,59 +376,66 @@ class _TechScreenState
                       itemCount: displayList.length,
                       itemBuilder: (context, index) {
                         final r = displayList[index];
-                        final hasData =
-                            (r.projectCode?.isNotEmpty == true) &&
-                            (r.projectName?.isNotEmpty == true);
 
-                        final parsedDate = DateTime.tryParse(r.dateReport);
+                        return TechReportCard(
+                          report: r,
+                          onTap: () async {
+                            final result = await context.push(
+                              RouteNames.reportITdepartEdit,
+                              extra: r.id,
+                            );
 
-                        Widget card = AppCardReport(
-                          projectCode: r.projectCode,
-                          projectName: r.projectName,
-                          time: parsedDate,
-                          progress: (r.percentComplete / 100).clamp(0.0, 1.0),
-                          onTap: hasData
-                              ? () async {
-                                  final reload = await context.push(
-                                    RouteNames.reportITdepartDetail,
-                                    extra: r.id,
-                                  );
+                            if (result != null) {
+                              showMessage(
+                                context,
+                                'Cập nhật báo cáo thành công',
+                                type: SnackBarType.success,
+                              );
 
-                                  if (reload == true) {
-                                    bloc.add(const TechEvent.init());
-                                  }
-                                }
-                              : null,
-                        );
+                              final extra = result as Map<String, dynamic>?;
+                              final pendingDate = extra?['date'] as DateTime?;
+                              final shareText = extra?['shareText'] as String?;
 
-                        if (!hasData) {
-                          return Opacity(opacity: 0.5, child: card);
-                        }
+                              bloc.add(const TechEvent.init());
 
-                        return Slidable(
-                          key: ValueKey(r.id),
-                          endActionPane: ActionPane(
-                            motion: const DrawerMotion(),
-                            extentRatio: 0.25,
-                            children: [
-                              SlidableAction(
-                                onPressed: (_) async {
-                                  final confirmed =
-                                      await DialogService.showConfirmDelete(
-                                        context: context,
-                                      );
-                                  if (!confirmed) return;
+                              if (pendingDate != null) {
+                                bloc.add(
+                                  TechEvent.sendMailReport(
+                                    pickedDate: pendingDate,
+                                    context: context,
+                                    shareText: shareText,
+                                  ),
+                                );
+                              }
 
-                                  bloc.add(TechEvent.deleteReport(r.id));
-                                },
-                                backgroundColor: Colors.red,
-                                foregroundColor: Colors.white,
-                                icon: Icons.delete,
-                                label: 'Xoá',
-                              ),
-                            ],
-                          ),
-                          child: card,
+                              if (shareText != null && shareText.isNotEmpty) {
+                                await Clipboard.setData(
+                                    ClipboardData(text: shareText));
+
+                                await SharePlus.instance.share(
+                                  ShareParams(
+                                    subject: 'Báo cáo công việc',
+                                    text: shareText,
+                                    sharePositionOrigin: Rect.fromLTWH(
+                                      0,
+                                      0,
+                                      MediaQuery.of(context).size.width,
+                                      MediaQuery.of(context).size.height / 2,
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
+                          },
+                          onDelete: () async {
+                            final confirmed =
+                                await DialogService.showConfirmDelete(
+                                  context: context,
+                                );
+                            if (!confirmed) return;
+
+                            bloc.add(TechEvent.deleteReport(r.id));
+                          },
                         );
                       },
                     ),
@@ -395,20 +460,52 @@ class _TechScreenState
               child: const Icon(Icons.add),
               label: 'Thêm',
               onTap: () async {
-                final reload = await context.push(RouteNames.reportITdepartAdd);
+                final reload = await context.push(
+                  RouteNames.reportITdepartAdd,
+                  extra: {'projects': bloc.state.rtcProject},
+                );
 
-                if (reload == true) {
+                if (reload != null) {
+                  showMessage(
+                    context,
+                    'Tạo báo cáo thành công',
+                    type: SnackBarType.success,
+                  );
+
+                  final extra = reload as Map<String, dynamic>?;
+                  final pendingDate = extra?['date'] as DateTime?;
+                  final shareText = extra?['shareText'] as String?;
+
                   bloc.add(const TechEvent.init());
-                }
-              },
-            ),
 
-            /// ===== LỌC THEO NGÀY =====
-            SpeedDialChild(
-              child: const Icon(Icons.date_range),
-              label: 'Lọc ngày',
-              onTap: () {
-                TechDateRangePicker.open(context, bloc);
+                  if (pendingDate != null) {
+                    bloc.add(
+                      TechEvent.sendMailReport(
+                        pickedDate: pendingDate,
+                        context: context,
+                        shareText: shareText,
+                      ),
+                    );
+                  }
+
+                  // Bật share ngay lập tức sau khi tạo thành công
+                  if (shareText != null && shareText.isNotEmpty) {
+                    await Clipboard.setData(ClipboardData(text: shareText));
+
+                    await SharePlus.instance.share(
+                      ShareParams(
+                        subject: 'Báo cáo công việc',
+                        text: shareText,
+                        sharePositionOrigin: Rect.fromLTWH(
+                          0,
+                          0,
+                          MediaQuery.of(context).size.width,
+                          MediaQuery.of(context).size.height / 2,
+                        ),
+                      ),
+                    );
+                  }
+                }
               },
             ),
 

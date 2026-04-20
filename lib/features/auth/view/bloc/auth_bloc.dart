@@ -1,16 +1,23 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: BLoC quản lý auth - login, logout, init, remember me
+
+import 'dart:io';
+
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../common/constants.dart';
 
+import '../../../../common/helpers/index.dart';
 import '../../../../common/services/permissions/permission_service.dart';
 import '../../data/datasource/models/auth_model.dart';
 import '../../data/datasource/models/user_model.dart';
 import '../../data/repository/auth_repo.dart';
-import '../../../../../../../../base/network/errors/extension.dart';
 import '../../data/repository/auth_repository.dart';
 import '../../../../common/logger/logger.dart';
 
@@ -28,24 +35,58 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     on<AuthEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
-        login: (loginName, passwordHash) =>
-            _onLogin(loginName, passwordHash, emit),
+        login: (loginName, passwordHash, rememberMe) =>
+            _onLogin(loginName, passwordHash, rememberMe, emit),
         logout: () => _onLogout(emit),
+        toggleRememberMe: (value) => _onToggleRememberMe(value, emit),
       );
     });
   }
 
+  //---(Init)---//
+
+  /// Handles init event - kiểm tra token đã lưu, validate expiry, lấy cached user.
+  /// Nếu token hết hạn hoặc không hợp lệ → xóa session.
+  /// Arm scheduled logout nếu có user đang đăng nhập.
   Future<void> _onInit(Emitter<AuthState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
-    final isValid = await AuthRepository.isLoggedInAndValid(log: _log);
+    final prefs = await SharedPreferences.getInstance();
+
+    final rememberMe =
+        prefs.getBool(SharedKeys.rememberMe) ?? false;
+
+    final savedUsername =
+        prefs.getString(SharedKeys.savedUsername);
+
+    final savedPassword =
+        prefs.getString(SharedKeys.savedPassword);
+
+    emit(
+      state.copyWith(
+        status: BaseStateStatus.init,
+        rememberMe: rememberMe,
+        savedUsername: savedUsername,
+        savedPassword: savedPassword,
+      ),
+    );
+
+    final isValid =
+        await AuthRepository.isLoggedInAndValid(log: _log);
 
     if (!isValid) {
-      if (emit.isDone) return;
-      emit(state.copyWith(status: BaseStateStatus.init));
+      AuthScheduledLogout.cancel();
       return;
     }
 
+    // Kiểm tra logout tự động khi qua ngày mới (23:30 local)
+    if (await AuthScheduledLogout.logoutIfMissedDailyBoundary(log: _log)) {
+      if (emit.isDone) return;
+      emit(state.copyWith(status: BaseStateStatus.init, user: null));
+      return;
+    }
+
+    // Ưu tiên user từ cache, không có thì fetch từ API
     final cached = await AuthRepository.getCurrentUser(log: _log);
 
     final user =
@@ -55,23 +96,68 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
 
     emit(
       state.copyWith(
-        status: user != null ? BaseStateStatus.success : BaseStateStatus.init,
+        status: user != null
+            ? BaseStateStatus.success
+            : BaseStateStatus.init,
         user: user,
       ),
     );
+
+    if (user != null) {
+      AuthScheduledLogout.arm(log: _log);
+    } else {
+      AuthScheduledLogout.cancel();
+    }
   }
 
+  //---(Login)---//
+
+  /// Handles login event - lấy FCM token + deviceId trước, gửi kèm payload login.
+  /// Server tự đăng ký FCM token khi login thành công.
   Future<void> _onLogin(
     String loginName,
     String passwordHash,
+    bool rememberMe,
     Emitter<AuthState> emit,
   ) async {
-    emit(state.copyWith(status: BaseStateStatus.loading));
+    emit(state.copyWith(status: BaseStateStatus.loading, rememberMe: rememberMe));
+
+    // Lấy FCM token + deviceId trước khi login
+    String? fcmToken;
+    String? deviceId;
+    try {
+      if (Platform.isIOS) {
+        await FirebaseMessaging.instance.getAPNSToken();
+      }
+      fcmToken = await FirebaseMessaging.instance.getToken();
+      deviceId = await DeviceInfoHelper.getDeviceId();
+    } catch (e) {
+      _log.logW('Không lấy được FCM token hoặc deviceId: $e');
+    }
+
+    // Lấy savedFcmToken (token đã refresh khi user đang logged-in)
+    final prefs = await SharedPreferences.getInstance();
+    final savedFcmToken = prefs.getString(SharedKeys.savedFcmToken);
+
+    // Ưu tiên fcmToken hiện tại, fallback sang savedFcmToken
+    final effectiveFcmToken = fcmToken ?? savedFcmToken;
 
     final res = await _authRepo.login(
       loginName: loginName,
       passwordHash: passwordHash,
+      fcmToken: effectiveFcmToken,
+      deviceId: deviceId,
     );
+
+    if (rememberMe) {
+      await prefs.setBool(SharedKeys.rememberMe, true);
+      await prefs.setString(SharedKeys.savedUsername, loginName);
+      await prefs.setString(SharedKeys.savedPassword, passwordHash);
+    } else {
+      await prefs.remove(SharedKeys.rememberMe);
+      await prefs.remove(SharedKeys.savedUsername);
+      await prefs.remove(SharedKeys.savedPassword);
+    }
 
     await res.fold(
       (l) async {
@@ -79,7 +165,7 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         emit(
           state.copyWith(
             status: BaseStateStatus.failed,
-            message: l.getErrorMessage,
+            message: 'Sai tài khoản hoặc mật khẩu!',
           ),
         );
       },
@@ -96,6 +182,17 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
 
         if (emit.isDone) return;
 
+        // Xóa savedFcmToken sau khi login thành công (đã gửi lên server)
+        if (user != null) {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.remove(SharedKeys.savedFcmToken);
+
+          // Init notification mặc định cho user mới (chạy background, không block UI)
+          _initDefaultNotificationsForNewUser(user);
+        }
+
+        if (emit.isDone) return;
+
         emit(
           state.copyWith(
             status: user != null
@@ -106,16 +203,59 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
                 : 'Login success but fetch user failed',
             loginResponse: r,
             user: user,
+            rememberMe: rememberMe,
+            savedUsername: rememberMe ? loginName : null,
+            savedPassword: rememberMe ? passwordHash : null,
           ),
         );
       },
     );
   }
 
+  /// Init notification mặc định cho user mới - chỉ chạy 1 lần duy nhất.
+  Future<void> _initDefaultNotificationsForNewUser(User user) async {
+    await _authRepo.initDefaultNotificationsForNewUser(userId: user.employeeId);
+  }
+
+  //---(Logout)---//
+
+  /// Handles logout event - xóa token, xóa cached user, reset permissions.
+  /// Giữ lại rememberMe + saved credentials nếu user đã tick "ghi nhớ đăng nhập".
   Future<void> _onLogout(Emitter<AuthState> emit) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final rememberMe =
+        prefs.getBool(SharedKeys.rememberMe) ?? false;
+
+    final savedUsername =
+        prefs.getString(SharedKeys.savedUsername);
+
+    final savedPassword =
+        prefs.getString(SharedKeys.savedPassword);
+
+    AuthScheduledLogout.cancel();
     await AuthRepository.clearAll(log: _log);
     PermissionService.reset();
+
     if (emit.isDone) return;
-    emit(AuthState.init());
+
+    emit(
+      AuthState.init().copyWith(
+        rememberMe: rememberMe,
+        savedUsername: savedUsername,
+        savedPassword: savedPassword,
+      ),
+    );
+
+    _log.logI('rememberMe=$rememberMe');
+    _log.logI('savedUsername=$savedUsername');
+    _log.logI('savedPassword=$savedPassword');
+  }
+
+  //---(RememberMe)---//
+
+  /// Handles toggleRememberMe event - cập nhật flag rememberMe vào state (không gọi API).
+  _onToggleRememberMe(bool value, Emitter<AuthState> emit) {
+    emit(state.copyWith(rememberMe: value));
   }
 }

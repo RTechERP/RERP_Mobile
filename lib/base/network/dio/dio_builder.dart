@@ -2,15 +2,15 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 
+import '../../../common/app/app_config.dart';
 import '../../../common/config/api_config.dart';
 
 import '../../../common/logger/index.dart';
-import '../constants/constants.dart';
 import 'dio_interceptor.dart';
 
 class DioBuilder {
   Dio? dio;
-  String initBaseUrl = BaseApiUrl.baseUrl;
+  String initBaseUrl = AppConfig.baseUrl;
   Dio getDio() {
     if (dio == null) {
       // bool canLog = false;

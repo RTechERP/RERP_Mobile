@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../../common/widgets/form/index.dart';
 
@@ -13,63 +15,73 @@ class TypeFormReceiver extends StatefulWidget {
     super.key,
     required this.projects,
     required this.arrivalProvinces,
+    required this.formKey,
+    required this.typeTransportKey,
   });
 
   final List<BookingVehicleProjectItem> projects;
   final List<ProvinceArrivesItem> arrivalProvinces;
+  final GlobalKey<FormBuilderState> formKey;
+  final GlobalKey<FormBuilderFieldState> typeTransportKey;
 
   @override
   State<TypeFormReceiver> createState() => _TypeFormReceiverState();
 }
 
 class _TypeFormReceiverState extends State<TypeFormReceiver> {
-  FormFieldState<String>? projectField;
-  FormFieldState<String>? provinceField;
-  FormFieldState<String>? typeTransportField;
-
   List<BookingVehicleProjectItem> get _projects => widget.projects;
   List<ProvinceArrivesItem> get _arrivalProvinces => widget.arrivalProvinces;
 
-  static const List<String> _vehicleTypes = [
-    'Ô tô, xe máy ...',
-    'Máy bay',
+  static const List<FormChoiceOption<String>> _vehicleTypes = [
+    FormChoiceOption(value: 'Ô tô, xe máy …', label: 'Ô tô, xe máy …', selectedColor: AppColors.primaryERP),
+    FormChoiceOption(value: 'Máy bay', label: 'Máy bay', selectedColor: AppColors.primaryERP),
   ];
 
   Future<void> _pickProject() async {
+    final form = widget.formKey.currentState;
+    if (form == null) {
+      print('⚠️ _pickProject: widget.formKey.currentState is null');
+      return;
+    }
+    print('✅ _pickProject: form found, field count=${form.fields.length}');
+    final currentProject = form.fields['pickup_project']?.value as String? ?? '';
+    print('📋 current pickup_project value: "$currentProject"');
+    final currentProjectItem = _projects.cast<BookingVehicleProjectItem?>().firstWhere(
+      (p) => '${p!.projectCode ?? ''} - ${p.projectName ?? ''}'.trim() == currentProject,
+      orElse: () => null,
+    );
     await openSelectBottomSheet<BookingVehicleProjectItem>(
       context: context,
       title: 'Chọn dự án',
       items: _projects,
       displayText: (v) => '${v.projectCode ?? ''} - ${v.projectName ?? ''}',
       onSelected: (item) {
-        projectField?.didChange(
-          '${item.projectCode ?? ''} - ${item.projectName ?? ''}'.trim(),
-        );
+        final val = '${item.projectCode ?? ''} - ${item.projectName ?? ''}'.trim();
+        print('📋 _pickProject onSelected: "$val"');
+        form.fields['pickup_project']?.didChange(val);
+        print('📋 didChange called, field value now: "${form.fields['pickup_project']?.value}"');
       },
+      initialSelectedItem: currentProjectItem,
     );
   }
 
   Future<void> _pickProvince() async {
+    final form = widget.formKey.currentState;
+    if (form == null) return;
+    final currentProvince = form.fields['pickup_province']?.value as String? ?? '';
+    final currentItem = _arrivalProvinces.cast<ProvinceArrivesItem?>().firstWhere(
+      (p) => p!.provinceName == currentProvince,
+      orElse: () => null,
+    );
     await openSelectBottomSheet<ProvinceArrivesItem>(
       context: context,
       title: 'Chọn tỉnh đến lấy',
       items: _arrivalProvinces,
       displayText: (v) => v.provinceName ?? '',
       onSelected: (item) {
-        provinceField?.didChange(item.provinceName ?? '');
+        form.fields['pickup_province']?.didChange(item.provinceName ?? '');
       },
-    );
-  }
-
-  Future<void> _pickTypeTransport() async {
-    await openSelectBottomSheet<String>(
-      context: context,
-      title: 'Chọn loại phương tiện',
-      items: _vehicleTypes,
-      displayText: (v) => v,
-      onSelected: (item) {
-        typeTransportField?.didChange(item);
-      },
+      initialSelectedItem: currentItem,
     );
   }
 
@@ -78,18 +90,20 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
     return FormCard(
       child: Column(
         children: [
-          GestureDetector(
-            onTap: _pickProject,
-            child: AbsorbPointer(
-              child: FormInputField(
-                icon: Icons.navigation_outlined,
-                nameForm: 'pickup_project',
-                nameTextField: 'pickup_project_text',
-                label: 'Dự án',
-                onFieldCreated: (field) => projectField = field,
-                readOnly: true,
-              ),
+          FormBuilderTextField(
+            name: 'pickup_project',
+            readOnly: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            decoration: formInputDecoration(
+              context,
+              label: 'Dự án',
+              icon: Icons.navigation_outlined,
+              isRequired: true,
             ),
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn dự án',
+            ),
+            onTap: _pickProject,
           ),
           const SizedBox(height: 8),
 
@@ -100,8 +114,13 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
             label: 'Thời gian cần đến lấy',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn thời gian cần đến lấy',
+            ),
           ),
           const SizedBox(height: 8),
+
           FormDateTimePicker(
             icon: Icons.departure_board_outlined,
             nameForm: 'pickup_departure_time',
@@ -109,6 +128,10 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
             label: 'Thời gian xuất phát',
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy - HH:mm'),
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn thời gian xuất phát',
+            ),
           ),
           const SizedBox(height: 8),
 
@@ -117,41 +140,52 @@ class _TypeFormReceiverState extends State<TypeFormReceiver> {
             nameForm: 'pickup_company',
             nameTextField: 'pickup_company_text',
             label: 'Công ty đến lấy',
-          ),
-          const SizedBox(height: 8),
-          GestureDetector(
-            onTap: _pickProvince,
-            child: AbsorbPointer(
-              child: FormInputField(
-                icon: Icons.map_outlined,
-                nameForm: 'pickup_province',
-                nameTextField: 'pickup_province_text',
-                label: 'Tỉnh đến lấy',
-                onFieldCreated: (field) => provinceField = field,
-                readOnly: true,
-              ),
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập công ty đến lấy',
             ),
           ),
           const SizedBox(height: 8),
+
+          FormBuilderTextField(
+            name: 'pickup_province',
+            readOnly: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            decoration: formInputDecoration(
+              context,
+              label: 'Tỉnh đến lấy',
+              icon: Icons.map_outlined,
+              isRequired: true,
+            ),
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn tỉnh đến lấy',
+            ),
+            onTap: _pickProvince,
+          ),
+          const SizedBox(height: 8),
+
           FormInputField(
             icon: Icons.location_on_outlined,
             nameForm: 'pickup_address',
             nameTextField: 'pickup_address_text',
             label: 'Địa chỉ cụ thể đến lấy',
-            maxLines: 3,
+            autoExpand: true,
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập địa chỉ cụ thể đến lấy',
+            ),
           ),
           const SizedBox(height: 8),
-          GestureDetector(
-            onTap: _pickTypeTransport,
-            child: AbsorbPointer(
-              child: FormInputField(
-                icon: Icons.directions_car_outlined,
-                nameForm: 'type_transport',
-                nameTextField: 'type_transport_text',
-                label: 'Loại phương tiện',
-                onFieldCreated: (field) => typeTransportField = field,
-                readOnly: true,
-              ),
+
+          FormChoiceGroup<String>(
+            fieldKey: widget.typeTransportKey,
+            name: 'type_transport',
+            label: 'Loại phương tiện',
+            icon: Icons.directions_car_outlined,
+            options: _vehicleTypes,
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng chọn loại phương tiện',
             ),
           ),
         ],

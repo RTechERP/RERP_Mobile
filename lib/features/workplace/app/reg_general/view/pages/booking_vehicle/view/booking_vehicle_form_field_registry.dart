@@ -6,8 +6,10 @@ const Set<String> kBookingVehicleFormFieldNames = {
   'project',
   'time_need_present',
   'location_address',
+  'location_address_text',
   'provinces',
   'address',
+  'address_text',
   'time_depart',
   'time_return',
   'starting_point',
@@ -15,12 +17,15 @@ const Set<String> kBookingVehicleFormFieldNames = {
   'destination_address',
   'return_address',
   'type_transport',
+  'type_transport_text',
   'pickup_project',
   'pickup_departure_time',
   'pickup_need_arrive_time',
   'pickup_company',
+  'pickup_company_text',
   'pickup_province',
   'pickup_address',
+  'pickup_address_text',
 };
 
 /// Tách [raw] (thường là `FormBuilderState.value`) thành map Form / Info.

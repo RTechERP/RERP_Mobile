@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:rtc_erp/common/helpers/index.dart';
 import 'package:rtc_erp/common/widgets/form/index.dart';
@@ -15,18 +15,24 @@ class PassengerInfoItem extends StatefulWidget {
     required this.isExpanded,
     required this.employeeOptions,
     required this.totalCount,
+    required this.infoFieldValues,
     this.prefillEmployee,
     required this.onToggleExpand,
     this.onDelete,
+    this.generation = 0,
   });
 
   final int index;
   final int totalCount;
   final bool isExpanded;
   final List<BookingVehiclePersonalItem> employeeOptions;
+  /// Map infoFieldValues từ BLoC state — source of truth cho dữ liệu dòng.
+  final Map<String, dynamic> infoFieldValues;
   final BookingVehiclePersonalItem? prefillEmployee;
   final VoidCallback onToggleExpand;
   final VoidCallback? onDelete;
+  /// Dùng để buộc Slidable + child rebuild khi generation thay đổi (sau xoá dòng).
+  final int generation;
 
   @override
   State<PassengerInfoItem> createState() =>
@@ -50,76 +56,86 @@ class _PassengerInfoItemState
     super.initState();
     _selectedEmployee = widget.prefillEmployee;
 
+    // Hydrate từ BLoC state (infoFieldValues) — đọc trực tiếp từ state, không cần postFrame.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      if (widget.prefillEmployee != null) {
-        _syncFieldsToEmployee(_selectedEmployee);
-      } else {
-        _tryHydrateSelectionFromForm();
-      }
+      _hydrateFromState();
     });
   }
 
   @override
   void didUpdateWidget(covariant PassengerInfoItem oldWidget) {
     super.didUpdateWidget(oldWidget);
-
     if (widget.prefillEmployee != oldWidget.prefillEmployee) {
       _selectedEmployee = widget.prefillEmployee;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        _syncFieldsToEmployee(_selectedEmployee);
-      });
-    }
-    if (widget.employeeOptions != oldWidget.employeeOptions ||
-        widget.index != oldWidget.index) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        if (widget.prefillEmployee == null) {
-          _tryHydrateSelectionFromForm();
-        }
-      });
     }
   }
 
-  /// Khôi phục NV đã chọn từ form (sau khi xoá dòng 0 và dịch field lên index mới).
-  void _tryHydrateSelectionFromForm() {
-    if (!mounted) return;
-    final form = context.findAncestorStateOfType<FormBuilderState>();
-    if (form == null) return;
-    final code =
-        (form.fields['passenger_code_${widget.index}']?.value as String?)
-                ?.trim() ??
-            '';
-    final name =
-        (form.fields['passenger_full_name_${widget.index}']?.value as String?)
-                ?.trim() ??
-            '';
-    final empPick =
-        (form.fields['passenger_employee_${widget.index}']?.value as String?)
-                ?.trim() ??
-            '';
-    if (code.isEmpty && name.isEmpty && empPick.isEmpty) return;
+  /// Hydrate form fields từ infoFieldValues (BLoC state).
+  /// Đọc trực tiếp từ state — đảm bảo đúng sau patchValue + shift.
+  void _hydrateFromState() {
+    if (widget.infoFieldValues.isEmpty) {
+      if (widget.prefillEmployee != null) {
+        _syncFieldsToEmployee(_selectedEmployee);
+      }
+      return;
+    }
 
+    final i = widget.index;
+    final empVal = widget.infoFieldValues['passenger_employee_$i'] as String?;
+    final codeVal = widget.infoFieldValues['passenger_code_$i'] as String?;
+    final nameVal = widget.infoFieldValues['passenger_full_name_$i'] as String?;
+    final phoneVal = widget.infoFieldValues['passenger_contact_phone_$i'] as String?;
+    final deptVal = widget.infoFieldValues['passenger_department_$i'] as String?;
+
+    final empTrim = (empVal ?? '').trim();
+    final codeTrim = (codeVal ?? '').trim();
+    final nameTrim = (nameVal ?? '').trim();
+
+    // Ưu tiên prefillEmployee (user hiện tại dòng 0).
+    if (widget.prefillEmployee != null) {
+      _syncFieldsToEmployee(_selectedEmployee);
+      return;
+    }
+
+    // Ngược lại: hydrate từ infoFieldValues.
+    final hasEmpData = empTrim.isNotEmpty || codeTrim.isNotEmpty || nameTrim.isNotEmpty;
+    if (!hasEmpData) return;
+
+    // Tìm employee object từ employeeOptions.
+    BookingVehiclePersonalItem? matched;
     for (final e in widget.employeeOptions) {
-      final c = (e.code ?? '').trim();
-      final n = (e.fullName ?? '').trim();
-      if (c.isEmpty && n.isEmpty) continue;
-      if (code.isNotEmpty && c == code) {
-        setState(() => _selectedEmployee = e);
-        _syncFieldsToEmployee(e);
-        return;
+      final ec = (e.code ?? '').trim();
+      final en = (e.fullName ?? '').trim();
+      if (ec.isNotEmpty && ec == codeTrim) {
+        matched = e;
+        break;
       }
-      if (name.isNotEmpty && n == name) {
-        setState(() => _selectedEmployee = e);
-        _syncFieldsToEmployee(e);
-        return;
+      if (en.isNotEmpty && en == nameTrim) {
+        matched = e;
+        break;
       }
-      if (empPick.isNotEmpty &&
-          (n == empPick || empPick.contains(n) || c == empPick)) {
-        setState(() => _selectedEmployee = e);
-        _syncFieldsToEmployee(e);
-        return;
+    }
+
+    if (matched != null) {
+      setState(() => _selectedEmployee = matched);
+      _syncFieldsToEmployee(matched);
+    } else {
+      // Manual entry: chỉ didChange, không sync _selectedEmployee.
+      if (empTrim.isNotEmpty && employeeSelectField?.value?.trim() != empTrim) {
+        employeeSelectField?.didChange(empTrim);
+      }
+      if (deptVal != null && deptVal.trim().isNotEmpty) {
+        departmentField?.didChange(deptVal.trim());
+      }
+      if (codeTrim.isNotEmpty && employeeCodeField?.value?.trim() != codeTrim) {
+        employeeCodeField?.didChange(codeTrim);
+      }
+      if (nameTrim.isNotEmpty && employeeNameField?.value?.trim() != nameTrim) {
+        employeeNameField?.didChange(nameTrim);
+      }
+      if (phoneVal != null && phoneVal.trim().isNotEmpty) {
+        contactPhoneField?.didChange(phoneVal.trim());
       }
     }
   }
@@ -167,9 +183,10 @@ class _PassengerInfoItemState
     final employeeIndex = widget.index;
     final canDelete = widget.totalCount > 1;
     final showExpanded = widget.isExpanded;
+    final gen = widget.generation;
 
     return Slidable(
-      key: ValueKey('passenger_${widget.index}'),
+      key: ValueKey('passenger_${widget.index}_$gen'),
       enabled: !showExpanded && canDelete,
       endActionPane: showExpanded || !canDelete
           ? null
@@ -189,9 +206,14 @@ class _PassengerInfoItemState
             ),
       child: Builder(
         builder: (slidableCtx) {
-          final nameFromField = (employeeNameField?.value ?? '').trim();
+          // Đọc trực tiếp từ infoFieldValues (BLoC state) — source of truth cuối cùng.
+          final i = widget.index;
+          final nameFromState =
+              (widget.infoFieldValues['passenger_full_name_$i'] as String?)
+                      ?.trim() ??
+                  '';
           final headerTitle =
-              'Người đi: ${nameFromField.isNotEmpty ? nameFromField : 'Chưa chọn'}';
+              'Người đi: ${nameFromState.isNotEmpty ? nameFromState : 'Chưa chọn'}';
 
           final collapsed = !widget.isExpanded;
 
@@ -300,6 +322,10 @@ class _PassengerInfoItemState
                         },
                         enabled: !_isPassengerFromEmployee,
                         readOnly: _isPassengerFromEmployee,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập tên người đi',
+                        ),
                       ),
                       const SizedBox(height: 8),
 
@@ -313,6 +339,10 @@ class _PassengerInfoItemState
                         onFieldCreated: (field) =>
                             contactPhoneField = field,
                         keyboardType: TextInputType.phone,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập SĐT liên hệ',
+                        ),
                       ),
                       const SizedBox(height: 8),
 
@@ -322,7 +352,7 @@ class _PassengerInfoItemState
                         nameTextField:
                             'passenger_note_text_$employeeIndex',
                         label: 'Ghi chú (nếu có)',
-                        maxLines: 3,
+                        autoExpand: true,
                       ),
                     ],
                   ),
@@ -335,4 +365,3 @@ class _PassengerInfoItemState
     );
   }
 }
-

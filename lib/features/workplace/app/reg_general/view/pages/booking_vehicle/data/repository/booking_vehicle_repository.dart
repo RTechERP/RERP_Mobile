@@ -11,6 +11,7 @@ class BookingVehicleRepository {
   // Bump khi đổi model/payload mapping để auto invalidate cache cũ.
   static const _cacheVersion = 2;
   static const _initAddCacheKey = 'booking_vehicle_init_add_cache_v1';
+  static const _currentUserCacheKey = 'booking_vehicle_current_user_cache_v1';
 
   static Future<void> saveInitAddCache({
     required int employeeId,
@@ -118,6 +119,46 @@ class BookingVehicleRepository {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_initAddCacheKey);
     log?.logI('Booking vehicle initAdd cache cleared');
+  }
+
+  //---(CurrentUser cache)---//
+
+  static Future<void> saveCurrentUserCache({
+    required BookingVehiclePersonalItem currentEmployee,
+    LogUtils? log,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(
+      _currentUserCacheKey,
+      jsonEncode(currentEmployee.toJson()),
+    );
+    log?.logI('✅ Booking vehicle currentUser cache saved: ${currentEmployee.fullName}');
+  }
+
+  static Future<BookingVehiclePersonalItem?> getCurrentUserCache({
+    LogUtils? log,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_currentUserCacheKey);
+    if (raw == null) {
+      log?.logW('Booking vehicle currentUser cache: null');
+      return null;
+    }
+    try {
+      return BookingVehiclePersonalItem.fromJson(
+        jsonDecode(raw) as Map<String, dynamic>,
+      );
+    } catch (e) {
+      await prefs.remove(_currentUserCacheKey);
+      log?.logE('Parse currentUser cache failed → removed: $e');
+      return null;
+    }
+  }
+
+  static Future<void> clearCurrentUserCache({LogUtils? log}) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_currentUserCacheKey);
+    log?.logI('🏁 Booking vehicle currentUser cache cleared');
   }
 
   static Future<bool> isInitAddCacheValid({

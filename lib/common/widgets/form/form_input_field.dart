@@ -23,6 +23,7 @@ class FormInputField extends StatefulWidget {
 
   final bool enabled;
   final bool readOnly;
+  final bool isRequired;
 
   final VoidCallback? onTap;
 
@@ -33,6 +34,11 @@ class FormInputField extends StatefulWidget {
   final ValueChanged<String?>? onChanged;
 
   final ValueChanged<FormFieldState<String>>? onFieldCreated;
+
+  final AutovalidateMode autovalidateMode;
+
+  /// Khi true → maxLines = null, TextField tự mở rộng theo nội dung.
+  final bool autoExpand;
 
   const FormInputField({
     super.key,
@@ -49,11 +55,14 @@ class FormInputField extends StatefulWidget {
     this.maxLines,
     this.enabled = true,
     this.readOnly = false,
+    this.isRequired = false,
     this.onTap,
     this.controller,
     this.initialValue,
     this.onChanged,
     this.onFieldCreated,
+    this.autovalidateMode = AutovalidateMode.onUserInteraction,
+    this.autoExpand = false,
   });
 
   @override
@@ -62,9 +71,15 @@ class FormInputField extends StatefulWidget {
 
 class _FormInputFieldState extends State<FormInputField> {
   TextEditingController? _internalController;
+  FocusNode? _internalFocusNode;
 
   TextEditingController get _effectiveController {
-    return widget.controller ?? (_internalController ??= TextEditingController());
+    return widget.controller ??
+        (_internalController ??= TextEditingController());
+  }
+
+  FocusNode get _effectiveFocusNode {
+    return widget.focusNode ?? (_internalFocusNode ??= FocusNode());
   }
 
   @override
@@ -72,6 +87,7 @@ class _FormInputFieldState extends State<FormInputField> {
     if (widget.controller == null) {
       _internalController?.dispose();
     }
+    _internalFocusNode?.dispose();
     super.dispose();
   }
 
@@ -79,28 +95,46 @@ class _FormInputFieldState extends State<FormInputField> {
   Widget build(BuildContext context) {
     return FormBuilderField<String>(
       name: widget.nameForm,
-      initialValue: widget.initialValue,
+      initialValue: widget.initialValue ?? (widget.controller?.text.isNotEmpty == true ? widget.controller!.text : null),
       validator: widget.validator,
       enabled: widget.enabled,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: widget.autovalidateMode,
+      focusNode: _effectiveFocusNode,
       builder: (field) {
         widget.onFieldCreated?.call(field);
 
         // Không trim khi đồng bộ controller — trim làm mất space đang gõ (kéo ngược con trỏ).
         final rawValue = field.value ?? '';
-        final hasValue = rawValue.trim().isNotEmpty;
 
-        final showError = field.hasError && !hasValue;
-        final effectiveMaxLines = widget.obscureText ? 1 : (widget.maxLines ?? 1);
+        final showError = field.hasError;
+        final effectiveMaxLines = widget.obscureText
+            ? 1
+            : (widget.autoExpand ? null : (widget.maxLines ?? 1));
 
         final controller = _effectiveController;
+        final fNode = _effectiveFocusNode;
 
-        /// sync value -> controller (bottomsheet / initialValue)
-        if (controller.text != rawValue) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (!mounted) return;
-            controller.text = rawValue;
-          });
+        /// Sync giữa field value và controller:
+        /// - External controller (widget.controller != null): controller là source-of-truth
+        ///   → sync controller -> field (tránh ghi đè giá trị sẵn có trong controller).
+        /// - Internal controller: field value là source-of-truth (bottomsheet / initialValue)
+        ///   → sync field -> controller.
+        if (widget.controller != null) {
+          // External controller → sync controller -> field
+          if (controller.text != rawValue && controller.text.isNotEmpty) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (!mounted) return;
+              field.didChange(controller.text);
+            });
+          }
+        } else {
+          // Internal controller → sync field -> controller
+          if (controller.text != rawValue) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (!mounted) return;
+              controller.text = rawValue;
+            });
+          }
         }
 
         return FormBuilderTextField(
@@ -109,12 +143,12 @@ class _FormInputFieldState extends State<FormInputField> {
           readOnly: widget.readOnly,
           onTap: widget.onTap,
           enabled: widget.enabled,
-          focusNode: widget.focusNode,
+          focusNode: fNode,
           obscureText: widget.obscureText,
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction,
           validator: widget.validator,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autovalidateMode: widget.autovalidateMode,
           onSubmitted: widget.onSubmitted,
           maxLines: effectiveMaxLines,
           decoration: formInputDecoration(
@@ -123,6 +157,7 @@ class _FormInputFieldState extends State<FormInputField> {
             icon: widget.icon,
             hasError: showError,
             errorText: field.errorText,
+            isRequired: widget.isRequired,
           ),
           onChanged: (v) {
             field.didChange(v);

@@ -1,3 +1,6 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Màn hình login - form tài khoản, mật khẩu, remember me, gọi AuthBloc
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -5,13 +8,18 @@ import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 
 import '../../../../base/bloc/index.dart';
+import '../../../../base/network/errors/extension.dart';
 import '../../../../base/widgets/base_widget.dart';
 import '../../../../common/app_theme/index.dart';
 import '../../../../common/constants/index.dart';
-import '../../../../common/utils/dialog/index.dart';
+import '../../../../common/utils/snack_bar_helper.dart';
 import '../../../../common/widgets/form/index.dart';
 import '../bloc/auth_bloc.dart';
 
+/// Màn hình đăng nhập.
+///
+/// Kết nối với [AuthBloc] để quản lý state.
+/// Navigate đến /dashboard khi login thành công.
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -26,11 +34,14 @@ class _LoginScreenState
   late final FocusNode _accountFocus;
   late final FocusNode _passwordFocus;
 
+  bool _hasPrefilled = false;
+
   @override
   void initState() {
     super.initState();
     _accountFocus = FocusNode();
     _passwordFocus = FocusNode();
+    bloc.add(const AuthEvent.init());
   }
 
   @override
@@ -40,7 +51,7 @@ class _LoginScreenState
     super.dispose();
   }
 
-  /// ===== LISTEN STATE =====
+  /// Lắng nghe state changes - xử lý loading, error, navigate.
   @override
   void listener(BuildContext context, AuthState state) {
     super.listener(context, state);
@@ -50,18 +61,28 @@ class _LoginScreenState
     }
 
     if (state.status == BaseStateStatus.failed) {
-      DialogService.showToastFailed(
-        context: context,
-        mess: state.message,
-      );
+      context.showMessage(state.message ?? '', type: SnackBarType.error);
     }
 
-
-    if (state.status == BaseStateStatus.success &&
-        state.user != null) {
+    if (state.status == BaseStateStatus.success && state.user != null) {
       context.go('/dashboard');
     }
 
+    // Pre-fill credentials khi load từ SharedPreferences (remember me)
+    if (!_hasPrefilled &&
+        (state.savedUsername != null || state.savedPassword != null)) {
+      _hasPrefilled = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _formKey.currentState?.fields['auth_account']
+            ?.didChange(state.savedUsername ?? '');
+
+        _formKey.currentState?.fields['auth_password']
+            ?.didChange(state.savedPassword ?? '');
+
+        _formKey.currentState?.fields['remember_me']
+            ?.didChange(state.rememberMe);
+      });
+    }
   }
 
   @override
@@ -69,6 +90,7 @@ class _LoginScreenState
     return BaseScaffold(
       body: Stack(
         children: [
+          // Background circles decoration
           MediaQuery.removeViewInsets(
             context: context,
             removeBottom: true,
@@ -101,7 +123,7 @@ class _LoginScreenState
                     ),
                     const SizedBox(height: 8),
 
-                    /// ===== ACCOUNT =====
+                    // Account field
                     FormInputField(
                       nameForm: 'auth',
                       nameTextField: 'auth_account',
@@ -117,7 +139,7 @@ class _LoginScreenState
 
                     const SizedBox(height: 12),
 
-                    /// ===== PASSWORD =====
+                    // Password field
                     FormInputField(
                       nameForm: 'auth',
                       nameTextField: 'auth_password',
@@ -130,14 +152,24 @@ class _LoginScreenState
                       ),
                     ),
 
-                    const SizedBox(height: 18),
+                    // Remember me checkbox
+                    blocBuilder((context, state) {
+                      return FormBuilderCheckbox(
+                        name: 'remember_me',
+                        title: const Text('Ghi nhớ đăng nhập'),
+                        onChanged: (value) {
+                          bloc.add(AuthEvent.toggleRememberMe(value ?? false));
+                        },
+                      );
+                    }),
 
-                    /// ===== SUBMIT =====
+                    // Submit button
                     SizedBox(
                       width: double.infinity,
                       height: 48,
                       child: blocBuilder((context, state) {
-                        final isLoading = state.status == BaseStateStatus.loading;
+                        final isLoading =
+                            state.status == BaseStateStatus.loading;
 
                         return ElevatedButton(
                           onPressed: isLoading ? null : _onSubmitLogin,
@@ -149,37 +181,35 @@ class _LoginScreenState
                           ),
                           child: isLoading
                               ? const SizedBox(
-                            width: 22,
-                            height: 22,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              color: Colors.white,
-                            ),
-                          )
+                                  width: 22,
+                                  height: 22,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: Colors.white,
+                                  ),
+                                )
                               : const Text(
-                            'Đăng nhập',
-                            style: TextStyle(
-                              color: AppColors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
+                                  'Đăng nhập',
+                                  style: TextStyle(
+                                    color: AppColors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                         );
                       }, buildWhen: (p, n) => p.status != n.status),
                     ),
-
                   ],
                 ),
               ),
             ),
           ),
-
         ],
       ),
     );
   }
 
-  /// ===== SUBMIT LOGIN =====
+  /// Lấy giá trị form và gửi login event.
   void _onSubmitLogin() {
     final isValid = _formKey.currentState?.saveAndValidate() ?? false;
     if (!isValid) return;
@@ -187,11 +217,13 @@ class _LoginScreenState
     final values = _formKey.currentState!.value;
     final loginName = values['auth_account'] as String;
     final password = values['auth_password'] as String;
+    final rememberMe = values['remember_me'] as bool? ?? false;
 
-    bloc.add(AuthEvent.login(loginName, password));
+    bloc.add(AuthEvent.login(loginName, password, rememberMe));
   }
 }
 
+/// Decorative background circle.
 class _Circle extends StatelessWidget {
   final double size;
 
@@ -203,7 +235,7 @@ class _Circle extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: AppColors.primaryERPlight.withOpacity(0.25),
+        color: AppColors.primaryERPlight.withValues(alpha: 0.25),
         shape: BoxShape.circle,
       ),
     );

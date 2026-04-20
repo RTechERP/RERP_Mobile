@@ -51,7 +51,8 @@ class TechState extends BaseBlocState {
   final int? userId;
 
   final bool sendMailSuccess;
-
+  final DateTime? pendingMailDate;
+  final String? pendingShareText;
   final DateTime? lastPickedDate;
 
   final bool isLoadingDetail;
@@ -65,7 +66,7 @@ class TechState extends BaseBlocState {
   final bool isDeleting;
   final bool deleteSuccess;
 
-  final List<CopyResponse> copyReports;
+  final List<CopyNullResponse> copyReports;
   final bool isCopyLoading;
 
   final String? copyError;
@@ -108,6 +109,8 @@ class TechState extends BaseBlocState {
     this.percentError,
     this.userId,
     this.sendMailSuccess = false,
+    this.pendingMailDate,
+    this.pendingShareText,
     this.lastPickedDate,
     this.isLoadingDetail = false,
     this.selectedReportDetail,
@@ -147,6 +150,8 @@ class TechState extends BaseBlocState {
     userId: null,
     fullName: null,
     sendMailSuccess: false,
+    pendingMailDate: null,
+    pendingShareText: null,
     lastPickedDate: null,
     isLoadingDetail: false,
     selectedReportDetail: null,
@@ -197,6 +202,8 @@ class TechState extends BaseBlocState {
     percentError,
     userId,
     sendMailSuccess,
+    pendingMailDate,
+    pendingShareText,
     lastPickedDate,
     isLoadingDetail,
     selectedReportDetail,

@@ -84,7 +84,7 @@ _$BookingVehicleItemImpl _$$BookingVehicleItemImplFromJson(
       startTimeActual: json['StartTimeActual'] == null
           ? null
           : DateTime.parse(json['StartTimeActual'] as String),
-      decilineApproveSenior: json['DecilineApproveSenior'] as String?,
+      decilineApproveSenior: (json['DecilineApproveSenior'] as num?)?.toInt(),
       reasonDecilineSenior: json['ReasonDecilineSenior'] as String?,
       vehicleInformation: json['VehicleInformation'] as String?,
       categoryText: json['CategoryText'] as String?,

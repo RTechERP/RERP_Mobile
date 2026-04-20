@@ -219,7 +219,7 @@ class ProjectResponse with _$ProjectResponse {
 class ProjectItemResponse with _$ProjectItemResponse {
   const factory ProjectItemResponse({
     @JsonKey(name: 'ID') required int id,
-    @JsonKey(name: 'Code') required String code,
+    @JsonKey(name: 'Code') String? code,
     @JsonKey(name: 'Mission') String? mission,
     @JsonKey(name: 'PercentageActual') double? percentageActual,
     @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
@@ -413,7 +413,7 @@ class CopyNullResponse with _$CopyNullResponse {
     @JsonKey(name: 'ProjectCode') String? projectCode,
     @JsonKey(name: 'ProjectName') String? projectName,
     @JsonKey(name: 'ProjectItemCode') String? projectItemCode,
-    @JsonKey(name: 'DateReport') required String dateReport,
+    @JsonKey(name: 'DateReport') String? dateReport,
     @JsonKey(name: 'Mission') String? mission,
     @JsonKey(name: 'Results') String? results,
     @JsonKey(name: 'Backlog') required String backlog,

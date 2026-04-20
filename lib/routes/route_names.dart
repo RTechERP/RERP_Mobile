@@ -1,3 +1,6 @@
+// Date: 11/04/2026 - Dev: NQHung
+// Nội dung/Chức năng: Định nghĩa route path constants cho toàn app
+
 class RouteNames {
   // Splash
   static const splash = '/';
@@ -10,11 +13,10 @@ class RouteNames {
 
   // Applications
   static const attendance = '/attendance';
-
   static const workspace = '';
   static const generalforms = '/general_forms';
   static const summarywork = '/summary_work';
-  static const regwork = '/reg_work';
+  static const regwork = '/regwork';
   static const reggeneral = '/reg_general';
   static const report = '/report';
   static const weekplan = '/week_plan';
@@ -73,6 +75,7 @@ class RouteNames {
   static const reportSaledepart = '/report/sale';
 
   static const reportSaleAdd = '/report/sale/add';
+
   ///**** Admin Sale ****///
   static const reportSaledAdminDetail = '/report/sale_admin/detail';
 
@@ -87,13 +90,11 @@ class RouteNames {
 
   static const reportSaleStaffEdit = '/report/sale_staff/edit';
 
-
   ///*** Marketing Department ***///
   static const reportMarketingdepart = '/report/marketing';
   static const reportMarketingdepartDetail = '/report/marketing/detail';
   static const reportMarketingdepartAdd = '/report/marketing/add';
   static const reportMarketingdepartEdit = '/report/marketing/edit';
-
 
   ///*** HR Department ***///
   static const reportHRAdd = '/report/hr/add';
@@ -123,10 +124,13 @@ class RouteNames {
 
   static const reportADdepartEdit = '/report/ad/edit';
 
-
   // Favorites
   static const favorites = '/favorites';
 
+  // Reg Work - Work Trip
+  static const regworkWorkTrip = '/regwork/work_trip';
+  static const regworkWorkTripDetail = '/regwork/work_trip/detail';
+  static const regworkWorkTripAdd = '/regwork/work_trip/add';
 
   // Reg General
   static const meetingRoom = '/reg_general/meeting_room';
@@ -142,5 +146,23 @@ class RouteNames {
 
   static const bookingVehicleEdit = '/reg_general/booking_vehicle/Edit';
 
+  static const workCategory = '/reg_general/work_category';
 
+  static const workCategoryAdd = '/reg_general/work_category/add';
+
+  static const workCategoryDetail = '/reg_general/work_category/detail';
+
+  static const personalAsset = '/reg_general/personal_asset';
+  static const personalAssetDetail = '/reg_general/personal_asset/detail';
+  static const personalPropertyDetail =
+      '/reg_general/personal_asset/property/detail';
+
+  static const stationery = '/reg_general/stationery';
+
+  static const stationeryAdd = '/reg_general/stationery/add';
+  static const stationeryDetail = '/reg_general/stationery/detail';
+  static const stationeryEdit = '/reg_general/stationery/edit';
+
+  // More - Settings
+  static const notificationSettings = '/more/notification_settings';
 }

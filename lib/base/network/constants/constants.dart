@@ -4,7 +4,3 @@ class StatusCode {
   static const int notFound = 404;
   static const int permissionDenied = 403;
 }
-
-class BaseApiUrl{
-  static const String baseUrl = 'http://10.20.30.169:8081//api';
-}

@@ -13,7 +13,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.restaurant_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_work',
-      route: '/regwork/lunch',
+      route: RouteNames.regworkLunch,
       imageUrl: AppImages.app_lunch,
     ),
 
@@ -120,25 +120,25 @@ class AppItemRegistry {
       imageUrl: AppImages.reg_regneral_booking,
     ),
 
-    AppItemModel(
-      id: 'reg_general:purchase',
-      name: 'reg_general.purchase'.tr(),
-      iconCodePoint: Icons.request_quote_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'reg_general',
-      route: '/reg-general/purchase',
-      imageUrl: AppImages.reg_general_purchase,
-    ),
-
-    AppItemModel(
-      id: 'reg_general:special_purchase',
-      name: 'reg_general.special_purchase'.tr(),
-      iconCodePoint: Icons.price_check_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'reg_general',
-      route: '/reg-general/special-purchase',
-      imageUrl: AppImages.reg_general_special_purchase,
-    ),
+    // AppItemModel(
+    //   id: 'reg_general:purchase',
+    //   name: 'reg_general.purchase'.tr(),
+    //   iconCodePoint: Icons.request_quote_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'reg_general',
+    //   route: '/reg-general/purchase',
+    //   imageUrl: AppImages.reg_general_purchase,
+    // ),
+    //
+    // AppItemModel(
+    //   id: 'reg_general:special_purchase',
+    //   name: 'reg_general.special_purchase'.tr(),
+    //   iconCodePoint: Icons.price_check_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'reg_general',
+    //   route: '/reg-general/special-purchase',
+    //   imageUrl: AppImages.reg_general_special_purchase,
+    // ),
 
     AppItemModel(
       id: 'reg_general:work_request',
@@ -146,7 +146,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.assignment_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/work-request',
+      route: '',
       imageUrl: AppImages.reg_general_work_request,
     ),
 
@@ -156,7 +156,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.lightbulb_outline.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/idea',
+      route: '',
       imageUrl: AppImages.reg_general_idea,
     ),
 
@@ -166,7 +166,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.description_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/contract',
+      route: '',
       imageUrl: AppImages.reg_general_contract,
     ),
 
@@ -176,7 +176,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.edit_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/stationery',
+      route: RouteNames.stationery,
       imageUrl: AppImages.reg_general_stationery,
     ),
 
@@ -186,7 +186,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.category_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/work-category',
+      route: RouteNames.workCategory,
       imageUrl: AppImages.reg_general_work,
     ),
 
@@ -196,7 +196,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.inventory_2_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/personal-asset',
+      route: RouteNames.personalAsset,
       imageUrl: AppImages.reg_general_personal_asset,
     ),
 
@@ -206,7 +206,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.approval_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
-      route: '/reg-general/stamp',
+      route: '',
+      imageUrl: AppImages.reg_general_stamp,
     ),
   ];
 
@@ -354,9 +355,9 @@ class AppItemRegistry {
     ...regwork,
     ...weekplan,
     ...reggeneral,
-    ...summaryword,
-    ...generalforms,
-    ...reports,
+    // ...summaryword,
+    // ...generalforms,
+    // ...reports,
   ];
 
   /// 🔍 Lookup theo id (quan trọng cho favorites)

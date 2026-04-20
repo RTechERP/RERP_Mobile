@@ -16,6 +16,12 @@ class FormActions extends StatelessWidget {
   final String saveText;
   final String submitText;
 
+  /// Chỉ áp dụng [FormActionMode.add]: `false` = vô hiệu hoá nút gửi.
+  final bool submitEnabled;
+
+  /// Chỉ áp dụng [FormActionMode.edit]: `false` = vô hiệu hoá nút lưu.
+  final bool saveEnabled;
+
   const FormActions({
     super.key,
     required this.mode,
@@ -27,6 +33,8 @@ class FormActions extends StatelessWidget {
     this.cancelText = 'Huỷ',
     this.saveText = 'Cập nhật',
     this.submitText = 'Lưu',
+    this.submitEnabled = true,
+    this.saveEnabled = true,
   });
 
   @override
@@ -83,9 +91,10 @@ class FormActions extends StatelessWidget {
         const SizedBox(width: 12),
         Expanded(
           child: ElevatedButton(
-            onPressed: onSave,
+            onPressed: saveEnabled ? onSave : null,
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primaryERP,
+              disabledBackgroundColor: Colors.grey.shade300,
               padding: const EdgeInsets.symmetric(vertical: 14),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14),
@@ -93,8 +102,8 @@ class FormActions extends StatelessWidget {
             ),
             child: Text(
               saveText,
-              style: const TextStyle(
-                color: AppColors.white,
+              style: TextStyle(
+                color: saveEnabled ? AppColors.white : Colors.grey.shade600,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -107,9 +116,10 @@ class FormActions extends StatelessWidget {
   /// ===== ADD MODE =====
   Widget _buildAdd() {
     return ElevatedButton(
-      onPressed: onSubmit,
+      onPressed: submitEnabled ? onSubmit : null,
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primaryERP,
+        disabledBackgroundColor: Colors.grey.shade300,
         padding: const EdgeInsets.symmetric(vertical: 14),
         minimumSize: const Size.fromHeight(48),
         shape: RoundedRectangleBorder(
@@ -118,8 +128,8 @@ class FormActions extends StatelessWidget {
       ),
       child: Text(
         submitText,
-        style: const TextStyle(
-          color: AppColors.white,
+        style: TextStyle(
+          color: submitEnabled ? AppColors.white : Colors.grey.shade600,
           fontWeight: FontWeight.w600,
         ),
       ),
