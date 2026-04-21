@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../week_plan_helper.dart';
 import '../../data/datasource/models/week_plan_model.dart';
 import '../bloc/week_plan_bloc.dart';
 
@@ -29,31 +30,10 @@ Color weekPlanStatusColor(WeekPlanTaskItem task) {
   return AppColors.warning;
 }
 
-/// Lấy nhãn trạng thái hiển thị.
-String weekPlanStatusLabel(WeekPlanTaskItem task) {
-  final t = (task.statusText ?? '').trim();
-  if (t.isNotEmpty) return t;
-
-  switch (task.status) {
-    case 0:
-      return 'Chưa bắt đầu';
-    case 1:
-      return 'Đang thực hiện';
-    case 2:
-      return 'Hoàn thành';
-    case 3:
-      return 'Quá hạn';
-    default:
-      return '—';
-  }
-}
-
-/// Kiểm tra công việc có đang quá hạn không.
+/// Kiểm tra task có quá hạn không.
 bool weekPlanIsOverdue(WeekPlanTaskItem task) {
   if (task.deadline == null) return false;
-  final status = (task.statusText ?? '').toLowerCase();
-  if (status.contains('hoàn thành')) return false;
-  return task.deadline!.isBefore(DateTime.now());
+  return DateTime.now().isAfter(task.deadline!) && task.status != 3;
 }
 
 class WeekPlanCard extends StatelessWidget {

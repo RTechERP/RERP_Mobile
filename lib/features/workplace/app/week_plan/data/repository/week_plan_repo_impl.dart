@@ -18,6 +18,13 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
   }
 
   @override
+  Future<Either<BaseError, WeekPlanTaskItem>> createTask({
+    required Map<String, dynamic> payload,
+  }) async {
+    throw UnimplementedError();
+  }
+
+  @override
   Future<Either<BaseError, List<WeekPlanTaskItem>>> getTasks({required Map<String, dynamic> payload}) {
     throw UnimplementedError();
   }

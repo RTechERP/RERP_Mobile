@@ -26,6 +26,10 @@ mixin _$WeekPlanTaskItem {
   String? get projectName => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProjectId')
   int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ParentTaskId')
+  int? get parentTaskId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ParentTaskName')
+  String? get parentTaskName => throw _privateConstructorUsedError;
   @JsonKey(name: 'TaskName')
   String? get taskName => throw _privateConstructorUsedError;
   @JsonKey(name: 'TaskContent')
@@ -36,6 +40,18 @@ mixin _$WeekPlanTaskItem {
   int? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'StatusText')
   String? get statusText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'WorkType')
+  int? get workType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'WorkTypeText')
+  String? get workTypeText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaskCategory')
+  int? get taskCategory => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaskCategoryText')
+  String? get taskCategoryText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Complexity')
+  int? get complexity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsPersonalTask')
+  bool get isPersonalTask => throw _privateConstructorUsedError;
   @JsonKey(name: 'StartDate')
   DateTime? get startDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'EndDate')
@@ -79,11 +95,19 @@ abstract class $WeekPlanTaskItemCopyWith<$Res> {
       {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'ProjectName') String? projectName,
       @JsonKey(name: 'ProjectId') int? projectId,
+      @JsonKey(name: 'ParentTaskId') int? parentTaskId,
+      @JsonKey(name: 'ParentTaskName') String? parentTaskName,
       @JsonKey(name: 'TaskName') String? taskName,
       @JsonKey(name: 'TaskContent') String? taskContent,
       @JsonKey(name: 'Description') String? description,
       @JsonKey(name: 'Status') int? status,
       @JsonKey(name: 'StatusText') String? statusText,
+      @JsonKey(name: 'WorkType') int? workType,
+      @JsonKey(name: 'WorkTypeText') String? workTypeText,
+      @JsonKey(name: 'TaskCategory') int? taskCategory,
+      @JsonKey(name: 'TaskCategoryText') String? taskCategoryText,
+      @JsonKey(name: 'Complexity') int? complexity,
+      @JsonKey(name: 'IsPersonalTask') bool isPersonalTask,
       @JsonKey(name: 'StartDate') DateTime? startDate,
       @JsonKey(name: 'EndDate') DateTime? endDate,
       @JsonKey(name: 'Deadline') DateTime? deadline,
@@ -115,11 +139,19 @@ class _$WeekPlanTaskItemCopyWithImpl<$Res, $Val extends WeekPlanTaskItem>
     Object? id = freezed,
     Object? projectName = freezed,
     Object? projectId = freezed,
+    Object? parentTaskId = freezed,
+    Object? parentTaskName = freezed,
     Object? taskName = freezed,
     Object? taskContent = freezed,
     Object? description = freezed,
     Object? status = freezed,
     Object? statusText = freezed,
+    Object? workType = freezed,
+    Object? workTypeText = freezed,
+    Object? taskCategory = freezed,
+    Object? taskCategoryText = freezed,
+    Object? complexity = freezed,
+    Object? isPersonalTask = null,
     Object? startDate = freezed,
     Object? endDate = freezed,
     Object? deadline = freezed,
@@ -147,6 +179,14 @@ class _$WeekPlanTaskItemCopyWithImpl<$Res, $Val extends WeekPlanTaskItem>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as int?,
+      parentTaskId: freezed == parentTaskId
+          ? _value.parentTaskId
+          : parentTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      parentTaskName: freezed == parentTaskName
+          ? _value.parentTaskName
+          : parentTaskName // ignore: cast_nullable_to_non_nullable
+              as String?,
       taskName: freezed == taskName
           ? _value.taskName
           : taskName // ignore: cast_nullable_to_non_nullable
@@ -167,6 +207,30 @@ class _$WeekPlanTaskItemCopyWithImpl<$Res, $Val extends WeekPlanTaskItem>
           ? _value.statusText
           : statusText // ignore: cast_nullable_to_non_nullable
               as String?,
+      workType: freezed == workType
+          ? _value.workType
+          : workType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      workTypeText: freezed == workTypeText
+          ? _value.workTypeText
+          : workTypeText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taskCategory: freezed == taskCategory
+          ? _value.taskCategory
+          : taskCategory // ignore: cast_nullable_to_non_nullable
+              as int?,
+      taskCategoryText: freezed == taskCategoryText
+          ? _value.taskCategoryText
+          : taskCategoryText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      complexity: freezed == complexity
+          ? _value.complexity
+          : complexity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isPersonalTask: null == isPersonalTask
+          ? _value.isPersonalTask
+          : isPersonalTask // ignore: cast_nullable_to_non_nullable
+              as bool,
       startDate: freezed == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -235,11 +299,19 @@ abstract class _$$WeekPlanTaskItemImplCopyWith<$Res>
       {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'ProjectName') String? projectName,
       @JsonKey(name: 'ProjectId') int? projectId,
+      @JsonKey(name: 'ParentTaskId') int? parentTaskId,
+      @JsonKey(name: 'ParentTaskName') String? parentTaskName,
       @JsonKey(name: 'TaskName') String? taskName,
       @JsonKey(name: 'TaskContent') String? taskContent,
       @JsonKey(name: 'Description') String? description,
       @JsonKey(name: 'Status') int? status,
       @JsonKey(name: 'StatusText') String? statusText,
+      @JsonKey(name: 'WorkType') int? workType,
+      @JsonKey(name: 'WorkTypeText') String? workTypeText,
+      @JsonKey(name: 'TaskCategory') int? taskCategory,
+      @JsonKey(name: 'TaskCategoryText') String? taskCategoryText,
+      @JsonKey(name: 'Complexity') int? complexity,
+      @JsonKey(name: 'IsPersonalTask') bool isPersonalTask,
       @JsonKey(name: 'StartDate') DateTime? startDate,
       @JsonKey(name: 'EndDate') DateTime? endDate,
       @JsonKey(name: 'Deadline') DateTime? deadline,
@@ -269,11 +341,19 @@ class __$$WeekPlanTaskItemImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? projectName = freezed,
     Object? projectId = freezed,
+    Object? parentTaskId = freezed,
+    Object? parentTaskName = freezed,
     Object? taskName = freezed,
     Object? taskContent = freezed,
     Object? description = freezed,
     Object? status = freezed,
     Object? statusText = freezed,
+    Object? workType = freezed,
+    Object? workTypeText = freezed,
+    Object? taskCategory = freezed,
+    Object? taskCategoryText = freezed,
+    Object? complexity = freezed,
+    Object? isPersonalTask = null,
     Object? startDate = freezed,
     Object? endDate = freezed,
     Object? deadline = freezed,
@@ -301,6 +381,14 @@ class __$$WeekPlanTaskItemImplCopyWithImpl<$Res>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as int?,
+      parentTaskId: freezed == parentTaskId
+          ? _value.parentTaskId
+          : parentTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      parentTaskName: freezed == parentTaskName
+          ? _value.parentTaskName
+          : parentTaskName // ignore: cast_nullable_to_non_nullable
+              as String?,
       taskName: freezed == taskName
           ? _value.taskName
           : taskName // ignore: cast_nullable_to_non_nullable
@@ -321,6 +409,30 @@ class __$$WeekPlanTaskItemImplCopyWithImpl<$Res>
           ? _value.statusText
           : statusText // ignore: cast_nullable_to_non_nullable
               as String?,
+      workType: freezed == workType
+          ? _value.workType
+          : workType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      workTypeText: freezed == workTypeText
+          ? _value.workTypeText
+          : workTypeText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taskCategory: freezed == taskCategory
+          ? _value.taskCategory
+          : taskCategory // ignore: cast_nullable_to_non_nullable
+              as int?,
+      taskCategoryText: freezed == taskCategoryText
+          ? _value.taskCategoryText
+          : taskCategoryText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      complexity: freezed == complexity
+          ? _value.complexity
+          : complexity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isPersonalTask: null == isPersonalTask
+          ? _value.isPersonalTask
+          : isPersonalTask // ignore: cast_nullable_to_non_nullable
+              as bool,
       startDate: freezed == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -384,11 +496,19 @@ class _$WeekPlanTaskItemImpl implements _WeekPlanTaskItem {
       {@JsonKey(name: 'ID') this.id,
       @JsonKey(name: 'ProjectName') this.projectName,
       @JsonKey(name: 'ProjectId') this.projectId,
+      @JsonKey(name: 'ParentTaskId') this.parentTaskId,
+      @JsonKey(name: 'ParentTaskName') this.parentTaskName,
       @JsonKey(name: 'TaskName') this.taskName,
       @JsonKey(name: 'TaskContent') this.taskContent,
       @JsonKey(name: 'Description') this.description,
       @JsonKey(name: 'Status') this.status,
       @JsonKey(name: 'StatusText') this.statusText,
+      @JsonKey(name: 'WorkType') this.workType,
+      @JsonKey(name: 'WorkTypeText') this.workTypeText,
+      @JsonKey(name: 'TaskCategory') this.taskCategory,
+      @JsonKey(name: 'TaskCategoryText') this.taskCategoryText,
+      @JsonKey(name: 'Complexity') this.complexity,
+      @JsonKey(name: 'IsPersonalTask') this.isPersonalTask = false,
       @JsonKey(name: 'StartDate') this.startDate,
       @JsonKey(name: 'EndDate') this.endDate,
       @JsonKey(name: 'Deadline') this.deadline,
@@ -416,6 +536,12 @@ class _$WeekPlanTaskItemImpl implements _WeekPlanTaskItem {
   @JsonKey(name: 'ProjectId')
   final int? projectId;
   @override
+  @JsonKey(name: 'ParentTaskId')
+  final int? parentTaskId;
+  @override
+  @JsonKey(name: 'ParentTaskName')
+  final String? parentTaskName;
+  @override
   @JsonKey(name: 'TaskName')
   final String? taskName;
   @override
@@ -430,6 +556,24 @@ class _$WeekPlanTaskItemImpl implements _WeekPlanTaskItem {
   @override
   @JsonKey(name: 'StatusText')
   final String? statusText;
+  @override
+  @JsonKey(name: 'WorkType')
+  final int? workType;
+  @override
+  @JsonKey(name: 'WorkTypeText')
+  final String? workTypeText;
+  @override
+  @JsonKey(name: 'TaskCategory')
+  final int? taskCategory;
+  @override
+  @JsonKey(name: 'TaskCategoryText')
+  final String? taskCategoryText;
+  @override
+  @JsonKey(name: 'Complexity')
+  final int? complexity;
+  @override
+  @JsonKey(name: 'IsPersonalTask')
+  final bool isPersonalTask;
   @override
   @JsonKey(name: 'StartDate')
   final DateTime? startDate;
@@ -472,7 +616,7 @@ class _$WeekPlanTaskItemImpl implements _WeekPlanTaskItem {
 
   @override
   String toString() {
-    return 'WeekPlanTaskItem(id: $id, projectName: $projectName, projectId: $projectId, taskName: $taskName, taskContent: $taskContent, description: $description, status: $status, statusText: $statusText, startDate: $startDate, endDate: $endDate, deadline: $deadline, creatorId: $creatorId, creatorName: $creatorName, assigneeId: $assigneeId, assigneeName: $assigneeName, isCheckedIn: $isCheckedIn, checkInTime: $checkInTime, priority: $priority, priorityText: $priorityText, progress: $progress, createdDate: $createdDate)';
+    return 'WeekPlanTaskItem(id: $id, projectName: $projectName, projectId: $projectId, parentTaskId: $parentTaskId, parentTaskName: $parentTaskName, taskName: $taskName, taskContent: $taskContent, description: $description, status: $status, statusText: $statusText, workType: $workType, workTypeText: $workTypeText, taskCategory: $taskCategory, taskCategoryText: $taskCategoryText, complexity: $complexity, isPersonalTask: $isPersonalTask, startDate: $startDate, endDate: $endDate, deadline: $deadline, creatorId: $creatorId, creatorName: $creatorName, assigneeId: $assigneeId, assigneeName: $assigneeName, isCheckedIn: $isCheckedIn, checkInTime: $checkInTime, priority: $priority, priorityText: $priorityText, progress: $progress, createdDate: $createdDate)';
   }
 
   @override
@@ -485,6 +629,10 @@ class _$WeekPlanTaskItemImpl implements _WeekPlanTaskItem {
                 other.projectName == projectName) &&
             (identical(other.projectId, projectId) ||
                 other.projectId == projectId) &&
+            (identical(other.parentTaskId, parentTaskId) ||
+                other.parentTaskId == parentTaskId) &&
+            (identical(other.parentTaskName, parentTaskName) ||
+                other.parentTaskName == parentTaskName) &&
             (identical(other.taskName, taskName) ||
                 other.taskName == taskName) &&
             (identical(other.taskContent, taskContent) ||
@@ -494,6 +642,18 @@ class _$WeekPlanTaskItemImpl implements _WeekPlanTaskItem {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.statusText, statusText) ||
                 other.statusText == statusText) &&
+            (identical(other.workType, workType) ||
+                other.workType == workType) &&
+            (identical(other.workTypeText, workTypeText) ||
+                other.workTypeText == workTypeText) &&
+            (identical(other.taskCategory, taskCategory) ||
+                other.taskCategory == taskCategory) &&
+            (identical(other.taskCategoryText, taskCategoryText) ||
+                other.taskCategoryText == taskCategoryText) &&
+            (identical(other.complexity, complexity) ||
+                other.complexity == complexity) &&
+            (identical(other.isPersonalTask, isPersonalTask) ||
+                other.isPersonalTask == isPersonalTask) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
@@ -528,11 +688,19 @@ class _$WeekPlanTaskItemImpl implements _WeekPlanTaskItem {
         id,
         projectName,
         projectId,
+        parentTaskId,
+        parentTaskName,
         taskName,
         taskContent,
         description,
         status,
         statusText,
+        workType,
+        workTypeText,
+        taskCategory,
+        taskCategoryText,
+        complexity,
+        isPersonalTask,
         startDate,
         endDate,
         deadline,
@@ -568,11 +736,19 @@ abstract class _WeekPlanTaskItem implements WeekPlanTaskItem {
           {@JsonKey(name: 'ID') final int? id,
           @JsonKey(name: 'ProjectName') final String? projectName,
           @JsonKey(name: 'ProjectId') final int? projectId,
+          @JsonKey(name: 'ParentTaskId') final int? parentTaskId,
+          @JsonKey(name: 'ParentTaskName') final String? parentTaskName,
           @JsonKey(name: 'TaskName') final String? taskName,
           @JsonKey(name: 'TaskContent') final String? taskContent,
           @JsonKey(name: 'Description') final String? description,
           @JsonKey(name: 'Status') final int? status,
           @JsonKey(name: 'StatusText') final String? statusText,
+          @JsonKey(name: 'WorkType') final int? workType,
+          @JsonKey(name: 'WorkTypeText') final String? workTypeText,
+          @JsonKey(name: 'TaskCategory') final int? taskCategory,
+          @JsonKey(name: 'TaskCategoryText') final String? taskCategoryText,
+          @JsonKey(name: 'Complexity') final int? complexity,
+          @JsonKey(name: 'IsPersonalTask') final bool isPersonalTask,
           @JsonKey(name: 'StartDate') final DateTime? startDate,
           @JsonKey(name: 'EndDate') final DateTime? endDate,
           @JsonKey(name: 'Deadline') final DateTime? deadline,
@@ -601,6 +777,12 @@ abstract class _WeekPlanTaskItem implements WeekPlanTaskItem {
   @JsonKey(name: 'ProjectId')
   int? get projectId;
   @override
+  @JsonKey(name: 'ParentTaskId')
+  int? get parentTaskId;
+  @override
+  @JsonKey(name: 'ParentTaskName')
+  String? get parentTaskName;
+  @override
   @JsonKey(name: 'TaskName')
   String? get taskName;
   @override
@@ -615,6 +797,24 @@ abstract class _WeekPlanTaskItem implements WeekPlanTaskItem {
   @override
   @JsonKey(name: 'StatusText')
   String? get statusText;
+  @override
+  @JsonKey(name: 'WorkType')
+  int? get workType;
+  @override
+  @JsonKey(name: 'WorkTypeText')
+  String? get workTypeText;
+  @override
+  @JsonKey(name: 'TaskCategory')
+  int? get taskCategory;
+  @override
+  @JsonKey(name: 'TaskCategoryText')
+  String? get taskCategoryText;
+  @override
+  @JsonKey(name: 'Complexity')
+  int? get complexity;
+  @override
+  @JsonKey(name: 'IsPersonalTask')
+  bool get isPersonalTask;
   @override
   @JsonKey(name: 'StartDate')
   DateTime? get startDate;

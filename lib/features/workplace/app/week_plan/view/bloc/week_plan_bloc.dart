@@ -39,6 +39,42 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             _onChangeDateRange(emit, dateStart, dateEnd),
         clearDateFilter: () => _onClearDateFilter(emit),
         checkIn: (taskId) => _onCheckIn(emit, taskId),
+        initAdd: () => _onInitAdd(emit),
+        createTask: (
+          taskName,
+          projectName,
+          content,
+          startDate,
+          endDate,
+          deadline,
+          priority,
+          description,
+        ) =>
+            _onCreateTask(
+          emit,
+          taskName: taskName,
+          projectName: projectName,
+          content: content,
+          startDate: startDate,
+          endDate: endDate,
+          deadline: deadline,
+          priority: priority,
+          description: description,
+        ),
+        clearSubmitState: () => _onClearSubmitState(emit),
+        updateHeaderProject: (projectId, projectName) =>
+            _onUpdateHeaderProject(emit, projectId, projectName),
+        updateHeaderParentTask: (parentTaskId, parentTaskName) =>
+            _onUpdateHeaderParentTask(emit, parentTaskId, parentTaskName),
+        updateHeaderPersonalTask: (isPersonal) =>
+            _onUpdateHeaderPersonalTask(emit, isPersonal),
+        updateHeaderComplexity: (complexity) =>
+            _onUpdateHeaderComplexity(emit, complexity),
+        updateHeaderTaskCategory: (categoryId, categoryName) =>
+            _onUpdateHeaderTaskCategory(emit, categoryId, categoryName),
+        updateHeaderWorkTypeAndStatus: (workTypeId, workTypeName, statusId, statusName) =>
+            _onUpdateHeaderWorkTypeAndStatus(
+                emit, workTypeId, workTypeName, statusId, statusName),
       );
     });
   }
@@ -152,6 +188,172 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     );
   }
 
+  //---(Create)---//
+  Future<void> _onInitAdd(Emitter<WeekPlanState> emit) async {
+    emit(state.copyWith(
+      isSubmitting: false,
+      submitSuccess: false,
+      message: null,
+      headerProjectId: null,
+      headerProjectName: null,
+      headerParentTaskId: null,
+      headerParentTaskName: null,
+      headerIsPersonalTask: false,
+      headerComplexity: 3,
+      headerTaskCategory: null,
+      headerTaskCategoryName: null,
+      headerWorkType: null,
+      headerWorkTypeName: null,
+      headerStatus: null,
+      headerStatusName: null,
+    ));
+  }
+
+  bool _isCreateTaskInFlight = false;
+
+  Future<void> _onCreateTask(
+    Emitter<WeekPlanState> emit, {
+    required String taskName,
+    required String projectName,
+    required String content,
+    required DateTime startDate,
+    required DateTime endDate,
+    required DateTime deadline,
+    required int priority,
+    String? description,
+  }) async {
+    if (_isCreateTaskInFlight) return;
+    _isCreateTaskInFlight = true;
+
+    try {
+      emit(state.copyWith(
+        isSubmitting: true,
+        submitSuccess: false,
+        message: null,
+      ));
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+
+      if (user == null) {
+        _log.logE('Create task: no current user');
+        emit(state.copyWith(
+          isSubmitting: false,
+          submitSuccess: false,
+          status: BaseStateStatus.failed,
+          message: 'Không lấy được thông tin người dùng',
+        ));
+        return;
+      }
+
+      final payload = <String, dynamic>{
+        'TaskName': taskName,
+        'ProjectId': state.headerProjectId ?? 0,
+        'ProjectName': state.headerProjectName ?? projectName,
+        'ParentTaskId': state.headerParentTaskId,
+        'ParentTaskName': state.headerParentTaskName,
+        'IsPersonalTask': state.headerIsPersonalTask,
+        'Complexity': state.headerComplexity,
+        'TaskCategory': state.headerTaskCategory ?? 0,
+        'WorkType': state.headerWorkType ?? 0,
+        'Status': state.headerStatus ?? 0,
+        'TaskContent': content,
+        'Description': description ?? '',
+        'StartDate': startDate.toIso8601String(),
+        'EndDate': endDate.toIso8601String(),
+        'Deadline': deadline.toIso8601String(),
+        'Priority': priority,
+        'CreatorId': user.employeeId,
+        'AssigneeId': user.employeeId,
+      };
+
+      _log.logI('Create task payload: $payload');
+
+      final res = await _weekPlanRepo.createTask(payload: payload);
+
+      await res.fold(
+        (err) async {
+          _log.logE('Create task failed: $err');
+          emit(state.copyWith(
+            isSubmitting: false,
+            submitSuccess: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ));
+        },
+        (_) async {
+          _log.logI('Create task success');
+          emit(state.copyWith(
+            isSubmitting: false,
+            submitSuccess: true,
+            status: BaseStateStatus.success,
+            message: 'Tạo công việc thành công',
+          ));
+        },
+      );
+    } finally {
+      _isCreateTaskInFlight = false;
+    }
+  }
+
+  Future<void> _onClearSubmitState(Emitter<WeekPlanState> emit) async {
+    emit(state.copyWith(
+      isSubmitting: false,
+      submitSuccess: false,
+      message: null,
+    ));
+  }
+
+  //---(Header Form)---//
+  _onUpdateHeaderProject(
+      Emitter<WeekPlanState> emit, int projectId, String projectName) {
+    emit(state.copyWith(
+      headerProjectId: projectId,
+      headerProjectName: projectName,
+    ));
+  }
+
+  _onUpdateHeaderParentTask(
+      Emitter<WeekPlanState> emit, int parentTaskId, String parentTaskName) {
+    emit(state.copyWith(
+      headerParentTaskId: parentTaskId,
+      headerParentTaskName: parentTaskName,
+    ));
+  }
+
+  _onUpdateHeaderPersonalTask(
+      Emitter<WeekPlanState> emit, bool isPersonal) {
+    emit(state.copyWith(headerIsPersonalTask: isPersonal));
+  }
+
+  _onUpdateHeaderComplexity(
+      Emitter<WeekPlanState> emit, int complexity) {
+    emit(state.copyWith(headerComplexity: complexity));
+  }
+
+  _onUpdateHeaderTaskCategory(
+      Emitter<WeekPlanState> emit, int categoryId, String categoryName) {
+    emit(state.copyWith(
+      headerTaskCategory: categoryId,
+      headerTaskCategoryName: categoryName,
+    ));
+  }
+
+  _onUpdateHeaderWorkTypeAndStatus(
+    Emitter<WeekPlanState> emit,
+    int workTypeId,
+    String workTypeName,
+    int statusId,
+    String statusName,
+  ) {
+    emit(state.copyWith(
+      headerWorkType: workTypeId,
+      headerWorkTypeName: workTypeName,
+      headerStatus: statusId,
+      headerStatusName: statusName,
+    ));
+  }
+
   //---(Helper)---//
   List<WeekPlanTaskItem> _buildFakeTasks(int employeeId) {
     final now = DateTime.now();
@@ -160,7 +362,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         id: 1,
         projectName: 'Dự án ERP RTC',
         projectId: 1,
-        taskName: ' Thiết kế giao diện màn Week Plan',
+        taskName: 'Thiết kế giao diện màn Week Plan',
         taskContent: 'Tạo UI/UX cho màn hình kế hoạch tuần',
         description: 'Thiết kế responsive, hỗ trợ dark mode',
         status: 2,
@@ -293,21 +495,4 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     ];
   }
 
-  Map<String, dynamic> _buildPayload(
-    int employeeId,
-    String keyword,
-    String status,
-    DateTime? dateStart,
-    DateTime? dateEnd,
-  ) {
-    return <String, dynamic>{
-      'employeeId': employeeId,
-      'keyword': keyword,
-      'status': status == 'Tất cả' ? '' : status,
-      'dateStart': dateStart?.toIso8601String(),
-      'dateEnd': dateEnd?.toIso8601String(),
-      'pageNumber': 1,
-      'pageSize': 10000,
-    };
-  }
 }

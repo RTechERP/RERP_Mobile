@@ -25,6 +25,34 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState employeeId(int? employeeId);
 
+  WeekPlanState isSubmitting(bool isSubmitting);
+
+  WeekPlanState submitSuccess(bool submitSuccess);
+
+  WeekPlanState headerProjectId(int? headerProjectId);
+
+  WeekPlanState headerProjectName(String? headerProjectName);
+
+  WeekPlanState headerParentTaskId(int? headerParentTaskId);
+
+  WeekPlanState headerParentTaskName(String? headerParentTaskName);
+
+  WeekPlanState headerIsPersonalTask(bool headerIsPersonalTask);
+
+  WeekPlanState headerComplexity(int headerComplexity);
+
+  WeekPlanState headerTaskCategory(int? headerTaskCategory);
+
+  WeekPlanState headerTaskCategoryName(String? headerTaskCategoryName);
+
+  WeekPlanState headerWorkType(int? headerWorkType);
+
+  WeekPlanState headerWorkTypeName(String? headerWorkTypeName);
+
+  WeekPlanState headerStatus(int? headerStatus);
+
+  WeekPlanState headerStatusName(String? headerStatusName);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -41,6 +69,20 @@ abstract class _$WeekPlanStateCWProxy {
     DateTime? dateStart,
     DateTime? dateEnd,
     int? employeeId,
+    bool? isSubmitting,
+    bool? submitSuccess,
+    int? headerProjectId,
+    String? headerProjectName,
+    int? headerParentTaskId,
+    String? headerParentTaskName,
+    bool? headerIsPersonalTask,
+    int? headerComplexity,
+    int? headerTaskCategory,
+    String? headerTaskCategoryName,
+    int? headerWorkType,
+    String? headerWorkTypeName,
+    int? headerStatus,
+    String? headerStatusName,
   });
 }
 
@@ -82,6 +124,62 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
   WeekPlanState employeeId(int? employeeId) => this(employeeId: employeeId);
 
   @override
+  WeekPlanState isSubmitting(bool isSubmitting) =>
+      this(isSubmitting: isSubmitting);
+
+  @override
+  WeekPlanState submitSuccess(bool submitSuccess) =>
+      this(submitSuccess: submitSuccess);
+
+  @override
+  WeekPlanState headerProjectId(int? headerProjectId) =>
+      this(headerProjectId: headerProjectId);
+
+  @override
+  WeekPlanState headerProjectName(String? headerProjectName) =>
+      this(headerProjectName: headerProjectName);
+
+  @override
+  WeekPlanState headerParentTaskId(int? headerParentTaskId) =>
+      this(headerParentTaskId: headerParentTaskId);
+
+  @override
+  WeekPlanState headerParentTaskName(String? headerParentTaskName) =>
+      this(headerParentTaskName: headerParentTaskName);
+
+  @override
+  WeekPlanState headerIsPersonalTask(bool headerIsPersonalTask) =>
+      this(headerIsPersonalTask: headerIsPersonalTask);
+
+  @override
+  WeekPlanState headerComplexity(int headerComplexity) =>
+      this(headerComplexity: headerComplexity);
+
+  @override
+  WeekPlanState headerTaskCategory(int? headerTaskCategory) =>
+      this(headerTaskCategory: headerTaskCategory);
+
+  @override
+  WeekPlanState headerTaskCategoryName(String? headerTaskCategoryName) =>
+      this(headerTaskCategoryName: headerTaskCategoryName);
+
+  @override
+  WeekPlanState headerWorkType(int? headerWorkType) =>
+      this(headerWorkType: headerWorkType);
+
+  @override
+  WeekPlanState headerWorkTypeName(String? headerWorkTypeName) =>
+      this(headerWorkTypeName: headerWorkTypeName);
+
+  @override
+  WeekPlanState headerStatus(int? headerStatus) =>
+      this(headerStatus: headerStatus);
+
+  @override
+  WeekPlanState headerStatusName(String? headerStatusName) =>
+      this(headerStatusName: headerStatusName);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -99,6 +197,20 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? employeeId = const $CopyWithPlaceholder(),
+    Object? isSubmitting = const $CopyWithPlaceholder(),
+    Object? submitSuccess = const $CopyWithPlaceholder(),
+    Object? headerProjectId = const $CopyWithPlaceholder(),
+    Object? headerProjectName = const $CopyWithPlaceholder(),
+    Object? headerParentTaskId = const $CopyWithPlaceholder(),
+    Object? headerParentTaskName = const $CopyWithPlaceholder(),
+    Object? headerIsPersonalTask = const $CopyWithPlaceholder(),
+    Object? headerComplexity = const $CopyWithPlaceholder(),
+    Object? headerTaskCategory = const $CopyWithPlaceholder(),
+    Object? headerTaskCategoryName = const $CopyWithPlaceholder(),
+    Object? headerWorkType = const $CopyWithPlaceholder(),
+    Object? headerWorkTypeName = const $CopyWithPlaceholder(),
+    Object? headerStatus = const $CopyWithPlaceholder(),
+    Object? headerStatusName = const $CopyWithPlaceholder(),
   }) {
     return WeekPlanState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -140,6 +252,68 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.employeeId
           // ignore: cast_nullable_to_non_nullable
           : employeeId as int?,
+      isSubmitting:
+          isSubmitting == const $CopyWithPlaceholder() || isSubmitting == null
+              ? _value.isSubmitting
+              // ignore: cast_nullable_to_non_nullable
+              : isSubmitting as bool,
+      submitSuccess:
+          submitSuccess == const $CopyWithPlaceholder() || submitSuccess == null
+              ? _value.submitSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : submitSuccess as bool,
+      headerProjectId: headerProjectId == const $CopyWithPlaceholder()
+          ? _value.headerProjectId
+          // ignore: cast_nullable_to_non_nullable
+          : headerProjectId as int?,
+      headerProjectName: headerProjectName == const $CopyWithPlaceholder()
+          ? _value.headerProjectName
+          // ignore: cast_nullable_to_non_nullable
+          : headerProjectName as String?,
+      headerParentTaskId: headerParentTaskId == const $CopyWithPlaceholder()
+          ? _value.headerParentTaskId
+          // ignore: cast_nullable_to_non_nullable
+          : headerParentTaskId as int?,
+      headerParentTaskName: headerParentTaskName == const $CopyWithPlaceholder()
+          ? _value.headerParentTaskName
+          // ignore: cast_nullable_to_non_nullable
+          : headerParentTaskName as String?,
+      headerIsPersonalTask:
+          headerIsPersonalTask == const $CopyWithPlaceholder() ||
+                  headerIsPersonalTask == null
+              ? _value.headerIsPersonalTask
+              // ignore: cast_nullable_to_non_nullable
+              : headerIsPersonalTask as bool,
+      headerComplexity: headerComplexity == const $CopyWithPlaceholder() ||
+              headerComplexity == null
+          ? _value.headerComplexity
+          // ignore: cast_nullable_to_non_nullable
+          : headerComplexity as int,
+      headerTaskCategory: headerTaskCategory == const $CopyWithPlaceholder()
+          ? _value.headerTaskCategory
+          // ignore: cast_nullable_to_non_nullable
+          : headerTaskCategory as int?,
+      headerTaskCategoryName:
+          headerTaskCategoryName == const $CopyWithPlaceholder()
+              ? _value.headerTaskCategoryName
+              // ignore: cast_nullable_to_non_nullable
+              : headerTaskCategoryName as String?,
+      headerWorkType: headerWorkType == const $CopyWithPlaceholder()
+          ? _value.headerWorkType
+          // ignore: cast_nullable_to_non_nullable
+          : headerWorkType as int?,
+      headerWorkTypeName: headerWorkTypeName == const $CopyWithPlaceholder()
+          ? _value.headerWorkTypeName
+          // ignore: cast_nullable_to_non_nullable
+          : headerWorkTypeName as String?,
+      headerStatus: headerStatus == const $CopyWithPlaceholder()
+          ? _value.headerStatus
+          // ignore: cast_nullable_to_non_nullable
+          : headerStatus as int?,
+      headerStatusName: headerStatusName == const $CopyWithPlaceholder()
+          ? _value.headerStatusName
+          // ignore: cast_nullable_to_non_nullable
+          : headerStatusName as String?,
     );
   }
 }
