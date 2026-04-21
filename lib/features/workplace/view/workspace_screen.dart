@@ -225,6 +225,7 @@ class _WorkPlaceScreenState
                         id: 'week_plan',
                         iconCodePoint: Icons.newspaper_outlined.codePoint,
                         name: 'applications.week_plan'.tr(),
+                        route: '/week_plan',
                         imageUrl: AppImages.app_menu_week_plan,
                       ),
                       AppItemModel(

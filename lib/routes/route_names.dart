@@ -20,6 +20,7 @@ class RouteNames {
   static const reggeneral = '/reg_general';
   static const report = '/report';
   static const weekplan = '/week_plan';
+  static const weekplanAdd = '/week_plan/add';
   static const stock = '/stock';
 
   static const regworkLunch = '/regwork/lunch';

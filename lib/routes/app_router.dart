@@ -120,6 +120,9 @@ import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.d
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_edit_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart';
+import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_add_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_screen.dart';
 import '../features/workplace/view/bloc/workspace_bloc.dart';
 
 class AppRouter {
@@ -687,7 +690,8 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>?;
               return BookingVehicleAddScreen(
                 copiedItemId: extra?['_copied_item_id'] as int?,
-                copiedBookingTypeGroup: extra?['_copied_booking_type_group'] as int?,
+                copiedBookingTypeGroup:
+                    extra?['_copied_booking_type_group'] as int?,
                 copiedData: extra,
               );
             },
@@ -911,6 +915,23 @@ class AppRouter {
                 body: const Center(child: Text('Không có dữ liệu VPP.')),
               );
             },
+          ),
+        ],
+      ),
+
+      //---(Week Plan)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<WeekPlanBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.weekplan,
+            builder: (context, state) => const WeekPlanScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanAdd,
+            builder: (context, state) => const WeekPlanAddScreen(),
           ),
         ],
       ),

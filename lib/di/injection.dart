@@ -75,6 +75,10 @@ import '../features/workplace/app/reports/view/hr/view/bloc/hr_bloc.dart';
 import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
 import '../features/workplace/app/reports/view/sale/view/bloc/sale_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
+import '../features/workplace/app/week_plan/data/datasource/service/week_plan_service.dart';
+import '../features/workplace/app/week_plan/data/repository/week_plan_repo.dart';
+import '../features/workplace/app/week_plan/data/repository/week_plan_repo_impl.dart';
+import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/view/bloc/workspace_bloc.dart';
 
 final getIt = GetIt.instance;
@@ -168,6 +172,10 @@ void configureDependencies() {
     () => StationeryService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<WeekPlanService>(
+    () => WeekPlanService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -233,6 +241,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<StationeryRepo>(
     () => StationeryRepoImpl(getIt<StationeryService>()),
+  );
+
+  getIt.registerLazySingleton<WeekPlanRepo>(
+    () => WeekPlanRepoImpl(getIt<WeekPlanService>()),
   );
 
   /// ===== BLOCS =====
@@ -349,10 +361,18 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<StationeryBloc>(
-      () => StationeryBloc(
-        getIt<StationeryRepo>(),
-        getIt<AuthRepo>(),
-        getIt<LogUtils>(),
-      ),
+    () => StationeryBloc(
+      getIt<StationeryRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<WeekPlanBloc>(
+    () => WeekPlanBloc(
+      getIt<WeekPlanRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
   );
 }
