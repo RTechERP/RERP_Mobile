@@ -344,7 +344,7 @@ class _WorkTripDetailScreenState
                   return Positioned.fill(
                     child: AbsorbPointer(
                       child: Container(
-                        color: Colors.black.withOpacity(0.45),
+                        color: Colors.black.withValues(alpha:0.45),
                         alignment: Alignment.center,
                         child: Lottie.asset(
                           'assets/lotties/Loading.json',
@@ -640,7 +640,8 @@ class _WorkTripDetailScreenState
             label: 'Ghi chú',
             icon: Icons.edit_note_outlined,
             initialValue: detail.note ?? '',
-            maxLines: 2,
+            textInputAction: TextInputAction.newline,
+            autoExpand: true,
             autovalidateMode: AutovalidateMode.disabled,
           ),
         ],

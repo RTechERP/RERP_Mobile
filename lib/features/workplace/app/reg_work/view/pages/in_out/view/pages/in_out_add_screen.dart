@@ -344,6 +344,7 @@ class _InOutAddScreenPageState
                                         'regwork_inout_add_reason',
                                         label: 'Lý do',
                                         icon: Icons.note_alt_outlined,
+                                        textInputAction: TextInputAction.newline,
                                         autoExpand: true,
                                         isRequired: true,
                                         validator: (v) {

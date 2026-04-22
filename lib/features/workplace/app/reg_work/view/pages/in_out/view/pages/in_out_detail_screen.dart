@@ -415,6 +415,7 @@ class _InOutDetailScreenPageState extends BaseState<
                                             'regwork_inout_detail_reason_field',
                                         label: 'Lý do',
                                         icon: Icons.note_alt_outlined,
+                                        textInputAction: TextInputAction.newline,
                                         autoExpand: true,
                                         initialValue: item.reason ?? '',
                                         isRequired: true,
