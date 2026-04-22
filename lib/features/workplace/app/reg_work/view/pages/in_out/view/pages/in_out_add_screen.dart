@@ -18,19 +18,7 @@ import '../bloc/in_out_bloc.dart';
 
 int approvedInOutPayloadValue(ApproverItem item) => item.employeeId ?? item.id;
 
-class _InOutTypeOption {
-  const _InOutTypeOption({required this.key, required this.label});
 
-  final String key;
-  final String label;
-}
-
-const _kInOutTypeOptions = <_InOutTypeOption>[
-  _InOutTypeOption(key: 'early_company', label: 'Về sớm việc công ty'),
-  _InOutTypeOption(key: 'early_personal', label: 'Về sớm việc cá nhân'),
-  _InOutTypeOption(key: 'late_company', label: 'Đi muộn việc công ty'),
-  _InOutTypeOption(key: 'late_personal', label: 'Đi muộn việc cá nhân'),
-];
 
 /// Trùng với [FormDateTimePicker.nameTimePicker] — cần [didChange] cả hai mới sync UI.
 const _kInOutTimeFromInner = 'inout_add_from';
@@ -49,19 +37,27 @@ class InOutAddScreenPage extends StatefulWidget {
 
 class _InOutAddScreenPageState
     extends BaseState<InOutAddScreenPage, InOutEvent, InOutState, InOutBloc> {
+
+  static const List<FormChoiceOption<String>> _inOutTypes = [
+    FormChoiceOption(value: 'late_personal', label: 'Đi muộn việc cá nhân', selectedColor: AppColors.primaryERP),
+    FormChoiceOption(value: 'early_personal', label: 'Về sớm việc cá nhân', selectedColor: AppColors.primaryERP),
+    FormChoiceOption(value: 'late_company', label: 'Đi muộn việc công ty', selectedColor: AppColors.primaryERP),
+    FormChoiceOption(value: 'early_company', label: 'Về sớm việc công ty', selectedColor: AppColors.primaryERP),
+  ];
   final _formKey = GlobalKey<FormBuilderState>();
+  final _typeFieldKey = GlobalKey<FormBuilderFieldState>();
 
   late final DateTime _todayStart;
 
   int _mapType(String? raw) {
     switch (raw) {
-      case 'late_company':
-        return 1;
-      case 'early_company':
-        return 2;
       case 'late_personal':
-        return 3;
+        return 1;
       case 'early_personal':
+        return 2;
+      case 'early_company':
+        return 3;
+      case 'late_company':
         return 4;
       default:
         return 0;
@@ -86,11 +82,10 @@ class _InOutAddScreenPageState
   }
 
   void _autoSelectTypeByTimeWindow() {
-    final form = _formKey.currentState;
-    if (form == null) return;
+    final typeField = _typeFieldKey.currentState;
+    if (typeField == null) return;
 
-    final rawType = '${form.fields['regwork_inout_add_type']?.value ?? ''}'
-        .trim();
+    final rawType = '${typeField.value ?? ''}'.trim();
 
     // User đã chọn sẵn thì không auto override.
     if (rawType.isNotEmpty) return;
@@ -111,14 +106,13 @@ class _InOutAddScreenPageState
 
     if (pickKey == null) return;
 
-    final option = _kInOutTypeOptions.firstWhere(
-      (e) => e.key == pickKey,
-      orElse: () => _kInOutTypeOptions.first,
+    final option = _inOutTypes.firstWhere(
+      (e) => e.value == pickKey,
+      orElse: () => _inOutTypes.first,
     );
 
-    form.fields['regwork_inout_add_type']?.didChange(option.key);
-    form.fields['regwork_inout_add_type_text']?.didChange(option.label);
-    _autoSetTimeByType(option.key);
+    typeField.didChange(option.value);
+    _autoSetTimeByType(option.value);
   }
 
   void _autoSetTimeByType(String? type) {
@@ -153,23 +147,6 @@ class _InOutAddScreenPageState
     form.fields[_kInOutTimeFromInner]?.didChange(from);
     form.fields['regwork_inout_add_to']?.didChange(to);
     form.fields[_kInOutTimeToInner]?.didChange(to);
-  }
-
-  Future<void> _openTypeSheet() async {
-    final form = _formKey.currentState;
-    if (form == null) return;
-
-    await openSelectBottomSheet<_InOutTypeOption>(
-      context: context,
-      title: 'Chọn loại',
-      items: _kInOutTypeOptions,
-      displayText: (o) => o.label,
-      onSelected: (o) {
-        form.fields['regwork_inout_add_type']?.didChange(o.key);
-        form.fields['regwork_inout_add_type_text']?.didChange(o.label);
-        _autoSetTimeByType(o.key);
-      },
-    );
   }
 
   Future<void> _openApproverSheet() async {
@@ -272,9 +249,38 @@ class _InOutAddScreenPageState
                             child: Column(
                               children: [
                                 FormCard(
-                                  title: 'Thông tin đi muộn - về sớm',
                                   child: Column(
                                     children: [
+                                      FormBuilderField<String>(
+                                        name: 'regwork_inout_add_approver_tp',
+                                        initialValue: '',
+                                        builder: (_) => const SizedBox.shrink(),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () => _openApproverSheet(),
+                                        child: AbsorbPointer(
+                                          child: FormInputField(
+                                            readOnly: true,
+                                            nameForm:
+                                            'regwork_inout_add_approver_text',
+                                            nameTextField:
+                                            'regwork_inout_add_approver_text_field',
+                                            label: 'Người duyệt',
+                                            icon: Icons
+                                                .supervisor_account_outlined,
+                                            isRequired: true,
+                                            validator: (v) {
+                                              if (v == null || v.trim().isEmpty) {
+                                                return 'Vui lòng chọn người duyệt';
+                                              }
+                                              return null;
+                                            },
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8),
                                       FormDateTimePicker(
                                         nameForm: 'regwork_inout_add_date',
                                         // Inner field: không dùng khi submit (chỉ dùng `nameForm`).
@@ -290,34 +296,12 @@ class _InOutAddScreenPageState
 
                                       const SizedBox(height: 12),
 
-                                      FormBuilderField<String>(
-                                        name: 'regwork_inout_add_type',
-                                        initialValue: '',
-                                        builder: (_) => const SizedBox.shrink(),
-                                      ),
-                                      GestureDetector(
-                                        onTap: () => _openTypeSheet(),
-                                        child: AbsorbPointer(
-                                          child: FormInputField(
-                                            readOnly: true,
-                                            nameForm:
-                                                'regwork_inout_add_type_text',
-                                            nameTextField:
-                                                'regwork_inout_add_type_text_field',
-                                            label: 'Loại',
-                                            icon: Icons.swap_vert_outlined,
-                                          ),
-                                        ),
-                                      ),
-
-                                      const SizedBox(height: 12),
-
                                       Row(
                                         children: [
                                           Expanded(
                                             child: FormDateTimePicker(
                                               nameForm:
-                                                  'regwork_inout_add_from',
+                                              'regwork_inout_add_from',
                                               nameTimePicker: 'inout_add_from',
                                               label: 'Từ',
                                               icon: Icons.schedule_outlined,
@@ -338,62 +322,38 @@ class _InOutAddScreenPageState
                                           ),
                                         ],
                                       ),
-                                    ],
-                                  ),
-                                ),
 
-                                const SizedBox(height: 8),
+                                      const SizedBox(height: 12),
 
-                                FormCard(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      FormBuilderField<String>(
-                                        name: 'regwork_inout_add_approver_tp',
-                                        initialValue: '',
-                                        builder: (_) => const SizedBox.shrink(),
+                                      FormChoiceGroup<String>(
+                                        fieldKey: _typeFieldKey,
+                                        name: 'regwork_inout_add_type',
+                                        label: 'Loại',
+                                        icon: Icons.swap_vert_outlined,
+                                        options: _inOutTypes,
+                                        onChanged: (value) {
+                                          _autoSetTimeByType(value);
+                                        },
                                       ),
-                                      GestureDetector(
-                                        onTap: () => _openApproverSheet(),
-                                        child: AbsorbPointer(
-                                          child: FormInputField(
-                                            readOnly: true,
-                                            nameForm:
-                                                'regwork_inout_add_approver_text',
-                                            nameTextField:
-                                                'regwork_inout_add_approver_text_field',
-                                            label: 'Người duyệt',
-                                            icon: Icons
-                                                .supervisor_account_outlined,
-                                            isRequired: true,
-                                            validator: (v) {
-                                              if (v == null || v.trim().isEmpty)
-                                                return 'Vui lòng chọn người duyệt';
-                                              return null;
-                                            },
-                                            autovalidateMode: AutovalidateMode
-                                                .onUserInteraction,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8),
+
+                                      const SizedBox(height: 12),
 
                                       FormInputField(
                                         nameForm: 'regwork',
                                         nameTextField:
-                                            'regwork_inout_add_reason',
+                                        'regwork_inout_add_reason',
                                         label: 'Lý do',
                                         icon: Icons.note_alt_outlined,
-                                        maxLines: 5,
+                                        autoExpand: true,
                                         isRequired: true,
                                         validator: (v) {
-                                          if (v == null || v.trim().isEmpty)
+                                          if (v == null || v.trim().isEmpty) {
                                             return 'Vui lòng nhập lý do';
+                                          }
                                           return null;
                                         },
                                         autovalidateMode:
-                                            AutovalidateMode.onUserInteraction,
+                                        AutovalidateMode.onUserInteraction,
                                       ),
                                     ],
                                   ),
