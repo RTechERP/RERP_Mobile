@@ -53,6 +53,51 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState headerStatusName(String? headerStatusName);
 
+  WeekPlanState headerPriority(int headerPriority);
+
+  WeekPlanState headerTimeEstimate(double? headerTimeEstimate);
+
+  WeekPlanState taskName(String? taskName);
+
+  WeekPlanState contentAssigneeId(int? contentAssigneeId);
+
+  WeekPlanState contentAssigneeName(String? contentAssigneeName);
+
+  WeekPlanState contentAssignerId(int? contentAssignerId);
+
+  WeekPlanState contentAssignerName(String? contentAssignerName);
+
+  WeekPlanState contentStartDate(DateTime? contentStartDate);
+
+  WeekPlanState contentEndDate(DateTime? contentEndDate);
+
+  WeekPlanState contentActualStartDate(DateTime? contentActualStartDate);
+
+  WeekPlanState contentActualEndDate(DateTime? contentActualEndDate);
+
+  WeekPlanState contentDeadline(DateTime? contentDeadline);
+
+  WeekPlanState contentDescription(String? contentDescription);
+
+  WeekPlanState contentResult(String? contentResult);
+
+  WeekPlanState selectedAssignees(List<WeekPlanEmployee> selectedAssignees);
+
+  WeekPlanState selectedRelatedPersons(
+      List<WeekPlanEmployee> selectedRelatedPersons);
+
+  WeekPlanState subTasks(List<WeekPlanSubTaskItem> subTasks);
+
+  WeekPlanState checklistItems(List<String> checklistItems);
+
+  WeekPlanState checklistDone(List<bool> checklistDone);
+
+  WeekPlanState attachments(List<WeekPlanAttachmentItem> attachments);
+
+  WeekPlanState incidents(List<WeekPlanIncidentItem> incidents);
+
+  WeekPlanState currentStep(int currentStep);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -83,6 +128,28 @@ abstract class _$WeekPlanStateCWProxy {
     String? headerWorkTypeName,
     int? headerStatus,
     String? headerStatusName,
+    int? headerPriority,
+    double? headerTimeEstimate,
+    String? taskName,
+    int? contentAssigneeId,
+    String? contentAssigneeName,
+    int? contentAssignerId,
+    String? contentAssignerName,
+    DateTime? contentStartDate,
+    DateTime? contentEndDate,
+    DateTime? contentActualStartDate,
+    DateTime? contentActualEndDate,
+    DateTime? contentDeadline,
+    String? contentDescription,
+    String? contentResult,
+    List<WeekPlanEmployee>? selectedAssignees,
+    List<WeekPlanEmployee>? selectedRelatedPersons,
+    List<WeekPlanSubTaskItem>? subTasks,
+    List<String>? checklistItems,
+    List<bool>? checklistDone,
+    List<WeekPlanAttachmentItem>? attachments,
+    List<WeekPlanIncidentItem>? incidents,
+    int? currentStep,
   });
 }
 
@@ -180,6 +247,93 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(headerStatusName: headerStatusName);
 
   @override
+  WeekPlanState headerPriority(int headerPriority) =>
+      this(headerPriority: headerPriority);
+
+  @override
+  WeekPlanState headerTimeEstimate(double? headerTimeEstimate) =>
+      this(headerTimeEstimate: headerTimeEstimate);
+
+  @override
+  WeekPlanState taskName(String? taskName) => this(taskName: taskName);
+
+  @override
+  WeekPlanState contentAssigneeId(int? contentAssigneeId) =>
+      this(contentAssigneeId: contentAssigneeId);
+
+  @override
+  WeekPlanState contentAssigneeName(String? contentAssigneeName) =>
+      this(contentAssigneeName: contentAssigneeName);
+
+  @override
+  WeekPlanState contentAssignerId(int? contentAssignerId) =>
+      this(contentAssignerId: contentAssignerId);
+
+  @override
+  WeekPlanState contentAssignerName(String? contentAssignerName) =>
+      this(contentAssignerName: contentAssignerName);
+
+  @override
+  WeekPlanState contentStartDate(DateTime? contentStartDate) =>
+      this(contentStartDate: contentStartDate);
+
+  @override
+  WeekPlanState contentEndDate(DateTime? contentEndDate) =>
+      this(contentEndDate: contentEndDate);
+
+  @override
+  WeekPlanState contentActualStartDate(DateTime? contentActualStartDate) =>
+      this(contentActualStartDate: contentActualStartDate);
+
+  @override
+  WeekPlanState contentActualEndDate(DateTime? contentActualEndDate) =>
+      this(contentActualEndDate: contentActualEndDate);
+
+  @override
+  WeekPlanState contentDeadline(DateTime? contentDeadline) =>
+      this(contentDeadline: contentDeadline);
+
+  @override
+  WeekPlanState contentDescription(String? contentDescription) =>
+      this(contentDescription: contentDescription);
+
+  @override
+  WeekPlanState contentResult(String? contentResult) =>
+      this(contentResult: contentResult);
+
+  @override
+  WeekPlanState selectedAssignees(List<WeekPlanEmployee> selectedAssignees) =>
+      this(selectedAssignees: selectedAssignees);
+
+  @override
+  WeekPlanState selectedRelatedPersons(
+          List<WeekPlanEmployee> selectedRelatedPersons) =>
+      this(selectedRelatedPersons: selectedRelatedPersons);
+
+  @override
+  WeekPlanState subTasks(List<WeekPlanSubTaskItem> subTasks) =>
+      this(subTasks: subTasks);
+
+  @override
+  WeekPlanState checklistItems(List<String> checklistItems) =>
+      this(checklistItems: checklistItems);
+
+  @override
+  WeekPlanState checklistDone(List<bool> checklistDone) =>
+      this(checklistDone: checklistDone);
+
+  @override
+  WeekPlanState attachments(List<WeekPlanAttachmentItem> attachments) =>
+      this(attachments: attachments);
+
+  @override
+  WeekPlanState incidents(List<WeekPlanIncidentItem> incidents) =>
+      this(incidents: incidents);
+
+  @override
+  WeekPlanState currentStep(int currentStep) => this(currentStep: currentStep);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -211,6 +365,28 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? headerWorkTypeName = const $CopyWithPlaceholder(),
     Object? headerStatus = const $CopyWithPlaceholder(),
     Object? headerStatusName = const $CopyWithPlaceholder(),
+    Object? headerPriority = const $CopyWithPlaceholder(),
+    Object? headerTimeEstimate = const $CopyWithPlaceholder(),
+    Object? taskName = const $CopyWithPlaceholder(),
+    Object? contentAssigneeId = const $CopyWithPlaceholder(),
+    Object? contentAssigneeName = const $CopyWithPlaceholder(),
+    Object? contentAssignerId = const $CopyWithPlaceholder(),
+    Object? contentAssignerName = const $CopyWithPlaceholder(),
+    Object? contentStartDate = const $CopyWithPlaceholder(),
+    Object? contentEndDate = const $CopyWithPlaceholder(),
+    Object? contentActualStartDate = const $CopyWithPlaceholder(),
+    Object? contentActualEndDate = const $CopyWithPlaceholder(),
+    Object? contentDeadline = const $CopyWithPlaceholder(),
+    Object? contentDescription = const $CopyWithPlaceholder(),
+    Object? contentResult = const $CopyWithPlaceholder(),
+    Object? selectedAssignees = const $CopyWithPlaceholder(),
+    Object? selectedRelatedPersons = const $CopyWithPlaceholder(),
+    Object? subTasks = const $CopyWithPlaceholder(),
+    Object? checklistItems = const $CopyWithPlaceholder(),
+    Object? checklistDone = const $CopyWithPlaceholder(),
+    Object? attachments = const $CopyWithPlaceholder(),
+    Object? incidents = const $CopyWithPlaceholder(),
+    Object? currentStep = const $CopyWithPlaceholder(),
   }) {
     return WeekPlanState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -314,6 +490,103 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.headerStatusName
           // ignore: cast_nullable_to_non_nullable
           : headerStatusName as String?,
+      headerPriority: headerPriority == const $CopyWithPlaceholder() ||
+              headerPriority == null
+          ? _value.headerPriority
+          // ignore: cast_nullable_to_non_nullable
+          : headerPriority as int,
+      headerTimeEstimate: headerTimeEstimate == const $CopyWithPlaceholder()
+          ? _value.headerTimeEstimate
+          // ignore: cast_nullable_to_non_nullable
+          : headerTimeEstimate as double?,
+      taskName: taskName == const $CopyWithPlaceholder()
+          ? _value.taskName
+          // ignore: cast_nullable_to_non_nullable
+          : taskName as String?,
+      contentAssigneeId: contentAssigneeId == const $CopyWithPlaceholder()
+          ? _value.contentAssigneeId
+          // ignore: cast_nullable_to_non_nullable
+          : contentAssigneeId as int?,
+      contentAssigneeName: contentAssigneeName == const $CopyWithPlaceholder()
+          ? _value.contentAssigneeName
+          // ignore: cast_nullable_to_non_nullable
+          : contentAssigneeName as String?,
+      contentAssignerId: contentAssignerId == const $CopyWithPlaceholder()
+          ? _value.contentAssignerId
+          // ignore: cast_nullable_to_non_nullable
+          : contentAssignerId as int?,
+      contentAssignerName: contentAssignerName == const $CopyWithPlaceholder()
+          ? _value.contentAssignerName
+          // ignore: cast_nullable_to_non_nullable
+          : contentAssignerName as String?,
+      contentStartDate: contentStartDate == const $CopyWithPlaceholder()
+          ? _value.contentStartDate
+          // ignore: cast_nullable_to_non_nullable
+          : contentStartDate as DateTime?,
+      contentEndDate: contentEndDate == const $CopyWithPlaceholder()
+          ? _value.contentEndDate
+          // ignore: cast_nullable_to_non_nullable
+          : contentEndDate as DateTime?,
+      contentActualStartDate:
+          contentActualStartDate == const $CopyWithPlaceholder()
+              ? _value.contentActualStartDate
+              // ignore: cast_nullable_to_non_nullable
+              : contentActualStartDate as DateTime?,
+      contentActualEndDate: contentActualEndDate == const $CopyWithPlaceholder()
+          ? _value.contentActualEndDate
+          // ignore: cast_nullable_to_non_nullable
+          : contentActualEndDate as DateTime?,
+      contentDeadline: contentDeadline == const $CopyWithPlaceholder()
+          ? _value.contentDeadline
+          // ignore: cast_nullable_to_non_nullable
+          : contentDeadline as DateTime?,
+      contentDescription: contentDescription == const $CopyWithPlaceholder()
+          ? _value.contentDescription
+          // ignore: cast_nullable_to_non_nullable
+          : contentDescription as String?,
+      contentResult: contentResult == const $CopyWithPlaceholder()
+          ? _value.contentResult
+          // ignore: cast_nullable_to_non_nullable
+          : contentResult as String?,
+      selectedAssignees: selectedAssignees == const $CopyWithPlaceholder() ||
+              selectedAssignees == null
+          ? _value.selectedAssignees
+          // ignore: cast_nullable_to_non_nullable
+          : selectedAssignees as List<WeekPlanEmployee>,
+      selectedRelatedPersons:
+          selectedRelatedPersons == const $CopyWithPlaceholder() ||
+                  selectedRelatedPersons == null
+              ? _value.selectedRelatedPersons
+              // ignore: cast_nullable_to_non_nullable
+              : selectedRelatedPersons as List<WeekPlanEmployee>,
+      subTasks: subTasks == const $CopyWithPlaceholder() || subTasks == null
+          ? _value.subTasks
+          // ignore: cast_nullable_to_non_nullable
+          : subTasks as List<WeekPlanSubTaskItem>,
+      checklistItems: checklistItems == const $CopyWithPlaceholder() ||
+              checklistItems == null
+          ? _value.checklistItems
+          // ignore: cast_nullable_to_non_nullable
+          : checklistItems as List<String>,
+      checklistDone:
+          checklistDone == const $CopyWithPlaceholder() || checklistDone == null
+              ? _value.checklistDone
+              // ignore: cast_nullable_to_non_nullable
+              : checklistDone as List<bool>,
+      attachments:
+          attachments == const $CopyWithPlaceholder() || attachments == null
+              ? _value.attachments
+              // ignore: cast_nullable_to_non_nullable
+              : attachments as List<WeekPlanAttachmentItem>,
+      incidents: incidents == const $CopyWithPlaceholder() || incidents == null
+          ? _value.incidents
+          // ignore: cast_nullable_to_non_nullable
+          : incidents as List<WeekPlanIncidentItem>,
+      currentStep:
+          currentStep == const $CopyWithPlaceholder() || currentStep == null
+              ? _value.currentStep
+              // ignore: cast_nullable_to_non_nullable
+              : currentStep as int,
     );
   }
 }

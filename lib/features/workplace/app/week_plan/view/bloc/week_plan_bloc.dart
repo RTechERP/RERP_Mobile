@@ -3,19 +3,48 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 
-import '../../../../../../../../../base/bloc/bloc_status.dart';
-import '../../../../../../../../../base/bloc/base_bloc_state.dart';
 import '../../../../../../../../../common/logger/index.dart';
 import '../../../../../../base/bloc/index.dart';
 import '../../../../../../base/network/errors/extension.dart';
 import '../../data/datasource/models/week_plan_model.dart';
 import '../../data/repository/week_plan_repo.dart';
 import '../../../../../auth/data/repository/auth_repo.dart';
+import '../week_plan_tab_enum.dart';
 
 part 'week_plan_event.dart';
 part 'week_plan_state.dart';
 part 'week_plan_bloc.g.dart';
 part 'week_plan_bloc.freezed.dart';
+
+/// Employee đơn giản — dùng cho multi-select ở step 2 & 3.
+/// KHÔNG phải @freezed vì không cần JSON serialization.
+class WeekPlanEmployee {
+  const WeekPlanEmployee({
+    required this.id,
+    required this.code,
+    required this.fullName,
+    this.departmentName,
+    this.avatarUrl,
+  });
+
+  final int id;
+  final String code;
+  final String fullName;
+  final String? departmentName;
+  final String? avatarUrl;
+
+  String get displayText => '$code - $fullName';
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WeekPlanEmployee &&
+          runtimeType == other.runtimeType &&
+          id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
+}
 
 @injectable
 class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
@@ -40,28 +69,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         clearDateFilter: () => _onClearDateFilter(emit),
         checkIn: (taskId) => _onCheckIn(emit, taskId),
         initAdd: () => _onInitAdd(emit),
-        createTask: (
-          taskName,
-          projectName,
-          content,
-          startDate,
-          endDate,
-          deadline,
-          priority,
-          description,
-        ) =>
-            _onCreateTask(
-          emit,
-          taskName: taskName,
-          projectName: projectName,
-          content: content,
-          startDate: startDate,
-          endDate: endDate,
-          deadline: deadline,
-          priority: priority,
-          description: description,
-        ),
-        clearSubmitState: () => _onClearSubmitState(emit),
+        changeStep: (step) => _onChangeStep(emit, step),
         updateHeaderProject: (projectId, projectName) =>
             _onUpdateHeaderProject(emit, projectId, projectName),
         updateHeaderParentTask: (parentTaskId, parentTaskName) =>
@@ -70,11 +78,66 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             _onUpdateHeaderPersonalTask(emit, isPersonal),
         updateHeaderComplexity: (complexity) =>
             _onUpdateHeaderComplexity(emit, complexity),
+        updateHeaderPriority: (priority) =>
+            _onUpdateHeaderPriority(emit, priority),
+        updateHeaderStatus: (statusId, statusName) =>
+            _onUpdateHeaderStatus(emit, statusId, statusName),
+        updateHeaderTimeEstimate: (timeEstimate) =>
+            _onUpdateHeaderTimeEstimate(emit, timeEstimate),
         updateHeaderTaskCategory: (categoryId, categoryName) =>
             _onUpdateHeaderTaskCategory(emit, categoryId, categoryName),
         updateHeaderWorkTypeAndStatus: (workTypeId, workTypeName, statusId, statusName) =>
             _onUpdateHeaderWorkTypeAndStatus(
                 emit, workTypeId, workTypeName, statusId, statusName),
+        updateContentTaskName: (name) => _onUpdateContentTaskName(emit, name),
+        updateContentAssignee: (assigneeId, assigneeName) =>
+            _onUpdateContentAssignee(emit, assigneeId, assigneeName),
+        updateContentAssigner: (assignerId, assignerName) =>
+            _onUpdateContentAssigner(emit, assignerId, assignerName),
+        updateContentDates: (startDate, endDate, actualStartDate, actualEndDate, deadline) =>
+            _onUpdateContentDates(emit, startDate, endDate, actualStartDate, actualEndDate, deadline),
+        updateContentDescription: (description) =>
+            _onUpdateContentDescription(emit, description),
+        updateContentResult: (result) =>
+            _onUpdateContentResult(emit, result),
+        setAssignees: (assignees) =>
+            _onSetAssignees(emit, assignees),
+        addAssignee: (employee) =>
+            _onAddAssignee(emit, employee),
+        removeAssignee: (employeeId) =>
+            _onRemoveAssignee(emit, employeeId),
+        setRelatedPersons: (persons) =>
+            _onSetRelatedPersons(emit, persons),
+        addRelatedPerson: (employee) =>
+            _onAddRelatedPerson(emit, employee),
+        removeRelatedPerson: (employeeId) =>
+            _onRemoveRelatedPerson(emit, employeeId),
+        addSubTask: (subTask) =>
+            _onAddSubTask(emit, subTask),
+        updateSubTask: (index, subTask) =>
+            _onUpdateSubTask(emit, index, subTask),
+        removeSubTask: (index) =>
+            _onRemoveSubTask(emit, index),
+        addChecklistItem: (item) =>
+            _onAddChecklistItem(emit, item),
+        updateChecklistItem: (index, item) =>
+            _onUpdateChecklistItem(emit, index, item),
+        toggleChecklistDone: (index) =>
+            _onToggleChecklistDone(emit, index),
+        removeChecklistItem: (index) =>
+            _onRemoveChecklistItem(emit, index),
+        addAttachment: (attachment) =>
+            _onAddAttachment(emit, attachment),
+        removeAttachment: (index) =>
+            _onRemoveAttachment(emit, index),
+        addIncident: (incident) =>
+            _onAddIncident(emit, incident),
+        updateIncident: (index, incident) =>
+            _onUpdateIncident(emit, index, incident),
+        removeIncident: (index) =>
+            _onRemoveIncident(emit, index),
+        createTask: () => _onCreateTask(emit),
+        clearSubmitState: () => _onClearSubmitState(emit),
       );
     });
   }
@@ -97,9 +160,6 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
           ));
         },
         (user) async {
-          // final tasksRes = await _weekPlanRepo.getTasks(payload: payload);
-          // await tasksRes.fold(...);
-
           final fakeTasks = _buildFakeTasks(user!.employeeId);
           final myTasks = fakeTasks
               .where((t) => t.assigneeId == user.employeeId)
@@ -188,40 +248,303 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     );
   }
 
-  //---(Create)---//
+  //---(Add Screen)---//
   Future<void> _onInitAdd(Emitter<WeekPlanState> emit) async {
     emit(state.copyWith(
       isSubmitting: false,
       submitSuccess: false,
       message: null,
+      currentStep: 0,
       headerProjectId: null,
       headerProjectName: null,
       headerParentTaskId: null,
       headerParentTaskName: null,
       headerIsPersonalTask: false,
-      headerComplexity: 3,
+      headerComplexity: 1,
       headerTaskCategory: null,
       headerTaskCategoryName: null,
       headerWorkType: null,
       headerWorkTypeName: null,
       headerStatus: null,
       headerStatusName: null,
+      taskName: null,
+      contentAssigneeId: null,
+      contentAssigneeName: null,
+      contentAssignerId: null,
+      contentAssignerName: null,
+      contentStartDate: null,
+      contentEndDate: null,
+      contentActualStartDate: null,
+      contentActualEndDate: null,
+      contentDeadline: null,
+      contentDescription: null,
+      contentResult: null,
+      selectedAssignees: const [],
+      selectedRelatedPersons: const [],
+      subTasks: const [],
+      checklistItems: const [],
+      checklistDone: const [],
+      attachments: const [],
+      incidents: const [],
     ));
   }
 
+  Future<void> _onChangeStep(Emitter<WeekPlanState> emit, int step) async {
+    if (step >= 0 && step < WeekPlanAddStep.values.length) {
+      emit(state.copyWith(currentStep: step));
+    }
+  }
+
+  //---(Header Form)---//
+  Future<void> _onUpdateHeaderProject(
+      Emitter<WeekPlanState> emit, int projectId, String projectName) async {
+    emit(state.copyWith(headerProjectId: projectId, headerProjectName: projectName));
+  }
+
+  Future<void> _onUpdateHeaderParentTask(
+      Emitter<WeekPlanState> emit, int parentTaskId, String parentTaskName) async {
+    emit(state.copyWith(headerParentTaskId: parentTaskId, headerParentTaskName: parentTaskName));
+  }
+
+  Future<void> _onUpdateHeaderPersonalTask(
+      Emitter<WeekPlanState> emit, bool isPersonal) async {
+    emit(state.copyWith(headerIsPersonalTask: isPersonal));
+  }
+
+  Future<void> _onUpdateHeaderComplexity(
+      Emitter<WeekPlanState> emit, int complexity) async {
+    emit(state.copyWith(headerComplexity: complexity));
+  }
+
+  Future<void> _onUpdateHeaderPriority(
+      Emitter<WeekPlanState> emit, int priority) async {
+    emit(state.copyWith(headerPriority: priority));
+  }
+
+  Future<void> _onUpdateHeaderTimeEstimate(
+      Emitter<WeekPlanState> emit, double? timeEstimate) async {
+    emit(state.copyWith(headerTimeEstimate: timeEstimate));
+  }
+
+  Future<void> _onUpdateHeaderTaskCategory(
+      Emitter<WeekPlanState> emit, int categoryId, String categoryName) async {
+    emit(state.copyWith(headerTaskCategory: categoryId, headerTaskCategoryName: categoryName));
+  }
+
+  Future<void> _onUpdateHeaderStatus(
+    Emitter<WeekPlanState> emit, int statusId, String statusName) async {
+    emit(state.copyWith(headerStatus: statusId, headerStatusName: statusName));
+  }
+
+  Future<void> _onUpdateHeaderWorkTypeAndStatus(
+    Emitter<WeekPlanState> emit,
+    int workTypeId,
+    String workTypeName,
+    int statusId,
+    String statusName,
+  ) async {
+    emit(state.copyWith(
+      headerWorkType: workTypeId,
+      headerWorkTypeName: workTypeName,
+      headerStatus: statusId,
+      headerStatusName: statusName,
+    ));
+  }
+
+  //---(Content Step)---//
+  Future<void> _onUpdateContentTaskName(Emitter<WeekPlanState> emit, String name) async {
+    emit(state.copyWith(taskName: name));
+  }
+
+  Future<void> _onUpdateContentAssignee(
+      Emitter<WeekPlanState> emit, int assigneeId, String assigneeName) async {
+    emit(state.copyWith(contentAssigneeId: assigneeId, contentAssigneeName: assigneeName));
+  }
+
+  Future<void> _onUpdateContentAssigner(
+      Emitter<WeekPlanState> emit, int assignerId, String assignerName) async {
+    emit(state.copyWith(contentAssignerId: assignerId, contentAssignerName: assignerName));
+  }
+
+  Future<void> _onUpdateContentDates(
+    Emitter<WeekPlanState> emit,
+    DateTime? startDate,
+    DateTime? endDate,
+    DateTime? actualStartDate,
+    DateTime? actualEndDate,
+    DateTime? deadline,
+  ) async {
+    emit(state.copyWith(
+      contentStartDate: startDate,
+      contentEndDate: endDate,
+      contentActualStartDate: actualStartDate,
+      contentActualEndDate: actualEndDate,
+      contentDeadline: deadline,
+    ));
+  }
+
+  Future<void> _onUpdateContentDescription(
+      Emitter<WeekPlanState> emit, String description) async {
+    emit(state.copyWith(contentDescription: description));
+  }
+
+  Future<void> _onUpdateContentResult(
+      Emitter<WeekPlanState> emit, String result) async {
+    emit(state.copyWith(contentResult: result));
+  }
+
+  //---(Assignees)---//
+  Future<void> _onSetAssignees(
+      Emitter<WeekPlanState> emit, List<WeekPlanEmployee> assignees) async {
+    emit(state.copyWith(selectedAssignees: assignees));
+  }
+
+  Future<void> _onAddAssignee(
+      Emitter<WeekPlanState> emit, WeekPlanEmployee employee) async {
+    final exists = state.selectedAssignees.any((e) => e.id == employee.id);
+    if (!exists) {
+      emit(state.copyWith(
+        selectedAssignees: [...state.selectedAssignees, employee],
+      ));
+    }
+  }
+
+  Future<void> _onRemoveAssignee(
+      Emitter<WeekPlanState> emit, int employeeId) async {
+    emit(state.copyWith(
+      selectedAssignees: state.selectedAssignees
+          .where((e) => e.id != employeeId)
+          .toList(),
+    ));
+  }
+
+  //---(Related Persons)---//
+  Future<void> _onSetRelatedPersons(
+      Emitter<WeekPlanState> emit, List<WeekPlanEmployee> persons) async {
+    emit(state.copyWith(selectedRelatedPersons: persons));
+  }
+
+  Future<void> _onAddRelatedPerson(
+      Emitter<WeekPlanState> emit, WeekPlanEmployee employee) async {
+    final exists = state.selectedRelatedPersons.any((e) => e.id == employee.id);
+    if (!exists) {
+      emit(state.copyWith(
+        selectedRelatedPersons: [...state.selectedRelatedPersons, employee],
+      ));
+    }
+  }
+
+  Future<void> _onRemoveRelatedPerson(
+      Emitter<WeekPlanState> emit, int employeeId) async {
+    emit(state.copyWith(
+      selectedRelatedPersons: state.selectedRelatedPersons
+          .where((e) => e.id != employeeId)
+          .toList(),
+    ));
+  }
+
+  //---(SubTasks)---//
+  Future<void> _onAddSubTask(
+      Emitter<WeekPlanState> emit, WeekPlanSubTaskItem subTask) async {
+    emit(state.copyWith(subTasks: [...state.subTasks, subTask]));
+  }
+
+  Future<void> _onUpdateSubTask(
+      Emitter<WeekPlanState> emit, int index, WeekPlanSubTaskItem subTask) async {
+    final list = List<WeekPlanSubTaskItem>.from(state.subTasks);
+    if (index >= 0 && index < list.length) {
+      list[index] = subTask;
+      emit(state.copyWith(subTasks: list));
+    }
+  }
+
+  Future<void> _onRemoveSubTask(Emitter<WeekPlanState> emit, int index) async {
+    final list = List<WeekPlanSubTaskItem>.from(state.subTasks);
+    if (index >= 0 && index < list.length) {
+      list.removeAt(index);
+      emit(state.copyWith(subTasks: list));
+    }
+  }
+
+  //---(Checklist)---//
+  Future<void> _onAddChecklistItem(
+      Emitter<WeekPlanState> emit, String item) async {
+    emit(state.copyWith(
+      checklistItems: [...state.checklistItems, item],
+      checklistDone: [...state.checklistDone, false],
+    ));
+  }
+
+  Future<void> _onUpdateChecklistItem(
+      Emitter<WeekPlanState> emit, int index, String item) async {
+    final items = List<String>.from(state.checklistItems);
+    if (index >= 0 && index < items.length) {
+      items[index] = item;
+      emit(state.copyWith(checklistItems: items));
+    }
+  }
+
+  Future<void> _onToggleChecklistDone(
+      Emitter<WeekPlanState> emit, int index) async {
+    final done = List<bool>.from(state.checklistDone);
+    if (index >= 0 && index < done.length) {
+      done[index] = !done[index];
+      emit(state.copyWith(checklistDone: done));
+    }
+  }
+
+  Future<void> _onRemoveChecklistItem(
+      Emitter<WeekPlanState> emit, int index) async {
+    final items = List<String>.from(state.checklistItems);
+    final done = List<bool>.from(state.checklistDone);
+    if (index >= 0 && index < items.length) {
+      items.removeAt(index);
+      if (index < done.length) done.removeAt(index);
+      emit(state.copyWith(checklistItems: items, checklistDone: done));
+    }
+  }
+
+  //---(Attachments)---//
+  Future<void> _onAddAttachment(
+      Emitter<WeekPlanState> emit, WeekPlanAttachmentItem attachment) async {
+    emit(state.copyWith(attachments: [...state.attachments, attachment]));
+  }
+
+  Future<void> _onRemoveAttachment(Emitter<WeekPlanState> emit, int index) async {
+    final list = List<WeekPlanAttachmentItem>.from(state.attachments);
+    if (index >= 0 && index < list.length) {
+      list.removeAt(index);
+      emit(state.copyWith(attachments: list));
+    }
+  }
+
+  //---(Incidents)---//
+  Future<void> _onAddIncident(
+      Emitter<WeekPlanState> emit, WeekPlanIncidentItem incident) async {
+    emit(state.copyWith(incidents: [...state.incidents, incident]));
+  }
+
+  Future<void> _onUpdateIncident(
+      Emitter<WeekPlanState> emit, int index, WeekPlanIncidentItem incident) async {
+    final list = List<WeekPlanIncidentItem>.from(state.incidents);
+    if (index >= 0 && index < list.length) {
+      list[index] = incident;
+      emit(state.copyWith(incidents: list));
+    }
+  }
+
+  Future<void> _onRemoveIncident(Emitter<WeekPlanState> emit, int index) async {
+    final list = List<WeekPlanIncidentItem>.from(state.incidents);
+    if (index >= 0 && index < list.length) {
+      list.removeAt(index);
+      emit(state.copyWith(incidents: list));
+    }
+  }
+
+  //---(Create)---//
   bool _isCreateTaskInFlight = false;
 
-  Future<void> _onCreateTask(
-    Emitter<WeekPlanState> emit, {
-    required String taskName,
-    required String projectName,
-    required String content,
-    required DateTime startDate,
-    required DateTime endDate,
-    required DateTime deadline,
-    required int priority,
-    String? description,
-  }) async {
+  Future<void> _onCreateTask(Emitter<WeekPlanState> emit) async {
     if (_isCreateTaskInFlight) return;
     _isCreateTaskInFlight = true;
 
@@ -246,26 +569,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         return;
       }
 
-      final payload = <String, dynamic>{
-        'TaskName': taskName,
-        'ProjectId': state.headerProjectId ?? 0,
-        'ProjectName': state.headerProjectName ?? projectName,
-        'ParentTaskId': state.headerParentTaskId,
-        'ParentTaskName': state.headerParentTaskName,
-        'IsPersonalTask': state.headerIsPersonalTask,
-        'Complexity': state.headerComplexity,
-        'TaskCategory': state.headerTaskCategory ?? 0,
-        'WorkType': state.headerWorkType ?? 0,
-        'Status': state.headerStatus ?? 0,
-        'TaskContent': content,
-        'Description': description ?? '',
-        'StartDate': startDate.toIso8601String(),
-        'EndDate': endDate.toIso8601String(),
-        'Deadline': deadline.toIso8601String(),
-        'Priority': priority,
-        'CreatorId': user.employeeId,
-        'AssigneeId': user.employeeId,
-      };
+      final payload = _buildCreatePayload(user.employeeId);
 
       _log.logI('Create task payload: $payload');
 
@@ -296,61 +600,67 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     }
   }
 
+  Map<String, dynamic> _buildCreatePayload(int userId) {
+    return {
+      'TaskName': state.taskName ?? '',
+      'ProjectId': state.headerProjectId ?? 0,
+      'ProjectName': state.headerProjectName ?? '',
+      'ParentTaskId': state.headerParentTaskId,
+      'ParentTaskName': state.headerParentTaskName,
+      'IsPersonalTask': state.headerIsPersonalTask,
+      'Complexity': state.headerComplexity,
+      'TaskCategory': state.headerTaskCategory ?? 0,
+      'WorkType': state.headerWorkType ?? 0,
+      'Status': state.headerStatus ?? 0,
+      'Description': state.contentDescription ?? '',
+      'Result': state.contentResult ?? '',
+      'StartDate': state.contentStartDate?.toIso8601String(),
+      'EndDate': state.contentEndDate?.toIso8601String(),
+      'ActualStartDate': state.contentActualStartDate?.toIso8601String(),
+      'ActualEndDate': state.contentActualEndDate?.toIso8601String(),
+      'Deadline': state.contentDeadline?.toIso8601String(),
+      'CreatorId': userId,
+      'AssigneeId': state.contentAssigneeId ?? userId,
+      'AssigneeIds': state.selectedAssignees.map((e) => e.id).toList(),
+      'RelatedPersonIds': state.selectedRelatedPersons.map((e) => e.id).toList(),
+      'SubTasks': state.subTasks.map((s) => _subTaskToPayload(s)).toList(),
+      'Attachments': state.attachments.map((a) => _attachmentToPayload(a)).toList(),
+      'Incidents': state.incidents.map((i) => _incidentToPayload(i)).toList(),
+    };
+  }
+
+  Map<String, dynamic> _subTaskToPayload(WeekPlanSubTaskItem s) => {
+    if (s.id != null) 'ID': s.id,
+    'Content': s.content ?? '',
+    if (s.startDate != null) 'StartDate': s.startDate!.toIso8601String(),
+    if (s.endDate != null) 'EndDate': s.endDate!.toIso8601String(),
+    if (s.assigneeId != null) 'AssigneeID': s.assigneeId,
+    if (s.assignerId != null) 'AssignerID': s.assignerId,
+    if (s.complexity != null) 'Complexity': s.complexity,
+    if (s.workType != null) 'WorkType': s.workType,
+    if (s.taskCategory != null) 'TaskCategory': s.taskCategory,
+  };
+
+  Map<String, dynamic> _attachmentToPayload(WeekPlanAttachmentItem a) => {
+    if (a.id != null) 'ID': a.id,
+    'FileName': a.fileName ?? '',
+    'FilePath': a.filePath ?? '',
+    if (a.fileSize != null) 'FileSize': a.fileSize,
+    'FileType': a.fileType ?? '',
+  };
+
+  Map<String, dynamic> _incidentToPayload(WeekPlanIncidentItem i) => {
+    if (i.id != null) 'ID': i.id,
+    'Description': i.description ?? '',
+    if (i.type != null) 'Type': i.type,
+    if (i.severity != null) 'Severity': i.severity,
+  };
+
   Future<void> _onClearSubmitState(Emitter<WeekPlanState> emit) async {
     emit(state.copyWith(
       isSubmitting: false,
       submitSuccess: false,
       message: null,
-    ));
-  }
-
-  //---(Header Form)---//
-  _onUpdateHeaderProject(
-      Emitter<WeekPlanState> emit, int projectId, String projectName) {
-    emit(state.copyWith(
-      headerProjectId: projectId,
-      headerProjectName: projectName,
-    ));
-  }
-
-  _onUpdateHeaderParentTask(
-      Emitter<WeekPlanState> emit, int parentTaskId, String parentTaskName) {
-    emit(state.copyWith(
-      headerParentTaskId: parentTaskId,
-      headerParentTaskName: parentTaskName,
-    ));
-  }
-
-  _onUpdateHeaderPersonalTask(
-      Emitter<WeekPlanState> emit, bool isPersonal) {
-    emit(state.copyWith(headerIsPersonalTask: isPersonal));
-  }
-
-  _onUpdateHeaderComplexity(
-      Emitter<WeekPlanState> emit, int complexity) {
-    emit(state.copyWith(headerComplexity: complexity));
-  }
-
-  _onUpdateHeaderTaskCategory(
-      Emitter<WeekPlanState> emit, int categoryId, String categoryName) {
-    emit(state.copyWith(
-      headerTaskCategory: categoryId,
-      headerTaskCategoryName: categoryName,
-    ));
-  }
-
-  _onUpdateHeaderWorkTypeAndStatus(
-    Emitter<WeekPlanState> emit,
-    int workTypeId,
-    String workTypeName,
-    int statusId,
-    String statusName,
-  ) {
-    emit(state.copyWith(
-      headerWorkType: workTypeId,
-      headerWorkTypeName: workTypeName,
-      headerStatus: statusId,
-      headerStatusName: statusName,
     ));
   }
 
@@ -494,5 +804,4 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       ),
     ];
   }
-
 }

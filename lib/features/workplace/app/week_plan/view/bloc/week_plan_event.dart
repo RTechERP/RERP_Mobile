@@ -23,21 +23,12 @@ class WeekPlanEvent with _$WeekPlanEvent {
 
   const factory WeekPlanEvent.checkIn(int taskId) = _CheckIn;
 
+  //---(Add Screen)---//
   const factory WeekPlanEvent.initAdd() = _InitAdd;
 
-  const factory WeekPlanEvent.createTask({
-    required String taskName,
-    required String projectName,
-    required String content,
-    required DateTime startDate,
-    required DateTime endDate,
-    required DateTime deadline,
-    required int priority,
-    String? description,
-  }) = _CreateTask;
+  const factory WeekPlanEvent.changeStep(int step) = _ChangeStep;
 
-  const factory WeekPlanEvent.clearSubmitState() = _ClearSubmitState;
-
+  // Step 1: Thông tin dự án
   const factory WeekPlanEvent.updateHeaderProject({
     required int projectId,
     required String projectName,
@@ -54,6 +45,17 @@ class WeekPlanEvent with _$WeekPlanEvent {
   const factory WeekPlanEvent.updateHeaderComplexity(int complexity) =
       _UpdateHeaderComplexity;
 
+  const factory WeekPlanEvent.updateHeaderPriority(int priority) =
+      _UpdateHeaderPriority;
+
+  const factory WeekPlanEvent.updateHeaderStatus({
+    required int statusId,
+    required String statusName,
+  }) = _UpdateHeaderStatus;
+
+  const factory WeekPlanEvent.updateHeaderTimeEstimate(double? timeEstimate) =
+      _UpdateHeaderTimeEstimate;
+
   const factory WeekPlanEvent.updateHeaderTaskCategory({
     required int categoryId,
     required String categoryName,
@@ -65,4 +67,94 @@ class WeekPlanEvent with _$WeekPlanEvent {
     required int statusId,
     required String statusName,
   }) = _UpdateHeaderWorkTypeAndStatus;
+
+  // Step 2: Nội dung chính
+  const factory WeekPlanEvent.updateContentTaskName(String name) =
+      _UpdateContentTaskName;
+
+  const factory WeekPlanEvent.updateContentAssignee({
+    required int assigneeId,
+    required String assigneeName,
+  }) = _UpdateContentAssignee;
+
+  const factory WeekPlanEvent.updateContentAssigner({
+    required int assignerId,
+    required String assignerName,
+  }) = _UpdateContentAssigner;
+
+  const factory WeekPlanEvent.updateContentDates({
+    DateTime? startDate,
+    DateTime? endDate,
+    DateTime? actualStartDate,
+    DateTime? actualEndDate,
+    DateTime? deadline,
+  }) = _UpdateContentDates;
+
+  const factory WeekPlanEvent.updateContentDescription(String description) =
+      _UpdateContentDescription;
+
+  const factory WeekPlanEvent.updateContentResult(String result) =
+      _UpdateContentResult;
+
+  // Step 3: Người thực hiện (multi-select)
+  const factory WeekPlanEvent.setAssignees(List<WeekPlanEmployee> assignees) =
+      _SetAssignees;
+
+  const factory WeekPlanEvent.addAssignee(WeekPlanEmployee employee) =
+      _AddAssignee;
+
+  const factory WeekPlanEvent.removeAssignee(int employeeId) =
+      _RemoveAssignee;
+
+  // Step 4: Người liên quan (multi-select)
+  const factory WeekPlanEvent.setRelatedPersons(
+      List<WeekPlanEmployee> persons) = _SetRelatedPersons;
+
+  const factory WeekPlanEvent.addRelatedPerson(WeekPlanEmployee employee) =
+      _AddRelatedPerson;
+
+  const factory WeekPlanEvent.removeRelatedPerson(int employeeId) =
+      _RemoveRelatedPerson;
+
+  // Step 5: Công việc con
+  const factory WeekPlanEvent.addSubTask(WeekPlanSubTaskItem subTask) =
+      _AddSubTask;
+
+  const factory WeekPlanEvent.updateSubTask(int index, WeekPlanSubTaskItem subTask) =
+      _UpdateSubTask;
+
+  const factory WeekPlanEvent.removeSubTask(int index) = _RemoveSubTask;
+
+  // Step 6: Checklist
+  const factory WeekPlanEvent.addChecklistItem(String item) = _AddChecklistItem;
+
+  const factory WeekPlanEvent.updateChecklistItem(int index, String item) =
+      _UpdateChecklistItem;
+
+  const factory WeekPlanEvent.toggleChecklistDone(int index) =
+      _ToggleChecklistDone;
+
+  const factory WeekPlanEvent.removeChecklistItem(int index) =
+      _RemoveChecklistItem;
+
+  // Step 7: Tệp đính kèm
+  const factory WeekPlanEvent.addAttachment(WeekPlanAttachmentItem attachment) =
+      _AddAttachment;
+
+  const factory WeekPlanEvent.removeAttachment(int index) =
+      _RemoveAttachment;
+
+  // Step 8: Phát sinh
+  const factory WeekPlanEvent.addIncident(WeekPlanIncidentItem incident) =
+      _AddIncident;
+
+  const factory WeekPlanEvent.updateIncident(int index, WeekPlanIncidentItem incident) =
+      _UpdateIncident;
+
+  const factory WeekPlanEvent.removeIncident(int index) = _RemoveIncident;
+
+  // Submit
+  const factory WeekPlanEvent.createTask() = _CreateTask;
+
+  const factory WeekPlanEvent.clearSubmitState() = _ClearSubmitState;
 }

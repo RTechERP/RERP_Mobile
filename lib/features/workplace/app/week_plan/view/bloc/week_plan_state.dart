@@ -14,7 +14,7 @@ class WeekPlanState extends BaseBlocState {
   final bool isSubmitting;
   final bool submitSuccess;
 
-  // Header form fields (nằm trên tabs)
+  // Step 1: Thông tin dự án
   final int? headerProjectId;
   final String? headerProjectName;
   final int? headerParentTaskId;
@@ -27,6 +27,44 @@ class WeekPlanState extends BaseBlocState {
   final String? headerWorkTypeName;
   final int? headerStatus;
   final String? headerStatusName;
+  final int headerPriority; // 0=Bình thường, 1=Trung, 2=Cao, 3=Khẩn cấp
+  final double? headerTimeEstimate; // giờ
+
+  // Step 2: Nội dung chính
+  final String? taskName;
+  final int? contentAssigneeId;
+  final String? contentAssigneeName;
+  final int? contentAssignerId;
+  final String? contentAssignerName;
+  final DateTime? contentStartDate;
+  final DateTime? contentEndDate;
+  final DateTime? contentActualStartDate;
+  final DateTime? contentActualEndDate;
+  final DateTime? contentDeadline;
+  final String? contentDescription;
+  final String? contentResult;
+
+  // Step 3: Người thực hiện (multi-select)
+  final List<WeekPlanEmployee> selectedAssignees;
+
+  // Step 4: Người liên quan (multi-select)
+  final List<WeekPlanEmployee> selectedRelatedPersons;
+
+  // Step 5: Công việc con
+  final List<WeekPlanSubTaskItem> subTasks;
+
+  // Step 6: Checklist (tạm thời stub)
+  final List<String> checklistItems;
+  final List<bool> checklistDone;
+
+  // Step 7: Tệp đính kèm
+  final List<WeekPlanAttachmentItem> attachments;
+
+  // Step 8: Phát sinh
+  final List<WeekPlanIncidentItem> incidents;
+
+  // Add screen step tracking
+  final int currentStep;
 
   const WeekPlanState({
     required super.status,
@@ -40,18 +78,49 @@ class WeekPlanState extends BaseBlocState {
     this.employeeId,
     this.isSubmitting = false,
     this.submitSuccess = false,
+    // Step 1
     this.headerProjectId,
     this.headerProjectName,
     this.headerParentTaskId,
     this.headerParentTaskName,
     this.headerIsPersonalTask = false,
-    this.headerComplexity = 3,
+    this.headerComplexity = 1,
     this.headerTaskCategory,
     this.headerTaskCategoryName,
     this.headerWorkType,
     this.headerWorkTypeName,
     this.headerStatus,
     this.headerStatusName,
+    this.headerPriority = 0, // 0=Bình thường, 1=Trung, 2=Cao, 3=Khẩn cấp
+    this.headerTimeEstimate,
+    // Step 2
+    this.taskName,
+    this.contentAssigneeId,
+    this.contentAssigneeName,
+    this.contentAssignerId,
+    this.contentAssignerName,
+    this.contentStartDate,
+    this.contentEndDate,
+    this.contentActualStartDate,
+    this.contentActualEndDate,
+    this.contentDeadline,
+    this.contentDescription,
+    this.contentResult,
+    // Step 3
+    this.selectedAssignees = const [],
+    // Step 4
+    this.selectedRelatedPersons = const [],
+    // Step 5
+    this.subTasks = const [],
+    // Step 6
+    this.checklistItems = const [],
+    this.checklistDone = const [],
+    // Step 7
+    this.attachments = const [],
+    // Step 8
+    this.incidents = const [],
+    // Step tracking
+    this.currentStep = 0,
   });
 
   factory WeekPlanState.init() => const WeekPlanState(
@@ -62,8 +131,19 @@ class WeekPlanState extends BaseBlocState {
         selectedStatus: 'Tất cả',
         isSubmitting: false,
         submitSuccess: false,
-        headerComplexity: 3,
+        headerComplexity: 1,
+        headerPriority: 0,
+        headerStatus: 0,
+        headerStatusName: 'Chưa làm',
         headerIsPersonalTask: false,
+        selectedAssignees: [],
+        selectedRelatedPersons: [],
+        subTasks: [],
+        checklistItems: [],
+        checklistDone: [],
+        attachments: [],
+        incidents: [],
+        currentStep: 0,
       );
 
   @override
@@ -79,6 +159,7 @@ class WeekPlanState extends BaseBlocState {
         employeeId,
         isSubmitting,
         submitSuccess,
+        // Step 1
         headerProjectId,
         headerProjectName,
         headerParentTaskId,
@@ -91,5 +172,35 @@ class WeekPlanState extends BaseBlocState {
         headerWorkTypeName,
         headerStatus,
         headerStatusName,
+        headerPriority,
+        headerTimeEstimate,
+        // Step 2
+        taskName,
+        contentAssigneeId,
+        contentAssigneeName,
+        contentAssignerId,
+        contentAssignerName,
+        contentStartDate,
+        contentEndDate,
+        contentActualStartDate,
+        contentActualEndDate,
+        contentDeadline,
+        contentDescription,
+        contentResult,
+        // Step 3
+        selectedAssignees,
+        // Step 4
+        selectedRelatedPersons,
+        // Step 5
+        subTasks,
+        // Step 6
+        checklistItems,
+        checklistDone,
+        // Step 7
+        attachments,
+        // Step 8
+        incidents,
+        // Step tracking
+        currentStep,
       ];
 }

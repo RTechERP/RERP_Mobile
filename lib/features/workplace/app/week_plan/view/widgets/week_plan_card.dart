@@ -153,7 +153,7 @@ class WeekPlanCard extends StatelessWidget {
                         else
                           _CheckinButton(
                             task: task,
-                            isCheckedIn: isCheckedIn,
+                            isCheckedIn: isCheckedIn == true,
                           ),
                       ],
                     ),

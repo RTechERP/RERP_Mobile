@@ -1,15 +1,13 @@
-/// 6 tab step-by-step cho màn tạo công việc.
-enum WeekPlanAddTab {
-  content(0, 'Nội dung chính'),
-  assignee(1, 'Người thực hiện'),
-  related(2, 'Người liên quan'),
-  subTask(3, 'Công việc con'),
-  checklist(4, 'Checklist'),
-  attach(5, 'Đính kèm'),
+/// 6-step enum cho màn tạo công việc với easy_stepper.
+enum WeekPlanAddStep {
+  projectInfo(0, 'Dự án'),
+  content(1, 'Nội dung'),
+  subTask(2, 'CV con'),
+  checklist(3, 'Checklist'),
+  attachment(4, 'Đính kèm'),
+  incident(5, 'Phát sinh');
 
-  problem(6, 'Phát sinh');
-
-  const WeekPlanAddTab(this.step, this.label);
+  const WeekPlanAddStep(this.step, this.label);
 
   final int step;
   final String label;

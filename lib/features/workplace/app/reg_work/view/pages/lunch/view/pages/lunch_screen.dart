@@ -188,7 +188,7 @@ class _LunchScreenState
               listWidgets.addAll(
                 dayItems.map((item) {
                   final status = _mapApprovalStatus(item.isApproved);
-                  final employeeDisplay = item.employeeId?.toString() ?? '--';
+                  final employeeDisplay = item.code?.toString() ?? '--';
                   final quantityDisplay = item.quantity?.toString() ?? '0';
                   final locationText = item.locationText ?? '';
 
