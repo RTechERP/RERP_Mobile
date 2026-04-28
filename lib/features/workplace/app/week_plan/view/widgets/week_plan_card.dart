@@ -1,4 +1,4 @@
-// Date: 21/04/2026
+// Date: 28/04/2026
 // Nội dung/Chức năng: Week Plan card - hiển thị công việc theo trạng thái
 
 import 'package:flutter/material.dart';
@@ -6,35 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
-import '../week_plan_helper.dart';
 import '../../data/datasource/models/week_plan_model.dart';
 import '../bloc/week_plan_bloc.dart';
+import '../week_plan_helper.dart';
 
-/// Lấy màu border trái dựa trên trạng thái.
-Color weekPlanStatusColor(WeekPlanTaskItem task) {
-  final status = (task.statusText ?? '').trim();
-  final lower = status.toLowerCase();
-
-  if (lower.contains('hoàn thành') || lower.contains('done') || lower.contains('completed')) {
-    return AppColors.stateSuccessColor;
-  }
-  if (lower.contains('đang') || lower.contains('in progress')) {
-    return AppColors.stateInfoColor;
-  }
-  if (lower.contains('từ chối') || lower.contains('quá hạn') || lower.contains('rejected') || lower.contains('overdue')) {
-    return AppColors.alert;
-  }
-  if (lower.contains('chưa') || lower.contains('pending') || lower.contains('not started')) {
-    return AppColors.gray;
-  }
-  return AppColors.warning;
-}
-
-/// Kiểm tra task có quá hạn không.
-bool weekPlanIsOverdue(WeekPlanTaskItem task) {
-  if (task.deadline == null) return false;
-  return DateTime.now().isAfter(task.deadline!) && task.status != 3;
-}
+//---(Card)---//
 
 class WeekPlanCard extends StatelessWidget {
   const WeekPlanCard({
@@ -48,196 +24,61 @@ class WeekPlanCard extends StatelessWidget {
   final bool isAssigned;
   final VoidCallback? onTap;
 
-  static final DateFormat _dateFormat = DateFormat('dd/MM/yyyy');
+  static final DateFormat _df = DateFormat('dd/MM/yyyy');
+  static final DateFormat _tf = DateFormat('dd/MM');
+
+  String _fmt(DateTime? dt) => dt == null ? '-' : _df.format(dt);
+  String _fmts(DateTime? dt) => dt == null ? '-' : _tf.format(dt);
 
   @override
   Widget build(BuildContext context) {
     final statusColor = weekPlanStatusColor(task);
     final statusLabel = weekPlanStatusLabel(task);
     final isOverdue = weekPlanIsOverdue(task);
-    final isCheckedIn = task.isCheckedIn;
+    final isCheckedIn = task.isCheck == true;
+    final typeColor = weekPlanTypeColor(task);
+    final typeName = task.projectTaskTypeName ?? '';
 
     final inner = Container(
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
-      child: IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              width: 5,
-              decoration: BoxDecoration(
-                color: statusColor,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(14),
-                  bottomLeft: Radius.circular(14),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    // Row 1: icon + project name + status badge + check-in button / overdue badge
-                    Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: statusColor.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Icon(
-                            isAssigned
-                                ? Icons.person_outline
-                                : Icons.assignment_outlined,
-                            size: 20,
-                            color: statusColor,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _TinyBadge(
-                                text: statusLabel,
-                                color: statusColor,
-                              ),
-                              if ((task.projectName ?? '').isNotEmpty) ...[
-                                const SizedBox(height: 2),
-                                Text(
-                                  task.projectName!,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.textSecondaryColor,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ],
-                            ],
-                          ),
-                        ),
-                        if (isOverdue)
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 6,
-                              vertical: 2,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.alert.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            child: const Text(
-                              'Không điểm danh',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.alert,
-                              ),
-                            ),
-                          )
-                        else
-                          _CheckinButton(
-                            task: task,
-                            isCheckedIn: isCheckedIn == true,
-                          ),
-                      ],
-                    ),
-
-                    // Row 2: deadline icon + deadline date
-                    const SizedBox(height: 6),
-                    if (task.deadline != null)
-                      Row(
-                        children: [
-                          Icon(
-                            isOverdue
-                                ? Icons.warning_amber_rounded
-                                : Icons.schedule,
-                            size: 14,
-                            color: isOverdue
-                                ? AppColors.alert
-                                : AppColors.textTertiaryColor,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            'Thời hạn: ${_dateFormat.format(task.deadline!)}',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: isOverdue
-                                  ? AppColors.alert
-                                  : AppColors.textTertiaryColor,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                    // Divider
-                    const SizedBox(height: 10),
-                    Container(
-                      height: 1,
-                      color: AppColors.borderColor.withValues(alpha: 0.6),
-                    ),
-                    const SizedBox(height: 10),
-
-                    // Task name
-                    if ((task.taskName ?? '').isNotEmpty)
-                      Text(
-                        task.taskName!,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.heading,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-
-                    // Bottom: assignee info (only in assigned tab)
-                    if (isAssigned && (task.assigneeName ?? '').isNotEmpty) ...[
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              // Left accent bar
+              Container(width: 4, color: statusColor),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _buildHeader(statusColor, statusLabel, typeColor, typeName, isCheckedIn),
                       const SizedBox(height: 12),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.person_outline,
-                            size: 14,
-                            color: AppColors.textTertiaryColor,
-                          ),
-                          const SizedBox(width: 4),
-                          Expanded(
-                            child: Text(
-                              task.assigneeName!,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.text,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
+                      _buildTaskName(),
+                      const SizedBox(height: 14),
+                      _buildTimeline(),
+                      if (isAssigned && (task.departmentAssigneeName ?? '').isNotEmpty) ...[
+                        const SizedBox(height: 14),
+                        _buildAssignee(),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -247,47 +88,377 @@ class WeekPlanCard extends StatelessWidget {
         : Material(
             color: Colors.transparent,
             child: InkWell(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(16),
               onTap: onTap,
               child: inner,
             ),
           );
   }
+
+  //---(_Header)---//
+  Widget _buildHeader(Color statusColor, String statusLabel, Color typeColor, String typeName, bool isCheckedIn) {
+    return Row(
+      children: [
+        // Icon
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: statusColor.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Icon(
+            isAssigned ? Icons.person_outline : Icons.assignment_outlined,
+            size: 18,
+            color: statusColor,
+          ),
+        ),
+        const SizedBox(width: 10),
+
+        // Project info
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if ((task.projectName ?? '').isNotEmpty)
+                Text(
+                  task.projectName!,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.textSecondaryColor,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              if ((task.projectCode ?? '').isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 1),
+                  child: Text(
+                    task.projectCode!,
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: AppColors.textTertiaryColor,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+            ],
+          ),
+        ),
+
+        // Type badge
+        if (typeName.isNotEmpty) ...[
+          _TypeBadge(text: typeName, color: typeColor),
+          const SizedBox(width: 8),
+        ],
+
+        // Checkin button
+        _CheckinButton(task: task, isCheckedIn: isCheckedIn),
+      ],
+    );
+  }
+
+  //---(_TaskName)---//
+  Widget _buildTaskName() {
+    final name = task.mission ?? task.taskName ?? '';
+    if (name.isEmpty) return const SizedBox.shrink();
+
+    return Text(
+      name,
+      style: const TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.w700,
+        color: AppColors.heading,
+        height: 1.3,
+      ),
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+    );
+  }
+
+  //---(_Timeline)---//
+  Widget _buildTimeline() {
+    final planStart = task.planStartDate ?? task.startDate;
+    final planEnd = task.planEndDate ?? task.endDate;
+    final actualStart = task.actualStartDate;
+    final actualEnd = task.actualEndDate;
+    final deadline = task.deadline;
+    final isOverdue = weekPlanIsOverdue(task);
+
+    final hasPlan = planStart != null || planEnd != null;
+    final hasActual = actualStart != null || actualEnd != null;
+    final hasOnlyDates = !hasPlan && !hasActual;
+
+    return Column(
+      children: [
+        // Deadline row (if exists)
+        if (deadline != null) ...[
+          _buildMetaRow(
+            icon: isOverdue ? Icons.warning_amber_rounded : Icons.event,
+            iconColor: isOverdue ? AppColors.alert : AppColors.textTertiaryColor,
+            label: 'Thời hạn',
+            value: _fmt(deadline),
+            valueColor: isOverdue ? AppColors.alert : AppColors.heading,
+          ),
+          const SizedBox(height: 8),
+        ],
+
+        // Status badge
+        _buildMetaRow(
+          icon: Icons.flag_outlined,
+          iconColor: weekPlanStatusColor(task),
+          label: 'Trạng thái',
+          value: weekPlanStatusLabel(task),
+          valueColor: weekPlanStatusColor(task),
+        ),
+
+        // Date rows
+        if (hasPlan) ...[
+          const SizedBox(height: 8),
+          _buildTimelineRow(
+            label: 'Dự kiến',
+            start: planStart,
+            end: planEnd,
+            color: AppColors.stateInfoColor,
+          ),
+        ],
+        if (hasActual) ...[
+          const SizedBox(height: 6),
+          _buildTimelineRow(
+            label: 'Thực tế',
+            start: actualStart,
+            end: actualEnd,
+            color: AppColors.stateSuccessColor,
+          ),
+        ],
+        if (hasOnlyDates) ...[
+          const SizedBox(height: 8),
+          _buildTimelineRow(
+            label: 'Ngày',
+            start: task.startDate,
+            end: task.endDate,
+            color: AppColors.textTertiaryColor,
+          ),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildMetaRow({
+    required IconData icon,
+    required Color iconColor,
+    required String label,
+    required String value,
+    Color? valueColor,
+  }) {
+    return Row(
+      children: [
+        Icon(icon, size: 14, color: iconColor),
+        const SizedBox(width: 6),
+        Text(
+          '$label: ',
+          style: const TextStyle(
+            fontSize: 12,
+            color: AppColors.textTertiaryColor,
+          ),
+        ),
+        Expanded(
+          child: Text(
+            value,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: valueColor ?? AppColors.heading,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTimelineRow({
+    required String label,
+    required DateTime? start,
+    required DateTime? end,
+    required Color color,
+  }) {
+    return Row(
+      children: [
+        // Timeline dot
+        Container(
+          width: 8,
+          height: 8,
+          margin: const EdgeInsets.only(right: 8),
+          decoration: BoxDecoration(
+            color: color,
+            shape: BoxShape.circle,
+          ),
+        ),
+        // Label
+        SizedBox(
+          width: 56,
+          child: Text(
+            label,
+            style: const TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w500,
+              color: AppColors.textTertiaryColor,
+            ),
+          ),
+        ),
+        // Start
+        _TimelineChip(label: 'Bắt đầu', value: _fmts(start), color: color),
+        const SizedBox(width: 8),
+        // Arrow
+        Icon(Icons.arrow_forward, size: 12, color: AppColors.textTertiaryColor),
+        const SizedBox(width: 8),
+        // End
+        _TimelineChip(label: 'Kết thúc', value: _fmts(end), color: color),
+      ],
+    );
+  }
+
+  //---(_Assignee)---//
+  Widget _buildAssignee() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      decoration: BoxDecoration(
+        color: AppColors.supportBtn,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.person_outline,
+            size: 14,
+            color: AppColors.textTertiaryColor,
+          ),
+          const SizedBox(width: 6),
+          Expanded(
+            child: Text(
+              task.departmentAssigneeName!,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textSecondaryColor,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//---(_TypeBadge)---//
+class _TypeBadge extends StatelessWidget {
+  const _TypeBadge({required this.text, required this.color});
+
+  final String text;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          color: color,
+        ),
+      ),
+    );
+  }
+}
+
+//---(_TimelineChip)---//
+class _TimelineChip extends StatelessWidget {
+  const _TimelineChip({required this.label, required this.value, required this.color});
+
+  final String label;
+  final String value;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.07),
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: color.withValues(alpha: 0.15)),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: 9,
+                      color: color.withValues(alpha: 0.8),
+                    ),
+                  ),
+                  Text(
+                    value,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: color,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 //---(_CheckinButton)---//
-
 class _CheckinButton extends StatelessWidget {
-  const _CheckinButton({
-    required this.task,
-    required this.isCheckedIn,
-  });
+  const _CheckinButton({required this.task, required this.isCheckedIn});
 
   final WeekPlanTaskItem task;
   final bool isCheckedIn;
 
   @override
   Widget build(BuildContext context) {
-    final isDone = (task.statusText ?? '').toLowerCase().contains('hoàn thành') ||
-        task.status == 2;
+    final isDone = task.status == 3 || task.status == 2;
+    final isActive = isCheckedIn || isDone;
 
     return GestureDetector(
       onTap: () => _onCheckIn(context),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
-          color: isCheckedIn
+          color: isActive
               ? AppColors.stateSuccessColor.withValues(alpha: 0.1)
-              : isDone
-                  ? AppColors.stateSuccessColor.withValues(alpha: 0.1)
-                  : AppColors.primaryERP,
+              : AppColors.primaryERP,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: (isCheckedIn || isDone)
+          boxShadow: isActive
               ? null
               : [
                   BoxShadow(
-                    color: AppColors.primaryERP.withValues(alpha: 0.3),
-                    blurRadius: 4,
+                    color: AppColors.primaryERP.withValues(alpha: 0.25),
+                    blurRadius: 6,
                     offset: const Offset(0, 2),
                   ),
                 ],
@@ -301,9 +472,7 @@ class _CheckinButton extends StatelessWidget {
           style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w600,
-            color: (isCheckedIn || isDone)
-                ? AppColors.stateSuccessColor
-                : Colors.white,
+            color: isActive ? AppColors.stateSuccessColor : Colors.white,
           ),
         ),
       ),
@@ -313,43 +482,5 @@ class _CheckinButton extends StatelessWidget {
   void _onCheckIn(BuildContext context) {
     if (task.id == null || isCheckedIn) return;
     context.read<WeekPlanBloc>().add(WeekPlanEvent.checkIn(task.id!));
-  }
-}
-
-//---(_TinyBadge)---//
-
-class _TinyBadge extends StatelessWidget {
-  const _TinyBadge({required this.text, required this.color});
-
-  final String text;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    final safeText = text.trim().isEmpty ? '-' : text.trim();
-    final bg = color.withValues(alpha: 0.12);
-    final border = color.withValues(alpha: 0.4);
-
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 100),
-      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-      decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: border),
-      ),
-      child: Text(
-        safeText,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 10,
-          fontWeight: FontWeight.w700,
-          color: color,
-          letterSpacing: 0.2,
-        ),
-      ),
-    );
   }
 }

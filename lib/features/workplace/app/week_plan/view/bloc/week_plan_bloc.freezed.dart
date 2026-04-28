@@ -19,6 +19,8 @@ mixin _$WeekPlanEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -34,6 +36,8 @@ mixin _$WeekPlanEvent {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -86,6 +90,8 @@ mixin _$WeekPlanEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -99,6 +105,8 @@ mixin _$WeekPlanEvent {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -148,6 +156,8 @@ mixin _$WeekPlanEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -161,6 +171,7 @@ mixin _$WeekPlanEvent {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -211,6 +222,8 @@ mixin _$WeekPlanEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -224,6 +237,7 @@ mixin _$WeekPlanEvent {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -271,6 +285,8 @@ mixin _$WeekPlanEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -283,6 +299,7 @@ mixin _$WeekPlanEvent {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -326,6 +343,8 @@ mixin _$WeekPlanEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -338,6 +357,7 @@ mixin _$WeekPlanEvent {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -433,6 +453,8 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -448,6 +470,8 @@ class _$InitImpl implements _Init {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -503,6 +527,8 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -516,6 +542,8 @@ class _$InitImpl implements _Init {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -568,6 +596,8 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -581,6 +611,7 @@ class _$InitImpl implements _Init {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -637,6 +668,8 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -650,6 +683,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -700,6 +734,8 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -712,6 +748,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -758,6 +795,8 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -770,6 +809,7 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -818,6 +858,956 @@ abstract class _Init implements WeekPlanEvent {
 }
 
 /// @nodoc
+abstract class _$$InitWithViewImplCopyWith<$Res> {
+  factory _$$InitWithViewImplCopyWith(
+          _$InitWithViewImpl value, $Res Function(_$InitWithViewImpl) then) =
+      __$$InitWithViewImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int viewNumber});
+}
+
+/// @nodoc
+class __$$InitWithViewImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$InitWithViewImpl>
+    implements _$$InitWithViewImplCopyWith<$Res> {
+  __$$InitWithViewImplCopyWithImpl(
+      _$InitWithViewImpl _value, $Res Function(_$InitWithViewImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? viewNumber = null,
+  }) {
+    return _then(_$InitWithViewImpl(
+      null == viewNumber
+          ? _value.viewNumber
+          : viewNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitWithViewImpl implements _InitWithView {
+  const _$InitWithViewImpl(this.viewNumber);
+
+  @override
+  final int viewNumber;
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.initWithView(viewNumber: $viewNumber)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitWithViewImpl &&
+            (identical(other.viewNumber, viewNumber) ||
+                other.viewNumber == viewNumber));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, viewNumber);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitWithViewImplCopyWith<_$InitWithViewImpl> get copyWith =>
+      __$$InitWithViewImplCopyWithImpl<_$InitWithViewImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(String status) filterByStatus,
+    required TResult Function() clearStatusFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId) checkIn,
+    required TResult Function() initAdd,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(int categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(List<WeekPlanEmployee> assignees) setAssignees,
+    required TResult Function(WeekPlanEmployee employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<WeekPlanEmployee> persons) setRelatedPersons,
+    required TResult Function(WeekPlanEmployee employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function() createTask,
+    required TResult Function() clearSubmitState,
+  }) {
+    return initWithView(viewNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(String status)? filterByStatus,
+    TResult? Function()? clearStatusFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId)? checkIn,
+    TResult? Function()? initAdd,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(List<WeekPlanEmployee> assignees)? setAssignees,
+    TResult? Function(WeekPlanEmployee employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<WeekPlanEmployee> persons)? setRelatedPersons,
+    TResult? Function(WeekPlanEmployee employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function()? createTask,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return initWithView?.call(viewNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(String status)? filterByStatus,
+    TResult Function()? clearStatusFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId)? checkIn,
+    TResult Function()? initAdd,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(List<WeekPlanEmployee> assignees)? setAssignees,
+    TResult Function(WeekPlanEmployee employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<WeekPlanEmployee> persons)? setRelatedPersons,
+    TResult Function(WeekPlanEmployee employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function()? createTask,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (initWithView != null) {
+      return initWithView(viewNumber);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearStatusFilter value) clearStatusFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTask value) addSubTask,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return initWithView(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTask value)? addSubTask,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return initWithView?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTask value)? addSubTask,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (initWithView != null) {
+      return initWithView(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitWithView implements WeekPlanEvent {
+  const factory _InitWithView(final int viewNumber) = _$InitWithViewImpl;
+
+  int get viewNumber;
+  @JsonKey(ignore: true)
+  _$$InitWithViewImplCopyWith<_$InitWithViewImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeViewImplCopyWith<$Res> {
+  factory _$$ChangeViewImplCopyWith(
+          _$ChangeViewImpl value, $Res Function(_$ChangeViewImpl) then) =
+      __$$ChangeViewImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int viewNumber});
+}
+
+/// @nodoc
+class __$$ChangeViewImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$ChangeViewImpl>
+    implements _$$ChangeViewImplCopyWith<$Res> {
+  __$$ChangeViewImplCopyWithImpl(
+      _$ChangeViewImpl _value, $Res Function(_$ChangeViewImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? viewNumber = null,
+  }) {
+    return _then(_$ChangeViewImpl(
+      null == viewNumber
+          ? _value.viewNumber
+          : viewNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeViewImpl implements _ChangeView {
+  const _$ChangeViewImpl(this.viewNumber);
+
+  @override
+  final int viewNumber;
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.changeView(viewNumber: $viewNumber)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeViewImpl &&
+            (identical(other.viewNumber, viewNumber) ||
+                other.viewNumber == viewNumber));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, viewNumber);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeViewImplCopyWith<_$ChangeViewImpl> get copyWith =>
+      __$$ChangeViewImplCopyWithImpl<_$ChangeViewImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(String status) filterByStatus,
+    required TResult Function() clearStatusFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId) checkIn,
+    required TResult Function() initAdd,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(int categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(List<WeekPlanEmployee> assignees) setAssignees,
+    required TResult Function(WeekPlanEmployee employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<WeekPlanEmployee> persons) setRelatedPersons,
+    required TResult Function(WeekPlanEmployee employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function() createTask,
+    required TResult Function() clearSubmitState,
+  }) {
+    return changeView(viewNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(String status)? filterByStatus,
+    TResult? Function()? clearStatusFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId)? checkIn,
+    TResult? Function()? initAdd,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(List<WeekPlanEmployee> assignees)? setAssignees,
+    TResult? Function(WeekPlanEmployee employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<WeekPlanEmployee> persons)? setRelatedPersons,
+    TResult? Function(WeekPlanEmployee employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function()? createTask,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return changeView?.call(viewNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(String status)? filterByStatus,
+    TResult Function()? clearStatusFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId)? checkIn,
+    TResult Function()? initAdd,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(List<WeekPlanEmployee> assignees)? setAssignees,
+    TResult Function(WeekPlanEmployee employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<WeekPlanEmployee> persons)? setRelatedPersons,
+    TResult Function(WeekPlanEmployee employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function()? createTask,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (changeView != null) {
+      return changeView(viewNumber);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearStatusFilter value) clearStatusFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTask value) addSubTask,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return changeView(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTask value)? addSubTask,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return changeView?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTask value)? addSubTask,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (changeView != null) {
+      return changeView(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeView implements WeekPlanEvent {
+  const factory _ChangeView(final int viewNumber) = _$ChangeViewImpl;
+
+  int get viewNumber;
+  @JsonKey(ignore: true)
+  _$$ChangeViewImplCopyWith<_$ChangeViewImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$RefreshImplCopyWith<$Res> {
   factory _$$RefreshImplCopyWith(
           _$RefreshImpl value, $Res Function(_$RefreshImpl) then) =
@@ -856,6 +1846,8 @@ class _$RefreshImpl implements _Refresh {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -871,6 +1863,8 @@ class _$RefreshImpl implements _Refresh {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -926,6 +1920,8 @@ class _$RefreshImpl implements _Refresh {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -939,6 +1935,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -991,6 +1989,8 @@ class _$RefreshImpl implements _Refresh {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -1004,6 +2004,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -1060,6 +2061,8 @@ class _$RefreshImpl implements _Refresh {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -1073,6 +2076,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -1123,6 +2127,8 @@ class _$RefreshImpl implements _Refresh {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -1135,6 +2141,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -1181,6 +2188,8 @@ class _$RefreshImpl implements _Refresh {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -1193,6 +2202,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -1305,6 +2315,8 @@ class _$SearchImpl implements _Search {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -1320,6 +2332,8 @@ class _$SearchImpl implements _Search {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -1375,6 +2389,8 @@ class _$SearchImpl implements _Search {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -1388,6 +2404,8 @@ class _$SearchImpl implements _Search {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -1440,6 +2458,8 @@ class _$SearchImpl implements _Search {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -1453,6 +2473,7 @@ class _$SearchImpl implements _Search {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -1509,6 +2530,8 @@ class _$SearchImpl implements _Search {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -1522,6 +2545,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -1572,6 +2596,8 @@ class _$SearchImpl implements _Search {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -1584,6 +2610,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -1630,6 +2657,8 @@ class _$SearchImpl implements _Search {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -1642,6 +2671,7 @@ class _$SearchImpl implements _Search {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -1733,6 +2763,8 @@ class _$ClearSearchImpl implements _ClearSearch {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -1748,6 +2780,8 @@ class _$ClearSearchImpl implements _ClearSearch {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -1803,6 +2837,8 @@ class _$ClearSearchImpl implements _ClearSearch {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -1816,6 +2852,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -1868,6 +2906,8 @@ class _$ClearSearchImpl implements _ClearSearch {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -1881,6 +2921,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -1937,6 +2978,8 @@ class _$ClearSearchImpl implements _ClearSearch {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -1950,6 +2993,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -2000,6 +3044,8 @@ class _$ClearSearchImpl implements _ClearSearch {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -2012,6 +3058,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -2058,6 +3105,8 @@ class _$ClearSearchImpl implements _ClearSearch {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -2070,6 +3119,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -2183,6 +3233,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -2198,6 +3250,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -2253,6 +3307,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -2266,6 +3322,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -2318,6 +3376,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -2331,6 +3391,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -2387,6 +3448,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -2400,6 +3463,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -2450,6 +3514,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -2462,6 +3528,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -2508,6 +3575,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -2520,6 +3589,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -2611,6 +3681,8 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -2626,6 +3698,8 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -2681,6 +3755,8 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -2694,6 +3770,8 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -2746,6 +3824,8 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -2759,6 +3839,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -2815,6 +3896,8 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -2828,6 +3911,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -2878,6 +3962,8 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -2890,6 +3976,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -2936,6 +4023,8 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -2948,6 +4037,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -3070,6 +4160,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -3085,6 +4177,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -3140,6 +4234,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -3153,6 +4249,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -3205,6 +4303,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -3218,6 +4318,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -3274,6 +4375,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -3287,6 +4390,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -3337,6 +4441,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -3349,6 +4455,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -3395,6 +4502,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -3407,6 +4516,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -3501,6 +4611,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -3516,6 +4628,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -3571,6 +4685,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -3584,6 +4700,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -3636,6 +4754,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -3649,6 +4769,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -3705,6 +4826,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -3718,6 +4841,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -3768,6 +4892,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -3780,6 +4906,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -3826,6 +4953,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -3838,6 +4967,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -3950,6 +5080,8 @@ class _$CheckInImpl implements _CheckIn {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -3965,6 +5097,8 @@ class _$CheckInImpl implements _CheckIn {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -4020,6 +5154,8 @@ class _$CheckInImpl implements _CheckIn {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -4033,6 +5169,8 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -4085,6 +5223,8 @@ class _$CheckInImpl implements _CheckIn {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -4098,6 +5238,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -4154,6 +5295,8 @@ class _$CheckInImpl implements _CheckIn {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -4167,6 +5310,7 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -4217,6 +5361,8 @@ class _$CheckInImpl implements _CheckIn {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -4229,6 +5375,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -4275,6 +5422,8 @@ class _$CheckInImpl implements _CheckIn {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -4287,6 +5436,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -4378,6 +5528,8 @@ class _$InitAddImpl implements _InitAdd {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -4393,6 +5545,8 @@ class _$InitAddImpl implements _InitAdd {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -4448,6 +5602,8 @@ class _$InitAddImpl implements _InitAdd {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -4461,6 +5617,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -4513,6 +5671,8 @@ class _$InitAddImpl implements _InitAdd {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -4526,6 +5686,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -4582,6 +5743,8 @@ class _$InitAddImpl implements _InitAdd {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -4595,6 +5758,7 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -4645,6 +5809,8 @@ class _$InitAddImpl implements _InitAdd {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -4657,6 +5823,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -4703,6 +5870,8 @@ class _$InitAddImpl implements _InitAdd {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -4715,6 +5884,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -4827,6 +5997,8 @@ class _$ChangeStepImpl implements _ChangeStep {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -4842,6 +6014,8 @@ class _$ChangeStepImpl implements _ChangeStep {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -4897,6 +6071,8 @@ class _$ChangeStepImpl implements _ChangeStep {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -4910,6 +6086,8 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -4962,6 +6140,8 @@ class _$ChangeStepImpl implements _ChangeStep {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -4975,6 +6155,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -5031,6 +6212,8 @@ class _$ChangeStepImpl implements _ChangeStep {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -5044,6 +6227,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -5094,6 +6278,8 @@ class _$ChangeStepImpl implements _ChangeStep {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -5106,6 +6292,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -5152,6 +6339,8 @@ class _$ChangeStepImpl implements _ChangeStep {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -5164,6 +6353,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -5293,6 +6483,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -5308,6 +6500,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -5363,6 +6557,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -5376,6 +6572,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -5428,6 +6626,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -5441,6 +6641,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -5497,6 +6698,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -5510,6 +6713,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -5560,6 +6764,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -5572,6 +6778,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -5618,6 +6825,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -5630,6 +6839,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -5764,6 +6974,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -5779,6 +6991,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -5834,6 +7048,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -5847,6 +7063,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -5899,6 +7117,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -5912,6 +7132,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -5968,6 +7189,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -5981,6 +7204,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -6031,6 +7255,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -6043,6 +7269,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -6089,6 +7316,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -6101,6 +7330,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -6153,6 +7383,496 @@ abstract class _UpdateHeaderParentTask implements WeekPlanEvent {
   String get parentTaskName;
   @JsonKey(ignore: true)
   _$$UpdateHeaderParentTaskImplCopyWith<_$UpdateHeaderParentTaskImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateHeaderAssignerImplCopyWith<$Res> {
+  factory _$$UpdateHeaderAssignerImplCopyWith(_$UpdateHeaderAssignerImpl value,
+          $Res Function(_$UpdateHeaderAssignerImpl) then) =
+      __$$UpdateHeaderAssignerImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int assignerId, String assignerName});
+}
+
+/// @nodoc
+class __$$UpdateHeaderAssignerImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$UpdateHeaderAssignerImpl>
+    implements _$$UpdateHeaderAssignerImplCopyWith<$Res> {
+  __$$UpdateHeaderAssignerImplCopyWithImpl(_$UpdateHeaderAssignerImpl _value,
+      $Res Function(_$UpdateHeaderAssignerImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? assignerId = null,
+    Object? assignerName = null,
+  }) {
+    return _then(_$UpdateHeaderAssignerImpl(
+      assignerId: null == assignerId
+          ? _value.assignerId
+          : assignerId // ignore: cast_nullable_to_non_nullable
+              as int,
+      assignerName: null == assignerName
+          ? _value.assignerName
+          : assignerName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
+  const _$UpdateHeaderAssignerImpl(
+      {required this.assignerId, required this.assignerName});
+
+  @override
+  final int assignerId;
+  @override
+  final String assignerName;
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.updateHeaderAssigner(assignerId: $assignerId, assignerName: $assignerName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateHeaderAssignerImpl &&
+            (identical(other.assignerId, assignerId) ||
+                other.assignerId == assignerId) &&
+            (identical(other.assignerName, assignerName) ||
+                other.assignerName == assignerName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, assignerId, assignerName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateHeaderAssignerImplCopyWith<_$UpdateHeaderAssignerImpl>
+      get copyWith =>
+          __$$UpdateHeaderAssignerImplCopyWithImpl<_$UpdateHeaderAssignerImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(String status) filterByStatus,
+    required TResult Function() clearStatusFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId) checkIn,
+    required TResult Function() initAdd,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(int categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(List<WeekPlanEmployee> assignees) setAssignees,
+    required TResult Function(WeekPlanEmployee employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<WeekPlanEmployee> persons) setRelatedPersons,
+    required TResult Function(WeekPlanEmployee employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function() createTask,
+    required TResult Function() clearSubmitState,
+  }) {
+    return updateHeaderAssigner(assignerId, assignerName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(String status)? filterByStatus,
+    TResult? Function()? clearStatusFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId)? checkIn,
+    TResult? Function()? initAdd,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(List<WeekPlanEmployee> assignees)? setAssignees,
+    TResult? Function(WeekPlanEmployee employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<WeekPlanEmployee> persons)? setRelatedPersons,
+    TResult? Function(WeekPlanEmployee employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function()? createTask,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return updateHeaderAssigner?.call(assignerId, assignerName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(String status)? filterByStatus,
+    TResult Function()? clearStatusFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId)? checkIn,
+    TResult Function()? initAdd,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(List<WeekPlanEmployee> assignees)? setAssignees,
+    TResult Function(WeekPlanEmployee employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<WeekPlanEmployee> persons)? setRelatedPersons,
+    TResult Function(WeekPlanEmployee employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function()? createTask,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (updateHeaderAssigner != null) {
+      return updateHeaderAssigner(assignerId, assignerName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearStatusFilter value) clearStatusFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTask value) addSubTask,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return updateHeaderAssigner(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTask value)? addSubTask,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return updateHeaderAssigner?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTask value)? addSubTask,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (updateHeaderAssigner != null) {
+      return updateHeaderAssigner(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateHeaderAssigner implements WeekPlanEvent {
+  const factory _UpdateHeaderAssigner(
+      {required final int assignerId,
+      required final String assignerName}) = _$UpdateHeaderAssignerImpl;
+
+  int get assignerId;
+  String get assignerName;
+  @JsonKey(ignore: true)
+  _$$UpdateHeaderAssignerImplCopyWith<_$UpdateHeaderAssignerImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -6225,6 +7945,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -6240,6 +7962,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -6295,6 +8019,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -6308,6 +8034,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -6360,6 +8088,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -6373,6 +8103,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -6429,6 +8160,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -6442,6 +8175,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -6492,6 +8226,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -6504,6 +8240,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -6550,6 +8287,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -6562,6 +8301,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -6684,6 +8424,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -6699,6 +8441,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -6754,6 +8498,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -6767,6 +8513,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -6819,6 +8567,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -6832,6 +8582,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -6888,6 +8639,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -6901,6 +8654,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -6951,6 +8705,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -6963,6 +8719,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -7009,6 +8766,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -7021,6 +8780,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -7142,6 +8902,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -7157,6 +8919,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -7212,6 +8976,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -7225,6 +8991,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -7277,6 +9045,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -7290,6 +9060,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -7346,6 +9117,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -7359,6 +9132,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -7409,6 +9183,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -7421,6 +9197,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -7467,6 +9244,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -7479,6 +9258,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -7609,6 +9389,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -7624,6 +9406,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -7679,6 +9463,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -7692,6 +9478,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -7744,6 +9532,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -7757,6 +9547,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -7813,6 +9604,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -7826,6 +9619,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -7876,6 +9670,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -7888,6 +9684,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -7934,6 +9731,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -7946,6 +9745,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -8070,6 +9870,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -8085,6 +9887,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -8140,6 +9944,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -8153,6 +9959,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -8205,6 +10013,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -8218,6 +10028,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -8274,6 +10085,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -8287,6 +10100,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -8337,6 +10151,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -8349,6 +10165,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -8395,6 +10212,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -8407,6 +10226,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -8539,6 +10359,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -8554,6 +10376,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -8609,6 +10433,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -8622,6 +10448,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -8674,6 +10502,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -8687,6 +10517,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -8743,6 +10574,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -8756,6 +10589,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -8806,6 +10640,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -8818,6 +10654,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -8864,6 +10701,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -8876,6 +10715,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -9036,6 +10876,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -9051,6 +10893,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -9107,6 +10951,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -9120,6 +10966,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -9173,6 +11021,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -9186,6 +11036,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -9243,6 +11094,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -9256,6 +11109,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -9306,6 +11160,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -9318,6 +11174,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -9364,6 +11221,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -9376,6 +11235,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -9503,6 +11363,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -9518,6 +11380,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -9573,6 +11437,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -9586,6 +11452,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -9638,6 +11506,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -9651,6 +11521,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -9707,6 +11578,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -9720,6 +11593,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -9770,6 +11644,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -9782,6 +11658,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -9828,6 +11705,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -9840,6 +11719,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -9971,6 +11851,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -9986,6 +11868,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -10041,6 +11925,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -10054,6 +11940,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -10106,6 +11994,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -10119,6 +12009,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -10175,6 +12066,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -10188,6 +12081,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -10238,6 +12132,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -10250,6 +12146,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -10296,6 +12193,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -10308,6 +12207,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -10441,6 +12341,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -10456,6 +12358,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -10511,6 +12415,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -10524,6 +12430,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -10576,6 +12484,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -10589,6 +12499,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -10645,6 +12556,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -10658,6 +12571,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -10708,6 +12622,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -10720,6 +12636,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -10766,6 +12683,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -10778,6 +12697,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -10946,6 +12866,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -10961,6 +12883,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -11017,6 +12941,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -11030,6 +12956,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -11083,6 +13011,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -11096,6 +13026,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -11153,6 +13084,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -11166,6 +13099,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -11216,6 +13150,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -11228,6 +13164,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -11274,6 +13211,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -11286,6 +13225,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -11416,6 +13356,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -11431,6 +13373,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -11486,6 +13430,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -11499,6 +13445,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -11551,6 +13499,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -11564,6 +13514,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -11620,6 +13571,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -11633,6 +13586,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -11683,6 +13637,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -11695,6 +13651,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -11741,6 +13698,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -11753,6 +13712,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -11872,6 +13832,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -11887,6 +13849,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -11942,6 +13906,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -11955,6 +13921,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -12007,6 +13975,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -12020,6 +13990,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -12076,6 +14047,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -12089,6 +14062,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -12139,6 +14113,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -12151,6 +14127,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -12197,6 +14174,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -12209,6 +14188,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -12335,6 +14315,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -12350,6 +14332,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -12405,6 +14389,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -12418,6 +14404,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -12470,6 +14458,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -12483,6 +14473,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -12539,6 +14530,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -12552,6 +14545,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -12602,6 +14596,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -12614,6 +14610,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -12660,6 +14657,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -12672,6 +14671,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -12791,6 +14791,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -12806,6 +14808,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -12861,6 +14865,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -12874,6 +14880,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -12926,6 +14934,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -12939,6 +14949,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -12995,6 +15006,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -13008,6 +15021,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -13058,6 +15072,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -13070,6 +15086,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -13116,6 +15133,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -13128,6 +15147,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -13248,6 +15268,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -13263,6 +15285,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -13318,6 +15342,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -13331,6 +15357,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -13383,6 +15411,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -13396,6 +15426,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -13452,6 +15483,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -13465,6 +15498,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -13515,6 +15549,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -13527,6 +15563,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -13573,6 +15610,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -13585,6 +15624,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -13710,6 +15750,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -13725,6 +15767,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -13780,6 +15824,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -13793,6 +15839,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -13845,6 +15893,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -13858,6 +15908,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -13914,6 +15965,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -13927,6 +15980,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -13977,6 +16031,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -13989,6 +16045,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -14035,6 +16092,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -14047,6 +16106,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -14167,6 +16227,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -14182,6 +16244,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -14237,6 +16301,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -14250,6 +16316,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -14302,6 +16370,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -14315,6 +16385,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -14371,6 +16442,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -14384,6 +16457,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -14434,6 +16508,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -14446,6 +16522,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -14492,6 +16569,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -14504,6 +16583,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -14624,6 +16704,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -14639,6 +16721,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -14694,6 +16778,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -14707,6 +16793,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -14759,6 +16847,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -14772,6 +16862,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -14828,6 +16919,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -14841,6 +16934,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -14891,6 +16985,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -14903,6 +16999,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -14949,6 +17046,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -14961,6 +17060,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -15089,6 +17189,8 @@ class _$AddSubTaskImpl implements _AddSubTask {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -15104,6 +17206,8 @@ class _$AddSubTaskImpl implements _AddSubTask {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -15159,6 +17263,8 @@ class _$AddSubTaskImpl implements _AddSubTask {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -15172,6 +17278,8 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -15224,6 +17332,8 @@ class _$AddSubTaskImpl implements _AddSubTask {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -15237,6 +17347,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -15293,6 +17404,8 @@ class _$AddSubTaskImpl implements _AddSubTask {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -15306,6 +17419,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -15356,6 +17470,8 @@ class _$AddSubTaskImpl implements _AddSubTask {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -15368,6 +17484,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -15414,6 +17531,8 @@ class _$AddSubTaskImpl implements _AddSubTask {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -15426,6 +17545,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -15562,6 +17682,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -15577,6 +17699,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -15632,6 +17756,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -15645,6 +17771,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -15697,6 +17825,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -15710,6 +17840,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -15766,6 +17897,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -15779,6 +17912,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -15829,6 +17963,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -15841,6 +17977,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -15887,6 +18024,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -15899,6 +18038,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -16018,6 +18158,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -16033,6 +18175,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -16088,6 +18232,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -16101,6 +18247,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -16153,6 +18301,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -16166,6 +18316,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -16222,6 +18373,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -16235,6 +18388,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -16285,6 +18439,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -16297,6 +18453,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -16343,6 +18500,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -16355,6 +18514,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -16473,6 +18633,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -16488,6 +18650,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -16543,6 +18707,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -16556,6 +18722,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -16608,6 +18776,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -16621,6 +18791,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -16677,6 +18848,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -16690,6 +18863,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -16740,6 +18914,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -16752,6 +18928,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -16798,6 +18975,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -16810,6 +18989,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -16936,6 +19116,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -16951,6 +19133,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -17006,6 +19190,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -17019,6 +19205,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -17071,6 +19259,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -17084,6 +19274,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -17140,6 +19331,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -17153,6 +19346,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -17203,6 +19397,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -17215,6 +19411,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -17261,6 +19458,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -17273,6 +19472,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -17393,6 +19593,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -17408,6 +19610,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -17463,6 +19667,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -17476,6 +19682,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -17528,6 +19736,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -17541,6 +19751,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -17597,6 +19808,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -17610,6 +19823,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -17660,6 +19874,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -17672,6 +19888,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -17718,6 +19935,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -17730,6 +19949,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -17849,6 +20069,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -17864,6 +20086,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -17919,6 +20143,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -17932,6 +20158,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -17984,6 +20212,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -17997,6 +20227,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -18053,6 +20284,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -18066,6 +20299,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -18116,6 +20350,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -18128,6 +20364,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -18174,6 +20411,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -18186,6 +20425,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -18315,6 +20555,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -18330,6 +20572,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -18385,6 +20629,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -18398,6 +20644,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -18450,6 +20698,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -18463,6 +20713,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -18519,6 +20770,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -18532,6 +20785,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -18582,6 +20836,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -18594,6 +20850,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -18640,6 +20897,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -18652,6 +20911,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -18771,6 +21031,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -18786,6 +21048,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -18841,6 +21105,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -18854,6 +21120,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -18906,6 +21174,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -18919,6 +21189,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -18975,6 +21246,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -18988,6 +21261,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -19038,6 +21312,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -19050,6 +21326,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -19096,6 +21373,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -19108,6 +21387,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -19236,6 +21516,8 @@ class _$AddIncidentImpl implements _AddIncident {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -19251,6 +21533,8 @@ class _$AddIncidentImpl implements _AddIncident {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -19306,6 +21590,8 @@ class _$AddIncidentImpl implements _AddIncident {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -19319,6 +21605,8 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -19371,6 +21659,8 @@ class _$AddIncidentImpl implements _AddIncident {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -19384,6 +21674,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -19440,6 +21731,8 @@ class _$AddIncidentImpl implements _AddIncident {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -19453,6 +21746,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -19503,6 +21797,8 @@ class _$AddIncidentImpl implements _AddIncident {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -19515,6 +21811,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -19561,6 +21858,8 @@ class _$AddIncidentImpl implements _AddIncident {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -19573,6 +21872,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -19711,6 +22011,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -19726,6 +22028,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -19781,6 +22085,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -19794,6 +22100,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -19846,6 +22154,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -19859,6 +22169,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -19915,6 +22226,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -19928,6 +22241,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -19978,6 +22292,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -19990,6 +22306,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -20036,6 +22353,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -20048,6 +22367,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -20169,6 +22489,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -20184,6 +22506,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -20239,6 +22563,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -20252,6 +22578,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -20304,6 +22632,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -20317,6 +22647,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -20373,6 +22704,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -20386,6 +22719,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -20436,6 +22770,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -20448,6 +22784,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -20494,6 +22831,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -20506,6 +22845,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -20597,6 +22937,8 @@ class _$CreateTaskImpl implements _CreateTask {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -20612,6 +22954,8 @@ class _$CreateTaskImpl implements _CreateTask {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -20667,6 +23011,8 @@ class _$CreateTaskImpl implements _CreateTask {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -20680,6 +23026,8 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -20732,6 +23080,8 @@ class _$CreateTaskImpl implements _CreateTask {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -20745,6 +23095,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -20801,6 +23152,8 @@ class _$CreateTaskImpl implements _CreateTask {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -20814,6 +23167,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -20864,6 +23218,8 @@ class _$CreateTaskImpl implements _CreateTask {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -20876,6 +23232,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -20922,6 +23279,8 @@ class _$CreateTaskImpl implements _CreateTask {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -20934,6 +23293,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
@@ -21020,6 +23380,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
@@ -21035,6 +23397,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
         updateHeaderProject,
     required TResult Function(int parentTaskId, String parentTaskName)
         updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
     required TResult Function(bool isPersonal) updateHeaderPersonalTask,
     required TResult Function(int complexity) updateHeaderComplexity,
     required TResult Function(int priority) updateHeaderPriority,
@@ -21090,6 +23454,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
@@ -21103,6 +23469,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
     TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult? Function(int complexity)? updateHeaderComplexity,
     TResult? Function(int priority)? updateHeaderPriority,
@@ -21155,6 +23523,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
@@ -21168,6 +23538,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
         updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
     TResult Function(bool isPersonal)? updateHeaderPersonalTask,
     TResult Function(int complexity)? updateHeaderComplexity,
     TResult Function(int priority)? updateHeaderPriority,
@@ -21224,6 +23595,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
@@ -21237,6 +23610,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
         updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
     required TResult Function(_UpdateHeaderPersonalTask value)
         updateHeaderPersonalTask,
     required TResult Function(_UpdateHeaderComplexity value)
@@ -21287,6 +23661,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
@@ -21299,6 +23675,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult? Function(_UpdateHeaderPersonalTask value)?
         updateHeaderPersonalTask,
     TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
@@ -21345,6 +23722,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
@@ -21357,6 +23736,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
     TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
     TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
     TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,

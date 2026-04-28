@@ -11,9 +11,15 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState message(String? message);
 
+  WeekPlanState viewNumber(int viewNumber);
+
   WeekPlanState myTasks(List<WeekPlanTaskItem> myTasks);
 
+  WeekPlanState relatedTasks(List<WeekPlanTaskItem> relatedTasks);
+
   WeekPlanState assignedTasks(List<WeekPlanTaskItem> assignedTasks);
+
+  WeekPlanState allTasks(List<WeekPlanTaskItem> allTasks);
 
   WeekPlanState searchKeyword(String searchKeyword);
 
@@ -36,6 +42,10 @@ abstract class _$WeekPlanStateCWProxy {
   WeekPlanState headerParentTaskId(int? headerParentTaskId);
 
   WeekPlanState headerParentTaskName(String? headerParentTaskName);
+
+  WeekPlanState headerAssignerId(int? headerAssignerId);
+
+  WeekPlanState headerAssignerName(String? headerAssignerName);
 
   WeekPlanState headerIsPersonalTask(bool headerIsPersonalTask);
 
@@ -107,8 +117,11 @@ abstract class _$WeekPlanStateCWProxy {
   WeekPlanState call({
     BaseStateStatus? status,
     String? message,
+    int? viewNumber,
     List<WeekPlanTaskItem>? myTasks,
+    List<WeekPlanTaskItem>? relatedTasks,
     List<WeekPlanTaskItem>? assignedTasks,
+    List<WeekPlanTaskItem>? allTasks,
     String? searchKeyword,
     String? selectedStatus,
     DateTime? dateStart,
@@ -120,6 +133,8 @@ abstract class _$WeekPlanStateCWProxy {
     String? headerProjectName,
     int? headerParentTaskId,
     String? headerParentTaskName,
+    int? headerAssignerId,
+    String? headerAssignerName,
     bool? headerIsPersonalTask,
     int? headerComplexity,
     int? headerTaskCategory,
@@ -166,12 +181,23 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
   WeekPlanState message(String? message) => this(message: message);
 
   @override
+  WeekPlanState viewNumber(int viewNumber) => this(viewNumber: viewNumber);
+
+  @override
   WeekPlanState myTasks(List<WeekPlanTaskItem> myTasks) =>
       this(myTasks: myTasks);
 
   @override
+  WeekPlanState relatedTasks(List<WeekPlanTaskItem> relatedTasks) =>
+      this(relatedTasks: relatedTasks);
+
+  @override
   WeekPlanState assignedTasks(List<WeekPlanTaskItem> assignedTasks) =>
       this(assignedTasks: assignedTasks);
+
+  @override
+  WeekPlanState allTasks(List<WeekPlanTaskItem> allTasks) =>
+      this(allTasks: allTasks);
 
   @override
   WeekPlanState searchKeyword(String searchKeyword) =>
@@ -213,6 +239,14 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
   @override
   WeekPlanState headerParentTaskName(String? headerParentTaskName) =>
       this(headerParentTaskName: headerParentTaskName);
+
+  @override
+  WeekPlanState headerAssignerId(int? headerAssignerId) =>
+      this(headerAssignerId: headerAssignerId);
+
+  @override
+  WeekPlanState headerAssignerName(String? headerAssignerName) =>
+      this(headerAssignerName: headerAssignerName);
 
   @override
   WeekPlanState headerIsPersonalTask(bool headerIsPersonalTask) =>
@@ -344,8 +378,11 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
   WeekPlanState call({
     Object? status = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
+    Object? viewNumber = const $CopyWithPlaceholder(),
     Object? myTasks = const $CopyWithPlaceholder(),
+    Object? relatedTasks = const $CopyWithPlaceholder(),
     Object? assignedTasks = const $CopyWithPlaceholder(),
+    Object? allTasks = const $CopyWithPlaceholder(),
     Object? searchKeyword = const $CopyWithPlaceholder(),
     Object? selectedStatus = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
@@ -357,6 +394,8 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? headerProjectName = const $CopyWithPlaceholder(),
     Object? headerParentTaskId = const $CopyWithPlaceholder(),
     Object? headerParentTaskName = const $CopyWithPlaceholder(),
+    Object? headerAssignerId = const $CopyWithPlaceholder(),
+    Object? headerAssignerName = const $CopyWithPlaceholder(),
     Object? headerIsPersonalTask = const $CopyWithPlaceholder(),
     Object? headerComplexity = const $CopyWithPlaceholder(),
     Object? headerTaskCategory = const $CopyWithPlaceholder(),
@@ -397,15 +436,29 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
           : message as String?,
+      viewNumber:
+          viewNumber == const $CopyWithPlaceholder() || viewNumber == null
+              ? _value.viewNumber
+              // ignore: cast_nullable_to_non_nullable
+              : viewNumber as int,
       myTasks: myTasks == const $CopyWithPlaceholder() || myTasks == null
           ? _value.myTasks
           // ignore: cast_nullable_to_non_nullable
           : myTasks as List<WeekPlanTaskItem>,
+      relatedTasks:
+          relatedTasks == const $CopyWithPlaceholder() || relatedTasks == null
+              ? _value.relatedTasks
+              // ignore: cast_nullable_to_non_nullable
+              : relatedTasks as List<WeekPlanTaskItem>,
       assignedTasks:
           assignedTasks == const $CopyWithPlaceholder() || assignedTasks == null
               ? _value.assignedTasks
               // ignore: cast_nullable_to_non_nullable
               : assignedTasks as List<WeekPlanTaskItem>,
+      allTasks: allTasks == const $CopyWithPlaceholder() || allTasks == null
+          ? _value.allTasks
+          // ignore: cast_nullable_to_non_nullable
+          : allTasks as List<WeekPlanTaskItem>,
       searchKeyword:
           searchKeyword == const $CopyWithPlaceholder() || searchKeyword == null
               ? _value.searchKeyword
@@ -454,6 +507,14 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.headerParentTaskName
           // ignore: cast_nullable_to_non_nullable
           : headerParentTaskName as String?,
+      headerAssignerId: headerAssignerId == const $CopyWithPlaceholder()
+          ? _value.headerAssignerId
+          // ignore: cast_nullable_to_non_nullable
+          : headerAssignerId as int?,
+      headerAssignerName: headerAssignerName == const $CopyWithPlaceholder()
+          ? _value.headerAssignerName
+          // ignore: cast_nullable_to_non_nullable
+          : headerAssignerName as String?,
       headerIsPersonalTask:
           headerIsPersonalTask == const $CopyWithPlaceholder() ||
                   headerIsPersonalTask == null

@@ -4,6 +4,10 @@ part of 'week_plan_bloc.dart';
 class WeekPlanEvent with _$WeekPlanEvent {
   const factory WeekPlanEvent.init() = _Init;
 
+  const factory WeekPlanEvent.initWithView(int viewNumber) = _InitWithView;
+
+  const factory WeekPlanEvent.changeView(int viewNumber) = _ChangeView;
+
   const factory WeekPlanEvent.refresh() = _Refresh;
 
   const factory WeekPlanEvent.search(String keyword) = _Search;
@@ -38,6 +42,11 @@ class WeekPlanEvent with _$WeekPlanEvent {
     required int parentTaskId,
     required String parentTaskName,
   }) = _UpdateHeaderParentTask;
+
+  const factory WeekPlanEvent.updateHeaderAssigner({
+    required int assignerId,
+    required String assignerName,
+  }) = _UpdateHeaderAssigner;
 
   const factory WeekPlanEvent.updateHeaderPersonalTask(bool isPersonal) =
       _UpdateHeaderPersonalTask;

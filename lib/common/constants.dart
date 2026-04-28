@@ -291,4 +291,7 @@ class ApiEndPoint {
   static const String getStationeryDetail = '/OfficeSupplyRequests/get-office-supply-request-detail';
 
   static const String saveStationery = '/OfficeSupplyRequests/save-data';
+
+  // Week Plan
+  static const String getProjectTask = '/ProjectTask';
 }

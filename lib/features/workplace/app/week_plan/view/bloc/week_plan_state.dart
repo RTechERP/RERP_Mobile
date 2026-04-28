@@ -2,8 +2,14 @@ part of 'week_plan_bloc.dart';
 
 @CopyWith()
 class WeekPlanState extends BaseBlocState {
+  /// viewNumber: 1 = Công việc của tôi, 2 = Công việc liên quan,
+  ///             3 = Công việc tôi giao, -1 = Tổng công việc.
+  final int viewNumber;
+
   final List<WeekPlanTaskItem> myTasks;
+  final List<WeekPlanTaskItem> relatedTasks;
   final List<WeekPlanTaskItem> assignedTasks;
+  final List<WeekPlanTaskItem> allTasks;
 
   final String searchKeyword;
   final String selectedStatus;
@@ -19,6 +25,8 @@ class WeekPlanState extends BaseBlocState {
   final String? headerProjectName;
   final int? headerParentTaskId;
   final String? headerParentTaskName;
+  final int? headerAssignerId;
+  final String? headerAssignerName;
   final bool headerIsPersonalTask;
   final int headerComplexity;
   final int? headerTaskCategory;
@@ -69,8 +77,11 @@ class WeekPlanState extends BaseBlocState {
   const WeekPlanState({
     required super.status,
     super.message,
+    this.viewNumber = 1,
     this.myTasks = const [],
+    this.relatedTasks = const [],
     this.assignedTasks = const [],
+    this.allTasks = const [],
     this.searchKeyword = '',
     this.selectedStatus = 'Tất cả',
     this.dateStart,
@@ -83,6 +94,8 @@ class WeekPlanState extends BaseBlocState {
     this.headerProjectName,
     this.headerParentTaskId,
     this.headerParentTaskName,
+    this.headerAssignerId,
+    this.headerAssignerName,
     this.headerIsPersonalTask = false,
     this.headerComplexity = 1,
     this.headerTaskCategory,
@@ -125,8 +138,11 @@ class WeekPlanState extends BaseBlocState {
 
   factory WeekPlanState.init() => const WeekPlanState(
         status: BaseStateStatus.init,
+        viewNumber: 1,
         myTasks: [],
+        relatedTasks: [],
         assignedTasks: [],
+        allTasks: [],
         searchKeyword: '',
         selectedStatus: 'Tất cả',
         isSubmitting: false,
@@ -135,6 +151,8 @@ class WeekPlanState extends BaseBlocState {
         headerPriority: 0,
         headerStatus: 0,
         headerStatusName: 'Chưa làm',
+        headerAssignerId: null,
+        headerAssignerName: null,
         headerIsPersonalTask: false,
         selectedAssignees: [],
         selectedRelatedPersons: [],
@@ -150,8 +168,11 @@ class WeekPlanState extends BaseBlocState {
   List get props => [
         status,
         message,
+        viewNumber,
         myTasks,
+        relatedTasks,
         assignedTasks,
+        allTasks,
         searchKeyword,
         selectedStatus,
         dateStart,
@@ -164,6 +185,8 @@ class WeekPlanState extends BaseBlocState {
         headerProjectName,
         headerParentTaskId,
         headerParentTaskName,
+        headerAssignerId,
+        headerAssignerName,
         headerIsPersonalTask,
         headerComplexity,
         headerTaskCategory,

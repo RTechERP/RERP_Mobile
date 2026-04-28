@@ -59,6 +59,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     on<WeekPlanEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
+        initWithView: (viewNumber) => _onInitWithView(emit, viewNumber),
+        changeView: (viewNumber) => _onChangeView(emit, viewNumber),
         refresh: () => _onRefresh(emit),
         search: (keyword) => _onSearch(emit, keyword),
         clearSearch: () => _onClearSearch(emit),
@@ -74,6 +76,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             _onUpdateHeaderProject(emit, projectId, projectName),
         updateHeaderParentTask: (parentTaskId, parentTaskName) =>
             _onUpdateHeaderParentTask(emit, parentTaskId, parentTaskName),
+        updateHeaderAssigner: (assignerId, assignerName) =>
+            _onUpdateHeaderAssigner(emit, assignerId, assignerName),
         updateHeaderPersonalTask: (isPersonal) =>
             _onUpdateHeaderPersonalTask(emit, isPersonal),
         updateHeaderComplexity: (complexity) =>
@@ -145,10 +149,20 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   //---(Init)---//
   Future<void> _onInit(Emitter<WeekPlanState> emit) async {
     if (_isInitInFlight) return;
-    _isInitInFlight = true;
+    await _doInit(emit, viewNumber: 1);
+  }
 
+  Future<void> _onInitWithView(Emitter<WeekPlanState> emit, int viewNumber) async {
+    if (_isInitInFlight) return;
+    await _doInit(emit, viewNumber: viewNumber);
+  }
+
+  Future<void> _doInit(Emitter<WeekPlanState> emit, {required int viewNumber}) async {
     try {
-      emit(state.copyWith(status: BaseStateStatus.loading));
+      emit(state.copyWith(
+        status: BaseStateStatus.loading,
+        viewNumber: viewNumber,
+      ));
 
       final userRes = await _authRepo.getCurrentUser();
       await userRes.fold(
@@ -160,21 +174,75 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
           ));
         },
         (user) async {
-          final fakeTasks = _buildFakeTasks(user!.employeeId);
-          final myTasks = fakeTasks
-              .where((t) => t.assigneeId == user.employeeId)
-              .toList();
-          final assignedTasks = fakeTasks
-              .where((t) => t.creatorId == user.employeeId)
-              .toList();
+          final employeeId = user?.employeeId ?? 0;
+          final now = DateTime.now();
+          final dateStart = state.dateStart ?? DateTime(now.year, now.month, 1);
+          final dateEnd = state.dateEnd ?? DateTime(now.year, now.month + 1, 0);
+          final statusFilter = _statusToApiStatus(state.selectedStatus);
 
-          _log.logI('Get fake tasks: myTasks=${myTasks.length}, assignedTasks=${assignedTasks.length}');
+          List<WeekPlanTaskItem> myTasks = state.myTasks;
+          List<WeekPlanTaskItem> relatedTasks = state.relatedTasks;
+          List<WeekPlanTaskItem> assignedTasks = state.assignedTasks;
+          List<WeekPlanTaskItem> allTasks = state.allTasks;
+
+          switch (viewNumber) {
+            case 1:
+              final res = await _weekPlanRepo.getTasks(
+                dateStart: dateStart,
+                dateEnd: dateEnd,
+                status: statusFilter,
+                viewNumber: 1,
+              );
+              myTasks = res.getOrElse(() => []);
+              _log.logI('Get my tasks: ${myTasks.length}');
+              break;
+            case 2:
+              final res = await _weekPlanRepo.getTasks(
+                dateStart: dateStart,
+                dateEnd: dateEnd,
+                status: statusFilter,
+                viewNumber: 2,
+              );
+              relatedTasks = res.getOrElse(() => []);
+              _log.logI('Get related tasks: ${relatedTasks.length}');
+              break;
+            case 3:
+              final res = await _weekPlanRepo.getTasks(
+                dateStart: dateStart,
+                dateEnd: dateEnd,
+                status: statusFilter,
+                viewNumber: 3,
+              );
+              assignedTasks = res.getOrElse(() => []);
+              _log.logI('Get assigned tasks: ${assignedTasks.length}');
+              break;
+            case -1:
+              final res = await _weekPlanRepo.getTasks(
+                dateStart: dateStart,
+                dateEnd: dateEnd,
+                status: statusFilter,
+                viewNumber: -1,
+              );
+              allTasks = res.getOrElse(() => []);
+              _log.logI('Get all tasks: ${allTasks.length}');
+              break;
+            default:
+              final res = await _weekPlanRepo.getTasks(
+                dateStart: dateStart,
+                dateEnd: dateEnd,
+                status: statusFilter,
+                viewNumber: 1,
+              );
+              myTasks = res.getOrElse(() => []);
+          }
 
           emit(state.copyWith(
             status: BaseStateStatus.success,
+            employeeId: employeeId,
             myTasks: myTasks,
+            relatedTasks: relatedTasks,
             assignedTasks: assignedTasks,
-            employeeId: user.employeeId,
+            allTasks: allTasks,
           ));
         },
       );
@@ -183,8 +251,28 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     }
   }
 
+  Future<void> _onChangeView(Emitter<WeekPlanState> emit, int viewNumber) async {
+    await _doInit(emit, viewNumber: viewNumber);
+  }
+
   Future<void> _onRefresh(Emitter<WeekPlanState> emit) async {
-    await _onInit(emit);
+    await _doInit(emit, viewNumber: state.viewNumber);
+  }
+
+  //---(Filter)---//
+  int _statusToApiStatus(String status) {
+    switch (status) {
+      case 'Chưa bắt đầu':
+        return 1;
+      case 'Đang thực hiện':
+        return 2;
+      case 'Hoàn thành':
+        return 3;
+      case 'Quá hạn':
+        return 4;
+      default:
+        return 0;
+    }
   }
 
   //---(Filter)---//
@@ -226,26 +314,11 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   //---(Action)---//
   Future<void> _onCheckIn(
       Emitter<WeekPlanState> emit, int taskId) async {
-    final payload = <String, dynamic>{
-      'taskId': taskId,
-      'employeeId': state.employeeId,
-      'checkInTime': DateTime.now().toIso8601String(),
-    };
-
-    final res = await _weekPlanRepo.checkIn(payload: payload);
-    await res.fold(
-      (err) async {
-        _log.logE('Check-in failed: $err');
-        emit(state.copyWith(
-          message: err.getErrorMessage,
-          status: BaseStateStatus.failed,
-        ));
-      },
-      (_) async {
-        _log.logI('Check-in success: taskId=$taskId');
-        await _onInit(emit);
-      },
-    );
+    _log.logI('Check-in requested for taskId=$taskId');
+    emit(state.copyWith(
+      message: 'Tính năng đang phát triển',
+      status: BaseStateStatus.success,
+    ));
   }
 
   //---(Add Screen)---//
@@ -259,6 +332,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       headerProjectName: null,
       headerParentTaskId: null,
       headerParentTaskName: null,
+      headerAssignerId: null,
+      headerAssignerName: null,
       headerIsPersonalTask: false,
       headerComplexity: 1,
       headerTaskCategory: null,
@@ -304,6 +379,11 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   Future<void> _onUpdateHeaderParentTask(
       Emitter<WeekPlanState> emit, int parentTaskId, String parentTaskName) async {
     emit(state.copyWith(headerParentTaskId: parentTaskId, headerParentTaskName: parentTaskName));
+  }
+
+  Future<void> _onUpdateHeaderAssigner(
+      Emitter<WeekPlanState> emit, int assignerId, String assignerName) async {
+    emit(state.copyWith(headerAssignerId: assignerId, headerAssignerName: assignerName));
   }
 
   Future<void> _onUpdateHeaderPersonalTask(
@@ -607,6 +687,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       'ProjectName': state.headerProjectName ?? '',
       'ParentTaskId': state.headerParentTaskId,
       'ParentTaskName': state.headerParentTaskName,
+      'AssignerId': state.headerAssignerId,
       'IsPersonalTask': state.headerIsPersonalTask,
       'Complexity': state.headerComplexity,
       'TaskCategory': state.headerTaskCategory ?? 0,
@@ -662,146 +743,5 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       submitSuccess: false,
       message: null,
     ));
-  }
-
-  //---(Helper)---//
-  List<WeekPlanTaskItem> _buildFakeTasks(int employeeId) {
-    final now = DateTime.now();
-    return [
-      WeekPlanTaskItem(
-        id: 1,
-        projectName: 'Dự án ERP RTC',
-        projectId: 1,
-        taskName: 'Thiết kế giao diện màn Week Plan',
-        taskContent: 'Tạo UI/UX cho màn hình kế hoạch tuần',
-        description: 'Thiết kế responsive, hỗ trợ dark mode',
-        status: 2,
-        statusText: 'Đang thực hiện',
-        startDate: now.subtract(const Duration(days: 2)),
-        endDate: now.add(const Duration(days: 3)),
-        deadline: now.add(const Duration(days: 5)),
-        creatorId: employeeId,
-        creatorName: 'Nguyễn Văn A',
-        assigneeId: employeeId,
-        assigneeName: 'Nguyễn Văn A',
-        isCheckedIn: true,
-        checkInTime: now.subtract(const Duration(hours: 2)),
-        priority: 1,
-        priorityText: 'Cao',
-        progress: 0.6,
-        createdDate: now.subtract(const Duration(days: 5)),
-      ),
-      WeekPlanTaskItem(
-        id: 2,
-        projectName: 'Dự án ERP RTC',
-        projectId: 1,
-        taskName: 'Tích hợp API Week Plan',
-        taskContent: 'Kết nối backend API cho module kế hoạch tuần',
-        description: 'Triển khai CRUD operations',
-        status: 1,
-        statusText: 'Chưa bắt đầu',
-        startDate: now.add(const Duration(days: 1)),
-        endDate: now.add(const Duration(days: 7)),
-        deadline: now.add(const Duration(days: 10)),
-        creatorId: employeeId,
-        creatorName: 'Nguyễn Văn A',
-        assigneeId: employeeId,
-        assigneeName: 'Nguyễn Văn A',
-        isCheckedIn: false,
-        priority: 2,
-        priorityText: 'Trung bình',
-        progress: 0.0,
-        createdDate: now.subtract(const Duration(days: 3)),
-      ),
-      WeekPlanTaskItem(
-        id: 3,
-        projectName: 'Dự án Mobile App',
-        projectId: 2,
-        taskName: 'Fix bug login trên iOS',
-        taskContent: 'Sửa lỗi không đăng nhập được trên iOS 17',
-        description: 'Bug reproduce được trên simulator',
-        status: 3,
-        statusText: 'Hoàn thành',
-        startDate: now.subtract(const Duration(days: 5)),
-        endDate: now.subtract(const Duration(days: 1)),
-        deadline: now.subtract(const Duration(days: 1)),
-        creatorId: employeeId,
-        creatorName: 'Nguyễn Văn A',
-        assigneeId: employeeId,
-        assigneeName: 'Nguyễn Văn A',
-        isCheckedIn: true,
-        checkInTime: now.subtract(const Duration(days: 2)),
-        priority: 1,
-        priorityText: 'Cao',
-        progress: 1.0,
-        createdDate: now.subtract(const Duration(days: 7)),
-      ),
-      WeekPlanTaskItem(
-        id: 4,
-        projectName: 'Dự án ERP RTC',
-        projectId: 1,
-        taskName: 'Viết document API',
-        taskContent: 'Tài liệu hóa các endpoint của module Week Plan',
-        description: 'Format theo Swagger/OpenAPI',
-        status: 4,
-        statusText: 'Quá hạn',
-        startDate: now.subtract(const Duration(days: 7)),
-        endDate: now.subtract(const Duration(days: 3)),
-        deadline: now.subtract(const Duration(days: 3)),
-        creatorId: 999,
-        creatorName: 'Trần Thị B',
-        assigneeId: employeeId,
-        assigneeName: 'Nguyễn Văn A',
-        isCheckedIn: false,
-        priority: 3,
-        priorityText: 'Thấp',
-        progress: 0.25,
-        createdDate: now.subtract(const Duration(days: 10)),
-      ),
-      WeekPlanTaskItem(
-        id: 5,
-        projectName: 'Dự án Mobile App',
-        projectId: 2,
-        taskName: 'Giao việc cho intern',
-        taskContent: 'Phân công task simple cho thực tập sinh',
-        description: 'Chỉ assign task đơn giản, có hướng dẫn chi tiết',
-        status: 2,
-        statusText: 'Đang thực hiện',
-        startDate: now,
-        endDate: now.add(const Duration(days: 4)),
-        deadline: now.add(const Duration(days: 4)),
-        creatorId: employeeId,
-        creatorName: 'Nguyễn Văn A',
-        assigneeId: 888,
-        assigneeName: 'Lê Văn C',
-        isCheckedIn: false,
-        priority: 2,
-        priorityText: 'Trung bình',
-        progress: 0.1,
-        createdDate: now.subtract(const Duration(days: 1)),
-      ),
-      WeekPlanTaskItem(
-        id: 6,
-        projectName: 'Dự án ERP RTC',
-        projectId: 1,
-        taskName: 'Deploy staging environment',
-        taskContent: 'Setup và deploy lên môi trường staging',
-        description: 'Cập nhật CI/CD pipeline',
-        status: 1,
-        statusText: 'Chưa bắt đầu',
-        startDate: now.add(const Duration(days: 2)),
-        endDate: now.add(const Duration(days: 5)),
-        deadline: now.add(const Duration(days: 5)),
-        creatorId: employeeId,
-        creatorName: 'Nguyễn Văn A',
-        assigneeId: 888,
-        assigneeName: 'Lê Văn C',
-        isCheckedIn: false,
-        priority: 1,
-        priorityText: 'Cao',
-        progress: 0.0,
-        createdDate: now,
-      ),
-    ];
   }
 }

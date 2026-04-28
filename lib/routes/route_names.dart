@@ -20,6 +20,11 @@ class RouteNames {
   static const reggeneral = '/reg_general';
   static const report = '/report';
   static const weekplan = '/week_plan';
+  static const weekplanMenu = '/week_plan/menu';
+  static const weekplanMyTask = '/week_plan/my_task';
+  static const weekplanRelated = '/week_plan/related';
+  static const weekplanAssigned = '/week_plan/assigned';
+  static const weekplanAll = '/week_plan/all';
   static const weekplanAdd = '/week_plan/add';
   static const stock = '/stock';
 

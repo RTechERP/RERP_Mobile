@@ -122,7 +122,11 @@ import '../features/workplace/app/reports/view/tech/view/pages/tech_edit_screen.
 import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_add_screen.dart';
-import '../features/workplace/app/week_plan/view/pages/week_plan_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_all_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_assigned_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_menu_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_my_task_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_related_screen.dart';
 import '../features/workplace/view/bloc/workspace_bloc.dart';
 
 class AppRouter {
@@ -922,16 +926,40 @@ class AppRouter {
       //---(Week Plan)---//
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(value: getIt<WeekPlanBloc>(), child: child);
+          return BlocProvider(
+            create: (_) => getIt<WeekPlanBloc>(),
+            child: child,
+          );
         },
         routes: [
           GoRoute(
-            path: RouteNames.weekplan,
-            builder: (context, state) => const WeekPlanScreen(),
+            path: RouteNames.weekplanMenu,
+            builder: (context, state) => const WeekPlanMenuScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanMyTask,
+            builder: (context, state) => const WeekPlanMyTaskScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanRelated,
+            builder: (context, state) => const WeekPlanRelatedScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanAssigned,
+            builder: (context, state) => const WeekPlanAssignedScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanAll,
+            builder: (context, state) => const WeekPlanAllScreen(),
           ),
           GoRoute(
             path: RouteNames.weekplanAdd,
             builder: (context, state) => const WeekPlanAddScreen(),
+          ),
+          // Legacy route - redirect to menu
+          GoRoute(
+            path: RouteNames.weekplan,
+            builder: (context, state) => const WeekPlanMenuScreen(),
           ),
         ],
       ),

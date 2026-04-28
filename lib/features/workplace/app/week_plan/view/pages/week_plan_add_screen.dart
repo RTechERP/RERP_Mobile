@@ -208,6 +208,13 @@ class _WeekPlanAddScreenState
             isEmployee: true,
           ),
           const SizedBox(height: 10),
+          WeekPlanTapCard(
+            label: 'Người giao việc',
+            value: state.headerAssignerName,
+            icon: Icons.assignment_ind_outlined,
+            onTap: () => _stub('Chọn người giao việc'),
+          ),
+          const SizedBox(height: 10),
           WeekPlanMultiSelectChips<WeekPlanEmployee>(
             label: 'Người liên quan',
             icon: Icons.group_outlined,

@@ -1,10 +1,44 @@
 // ignore_for_file: unused_field
 
-import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+import '../../../../../../../../../base/network/dio/dio_base_api_service.dart';
+import '../../../../../../../../../base/network/models/base_data.dart';
+import '../../../../../../../../../common/constants.dart';
+import '../models/week_plan_model.dart';
 
-class WeekPlanService {
-  WeekPlanService(this._dio);
+@injectable
+class WeekPlanService extends DioBaseApiService {
+  WeekPlanService(super.dio);
 
-  final Dio _dio;
-
+  /// GET /ProjectTask?dateStart=...&dateEnd=...&status=0&viewNumber=1
+  ///
+  /// Response: { status: 1, data: { ProjectTask: [...] } }
+  Future<BaseData<List<WeekPlanTaskItem>>> getProjectTask({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required int status,
+    required int viewNumber,
+  }) async {
+    return get<BaseData<List<WeekPlanTaskItem>>>(
+      ApiEndPoint.getProjectTask,
+      query: {
+        'dateStart': DateTime(dateStart.year, dateStart.month, dateStart.day)
+            .toIso8601String(),
+        'dateEnd': DateTime(dateEnd.year, dateEnd.month, dateEnd.day, 23, 59, 59)
+            .toIso8601String(),
+        'status': status,
+        'viewNumber': viewNumber,
+      },
+      parser: (json) => BaseData<List<WeekPlanTaskItem>>.fromJson(
+        json,
+        (data) {
+          final map = data as Map<String, dynamic>;
+          final projectTask = map['ProjectTask'] as List?;
+          return (projectTask ?? [])
+              .map((e) => WeekPlanTaskItem.fromJson(e as Map<String, dynamic>))
+              .toList();
+        },
+      ),
+    );
+  }
 }

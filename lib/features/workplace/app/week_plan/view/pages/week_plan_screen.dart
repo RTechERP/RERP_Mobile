@@ -34,7 +34,7 @@ class _WeekPlanScreenState
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
     bloc.add(const WeekPlanEvent.init());
   }
 
@@ -140,7 +140,9 @@ class _WeekPlanScreenState
                   onTap: (_) => setState(() {}),
                   tabs: const [
                     Tab(text: 'Công việc của tôi'),
-                    Tab(text: 'Việc tôi giao'),
+                    Tab(text: 'Công việc liên quan'),
+                    Tab(text: 'Công việc tôi giao'),
+                    Tab(text: 'Tổng công việc'),
                   ],
                 ),
               ),
@@ -150,7 +152,9 @@ class _WeekPlanScreenState
             buildWhen: (prev, curr) =>
                 prev.status != curr.status ||
                 prev.myTasks.length != curr.myTasks.length ||
-                prev.assignedTasks.length != curr.assignedTasks.length,
+                prev.relatedTasks.length != curr.relatedTasks.length ||
+                prev.assignedTasks.length != curr.assignedTasks.length ||
+                prev.allTasks.length != curr.allTasks.length,
             builder: (context, state) {
               if (state.status == BaseStateStatus.loading) {
                 return const Center(child: CircularProgressIndicator());
@@ -164,24 +168,6 @@ class _WeekPlanScreenState
                       Image.asset(AppImages.error, width: 320),
                       const SizedBox(height: 12),
                       const Text('Tải dữ liệu thất bại'),
-                    ],
-                  ),
-                );
-              }
-
-              final isMyTaskTab = _tabController.index == 0;
-              final displayList = isMyTaskTab
-                  ? state.myTasks
-                  : state.assignedTasks;
-
-              if (displayList.isEmpty) {
-                return Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(AppImages.missing, width: 320),
-                      const SizedBox(height: 12),
-                      const Text('Không có công việc'),
                     ],
                   ),
                 );
@@ -202,11 +188,10 @@ class _WeekPlanScreenState
                     child: TabBarView(
                       controller: _tabController,
                       children: [
-                        _TaskListView(tasks: state.myTasks, isAssigned: false),
-                        _TaskListView(
-                          tasks: state.assignedTasks,
-                          isAssigned: true,
-                        ),
+                        _TaskListView(tasks: state.myTasks, viewType: 1),
+                        _TaskListView(tasks: state.relatedTasks, viewType: 2),
+                        _TaskListView(tasks: state.assignedTasks, viewType: 3),
+                        _TaskListView(tasks: state.allTasks, viewType: -1),
                       ],
                     ),
                   ),
@@ -427,10 +412,10 @@ class _WeekPlanScreenState
 
 //---(_TaskListView)---//
 class _TaskListView extends StatelessWidget {
-  const _TaskListView({required this.tasks, required this.isAssigned});
+  const _TaskListView({required this.tasks, required this.viewType});
 
   final List<WeekPlanTaskItem> tasks;
-  final bool isAssigned;
+  final int viewType;
 
   @override
   Widget build(BuildContext context) {
@@ -457,9 +442,8 @@ class _TaskListView extends StatelessWidget {
         final task = filtered[index];
         return WeekPlanCard(
           task: task,
-          isAssigned: isAssigned,
-          onTap: () {
-          },
+          isAssigned: viewType == 3,
+          onTap: () {},
         );
       },
     );
@@ -478,8 +462,8 @@ class _TaskListView extends StatelessWidget {
       result = result
           .where(
             (t) =>
-                (t.taskContent ?? '').toLowerCase().contains(kw) ||
-                (t.taskName ?? '').toLowerCase().contains(kw) ||
+                (t.mission ?? '').toLowerCase().contains(kw) ||
+                (t.projectCode ?? '').toLowerCase().contains(kw) ||
                 (t.projectName ?? '').toLowerCase().contains(kw),
           )
           .toList();
