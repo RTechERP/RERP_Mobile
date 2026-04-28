@@ -56,4 +56,23 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
   }) async {
     throw UnimplementedError();
   }
+
+  @override
+  Future<Either<BaseError, List<TaskTypeItem>>> getTaskTypes() async {
+    try {
+      final res = await _service.getProjectTaskType();
+
+      if (res.status == 1) {
+        return right(res.data ?? []);
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

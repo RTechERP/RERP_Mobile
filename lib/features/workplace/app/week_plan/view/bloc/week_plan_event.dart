@@ -66,7 +66,7 @@ class WeekPlanEvent with _$WeekPlanEvent {
       _UpdateHeaderTimeEstimate;
 
   const factory WeekPlanEvent.updateHeaderTaskCategory({
-    required int categoryId,
+    required String categoryId,
     required String categoryName,
   }) = _UpdateHeaderTaskCategory;
 
@@ -76,6 +76,8 @@ class WeekPlanEvent with _$WeekPlanEvent {
     required int statusId,
     required String statusName,
   }) = _UpdateHeaderWorkTypeAndStatus;
+
+  const factory WeekPlanEvent.fetchTaskTypes() = _FetchTaskTypes;
 
   // Step 2: Nội dung chính
   const factory WeekPlanEvent.updateContentTaskName(String name) =

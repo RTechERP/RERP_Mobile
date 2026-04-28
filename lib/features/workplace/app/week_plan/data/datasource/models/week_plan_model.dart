@@ -87,6 +87,25 @@ class WeekPlanTaskItem with _$WeekPlanTaskItem {
 }
 
 @freezed
+class TaskTypeItem with _$TaskTypeItem {
+  const factory TaskTypeItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'TypeName') String? typeName,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+    @JsonKey(name: 'Color') String? color,
+  }) = _TaskTypeItem;
+
+  factory TaskTypeItem.fromJson(Map<String, dynamic> json) =>
+      _$TaskTypeItemFromJson(json);
+}
+
+@freezed
 class WeekPlanSubTaskItem with _$WeekPlanSubTaskItem {
   const factory WeekPlanSubTaskItem({
     @JsonKey(name: 'ID') int? id,

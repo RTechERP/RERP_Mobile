@@ -237,20 +237,32 @@ class _WeekPlanAddScreenState
           Row(
             children: [
               Expanded(
-                child: WeekPlanTapCard(
-                  label: 'Hạng mục',
-                  value: state.headerTaskCategoryName,
-                  icon: Icons.category_outlined,
-                  onTap: () => _stub('Chọn hạng mục'),
+                child: WeekPlanCategoryCard(
+                  selectedId: state.headerTaskCategory,
+                  onChanged: (categoryId) {
+                    final name = WeekPlanCategoryCard.categories
+                        .firstWhere((c) => c.$1 == categoryId)
+                        .$2;
+                    bloc.add(WeekPlanEvent.updateHeaderTaskCategory(
+                      categoryId: categoryId,
+                      categoryName: name,
+                    ));
+                  },
                 ),
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: WeekPlanTapCard(
-                  label: 'Loại công việc',
-                  value: state.headerWorkTypeName,
-                  icon: Icons.work_outline,
-                  onTap: () => _stub('Chọn loại công việc'),
+                child: WeekPlanTaskTypeCard(
+                  selectedId: state.headerWorkType,
+                  taskTypes: state.taskTypes,
+                  onChanged: (taskType) {
+                    bloc.add(WeekPlanEvent.updateHeaderWorkTypeAndStatus(
+                      workTypeId: taskType.id ?? 0,
+                      workTypeName: taskType.typeName ?? '',
+                      statusId: state.headerStatus ?? 0,
+                      statusName: state.headerStatusName ?? 'Chưa làm',
+                    ));
+                  },
                 ),
               ),
             ],

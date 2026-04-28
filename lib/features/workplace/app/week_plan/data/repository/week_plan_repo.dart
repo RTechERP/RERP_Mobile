@@ -22,4 +22,6 @@ abstract class WeekPlanRepo {
   Future<Either<BaseError, WeekPlanTaskItem>> createTask({
     required Map<String, dynamic> payload,
   });
+
+  Future<Either<BaseError, List<TaskTypeItem>>> getTaskTypes();
 }

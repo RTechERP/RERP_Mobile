@@ -44,11 +44,12 @@ mixin _$WeekPlanEvent {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -112,11 +113,12 @@ mixin _$WeekPlanEvent {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -177,11 +179,12 @@ mixin _$WeekPlanEvent {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -250,6 +253,7 @@ mixin _$WeekPlanEvent {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -311,6 +315,7 @@ mixin _$WeekPlanEvent {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -366,6 +371,7 @@ mixin _$WeekPlanEvent {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -478,11 +484,12 @@ class _$InitImpl implements _Init {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -549,11 +556,12 @@ class _$InitImpl implements _Init {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -617,11 +625,12 @@ class _$InitImpl implements _Init {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -696,6 +705,7 @@ class _$InitImpl implements _Init {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -760,6 +770,7 @@ class _$InitImpl implements _Init {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -818,6 +829,7 @@ class _$InitImpl implements _Init {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -948,11 +960,12 @@ class _$InitWithViewImpl implements _InitWithView {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -1019,11 +1032,12 @@ class _$InitWithViewImpl implements _InitWithView {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -1087,11 +1101,12 @@ class _$InitWithViewImpl implements _InitWithView {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -1166,6 +1181,7 @@ class _$InitWithViewImpl implements _InitWithView {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -1230,6 +1246,7 @@ class _$InitWithViewImpl implements _InitWithView {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -1288,6 +1305,7 @@ class _$InitWithViewImpl implements _InitWithView {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -1423,11 +1441,12 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -1494,11 +1513,12 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -1562,11 +1582,12 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -1641,6 +1662,7 @@ class _$ChangeViewImpl implements _ChangeView {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -1705,6 +1727,7 @@ class _$ChangeViewImpl implements _ChangeView {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -1763,6 +1786,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -1871,11 +1895,12 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -1942,11 +1967,12 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -2010,11 +2036,12 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -2089,6 +2116,7 @@ class _$RefreshImpl implements _Refresh {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -2153,6 +2181,7 @@ class _$RefreshImpl implements _Refresh {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -2211,6 +2240,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -2340,11 +2370,12 @@ class _$SearchImpl implements _Search {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -2411,11 +2442,12 @@ class _$SearchImpl implements _Search {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -2479,11 +2511,12 @@ class _$SearchImpl implements _Search {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -2558,6 +2591,7 @@ class _$SearchImpl implements _Search {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -2622,6 +2656,7 @@ class _$SearchImpl implements _Search {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -2680,6 +2715,7 @@ class _$SearchImpl implements _Search {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -2788,11 +2824,12 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -2859,11 +2896,12 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -2927,11 +2965,12 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -3006,6 +3045,7 @@ class _$ClearSearchImpl implements _ClearSearch {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -3070,6 +3110,7 @@ class _$ClearSearchImpl implements _ClearSearch {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -3128,6 +3169,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -3258,11 +3300,12 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -3329,11 +3372,12 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -3397,11 +3441,12 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -3476,6 +3521,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -3540,6 +3586,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -3598,6 +3645,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -3706,11 +3754,12 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -3777,11 +3826,12 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -3845,11 +3895,12 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -3924,6 +3975,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -3988,6 +4040,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -4046,6 +4099,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -4185,11 +4239,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -4256,11 +4311,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -4324,11 +4380,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -4403,6 +4460,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -4467,6 +4525,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -4525,6 +4584,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -4636,11 +4696,12 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -4707,11 +4768,12 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -4775,11 +4837,12 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -4854,6 +4917,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -4918,6 +4982,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -4976,6 +5041,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -5105,11 +5171,12 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -5176,11 +5243,12 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -5244,11 +5312,12 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -5323,6 +5392,7 @@ class _$CheckInImpl implements _CheckIn {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -5387,6 +5457,7 @@ class _$CheckInImpl implements _CheckIn {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -5445,6 +5516,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -5553,11 +5625,12 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -5624,11 +5697,12 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -5692,11 +5766,12 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -5771,6 +5846,7 @@ class _$InitAddImpl implements _InitAdd {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -5835,6 +5911,7 @@ class _$InitAddImpl implements _InitAdd {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -5893,6 +5970,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -6022,11 +6100,12 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -6093,11 +6172,12 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -6161,11 +6241,12 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -6240,6 +6321,7 @@ class _$ChangeStepImpl implements _ChangeStep {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -6304,6 +6386,7 @@ class _$ChangeStepImpl implements _ChangeStep {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -6362,6 +6445,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -6508,11 +6592,12 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -6579,11 +6664,12 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -6647,11 +6733,12 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -6726,6 +6813,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -6790,6 +6878,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -6848,6 +6937,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -6999,11 +7089,12 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -7070,11 +7161,12 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -7138,11 +7230,12 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -7217,6 +7310,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -7281,6 +7375,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -7339,6 +7434,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -7489,11 +7585,12 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -7560,11 +7657,12 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -7628,11 +7726,12 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -7707,6 +7806,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -7771,6 +7871,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -7829,6 +7930,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -7970,11 +8072,12 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -8041,11 +8144,12 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -8109,11 +8213,12 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -8188,6 +8293,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -8252,6 +8358,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -8310,6 +8417,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -8449,11 +8557,12 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -8520,11 +8629,12 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -8588,11 +8698,12 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -8667,6 +8778,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -8731,6 +8843,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -8789,6 +8902,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -8927,11 +9041,12 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -8998,11 +9113,12 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -9066,11 +9182,12 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -9145,6 +9262,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -9209,6 +9327,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -9267,6 +9386,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -9414,11 +9534,12 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -9485,11 +9606,12 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -9553,11 +9675,12 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -9632,6 +9755,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -9696,6 +9820,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -9754,6 +9879,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -9895,11 +10021,12 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -9966,11 +10093,12 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -10034,11 +10162,12 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -10113,6 +10242,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -10177,6 +10307,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -10235,6 +10366,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -10287,7 +10419,7 @@ abstract class _$$UpdateHeaderTaskCategoryImplCopyWith<$Res> {
           $Res Function(_$UpdateHeaderTaskCategoryImpl) then) =
       __$$UpdateHeaderTaskCategoryImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int categoryId, String categoryName});
+  $Res call({String categoryId, String categoryName});
 }
 
 /// @nodoc
@@ -10309,7 +10441,7 @@ class __$$UpdateHeaderTaskCategoryImplCopyWithImpl<$Res>
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       categoryName: null == categoryName
           ? _value.categoryName
           : categoryName // ignore: cast_nullable_to_non_nullable
@@ -10325,7 +10457,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
       {required this.categoryId, required this.categoryName});
 
   @override
-  final int categoryId;
+  final String categoryId;
   @override
   final String categoryName;
 
@@ -10384,11 +10516,12 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -10455,11 +10588,12 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -10523,11 +10657,12 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -10602,6 +10737,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -10666,6 +10802,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -10724,6 +10861,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -10761,10 +10899,10 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
 
 abstract class _UpdateHeaderTaskCategory implements WeekPlanEvent {
   const factory _UpdateHeaderTaskCategory(
-      {required final int categoryId,
+      {required final String categoryId,
       required final String categoryName}) = _$UpdateHeaderTaskCategoryImpl;
 
-  int get categoryId;
+  String get categoryId;
   String get categoryName;
   @JsonKey(ignore: true)
   _$$UpdateHeaderTaskCategoryImplCopyWith<_$UpdateHeaderTaskCategoryImpl>
@@ -10901,11 +11039,12 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -10973,11 +11112,12 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -11042,11 +11182,12 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -11122,6 +11263,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -11186,6 +11328,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -11244,6 +11387,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -11294,6 +11438,455 @@ abstract class _UpdateHeaderWorkTypeAndStatus implements WeekPlanEvent {
   _$$UpdateHeaderWorkTypeAndStatusImplCopyWith<
           _$UpdateHeaderWorkTypeAndStatusImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchTaskTypesImplCopyWith<$Res> {
+  factory _$$FetchTaskTypesImplCopyWith(_$FetchTaskTypesImpl value,
+          $Res Function(_$FetchTaskTypesImpl) then) =
+      __$$FetchTaskTypesImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FetchTaskTypesImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$FetchTaskTypesImpl>
+    implements _$$FetchTaskTypesImplCopyWith<$Res> {
+  __$$FetchTaskTypesImplCopyWithImpl(
+      _$FetchTaskTypesImpl _value, $Res Function(_$FetchTaskTypesImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$FetchTaskTypesImpl implements _FetchTaskTypes {
+  const _$FetchTaskTypesImpl();
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.fetchTaskTypes()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$FetchTaskTypesImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(int viewNumber) initWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(String status) filterByStatus,
+    required TResult Function() clearStatusFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId) checkIn,
+    required TResult Function() initAdd,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(String categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(List<WeekPlanEmployee> assignees) setAssignees,
+    required TResult Function(WeekPlanEmployee employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<WeekPlanEmployee> persons) setRelatedPersons,
+    required TResult Function(WeekPlanEmployee employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function() createTask,
+    required TResult Function() clearSubmitState,
+  }) {
+    return fetchTaskTypes();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(String status)? filterByStatus,
+    TResult? Function()? clearStatusFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId)? checkIn,
+    TResult? Function()? initAdd,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(String categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(List<WeekPlanEmployee> assignees)? setAssignees,
+    TResult? Function(WeekPlanEmployee employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<WeekPlanEmployee> persons)? setRelatedPersons,
+    TResult? Function(WeekPlanEmployee employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function()? createTask,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return fetchTaskTypes?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(int viewNumber)? initWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(String status)? filterByStatus,
+    TResult Function()? clearStatusFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId)? checkIn,
+    TResult Function()? initAdd,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(String categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(List<WeekPlanEmployee> assignees)? setAssignees,
+    TResult Function(WeekPlanEmployee employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<WeekPlanEmployee> persons)? setRelatedPersons,
+    TResult Function(WeekPlanEmployee employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function()? createTask,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (fetchTaskTypes != null) {
+      return fetchTaskTypes();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearStatusFilter value) clearStatusFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTask value) addSubTask,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return fetchTaskTypes(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTask value)? addSubTask,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return fetchTaskTypes?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTask value)? addSubTask,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (fetchTaskTypes != null) {
+      return fetchTaskTypes(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchTaskTypes implements WeekPlanEvent {
+  const factory _FetchTaskTypes() = _$FetchTaskTypesImpl;
 }
 
 /// @nodoc
@@ -11388,11 +11981,12 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -11459,11 +12053,12 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -11527,11 +12122,12 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -11606,6 +12202,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -11670,6 +12267,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -11728,6 +12326,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -11876,11 +12475,12 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -11947,11 +12547,12 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -12015,11 +12616,12 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -12094,6 +12696,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -12158,6 +12761,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -12216,6 +12820,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -12366,11 +12971,12 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -12437,11 +13043,12 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -12505,11 +13112,12 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -12584,6 +13192,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -12648,6 +13257,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -12706,6 +13316,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -12891,11 +13502,12 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -12963,11 +13575,12 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -13032,11 +13645,12 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -13112,6 +13726,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -13176,6 +13791,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -13234,6 +13850,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -13381,11 +13998,12 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -13452,11 +14070,12 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -13520,11 +14139,12 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -13599,6 +14219,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -13663,6 +14284,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -13721,6 +14343,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -13857,11 +14480,12 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -13928,11 +14552,12 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -13996,11 +14621,12 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -14075,6 +14701,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -14139,6 +14766,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -14197,6 +14825,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -14340,11 +14969,12 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -14411,11 +15041,12 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -14479,11 +15110,12 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -14558,6 +15190,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -14622,6 +15255,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -14680,6 +15314,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -14816,11 +15451,12 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -14887,11 +15523,12 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -14955,11 +15592,12 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -15034,6 +15672,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -15098,6 +15737,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -15156,6 +15796,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -15293,11 +15934,12 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -15364,11 +16006,12 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -15432,11 +16075,12 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -15511,6 +16155,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -15575,6 +16220,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -15633,6 +16279,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -15775,11 +16422,12 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -15846,11 +16494,12 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -15914,11 +16563,12 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -15993,6 +16643,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -16057,6 +16708,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -16115,6 +16767,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -16252,11 +16905,12 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -16323,11 +16977,12 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -16391,11 +17046,12 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -16470,6 +17126,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -16534,6 +17191,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -16592,6 +17250,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -16729,11 +17388,12 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -16800,11 +17460,12 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -16868,11 +17529,12 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -16947,6 +17609,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -17011,6 +17674,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -17069,6 +17733,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -17214,11 +17879,12 @@ class _$AddSubTaskImpl implements _AddSubTask {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -17285,11 +17951,12 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -17353,11 +18020,12 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -17432,6 +18100,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -17496,6 +18165,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -17554,6 +18224,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -17707,11 +18378,12 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -17778,11 +18450,12 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -17846,11 +18519,12 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -17925,6 +18599,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -17989,6 +18664,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -18047,6 +18723,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -18183,11 +18860,12 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -18254,11 +18932,12 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -18322,11 +19001,12 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -18401,6 +19081,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -18465,6 +19146,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -18523,6 +19205,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -18658,11 +19341,12 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -18729,11 +19413,12 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -18797,11 +19482,12 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -18876,6 +19562,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -18940,6 +19627,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -18998,6 +19686,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -19141,11 +19830,12 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -19212,11 +19902,12 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -19280,11 +19971,12 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -19359,6 +20051,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -19423,6 +20116,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -19481,6 +20175,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -19618,11 +20313,12 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -19689,11 +20385,12 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -19757,11 +20454,12 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -19836,6 +20534,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -19900,6 +20599,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -19958,6 +20658,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -20094,11 +20795,12 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -20165,11 +20867,12 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -20233,11 +20936,12 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -20312,6 +21016,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -20376,6 +21081,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -20434,6 +21140,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -20580,11 +21287,12 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -20651,11 +21359,12 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -20719,11 +21428,12 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -20798,6 +21508,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -20862,6 +21573,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -20920,6 +21632,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -21056,11 +21769,12 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -21127,11 +21841,12 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -21195,11 +21910,12 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -21274,6 +21990,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -21338,6 +22055,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -21396,6 +22114,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -21541,11 +22260,12 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -21612,11 +22332,12 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -21680,11 +22401,12 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -21759,6 +22481,7 @@ class _$AddIncidentImpl implements _AddIncident {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -21823,6 +22546,7 @@ class _$AddIncidentImpl implements _AddIncident {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -21881,6 +22605,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -22036,11 +22761,12 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -22107,11 +22833,12 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -22175,11 +22902,12 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -22254,6 +22982,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -22318,6 +23047,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -22376,6 +23106,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -22514,11 +23245,12 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -22585,11 +23317,12 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -22653,11 +23386,12 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -22732,6 +23466,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -22796,6 +23531,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -22854,6 +23590,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -22962,11 +23699,12 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -23033,11 +23771,12 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -23101,11 +23840,12 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -23180,6 +23920,7 @@ class _$CreateTaskImpl implements _CreateTask {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -23244,6 +23985,7 @@ class _$CreateTaskImpl implements _CreateTask {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -23302,6 +24044,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -23405,11 +24148,12 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(int statusId, String statusName)
         updateHeaderStatus,
     required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
-    required TResult Function(int categoryId, String categoryName)
+    required TResult Function(String categoryId, String categoryName)
         updateHeaderTaskCategory,
     required TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -23476,11 +24220,12 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(int priority)? updateHeaderPriority,
     TResult? Function(int statusId, String statusName)? updateHeaderStatus,
     TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult? Function(int categoryId, String categoryName)?
+    TResult? Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult? Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -23544,11 +24289,12 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(int priority)? updateHeaderPriority,
     TResult Function(int statusId, String statusName)? updateHeaderStatus,
     TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
-    TResult Function(int categoryId, String categoryName)?
+    TResult Function(String categoryId, String categoryName)?
         updateHeaderTaskCategory,
     TResult Function(int workTypeId, String workTypeName, int statusId,
             String statusName)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -23623,6 +24369,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
         updateHeaderTaskCategory,
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -23687,6 +24434,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
         updateHeaderTaskCategory,
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -23745,6 +24493,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,

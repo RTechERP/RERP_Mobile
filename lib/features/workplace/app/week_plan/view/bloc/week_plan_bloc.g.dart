@@ -51,7 +51,7 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState headerComplexity(int headerComplexity);
 
-  WeekPlanState headerTaskCategory(int? headerTaskCategory);
+  WeekPlanState headerTaskCategory(String? headerTaskCategory);
 
   WeekPlanState headerTaskCategoryName(String? headerTaskCategoryName);
 
@@ -66,6 +66,8 @@ abstract class _$WeekPlanStateCWProxy {
   WeekPlanState headerPriority(int headerPriority);
 
   WeekPlanState headerTimeEstimate(double? headerTimeEstimate);
+
+  WeekPlanState taskTypes(List<TaskTypeItem> taskTypes);
 
   WeekPlanState taskName(String? taskName);
 
@@ -137,7 +139,7 @@ abstract class _$WeekPlanStateCWProxy {
     String? headerAssignerName,
     bool? headerIsPersonalTask,
     int? headerComplexity,
-    int? headerTaskCategory,
+    String? headerTaskCategory,
     String? headerTaskCategoryName,
     int? headerWorkType,
     String? headerWorkTypeName,
@@ -145,6 +147,7 @@ abstract class _$WeekPlanStateCWProxy {
     String? headerStatusName,
     int? headerPriority,
     double? headerTimeEstimate,
+    List<TaskTypeItem>? taskTypes,
     String? taskName,
     int? contentAssigneeId,
     String? contentAssigneeName,
@@ -257,7 +260,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(headerComplexity: headerComplexity);
 
   @override
-  WeekPlanState headerTaskCategory(int? headerTaskCategory) =>
+  WeekPlanState headerTaskCategory(String? headerTaskCategory) =>
       this(headerTaskCategory: headerTaskCategory);
 
   @override
@@ -287,6 +290,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
   @override
   WeekPlanState headerTimeEstimate(double? headerTimeEstimate) =>
       this(headerTimeEstimate: headerTimeEstimate);
+
+  @override
+  WeekPlanState taskTypes(List<TaskTypeItem> taskTypes) =>
+      this(taskTypes: taskTypes);
 
   @override
   WeekPlanState taskName(String? taskName) => this(taskName: taskName);
@@ -406,6 +413,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? headerStatusName = const $CopyWithPlaceholder(),
     Object? headerPriority = const $CopyWithPlaceholder(),
     Object? headerTimeEstimate = const $CopyWithPlaceholder(),
+    Object? taskTypes = const $CopyWithPlaceholder(),
     Object? taskName = const $CopyWithPlaceholder(),
     Object? contentAssigneeId = const $CopyWithPlaceholder(),
     Object? contentAssigneeName = const $CopyWithPlaceholder(),
@@ -529,7 +537,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       headerTaskCategory: headerTaskCategory == const $CopyWithPlaceholder()
           ? _value.headerTaskCategory
           // ignore: cast_nullable_to_non_nullable
-          : headerTaskCategory as int?,
+          : headerTaskCategory as String?,
       headerTaskCategoryName:
           headerTaskCategoryName == const $CopyWithPlaceholder()
               ? _value.headerTaskCategoryName
@@ -560,6 +568,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.headerTimeEstimate
           // ignore: cast_nullable_to_non_nullable
           : headerTimeEstimate as double?,
+      taskTypes: taskTypes == const $CopyWithPlaceholder() || taskTypes == null
+          ? _value.taskTypes
+          // ignore: cast_nullable_to_non_nullable
+          : taskTypes as List<TaskTypeItem>,
       taskName: taskName == const $CopyWithPlaceholder()
           ? _value.taskName
           // ignore: cast_nullable_to_non_nullable

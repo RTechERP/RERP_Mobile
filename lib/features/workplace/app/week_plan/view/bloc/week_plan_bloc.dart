@@ -93,6 +93,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         updateHeaderWorkTypeAndStatus: (workTypeId, workTypeName, statusId, statusName) =>
             _onUpdateHeaderWorkTypeAndStatus(
                 emit, workTypeId, workTypeName, statusId, statusName),
+        fetchTaskTypes: () => _onFetchTaskTypes(emit),
         updateContentTaskName: (name) => _onUpdateContentTaskName(emit, name),
         updateContentAssignee: (assigneeId, assigneeName) =>
             _onUpdateContentAssignee(emit, assigneeId, assigneeName),
@@ -362,6 +363,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       attachments: const [],
       incidents: const [],
     ));
+
+    await _onFetchTaskTypes(emit);
   }
 
   Future<void> _onChangeStep(Emitter<WeekPlanState> emit, int step) async {
@@ -407,7 +410,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   }
 
   Future<void> _onUpdateHeaderTaskCategory(
-      Emitter<WeekPlanState> emit, int categoryId, String categoryName) async {
+      Emitter<WeekPlanState> emit, String categoryId, String categoryName) async {
     emit(state.copyWith(headerTaskCategory: categoryId, headerTaskCategoryName: categoryName));
   }
 
@@ -429,6 +432,26 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       headerStatus: statusId,
       headerStatusName: statusName,
     ));
+  }
+
+  Future<void> _onFetchTaskTypes(Emitter<WeekPlanState> emit) async {
+    final res = await _weekPlanRepo.getTaskTypes();
+
+    await res.fold(
+      (err) async {
+        _log.logE('Fetch task types failed: $err');
+      },
+      (taskTypes) async {
+        _log.logI('Fetch task types success: ${taskTypes.length}');
+        // Auto-select "Task" (item đầu tiên)
+        final first = taskTypes.isNotEmpty ? taskTypes.first : null;
+        emit(state.copyWith(
+          taskTypes: taskTypes,
+          headerWorkType: first?.id,
+          headerWorkTypeName: first?.typeName,
+        ));
+      },
+    );
   }
 
   //---(Content Step)---//
@@ -690,7 +713,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       'AssignerId': state.headerAssignerId,
       'IsPersonalTask': state.headerIsPersonalTask,
       'Complexity': state.headerComplexity,
-      'TaskCategory': state.headerTaskCategory ?? 0,
+      'TaskCategory': state.headerTaskCategory ?? '',
       'WorkType': state.headerWorkType ?? 0,
       'Status': state.headerStatus ?? 0,
       'Description': state.contentDescription ?? '',

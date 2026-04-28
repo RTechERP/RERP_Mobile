@@ -1816,6 +1816,364 @@ abstract class _WeekPlanTaskItem implements WeekPlanTaskItem {
       throw _privateConstructorUsedError;
 }
 
+TaskTypeItem _$TaskTypeItemFromJson(Map<String, dynamic> json) {
+  return _TaskTypeItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TaskTypeItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TypeName')
+  String? get typeName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Color')
+  String? get color => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TaskTypeItemCopyWith<TaskTypeItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TaskTypeItemCopyWith<$Res> {
+  factory $TaskTypeItemCopyWith(
+          TaskTypeItem value, $Res Function(TaskTypeItem) then) =
+      _$TaskTypeItemCopyWithImpl<$Res, TaskTypeItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'TypeName') String? typeName,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'Color') String? color});
+}
+
+/// @nodoc
+class _$TaskTypeItemCopyWithImpl<$Res, $Val extends TaskTypeItem>
+    implements $TaskTypeItemCopyWith<$Res> {
+  _$TaskTypeItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? typeName = freezed,
+    Object? createdDate = freezed,
+    Object? updatedDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+    Object? code = freezed,
+    Object? departmentId = freezed,
+    Object? color = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      typeName: freezed == typeName
+          ? _value.typeName
+          : typeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      color: freezed == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TaskTypeItemImplCopyWith<$Res>
+    implements $TaskTypeItemCopyWith<$Res> {
+  factory _$$TaskTypeItemImplCopyWith(
+          _$TaskTypeItemImpl value, $Res Function(_$TaskTypeItemImpl) then) =
+      __$$TaskTypeItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'TypeName') String? typeName,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'Color') String? color});
+}
+
+/// @nodoc
+class __$$TaskTypeItemImplCopyWithImpl<$Res>
+    extends _$TaskTypeItemCopyWithImpl<$Res, _$TaskTypeItemImpl>
+    implements _$$TaskTypeItemImplCopyWith<$Res> {
+  __$$TaskTypeItemImplCopyWithImpl(
+      _$TaskTypeItemImpl _value, $Res Function(_$TaskTypeItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? typeName = freezed,
+    Object? createdDate = freezed,
+    Object? updatedDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+    Object? code = freezed,
+    Object? departmentId = freezed,
+    Object? color = freezed,
+  }) {
+    return _then(_$TaskTypeItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      typeName: freezed == typeName
+          ? _value.typeName
+          : typeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      color: freezed == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TaskTypeItemImpl implements _TaskTypeItem {
+  const _$TaskTypeItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'TypeName') this.typeName,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'DepartmentID') this.departmentId,
+      @JsonKey(name: 'Color') this.color});
+
+  factory _$TaskTypeItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TaskTypeItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'TypeName')
+  final String? typeName;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+  @override
+  @JsonKey(name: 'Color')
+  final String? color;
+
+  @override
+  String toString() {
+    return 'TaskTypeItem(id: $id, typeName: $typeName, createdDate: $createdDate, updatedDate: $updatedDate, createdBy: $createdBy, updatedBy: $updatedBy, isDeleted: $isDeleted, code: $code, departmentId: $departmentId, color: $color)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TaskTypeItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.typeName, typeName) ||
+                other.typeName == typeName) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId) &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, typeName, createdDate,
+      updatedDate, createdBy, updatedBy, isDeleted, code, departmentId, color);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TaskTypeItemImplCopyWith<_$TaskTypeItemImpl> get copyWith =>
+      __$$TaskTypeItemImplCopyWithImpl<_$TaskTypeItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TaskTypeItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TaskTypeItem implements TaskTypeItem {
+  const factory _TaskTypeItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'TypeName') final String? typeName,
+      @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+      @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+      @JsonKey(name: 'CreatedBy') final String? createdBy,
+      @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+      @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+      @JsonKey(name: 'Code') final String? code,
+      @JsonKey(name: 'DepartmentID') final int? departmentId,
+      @JsonKey(name: 'Color') final String? color}) = _$TaskTypeItemImpl;
+
+  factory _TaskTypeItem.fromJson(Map<String, dynamic> json) =
+      _$TaskTypeItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'TypeName')
+  String? get typeName;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(name: 'Color')
+  String? get color;
+  @override
+  @JsonKey(ignore: true)
+  _$$TaskTypeItemImplCopyWith<_$TaskTypeItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 WeekPlanSubTaskItem _$WeekPlanSubTaskItemFromJson(Map<String, dynamic> json) {
   return _WeekPlanSubTaskItem.fromJson(json);
 }

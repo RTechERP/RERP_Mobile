@@ -175,6 +175,38 @@ Map<String, dynamic> _$$WeekPlanTaskItemImplToJson(
       'Description': instance.description,
     };
 
+_$TaskTypeItemImpl _$$TaskTypeItemImplFromJson(Map<String, dynamic> json) =>
+    _$TaskTypeItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      typeName: json['TypeName'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedBy: json['UpdatedBy'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+      code: json['Code'] as String?,
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+      color: json['Color'] as String?,
+    );
+
+Map<String, dynamic> _$$TaskTypeItemImplToJson(_$TaskTypeItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'TypeName': instance.typeName,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedBy': instance.updatedBy,
+      'IsDeleted': instance.isDeleted,
+      'Code': instance.code,
+      'DepartmentID': instance.departmentId,
+      'Color': instance.color,
+    };
+
 _$WeekPlanSubTaskItemImpl _$$WeekPlanSubTaskItemImplFromJson(
         Map<String, dynamic> json) =>
     _$WeekPlanSubTaskItemImpl(

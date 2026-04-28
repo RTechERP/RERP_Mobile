@@ -4,3 +4,5 @@ export 'week_plan_multi_select_chips.dart';
 export 'week_plan_complexity_row.dart';
 export 'week_plan_priority_card.dart';
 export 'week_plan_status_card.dart';
+export 'week_plan_task_type_card.dart';
+export 'week_plan_category_card.dart';
