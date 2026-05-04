@@ -352,8 +352,11 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   }
 
   //---(Add Screen)---//
-  /// Init add screen — projects/taskTypes đã có sẵn trong state (fetch bởi initScreen).
+  /// Init add screen — gán current-user làm mặc định cho:
+  /// - Người giao việc (headerAssigner)
+  /// - Người thực hiện (selectedAssignees)
   Future<void> _onInitAddScreen(Emitter<WeekPlanState> emit) async {
+    // Reset form fields về initial state
     emit(state.copyWith(
       isSubmitting: false,
       submitSuccess: false,
@@ -393,6 +396,39 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       attachments: const [],
       incidents: const [],
     ));
+
+    // Fetch current user từ AuthRepo để set default cho người thực hiện & người giao việc
+    final userRes = await _authRepo.getCurrentUser();
+    await userRes.fold(
+      (err) async {
+        _log.logE('initAddScreen: get current user failed: $err');
+      },
+      (user) async {
+        if (user == null) return;
+
+        final employeeItem = EmployeeTaskItem(
+          id: user.employeeId,
+          userId: user.id,
+          code: user.code,
+          fullName: user.fullName,
+          departmentId: user.departmentId,
+          departmentName: user.departmentName,
+        );
+
+        final displayName = '${user.code} - ${user.fullName}';
+
+        _log.logI('initAddScreen: current user = $displayName');
+
+        // ignore: invalid_use_of_visible_for_testing_member
+        emit(state.copyWith(
+          headerAssignerId: user.employeeId,
+          headerAssignerName: displayName,
+          contentAssignerId: user.employeeId,
+          contentAssignerName: displayName,
+          selectedAssignees: [employeeItem],
+        ));
+      },
+    );
   }
 
   Future<void> _onChangeStep(Emitter<WeekPlanState> emit, int step) async {
