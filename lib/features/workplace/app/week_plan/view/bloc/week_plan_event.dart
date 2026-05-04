@@ -87,6 +87,8 @@ class WeekPlanEvent with _$WeekPlanEvent {
 
   const factory WeekPlanEvent.fetchProjectTypes() = _FetchProjectTypes;
 
+  const factory WeekPlanEvent.fetchEmployees() = _FetchEmployees;
+
   // Step 2: Nội dung chính
   const factory WeekPlanEvent.updateContentTaskName(String name) =
       _UpdateContentTaskName;
@@ -116,10 +118,10 @@ class WeekPlanEvent with _$WeekPlanEvent {
       _UpdateContentResult;
 
   // Step 3: Người thực hiện (multi-select)
-  const factory WeekPlanEvent.setAssignees(List<WeekPlanEmployee> assignees) =
+  const factory WeekPlanEvent.setAssignees(List<EmployeeTaskItem> assignees) =
       _SetAssignees;
 
-  const factory WeekPlanEvent.addAssignee(WeekPlanEmployee employee) =
+  const factory WeekPlanEvent.addAssignee(EmployeeTaskItem employee) =
       _AddAssignee;
 
   const factory WeekPlanEvent.removeAssignee(int employeeId) =
@@ -127,9 +129,9 @@ class WeekPlanEvent with _$WeekPlanEvent {
 
   // Step 4: Người liên quan (multi-select)
   const factory WeekPlanEvent.setRelatedPersons(
-      List<WeekPlanEmployee> persons) = _SetRelatedPersons;
+      List<EmployeeTaskItem> persons) = _SetRelatedPersons;
 
-  const factory WeekPlanEvent.addRelatedPerson(WeekPlanEmployee employee) =
+  const factory WeekPlanEvent.addRelatedPerson(EmployeeTaskItem employee) =
       _AddRelatedPerson;
 
   const factory WeekPlanEvent.removeRelatedPerson(int employeeId) =

@@ -47,6 +47,9 @@ class WeekPlanState extends BaseBlocState {
   // Danh sách hạng mục dự án (từ API /WorkItem/get-type-project-item)
   final List<ProjectTypeItem> projectTypes;
 
+  // Danh sách nhân viên (từ API /Employee) - dùng cho 3 trường employee
+  final List<EmployeeTaskItem> employees;
+
   // Step 2: Nội dung chính
   final String? taskName;
   final int? contentAssigneeId;
@@ -62,10 +65,10 @@ class WeekPlanState extends BaseBlocState {
   final String? contentResult;
 
   // Step 3: Người thực hiện (multi-select)
-  final List<WeekPlanEmployee> selectedAssignees;
+  final List<EmployeeTaskItem> selectedAssignees;
 
   // Step 4: Người liên quan (multi-select)
-  final List<WeekPlanEmployee> selectedRelatedPersons;
+  final List<EmployeeTaskItem> selectedRelatedPersons;
 
   // Step 5: Công việc con
   final List<WeekPlanSubTaskItem> subTasks;
@@ -115,10 +118,11 @@ class WeekPlanState extends BaseBlocState {
     this.headerStatusName,
     this.headerPriority = 0, // 0=Bình thường, 1=Trung, 2=Cao, 3=Khẩn cấp
     this.headerTimeEstimate,
-    this.taskTypes = const [],
-    this.projects = const [],
-    this.projectTypes = const [],
-    // Step 2
+        this.taskTypes = const [],
+        this.projects = const [],
+        this.projectTypes = const [],
+        this.employees = const [],
+        // Step 2
     this.taskName,
     this.contentAssigneeId,
     this.contentAssigneeName,
@@ -169,6 +173,7 @@ class WeekPlanState extends BaseBlocState {
         taskTypes: const [],
         projects: const [],
         projectTypes: const [],
+        employees: const [],
         selectedAssignees: [],
         selectedRelatedPersons: [],
         subTasks: [],
@@ -215,6 +220,7 @@ class WeekPlanState extends BaseBlocState {
         taskTypes,
         projects,
         projectTypes,
+        employees,
         // Step 2
         taskName,
         contentAssigneeId,

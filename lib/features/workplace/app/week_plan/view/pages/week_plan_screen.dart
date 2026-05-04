@@ -207,13 +207,15 @@ class _WeekPlanScreenState
             buildWhen: (prev, curr) =>
                 prev.projects.length != curr.projects.length ||
                 prev.taskTypes.length != curr.taskTypes.length ||
-                prev.projectTypes.length != curr.projectTypes.length,
+                prev.projectTypes.length != curr.projectTypes.length ||
+                prev.employees.length != curr.employees.length,
             builder: (context, state) => FloatingActionButton(
               onPressed: () => context.push(
                 RouteNames.weekplanAdd,
                 extra: WeekPlanAddExtra(
                   projects: state.projects,
                   taskTypes: state.taskTypes,
+                  employees: state.employees,
                   projectTypes: state.projectTypes,
                 ),
               ),

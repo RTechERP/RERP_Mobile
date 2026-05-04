@@ -186,3 +186,50 @@ class WeekPlanIncidentItem with _$WeekPlanIncidentItem {
   factory WeekPlanIncidentItem.fromJson(Map<String, dynamic> json) =>
       _$WeekPlanIncidentItemFromJson(json);
 }
+
+
+@freezed
+class EmployeeTaskItem with _$EmployeeTaskItem {
+  const factory EmployeeTaskItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'UserID') int? userId,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'ChucVuHDID') int? chucVuHDID,
+    @JsonKey(name: 'ChuVuID') int? chuVuID,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'IDChamCongMoi') String? idChamCongMoi,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'AnhCBNV') String? anhCBNV,
+    @JsonKey(name: 'ChucVuHD') String? chucVuHD,
+    @JsonKey(name: 'ChucVu') String? chucVu,
+    @JsonKey(name: 'DepartmentSTT') int? departmentSTT,
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+    @JsonKey(name: 'DvBHXH') String? dvBHXH,
+    @JsonKey(name: 'DiaDiemLamViec') String? diaDiemLamViec,
+    @JsonKey(name: 'BirthOfDate') DateTime? birthOfDate,
+    @JsonKey(name: 'NoiSinh') String? noiSinh,
+    @JsonKey(name: 'GioiTinh') int? gioiTinh,
+    @JsonKey(name: 'GioiTinhText') String? gioiTinhText,
+    @JsonKey(name: 'DanToc') String? danToc,
+    @JsonKey(name: 'TonGiao') String? tonGiao,
+    @JsonKey(name: 'QuocTich') String? quocTich,
+    @JsonKey(name: 'TinhTrangHonNhan') String? tinhTrangHonNhan,
+    @JsonKey(name: 'DcThuongTru') String? dcThuongTru,
+    @JsonKey(name: 'DcTamTru') String? dcTamTru,
+    @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan,
+    @JsonKey(name: 'EmailCaNhan') String? emailCaNhan,
+    @JsonKey(name: 'SDTCongTy') String? sdtCongTy,
+    @JsonKey(name: 'EmailCongTy') String? emailCongTy,
+    @JsonKey(name: 'NguoiLienHeKhiCan') String? nguoiLienHeKhiCan,
+    @JsonKey(name: 'MoiQuanHe') String? moiQuanHe,
+    @JsonKey(name: 'SDTNguoiThan') String? sdtNguoiThan,
+    @JsonKey(name: 'NguoiLienHeKhiCan2') String? nguoiLienHeKhiCan2,
+    @JsonKey(name: 'MoiQuanHe2') String? moiQuanHe2,
+    @JsonKey(name: 'SDTNguoiThan2') String? sdtNguoiThan2,
+  }) = _EmployeeTaskItem;
+
+  factory EmployeeTaskItem.fromJson(Map<String, dynamic> json) =>
+      _$EmployeeTaskItemFromJson(json);
+}

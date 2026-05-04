@@ -7,6 +7,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/helpers/multi_select_employee_sheet.dart';
+import '../../../../../../../../../common/helpers/select_bottom_sheet_helper.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../data/datasource/models/week_plan_model.dart';
 import '../bloc/week_plan_bloc.dart';
@@ -14,16 +16,18 @@ import '../week_plan_tab_enum.dart';
 import '../widgets/index.dart';
 
 /// Data truyền từ WeekPlanScreen qua route extra.
-/// Chứa projects/taskTypes đã fetch sẵn để dùng ngay trên màn add.
+/// Chứa projects/taskTypes/employees đã fetch sẵn để dùng ngay trên màn add.
 class WeekPlanAddExtra {
   const WeekPlanAddExtra({
     required this.projects,
     required this.taskTypes,
+    required this.employees,
     this.projectTypes = const [],
   });
 
   final List<ProjectTaskItem> projects;
   final List<TaskTypeItem> taskTypes;
+  final List<EmployeeTaskItem> employees;
   final List<ProjectTypeItem> projectTypes;
 }
 
@@ -59,6 +63,9 @@ class _WeekPlanAddScreenState
         }
         if (extra.projectTypes.isNotEmpty) {
           bloc.add(const WeekPlanEvent.fetchProjectTypes());
+        }
+        if (extra.employees.isNotEmpty) {
+          bloc.add(const WeekPlanEvent.fetchEmployees());
         }
       }
 
@@ -217,6 +224,9 @@ class _WeekPlanAddScreenState
     if (state.projectTypes.isEmpty) {
       bloc.add(const WeekPlanEvent.fetchProjectTypes());
     }
+    if (state.employees.isEmpty) {
+      bloc.add(const WeekPlanEvent.fetchEmployees());
+    }
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
@@ -240,11 +250,19 @@ class _WeekPlanAddScreenState
             onTap: () => _stub('Chọn công việc cha'),
           ),
           const SizedBox(height: 10),
-          WeekPlanMultiSelectChips<WeekPlanEmployee>(
+          WeekPlanMultiSelectChips<EmployeeTaskItem>(
             label: 'Người thực hiện',
             icon: Icons.people_outline,
             selected: state.selectedAssignees,
-            onAdd: () => _stub('Chọn người thực hiện'),
+            onAdd: () => _showEmployeePicker(
+              context,
+              title: 'Chọn người thực hiện',
+              allEmployees: state.employees,
+              selectedEmployees: state.selectedAssignees,
+              onConfirm: (selected) {
+                bloc.add(WeekPlanEvent.setAssignees(selected));
+              },
+            ),
             onRemove: (id) => bloc.add(WeekPlanEvent.removeAssignee(id)),
             isEmployee: true,
           ),
@@ -253,14 +271,35 @@ class _WeekPlanAddScreenState
             label: 'Người giao việc',
             value: state.headerAssignerName,
             icon: Icons.assignment_ind_outlined,
-            onTap: () => _stub('Chọn người giao việc'),
+            onTap: () => _showSingleEmployeePicker(
+              context,
+              title: 'Chọn người giao việc',
+              allEmployees: state.employees,
+              selectedId: state.headerAssignerId,
+              onConfirm: (employee) {
+                if (employee != null) {
+                  bloc.add(WeekPlanEvent.updateHeaderAssigner(
+                    assignerId: employee.id ?? 0,
+                    assignerName: '${employee.code ?? ''} - ${employee.fullName ?? ''}',
+                  ));
+                }
+              },
+            ),
           ),
           const SizedBox(height: 10),
-          WeekPlanMultiSelectChips<WeekPlanEmployee>(
+          WeekPlanMultiSelectChips<EmployeeTaskItem>(
             label: 'Người liên quan',
             icon: Icons.group_outlined,
             selected: state.selectedRelatedPersons,
-            onAdd: () => _stub('Chọn người liên quan'),
+            onAdd: () => _showEmployeePicker(
+              context,
+              title: 'Chọn người liên quan',
+              allEmployees: state.employees,
+              selectedEmployees: state.selectedRelatedPersons,
+              onConfirm: (selected) {
+                bloc.add(WeekPlanEvent.setRelatedPersons(selected));
+              },
+            ),
             onRemove: (id) => bloc.add(WeekPlanEvent.removeRelatedPerson(id)),
             isEmployee: true,
           ),
@@ -388,6 +427,50 @@ class _WeekPlanAddScreenState
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _showEmployeePicker(
+    BuildContext context, {
+    required String title,
+    required List<EmployeeTaskItem> allEmployees,
+    required List<EmployeeTaskItem> selectedEmployees,
+    required void Function(List<EmployeeTaskItem>) onConfirm,
+  }) async {
+    if (allEmployees.isEmpty) {
+      showMessage(context, 'Danh sách nhân viên trống', type: SnackBarType.info);
+      return;
+    }
+    await openMultiSelectEmployeeSheet(
+      context: context,
+      title: title,
+      allEmployees: allEmployees,
+      selectedEmployees: selectedEmployees,
+      onConfirm: onConfirm,
+    );
+  }
+
+  Future<void> _showSingleEmployeePicker(
+    BuildContext context, {
+    required String title,
+    required List<EmployeeTaskItem> allEmployees,
+    required int? selectedId,
+    required void Function(EmployeeTaskItem?) onConfirm,
+  }) async {
+    if (allEmployees.isEmpty) {
+      showMessage(context, 'Danh sách nhân viên trống', type: SnackBarType.info);
+      return;
+    }
+    final initialSelected = selectedId != null
+        ? allEmployees.where((e) => e.id == selectedId).firstOrNull
+        : null;
+    await openSelectBottomSheet<EmployeeTaskItem>(
+      context: context,
+      title: title,
+      items: allEmployees,
+      displayText: (e) => '${e.code ?? ''} - ${e.fullName ?? ''}',
+      onSelected: (employee) => onConfirm(employee),
+      initialSelectedItem: initialSelected,
     );
   }
 

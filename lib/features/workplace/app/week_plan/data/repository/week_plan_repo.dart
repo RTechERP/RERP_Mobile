@@ -28,4 +28,6 @@ abstract class WeekPlanRepo {
   Future<Either<BaseError, List<ProjectTaskItem>>> getProjects();
 
   Future<Either<BaseError, List<ProjectTypeItem>>> getProjectTypes();
+
+  Future<Either<BaseError, List<EmployeeTaskItem>>> getEmployees();
 }

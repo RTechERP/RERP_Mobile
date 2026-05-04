@@ -73,6 +73,8 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState projectTypes(List<ProjectTypeItem> projectTypes);
 
+  WeekPlanState employees(List<EmployeeTaskItem> employees);
+
   WeekPlanState taskName(String? taskName);
 
   WeekPlanState contentAssigneeId(int? contentAssigneeId);
@@ -97,10 +99,10 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState contentResult(String? contentResult);
 
-  WeekPlanState selectedAssignees(List<WeekPlanEmployee> selectedAssignees);
+  WeekPlanState selectedAssignees(List<EmployeeTaskItem> selectedAssignees);
 
   WeekPlanState selectedRelatedPersons(
-      List<WeekPlanEmployee> selectedRelatedPersons);
+      List<EmployeeTaskItem> selectedRelatedPersons);
 
   WeekPlanState subTasks(List<WeekPlanSubTaskItem> subTasks);
 
@@ -154,6 +156,7 @@ abstract class _$WeekPlanStateCWProxy {
     List<TaskTypeItem>? taskTypes,
     List<ProjectTaskItem>? projects,
     List<ProjectTypeItem>? projectTypes,
+    List<EmployeeTaskItem>? employees,
     String? taskName,
     int? contentAssigneeId,
     String? contentAssigneeName,
@@ -166,8 +169,8 @@ abstract class _$WeekPlanStateCWProxy {
     DateTime? contentDeadline,
     String? contentDescription,
     String? contentResult,
-    List<WeekPlanEmployee>? selectedAssignees,
-    List<WeekPlanEmployee>? selectedRelatedPersons,
+    List<EmployeeTaskItem>? selectedAssignees,
+    List<EmployeeTaskItem>? selectedRelatedPersons,
     List<WeekPlanSubTaskItem>? subTasks,
     List<String>? checklistItems,
     List<bool>? checklistDone,
@@ -310,6 +313,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(projectTypes: projectTypes);
 
   @override
+  WeekPlanState employees(List<EmployeeTaskItem> employees) =>
+      this(employees: employees);
+
+  @override
   WeekPlanState taskName(String? taskName) => this(taskName: taskName);
 
   @override
@@ -357,12 +364,12 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(contentResult: contentResult);
 
   @override
-  WeekPlanState selectedAssignees(List<WeekPlanEmployee> selectedAssignees) =>
+  WeekPlanState selectedAssignees(List<EmployeeTaskItem> selectedAssignees) =>
       this(selectedAssignees: selectedAssignees);
 
   @override
   WeekPlanState selectedRelatedPersons(
-          List<WeekPlanEmployee> selectedRelatedPersons) =>
+          List<EmployeeTaskItem> selectedRelatedPersons) =>
       this(selectedRelatedPersons: selectedRelatedPersons);
 
   @override
@@ -430,6 +437,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? taskTypes = const $CopyWithPlaceholder(),
     Object? projects = const $CopyWithPlaceholder(),
     Object? projectTypes = const $CopyWithPlaceholder(),
+    Object? employees = const $CopyWithPlaceholder(),
     Object? taskName = const $CopyWithPlaceholder(),
     Object? contentAssigneeId = const $CopyWithPlaceholder(),
     Object? contentAssigneeName = const $CopyWithPlaceholder(),
@@ -597,6 +605,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
               ? _value.projectTypes
               // ignore: cast_nullable_to_non_nullable
               : projectTypes as List<ProjectTypeItem>,
+      employees: employees == const $CopyWithPlaceholder() || employees == null
+          ? _value.employees
+          // ignore: cast_nullable_to_non_nullable
+          : employees as List<EmployeeTaskItem>,
       taskName: taskName == const $CopyWithPlaceholder()
           ? _value.taskName
           // ignore: cast_nullable_to_non_nullable
@@ -650,13 +662,13 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
               selectedAssignees == null
           ? _value.selectedAssignees
           // ignore: cast_nullable_to_non_nullable
-          : selectedAssignees as List<WeekPlanEmployee>,
+          : selectedAssignees as List<EmployeeTaskItem>,
       selectedRelatedPersons:
           selectedRelatedPersons == const $CopyWithPlaceholder() ||
                   selectedRelatedPersons == null
               ? _value.selectedRelatedPersons
               // ignore: cast_nullable_to_non_nullable
-              : selectedRelatedPersons as List<WeekPlanEmployee>,
+              : selectedRelatedPersons as List<EmployeeTaskItem>,
       subTasks: subTasks == const $CopyWithPlaceholder() || subTasks == null
           ? _value.subTasks
           // ignore: cast_nullable_to_non_nullable

@@ -3685,3 +3685,1040 @@ abstract class _WeekPlanIncidentItem implements WeekPlanIncidentItem {
   _$$WeekPlanIncidentItemImplCopyWith<_$WeekPlanIncidentItemImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+EmployeeTaskItem _$EmployeeTaskItemFromJson(Map<String, dynamic> json) {
+  return _EmployeeTaskItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$EmployeeTaskItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UserID')
+  int? get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Status')
+  int? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ChucVuHDID')
+  int? get chucVuHDID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ChuVuID')
+  int? get chuVuID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IDChamCongMoi')
+  String? get idChamCongMoi => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AnhCBNV')
+  String? get anhCBNV => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ChucVuHD')
+  String? get chucVuHD => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ChucVu')
+  String? get chucVu => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentSTT')
+  int? get departmentSTT => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DvBHXH')
+  String? get dvBHXH => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DiaDiemLamViec')
+  String? get diaDiemLamViec => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BirthOfDate')
+  DateTime? get birthOfDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'NoiSinh')
+  String? get noiSinh => throw _privateConstructorUsedError;
+  @JsonKey(name: 'GioiTinh')
+  int? get gioiTinh => throw _privateConstructorUsedError;
+  @JsonKey(name: 'GioiTinhText')
+  String? get gioiTinhText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DanToc')
+  String? get danToc => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TonGiao')
+  String? get tonGiao => throw _privateConstructorUsedError;
+  @JsonKey(name: 'QuocTich')
+  String? get quocTich => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TinhTrangHonNhan')
+  String? get tinhTrangHonNhan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DcThuongTru')
+  String? get dcThuongTru => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DcTamTru')
+  String? get dcTamTru => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SDTCaNhan')
+  String? get sdtCaNhan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmailCaNhan')
+  String? get emailCaNhan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SDTCongTy')
+  String? get sdtCongTy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmailCongTy')
+  String? get emailCongTy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'NguoiLienHeKhiCan')
+  String? get nguoiLienHeKhiCan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'MoiQuanHe')
+  String? get moiQuanHe => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SDTNguoiThan')
+  String? get sdtNguoiThan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'NguoiLienHeKhiCan2')
+  String? get nguoiLienHeKhiCan2 => throw _privateConstructorUsedError;
+  @JsonKey(name: 'MoiQuanHe2')
+  String? get moiQuanHe2 => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SDTNguoiThan2')
+  String? get sdtNguoiThan2 => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $EmployeeTaskItemCopyWith<EmployeeTaskItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EmployeeTaskItemCopyWith<$Res> {
+  factory $EmployeeTaskItemCopyWith(
+          EmployeeTaskItem value, $Res Function(EmployeeTaskItem) then) =
+      _$EmployeeTaskItemCopyWithImpl<$Res, EmployeeTaskItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'UserID') int? userId,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'ChucVuHDID') int? chucVuHDID,
+      @JsonKey(name: 'ChuVuID') int? chuVuID,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'IDChamCongMoi') String? idChamCongMoi,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'AnhCBNV') String? anhCBNV,
+      @JsonKey(name: 'ChucVuHD') String? chucVuHD,
+      @JsonKey(name: 'ChucVu') String? chucVu,
+      @JsonKey(name: 'DepartmentSTT') int? departmentSTT,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'DvBHXH') String? dvBHXH,
+      @JsonKey(name: 'DiaDiemLamViec') String? diaDiemLamViec,
+      @JsonKey(name: 'BirthOfDate') DateTime? birthOfDate,
+      @JsonKey(name: 'NoiSinh') String? noiSinh,
+      @JsonKey(name: 'GioiTinh') int? gioiTinh,
+      @JsonKey(name: 'GioiTinhText') String? gioiTinhText,
+      @JsonKey(name: 'DanToc') String? danToc,
+      @JsonKey(name: 'TonGiao') String? tonGiao,
+      @JsonKey(name: 'QuocTich') String? quocTich,
+      @JsonKey(name: 'TinhTrangHonNhan') String? tinhTrangHonNhan,
+      @JsonKey(name: 'DcThuongTru') String? dcThuongTru,
+      @JsonKey(name: 'DcTamTru') String? dcTamTru,
+      @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan,
+      @JsonKey(name: 'EmailCaNhan') String? emailCaNhan,
+      @JsonKey(name: 'SDTCongTy') String? sdtCongTy,
+      @JsonKey(name: 'EmailCongTy') String? emailCongTy,
+      @JsonKey(name: 'NguoiLienHeKhiCan') String? nguoiLienHeKhiCan,
+      @JsonKey(name: 'MoiQuanHe') String? moiQuanHe,
+      @JsonKey(name: 'SDTNguoiThan') String? sdtNguoiThan,
+      @JsonKey(name: 'NguoiLienHeKhiCan2') String? nguoiLienHeKhiCan2,
+      @JsonKey(name: 'MoiQuanHe2') String? moiQuanHe2,
+      @JsonKey(name: 'SDTNguoiThan2') String? sdtNguoiThan2});
+}
+
+/// @nodoc
+class _$EmployeeTaskItemCopyWithImpl<$Res, $Val extends EmployeeTaskItem>
+    implements $EmployeeTaskItemCopyWith<$Res> {
+  _$EmployeeTaskItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? departmentId = freezed,
+    Object? status = freezed,
+    Object? chucVuHDID = freezed,
+    Object? chuVuID = freezed,
+    Object? stt = freezed,
+    Object? code = freezed,
+    Object? idChamCongMoi = freezed,
+    Object? fullName = freezed,
+    Object? anhCBNV = freezed,
+    Object? chucVuHD = freezed,
+    Object? chucVu = freezed,
+    Object? departmentSTT = freezed,
+    Object? departmentName = freezed,
+    Object? dvBHXH = freezed,
+    Object? diaDiemLamViec = freezed,
+    Object? birthOfDate = freezed,
+    Object? noiSinh = freezed,
+    Object? gioiTinh = freezed,
+    Object? gioiTinhText = freezed,
+    Object? danToc = freezed,
+    Object? tonGiao = freezed,
+    Object? quocTich = freezed,
+    Object? tinhTrangHonNhan = freezed,
+    Object? dcThuongTru = freezed,
+    Object? dcTamTru = freezed,
+    Object? sdtCaNhan = freezed,
+    Object? emailCaNhan = freezed,
+    Object? sdtCongTy = freezed,
+    Object? emailCongTy = freezed,
+    Object? nguoiLienHeKhiCan = freezed,
+    Object? moiQuanHe = freezed,
+    Object? sdtNguoiThan = freezed,
+    Object? nguoiLienHeKhiCan2 = freezed,
+    Object? moiQuanHe2 = freezed,
+    Object? sdtNguoiThan2 = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      chucVuHDID: freezed == chucVuHDID
+          ? _value.chucVuHDID
+          : chucVuHDID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      chuVuID: freezed == chuVuID
+          ? _value.chuVuID
+          : chuVuID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      idChamCongMoi: freezed == idChamCongMoi
+          ? _value.idChamCongMoi
+          : idChamCongMoi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      anhCBNV: freezed == anhCBNV
+          ? _value.anhCBNV
+          : anhCBNV // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chucVuHD: freezed == chucVuHD
+          ? _value.chucVuHD
+          : chucVuHD // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chucVu: freezed == chucVu
+          ? _value.chucVu
+          : chucVu // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentSTT: freezed == departmentSTT
+          ? _value.departmentSTT
+          : departmentSTT // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dvBHXH: freezed == dvBHXH
+          ? _value.dvBHXH
+          : dvBHXH // ignore: cast_nullable_to_non_nullable
+              as String?,
+      diaDiemLamViec: freezed == diaDiemLamViec
+          ? _value.diaDiemLamViec
+          : diaDiemLamViec // ignore: cast_nullable_to_non_nullable
+              as String?,
+      birthOfDate: freezed == birthOfDate
+          ? _value.birthOfDate
+          : birthOfDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      noiSinh: freezed == noiSinh
+          ? _value.noiSinh
+          : noiSinh // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gioiTinh: freezed == gioiTinh
+          ? _value.gioiTinh
+          : gioiTinh // ignore: cast_nullable_to_non_nullable
+              as int?,
+      gioiTinhText: freezed == gioiTinhText
+          ? _value.gioiTinhText
+          : gioiTinhText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      danToc: freezed == danToc
+          ? _value.danToc
+          : danToc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tonGiao: freezed == tonGiao
+          ? _value.tonGiao
+          : tonGiao // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quocTich: freezed == quocTich
+          ? _value.quocTich
+          : quocTich // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tinhTrangHonNhan: freezed == tinhTrangHonNhan
+          ? _value.tinhTrangHonNhan
+          : tinhTrangHonNhan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dcThuongTru: freezed == dcThuongTru
+          ? _value.dcThuongTru
+          : dcThuongTru // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dcTamTru: freezed == dcTamTru
+          ? _value.dcTamTru
+          : dcTamTru // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtCaNhan: freezed == sdtCaNhan
+          ? _value.sdtCaNhan
+          : sdtCaNhan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      emailCaNhan: freezed == emailCaNhan
+          ? _value.emailCaNhan
+          : emailCaNhan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtCongTy: freezed == sdtCongTy
+          ? _value.sdtCongTy
+          : sdtCongTy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      emailCongTy: freezed == emailCongTy
+          ? _value.emailCongTy
+          : emailCongTy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nguoiLienHeKhiCan: freezed == nguoiLienHeKhiCan
+          ? _value.nguoiLienHeKhiCan
+          : nguoiLienHeKhiCan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moiQuanHe: freezed == moiQuanHe
+          ? _value.moiQuanHe
+          : moiQuanHe // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtNguoiThan: freezed == sdtNguoiThan
+          ? _value.sdtNguoiThan
+          : sdtNguoiThan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nguoiLienHeKhiCan2: freezed == nguoiLienHeKhiCan2
+          ? _value.nguoiLienHeKhiCan2
+          : nguoiLienHeKhiCan2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moiQuanHe2: freezed == moiQuanHe2
+          ? _value.moiQuanHe2
+          : moiQuanHe2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtNguoiThan2: freezed == sdtNguoiThan2
+          ? _value.sdtNguoiThan2
+          : sdtNguoiThan2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$EmployeeTaskItemImplCopyWith<$Res>
+    implements $EmployeeTaskItemCopyWith<$Res> {
+  factory _$$EmployeeTaskItemImplCopyWith(_$EmployeeTaskItemImpl value,
+          $Res Function(_$EmployeeTaskItemImpl) then) =
+      __$$EmployeeTaskItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'UserID') int? userId,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'ChucVuHDID') int? chucVuHDID,
+      @JsonKey(name: 'ChuVuID') int? chuVuID,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'IDChamCongMoi') String? idChamCongMoi,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'AnhCBNV') String? anhCBNV,
+      @JsonKey(name: 'ChucVuHD') String? chucVuHD,
+      @JsonKey(name: 'ChucVu') String? chucVu,
+      @JsonKey(name: 'DepartmentSTT') int? departmentSTT,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'DvBHXH') String? dvBHXH,
+      @JsonKey(name: 'DiaDiemLamViec') String? diaDiemLamViec,
+      @JsonKey(name: 'BirthOfDate') DateTime? birthOfDate,
+      @JsonKey(name: 'NoiSinh') String? noiSinh,
+      @JsonKey(name: 'GioiTinh') int? gioiTinh,
+      @JsonKey(name: 'GioiTinhText') String? gioiTinhText,
+      @JsonKey(name: 'DanToc') String? danToc,
+      @JsonKey(name: 'TonGiao') String? tonGiao,
+      @JsonKey(name: 'QuocTich') String? quocTich,
+      @JsonKey(name: 'TinhTrangHonNhan') String? tinhTrangHonNhan,
+      @JsonKey(name: 'DcThuongTru') String? dcThuongTru,
+      @JsonKey(name: 'DcTamTru') String? dcTamTru,
+      @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan,
+      @JsonKey(name: 'EmailCaNhan') String? emailCaNhan,
+      @JsonKey(name: 'SDTCongTy') String? sdtCongTy,
+      @JsonKey(name: 'EmailCongTy') String? emailCongTy,
+      @JsonKey(name: 'NguoiLienHeKhiCan') String? nguoiLienHeKhiCan,
+      @JsonKey(name: 'MoiQuanHe') String? moiQuanHe,
+      @JsonKey(name: 'SDTNguoiThan') String? sdtNguoiThan,
+      @JsonKey(name: 'NguoiLienHeKhiCan2') String? nguoiLienHeKhiCan2,
+      @JsonKey(name: 'MoiQuanHe2') String? moiQuanHe2,
+      @JsonKey(name: 'SDTNguoiThan2') String? sdtNguoiThan2});
+}
+
+/// @nodoc
+class __$$EmployeeTaskItemImplCopyWithImpl<$Res>
+    extends _$EmployeeTaskItemCopyWithImpl<$Res, _$EmployeeTaskItemImpl>
+    implements _$$EmployeeTaskItemImplCopyWith<$Res> {
+  __$$EmployeeTaskItemImplCopyWithImpl(_$EmployeeTaskItemImpl _value,
+      $Res Function(_$EmployeeTaskItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? departmentId = freezed,
+    Object? status = freezed,
+    Object? chucVuHDID = freezed,
+    Object? chuVuID = freezed,
+    Object? stt = freezed,
+    Object? code = freezed,
+    Object? idChamCongMoi = freezed,
+    Object? fullName = freezed,
+    Object? anhCBNV = freezed,
+    Object? chucVuHD = freezed,
+    Object? chucVu = freezed,
+    Object? departmentSTT = freezed,
+    Object? departmentName = freezed,
+    Object? dvBHXH = freezed,
+    Object? diaDiemLamViec = freezed,
+    Object? birthOfDate = freezed,
+    Object? noiSinh = freezed,
+    Object? gioiTinh = freezed,
+    Object? gioiTinhText = freezed,
+    Object? danToc = freezed,
+    Object? tonGiao = freezed,
+    Object? quocTich = freezed,
+    Object? tinhTrangHonNhan = freezed,
+    Object? dcThuongTru = freezed,
+    Object? dcTamTru = freezed,
+    Object? sdtCaNhan = freezed,
+    Object? emailCaNhan = freezed,
+    Object? sdtCongTy = freezed,
+    Object? emailCongTy = freezed,
+    Object? nguoiLienHeKhiCan = freezed,
+    Object? moiQuanHe = freezed,
+    Object? sdtNguoiThan = freezed,
+    Object? nguoiLienHeKhiCan2 = freezed,
+    Object? moiQuanHe2 = freezed,
+    Object? sdtNguoiThan2 = freezed,
+  }) {
+    return _then(_$EmployeeTaskItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      chucVuHDID: freezed == chucVuHDID
+          ? _value.chucVuHDID
+          : chucVuHDID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      chuVuID: freezed == chuVuID
+          ? _value.chuVuID
+          : chuVuID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      idChamCongMoi: freezed == idChamCongMoi
+          ? _value.idChamCongMoi
+          : idChamCongMoi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      anhCBNV: freezed == anhCBNV
+          ? _value.anhCBNV
+          : anhCBNV // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chucVuHD: freezed == chucVuHD
+          ? _value.chucVuHD
+          : chucVuHD // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chucVu: freezed == chucVu
+          ? _value.chucVu
+          : chucVu // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentSTT: freezed == departmentSTT
+          ? _value.departmentSTT
+          : departmentSTT // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dvBHXH: freezed == dvBHXH
+          ? _value.dvBHXH
+          : dvBHXH // ignore: cast_nullable_to_non_nullable
+              as String?,
+      diaDiemLamViec: freezed == diaDiemLamViec
+          ? _value.diaDiemLamViec
+          : diaDiemLamViec // ignore: cast_nullable_to_non_nullable
+              as String?,
+      birthOfDate: freezed == birthOfDate
+          ? _value.birthOfDate
+          : birthOfDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      noiSinh: freezed == noiSinh
+          ? _value.noiSinh
+          : noiSinh // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gioiTinh: freezed == gioiTinh
+          ? _value.gioiTinh
+          : gioiTinh // ignore: cast_nullable_to_non_nullable
+              as int?,
+      gioiTinhText: freezed == gioiTinhText
+          ? _value.gioiTinhText
+          : gioiTinhText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      danToc: freezed == danToc
+          ? _value.danToc
+          : danToc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tonGiao: freezed == tonGiao
+          ? _value.tonGiao
+          : tonGiao // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quocTich: freezed == quocTich
+          ? _value.quocTich
+          : quocTich // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tinhTrangHonNhan: freezed == tinhTrangHonNhan
+          ? _value.tinhTrangHonNhan
+          : tinhTrangHonNhan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dcThuongTru: freezed == dcThuongTru
+          ? _value.dcThuongTru
+          : dcThuongTru // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dcTamTru: freezed == dcTamTru
+          ? _value.dcTamTru
+          : dcTamTru // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtCaNhan: freezed == sdtCaNhan
+          ? _value.sdtCaNhan
+          : sdtCaNhan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      emailCaNhan: freezed == emailCaNhan
+          ? _value.emailCaNhan
+          : emailCaNhan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtCongTy: freezed == sdtCongTy
+          ? _value.sdtCongTy
+          : sdtCongTy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      emailCongTy: freezed == emailCongTy
+          ? _value.emailCongTy
+          : emailCongTy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nguoiLienHeKhiCan: freezed == nguoiLienHeKhiCan
+          ? _value.nguoiLienHeKhiCan
+          : nguoiLienHeKhiCan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moiQuanHe: freezed == moiQuanHe
+          ? _value.moiQuanHe
+          : moiQuanHe // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtNguoiThan: freezed == sdtNguoiThan
+          ? _value.sdtNguoiThan
+          : sdtNguoiThan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nguoiLienHeKhiCan2: freezed == nguoiLienHeKhiCan2
+          ? _value.nguoiLienHeKhiCan2
+          : nguoiLienHeKhiCan2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      moiQuanHe2: freezed == moiQuanHe2
+          ? _value.moiQuanHe2
+          : moiQuanHe2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtNguoiThan2: freezed == sdtNguoiThan2
+          ? _value.sdtNguoiThan2
+          : sdtNguoiThan2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$EmployeeTaskItemImpl implements _EmployeeTaskItem {
+  const _$EmployeeTaskItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'UserID') this.userId,
+      @JsonKey(name: 'DepartmentID') this.departmentId,
+      @JsonKey(name: 'Status') this.status,
+      @JsonKey(name: 'ChucVuHDID') this.chucVuHDID,
+      @JsonKey(name: 'ChuVuID') this.chuVuID,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'IDChamCongMoi') this.idChamCongMoi,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'AnhCBNV') this.anhCBNV,
+      @JsonKey(name: 'ChucVuHD') this.chucVuHD,
+      @JsonKey(name: 'ChucVu') this.chucVu,
+      @JsonKey(name: 'DepartmentSTT') this.departmentSTT,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'DvBHXH') this.dvBHXH,
+      @JsonKey(name: 'DiaDiemLamViec') this.diaDiemLamViec,
+      @JsonKey(name: 'BirthOfDate') this.birthOfDate,
+      @JsonKey(name: 'NoiSinh') this.noiSinh,
+      @JsonKey(name: 'GioiTinh') this.gioiTinh,
+      @JsonKey(name: 'GioiTinhText') this.gioiTinhText,
+      @JsonKey(name: 'DanToc') this.danToc,
+      @JsonKey(name: 'TonGiao') this.tonGiao,
+      @JsonKey(name: 'QuocTich') this.quocTich,
+      @JsonKey(name: 'TinhTrangHonNhan') this.tinhTrangHonNhan,
+      @JsonKey(name: 'DcThuongTru') this.dcThuongTru,
+      @JsonKey(name: 'DcTamTru') this.dcTamTru,
+      @JsonKey(name: 'SDTCaNhan') this.sdtCaNhan,
+      @JsonKey(name: 'EmailCaNhan') this.emailCaNhan,
+      @JsonKey(name: 'SDTCongTy') this.sdtCongTy,
+      @JsonKey(name: 'EmailCongTy') this.emailCongTy,
+      @JsonKey(name: 'NguoiLienHeKhiCan') this.nguoiLienHeKhiCan,
+      @JsonKey(name: 'MoiQuanHe') this.moiQuanHe,
+      @JsonKey(name: 'SDTNguoiThan') this.sdtNguoiThan,
+      @JsonKey(name: 'NguoiLienHeKhiCan2') this.nguoiLienHeKhiCan2,
+      @JsonKey(name: 'MoiQuanHe2') this.moiQuanHe2,
+      @JsonKey(name: 'SDTNguoiThan2') this.sdtNguoiThan2});
+
+  factory _$EmployeeTaskItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EmployeeTaskItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'UserID')
+  final int? userId;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+  @override
+  @JsonKey(name: 'Status')
+  final int? status;
+  @override
+  @JsonKey(name: 'ChucVuHDID')
+  final int? chucVuHDID;
+  @override
+  @JsonKey(name: 'ChuVuID')
+  final int? chuVuID;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'IDChamCongMoi')
+  final String? idChamCongMoi;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'AnhCBNV')
+  final String? anhCBNV;
+  @override
+  @JsonKey(name: 'ChucVuHD')
+  final String? chucVuHD;
+  @override
+  @JsonKey(name: 'ChucVu')
+  final String? chucVu;
+  @override
+  @JsonKey(name: 'DepartmentSTT')
+  final int? departmentSTT;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'DvBHXH')
+  final String? dvBHXH;
+  @override
+  @JsonKey(name: 'DiaDiemLamViec')
+  final String? diaDiemLamViec;
+  @override
+  @JsonKey(name: 'BirthOfDate')
+  final DateTime? birthOfDate;
+  @override
+  @JsonKey(name: 'NoiSinh')
+  final String? noiSinh;
+  @override
+  @JsonKey(name: 'GioiTinh')
+  final int? gioiTinh;
+  @override
+  @JsonKey(name: 'GioiTinhText')
+  final String? gioiTinhText;
+  @override
+  @JsonKey(name: 'DanToc')
+  final String? danToc;
+  @override
+  @JsonKey(name: 'TonGiao')
+  final String? tonGiao;
+  @override
+  @JsonKey(name: 'QuocTich')
+  final String? quocTich;
+  @override
+  @JsonKey(name: 'TinhTrangHonNhan')
+  final String? tinhTrangHonNhan;
+  @override
+  @JsonKey(name: 'DcThuongTru')
+  final String? dcThuongTru;
+  @override
+  @JsonKey(name: 'DcTamTru')
+  final String? dcTamTru;
+  @override
+  @JsonKey(name: 'SDTCaNhan')
+  final String? sdtCaNhan;
+  @override
+  @JsonKey(name: 'EmailCaNhan')
+  final String? emailCaNhan;
+  @override
+  @JsonKey(name: 'SDTCongTy')
+  final String? sdtCongTy;
+  @override
+  @JsonKey(name: 'EmailCongTy')
+  final String? emailCongTy;
+  @override
+  @JsonKey(name: 'NguoiLienHeKhiCan')
+  final String? nguoiLienHeKhiCan;
+  @override
+  @JsonKey(name: 'MoiQuanHe')
+  final String? moiQuanHe;
+  @override
+  @JsonKey(name: 'SDTNguoiThan')
+  final String? sdtNguoiThan;
+  @override
+  @JsonKey(name: 'NguoiLienHeKhiCan2')
+  final String? nguoiLienHeKhiCan2;
+  @override
+  @JsonKey(name: 'MoiQuanHe2')
+  final String? moiQuanHe2;
+  @override
+  @JsonKey(name: 'SDTNguoiThan2')
+  final String? sdtNguoiThan2;
+
+  @override
+  String toString() {
+    return 'EmployeeTaskItem(id: $id, userId: $userId, departmentId: $departmentId, status: $status, chucVuHDID: $chucVuHDID, chuVuID: $chuVuID, stt: $stt, code: $code, idChamCongMoi: $idChamCongMoi, fullName: $fullName, anhCBNV: $anhCBNV, chucVuHD: $chucVuHD, chucVu: $chucVu, departmentSTT: $departmentSTT, departmentName: $departmentName, dvBHXH: $dvBHXH, diaDiemLamViec: $diaDiemLamViec, birthOfDate: $birthOfDate, noiSinh: $noiSinh, gioiTinh: $gioiTinh, gioiTinhText: $gioiTinhText, danToc: $danToc, tonGiao: $tonGiao, quocTich: $quocTich, tinhTrangHonNhan: $tinhTrangHonNhan, dcThuongTru: $dcThuongTru, dcTamTru: $dcTamTru, sdtCaNhan: $sdtCaNhan, emailCaNhan: $emailCaNhan, sdtCongTy: $sdtCongTy, emailCongTy: $emailCongTy, nguoiLienHeKhiCan: $nguoiLienHeKhiCan, moiQuanHe: $moiQuanHe, sdtNguoiThan: $sdtNguoiThan, nguoiLienHeKhiCan2: $nguoiLienHeKhiCan2, moiQuanHe2: $moiQuanHe2, sdtNguoiThan2: $sdtNguoiThan2)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EmployeeTaskItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.chucVuHDID, chucVuHDID) ||
+                other.chucVuHDID == chucVuHDID) &&
+            (identical(other.chuVuID, chuVuID) || other.chuVuID == chuVuID) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.idChamCongMoi, idChamCongMoi) ||
+                other.idChamCongMoi == idChamCongMoi) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.anhCBNV, anhCBNV) || other.anhCBNV == anhCBNV) &&
+            (identical(other.chucVuHD, chucVuHD) ||
+                other.chucVuHD == chucVuHD) &&
+            (identical(other.chucVu, chucVu) || other.chucVu == chucVu) &&
+            (identical(other.departmentSTT, departmentSTT) ||
+                other.departmentSTT == departmentSTT) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.dvBHXH, dvBHXH) || other.dvBHXH == dvBHXH) &&
+            (identical(other.diaDiemLamViec, diaDiemLamViec) ||
+                other.diaDiemLamViec == diaDiemLamViec) &&
+            (identical(other.birthOfDate, birthOfDate) ||
+                other.birthOfDate == birthOfDate) &&
+            (identical(other.noiSinh, noiSinh) || other.noiSinh == noiSinh) &&
+            (identical(other.gioiTinh, gioiTinh) ||
+                other.gioiTinh == gioiTinh) &&
+            (identical(other.gioiTinhText, gioiTinhText) ||
+                other.gioiTinhText == gioiTinhText) &&
+            (identical(other.danToc, danToc) || other.danToc == danToc) &&
+            (identical(other.tonGiao, tonGiao) || other.tonGiao == tonGiao) &&
+            (identical(other.quocTich, quocTich) ||
+                other.quocTich == quocTich) &&
+            (identical(other.tinhTrangHonNhan, tinhTrangHonNhan) ||
+                other.tinhTrangHonNhan == tinhTrangHonNhan) &&
+            (identical(other.dcThuongTru, dcThuongTru) ||
+                other.dcThuongTru == dcThuongTru) &&
+            (identical(other.dcTamTru, dcTamTru) ||
+                other.dcTamTru == dcTamTru) &&
+            (identical(other.sdtCaNhan, sdtCaNhan) ||
+                other.sdtCaNhan == sdtCaNhan) &&
+            (identical(other.emailCaNhan, emailCaNhan) ||
+                other.emailCaNhan == emailCaNhan) &&
+            (identical(other.sdtCongTy, sdtCongTy) ||
+                other.sdtCongTy == sdtCongTy) &&
+            (identical(other.emailCongTy, emailCongTy) ||
+                other.emailCongTy == emailCongTy) &&
+            (identical(other.nguoiLienHeKhiCan, nguoiLienHeKhiCan) ||
+                other.nguoiLienHeKhiCan == nguoiLienHeKhiCan) &&
+            (identical(other.moiQuanHe, moiQuanHe) ||
+                other.moiQuanHe == moiQuanHe) &&
+            (identical(other.sdtNguoiThan, sdtNguoiThan) ||
+                other.sdtNguoiThan == sdtNguoiThan) &&
+            (identical(other.nguoiLienHeKhiCan2, nguoiLienHeKhiCan2) ||
+                other.nguoiLienHeKhiCan2 == nguoiLienHeKhiCan2) &&
+            (identical(other.moiQuanHe2, moiQuanHe2) ||
+                other.moiQuanHe2 == moiQuanHe2) &&
+            (identical(other.sdtNguoiThan2, sdtNguoiThan2) ||
+                other.sdtNguoiThan2 == sdtNguoiThan2));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        userId,
+        departmentId,
+        status,
+        chucVuHDID,
+        chuVuID,
+        stt,
+        code,
+        idChamCongMoi,
+        fullName,
+        anhCBNV,
+        chucVuHD,
+        chucVu,
+        departmentSTT,
+        departmentName,
+        dvBHXH,
+        diaDiemLamViec,
+        birthOfDate,
+        noiSinh,
+        gioiTinh,
+        gioiTinhText,
+        danToc,
+        tonGiao,
+        quocTich,
+        tinhTrangHonNhan,
+        dcThuongTru,
+        dcTamTru,
+        sdtCaNhan,
+        emailCaNhan,
+        sdtCongTy,
+        emailCongTy,
+        nguoiLienHeKhiCan,
+        moiQuanHe,
+        sdtNguoiThan,
+        nguoiLienHeKhiCan2,
+        moiQuanHe2,
+        sdtNguoiThan2
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EmployeeTaskItemImplCopyWith<_$EmployeeTaskItemImpl> get copyWith =>
+      __$$EmployeeTaskItemImplCopyWithImpl<_$EmployeeTaskItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$EmployeeTaskItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _EmployeeTaskItem implements EmployeeTaskItem {
+  const factory _EmployeeTaskItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'UserID') final int? userId,
+          @JsonKey(name: 'DepartmentID') final int? departmentId,
+          @JsonKey(name: 'Status') final int? status,
+          @JsonKey(name: 'ChucVuHDID') final int? chucVuHDID,
+          @JsonKey(name: 'ChuVuID') final int? chuVuID,
+          @JsonKey(name: 'STT') final int? stt,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'IDChamCongMoi') final String? idChamCongMoi,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'AnhCBNV') final String? anhCBNV,
+          @JsonKey(name: 'ChucVuHD') final String? chucVuHD,
+          @JsonKey(name: 'ChucVu') final String? chucVu,
+          @JsonKey(name: 'DepartmentSTT') final int? departmentSTT,
+          @JsonKey(name: 'DepartmentName') final String? departmentName,
+          @JsonKey(name: 'DvBHXH') final String? dvBHXH,
+          @JsonKey(name: 'DiaDiemLamViec') final String? diaDiemLamViec,
+          @JsonKey(name: 'BirthOfDate') final DateTime? birthOfDate,
+          @JsonKey(name: 'NoiSinh') final String? noiSinh,
+          @JsonKey(name: 'GioiTinh') final int? gioiTinh,
+          @JsonKey(name: 'GioiTinhText') final String? gioiTinhText,
+          @JsonKey(name: 'DanToc') final String? danToc,
+          @JsonKey(name: 'TonGiao') final String? tonGiao,
+          @JsonKey(name: 'QuocTich') final String? quocTich,
+          @JsonKey(name: 'TinhTrangHonNhan') final String? tinhTrangHonNhan,
+          @JsonKey(name: 'DcThuongTru') final String? dcThuongTru,
+          @JsonKey(name: 'DcTamTru') final String? dcTamTru,
+          @JsonKey(name: 'SDTCaNhan') final String? sdtCaNhan,
+          @JsonKey(name: 'EmailCaNhan') final String? emailCaNhan,
+          @JsonKey(name: 'SDTCongTy') final String? sdtCongTy,
+          @JsonKey(name: 'EmailCongTy') final String? emailCongTy,
+          @JsonKey(name: 'NguoiLienHeKhiCan') final String? nguoiLienHeKhiCan,
+          @JsonKey(name: 'MoiQuanHe') final String? moiQuanHe,
+          @JsonKey(name: 'SDTNguoiThan') final String? sdtNguoiThan,
+          @JsonKey(name: 'NguoiLienHeKhiCan2') final String? nguoiLienHeKhiCan2,
+          @JsonKey(name: 'MoiQuanHe2') final String? moiQuanHe2,
+          @JsonKey(name: 'SDTNguoiThan2') final String? sdtNguoiThan2}) =
+      _$EmployeeTaskItemImpl;
+
+  factory _EmployeeTaskItem.fromJson(Map<String, dynamic> json) =
+      _$EmployeeTaskItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'UserID')
+  int? get userId;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(name: 'Status')
+  int? get status;
+  @override
+  @JsonKey(name: 'ChucVuHDID')
+  int? get chucVuHDID;
+  @override
+  @JsonKey(name: 'ChuVuID')
+  int? get chuVuID;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'IDChamCongMoi')
+  String? get idChamCongMoi;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'AnhCBNV')
+  String? get anhCBNV;
+  @override
+  @JsonKey(name: 'ChucVuHD')
+  String? get chucVuHD;
+  @override
+  @JsonKey(name: 'ChucVu')
+  String? get chucVu;
+  @override
+  @JsonKey(name: 'DepartmentSTT')
+  int? get departmentSTT;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'DvBHXH')
+  String? get dvBHXH;
+  @override
+  @JsonKey(name: 'DiaDiemLamViec')
+  String? get diaDiemLamViec;
+  @override
+  @JsonKey(name: 'BirthOfDate')
+  DateTime? get birthOfDate;
+  @override
+  @JsonKey(name: 'NoiSinh')
+  String? get noiSinh;
+  @override
+  @JsonKey(name: 'GioiTinh')
+  int? get gioiTinh;
+  @override
+  @JsonKey(name: 'GioiTinhText')
+  String? get gioiTinhText;
+  @override
+  @JsonKey(name: 'DanToc')
+  String? get danToc;
+  @override
+  @JsonKey(name: 'TonGiao')
+  String? get tonGiao;
+  @override
+  @JsonKey(name: 'QuocTich')
+  String? get quocTich;
+  @override
+  @JsonKey(name: 'TinhTrangHonNhan')
+  String? get tinhTrangHonNhan;
+  @override
+  @JsonKey(name: 'DcThuongTru')
+  String? get dcThuongTru;
+  @override
+  @JsonKey(name: 'DcTamTru')
+  String? get dcTamTru;
+  @override
+  @JsonKey(name: 'SDTCaNhan')
+  String? get sdtCaNhan;
+  @override
+  @JsonKey(name: 'EmailCaNhan')
+  String? get emailCaNhan;
+  @override
+  @JsonKey(name: 'SDTCongTy')
+  String? get sdtCongTy;
+  @override
+  @JsonKey(name: 'EmailCongTy')
+  String? get emailCongTy;
+  @override
+  @JsonKey(name: 'NguoiLienHeKhiCan')
+  String? get nguoiLienHeKhiCan;
+  @override
+  @JsonKey(name: 'MoiQuanHe')
+  String? get moiQuanHe;
+  @override
+  @JsonKey(name: 'SDTNguoiThan')
+  String? get sdtNguoiThan;
+  @override
+  @JsonKey(name: 'NguoiLienHeKhiCan2')
+  String? get nguoiLienHeKhiCan2;
+  @override
+  @JsonKey(name: 'MoiQuanHe2')
+  String? get moiQuanHe2;
+  @override
+  @JsonKey(name: 'SDTNguoiThan2')
+  String? get sdtNguoiThan2;
+  @override
+  @JsonKey(ignore: true)
+  _$$EmployeeTaskItemImplCopyWith<_$EmployeeTaskItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

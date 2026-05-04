@@ -95,4 +95,22 @@ class WeekPlanService extends DioBaseApiService {
       ),
     );
   }
+
+  /// GET /Employee
+  ///
+  /// Response: { status: 1, data: [ EmployeeTaskItem, ... ] }
+  Future<BaseData<List<EmployeeTaskItem>>> getEmployees() async {
+    return get<BaseData<List<EmployeeTaskItem>>>(
+      ApiEndPoint.getEmployees,
+      parser: (json) => BaseData<List<EmployeeTaskItem>>.fromJson(
+        json,
+        (data) {
+          final list = data as List?;
+          return (list ?? [])
+              .map((e) => EmployeeTaskItem.fromJson(e as Map<String, dynamic>))
+              .toList();
+        },
+      ),
+    );
+  }
 }

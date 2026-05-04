@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../data/datasource/models/week_plan_model.dart';
+
 class WeekPlanMultiSelectChips<T> extends StatelessWidget {
   const WeekPlanMultiSelectChips({
     super.key,
@@ -30,25 +32,30 @@ class WeekPlanMultiSelectChips<T> extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Icon(icon, size: 24, color: const Color(0xff989898)),
-              const SizedBox(width: 14),
-              Text(
-                label,
-                style: const TextStyle(
-                  fontSize: 13,
-                  color: Color(0xff989898),
-                  fontWeight: FontWeight.w500,
+          GestureDetector(
+            onTap: onAdd,
+            behavior: HitTestBehavior.opaque,
+            child: Row(
+              children: [
+                Icon(icon, size: 24, color: const Color(0xff989898)),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Text(
+                    label,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: Color(0xff989898),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
-              ),
-              const Spacer(),
-              Icon(
-                Icons.add_circle_outline,
-                size: 24,
-                color: const Color(0xFFEE4623),
-              ),
-            ],
+                Icon(
+                  Icons.add_circle_outline,
+                  size: 24,
+                  color: const Color(0xFFEE4623),
+                ),
+              ],
+            ),
           ),
           if (selected.isNotEmpty) ...[
             const SizedBox(height: 12),
@@ -102,15 +109,12 @@ class WeekPlanMultiSelectChips<T> extends StatelessWidget {
   }
 
   int _getId(T item) {
-    if (isEmployee) {
-      return (item as dynamic).id as int;
-    }
     return (item as dynamic).id as int;
   }
 
   String _getName(T item) {
-    if (isEmployee) {
-      return (item as dynamic).displayText as String;
+    if (isEmployee && item is EmployeeTaskItem) {
+      return '${item.code ?? ''} - ${item.fullName ?? ''}';
     }
     return item.toString();
   }

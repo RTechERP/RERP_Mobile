@@ -19,36 +19,6 @@ part 'week_plan_bloc.freezed.dart';
 
 const _kProjectsCacheKey = 'weekplan_projects_cache';
 
-/// Employee đơn giản — dùng cho multi-select ở step 2 & 3.
-/// KHÔNG phải @freezed vì không cần JSON serialization.
-class WeekPlanEmployee {
-  const WeekPlanEmployee({
-    required this.id,
-    required this.code,
-    required this.fullName,
-    this.departmentName,
-    this.avatarUrl,
-  });
-
-  final int id;
-  final String code;
-  final String fullName;
-  final String? departmentName;
-  final String? avatarUrl;
-
-  String get displayText => '$code - $fullName';
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is WeekPlanEmployee &&
-          runtimeType == other.runtimeType &&
-          id == other.id;
-
-  @override
-  int get hashCode => id.hashCode;
-}
-
 @injectable
 class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   final WeekPlanRepo _weekPlanRepo;
@@ -105,6 +75,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         fetchTaskTypes: () => _onFetchTaskTypes(emit),
         fetchProjects: () => _onFetchProjects(emit),
         fetchProjectTypes: () => _onFetchProjectTypes(emit),
+        fetchEmployees: () => _onFetchEmployees(emit),
         updateContentTaskName: (name) => _onUpdateContentTaskName(emit, name),
         updateContentAssignee: (assigneeId, assigneeName) =>
             _onUpdateContentAssignee(emit, assigneeId, assigneeName),
@@ -195,6 +166,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
           // Fetch projects + taskTypes nếu chưa có.
           List<ProjectTaskItem> projects = state.projects;
           List<TaskTypeItem> taskTypes = state.taskTypes;
+          List<EmployeeTaskItem> employees = state.employees;
 
           if (projects.isEmpty) {
             final projRes = await _weekPlanRepo.getProjects();
@@ -214,6 +186,17 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
               (data) {
                 taskTypes = data;
                 _log.logI('Fetch task types: ${taskTypes.length}');
+              },
+            );
+          }
+
+          if (employees.isEmpty) {
+            final empRes = await _weekPlanRepo.getEmployees();
+            empRes.fold(
+              (err) => _log.logE('Fetch employees failed: $err'),
+              (data) {
+                employees = data;
+                _log.logI('Fetch employees: ${employees.length}');
               },
             );
           }
@@ -285,6 +268,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             employeeId: employeeId,
             projects: projects,
             taskTypes: taskTypes,
+            employees: employees,
             myTasks: myTasks,
             relatedTasks: relatedTasks,
             assignedTasks: assignedTasks,
@@ -535,6 +519,20 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     );
   }
 
+  Future<void> _onFetchEmployees(Emitter<WeekPlanState> emit) async {
+    final res = await _weekPlanRepo.getEmployees();
+
+    await res.fold(
+      (err) async {
+        _log.logE('Fetch employees failed: $err');
+      },
+      (employees) async {
+        _log.logI('Fetch employees success: ${employees.length}');
+        emit(state.copyWith(employees: employees));
+      },
+    );
+  }
+
   /// Load cached projects from SharedPreferences, return empty list if none.
   Future<List<ProjectTaskItem>> _loadProjectsFromCache() async {
     final cached = await _localStorage.getProjectList(_kProjectsCacheKey);
@@ -591,12 +589,12 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
 
   //---(Assignees)---//
   Future<void> _onSetAssignees(
-      Emitter<WeekPlanState> emit, List<WeekPlanEmployee> assignees) async {
+      Emitter<WeekPlanState> emit, List<EmployeeTaskItem> assignees) async {
     emit(state.copyWith(selectedAssignees: assignees));
   }
 
   Future<void> _onAddAssignee(
-      Emitter<WeekPlanState> emit, WeekPlanEmployee employee) async {
+      Emitter<WeekPlanState> emit, EmployeeTaskItem employee) async {
     final exists = state.selectedAssignees.any((e) => e.id == employee.id);
     if (!exists) {
       emit(state.copyWith(
@@ -616,12 +614,12 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
 
   //---(Related Persons)---//
   Future<void> _onSetRelatedPersons(
-      Emitter<WeekPlanState> emit, List<WeekPlanEmployee> persons) async {
+      Emitter<WeekPlanState> emit, List<EmployeeTaskItem> persons) async {
     emit(state.copyWith(selectedRelatedPersons: persons));
   }
 
   Future<void> _onAddRelatedPerson(
-      Emitter<WeekPlanState> emit, WeekPlanEmployee employee) async {
+      Emitter<WeekPlanState> emit, EmployeeTaskItem employee) async {
     final exists = state.selectedRelatedPersons.any((e) => e.id == employee.id);
     if (!exists) {
       emit(state.copyWith(
