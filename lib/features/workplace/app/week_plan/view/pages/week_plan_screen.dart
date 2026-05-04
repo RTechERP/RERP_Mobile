@@ -206,13 +206,15 @@ class _WeekPlanScreenState
           floatingActionButton: BlocBuilder<WeekPlanBloc, WeekPlanState>(
             buildWhen: (prev, curr) =>
                 prev.projects.length != curr.projects.length ||
-                prev.taskTypes.length != curr.taskTypes.length,
+                prev.taskTypes.length != curr.taskTypes.length ||
+                prev.projectTypes.length != curr.projectTypes.length,
             builder: (context, state) => FloatingActionButton(
               onPressed: () => context.push(
                 RouteNames.weekplanAdd,
                 extra: WeekPlanAddExtra(
                   projects: state.projects,
                   taskTypes: state.taskTypes,
+                  projectTypes: state.projectTypes,
                 ),
               ),
               backgroundColor: AppColors.primaryERP,

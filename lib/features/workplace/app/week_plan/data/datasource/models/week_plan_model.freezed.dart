@@ -2367,6 +2367,318 @@ abstract class _ProjectTaskItem implements ProjectTaskItem {
       throw _privateConstructorUsedError;
 }
 
+ProjectTypeItem _$ProjectTypeItemFromJson(Map<String, dynamic> json) {
+  return _ProjectTypeItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectTypeItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTypeCode')
+  String? get projectTypeCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTypeName')
+  String? get projectTypeName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ParentID')
+  int? get parentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RootFolder')
+  String? get rootFolder => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedTBPID')
+  int? get approvedTBPID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsHide')
+  bool? get isHide => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProjectTypeItemCopyWith<ProjectTypeItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectTypeItemCopyWith<$Res> {
+  factory $ProjectTypeItemCopyWith(
+          ProjectTypeItem value, $Res Function(ProjectTypeItem) then) =
+      _$ProjectTypeItemCopyWithImpl<$Res, ProjectTypeItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectTypeCode') String? projectTypeCode,
+      @JsonKey(name: 'ProjectTypeName') String? projectTypeName,
+      @JsonKey(name: 'ParentID') int? parentId,
+      @JsonKey(name: 'RootFolder') String? rootFolder,
+      @JsonKey(name: 'ApprovedTBPID') int? approvedTBPID,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'IsHide') bool? isHide});
+}
+
+/// @nodoc
+class _$ProjectTypeItemCopyWithImpl<$Res, $Val extends ProjectTypeItem>
+    implements $ProjectTypeItemCopyWith<$Res> {
+  _$ProjectTypeItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectTypeCode = freezed,
+    Object? projectTypeName = freezed,
+    Object? parentId = freezed,
+    Object? rootFolder = freezed,
+    Object? approvedTBPID = freezed,
+    Object? isDeleted = freezed,
+    Object? isHide = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTypeCode: freezed == projectTypeCode
+          ? _value.projectTypeCode
+          : projectTypeCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectTypeName: freezed == projectTypeName
+          ? _value.projectTypeName
+          : projectTypeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parentId: freezed == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      rootFolder: freezed == rootFolder
+          ? _value.rootFolder
+          : rootFolder // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approvedTBPID: freezed == approvedTBPID
+          ? _value.approvedTBPID
+          : approvedTBPID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isHide: freezed == isHide
+          ? _value.isHide
+          : isHide // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectTypeItemImplCopyWith<$Res>
+    implements $ProjectTypeItemCopyWith<$Res> {
+  factory _$$ProjectTypeItemImplCopyWith(_$ProjectTypeItemImpl value,
+          $Res Function(_$ProjectTypeItemImpl) then) =
+      __$$ProjectTypeItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectTypeCode') String? projectTypeCode,
+      @JsonKey(name: 'ProjectTypeName') String? projectTypeName,
+      @JsonKey(name: 'ParentID') int? parentId,
+      @JsonKey(name: 'RootFolder') String? rootFolder,
+      @JsonKey(name: 'ApprovedTBPID') int? approvedTBPID,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'IsHide') bool? isHide});
+}
+
+/// @nodoc
+class __$$ProjectTypeItemImplCopyWithImpl<$Res>
+    extends _$ProjectTypeItemCopyWithImpl<$Res, _$ProjectTypeItemImpl>
+    implements _$$ProjectTypeItemImplCopyWith<$Res> {
+  __$$ProjectTypeItemImplCopyWithImpl(
+      _$ProjectTypeItemImpl _value, $Res Function(_$ProjectTypeItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectTypeCode = freezed,
+    Object? projectTypeName = freezed,
+    Object? parentId = freezed,
+    Object? rootFolder = freezed,
+    Object? approvedTBPID = freezed,
+    Object? isDeleted = freezed,
+    Object? isHide = freezed,
+  }) {
+    return _then(_$ProjectTypeItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTypeCode: freezed == projectTypeCode
+          ? _value.projectTypeCode
+          : projectTypeCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectTypeName: freezed == projectTypeName
+          ? _value.projectTypeName
+          : projectTypeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parentId: freezed == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      rootFolder: freezed == rootFolder
+          ? _value.rootFolder
+          : rootFolder // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approvedTBPID: freezed == approvedTBPID
+          ? _value.approvedTBPID
+          : approvedTBPID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isHide: freezed == isHide
+          ? _value.isHide
+          : isHide // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectTypeItemImpl implements _ProjectTypeItem {
+  const _$ProjectTypeItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProjectTypeCode') this.projectTypeCode,
+      @JsonKey(name: 'ProjectTypeName') this.projectTypeName,
+      @JsonKey(name: 'ParentID') this.parentId,
+      @JsonKey(name: 'RootFolder') this.rootFolder,
+      @JsonKey(name: 'ApprovedTBPID') this.approvedTBPID,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'IsHide') this.isHide});
+
+  factory _$ProjectTypeItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectTypeItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProjectTypeCode')
+  final String? projectTypeCode;
+  @override
+  @JsonKey(name: 'ProjectTypeName')
+  final String? projectTypeName;
+  @override
+  @JsonKey(name: 'ParentID')
+  final int? parentId;
+  @override
+  @JsonKey(name: 'RootFolder')
+  final String? rootFolder;
+  @override
+  @JsonKey(name: 'ApprovedTBPID')
+  final int? approvedTBPID;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'IsHide')
+  final bool? isHide;
+
+  @override
+  String toString() {
+    return 'ProjectTypeItem(id: $id, projectTypeCode: $projectTypeCode, projectTypeName: $projectTypeName, parentId: $parentId, rootFolder: $rootFolder, approvedTBPID: $approvedTBPID, isDeleted: $isDeleted, isHide: $isHide)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectTypeItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.projectTypeCode, projectTypeCode) ||
+                other.projectTypeCode == projectTypeCode) &&
+            (identical(other.projectTypeName, projectTypeName) ||
+                other.projectTypeName == projectTypeName) &&
+            (identical(other.parentId, parentId) ||
+                other.parentId == parentId) &&
+            (identical(other.rootFolder, rootFolder) ||
+                other.rootFolder == rootFolder) &&
+            (identical(other.approvedTBPID, approvedTBPID) ||
+                other.approvedTBPID == approvedTBPID) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.isHide, isHide) || other.isHide == isHide));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, projectTypeCode,
+      projectTypeName, parentId, rootFolder, approvedTBPID, isDeleted, isHide);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectTypeItemImplCopyWith<_$ProjectTypeItemImpl> get copyWith =>
+      __$$ProjectTypeItemImplCopyWithImpl<_$ProjectTypeItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectTypeItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectTypeItem implements ProjectTypeItem {
+  const factory _ProjectTypeItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'ProjectTypeCode') final String? projectTypeCode,
+      @JsonKey(name: 'ProjectTypeName') final String? projectTypeName,
+      @JsonKey(name: 'ParentID') final int? parentId,
+      @JsonKey(name: 'RootFolder') final String? rootFolder,
+      @JsonKey(name: 'ApprovedTBPID') final int? approvedTBPID,
+      @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+      @JsonKey(name: 'IsHide') final bool? isHide}) = _$ProjectTypeItemImpl;
+
+  factory _ProjectTypeItem.fromJson(Map<String, dynamic> json) =
+      _$ProjectTypeItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProjectTypeCode')
+  String? get projectTypeCode;
+  @override
+  @JsonKey(name: 'ProjectTypeName')
+  String? get projectTypeName;
+  @override
+  @JsonKey(name: 'ParentID')
+  int? get parentId;
+  @override
+  @JsonKey(name: 'RootFolder')
+  String? get rootFolder;
+  @override
+  @JsonKey(name: 'ApprovedTBPID')
+  int? get approvedTBPID;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'IsHide')
+  bool? get isHide;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProjectTypeItemImplCopyWith<_$ProjectTypeItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 WeekPlanSubTaskItem _$WeekPlanSubTaskItemFromJson(Map<String, dynamic> json) {
   return _WeekPlanSubTaskItem.fromJson(json);
 }

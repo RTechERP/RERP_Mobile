@@ -19,14 +19,18 @@ class WeekPlanAddExtra {
   const WeekPlanAddExtra({
     required this.projects,
     required this.taskTypes,
+    this.projectTypes = const [],
   });
 
   final List<ProjectTaskItem> projects;
   final List<TaskTypeItem> taskTypes;
+  final List<ProjectTypeItem> projectTypes;
 }
 
 class WeekPlanAddScreen extends StatefulWidget {
-  const WeekPlanAddScreen({super.key});
+  const WeekPlanAddScreen({super.key, this.extra});
+
+  final Object? extra;
 
   @override
   State<WeekPlanAddScreen> createState() => _WeekPlanAddScreenState();
@@ -43,7 +47,22 @@ class _WeekPlanAddScreenState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      bloc.add(WeekPlanEvent.initAddScreen());
+
+      // Merge data từ route extra (được pass từ FAB WeekPlanScreen).
+      final extra = widget.extra;
+      if (extra is WeekPlanAddExtra) {
+        if (extra.projects.isNotEmpty) {
+          bloc.add(const WeekPlanEvent.fetchProjects());
+        }
+        if (extra.taskTypes.isNotEmpty) {
+          bloc.add(const WeekPlanEvent.fetchTaskTypes());
+        }
+        if (extra.projectTypes.isNotEmpty) {
+          bloc.add(const WeekPlanEvent.fetchProjectTypes());
+        }
+      }
+
+      bloc.add(const WeekPlanEvent.initAddScreen());
     });
   }
 
@@ -195,6 +214,9 @@ class _WeekPlanAddScreenState
     if (state.taskTypes.isEmpty) {
       bloc.add(const WeekPlanEvent.fetchTaskTypes());
     }
+    if (state.projectTypes.isEmpty) {
+      bloc.add(const WeekPlanEvent.fetchProjectTypes());
+    }
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
@@ -256,15 +278,13 @@ class _WeekPlanAddScreenState
           Row(
             children: [
               Expanded(
-                child: WeekPlanCategoryCard(
+                child: WeekPlanProjectTypeCard(
                   selectedId: state.headerTaskCategory,
-                  onChanged: (categoryId) {
-                    final name = WeekPlanCategoryCard.categories
-                        .firstWhere((c) => c.$1 == categoryId)
-                        .$2;
+                  projectTypes: state.projectTypes,
+                  onChanged: (pt) {
                     bloc.add(WeekPlanEvent.updateHeaderTaskCategory(
-                      categoryId: categoryId,
-                      categoryName: name,
+                      categoryId: pt.id ?? 0,
+                      categoryName: pt.projectTypeName ?? '',
                     ));
                   },
                 ),

@@ -104,6 +104,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
                 emit, workTypeId, workTypeName, statusId, statusName),
         fetchTaskTypes: () => _onFetchTaskTypes(emit),
         fetchProjects: () => _onFetchProjects(emit),
+        fetchProjectTypes: () => _onFetchProjectTypes(emit),
         updateContentTaskName: (name) => _onUpdateContentTaskName(emit, name),
         updateContentAssignee: (assigneeId, assigneeName) =>
             _onUpdateContentAssignee(emit, assigneeId, assigneeName),
@@ -453,7 +454,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   }
 
   Future<void> _onUpdateHeaderTaskCategory(
-      Emitter<WeekPlanState> emit, String categoryId, String categoryName) async {
+      Emitter<WeekPlanState> emit, int categoryId, String categoryName) async {
     emit(state.copyWith(headerTaskCategory: categoryId, headerTaskCategoryName: categoryName));
   }
 
@@ -516,6 +517,20 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         final maps = projects.map((p) => p.toJson()).toList();
         await _localStorage.saveProjectList(_kProjectsCacheKey, maps);
         emit(state.copyWith(projects: projects));
+      },
+    );
+  }
+
+  Future<void> _onFetchProjectTypes(Emitter<WeekPlanState> emit) async {
+    final res = await _weekPlanRepo.getProjectTypes();
+
+    await res.fold(
+      (err) async {
+        _log.logE('Fetch project types failed: $err');
+      },
+      (projectTypes) async {
+        _log.logI('Fetch project types success: ${projectTypes.length}');
+        emit(state.copyWith(projectTypes: projectTypes));
       },
     );
   }
@@ -791,7 +806,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       'AssignerId': state.headerAssignerId,
       'IsPersonalTask': state.headerIsPersonalTask,
       'Complexity': state.headerComplexity,
-      'TaskCategory': state.headerTaskCategory ?? '',
+      'TaskCategory': state.headerTaskCategory ?? 0,
       'WorkType': state.headerWorkType ?? 0,
       'Status': state.headerStatus ?? 0,
       'Description': state.contentDescription ?? '',

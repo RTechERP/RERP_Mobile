@@ -223,6 +223,32 @@ Map<String, dynamic> _$$ProjectTaskItemImplToJson(
       'ProjectName': instance.projectName,
     };
 
+_$ProjectTypeItemImpl _$$ProjectTypeItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProjectTypeItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      projectTypeCode: json['ProjectTypeCode'] as String?,
+      projectTypeName: json['ProjectTypeName'] as String?,
+      parentId: (json['ParentID'] as num?)?.toInt(),
+      rootFolder: json['RootFolder'] as String?,
+      approvedTBPID: (json['ApprovedTBPID'] as num?)?.toInt(),
+      isDeleted: json['IsDeleted'] as bool?,
+      isHide: json['IsHide'] as bool?,
+    );
+
+Map<String, dynamic> _$$ProjectTypeItemImplToJson(
+        _$ProjectTypeItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProjectTypeCode': instance.projectTypeCode,
+      'ProjectTypeName': instance.projectTypeName,
+      'ParentID': instance.parentId,
+      'RootFolder': instance.rootFolder,
+      'ApprovedTBPID': instance.approvedTBPID,
+      'IsDeleted': instance.isDeleted,
+      'IsHide': instance.isHide,
+    };
+
 _$WeekPlanSubTaskItemImpl _$$WeekPlanSubTaskItemImplFromJson(
         Map<String, dynamic> json) =>
     _$WeekPlanSubTaskItemImpl(

@@ -118,6 +118,23 @@ class ProjectTaskItem with _$ProjectTaskItem {
 }
 
 @freezed
+class ProjectTypeItem with _$ProjectTypeItem {
+  const factory ProjectTypeItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProjectTypeCode') String? projectTypeCode,
+    @JsonKey(name: 'ProjectTypeName') String? projectTypeName,
+    @JsonKey(name: 'ParentID') int? parentId,
+    @JsonKey(name: 'RootFolder') String? rootFolder,
+    @JsonKey(name: 'ApprovedTBPID') int? approvedTBPID,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'IsHide') bool? isHide,
+  }) = _ProjectTypeItem;
+
+  factory ProjectTypeItem.fromJson(Map<String, dynamic> json) =>
+      _$ProjectTypeItemFromJson(json);
+}
+
+@freezed
 class WeekPlanSubTaskItem with _$WeekPlanSubTaskItem {
   const factory WeekPlanSubTaskItem({
     @JsonKey(name: 'ID') int? id,

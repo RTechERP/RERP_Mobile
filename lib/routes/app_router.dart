@@ -954,7 +954,9 @@ class AppRouter {
           ),
           GoRoute(
             path: RouteNames.weekplanAdd,
-            builder: (context, state) => const WeekPlanAddScreen(),
+            builder: (context, state) => WeekPlanAddScreen(
+              extra: state.extra as Object?,
+            ),
           ),
           // Legacy route - redirect to menu
           GoRoute(

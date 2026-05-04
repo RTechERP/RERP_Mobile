@@ -29,7 +29,7 @@ class WeekPlanState extends BaseBlocState {
   final String? headerAssignerName;
   final bool headerIsPersonalTask;
   final int headerComplexity;
-  final String? headerTaskCategory;
+  final int? headerTaskCategory;
   final String? headerTaskCategoryName;
   final int? headerWorkType;
   final String? headerWorkTypeName;
@@ -43,6 +43,9 @@ class WeekPlanState extends BaseBlocState {
 
   // Danh sách dự án (từ API /ProjectTask/get-all-project)
   final List<ProjectTaskItem> projects;
+
+  // Danh sách hạng mục dự án (từ API /WorkItem/get-type-project-item)
+  final List<ProjectTypeItem> projectTypes;
 
   // Step 2: Nội dung chính
   final String? taskName;
@@ -114,6 +117,7 @@ class WeekPlanState extends BaseBlocState {
     this.headerTimeEstimate,
     this.taskTypes = const [],
     this.projects = const [],
+    this.projectTypes = const [],
     // Step 2
     this.taskName,
     this.contentAssigneeId,
@@ -164,6 +168,7 @@ class WeekPlanState extends BaseBlocState {
         headerIsPersonalTask: false,
         taskTypes: const [],
         projects: const [],
+        projectTypes: const [],
         selectedAssignees: [],
         selectedRelatedPersons: [],
         subTasks: [],
@@ -209,6 +214,7 @@ class WeekPlanState extends BaseBlocState {
         headerTimeEstimate,
         taskTypes,
         projects,
+        projectTypes,
         // Step 2
         taskName,
         contentAssigneeId,

@@ -7,3 +7,4 @@ export 'week_plan_status_card.dart';
 export 'week_plan_task_type_card.dart';
 export 'week_plan_category_card.dart';
 export 'week_plan_project_card.dart';
+export 'week_plan_project_type_card.dart';
