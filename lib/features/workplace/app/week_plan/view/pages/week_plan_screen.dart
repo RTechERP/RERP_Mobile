@@ -17,6 +17,7 @@ import '../week_plan_helper.dart';
 import '../../data/datasource/models/week_plan_model.dart';
 import '../bloc/week_plan_bloc.dart';
 import '../widgets/week_plan_card.dart';
+import 'week_plan_add_screen.dart';
 
 class WeekPlanScreen extends StatefulWidget {
   const WeekPlanScreen({super.key});
@@ -35,7 +36,10 @@ class _WeekPlanScreenState
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
-    bloc.add(const WeekPlanEvent.init());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      bloc.add(const WeekPlanEvent.initMenu());
+      bloc.add(const WeekPlanEvent.initScreen());
+    });
   }
 
   @override
@@ -199,10 +203,21 @@ class _WeekPlanScreenState
               );
             },
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => context.push(RouteNames.weekplanAdd),
-            backgroundColor: AppColors.primaryERP,
-            child: const Icon(Icons.add, color: Colors.white),
+          floatingActionButton: BlocBuilder<WeekPlanBloc, WeekPlanState>(
+            buildWhen: (prev, curr) =>
+                prev.projects.length != curr.projects.length ||
+                prev.taskTypes.length != curr.taskTypes.length,
+            builder: (context, state) => FloatingActionButton(
+              onPressed: () => context.push(
+                RouteNames.weekplanAdd,
+                extra: WeekPlanAddExtra(
+                  projects: state.projects,
+                  taskTypes: state.taskTypes,
+                ),
+              ),
+              backgroundColor: AppColors.primaryERP,
+              child: const Icon(Icons.add, color: Colors.white),
+            ),
           ),
         ),
       ),

@@ -1,16 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../common/app_theme/index.dart';
 import '../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../routes/route_names.dart';
+import '../bloc/week_plan_bloc.dart';
 
-/// Màn hình menu Week Plan — hiển thị grid 4 mục: Công việc, Liên quan, Giao việc, Tổng công việc.
-///
-/// Mỗi item sẽ navigate đến trang riêng với [viewNumber] tương ứng truyền qua route.
-class WeekPlanMenuScreen extends StatelessWidget {
+class WeekPlanMenuScreen extends StatefulWidget {
   const WeekPlanMenuScreen({super.key});
+
+  @override
+  State<WeekPlanMenuScreen> createState() => _WeekPlanMenuScreenState();
+}
+
+class _WeekPlanMenuScreenState extends State<WeekPlanMenuScreen> {
+  late final WeekPlanBloc _bloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _bloc = context.read<WeekPlanBloc>();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _bloc.add(const WeekPlanEvent.initMenu());
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

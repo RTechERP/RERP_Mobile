@@ -25,7 +25,7 @@ class WeekPlanCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   static final DateFormat _df = DateFormat('dd/MM/yyyy');
-  static final DateFormat _tf = DateFormat('dd/MM');
+  static final DateFormat _tf = DateFormat('dd/MM/yyyy');
 
   String _fmt(DateTime? dt) => dt == null ? '-' : _df.format(dt);
   String _fmts(DateTime? dt) => dt == null ? '-' : _tf.format(dt);

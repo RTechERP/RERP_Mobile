@@ -207,6 +207,22 @@ Map<String, dynamic> _$$TaskTypeItemImplToJson(_$TaskTypeItemImpl instance) =>
       'Color': instance.color,
     };
 
+_$ProjectTaskItemImpl _$$ProjectTaskItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProjectTaskItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      projectCode: json['ProjectCode'] as String?,
+      projectName: json['ProjectName'] as String?,
+    );
+
+Map<String, dynamic> _$$ProjectTaskItemImplToJson(
+        _$ProjectTaskItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProjectCode': instance.projectCode,
+      'ProjectName': instance.projectName,
+    };
+
 _$WeekPlanSubTaskItemImpl _$$WeekPlanSubTaskItemImplFromJson(
         Map<String, dynamic> json) =>
     _$WeekPlanSubTaskItemImpl(

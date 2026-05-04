@@ -18,8 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$WeekPlanEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -30,7 +31,7 @@ mixin _$WeekPlanEvent {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -50,6 +51,7 @@ mixin _$WeekPlanEvent {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -90,8 +92,9 @@ mixin _$WeekPlanEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -101,7 +104,7 @@ mixin _$WeekPlanEvent {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -119,6 +122,7 @@ mixin _$WeekPlanEvent {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -157,8 +161,9 @@ mixin _$WeekPlanEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -168,7 +173,7 @@ mixin _$WeekPlanEvent {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -185,6 +190,7 @@ mixin _$WeekPlanEvent {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -224,8 +230,9 @@ mixin _$WeekPlanEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -235,7 +242,7 @@ mixin _$WeekPlanEvent {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -254,6 +261,7 @@ mixin _$WeekPlanEvent {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -288,8 +296,9 @@ mixin _$WeekPlanEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -299,7 +308,7 @@ mixin _$WeekPlanEvent {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -316,6 +325,7 @@ mixin _$WeekPlanEvent {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -347,8 +357,9 @@ mixin _$WeekPlanEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -358,7 +369,7 @@ mixin _$WeekPlanEvent {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -372,6 +383,7 @@ mixin _$WeekPlanEvent {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -422,34 +434,35 @@ class _$WeekPlanEventCopyWithImpl<$Res, $Val extends WeekPlanEvent>
 }
 
 /// @nodoc
-abstract class _$$InitImplCopyWith<$Res> {
-  factory _$$InitImplCopyWith(
-          _$InitImpl value, $Res Function(_$InitImpl) then) =
-      __$$InitImplCopyWithImpl<$Res>;
+abstract class _$$InitMenuImplCopyWith<$Res> {
+  factory _$$InitMenuImplCopyWith(
+          _$InitMenuImpl value, $Res Function(_$InitMenuImpl) then) =
+      __$$InitMenuImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitImplCopyWithImpl<$Res>
-    extends _$WeekPlanEventCopyWithImpl<$Res, _$InitImpl>
-    implements _$$InitImplCopyWith<$Res> {
-  __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
+class __$$InitMenuImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$InitMenuImpl>
+    implements _$$InitMenuImplCopyWith<$Res> {
+  __$$InitMenuImplCopyWithImpl(
+      _$InitMenuImpl _value, $Res Function(_$InitMenuImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$InitImpl implements _Init {
-  const _$InitImpl();
+class _$InitMenuImpl implements _InitMenu {
+  const _$InitMenuImpl();
 
   @override
   String toString() {
-    return 'WeekPlanEvent.init()';
+    return 'WeekPlanEvent.initMenu()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitImpl);
+        (other.runtimeType == runtimeType && other is _$InitMenuImpl);
   }
 
   @override
@@ -458,8 +471,9 @@ class _$InitImpl implements _Init {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -470,7 +484,7 @@ class _$InitImpl implements _Init {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -490,6 +504,7 @@ class _$InitImpl implements _Init {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -527,14 +542,15 @@ class _$InitImpl implements _Init {
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
   }) {
-    return init();
+    return initMenu();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -544,7 +560,7 @@ class _$InitImpl implements _Init {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -562,6 +578,7 @@ class _$InitImpl implements _Init {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -597,14 +614,15 @@ class _$InitImpl implements _Init {
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
   }) {
-    return init?.call();
+    return initMenu?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -614,7 +632,7 @@ class _$InitImpl implements _Init {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -631,6 +649,7 @@ class _$InitImpl implements _Init {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -667,8 +686,8 @@ class _$InitImpl implements _Init {
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
-    if (init != null) {
-      return init();
+    if (initMenu != null) {
+      return initMenu();
     }
     return orElse();
   }
@@ -676,8 +695,9 @@ class _$InitImpl implements _Init {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -687,7 +707,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -706,6 +726,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -737,14 +758,15 @@ class _$InitImpl implements _Init {
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
-    return init(this);
+    return initMenu(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -754,7 +776,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -771,6 +793,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -799,14 +822,15 @@ class _$InitImpl implements _Init {
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
-    return init?.call(this);
+    return initMenu?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -816,7 +840,7 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -830,6 +854,7 @@ class _$InitImpl implements _Init {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -858,32 +883,493 @@ class _$InitImpl implements _Init {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
-    if (init != null) {
-      return init(this);
+    if (initMenu != null) {
+      return initMenu(this);
     }
     return orElse();
   }
 }
 
-abstract class _Init implements WeekPlanEvent {
-  const factory _Init() = _$InitImpl;
+abstract class _InitMenu implements WeekPlanEvent {
+  const factory _InitMenu() = _$InitMenuImpl;
 }
 
 /// @nodoc
-abstract class _$$InitWithViewImplCopyWith<$Res> {
-  factory _$$InitWithViewImplCopyWith(
-          _$InitWithViewImpl value, $Res Function(_$InitWithViewImpl) then) =
-      __$$InitWithViewImplCopyWithImpl<$Res>;
+abstract class _$$InitScreenImplCopyWith<$Res> {
+  factory _$$InitScreenImplCopyWith(
+          _$InitScreenImpl value, $Res Function(_$InitScreenImpl) then) =
+      __$$InitScreenImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitScreenImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$InitScreenImpl>
+    implements _$$InitScreenImplCopyWith<$Res> {
+  __$$InitScreenImplCopyWithImpl(
+      _$InitScreenImpl _value, $Res Function(_$InitScreenImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitScreenImpl implements _InitScreen {
+  const _$InitScreenImpl();
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.initScreen()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitScreenImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(String status) filterByStatus,
+    required TResult Function() clearStatusFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId) checkIn,
+    required TResult Function() initAddScreen,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(String categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(List<WeekPlanEmployee> assignees) setAssignees,
+    required TResult Function(WeekPlanEmployee employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<WeekPlanEmployee> persons) setRelatedPersons,
+    required TResult Function(WeekPlanEmployee employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function() createTask,
+    required TResult Function() clearSubmitState,
+  }) {
+    return initScreen();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(String status)? filterByStatus,
+    TResult? Function()? clearStatusFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId)? checkIn,
+    TResult? Function()? initAddScreen,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(String categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(List<WeekPlanEmployee> assignees)? setAssignees,
+    TResult? Function(WeekPlanEmployee employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<WeekPlanEmployee> persons)? setRelatedPersons,
+    TResult? Function(WeekPlanEmployee employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function()? createTask,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return initScreen?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(String status)? filterByStatus,
+    TResult Function()? clearStatusFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId)? checkIn,
+    TResult Function()? initAddScreen,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(String categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(List<WeekPlanEmployee> assignees)? setAssignees,
+    TResult Function(WeekPlanEmployee employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<WeekPlanEmployee> persons)? setRelatedPersons,
+    TResult Function(WeekPlanEmployee employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function()? createTask,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (initScreen != null) {
+      return initScreen();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearStatusFilter value) clearStatusFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTask value) addSubTask,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return initScreen(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTask value)? addSubTask,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return initScreen?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTask value)? addSubTask,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (initScreen != null) {
+      return initScreen(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitScreen implements WeekPlanEvent {
+  const factory _InitScreen() = _$InitScreenImpl;
+}
+
+/// @nodoc
+abstract class _$$InitScreenWithViewImplCopyWith<$Res> {
+  factory _$$InitScreenWithViewImplCopyWith(_$InitScreenWithViewImpl value,
+          $Res Function(_$InitScreenWithViewImpl) then) =
+      __$$InitScreenWithViewImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int viewNumber});
 }
 
 /// @nodoc
-class __$$InitWithViewImplCopyWithImpl<$Res>
-    extends _$WeekPlanEventCopyWithImpl<$Res, _$InitWithViewImpl>
-    implements _$$InitWithViewImplCopyWith<$Res> {
-  __$$InitWithViewImplCopyWithImpl(
-      _$InitWithViewImpl _value, $Res Function(_$InitWithViewImpl) _then)
+class __$$InitScreenWithViewImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$InitScreenWithViewImpl>
+    implements _$$InitScreenWithViewImplCopyWith<$Res> {
+  __$$InitScreenWithViewImplCopyWithImpl(_$InitScreenWithViewImpl _value,
+      $Res Function(_$InitScreenWithViewImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -891,7 +1377,7 @@ class __$$InitWithViewImplCopyWithImpl<$Res>
   $Res call({
     Object? viewNumber = null,
   }) {
-    return _then(_$InitWithViewImpl(
+    return _then(_$InitScreenWithViewImpl(
       null == viewNumber
           ? _value.viewNumber
           : viewNumber // ignore: cast_nullable_to_non_nullable
@@ -902,22 +1388,22 @@ class __$$InitWithViewImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitWithViewImpl implements _InitWithView {
-  const _$InitWithViewImpl(this.viewNumber);
+class _$InitScreenWithViewImpl implements _InitScreenWithView {
+  const _$InitScreenWithViewImpl(this.viewNumber);
 
   @override
   final int viewNumber;
 
   @override
   String toString() {
-    return 'WeekPlanEvent.initWithView(viewNumber: $viewNumber)';
+    return 'WeekPlanEvent.initScreenWithView(viewNumber: $viewNumber)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$InitWithViewImpl &&
+            other is _$InitScreenWithViewImpl &&
             (identical(other.viewNumber, viewNumber) ||
                 other.viewNumber == viewNumber));
   }
@@ -928,14 +1414,16 @@ class _$InitWithViewImpl implements _InitWithView {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InitWithViewImplCopyWith<_$InitWithViewImpl> get copyWith =>
-      __$$InitWithViewImplCopyWithImpl<_$InitWithViewImpl>(this, _$identity);
+  _$$InitScreenWithViewImplCopyWith<_$InitScreenWithViewImpl> get copyWith =>
+      __$$InitScreenWithViewImplCopyWithImpl<_$InitScreenWithViewImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -946,7 +1434,7 @@ class _$InitWithViewImpl implements _InitWithView {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -966,6 +1454,7 @@ class _$InitWithViewImpl implements _InitWithView {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -1003,14 +1492,15 @@ class _$InitWithViewImpl implements _InitWithView {
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
   }) {
-    return initWithView(viewNumber);
+    return initScreenWithView(viewNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -1020,7 +1510,7 @@ class _$InitWithViewImpl implements _InitWithView {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -1038,6 +1528,7 @@ class _$InitWithViewImpl implements _InitWithView {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -1073,14 +1564,15 @@ class _$InitWithViewImpl implements _InitWithView {
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
   }) {
-    return initWithView?.call(viewNumber);
+    return initScreenWithView?.call(viewNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -1090,7 +1582,7 @@ class _$InitWithViewImpl implements _InitWithView {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -1107,6 +1599,7 @@ class _$InitWithViewImpl implements _InitWithView {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -1143,8 +1636,8 @@ class _$InitWithViewImpl implements _InitWithView {
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
-    if (initWithView != null) {
-      return initWithView(viewNumber);
+    if (initScreenWithView != null) {
+      return initScreenWithView(viewNumber);
     }
     return orElse();
   }
@@ -1152,8 +1645,9 @@ class _$InitWithViewImpl implements _InitWithView {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -1163,7 +1657,7 @@ class _$InitWithViewImpl implements _InitWithView {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -1182,6 +1676,7 @@ class _$InitWithViewImpl implements _InitWithView {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -1213,14 +1708,15 @@ class _$InitWithViewImpl implements _InitWithView {
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
-    return initWithView(this);
+    return initScreenWithView(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -1230,7 +1726,7 @@ class _$InitWithViewImpl implements _InitWithView {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -1247,6 +1743,7 @@ class _$InitWithViewImpl implements _InitWithView {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -1275,14 +1772,15 @@ class _$InitWithViewImpl implements _InitWithView {
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
-    return initWithView?.call(this);
+    return initScreenWithView?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -1292,7 +1790,7 @@ class _$InitWithViewImpl implements _InitWithView {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -1306,6 +1804,7 @@ class _$InitWithViewImpl implements _InitWithView {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -1334,19 +1833,20 @@ class _$InitWithViewImpl implements _InitWithView {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
-    if (initWithView != null) {
-      return initWithView(this);
+    if (initScreenWithView != null) {
+      return initScreenWithView(this);
     }
     return orElse();
   }
 }
 
-abstract class _InitWithView implements WeekPlanEvent {
-  const factory _InitWithView(final int viewNumber) = _$InitWithViewImpl;
+abstract class _InitScreenWithView implements WeekPlanEvent {
+  const factory _InitScreenWithView(final int viewNumber) =
+      _$InitScreenWithViewImpl;
 
   int get viewNumber;
   @JsonKey(ignore: true)
-  _$$InitWithViewImplCopyWith<_$InitWithViewImpl> get copyWith =>
+  _$$InitScreenWithViewImplCopyWith<_$InitScreenWithViewImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1415,8 +1915,9 @@ class _$ChangeViewImpl implements _ChangeView {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -1427,7 +1928,7 @@ class _$ChangeViewImpl implements _ChangeView {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -1447,6 +1948,7 @@ class _$ChangeViewImpl implements _ChangeView {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -1490,8 +1992,9 @@ class _$ChangeViewImpl implements _ChangeView {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -1501,7 +2004,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -1519,6 +2022,7 @@ class _$ChangeViewImpl implements _ChangeView {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -1560,8 +2064,9 @@ class _$ChangeViewImpl implements _ChangeView {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -1571,7 +2076,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -1588,6 +2093,7 @@ class _$ChangeViewImpl implements _ChangeView {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -1633,8 +2139,9 @@ class _$ChangeViewImpl implements _ChangeView {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -1644,7 +2151,7 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -1663,6 +2170,7 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -1700,8 +2208,9 @@ class _$ChangeViewImpl implements _ChangeView {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -1711,7 +2220,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -1728,6 +2237,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -1762,8 +2272,9 @@ class _$ChangeViewImpl implements _ChangeView {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -1773,7 +2284,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -1787,6 +2298,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -1869,8 +2381,9 @@ class _$RefreshImpl implements _Refresh {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -1881,7 +2394,7 @@ class _$RefreshImpl implements _Refresh {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -1901,6 +2414,7 @@ class _$RefreshImpl implements _Refresh {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -1944,8 +2458,9 @@ class _$RefreshImpl implements _Refresh {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -1955,7 +2470,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -1973,6 +2488,7 @@ class _$RefreshImpl implements _Refresh {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -2014,8 +2530,9 @@ class _$RefreshImpl implements _Refresh {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -2025,7 +2542,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -2042,6 +2559,7 @@ class _$RefreshImpl implements _Refresh {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -2087,8 +2605,9 @@ class _$RefreshImpl implements _Refresh {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -2098,7 +2617,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -2117,6 +2636,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -2154,8 +2674,9 @@ class _$RefreshImpl implements _Refresh {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -2165,7 +2686,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -2182,6 +2703,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -2216,8 +2738,9 @@ class _$RefreshImpl implements _Refresh {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -2227,7 +2750,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -2241,6 +2764,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -2344,8 +2868,9 @@ class _$SearchImpl implements _Search {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -2356,7 +2881,7 @@ class _$SearchImpl implements _Search {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -2376,6 +2901,7 @@ class _$SearchImpl implements _Search {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -2419,8 +2945,9 @@ class _$SearchImpl implements _Search {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -2430,7 +2957,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -2448,6 +2975,7 @@ class _$SearchImpl implements _Search {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -2489,8 +3017,9 @@ class _$SearchImpl implements _Search {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -2500,7 +3029,7 @@ class _$SearchImpl implements _Search {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -2517,6 +3046,7 @@ class _$SearchImpl implements _Search {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -2562,8 +3092,9 @@ class _$SearchImpl implements _Search {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -2573,7 +3104,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -2592,6 +3123,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -2629,8 +3161,9 @@ class _$SearchImpl implements _Search {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -2640,7 +3173,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -2657,6 +3190,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -2691,8 +3225,9 @@ class _$SearchImpl implements _Search {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -2702,7 +3237,7 @@ class _$SearchImpl implements _Search {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -2716,6 +3251,7 @@ class _$SearchImpl implements _Search {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -2798,8 +3334,9 @@ class _$ClearSearchImpl implements _ClearSearch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -2810,7 +3347,7 @@ class _$ClearSearchImpl implements _ClearSearch {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -2830,6 +3367,7 @@ class _$ClearSearchImpl implements _ClearSearch {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -2873,8 +3411,9 @@ class _$ClearSearchImpl implements _ClearSearch {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -2884,7 +3423,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -2902,6 +3441,7 @@ class _$ClearSearchImpl implements _ClearSearch {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -2943,8 +3483,9 @@ class _$ClearSearchImpl implements _ClearSearch {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -2954,7 +3495,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -2971,6 +3512,7 @@ class _$ClearSearchImpl implements _ClearSearch {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -3016,8 +3558,9 @@ class _$ClearSearchImpl implements _ClearSearch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -3027,7 +3570,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -3046,6 +3589,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -3083,8 +3627,9 @@ class _$ClearSearchImpl implements _ClearSearch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -3094,7 +3639,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -3111,6 +3656,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -3145,8 +3691,9 @@ class _$ClearSearchImpl implements _ClearSearch {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -3156,7 +3703,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -3170,6 +3717,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -3274,8 +3822,9 @@ class _$FilterByStatusImpl implements _FilterByStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -3286,7 +3835,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -3306,6 +3855,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -3349,8 +3899,9 @@ class _$FilterByStatusImpl implements _FilterByStatus {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -3360,7 +3911,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -3378,6 +3929,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -3419,8 +3971,9 @@ class _$FilterByStatusImpl implements _FilterByStatus {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -3430,7 +3983,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -3447,6 +4000,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -3492,8 +4046,9 @@ class _$FilterByStatusImpl implements _FilterByStatus {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -3503,7 +4058,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -3522,6 +4077,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -3559,8 +4115,9 @@ class _$FilterByStatusImpl implements _FilterByStatus {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -3570,7 +4127,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -3587,6 +4144,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -3621,8 +4179,9 @@ class _$FilterByStatusImpl implements _FilterByStatus {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -3632,7 +4191,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -3646,6 +4205,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -3728,8 +4288,9 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -3740,7 +4301,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -3760,6 +4321,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -3803,8 +4365,9 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -3814,7 +4377,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -3832,6 +4395,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -3873,8 +4437,9 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -3884,7 +4449,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -3901,6 +4466,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -3946,8 +4512,9 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -3957,7 +4524,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -3976,6 +4543,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -4013,8 +4581,9 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -4024,7 +4593,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -4041,6 +4610,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -4075,8 +4645,9 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -4086,7 +4657,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -4100,6 +4671,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -4213,8 +4785,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -4225,7 +4798,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -4245,6 +4818,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -4288,8 +4862,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -4299,7 +4874,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -4317,6 +4892,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -4358,8 +4934,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -4369,7 +4946,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -4386,6 +4963,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -4431,8 +5009,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -4442,7 +5021,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -4461,6 +5040,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -4498,8 +5078,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -4509,7 +5090,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -4526,6 +5107,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -4560,8 +5142,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -4571,7 +5154,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -4585,6 +5168,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -4670,8 +5254,9 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -4682,7 +5267,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -4702,6 +5287,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -4745,8 +5331,9 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -4756,7 +5343,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -4774,6 +5361,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -4815,8 +5403,9 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -4826,7 +5415,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -4843,6 +5432,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -4888,8 +5478,9 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -4899,7 +5490,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -4918,6 +5509,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -4955,8 +5547,9 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -4966,7 +5559,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -4983,6 +5576,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -5017,8 +5611,9 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -5028,7 +5623,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -5042,6 +5637,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -5145,8 +5741,9 @@ class _$CheckInImpl implements _CheckIn {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -5157,7 +5754,7 @@ class _$CheckInImpl implements _CheckIn {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -5177,6 +5774,7 @@ class _$CheckInImpl implements _CheckIn {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -5220,8 +5818,9 @@ class _$CheckInImpl implements _CheckIn {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -5231,7 +5830,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -5249,6 +5848,7 @@ class _$CheckInImpl implements _CheckIn {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -5290,8 +5890,9 @@ class _$CheckInImpl implements _CheckIn {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -5301,7 +5902,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -5318,6 +5919,7 @@ class _$CheckInImpl implements _CheckIn {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -5363,8 +5965,9 @@ class _$CheckInImpl implements _CheckIn {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -5374,7 +5977,7 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -5393,6 +5996,7 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -5430,8 +6034,9 @@ class _$CheckInImpl implements _CheckIn {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -5441,7 +6046,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -5458,6 +6063,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -5492,8 +6098,9 @@ class _$CheckInImpl implements _CheckIn {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -5503,7 +6110,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -5517,6 +6124,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -5562,35 +6170,35 @@ abstract class _CheckIn implements WeekPlanEvent {
 }
 
 /// @nodoc
-abstract class _$$InitAddImplCopyWith<$Res> {
-  factory _$$InitAddImplCopyWith(
-          _$InitAddImpl value, $Res Function(_$InitAddImpl) then) =
-      __$$InitAddImplCopyWithImpl<$Res>;
+abstract class _$$InitAddScreenImplCopyWith<$Res> {
+  factory _$$InitAddScreenImplCopyWith(
+          _$InitAddScreenImpl value, $Res Function(_$InitAddScreenImpl) then) =
+      __$$InitAddScreenImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitAddImplCopyWithImpl<$Res>
-    extends _$WeekPlanEventCopyWithImpl<$Res, _$InitAddImpl>
-    implements _$$InitAddImplCopyWith<$Res> {
-  __$$InitAddImplCopyWithImpl(
-      _$InitAddImpl _value, $Res Function(_$InitAddImpl) _then)
+class __$$InitAddScreenImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$InitAddScreenImpl>
+    implements _$$InitAddScreenImplCopyWith<$Res> {
+  __$$InitAddScreenImplCopyWithImpl(
+      _$InitAddScreenImpl _value, $Res Function(_$InitAddScreenImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$InitAddImpl implements _InitAdd {
-  const _$InitAddImpl();
+class _$InitAddScreenImpl implements _InitAddScreen {
+  const _$InitAddScreenImpl();
 
   @override
   String toString() {
-    return 'WeekPlanEvent.initAdd()';
+    return 'WeekPlanEvent.initAddScreen()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitAddImpl);
+        (other.runtimeType == runtimeType && other is _$InitAddScreenImpl);
   }
 
   @override
@@ -5599,8 +6207,9 @@ class _$InitAddImpl implements _InitAdd {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -5611,7 +6220,7 @@ class _$InitAddImpl implements _InitAdd {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -5631,6 +6240,7 @@ class _$InitAddImpl implements _InitAdd {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -5668,14 +6278,15 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
   }) {
-    return initAdd();
+    return initAddScreen();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -5685,7 +6296,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -5703,6 +6314,7 @@ class _$InitAddImpl implements _InitAdd {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -5738,14 +6350,15 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
   }) {
-    return initAdd?.call();
+    return initAddScreen?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -5755,7 +6368,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -5772,6 +6385,7 @@ class _$InitAddImpl implements _InitAdd {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -5808,8 +6422,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
-    if (initAdd != null) {
-      return initAdd();
+    if (initAddScreen != null) {
+      return initAddScreen();
     }
     return orElse();
   }
@@ -5817,8 +6431,9 @@ class _$InitAddImpl implements _InitAdd {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -5828,7 +6443,7 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -5847,6 +6462,7 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -5878,14 +6494,15 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
-    return initAdd(this);
+    return initAddScreen(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -5895,7 +6512,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -5912,6 +6529,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -5940,14 +6558,15 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
-    return initAdd?.call(this);
+    return initAddScreen?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -5957,7 +6576,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -5971,6 +6590,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -5999,15 +6619,15 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
-    if (initAdd != null) {
-      return initAdd(this);
+    if (initAddScreen != null) {
+      return initAddScreen(this);
     }
     return orElse();
   }
 }
 
-abstract class _InitAdd implements WeekPlanEvent {
-  const factory _InitAdd() = _$InitAddImpl;
+abstract class _InitAddScreen implements WeekPlanEvent {
+  const factory _InitAddScreen() = _$InitAddScreenImpl;
 }
 
 /// @nodoc
@@ -6074,8 +6694,9 @@ class _$ChangeStepImpl implements _ChangeStep {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -6086,7 +6707,7 @@ class _$ChangeStepImpl implements _ChangeStep {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -6106,6 +6727,7 @@ class _$ChangeStepImpl implements _ChangeStep {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -6149,8 +6771,9 @@ class _$ChangeStepImpl implements _ChangeStep {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -6160,7 +6783,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -6178,6 +6801,7 @@ class _$ChangeStepImpl implements _ChangeStep {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -6219,8 +6843,9 @@ class _$ChangeStepImpl implements _ChangeStep {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -6230,7 +6855,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -6247,6 +6872,7 @@ class _$ChangeStepImpl implements _ChangeStep {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -6292,8 +6918,9 @@ class _$ChangeStepImpl implements _ChangeStep {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -6303,7 +6930,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -6322,6 +6949,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -6359,8 +6987,9 @@ class _$ChangeStepImpl implements _ChangeStep {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -6370,7 +6999,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -6387,6 +7016,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -6421,8 +7051,9 @@ class _$ChangeStepImpl implements _ChangeStep {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -6432,7 +7063,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -6446,6 +7077,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -6566,8 +7198,9 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -6578,7 +7211,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -6598,6 +7231,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -6641,8 +7275,9 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -6652,7 +7287,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -6670,6 +7305,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -6711,8 +7347,9 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -6722,7 +7359,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -6739,6 +7376,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -6784,8 +7422,9 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -6795,7 +7434,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -6814,6 +7453,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -6851,8 +7491,9 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -6862,7 +7503,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -6879,6 +7520,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -6913,8 +7555,9 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -6924,7 +7567,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -6938,6 +7581,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -7063,8 +7707,9 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -7075,7 +7720,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -7095,6 +7740,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -7138,8 +7784,9 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -7149,7 +7796,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -7167,6 +7814,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -7208,8 +7856,9 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -7219,7 +7868,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -7236,6 +7885,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -7281,8 +7931,9 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -7292,7 +7943,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -7311,6 +7962,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -7348,8 +8000,9 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -7359,7 +8012,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -7376,6 +8029,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -7410,8 +8064,9 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -7421,7 +8076,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -7435,6 +8090,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -7559,8 +8215,9 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -7571,7 +8228,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -7591,6 +8248,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -7634,8 +8292,9 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -7645,7 +8304,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -7663,6 +8322,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -7704,8 +8364,9 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -7715,7 +8376,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -7732,6 +8393,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -7777,8 +8439,9 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -7788,7 +8451,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -7807,6 +8470,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -7844,8 +8508,9 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -7855,7 +8520,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -7872,6 +8537,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -7906,8 +8572,9 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -7917,7 +8584,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -7931,6 +8598,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -8046,8 +8714,9 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -8058,7 +8727,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -8078,6 +8747,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -8121,8 +8791,9 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -8132,7 +8803,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -8150,6 +8821,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -8191,8 +8863,9 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -8202,7 +8875,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -8219,6 +8892,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -8264,8 +8938,9 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -8275,7 +8950,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -8294,6 +8969,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -8331,8 +9007,9 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -8342,7 +9019,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -8359,6 +9036,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -8393,8 +9071,9 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -8404,7 +9083,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -8418,6 +9097,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -8531,8 +9211,9 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -8543,7 +9224,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -8563,6 +9244,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -8606,8 +9288,9 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -8617,7 +9300,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -8635,6 +9318,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -8676,8 +9360,9 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -8687,7 +9372,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -8704,6 +9389,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -8749,8 +9435,9 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -8760,7 +9447,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -8779,6 +9466,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -8816,8 +9504,9 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -8827,7 +9516,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -8844,6 +9533,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -8878,8 +9568,9 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -8889,7 +9580,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -8903,6 +9594,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -9015,8 +9707,9 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -9027,7 +9720,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -9047,6 +9740,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -9090,8 +9784,9 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -9101,7 +9796,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -9119,6 +9814,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -9160,8 +9856,9 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -9171,7 +9868,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -9188,6 +9885,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -9233,8 +9931,9 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -9244,7 +9943,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -9263,6 +9962,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -9300,8 +10000,9 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -9311,7 +10012,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -9328,6 +10029,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -9362,8 +10064,9 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -9373,7 +10076,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -9387,6 +10090,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -9508,8 +10212,9 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -9520,7 +10225,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -9540,6 +10245,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -9583,8 +10289,9 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -9594,7 +10301,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -9612,6 +10319,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -9653,8 +10361,9 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -9664,7 +10373,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -9681,6 +10390,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -9726,8 +10436,9 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -9737,7 +10448,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -9756,6 +10467,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -9793,8 +10505,9 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -9804,7 +10517,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -9821,6 +10534,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -9855,8 +10569,9 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -9866,7 +10581,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -9880,6 +10595,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -9995,8 +10711,9 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -10007,7 +10724,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -10027,6 +10744,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -10070,8 +10788,9 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -10081,7 +10800,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -10099,6 +10818,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -10140,8 +10860,9 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -10151,7 +10872,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -10168,6 +10889,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -10213,8 +10935,9 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -10224,7 +10947,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -10243,6 +10966,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -10280,8 +11004,9 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -10291,7 +11016,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -10308,6 +11033,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -10342,8 +11068,9 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -10353,7 +11080,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -10367,6 +11094,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -10490,8 +11218,9 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -10502,7 +11231,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -10522,6 +11251,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -10565,8 +11295,9 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -10576,7 +11307,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -10594,6 +11325,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -10635,8 +11367,9 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -10646,7 +11379,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -10663,6 +11396,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -10708,8 +11442,9 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -10719,7 +11454,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -10738,6 +11473,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -10775,8 +11511,9 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -10786,7 +11523,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -10803,6 +11540,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -10837,8 +11575,9 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -10848,7 +11587,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -10862,6 +11601,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -11013,8 +11753,9 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -11025,7 +11766,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -11045,6 +11786,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -11089,8 +11831,9 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -11100,7 +11843,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -11118,6 +11861,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -11160,8 +11904,9 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -11171,7 +11916,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -11188,6 +11933,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -11234,8 +11980,9 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -11245,7 +11992,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -11264,6 +12011,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -11301,8 +12049,9 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -11312,7 +12061,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -11329,6 +12078,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -11363,8 +12113,9 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -11374,7 +12125,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -11388,6 +12139,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -11478,8 +12230,9 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -11490,7 +12243,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -11510,6 +12263,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -11553,8 +12307,9 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -11564,7 +12319,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -11582,6 +12337,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -11623,8 +12379,9 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -11634,7 +12391,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -11651,6 +12408,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -11696,8 +12454,9 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -11707,7 +12466,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -11726,6 +12485,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -11763,8 +12523,9 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -11774,7 +12535,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -11791,6 +12552,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -11825,8 +12587,9 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -11836,7 +12599,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -11850,6 +12613,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -11887,6 +12651,467 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
 
 abstract class _FetchTaskTypes implements WeekPlanEvent {
   const factory _FetchTaskTypes() = _$FetchTaskTypesImpl;
+}
+
+/// @nodoc
+abstract class _$$FetchProjectsImplCopyWith<$Res> {
+  factory _$$FetchProjectsImplCopyWith(
+          _$FetchProjectsImpl value, $Res Function(_$FetchProjectsImpl) then) =
+      __$$FetchProjectsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FetchProjectsImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$FetchProjectsImpl>
+    implements _$$FetchProjectsImplCopyWith<$Res> {
+  __$$FetchProjectsImplCopyWithImpl(
+      _$FetchProjectsImpl _value, $Res Function(_$FetchProjectsImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$FetchProjectsImpl implements _FetchProjects {
+  const _$FetchProjectsImpl();
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.fetchProjects()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$FetchProjectsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(String status) filterByStatus,
+    required TResult Function() clearStatusFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId) checkIn,
+    required TResult Function() initAddScreen,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(String categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(List<WeekPlanEmployee> assignees) setAssignees,
+    required TResult Function(WeekPlanEmployee employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<WeekPlanEmployee> persons) setRelatedPersons,
+    required TResult Function(WeekPlanEmployee employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function() createTask,
+    required TResult Function() clearSubmitState,
+  }) {
+    return fetchProjects();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(String status)? filterByStatus,
+    TResult? Function()? clearStatusFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId)? checkIn,
+    TResult? Function()? initAddScreen,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(String categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(List<WeekPlanEmployee> assignees)? setAssignees,
+    TResult? Function(WeekPlanEmployee employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<WeekPlanEmployee> persons)? setRelatedPersons,
+    TResult? Function(WeekPlanEmployee employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function()? createTask,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return fetchProjects?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(String status)? filterByStatus,
+    TResult Function()? clearStatusFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId)? checkIn,
+    TResult Function()? initAddScreen,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(String categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(List<WeekPlanEmployee> assignees)? setAssignees,
+    TResult Function(WeekPlanEmployee employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<WeekPlanEmployee> persons)? setRelatedPersons,
+    TResult Function(WeekPlanEmployee employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function()? createTask,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (fetchProjects != null) {
+      return fetchProjects();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearStatusFilter value) clearStatusFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTask value) addSubTask,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return fetchProjects(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTask value)? addSubTask,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return fetchProjects?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTask value)? addSubTask,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (fetchProjects != null) {
+      return fetchProjects(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchProjects implements WeekPlanEvent {
+  const factory _FetchProjects() = _$FetchProjectsImpl;
 }
 
 /// @nodoc
@@ -11955,8 +13180,9 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -11967,7 +13193,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -11987,6 +13213,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -12030,8 +13257,9 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -12041,7 +13269,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -12059,6 +13287,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -12100,8 +13329,9 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -12111,7 +13341,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -12128,6 +13358,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -12173,8 +13404,9 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -12184,7 +13416,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -12203,6 +13435,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -12240,8 +13473,9 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -12251,7 +13485,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -12268,6 +13502,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -12302,8 +13537,9 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -12313,7 +13549,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -12327,6 +13563,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -12449,8 +13686,9 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -12461,7 +13699,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -12481,6 +13719,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -12524,8 +13763,9 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -12535,7 +13775,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -12553,6 +13793,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -12594,8 +13835,9 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -12605,7 +13847,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -12622,6 +13864,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -12667,8 +13910,9 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -12678,7 +13922,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -12697,6 +13941,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -12734,8 +13979,9 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -12745,7 +13991,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -12762,6 +14008,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -12796,8 +14043,9 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -12807,7 +14055,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -12821,6 +14069,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -12945,8 +14194,9 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -12957,7 +14207,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -12977,6 +14227,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -13020,8 +14271,9 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -13031,7 +14283,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -13049,6 +14301,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -13090,8 +14343,9 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -13101,7 +14355,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -13118,6 +14372,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -13163,8 +14418,9 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -13174,7 +14430,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -13193,6 +14449,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -13230,8 +14487,9 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -13241,7 +14499,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -13258,6 +14516,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -13292,8 +14551,9 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -13303,7 +14563,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -13317,6 +14577,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -13476,8 +14737,9 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -13488,7 +14750,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -13508,6 +14770,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -13552,8 +14815,9 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -13563,7 +14827,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -13581,6 +14845,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -13623,8 +14888,9 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -13634,7 +14900,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -13651,6 +14917,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -13697,8 +14964,9 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -13708,7 +14976,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -13727,6 +14995,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -13764,8 +15033,9 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -13775,7 +15045,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -13792,6 +15062,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -13826,8 +15097,9 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -13837,7 +15109,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -13851,6 +15123,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -13972,8 +15245,9 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -13984,7 +15258,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -14004,6 +15278,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -14047,8 +15322,9 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -14058,7 +15334,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -14076,6 +15352,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -14117,8 +15394,9 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -14128,7 +15406,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -14145,6 +15423,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -14190,8 +15469,9 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -14201,7 +15481,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -14220,6 +15500,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -14257,8 +15538,9 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -14268,7 +15550,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -14285,6 +15567,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -14319,8 +15602,9 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -14330,7 +15614,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -14344,6 +15628,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -14454,8 +15739,9 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -14466,7 +15752,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -14486,6 +15772,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -14529,8 +15816,9 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -14540,7 +15828,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -14558,6 +15846,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -14599,8 +15888,9 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -14610,7 +15900,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -14627,6 +15917,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -14672,8 +15963,9 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -14683,7 +15975,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -14702,6 +15994,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -14739,8 +16032,9 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -14750,7 +16044,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -14767,6 +16061,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -14801,8 +16096,9 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -14812,7 +16108,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -14826,6 +16122,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -14943,8 +16240,9 @@ class _$SetAssigneesImpl implements _SetAssignees {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -14955,7 +16253,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -14975,6 +16273,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -15018,8 +16317,9 @@ class _$SetAssigneesImpl implements _SetAssignees {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -15029,7 +16329,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -15047,6 +16347,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -15088,8 +16389,9 @@ class _$SetAssigneesImpl implements _SetAssignees {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -15099,7 +16401,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -15116,6 +16418,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -15161,8 +16464,9 @@ class _$SetAssigneesImpl implements _SetAssignees {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -15172,7 +16476,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -15191,6 +16495,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -15228,8 +16533,9 @@ class _$SetAssigneesImpl implements _SetAssignees {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -15239,7 +16545,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -15256,6 +16562,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -15290,8 +16597,9 @@ class _$SetAssigneesImpl implements _SetAssignees {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -15301,7 +16609,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -15315,6 +16623,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -15425,8 +16734,9 @@ class _$AddAssigneeImpl implements _AddAssignee {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -15437,7 +16747,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -15457,6 +16767,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -15500,8 +16811,9 @@ class _$AddAssigneeImpl implements _AddAssignee {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -15511,7 +16823,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -15529,6 +16841,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -15570,8 +16883,9 @@ class _$AddAssigneeImpl implements _AddAssignee {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -15581,7 +16895,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -15598,6 +16912,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -15643,8 +16958,9 @@ class _$AddAssigneeImpl implements _AddAssignee {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -15654,7 +16970,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -15673,6 +16989,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -15710,8 +17027,9 @@ class _$AddAssigneeImpl implements _AddAssignee {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -15721,7 +17039,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -15738,6 +17056,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -15772,8 +17091,9 @@ class _$AddAssigneeImpl implements _AddAssignee {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -15783,7 +17103,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -15797,6 +17117,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -15908,8 +17229,9 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -15920,7 +17242,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -15940,6 +17262,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -15983,8 +17306,9 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -15994,7 +17318,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -16012,6 +17336,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -16053,8 +17378,9 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -16064,7 +17390,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -16081,6 +17407,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -16126,8 +17453,9 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -16137,7 +17465,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -16156,6 +17484,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -16193,8 +17522,9 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -16204,7 +17534,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -16221,6 +17551,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -16255,8 +17586,9 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -16266,7 +17598,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -16280,6 +17612,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -16396,8 +17729,9 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -16408,7 +17742,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -16428,6 +17762,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -16471,8 +17806,9 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -16482,7 +17818,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -16500,6 +17836,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -16541,8 +17878,9 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -16552,7 +17890,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -16569,6 +17907,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -16614,8 +17953,9 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -16625,7 +17965,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -16644,6 +17984,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -16681,8 +18022,9 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -16692,7 +18034,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -16709,6 +18051,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -16743,8 +18086,9 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -16754,7 +18098,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -16768,6 +18112,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -16879,8 +18224,9 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -16891,7 +18237,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -16911,6 +18257,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -16954,8 +18301,9 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -16965,7 +18313,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -16983,6 +18331,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -17024,8 +18373,9 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -17035,7 +18385,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -17052,6 +18402,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -17097,8 +18448,9 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -17108,7 +18460,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -17127,6 +18479,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -17164,8 +18517,9 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -17175,7 +18529,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -17192,6 +18546,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -17226,8 +18581,9 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -17237,7 +18593,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -17251,6 +18607,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -17362,8 +18719,9 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -17374,7 +18732,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -17394,6 +18752,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -17437,8 +18796,9 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -17448,7 +18808,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -17466,6 +18826,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -17507,8 +18868,9 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -17518,7 +18880,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -17535,6 +18897,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -17580,8 +18943,9 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -17591,7 +18955,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -17610,6 +18974,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -17647,8 +19012,9 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -17658,7 +19024,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -17675,6 +19041,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -17709,8 +19076,9 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -17720,7 +19088,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -17734,6 +19102,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -17853,8 +19222,9 @@ class _$AddSubTaskImpl implements _AddSubTask {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -17865,7 +19235,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -17885,6 +19255,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -17928,8 +19299,9 @@ class _$AddSubTaskImpl implements _AddSubTask {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -17939,7 +19311,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -17957,6 +19329,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -17998,8 +19371,9 @@ class _$AddSubTaskImpl implements _AddSubTask {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -18009,7 +19383,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -18026,6 +19400,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -18071,8 +19446,9 @@ class _$AddSubTaskImpl implements _AddSubTask {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -18082,7 +19458,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -18101,6 +19477,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -18138,8 +19515,9 @@ class _$AddSubTaskImpl implements _AddSubTask {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -18149,7 +19527,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -18166,6 +19544,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -18200,8 +19579,9 @@ class _$AddSubTaskImpl implements _AddSubTask {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -18211,7 +19591,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -18225,6 +19605,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -18352,8 +19733,9 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -18364,7 +19746,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -18384,6 +19766,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -18427,8 +19810,9 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -18438,7 +19822,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -18456,6 +19840,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -18497,8 +19882,9 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -18508,7 +19894,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -18525,6 +19911,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -18570,8 +19957,9 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -18581,7 +19969,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -18600,6 +19988,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -18637,8 +20026,9 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -18648,7 +20038,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -18665,6 +20055,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -18699,8 +20090,9 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -18710,7 +20102,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -18724,6 +20116,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -18834,8 +20227,9 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -18846,7 +20240,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -18866,6 +20260,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -18909,8 +20304,9 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -18920,7 +20316,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -18938,6 +20334,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -18979,8 +20376,9 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -18990,7 +20388,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -19007,6 +20405,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -19052,8 +20451,9 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -19063,7 +20463,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -19082,6 +20482,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -19119,8 +20520,9 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -19130,7 +20532,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -19147,6 +20549,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -19181,8 +20584,9 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -19192,7 +20596,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -19206,6 +20610,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -19315,8 +20720,9 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -19327,7 +20733,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -19347,6 +20753,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -19390,8 +20797,9 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -19401,7 +20809,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -19419,6 +20827,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -19460,8 +20869,9 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -19471,7 +20881,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -19488,6 +20898,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -19533,8 +20944,9 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -19544,7 +20956,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -19563,6 +20975,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -19600,8 +21013,9 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -19611,7 +21025,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -19628,6 +21042,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -19662,8 +21077,9 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -19673,7 +21089,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -19687,6 +21103,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -19804,8 +21221,9 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -19816,7 +21234,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -19836,6 +21254,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -19879,8 +21298,9 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -19890,7 +21310,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -19908,6 +21328,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -19949,8 +21370,9 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -19960,7 +21382,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -19977,6 +21399,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -20022,8 +21445,9 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -20033,7 +21457,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -20052,6 +21476,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -20089,8 +21514,9 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -20100,7 +21526,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -20117,6 +21543,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -20151,8 +21578,9 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -20162,7 +21590,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -20176,6 +21604,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -20287,8 +21716,9 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -20299,7 +21729,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -20319,6 +21749,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -20362,8 +21793,9 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -20373,7 +21805,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -20391,6 +21823,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -20432,8 +21865,9 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -20443,7 +21877,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -20460,6 +21894,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -20505,8 +21940,9 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -20516,7 +21952,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -20535,6 +21971,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -20572,8 +22009,9 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -20583,7 +22021,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -20600,6 +22038,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -20634,8 +22073,9 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -20645,7 +22085,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -20659,6 +22099,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -20769,8 +22210,9 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -20781,7 +22223,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -20801,6 +22243,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -20844,8 +22287,9 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -20855,7 +22299,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -20873,6 +22317,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -20914,8 +22359,9 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -20925,7 +22371,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -20942,6 +22388,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -20987,8 +22434,9 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -20998,7 +22446,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -21017,6 +22465,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -21054,8 +22503,9 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -21065,7 +22515,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -21082,6 +22532,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -21116,8 +22567,9 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -21127,7 +22579,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -21141,6 +22593,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -21261,8 +22714,9 @@ class _$AddAttachmentImpl implements _AddAttachment {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -21273,7 +22727,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -21293,6 +22747,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -21336,8 +22791,9 @@ class _$AddAttachmentImpl implements _AddAttachment {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -21347,7 +22803,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -21365,6 +22821,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -21406,8 +22863,9 @@ class _$AddAttachmentImpl implements _AddAttachment {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -21417,7 +22875,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -21434,6 +22892,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -21479,8 +22938,9 @@ class _$AddAttachmentImpl implements _AddAttachment {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -21490,7 +22950,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -21509,6 +22969,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -21546,8 +23007,9 @@ class _$AddAttachmentImpl implements _AddAttachment {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -21557,7 +23019,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -21574,6 +23036,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -21608,8 +23071,9 @@ class _$AddAttachmentImpl implements _AddAttachment {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -21619,7 +23083,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -21633,6 +23097,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -21743,8 +23208,9 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -21755,7 +23221,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -21775,6 +23241,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -21818,8 +23285,9 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -21829,7 +23297,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -21847,6 +23315,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -21888,8 +23357,9 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -21899,7 +23369,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -21916,6 +23386,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -21961,8 +23432,9 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -21972,7 +23444,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -21991,6 +23463,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -22028,8 +23501,9 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -22039,7 +23513,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -22056,6 +23530,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -22090,8 +23565,9 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -22101,7 +23577,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -22115,6 +23591,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -22234,8 +23711,9 @@ class _$AddIncidentImpl implements _AddIncident {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -22246,7 +23724,7 @@ class _$AddIncidentImpl implements _AddIncident {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -22266,6 +23744,7 @@ class _$AddIncidentImpl implements _AddIncident {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -22309,8 +23788,9 @@ class _$AddIncidentImpl implements _AddIncident {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -22320,7 +23800,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -22338,6 +23818,7 @@ class _$AddIncidentImpl implements _AddIncident {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -22379,8 +23860,9 @@ class _$AddIncidentImpl implements _AddIncident {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -22390,7 +23872,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -22407,6 +23889,7 @@ class _$AddIncidentImpl implements _AddIncident {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -22452,8 +23935,9 @@ class _$AddIncidentImpl implements _AddIncident {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -22463,7 +23947,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -22482,6 +23966,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -22519,8 +24004,9 @@ class _$AddIncidentImpl implements _AddIncident {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -22530,7 +24016,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -22547,6 +24033,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -22581,8 +24068,9 @@ class _$AddIncidentImpl implements _AddIncident {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -22592,7 +24080,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -22606,6 +24094,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -22735,8 +24224,9 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -22747,7 +24237,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -22767,6 +24257,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -22810,8 +24301,9 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -22821,7 +24313,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -22839,6 +24331,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -22880,8 +24373,9 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -22891,7 +24385,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -22908,6 +24402,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -22953,8 +24448,9 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -22964,7 +24460,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -22983,6 +24479,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -23020,8 +24517,9 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -23031,7 +24529,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -23048,6 +24546,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -23082,8 +24581,9 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -23093,7 +24593,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -23107,6 +24607,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -23219,8 +24720,9 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -23231,7 +24733,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -23251,6 +24753,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -23294,8 +24797,9 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -23305,7 +24809,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -23323,6 +24827,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -23364,8 +24869,9 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -23375,7 +24881,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -23392,6 +24898,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -23437,8 +24944,9 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -23448,7 +24956,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -23467,6 +24975,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -23504,8 +25013,9 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -23515,7 +25025,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -23532,6 +25042,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -23566,8 +25077,9 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -23577,7 +25089,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -23591,6 +25103,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -23673,8 +25186,9 @@ class _$CreateTaskImpl implements _CreateTask {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -23685,7 +25199,7 @@ class _$CreateTaskImpl implements _CreateTask {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -23705,6 +25219,7 @@ class _$CreateTaskImpl implements _CreateTask {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -23748,8 +25263,9 @@ class _$CreateTaskImpl implements _CreateTask {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -23759,7 +25275,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -23777,6 +25293,7 @@ class _$CreateTaskImpl implements _CreateTask {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -23818,8 +25335,9 @@ class _$CreateTaskImpl implements _CreateTask {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -23829,7 +25347,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -23846,6 +25364,7 @@ class _$CreateTaskImpl implements _CreateTask {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -23891,8 +25410,9 @@ class _$CreateTaskImpl implements _CreateTask {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -23902,7 +25422,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -23921,6 +25441,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -23958,8 +25479,9 @@ class _$CreateTaskImpl implements _CreateTask {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -23969,7 +25491,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -23986,6 +25508,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -24020,8 +25543,9 @@ class _$CreateTaskImpl implements _CreateTask {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -24031,7 +25555,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -24045,6 +25569,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -24122,8 +25647,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int viewNumber) initWithView,
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
     required TResult Function(String keyword) search,
@@ -24134,7 +25660,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
         changeDateRange,
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId) checkIn,
-    required TResult Function() initAdd,
+    required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -24154,6 +25680,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             String statusName)
         updateHeaderWorkTypeAndStatus,
     required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
     required TResult Function(String name) updateContentTaskName,
     required TResult Function(int assigneeId, String assigneeName)
         updateContentAssignee,
@@ -24197,8 +25724,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int viewNumber)? initWithView,
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? search,
@@ -24208,7 +25736,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId)? checkIn,
-    TResult? Function()? initAdd,
+    TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -24226,6 +25754,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
     TResult? Function(String name)? updateContentTaskName,
     TResult? Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -24267,8 +25796,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int viewNumber)? initWithView,
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
     TResult Function(String keyword)? search,
@@ -24278,7 +25808,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId)? checkIn,
-    TResult Function()? initAdd,
+    TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -24295,6 +25825,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             String statusName)?
         updateHeaderWorkTypeAndStatus,
     TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
     TResult Function(String name)? updateContentTaskName,
     TResult Function(int assigneeId, String assigneeName)?
         updateContentAssignee,
@@ -24340,8 +25871,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_InitWithView value) initWithView,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
@@ -24351,7 +25883,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
-    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitAddScreen value) initAddScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -24370,6 +25902,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
         updateHeaderWorkTypeAndStatus,
     required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
     required TResult Function(_UpdateContentTaskName value)
         updateContentTaskName,
     required TResult Function(_UpdateContentAssignee value)
@@ -24407,8 +25940,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_InitWithView value)? initWithView,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
@@ -24418,7 +25952,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
-    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -24435,6 +25969,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
     TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
@@ -24469,8 +26004,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_InitWithView value)? initWithView,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
@@ -24480,7 +26016,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
-    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitAddScreen value)? initAddScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -24494,6 +26030,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
         updateHeaderWorkTypeAndStatus,
     TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
     TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
     TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
     TResult Function(_UpdateContentAssigner value)? updateContentAssigner,

@@ -69,6 +69,8 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState taskTypes(List<TaskTypeItem> taskTypes);
 
+  WeekPlanState projects(List<ProjectTaskItem> projects);
+
   WeekPlanState taskName(String? taskName);
 
   WeekPlanState contentAssigneeId(int? contentAssigneeId);
@@ -148,6 +150,7 @@ abstract class _$WeekPlanStateCWProxy {
     int? headerPriority,
     double? headerTimeEstimate,
     List<TaskTypeItem>? taskTypes,
+    List<ProjectTaskItem>? projects,
     String? taskName,
     int? contentAssigneeId,
     String? contentAssigneeName,
@@ -296,6 +299,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(taskTypes: taskTypes);
 
   @override
+  WeekPlanState projects(List<ProjectTaskItem> projects) =>
+      this(projects: projects);
+
+  @override
   WeekPlanState taskName(String? taskName) => this(taskName: taskName);
 
   @override
@@ -414,6 +421,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? headerPriority = const $CopyWithPlaceholder(),
     Object? headerTimeEstimate = const $CopyWithPlaceholder(),
     Object? taskTypes = const $CopyWithPlaceholder(),
+    Object? projects = const $CopyWithPlaceholder(),
     Object? taskName = const $CopyWithPlaceholder(),
     Object? contentAssigneeId = const $CopyWithPlaceholder(),
     Object? contentAssigneeName = const $CopyWithPlaceholder(),
@@ -572,6 +580,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.taskTypes
           // ignore: cast_nullable_to_non_nullable
           : taskTypes as List<TaskTypeItem>,
+      projects: projects == const $CopyWithPlaceholder() || projects == null
+          ? _value.projects
+          // ignore: cast_nullable_to_non_nullable
+          : projects as List<ProjectTaskItem>,
       taskName: taskName == const $CopyWithPlaceholder()
           ? _value.taskName
           // ignore: cast_nullable_to_non_nullable

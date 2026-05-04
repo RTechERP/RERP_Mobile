@@ -18,6 +18,16 @@ import '../bloc/week_plan_bloc.dart';
 import '../week_plan_helper.dart';
 import '../widgets/week_plan_card.dart';
 
+class _WeekPlanAddExtra {
+  const _WeekPlanAddExtra({
+    required this.projects,
+    required this.taskTypes,
+  });
+
+  final List<ProjectTaskItem> projects;
+  final List<TaskTypeItem> taskTypes;
+}
+
 /// Widget base hiển thị 1 danh sách công việc — không có TabBar.
 ///
 /// Dùng chung cho 4 màn: Công việc, Liên quan, Giao việc, Tổng công việc.
@@ -43,7 +53,7 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
   void initState() {
     super.initState();
     context.read<WeekPlanBloc>().add(
-          WeekPlanEvent.initWithView(widget.viewNumber),
+          WeekPlanEvent.initScreenWithView(widget.viewNumber),
         );
   }
 
@@ -206,10 +216,21 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
 
   Widget? _buildFab(BuildContext context) {
     if (widget.viewNumber == 1 || widget.viewNumber == 3) {
-      return FloatingActionButton(
-        onPressed: () => context.push(RouteNames.weekplanAdd),
-        backgroundColor: AppColors.primaryERP,
-        child: const Icon(Icons.add, color: Colors.white),
+      return BlocBuilder<WeekPlanBloc, WeekPlanState>(
+        buildWhen: (prev, curr) =>
+            prev.projects.length != curr.projects.length ||
+            prev.taskTypes.length != curr.taskTypes.length,
+        builder: (context, state) => FloatingActionButton(
+          onPressed: () => context.push(
+            RouteNames.weekplanAdd,
+            extra: _WeekPlanAddExtra(
+              projects: state.projects,
+              taskTypes: state.taskTypes,
+            ),
+          ),
+          backgroundColor: AppColors.primaryERP,
+          child: const Icon(Icons.add, color: Colors.white),
+        ),
       );
     }
     return null;

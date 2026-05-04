@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 
+import '../../../../../../../../../common/local_data/index.dart';
 import '../../../../../../../../../common/logger/index.dart';
 import '../../../../../../base/bloc/index.dart';
 import '../../../../../../base/network/errors/extension.dart';
@@ -15,6 +16,8 @@ part 'week_plan_event.dart';
 part 'week_plan_state.dart';
 part 'week_plan_bloc.g.dart';
 part 'week_plan_bloc.freezed.dart';
+
+const _kProjectsCacheKey = 'weekplan_projects_cache';
 
 /// Employee đơn giản — dùng cho multi-select ở step 2 & 3.
 /// KHÔNG phải @freezed vì không cần JSON serialization.
@@ -51,15 +54,21 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   final WeekPlanRepo _weekPlanRepo;
   final AuthRepo _authRepo;
   final LogUtils _log;
+  final LocalStorage _localStorage;
 
   bool _isInitInFlight = false;
 
-  WeekPlanBloc(this._weekPlanRepo, this._authRepo, this._log)
-      : super(WeekPlanState.init()) {
+  WeekPlanBloc(
+    this._weekPlanRepo,
+    this._authRepo,
+    this._log,
+    this._localStorage,
+  ) : super(WeekPlanState.init()) {
     on<WeekPlanEvent>((event, emit) async {
       await event.when(
-        init: () => _onInit(emit),
-        initWithView: (viewNumber) => _onInitWithView(emit, viewNumber),
+        initMenu: () => _onInitMenu(emit),
+        initScreen: () => _onInitScreen(emit),
+        initScreenWithView: (viewNumber) => _onInitScreenWithView(emit, viewNumber),
         changeView: (viewNumber) => _onChangeView(emit, viewNumber),
         refresh: () => _onRefresh(emit),
         search: (keyword) => _onSearch(emit, keyword),
@@ -70,7 +79,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             _onChangeDateRange(emit, dateStart, dateEnd),
         clearDateFilter: () => _onClearDateFilter(emit),
         checkIn: (taskId) => _onCheckIn(emit, taskId),
-        initAdd: () => _onInitAdd(emit),
+        initAddScreen: () => _onInitAddScreen(emit),
         changeStep: (step) => _onChangeStep(emit, step),
         updateHeaderProject: (projectId, projectName) =>
             _onUpdateHeaderProject(emit, projectId, projectName),
@@ -94,6 +103,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             _onUpdateHeaderWorkTypeAndStatus(
                 emit, workTypeId, workTypeName, statusId, statusName),
         fetchTaskTypes: () => _onFetchTaskTypes(emit),
+        fetchProjects: () => _onFetchProjects(emit),
         updateContentTaskName: (name) => _onUpdateContentTaskName(emit, name),
         updateContentAssignee: (assigneeId, assigneeName) =>
             _onUpdateContentAssignee(emit, assigneeId, assigneeName),
@@ -148,17 +158,23 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   }
 
   //---(Init)---//
-  Future<void> _onInit(Emitter<WeekPlanState> emit) async {
-    if (_isInitInFlight) return;
-    await _doInit(emit, viewNumber: 1);
+  Future<void> _onInitMenu(Emitter<WeekPlanState> emit) async {
+    // No-op — dữ liệu projects/taskTypes được fetch bởi initScreen.
   }
 
-  Future<void> _onInitWithView(Emitter<WeekPlanState> emit, int viewNumber) async {
-    if (_isInitInFlight) return;
-    await _doInit(emit, viewNumber: viewNumber);
+  Future<void> _onInitScreen(Emitter<WeekPlanState> emit) async {
+    _isInitInFlight = false;
+    await _doInitScreen(emit, viewNumber: 1);
   }
 
-  Future<void> _doInit(Emitter<WeekPlanState> emit, {required int viewNumber}) async {
+  Future<void> _onInitScreenWithView(Emitter<WeekPlanState> emit, int viewNumber) async {
+    _isInitInFlight = false;
+    await _doInitScreen(emit, viewNumber: viewNumber);
+  }
+
+  Future<void> _doInitScreen(Emitter<WeekPlanState> emit, {required int viewNumber}) async {
+    if (_isInitInFlight) return;
+    _isInitInFlight = true;
     try {
       emit(state.copyWith(
         status: BaseStateStatus.loading,
@@ -175,6 +191,32 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
           ));
         },
         (user) async {
+          // Fetch projects + taskTypes nếu chưa có.
+          List<ProjectTaskItem> projects = state.projects;
+          List<TaskTypeItem> taskTypes = state.taskTypes;
+
+          if (projects.isEmpty) {
+            final projRes = await _weekPlanRepo.getProjects();
+            projRes.fold(
+              (err) => _log.logE('Fetch projects failed: $err'),
+              (data) {
+                projects = data;
+                _log.logI('Fetch projects: ${projects.length}');
+              },
+            );
+          }
+
+          if (taskTypes.isEmpty) {
+            final typesRes = await _weekPlanRepo.getTaskTypes();
+            typesRes.fold(
+              (err) => _log.logE('Fetch task types failed: $err'),
+              (data) {
+                taskTypes = data;
+                _log.logI('Fetch task types: ${taskTypes.length}');
+              },
+            );
+          }
+
           final employeeId = user?.employeeId ?? 0;
           final now = DateTime.now();
           final dateStart = state.dateStart ?? DateTime(now.year, now.month, 1);
@@ -240,6 +282,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
           emit(state.copyWith(
             status: BaseStateStatus.success,
             employeeId: employeeId,
+            projects: projects,
+            taskTypes: taskTypes,
             myTasks: myTasks,
             relatedTasks: relatedTasks,
             assignedTasks: assignedTasks,
@@ -253,11 +297,11 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   }
 
   Future<void> _onChangeView(Emitter<WeekPlanState> emit, int viewNumber) async {
-    await _doInit(emit, viewNumber: viewNumber);
+    await _doInitScreen(emit, viewNumber: viewNumber);
   }
 
   Future<void> _onRefresh(Emitter<WeekPlanState> emit) async {
-    await _doInit(emit, viewNumber: state.viewNumber);
+    await _doInitScreen(emit, viewNumber: state.viewNumber);
   }
 
   //---(Filter)---//
@@ -279,23 +323,23 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   //---(Filter)---//
   Future<void> _onSearch(Emitter<WeekPlanState> emit, String keyword) async {
     emit(state.copyWith(searchKeyword: keyword));
-    await _onInit(emit);
+    await _onInitScreen(emit);
   }
 
   Future<void> _onClearSearch(Emitter<WeekPlanState> emit) async {
     emit(state.copyWith(searchKeyword: ''));
-    await _onInit(emit);
+    await _onInitScreen(emit);
   }
 
   Future<void> _onFilterByStatus(
       Emitter<WeekPlanState> emit, String status) async {
     emit(state.copyWith(selectedStatus: status));
-    await _onInit(emit);
+    await _onInitScreen(emit);
   }
 
   Future<void> _onClearStatusFilter(Emitter<WeekPlanState> emit) async {
     emit(state.copyWith(selectedStatus: 'Tất cả'));
-    await _onInit(emit);
+    await _onInitScreen(emit);
   }
 
   Future<void> _onChangeDateRange(
@@ -304,12 +348,12 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     DateTime dateEnd,
   ) async {
     emit(state.copyWith(dateStart: dateStart, dateEnd: dateEnd));
-    await _onInit(emit);
+    await _onInitScreen(emit);
   }
 
   Future<void> _onClearDateFilter(Emitter<WeekPlanState> emit) async {
     emit(state.copyWith(dateStart: null, dateEnd: null));
-    await _onInit(emit);
+    await _onInitScreen(emit);
   }
 
   //---(Action)---//
@@ -323,7 +367,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   }
 
   //---(Add Screen)---//
-  Future<void> _onInitAdd(Emitter<WeekPlanState> emit) async {
+  /// Init add screen — projects/taskTypes đã có sẵn trong state (fetch bởi initScreen).
+  Future<void> _onInitAddScreen(Emitter<WeekPlanState> emit) async {
     emit(state.copyWith(
       isSubmitting: false,
       submitSuccess: false,
@@ -363,8 +408,6 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       attachments: const [],
       incidents: const [],
     ));
-
-    await _onFetchTaskTypes(emit);
   }
 
   Future<void> _onChangeStep(Emitter<WeekPlanState> emit, int step) async {
@@ -452,6 +495,41 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         ));
       },
     );
+  }
+
+  Future<void> _onFetchProjects(Emitter<WeekPlanState> emit) async {
+    // Load cache trước — tránh UI flicker khi API chậm.
+    final cached = await _loadProjectsFromCache();
+    if (cached.isNotEmpty) {
+      emit(state.copyWith(projects: cached));
+    }
+
+    final res = await _weekPlanRepo.getProjects();
+
+    await res.fold(
+      (err) async {
+        _log.logE('Fetch projects failed: $err');
+      },
+      (projects) async {
+        _log.logI('Fetch projects success: ${projects.length}');
+        // Cache to SharedPreferences
+        final maps = projects.map((p) => p.toJson()).toList();
+        await _localStorage.saveProjectList(_kProjectsCacheKey, maps);
+        emit(state.copyWith(projects: projects));
+      },
+    );
+  }
+
+  /// Load cached projects from SharedPreferences, return empty list if none.
+  Future<List<ProjectTaskItem>> _loadProjectsFromCache() async {
+    final cached = await _localStorage.getProjectList(_kProjectsCacheKey);
+    if (cached == null) return [];
+    return cached.map((m) => ProjectTaskItem.fromJson(m)).toList();
+  }
+
+  /// Clear cached projects from SharedPreferences.
+  Future<void> clearProjectsCache() async {
+    await _localStorage.removeProjectList(_kProjectsCacheKey);
   }
 
   //---(Content Step)---//

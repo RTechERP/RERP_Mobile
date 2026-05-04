@@ -106,6 +106,18 @@ class TaskTypeItem with _$TaskTypeItem {
 }
 
 @freezed
+class ProjectTaskItem with _$ProjectTaskItem {
+  const factory ProjectTaskItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProjectCode') String? projectCode,
+    @JsonKey(name: 'ProjectName') String? projectName,
+  }) = _ProjectTaskItem;
+
+  factory ProjectTaskItem.fromJson(Map<String, dynamic> json) =>
+      _$ProjectTaskItemFromJson(json);
+}
+
+@freezed
 class WeekPlanSubTaskItem with _$WeekPlanSubTaskItem {
   const factory WeekPlanSubTaskItem({
     @JsonKey(name: 'ID') int? id,

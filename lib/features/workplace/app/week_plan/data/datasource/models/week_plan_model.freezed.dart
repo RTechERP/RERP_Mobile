@@ -2174,6 +2174,199 @@ abstract class _TaskTypeItem implements TaskTypeItem {
       throw _privateConstructorUsedError;
 }
 
+ProjectTaskItem _$ProjectTaskItemFromJson(Map<String, dynamic> json) {
+  return _ProjectTaskItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectTaskItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectName')
+  String? get projectName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProjectTaskItemCopyWith<ProjectTaskItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectTaskItemCopyWith<$Res> {
+  factory $ProjectTaskItemCopyWith(
+          ProjectTaskItem value, $Res Function(ProjectTaskItem) then) =
+      _$ProjectTaskItemCopyWithImpl<$Res, ProjectTaskItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectName') String? projectName});
+}
+
+/// @nodoc
+class _$ProjectTaskItemCopyWithImpl<$Res, $Val extends ProjectTaskItem>
+    implements $ProjectTaskItemCopyWith<$Res> {
+  _$ProjectTaskItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectCode = freezed,
+    Object? projectName = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectTaskItemImplCopyWith<$Res>
+    implements $ProjectTaskItemCopyWith<$Res> {
+  factory _$$ProjectTaskItemImplCopyWith(_$ProjectTaskItemImpl value,
+          $Res Function(_$ProjectTaskItemImpl) then) =
+      __$$ProjectTaskItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectName') String? projectName});
+}
+
+/// @nodoc
+class __$$ProjectTaskItemImplCopyWithImpl<$Res>
+    extends _$ProjectTaskItemCopyWithImpl<$Res, _$ProjectTaskItemImpl>
+    implements _$$ProjectTaskItemImplCopyWith<$Res> {
+  __$$ProjectTaskItemImplCopyWithImpl(
+      _$ProjectTaskItemImpl _value, $Res Function(_$ProjectTaskItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectCode = freezed,
+    Object? projectName = freezed,
+  }) {
+    return _then(_$ProjectTaskItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectTaskItemImpl implements _ProjectTaskItem {
+  const _$ProjectTaskItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProjectCode') this.projectCode,
+      @JsonKey(name: 'ProjectName') this.projectName});
+
+  factory _$ProjectTaskItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectTaskItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProjectCode')
+  final String? projectCode;
+  @override
+  @JsonKey(name: 'ProjectName')
+  final String? projectName;
+
+  @override
+  String toString() {
+    return 'ProjectTaskItem(id: $id, projectCode: $projectCode, projectName: $projectName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectTaskItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.projectCode, projectCode) ||
+                other.projectCode == projectCode) &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, projectCode, projectName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectTaskItemImplCopyWith<_$ProjectTaskItemImpl> get copyWith =>
+      __$$ProjectTaskItemImplCopyWithImpl<_$ProjectTaskItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectTaskItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectTaskItem implements ProjectTaskItem {
+  const factory _ProjectTaskItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'ProjectCode') final String? projectCode,
+          @JsonKey(name: 'ProjectName') final String? projectName}) =
+      _$ProjectTaskItemImpl;
+
+  factory _ProjectTaskItem.fromJson(Map<String, dynamic> json) =
+      _$ProjectTaskItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode;
+  @override
+  @JsonKey(name: 'ProjectName')
+  String? get projectName;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProjectTaskItemImplCopyWith<_$ProjectTaskItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 WeekPlanSubTaskItem _$WeekPlanSubTaskItemFromJson(Map<String, dynamic> json) {
   return _WeekPlanSubTaskItem.fromJson(json);
 }

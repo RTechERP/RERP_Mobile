@@ -926,8 +926,8 @@ class AppRouter {
       //---(Week Plan)---//
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider(
-            create: (_) => getIt<WeekPlanBloc>(),
+          return BlocProvider.value(
+            value: getIt<WeekPlanBloc>(),
             child: child,
           );
         },

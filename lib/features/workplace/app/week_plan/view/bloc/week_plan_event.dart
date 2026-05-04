@@ -2,9 +2,13 @@ part of 'week_plan_bloc.dart';
 
 @freezed
 class WeekPlanEvent with _$WeekPlanEvent {
-  const factory WeekPlanEvent.init() = _Init;
+  //---(Menu)---//
+  const factory WeekPlanEvent.initMenu() = _InitMenu;
 
-  const factory WeekPlanEvent.initWithView(int viewNumber) = _InitWithView;
+  //---(Screen)---//
+  const factory WeekPlanEvent.initScreen() = _InitScreen;
+
+  const factory WeekPlanEvent.initScreenWithView(int viewNumber) = _InitScreenWithView;
 
   const factory WeekPlanEvent.changeView(int viewNumber) = _ChangeView;
 
@@ -28,7 +32,7 @@ class WeekPlanEvent with _$WeekPlanEvent {
   const factory WeekPlanEvent.checkIn(int taskId) = _CheckIn;
 
   //---(Add Screen)---//
-  const factory WeekPlanEvent.initAdd() = _InitAdd;
+  const factory WeekPlanEvent.initAddScreen() = _InitAddScreen;
 
   const factory WeekPlanEvent.changeStep(int step) = _ChangeStep;
 
@@ -78,6 +82,8 @@ class WeekPlanEvent with _$WeekPlanEvent {
   }) = _UpdateHeaderWorkTypeAndStatus;
 
   const factory WeekPlanEvent.fetchTaskTypes() = _FetchTaskTypes;
+
+  const factory WeekPlanEvent.fetchProjects() = _FetchProjects;
 
   // Step 2: Nội dung chính
   const factory WeekPlanEvent.updateContentTaskName(String name) =

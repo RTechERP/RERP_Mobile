@@ -373,6 +373,7 @@ void configureDependencies() {
       getIt<WeekPlanRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
+      getIt<LocalStorage>(),
     ),
   );
 }

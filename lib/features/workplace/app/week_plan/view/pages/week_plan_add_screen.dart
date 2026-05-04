@@ -8,9 +8,22 @@ import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
+import '../../data/datasource/models/week_plan_model.dart';
 import '../bloc/week_plan_bloc.dart';
 import '../week_plan_tab_enum.dart';
 import '../widgets/index.dart';
+
+/// Data truyền từ WeekPlanScreen qua route extra.
+/// Chứa projects/taskTypes đã fetch sẵn để dùng ngay trên màn add.
+class WeekPlanAddExtra {
+  const WeekPlanAddExtra({
+    required this.projects,
+    required this.taskTypes,
+  });
+
+  final List<ProjectTaskItem> projects;
+  final List<TaskTypeItem> taskTypes;
+}
 
 class WeekPlanAddScreen extends StatefulWidget {
   const WeekPlanAddScreen({super.key});
@@ -21,12 +34,7 @@ class WeekPlanAddScreen extends StatefulWidget {
 
 class _WeekPlanAddScreenState
     extends
-        BaseState<
-          WeekPlanAddScreen,
-          WeekPlanEvent,
-          WeekPlanState,
-          WeekPlanBloc
-        > {
+        BaseState<WeekPlanAddScreen, WeekPlanEvent, WeekPlanState, WeekPlanBloc> {
   final _formKey = GlobalKey<FormBuilderState>();
   int _currentStep = 0;
 
@@ -35,8 +43,7 @@ class _WeekPlanAddScreenState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      bloc.add(const WeekPlanEvent.clearSubmitState());
-      bloc.add(const WeekPlanEvent.initAdd());
+      bloc.add(WeekPlanEvent.initAddScreen());
     });
   }
 
@@ -181,15 +188,27 @@ class _WeekPlanAddScreenState
 
   //---(_Step: Project Info)---//
   Widget _buildProjectInfoStep(WeekPlanState state) {
+    // Trigger fetch nếu thiếu data — tránh bottom sheet trống.
+    if (state.projects.isEmpty) {
+      bloc.add(const WeekPlanEvent.fetchProjects());
+    }
+    if (state.taskTypes.isEmpty) {
+      bloc.add(const WeekPlanEvent.fetchTaskTypes());
+    }
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          WeekPlanTapCard(
-            label: 'Dự án',
-            value: state.headerProjectName,
-            icon: Icons.folder_outlined,
-            onTap: () => _stub('Chọn dự án'),
+          WeekPlanProjectCard(
+            selectedId: state.headerProjectId,
+            projects: state.projects,
+            onChanged: (project) {
+              bloc.add(WeekPlanEvent.updateHeaderProject(
+                projectId: project.id ?? 0,
+                projectName: project.projectName ?? '',
+              ));
+            },
           ),
           const SizedBox(height: 10),
           WeekPlanTapCard(

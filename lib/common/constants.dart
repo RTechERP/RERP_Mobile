@@ -295,4 +295,6 @@ class ApiEndPoint {
   // Week Plan
   static const String getProjectTask = '/ProjectTask';
   static const String getProjectTaskType = '/ProjectTask/project-task-type';
+
+  static const String getAllProjectTask = '/ProjectTask/get-all-project';
 }
