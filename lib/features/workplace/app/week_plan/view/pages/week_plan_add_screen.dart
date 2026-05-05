@@ -1,4 +1,5 @@
 import 'package:easy_stepper/easy_stepper.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -771,10 +772,101 @@ class _WeekPlanAddScreenState
 
   //---(_Step: Attachment)---//
   Widget _buildAttachmentStep(WeekPlanState state) {
-    return const SingleChildScrollView(
-      padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
-      child: Text('Step 6: Đính kèm — sẽ làm tiếp'),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+      child: Column(
+        children: [
+          // Header + button
+          Row(
+            children: [
+              Text(
+                'Tệp đính kèm',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.heading,
+                ),
+              ),
+              const Spacer(),
+              ElevatedButton.icon(
+                onPressed: () => _pickFiles(context),
+                icon: const Icon(Icons.attach_file, size: 16),
+                label: const Text('Chọn tệp'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primaryERP,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 0,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Empty state
+          if (state.attachments.isEmpty)
+            Container(
+              padding: const EdgeInsets.all(32),
+              child: Column(
+                children: [
+                  Icon(Icons.attachment, size: 48, color: AppColors.hintText),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Chưa có tệp đính kèm',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: AppColors.hintText,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Bấm "Chọn tệp" để thêm đính kèm',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: AppColors.hintText,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+          // List
+          ...List.generate(state.attachments.length, (i) {
+            return WeekPlanAttachmentCard(
+              index: i,
+              attachment: state.attachments[i],
+              onDelete: () {
+                bloc.add(WeekPlanEvent.removeAttachment(i));
+              },
+            );
+          }),
+        ],
+      ),
     );
+  }
+
+  Future<void> _pickFiles(BuildContext context) async {
+    final result = await FilePicker.platform.pickFiles(
+      allowMultiple: true,
+    );
+    if (result != null && result.files.isNotEmpty) {
+      for (final file in result.files) {
+        if (file.path != null) {
+          bloc.add(WeekPlanEvent.addAttachment(
+            WeekPlanAttachmentItem(
+              id: 0,
+              fileName: file.name,
+              filePath: file.path,
+              fileSize: file.size,
+            ),
+          ));
+        }
+      }
+    }
   }
 
   //---(_Step: Incident)---//

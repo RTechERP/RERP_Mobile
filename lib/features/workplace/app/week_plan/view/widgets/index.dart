@@ -10,3 +10,4 @@ export 'week_plan_project_card.dart';
 export 'week_plan_project_type_card.dart';
 export 'week_plan_subtask_form.dart';
 export 'week_plan_checklist_item.dart';
+export 'week_plan_attachment_card.dart';
