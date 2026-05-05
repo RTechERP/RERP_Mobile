@@ -99,8 +99,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             _onAddRelatedPerson(emit, employee),
         removeRelatedPerson: (employeeId) =>
             _onRemoveRelatedPerson(emit, employeeId),
-        addSubTask: (subTask) =>
-            _onAddSubTask(emit, subTask),
+        addSubTask: () =>
+            _onAddSubTask(emit),
         updateSubTask: (index, subTask) =>
             _onUpdateSubTask(emit, index, subTask),
         removeSubTask: (index) =>
@@ -712,9 +712,33 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   }
 
   //---(SubTasks)---//
-  Future<void> _onAddSubTask(
-      Emitter<WeekPlanState> emit, WeekPlanSubTaskItem subTask) async {
-    emit(state.copyWith(subTasks: [...state.subTasks, subTask]));
+  Future<void> _onAddSubTask(Emitter<WeekPlanState> emit) async {
+    final userRes = await _authRepo.getCurrentUser();
+    await userRes.fold(
+      (err) async {
+        // Fallback: tạo rỗng nếu không lấy được user
+        emit(state.copyWith(subTasks: [...state.subTasks, const WeekPlanSubTaskItem()]));
+      },
+      (user) async {
+        if (user == null) {
+          emit(state.copyWith(subTasks: [...state.subTasks, const WeekPlanSubTaskItem()]));
+          return;
+        }
+        final displayName = '${user.code} - ${user.fullName}';
+        final subTask = WeekPlanSubTaskItem(
+          assigneeId: user.employeeId,
+          assigneeName: displayName,
+          assignerId: user.employeeId,
+          assignerName: displayName,
+          workType: state.headerWorkType,
+          workTypeName: state.headerWorkTypeName,
+          taskCategory: state.headerTaskCategory,
+          taskCategoryName: state.headerTaskCategoryName,
+          complexity: state.headerComplexity > 0 ? state.headerComplexity : 1,
+        );
+        emit(state.copyWith(subTasks: [...state.subTasks, subTask]));
+      },
+    );
   }
 
   Future<void> _onUpdateSubTask(

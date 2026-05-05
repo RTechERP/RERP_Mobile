@@ -510,10 +510,97 @@ class _WeekPlanAddScreenState
 
   //---(_Step: SubTask)---//
   Widget _buildSubTaskStep(WeekPlanState state) {
-    return const SingleChildScrollView(
-      padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
-      child: Text('Step 4: Công việc con — sẽ làm tiếp'),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+      child: Column(
+        children: [
+          // Header + button
+          Row(
+            children: [
+              Text(
+                'Danh sách công việc con',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.heading,
+                ),
+              ),
+              const Spacer(),
+
+              ElevatedButton.icon(
+                onPressed: () => _addSubTask(),
+                icon: const Icon(Icons.add, size: 16),
+                label: const Text('Thêm'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primaryERP,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 0,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Empty state
+          if (state.subTasks.isEmpty)
+            Container(
+              padding: const EdgeInsets.all(32),
+              child: Column(
+                children: [
+                  Icon(Icons.playlist_add,
+                      size: 48, color: AppColors.hintText),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Chưa có công việc con nào',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: AppColors.hintText,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Bấm "Thêm" để tạo công việc con',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: AppColors.hintText,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+          // List slips
+          ...List.generate(state.subTasks.length, (i) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: WeekPlanSubTaskForm(
+                key: ValueKey(state.subTasks[i].id ?? i),
+                index: i,
+                subTask: state.subTasks[i],
+                taskTypes: state.taskTypes,
+                projectTypes: state.projectTypes,
+                employees: state.employees,
+                onChanged: (updated) {
+                  bloc.add(WeekPlanEvent.updateSubTask(i, updated));
+                },
+                onDelete: () {
+                  bloc.add(WeekPlanEvent.removeSubTask(i));
+                },
+              ),
+            );
+          }),
+        ],
+      ),
     );
+  }
+
+  void _addSubTask() {
+    bloc.add(const WeekPlanEvent.addSubTask());
   }
 
   //---(_Step: Checklist)---//

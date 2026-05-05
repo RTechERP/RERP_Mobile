@@ -74,7 +74,7 @@ mixin _$WeekPlanEvent {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -148,7 +148,7 @@ mixin _$WeekPlanEvent {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -219,7 +219,7 @@ mixin _$WeekPlanEvent {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -545,7 +545,7 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -622,7 +622,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -696,7 +696,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -1024,7 +1024,7 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -1101,7 +1101,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -1175,7 +1175,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -1531,7 +1531,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -1608,7 +1608,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -1682,7 +1682,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -2043,7 +2043,7 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -2120,7 +2120,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -2194,7 +2194,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -2527,7 +2527,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -2604,7 +2604,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -2678,7 +2678,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -3032,7 +3032,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -3109,7 +3109,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -3183,7 +3183,7 @@ class _$SearchImpl implements _Search {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -3516,7 +3516,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -3593,7 +3593,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -3667,7 +3667,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -4022,7 +4022,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -4099,7 +4099,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -4173,7 +4173,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -4506,7 +4506,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -4583,7 +4583,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -4657,7 +4657,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -5021,7 +5021,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -5098,7 +5098,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -5172,7 +5172,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -5508,7 +5508,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -5585,7 +5585,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -5659,7 +5659,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -6021,7 +6021,7 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -6098,7 +6098,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -6172,7 +6172,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -6506,7 +6506,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -6583,7 +6583,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -6657,7 +6657,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -7011,7 +7011,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -7088,7 +7088,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -7162,7 +7162,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -7533,7 +7533,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -7610,7 +7610,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -7684,7 +7684,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -8060,7 +8060,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -8137,7 +8137,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -8211,7 +8211,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -8586,7 +8586,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -8663,7 +8663,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -8737,7 +8737,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -9103,7 +9103,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -9180,7 +9180,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -9254,7 +9254,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -9618,7 +9618,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -9695,7 +9695,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -9769,7 +9769,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -10132,7 +10132,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -10209,7 +10209,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -10283,7 +10283,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -10655,7 +10655,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -10732,7 +10732,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -10806,7 +10806,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -11172,7 +11172,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -11249,7 +11249,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -11323,7 +11323,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -11697,7 +11697,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -11774,7 +11774,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -11848,7 +11848,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -12250,7 +12250,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -12328,7 +12328,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -12403,7 +12403,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -12745,7 +12745,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -12822,7 +12822,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -12896,7 +12896,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -13224,7 +13224,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -13301,7 +13301,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -13375,7 +13375,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -13703,7 +13703,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -13780,7 +13780,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -13854,7 +13854,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -14182,7 +14182,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -14259,7 +14259,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -14333,7 +14333,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -14689,7 +14689,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -14766,7 +14766,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -14840,7 +14840,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -15213,7 +15213,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -15290,7 +15290,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -15364,7 +15364,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -15739,7 +15739,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -15816,7 +15816,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -15890,7 +15890,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -16300,7 +16300,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -16378,7 +16378,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -16453,7 +16453,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -16826,7 +16826,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -16903,7 +16903,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -16977,7 +16977,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -17338,7 +17338,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -17415,7 +17415,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -17489,7 +17489,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -17857,7 +17857,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -17934,7 +17934,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -18008,7 +18008,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -18379,7 +18379,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -18456,7 +18456,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -18530,7 +18530,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -18892,7 +18892,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -18969,7 +18969,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -19043,7 +19043,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -19410,7 +19410,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -19487,7 +19487,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -19561,7 +19561,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -19933,7 +19933,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -20010,7 +20010,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -20084,7 +20084,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -20446,7 +20446,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -20523,7 +20523,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -20597,7 +20597,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -20842,10 +20842,6 @@ abstract class _$$AddSubTaskImplCopyWith<$Res> {
   factory _$$AddSubTaskImplCopyWith(
           _$AddSubTaskImpl value, $Res Function(_$AddSubTaskImpl) then) =
       __$$AddSubTaskImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({WeekPlanSubTaskItem subTask});
-
-  $WeekPlanSubTaskItemCopyWith<$Res> get subTask;
 }
 
 /// @nodoc
@@ -20855,58 +20851,26 @@ class __$$AddSubTaskImplCopyWithImpl<$Res>
   __$$AddSubTaskImplCopyWithImpl(
       _$AddSubTaskImpl _value, $Res Function(_$AddSubTaskImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? subTask = null,
-  }) {
-    return _then(_$AddSubTaskImpl(
-      null == subTask
-          ? _value.subTask
-          : subTask // ignore: cast_nullable_to_non_nullable
-              as WeekPlanSubTaskItem,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $WeekPlanSubTaskItemCopyWith<$Res> get subTask {
-    return $WeekPlanSubTaskItemCopyWith<$Res>(_value.subTask, (value) {
-      return _then(_value.copyWith(subTask: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$AddSubTaskImpl implements _AddSubTask {
-  const _$AddSubTaskImpl(this.subTask);
-
-  @override
-  final WeekPlanSubTaskItem subTask;
+  const _$AddSubTaskImpl();
 
   @override
   String toString() {
-    return 'WeekPlanEvent.addSubTask(subTask: $subTask)';
+    return 'WeekPlanEvent.addSubTask()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddSubTaskImpl &&
-            (identical(other.subTask, subTask) || other.subTask == subTask));
+        (other.runtimeType == runtimeType && other is _$AddSubTaskImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, subTask);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddSubTaskImplCopyWith<_$AddSubTaskImpl> get copyWith =>
-      __$$AddSubTaskImplCopyWithImpl<_$AddSubTaskImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -20967,7 +20931,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -20985,7 +20949,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     required TResult Function() clearSubmitState,
     required TResult Function() clearCheckInState,
   }) {
-    return addSubTask(subTask);
+    return addSubTask();
   }
 
   @override
@@ -21044,7 +21008,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -21060,7 +21024,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult? Function()? clearSubmitState,
     TResult? Function()? clearCheckInState,
   }) {
-    return addSubTask?.call(subTask);
+    return addSubTask?.call();
   }
 
   @override
@@ -21118,7 +21082,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -21136,7 +21100,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     required TResult orElse(),
   }) {
     if (addSubTask != null) {
-      return addSubTask(subTask);
+      return addSubTask();
     }
     return orElse();
   }
@@ -21349,13 +21313,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
 }
 
 abstract class _AddSubTask implements WeekPlanEvent {
-  const factory _AddSubTask(final WeekPlanSubTaskItem subTask) =
-      _$AddSubTaskImpl;
-
-  WeekPlanSubTaskItem get subTask;
-  @JsonKey(ignore: true)
-  _$$AddSubTaskImplCopyWith<_$AddSubTaskImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _AddSubTask() = _$AddSubTaskImpl;
 }
 
 /// @nodoc
@@ -21496,7 +21454,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -21573,7 +21531,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -21647,7 +21605,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -22008,7 +21966,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -22085,7 +22043,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -22159,7 +22117,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -22519,7 +22477,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -22596,7 +22554,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -22670,7 +22628,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -23038,7 +22996,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -23115,7 +23073,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -23189,7 +23147,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -23551,7 +23509,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -23628,7 +23586,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -23702,7 +23660,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -24063,7 +24021,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -24140,7 +24098,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -24214,7 +24172,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -24585,7 +24543,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -24662,7 +24620,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -24736,7 +24694,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -25097,7 +25055,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -25174,7 +25132,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -25248,7 +25206,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -25618,7 +25576,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -25695,7 +25653,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -25769,7 +25727,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -26149,7 +26107,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -26226,7 +26184,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -26300,7 +26258,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -26663,7 +26621,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -26740,7 +26698,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -26814,7 +26772,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -27147,7 +27105,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -27224,7 +27182,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -27298,7 +27256,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -27626,7 +27584,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -27703,7 +27661,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -27777,7 +27735,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,
@@ -28105,7 +28063,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
     required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
     required TResult Function(int employeeId) removeRelatedPerson,
-    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function() addSubTask,
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
@@ -28182,7 +28140,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult? Function(int employeeId)? removeRelatedPerson,
-    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function()? addSubTask,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
     TResult? Function(String item)? addChecklistItem,
@@ -28256,7 +28214,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
     TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
     TResult Function(int employeeId)? removeRelatedPerson,
-    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function()? addSubTask,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
     TResult Function(String item)? addChecklistItem,

@@ -87,15 +87,15 @@ class AppItemRegistry {
       imageUrl: AppImages.app_missed,
     ),
 
-    AppItemModel(
-      id: 'reg_work:sum_personal',
-      name: 'reg_work.sum_personal'.tr(),
-      iconCodePoint: Icons.person_outline.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'reg_work',
-      route: '/regwork/sum-personal',
-      imageUrl: AppImages.app_sum_personal,
-    ),
+    // AppItemModel(
+    //   id: 'reg_work:sum_personal',
+    //   name: 'reg_work.sum_personal'.tr(),
+    //   iconCodePoint: Icons.person_outline.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'reg_work',
+    //   route: '/regwork/sum-personal',
+    //   imageUrl: AppImages.app_sum_personal,
+    // ),
   ];
 
   static final List<AppItemModel> reggeneral = [
@@ -140,35 +140,35 @@ class AppItemRegistry {
     //   imageUrl: AppImages.reg_general_special_purchase,
     // ),
 
-    AppItemModel(
-      id: 'reg_general:work_request',
-      name: 'reg_general.work_request'.tr(),
-      iconCodePoint: Icons.assignment_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'reg_general',
-      route: '',
-      imageUrl: AppImages.reg_general_work_request,
-    ),
-
-    AppItemModel(
-      id: 'reg_general:idea',
-      name: 'reg_general.idea'.tr(),
-      iconCodePoint: Icons.lightbulb_outline.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'reg_general',
-      route: '',
-      imageUrl: AppImages.reg_general_idea,
-    ),
-
-    AppItemModel(
-      id: 'reg_general:contract',
-      name: 'reg_general.contract'.tr(),
-      iconCodePoint: Icons.description_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'reg_general',
-      route: '',
-      imageUrl: AppImages.reg_general_contract,
-    ),
+    // AppItemModel(
+    //   id: 'reg_general:work_request',
+    //   name: 'reg_general.work_request'.tr(),
+    //   iconCodePoint: Icons.assignment_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'reg_general',
+    //   route: '',
+    //   imageUrl: AppImages.reg_general_work_request,
+    // ),
+    //
+    // AppItemModel(
+    //   id: 'reg_general:idea',
+    //   name: 'reg_general.idea'.tr(),
+    //   iconCodePoint: Icons.lightbulb_outline.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'reg_general',
+    //   route: '',
+    //   imageUrl: AppImages.reg_general_idea,
+    // ),
+    //
+    // AppItemModel(
+    //   id: 'reg_general:contract',
+    //   name: 'reg_general.contract'.tr(),
+    //   iconCodePoint: Icons.description_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'reg_general',
+    //   route: '',
+    //   imageUrl: AppImages.reg_general_contract,
+    // ),
 
     AppItemModel(
       id: 'reg_general:stationery',
@@ -180,15 +180,15 @@ class AppItemRegistry {
       imageUrl: AppImages.reg_general_stationery,
     ),
 
-    AppItemModel(
-      id: 'reg_general:work_category',
-      name: 'reg_general.work_category'.tr(),
-      iconCodePoint: Icons.category_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'reg_general',
-      route: RouteNames.workCategory,
-      imageUrl: AppImages.reg_general_work,
-    ),
+    // AppItemModel(
+    //   id: 'reg_general:work_category',
+    //   name: 'reg_general.work_category'.tr(),
+    //   iconCodePoint: Icons.category_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'reg_general',
+    //   route: RouteNames.workCategory,
+    //   imageUrl: AppImages.reg_general_work,
+    // ),
 
     AppItemModel(
       id: 'reg_general:personal_asset',
@@ -200,15 +200,15 @@ class AppItemRegistry {
       imageUrl: AppImages.reg_general_personal_asset,
     ),
 
-    AppItemModel(
-      id: 'reg_general:stamp',
-      name: 'reg_general.stamp'.tr(),
-      iconCodePoint: Icons.approval_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'reg_general',
-      route: '',
-      imageUrl: AppImages.reg_general_stamp,
-    ),
+    // AppItemModel(
+    //   id: 'reg_general:stamp',
+    //   name: 'reg_general.stamp'.tr(),
+    //   iconCodePoint: Icons.approval_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'reg_general',
+    //   route: '',
+    //   imageUrl: AppImages.reg_general_stamp,
+    // ),
   ];
 
   static final List<AppItemModel> summaryword = [

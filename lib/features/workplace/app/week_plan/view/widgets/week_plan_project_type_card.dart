@@ -98,7 +98,7 @@ class WeekPlanProjectTypeCard extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           )
                           : const Text(
-                              'Chọn hạng mục',
+                              'Hạng mục',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,

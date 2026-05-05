@@ -134,7 +134,7 @@ class WeekPlanTaskTypeCard extends StatelessWidget {
                     ] else ...[
                       const Expanded(
                         child: Text(
-                          'Chọn loại CV',
+                          'Loại CV',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
