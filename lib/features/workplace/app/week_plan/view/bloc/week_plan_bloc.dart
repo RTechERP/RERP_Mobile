@@ -294,13 +294,15 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   int _statusToApiStatus(String status) {
     switch (status) {
       case 'Chưa làm':
-        return 1;
+        return 0;
       case 'Đang làm':
-        return 2;
+        return 1;
       case 'Hoàn thành':
+        return 2;
+      case 'Pending':
         return 3;
       default:
-        return 0;
+        return -1;
     }
   }
 

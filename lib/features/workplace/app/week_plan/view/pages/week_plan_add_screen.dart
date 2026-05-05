@@ -395,11 +395,10 @@ class _WeekPlanAddScreenState
       child: Column(
         children: [
           FormCard(
-            title: 'Mô tả chi tiết',
             child: FormInputField(
               nameForm: 'description',
               nameTextField: 'description_field',
-              label: 'Thêm mô tả chi tiết cho công việc',
+              label: 'Mô tả chi tiết',
               icon: Icons.description_outlined,
               autoExpand: true,
             ),
@@ -407,11 +406,10 @@ class _WeekPlanAddScreenState
 
           const SizedBox(height: 10),
           FormCard(
-            title: 'Kết quả công việc',
             child: FormInputField(
               nameForm: 'expected_result',
               nameTextField: 'expected_result_field',
-              label: 'Nhập kết quả công khi hoàn thành',
+              label: 'Kết quả công việc',
               icon: Icons.check_circle_outline,
               autoExpand: true,
             ),

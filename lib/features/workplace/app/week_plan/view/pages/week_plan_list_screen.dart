@@ -182,6 +182,7 @@ class _WeekPlanListScreenState extends BaseState<
       body: BlocBuilder<WeekPlanBloc, WeekPlanState>(
         buildWhen: (prev, curr) =>
             prev.status != curr.status ||
+            prev.checkInSuccess != curr.checkInSuccess ||
             prev.myTasks.length != curr.myTasks.length ||
             prev.relatedTasks.length != curr.relatedTasks.length ||
             prev.assignedTasks.length != curr.assignedTasks.length ||

@@ -8,26 +8,26 @@ import '../data/datasource/models/week_plan_model.dart';
 Color weekPlanStatusColor(WeekPlanTaskItem task) {
   final isOverdue = task.deadline != null &&
       DateTime.now().isAfter(task.deadline!) &&
-      task.status != 3;
+      task.status != 2;
 
   switch (task.status) {
-    case 3:
-      return AppColors.stateSuccessColor;
     case 2:
-      return isOverdue ? AppColors.alert : AppColors.stateInfoColor;
-    case 4:
-      return AppColors.alert;
+      return AppColors.stateSuccessColor;
     case 1:
+      return isOverdue ? AppColors.alert : AppColors.stateInfoColor;
+    case 3:
+      return AppColors.warning;
+    case 0:
       return isOverdue ? AppColors.alert : AppColors.gray;
     default:
-      return AppColors.warning;
+      return AppColors.gray;
   }
 }
 
 /// Kiểm tra task có quá hạn không.
 bool weekPlanIsOverdue(WeekPlanTaskItem task) {
   if (task.deadline == null) return false;
-  return DateTime.now().isAfter(task.deadline!) && task.status != 3;
+  return DateTime.now().isAfter(task.deadline!) && task.status != 2;
 }
 
 /// Lấy màu badge theo loại công việc (Bug, Task, Improvement, ...).
@@ -46,20 +46,15 @@ Color weekPlanTypeColor(WeekPlanTaskItem task) {
 
 /// Lấy nhãn trạng thái hiển thị cho task.
 String weekPlanStatusLabel(WeekPlanTaskItem task) {
-  final t = (task.statusText ?? '').trim();
-  if (t.isNotEmpty) return t;
-
-  final isOverdue = task.deadline != null &&
-      DateTime.now().isAfter(task.deadline!) &&
-      task.status != 3;
-
   switch (task.status) {
+    case 0:
+      return 'Chưa làm';
     case 1:
-      return isOverdue ? 'Chưa làm quá hạn' : 'Chưa làm';
+      return 'Đang làm';
     case 2:
-      return isOverdue ? 'Đang làm quá hạn' : 'Đang làm';
-    case 3:
       return 'Hoàn thành';
+    case 3:
+      return 'Pending';
     default:
       return 'Không xác định';
   }
