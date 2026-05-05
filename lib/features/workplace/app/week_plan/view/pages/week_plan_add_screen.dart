@@ -605,9 +605,167 @@ class _WeekPlanAddScreenState
 
   //---(_Step: Checklist)---//
   Widget _buildChecklistStep(WeekPlanState state) {
-    return const SingleChildScrollView(
-      padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
-      child: Text('Step 5: Checklist — sẽ làm tiếp'),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+      child: Column(
+        children: [
+          // Header + button
+          Row(
+            children: [
+              Text(
+                'Danh sách checklist',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.heading,
+                ),
+              ),
+              const Spacer(),
+              ElevatedButton.icon(
+                onPressed: () => _showAddChecklistDialog(context),
+                icon: const Icon(Icons.add, size: 16),
+                label: const Text('Thêm'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primaryERP,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 0,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Empty state
+          if (state.checklistItems.isEmpty)
+            Container(
+              padding: const EdgeInsets.all(32),
+              child: Column(
+                children: [
+                  Icon(Icons.checklist, size: 48, color: AppColors.hintText),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Chưa có checklist nào',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: AppColors.hintText,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Bấm "Thêm" để tạo checklist',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: AppColors.hintText,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+          // List
+          ...List.generate(state.checklistItems.length, (i) {
+            return WeekPlanChecklistItem(
+              index: i,
+              content: state.checklistItems[i],
+              isDone: i < state.checklistDone.length && state.checklistDone[i],
+              onToggle: () {
+                bloc.add(WeekPlanEvent.toggleChecklistDone(i));
+              },
+              onEdit: () => _showEditChecklistDialog(context, i, state.checklistItems[i]),
+              onDelete: () {
+                bloc.add(WeekPlanEvent.removeChecklistItem(i));
+              },
+            );
+          }),
+        ],
+      ),
+    );
+  }
+
+  void _showAddChecklistDialog(BuildContext context) {
+    final controller = TextEditingController();
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Thêm checklist'),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          decoration: InputDecoration(
+            hintText: 'Nhập nội dung checklist',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          textCapitalization: TextCapitalization.sentences,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Huỷ'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              final text = controller.text.trim();
+              if (text.isNotEmpty) {
+                bloc.add(WeekPlanEvent.addChecklistItem(text));
+                Navigator.pop(ctx);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primaryERP,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text('Xác nhận'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showEditChecklistDialog(BuildContext context, int index, String current) {
+    final controller = TextEditingController(text: current);
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Chỉnh sửa checklist'),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          decoration: InputDecoration(
+            hintText: 'Nhập nội dung checklist',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          textCapitalization: TextCapitalization.sentences,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Huỷ'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              final text = controller.text.trim();
+              if (text.isNotEmpty) {
+                bloc.add(WeekPlanEvent.updateChecklistItem(index, text));
+                Navigator.pop(ctx);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primaryERP,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text('Lưu'),
+          ),
+        ],
+      ),
     );
   }
 
