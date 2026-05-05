@@ -293,14 +293,12 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   //---(Filter)---//
   int _statusToApiStatus(String status) {
     switch (status) {
-      case 'Chưa bắt đầu':
+      case 'Chưa làm':
         return 1;
-      case 'Đang thực hiện':
+      case 'Đang làm':
         return 2;
       case 'Hoàn thành':
         return 3;
-      case 'Quá hạn':
-        return 4;
       default:
         return 0;
     }

@@ -4,11 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
-import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../../../../../../base/network/errors/extension.dart';
+import '../../../../../../base/widgets/base_scaffold.dart';
+import '../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../reg_general/view/pages/booking_vehicle/view/widgets/date_header.dart';
@@ -17,6 +18,14 @@ import '../../data/datasource/models/week_plan_model.dart';
 import '../bloc/week_plan_bloc.dart';
 import '../week_plan_helper.dart';
 import '../widgets/week_plan_card.dart';
+
+/// Danh sách filter trạng thái công việc.
+const _kStatusFilters = [
+  'Tất cả',
+  'Chưa làm',
+  'Đang làm',
+  'Hoàn thành',
+];
 
 class _WeekPlanAddExtra {
   const _WeekPlanAddExtra({
@@ -28,7 +37,7 @@ class _WeekPlanAddExtra {
   final List<TaskTypeItem> taskTypes;
 }
 
-/// Widget base hiển thị 1 danh sách công việc — không có TabBar.
+/// Widget base hiển thị 1 danh sách công việc - không có TabBar.
 ///
 /// Dùng chung cho 4 màn: Công việc, Liên quan, Giao việc, Tổng công việc.
 class WeekPlanListScreen extends StatefulWidget {
@@ -47,54 +56,66 @@ class WeekPlanListScreen extends StatefulWidget {
   State<WeekPlanListScreen> createState() => _WeekPlanListScreenState();
 }
 
-class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
-
+class _WeekPlanListScreenState extends BaseState<
+    WeekPlanListScreen,
+    WeekPlanEvent,
+    WeekPlanState,
+    WeekPlanBloc> {
   @override
   void initState() {
     super.initState();
-    context.read<WeekPlanBloc>().add(
-          WeekPlanEvent.initScreenWithView(widget.viewNumber),
-        );
+    bloc.add(WeekPlanEvent.initScreenWithView(widget.viewNumber));
   }
 
+  //---(_BaseState)---//
   @override
-  Widget build(BuildContext context) {
+  bool listenWhen(WeekPlanState prev, WeekPlanState curr) =>
+      prev.status != curr.status ||
+      prev.message != curr.message ||
+      prev.checkInSuccess != curr.checkInSuccess;
+
+  @override
+  void listener(BuildContext context, WeekPlanState state) {
+    if (state.status == BaseStateStatus.failed &&
+        state.message != null) {
+      context.showMessage(state.message!, type: SnackBarType.error);
+    }
+    if (state.checkInSuccess &&
+        state.checkInTaskId != null &&
+        state.checkInTaskNewValue != null) {
+      if (state.checkInTaskNewValue == true) {
+        context.showMessage('Điểm danh thành công',
+            type: SnackBarType.success);
+      } else {
+        context.showMessage('Huỷ điểm danh thành công',
+            type: SnackBarType.success);
+      }
+      bloc.add(const WeekPlanEvent.clearCheckInState());
+    }
+  }
+
+  //---(_Screen)---//
+  @override
+  Widget renderUI(BuildContext context) {
     return BlocListener<WeekPlanBloc, WeekPlanState>(
       listenWhen: (prev, curr) =>
-          prev.status != curr.status ||
-          curr.message != null ||
           prev.checkInSuccess != curr.checkInSuccess,
       listener: (context, state) {
-        if (state.status == BaseStateStatus.failed && state.message != null) {
-          context.showMessage(state.message!, type: SnackBarType.error);
-        }
         if (state.checkInSuccess &&
             state.checkInTaskId != null &&
             state.checkInTaskNewValue != null) {
           if (state.checkInTaskNewValue == true) {
-            context.showMessage('Điểm danh thành công', type: SnackBarType.success);
+            context.showMessage('Điểm danh thành công',
+                type: SnackBarType.success);
           } else {
-            context.showMessage('Huỷ điểm danh thành công', type: SnackBarType.success);
+            context.showMessage('Huỷ điểm danh thành công',
+                type: SnackBarType.success);
           }
-          context.read<WeekPlanBloc>().add(const WeekPlanEvent.clearCheckInState());
+          bloc.add(const WeekPlanEvent.clearCheckInState());
         }
       },
-      child: BlocBuilder<WeekPlanBloc, WeekPlanState>(
-        buildWhen: (prev, curr) =>
-            prev.status != curr.status ||
-            prev.myTasks.length != curr.myTasks.length ||
-            prev.relatedTasks.length != curr.relatedTasks.length ||
-            prev.assignedTasks.length != curr.assignedTasks.length ||
-            prev.allTasks.length != curr.allTasks.length ||
-            prev.checkInTaskId != curr.checkInTaskId,
-        builder: (context, state) => _buildBody(context, state),
-      ),
-    );
-  }
-
-  Widget _buildBody(BuildContext context, WeekPlanState state) {
-    return BaseScaffold(
-      appBar: AppBarCommon(
+      child: BaseScaffold(
+        appBar: AppBarCommon(
         title: Text(widget.title),
         onBackTap: () => onBack(context),
         actions: [
@@ -158,12 +179,45 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
           ),
         ],
       ),
-      body: _buildContent(context, state),
-      floatingActionButton: _buildFab(context),
-    );
+      body: BlocBuilder<WeekPlanBloc, WeekPlanState>(
+        buildWhen: (prev, curr) =>
+            prev.status != curr.status ||
+            prev.myTasks.length != curr.myTasks.length ||
+            prev.relatedTasks.length != curr.relatedTasks.length ||
+            prev.assignedTasks.length != curr.assignedTasks.length ||
+            prev.allTasks.length != curr.allTasks.length ||
+            prev.selectedStatus != curr.selectedStatus ||
+            prev.searchKeyword != curr.searchKeyword ||
+            prev.dateStart != curr.dateStart ||
+            prev.dateEnd != curr.dateEnd,
+        builder: (context, state) => _buildBody(context, state),
+      ),
+      floatingActionButton: BlocBuilder<WeekPlanBloc, WeekPlanState>(
+        buildWhen: (prev, curr) =>
+            prev.projects.length != curr.projects.length ||
+            prev.taskTypes.length != curr.taskTypes.length,
+        builder: (context, state) {
+          if (widget.viewNumber == 1 || widget.viewNumber == 3) {
+            return FloatingActionButton(
+              onPressed: () => context.push(
+                RouteNames.weekplanAdd,
+                extra: _WeekPlanAddExtra(
+                  projects: state.projects,
+                  taskTypes: state.taskTypes,
+                ),
+              ),
+              backgroundColor: AppColors.primaryERP,
+              child: const Icon(Icons.add, color: Colors.white),
+            );
+          }
+          return const SizedBox.shrink();
+        },
+      ),
+    ));
   }
 
-  Widget _buildContent(BuildContext context, WeekPlanState state) {
+  //---(_Screen)---//
+  Widget _buildBody(BuildContext context, WeekPlanState state) {
     if (state.status == BaseStateStatus.loading) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -182,7 +236,7 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
     }
 
     final tasks = _getTasks(state);
-    final filtered = _filterTasks(tasks);
+    final filtered = _filterTasks(tasks, state);
 
     return Column(
       children: [
@@ -225,28 +279,7 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
     );
   }
 
-  Widget? _buildFab(BuildContext context) {
-    if (widget.viewNumber == 1 || widget.viewNumber == 3) {
-      return BlocBuilder<WeekPlanBloc, WeekPlanState>(
-        buildWhen: (prev, curr) =>
-            prev.projects.length != curr.projects.length ||
-            prev.taskTypes.length != curr.taskTypes.length,
-        builder: (context, state) => FloatingActionButton(
-          onPressed: () => context.push(
-            RouteNames.weekplanAdd,
-            extra: _WeekPlanAddExtra(
-              projects: state.projects,
-              taskTypes: state.taskTypes,
-            ),
-          ),
-          backgroundColor: AppColors.primaryERP,
-          child: const Icon(Icons.add, color: Colors.white),
-        ),
-      );
-    }
-    return null;
-  }
-
+  //---(_Screen)---//
   List<WeekPlanTaskItem> _getTasks(WeekPlanState state) {
     switch (widget.viewNumber) {
       case 1:
@@ -262,9 +295,9 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
     }
   }
 
-  List<WeekPlanTaskItem> _filterTasks(List<WeekPlanTaskItem> list) {
-    final state = context.read<WeekPlanBloc>().state;
-
+  //---(_Screen)---//
+  List<WeekPlanTaskItem> _filterTasks(
+      List<WeekPlanTaskItem> list, WeekPlanState state) {
     var result = list;
 
     if (state.searchKeyword.isNotEmpty) {
@@ -280,9 +313,11 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
     }
 
     if (state.selectedStatus != 'Tất cả') {
-      result = result
-          .where((t) => weekPlanStatusLabel(t) == state.selectedStatus)
-          .toList();
+      final status = state.selectedStatus;
+      result = result.where((t) {
+        final label = weekPlanStatusLabel(t);
+        return label == status;
+      }).toList();
     }
 
     if (state.dateStart != null || state.dateEnd != null) {
@@ -317,20 +352,23 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
           if (hasSearch)
             _FilterChip(
               label: 'Tìm: "${state.searchKeyword}"',
-              onClear: () => context.read<WeekPlanBloc>().add(const WeekPlanEvent.clearSearch()),
+              onClear: () =>
+                  bloc.add(const WeekPlanEvent.clearSearch()),
             ),
           if (hasStatus)
             _FilterChip(
               label: state.selectedStatus,
               color: _statusColor(state.selectedStatus),
-              onClear: () => context.read<WeekPlanBloc>().add(const WeekPlanEvent.clearStatusFilter()),
+              onClear: () =>
+                  bloc.add(const WeekPlanEvent.clearStatusFilter()),
             ),
           if (hasDate)
             _FilterChip(
               label:
                   '${state.dateStart != null ? DateFormat('dd/MM').format(state.dateStart!) : ''}'
                   '${state.dateEnd != null ? ' - ${DateFormat('dd/MM').format(state.dateEnd!)}' : ''}',
-              onClear: () => context.read<WeekPlanBloc>().add(const WeekPlanEvent.clearDateFilter()),
+              onClear: () =>
+                  bloc.add(const WeekPlanEvent.clearDateFilter()),
             ),
         ],
       ),
@@ -339,8 +377,7 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
 
   //---(_Dialogs)---//
   void _showSearchDialog() {
-    final controller = TextEditingController(
-        text: context.read<WeekPlanBloc>().state.searchKeyword);
+    final controller = TextEditingController(text: bloc.state.searchKeyword);
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -355,21 +392,21 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
           ),
           onSubmitted: (_) {
-            context.read<WeekPlanBloc>().add(WeekPlanEvent.search(controller.text.trim()));
+            bloc.add(WeekPlanEvent.search(controller.text.trim()));
             Navigator.pop(ctx);
           },
         ),
         actions: [
           TextButton(
             onPressed: () {
-              context.read<WeekPlanBloc>().add(const WeekPlanEvent.clearSearch());
+              bloc.add(const WeekPlanEvent.clearSearch());
               Navigator.pop(ctx);
             },
             child: const Text('Xoá'),
           ),
           ElevatedButton(
             onPressed: () {
-              context.read<WeekPlanBloc>().add(WeekPlanEvent.search(controller.text.trim()));
+              bloc.add(WeekPlanEvent.search(controller.text.trim()));
               Navigator.pop(ctx);
             },
             style: ElevatedButton.styleFrom(
@@ -382,14 +419,8 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
     );
   }
 
+  //---(_Dialogs)---//
   void _showStatusFilter() {
-    final statuses = [
-      'Tất cả',
-      'Chưa bắt đầu',
-      'Đang thực hiện',
-      'Hoàn thành',
-      'Quá hạn',
-    ];
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -421,10 +452,10 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              ...statuses.map(
+              ..._kStatusFilters.map(
                 (s) => ListTile(
                   onTap: () {
-                    context.read<WeekPlanBloc>().add(WeekPlanEvent.filterByStatus(s));
+                    bloc.add(WeekPlanEvent.filterByStatus(s));
                     Navigator.pop(context);
                   },
                   leading: Container(
@@ -433,27 +464,28 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: context.read<WeekPlanBloc>().state.selectedStatus == s
+                        color: bloc.state.selectedStatus == s
                             ? AppColors.primaryERP
                             : AppColors.borderColor,
                         width: 2,
                       ),
-                      color: context.read<WeekPlanBloc>().state.selectedStatus == s
+                      color: bloc.state.selectedStatus == s
                           ? AppColors.primaryERP
                           : Colors.transparent,
                     ),
-                    child: context.read<WeekPlanBloc>().state.selectedStatus == s
-                        ? const Icon(Icons.check, size: 14, color: Colors.white)
+                    child: bloc.state.selectedStatus == s
+                        ? const Icon(Icons.check,
+                            size: 14, color: Colors.white)
                         : null,
                   ),
                   title: Text(
                     s,
                     style: TextStyle(
                       fontSize: 14,
-                      fontWeight: context.read<WeekPlanBloc>().state.selectedStatus == s
+                      fontWeight: bloc.state.selectedStatus == s
                           ? FontWeight.w600
                           : FontWeight.w400,
-                      color: context.read<WeekPlanBloc>().state.selectedStatus == s
+                      color: bloc.state.selectedStatus == s
                           ? AppColors.primaryERP
                           : AppColors.heading,
                     ),
@@ -468,32 +500,33 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
     );
   }
 
+  //---(_Dialogs)---//
   void _showDateRangePicker() {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (_) => DateRangePicker(
-        initialStart: context.read<WeekPlanBloc>().state.dateStart,
-        initialEnd: context.read<WeekPlanBloc>().state.dateEnd,
+        initialStart: bloc.state.dateStart,
+        initialEnd: bloc.state.dateEnd,
         onApply: (start, end) {
-          context.read<WeekPlanBloc>().add(
-            WeekPlanEvent.changeDateRange(dateStart: start, dateEnd: end),
-          );
+          bloc.add(WeekPlanEvent.changeDateRange(
+            dateStart: start,
+            dateEnd: end,
+          ));
         },
       ),
     );
   }
 
+  //---(_Helper)---//
   Color _statusColor(String status) {
     switch (status) {
       case 'Hoàn thành':
         return AppColors.stateSuccessColor;
-      case 'Đang thực hiện':
+      case 'Đang làm':
         return AppColors.stateInfoColor;
-      case 'Quá hạn':
-        return AppColors.alert;
-      case 'Chưa bắt đầu':
+      case 'Chưa làm':
         return AppColors.gray;
       default:
         return AppColors.warning;
@@ -503,7 +536,11 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
 
 //---(_FilterChip)---//
 class _FilterChip extends StatelessWidget {
-  const _FilterChip({required this.label, this.color, required this.onClear});
+  const _FilterChip({
+    required this.label,
+    this.color,
+    required this.onClear,
+  });
 
   final String label;
   final Color? color;

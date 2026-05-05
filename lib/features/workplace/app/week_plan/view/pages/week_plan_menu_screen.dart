@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../base/widgets/base_scaffold.dart';
+import '../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../common/app_theme/index.dart';
 import '../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../routes/route_names.dart';
@@ -15,31 +15,27 @@ class WeekPlanMenuScreen extends StatefulWidget {
   State<WeekPlanMenuScreen> createState() => _WeekPlanMenuScreenState();
 }
 
-class _WeekPlanMenuScreenState extends State<WeekPlanMenuScreen> {
-  late final WeekPlanBloc _bloc;
-
+class _WeekPlanMenuScreenState
+    extends
+        BaseState<
+          WeekPlanMenuScreen,
+          WeekPlanEvent,
+          WeekPlanState,
+          WeekPlanBloc
+        > {
   @override
   void initState() {
     super.initState();
-    _bloc = context.read<WeekPlanBloc>();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _bloc.add(const WeekPlanEvent.initMenu());
+      bloc.add(const WeekPlanEvent.initMenu());
     });
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget renderUI(BuildContext context) {
     return BaseScaffold(
       appBar: AppBarCommon(
-        title: Text(
-          'Kế hoạch tuần',
-          style: AppStyles.headingTitle2,
-        ),
+        title: Text('Kế hoạch tuần', style: AppStyles.headingTitle2),
         onBackTap: () => onBack(context),
       ),
       body: Padding(
@@ -84,7 +80,8 @@ class _WeekPlanMenuScreenState extends State<WeekPlanMenuScreen> {
                         _MenuTile(
                           icon: Icons.send_outlined,
                           title: 'Giao việc',
-                          onTap: () => context.push(RouteNames.weekplanAssigned),
+                          onTap: () =>
+                              context.push(RouteNames.weekplanAssigned),
                         ),
                         _MenuTile(
                           icon: Icons.view_agenda_outlined,
@@ -131,11 +128,7 @@ class _MenuTile extends StatelessWidget {
               color: AppColors.primaryERP.withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
-            child: Icon(
-              icon,
-              color: AppColors.primaryERP,
-              size: 24,
-            ),
+            child: Icon(icon, color: AppColors.primaryERP, size: 24),
           ),
           const SizedBox(height: 6),
           Text(
