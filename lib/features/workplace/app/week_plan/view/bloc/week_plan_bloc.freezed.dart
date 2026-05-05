@@ -84,7 +84,7 @@ mixin _$WeekPlanEvent {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -157,7 +157,7 @@ mixin _$WeekPlanEvent {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -228,7 +228,7 @@ mixin _$WeekPlanEvent {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -555,7 +555,7 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -631,7 +631,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -705,7 +705,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -1034,7 +1034,7 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -1110,7 +1110,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -1184,7 +1184,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -1541,7 +1541,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -1617,7 +1617,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -1691,7 +1691,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -2053,7 +2053,7 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -2129,7 +2129,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -2203,7 +2203,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -2537,7 +2537,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -2613,7 +2613,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -2687,7 +2687,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -3042,7 +3042,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -3118,7 +3118,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -3192,7 +3192,7 @@ class _$SearchImpl implements _Search {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -3526,7 +3526,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -3602,7 +3602,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -3676,7 +3676,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -4032,7 +4032,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -4108,7 +4108,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -4182,7 +4182,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -4516,7 +4516,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -4592,7 +4592,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -4666,7 +4666,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -5031,7 +5031,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -5107,7 +5107,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -5181,7 +5181,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -5518,7 +5518,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -5594,7 +5594,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -5668,7 +5668,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -6031,7 +6031,7 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -6107,7 +6107,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -6181,7 +6181,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -6516,7 +6516,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -6592,7 +6592,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -6666,7 +6666,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -7021,7 +7021,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -7097,7 +7097,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -7171,7 +7171,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -7543,7 +7543,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -7619,7 +7619,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -7693,7 +7693,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -8070,7 +8070,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -8146,7 +8146,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -8220,7 +8220,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -8596,7 +8596,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -8672,7 +8672,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -8746,7 +8746,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -9113,7 +9113,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -9189,7 +9189,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -9263,7 +9263,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -9628,7 +9628,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -9704,7 +9704,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -9778,7 +9778,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -10142,7 +10142,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -10218,7 +10218,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -10292,7 +10292,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -10665,7 +10665,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -10741,7 +10741,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -10815,7 +10815,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -11182,7 +11182,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -11258,7 +11258,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -11332,7 +11332,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -11707,7 +11707,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -11783,7 +11783,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -11857,7 +11857,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -12260,7 +12260,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -12337,7 +12337,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -12412,7 +12412,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -12755,7 +12755,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -12831,7 +12831,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -12905,7 +12905,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -13234,7 +13234,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -13310,7 +13310,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -13384,7 +13384,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -13713,7 +13713,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -13789,7 +13789,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -13863,7 +13863,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -14192,7 +14192,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -14268,7 +14268,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -14342,7 +14342,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -14699,7 +14699,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -14775,7 +14775,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -14849,7 +14849,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -15223,7 +15223,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -15299,7 +15299,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -15373,7 +15373,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -15749,7 +15749,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -15825,7 +15825,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -15899,7 +15899,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -16310,7 +16310,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -16387,7 +16387,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -16462,7 +16462,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -16836,7 +16836,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -16912,7 +16912,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -16986,7 +16986,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -17348,7 +17348,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -17424,7 +17424,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -17498,7 +17498,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -17867,7 +17867,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -17943,7 +17943,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -18017,7 +18017,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -18389,7 +18389,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -18465,7 +18465,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -18539,7 +18539,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -18902,7 +18902,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -18978,7 +18978,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -19052,7 +19052,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -19420,7 +19420,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -19496,7 +19496,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -19570,7 +19570,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -19943,7 +19943,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -20019,7 +20019,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -20093,7 +20093,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -20456,7 +20456,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -20532,7 +20532,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -20606,7 +20606,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -20941,7 +20941,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -21017,7 +21017,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -21091,7 +21091,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -21464,7 +21464,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -21540,7 +21540,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -21614,7 +21614,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -21976,7 +21976,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -22052,7 +22052,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -22126,7 +22126,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -22487,7 +22487,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -22563,7 +22563,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -22637,7 +22637,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -23006,7 +23006,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -23082,7 +23082,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -23156,7 +23156,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -23519,7 +23519,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -23595,7 +23595,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -23669,7 +23669,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -24031,7 +24031,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -24107,7 +24107,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -24181,7 +24181,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -24553,7 +24553,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -24629,7 +24629,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -24703,7 +24703,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -25065,7 +25065,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -25141,7 +25141,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -25215,7 +25215,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -25450,10 +25450,6 @@ abstract class _$$AddIncidentImplCopyWith<$Res> {
   factory _$$AddIncidentImplCopyWith(
           _$AddIncidentImpl value, $Res Function(_$AddIncidentImpl) then) =
       __$$AddIncidentImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({WeekPlanIncidentItem incident});
-
-  $WeekPlanIncidentItemCopyWith<$Res> get incident;
 }
 
 /// @nodoc
@@ -25463,59 +25459,26 @@ class __$$AddIncidentImplCopyWithImpl<$Res>
   __$$AddIncidentImplCopyWithImpl(
       _$AddIncidentImpl _value, $Res Function(_$AddIncidentImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? incident = null,
-  }) {
-    return _then(_$AddIncidentImpl(
-      null == incident
-          ? _value.incident
-          : incident // ignore: cast_nullable_to_non_nullable
-              as WeekPlanIncidentItem,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $WeekPlanIncidentItemCopyWith<$Res> get incident {
-    return $WeekPlanIncidentItemCopyWith<$Res>(_value.incident, (value) {
-      return _then(_value.copyWith(incident: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$AddIncidentImpl implements _AddIncident {
-  const _$AddIncidentImpl(this.incident);
-
-  @override
-  final WeekPlanIncidentItem incident;
+  const _$AddIncidentImpl();
 
   @override
   String toString() {
-    return 'WeekPlanEvent.addIncident(incident: $incident)';
+    return 'WeekPlanEvent.addIncident()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddIncidentImpl &&
-            (identical(other.incident, incident) ||
-                other.incident == incident));
+        (other.runtimeType == runtimeType && other is _$AddIncidentImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, incident);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddIncidentImplCopyWith<_$AddIncidentImpl> get copyWith =>
-      __$$AddIncidentImplCopyWithImpl<_$AddIncidentImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -25586,7 +25549,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -25594,7 +25557,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function() clearSubmitState,
     required TResult Function() clearCheckInState,
   }) {
-    return addIncident(incident);
+    return addIncident();
   }
 
   @override
@@ -25662,14 +25625,14 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
     TResult? Function()? clearCheckInState,
   }) {
-    return addIncident?.call(incident);
+    return addIncident?.call();
   }
 
   @override
@@ -25736,7 +25699,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -25745,7 +25708,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult orElse(),
   }) {
     if (addIncident != null) {
-      return addIncident(incident);
+      return addIncident();
     }
     return orElse();
   }
@@ -25958,13 +25921,7 @@ class _$AddIncidentImpl implements _AddIncident {
 }
 
 abstract class _AddIncident implements WeekPlanEvent {
-  const factory _AddIncident(final WeekPlanIncidentItem incident) =
-      _$AddIncidentImpl;
-
-  WeekPlanIncidentItem get incident;
-  @JsonKey(ignore: true)
-  _$$AddIncidentImplCopyWith<_$AddIncidentImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _AddIncident() = _$AddIncidentImpl;
 }
 
 /// @nodoc
@@ -26117,7 +26074,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -26193,7 +26150,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -26267,7 +26224,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -26631,7 +26588,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -26707,7 +26664,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -26781,7 +26738,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -27115,7 +27072,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -27191,7 +27148,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -27265,7 +27222,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -27594,7 +27551,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -27670,7 +27627,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -27744,7 +27701,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
@@ -28073,7 +28030,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     required TResult Function(int index) removeChecklistItem,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
-    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function() addIncident,
     required TResult Function(int index, WeekPlanIncidentItem incident)
         updateIncident,
     required TResult Function(int index) removeIncident,
@@ -28149,7 +28106,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult? Function(int index)? removeChecklistItem,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
-    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function()? addIncident,
     TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
@@ -28223,7 +28180,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult Function(int index)? removeChecklistItem,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
-    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function()? addIncident,
     TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,

@@ -165,8 +165,7 @@ class WeekPlanEvent with _$WeekPlanEvent {
       _RemoveAttachment;
 
   // Step 8: Phát sinh
-  const factory WeekPlanEvent.addIncident(WeekPlanIncidentItem incident) =
-      _AddIncident;
+  const factory WeekPlanEvent.addIncident() = _AddIncident;
 
   const factory WeekPlanEvent.updateIncident(int index, WeekPlanIncidentItem incident) =
       _UpdateIncident;

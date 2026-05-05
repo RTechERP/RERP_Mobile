@@ -117,8 +117,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             _onAddAttachment(emit, attachment),
         removeAttachment: (index) =>
             _onRemoveAttachment(emit, index),
-        addIncident: (incident) =>
-            _onAddIncident(emit, incident),
+        addIncident: () =>
+            _onAddIncident(emit),
         updateIncident: (index, incident) =>
             _onUpdateIncident(emit, index, incident),
         removeIncident: (index) =>
@@ -811,9 +811,13 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   }
 
   //---(Incidents)---//
-  Future<void> _onAddIncident(
-      Emitter<WeekPlanState> emit, WeekPlanIncidentItem incident) async {
-    emit(state.copyWith(incidents: [...state.incidents, incident]));
+  Future<void> _onAddIncident(Emitter<WeekPlanState> emit) async {
+    emit(state.copyWith(
+      incidents: [
+        ...state.incidents,
+        WeekPlanIncidentItem(reportedAt: DateTime.now()),
+      ],
+    ));
   }
 
   Future<void> _onUpdateIncident(

@@ -871,9 +871,85 @@ class _WeekPlanAddScreenState
 
   //---(_Step: Incident)---//
   Widget _buildIncidentStep(WeekPlanState state) {
-    return const SingleChildScrollView(
-      padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
-      child: Text('Step 7: Phát sinh — sẽ làm tiếp'),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+      child: Column(
+        children: [
+          // Header + button
+          Row(
+            children: [
+              Text(
+                'Danh sách phát sinh',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.heading,
+                ),
+              ),
+              const Spacer(),
+              ElevatedButton.icon(
+                onPressed: () => bloc.add(const WeekPlanEvent.addIncident()),
+                icon: const Icon(Icons.add, size: 16),
+                label: const Text('Thêm'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.warning,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 0,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Empty state
+          if (state.incidents.isEmpty)
+            Container(
+              padding: const EdgeInsets.all(32),
+              child: Column(
+                children: [
+                  Icon(Icons.warning_amber_outlined,
+                      size: 48, color: AppColors.hintText),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Chưa có sự phát sinh nào',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: AppColors.hintText,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Bấm "Thêm" để ghi nhận phát sinh',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: AppColors.hintText,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+          // List
+          ...List.generate(state.incidents.length, (i) {
+            return WeekPlanIncidentForm(
+              key: ValueKey(state.incidents[i].id ?? i),
+              index: i,
+              incident: state.incidents[i],
+              onChanged: (updated) {
+                bloc.add(WeekPlanEvent.updateIncident(i, updated));
+              },
+              onDelete: () {
+                bloc.add(WeekPlanEvent.removeIncident(i));
+              },
+            );
+          }),
+        ],
+      ),
     );
   }
 
@@ -948,6 +1024,7 @@ class _WeekPlanAddScreenState
     return BlocBuilder<WeekPlanBloc, WeekPlanState>(
       builder: (context, state) {
         final isLastStep = _currentStep == WeekPlanAddStep.values.length - 1;
+        final isIncidentStep = WeekPlanAddStep.values[_currentStep] == WeekPlanAddStep.incident;
 
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -956,30 +1033,44 @@ class _WeekPlanAddScreenState
             child: Row(
               children: [
                 Expanded(
-                  child: OutlinedButton(
-                    onPressed: state.isSubmitting
-                        ? null
-                        : () {
-                            if (_formKey.currentState?.saveAndValidate() ?? false) {
-                              bloc.add(const WeekPlanEvent.createTask());
-                            }
-                          },
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      side: const BorderSide(color: AppColors.secondaryERP),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.save_outlined, size: 16),
-                        SizedBox(width: 4),
-                        Text('Lưu'),
-                      ],
-                    ),
-                  ),
+                  child: isIncidentStep
+                      ? OutlinedButton.icon(
+                          onPressed: state.isSubmitting
+                              ? null
+                              : () => _goToStep(_currentStep - 1),
+                          icon: const Icon(Icons.arrow_back, size: 16),
+                          label: const Text('Quay lại'),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: AppColors.secondaryERP,
+                            side: BorderSide(color: AppColors.secondaryERP),
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        )
+                      : OutlinedButton(
+                          onPressed: state.isSubmitting
+                              ? null
+                              : () {
+                                  _formKey.currentState?.save();
+                                },
+                          style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            side: const BorderSide(color: AppColors.secondaryERP),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.save_outlined, size: 16),
+                              SizedBox(width: 4),
+                              Text('Lưu'),
+                            ],
+                          ),
+                        ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
@@ -987,14 +1078,12 @@ class _WeekPlanAddScreenState
                     onPressed: state.isSubmitting
                         ? null
                         : () => isLastStep
-                              ? (_formKey.currentState?.saveAndValidate() ?? false)
-                                  ? bloc.add(const WeekPlanEvent.createTask())
-                                  : null
-                              : _goToStep(_currentStep + 1),
+                            ? (_formKey.currentState?.saveAndValidate() ?? false)
+                                ? bloc.add(const WeekPlanEvent.createTask())
+                                : null
+                            : _goToStep(_currentStep + 1),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: isLastStep
-                          ? AppColors.stateSuccessColor
-                          : AppColors.primaryERP,
+                      backgroundColor: AppColors.primaryERP,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(
@@ -1014,7 +1103,7 @@ class _WeekPlanAddScreenState
                             ),
                           )
                         : Text(
-                            isLastStep ? 'Tạo công việc' : 'Tiếp theo',
+                            isLastStep ? 'Lưu' : 'Tiếp theo',
                             style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
