@@ -48,7 +48,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(emit, dateStart, dateEnd),
         clearDateFilter: () => _onClearDateFilter(emit),
-        checkIn: (taskId) => _onCheckIn(emit, taskId),
+        checkIn: (taskId, isCheck) => _onCheckIn(emit, taskId, isCheck),
         initAddScreen: () => _onInitAddScreen(emit),
         changeStep: (step) => _onChangeStep(emit, step),
         updateHeaderProject: (projectId, projectName) =>
@@ -125,6 +125,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             _onRemoveIncident(emit, index),
         createTask: () => _onCreateTask(emit),
         clearSubmitState: () => _onClearSubmitState(emit),
+        clearCheckInState: () => _onClearCheckInState(emit),
       );
     });
   }
@@ -342,13 +343,50 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   }
 
   //---(Action)---//
-  Future<void> _onCheckIn(
-      Emitter<WeekPlanState> emit, int taskId) async {
-    _log.logI('Check-in requested for taskId=$taskId');
-    emit(state.copyWith(
-      message: 'Tính năng đang phát triển',
-      status: BaseStateStatus.success,
-    ));
+  bool _isCheckInInFlight = false;
+
+   Future<void> _onCheckIn(
+      Emitter<WeekPlanState> emit, int taskId, bool isCheck) async {
+    if (_isCheckInInFlight) return;
+    _isCheckInInFlight = true;
+
+    try {
+      emit(state.copyWith(message: null));
+
+      final res = await _weekPlanRepo.projectTaskAttendance(
+        projectTaskId: taskId,
+        isCheck: isCheck,
+      );
+
+      await res.fold(
+        (err) async {
+          _log.logE('Check-in failed: $err');
+          emit(state.copyWith(
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ));
+        },
+        (data) async {
+          _log.logI('Check-in success');
+
+          WeekPlanTaskItem updatedTask(WeekPlanTaskItem t) =>
+              t.id == taskId ? t.copyWith(isCheck: isCheck) : t;
+
+          emit(state.copyWith(
+            status: BaseStateStatus.success,
+            myTasks: state.myTasks.map(updatedTask).toList(),
+            relatedTasks: state.relatedTasks.map(updatedTask).toList(),
+            assignedTasks: state.assignedTasks.map(updatedTask).toList(),
+            allTasks: state.allTasks.map(updatedTask).toList(),
+            checkInSuccess: true,
+            checkInTaskId: taskId,
+            checkInTaskNewValue: isCheck,
+          ));
+        },
+      );
+    } finally {
+      _isCheckInInFlight = false;
+    }
   }
 
   //---(Add Screen)---//
@@ -892,6 +930,14 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       isSubmitting: false,
       submitSuccess: false,
       message: null,
+    ));
+  }
+
+   _onClearCheckInState(Emitter<WeekPlanState> emit) {
+    emit(state.copyWith(
+      checkInSuccess: false,
+      checkInTaskId: null,
+      checkInTaskNewValue: null,
     ));
   }
 }

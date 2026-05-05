@@ -424,3 +424,38 @@ Map<String, dynamic> _$$EmployeeTaskItemImplToJson(
       'MoiQuanHe2': instance.moiQuanHe2,
       'SDTNguoiThan2': instance.sdtNguoiThan2,
     };
+
+_$AttendanceTaskResponseImpl _$$AttendanceTaskResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AttendanceTaskResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      projectTaskId: (json['ProjectTaskID'] as num?)?.toInt(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      isCheck: json['IsCheck'] as bool?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+      date:
+          json['Date'] == null ? null : DateTime.parse(json['Date'] as String),
+    );
+
+Map<String, dynamic> _$$AttendanceTaskResponseImplToJson(
+        _$AttendanceTaskResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProjectTaskID': instance.projectTaskId,
+      'EmployeeID': instance.employeeId,
+      'IsCheck': instance.isCheck,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'IsDeleted': instance.isDeleted,
+      'Date': instance.date?.toIso8601String(),
+    };

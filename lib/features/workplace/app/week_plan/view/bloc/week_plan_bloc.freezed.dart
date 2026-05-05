@@ -30,7 +30,7 @@ mixin _$WeekPlanEvent {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -90,6 +90,7 @@ mixin _$WeekPlanEvent {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -105,7 +106,7 @@ mixin _$WeekPlanEvent {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -161,6 +162,7 @@ mixin _$WeekPlanEvent {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -176,7 +178,7 @@ mixin _$WeekPlanEvent {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -231,6 +233,7 @@ mixin _$WeekPlanEvent {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -300,6 +303,7 @@ mixin _$WeekPlanEvent {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -363,6 +367,7 @@ mixin _$WeekPlanEvent {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -422,6 +427,7 @@ mixin _$WeekPlanEvent {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -495,7 +501,7 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -555,6 +561,7 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return initMenu();
   }
@@ -573,7 +580,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -629,6 +636,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return initMenu?.call();
   }
@@ -647,7 +655,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -702,6 +710,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (initMenu != null) {
@@ -777,6 +786,7 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return initMenu(this);
   }
@@ -843,6 +853,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return initMenu?.call(this);
   }
@@ -905,6 +916,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (initMenu != null) {
@@ -968,7 +980,7 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -1028,6 +1040,7 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return initScreen();
   }
@@ -1046,7 +1059,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -1102,6 +1115,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return initScreen?.call();
   }
@@ -1120,7 +1134,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -1175,6 +1189,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (initScreen != null) {
@@ -1250,6 +1265,7 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return initScreen(this);
   }
@@ -1316,6 +1332,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return initScreen?.call(this);
   }
@@ -1378,6 +1395,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (initScreen != null) {
@@ -1469,7 +1487,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -1529,6 +1547,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return initScreenWithView(viewNumber);
   }
@@ -1547,7 +1566,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -1603,6 +1622,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return initScreenWithView?.call(viewNumber);
   }
@@ -1621,7 +1641,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -1676,6 +1696,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (initScreenWithView != null) {
@@ -1751,6 +1772,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return initScreenWithView(this);
   }
@@ -1817,6 +1839,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return initScreenWithView?.call(this);
   }
@@ -1879,6 +1902,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (initScreenWithView != null) {
@@ -1975,7 +1999,7 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -2035,6 +2059,7 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return changeView(viewNumber);
   }
@@ -2053,7 +2078,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -2109,6 +2134,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return changeView?.call(viewNumber);
   }
@@ -2127,7 +2153,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -2182,6 +2208,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (changeView != null) {
@@ -2257,6 +2284,7 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return changeView(this);
   }
@@ -2323,6 +2351,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return changeView?.call(this);
   }
@@ -2385,6 +2414,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (changeView != null) {
@@ -2453,7 +2483,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -2513,6 +2543,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return refresh();
   }
@@ -2531,7 +2562,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -2587,6 +2618,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return refresh?.call();
   }
@@ -2605,7 +2637,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -2660,6 +2692,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -2735,6 +2768,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return refresh(this);
   }
@@ -2801,6 +2835,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return refresh?.call(this);
   }
@@ -2863,6 +2898,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -2952,7 +2988,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -3012,6 +3048,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return search(keyword);
   }
@@ -3030,7 +3067,7 @@ class _$SearchImpl implements _Search {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -3086,6 +3123,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return search?.call(keyword);
   }
@@ -3104,7 +3142,7 @@ class _$SearchImpl implements _Search {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -3159,6 +3197,7 @@ class _$SearchImpl implements _Search {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -3234,6 +3273,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return search(this);
   }
@@ -3300,6 +3340,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return search?.call(this);
   }
@@ -3362,6 +3403,7 @@ class _$SearchImpl implements _Search {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -3430,7 +3472,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -3490,6 +3532,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return clearSearch();
   }
@@ -3508,7 +3551,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -3564,6 +3607,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return clearSearch?.call();
   }
@@ -3582,7 +3626,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -3637,6 +3681,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (clearSearch != null) {
@@ -3712,6 +3757,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return clearSearch(this);
   }
@@ -3778,6 +3824,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return clearSearch?.call(this);
   }
@@ -3840,6 +3887,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (clearSearch != null) {
@@ -3930,7 +3978,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -3990,6 +4038,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return filterByStatus(status);
   }
@@ -4008,7 +4057,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -4064,6 +4113,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return filterByStatus?.call(status);
   }
@@ -4082,7 +4132,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -4137,6 +4187,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (filterByStatus != null) {
@@ -4212,6 +4263,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return filterByStatus(this);
   }
@@ -4278,6 +4330,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return filterByStatus?.call(this);
   }
@@ -4340,6 +4393,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (filterByStatus != null) {
@@ -4408,7 +4462,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -4468,6 +4522,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return clearStatusFilter();
   }
@@ -4486,7 +4541,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -4542,6 +4597,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return clearStatusFilter?.call();
   }
@@ -4560,7 +4616,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -4615,6 +4671,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (clearStatusFilter != null) {
@@ -4690,6 +4747,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return clearStatusFilter(this);
   }
@@ -4756,6 +4814,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return clearStatusFilter?.call(this);
   }
@@ -4818,6 +4877,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (clearStatusFilter != null) {
@@ -4917,7 +4977,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -4977,6 +5037,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -4995,7 +5056,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -5051,6 +5112,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -5069,7 +5131,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -5124,6 +5186,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -5199,6 +5262,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return changeDateRange(this);
   }
@@ -5265,6 +5329,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return changeDateRange?.call(this);
   }
@@ -5327,6 +5392,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -5398,7 +5464,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -5458,6 +5524,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return clearDateFilter();
   }
@@ -5476,7 +5543,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -5532,6 +5599,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return clearDateFilter?.call();
   }
@@ -5550,7 +5618,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -5605,6 +5673,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (clearDateFilter != null) {
@@ -5680,6 +5749,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return clearDateFilter(this);
   }
@@ -5746,6 +5816,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return clearDateFilter?.call(this);
   }
@@ -5808,6 +5879,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (clearDateFilter != null) {
@@ -5827,7 +5899,7 @@ abstract class _$$CheckInImplCopyWith<$Res> {
           _$CheckInImpl value, $Res Function(_$CheckInImpl) then) =
       __$$CheckInImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int taskId});
+  $Res call({int taskId, bool isCheck});
 }
 
 /// @nodoc
@@ -5842,12 +5914,17 @@ class __$$CheckInImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? taskId = null,
+    Object? isCheck = null,
   }) {
     return _then(_$CheckInImpl(
       null == taskId
           ? _value.taskId
           : taskId // ignore: cast_nullable_to_non_nullable
               as int,
+      null == isCheck
+          ? _value.isCheck
+          : isCheck // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -5855,14 +5932,16 @@ class __$$CheckInImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CheckInImpl implements _CheckIn {
-  const _$CheckInImpl(this.taskId);
+  const _$CheckInImpl(this.taskId, this.isCheck);
 
   @override
   final int taskId;
+  @override
+  final bool isCheck;
 
   @override
   String toString() {
-    return 'WeekPlanEvent.checkIn(taskId: $taskId)';
+    return 'WeekPlanEvent.checkIn(taskId: $taskId, isCheck: $isCheck)';
   }
 
   @override
@@ -5870,11 +5949,12 @@ class _$CheckInImpl implements _CheckIn {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CheckInImpl &&
-            (identical(other.taskId, taskId) || other.taskId == taskId));
+            (identical(other.taskId, taskId) || other.taskId == taskId) &&
+            (identical(other.isCheck, isCheck) || other.isCheck == isCheck));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, taskId);
+  int get hashCode => Object.hash(runtimeType, taskId, isCheck);
 
   @JsonKey(ignore: true)
   @override
@@ -5897,7 +5977,7 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -5957,8 +6037,9 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
-    return checkIn(taskId);
+    return checkIn(taskId, isCheck);
   }
 
   @override
@@ -5975,7 +6056,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -6031,8 +6112,9 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
-    return checkIn?.call(taskId);
+    return checkIn?.call(taskId, isCheck);
   }
 
   @override
@@ -6049,7 +6131,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -6104,10 +6186,11 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (checkIn != null) {
-      return checkIn(taskId);
+      return checkIn(taskId, isCheck);
     }
     return orElse();
   }
@@ -6179,6 +6262,7 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return checkIn(this);
   }
@@ -6245,6 +6329,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return checkIn?.call(this);
   }
@@ -6307,6 +6392,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (checkIn != null) {
@@ -6317,9 +6403,10 @@ class _$CheckInImpl implements _CheckIn {
 }
 
 abstract class _CheckIn implements WeekPlanEvent {
-  const factory _CheckIn(final int taskId) = _$CheckInImpl;
+  const factory _CheckIn(final int taskId, final bool isCheck) = _$CheckInImpl;
 
   int get taskId;
+  bool get isCheck;
   @JsonKey(ignore: true)
   _$$CheckInImplCopyWith<_$CheckInImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -6375,7 +6462,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -6435,6 +6522,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return initAddScreen();
   }
@@ -6453,7 +6541,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -6509,6 +6597,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return initAddScreen?.call();
   }
@@ -6527,7 +6616,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -6582,6 +6671,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (initAddScreen != null) {
@@ -6657,6 +6747,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return initAddScreen(this);
   }
@@ -6723,6 +6814,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return initAddScreen?.call(this);
   }
@@ -6785,6 +6877,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (initAddScreen != null) {
@@ -6874,7 +6967,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -6934,6 +7027,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return changeStep(step);
   }
@@ -6952,7 +7046,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -7008,6 +7102,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return changeStep?.call(step);
   }
@@ -7026,7 +7121,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -7081,6 +7176,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (changeStep != null) {
@@ -7156,6 +7252,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return changeStep(this);
   }
@@ -7222,6 +7319,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return changeStep?.call(this);
   }
@@ -7284,6 +7382,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (changeStep != null) {
@@ -7390,7 +7489,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -7450,6 +7549,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateHeaderProject(projectId, projectName);
   }
@@ -7468,7 +7568,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -7524,6 +7624,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateHeaderProject?.call(projectId, projectName);
   }
@@ -7542,7 +7643,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -7597,6 +7698,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderProject != null) {
@@ -7672,6 +7774,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateHeaderProject(this);
   }
@@ -7738,6 +7841,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateHeaderProject?.call(this);
   }
@@ -7800,6 +7904,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderProject != null) {
@@ -7911,7 +8016,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -7971,6 +8076,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateHeaderParentTask(parentTaskId, parentTaskName);
   }
@@ -7989,7 +8095,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -8045,6 +8151,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateHeaderParentTask?.call(parentTaskId, parentTaskName);
   }
@@ -8063,7 +8170,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -8118,6 +8225,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderParentTask != null) {
@@ -8193,6 +8301,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateHeaderParentTask(this);
   }
@@ -8259,6 +8368,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateHeaderParentTask?.call(this);
   }
@@ -8321,6 +8431,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderParentTask != null) {
@@ -8431,7 +8542,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -8491,6 +8602,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateHeaderAssigner(assignerId, assignerName);
   }
@@ -8509,7 +8621,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -8565,6 +8677,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateHeaderAssigner?.call(assignerId, assignerName);
   }
@@ -8583,7 +8696,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -8638,6 +8751,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderAssigner != null) {
@@ -8713,6 +8827,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateHeaderAssigner(this);
   }
@@ -8779,6 +8894,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateHeaderAssigner?.call(this);
   }
@@ -8841,6 +8957,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderAssigner != null) {
@@ -8942,7 +9059,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -9002,6 +9119,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateHeaderPersonalTask(isPersonal);
   }
@@ -9020,7 +9138,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -9076,6 +9194,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateHeaderPersonalTask?.call(isPersonal);
   }
@@ -9094,7 +9213,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -9149,6 +9268,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderPersonalTask != null) {
@@ -9224,6 +9344,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateHeaderPersonalTask(this);
   }
@@ -9290,6 +9411,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateHeaderPersonalTask?.call(this);
   }
@@ -9352,6 +9474,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderPersonalTask != null) {
@@ -9451,7 +9574,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -9511,6 +9634,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateHeaderComplexity(complexity);
   }
@@ -9529,7 +9653,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -9585,6 +9709,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateHeaderComplexity?.call(complexity);
   }
@@ -9603,7 +9728,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -9658,6 +9783,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderComplexity != null) {
@@ -9733,6 +9859,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateHeaderComplexity(this);
   }
@@ -9799,6 +9926,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateHeaderComplexity?.call(this);
   }
@@ -9861,6 +9989,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderComplexity != null) {
@@ -9959,7 +10088,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -10019,6 +10148,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateHeaderPriority(priority);
   }
@@ -10037,7 +10167,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -10093,6 +10223,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateHeaderPriority?.call(priority);
   }
@@ -10111,7 +10242,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -10166,6 +10297,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderPriority != null) {
@@ -10241,6 +10373,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateHeaderPriority(this);
   }
@@ -10307,6 +10440,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateHeaderPriority?.call(this);
   }
@@ -10369,6 +10503,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderPriority != null) {
@@ -10476,7 +10611,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -10536,6 +10671,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateHeaderStatus(statusId, statusName);
   }
@@ -10554,7 +10690,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -10610,6 +10746,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateHeaderStatus?.call(statusId, statusName);
   }
@@ -10628,7 +10765,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -10683,6 +10820,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderStatus != null) {
@@ -10758,6 +10896,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateHeaderStatus(this);
   }
@@ -10824,6 +10963,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateHeaderStatus?.call(this);
   }
@@ -10886,6 +11026,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderStatus != null) {
@@ -10987,7 +11128,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -11047,6 +11188,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateHeaderTimeEstimate(timeEstimate);
   }
@@ -11065,7 +11207,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -11121,6 +11263,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateHeaderTimeEstimate?.call(timeEstimate);
   }
@@ -11139,7 +11282,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -11194,6 +11337,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderTimeEstimate != null) {
@@ -11269,6 +11413,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateHeaderTimeEstimate(this);
   }
@@ -11335,6 +11480,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateHeaderTimeEstimate?.call(this);
   }
@@ -11397,6 +11543,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderTimeEstimate != null) {
@@ -11506,7 +11653,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -11566,6 +11713,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateHeaderTaskCategory(categoryId, categoryName);
   }
@@ -11584,7 +11732,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -11640,6 +11788,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateHeaderTaskCategory?.call(categoryId, categoryName);
   }
@@ -11658,7 +11807,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -11713,6 +11862,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderTaskCategory != null) {
@@ -11788,6 +11938,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateHeaderTaskCategory(this);
   }
@@ -11854,6 +12005,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateHeaderTaskCategory?.call(this);
   }
@@ -11916,6 +12068,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderTaskCategory != null) {
@@ -12053,7 +12206,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -12113,6 +12266,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateHeaderWorkTypeAndStatus(
         workTypeId, workTypeName, statusId, statusName);
@@ -12132,7 +12286,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -12188,6 +12342,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateHeaderWorkTypeAndStatus?.call(
         workTypeId, workTypeName, statusId, statusName);
@@ -12207,7 +12362,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -12262,6 +12417,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderWorkTypeAndStatus != null) {
@@ -12338,6 +12494,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateHeaderWorkTypeAndStatus(this);
   }
@@ -12404,6 +12561,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateHeaderWorkTypeAndStatus?.call(this);
   }
@@ -12466,6 +12624,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateHeaderWorkTypeAndStatus != null) {
@@ -12542,7 +12701,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -12602,6 +12761,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return fetchTaskTypes();
   }
@@ -12620,7 +12780,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -12676,6 +12836,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return fetchTaskTypes?.call();
   }
@@ -12694,7 +12855,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -12749,6 +12910,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (fetchTaskTypes != null) {
@@ -12824,6 +12986,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return fetchTaskTypes(this);
   }
@@ -12890,6 +13053,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return fetchTaskTypes?.call(this);
   }
@@ -12952,6 +13116,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (fetchTaskTypes != null) {
@@ -13015,7 +13180,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -13075,6 +13240,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return fetchProjects();
   }
@@ -13093,7 +13259,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -13149,6 +13315,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return fetchProjects?.call();
   }
@@ -13167,7 +13334,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -13222,6 +13389,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (fetchProjects != null) {
@@ -13297,6 +13465,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return fetchProjects(this);
   }
@@ -13363,6 +13532,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return fetchProjects?.call(this);
   }
@@ -13425,6 +13595,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (fetchProjects != null) {
@@ -13488,7 +13659,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -13548,6 +13719,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return fetchProjectTypes();
   }
@@ -13566,7 +13738,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -13622,6 +13794,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return fetchProjectTypes?.call();
   }
@@ -13640,7 +13813,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -13695,6 +13868,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (fetchProjectTypes != null) {
@@ -13770,6 +13944,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return fetchProjectTypes(this);
   }
@@ -13836,6 +14011,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return fetchProjectTypes?.call(this);
   }
@@ -13898,6 +14074,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (fetchProjectTypes != null) {
@@ -13961,7 +14138,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -14021,6 +14198,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return fetchEmployees();
   }
@@ -14039,7 +14217,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -14095,6 +14273,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return fetchEmployees?.call();
   }
@@ -14113,7 +14292,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -14168,6 +14347,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -14243,6 +14423,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return fetchEmployees(this);
   }
@@ -14309,6 +14490,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return fetchEmployees?.call(this);
   }
@@ -14371,6 +14553,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -14462,7 +14645,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -14522,6 +14705,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateContentTaskName(name);
   }
@@ -14540,7 +14724,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -14596,6 +14780,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateContentTaskName?.call(name);
   }
@@ -14614,7 +14799,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -14669,6 +14854,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateContentTaskName != null) {
@@ -14744,6 +14930,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateContentTaskName(this);
   }
@@ -14810,6 +14997,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateContentTaskName?.call(this);
   }
@@ -14872,6 +15060,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateContentTaskName != null) {
@@ -14980,7 +15169,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -15040,6 +15229,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateContentAssignee(assigneeId, assigneeName);
   }
@@ -15058,7 +15248,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -15114,6 +15304,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateContentAssignee?.call(assigneeId, assigneeName);
   }
@@ -15132,7 +15323,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -15187,6 +15378,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateContentAssignee != null) {
@@ -15262,6 +15454,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateContentAssignee(this);
   }
@@ -15328,6 +15521,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateContentAssignee?.call(this);
   }
@@ -15390,6 +15584,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateContentAssignee != null) {
@@ -15500,7 +15695,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -15560,6 +15755,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateContentAssigner(assignerId, assignerName);
   }
@@ -15578,7 +15774,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -15634,6 +15830,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateContentAssigner?.call(assignerId, assignerName);
   }
@@ -15652,7 +15849,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -15707,6 +15904,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateContentAssigner != null) {
@@ -15782,6 +15980,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateContentAssigner(this);
   }
@@ -15848,6 +16047,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateContentAssigner?.call(this);
   }
@@ -15910,6 +16110,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateContentAssigner != null) {
@@ -16055,7 +16256,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -16115,6 +16316,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateContentDates(
         startDate, endDate, actualStartDate, actualEndDate, deadline);
@@ -16134,7 +16336,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -16190,6 +16392,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateContentDates?.call(
         startDate, endDate, actualStartDate, actualEndDate, deadline);
@@ -16209,7 +16412,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -16264,6 +16467,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateContentDates != null) {
@@ -16340,6 +16544,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateContentDates(this);
   }
@@ -16406,6 +16611,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateContentDates?.call(this);
   }
@@ -16468,6 +16674,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateContentDates != null) {
@@ -16575,7 +16782,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -16635,6 +16842,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateContentDescription(description);
   }
@@ -16653,7 +16861,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -16709,6 +16917,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateContentDescription?.call(description);
   }
@@ -16727,7 +16936,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -16782,6 +16991,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateContentDescription != null) {
@@ -16857,6 +17067,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateContentDescription(this);
   }
@@ -16923,6 +17134,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateContentDescription?.call(this);
   }
@@ -16985,6 +17197,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateContentDescription != null) {
@@ -17081,7 +17294,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -17141,6 +17354,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateContentResult(result);
   }
@@ -17159,7 +17373,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -17215,6 +17429,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateContentResult?.call(result);
   }
@@ -17233,7 +17448,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -17288,6 +17503,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateContentResult != null) {
@@ -17363,6 +17579,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateContentResult(this);
   }
@@ -17429,6 +17646,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateContentResult?.call(this);
   }
@@ -17491,6 +17709,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateContentResult != null) {
@@ -17594,7 +17813,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -17654,6 +17873,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return setAssignees(assignees);
   }
@@ -17672,7 +17892,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -17728,6 +17948,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return setAssignees?.call(assignees);
   }
@@ -17746,7 +17967,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -17801,6 +18022,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (setAssignees != null) {
@@ -17876,6 +18098,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return setAssignees(this);
   }
@@ -17942,6 +18165,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return setAssignees?.call(this);
   }
@@ -18004,6 +18228,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (setAssignees != null) {
@@ -18110,7 +18335,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -18170,6 +18395,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return addAssignee(employee);
   }
@@ -18188,7 +18414,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -18244,6 +18470,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return addAssignee?.call(employee);
   }
@@ -18262,7 +18489,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -18317,6 +18544,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (addAssignee != null) {
@@ -18392,6 +18620,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return addAssignee(this);
   }
@@ -18458,6 +18687,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return addAssignee?.call(this);
   }
@@ -18520,6 +18750,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (addAssignee != null) {
@@ -18617,7 +18848,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -18677,6 +18908,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return removeAssignee(employeeId);
   }
@@ -18695,7 +18927,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -18751,6 +18983,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return removeAssignee?.call(employeeId);
   }
@@ -18769,7 +19002,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -18824,6 +19057,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (removeAssignee != null) {
@@ -18899,6 +19133,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return removeAssignee(this);
   }
@@ -18965,6 +19200,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return removeAssignee?.call(this);
   }
@@ -19027,6 +19263,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (removeAssignee != null) {
@@ -19129,7 +19366,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -19189,6 +19426,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return setRelatedPersons(persons);
   }
@@ -19207,7 +19445,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -19263,6 +19501,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return setRelatedPersons?.call(persons);
   }
@@ -19281,7 +19520,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -19336,6 +19575,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (setRelatedPersons != null) {
@@ -19411,6 +19651,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return setRelatedPersons(this);
   }
@@ -19477,6 +19718,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return setRelatedPersons?.call(this);
   }
@@ -19539,6 +19781,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (setRelatedPersons != null) {
@@ -19646,7 +19889,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -19706,6 +19949,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return addRelatedPerson(employee);
   }
@@ -19724,7 +19968,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -19780,6 +20024,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return addRelatedPerson?.call(employee);
   }
@@ -19798,7 +20043,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -19853,6 +20098,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (addRelatedPerson != null) {
@@ -19928,6 +20174,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return addRelatedPerson(this);
   }
@@ -19994,6 +20241,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return addRelatedPerson?.call(this);
   }
@@ -20056,6 +20304,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (addRelatedPerson != null) {
@@ -20153,7 +20402,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -20213,6 +20462,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return removeRelatedPerson(employeeId);
   }
@@ -20231,7 +20481,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -20287,6 +20537,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return removeRelatedPerson?.call(employeeId);
   }
@@ -20305,7 +20556,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -20360,6 +20611,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (removeRelatedPerson != null) {
@@ -20435,6 +20687,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return removeRelatedPerson(this);
   }
@@ -20501,6 +20754,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return removeRelatedPerson?.call(this);
   }
@@ -20563,6 +20817,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (removeRelatedPerson != null) {
@@ -20668,7 +20923,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -20728,6 +20983,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return addSubTask(subTask);
   }
@@ -20746,7 +21002,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -20802,6 +21058,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return addSubTask?.call(subTask);
   }
@@ -20820,7 +21077,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -20875,6 +21132,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (addSubTask != null) {
@@ -20950,6 +21208,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return addSubTask(this);
   }
@@ -21016,6 +21275,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return addSubTask?.call(this);
   }
@@ -21078,6 +21338,7 @@ class _$AddSubTaskImpl implements _AddSubTask {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (addSubTask != null) {
@@ -21191,7 +21452,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -21251,6 +21512,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateSubTask(index, subTask);
   }
@@ -21269,7 +21531,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -21325,6 +21587,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateSubTask?.call(index, subTask);
   }
@@ -21343,7 +21606,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -21398,6 +21661,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateSubTask != null) {
@@ -21473,6 +21737,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateSubTask(this);
   }
@@ -21539,6 +21804,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateSubTask?.call(this);
   }
@@ -21601,6 +21867,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateSubTask != null) {
@@ -21697,7 +21964,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -21757,6 +22024,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return removeSubTask(index);
   }
@@ -21775,7 +22043,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -21831,6 +22099,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return removeSubTask?.call(index);
   }
@@ -21849,7 +22118,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -21904,6 +22173,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (removeSubTask != null) {
@@ -21979,6 +22249,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return removeSubTask(this);
   }
@@ -22045,6 +22316,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return removeSubTask?.call(this);
   }
@@ -22107,6 +22379,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (removeSubTask != null) {
@@ -22202,7 +22475,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -22262,6 +22535,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return addChecklistItem(item);
   }
@@ -22280,7 +22554,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -22336,6 +22610,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return addChecklistItem?.call(item);
   }
@@ -22354,7 +22629,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -22409,6 +22684,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (addChecklistItem != null) {
@@ -22484,6 +22760,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return addChecklistItem(this);
   }
@@ -22550,6 +22827,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return addChecklistItem?.call(this);
   }
@@ -22612,6 +22890,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (addChecklistItem != null) {
@@ -22715,7 +22994,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -22775,6 +23054,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateChecklistItem(index, item);
   }
@@ -22793,7 +23073,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -22849,6 +23129,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateChecklistItem?.call(index, item);
   }
@@ -22867,7 +23148,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -22922,6 +23203,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateChecklistItem != null) {
@@ -22997,6 +23279,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateChecklistItem(this);
   }
@@ -23063,6 +23346,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateChecklistItem?.call(this);
   }
@@ -23125,6 +23409,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateChecklistItem != null) {
@@ -23222,7 +23507,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -23282,6 +23567,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return toggleChecklistDone(index);
   }
@@ -23300,7 +23586,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -23356,6 +23642,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return toggleChecklistDone?.call(index);
   }
@@ -23374,7 +23661,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -23429,6 +23716,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (toggleChecklistDone != null) {
@@ -23504,6 +23792,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return toggleChecklistDone(this);
   }
@@ -23570,6 +23859,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return toggleChecklistDone?.call(this);
   }
@@ -23632,6 +23922,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (toggleChecklistDone != null) {
@@ -23728,7 +24019,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -23788,6 +24079,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return removeChecklistItem(index);
   }
@@ -23806,7 +24098,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -23862,6 +24154,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return removeChecklistItem?.call(index);
   }
@@ -23880,7 +24173,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -23935,6 +24228,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (removeChecklistItem != null) {
@@ -24010,6 +24304,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return removeChecklistItem(this);
   }
@@ -24076,6 +24371,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return removeChecklistItem?.call(this);
   }
@@ -24138,6 +24434,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (removeChecklistItem != null) {
@@ -24244,7 +24541,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -24304,6 +24601,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return addAttachment(attachment);
   }
@@ -24322,7 +24620,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -24378,6 +24676,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return addAttachment?.call(attachment);
   }
@@ -24396,7 +24695,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -24451,6 +24750,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (addAttachment != null) {
@@ -24526,6 +24826,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return addAttachment(this);
   }
@@ -24592,6 +24893,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return addAttachment?.call(this);
   }
@@ -24654,6 +24956,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (addAttachment != null) {
@@ -24750,7 +25053,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -24810,6 +25113,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return removeAttachment(index);
   }
@@ -24828,7 +25132,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -24884,6 +25188,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return removeAttachment?.call(index);
   }
@@ -24902,7 +25207,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -24957,6 +25262,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (removeAttachment != null) {
@@ -25032,6 +25338,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return removeAttachment(this);
   }
@@ -25098,6 +25405,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return removeAttachment?.call(this);
   }
@@ -25160,6 +25468,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (removeAttachment != null) {
@@ -25265,7 +25574,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -25325,6 +25634,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return addIncident(incident);
   }
@@ -25343,7 +25653,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -25399,6 +25709,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return addIncident?.call(incident);
   }
@@ -25417,7 +25728,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -25472,6 +25783,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (addIncident != null) {
@@ -25547,6 +25859,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return addIncident(this);
   }
@@ -25613,6 +25926,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return addIncident?.call(this);
   }
@@ -25675,6 +25989,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (addIncident != null) {
@@ -25790,7 +26105,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -25850,6 +26165,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return updateIncident(index, incident);
   }
@@ -25868,7 +26184,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -25924,6 +26240,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return updateIncident?.call(index, incident);
   }
@@ -25942,7 +26259,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -25997,6 +26314,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateIncident != null) {
@@ -26072,6 +26390,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return updateIncident(this);
   }
@@ -26138,6 +26457,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return updateIncident?.call(this);
   }
@@ -26200,6 +26520,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (updateIncident != null) {
@@ -26298,7 +26619,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -26358,6 +26679,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return removeIncident(index);
   }
@@ -26376,7 +26698,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -26432,6 +26754,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return removeIncident?.call(index);
   }
@@ -26450,7 +26773,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -26505,6 +26828,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (removeIncident != null) {
@@ -26580,6 +26904,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return removeIncident(this);
   }
@@ -26646,6 +26971,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return removeIncident?.call(this);
   }
@@ -26708,6 +27034,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (removeIncident != null) {
@@ -26776,7 +27103,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -26836,6 +27163,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return createTask();
   }
@@ -26854,7 +27182,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -26910,6 +27238,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return createTask?.call();
   }
@@ -26928,7 +27257,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -26983,6 +27312,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (createTask != null) {
@@ -27058,6 +27388,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return createTask(this);
   }
@@ -27124,6 +27455,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return createTask?.call(this);
   }
@@ -27186,6 +27518,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (createTask != null) {
@@ -27249,7 +27582,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
-    required TResult Function(int taskId) checkIn,
+    required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
@@ -27309,6 +27642,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(int index) removeIncident,
     required TResult Function() createTask,
     required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
   }) {
     return clearSubmitState();
   }
@@ -27327,7 +27661,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function()? clearStatusFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
-    TResult? Function(int taskId)? checkIn,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
@@ -27383,6 +27717,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(int index)? removeIncident,
     TResult? Function()? createTask,
     TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
   }) {
     return clearSubmitState?.call();
   }
@@ -27401,7 +27736,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function()? clearStatusFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
-    TResult Function(int taskId)? checkIn,
+    TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
@@ -27456,6 +27791,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(int index)? removeIncident,
     TResult Function()? createTask,
     TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -27531,6 +27867,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_RemoveIncident value) removeIncident,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
   }) {
     return clearSubmitState(this);
   }
@@ -27597,6 +27934,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_RemoveIncident value)? removeIncident,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
   }) {
     return clearSubmitState?.call(this);
   }
@@ -27659,6 +27997,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_RemoveIncident value)? removeIncident,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -27670,4 +28009,483 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
 
 abstract class _ClearSubmitState implements WeekPlanEvent {
   const factory _ClearSubmitState() = _$ClearSubmitStateImpl;
+}
+
+/// @nodoc
+abstract class _$$ClearCheckInStateImplCopyWith<$Res> {
+  factory _$$ClearCheckInStateImplCopyWith(_$ClearCheckInStateImpl value,
+          $Res Function(_$ClearCheckInStateImpl) then) =
+      __$$ClearCheckInStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearCheckInStateImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$ClearCheckInStateImpl>
+    implements _$$ClearCheckInStateImplCopyWith<$Res> {
+  __$$ClearCheckInStateImplCopyWithImpl(_$ClearCheckInStateImpl _value,
+      $Res Function(_$ClearCheckInStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearCheckInStateImpl implements _ClearCheckInState {
+  const _$ClearCheckInStateImpl();
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.clearCheckInState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearCheckInStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(String status) filterByStatus,
+    required TResult Function() clearStatusFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId, bool isCheck) checkIn,
+    required TResult Function() initAddScreen,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(int categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
+    required TResult Function() fetchProjectTypes,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
+    required TResult Function(EmployeeTaskItem employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
+    required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTask,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanIncidentItem incident) addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function() createTask,
+    required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
+  }) {
+    return clearCheckInState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(String status)? filterByStatus,
+    TResult? Function()? clearStatusFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
+    TResult? Function()? initAddScreen,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
+    TResult? Function()? fetchProjectTypes,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult? Function(EmployeeTaskItem employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function()? createTask,
+    TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
+  }) {
+    return clearCheckInState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(String status)? filterByStatus,
+    TResult Function()? clearStatusFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId, bool isCheck)? checkIn,
+    TResult Function()? initAddScreen,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
+    TResult Function()? fetchProjectTypes,
+    TResult Function()? fetchEmployees,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult Function(EmployeeTaskItem employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTask,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanIncidentItem incident)? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function()? createTask,
+    TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
+    required TResult orElse(),
+  }) {
+    if (clearCheckInState != null) {
+      return clearCheckInState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearStatusFilter value) clearStatusFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
+    required TResult Function(_FetchProjectTypes value) fetchProjectTypes,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTask value) addSubTask,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
+  }) {
+    return clearCheckInState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
+    TResult? Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTask value)? addSubTask,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
+  }) {
+    return clearCheckInState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
+    TResult Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTask value)? addSubTask,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
+    required TResult orElse(),
+  }) {
+    if (clearCheckInState != null) {
+      return clearCheckInState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearCheckInState implements WeekPlanEvent {
+  const factory _ClearCheckInState() = _$ClearCheckInStateImpl;
 }

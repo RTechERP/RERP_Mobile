@@ -35,6 +35,12 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState submitSuccess(bool submitSuccess);
 
+  WeekPlanState checkInSuccess(bool checkInSuccess);
+
+  WeekPlanState checkInTaskId(int? checkInTaskId);
+
+  WeekPlanState checkInTaskNewValue(bool? checkInTaskNewValue);
+
   WeekPlanState headerProjectId(int? headerProjectId);
 
   WeekPlanState headerProjectName(String? headerProjectName);
@@ -137,6 +143,9 @@ abstract class _$WeekPlanStateCWProxy {
     int? employeeId,
     bool? isSubmitting,
     bool? submitSuccess,
+    bool? checkInSuccess,
+    int? checkInTaskId,
+    bool? checkInTaskNewValue,
     int? headerProjectId,
     String? headerProjectName,
     int? headerParentTaskId,
@@ -235,6 +244,18 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
   @override
   WeekPlanState submitSuccess(bool submitSuccess) =>
       this(submitSuccess: submitSuccess);
+
+  @override
+  WeekPlanState checkInSuccess(bool checkInSuccess) =>
+      this(checkInSuccess: checkInSuccess);
+
+  @override
+  WeekPlanState checkInTaskId(int? checkInTaskId) =>
+      this(checkInTaskId: checkInTaskId);
+
+  @override
+  WeekPlanState checkInTaskNewValue(bool? checkInTaskNewValue) =>
+      this(checkInTaskNewValue: checkInTaskNewValue);
 
   @override
   WeekPlanState headerProjectId(int? headerProjectId) =>
@@ -418,6 +439,9 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? employeeId = const $CopyWithPlaceholder(),
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
+    Object? checkInSuccess = const $CopyWithPlaceholder(),
+    Object? checkInTaskId = const $CopyWithPlaceholder(),
+    Object? checkInTaskNewValue = const $CopyWithPlaceholder(),
     Object? headerProjectId = const $CopyWithPlaceholder(),
     Object? headerProjectName = const $CopyWithPlaceholder(),
     Object? headerParentTaskId = const $CopyWithPlaceholder(),
@@ -523,6 +547,19 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
               ? _value.submitSuccess
               // ignore: cast_nullable_to_non_nullable
               : submitSuccess as bool,
+      checkInSuccess: checkInSuccess == const $CopyWithPlaceholder() ||
+              checkInSuccess == null
+          ? _value.checkInSuccess
+          // ignore: cast_nullable_to_non_nullable
+          : checkInSuccess as bool,
+      checkInTaskId: checkInTaskId == const $CopyWithPlaceholder()
+          ? _value.checkInTaskId
+          // ignore: cast_nullable_to_non_nullable
+          : checkInTaskId as int?,
+      checkInTaskNewValue: checkInTaskNewValue == const $CopyWithPlaceholder()
+          ? _value.checkInTaskNewValue
+          // ignore: cast_nullable_to_non_nullable
+          : checkInTaskNewValue as bool?,
       headerProjectId: headerProjectId == const $CopyWithPlaceholder()
           ? _value.headerProjectId
           // ignore: cast_nullable_to_non_nullable

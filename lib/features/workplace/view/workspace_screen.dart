@@ -208,19 +208,19 @@ class _WorkPlaceScreenState
                         route: '/report',
                         imageUrl: AppImages.app_menu_report,
                       ),
-                      AppItemModel(
-                        id: 'general_forms',
-                        name: 'applications.general_forms'.tr(),
-                        iconCodePoint: Icons.assignment_outlined.codePoint,
-                        imageUrl: AppImages.app_menu_general_form,
-                      ),
-                      AppItemModel(
-                        id: 'summary_work',
-                        iconCodePoint:
-                            Icons.content_paste_search_outlined.codePoint,
-                        name: 'applications.summary_work'.tr(),
-                        imageUrl: AppImages.app_menu_summary_work,
-                      ),
+                      // AppItemModel(
+                      //   id: 'general_forms',
+                      //   name: 'applications.general_forms'.tr(),
+                      //   iconCodePoint: Icons.assignment_outlined.codePoint,
+                      //   imageUrl: AppImages.app_menu_general_form,
+                      // ),
+                      // AppItemModel(
+                      //   id: 'summary_work',
+                      //   iconCodePoint:
+                      //       Icons.content_paste_search_outlined.codePoint,
+                      //   name: 'applications.summary_work'.tr(),
+                      //   imageUrl: AppImages.app_menu_summary_work,
+                      // ),
                       AppItemModel(
                         id: 'week_plan',
                         iconCodePoint: Icons.newspaper_outlined.codePoint,
@@ -228,12 +228,12 @@ class _WorkPlaceScreenState
                         route: '/week_plan',
                         imageUrl: AppImages.app_menu_week_plan,
                       ),
-                      AppItemModel(
-                        id: 'stock',
-                        iconCodePoint: Icons.shopping_cart_outlined.codePoint,
-                        name: 'applications.stock'.tr(),
-                        imageUrl: AppImages.app_menu_stock,
-                      ),
+                      // AppItemModel(
+                      //   id: 'stock',
+                      //   iconCodePoint: Icons.shopping_cart_outlined.codePoint,
+                      //   name: 'applications.stock'.tr(),
+                      //   imageUrl: AppImages.app_menu_stock,
+                      // ),
                     ],
                   ),
 

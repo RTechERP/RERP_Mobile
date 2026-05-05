@@ -29,7 +29,7 @@ class WeekPlanEvent with _$WeekPlanEvent {
 
   const factory WeekPlanEvent.clearDateFilter() = _ClearDateFilter;
 
-  const factory WeekPlanEvent.checkIn(int taskId) = _CheckIn;
+  const factory WeekPlanEvent.checkIn(int taskId, bool isCheck) = _CheckIn;
 
   //---(Add Screen)---//
   const factory WeekPlanEvent.initAddScreen() = _InitAddScreen;
@@ -178,4 +178,6 @@ class WeekPlanEvent with _$WeekPlanEvent {
   const factory WeekPlanEvent.createTask() = _CreateTask;
 
   const factory WeekPlanEvent.clearSubmitState() = _ClearSubmitState;
+
+  const factory WeekPlanEvent.clearCheckInState() = _ClearCheckInState;
 }

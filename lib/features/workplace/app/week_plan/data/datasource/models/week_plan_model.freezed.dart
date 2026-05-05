@@ -4722,3 +4722,368 @@ abstract class _EmployeeTaskItem implements EmployeeTaskItem {
   _$$EmployeeTaskItemImplCopyWith<_$EmployeeTaskItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+AttendanceTaskResponse _$AttendanceTaskResponseFromJson(
+    Map<String, dynamic> json) {
+  return _AttendanceTaskResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AttendanceTaskResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTaskID')
+  int? get projectTaskId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsCheck')
+  bool? get isCheck => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Date')
+  DateTime? get date => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AttendanceTaskResponseCopyWith<AttendanceTaskResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AttendanceTaskResponseCopyWith<$Res> {
+  factory $AttendanceTaskResponseCopyWith(AttendanceTaskResponse value,
+          $Res Function(AttendanceTaskResponse) then) =
+      _$AttendanceTaskResponseCopyWithImpl<$Res, AttendanceTaskResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'IsCheck') bool? isCheck,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'Date') DateTime? date});
+}
+
+/// @nodoc
+class _$AttendanceTaskResponseCopyWithImpl<$Res,
+        $Val extends AttendanceTaskResponse>
+    implements $AttendanceTaskResponseCopyWith<$Res> {
+  _$AttendanceTaskResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectTaskId = freezed,
+    Object? employeeId = freezed,
+    Object? isCheck = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+    Object? date = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskId: freezed == projectTaskId
+          ? _value.projectTaskId
+          : projectTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isCheck: freezed == isCheck
+          ? _value.isCheck
+          : isCheck // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AttendanceTaskResponseImplCopyWith<$Res>
+    implements $AttendanceTaskResponseCopyWith<$Res> {
+  factory _$$AttendanceTaskResponseImplCopyWith(
+          _$AttendanceTaskResponseImpl value,
+          $Res Function(_$AttendanceTaskResponseImpl) then) =
+      __$$AttendanceTaskResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'IsCheck') bool? isCheck,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'Date') DateTime? date});
+}
+
+/// @nodoc
+class __$$AttendanceTaskResponseImplCopyWithImpl<$Res>
+    extends _$AttendanceTaskResponseCopyWithImpl<$Res,
+        _$AttendanceTaskResponseImpl>
+    implements _$$AttendanceTaskResponseImplCopyWith<$Res> {
+  __$$AttendanceTaskResponseImplCopyWithImpl(
+      _$AttendanceTaskResponseImpl _value,
+      $Res Function(_$AttendanceTaskResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectTaskId = freezed,
+    Object? employeeId = freezed,
+    Object? isCheck = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+    Object? date = freezed,
+  }) {
+    return _then(_$AttendanceTaskResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskId: freezed == projectTaskId
+          ? _value.projectTaskId
+          : projectTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isCheck: freezed == isCheck
+          ? _value.isCheck
+          : isCheck // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AttendanceTaskResponseImpl implements _AttendanceTaskResponse {
+  const _$AttendanceTaskResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProjectTaskID') this.projectTaskId,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'IsCheck') this.isCheck,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'Date') this.date});
+
+  factory _$AttendanceTaskResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AttendanceTaskResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProjectTaskID')
+  final int? projectTaskId;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'IsCheck')
+  final bool? isCheck;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'Date')
+  final DateTime? date;
+
+  @override
+  String toString() {
+    return 'AttendanceTaskResponse(id: $id, projectTaskId: $projectTaskId, employeeId: $employeeId, isCheck: $isCheck, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, isDeleted: $isDeleted, date: $date)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AttendanceTaskResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.projectTaskId, projectTaskId) ||
+                other.projectTaskId == projectTaskId) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.isCheck, isCheck) || other.isCheck == isCheck) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.date, date) || other.date == date));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, projectTaskId, employeeId,
+      isCheck, createdDate, createdBy, updatedDate, updatedBy, isDeleted, date);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AttendanceTaskResponseImplCopyWith<_$AttendanceTaskResponseImpl>
+      get copyWith => __$$AttendanceTaskResponseImplCopyWithImpl<
+          _$AttendanceTaskResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AttendanceTaskResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AttendanceTaskResponse implements AttendanceTaskResponse {
+  const factory _AttendanceTaskResponse(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'ProjectTaskID') final int? projectTaskId,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'IsCheck') final bool? isCheck,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+          @JsonKey(name: 'Date') final DateTime? date}) =
+      _$AttendanceTaskResponseImpl;
+
+  factory _AttendanceTaskResponse.fromJson(Map<String, dynamic> json) =
+      _$AttendanceTaskResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProjectTaskID')
+  int? get projectTaskId;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'IsCheck')
+  bool? get isCheck;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'Date')
+  DateTime? get date;
+  @override
+  @JsonKey(ignore: true)
+  _$$AttendanceTaskResponseImplCopyWith<_$AttendanceTaskResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

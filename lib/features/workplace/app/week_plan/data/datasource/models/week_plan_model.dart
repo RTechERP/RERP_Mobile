@@ -233,3 +233,22 @@ class EmployeeTaskItem with _$EmployeeTaskItem {
   factory EmployeeTaskItem.fromJson(Map<String, dynamic> json) =>
       _$EmployeeTaskItemFromJson(json);
 }
+
+@freezed
+class AttendanceTaskResponse with _$AttendanceTaskResponse {
+  const factory AttendanceTaskResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'IsCheck') bool? isCheck,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'Date') DateTime? date,
+  }) = _AttendanceTaskResponse;
+
+  factory AttendanceTaskResponse.fromJson(Map<String, dynamic> json) =>
+      _$AttendanceTaskResponseFromJson(json);
+}

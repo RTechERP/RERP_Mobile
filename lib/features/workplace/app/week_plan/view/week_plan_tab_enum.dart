@@ -1,6 +1,6 @@
 /// 6-step enum cho màn tạo công việc với easy_stepper.
 enum WeekPlanAddStep {
-  projectInfo(0, 'Dự án'),
+  projectInfo(0, 'TT chung'),
   content(1, 'Nội dung'),
   subTask(2, 'CV con'),
   checklist(3, 'Checklist'),

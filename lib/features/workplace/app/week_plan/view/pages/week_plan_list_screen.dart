@@ -61,10 +61,22 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
   Widget build(BuildContext context) {
     return BlocListener<WeekPlanBloc, WeekPlanState>(
       listenWhen: (prev, curr) =>
-          prev.status != curr.status || curr.message != null,
+          prev.status != curr.status ||
+          curr.message != null ||
+          prev.checkInSuccess != curr.checkInSuccess,
       listener: (context, state) {
         if (state.status == BaseStateStatus.failed && state.message != null) {
           context.showMessage(state.message!, type: SnackBarType.error);
+        }
+        if (state.checkInSuccess &&
+            state.checkInTaskId != null &&
+            state.checkInTaskNewValue != null) {
+          if (state.checkInTaskNewValue == true) {
+            context.showMessage('Điểm danh thành công', type: SnackBarType.success);
+          } else {
+            context.showMessage('Huỷ điểm danh thành công', type: SnackBarType.success);
+          }
+          context.read<WeekPlanBloc>().add(const WeekPlanEvent.clearCheckInState());
         }
       },
       child: BlocBuilder<WeekPlanBloc, WeekPlanState>(
@@ -73,10 +85,9 @@ class _WeekPlanListScreenState extends State<WeekPlanListScreen> {
             prev.myTasks.length != curr.myTasks.length ||
             prev.relatedTasks.length != curr.relatedTasks.length ||
             prev.assignedTasks.length != curr.assignedTasks.length ||
-            prev.allTasks.length != curr.allTasks.length,
-        builder: (context, state) {
-          return _buildBody(context, state);
-        },
+            prev.allTasks.length != curr.allTasks.length ||
+            prev.checkInTaskId != curr.checkInTaskId,
+        builder: (context, state) => _buildBody(context, state),
       ),
     );
   }

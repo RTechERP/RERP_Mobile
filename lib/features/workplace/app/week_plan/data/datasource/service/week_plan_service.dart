@@ -113,4 +113,26 @@ class WeekPlanService extends DioBaseApiService {
       ),
     );
   }
+
+  /// POST /ProjectTask/attendance
+  ///
+  /// Payload: { projectTaskID: int, isCheck: bool }
+  /// Response: { status: 1, data: AttendanceTaskResponse }
+  Future<BaseData<AttendanceTaskResponse>> projectTaskAttendance({
+    required int projectTaskId,
+    required bool isCheck,
+  }) async {
+    return post<BaseData<AttendanceTaskResponse>>(
+      ApiEndPoint.projectTaskAttendance,
+      query: {
+        'ProjectTaskID': projectTaskId,
+        'IsCheck': isCheck,
+      },
+      body: {},
+      parser: (json) => BaseData<AttendanceTaskResponse>.fromJson(
+        json,
+        (data) => AttendanceTaskResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
 }

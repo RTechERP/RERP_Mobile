@@ -19,6 +19,9 @@ class WeekPlanState extends BaseBlocState {
   final int? employeeId;
   final bool isSubmitting;
   final bool submitSuccess;
+  final bool checkInSuccess;
+  final int? checkInTaskId;
+  final bool? checkInTaskNewValue;
 
   // Step 1: Thông tin dự án
   final int? headerProjectId;
@@ -101,6 +104,9 @@ class WeekPlanState extends BaseBlocState {
     this.employeeId,
     this.isSubmitting = false,
     this.submitSuccess = false,
+    this.checkInSuccess = false,
+    this.checkInTaskId,
+    this.checkInTaskNewValue,
     // Step 1
     this.headerProjectId,
     this.headerProjectName,
@@ -163,6 +169,9 @@ class WeekPlanState extends BaseBlocState {
         selectedStatus: 'Tất cả',
         isSubmitting: false,
         submitSuccess: false,
+        checkInSuccess: false,
+        checkInTaskId: null,
+        checkInTaskNewValue: null,
         headerComplexity: 1,
         headerPriority: 0,
         headerStatus: 0,
@@ -200,6 +209,9 @@ class WeekPlanState extends BaseBlocState {
         employeeId,
         isSubmitting,
         submitSuccess,
+        checkInSuccess,
+        checkInTaskId,
+        checkInTaskNewValue,
         // Step 1
         headerProjectId,
         headerProjectName,

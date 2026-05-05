@@ -2,14 +2,19 @@ import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/widgets/form/form_date_time_picker.dart';
+import '../../../../../../../../../common/widgets/form/form_input_field.dart';
 import '../../../../../../../../../common/helpers/multi_select_employee_sheet.dart';
 import '../../../../../../../../../common/helpers/select_bottom_sheet_helper.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
+import '../../../../../../common/widgets/form/index.dart';
 import '../../data/datasource/models/week_plan_model.dart';
 import '../bloc/week_plan_bloc.dart';
 import '../week_plan_tab_enum.dart';
@@ -232,6 +237,17 @@ class _WeekPlanAddScreenState
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
+          FormInputField(
+            nameForm: 'task_name',
+            nameTextField: 'task_name_field',
+            label: 'Tên công việc',
+            icon: Icons.assignment_outlined,
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập tên công việc',
+            ),
+          ),
+          const SizedBox(height: 10),
           WeekPlanProjectCard(
             selectedId: state.headerProjectId,
             projects: state.projects,
@@ -304,16 +320,6 @@ class _WeekPlanAddScreenState
             isEmployee: true,
           ),
           const SizedBox(height: 10),
-          WeekPlanChoiceRow(
-            options: [
-              WeekPlanChoiceOption(label: 'Cá nhân', value: true),
-              WeekPlanChoiceOption(label: 'Phê duyệt', value: false),
-            ],
-            selected: state.headerIsPersonalTask,
-            onChanged: (v) =>
-                bloc.add(WeekPlanEvent.updateHeaderPersonalTask(v)),
-          ),
-          const SizedBox(height: 10),
           Row(
             children: [
               Expanded(
@@ -346,6 +352,16 @@ class _WeekPlanAddScreenState
             ],
           ),
           const SizedBox(height: 10),
+          WeekPlanChoiceRow(
+            options: [
+              WeekPlanChoiceOption(label: 'Cá nhân', value: true),
+              WeekPlanChoiceOption(label: 'Phê duyệt', value: false),
+            ],
+            selected: state.headerIsPersonalTask,
+            onChanged: (v) =>
+                bloc.add(WeekPlanEvent.updateHeaderPersonalTask(v)),
+          ),
+          const SizedBox(height: 10),
           WeekPlanComplexityRow(
             selected: state.headerComplexity,
             onChanged: (v) => bloc.add(WeekPlanEvent.updateHeaderComplexity(v)),
@@ -365,6 +381,7 @@ class _WeekPlanAddScreenState
               ),
             ),
           ),
+
         ],
       ),
     );
@@ -372,9 +389,122 @@ class _WeekPlanAddScreenState
 
   //---(_Step: Content)---//
   Widget _buildContentStep(WeekPlanState state) {
-    return const SingleChildScrollView(
-      padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
-      child: Text('Step 1: Nội dung — sẽ làm tiếp'),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+      child: Column(
+        children: [
+          FormCard(
+            title: 'Mô tả chi tiết',
+            child: FormInputField(
+              nameForm: 'description',
+              nameTextField: 'description_field',
+              label: 'Thêm mô tả chi tiết cho công việc',
+              icon: Icons.description_outlined,
+              autoExpand: true,
+            ),
+          ),
+
+          const SizedBox(height: 10),
+          FormCard(
+            title: 'Kết quả công việc',
+            child: FormInputField(
+              nameForm: 'expected_result',
+              nameTextField: 'expected_result_field',
+              label: 'Nhập kết quả công khi hoàn thành',
+              icon: Icons.check_circle_outline,
+              autoExpand: true,
+            ),
+          ),
+
+          const SizedBox(height: 12),
+          FormCard(
+            title: 'Lịch trình dự kiến',
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: FormDateTimePicker(
+                        nameForm: 'plan_start_date',
+                        nameTimePicker: 'plan_start_date_picker',
+                        label: 'Bắt đầu',
+                        icon: Icons.calendar_today,
+                        inputType: InputType.date,
+                        format: DateFormat('dd/MM/yyyy'),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: FormDateTimePicker(
+                        nameForm: 'plan_end_date',
+                        nameTimePicker: 'plan_end_date_picker',
+                        label: 'Kết thúc',
+                        icon: Icons.event,
+                        inputType: InputType.date,
+                        format: DateFormat('dd/MM/yyyy'),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Expanded(
+                      child: FormInputField(
+                        nameForm: 'expected_hours',
+                        nameTextField: 'expected_hours_field',
+                        label: 'Dự kiến (giờ)',
+                        icon: Icons.access_time,
+                        keyboardType: TextInputType.number,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: FormDateTimePicker(
+                        nameForm: 'deadline',
+                        nameTimePicker: 'deadline_picker',
+                        label: 'Deadline',
+                        icon: Icons.flag_outlined,
+                        inputType: InputType.date,
+                        format: DateFormat('dd/MM/yyyy'),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          FormCard(
+            title: 'Thực tế thực hiện',
+            child: Row(
+              children: [
+                Expanded(
+                  child: FormDateTimePicker(
+                    nameForm: 'actual_start_date',
+                    nameTimePicker: 'actual_start_date_picker',
+                    label: 'Bắt đầu',
+                    icon: Icons.play_arrow_outlined,
+                    inputType: InputType.date,
+                    format: DateFormat('dd/MM/yyyy'),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: FormDateTimePicker(
+                    nameForm: 'actual_end_date',
+                    nameTimePicker: 'actual_end_date_picker',
+                    label: 'Kết thúc',
+                    icon: Icons.stop_outlined,
+                    inputType: InputType.date,
+                    format: DateFormat('dd/MM/yyyy'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -474,14 +604,13 @@ class _WeekPlanAddScreenState
     );
   }
 
-//===============================================================
-// BOTTOM ACTIONS
-//===============================================================
+  //===============================================================
+  // BOTTOM ACTIONS
+  //===============================================================
   Widget _buildBottomActions() {
     return BlocBuilder<WeekPlanBloc, WeekPlanState>(
       builder: (context, state) {
         final isLastStep = _currentStep == WeekPlanAddStep.values.length - 1;
-        final isFirstStep = _currentStep == 0;
 
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -489,35 +618,41 @@ class _WeekPlanAddScreenState
             top: false,
             child: Row(
               children: [
-                if (!isFirstStep)
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () => _goToStep(_currentStep - 1),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        side: const BorderSide(color: AppColors.secondaryERP),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.arrow_back_ios, size: 16),
-                          SizedBox(width: 4),
-                          Text('Quay lại'),
-                        ],
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: state.isSubmitting
+                        ? null
+                        : () {
+                            if (_formKey.currentState?.saveAndValidate() ?? false) {
+                              bloc.add(const WeekPlanEvent.createTask());
+                            }
+                          },
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      side: const BorderSide(color: AppColors.secondaryERP),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.save_outlined, size: 16),
+                        SizedBox(width: 4),
+                        Text('Lưu'),
+                      ],
+                    ),
                   ),
-                if (!isFirstStep) const SizedBox(width: 12),
+                ),
+                const SizedBox(width: 12),
                 Expanded(
-                  flex: isFirstStep ? 1 : 1,
                   child: ElevatedButton(
                     onPressed: state.isSubmitting
                         ? null
                         : () => isLastStep
-                              ? bloc.add(const WeekPlanEvent.createTask())
+                              ? (_formKey.currentState?.saveAndValidate() ?? false)
+                                  ? bloc.add(const WeekPlanEvent.createTask())
+                                  : null
                               : _goToStep(_currentStep + 1),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: isLastStep
