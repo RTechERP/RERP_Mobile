@@ -501,7 +501,7 @@ class _WorkTripDetailScreenState
             label: 'Lý do công tác',
             icon: Icons.note_alt_outlined,
             initialValue: detail.reason ?? '',
-            maxLines: 2,
+            autoExpand: true,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             isRequired: true,
             validator: (v) {

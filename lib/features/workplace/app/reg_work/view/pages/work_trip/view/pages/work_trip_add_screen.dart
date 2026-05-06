@@ -284,10 +284,27 @@ class _WorkTripAddScreenPageState
       _overnightType = overnightType;
       _overnightLabel = overnightOpt.label;
     });
-    form.fields['wt_overnight_type']?.didChange(overnightType.toString());
+    form.fields['wt_overnight_type']?.didChange(overnightType);
     form.fields['wt_overnight_text']?.didChange(overnightOpt.label);
 
-    // Lý do & ghi chú
+    // Dự án
+    if (copy.projectId != null && copy.projectId != 0) {
+      try {
+        final project = state.workTripProjects.firstWhere(
+          (p) => p.id == copy.projectId,
+        );
+        final projectText =
+            '${project.projectCode ?? ''} - ${project.projectName ?? ''}'.trim();
+        setState(() {
+          _selectedProjectId = project.id;
+          _selectedProjectText = projectText;
+        });
+        form.fields['wt_project_id']?.didChange(project.id.toString());
+        form.fields['wt_project_text']?.didChange(projectText);
+      } catch (_) {}
+    }
+
+    // Lý do công tác
     form.fields['wt_reason']?.didChange(copy.reason ?? '');
     form.fields['wt_note']?.didChange(copy.note ?? '');
   }
@@ -648,9 +665,9 @@ class _WorkTripAddScreenPageState
             nameTextField: 'wt_reason_tf',
             label: 'Lý do công tác',
             icon: Icons.note_alt_outlined,
-            maxLines: 2,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             isRequired: true,
+            autoExpand: true,
             validator: (v) {
               if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do công tác';
               return null;
