@@ -41,6 +41,7 @@ mixin _$BookingVehicleEvent {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -85,6 +86,7 @@ mixin _$BookingVehicleEvent {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -124,6 +126,7 @@ mixin _$BookingVehicleEvent {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -170,6 +173,7 @@ mixin _$BookingVehicleEvent {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -210,6 +214,7 @@ mixin _$BookingVehicleEvent {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -247,6 +252,7 @@ mixin _$BookingVehicleEvent {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -338,6 +344,7 @@ class _$InitImpl implements _Init {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -385,6 +392,7 @@ class _$InitImpl implements _Init {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -427,6 +435,7 @@ class _$InitImpl implements _Init {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -479,6 +488,7 @@ class _$InitImpl implements _Init {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -522,6 +532,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -562,6 +573,7 @@ class _$InitImpl implements _Init {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -644,6 +656,7 @@ class _$InitAddImpl implements _InitAdd {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -691,6 +704,7 @@ class _$InitAddImpl implements _InitAdd {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -733,6 +747,7 @@ class _$InitAddImpl implements _InitAdd {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -785,6 +800,7 @@ class _$InitAddImpl implements _InitAdd {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -828,6 +844,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -868,6 +885,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -950,6 +968,7 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -997,6 +1016,7 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -1039,6 +1059,7 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -1091,6 +1112,7 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -1134,6 +1156,7 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -1174,6 +1197,7 @@ class _$PreloadInitAddImpl implements _PreloadInitAdd {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -1301,6 +1325,7 @@ class _$PrefillCurrentEmployeeImpl implements _PrefillCurrentEmployee {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -1348,6 +1373,7 @@ class _$PrefillCurrentEmployeeImpl implements _PrefillCurrentEmployee {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -1390,6 +1416,7 @@ class _$PrefillCurrentEmployeeImpl implements _PrefillCurrentEmployee {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -1442,6 +1469,7 @@ class _$PrefillCurrentEmployeeImpl implements _PrefillCurrentEmployee {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -1485,6 +1513,7 @@ class _$PrefillCurrentEmployeeImpl implements _PrefillCurrentEmployee {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -1525,6 +1554,7 @@ class _$PrefillCurrentEmployeeImpl implements _PrefillCurrentEmployee {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -1615,6 +1645,7 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -1662,6 +1693,7 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -1704,6 +1736,7 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -1756,6 +1789,7 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -1799,6 +1833,7 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -1839,6 +1874,7 @@ class _$InitPassengerGoInfosImpl implements _InitPassengerGoInfos {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -1926,6 +1962,7 @@ class _$InitPassengerGoInfosForEditImpl
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -1973,6 +2010,7 @@ class _$InitPassengerGoInfosForEditImpl
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -2015,6 +2053,7 @@ class _$InitPassengerGoInfosForEditImpl
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -2067,6 +2106,7 @@ class _$InitPassengerGoInfosForEditImpl
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -2110,6 +2150,7 @@ class _$InitPassengerGoInfosForEditImpl
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -2150,6 +2191,7 @@ class _$InitPassengerGoInfosForEditImpl
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -2233,6 +2275,7 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -2280,6 +2323,7 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -2322,6 +2366,7 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -2374,6 +2419,7 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -2417,6 +2463,7 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -2457,6 +2504,7 @@ class _$AddPassengerGoInfoImpl implements _AddPassengerGoInfo {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -2567,6 +2615,7 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -2614,6 +2663,7 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -2656,6 +2706,7 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -2708,6 +2759,7 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -2751,6 +2803,7 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -2791,6 +2844,7 @@ class _$ExpandPassengerGoInfoImpl implements _ExpandPassengerGoInfo {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -2924,6 +2978,7 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -2971,6 +3026,7 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -3013,6 +3069,7 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -3065,6 +3122,7 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -3108,6 +3166,7 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -3148,6 +3207,7 @@ class _$DeletePassengerGoInfoImpl implements _DeletePassengerGoInfo {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -3244,6 +3304,7 @@ class _$InitCommercialReceiverInfosImpl
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -3291,6 +3352,7 @@ class _$InitCommercialReceiverInfosImpl
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -3333,6 +3395,7 @@ class _$InitCommercialReceiverInfosImpl
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -3385,6 +3448,7 @@ class _$InitCommercialReceiverInfosImpl
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -3428,6 +3492,7 @@ class _$InitCommercialReceiverInfosImpl
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -3468,6 +3533,7 @@ class _$InitCommercialReceiverInfosImpl
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -3555,6 +3621,7 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -3602,6 +3669,7 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -3644,6 +3712,7 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -3696,6 +3765,7 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -3739,6 +3809,7 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -3779,6 +3850,7 @@ class _$AddCommercialReceiverInfoImpl implements _AddCommercialReceiverInfo {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -3893,6 +3965,7 @@ class _$ExpandCommercialReceiverInfoImpl
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -3940,6 +4013,7 @@ class _$ExpandCommercialReceiverInfoImpl
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -3982,6 +4056,7 @@ class _$ExpandCommercialReceiverInfoImpl
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -4034,6 +4109,7 @@ class _$ExpandCommercialReceiverInfoImpl
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -4077,6 +4153,7 @@ class _$ExpandCommercialReceiverInfoImpl
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -4117,6 +4194,7 @@ class _$ExpandCommercialReceiverInfoImpl
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -4255,6 +4333,7 @@ class _$DeleteCommercialReceiverInfoImpl
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -4302,6 +4381,7 @@ class _$DeleteCommercialReceiverInfoImpl
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -4344,6 +4424,7 @@ class _$DeleteCommercialReceiverInfoImpl
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -4396,6 +4477,7 @@ class _$DeleteCommercialReceiverInfoImpl
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -4439,6 +4521,7 @@ class _$DeleteCommercialReceiverInfoImpl
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -4479,6 +4562,7 @@ class _$DeleteCommercialReceiverInfoImpl
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -4572,6 +4656,7 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -4619,6 +4704,7 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -4661,6 +4747,7 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -4713,6 +4800,7 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -4756,6 +4844,7 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -4796,6 +4885,7 @@ class _$InitPickupGiverInfosImpl implements _InitPickupGiverInfos {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -4878,6 +4968,7 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -4925,6 +5016,7 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -4967,6 +5059,7 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -5019,6 +5112,7 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -5062,6 +5156,7 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -5102,6 +5197,7 @@ class _$AddPickupGiverInfoImpl implements _AddPickupGiverInfo {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -5212,6 +5308,7 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -5259,6 +5356,7 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -5301,6 +5399,7 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -5353,6 +5452,7 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -5396,6 +5496,7 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -5436,6 +5537,7 @@ class _$ExpandPickupGiverInfoImpl implements _ExpandPickupGiverInfo {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -5569,6 +5671,7 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -5616,6 +5719,7 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -5658,6 +5762,7 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -5710,6 +5815,7 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -5753,6 +5859,7 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -5793,6 +5900,7 @@ class _$DeletePickupGiverInfoImpl implements _DeletePickupGiverInfo {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -5917,6 +6025,7 @@ class _$UpdateFormImpl implements _UpdateForm {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -5964,6 +6073,7 @@ class _$UpdateFormImpl implements _UpdateForm {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -6006,6 +6116,7 @@ class _$UpdateFormImpl implements _UpdateForm {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -6058,6 +6169,7 @@ class _$UpdateFormImpl implements _UpdateForm {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -6101,6 +6213,7 @@ class _$UpdateFormImpl implements _UpdateForm {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -6141,6 +6254,7 @@ class _$UpdateFormImpl implements _UpdateForm {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -6262,6 +6376,7 @@ class _$UpdateInfoImpl implements _UpdateInfo {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -6309,6 +6424,7 @@ class _$UpdateInfoImpl implements _UpdateInfo {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -6351,6 +6467,7 @@ class _$UpdateInfoImpl implements _UpdateInfo {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -6403,6 +6520,7 @@ class _$UpdateInfoImpl implements _UpdateInfo {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -6446,6 +6564,7 @@ class _$UpdateInfoImpl implements _UpdateInfo {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -6486,6 +6605,7 @@ class _$UpdateInfoImpl implements _UpdateInfo {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -6510,6 +6630,352 @@ abstract class _UpdateInfo implements BookingVehicleEvent {
   Map<String, dynamic> get values;
   @JsonKey(ignore: true)
   _$$UpdateInfoImplCopyWith<_$UpdateInfoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectApproverImplCopyWith<$Res> {
+  factory _$$SelectApproverImplCopyWith(_$SelectApproverImpl value,
+          $Res Function(_$SelectApproverImpl) then) =
+      __$$SelectApproverImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int employeeId});
+}
+
+/// @nodoc
+class __$$SelectApproverImplCopyWithImpl<$Res>
+    extends _$BookingVehicleEventCopyWithImpl<$Res, _$SelectApproverImpl>
+    implements _$$SelectApproverImplCopyWith<$Res> {
+  __$$SelectApproverImplCopyWithImpl(
+      _$SelectApproverImpl _value, $Res Function(_$SelectApproverImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? employeeId = null,
+  }) {
+    return _then(_$SelectApproverImpl(
+      employeeId: null == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectApproverImpl implements _SelectApprover {
+  const _$SelectApproverImpl({required this.employeeId});
+
+  @override
+  final int employeeId;
+
+  @override
+  String toString() {
+    return 'BookingVehicleEvent.selectApprover(employeeId: $employeeId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectApproverImpl &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, employeeId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectApproverImplCopyWith<_$SelectApproverImpl> get copyWith =>
+      __$$SelectApproverImplCopyWithImpl<_$SelectApproverImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function() preloadInitAdd,
+    required TResult Function(BookingVehiclePersonalItem? employee)
+        prefillCurrentEmployee,
+    required TResult Function() initPassengerGoInfos,
+    required TResult Function() initPassengerGoInfosForEdit,
+    required TResult Function() addPassengerGoInfo,
+    required TResult Function(int index) expandPassengerGoInfo,
+    required TResult Function(int index, Map<String, dynamic> shiftedFields)
+        deletePassengerGoInfo,
+    required TResult Function() initCommercialReceiverInfos,
+    required TResult Function() addCommercialReceiverInfo,
+    required TResult Function(int index) expandCommercialReceiverInfo,
+    required TResult Function(int index, Map<String, dynamic> shiftedFields)
+        deleteCommercialReceiverInfo,
+    required TResult Function() initPickupGiverInfos,
+    required TResult Function() addPickupGiverInfo,
+    required TResult Function(int index) expandPickupGiverInfo,
+    required TResult Function(int index, Map<String, dynamic> shiftedFields)
+        deletePickupGiverInfo,
+    required TResult Function(Map<String, dynamic> values) updateForm,
+    required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
+    required TResult Function(
+            Map<String, dynamic> formValues, int? existingBookingId)
+        submitPassengerGo,
+    required TResult Function(
+            Map<String, dynamic> formValues, int? existingBookingId)
+        submitPassengerReturn,
+    required TResult Function(
+            Map<String, dynamic> formValues, int? existingBookingId)
+        submitCommercialDelivery,
+    required TResult Function(
+            Map<String, dynamic> formValues, int? existingBookingId)
+        submitCommercialPickup,
+    required TResult Function() clearSubmitResult,
+    required TResult Function(int vehicleBookingId) cancelBookingVehicle,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int group) changeBookingTypeGroup,
+  }) {
+    return selectApprover(employeeId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function()? preloadInitAdd,
+    TResult? Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
+    TResult? Function()? initPassengerGoInfos,
+    TResult? Function()? initPassengerGoInfosForEdit,
+    TResult? Function()? addPassengerGoInfo,
+    TResult? Function(int index)? expandPassengerGoInfo,
+    TResult? Function(int index, Map<String, dynamic> shiftedFields)?
+        deletePassengerGoInfo,
+    TResult? Function()? initCommercialReceiverInfos,
+    TResult? Function()? addCommercialReceiverInfo,
+    TResult? Function(int index)? expandCommercialReceiverInfo,
+    TResult? Function(int index, Map<String, dynamic> shiftedFields)?
+        deleteCommercialReceiverInfo,
+    TResult? Function()? initPickupGiverInfos,
+    TResult? Function()? addPickupGiverInfo,
+    TResult? Function(int index)? expandPickupGiverInfo,
+    TResult? Function(int index, Map<String, dynamic> shiftedFields)?
+        deletePickupGiverInfo,
+    TResult? Function(Map<String, dynamic> values)? updateForm,
+    TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
+    TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitPassengerGo,
+    TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitPassengerReturn,
+    TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitCommercialDelivery,
+    TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitCommercialPickup,
+    TResult? Function()? clearSubmitResult,
+    TResult? Function(int vehicleBookingId)? cancelBookingVehicle,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int group)? changeBookingTypeGroup,
+  }) {
+    return selectApprover?.call(employeeId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function()? preloadInitAdd,
+    TResult Function(BookingVehiclePersonalItem? employee)?
+        prefillCurrentEmployee,
+    TResult Function()? initPassengerGoInfos,
+    TResult Function()? initPassengerGoInfosForEdit,
+    TResult Function()? addPassengerGoInfo,
+    TResult Function(int index)? expandPassengerGoInfo,
+    TResult Function(int index, Map<String, dynamic> shiftedFields)?
+        deletePassengerGoInfo,
+    TResult Function()? initCommercialReceiverInfos,
+    TResult Function()? addCommercialReceiverInfo,
+    TResult Function(int index)? expandCommercialReceiverInfo,
+    TResult Function(int index, Map<String, dynamic> shiftedFields)?
+        deleteCommercialReceiverInfo,
+    TResult Function()? initPickupGiverInfos,
+    TResult Function()? addPickupGiverInfo,
+    TResult Function(int index)? expandPickupGiverInfo,
+    TResult Function(int index, Map<String, dynamic> shiftedFields)?
+        deletePickupGiverInfo,
+    TResult Function(Map<String, dynamic> values)? updateForm,
+    TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
+    TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitPassengerGo,
+    TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitPassengerReturn,
+    TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitCommercialDelivery,
+    TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
+        submitCommercialPickup,
+    TResult Function()? clearSubmitResult,
+    TResult Function(int vehicleBookingId)? cancelBookingVehicle,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int group)? changeBookingTypeGroup,
+    required TResult orElse(),
+  }) {
+    if (selectApprover != null) {
+      return selectApprover(employeeId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_PreloadInitAdd value) preloadInitAdd,
+    required TResult Function(_PrefillCurrentEmployee value)
+        prefillCurrentEmployee,
+    required TResult Function(_InitPassengerGoInfos value) initPassengerGoInfos,
+    required TResult Function(_InitPassengerGoInfosForEdit value)
+        initPassengerGoInfosForEdit,
+    required TResult Function(_AddPassengerGoInfo value) addPassengerGoInfo,
+    required TResult Function(_ExpandPassengerGoInfo value)
+        expandPassengerGoInfo,
+    required TResult Function(_DeletePassengerGoInfo value)
+        deletePassengerGoInfo,
+    required TResult Function(_InitCommercialReceiverInfos value)
+        initCommercialReceiverInfos,
+    required TResult Function(_AddCommercialReceiverInfo value)
+        addCommercialReceiverInfo,
+    required TResult Function(_ExpandCommercialReceiverInfo value)
+        expandCommercialReceiverInfo,
+    required TResult Function(_DeleteCommercialReceiverInfo value)
+        deleteCommercialReceiverInfo,
+    required TResult Function(_InitPickupGiverInfos value) initPickupGiverInfos,
+    required TResult Function(_AddPickupGiverInfo value) addPickupGiverInfo,
+    required TResult Function(_ExpandPickupGiverInfo value)
+        expandPickupGiverInfo,
+    required TResult Function(_DeletePickupGiverInfo value)
+        deletePickupGiverInfo,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
+    required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
+    required TResult Function(_SubmitPassengerReturn value)
+        submitPassengerReturn,
+    required TResult Function(_SubmitCommercialDelivery value)
+        submitCommercialDelivery,
+    required TResult Function(_SubmitCommercialPickup value)
+        submitCommercialPickup,
+    required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_CancelBookingVehicle value) cancelBookingVehicle,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeBookingTypeGroup value)
+        changeBookingTypeGroup,
+  }) {
+    return selectApprover(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult? Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
+    TResult? Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult? Function(_InitPassengerGoInfosForEdit value)?
+        initPassengerGoInfosForEdit,
+    TResult? Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult? Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult? Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult? Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult? Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult? Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult? Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult? Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult? Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult? Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
+    TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
+    TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult? Function(_SubmitCommercialDelivery value)?
+        submitCommercialDelivery,
+    TResult? Function(_SubmitCommercialPickup value)? submitCommercialPickup,
+    TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_CancelBookingVehicle value)? cancelBookingVehicle,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeBookingTypeGroup value)? changeBookingTypeGroup,
+  }) {
+    return selectApprover?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_PreloadInitAdd value)? preloadInitAdd,
+    TResult Function(_PrefillCurrentEmployee value)? prefillCurrentEmployee,
+    TResult Function(_InitPassengerGoInfos value)? initPassengerGoInfos,
+    TResult Function(_InitPassengerGoInfosForEdit value)?
+        initPassengerGoInfosForEdit,
+    TResult Function(_AddPassengerGoInfo value)? addPassengerGoInfo,
+    TResult Function(_ExpandPassengerGoInfo value)? expandPassengerGoInfo,
+    TResult Function(_DeletePassengerGoInfo value)? deletePassengerGoInfo,
+    TResult Function(_InitCommercialReceiverInfos value)?
+        initCommercialReceiverInfos,
+    TResult Function(_AddCommercialReceiverInfo value)?
+        addCommercialReceiverInfo,
+    TResult Function(_ExpandCommercialReceiverInfo value)?
+        expandCommercialReceiverInfo,
+    TResult Function(_DeleteCommercialReceiverInfo value)?
+        deleteCommercialReceiverInfo,
+    TResult Function(_InitPickupGiverInfos value)? initPickupGiverInfos,
+    TResult Function(_AddPickupGiverInfo value)? addPickupGiverInfo,
+    TResult Function(_ExpandPickupGiverInfo value)? expandPickupGiverInfo,
+    TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
+    TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
+    TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
+    TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
+    TResult Function(_SubmitCommercialPickup value)? submitCommercialPickup,
+    TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_CancelBookingVehicle value)? cancelBookingVehicle,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeBookingTypeGroup value)? changeBookingTypeGroup,
+    required TResult orElse(),
+  }) {
+    if (selectApprover != null) {
+      return selectApprover(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectApprover implements BookingVehicleEvent {
+  const factory _SelectApprover({required final int employeeId}) =
+      _$SelectApproverImpl;
+
+  int get employeeId;
+  @JsonKey(ignore: true)
+  _$$SelectApproverImplCopyWith<_$SelectApproverImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -6622,6 +7088,7 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -6669,6 +7136,7 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -6711,6 +7179,7 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -6763,6 +7232,7 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -6806,6 +7276,7 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -6846,6 +7317,7 @@ class _$SubmitPassengerGoImpl implements _SubmitPassengerGo {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -6985,6 +7457,7 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -7032,6 +7505,7 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -7074,6 +7548,7 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -7126,6 +7601,7 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -7169,6 +7645,7 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -7209,6 +7686,7 @@ class _$SubmitPassengerReturnImpl implements _SubmitPassengerReturn {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -7350,6 +7828,7 @@ class _$SubmitCommercialDeliveryImpl implements _SubmitCommercialDelivery {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -7397,6 +7876,7 @@ class _$SubmitCommercialDeliveryImpl implements _SubmitCommercialDelivery {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -7439,6 +7919,7 @@ class _$SubmitCommercialDeliveryImpl implements _SubmitCommercialDelivery {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -7491,6 +7972,7 @@ class _$SubmitCommercialDeliveryImpl implements _SubmitCommercialDelivery {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -7534,6 +8016,7 @@ class _$SubmitCommercialDeliveryImpl implements _SubmitCommercialDelivery {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -7574,6 +8057,7 @@ class _$SubmitCommercialDeliveryImpl implements _SubmitCommercialDelivery {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -7715,6 +8199,7 @@ class _$SubmitCommercialPickupImpl implements _SubmitCommercialPickup {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -7762,6 +8247,7 @@ class _$SubmitCommercialPickupImpl implements _SubmitCommercialPickup {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -7804,6 +8290,7 @@ class _$SubmitCommercialPickupImpl implements _SubmitCommercialPickup {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -7856,6 +8343,7 @@ class _$SubmitCommercialPickupImpl implements _SubmitCommercialPickup {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -7899,6 +8387,7 @@ class _$SubmitCommercialPickupImpl implements _SubmitCommercialPickup {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -7939,6 +8428,7 @@ class _$SubmitCommercialPickupImpl implements _SubmitCommercialPickup {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -8029,6 +8519,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -8076,6 +8567,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -8118,6 +8610,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -8170,6 +8663,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -8213,6 +8707,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -8253,6 +8748,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -8364,6 +8860,7 @@ class _$CancelBookingVehicleImpl implements _CancelBookingVehicle {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -8411,6 +8908,7 @@ class _$CancelBookingVehicleImpl implements _CancelBookingVehicle {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -8453,6 +8951,7 @@ class _$CancelBookingVehicleImpl implements _CancelBookingVehicle {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -8505,6 +9004,7 @@ class _$CancelBookingVehicleImpl implements _CancelBookingVehicle {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -8548,6 +9048,7 @@ class _$CancelBookingVehicleImpl implements _CancelBookingVehicle {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -8588,6 +9089,7 @@ class _$CancelBookingVehicleImpl implements _CancelBookingVehicle {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -8712,6 +9214,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -8759,6 +9262,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -8801,6 +9305,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -8853,6 +9358,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -8896,6 +9402,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -8936,6 +9443,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,
@@ -9056,6 +9564,7 @@ class _$ChangeBookingTypeGroupImpl implements _ChangeBookingTypeGroup {
         deletePickupGiverInfo,
     required TResult Function(Map<String, dynamic> values) updateForm,
     required TResult Function(Map<String, dynamic> values) updateInfo,
+    required TResult Function(int employeeId) selectApprover,
     required TResult Function(
             Map<String, dynamic> formValues, int? existingBookingId)
         submitPassengerGo,
@@ -9103,6 +9612,7 @@ class _$ChangeBookingTypeGroupImpl implements _ChangeBookingTypeGroup {
         deletePickupGiverInfo,
     TResult? Function(Map<String, dynamic> values)? updateForm,
     TResult? Function(Map<String, dynamic> values)? updateInfo,
+    TResult? Function(int employeeId)? selectApprover,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult? Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -9145,6 +9655,7 @@ class _$ChangeBookingTypeGroupImpl implements _ChangeBookingTypeGroup {
         deletePickupGiverInfo,
     TResult Function(Map<String, dynamic> values)? updateForm,
     TResult Function(Map<String, dynamic> values)? updateInfo,
+    TResult Function(int employeeId)? selectApprover,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
         submitPassengerGo,
     TResult Function(Map<String, dynamic> formValues, int? existingBookingId)?
@@ -9197,6 +9708,7 @@ class _$ChangeBookingTypeGroupImpl implements _ChangeBookingTypeGroup {
         deletePickupGiverInfo,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_UpdateInfo value) updateInfo,
+    required TResult Function(_SelectApprover value) selectApprover,
     required TResult Function(_SubmitPassengerGo value) submitPassengerGo,
     required TResult Function(_SubmitPassengerReturn value)
         submitPassengerReturn,
@@ -9240,6 +9752,7 @@ class _$ChangeBookingTypeGroupImpl implements _ChangeBookingTypeGroup {
     TResult? Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_UpdateInfo value)? updateInfo,
+    TResult? Function(_SelectApprover value)? selectApprover,
     TResult? Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult? Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult? Function(_SubmitCommercialDelivery value)?
@@ -9280,6 +9793,7 @@ class _$ChangeBookingTypeGroupImpl implements _ChangeBookingTypeGroup {
     TResult Function(_DeletePickupGiverInfo value)? deletePickupGiverInfo,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_UpdateInfo value)? updateInfo,
+    TResult Function(_SelectApprover value)? selectApprover,
     TResult Function(_SubmitPassengerGo value)? submitPassengerGo,
     TResult Function(_SubmitPassengerReturn value)? submitPassengerReturn,
     TResult Function(_SubmitCommercialDelivery value)? submitCommercialDelivery,

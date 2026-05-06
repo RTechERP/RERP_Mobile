@@ -2,7 +2,6 @@ import 'dart:math' as math;
 
 import 'package:intl/intl.dart';
 
-import '../../../../../../../../common/helpers/validate_helper.dart';
 import '../data/datasource/models/booking_vehicle_model.dart';
 import 'booking_vehicle_api_categories.dart';
 
@@ -20,10 +19,12 @@ DateTime bookingVehicleProblemRuleRegistrationReference(
   return DateTime.now();
 }
 
-/// Cờ create: không phát sinh.
-Map<String, dynamic> _bookingVehicleCreateStatusFlags() {
+/// Cờ create mặc định hoặc phát sinh.
+Map<String, dynamic> _bookingVehicleCreateStatusFlags({
+  bool isProblemArises = false,
+}) {
   return <String, dynamic>{
-    'IsProblemArises': false,
+    'IsProblemArises': isProblemArises,
     'IsCancel': false,
     'IsSend': false,
     'IsNotifiled': false,
@@ -34,6 +35,31 @@ String _trimStr(dynamic v) {
   if (v == null) return '';
   if (v is String) return v.trim();
   return v.toString().trim();
+}
+
+/// Parse ApproverID từ form field (lưu dạng string).
+int bookingVehicleParseApproverId(dynamic v) {
+  if (v == null) return 0;
+  if (v is int) return v;
+  final s = _trimStr(v);
+  if (s.isEmpty) return 0;
+  return int.tryParse(s) ?? 0;
+}
+
+/// Đọc ApproverID từ field `approver_text` (format "CODE - NAME").
+///
+/// Dùng thay cho `bookingVehicleParseApproverId(formValues['approver'])`
+/// vì `FormInputField` không sync ngược giá trị vào outer `FormBuilderField`.
+int bookingVehicleParseApproverIdFromText(
+  dynamic textValue,
+  List<BookingVehiclePersonalItem> employees,
+) {
+  final line = _trimStr(textValue);
+  if (line.isEmpty) return 0;
+  final sep = line.indexOf(' - ');
+  if (sep <= 0) return 0;
+  final code = line.substring(0, sep).trim();
+  return resolvePassengerEmployeeIdFromCode(code, employees);
 }
 
 /// Dùng khi đọc giá trị từ [FormBuilder] (kiểu không đồng nhất).
@@ -241,6 +267,9 @@ Map<String, dynamic> buildPassengerGoCreatePayload({
   required List<BookingVehicleProjectItem> projects,
   required List<BookingVehiclePersonalItem> employees,
   int? existingBookingId,
+  int? approvedTBP,
+  bool isProblemArises = false,
+  String? problemArises,
 }) {
   final projectId = resolveBookingVehicleProjectId(form['project'], projects);
   final passengerCode = _trimStr(form['passenger_code_$passengerIndex']);
@@ -266,7 +295,8 @@ Map<String, dynamic> buildPassengerGoCreatePayload({
     'DepartureDate': _formatApiDateTime(form['time_depart']) ?? '',
     'EmployeeID': bookerEmployeeId,
     'ID': _payloadBookingId(existingBookingId, passengerIndex),
-    ..._bookingVehicleCreateStatusFlags(),
+    ..._bookingVehicleCreateStatusFlags(isProblemArises: isProblemArises),
+    'ApprovedTBP': approvedTBP ?? 0,
     'Note': _trimStr(form['passenger_note_$passengerIndex']),
     'PackageName': '',
     'PackageQuantity': 0,
@@ -282,6 +312,7 @@ Map<String, dynamic> buildPassengerGoCreatePayload({
       form['passenger_contact_phone_$passengerIndex'],
     ),
     'PhoneNumber': '',
+    'ProblemArises': _trimStr(problemArises),
     'ProjectID': projectId,
     'Province': _trimStr(form['provinces']),
     'ReceiverCode': '',
@@ -303,6 +334,9 @@ List<Map<String, dynamic>> buildAllPassengerGoCreatePayloads({
   required List<BookingVehiclePersonalItem> employees,
   required int passengerLineCount,
   int? existingBookingId,
+  int? approvedTBP,
+  bool isProblemArises = false,
+  String? problemArises,
 }) {
   if (bookerEmployeeId == null) return const [];
   final name = _trimStr(bookerFullName);
@@ -318,6 +352,9 @@ List<Map<String, dynamic>> buildAllPassengerGoCreatePayloads({
         projects: projects,
         employees: employees,
         existingBookingId: existingBookingId,
+        approvedTBP: approvedTBP,
+        isProblemArises: isProblemArises,
+        problemArises: problemArises,
       ),
     );
   }
@@ -325,15 +362,6 @@ List<Map<String, dynamic>> buildAllPassengerGoCreatePayloads({
 }
 
 /// **Đăng ký người về** — [BookingVehicleApiCategory.passengerReturn] (5).
-///
-/// Form màn **Người về**: `time_return` = đón → `DepartureDate`,
-/// `time_need_present` = cần về → `TimeNeedPresent` (API: xuất phát &lt; cần đến).
-///
-/// **Phát sinh người về** (mốc `time_need_present` + thời điểm đăng ký / `CreatedDate` khi sửa —
-/// [ValidateHelper.bookingVehicleIsProblemArises], **không** có UI TBP trên form người về):
-/// cờ create `IsProblemArises=true`, `IsCancel=false`, `IsSend=false`,
-/// `IsNotifiled=false` (tương đương isNotified).
-/// `ProblemArises` lấy từ form nếu có (thường rỗng).
 Map<String, dynamic> buildPassengerReturnCreatePayload({
   required Map<String, dynamic> form,
   required int passengerIndex,
@@ -342,6 +370,9 @@ Map<String, dynamic> buildPassengerReturnCreatePayload({
   required List<BookingVehicleProjectItem> projects,
   required List<BookingVehiclePersonalItem> employees,
   int? existingBookingId,
+  int? approvedTBP,
+  bool isProblemArises = false,
+  String? problemArises,
 }) {
   final projectId = resolveBookingVehicleProjectId(form['project'], projects);
   final passengerCode = _trimStr(form['passenger_code_$passengerIndex']);
@@ -353,7 +384,6 @@ Map<String, dynamic> buildPassengerReturnCreatePayload({
   final departureDateStr = _formatApiDateTime(form['time_return']) ?? '';
   final timeNeedPresentStr =
       _formatApiDateTime(form['time_need_present']) ?? '';
-
 
   return <String, dynamic>{
     'BookerVehicles': bookerFullName,
@@ -370,7 +400,8 @@ Map<String, dynamic> buildPassengerReturnCreatePayload({
     'DepartureDate': departureDateStr,
     'EmployeeID': bookerEmployeeId,
     'ID': _payloadBookingId(existingBookingId, passengerIndex),
-    ..._bookingVehicleCreateStatusFlags(),
+    ..._bookingVehicleCreateStatusFlags(isProblemArises: isProblemArises),
+    'ApprovedTBP': approvedTBP ?? 0,
     'Note': _trimStr(form['passenger_note_$passengerIndex']),
     'PackageName': '',
     'PackageQuantity': 0,
@@ -386,6 +417,7 @@ Map<String, dynamic> buildPassengerReturnCreatePayload({
       form['passenger_contact_phone_$passengerIndex'],
     ),
     'PhoneNumber': '',
+    'ProblemArises': _trimStr(problemArises),
     'ProjectID': projectId,
     'Province': _trimStr(form['provinces']),
     'ReceiverCode': '',
@@ -407,6 +439,9 @@ List<Map<String, dynamic>> buildAllPassengerReturnCreatePayloads({
   required List<BookingVehiclePersonalItem> employees,
   required int passengerLineCount,
   int? existingBookingId,
+  int? approvedTBP,
+  bool isProblemArises = false,
+  String? problemArises,
 }) {
   if (bookerEmployeeId == null) return const [];
   final name = _trimStr(bookerFullName);
@@ -422,6 +457,9 @@ List<Map<String, dynamic>> buildAllPassengerReturnCreatePayloads({
         projects: projects,
         employees: employees,
         existingBookingId: existingBookingId,
+        approvedTBP: approvedTBP,
+        isProblemArises: isProblemArises,
+        problemArises: problemArises,
       ),
     );
   }
@@ -524,6 +562,9 @@ Map<String, dynamic> buildCommercialDeliveryCreatePayload({
   required List<BookingVehicleProjectItem> projects,
   required List<BookingVehiclePersonalItem> employees,
   int? existingBookingId,
+  int? approvedTBP,
+  bool isProblemArises = false,
+  String? problemArises,
 }) {
   final projectId = resolveBookingVehicleProjectId(form['project'], projects);
   final pickerLine = _trimStr(form['receiver_employee_$receiverIndex']);
@@ -553,7 +594,8 @@ Map<String, dynamic> buildCommercialDeliveryCreatePayload({
     'DepartureDate': _formatApiDateTime(form['time_return']) ?? '',
     'EmployeeID': bookerEmployeeId,
     'ID': _payloadBookingId(existingBookingId, receiverIndex),
-    ..._bookingVehicleCreateStatusFlags(),
+    ..._bookingVehicleCreateStatusFlags(isProblemArises: isProblemArises),
+    'ApprovedTBP': approvedTBP ?? 0,
     'Note': _trimStr(form['note_return_or_delivery_$receiverIndex']),
     'PackageName': _trimStr(form['commercial_package_name_$receiverIndex']),
     'PackageQuantity': packageQty,
@@ -565,6 +607,7 @@ Map<String, dynamic> buildCommercialDeliveryCreatePayload({
     'PassengerName': '',
     'PassengerPhoneNumber': '',
     'PhoneNumber': '',
+    'ProblemArises': _trimStr(problemArises),
     'ProjectID': projectId,
     'Province': _trimStr(form['provinces']),
     'ReceiverCode': receiverCode,
@@ -587,6 +630,9 @@ List<Map<String, dynamic>> buildAllCommercialDeliveryCreatePayloads({
   required int receiverLineCount,
   required int apiCategory,
   int? existingBookingId,
+  int? approvedTBP,
+  bool isProblemArises = false,
+  String? problemArises,
 }) {
   if (bookerEmployeeId == null || apiCategory == 0) return const [];
   final name = _trimStr(bookerFullName);
@@ -603,6 +649,9 @@ List<Map<String, dynamic>> buildAllCommercialDeliveryCreatePayloads({
         projects: projects,
         employees: employees,
         existingBookingId: existingBookingId,
+        approvedTBP: approvedTBP,
+        isProblemArises: isProblemArises,
+        problemArises: problemArises,
       ),
     );
   }
@@ -619,6 +668,9 @@ Map<String, dynamic> buildCommercialPickupCreatePayload({
   required List<BookingVehicleProjectItem> projects,
   required List<BookingVehiclePersonalItem> employees,
   int? existingBookingId,
+  int? approvedTBP,
+  bool isProblemArises = false,
+  String? problemArises,
 }) {
   final projectId =
       resolveBookingVehicleProjectId(form['pickup_project'], projects);
@@ -647,7 +699,8 @@ Map<String, dynamic> buildCommercialPickupCreatePayload({
     'DepartureDate': _formatApiDateTime(form['pickup_departure_time']) ?? '',
     'EmployeeID': bookerEmployeeId,
     'ID': _payloadBookingId(existingBookingId, giverIndex),
-    ..._bookingVehicleCreateStatusFlags(),
+    ..._bookingVehicleCreateStatusFlags(isProblemArises: isProblemArises),
+    'ApprovedTBP': approvedTBP ?? 0,
     'Note': _trimStr(form['note_pickup_package_$giverIndex']),
     'PackageName': _trimStr(form['pickup_package_name_$giverIndex']),
     'PackageQuantity': packageQty,
@@ -659,6 +712,7 @@ Map<String, dynamic> buildCommercialPickupCreatePayload({
     'PassengerName': '',
     'PassengerPhoneNumber': '',
     'PhoneNumber': '',
+    'ProblemArises': _trimStr(problemArises),
     'ProjectID': projectId,
     'Province': _trimStr(form['pickup_province']),
     'ReceiverCode': giverCode,
@@ -682,6 +736,9 @@ List<Map<String, dynamic>> buildAllCommercialPickupCreatePayloads({
   required int giverLineCount,
   required int apiCategory,
   int? existingBookingId,
+  int? approvedTBP,
+  bool isProblemArises = false,
+  String? problemArises,
 }) {
   if (bookerEmployeeId == null || apiCategory == 0) return const [];
   final name = _trimStr(bookerFullName);
@@ -698,6 +755,9 @@ List<Map<String, dynamic>> buildAllCommercialPickupCreatePayloads({
         projects: projects,
         employees: employees,
         existingBookingId: existingBookingId,
+        approvedTBP: approvedTBP,
+        isProblemArises: isProblemArises,
+        problemArises: problemArises,
       ),
     );
   }

@@ -61,9 +61,6 @@ class _BookingVehicleAddScreenState
   /// (FormBuilderField không tự sync sau patchValue nếu listener chưa attach).
   final _typeTransportKey = GlobalKey<FormBuilderFieldState>();
 
-  /// Visible khi thời gian cần đến == hôm nay (chỉ ở add mode).
-  bool _problemRuleVisible = false;
-
   /// Thứ tự ưu tiên validate field: theo layout form từ trên xuống dưới.
   /// passengerGo: main form → passenger rows (index 0..n).
   static const List<String> _passengerGoPriority = [
@@ -158,6 +155,31 @@ class _BookingVehicleAddScreenState
       default:
         return _BookingVehicleTypeGroup.passengerGo;
     }
+  }
+
+  /// Tính visible của card Người duyệt / Lý do phát sinh từ bloc state.
+  /// Chỉ hiện khi: không phải sửa, không phải người về,
+  /// và time_need_present == hôm nay.
+  bool _shouldShowProblemRuleCard(BookingVehicleState bvState) {
+    if (_isEditMode) return false;
+    if (_bookingTypeGroupEnum(bvState.bookingTypeGroup) ==
+        _BookingVehicleTypeGroup.passengerReturn)
+      return false;
+
+    final group = _bookingTypeGroupEnum(bvState.bookingTypeGroup);
+    final String needArriveField;
+    if (group == _BookingVehicleTypeGroup.commercialPickupAndDemoPickup) {
+      needArriveField = 'pickup_need_arrive_time';
+    } else {
+      needArriveField = 'time_need_present';
+    }
+
+    final needArrive = bvState.formFieldValues[needArriveField] as DateTime?;
+    if (needArrive == null) return false;
+    final today = DateTime.now();
+    return needArrive.year == today.year &&
+        needArrive.month == today.month &&
+        needArrive.day == today.day;
   }
 
   int _bookingTypeGroupFromLabel(String label) {
@@ -395,6 +417,7 @@ class _BookingVehicleAddScreenState
         return _commercialPickupPriority;
     }
   }
+
   void _onSubmitForm() {
     FocusScope.of(context).unfocus();
 
@@ -481,11 +504,7 @@ class _BookingVehicleAddScreenState
                 !current.isSubmitting &&
                 !current.submitSuccess,
             listener: (context, state) {
-              showMessage(
-                context,
-                state.message!,
-                type: SnackBarType.error,
-              );
+              showMessage(context, state.message!, type: SnackBarType.error);
             },
             child: BlocListener<BookingVehicleBloc, BookingVehicleState>(
               listenWhen: (previous, current) =>
@@ -497,830 +516,897 @@ class _BookingVehicleAddScreenState
               },
               child: BaseScaffold(
                 appBar: AppBarCommon(
-                  title: Text(
-                    _isEditMode ? 'Sửa đặt xe' : 'Tạo đặt xe',
-                  ),
+                  title: Text(_isEditMode ? 'Sửa đặt xe' : 'Tạo đặt xe'),
                 ),
                 body: BlocBuilder<BookingVehicleBloc, BookingVehicleState>(
-                  buildWhen: (prev, curr) =>
-                  prev.status != curr.status ||
-                  prev.projects != curr.projects ||
-                  prev.provinceDeparture != curr.provinceDeparture ||
-                  prev.provinceArrives != curr.provinceArrives ||
-                  prev.approver != curr.approver ||
-                  prev.formFieldValues != curr.formFieldValues ||
-                  prev.employee != curr.employee ||
-                  prev.currentEmployee != curr.currentEmployee ||
-                  prev.passengerGoLineCount != curr.passengerGoLineCount ||
-                  prev.expandedPassengerGoIndex !=
-                      curr.expandedPassengerGoIndex ||
-                  prev.passengerGoFirstRowIsCurrentUserSlot !=
-                      curr.passengerGoFirstRowIsCurrentUserSlot ||
-                  prev.passengerFormGeneration !=
-                      curr.passengerFormGeneration ||
-                  prev.commercialReceiverLineCount !=
-                      curr.commercialReceiverLineCount ||
-                  prev.expandedCommercialDeliveryReceiverIndex !=
-                      curr.expandedCommercialDeliveryReceiverIndex ||
-                  prev.commercialReceiverFormGeneration !=
-                      curr.commercialReceiverFormGeneration ||
-                  prev.pickupGiverLineCount != curr.pickupGiverLineCount ||
-                  prev.expandedPickupGiverIndex !=
-                      curr.expandedPickupGiverIndex ||
-                  prev.pickupGiverFormGeneration !=
-                      curr.pickupGiverFormGeneration ||
-                  prev.infoFieldValues != curr.infoFieldValues ||
-                  prev.bookingTypeGroup != curr.bookingTypeGroup,
-              builder: (context, state) {
-                return FormBuilder(
-                  key: _formKey,
-                  initialValue: {
-                    'booking_type': 'Đăng ký người đi',
-                    'booking_type_text': 'Đăng ký người đi',
-                    'type_transport': 'Ô tô, xe máy ...',
-                    'type_transport_text': 'Ô tô, xe máy ...',
-                    'starting_point': 'VP Hà Nội',
-                    'return_point': 'Khác',
-                    ...state.formFieldValues,
-                    ...state.infoFieldValues,
-                  },
-                  onChanged: () {
-                    final raw =
-                        _formKey.currentState?.instantValue ?? const {};
-                    final split = splitBookingVehicleFormAndInfo(raw);
-                    if (split.form.isNotEmpty) {
-                      bloc.add(
-                        BookingVehicleEvent.updateForm(values: split.form),
-                      );
-                    }
-                    if (split.info.isNotEmpty) {
-                      bloc.add(
-                        BookingVehicleEvent.updateInfo(values: split.info),
-                      );
-                    }
-                    // Cập nhật visibility của "Lý do phát sinh" theo time_need_present.
-                    if (!_isEditMode) {
-                      final needArriveField =
-                          _bookingTypeGroupEnum(bloc.state.bookingTypeGroup) ==
-                                  _BookingVehicleTypeGroup
-                                      .commercialPickupAndDemoPickup
-                              ? 'pickup_need_arrive_time'
-                              : 'time_need_present';
-                      final needArrive =
-                          raw[needArriveField] as DateTime?;
-                      final today = DateTime.now();
-                      final isToday = needArrive != null &&
-                          needArrive.year == today.year &&
-                          needArrive.month == today.month &&
-                          needArrive.day == today.day;
-                      if (_problemRuleVisible != isToday) {
-                        setState(() {
-                          _problemRuleVisible = isToday;
-                        });
-                      }
-                    }
-                  },
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: ListView(
-                          padding: const EdgeInsets.all(16),
-                          children: [
-                            /// ===== HÌNH THỨC ĐẶT =====
-                            FormCard(
-                              child: GestureDetector(
-                                onTap: () {
-                                  openSelectBottomSheet(
-                                    context: context,
-                                    title: 'Chọn hình thức đặt',
-                                    items: const [
-                                      'Đăng ký người đi',
-                                      'Đăng ký người về',
-                                      'Đăng ký giao hàng thương mại',
-                                      'Đăng ký lấy hàng thương mại',
-                                      'Đăng ký giao hàng Demo/triển lãm',
-                                      'Đăng ký lấy hàng Demo/triển lãm',
-                                    ],
-                                    onSelected: (item) {
-                                      _bookingTypeField?.didChange(item);
-                                      final groupNum = _bookingTypeGroupFromLabel(item);
-                                      bloc.add(
-                                        BookingVehicleEvent.changeBookingTypeGroup(
-                                          group: groupNum,
-                                        ),
-                                      );
-
-                                      if (groupNum == 0 || groupNum == 1) {
-                                        bloc.add(
-                                          const BookingVehicleEvent
-                                              .initPassengerGoInfos(),
-                                        );
-                                      } else if (groupNum == 2) {
-                                        bloc.add(
-                                          const BookingVehicleEvent
-                                              .initCommercialReceiverInfos(),
-                                        );
-                                        bloc.add(
-                                          const BookingVehicleEvent
-                                              .preloadInitAdd(),
-                                        );
-                                      } else if (groupNum == 3) {
-                                        bloc.add(
-                                          const BookingVehicleEvent
-                                              .initPickupGiverInfos(),
-                                        );
-                                        bloc.add(
-                                          const BookingVehicleEvent
-                                              .preloadInitAdd(),
-                                        );
-                                      }
-                                    },
-                                    displayText: (item) => item,
-                                  );
-                                },
-                                child: AbsorbPointer(
-                                  child: FormInputField(
-                                    nameForm: 'booking_type',
-                                    nameTextField: 'booking_type_text',
-                                    label: 'Hình thức đặt',
-                                    onFieldCreated: (field) =>
-                                        _bookingTypeField = field,
-                                    icon: Icons.directions_car_outlined,
-                                    isRequired: true,
-                                    validator: FormBuilderValidators.required(
-                                      errorText: 'Vui lòng chọn hình thức đặt',
-                                    ),
-                                    readOnly: true,
-                                  ),
-                                ),
+                    buildWhen: (prev, curr) =>
+                        prev.status != curr.status ||
+                        prev.bookingTypeGroup != curr.bookingTypeGroup ||
+                        prev.projects != curr.projects ||
+                        prev.provinceDeparture != curr.provinceDeparture ||
+                        prev.provinceArrives != curr.provinceArrives ||
+                        prev.approver != curr.approver ||
+                        prev.formFieldValues != curr.formFieldValues ||
+                        prev.employee != curr.employee ||
+                        prev.currentEmployee != curr.currentEmployee ||
+                        prev.passengerGoLineCount !=
+                            curr.passengerGoLineCount ||
+                        prev.expandedPassengerGoIndex !=
+                            curr.expandedPassengerGoIndex ||
+                        prev.passengerGoFirstRowIsCurrentUserSlot !=
+                            curr.passengerGoFirstRowIsCurrentUserSlot ||
+                        prev.passengerFormGeneration !=
+                            curr.passengerFormGeneration ||
+                        prev.commercialReceiverLineCount !=
+                            curr.commercialReceiverLineCount ||
+                        prev.expandedCommercialDeliveryReceiverIndex !=
+                            curr.expandedCommercialDeliveryReceiverIndex ||
+                        prev.commercialReceiverFormGeneration !=
+                            curr.commercialReceiverFormGeneration ||
+                        prev.pickupGiverLineCount !=
+                            curr.pickupGiverLineCount ||
+                        prev.expandedPickupGiverIndex !=
+                            curr.expandedPickupGiverIndex ||
+                        prev.pickupGiverFormGeneration !=
+                            curr.pickupGiverFormGeneration ||
+                        prev.infoFieldValues != curr.infoFieldValues,
+                    builder: (context, state) {
+                      return FormBuilder(
+                        key: _formKey,
+                        initialValue: {
+                          'booking_type': 'Đăng ký người đi',
+                          'booking_type_text': 'Đăng ký người đi',
+                          'type_transport': 'Ô tô, xe máy ...',
+                          'type_transport_text': 'Ô tô, xe máy ...',
+                          'starting_point': 'VP Hà Nội',
+                          'return_point': 'Khác',
+                          ...state.formFieldValues,
+                          ...state.infoFieldValues,
+                        },
+                        onChanged: () {
+                          final raw =
+                              _formKey.currentState?.instantValue ?? const {};
+                          final split = splitBookingVehicleFormAndInfo(raw);
+                          if (split.form.isNotEmpty) {
+                            bloc.add(
+                              BookingVehicleEvent.updateForm(
+                                values: split.form,
                               ),
-                            ),
-                            const SizedBox(height: 12),
-
-                            /// ===== NGƯỜI DUYỆT & LÝ DO PHÁT SINH =====
-                            /// Chỉ hiện khi thời gian cần đến == hôm nay.
-                            if (!_isEditMode && !_problemRuleVisible)
-                              const SizedBox.shrink()
-                            else
-                              BlocBuilder<BookingVehicleBloc,
-                                  BookingVehicleState>(
-                                buildWhen: (prev, curr) =>
-                                    prev.approver != curr.approver,
-                                builder: (context, bvState) {
-                                  return FormCard(
-                                    child: Column(
-                                      children: [
-                                        /// --- Người duyệt ---
-                                        GestureDetector(
-                                          onTap: () {
-                                            openSelectBottomSheet(
-                                              context: context,
-                                              title: 'Chọn người duyệt',
-                                              items: bvState.approver,
-                                              onSelected: (item) {
-                                                _formKey.currentState?.patchValue({
-                                                  'approver': item.id.toString(),
-                                                  'approver_text':
-                                                      '${item.code ?? ''} - ${item.fullName ?? ''}',
-                                                });
-                                              },
-                                              displayText: (item) =>
-                                                  '${item.code ?? ''} - ${item.fullName ?? ''}',
-                                            );
-                                          },
-                                          child: AbsorbPointer(
-                                            child: FormBuilderField<String>(
-                                              name: 'approver',
-                                              validator:
-                                                  FormBuilderValidators.required(
-                                                errorText:
-                                                    'Vui lòng chọn người duyệt',
-                                              ),
-                                              builder: (field) {
-                                                return FormInputField(
-                                                  nameForm: 'approver',
-                                                  nameTextField: 'approver_text',
-                                                  label: 'Người duyệt',
-                                                  icon: Icons.manage_accounts_outlined,
-                                                  isRequired: true,
-                                                  readOnly: true,
+                            );
+                          }
+                          if (split.info.isNotEmpty) {
+                            bloc.add(
+                              BookingVehicleEvent.updateInfo(
+                                values: split.info,
+                              ),
+                            );
+                          }
+                        },
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: ListView(
+                                padding: const EdgeInsets.all(16),
+                                children: [
+                                  /// ===== HÌNH THỨC ĐẶT =====
+                                  FormCard(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        openSelectBottomSheet(
+                                          context: context,
+                                          title: 'Chọn hình thức đặt',
+                                          items: const [
+                                            'Đăng ký người đi',
+                                            'Đăng ký người về',
+                                            'Đăng ký giao hàng thương mại',
+                                            'Đăng ký lấy hàng thương mại',
+                                            'Đăng ký giao hàng Demo/triển lãm',
+                                            'Đăng ký lấy hàng Demo/triển lãm',
+                                          ],
+                                          onSelected: (item) {
+                                            _bookingTypeField?.didChange(item);
+                                            final groupNum =
+                                                _bookingTypeGroupFromLabel(
+                                                  item,
                                                 );
-                                              },
-                                            ),
-                                          ),
-                                        ),
+                                            bloc.add(
+                                              BookingVehicleEvent.changeBookingTypeGroup(
+                                                group: groupNum,
+                                              ),
+                                            );
 
-                                        /// --- Lý do phát sinh ---
-                                        /// Chỉ hiện khi thời gian cần đến == hôm nay (add mode).
-                                        if (!_isEditMode)
-                                          Column(
+                                            if (groupNum == 0 ||
+                                                groupNum == 1) {
+                                              bloc.add(
+                                                const BookingVehicleEvent.initPassengerGoInfos(),
+                                              );
+                                            } else if (groupNum == 2) {
+                                              bloc.add(
+                                                const BookingVehicleEvent.initCommercialReceiverInfos(),
+                                              );
+                                              bloc.add(
+                                                const BookingVehicleEvent.preloadInitAdd(),
+                                              );
+                                            } else if (groupNum == 3) {
+                                              bloc.add(
+                                                const BookingVehicleEvent.initPickupGiverInfos(),
+                                              );
+                                              bloc.add(
+                                                const BookingVehicleEvent.preloadInitAdd(),
+                                              );
+                                            }
+                                          },
+                                          displayText: (item) => item,
+                                        );
+                                      },
+                                      child: AbsorbPointer(
+                                        child: FormInputField(
+                                          nameForm: 'booking_type',
+                                          nameTextField: 'booking_type_text',
+                                          label: 'Hình thức đặt',
+                                          onFieldCreated: (field) =>
+                                              _bookingTypeField = field,
+                                          icon: Icons.directions_car_outlined,
+                                          isRequired: true,
+                                          validator:
+                                              FormBuilderValidators.required(
+                                                errorText:
+                                                    'Vui lòng chọn hình thức đặt',
+                                              ),
+                                          readOnly: true,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 6),
+
+                                  /// ===== NGƯỜI DUYỆT & LÝ DO PHÁT SINH =====
+                                  /// Chỉ hiện khi: không phải sửa, thời gian cần đến == hôm nay,
+                                  /// VÀ không phải form người về.
+                                  if (_shouldShowProblemRuleCard(state))
+                                    BlocBuilder<
+                                      BookingVehicleBloc,
+                                      BookingVehicleState
+                                    >(
+                                      buildWhen: (prev, curr) =>
+                                          prev.approver != curr.approver ||
+                                          prev.formFieldValues != curr.formFieldValues ||
+                                          prev.infoFieldValues != curr.infoFieldValues,
+                                      builder: (context, bvState) {
+                                        return FormCard(
+                                          child: Column(
                                             children: [
-                                              const SizedBox(height: 12),
-                                              FormBuilderField<String>(
-                                                name: 'problem_rule_reason',
-                                                validator: (value) {
-                                                  if (value == null ||
-                                                      value.trim().isEmpty) {
-                                                    return 'Vui lòng nhập lý do phát sinh';
-                                                  }
-                                                  return null;
-                                                },
-                                                builder: (field) {
-                                                  return FormInputField(
-                                                    nameForm:
-                                                        'problem_rule_reason',
-                                                    nameTextField:
-                                                        'problem_rule_reason_text',
-                                                    label: 'Lý do phát sinh',
-                                                    icon: Icons
-                                                        .report_problem_outlined,
-                                                    isRequired: true,
-                                                    autoExpand: true,
-                                                    maxLines: 3,
-                                                    readOnly: false,
+                                              /// --- Người duyệt ---
+                                              GestureDetector(
+                                                onTap: () {
+                                                  openSelectBottomSheet(
+                                                    context: context,
+                                                    title: 'Chọn người duyệt',
+                                                    items: bvState.approver,
+                                                    onSelected: (item) {
+                                                      bloc.add(
+                                                        BookingVehicleEvent.selectApprover(
+                                                          employeeId: item.employeeId ?? 0,
+                                                        ),
+                                                      );
+                                                      _formKey.currentState
+                                                          ?.patchValue({
+                                                        'approver_text':
+                                                            '${item.code ?? ''} - ${item.fullName ?? ''}',
+                                                      });
+                                                    },
+                                                    displayText: (item) =>
+                                                        '${item.code ?? ''} - ${item.fullName ?? ''}',
                                                   );
                                                 },
+                                                child: AbsorbPointer(
+                                                  child: FormBuilderField<String>(
+                                                    name: 'approver_field',
+                                                    validator:
+                                                        FormBuilderValidators.required(
+                                                          errorText:
+                                                              'Vui lòng chọn người duyệt',
+                                                        ),
+                                                    builder: (field) {
+                                                      return FormInputField(
+                                                        nameForm: 'approver',
+                                                        nameTextField:
+                                                            'approver_text',
+                                                        label: 'Người duyệt',
+                                                        icon: Icons
+                                                            .manage_accounts_outlined,
+                                                        isRequired: true,
+                                                        readOnly: true,
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
                                               ),
+
+                                              /// --- Lý do phát sinh ---
+                                              /// Chỉ hiện khi thời gian cần đến == hôm nay (add mode).
+                                              if (!_isEditMode)
+                                                Column(
+                                                  children: [
+                                                    const SizedBox(height: 12),
+                                                    FormBuilderField<String>(
+                                                      name:
+                                                          'problem_field',
+                                                      validator: (value) {
+                                                        if (value == null ||
+                                                            value
+                                                                .trim()
+                                                                .isEmpty) {
+                                                          return 'Vui lòng nhập lý do phát sinh';
+                                                        }
+                                                        return null;
+                                                      },
+                                                      builder: (field) {
+                                                        return FormInputField(
+                                                          nameForm:
+                                                              'problem_rule_reason',
+                                                          nameTextField:
+                                                              'problem_rule_reason_text',
+                                                          label:
+                                                              'Lý do phát sinh',
+                                                          icon: Icons
+                                                              .report_problem_outlined,
+                                                          isRequired: true,
+                                                          autoExpand: true,
+                                                        );
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
                                             ],
                                           ),
-                                      ],
+                                        );
+                                      },
                                     ),
-                                  );
-                                },
+                                  const SizedBox(height: 6),
+                                  ...[
+                                    if (_bookingTypeGroupEnum(
+                                          state.bookingTypeGroup,
+                                        ) ==
+                                        _BookingVehicleTypeGroup.passengerGo)
+                                      TypeFormPassengerGo(
+                                        projects: state.projects,
+                                        departureProvinces:
+                                            state.provinceDeparture,
+                                        arrivalProvinces: state.provinceArrives,
+                                        formKey: _formKey,
+                                        typeTransportKey: _typeTransportKey,
+                                      ),
+                                    if (_bookingTypeGroupEnum(
+                                          state.bookingTypeGroup,
+                                        ) ==
+                                        _BookingVehicleTypeGroup.passengerGo)
+                                      const SizedBox(height: 12),
+                                    if (_bookingTypeGroupEnum(
+                                          state.bookingTypeGroup,
+                                        ) ==
+                                        _BookingVehicleTypeGroup.passengerGo)
+                                      BlocBuilder<
+                                        BookingVehicleBloc,
+                                        BookingVehicleState
+                                      >(
+                                        buildWhen: (prev, curr) =>
+                                            prev.employee != curr.employee ||
+                                            prev.currentEmployee !=
+                                                curr.currentEmployee ||
+                                            prev.passengerGoLineCount !=
+                                                curr.passengerGoLineCount ||
+                                            prev.expandedPassengerGoIndex !=
+                                                curr.expandedPassengerGoIndex ||
+                                            prev.passengerGoFirstRowIsCurrentUserSlot !=
+                                                curr.passengerGoFirstRowIsCurrentUserSlot ||
+                                            prev.passengerFormGeneration !=
+                                                curr.passengerFormGeneration ||
+                                            prev.infoFieldValues !=
+                                                curr.infoFieldValues,
+                                        builder: (context, state) {
+                                          final n = state.passengerGoLineCount;
+                                          if (n <= 0) {
+                                            return Center(
+                                              child: TextButton.icon(
+                                                onPressed: () {
+                                                  context
+                                                      .read<
+                                                        BookingVehicleBloc
+                                                      >()
+                                                      .add(
+                                                        const BookingVehicleEvent.initPassengerGoInfos(),
+                                                      );
+                                                  context
+                                                      .read<
+                                                        BookingVehicleBloc
+                                                      >()
+                                                      .add(
+                                                        const BookingVehicleEvent.preloadInitAdd(),
+                                                      );
+                                                },
+                                                icon: const Icon(
+                                                  Icons.person_add_outlined,
+                                                ),
+                                                label: const Text(
+                                                  'Thêm người đi',
+                                                ),
+                                              ),
+                                            );
+                                          }
+
+                                          return Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              for (var i = 0; i < n; i++)
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                        bottom: 8,
+                                                      ),
+                                                  child: PassengerInfoItem(
+                                                    key: ValueKey(
+                                                      'pass_line_${i}_${state.passengerFormGeneration}',
+                                                    ),
+                                                    index: i,
+                                                    isExpanded:
+                                                        state
+                                                            .expandedPassengerGoIndex ==
+                                                        i,
+                                                    totalCount: n,
+                                                    employeeOptions:
+                                                        state.employee,
+                                                    infoFieldValues:
+                                                        state.infoFieldValues,
+                                                    prefillEmployee:
+                                                        i == 0 &&
+                                                            state
+                                                                .passengerGoFirstRowIsCurrentUserSlot
+                                                        ? state.currentEmployee
+                                                        : null,
+                                                    generation: state
+                                                        .passengerFormGeneration,
+                                                    onToggleExpand: () {
+                                                      bloc.add(
+                                                        BookingVehicleEvent.expandPassengerGoInfo(
+                                                          index: i,
+                                                        ),
+                                                      );
+                                                    },
+                                                    onDelete: () {
+                                                      if (_formKey
+                                                              .currentState ==
+                                                          null)
+                                                        return;
+                                                      final shifted =
+                                                          BookingVehiclePassengerFormShift.computeShiftedFields(
+                                                            form: _formKey
+                                                                .currentState!,
+                                                            deletedIndex: i,
+                                                            oldLineCount: n,
+                                                          );
+                                                      _formKey.currentState
+                                                          ?.patchValue(shifted);
+                                                      bloc.add(
+                                                        BookingVehicleEvent.deletePassengerGoInfo(
+                                                          index: i,
+                                                          shiftedFields:
+                                                              shifted,
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+
+                                              const SizedBox(height: 4),
+
+                                              Center(
+                                                child: InkResponse(
+                                                  onTap: () {
+                                                    bloc.add(
+                                                      const BookingVehicleEvent.addPassengerGoInfo(),
+                                                    );
+                                                  },
+                                                  radius: 28,
+                                                  child: const Icon(
+                                                    Icons.add_circle_outline,
+                                                    size: 32,
+                                                    color: AppColors.primaryERP,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ),
+
+                                    if (_bookingTypeGroupEnum(
+                                          state.bookingTypeGroup,
+                                        ) ==
+                                        _BookingVehicleTypeGroup
+                                            .passengerReturn)
+                                      TypeFormPassengerReturn(
+                                        projects: state.projects,
+                                        departureProvinces:
+                                            state.provinceDeparture,
+                                        arrivalProvinces: state.provinceArrives,
+                                        formKey: _formKey,
+                                        typeTransportKey: _typeTransportKey,
+                                      ),
+                                    if (_bookingTypeGroupEnum(
+                                          state.bookingTypeGroup,
+                                        ) ==
+                                        _BookingVehicleTypeGroup
+                                            .passengerReturn)
+                                      const SizedBox(height: 12),
+                                    if (_bookingTypeGroupEnum(
+                                          state.bookingTypeGroup,
+                                        ) ==
+                                        _BookingVehicleTypeGroup
+                                            .passengerReturn)
+                                      BlocBuilder<
+                                        BookingVehicleBloc,
+                                        BookingVehicleState
+                                      >(
+                                        buildWhen: (prev, curr) =>
+                                            prev.employee != curr.employee ||
+                                            prev.currentEmployee !=
+                                                curr.currentEmployee ||
+                                            prev.passengerGoLineCount !=
+                                                curr.passengerGoLineCount ||
+                                            prev.expandedPassengerGoIndex !=
+                                                curr.expandedPassengerGoIndex ||
+                                            prev.passengerGoFirstRowIsCurrentUserSlot !=
+                                                curr.passengerGoFirstRowIsCurrentUserSlot ||
+                                            prev.passengerFormGeneration !=
+                                                curr.passengerFormGeneration ||
+                                            prev.infoFieldValues !=
+                                                curr.infoFieldValues,
+                                        builder: (context, state) {
+                                          final n = state.passengerGoLineCount;
+                                          if (n <= 0) {
+                                            return Center(
+                                              child: TextButton.icon(
+                                                onPressed: () {
+                                                  context
+                                                      .read<
+                                                        BookingVehicleBloc
+                                                      >()
+                                                      .add(
+                                                        const BookingVehicleEvent.initPassengerGoInfos(),
+                                                      );
+                                                  context
+                                                      .read<
+                                                        BookingVehicleBloc
+                                                      >()
+                                                      .add(
+                                                        const BookingVehicleEvent.preloadInitAdd(),
+                                                      );
+                                                },
+                                                icon: const Icon(
+                                                  Icons.person_add_outlined,
+                                                ),
+                                                label: const Text(
+                                                  'Thêm người đi',
+                                                ),
+                                              ),
+                                            );
+                                          }
+
+                                          return Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              for (var i = 0; i < n; i++) ...[
+                                                PassengerInfoItem(
+                                                  key: ValueKey(
+                                                    'pass_line_${i}_${state.passengerFormGeneration}',
+                                                  ),
+                                                  index: i,
+                                                  isExpanded:
+                                                      state
+                                                          .expandedPassengerGoIndex ==
+                                                      i,
+                                                  totalCount: n,
+                                                  employeeOptions:
+                                                      state.employee,
+                                                  infoFieldValues:
+                                                      state.infoFieldValues,
+                                                  prefillEmployee:
+                                                      i == 0 &&
+                                                          state
+                                                              .passengerGoFirstRowIsCurrentUserSlot
+                                                      ? state.currentEmployee
+                                                      : null,
+                                                  generation: state
+                                                      .passengerFormGeneration,
+                                                  onToggleExpand: () {
+                                                    bloc.add(
+                                                      BookingVehicleEvent.expandPassengerGoInfo(
+                                                        index: i,
+                                                      ),
+                                                    );
+                                                  },
+                                                  onDelete: () {
+                                                    if (_formKey.currentState ==
+                                                        null)
+                                                      return;
+                                                    final shifted =
+                                                        BookingVehiclePassengerFormShift.computeShiftedFields(
+                                                          form: _formKey
+                                                              .currentState!,
+                                                          deletedIndex: i,
+                                                          oldLineCount: n,
+                                                        );
+                                                    _formKey.currentState
+                                                        ?.patchValue(shifted);
+                                                    bloc.add(
+                                                      BookingVehicleEvent.deletePassengerGoInfo(
+                                                        index: i,
+                                                        shiftedFields: shifted,
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                                if (i < n - 1)
+                                                  const SizedBox(height: 12),
+                                              ],
+
+                                              const SizedBox(height: 4),
+
+                                              Center(
+                                                child: InkResponse(
+                                                  onTap: () {
+                                                    bloc.add(
+                                                      const BookingVehicleEvent.addPassengerGoInfo(),
+                                                    );
+                                                  },
+                                                  radius: 28,
+                                                  child: const Icon(
+                                                    Icons.add_circle_outline,
+                                                    size: 32,
+                                                    color: AppColors.primaryERP,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                    if (_bookingTypeGroupEnum(
+                                          state.bookingTypeGroup,
+                                        ) ==
+                                        _BookingVehicleTypeGroup
+                                            .commercialDelivery)
+                                      TypeFormCommercialDelivery(
+                                        projects: state.projects,
+                                        departureProvinces:
+                                            state.provinceDeparture,
+                                        arrivalProvinces: state.provinceArrives,
+                                        formKey: _formKey,
+                                        typeTransportKey: _typeTransportKey,
+                                      ),
+                                    if (_bookingTypeGroupEnum(
+                                          state.bookingTypeGroup,
+                                        ) ==
+                                        _BookingVehicleTypeGroup
+                                            .commercialDelivery)
+                                      const SizedBox(height: 12),
+                                    if (_bookingTypeGroupEnum(
+                                          state.bookingTypeGroup,
+                                        ) ==
+                                        _BookingVehicleTypeGroup
+                                            .commercialDelivery)
+                                      BlocBuilder<
+                                        BookingVehicleBloc,
+                                        BookingVehicleState
+                                      >(
+                                        buildWhen: (prev, curr) =>
+                                            prev.employee != curr.employee ||
+                                            prev.currentEmployee !=
+                                                curr.currentEmployee ||
+                                            prev.commercialReceiverLineCount !=
+                                                curr.commercialReceiverLineCount ||
+                                            prev.expandedCommercialDeliveryReceiverIndex !=
+                                                curr.expandedCommercialDeliveryReceiverIndex ||
+                                            prev.commercialReceiverFormGeneration !=
+                                                curr.commercialReceiverFormGeneration ||
+                                            prev.infoFieldValues !=
+                                                curr.infoFieldValues,
+                                        builder: (context, state) {
+                                          final n =
+                                              state.commercialReceiverLineCount;
+                                          if (n <= 0) {
+                                            return Center(
+                                              child: TextButton.icon(
+                                                onPressed: () {
+                                                  context
+                                                      .read<
+                                                        BookingVehicleBloc
+                                                      >()
+                                                      .add(
+                                                        const BookingVehicleEvent.initCommercialReceiverInfos(),
+                                                      );
+                                                  context
+                                                      .read<
+                                                        BookingVehicleBloc
+                                                      >()
+                                                      .add(
+                                                        const BookingVehicleEvent.preloadInitAdd(),
+                                                      );
+                                                },
+                                                icon: const Icon(
+                                                  Icons.person_add_outlined,
+                                                ),
+                                                label: const Text(
+                                                  'Thêm người nhận',
+                                                ),
+                                              ),
+                                            );
+                                          }
+
+                                          return Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              for (var i = 0; i < n; i++)
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                        bottom: 8,
+                                                      ),
+                                                  child: ReceiverPackageInfoItem(
+                                                    key: ValueKey(
+                                                      'recv_line_${i}_${state.commercialReceiverFormGeneration}',
+                                                    ),
+                                                    index: i,
+                                                    isExpanded:
+                                                        state
+                                                            .expandedCommercialDeliveryReceiverIndex ==
+                                                        i,
+                                                    totalCount: n,
+                                                    employeeOptions:
+                                                        state.employee,
+                                                    infoFieldValues:
+                                                        state.infoFieldValues,
+                                                    prefillEmployee: null,
+                                                    generation: state
+                                                        .commercialReceiverFormGeneration,
+                                                    onToggleExpand: () {
+                                                      bloc.add(
+                                                        BookingVehicleEvent.expandCommercialReceiverInfo(
+                                                          index: i,
+                                                        ),
+                                                      );
+                                                    },
+                                                    onDelete: () {
+                                                      if (n <= 1) return;
+                                                      if (_formKey
+                                                              .currentState ==
+                                                          null)
+                                                        return;
+                                                      final shifted =
+                                                          BookingVehicleReceiverFormShift.computeShiftedFields(
+                                                            form: _formKey
+                                                                .currentState!,
+                                                            deletedIndex: i,
+                                                            oldLineCount: n,
+                                                          );
+                                                      _formKey.currentState
+                                                          ?.patchValue(shifted);
+                                                      bloc.add(
+                                                        BookingVehicleEvent.deleteCommercialReceiverInfo(
+                                                          index: i,
+                                                          shiftedFields:
+                                                              shifted,
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+
+                                              const SizedBox(height: 4),
+
+                                              Center(
+                                                child: InkResponse(
+                                                  onTap: () {
+                                                    bloc.add(
+                                                      const BookingVehicleEvent.addCommercialReceiverInfo(),
+                                                    );
+                                                  },
+                                                  radius: 28,
+                                                  child: const Icon(
+                                                    Icons.add_circle_outline,
+                                                    size: 32,
+                                                    color: AppColors.primaryERP,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                    // Package đã nằm trong từng card "Người nhận".
+                                    if (_bookingTypeGroupEnum(
+                                          state.bookingTypeGroup,
+                                        ) ==
+                                        _BookingVehicleTypeGroup
+                                            .commercialPickupAndDemoPickup)
+                                      TypeFormReceiver(
+                                        projects: state.projects,
+                                        arrivalProvinces: state.provinceArrives,
+                                        formKey: _formKey,
+                                        typeTransportKey: _typeTransportKey,
+                                      ),
+                                    if (_bookingTypeGroupEnum(
+                                          state.bookingTypeGroup,
+                                        ) ==
+                                        _BookingVehicleTypeGroup
+                                            .commercialPickupAndDemoPickup)
+                                      const SizedBox(height: 12),
+                                    if (_bookingTypeGroupEnum(
+                                          state.bookingTypeGroup,
+                                        ) ==
+                                        _BookingVehicleTypeGroup
+                                            .commercialPickupAndDemoPickup)
+                                      BlocBuilder<
+                                        BookingVehicleBloc,
+                                        BookingVehicleState
+                                      >(
+                                        buildWhen: (prev, curr) =>
+                                            prev.employee != curr.employee ||
+                                            prev.currentEmployee !=
+                                                curr.currentEmployee ||
+                                            prev.pickupGiverLineCount !=
+                                                curr.pickupGiverLineCount ||
+                                            prev.expandedPickupGiverIndex !=
+                                                curr.expandedPickupGiverIndex ||
+                                            prev.pickupGiverFormGeneration !=
+                                                curr.pickupGiverFormGeneration ||
+                                            prev.infoFieldValues !=
+                                                curr.infoFieldValues,
+                                        builder: (context, state) {
+                                          final n = state.pickupGiverLineCount;
+                                          if (n <= 0) {
+                                            return Center(
+                                              child: TextButton.icon(
+                                                onPressed: () {
+                                                  context
+                                                      .read<
+                                                        BookingVehicleBloc
+                                                      >()
+                                                      .add(
+                                                        const BookingVehicleEvent.initPickupGiverInfos(),
+                                                      );
+                                                  context
+                                                      .read<
+                                                        BookingVehicleBloc
+                                                      >()
+                                                      .add(
+                                                        const BookingVehicleEvent.preloadInitAdd(),
+                                                      );
+                                                },
+                                                icon: const Icon(
+                                                  Icons.person_add_outlined,
+                                                ),
+                                                label: const Text(
+                                                  'Thêm người giao',
+                                                ),
+                                              ),
+                                            );
+                                          }
+
+                                          return Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              for (var i = 0; i < n; i++)
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                        bottom: 8,
+                                                      ),
+                                                  child: DeliverPackageInfoItem(
+                                                    key: ValueKey(
+                                                      'pickup_giver_${i}_${state.pickupGiverFormGeneration}',
+                                                    ),
+                                                    index: i,
+                                                    isExpanded:
+                                                        state
+                                                            .expandedPickupGiverIndex ==
+                                                        i,
+                                                    totalCount: n,
+                                                    employeeOptions:
+                                                        state.employee,
+                                                    infoFieldValues:
+                                                        state.infoFieldValues,
+                                                    prefillEmployee: null,
+                                                    generation: state
+                                                        .pickupGiverFormGeneration,
+                                                    onToggleExpand: () {
+                                                      bloc.add(
+                                                        BookingVehicleEvent.expandPickupGiverInfo(
+                                                          index: i,
+                                                        ),
+                                                      );
+                                                    },
+                                                    onDelete: () {
+                                                      if (n <= 1) return;
+                                                      if (_formKey
+                                                              .currentState ==
+                                                          null)
+                                                        return;
+                                                      final shifted =
+                                                          BookingVehicleDeliverFormShift.computeShiftedFields(
+                                                            form: _formKey
+                                                                .currentState!,
+                                                            deletedIndex: i,
+                                                            oldLineCount: n,
+                                                          );
+                                                      _formKey.currentState
+                                                          ?.patchValue(shifted);
+                                                      bloc.add(
+                                                        BookingVehicleEvent.deletePickupGiverInfo(
+                                                          index: i,
+                                                          shiftedFields:
+                                                              shifted,
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                              const SizedBox(height: 4),
+                                              Center(
+                                                child: InkResponse(
+                                                  onTap: () {
+                                                    bloc.add(
+                                                      const BookingVehicleEvent.addPickupGiverInfo(),
+                                                    );
+                                                  },
+                                                  radius: 28,
+                                                  child: const Icon(
+                                                    Icons.add_circle_outline,
+                                                    size: 32,
+                                                    color: AppColors.primaryERP,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                  ],
+                                ],
                               ),
-                            const SizedBox(height: 12),
-                            ...[
-                              if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
-                                  _BookingVehicleTypeGroup.passengerGo)
-                                TypeFormPassengerGo(
-                                  projects: state.projects,
-                                  departureProvinces:
-                                      state.provinceDeparture,
-                                  arrivalProvinces: state.provinceArrives,
-                                  formKey: _formKey,
-                                  typeTransportKey: _typeTransportKey,
-                                ),
-                              if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
-                                  _BookingVehicleTypeGroup.passengerGo)
-                                const SizedBox(height: 12),
-                              if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
-                                  _BookingVehicleTypeGroup.passengerGo)
-                                BlocBuilder<BookingVehicleBloc,
-                                    BookingVehicleState>(
-                                  buildWhen: (prev, curr) =>
-                                      prev.employee != curr.employee ||
-                                      prev.currentEmployee != curr.currentEmployee ||
-                                      prev.passengerGoLineCount !=
-                                          curr.passengerGoLineCount ||
-                                      prev.expandedPassengerGoIndex !=
-                                          curr.expandedPassengerGoIndex ||
-                                      prev.passengerGoFirstRowIsCurrentUserSlot !=
-                                          curr.passengerGoFirstRowIsCurrentUserSlot ||
-                                      prev.passengerFormGeneration !=
-                                          curr.passengerFormGeneration ||
-                                      prev.infoFieldValues != curr.infoFieldValues,
-                                  builder: (context, state) {
-                                    final n = state.passengerGoLineCount;
-                                    if (n <= 0) {
-                                      return Center(
-                                        child: TextButton.icon(
-                                          onPressed: () {
-                                            context
-                                                .read<BookingVehicleBloc>()
-                                                .add(
-                                                  const BookingVehicleEvent
-                                                      .initPassengerGoInfos(),
-                                                );
-                                            context
-                                                .read<BookingVehicleBloc>()
-                                                .add(
-                                                  const BookingVehicleEvent
-                                                      .preloadInitAdd(),
-                                                );
-                                          },
-                                          icon: const Icon(
-                                            Icons.person_add_outlined,
-                                          ),
-                                          label: const Text(
-                                            'Thêm người đi',
-                                          ),
-                                        ),
-                                      );
-                                    }
+                            ),
 
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        for (var i = 0; i < n; i++)
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              bottom: 8,
-                                            ),
-                                          child: PassengerInfoItem(
-                                            key: ValueKey(
-                                              'pass_line_${i}_${state.passengerFormGeneration}',
-                                            ),
-                                            index: i,
-                                            isExpanded:
-                                                state.expandedPassengerGoIndex ==
-                                                    i,
-                                            totalCount: n,
-                                            employeeOptions: state.employee,
-                                            infoFieldValues: state.infoFieldValues,
-                                            prefillEmployee: i == 0 &&
-                                                    state
-                                                        .passengerGoFirstRowIsCurrentUserSlot
-                                                ? state.currentEmployee
-                                                : null,
-                                            generation:
-                                                state.passengerFormGeneration,
-                                            onToggleExpand: () {
-                                                bloc.add(
-                                                  BookingVehicleEvent
-                                                      .expandPassengerGoInfo(
-                                                    index: i,
-                                                  ),
-                                                );
-                                              },
-                                              onDelete: () {
-                                                if (_formKey.currentState == null) return;
-                                                final shifted =
-                                                    BookingVehiclePassengerFormShift
-                                                        .computeShiftedFields(
-                                                  form: _formKey.currentState!,
-                                                  deletedIndex: i,
-                                                  oldLineCount: n,
-                                                );
-                                                _formKey.currentState
-                                                    ?.patchValue(shifted);
-                                                bloc.add(
-                                                  BookingVehicleEvent
-                                                      .deletePassengerGoInfo(
-                                                    index: i,
-                                                    shiftedFields: shifted,
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-
-                                        const SizedBox(height: 4),
-
-                                        Center(
-                                          child: InkResponse(
-                                            onTap: () {
-                                              bloc.add(
-                                                const BookingVehicleEvent
-                                                    .addPassengerGoInfo(),
-                                              );
-                                            },
-                                            radius: 28,
-                                            child: const Icon(
-                                              Icons.add_circle_outline,
-                                              size: 32,
-                                              color: AppColors.primaryERP,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                ),
-
-                              if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
-                                  _BookingVehicleTypeGroup.passengerReturn)
-                                TypeFormPassengerReturn(
-                                  projects: state.projects,
-                                  departureProvinces:
-                                      state.provinceDeparture,
-                                  arrivalProvinces: state.provinceArrives,
-                                  formKey: _formKey,
-                                  typeTransportKey: _typeTransportKey,
-                                ),
-                              if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
-                                  _BookingVehicleTypeGroup.passengerReturn)
-                                const SizedBox(height: 12),
-                              if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
-                                  _BookingVehicleTypeGroup.passengerReturn)
-                                BlocBuilder<BookingVehicleBloc,
-                                    BookingVehicleState>(
-                                  buildWhen: (prev, curr) =>
-                                      prev.employee != curr.employee ||
-                                      prev.currentEmployee != curr.currentEmployee ||
-                                      prev.passengerGoLineCount !=
-                                          curr.passengerGoLineCount ||
-                                      prev.expandedPassengerGoIndex !=
-                                          curr.expandedPassengerGoIndex ||
-                                      prev.passengerGoFirstRowIsCurrentUserSlot !=
-                                          curr.passengerGoFirstRowIsCurrentUserSlot ||
-                                      prev.passengerFormGeneration !=
-                                          curr.passengerFormGeneration ||
-                                      prev.infoFieldValues != curr.infoFieldValues,
-                                  builder: (context, state) {
-                                    final n = state.passengerGoLineCount;
-                                    if (n <= 0) {
-                                      return Center(
-                                        child: TextButton.icon(
-                                          onPressed: () {
-                                            context
-                                                .read<BookingVehicleBloc>()
-                                                .add(
-                                                  const BookingVehicleEvent
-                                                      .initPassengerGoInfos(),
-                                                );
-                                            context
-                                                .read<BookingVehicleBloc>()
-                                                .add(
-                                                  const BookingVehicleEvent
-                                                      .preloadInitAdd(),
-                                                );
-                                          },
-                                          icon: const Icon(
-                                            Icons.person_add_outlined,
-                                          ),
-                                          label: const Text(
-                                            'Thêm người đi',
-                                          ),
-                                        ),
-                                      );
-                                    }
-
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        for (var i = 0; i < n; i++) ...[
-                                          PassengerInfoItem(
-                                            key: ValueKey(
-                                              'pass_line_${i}_${state.passengerFormGeneration}',
-                                            ),
-                                            index: i,
-                                            isExpanded:
-                                                state.expandedPassengerGoIndex ==
-                                                    i,
-                                            totalCount: n,
-                                            employeeOptions: state.employee,
-                                            infoFieldValues: state.infoFieldValues,
-                                            prefillEmployee: i == 0 &&
-                                                    state
-                                                        .passengerGoFirstRowIsCurrentUserSlot
-                                                ? state.currentEmployee
-                                                : null,
-                                            generation:
-                                                state.passengerFormGeneration,
-                                            onToggleExpand: () {
-                                              bloc.add(
-                                                BookingVehicleEvent
-                                                    .expandPassengerGoInfo(
-                                                  index: i,
-                                                ),
-                                              );
-                                            },
-                                            onDelete: () {
-                                              if (_formKey.currentState == null) return;
-                                              final shifted =
-                                                  BookingVehiclePassengerFormShift
-                                                      .computeShiftedFields(
-                                                form: _formKey.currentState!,
-                                                deletedIndex: i,
-                                                oldLineCount: n,
-                                              );
-                                              _formKey.currentState
-                                                  ?.patchValue(shifted);
-                                              bloc.add(
-                                                BookingVehicleEvent
-                                                    .deletePassengerGoInfo(
-                                                  index: i,
-                                                  shiftedFields: shifted,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                          if (i < n - 1)
-                                            const SizedBox(height: 12),
-                                        ],
-
-                                        const SizedBox(height: 4),
-
-                                        Center(
-                                          child: InkResponse(
-                                            onTap: () {
-                                              bloc.add(
-                                                const BookingVehicleEvent
-                                                    .addPassengerGoInfo(),
-                                              );
-                                            },
-                                            radius: 28,
-                                            child: const Icon(
-                                              Icons.add_circle_outline,
-                                              size: 32,
-                                              color: AppColors.primaryERP,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                ),
-                              if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
-                                  _BookingVehicleTypeGroup.commercialDelivery)
-                                TypeFormCommercialDelivery(
-                                  projects: state.projects,
-                                  departureProvinces:
-                                      state.provinceDeparture,
-                                  arrivalProvinces: state.provinceArrives,
-                                  formKey: _formKey,
-                                  typeTransportKey: _typeTransportKey,
-                                ),
-                              if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
-                                  _BookingVehicleTypeGroup.commercialDelivery)
-                                const SizedBox(height: 12),
-                              if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
-                                  _BookingVehicleTypeGroup.commercialDelivery)
-                                BlocBuilder<BookingVehicleBloc,
-                                    BookingVehicleState>(
-                                  buildWhen: (prev, curr) =>
-                                      prev.employee != curr.employee ||
-                                      prev.currentEmployee !=
-                                          curr.currentEmployee ||
-                                      prev.commercialReceiverLineCount !=
-                                          curr.commercialReceiverLineCount ||
-                                      prev.expandedCommercialDeliveryReceiverIndex !=
-                                          curr.expandedCommercialDeliveryReceiverIndex ||
-                                      prev.commercialReceiverFormGeneration !=
-                                          curr.commercialReceiverFormGeneration ||
-                                      prev.infoFieldValues != curr.infoFieldValues,
-                                  builder: (context, state) {
-                                    final n =
-                                        state.commercialReceiverLineCount;
-                                    if (n <= 0) {
-                                      return Center(
-                                        child: TextButton.icon(
-                                          onPressed: () {
-                                            context
-                                                .read<BookingVehicleBloc>()
-                                                .add(
-                                                  const BookingVehicleEvent
-                                                      .initCommercialReceiverInfos(),
-                                                );
-                                            context
-                                                .read<BookingVehicleBloc>()
-                                                .add(
-                                                  const BookingVehicleEvent
-                                                      .preloadInitAdd(),
-                                                );
-                                          },
-                                          icon: const Icon(
-                                            Icons.person_add_outlined,
-                                          ),
-                                          label: const Text(
-                                            'Thêm người nhận',
-                                          ),
-                                        ),
-                                      );
-                                    }
-
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        for (var i = 0; i < n; i++)
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              bottom: 8,
-                                            ),
-                                            child: ReceiverPackageInfoItem(
-                                              key: ValueKey(
-                                                'recv_line_${i}_${state.commercialReceiverFormGeneration}',
-                                              ),
-                                              index: i,
-                                              isExpanded: state
-                                                      .expandedCommercialDeliveryReceiverIndex ==
-                                                  i,
-                                              totalCount: n,
-                                              employeeOptions: state.employee,
-                                              infoFieldValues: state.infoFieldValues,
-                                              prefillEmployee: null,
-                                              generation:
-                                                  state.commercialReceiverFormGeneration,
-                                              onToggleExpand: () {
-                                                bloc.add(
-                                                  BookingVehicleEvent
-                                                      .expandCommercialReceiverInfo(
-                                                    index: i,
-                                                  ),
-                                                );
-                                              },
-                                              onDelete: () {
-                                                if (n <= 1) return;
-                                                if (_formKey.currentState == null) return;
-                                                final shifted =
-                                                    BookingVehicleReceiverFormShift
-                                                        .computeShiftedFields(
-                                                  form: _formKey.currentState!,
-                                                  deletedIndex: i,
-                                                  oldLineCount: n,
-                                                );
-                                                _formKey.currentState
-                                                    ?.patchValue(shifted);
-                                                bloc.add(
-                                                  BookingVehicleEvent
-                                                      .deleteCommercialReceiverInfo(
-                                                    index: i,
-                                                    shiftedFields: shifted,
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-
-                                        const SizedBox(height: 4),
-
-                                        Center(
-                                          child: InkResponse(
-                                            onTap: () {
-                                              bloc.add(
-                                                const BookingVehicleEvent
-                                                    .addCommercialReceiverInfo(),
-                                              );
-                                            },
-                                            radius: 28,
-                                            child: const Icon(
-                                              Icons.add_circle_outline,
-                                              size: 32,
-                                              color: AppColors.primaryERP,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                ),
-                              // Package đã nằm trong từng card "Người nhận".
-                              if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
-                                  _BookingVehicleTypeGroup
-                                      .commercialPickupAndDemoPickup)
-                                TypeFormReceiver(
-                                  projects: state.projects,
-                                  arrivalProvinces: state.provinceArrives,
-                                  formKey: _formKey,
-                                  typeTransportKey: _typeTransportKey,
-                                ),
-                              if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
-                                  _BookingVehicleTypeGroup
-                                      .commercialPickupAndDemoPickup)
-                                const SizedBox(height: 12),
-                              if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
-                                  _BookingVehicleTypeGroup
-                                      .commercialPickupAndDemoPickup)
-                                BlocBuilder<BookingVehicleBloc,
-                                    BookingVehicleState>(
-                                  buildWhen: (prev, curr) =>
-                                      prev.employee != curr.employee ||
-                                      prev.currentEmployee !=
-                                          curr.currentEmployee ||
-                                      prev.pickupGiverLineCount !=
-                                          curr.pickupGiverLineCount ||
-                                      prev.expandedPickupGiverIndex !=
-                                          curr.expandedPickupGiverIndex ||
-                                      prev.pickupGiverFormGeneration !=
-                                          curr.pickupGiverFormGeneration ||
-                                      prev.infoFieldValues != curr.infoFieldValues,
-                                  builder: (context, state) {
-                                    final n = state.pickupGiverLineCount;
-                                    if (n <= 0) {
-                                      return Center(
-                                        child: TextButton.icon(
-                                          onPressed: () {
-                                            context
-                                                .read<BookingVehicleBloc>()
-                                                .add(
-                                                  const BookingVehicleEvent
-                                                      .initPickupGiverInfos(),
-                                                );
-                                            context
-                                                .read<BookingVehicleBloc>()
-                                                .add(
-                                                  const BookingVehicleEvent
-                                                      .preloadInitAdd(),
-                                                );
-                                          },
-                                          icon: const Icon(
-                                            Icons.person_add_outlined,
-                                          ),
-                                          label: const Text(
-                                            'Thêm người giao',
-                                          ),
-                                        ),
-                                      );
-                                    }
-
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        for (var i = 0; i < n; i++)
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              bottom: 8,
-                                            ),
-                                            child: DeliverPackageInfoItem(
-                                              key: ValueKey(
-                                                'pickup_giver_${i}_${state.pickupGiverFormGeneration}',
-                                              ),
-                                              index: i,
-                                              isExpanded: state
-                                                      .expandedPickupGiverIndex ==
-                                                  i,
-                                              totalCount: n,
-                                              employeeOptions: state.employee,
-                                              infoFieldValues: state.infoFieldValues,
-                                              prefillEmployee: null,
-                                              generation:
-                                                  state.pickupGiverFormGeneration,
-                                              onToggleExpand: () {
-                                                bloc.add(
-                                                  BookingVehicleEvent
-                                                      .expandPickupGiverInfo(
-                                                    index: i,
-                                                  ),
-                                                );
-                                              },
-                                              onDelete: () {
-                                                if (n <= 1) return;
-                                                if (_formKey.currentState == null) return;
-                                                final shifted =
-                                                    BookingVehicleDeliverFormShift
-                                                        .computeShiftedFields(
-                                                  form: _formKey.currentState!,
-                                                  deletedIndex: i,
-                                                  oldLineCount: n,
-                                                );
-                                                _formKey.currentState
-                                                    ?.patchValue(shifted);
-                                                bloc.add(
-                                                  BookingVehicleEvent
-                                                      .deletePickupGiverInfo(
-                                                    index: i,
-                                                    shiftedFields: shifted,
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        const SizedBox(height: 4),
-                                        Center(
-                                          child: InkResponse(
-                                            onTap: () {
-                                              bloc.add(
-                                                const BookingVehicleEvent
-                                                    .addPickupGiverInfo(),
-                                              );
-                                            },
-                                            radius: 28,
-                                            child: const Icon(
-                                              Icons.add_circle_outline,
-                                              size: 32,
-                                              color: AppColors.primaryERP,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                ),
-                            ],
+                            /// ===== ACTIONS =====
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                                vertical: 8.0,
+                              ),
+                              child: FormActions(
+                                mode: _isEditMode
+                                    ? FormActionMode.edit
+                                    : FormActionMode.add,
+                                onSubmit: _isEditMode ? null : _onSubmitForm,
+                                onSave: _isEditMode ? _onSubmitForm : null,
+                                onCancel: _isEditMode
+                                    ? () => context.pop()
+                                    : null,
+                              ),
+                            ),
                           ],
                         ),
-                      ),
-
-                      /// ===== ACTIONS =====
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0,
-                          vertical: 8.0,
-                        ),
-                        child: FormActions(
-                          mode: _isEditMode
-                              ? FormActionMode.edit
-                              : FormActionMode.add,
-                          onSubmit: _isEditMode ? null : _onSubmitForm,
-                          onSave: _isEditMode ? _onSubmitForm : null,
-                          onCancel:
-                              _isEditMode ? () => context.pop() : null,
-                        ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
-                );
-              },
+                ),
+              ),
             ),
           ),
-        ),
-        ),
-        ),
-
         /// ===== LOADING OVERLAY =====
         BlocBuilder<BookingVehicleBloc, BookingVehicleState>(
           buildWhen: (p, c) => p.isSubmitting != c.isSubmitting,
