@@ -61,6 +61,9 @@ class _BookingVehicleAddScreenState
   /// (FormBuilderField không tự sync sau patchValue nếu listener chưa attach).
   final _typeTransportKey = GlobalKey<FormBuilderFieldState>();
 
+  /// Visible khi thời gian cần đến == hôm nay (chỉ ở add mode).
+  bool _problemRuleVisible = false;
+
   /// Thứ tự ưu tiên validate field: theo layout form từ trên xuống dưới.
   /// passengerGo: main form → passenger rows (index 0..n).
   static const List<String> _passengerGoPriority = [
@@ -555,6 +558,27 @@ class _BookingVehicleAddScreenState
                         BookingVehicleEvent.updateInfo(values: split.info),
                       );
                     }
+                    // Cập nhật visibility của "Lý do phát sinh" theo time_need_present.
+                    if (!_isEditMode) {
+                      final needArriveField =
+                          _bookingTypeGroupEnum(bloc.state.bookingTypeGroup) ==
+                                  _BookingVehicleTypeGroup
+                                      .commercialPickupAndDemoPickup
+                              ? 'pickup_need_arrive_time'
+                              : 'time_need_present';
+                      final needArrive =
+                          raw[needArriveField] as DateTime?;
+                      final today = DateTime.now();
+                      final isToday = needArrive != null &&
+                          needArrive.year == today.year &&
+                          needArrive.month == today.month &&
+                          needArrive.day == today.day;
+                      if (_problemRuleVisible != isToday) {
+                        setState(() {
+                          _problemRuleVisible = isToday;
+                        });
+                      }
+                    }
                   },
                   child: Column(
                     children: [
@@ -562,7 +586,7 @@ class _BookingVehicleAddScreenState
                         child: ListView(
                           padding: const EdgeInsets.all(16),
                           children: [
-                            /// ===== TÊN CUỘC HỌP =====
+                            /// ===== HÌNH THỨC ĐẶT =====
                             FormCard(
                               child: GestureDetector(
                                 onTap: () {
@@ -631,6 +655,99 @@ class _BookingVehicleAddScreenState
                                 ),
                               ),
                             ),
+                            const SizedBox(height: 12),
+
+                            /// ===== NGƯỜI DUYỆT & LÝ DO PHÁT SINH =====
+                            /// Chỉ hiện khi thời gian cần đến == hôm nay.
+                            if (!_isEditMode && !_problemRuleVisible)
+                              const SizedBox.shrink()
+                            else
+                              BlocBuilder<BookingVehicleBloc,
+                                  BookingVehicleState>(
+                                buildWhen: (prev, curr) =>
+                                    prev.approver != curr.approver,
+                                builder: (context, bvState) {
+                                  return FormCard(
+                                    child: Column(
+                                      children: [
+                                        /// --- Người duyệt ---
+                                        GestureDetector(
+                                          onTap: () {
+                                            openSelectBottomSheet(
+                                              context: context,
+                                              title: 'Chọn người duyệt',
+                                              items: bvState.approver,
+                                              onSelected: (item) {
+                                                _formKey.currentState?.patchValue({
+                                                  'approver': item.id.toString(),
+                                                  'approver_text':
+                                                      '${item.code ?? ''} - ${item.fullName ?? ''}',
+                                                });
+                                              },
+                                              displayText: (item) =>
+                                                  '${item.code ?? ''} - ${item.fullName ?? ''}',
+                                            );
+                                          },
+                                          child: AbsorbPointer(
+                                            child: FormBuilderField<String>(
+                                              name: 'approver',
+                                              validator:
+                                                  FormBuilderValidators.required(
+                                                errorText:
+                                                    'Vui lòng chọn người duyệt',
+                                              ),
+                                              builder: (field) {
+                                                return FormInputField(
+                                                  nameForm: 'approver',
+                                                  nameTextField: 'approver_text',
+                                                  label: 'Người duyệt',
+                                                  icon: Icons.manage_accounts_outlined,
+                                                  isRequired: true,
+                                                  readOnly: true,
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                        ),
+
+                                        /// --- Lý do phát sinh ---
+                                        /// Chỉ hiện khi thời gian cần đến == hôm nay (add mode).
+                                        if (!_isEditMode)
+                                          Column(
+                                            children: [
+                                              const SizedBox(height: 12),
+                                              FormBuilderField<String>(
+                                                name: 'problem_rule_reason',
+                                                validator: (value) {
+                                                  if (value == null ||
+                                                      value.trim().isEmpty) {
+                                                    return 'Vui lòng nhập lý do phát sinh';
+                                                  }
+                                                  return null;
+                                                },
+                                                builder: (field) {
+                                                  return FormInputField(
+                                                    nameForm:
+                                                        'problem_rule_reason',
+                                                    nameTextField:
+                                                        'problem_rule_reason_text',
+                                                    label: 'Lý do phát sinh',
+                                                    icon: Icons
+                                                        .report_problem_outlined,
+                                                    isRequired: true,
+                                                    autoExpand: true,
+                                                    maxLines: 3,
+                                                    readOnly: false,
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
                             const SizedBox(height: 12),
                             ...[
                               if (_bookingTypeGroupEnum(state.bookingTypeGroup) ==
