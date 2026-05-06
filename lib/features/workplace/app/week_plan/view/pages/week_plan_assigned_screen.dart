@@ -9,7 +9,7 @@ class WeekPlanAssignedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const WeekPlanListScreen(
       viewNumber: 3,
-      title: 'Giao việc',
+      title: 'Việc tôi giao',
       isAssigned: true,
     );
   }

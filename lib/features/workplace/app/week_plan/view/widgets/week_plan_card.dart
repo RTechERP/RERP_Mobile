@@ -290,19 +290,22 @@ class _CheckinButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDone = task.status == 3 || task.status == 2;
+    final isPending = task.status == 3;
+    final isDone = task.status == 2;
     final isActive = isCheckedIn || isDone;
 
     return GestureDetector(
-      onTap: () => _onCheckIn(context),
+      onTap: isPending ? null : () => _onCheckIn(context),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
         decoration: BoxDecoration(
-          color: isActive
-              ? AppColors.stateSuccessColor.withValues(alpha: 0.1)
-              : AppColors.primaryERP,
+          color: isPending
+              ? AppColors.stateWarningColor.withValues(alpha: 0.1)
+              : isActive
+                  ? AppColors.stateSuccessColor.withValues(alpha: 0.1)
+                  : AppColors.primaryERP,
           borderRadius: BorderRadius.circular(16),
-          boxShadow: isActive
+          boxShadow: isPending || isActive
               ? null
               : [
                   BoxShadow(
@@ -315,13 +318,19 @@ class _CheckinButton extends StatelessWidget {
         child: Text(
           isCheckedIn
               ? 'Đã điểm danh'
-              : isDone
-                  ? 'Hoàn thành'
-                  : 'Điểm danh',
+              : isPending
+                  ? 'Tạm hoãn'
+                  : isDone
+                      ? 'Hoàn thành'
+                      : 'Điểm danh',
           style: TextStyle(
             fontSize: 11,
             fontWeight: FontWeight.w600,
-            color: isActive ? AppColors.stateSuccessColor : Colors.white,
+            color: isPending
+                ? AppColors.stateWarningColor
+                : isActive
+                    ? AppColors.stateSuccessColor
+                    : Colors.white,
           ),
         ),
       ),

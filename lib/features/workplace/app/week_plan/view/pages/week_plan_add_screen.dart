@@ -238,17 +238,7 @@ class _WeekPlanAddScreenState
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          FormInputField(
-            nameForm: 'task_name',
-            nameTextField: 'task_name_field',
-            label: 'Tên công việc',
-            icon: Icons.assignment_outlined,
-            isRequired: true,
-            validator: FormBuilderValidators.required(
-              errorText: 'Vui lòng nhập tên công việc',
-            ),
-          ),
-          const SizedBox(height: 10),
+
           WeekPlanProjectCard(
             selectedId: state.headerProjectId,
             projects: state.projects,
@@ -258,6 +248,18 @@ class _WeekPlanAddScreenState
                 projectName: project.projectName ?? '',
               ));
             },
+          ),
+          const SizedBox(height: 10),
+
+          FormInputField(
+            nameForm: 'task_name',
+            nameTextField: 'task_name_field',
+            label: 'Tên công việc',
+            icon: Icons.assignment_outlined,
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập tên công việc',
+            ),
           ),
           const SizedBox(height: 10),
           WeekPlanTapCard(
@@ -321,101 +323,7 @@ class _WeekPlanAddScreenState
             isEmployee: true,
           ),
           const SizedBox(height: 10),
-          Row(
-            children: [
-              Expanded(
-                child: WeekPlanProjectTypeCard(
-                  selectedId: state.headerTaskCategory,
-                  projectTypes: state.projectTypes,
-                  onChanged: (pt) {
-                    bloc.add(WeekPlanEvent.updateHeaderTaskCategory(
-                      categoryId: pt.id ?? 0,
-                      categoryName: pt.projectTypeName ?? '',
-                    ));
-                  },
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: WeekPlanTaskTypeCard(
-                  selectedId: state.headerWorkType,
-                  taskTypes: state.taskTypes,
-                  onChanged: (taskType) {
-                    bloc.add(WeekPlanEvent.updateHeaderWorkTypeAndStatus(
-                      workTypeId: taskType.id ?? 0,
-                      workTypeName: taskType.typeName ?? '',
-                      statusId: state.headerStatus ?? 0,
-                      statusName: state.headerStatusName ?? 'Chưa làm',
-                    ));
-                  },
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          WeekPlanChoiceRow(
-            options: [
-              WeekPlanChoiceOption(label: 'Cá nhân', value: true),
-              WeekPlanChoiceOption(label: 'Phê duyệt', value: false),
-            ],
-            selected: state.headerIsPersonalTask,
-            onChanged: (v) =>
-                bloc.add(WeekPlanEvent.updateHeaderPersonalTask(v)),
-          ),
-          const SizedBox(height: 10),
-          WeekPlanComplexityRow(
-            selected: state.headerComplexity,
-            onChanged: (v) => bloc.add(WeekPlanEvent.updateHeaderComplexity(v)),
-          ),
-          const SizedBox(height: 10),
-          WeekPlanPriorityCard(
-            selected: state.headerPriority,
-            onChanged: (v) => bloc.add(WeekPlanEvent.updateHeaderPriority(v)),
-          ),
-          const SizedBox(height: 10),
-          WeekPlanStatusCard(
-            selected: state.headerStatus ?? 0,
-            onChanged: (v) => bloc.add(
-              WeekPlanEvent.updateHeaderStatus(
-                statusId: v,
-                statusName: WeekPlanStatusCard.labels[v],
-              ),
-            ),
-          ),
 
-        ],
-      ),
-    );
-  }
-
-  //---(_Step: Content)---//
-  Widget _buildContentStep(WeekPlanState state) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-      child: Column(
-        children: [
-          FormCard(
-            child: FormInputField(
-              nameForm: 'description',
-              nameTextField: 'description_field',
-              label: 'Mô tả chi tiết',
-              icon: Icons.description_outlined,
-              autoExpand: true,
-            ),
-          ),
-
-          const SizedBox(height: 10),
-          FormCard(
-            child: FormInputField(
-              nameForm: 'expected_result',
-              nameTextField: 'expected_result_field',
-              label: 'Kết quả công việc',
-              icon: Icons.check_circle_outline,
-              autoExpand: true,
-            ),
-          ),
-
-          const SizedBox(height: 12),
           FormCard(
             title: 'Lịch trình dự kiến',
             child: Column(
@@ -462,7 +370,7 @@ class _WeekPlanAddScreenState
                       child: FormDateTimePicker(
                         nameForm: 'deadline',
                         nameTimePicker: 'deadline_picker',
-                        label: 'Deadline',
+                        label: 'Thời hạn',
                         icon: Icons.flag_outlined,
                         inputType: InputType.date,
                         format: DateFormat('dd/MM/yyyy'),
@@ -500,6 +408,101 @@ class _WeekPlanAddScreenState
                   ),
                 ),
               ],
+            ),
+          ),
+
+        ],
+      ),
+    );
+  }
+
+  //---(_Step: Content)---//
+  Widget _buildContentStep(WeekPlanState state) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+      child: Column(
+        children: [
+          FormCard(
+            child: FormInputField(
+              nameForm: 'description',
+              nameTextField: 'description_field',
+              label: 'Mô tả chi tiết',
+              icon: Icons.description_outlined,
+              autoExpand: true,
+            ),
+          ),
+
+          const SizedBox(height: 10),
+          FormCard(
+            child: FormInputField(
+              nameForm: 'expected_result',
+              nameTextField: 'expected_result_field',
+              label: 'Kết quả công việc',
+              icon: Icons.check_circle_outline,
+              autoExpand: true,
+            ),
+          ),
+          const SizedBox(height: 10),
+          WeekPlanChoiceRow(
+            options: [
+              WeekPlanChoiceOption(label: 'Cá nhân', value: true),
+              WeekPlanChoiceOption(label: 'Phê duyệt', value: false),
+            ],
+            selected: state.headerIsPersonalTask,
+            onChanged: (v) =>
+                bloc.add(WeekPlanEvent.updateHeaderPersonalTask(v)),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: WeekPlanProjectTypeCard(
+                  selectedId: state.headerTaskCategory,
+                  projectTypes: state.projectTypes,
+                  onChanged: (pt) {
+                    bloc.add(WeekPlanEvent.updateHeaderTaskCategory(
+                      categoryId: pt.id ?? 0,
+                      categoryName: pt.projectTypeName ?? '',
+                    ));
+                  },
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: WeekPlanTaskTypeCard(
+                  selectedId: state.headerWorkType,
+                  taskTypes: state.taskTypes,
+                  onChanged: (taskType) {
+                    bloc.add(WeekPlanEvent.updateHeaderWorkTypeAndStatus(
+                      workTypeId: taskType.id ?? 0,
+                      workTypeName: taskType.typeName ?? '',
+                      statusId: state.headerStatus ?? 0,
+                      statusName: state.headerStatusName ?? 'Chưa làm',
+                    ));
+                  },
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 10),
+          WeekPlanComplexityRow(
+            selected: state.headerComplexity,
+            onChanged: (v) => bloc.add(WeekPlanEvent.updateHeaderComplexity(v)),
+          ),
+          const SizedBox(height: 10),
+          WeekPlanPriorityCard(
+            selected: state.headerPriority,
+            onChanged: (v) => bloc.add(WeekPlanEvent.updateHeaderPriority(v)),
+          ),
+          const SizedBox(height: 10),
+          WeekPlanStatusCard(
+            selected: state.headerStatus ?? 0,
+            onChanged: (v) => bloc.add(
+              WeekPlanEvent.updateHeaderStatus(
+                statusId: v,
+                statusName: WeekPlanStatusCard.labels[v],
+              ),
             ),
           ),
         ],

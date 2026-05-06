@@ -69,19 +69,19 @@ class _WeekPlanMenuScreenState
                       children: [
                         _MenuTile(
                           icon: Icons.assignment_outlined,
-                          title: 'Công việc',
+                          title: 'Việc giao tôi',
                           onTap: () => context.push(RouteNames.weekplanMyTask),
+                        ),
+                        _MenuTile(
+                          icon: Icons.send_outlined,
+                          title: 'Việc tôi giao',
+                          onTap: () =>
+                              context.push(RouteNames.weekplanAssigned),
                         ),
                         _MenuTile(
                           icon: Icons.link_outlined,
                           title: 'Liên quan',
                           onTap: () => context.push(RouteNames.weekplanRelated),
-                        ),
-                        _MenuTile(
-                          icon: Icons.send_outlined,
-                          title: 'Giao việc',
-                          onTap: () =>
-                              context.push(RouteNames.weekplanAssigned),
                         ),
                         _MenuTile(
                           icon: Icons.view_agenda_outlined,
