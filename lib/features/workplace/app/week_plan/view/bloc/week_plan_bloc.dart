@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -128,6 +130,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         createTask: () => _onCreateTask(emit),
         clearSubmitState: () => _onClearSubmitState(emit),
         clearCheckInState: () => _onClearCheckInState(emit),
+        uploadFiles: (filePaths, subPath) => _onUploadFiles(emit, filePaths, subPath),
+        clearUploadedFiles: () => _onClearUploadedFiles(emit),
       );
     });
   }
@@ -434,6 +438,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       checklistItems: const [],
       checklistDone: const [],
       attachments: const [],
+      uploadedAttachmentFiles: const [],
       incidents: const [],
     ));
 
@@ -881,7 +886,6 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       final user = userRes.getOrElse(() => null);
 
       if (user == null) {
-        _log.logE('Create task: no current user');
         emit(state.copyWith(
           isSubmitting: false,
           submitSuccess: false,
@@ -891,15 +895,47 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         return;
       }
 
+      // Upload file đính kèm trước nếu có file local (chưa upload)
+      List<String> filePathsToUpload = state.attachments
+          .where((a) => a.filePath != null && a.filePath!.isNotEmpty)
+          .where((a) {
+        // Chỉ upload những file local (không phải URL đã upload trước đó)
+        final path = a.filePath!;
+        return path.startsWith('/') || path.startsWith('file://');
+      }).map((a) => a.filePath!).toList();
+
+      if (filePathsToUpload.isNotEmpty) {
+        final files = filePathsToUpload.map((p) => File(p)).toList();
+
+        final uploadRes = await _weekPlanRepo.uploadAttachmentFile(
+          files: files,
+          key: 'ProjectTask',
+          subPath: '',
+        );
+
+        await uploadRes.fold(
+          (err) async {
+            emit(state.copyWith(
+              isSubmitting: false,
+              submitSuccess: false,
+              status: BaseStateStatus.failed,
+              message: 'Upload file thất bại: ${err.getErrorMessage}',
+            ));
+            return;
+          },
+          (uploaded) async {
+            emit(state.copyWith(uploadedAttachmentFiles: uploaded));
+          },
+        );
+      }
+
       final payload = _buildCreatePayload(user.employeeId);
 
-      _log.logI('Create task payload: $payload');
 
       final res = await _weekPlanRepo.saveTask(payload: payload);
 
       await res.fold(
         (err) async {
-          _log.logE('Create task failed: $err');
           emit(state.copyWith(
             isSubmitting: false,
             submitSuccess: false,
@@ -915,6 +951,24 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             status: BaseStateStatus.success,
             message: 'Tạo công việc thành công',
           ));
+
+          // Gọi ngầm saveProjectTaskFiles cho từng file đã upload.
+          final uploaded = state.uploadedAttachmentFiles;
+          if (uploaded.isNotEmpty && data.id != null) {
+            for (final file in uploaded) {
+              final filePayload = {
+                'ID': 0,
+                'ProjectTaskID': data.id,
+                'FileName': file.originalFileName,
+                'FilePath': file.filePath,
+                'IsDeleted': false,
+              };
+              _log.logI('Saving file: ${file.originalFileName}');
+
+              // ignore: invalid_use_of_visible_for_testing_member
+              await _weekPlanRepo.saveProjectTaskFiles(payload: filePayload);
+            }
+          }
         },
       );
     } finally {
@@ -978,14 +1032,6 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     if (s.taskCategory != null) 'TaskCategory': s.taskCategory,
   };
 
-  Map<String, dynamic> _attachmentToPayload(WeekPlanAttachmentItem a) => {
-    if (a.id != null) 'ID': a.id,
-    'FileName': a.fileName ?? '',
-    'FilePath': a.filePath ?? '',
-    if (a.fileSize != null) 'FileSize': a.fileSize,
-    'FileType': a.fileType ?? '',
-  };
-
   Map<String, dynamic> _incidentToPayload(WeekPlanIncidentItem i) => {
     if (i.id != null) 'ID': i.id,
     'Description': i.description ?? '',
@@ -1007,5 +1053,49 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       checkInTaskId: null,
       checkInTaskNewValue: null,
     ));
+  }
+
+  //---(Upload Files)---//
+  bool _isUploadInFlight = false;
+
+  Future<void> _onUploadFiles(
+    Emitter<WeekPlanState> emit,
+    List<String> filePaths,
+    String subPath,
+  ) async {
+    if (_isUploadInFlight || filePaths.isEmpty) return;
+    _isUploadInFlight = true;
+
+    try {
+      final files = filePaths.map((p) => File(p)).toList();
+
+      final res = await _weekPlanRepo.uploadAttachmentFile(
+        files: files,
+        key: 'ProjectTask',
+        subPath: subPath,
+      );
+
+      await res.fold(
+        (err) async {
+          _log.logE('Upload files failed: $err');
+          emit(state.copyWith(
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ));
+        },
+        (uploaded) async {
+          _log.logI('Upload files success: ${uploaded.length}');
+          emit(state.copyWith(
+            uploadedAttachmentFiles: uploaded,
+          ));
+        },
+      );
+    } finally {
+      _isUploadInFlight = false;
+    }
+  }
+
+  Future<void> _onClearUploadedFiles(Emitter<WeekPlanState> emit) async {
+    emit(state.copyWith(uploadedAttachmentFiles: const []));
   }
 }

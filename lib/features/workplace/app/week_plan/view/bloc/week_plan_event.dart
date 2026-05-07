@@ -183,4 +183,12 @@ class WeekPlanEvent with _$WeekPlanEvent {
   const factory WeekPlanEvent.clearSubmitState() = _ClearSubmitState;
 
   const factory WeekPlanEvent.clearCheckInState() = _ClearCheckInState;
+
+  // Upload file
+  const factory WeekPlanEvent.uploadFiles({
+    required List<String> filePaths,
+    required String subPath,
+  }) = _UploadFiles;
+
+  const factory WeekPlanEvent.clearUploadedFiles() = _ClearUploadedFiles;
 }

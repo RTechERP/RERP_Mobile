@@ -121,6 +121,9 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState attachments(List<WeekPlanAttachmentItem> attachments);
 
+  WeekPlanState uploadedAttachmentFiles(
+      List<UploadAttachmentResponse> uploadedAttachmentFiles);
+
   WeekPlanState incidents(List<WeekPlanIncidentItem> incidents);
 
   WeekPlanState currentStep(int currentStep);
@@ -188,6 +191,7 @@ abstract class _$WeekPlanStateCWProxy {
     List<String>? checklistItems,
     List<bool>? checklistDone,
     List<WeekPlanAttachmentItem>? attachments,
+    List<UploadAttachmentResponse>? uploadedAttachmentFiles,
     List<WeekPlanIncidentItem>? incidents,
     int? currentStep,
   });
@@ -419,6 +423,11 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(attachments: attachments);
 
   @override
+  WeekPlanState uploadedAttachmentFiles(
+          List<UploadAttachmentResponse> uploadedAttachmentFiles) =>
+      this(uploadedAttachmentFiles: uploadedAttachmentFiles);
+
+  @override
   WeekPlanState incidents(List<WeekPlanIncidentItem> incidents) =>
       this(incidents: incidents);
 
@@ -490,6 +499,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? checklistItems = const $CopyWithPlaceholder(),
     Object? checklistDone = const $CopyWithPlaceholder(),
     Object? attachments = const $CopyWithPlaceholder(),
+    Object? uploadedAttachmentFiles = const $CopyWithPlaceholder(),
     Object? incidents = const $CopyWithPlaceholder(),
     Object? currentStep = const $CopyWithPlaceholder(),
   }) {
@@ -740,6 +750,12 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
               ? _value.attachments
               // ignore: cast_nullable_to_non_nullable
               : attachments as List<WeekPlanAttachmentItem>,
+      uploadedAttachmentFiles:
+          uploadedAttachmentFiles == const $CopyWithPlaceholder() ||
+                  uploadedAttachmentFiles == null
+              ? _value.uploadedAttachmentFiles
+              // ignore: cast_nullable_to_non_nullable
+              : uploadedAttachmentFiles as List<UploadAttachmentResponse>,
       incidents: incidents == const $CopyWithPlaceholder() || incidents == null
           ? _value.incidents
           // ignore: cast_nullable_to_non_nullable

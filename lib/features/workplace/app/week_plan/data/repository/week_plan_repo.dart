@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 
 import '../../../../../../../../../base/network/errors/error.dart';
@@ -39,6 +41,16 @@ abstract class WeekPlanRepo {
   Future<Either<BaseError, AttendanceTaskResponse>> projectTaskAttendance({
     required int projectTaskId,
     required bool isCheck,
+  });
+
+  Future<Either<BaseError, List<UploadAttachmentResponse>>> uploadAttachmentFile({
+    required List<File> files,
+    required String key,
+    required String subPath,
+  });
+
+  Future<Either<BaseError, FileWeekPlanResponse>> saveProjectTaskFiles({
+    required Map<String, dynamic> payload,
   });
 }
 

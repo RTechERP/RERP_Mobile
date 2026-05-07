@@ -324,3 +324,44 @@ class SaveResponseWeekPlan with _$SaveResponseWeekPlan {
   factory SaveResponseWeekPlan.fromJson(Map<String, dynamic> json) =>
       _$SaveResponseWeekPlanFromJson(json);
 }
+
+@freezed
+class UploadAttachmentResponse with _$UploadAttachmentResponse {
+  const factory UploadAttachmentResponse({
+    @JsonKey(name: 'OriginalFileName') required String originalFileName,
+
+    @JsonKey(name: 'SavedFileName') required String savedFileName,
+
+    @JsonKey(name: 'FilePath') required String filePath,
+
+    @JsonKey(name: 'FileSize') required int fileSize,
+
+    @JsonKey(name: 'ContentType') required String contentType,
+
+    @JsonKey(name: 'UploadTime') required DateTime uploadTime,
+  }) = _UploadAttachmentResponse;
+
+  factory UploadAttachmentResponse.fromJson(Map<String, dynamic> json) =>
+      _$UploadAttachmentResponseFromJson(json);
+}
+
+@freezed
+class FileWeekPlanResponse with _$FileWeekPlanResponse {
+  const factory FileWeekPlanResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+    @JsonKey(name: 'FileName') String? fileName,
+    @JsonKey(name: 'FilePath') String? filePath,
+    @JsonKey(name: 'EmployeeUploadID') int? employeeUploadID,
+    @JsonKey(name: 'UploadedDate') DateTime? uploadedDate,
+    @JsonKey(name: 'Type') int? type,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _FileWeekPlanResponse;
+
+  factory FileWeekPlanResponse.fromJson(Map<String, dynamic> json) =>
+      _$FileWeekPlanResponseFromJson(json);
+}

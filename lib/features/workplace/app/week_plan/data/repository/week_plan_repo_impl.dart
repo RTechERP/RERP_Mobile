@@ -1,5 +1,7 @@
 // ignore_for_file: unused_field
 
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -185,6 +187,45 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
 
       if (res.status == 1) {
         return right(res.data ?? const AttendanceTaskResponse());
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<UploadAttachmentResponse>>> uploadAttachmentFile({
+    required List<File> files,
+    required String key,
+    required String subPath,
+  }) async {
+    try {
+      final res = await _service.uploadAttachmentFile(
+        files: files,
+        key: key,
+        subPath: subPath,
+      );
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, FileWeekPlanResponse>> saveProjectTaskFiles({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.saveProjectTaskFiles(payload: payload);
+
+      if (res.status == 1) {
+        return right(res.data ?? const FileWeekPlanResponse());
       }
 
       return left(

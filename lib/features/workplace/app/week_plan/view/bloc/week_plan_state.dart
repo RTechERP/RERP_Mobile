@@ -86,6 +86,9 @@ class WeekPlanState extends BaseBlocState {
   // Step 7: Tệp đính kèm
   final List<WeekPlanAttachmentItem> attachments;
 
+  // Danh sách file đã upload lên server (sau khi gọi API upload)
+  final List<UploadAttachmentResponse> uploadedAttachmentFiles;
+
   // Step 8: Phát sinh
   final List<WeekPlanIncidentItem> incidents;
 
@@ -156,6 +159,8 @@ class WeekPlanState extends BaseBlocState {
     this.checklistDone = const [],
     // Step 7
     this.attachments = const [],
+    // Danh sách file đã upload lên server
+    this.uploadedAttachmentFiles = const [],
     // Step 8
     this.incidents = const [],
     // Step tracking
@@ -194,6 +199,7 @@ class WeekPlanState extends BaseBlocState {
         checklistItems: [],
         checklistDone: [],
         attachments: [],
+        uploadedAttachmentFiles: [],
         incidents: [],
         currentStep: 0,
       );
@@ -263,6 +269,7 @@ class WeekPlanState extends BaseBlocState {
         checklistDone,
         // Step 7
         attachments,
+        uploadedAttachmentFiles,
         // Step 8
         incidents,
         // Step tracking

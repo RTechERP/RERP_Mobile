@@ -604,3 +604,65 @@ Map<String, dynamic> _$$SaveResponseWeekPlanImplToJson(
       'EstimatedTime': instance.estimatedTime,
       'NeedApprove': instance.needApprove,
     };
+
+_$UploadAttachmentResponseImpl _$$UploadAttachmentResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$UploadAttachmentResponseImpl(
+      originalFileName: json['OriginalFileName'] as String,
+      savedFileName: json['SavedFileName'] as String,
+      filePath: json['FilePath'] as String,
+      fileSize: (json['FileSize'] as num).toInt(),
+      contentType: json['ContentType'] as String,
+      uploadTime: DateTime.parse(json['UploadTime'] as String),
+    );
+
+Map<String, dynamic> _$$UploadAttachmentResponseImplToJson(
+        _$UploadAttachmentResponseImpl instance) =>
+    <String, dynamic>{
+      'OriginalFileName': instance.originalFileName,
+      'SavedFileName': instance.savedFileName,
+      'FilePath': instance.filePath,
+      'FileSize': instance.fileSize,
+      'ContentType': instance.contentType,
+      'UploadTime': instance.uploadTime.toIso8601String(),
+    };
+
+_$FileWeekPlanResponseImpl _$$FileWeekPlanResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$FileWeekPlanResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      projectTaskId: (json['ProjectTaskID'] as num?)?.toInt(),
+      fileName: json['FileName'] as String?,
+      filePath: json['FilePath'] as String?,
+      employeeUploadID: (json['EmployeeUploadID'] as num?)?.toInt(),
+      uploadedDate: json['UploadedDate'] == null
+          ? null
+          : DateTime.parse(json['UploadedDate'] as String),
+      type: (json['Type'] as num?)?.toInt(),
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$FileWeekPlanResponseImplToJson(
+        _$FileWeekPlanResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProjectTaskID': instance.projectTaskId,
+      'FileName': instance.fileName,
+      'FilePath': instance.filePath,
+      'EmployeeUploadID': instance.employeeUploadID,
+      'UploadedDate': instance.uploadedDate?.toIso8601String(),
+      'Type': instance.type,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'IsDeleted': instance.isDeleted,
+    };

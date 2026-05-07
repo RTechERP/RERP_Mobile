@@ -6651,3 +6651,699 @@ abstract class _SaveResponseWeekPlan implements SaveResponseWeekPlan {
   _$$SaveResponseWeekPlanImplCopyWith<_$SaveResponseWeekPlanImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+UploadAttachmentResponse _$UploadAttachmentResponseFromJson(
+    Map<String, dynamic> json) {
+  return _UploadAttachmentResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$UploadAttachmentResponse {
+  @JsonKey(name: 'OriginalFileName')
+  String get originalFileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SavedFileName')
+  String get savedFileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FilePath')
+  String get filePath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileSize')
+  int get fileSize => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ContentType')
+  String get contentType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UploadTime')
+  DateTime get uploadTime => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UploadAttachmentResponseCopyWith<UploadAttachmentResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UploadAttachmentResponseCopyWith<$Res> {
+  factory $UploadAttachmentResponseCopyWith(UploadAttachmentResponse value,
+          $Res Function(UploadAttachmentResponse) then) =
+      _$UploadAttachmentResponseCopyWithImpl<$Res, UploadAttachmentResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'OriginalFileName') String originalFileName,
+      @JsonKey(name: 'SavedFileName') String savedFileName,
+      @JsonKey(name: 'FilePath') String filePath,
+      @JsonKey(name: 'FileSize') int fileSize,
+      @JsonKey(name: 'ContentType') String contentType,
+      @JsonKey(name: 'UploadTime') DateTime uploadTime});
+}
+
+/// @nodoc
+class _$UploadAttachmentResponseCopyWithImpl<$Res,
+        $Val extends UploadAttachmentResponse>
+    implements $UploadAttachmentResponseCopyWith<$Res> {
+  _$UploadAttachmentResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? originalFileName = null,
+    Object? savedFileName = null,
+    Object? filePath = null,
+    Object? fileSize = null,
+    Object? contentType = null,
+    Object? uploadTime = null,
+  }) {
+    return _then(_value.copyWith(
+      originalFileName: null == originalFileName
+          ? _value.originalFileName
+          : originalFileName // ignore: cast_nullable_to_non_nullable
+              as String,
+      savedFileName: null == savedFileName
+          ? _value.savedFileName
+          : savedFileName // ignore: cast_nullable_to_non_nullable
+              as String,
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileSize: null == fileSize
+          ? _value.fileSize
+          : fileSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      contentType: null == contentType
+          ? _value.contentType
+          : contentType // ignore: cast_nullable_to_non_nullable
+              as String,
+      uploadTime: null == uploadTime
+          ? _value.uploadTime
+          : uploadTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$UploadAttachmentResponseImplCopyWith<$Res>
+    implements $UploadAttachmentResponseCopyWith<$Res> {
+  factory _$$UploadAttachmentResponseImplCopyWith(
+          _$UploadAttachmentResponseImpl value,
+          $Res Function(_$UploadAttachmentResponseImpl) then) =
+      __$$UploadAttachmentResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'OriginalFileName') String originalFileName,
+      @JsonKey(name: 'SavedFileName') String savedFileName,
+      @JsonKey(name: 'FilePath') String filePath,
+      @JsonKey(name: 'FileSize') int fileSize,
+      @JsonKey(name: 'ContentType') String contentType,
+      @JsonKey(name: 'UploadTime') DateTime uploadTime});
+}
+
+/// @nodoc
+class __$$UploadAttachmentResponseImplCopyWithImpl<$Res>
+    extends _$UploadAttachmentResponseCopyWithImpl<$Res,
+        _$UploadAttachmentResponseImpl>
+    implements _$$UploadAttachmentResponseImplCopyWith<$Res> {
+  __$$UploadAttachmentResponseImplCopyWithImpl(
+      _$UploadAttachmentResponseImpl _value,
+      $Res Function(_$UploadAttachmentResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? originalFileName = null,
+    Object? savedFileName = null,
+    Object? filePath = null,
+    Object? fileSize = null,
+    Object? contentType = null,
+    Object? uploadTime = null,
+  }) {
+    return _then(_$UploadAttachmentResponseImpl(
+      originalFileName: null == originalFileName
+          ? _value.originalFileName
+          : originalFileName // ignore: cast_nullable_to_non_nullable
+              as String,
+      savedFileName: null == savedFileName
+          ? _value.savedFileName
+          : savedFileName // ignore: cast_nullable_to_non_nullable
+              as String,
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileSize: null == fileSize
+          ? _value.fileSize
+          : fileSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      contentType: null == contentType
+          ? _value.contentType
+          : contentType // ignore: cast_nullable_to_non_nullable
+              as String,
+      uploadTime: null == uploadTime
+          ? _value.uploadTime
+          : uploadTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$UploadAttachmentResponseImpl implements _UploadAttachmentResponse {
+  const _$UploadAttachmentResponseImpl(
+      {@JsonKey(name: 'OriginalFileName') required this.originalFileName,
+      @JsonKey(name: 'SavedFileName') required this.savedFileName,
+      @JsonKey(name: 'FilePath') required this.filePath,
+      @JsonKey(name: 'FileSize') required this.fileSize,
+      @JsonKey(name: 'ContentType') required this.contentType,
+      @JsonKey(name: 'UploadTime') required this.uploadTime});
+
+  factory _$UploadAttachmentResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UploadAttachmentResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'OriginalFileName')
+  final String originalFileName;
+  @override
+  @JsonKey(name: 'SavedFileName')
+  final String savedFileName;
+  @override
+  @JsonKey(name: 'FilePath')
+  final String filePath;
+  @override
+  @JsonKey(name: 'FileSize')
+  final int fileSize;
+  @override
+  @JsonKey(name: 'ContentType')
+  final String contentType;
+  @override
+  @JsonKey(name: 'UploadTime')
+  final DateTime uploadTime;
+
+  @override
+  String toString() {
+    return 'UploadAttachmentResponse(originalFileName: $originalFileName, savedFileName: $savedFileName, filePath: $filePath, fileSize: $fileSize, contentType: $contentType, uploadTime: $uploadTime)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UploadAttachmentResponseImpl &&
+            (identical(other.originalFileName, originalFileName) ||
+                other.originalFileName == originalFileName) &&
+            (identical(other.savedFileName, savedFileName) ||
+                other.savedFileName == savedFileName) &&
+            (identical(other.filePath, filePath) ||
+                other.filePath == filePath) &&
+            (identical(other.fileSize, fileSize) ||
+                other.fileSize == fileSize) &&
+            (identical(other.contentType, contentType) ||
+                other.contentType == contentType) &&
+            (identical(other.uploadTime, uploadTime) ||
+                other.uploadTime == uploadTime));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, originalFileName, savedFileName,
+      filePath, fileSize, contentType, uploadTime);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UploadAttachmentResponseImplCopyWith<_$UploadAttachmentResponseImpl>
+      get copyWith => __$$UploadAttachmentResponseImplCopyWithImpl<
+          _$UploadAttachmentResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UploadAttachmentResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _UploadAttachmentResponse implements UploadAttachmentResponse {
+  const factory _UploadAttachmentResponse(
+          {@JsonKey(name: 'OriginalFileName')
+          required final String originalFileName,
+          @JsonKey(name: 'SavedFileName') required final String savedFileName,
+          @JsonKey(name: 'FilePath') required final String filePath,
+          @JsonKey(name: 'FileSize') required final int fileSize,
+          @JsonKey(name: 'ContentType') required final String contentType,
+          @JsonKey(name: 'UploadTime') required final DateTime uploadTime}) =
+      _$UploadAttachmentResponseImpl;
+
+  factory _UploadAttachmentResponse.fromJson(Map<String, dynamic> json) =
+      _$UploadAttachmentResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'OriginalFileName')
+  String get originalFileName;
+  @override
+  @JsonKey(name: 'SavedFileName')
+  String get savedFileName;
+  @override
+  @JsonKey(name: 'FilePath')
+  String get filePath;
+  @override
+  @JsonKey(name: 'FileSize')
+  int get fileSize;
+  @override
+  @JsonKey(name: 'ContentType')
+  String get contentType;
+  @override
+  @JsonKey(name: 'UploadTime')
+  DateTime get uploadTime;
+  @override
+  @JsonKey(ignore: true)
+  _$$UploadAttachmentResponseImplCopyWith<_$UploadAttachmentResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+FileWeekPlanResponse _$FileWeekPlanResponseFromJson(Map<String, dynamic> json) {
+  return _FileWeekPlanResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$FileWeekPlanResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTaskID')
+  int? get projectTaskId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileName')
+  String? get fileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FilePath')
+  String? get filePath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeUploadID')
+  int? get employeeUploadID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UploadedDate')
+  DateTime? get uploadedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Type')
+  int? get type => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FileWeekPlanResponseCopyWith<FileWeekPlanResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FileWeekPlanResponseCopyWith<$Res> {
+  factory $FileWeekPlanResponseCopyWith(FileWeekPlanResponse value,
+          $Res Function(FileWeekPlanResponse) then) =
+      _$FileWeekPlanResponseCopyWithImpl<$Res, FileWeekPlanResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'FilePath') String? filePath,
+      @JsonKey(name: 'EmployeeUploadID') int? employeeUploadID,
+      @JsonKey(name: 'UploadedDate') DateTime? uploadedDate,
+      @JsonKey(name: 'Type') int? type,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class _$FileWeekPlanResponseCopyWithImpl<$Res,
+        $Val extends FileWeekPlanResponse>
+    implements $FileWeekPlanResponseCopyWith<$Res> {
+  _$FileWeekPlanResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectTaskId = freezed,
+    Object? fileName = freezed,
+    Object? filePath = freezed,
+    Object? employeeUploadID = freezed,
+    Object? uploadedDate = freezed,
+    Object? type = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskId: freezed == projectTaskId
+          ? _value.projectTaskId
+          : projectTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      filePath: freezed == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeUploadID: freezed == employeeUploadID
+          ? _value.employeeUploadID
+          : employeeUploadID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      uploadedDate: freezed == uploadedDate
+          ? _value.uploadedDate
+          : uploadedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$FileWeekPlanResponseImplCopyWith<$Res>
+    implements $FileWeekPlanResponseCopyWith<$Res> {
+  factory _$$FileWeekPlanResponseImplCopyWith(_$FileWeekPlanResponseImpl value,
+          $Res Function(_$FileWeekPlanResponseImpl) then) =
+      __$$FileWeekPlanResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'FilePath') String? filePath,
+      @JsonKey(name: 'EmployeeUploadID') int? employeeUploadID,
+      @JsonKey(name: 'UploadedDate') DateTime? uploadedDate,
+      @JsonKey(name: 'Type') int? type,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class __$$FileWeekPlanResponseImplCopyWithImpl<$Res>
+    extends _$FileWeekPlanResponseCopyWithImpl<$Res, _$FileWeekPlanResponseImpl>
+    implements _$$FileWeekPlanResponseImplCopyWith<$Res> {
+  __$$FileWeekPlanResponseImplCopyWithImpl(_$FileWeekPlanResponseImpl _value,
+      $Res Function(_$FileWeekPlanResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectTaskId = freezed,
+    Object? fileName = freezed,
+    Object? filePath = freezed,
+    Object? employeeUploadID = freezed,
+    Object? uploadedDate = freezed,
+    Object? type = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_$FileWeekPlanResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskId: freezed == projectTaskId
+          ? _value.projectTaskId
+          : projectTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      filePath: freezed == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeUploadID: freezed == employeeUploadID
+          ? _value.employeeUploadID
+          : employeeUploadID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      uploadedDate: freezed == uploadedDate
+          ? _value.uploadedDate
+          : uploadedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$FileWeekPlanResponseImpl implements _FileWeekPlanResponse {
+  const _$FileWeekPlanResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProjectTaskID') this.projectTaskId,
+      @JsonKey(name: 'FileName') this.fileName,
+      @JsonKey(name: 'FilePath') this.filePath,
+      @JsonKey(name: 'EmployeeUploadID') this.employeeUploadID,
+      @JsonKey(name: 'UploadedDate') this.uploadedDate,
+      @JsonKey(name: 'Type') this.type,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
+
+  factory _$FileWeekPlanResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FileWeekPlanResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProjectTaskID')
+  final int? projectTaskId;
+  @override
+  @JsonKey(name: 'FileName')
+  final String? fileName;
+  @override
+  @JsonKey(name: 'FilePath')
+  final String? filePath;
+  @override
+  @JsonKey(name: 'EmployeeUploadID')
+  final int? employeeUploadID;
+  @override
+  @JsonKey(name: 'UploadedDate')
+  final DateTime? uploadedDate;
+  @override
+  @JsonKey(name: 'Type')
+  final int? type;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  @override
+  String toString() {
+    return 'FileWeekPlanResponse(id: $id, projectTaskId: $projectTaskId, fileName: $fileName, filePath: $filePath, employeeUploadID: $employeeUploadID, uploadedDate: $uploadedDate, type: $type, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, isDeleted: $isDeleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FileWeekPlanResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.projectTaskId, projectTaskId) ||
+                other.projectTaskId == projectTaskId) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
+            (identical(other.filePath, filePath) ||
+                other.filePath == filePath) &&
+            (identical(other.employeeUploadID, employeeUploadID) ||
+                other.employeeUploadID == employeeUploadID) &&
+            (identical(other.uploadedDate, uploadedDate) ||
+                other.uploadedDate == uploadedDate) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      projectTaskId,
+      fileName,
+      filePath,
+      employeeUploadID,
+      uploadedDate,
+      type,
+      createdDate,
+      createdBy,
+      updatedDate,
+      updatedBy,
+      isDeleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FileWeekPlanResponseImplCopyWith<_$FileWeekPlanResponseImpl>
+      get copyWith =>
+          __$$FileWeekPlanResponseImplCopyWithImpl<_$FileWeekPlanResponseImpl>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$FileWeekPlanResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _FileWeekPlanResponse implements FileWeekPlanResponse {
+  const factory _FileWeekPlanResponse(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'ProjectTaskID') final int? projectTaskId,
+          @JsonKey(name: 'FileName') final String? fileName,
+          @JsonKey(name: 'FilePath') final String? filePath,
+          @JsonKey(name: 'EmployeeUploadID') final int? employeeUploadID,
+          @JsonKey(name: 'UploadedDate') final DateTime? uploadedDate,
+          @JsonKey(name: 'Type') final int? type,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
+      _$FileWeekPlanResponseImpl;
+
+  factory _FileWeekPlanResponse.fromJson(Map<String, dynamic> json) =
+      _$FileWeekPlanResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProjectTaskID')
+  int? get projectTaskId;
+  @override
+  @JsonKey(name: 'FileName')
+  String? get fileName;
+  @override
+  @JsonKey(name: 'FilePath')
+  String? get filePath;
+  @override
+  @JsonKey(name: 'EmployeeUploadID')
+  int? get employeeUploadID;
+  @override
+  @JsonKey(name: 'UploadedDate')
+  DateTime? get uploadedDate;
+  @override
+  @JsonKey(name: 'Type')
+  int? get type;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$FileWeekPlanResponseImplCopyWith<_$FileWeekPlanResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

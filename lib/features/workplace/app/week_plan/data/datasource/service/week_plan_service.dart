@@ -1,5 +1,8 @@
 // ignore_for_file: unused_field
 
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../../../../../base/network/dio/dio_base_api_service.dart';
 import '../../../../../../../../../base/network/models/base_data.dart';
@@ -178,6 +181,62 @@ class WeekPlanService extends DioBaseApiService {
       parser: (json) => BaseData<SaveResponseWeekPlan>.fromJson(
         json,
         (data) => SaveResponseWeekPlan.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  /// Lưu file đính kèm
+  Future<BaseData<List<UploadAttachmentResponse>>> uploadAttachmentFile({
+    required List<File> files,
+    required String key,
+    required String subPath,
+  }) async {
+    final formData = FormData();
+
+    // add file(s)
+    for (final file in files) {
+      formData.files.add(
+        MapEntry(
+          'files',
+          await MultipartFile.fromFile(
+            file.path,
+            filename: file.path.split('/').last,
+          ),
+        ),
+      );
+    }
+
+    // add text fields
+    formData.fields.addAll([
+      MapEntry('key', key),
+      MapEntry('subPath', subPath),
+    ]);
+
+    return post<BaseData<List<UploadAttachmentResponse>>>(
+      ApiEndPoint.marketing_upload,
+      body: formData,
+      options: Options(contentType: 'multipart/form-data'),
+      parser: (json) => BaseData<List<UploadAttachmentResponse>>.fromJson(
+        json,
+            (data) =>
+            (data as List).map((e) => UploadAttachmentResponse.fromJson(e)).toList(),
+      ),
+    );
+  }
+
+  /// PUT /ProjectTask/Files - Lưu file đính kèm sau khi tạo task.
+  ///
+  /// Payload: { ID, ProjectTaskID, FileName, FilePath, IsDeleted }
+  /// Response: { status: 1, data: FileWeekPlanResponse }
+  Future<BaseData<FileWeekPlanResponse>> saveProjectTaskFiles({
+    required Map<String, dynamic> payload,
+  }) async {
+    return put<BaseData<FileWeekPlanResponse>>(
+      ApiEndPoint.projectTaskFiles,
+      body: payload,
+      parser: (json) => BaseData<FileWeekPlanResponse>.fromJson(
+        json,
+        (data) => FileWeekPlanResponse.fromJson(data as Map<String, dynamic>),
       ),
     );
   }
