@@ -260,6 +260,11 @@ class _WeekPlanAddScreenState
             validator: FormBuilderValidators.required(
               errorText: 'Vui lòng nhập tên công việc',
             ),
+            onChanged: (value) {
+              if (value != null) {
+                bloc.add(WeekPlanEvent.updateContentTaskName(value.toString()));
+              }
+            },
           ),
           const SizedBox(height: 10),
           WeekPlanTapCard(
@@ -338,6 +343,15 @@ class _WeekPlanAddScreenState
                         icon: Icons.calendar_today,
                         inputType: InputType.date,
                         format: DateFormat('dd/MM/yyyy'),
+                        onChanged: (value) {
+                          bloc.add(WeekPlanEvent.updateContentDates(
+                            startDate: value,
+                            endDate: state.contentEndDate,
+                            actualStartDate: state.contentActualStartDate,
+                            actualEndDate: state.contentActualEndDate,
+                            deadline: state.contentDeadline,
+                          ));
+                        },
                       ),
                     ),
                     const SizedBox(width: 10),
@@ -349,6 +363,15 @@ class _WeekPlanAddScreenState
                         icon: Icons.event,
                         inputType: InputType.date,
                         format: DateFormat('dd/MM/yyyy'),
+                        onChanged: (value) {
+                          bloc.add(WeekPlanEvent.updateContentDates(
+                            startDate: state.contentStartDate,
+                            endDate: value,
+                            actualStartDate: state.contentActualStartDate,
+                            actualEndDate: state.contentActualEndDate,
+                            deadline: state.contentDeadline,
+                          ));
+                        },
                       ),
                     ),
                   ],
@@ -363,6 +386,10 @@ class _WeekPlanAddScreenState
                         label: 'Dự kiến (giờ)',
                         icon: Icons.access_time,
                         keyboardType: TextInputType.number,
+                        onChanged: (value) {
+                          final hours = double.tryParse(value?.toString() ?? '');
+                          bloc.add(WeekPlanEvent.updateHeaderTimeEstimate(hours));
+                        },
                       ),
                     ),
                     const SizedBox(width: 10),
@@ -374,6 +401,15 @@ class _WeekPlanAddScreenState
                         icon: Icons.flag_outlined,
                         inputType: InputType.date,
                         format: DateFormat('dd/MM/yyyy'),
+                        onChanged: (value) {
+                          bloc.add(WeekPlanEvent.updateContentDates(
+                            startDate: state.contentStartDate,
+                            endDate: state.contentEndDate,
+                            actualStartDate: state.contentActualStartDate,
+                            actualEndDate: state.contentActualEndDate,
+                            deadline: value,
+                          ));
+                        },
                       ),
                     ),
                   ],
@@ -394,6 +430,15 @@ class _WeekPlanAddScreenState
                     icon: Icons.play_arrow_outlined,
                     inputType: InputType.date,
                     format: DateFormat('dd/MM/yyyy'),
+                    onChanged: (value) {
+                      bloc.add(WeekPlanEvent.updateContentDates(
+                        startDate: state.contentStartDate,
+                        endDate: state.contentEndDate,
+                        actualStartDate: value,
+                        actualEndDate: state.contentActualEndDate,
+                        deadline: state.contentDeadline,
+                      ));
+                    },
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -405,6 +450,15 @@ class _WeekPlanAddScreenState
                     icon: Icons.stop_outlined,
                     inputType: InputType.date,
                     format: DateFormat('dd/MM/yyyy'),
+                    onChanged: (value) {
+                      bloc.add(WeekPlanEvent.updateContentDates(
+                        startDate: state.contentStartDate,
+                        endDate: state.contentEndDate,
+                        actualStartDate: state.contentActualStartDate,
+                        actualEndDate: value,
+                        deadline: state.contentDeadline,
+                      ));
+                    },
                   ),
                 ),
               ],
@@ -423,25 +477,40 @@ class _WeekPlanAddScreenState
       child: Column(
         children: [
           FormCard(
-            child: FormInputField(
-              nameForm: 'description',
-              nameTextField: 'description_field',
-              label: 'Mô tả chi tiết',
-              icon: Icons.description_outlined,
-              autoExpand: true,
+            child: Column(
+              children: [
+                FormInputField(
+                  nameForm: 'description',
+                  nameTextField: 'description_field',
+                  label: 'Mô tả chi tiết',
+                  icon: Icons.description_outlined,
+                  autoExpand: true,
+                  keyboardType: TextInputType.multiline,
+                  onChanged: (value) {
+                    if (value != null) {
+                      bloc.add(WeekPlanEvent.updateContentDescription(value.toString()));
+                    }
+                  },
+                ),
+                const SizedBox(height: 10),
+
+                FormInputField(
+                  nameForm: 'expected_result',
+                  nameTextField: 'expected_result_field',
+                  label: 'Kết quả công việc',
+                  keyboardType: TextInputType.multiline,
+                  icon: Icons.check_circle_outline,
+                  autoExpand: true,
+                  onChanged: (value) {
+                    if (value != null) {
+                      bloc.add(WeekPlanEvent.updateContentResult(value.toString()));
+                    }
+                  },
+                ),
+              ],
             ),
           ),
 
-          const SizedBox(height: 10),
-          FormCard(
-            child: FormInputField(
-              nameForm: 'expected_result',
-              nameTextField: 'expected_result_field',
-              label: 'Kết quả công việc',
-              icon: Icons.check_circle_outline,
-              autoExpand: true,
-            ),
-          ),
           const SizedBox(height: 10),
           WeekPlanChoiceRow(
             options: [
@@ -1024,8 +1093,7 @@ class _WeekPlanAddScreenState
   Widget _buildBottomActions() {
     return BlocBuilder<WeekPlanBloc, WeekPlanState>(
       builder: (context, state) {
-        final isLastStep = _currentStep == WeekPlanAddStep.values.length - 1;
-        final isIncidentStep = WeekPlanAddStep.values[_currentStep] == WeekPlanAddStep.incident;
+    final isLastStep = _currentStep == WeekPlanAddStep.values.length - 1;
 
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -1034,44 +1102,36 @@ class _WeekPlanAddScreenState
             child: Row(
               children: [
                 Expanded(
-                  child: isIncidentStep
-                      ? OutlinedButton.icon(
-                          onPressed: state.isSubmitting
-                              ? null
-                              : () => _goToStep(_currentStep - 1),
-                          icon: const Icon(Icons.arrow_back, size: 16),
-                          label: const Text('Quay lại'),
-                          style: OutlinedButton.styleFrom(
-                            foregroundColor: AppColors.secondaryERP,
-                            side: BorderSide(color: AppColors.secondaryERP),
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        )
-                      : OutlinedButton(
-                          onPressed: state.isSubmitting
-                              ? null
-                              : () {
-                                  _formKey.currentState?.save();
-                                },
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            side: const BorderSide(color: AppColors.secondaryERP),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.save_outlined, size: 16),
-                              SizedBox(width: 4),
-                              Text('Lưu'),
-                            ],
-                          ),
+                  child: OutlinedButton(
+                    onPressed: state.isSubmitting
+                        ? null
+                        : () {
+                            if (isLastStep) {
+                              _goToStep(_currentStep - 1);
+                            } else {
+                              _saveFormAndCreate();
+                            }
+                          },
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      side: const BorderSide(color: AppColors.secondaryERP),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      foregroundColor: AppColors.secondaryERP,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          isLastStep ? Icons.arrow_back : Icons.save_outlined,
+                          size: 16,
                         ),
+                        const SizedBox(width: 4),
+                        Text(isLastStep ? 'Quay lại' : 'Lưu'),
+                      ],
+                    ),
+                  ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
@@ -1079,9 +1139,7 @@ class _WeekPlanAddScreenState
                     onPressed: state.isSubmitting
                         ? null
                         : () => isLastStep
-                            ? (_formKey.currentState?.saveAndValidate() ?? false)
-                                ? bloc.add(const WeekPlanEvent.createTask())
-                                : null
+                            ? _saveFormAndCreate()
                             : _goToStep(_currentStep + 1),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryERP,
@@ -1125,5 +1183,35 @@ class _WeekPlanAddScreenState
       bloc.add(WeekPlanEvent.changeStep(step));
       setState(() => _currentStep = step);
     }
+  }
+
+  void _saveFormAndCreate() {
+    final formState = _formKey.currentState;
+    if (formState == null) return;
+
+    formState.save();
+    if (!formState.validate()) return;
+
+    final vals = formState.value;
+
+    // Step 1 fields
+    bloc.add(WeekPlanEvent.updateContentTaskName(
+      vals['task_name']?.toString() ?? '',
+    ));
+
+    final hoursStr = vals['expected_hours']?.toString() ?? '';
+    final hours = double.tryParse(hoursStr);
+    bloc.add(WeekPlanEvent.updateHeaderTimeEstimate(hours));
+
+    // Step 2 fields
+    bloc.add(WeekPlanEvent.updateContentDescription(
+      vals['description']?.toString() ?? '',
+    ));
+    bloc.add(WeekPlanEvent.updateContentResult(
+      vals['expected_result']?.toString() ?? '',
+    ));
+
+    // Trigger create
+    bloc.add(const WeekPlanEvent.createTask());
   }
 }

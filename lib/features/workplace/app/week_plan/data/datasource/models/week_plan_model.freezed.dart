@@ -5087,3 +5087,1323 @@ abstract class _AttendanceTaskResponse implements AttendanceTaskResponse {
   _$$AttendanceTaskResponseImplCopyWith<_$AttendanceTaskResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+SaveResponseWeekPlan _$SaveResponseWeekPlanFromJson(Map<String, dynamic> json) {
+  return _SaveResponseWeekPlan.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SaveResponseWeekPlan {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Status')
+  int? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UserID')
+  int? get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Mission')
+  String? get mission => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PlanStartDate')
+  DateTime? get planStartDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PlanEndDate')
+  DateTime? get planEndDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ActualStartDate')
+  DateTime? get actualStartDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ActualEndDate')
+  DateTime? get actualEndDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalDayPlan')
+  double? get totalDayPlan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PercentItem')
+  double? get percentItem => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ParentID')
+  int? get parentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalDayActual')
+  double? get totalDayActual => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ItemLate')
+  int? get itemLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TimeSpan')
+  double? get timeSpan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TypeProjectItem')
+  int? get typeProjectItem => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PercentageActual')
+  double? get percentageActual => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeIDRequest')
+  int? get employeeIdRequest => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDateActual')
+  DateTime? get updatedDateActual => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApproved')
+  int? get isApproved => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsUpdateLate')
+  bool? get isUpdateLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReasonLate')
+  String? get reasonLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDateReasonLate')
+  DateTime? get updatedDateReasonLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedLate')
+  bool? get isApprovedLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeRequestID')
+  int? get employeeRequestID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeRequestName')
+  String? get employeeRequestName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Location')
+  String? get location => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeCreateID')
+  int? get employeeCreateID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Description')
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsPersonalProject')
+  bool? get isPersonalProject => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsAdditional')
+  bool? get isAdditional => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaskComplexity')
+  int? get taskComplexity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PercentOverTime')
+  double? get percentOverTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DescriptionSolution')
+  String? get descriptionSolution => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Deadline')
+  DateTime? get deadline => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTaskTypeID')
+  int? get projectTaskTypeID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTaskResult')
+  String? get projectTaskResult => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Priority')
+  int? get priority => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EstimatedTime')
+  double? get estimatedTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'NeedApprove')
+  bool? get needApprove => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SaveResponseWeekPlanCopyWith<SaveResponseWeekPlan> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SaveResponseWeekPlanCopyWith<$Res> {
+  factory $SaveResponseWeekPlanCopyWith(SaveResponseWeekPlan value,
+          $Res Function(SaveResponseWeekPlan) then) =
+      _$SaveResponseWeekPlanCopyWithImpl<$Res, SaveResponseWeekPlan>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'UserID') int? userId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'Mission') String? mission,
+      @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
+      @JsonKey(name: 'PlanEndDate') DateTime? planEndDate,
+      @JsonKey(name: 'ActualStartDate') DateTime? actualStartDate,
+      @JsonKey(name: 'ActualEndDate') DateTime? actualEndDate,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'TotalDayPlan') double? totalDayPlan,
+      @JsonKey(name: 'PercentItem') double? percentItem,
+      @JsonKey(name: 'ParentID') int? parentId,
+      @JsonKey(name: 'TotalDayActual') double? totalDayActual,
+      @JsonKey(name: 'ItemLate') int? itemLate,
+      @JsonKey(name: 'TimeSpan') double? timeSpan,
+      @JsonKey(name: 'TypeProjectItem') int? typeProjectItem,
+      @JsonKey(name: 'PercentageActual') double? percentageActual,
+      @JsonKey(name: 'EmployeeIDRequest') int? employeeIdRequest,
+      @JsonKey(name: 'UpdatedDateActual') DateTime? updatedDateActual,
+      @JsonKey(name: 'IsApproved') int? isApproved,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsUpdateLate') bool? isUpdateLate,
+      @JsonKey(name: 'ReasonLate') String? reasonLate,
+      @JsonKey(name: 'UpdatedDateReasonLate') DateTime? updatedDateReasonLate,
+      @JsonKey(name: 'IsApprovedLate') bool? isApprovedLate,
+      @JsonKey(name: 'EmployeeRequestID') int? employeeRequestID,
+      @JsonKey(name: 'EmployeeRequestName') String? employeeRequestName,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'Location') String? location,
+      @JsonKey(name: 'EmployeeCreateID') int? employeeCreateID,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'IsPersonalProject') bool? isPersonalProject,
+      @JsonKey(name: 'IsAdditional') bool? isAdditional,
+      @JsonKey(name: 'TaskComplexity') int? taskComplexity,
+      @JsonKey(name: 'PercentOverTime') double? percentOverTime,
+      @JsonKey(name: 'DescriptionSolution') String? descriptionSolution,
+      @JsonKey(name: 'Deadline') DateTime? deadline,
+      @JsonKey(name: 'ProjectTaskTypeID') int? projectTaskTypeID,
+      @JsonKey(name: 'ProjectTaskResult') String? projectTaskResult,
+      @JsonKey(name: 'Priority') int? priority,
+      @JsonKey(name: 'EstimatedTime') double? estimatedTime,
+      @JsonKey(name: 'NeedApprove') bool? needApprove});
+}
+
+/// @nodoc
+class _$SaveResponseWeekPlanCopyWithImpl<$Res,
+        $Val extends SaveResponseWeekPlan>
+    implements $SaveResponseWeekPlanCopyWith<$Res> {
+  _$SaveResponseWeekPlanCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? status = freezed,
+    Object? stt = freezed,
+    Object? userId = freezed,
+    Object? projectId = freezed,
+    Object? mission = freezed,
+    Object? planStartDate = freezed,
+    Object? planEndDate = freezed,
+    Object? actualStartDate = freezed,
+    Object? actualEndDate = freezed,
+    Object? note = freezed,
+    Object? totalDayPlan = freezed,
+    Object? percentItem = freezed,
+    Object? parentId = freezed,
+    Object? totalDayActual = freezed,
+    Object? itemLate = freezed,
+    Object? timeSpan = freezed,
+    Object? typeProjectItem = freezed,
+    Object? percentageActual = freezed,
+    Object? employeeIdRequest = freezed,
+    Object? updatedDateActual = freezed,
+    Object? isApproved = freezed,
+    Object? code = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isUpdateLate = freezed,
+    Object? reasonLate = freezed,
+    Object? updatedDateReasonLate = freezed,
+    Object? isApprovedLate = freezed,
+    Object? employeeRequestID = freezed,
+    Object? employeeRequestName = freezed,
+    Object? isDeleted = freezed,
+    Object? location = freezed,
+    Object? employeeCreateID = freezed,
+    Object? description = freezed,
+    Object? isPersonalProject = freezed,
+    Object? isAdditional = freezed,
+    Object? taskComplexity = freezed,
+    Object? percentOverTime = freezed,
+    Object? descriptionSolution = freezed,
+    Object? deadline = freezed,
+    Object? projectTaskTypeID = freezed,
+    Object? projectTaskResult = freezed,
+    Object? priority = freezed,
+    Object? estimatedTime = freezed,
+    Object? needApprove = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      mission: freezed == mission
+          ? _value.mission
+          : mission // ignore: cast_nullable_to_non_nullable
+              as String?,
+      planStartDate: freezed == planStartDate
+          ? _value.planStartDate
+          : planStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      planEndDate: freezed == planEndDate
+          ? _value.planEndDate
+          : planEndDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      actualStartDate: freezed == actualStartDate
+          ? _value.actualStartDate
+          : actualStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      actualEndDate: freezed == actualEndDate
+          ? _value.actualEndDate
+          : actualEndDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalDayPlan: freezed == totalDayPlan
+          ? _value.totalDayPlan
+          : totalDayPlan // ignore: cast_nullable_to_non_nullable
+              as double?,
+      percentItem: freezed == percentItem
+          ? _value.percentItem
+          : percentItem // ignore: cast_nullable_to_non_nullable
+              as double?,
+      parentId: freezed == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalDayActual: freezed == totalDayActual
+          ? _value.totalDayActual
+          : totalDayActual // ignore: cast_nullable_to_non_nullable
+              as double?,
+      itemLate: freezed == itemLate
+          ? _value.itemLate
+          : itemLate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      timeSpan: freezed == timeSpan
+          ? _value.timeSpan
+          : timeSpan // ignore: cast_nullable_to_non_nullable
+              as double?,
+      typeProjectItem: freezed == typeProjectItem
+          ? _value.typeProjectItem
+          : typeProjectItem // ignore: cast_nullable_to_non_nullable
+              as int?,
+      percentageActual: freezed == percentageActual
+          ? _value.percentageActual
+          : percentageActual // ignore: cast_nullable_to_non_nullable
+              as double?,
+      employeeIdRequest: freezed == employeeIdRequest
+          ? _value.employeeIdRequest
+          : employeeIdRequest // ignore: cast_nullable_to_non_nullable
+              as int?,
+      updatedDateActual: freezed == updatedDateActual
+          ? _value.updatedDateActual
+          : updatedDateActual // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApproved: freezed == isApproved
+          ? _value.isApproved
+          : isApproved // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isUpdateLate: freezed == isUpdateLate
+          ? _value.isUpdateLate
+          : isUpdateLate // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      reasonLate: freezed == reasonLate
+          ? _value.reasonLate
+          : reasonLate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDateReasonLate: freezed == updatedDateReasonLate
+          ? _value.updatedDateReasonLate
+          : updatedDateReasonLate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApprovedLate: freezed == isApprovedLate
+          ? _value.isApprovedLate
+          : isApprovedLate // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      employeeRequestID: freezed == employeeRequestID
+          ? _value.employeeRequestID
+          : employeeRequestID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeRequestName: freezed == employeeRequestName
+          ? _value.employeeRequestName
+          : employeeRequestName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeCreateID: freezed == employeeCreateID
+          ? _value.employeeCreateID
+          : employeeCreateID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isPersonalProject: freezed == isPersonalProject
+          ? _value.isPersonalProject
+          : isPersonalProject // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isAdditional: freezed == isAdditional
+          ? _value.isAdditional
+          : isAdditional // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      taskComplexity: freezed == taskComplexity
+          ? _value.taskComplexity
+          : taskComplexity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      percentOverTime: freezed == percentOverTime
+          ? _value.percentOverTime
+          : percentOverTime // ignore: cast_nullable_to_non_nullable
+              as double?,
+      descriptionSolution: freezed == descriptionSolution
+          ? _value.descriptionSolution
+          : descriptionSolution // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deadline: freezed == deadline
+          ? _value.deadline
+          : deadline // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      projectTaskTypeID: freezed == projectTaskTypeID
+          ? _value.projectTaskTypeID
+          : projectTaskTypeID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskResult: freezed == projectTaskResult
+          ? _value.projectTaskResult
+          : projectTaskResult // ignore: cast_nullable_to_non_nullable
+              as String?,
+      priority: freezed == priority
+          ? _value.priority
+          : priority // ignore: cast_nullable_to_non_nullable
+              as int?,
+      estimatedTime: freezed == estimatedTime
+          ? _value.estimatedTime
+          : estimatedTime // ignore: cast_nullable_to_non_nullable
+              as double?,
+      needApprove: freezed == needApprove
+          ? _value.needApprove
+          : needApprove // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SaveResponseWeekPlanImplCopyWith<$Res>
+    implements $SaveResponseWeekPlanCopyWith<$Res> {
+  factory _$$SaveResponseWeekPlanImplCopyWith(_$SaveResponseWeekPlanImpl value,
+          $Res Function(_$SaveResponseWeekPlanImpl) then) =
+      __$$SaveResponseWeekPlanImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'UserID') int? userId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'Mission') String? mission,
+      @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
+      @JsonKey(name: 'PlanEndDate') DateTime? planEndDate,
+      @JsonKey(name: 'ActualStartDate') DateTime? actualStartDate,
+      @JsonKey(name: 'ActualEndDate') DateTime? actualEndDate,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'TotalDayPlan') double? totalDayPlan,
+      @JsonKey(name: 'PercentItem') double? percentItem,
+      @JsonKey(name: 'ParentID') int? parentId,
+      @JsonKey(name: 'TotalDayActual') double? totalDayActual,
+      @JsonKey(name: 'ItemLate') int? itemLate,
+      @JsonKey(name: 'TimeSpan') double? timeSpan,
+      @JsonKey(name: 'TypeProjectItem') int? typeProjectItem,
+      @JsonKey(name: 'PercentageActual') double? percentageActual,
+      @JsonKey(name: 'EmployeeIDRequest') int? employeeIdRequest,
+      @JsonKey(name: 'UpdatedDateActual') DateTime? updatedDateActual,
+      @JsonKey(name: 'IsApproved') int? isApproved,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsUpdateLate') bool? isUpdateLate,
+      @JsonKey(name: 'ReasonLate') String? reasonLate,
+      @JsonKey(name: 'UpdatedDateReasonLate') DateTime? updatedDateReasonLate,
+      @JsonKey(name: 'IsApprovedLate') bool? isApprovedLate,
+      @JsonKey(name: 'EmployeeRequestID') int? employeeRequestID,
+      @JsonKey(name: 'EmployeeRequestName') String? employeeRequestName,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'Location') String? location,
+      @JsonKey(name: 'EmployeeCreateID') int? employeeCreateID,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'IsPersonalProject') bool? isPersonalProject,
+      @JsonKey(name: 'IsAdditional') bool? isAdditional,
+      @JsonKey(name: 'TaskComplexity') int? taskComplexity,
+      @JsonKey(name: 'PercentOverTime') double? percentOverTime,
+      @JsonKey(name: 'DescriptionSolution') String? descriptionSolution,
+      @JsonKey(name: 'Deadline') DateTime? deadline,
+      @JsonKey(name: 'ProjectTaskTypeID') int? projectTaskTypeID,
+      @JsonKey(name: 'ProjectTaskResult') String? projectTaskResult,
+      @JsonKey(name: 'Priority') int? priority,
+      @JsonKey(name: 'EstimatedTime') double? estimatedTime,
+      @JsonKey(name: 'NeedApprove') bool? needApprove});
+}
+
+/// @nodoc
+class __$$SaveResponseWeekPlanImplCopyWithImpl<$Res>
+    extends _$SaveResponseWeekPlanCopyWithImpl<$Res, _$SaveResponseWeekPlanImpl>
+    implements _$$SaveResponseWeekPlanImplCopyWith<$Res> {
+  __$$SaveResponseWeekPlanImplCopyWithImpl(_$SaveResponseWeekPlanImpl _value,
+      $Res Function(_$SaveResponseWeekPlanImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? status = freezed,
+    Object? stt = freezed,
+    Object? userId = freezed,
+    Object? projectId = freezed,
+    Object? mission = freezed,
+    Object? planStartDate = freezed,
+    Object? planEndDate = freezed,
+    Object? actualStartDate = freezed,
+    Object? actualEndDate = freezed,
+    Object? note = freezed,
+    Object? totalDayPlan = freezed,
+    Object? percentItem = freezed,
+    Object? parentId = freezed,
+    Object? totalDayActual = freezed,
+    Object? itemLate = freezed,
+    Object? timeSpan = freezed,
+    Object? typeProjectItem = freezed,
+    Object? percentageActual = freezed,
+    Object? employeeIdRequest = freezed,
+    Object? updatedDateActual = freezed,
+    Object? isApproved = freezed,
+    Object? code = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isUpdateLate = freezed,
+    Object? reasonLate = freezed,
+    Object? updatedDateReasonLate = freezed,
+    Object? isApprovedLate = freezed,
+    Object? employeeRequestID = freezed,
+    Object? employeeRequestName = freezed,
+    Object? isDeleted = freezed,
+    Object? location = freezed,
+    Object? employeeCreateID = freezed,
+    Object? description = freezed,
+    Object? isPersonalProject = freezed,
+    Object? isAdditional = freezed,
+    Object? taskComplexity = freezed,
+    Object? percentOverTime = freezed,
+    Object? descriptionSolution = freezed,
+    Object? deadline = freezed,
+    Object? projectTaskTypeID = freezed,
+    Object? projectTaskResult = freezed,
+    Object? priority = freezed,
+    Object? estimatedTime = freezed,
+    Object? needApprove = freezed,
+  }) {
+    return _then(_$SaveResponseWeekPlanImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      mission: freezed == mission
+          ? _value.mission
+          : mission // ignore: cast_nullable_to_non_nullable
+              as String?,
+      planStartDate: freezed == planStartDate
+          ? _value.planStartDate
+          : planStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      planEndDate: freezed == planEndDate
+          ? _value.planEndDate
+          : planEndDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      actualStartDate: freezed == actualStartDate
+          ? _value.actualStartDate
+          : actualStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      actualEndDate: freezed == actualEndDate
+          ? _value.actualEndDate
+          : actualEndDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalDayPlan: freezed == totalDayPlan
+          ? _value.totalDayPlan
+          : totalDayPlan // ignore: cast_nullable_to_non_nullable
+              as double?,
+      percentItem: freezed == percentItem
+          ? _value.percentItem
+          : percentItem // ignore: cast_nullable_to_non_nullable
+              as double?,
+      parentId: freezed == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalDayActual: freezed == totalDayActual
+          ? _value.totalDayActual
+          : totalDayActual // ignore: cast_nullable_to_non_nullable
+              as double?,
+      itemLate: freezed == itemLate
+          ? _value.itemLate
+          : itemLate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      timeSpan: freezed == timeSpan
+          ? _value.timeSpan
+          : timeSpan // ignore: cast_nullable_to_non_nullable
+              as double?,
+      typeProjectItem: freezed == typeProjectItem
+          ? _value.typeProjectItem
+          : typeProjectItem // ignore: cast_nullable_to_non_nullable
+              as int?,
+      percentageActual: freezed == percentageActual
+          ? _value.percentageActual
+          : percentageActual // ignore: cast_nullable_to_non_nullable
+              as double?,
+      employeeIdRequest: freezed == employeeIdRequest
+          ? _value.employeeIdRequest
+          : employeeIdRequest // ignore: cast_nullable_to_non_nullable
+              as int?,
+      updatedDateActual: freezed == updatedDateActual
+          ? _value.updatedDateActual
+          : updatedDateActual // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApproved: freezed == isApproved
+          ? _value.isApproved
+          : isApproved // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isUpdateLate: freezed == isUpdateLate
+          ? _value.isUpdateLate
+          : isUpdateLate // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      reasonLate: freezed == reasonLate
+          ? _value.reasonLate
+          : reasonLate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDateReasonLate: freezed == updatedDateReasonLate
+          ? _value.updatedDateReasonLate
+          : updatedDateReasonLate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApprovedLate: freezed == isApprovedLate
+          ? _value.isApprovedLate
+          : isApprovedLate // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      employeeRequestID: freezed == employeeRequestID
+          ? _value.employeeRequestID
+          : employeeRequestID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeRequestName: freezed == employeeRequestName
+          ? _value.employeeRequestName
+          : employeeRequestName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeCreateID: freezed == employeeCreateID
+          ? _value.employeeCreateID
+          : employeeCreateID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isPersonalProject: freezed == isPersonalProject
+          ? _value.isPersonalProject
+          : isPersonalProject // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isAdditional: freezed == isAdditional
+          ? _value.isAdditional
+          : isAdditional // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      taskComplexity: freezed == taskComplexity
+          ? _value.taskComplexity
+          : taskComplexity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      percentOverTime: freezed == percentOverTime
+          ? _value.percentOverTime
+          : percentOverTime // ignore: cast_nullable_to_non_nullable
+              as double?,
+      descriptionSolution: freezed == descriptionSolution
+          ? _value.descriptionSolution
+          : descriptionSolution // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deadline: freezed == deadline
+          ? _value.deadline
+          : deadline // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      projectTaskTypeID: freezed == projectTaskTypeID
+          ? _value.projectTaskTypeID
+          : projectTaskTypeID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskResult: freezed == projectTaskResult
+          ? _value.projectTaskResult
+          : projectTaskResult // ignore: cast_nullable_to_non_nullable
+              as String?,
+      priority: freezed == priority
+          ? _value.priority
+          : priority // ignore: cast_nullable_to_non_nullable
+              as int?,
+      estimatedTime: freezed == estimatedTime
+          ? _value.estimatedTime
+          : estimatedTime // ignore: cast_nullable_to_non_nullable
+              as double?,
+      needApprove: freezed == needApprove
+          ? _value.needApprove
+          : needApprove // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SaveResponseWeekPlanImpl implements _SaveResponseWeekPlan {
+  const _$SaveResponseWeekPlanImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Status') this.status,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'UserID') this.userId,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'Mission') this.mission,
+      @JsonKey(name: 'PlanStartDate') this.planStartDate,
+      @JsonKey(name: 'PlanEndDate') this.planEndDate,
+      @JsonKey(name: 'ActualStartDate') this.actualStartDate,
+      @JsonKey(name: 'ActualEndDate') this.actualEndDate,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'TotalDayPlan') this.totalDayPlan,
+      @JsonKey(name: 'PercentItem') this.percentItem,
+      @JsonKey(name: 'ParentID') this.parentId,
+      @JsonKey(name: 'TotalDayActual') this.totalDayActual,
+      @JsonKey(name: 'ItemLate') this.itemLate,
+      @JsonKey(name: 'TimeSpan') this.timeSpan,
+      @JsonKey(name: 'TypeProjectItem') this.typeProjectItem,
+      @JsonKey(name: 'PercentageActual') this.percentageActual,
+      @JsonKey(name: 'EmployeeIDRequest') this.employeeIdRequest,
+      @JsonKey(name: 'UpdatedDateActual') this.updatedDateActual,
+      @JsonKey(name: 'IsApproved') this.isApproved,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'IsUpdateLate') this.isUpdateLate,
+      @JsonKey(name: 'ReasonLate') this.reasonLate,
+      @JsonKey(name: 'UpdatedDateReasonLate') this.updatedDateReasonLate,
+      @JsonKey(name: 'IsApprovedLate') this.isApprovedLate,
+      @JsonKey(name: 'EmployeeRequestID') this.employeeRequestID,
+      @JsonKey(name: 'EmployeeRequestName') this.employeeRequestName,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'Location') this.location,
+      @JsonKey(name: 'EmployeeCreateID') this.employeeCreateID,
+      @JsonKey(name: 'Description') this.description,
+      @JsonKey(name: 'IsPersonalProject') this.isPersonalProject,
+      @JsonKey(name: 'IsAdditional') this.isAdditional,
+      @JsonKey(name: 'TaskComplexity') this.taskComplexity,
+      @JsonKey(name: 'PercentOverTime') this.percentOverTime,
+      @JsonKey(name: 'DescriptionSolution') this.descriptionSolution,
+      @JsonKey(name: 'Deadline') this.deadline,
+      @JsonKey(name: 'ProjectTaskTypeID') this.projectTaskTypeID,
+      @JsonKey(name: 'ProjectTaskResult') this.projectTaskResult,
+      @JsonKey(name: 'Priority') this.priority,
+      @JsonKey(name: 'EstimatedTime') this.estimatedTime,
+      @JsonKey(name: 'NeedApprove') this.needApprove});
+
+  factory _$SaveResponseWeekPlanImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SaveResponseWeekPlanImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Status')
+  final int? status;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'UserID')
+  final int? userId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+  @override
+  @JsonKey(name: 'Mission')
+  final String? mission;
+  @override
+  @JsonKey(name: 'PlanStartDate')
+  final DateTime? planStartDate;
+  @override
+  @JsonKey(name: 'PlanEndDate')
+  final DateTime? planEndDate;
+  @override
+  @JsonKey(name: 'ActualStartDate')
+  final DateTime? actualStartDate;
+  @override
+  @JsonKey(name: 'ActualEndDate')
+  final DateTime? actualEndDate;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'TotalDayPlan')
+  final double? totalDayPlan;
+  @override
+  @JsonKey(name: 'PercentItem')
+  final double? percentItem;
+  @override
+  @JsonKey(name: 'ParentID')
+  final int? parentId;
+  @override
+  @JsonKey(name: 'TotalDayActual')
+  final double? totalDayActual;
+  @override
+  @JsonKey(name: 'ItemLate')
+  final int? itemLate;
+  @override
+  @JsonKey(name: 'TimeSpan')
+  final double? timeSpan;
+  @override
+  @JsonKey(name: 'TypeProjectItem')
+  final int? typeProjectItem;
+  @override
+  @JsonKey(name: 'PercentageActual')
+  final double? percentageActual;
+  @override
+  @JsonKey(name: 'EmployeeIDRequest')
+  final int? employeeIdRequest;
+  @override
+  @JsonKey(name: 'UpdatedDateActual')
+  final DateTime? updatedDateActual;
+  @override
+  @JsonKey(name: 'IsApproved')
+  final int? isApproved;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'IsUpdateLate')
+  final bool? isUpdateLate;
+  @override
+  @JsonKey(name: 'ReasonLate')
+  final String? reasonLate;
+  @override
+  @JsonKey(name: 'UpdatedDateReasonLate')
+  final DateTime? updatedDateReasonLate;
+  @override
+  @JsonKey(name: 'IsApprovedLate')
+  final bool? isApprovedLate;
+  @override
+  @JsonKey(name: 'EmployeeRequestID')
+  final int? employeeRequestID;
+  @override
+  @JsonKey(name: 'EmployeeRequestName')
+  final String? employeeRequestName;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'Location')
+  final String? location;
+  @override
+  @JsonKey(name: 'EmployeeCreateID')
+  final int? employeeCreateID;
+  @override
+  @JsonKey(name: 'Description')
+  final String? description;
+  @override
+  @JsonKey(name: 'IsPersonalProject')
+  final bool? isPersonalProject;
+  @override
+  @JsonKey(name: 'IsAdditional')
+  final bool? isAdditional;
+  @override
+  @JsonKey(name: 'TaskComplexity')
+  final int? taskComplexity;
+  @override
+  @JsonKey(name: 'PercentOverTime')
+  final double? percentOverTime;
+  @override
+  @JsonKey(name: 'DescriptionSolution')
+  final String? descriptionSolution;
+  @override
+  @JsonKey(name: 'Deadline')
+  final DateTime? deadline;
+  @override
+  @JsonKey(name: 'ProjectTaskTypeID')
+  final int? projectTaskTypeID;
+  @override
+  @JsonKey(name: 'ProjectTaskResult')
+  final String? projectTaskResult;
+  @override
+  @JsonKey(name: 'Priority')
+  final int? priority;
+  @override
+  @JsonKey(name: 'EstimatedTime')
+  final double? estimatedTime;
+  @override
+  @JsonKey(name: 'NeedApprove')
+  final bool? needApprove;
+
+  @override
+  String toString() {
+    return 'SaveResponseWeekPlan(id: $id, status: $status, stt: $stt, userId: $userId, projectId: $projectId, mission: $mission, planStartDate: $planStartDate, planEndDate: $planEndDate, actualStartDate: $actualStartDate, actualEndDate: $actualEndDate, note: $note, totalDayPlan: $totalDayPlan, percentItem: $percentItem, parentId: $parentId, totalDayActual: $totalDayActual, itemLate: $itemLate, timeSpan: $timeSpan, typeProjectItem: $typeProjectItem, percentageActual: $percentageActual, employeeIdRequest: $employeeIdRequest, updatedDateActual: $updatedDateActual, isApproved: $isApproved, code: $code, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, isUpdateLate: $isUpdateLate, reasonLate: $reasonLate, updatedDateReasonLate: $updatedDateReasonLate, isApprovedLate: $isApprovedLate, employeeRequestID: $employeeRequestID, employeeRequestName: $employeeRequestName, isDeleted: $isDeleted, location: $location, employeeCreateID: $employeeCreateID, description: $description, isPersonalProject: $isPersonalProject, isAdditional: $isAdditional, taskComplexity: $taskComplexity, percentOverTime: $percentOverTime, descriptionSolution: $descriptionSolution, deadline: $deadline, projectTaskTypeID: $projectTaskTypeID, projectTaskResult: $projectTaskResult, priority: $priority, estimatedTime: $estimatedTime, needApprove: $needApprove)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaveResponseWeekPlanImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.mission, mission) || other.mission == mission) &&
+            (identical(other.planStartDate, planStartDate) ||
+                other.planStartDate == planStartDate) &&
+            (identical(other.planEndDate, planEndDate) ||
+                other.planEndDate == planEndDate) &&
+            (identical(other.actualStartDate, actualStartDate) ||
+                other.actualStartDate == actualStartDate) &&
+            (identical(other.actualEndDate, actualEndDate) ||
+                other.actualEndDate == actualEndDate) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.totalDayPlan, totalDayPlan) ||
+                other.totalDayPlan == totalDayPlan) &&
+            (identical(other.percentItem, percentItem) ||
+                other.percentItem == percentItem) &&
+            (identical(other.parentId, parentId) ||
+                other.parentId == parentId) &&
+            (identical(other.totalDayActual, totalDayActual) ||
+                other.totalDayActual == totalDayActual) &&
+            (identical(other.itemLate, itemLate) ||
+                other.itemLate == itemLate) &&
+            (identical(other.timeSpan, timeSpan) ||
+                other.timeSpan == timeSpan) &&
+            (identical(other.typeProjectItem, typeProjectItem) ||
+                other.typeProjectItem == typeProjectItem) &&
+            (identical(other.percentageActual, percentageActual) ||
+                other.percentageActual == percentageActual) &&
+            (identical(other.employeeIdRequest, employeeIdRequest) ||
+                other.employeeIdRequest == employeeIdRequest) &&
+            (identical(other.updatedDateActual, updatedDateActual) ||
+                other.updatedDateActual == updatedDateActual) &&
+            (identical(other.isApproved, isApproved) ||
+                other.isApproved == isApproved) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.isUpdateLate, isUpdateLate) ||
+                other.isUpdateLate == isUpdateLate) &&
+            (identical(other.reasonLate, reasonLate) ||
+                other.reasonLate == reasonLate) &&
+            (identical(other.updatedDateReasonLate, updatedDateReasonLate) ||
+                other.updatedDateReasonLate == updatedDateReasonLate) &&
+            (identical(other.isApprovedLate, isApprovedLate) ||
+                other.isApprovedLate == isApprovedLate) &&
+            (identical(other.employeeRequestID, employeeRequestID) ||
+                other.employeeRequestID == employeeRequestID) &&
+            (identical(other.employeeRequestName, employeeRequestName) ||
+                other.employeeRequestName == employeeRequestName) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.employeeCreateID, employeeCreateID) ||
+                other.employeeCreateID == employeeCreateID) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.isPersonalProject, isPersonalProject) ||
+                other.isPersonalProject == isPersonalProject) &&
+            (identical(other.isAdditional, isAdditional) ||
+                other.isAdditional == isAdditional) &&
+            (identical(other.taskComplexity, taskComplexity) ||
+                other.taskComplexity == taskComplexity) &&
+            (identical(other.percentOverTime, percentOverTime) ||
+                other.percentOverTime == percentOverTime) &&
+            (identical(other.descriptionSolution, descriptionSolution) ||
+                other.descriptionSolution == descriptionSolution) &&
+            (identical(other.deadline, deadline) ||
+                other.deadline == deadline) &&
+            (identical(other.projectTaskTypeID, projectTaskTypeID) ||
+                other.projectTaskTypeID == projectTaskTypeID) &&
+            (identical(other.projectTaskResult, projectTaskResult) ||
+                other.projectTaskResult == projectTaskResult) &&
+            (identical(other.priority, priority) ||
+                other.priority == priority) &&
+            (identical(other.estimatedTime, estimatedTime) ||
+                other.estimatedTime == estimatedTime) &&
+            (identical(other.needApprove, needApprove) ||
+                other.needApprove == needApprove));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        status,
+        stt,
+        userId,
+        projectId,
+        mission,
+        planStartDate,
+        planEndDate,
+        actualStartDate,
+        actualEndDate,
+        note,
+        totalDayPlan,
+        percentItem,
+        parentId,
+        totalDayActual,
+        itemLate,
+        timeSpan,
+        typeProjectItem,
+        percentageActual,
+        employeeIdRequest,
+        updatedDateActual,
+        isApproved,
+        code,
+        createdDate,
+        createdBy,
+        updatedDate,
+        updatedBy,
+        isUpdateLate,
+        reasonLate,
+        updatedDateReasonLate,
+        isApprovedLate,
+        employeeRequestID,
+        employeeRequestName,
+        isDeleted,
+        location,
+        employeeCreateID,
+        description,
+        isPersonalProject,
+        isAdditional,
+        taskComplexity,
+        percentOverTime,
+        descriptionSolution,
+        deadline,
+        projectTaskTypeID,
+        projectTaskResult,
+        priority,
+        estimatedTime,
+        needApprove
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SaveResponseWeekPlanImplCopyWith<_$SaveResponseWeekPlanImpl>
+      get copyWith =>
+          __$$SaveResponseWeekPlanImplCopyWithImpl<_$SaveResponseWeekPlanImpl>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SaveResponseWeekPlanImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SaveResponseWeekPlan implements SaveResponseWeekPlan {
+  const factory _SaveResponseWeekPlan(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'Status') final int? status,
+      @JsonKey(name: 'STT') final int? stt,
+      @JsonKey(name: 'UserID') final int? userId,
+      @JsonKey(name: 'ProjectID') final int? projectId,
+      @JsonKey(name: 'Mission') final String? mission,
+      @JsonKey(name: 'PlanStartDate') final DateTime? planStartDate,
+      @JsonKey(name: 'PlanEndDate') final DateTime? planEndDate,
+      @JsonKey(name: 'ActualStartDate') final DateTime? actualStartDate,
+      @JsonKey(name: 'ActualEndDate') final DateTime? actualEndDate,
+      @JsonKey(name: 'Note') final String? note,
+      @JsonKey(name: 'TotalDayPlan') final double? totalDayPlan,
+      @JsonKey(name: 'PercentItem') final double? percentItem,
+      @JsonKey(name: 'ParentID') final int? parentId,
+      @JsonKey(name: 'TotalDayActual') final double? totalDayActual,
+      @JsonKey(name: 'ItemLate') final int? itemLate,
+      @JsonKey(name: 'TimeSpan') final double? timeSpan,
+      @JsonKey(name: 'TypeProjectItem') final int? typeProjectItem,
+      @JsonKey(name: 'PercentageActual') final double? percentageActual,
+      @JsonKey(name: 'EmployeeIDRequest') final int? employeeIdRequest,
+      @JsonKey(name: 'UpdatedDateActual') final DateTime? updatedDateActual,
+      @JsonKey(name: 'IsApproved') final int? isApproved,
+      @JsonKey(name: 'Code') final String? code,
+      @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') final String? createdBy,
+      @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+      @JsonKey(name: 'IsUpdateLate') final bool? isUpdateLate,
+      @JsonKey(name: 'ReasonLate') final String? reasonLate,
+      @JsonKey(name: 'UpdatedDateReasonLate')
+      final DateTime? updatedDateReasonLate,
+      @JsonKey(name: 'IsApprovedLate') final bool? isApprovedLate,
+      @JsonKey(name: 'EmployeeRequestID') final int? employeeRequestID,
+      @JsonKey(name: 'EmployeeRequestName') final String? employeeRequestName,
+      @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+      @JsonKey(name: 'Location') final String? location,
+      @JsonKey(name: 'EmployeeCreateID') final int? employeeCreateID,
+      @JsonKey(name: 'Description') final String? description,
+      @JsonKey(name: 'IsPersonalProject') final bool? isPersonalProject,
+      @JsonKey(name: 'IsAdditional') final bool? isAdditional,
+      @JsonKey(name: 'TaskComplexity') final int? taskComplexity,
+      @JsonKey(name: 'PercentOverTime') final double? percentOverTime,
+      @JsonKey(name: 'DescriptionSolution') final String? descriptionSolution,
+      @JsonKey(name: 'Deadline') final DateTime? deadline,
+      @JsonKey(name: 'ProjectTaskTypeID') final int? projectTaskTypeID,
+      @JsonKey(name: 'ProjectTaskResult') final String? projectTaskResult,
+      @JsonKey(name: 'Priority') final int? priority,
+      @JsonKey(name: 'EstimatedTime') final double? estimatedTime,
+      @JsonKey(name: 'NeedApprove')
+      final bool? needApprove}) = _$SaveResponseWeekPlanImpl;
+
+  factory _SaveResponseWeekPlan.fromJson(Map<String, dynamic> json) =
+      _$SaveResponseWeekPlanImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Status')
+  int? get status;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'UserID')
+  int? get userId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(name: 'Mission')
+  String? get mission;
+  @override
+  @JsonKey(name: 'PlanStartDate')
+  DateTime? get planStartDate;
+  @override
+  @JsonKey(name: 'PlanEndDate')
+  DateTime? get planEndDate;
+  @override
+  @JsonKey(name: 'ActualStartDate')
+  DateTime? get actualStartDate;
+  @override
+  @JsonKey(name: 'ActualEndDate')
+  DateTime? get actualEndDate;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'TotalDayPlan')
+  double? get totalDayPlan;
+  @override
+  @JsonKey(name: 'PercentItem')
+  double? get percentItem;
+  @override
+  @JsonKey(name: 'ParentID')
+  int? get parentId;
+  @override
+  @JsonKey(name: 'TotalDayActual')
+  double? get totalDayActual;
+  @override
+  @JsonKey(name: 'ItemLate')
+  int? get itemLate;
+  @override
+  @JsonKey(name: 'TimeSpan')
+  double? get timeSpan;
+  @override
+  @JsonKey(name: 'TypeProjectItem')
+  int? get typeProjectItem;
+  @override
+  @JsonKey(name: 'PercentageActual')
+  double? get percentageActual;
+  @override
+  @JsonKey(name: 'EmployeeIDRequest')
+  int? get employeeIdRequest;
+  @override
+  @JsonKey(name: 'UpdatedDateActual')
+  DateTime? get updatedDateActual;
+  @override
+  @JsonKey(name: 'IsApproved')
+  int? get isApproved;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'IsUpdateLate')
+  bool? get isUpdateLate;
+  @override
+  @JsonKey(name: 'ReasonLate')
+  String? get reasonLate;
+  @override
+  @JsonKey(name: 'UpdatedDateReasonLate')
+  DateTime? get updatedDateReasonLate;
+  @override
+  @JsonKey(name: 'IsApprovedLate')
+  bool? get isApprovedLate;
+  @override
+  @JsonKey(name: 'EmployeeRequestID')
+  int? get employeeRequestID;
+  @override
+  @JsonKey(name: 'EmployeeRequestName')
+  String? get employeeRequestName;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'Location')
+  String? get location;
+  @override
+  @JsonKey(name: 'EmployeeCreateID')
+  int? get employeeCreateID;
+  @override
+  @JsonKey(name: 'Description')
+  String? get description;
+  @override
+  @JsonKey(name: 'IsPersonalProject')
+  bool? get isPersonalProject;
+  @override
+  @JsonKey(name: 'IsAdditional')
+  bool? get isAdditional;
+  @override
+  @JsonKey(name: 'TaskComplexity')
+  int? get taskComplexity;
+  @override
+  @JsonKey(name: 'PercentOverTime')
+  double? get percentOverTime;
+  @override
+  @JsonKey(name: 'DescriptionSolution')
+  String? get descriptionSolution;
+  @override
+  @JsonKey(name: 'Deadline')
+  DateTime? get deadline;
+  @override
+  @JsonKey(name: 'ProjectTaskTypeID')
+  int? get projectTaskTypeID;
+  @override
+  @JsonKey(name: 'ProjectTaskResult')
+  String? get projectTaskResult;
+  @override
+  @JsonKey(name: 'Priority')
+  int? get priority;
+  @override
+  @JsonKey(name: 'EstimatedTime')
+  double? get estimatedTime;
+  @override
+  @JsonKey(name: 'NeedApprove')
+  bool? get needApprove;
+  @override
+  @JsonKey(ignore: true)
+  _$$SaveResponseWeekPlanImplCopyWith<_$SaveResponseWeekPlanImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

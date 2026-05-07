@@ -51,10 +51,24 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
   }
 
   @override
-  Future<Either<BaseError, WeekPlanTaskItem>> createTask({
+  Future<Either<BaseError, SaveResponseWeekPlan>> saveTask({
     required Map<String, dynamic> payload,
   }) async {
-    throw UnimplementedError();
+    try {
+      final res = await _service.saveProjectTask(payload: payload);
+
+      if (res.status == 1) {
+        return right(res.data ?? const SaveResponseWeekPlan());
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
   }
 
   @override

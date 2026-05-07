@@ -200,13 +200,18 @@ class _WeekPlanListScreenState extends BaseState<
         builder: (context, state) {
           if (widget.viewNumber == 1 || widget.viewNumber == 3) {
             return FloatingActionButton(
-              onPressed: () => context.push(
-                RouteNames.weekplanAdd,
-                extra: _WeekPlanAddExtra(
-                  projects: state.projects,
-                  taskTypes: state.taskTypes,
-                ),
-              ),
+              onPressed: () async {
+                final result = await context.push<bool>(
+                  RouteNames.weekplanAdd,
+                  extra: _WeekPlanAddExtra(
+                    projects: state.projects,
+                    taskTypes: state.taskTypes,
+                  ),
+                );
+                if (result == true) {
+                  bloc.add(const WeekPlanEvent.refresh());
+                }
+              },
               backgroundColor: AppColors.primaryERP,
               child: const Icon(Icons.add, color: Colors.white),
             );

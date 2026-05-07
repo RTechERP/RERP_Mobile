@@ -296,6 +296,7 @@ class ApiEndPoint {
   static const String getProjectTask = '/ProjectTask';
   static const String getProjectTaskType = '/ProjectTask/project-task-type';
   static const String projectTaskAttendance = '/ProjectTask/attendance';
+  static const String saveProjectTask = '/ProjectTask/SaveData';
 
   static const String getAllProjectTask = '/ProjectTask/get-all-project';
 

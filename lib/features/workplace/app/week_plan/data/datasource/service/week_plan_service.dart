@@ -135,4 +135,25 @@ class WeekPlanService extends DioBaseApiService {
       ),
     );
   }
+
+  /// POST /ProjectTask/SaveData
+  ///
+  /// Payload: { ID, Mission, PlanStartDate, PlanEndDate, EmployeeIDRequest,
+  ///            TypeProjectItem, Employee, Status, ProjectID, ActualStartDate,
+  ///            ActualEndDate, EmployeeRelate, IsPersonalProject, ParentID,
+  ///            ProjectTaskTypeID, Priority, EstimatedTime, NeedApprove,
+  ///            Description, ProjectTaskChecklists, Links, Files }
+  /// Response: { status: 1, data: SaveResponseWeekPlan }
+  Future<BaseData<SaveResponseWeekPlan>> saveProjectTask({
+    required Map<String, dynamic> payload,
+  }) async {
+    return post<BaseData<SaveResponseWeekPlan>>(
+      ApiEndPoint.saveProjectTask,
+      body: payload,
+      parser: (json) => BaseData<SaveResponseWeekPlan>.fromJson(
+        json,
+        (data) => SaveResponseWeekPlan.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
 }

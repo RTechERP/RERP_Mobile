@@ -869,7 +869,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
 
       _log.logI('Create task payload: $payload');
 
-      final res = await _weekPlanRepo.createTask(payload: payload);
+      final res = await _weekPlanRepo.saveTask(payload: payload);
 
       await res.fold(
         (err) async {
@@ -881,8 +881,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             message: err.getErrorMessage,
           ));
         },
-        (_) async {
-          _log.logI('Create task success');
+        (data) async {
+          _log.logI('Create task success, ID: ${data.id}');
           emit(state.copyWith(
             isSubmitting: false,
             submitSuccess: true,
@@ -897,32 +897,46 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   }
 
   Map<String, dynamic> _buildCreatePayload(int userId) {
+    final employeeIds = state.selectedAssignees
+        .where((e) => e.id != null)
+        .map((e) => e.id!)
+        .toList();
+
+    final employeeRelateIds = state.selectedRelatedPersons
+        .where((e) => e.id != null)
+        .map((e) => e.id!)
+        .toList();
+
+    final checklistIds = state.checklistItems
+        .asMap()
+        .entries
+        .where((e) => e.value.isNotEmpty)
+        .map((e) => e.key + 1)
+        .toList();
+
     return {
-      'TaskName': state.taskName ?? '',
-      'ProjectId': state.headerProjectId ?? 0,
-      'ProjectName': state.headerProjectName ?? '',
-      'ParentTaskId': state.headerParentTaskId,
-      'ParentTaskName': state.headerParentTaskName,
-      'AssignerId': state.headerAssignerId,
-      'IsPersonalTask': state.headerIsPersonalTask,
-      'Complexity': state.headerComplexity,
-      'TaskCategory': state.headerTaskCategory ?? 0,
-      'WorkType': state.headerWorkType ?? 0,
+      'ID': 0,
+      'Mission': state.taskName ?? '',
+      'PlanStartDate': state.contentStartDate?.toIso8601String(),
+      'PlanEndDate': state.contentEndDate?.toIso8601String(),
+      'EmployeeIDRequest': state.headerAssignerId ?? userId,
+      'TypeProjectItem': state.headerWorkType ?? 0,
+      'Employee': employeeIds,
       'Status': state.headerStatus ?? 0,
-      'Description': state.contentDescription ?? '',
-      'Result': state.contentResult ?? '',
-      'StartDate': state.contentStartDate?.toIso8601String(),
-      'EndDate': state.contentEndDate?.toIso8601String(),
+      'ProjectID': state.headerProjectId ?? 0,
       'ActualStartDate': state.contentActualStartDate?.toIso8601String(),
       'ActualEndDate': state.contentActualEndDate?.toIso8601String(),
-      'Deadline': state.contentDeadline?.toIso8601String(),
-      'CreatorId': userId,
-      'AssigneeId': state.contentAssigneeId ?? userId,
-      'AssigneeIds': state.selectedAssignees.map((e) => e.id).toList(),
-      'RelatedPersonIds': state.selectedRelatedPersons.map((e) => e.id).toList(),
-      'SubTasks': state.subTasks.map((s) => _subTaskToPayload(s)).toList(),
-      'Attachments': state.attachments.map((a) => _attachmentToPayload(a)).toList(),
-      'Incidents': state.incidents.map((i) => _incidentToPayload(i)).toList(),
+      'EmployeeRelate': employeeRelateIds,
+      'IsPersonalProject': state.headerIsPersonalTask,
+      'ParentID': state.headerParentTaskId,
+      'ProjectTaskTypeID': state.headerTaskCategory ?? 0,
+      'Priority': state.headerPriority > 0 ? state.headerPriority : 1,
+      'EstimatedTime': state.headerTimeEstimate,
+      'NeedApprove': !state.headerIsPersonalTask,
+      'Description': state.contentDescription ?? '',
+      'ProjectTaskChecklists': checklistIds,
+      'Links': <int>[],
+      'Files': <int>[],
     };
   }
 

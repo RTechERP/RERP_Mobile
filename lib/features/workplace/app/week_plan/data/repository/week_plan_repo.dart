@@ -19,7 +19,7 @@ abstract class WeekPlanRepo {
     required Map<String, dynamic> payload,
   });
 
-  Future<Either<BaseError, WeekPlanTaskItem>> createTask({
+  Future<Either<BaseError, SaveResponseWeekPlan>> saveTask({
     required Map<String, dynamic> payload,
   });
 
@@ -36,3 +36,4 @@ abstract class WeekPlanRepo {
     required bool isCheck,
   });
 }
+

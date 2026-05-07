@@ -252,3 +252,61 @@ class AttendanceTaskResponse with _$AttendanceTaskResponse {
   factory AttendanceTaskResponse.fromJson(Map<String, dynamic> json) =>
       _$AttendanceTaskResponseFromJson(json);
 }
+
+@freezed
+class SaveResponseWeekPlan with _$SaveResponseWeekPlan {
+  const factory SaveResponseWeekPlan({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'UserID') int? userId,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'Mission') String? mission,
+    @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
+    @JsonKey(name: 'PlanEndDate') DateTime? planEndDate,
+    @JsonKey(name: 'ActualStartDate') DateTime? actualStartDate,
+    @JsonKey(name: 'ActualEndDate') DateTime? actualEndDate,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'TotalDayPlan') double? totalDayPlan,
+    @JsonKey(name: 'PercentItem') double? percentItem,
+    @JsonKey(name: 'ParentID') int? parentId,
+    @JsonKey(name: 'TotalDayActual') double? totalDayActual,
+    @JsonKey(name: 'ItemLate') int? itemLate,
+    @JsonKey(name: 'TimeSpan') double? timeSpan,
+    @JsonKey(name: 'TypeProjectItem') int? typeProjectItem,
+    @JsonKey(name: 'PercentageActual') double? percentageActual,
+    @JsonKey(name: 'EmployeeIDRequest') int? employeeIdRequest,
+    @JsonKey(name: 'UpdatedDateActual') DateTime? updatedDateActual,
+    @JsonKey(name: 'IsApproved') int? isApproved,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'IsUpdateLate') bool? isUpdateLate,
+    @JsonKey(name: 'ReasonLate') String? reasonLate,
+    @JsonKey(name: 'UpdatedDateReasonLate')
+    DateTime? updatedDateReasonLate,
+    @JsonKey(name: 'IsApprovedLate') bool? isApprovedLate,
+    @JsonKey(name: 'EmployeeRequestID') int? employeeRequestID,
+    @JsonKey(name: 'EmployeeRequestName') String? employeeRequestName,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'Location') String? location,
+    @JsonKey(name: 'EmployeeCreateID') int? employeeCreateID,
+    @JsonKey(name: 'Description') String? description,
+    @JsonKey(name: 'IsPersonalProject') bool? isPersonalProject,
+    @JsonKey(name: 'IsAdditional') bool? isAdditional,
+    @JsonKey(name: 'TaskComplexity') int? taskComplexity,
+    @JsonKey(name: 'PercentOverTime') double? percentOverTime,
+    @JsonKey(name: 'DescriptionSolution') String? descriptionSolution,
+    @JsonKey(name: 'Deadline') DateTime? deadline,
+    @JsonKey(name: 'ProjectTaskTypeID') int? projectTaskTypeID,
+    @JsonKey(name: 'ProjectTaskResult') String? projectTaskResult,
+    @JsonKey(name: 'Priority') int? priority,
+    @JsonKey(name: 'EstimatedTime') double? estimatedTime,
+    @JsonKey(name: 'NeedApprove') bool? needApprove,
+  }) = _SaveResponseWeekPlan;
+
+  factory SaveResponseWeekPlan.fromJson(Map<String, dynamic> json) =>
+      _$SaveResponseWeekPlanFromJson(json);
+}
