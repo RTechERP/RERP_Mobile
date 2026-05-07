@@ -968,6 +968,35 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
               // ignore: invalid_use_of_visible_for_testing_member
               await _weekPlanRepo.saveProjectTaskFiles(payload: filePayload);
             }
+            _log.logI('All files saved for task ID: ${data.id}');
+          }
+
+          // Gọi ngầm saveProjectTaskChecklists cho từng checklist đã nhập nội dung.
+          final checklistItems = state.checklistItems
+              .asMap()
+              .entries
+              .where((e) => e.value.isNotEmpty)
+              .toList();
+          if (checklistItems.isNotEmpty && data.id != null) {
+            for (final entry in checklistItems) {
+              final idx = entry.key;
+              final title = entry.value;
+              final isDone = idx < state.checklistDone.length ? state.checklistDone[idx] : false;
+              final checklistPayload = {
+                'ProjectTaskID': data.id,
+                'ChecklistTitle': title,
+                'OrderIndex': idx + 1,
+                'IsDone': isDone,
+                'IsDeleted': false,
+                'CreatedBy': null,
+                'UpdatedBy': null,
+              };
+              _log.logI('Saving checklist: $title');
+
+              // ignore: invalid_use_of_visible_for_testing_member
+              await _weekPlanRepo.saveProjectTaskChecklists(payload: checklistPayload);
+            }
+            _log.logI('All checklists saved for task ID: ${data.id}');
           }
         },
       );
@@ -985,13 +1014,6 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     final employeeRelateIds = state.selectedRelatedPersons
         .where((e) => e.id != null)
         .map((e) => e.id!)
-        .toList();
-
-    final checklistIds = state.checklistItems
-        .asMap()
-        .entries
-        .where((e) => e.value.isNotEmpty)
-        .map((e) => e.key + 1)
         .toList();
 
     return {
@@ -1014,7 +1036,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       'EstimatedTime': state.headerTimeEstimate,
       'NeedApprove': !state.headerIsPersonalTask,
       'Description': state.contentDescription ?? '',
-      'ProjectTaskChecklists': checklistIds,
+      'ProjectTaskChecklists': <int>[],
       'Links': <int>[],
       'Files': <int>[],
     };

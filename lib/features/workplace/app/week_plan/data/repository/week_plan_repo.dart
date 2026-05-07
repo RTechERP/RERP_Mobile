@@ -52,5 +52,9 @@ abstract class WeekPlanRepo {
   Future<Either<BaseError, FileWeekPlanResponse>> saveProjectTaskFiles({
     required Map<String, dynamic> payload,
   });
+
+  Future<Either<BaseError, ChecklistWeekPlanResponse>> saveProjectTaskChecklists({
+    required Map<String, dynamic> payload,
+  });
 }
 

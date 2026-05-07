@@ -666,3 +666,37 @@ Map<String, dynamic> _$$FileWeekPlanResponseImplToJson(
       'UpdatedBy': instance.updatedBy,
       'IsDeleted': instance.isDeleted,
     };
+
+_$ChecklistWeekPlanResponseImpl _$$ChecklistWeekPlanResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ChecklistWeekPlanResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      projectTaskId: (json['ProjectTaskID'] as num?)?.toInt(),
+      checklistTitle: json['ChecklistTitle'] as String?,
+      orderIndex: (json['OrderIndex'] as num?)?.toInt(),
+      isDone: json['IsDone'] as bool?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$ChecklistWeekPlanResponseImplToJson(
+        _$ChecklistWeekPlanResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProjectTaskID': instance.projectTaskId,
+      'ChecklistTitle': instance.checklistTitle,
+      'OrderIndex': instance.orderIndex,
+      'IsDone': instance.isDone,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'IsDeleted': instance.isDeleted,
+    };

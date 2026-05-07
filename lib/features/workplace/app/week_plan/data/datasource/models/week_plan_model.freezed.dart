@@ -7347,3 +7347,379 @@ abstract class _FileWeekPlanResponse implements FileWeekPlanResponse {
   _$$FileWeekPlanResponseImplCopyWith<_$FileWeekPlanResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+ChecklistWeekPlanResponse _$ChecklistWeekPlanResponseFromJson(
+    Map<String, dynamic> json) {
+  return _ChecklistWeekPlanResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ChecklistWeekPlanResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTaskID')
+  int? get projectTaskId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ChecklistTitle')
+  String? get checklistTitle => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OrderIndex')
+  int? get orderIndex => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDone')
+  bool? get isDone => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ChecklistWeekPlanResponseCopyWith<ChecklistWeekPlanResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChecklistWeekPlanResponseCopyWith<$Res> {
+  factory $ChecklistWeekPlanResponseCopyWith(ChecklistWeekPlanResponse value,
+          $Res Function(ChecklistWeekPlanResponse) then) =
+      _$ChecklistWeekPlanResponseCopyWithImpl<$Res, ChecklistWeekPlanResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+      @JsonKey(name: 'ChecklistTitle') String? checklistTitle,
+      @JsonKey(name: 'OrderIndex') int? orderIndex,
+      @JsonKey(name: 'IsDone') bool? isDone,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class _$ChecklistWeekPlanResponseCopyWithImpl<$Res,
+        $Val extends ChecklistWeekPlanResponse>
+    implements $ChecklistWeekPlanResponseCopyWith<$Res> {
+  _$ChecklistWeekPlanResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectTaskId = freezed,
+    Object? checklistTitle = freezed,
+    Object? orderIndex = freezed,
+    Object? isDone = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskId: freezed == projectTaskId
+          ? _value.projectTaskId
+          : projectTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checklistTitle: freezed == checklistTitle
+          ? _value.checklistTitle
+          : checklistTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      orderIndex: freezed == orderIndex
+          ? _value.orderIndex
+          : orderIndex // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDone: freezed == isDone
+          ? _value.isDone
+          : isDone // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ChecklistWeekPlanResponseImplCopyWith<$Res>
+    implements $ChecklistWeekPlanResponseCopyWith<$Res> {
+  factory _$$ChecklistWeekPlanResponseImplCopyWith(
+          _$ChecklistWeekPlanResponseImpl value,
+          $Res Function(_$ChecklistWeekPlanResponseImpl) then) =
+      __$$ChecklistWeekPlanResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+      @JsonKey(name: 'ChecklistTitle') String? checklistTitle,
+      @JsonKey(name: 'OrderIndex') int? orderIndex,
+      @JsonKey(name: 'IsDone') bool? isDone,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class __$$ChecklistWeekPlanResponseImplCopyWithImpl<$Res>
+    extends _$ChecklistWeekPlanResponseCopyWithImpl<$Res,
+        _$ChecklistWeekPlanResponseImpl>
+    implements _$$ChecklistWeekPlanResponseImplCopyWith<$Res> {
+  __$$ChecklistWeekPlanResponseImplCopyWithImpl(
+      _$ChecklistWeekPlanResponseImpl _value,
+      $Res Function(_$ChecklistWeekPlanResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectTaskId = freezed,
+    Object? checklistTitle = freezed,
+    Object? orderIndex = freezed,
+    Object? isDone = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_$ChecklistWeekPlanResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskId: freezed == projectTaskId
+          ? _value.projectTaskId
+          : projectTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checklistTitle: freezed == checklistTitle
+          ? _value.checklistTitle
+          : checklistTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      orderIndex: freezed == orderIndex
+          ? _value.orderIndex
+          : orderIndex // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDone: freezed == isDone
+          ? _value.isDone
+          : isDone // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ChecklistWeekPlanResponseImpl implements _ChecklistWeekPlanResponse {
+  const _$ChecklistWeekPlanResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProjectTaskID') this.projectTaskId,
+      @JsonKey(name: 'ChecklistTitle') this.checklistTitle,
+      @JsonKey(name: 'OrderIndex') this.orderIndex,
+      @JsonKey(name: 'IsDone') this.isDone,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
+
+  factory _$ChecklistWeekPlanResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChecklistWeekPlanResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProjectTaskID')
+  final int? projectTaskId;
+  @override
+  @JsonKey(name: 'ChecklistTitle')
+  final String? checklistTitle;
+  @override
+  @JsonKey(name: 'OrderIndex')
+  final int? orderIndex;
+  @override
+  @JsonKey(name: 'IsDone')
+  final bool? isDone;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  @override
+  String toString() {
+    return 'ChecklistWeekPlanResponse(id: $id, projectTaskId: $projectTaskId, checklistTitle: $checklistTitle, orderIndex: $orderIndex, isDone: $isDone, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, isDeleted: $isDeleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChecklistWeekPlanResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.projectTaskId, projectTaskId) ||
+                other.projectTaskId == projectTaskId) &&
+            (identical(other.checklistTitle, checklistTitle) ||
+                other.checklistTitle == checklistTitle) &&
+            (identical(other.orderIndex, orderIndex) ||
+                other.orderIndex == orderIndex) &&
+            (identical(other.isDone, isDone) || other.isDone == isDone) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      projectTaskId,
+      checklistTitle,
+      orderIndex,
+      isDone,
+      createdDate,
+      createdBy,
+      updatedDate,
+      updatedBy,
+      isDeleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChecklistWeekPlanResponseImplCopyWith<_$ChecklistWeekPlanResponseImpl>
+      get copyWith => __$$ChecklistWeekPlanResponseImplCopyWithImpl<
+          _$ChecklistWeekPlanResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ChecklistWeekPlanResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ChecklistWeekPlanResponse implements ChecklistWeekPlanResponse {
+  const factory _ChecklistWeekPlanResponse(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'ProjectTaskID') final int? projectTaskId,
+          @JsonKey(name: 'ChecklistTitle') final String? checklistTitle,
+          @JsonKey(name: 'OrderIndex') final int? orderIndex,
+          @JsonKey(name: 'IsDone') final bool? isDone,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
+      _$ChecklistWeekPlanResponseImpl;
+
+  factory _ChecklistWeekPlanResponse.fromJson(Map<String, dynamic> json) =
+      _$ChecklistWeekPlanResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProjectTaskID')
+  int? get projectTaskId;
+  @override
+  @JsonKey(name: 'ChecklistTitle')
+  String? get checklistTitle;
+  @override
+  @JsonKey(name: 'OrderIndex')
+  int? get orderIndex;
+  @override
+  @JsonKey(name: 'IsDone')
+  bool? get isDone;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$ChecklistWeekPlanResponseImplCopyWith<_$ChecklistWeekPlanResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

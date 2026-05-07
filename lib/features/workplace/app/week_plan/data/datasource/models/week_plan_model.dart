@@ -365,3 +365,22 @@ class FileWeekPlanResponse with _$FileWeekPlanResponse {
   factory FileWeekPlanResponse.fromJson(Map<String, dynamic> json) =>
       _$FileWeekPlanResponseFromJson(json);
 }
+
+@freezed
+class ChecklistWeekPlanResponse with _$ChecklistWeekPlanResponse {
+  const factory ChecklistWeekPlanResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+    @JsonKey(name: 'ChecklistTitle') String? checklistTitle,
+    @JsonKey(name: 'OrderIndex') int? orderIndex,
+    @JsonKey(name: 'IsDone') bool? isDone,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _ChecklistWeekPlanResponse;
+
+  factory ChecklistWeekPlanResponse.fromJson(Map<String, dynamic> json) =>
+      _$ChecklistWeekPlanResponseFromJson(json);
+}

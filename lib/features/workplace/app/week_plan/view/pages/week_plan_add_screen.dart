@@ -679,10 +679,84 @@ class _WeekPlanAddScreenState
 
   //---(_Step: Checklist)---//
   Widget _buildChecklistStep(WeekPlanState state) {
+    final total = state.checklistItems.length;
+    final done = total > 0
+        ? state.checklistDone.where((d) => d).length
+        : 0;
+    final progress = total > 0 ? done / total : 0.0;
+
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       child: Column(
         children: [
+          // Progress indicator
+          if (state.checklistItems.isNotEmpty)
+            Container(
+              margin: const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: AppColors.borderColor, width: 1),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Tiến độ hoàn thành',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.heading,
+                        ),
+                      ),
+                      Text(
+                        '$done / $total',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: progress >= 1.0
+                              ? AppColors.stateSuccessColor
+                              : AppColors.primaryERP,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
+                    child: LinearProgressIndicator(
+                      value: progress,
+                      minHeight: 8,
+                      backgroundColor: AppColors.bgCard,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        progress >= 1.0
+                            ? AppColors.stateSuccessColor
+                            : AppColors.primaryERP,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child:                       Text(
+                        '${(progress * 100).toStringAsFixed(0)}%',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: progress >= 1.0
+                              ? AppColors.stateSuccessColor
+                              : AppColors.gray,
+                        ),
+                      ),
+                  ),
+                ],
+              ),
+            ),
+
           // Header + button
           Row(
             children: [
@@ -1022,26 +1096,6 @@ class _WeekPlanAddScreenState
             );
           }),
         ],
-      ),
-    );
-  }
-
-  void _stub(String title) {
-    showModalBottomSheet(
-      context: context,
-      builder: (_) => Container(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(title, style: const TextStyle(fontSize: 18)),
-            const SizedBox(height: 8),
-            const Text(
-              'Tính năng đang phát triển',
-              style: TextStyle(color: Colors.grey),
-            ),
-          ],
-        ),
       ),
     );
   }
