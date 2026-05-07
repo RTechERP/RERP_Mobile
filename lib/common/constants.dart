@@ -299,6 +299,7 @@ class ApiEndPoint {
   static const String saveProjectTask = '/ProjectTask/SaveData';
 
   static const String getAllProjectTask = '/ProjectTask/get-all-project';
+  static const String listProjectTask = '/ProjectTask/list-project-task';
 
   static const String getEmployees = '/Employee';
 }

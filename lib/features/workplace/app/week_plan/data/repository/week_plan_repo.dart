@@ -31,6 +31,11 @@ abstract class WeekPlanRepo {
 
   Future<Either<BaseError, List<EmployeeTaskItem>>> getEmployees();
 
+  Future<Either<BaseError, List<ParentProjectTaskItem>>> getParentProjectTasks({
+    required int projectId,
+    required bool isPersonalProject,
+  });
+
   Future<Either<BaseError, AttendanceTaskResponse>> projectTaskAttendance({
     required int projectTaskId,
     required bool isCheck,

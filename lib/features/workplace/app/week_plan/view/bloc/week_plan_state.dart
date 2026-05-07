@@ -53,6 +53,9 @@ class WeekPlanState extends BaseBlocState {
   // Danh sách nhân viên (từ API /Employee) - dùng cho 3 trường employee
   final List<EmployeeTaskItem> employees;
 
+  // Danh sách công việc cha (từ API /ProjectTask/list-project-task)
+  final List<ParentProjectTaskItem> parentProjectTasks;
+
   // Step 2: Nội dung chính
   final String? taskName;
   final int? contentAssigneeId;
@@ -128,6 +131,7 @@ class WeekPlanState extends BaseBlocState {
         this.projects = const [],
         this.projectTypes = const [],
         this.employees = const [],
+        this.parentProjectTasks = const [],
         // Step 2
     this.taskName,
     this.contentAssigneeId,
@@ -183,6 +187,7 @@ class WeekPlanState extends BaseBlocState {
         projects: const [],
         projectTypes: const [],
         employees: const [],
+        parentProjectTasks: const [],
         selectedAssignees: [],
         selectedRelatedPersons: [],
         subTasks: [],
@@ -233,6 +238,7 @@ class WeekPlanState extends BaseBlocState {
         projects,
         projectTypes,
         employees,
+        parentProjectTasks,
         // Step 2
         taskName,
         contentAssigneeId,

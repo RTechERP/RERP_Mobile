@@ -118,6 +118,20 @@ class ProjectTaskItem with _$ProjectTaskItem {
 }
 
 @freezed
+class ParentProjectTaskItem with _$ParentProjectTaskItem {
+  const factory ParentProjectTaskItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Mission') String? mission,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'EmployeeCreateID') int? employeeCreateID,
+  }) = _ParentProjectTaskItem;
+
+  factory ParentProjectTaskItem.fromJson(Map<String, dynamic> json) =>
+      _$ParentProjectTaskItemFromJson(json);
+}
+
+@freezed
 class ProjectTypeItem with _$ProjectTypeItem {
   const factory ProjectTypeItem({
     @JsonKey(name: 'ID') int? id,

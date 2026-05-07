@@ -81,6 +81,9 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState employees(List<EmployeeTaskItem> employees);
 
+  WeekPlanState parentProjectTasks(
+      List<ParentProjectTaskItem> parentProjectTasks);
+
   WeekPlanState taskName(String? taskName);
 
   WeekPlanState contentAssigneeId(int? contentAssigneeId);
@@ -166,6 +169,7 @@ abstract class _$WeekPlanStateCWProxy {
     List<ProjectTaskItem>? projects,
     List<ProjectTypeItem>? projectTypes,
     List<EmployeeTaskItem>? employees,
+    List<ParentProjectTaskItem>? parentProjectTasks,
     String? taskName,
     int? contentAssigneeId,
     String? contentAssigneeName,
@@ -338,6 +342,11 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(employees: employees);
 
   @override
+  WeekPlanState parentProjectTasks(
+          List<ParentProjectTaskItem> parentProjectTasks) =>
+      this(parentProjectTasks: parentProjectTasks);
+
+  @override
   WeekPlanState taskName(String? taskName) => this(taskName: taskName);
 
   @override
@@ -462,6 +471,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? projects = const $CopyWithPlaceholder(),
     Object? projectTypes = const $CopyWithPlaceholder(),
     Object? employees = const $CopyWithPlaceholder(),
+    Object? parentProjectTasks = const $CopyWithPlaceholder(),
     Object? taskName = const $CopyWithPlaceholder(),
     Object? contentAssigneeId = const $CopyWithPlaceholder(),
     Object? contentAssigneeName = const $CopyWithPlaceholder(),
@@ -646,6 +656,11 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.employees
           // ignore: cast_nullable_to_non_nullable
           : employees as List<EmployeeTaskItem>,
+      parentProjectTasks: parentProjectTasks == const $CopyWithPlaceholder() ||
+              parentProjectTasks == null
+          ? _value.parentProjectTasks
+          // ignore: cast_nullable_to_non_nullable
+          : parentProjectTasks as List<ParentProjectTaskItem>,
       taskName: taskName == const $CopyWithPlaceholder()
           ? _value.taskName
           // ignore: cast_nullable_to_non_nullable

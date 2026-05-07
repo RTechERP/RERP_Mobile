@@ -76,6 +76,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         fetchProjects: () => _onFetchProjects(emit),
         fetchProjectTypes: () => _onFetchProjectTypes(emit),
         fetchEmployees: () => _onFetchEmployees(emit),
+        fetchParentProjectTasks: (projectId, isPersonalProject) =>
+            _onFetchParentProjectTasks(emit, projectId, isPersonalProject),
         updateContentTaskName: (name) => _onUpdateContentTaskName(emit, name),
         updateContentAssignee: (assigneeId, assigneeName) =>
             _onUpdateContentAssignee(emit, assigneeId, assigneeName),
@@ -479,6 +481,30 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   Future<void> _onUpdateHeaderProject(
       Emitter<WeekPlanState> emit, int projectId, String projectName) async {
     emit(state.copyWith(headerProjectId: projectId, headerProjectName: projectName));
+
+    // Gọi API lấy công việc cha khi user chọn dự án
+    if (projectId > 0) {
+      await _onFetchParentProjectTasks(emit, projectId, state.headerIsPersonalTask);
+    }
+  }
+
+  Future<void> _onFetchParentProjectTasks(
+      Emitter<WeekPlanState> emit, int projectId, bool isPersonalProject) async {
+    final res = await _weekPlanRepo.getParentProjectTasks(
+      projectId: projectId,
+      isPersonalProject: isPersonalProject,
+    );
+
+    await res.fold(
+      (err) async {
+        _log.logE('Fetch parent tasks failed: $err');
+        emit(state.copyWith(parentProjectTasks: const []));
+      },
+      (parentTasks) async {
+        _log.logI('Fetch parent tasks success: ${parentTasks.length}');
+        emit(state.copyWith(parentProjectTasks: parentTasks));
+      },
+    );
   }
 
   Future<void> _onUpdateHeaderParentTask(

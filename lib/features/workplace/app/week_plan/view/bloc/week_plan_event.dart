@@ -89,6 +89,11 @@ class WeekPlanEvent with _$WeekPlanEvent {
 
   const factory WeekPlanEvent.fetchEmployees() = _FetchEmployees;
 
+  const factory WeekPlanEvent.fetchParentProjectTasks({
+    required int projectId,
+    required bool isPersonalProject,
+  }) = _FetchParentProjectTasks;
+
   // Step 2: Nội dung chính
   const factory WeekPlanEvent.updateContentTaskName(String name) =
       _UpdateContentTaskName;

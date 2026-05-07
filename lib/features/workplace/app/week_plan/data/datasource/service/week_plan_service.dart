@@ -136,6 +136,31 @@ class WeekPlanService extends DioBaseApiService {
     );
   }
 
+  /// GET /ProjectTask/list-project-task?projectID=...&isPersionalProject=...
+  ///
+  /// Response: { status: 1, data: [ ParentProjectTaskItem, ... ] }
+  Future<BaseData<List<ParentProjectTaskItem>>> getListProjectTask({
+    required int projectId,
+    required bool isPersonalProject,
+  }) async {
+    return get<BaseData<List<ParentProjectTaskItem>>>(
+      ApiEndPoint.listProjectTask,
+      query: {
+        'projectID': projectId,
+        'isPersionalProject': isPersonalProject,
+      },
+      parser: (json) => BaseData<List<ParentProjectTaskItem>>.fromJson(
+        json,
+        (data) {
+          final list = data as List?;
+          return (list ?? [])
+              .map((e) => ParentProjectTaskItem.fromJson(e as Map<String, dynamic>))
+              .toList();
+        },
+      ),
+    );
+  }
+
   /// POST /ProjectTask/SaveData
   ///
   /// Payload: { ID, Mission, PlanStartDate, PlanEndDate, EmployeeIDRequest,

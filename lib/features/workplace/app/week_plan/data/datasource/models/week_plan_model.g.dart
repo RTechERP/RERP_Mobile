@@ -223,6 +223,26 @@ Map<String, dynamic> _$$ProjectTaskItemImplToJson(
       'ProjectName': instance.projectName,
     };
 
+_$ParentProjectTaskItemImpl _$$ParentProjectTaskItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ParentProjectTaskItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      mission: json['Mission'] as String?,
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      employeeCreateID: (json['EmployeeCreateID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$ParentProjectTaskItemImplToJson(
+        _$ParentProjectTaskItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'Mission': instance.mission,
+      'ProjectID': instance.projectId,
+      'EmployeeCreateID': instance.employeeCreateID,
+    };
+
 _$ProjectTypeItemImpl _$$ProjectTypeItemImplFromJson(
         Map<String, dynamic> json) =>
     _$ProjectTypeItemImpl(

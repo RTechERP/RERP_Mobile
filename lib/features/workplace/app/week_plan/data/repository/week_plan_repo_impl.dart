@@ -148,6 +148,31 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
   }
 
   @override
+  Future<Either<BaseError, List<ParentProjectTaskItem>>> getParentProjectTasks({
+    required int projectId,
+    required bool isPersonalProject,
+  }) async {
+    try {
+      final res = await _service.getListProjectTask(
+        projectId: projectId,
+        isPersonalProject: isPersonalProject,
+      );
+
+      if (res.status == 1) {
+        return right(res.data ?? []);
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
   Future<Either<BaseError, AttendanceTaskResponse>> projectTaskAttendance({
     required int projectTaskId,
     required bool isCheck,

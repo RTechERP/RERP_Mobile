@@ -271,7 +271,10 @@ class _WeekPlanAddScreenState
             label: 'Công việc cha',
             value: state.headerParentTaskName,
             icon: Icons.account_tree_outlined,
-            onTap: () => _stub('Chọn công việc cha'),
+            onTap: () => _showParentTaskPicker(
+              context,
+              state,
+            ),
           ),
           const SizedBox(height: 10),
           WeekPlanMultiSelectChips<EmployeeTaskItem>(
@@ -1040,6 +1043,39 @@ class _WeekPlanAddScreenState
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _showParentTaskPicker(
+    BuildContext context, WeekPlanState state,
+  ) async {
+    if (state.headerProjectId == null || state.headerProjectId == 0) {
+      showMessage(context, 'Vui lòng chọn dự án trước', type: SnackBarType.info);
+      return;
+    }
+    if (state.parentProjectTasks.isEmpty) {
+      showMessage(context, 'Danh sách công việc cha trống', type: SnackBarType.info);
+      return;
+    }
+
+    final initialSelected = state.headerParentTaskId != null
+        ? state.parentProjectTasks
+            .where((p) => p.id == state.headerParentTaskId)
+            .firstOrNull
+        : null;
+
+    await openSelectBottomSheet<ParentProjectTaskItem>(
+      context: context,
+      title: 'Chọn công việc cha',
+      items: state.parentProjectTasks,
+      displayText: (p) => '${p.code ?? ''} - ${p.mission ?? ''}',
+      onSelected: (parent) {
+        bloc.add(WeekPlanEvent.updateHeaderParentTask(
+          parentTaskId: parent.id ?? 0,
+          parentTaskName: '${parent.code ?? ''} - ${parent.mission ?? ''}',
+        ));
+      },
+      initialSelectedItem: initialSelected,
     );
   }
 
