@@ -169,6 +169,11 @@ class WeekPlanEvent with _$WeekPlanEvent {
   const factory WeekPlanEvent.removeAttachment(int index) =
       _RemoveAttachment;
 
+  // Step 7b: Link đính kèm
+  const factory WeekPlanEvent.addLink(WeekPlanLinkItem link) = _AddLink;
+
+  const factory WeekPlanEvent.removeLink(int index) = _RemoveLink;
+
   // Step 8: Phát sinh
   const factory WeekPlanEvent.addIncident() = _AddIncident;
 

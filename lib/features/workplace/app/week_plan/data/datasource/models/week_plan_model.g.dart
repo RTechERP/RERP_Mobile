@@ -667,6 +667,60 @@ Map<String, dynamic> _$$FileWeekPlanResponseImplToJson(
       'IsDeleted': instance.isDeleted,
     };
 
+_$WeekPlanLinkItemImpl _$$WeekPlanLinkItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WeekPlanLinkItemImpl(
+      id: (json['id'] as num?)?.toInt(),
+      fileName: json['fileName'] as String?,
+      filePath: json['filePath'] as String?,
+      fileSize: (json['fileSize'] as num?)?.toInt(),
+      fileType: json['fileType'] as String?,
+    );
+
+Map<String, dynamic> _$$WeekPlanLinkItemImplToJson(
+        _$WeekPlanLinkItemImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'fileName': instance.fileName,
+      'filePath': instance.filePath,
+      'fileSize': instance.fileSize,
+      'fileType': instance.fileType,
+    };
+
+_$LinkWeekPlanResponseImpl _$$LinkWeekPlanResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LinkWeekPlanResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      projectTaskId: (json['ProjectTaskID'] as num?)?.toInt(),
+      fileName: json['FileName'] as String?,
+      filePath: json['FilePath'] as String?,
+      type: (json['Type'] as num?)?.toInt(),
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$LinkWeekPlanResponseImplToJson(
+        _$LinkWeekPlanResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProjectTaskID': instance.projectTaskId,
+      'FileName': instance.fileName,
+      'FilePath': instance.filePath,
+      'Type': instance.type,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'IsDeleted': instance.isDeleted,
+    };
+
 _$ChecklistWeekPlanResponseImpl _$$ChecklistWeekPlanResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$ChecklistWeekPlanResponseImpl(

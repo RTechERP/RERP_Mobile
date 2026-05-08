@@ -836,21 +836,24 @@ class _WeekPlanAddScreenState
   }
 
   void _showAddChecklistDialog(BuildContext context) {
-    final controller = TextEditingController();
+    final formKey = GlobalKey<FormBuilderState>();
+
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Thêm checklist'),
-        content: TextField(
-          controller: controller,
-          autofocus: true,
-          decoration: InputDecoration(
-            hintText: 'Nhập nội dung checklist',
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+        content: FormBuilder(
+          key: formKey,
+          child: FormInputField(
+            nameForm: 'checklist_content',
+            nameTextField: 'checklist_content_field',
+            label: 'Nội dung',
+            icon: Icons.check_box_outlined,
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập nội dung',
             ),
           ),
-          textCapitalization: TextCapitalization.sentences,
         ),
         actions: [
           TextButton(
@@ -859,8 +862,9 @@ class _WeekPlanAddScreenState
           ),
           ElevatedButton(
             onPressed: () {
-              final text = controller.text.trim();
-              if (text.isNotEmpty) {
+              if (formKey.currentState?.validate() ?? false) {
+                final vals = formKey.currentState?.value;
+                final text = vals?['checklist_content']?.toString().trim() ?? '';
                 bloc.add(WeekPlanEvent.addChecklistItem(text));
                 Navigator.pop(ctx);
               }
@@ -877,21 +881,25 @@ class _WeekPlanAddScreenState
   }
 
   void _showEditChecklistDialog(BuildContext context, int index, String current) {
-    final controller = TextEditingController(text: current);
+    final formKey = GlobalKey<FormBuilderState>();
+
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Chỉnh sửa checklist'),
-        content: TextField(
-          controller: controller,
-          autofocus: true,
-          decoration: InputDecoration(
-            hintText: 'Nhập nội dung checklist',
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+        content: FormBuilder(
+          key: formKey,
+          child: FormInputField(
+            nameForm: 'checklist_content',
+            nameTextField: 'checklist_content_field',
+            label: 'Nội dung checklist',
+            icon: Icons.check_box_outlined,
+            initialValue: current,
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập nội dung',
             ),
           ),
-          textCapitalization: TextCapitalization.sentences,
         ),
         actions: [
           TextButton(
@@ -900,8 +908,9 @@ class _WeekPlanAddScreenState
           ),
           ElevatedButton(
             onPressed: () {
-              final text = controller.text.trim();
-              if (text.isNotEmpty) {
+              if (formKey.currentState?.validate() ?? false) {
+                final vals = formKey.currentState?.value;
+                final text = vals?['checklist_content']?.toString().trim() ?? '';
                 bloc.add(WeekPlanEvent.updateChecklistItem(index, text));
                 Navigator.pop(ctx);
               }
@@ -919,8 +928,62 @@ class _WeekPlanAddScreenState
 
   //---(_Step: Attachment)---//
   Widget _buildAttachmentStep(WeekPlanState state) {
+    return DefaultTabController(
+      length: 2,
+      child: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+            decoration: BoxDecoration(
+              color: AppColors.bgCard,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: TabBar(
+              labelColor: AppColors.primaryERP,
+              unselectedLabelColor: AppColors.hintText,
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicator: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha:0.05),
+                    blurRadius: 4,
+                    offset: const Offset(0, 1),
+                  ),
+                ],
+              ),
+              labelStyle: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+              ),
+              unselectedLabelStyle: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w400,
+              ),
+              dividerColor: Colors.transparent,
+              tabs: const [
+                Tab(text: 'Tệp'),
+                Tab(text: 'Link'),
+              ],
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              children: [
+                _buildFileTab(state),
+                _buildLinkTab(state),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFileTab(WeekPlanState state) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+      padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           // Header + button
@@ -955,30 +1018,10 @@ class _WeekPlanAddScreenState
 
           // Empty state
           if (state.attachments.isEmpty)
-            Container(
-              padding: const EdgeInsets.all(32),
-              child: Column(
-                children: [
-                  Icon(Icons.attachment, size: 48, color: AppColors.hintText),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Chưa có tệp đính kèm',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: AppColors.hintText,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Bấm "Chọn tệp" để thêm đính kèm',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: AppColors.hintText,
-                    ),
-                  ),
-                ],
-              ),
+            _buildEmptyState(
+              icon: Icons.attachment,
+              title: 'Chưa có tệp đính kèm',
+              subtitle: 'Bấm "Chọn tệp" để thêm đính kèm',
             ),
 
           // List
@@ -991,6 +1034,96 @@ class _WeekPlanAddScreenState
               },
             );
           }),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLinkTab(WeekPlanState state) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          // Header + button
+          Row(
+            children: [
+              Text(
+                'Link đính kèm',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.heading,
+                ),
+              ),
+              const Spacer(),
+              ElevatedButton.icon(
+                onPressed: () => _showAddLinkDialog(context),
+                icon: const Icon(Icons.link, size: 16),
+                label: const Text('Thêm Link'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.secondaryERP,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 0,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Empty state
+          if (state.links.isEmpty)
+            _buildEmptyState(
+              icon: Icons.link_off,
+              title: 'Chưa có link đính kèm',
+              subtitle: 'Bấm "Thêm Link" để gắn liên kết',
+            ),
+
+          // List
+          ...List.generate(state.links.length, (i) {
+            return WeekPlanLinkCard(
+              index: i,
+              link: state.links[i],
+              onDelete: () {
+                bloc.add(WeekPlanEvent.removeLink(i));
+              },
+            );
+          }),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEmptyState({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(32),
+      child: Column(
+        children: [
+          Icon(icon, size: 48, color: AppColors.hintText),
+          const SizedBox(height: 8),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 14,
+              color: AppColors.hintText,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            subtitle,
+            style: TextStyle(
+              fontSize: 12,
+              color: AppColors.hintText,
+            ),
+          ),
         ],
       ),
     );
@@ -1014,6 +1147,70 @@ class _WeekPlanAddScreenState
         }
       }
     }
+  }
+
+  void _showAddLinkDialog(BuildContext context) {
+    final formKey = GlobalKey<FormBuilderState>();
+
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Thêm Link'),
+        content: FormBuilder(
+          key: formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              FormInputField(
+                nameForm: 'link_name',
+                nameTextField: 'link_name_field',
+                label: 'Tên Link',
+                icon: Icons.text_fields,
+              ),
+              const SizedBox(height: 12),
+              FormInputField(
+                nameForm: 'link_url',
+                nameTextField: 'link_url_field',
+                label: 'URL',
+                icon: Icons.link,
+                isRequired: true,
+                keyboardType: TextInputType.url,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng nhập URL',
+                ),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Huỷ'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              if (formKey.currentState?.validate() ?? false) {
+                final vals = formKey.currentState?.value;
+                final name = vals?['link_name']?.toString().trim() ?? '';
+                final url = vals?['link_url']?.toString().trim() ?? '';
+                bloc.add(WeekPlanEvent.addLink(
+                  WeekPlanLinkItem(
+                    fileName: name,
+                    filePath: url,
+                  ),
+                ));
+                Navigator.pop(ctx);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primaryERP,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text('Xác nhận'),
+          ),
+        ],
+      ),
+    );
   }
 
   //---(_Step: Incident)---//

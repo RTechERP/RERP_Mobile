@@ -367,6 +367,39 @@ class FileWeekPlanResponse with _$FileWeekPlanResponse {
 }
 
 @freezed
+class WeekPlanLinkItem with _$WeekPlanLinkItem {
+  const factory WeekPlanLinkItem({
+    int? id,
+    String? fileName,
+    String? filePath,
+    int? fileSize,
+    String? fileType,
+  }) = _WeekPlanLinkItem;
+
+  factory WeekPlanLinkItem.fromJson(Map<String, dynamic> json) =>
+      _$WeekPlanLinkItemFromJson(json);
+}
+
+@freezed
+class LinkWeekPlanResponse with _$LinkWeekPlanResponse {
+  const factory LinkWeekPlanResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+    @JsonKey(name: 'FileName') String? fileName,
+    @JsonKey(name: 'FilePath') String? filePath,
+    @JsonKey(name: 'Type') int? type,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _LinkWeekPlanResponse;
+
+  factory LinkWeekPlanResponse.fromJson(Map<String, dynamic> json) =>
+      _$LinkWeekPlanResponseFromJson(json);
+}
+
+@freezed
 class ChecklistWeekPlanResponse with _$ChecklistWeekPlanResponse {
   const factory ChecklistWeekPlanResponse({
     @JsonKey(name: 'ID') int? id,

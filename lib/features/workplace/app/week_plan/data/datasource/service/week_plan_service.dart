@@ -241,6 +241,23 @@ class WeekPlanService extends DioBaseApiService {
     );
   }
 
+  /// PUT /ProjectTask/Links - Lưu link đính kèm sau khi tạo task.
+  ///
+  /// Payload: { ID, ProjectTaskID, FileName, FilePath, IsDeleted }
+  /// Response: { status: 1, data: LinkWeekPlanResponse }
+  Future<BaseData<LinkWeekPlanResponse>> saveProjectTaskLinks({
+    required Map<String, dynamic> payload,
+  }) async {
+    return put<BaseData<LinkWeekPlanResponse>>(
+      ApiEndPoint.projectTaskLinks,
+      body: payload,
+      parser: (json) => BaseData<LinkWeekPlanResponse>.fromJson(
+        json,
+        (data) => LinkWeekPlanResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
   /// POST /ProjectTask/Checklists - Lưu checklist sau khi tạo task.
   ///
   /// Payload: { ID, ProjectTaskID, ChecklistTitle, OrderIndex, IsDone, IsDeleted, CreatedBy, UpdatedBy }

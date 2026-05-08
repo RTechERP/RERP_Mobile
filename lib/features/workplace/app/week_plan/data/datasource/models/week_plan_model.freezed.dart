@@ -7348,6 +7348,601 @@ abstract class _FileWeekPlanResponse implements FileWeekPlanResponse {
       get copyWith => throw _privateConstructorUsedError;
 }
 
+WeekPlanLinkItem _$WeekPlanLinkItemFromJson(Map<String, dynamic> json) {
+  return _WeekPlanLinkItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WeekPlanLinkItem {
+  int? get id => throw _privateConstructorUsedError;
+  String? get fileName => throw _privateConstructorUsedError;
+  String? get filePath => throw _privateConstructorUsedError;
+  int? get fileSize => throw _privateConstructorUsedError;
+  String? get fileType => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WeekPlanLinkItemCopyWith<WeekPlanLinkItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WeekPlanLinkItemCopyWith<$Res> {
+  factory $WeekPlanLinkItemCopyWith(
+          WeekPlanLinkItem value, $Res Function(WeekPlanLinkItem) then) =
+      _$WeekPlanLinkItemCopyWithImpl<$Res, WeekPlanLinkItem>;
+  @useResult
+  $Res call(
+      {int? id,
+      String? fileName,
+      String? filePath,
+      int? fileSize,
+      String? fileType});
+}
+
+/// @nodoc
+class _$WeekPlanLinkItemCopyWithImpl<$Res, $Val extends WeekPlanLinkItem>
+    implements $WeekPlanLinkItemCopyWith<$Res> {
+  _$WeekPlanLinkItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? fileName = freezed,
+    Object? filePath = freezed,
+    Object? fileSize = freezed,
+    Object? fileType = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      filePath: freezed == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileSize: freezed == fileSize
+          ? _value.fileSize
+          : fileSize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileType: freezed == fileType
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WeekPlanLinkItemImplCopyWith<$Res>
+    implements $WeekPlanLinkItemCopyWith<$Res> {
+  factory _$$WeekPlanLinkItemImplCopyWith(_$WeekPlanLinkItemImpl value,
+          $Res Function(_$WeekPlanLinkItemImpl) then) =
+      __$$WeekPlanLinkItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int? id,
+      String? fileName,
+      String? filePath,
+      int? fileSize,
+      String? fileType});
+}
+
+/// @nodoc
+class __$$WeekPlanLinkItemImplCopyWithImpl<$Res>
+    extends _$WeekPlanLinkItemCopyWithImpl<$Res, _$WeekPlanLinkItemImpl>
+    implements _$$WeekPlanLinkItemImplCopyWith<$Res> {
+  __$$WeekPlanLinkItemImplCopyWithImpl(_$WeekPlanLinkItemImpl _value,
+      $Res Function(_$WeekPlanLinkItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? fileName = freezed,
+    Object? filePath = freezed,
+    Object? fileSize = freezed,
+    Object? fileType = freezed,
+  }) {
+    return _then(_$WeekPlanLinkItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      filePath: freezed == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileSize: freezed == fileSize
+          ? _value.fileSize
+          : fileSize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileType: freezed == fileType
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WeekPlanLinkItemImpl implements _WeekPlanLinkItem {
+  const _$WeekPlanLinkItemImpl(
+      {this.id, this.fileName, this.filePath, this.fileSize, this.fileType});
+
+  factory _$WeekPlanLinkItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WeekPlanLinkItemImplFromJson(json);
+
+  @override
+  final int? id;
+  @override
+  final String? fileName;
+  @override
+  final String? filePath;
+  @override
+  final int? fileSize;
+  @override
+  final String? fileType;
+
+  @override
+  String toString() {
+    return 'WeekPlanLinkItem(id: $id, fileName: $fileName, filePath: $filePath, fileSize: $fileSize, fileType: $fileType)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WeekPlanLinkItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
+            (identical(other.filePath, filePath) ||
+                other.filePath == filePath) &&
+            (identical(other.fileSize, fileSize) ||
+                other.fileSize == fileSize) &&
+            (identical(other.fileType, fileType) ||
+                other.fileType == fileType));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, fileName, filePath, fileSize, fileType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WeekPlanLinkItemImplCopyWith<_$WeekPlanLinkItemImpl> get copyWith =>
+      __$$WeekPlanLinkItemImplCopyWithImpl<_$WeekPlanLinkItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WeekPlanLinkItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WeekPlanLinkItem implements WeekPlanLinkItem {
+  const factory _WeekPlanLinkItem(
+      {final int? id,
+      final String? fileName,
+      final String? filePath,
+      final int? fileSize,
+      final String? fileType}) = _$WeekPlanLinkItemImpl;
+
+  factory _WeekPlanLinkItem.fromJson(Map<String, dynamic> json) =
+      _$WeekPlanLinkItemImpl.fromJson;
+
+  @override
+  int? get id;
+  @override
+  String? get fileName;
+  @override
+  String? get filePath;
+  @override
+  int? get fileSize;
+  @override
+  String? get fileType;
+  @override
+  @JsonKey(ignore: true)
+  _$$WeekPlanLinkItemImplCopyWith<_$WeekPlanLinkItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+LinkWeekPlanResponse _$LinkWeekPlanResponseFromJson(Map<String, dynamic> json) {
+  return _LinkWeekPlanResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LinkWeekPlanResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTaskID')
+  int? get projectTaskId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileName')
+  String? get fileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FilePath')
+  String? get filePath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Type')
+  int? get type => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LinkWeekPlanResponseCopyWith<LinkWeekPlanResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LinkWeekPlanResponseCopyWith<$Res> {
+  factory $LinkWeekPlanResponseCopyWith(LinkWeekPlanResponse value,
+          $Res Function(LinkWeekPlanResponse) then) =
+      _$LinkWeekPlanResponseCopyWithImpl<$Res, LinkWeekPlanResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'FilePath') String? filePath,
+      @JsonKey(name: 'Type') int? type,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class _$LinkWeekPlanResponseCopyWithImpl<$Res,
+        $Val extends LinkWeekPlanResponse>
+    implements $LinkWeekPlanResponseCopyWith<$Res> {
+  _$LinkWeekPlanResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectTaskId = freezed,
+    Object? fileName = freezed,
+    Object? filePath = freezed,
+    Object? type = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskId: freezed == projectTaskId
+          ? _value.projectTaskId
+          : projectTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      filePath: freezed == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LinkWeekPlanResponseImplCopyWith<$Res>
+    implements $LinkWeekPlanResponseCopyWith<$Res> {
+  factory _$$LinkWeekPlanResponseImplCopyWith(_$LinkWeekPlanResponseImpl value,
+          $Res Function(_$LinkWeekPlanResponseImpl) then) =
+      __$$LinkWeekPlanResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'FilePath') String? filePath,
+      @JsonKey(name: 'Type') int? type,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class __$$LinkWeekPlanResponseImplCopyWithImpl<$Res>
+    extends _$LinkWeekPlanResponseCopyWithImpl<$Res, _$LinkWeekPlanResponseImpl>
+    implements _$$LinkWeekPlanResponseImplCopyWith<$Res> {
+  __$$LinkWeekPlanResponseImplCopyWithImpl(_$LinkWeekPlanResponseImpl _value,
+      $Res Function(_$LinkWeekPlanResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectTaskId = freezed,
+    Object? fileName = freezed,
+    Object? filePath = freezed,
+    Object? type = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_$LinkWeekPlanResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskId: freezed == projectTaskId
+          ? _value.projectTaskId
+          : projectTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      filePath: freezed == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LinkWeekPlanResponseImpl implements _LinkWeekPlanResponse {
+  const _$LinkWeekPlanResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProjectTaskID') this.projectTaskId,
+      @JsonKey(name: 'FileName') this.fileName,
+      @JsonKey(name: 'FilePath') this.filePath,
+      @JsonKey(name: 'Type') this.type,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
+
+  factory _$LinkWeekPlanResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LinkWeekPlanResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProjectTaskID')
+  final int? projectTaskId;
+  @override
+  @JsonKey(name: 'FileName')
+  final String? fileName;
+  @override
+  @JsonKey(name: 'FilePath')
+  final String? filePath;
+  @override
+  @JsonKey(name: 'Type')
+  final int? type;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  @override
+  String toString() {
+    return 'LinkWeekPlanResponse(id: $id, projectTaskId: $projectTaskId, fileName: $fileName, filePath: $filePath, type: $type, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, isDeleted: $isDeleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LinkWeekPlanResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.projectTaskId, projectTaskId) ||
+                other.projectTaskId == projectTaskId) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
+            (identical(other.filePath, filePath) ||
+                other.filePath == filePath) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      projectTaskId,
+      fileName,
+      filePath,
+      type,
+      createdDate,
+      createdBy,
+      updatedDate,
+      updatedBy,
+      isDeleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LinkWeekPlanResponseImplCopyWith<_$LinkWeekPlanResponseImpl>
+      get copyWith =>
+          __$$LinkWeekPlanResponseImplCopyWithImpl<_$LinkWeekPlanResponseImpl>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LinkWeekPlanResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LinkWeekPlanResponse implements LinkWeekPlanResponse {
+  const factory _LinkWeekPlanResponse(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'ProjectTaskID') final int? projectTaskId,
+          @JsonKey(name: 'FileName') final String? fileName,
+          @JsonKey(name: 'FilePath') final String? filePath,
+          @JsonKey(name: 'Type') final int? type,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
+      _$LinkWeekPlanResponseImpl;
+
+  factory _LinkWeekPlanResponse.fromJson(Map<String, dynamic> json) =
+      _$LinkWeekPlanResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProjectTaskID')
+  int? get projectTaskId;
+  @override
+  @JsonKey(name: 'FileName')
+  String? get fileName;
+  @override
+  @JsonKey(name: 'FilePath')
+  String? get filePath;
+  @override
+  @JsonKey(name: 'Type')
+  int? get type;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$LinkWeekPlanResponseImplCopyWith<_$LinkWeekPlanResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 ChecklistWeekPlanResponse _$ChecklistWeekPlanResponseFromJson(
     Map<String, dynamic> json) {
   return _ChecklistWeekPlanResponse.fromJson(json);

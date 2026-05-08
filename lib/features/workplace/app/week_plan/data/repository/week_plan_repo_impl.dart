@@ -258,4 +258,25 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, LinkWeekPlanResponse>> saveProjectTaskLinks({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.saveProjectTaskLinks(payload: payload);
+
+      if (res.status == 1) {
+        return right(res.data ?? const LinkWeekPlanResponse());
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

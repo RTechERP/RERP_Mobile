@@ -124,6 +124,8 @@ abstract class _$WeekPlanStateCWProxy {
   WeekPlanState uploadedAttachmentFiles(
       List<UploadAttachmentResponse> uploadedAttachmentFiles);
 
+  WeekPlanState links(List<WeekPlanLinkItem> links);
+
   WeekPlanState incidents(List<WeekPlanIncidentItem> incidents);
 
   WeekPlanState currentStep(int currentStep);
@@ -192,6 +194,7 @@ abstract class _$WeekPlanStateCWProxy {
     List<bool>? checklistDone,
     List<WeekPlanAttachmentItem>? attachments,
     List<UploadAttachmentResponse>? uploadedAttachmentFiles,
+    List<WeekPlanLinkItem>? links,
     List<WeekPlanIncidentItem>? incidents,
     int? currentStep,
   });
@@ -428,6 +431,9 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(uploadedAttachmentFiles: uploadedAttachmentFiles);
 
   @override
+  WeekPlanState links(List<WeekPlanLinkItem> links) => this(links: links);
+
+  @override
   WeekPlanState incidents(List<WeekPlanIncidentItem> incidents) =>
       this(incidents: incidents);
 
@@ -500,6 +506,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? checklistDone = const $CopyWithPlaceholder(),
     Object? attachments = const $CopyWithPlaceholder(),
     Object? uploadedAttachmentFiles = const $CopyWithPlaceholder(),
+    Object? links = const $CopyWithPlaceholder(),
     Object? incidents = const $CopyWithPlaceholder(),
     Object? currentStep = const $CopyWithPlaceholder(),
   }) {
@@ -756,6 +763,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
               ? _value.uploadedAttachmentFiles
               // ignore: cast_nullable_to_non_nullable
               : uploadedAttachmentFiles as List<UploadAttachmentResponse>,
+      links: links == const $CopyWithPlaceholder() || links == null
+          ? _value.links
+          // ignore: cast_nullable_to_non_nullable
+          : links as List<WeekPlanLinkItem>,
       incidents: incidents == const $CopyWithPlaceholder() || incidents == null
           ? _value.incidents
           // ignore: cast_nullable_to_non_nullable

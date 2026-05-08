@@ -121,6 +121,10 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             _onAddAttachment(emit, attachment),
         removeAttachment: (index) =>
             _onRemoveAttachment(emit, index),
+        addLink: (link) =>
+            _onAddLink(emit, link),
+        removeLink: (index) =>
+            _onRemoveLink(emit, index),
         addIncident: () =>
             _onAddIncident(emit),
         updateIncident: (index, incident) =>
@@ -439,6 +443,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       checklistDone: const [],
       attachments: const [],
       uploadedAttachmentFiles: const [],
+      links: const [],
       incidents: const [],
     ));
 
@@ -841,6 +846,20 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     }
   }
 
+  //---(Links)---//
+  Future<void> _onAddLink(
+      Emitter<WeekPlanState> emit, WeekPlanLinkItem link) async {
+    emit(state.copyWith(links: [...state.links, link]));
+  }
+
+  Future<void> _onRemoveLink(Emitter<WeekPlanState> emit, int index) async {
+    final list = List<WeekPlanLinkItem>.from(state.links);
+    if (index >= 0 && index < list.length) {
+      list.removeAt(index);
+      emit(state.copyWith(links: list));
+    }
+  }
+
   //---(Incidents)---//
   Future<void> _onAddIncident(Emitter<WeekPlanState> emit) async {
     emit(state.copyWith(
@@ -997,6 +1016,24 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
               await _weekPlanRepo.saveProjectTaskChecklists(payload: checklistPayload);
             }
             _log.logI('All checklists saved for task ID: ${data.id}');
+          }
+
+          // Gọi ngầm saveProjectTaskLinks cho từng link đã nhập.
+          if (state.links.isNotEmpty && data.id != null) {
+            for (final link in state.links) {
+              final linkPayload = {
+                'ID': 0,
+                'ProjectTaskID': data.id,
+                'FileName': link.fileName ?? '',
+                'FilePath': link.filePath ?? '',
+                'IsDeleted': false,
+              };
+              _log.logI('Saving link: ${link.fileName}');
+
+              // ignore: invalid_use_of_visible_for_testing_member
+              await _weekPlanRepo.saveProjectTaskLinks(payload: linkPayload);
+            }
+            _log.logI('All links saved for task ID: ${data.id}');
           }
         },
       );
