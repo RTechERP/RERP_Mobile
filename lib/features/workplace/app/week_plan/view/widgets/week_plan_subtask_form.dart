@@ -21,7 +21,8 @@ class WeekPlanSubTaskForm extends StatefulWidget {
     required this.employees,
     required this.onChanged,
     required this.onDelete,
-    this.initiallyExpanded = true,
+    this.initiallyExpanded = false,
+    this.onToggleExpand,
   });
 
   final int index;
@@ -32,6 +33,7 @@ class WeekPlanSubTaskForm extends StatefulWidget {
   final ValueChanged<WeekPlanSubTaskItem> onChanged;
   final VoidCallback onDelete;
   final bool initiallyExpanded;
+  final VoidCallback? onToggleExpand;
 
   @override
   State<WeekPlanSubTaskForm> createState() => _WeekPlanSubTaskFormState();
@@ -75,6 +77,22 @@ class _WeekPlanSubTaskFormState extends State<WeekPlanSubTaskForm> {
     _workTypeId = widget.subTask.workType;
     _workTypeName = widget.subTask.workTypeName;
     _complexity = widget.subTask.complexity ?? 1;
+  }
+
+  @override
+  void didUpdateWidget(WeekPlanSubTaskForm oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.initiallyExpanded != oldWidget.initiallyExpanded) {
+      _isExpanded = widget.initiallyExpanded;
+    }
+  }
+
+  void _handleToggle() {
+    if (widget.onToggleExpand != null) {
+      widget.onToggleExpand!();
+    } else {
+      setState(() => _isExpanded = !_isExpanded);
+    }
   }
 
   void _notifyChange() {
@@ -194,7 +212,7 @@ class _WeekPlanSubTaskFormState extends State<WeekPlanSubTaskForm> {
           children: [
             // Header: slip number + toggle + delete
             GestureDetector(
-              onTap: () => setState(() => _isExpanded = !_isExpanded),
+              onTap: _handleToggle,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 decoration: BoxDecoration(
@@ -397,6 +415,7 @@ class _DatePickerField extends StatelessWidget {
             const SizedBox(width: 8),
             Expanded(
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -465,6 +484,7 @@ class _TapField extends StatelessWidget {
             const SizedBox(width: 8),
             Expanded(
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(

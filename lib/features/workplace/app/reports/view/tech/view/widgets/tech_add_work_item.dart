@@ -7,8 +7,6 @@ import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../../data/tech_model.dart';
 import '../bloc/tech_bloc.dart';
-import 'package:go_router/go_router.dart';
-import '../../../../../../../../routes/route_names.dart';
 
 class TechAddWorkItem extends StatefulWidget {
   final String title;
@@ -260,7 +258,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                         title: 'Chọn hạng mục',
                         items: context.read<TechBloc>().state.projectItem, // Lấy trực tiếp từ state
                         displayText: (v) => '${v.code} - ${v.mission}',
-                        onAdd: () => context.push(RouteNames.workCategoryAdd),
+                        // onAdd: () => context.push(RouteNames.workCategoryAdd),
                         onSelected: (item) {
                           context.read<TechBloc>().add(
                             TechEvent.updateWork(

@@ -143,7 +143,8 @@ class WeekPlanEvent with _$WeekPlanEvent {
       _RemoveRelatedPerson;
 
   // Step 5: Công việc con
-  const factory WeekPlanEvent.addSubTask() = _AddSubTask;
+  const factory WeekPlanEvent.addSubTaskWithData(WeekPlanSubTaskItem subTask) =
+      _AddSubTaskWithData;
 
   const factory WeekPlanEvent.updateSubTask(int index, WeekPlanSubTaskItem subTask) =
       _UpdateSubTask;

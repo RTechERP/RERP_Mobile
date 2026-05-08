@@ -40,7 +40,7 @@ class WeekPlanTaskTypeCard extends StatelessWidget {
               const Text(
                 'Loại công việc',
                 style: TextStyle(
-                  fontSize: 13,
+                  fontSize: 11,
                   color: Color(0xff989898),
                   fontWeight: FontWeight.w500,
                 ),

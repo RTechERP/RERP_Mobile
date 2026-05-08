@@ -583,6 +583,31 @@ class _WeekPlanAddScreenState
   }
 
   //---(_Step: SubTask)---//
+  Future<void> _showSubTaskSheet(int? editIndex, WeekPlanState state) async {
+    final subTask = editIndex != null ? state.subTasks[editIndex] : null;
+
+    final result = await WeekPlanSubTaskBottomSheet.show(
+      context: context,
+      subTask: subTask,
+      taskTypes: state.taskTypes,
+      projectTypes: state.projectTypes,
+      employees: state.employees,
+      defaultComplexity: state.headerComplexity,
+      defaultWorkType: state.headerWorkType,
+      defaultWorkTypeName: state.headerWorkTypeName,
+      defaultTaskCategory: state.headerTaskCategory,
+      defaultTaskCategoryName: state.headerTaskCategoryName,
+    );
+
+    if (result == null) return;
+
+    if (editIndex != null) {
+      bloc.add(WeekPlanEvent.updateSubTask(editIndex, result));
+    } else {
+      bloc.add(WeekPlanEvent.addSubTaskWithData(result));
+    }
+  }
+
   Widget _buildSubTaskStep(WeekPlanState state) {
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -599,10 +624,27 @@ class _WeekPlanAddScreenState
                   color: AppColors.heading,
                 ),
               ),
+              if (state.subTasks.isNotEmpty) ...[
+                const SizedBox(width: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryERP.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    '${state.subTasks.length}',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.primaryERP,
+                    ),
+                  ),
+                ),
+              ],
               const Spacer(),
-
               ElevatedButton.icon(
-                onPressed: () => _addSubTask(),
+                onPressed: () => _showSubTaskSheet(null, state),
                 icon: const Icon(Icons.add, size: 16),
                 label: const Text('Thêm'),
                 style: ElevatedButton.styleFrom(
@@ -648,33 +690,19 @@ class _WeekPlanAddScreenState
               ),
             ),
 
-          // List slips
+          // List cards
           ...List.generate(state.subTasks.length, (i) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: WeekPlanSubTaskForm(
-                key: ValueKey(state.subTasks[i].id ?? i),
-                index: i,
-                subTask: state.subTasks[i],
-                taskTypes: state.taskTypes,
-                projectTypes: state.projectTypes,
-                employees: state.employees,
-                onChanged: (updated) {
-                  bloc.add(WeekPlanEvent.updateSubTask(i, updated));
-                },
-                onDelete: () {
-                  bloc.add(WeekPlanEvent.removeSubTask(i));
-                },
-              ),
+            return WeekPlanSubTaskCard(
+              key: ValueKey(state.subTasks[i].id ?? i),
+              index: i,
+              subTask: state.subTasks[i],
+              onTap: () => _showSubTaskSheet(i, state),
+              onDelete: () => bloc.add(WeekPlanEvent.removeSubTask(i)),
             );
           }),
         ],
       ),
     );
-  }
-
-  void _addSubTask() {
-    bloc.add(const WeekPlanEvent.addSubTask());
   }
 
   //---(_Step: Checklist)---//

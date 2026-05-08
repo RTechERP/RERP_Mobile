@@ -274,4 +274,23 @@ class WeekPlanService extends DioBaseApiService {
       ),
     );
   }
+
+  /// POST /ProjectTask/project-task-child - Lưu công việc con sau khi tạo task cha.
+  ///
+  /// Payload: { ID, ProjectID, Mission, PlanStartDate, PlanEndDate, ParentID,
+  ///            TypeProjectItem, EmployeeIDRequest, EmployeeAssigneeID,
+  ///            TaskComplexity, ProjectTaskTypeID, IsDeletedFromParent }
+  /// Response: { status: 1, data: SubTaskWeekPlan }
+  Future<BaseData<SubTaskWeekPlan>> saveProjectTaskChild({
+    required Map<String, dynamic> payload,
+  }) async {
+    return post<BaseData<SubTaskWeekPlan>>(
+      ApiEndPoint.projectTaskChild,
+      body: payload,
+      parser: (json) => BaseData<SubTaskWeekPlan>.fromJson(
+        json,
+        (data) => SubTaskWeekPlan.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
 }
