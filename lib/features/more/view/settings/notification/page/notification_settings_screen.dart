@@ -306,10 +306,6 @@ class _NotificationSettingsScreenState
 
   Future<void> _turnOffNotifications(BuildContext context) async {
     await openAppSettings();
-    await Future.delayed(const Duration(milliseconds: 800));
-    if (mounted) {
-      bloc.add(const NotificationEvent.init());
-    }
   }
 
   void _showDeniedDialog(BuildContext context) {
