@@ -106,9 +106,6 @@ class ValidateHelper {
       if (total - ot > 8) {
         return '${prefix}Số giờ hành chính không được lớn hơn 8h';
       }
-      if (total - ot <= 0) {
-        return '${prefix}Số giờ hành chính phải lớn hơn 0';
-      }
 
       final percent = getPercent(work);
       if (percent <= 0 || percent > 100) {
@@ -309,10 +306,6 @@ class ValidateHelper {
 
       if (total - ot > 8) {
         return '${prefix}Số giờ hành chính không được lớn hơn 8h';
-      }
-
-      if (total - ot <= 0) {
-        return '${prefix}Số giờ hành chính phải lớn hơn 0';
       }
 
       if (getContent(work).trim().isEmpty) {
