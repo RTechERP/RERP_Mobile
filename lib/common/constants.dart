@@ -301,6 +301,7 @@ class ApiEndPoint {
   static const String projectTaskChecklists = '/ProjectTask/Checklists';
   static const String projectTaskLinks = '/ProjectTask/Links';
   static const String projectTaskChild = '/ProjectTask/project-task-child';
+  static const String projectTaskAdditional = '/ProjectTask/Additional';
 
   static const String getAllProjectTask = '/ProjectTask/get-all-project';
   static const String listProjectTask = '/ProjectTask/list-project-task';

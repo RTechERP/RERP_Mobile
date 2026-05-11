@@ -879,3 +879,33 @@ Map<String, dynamic> _$$SubTaskWeekPlanImplToJson(
       'EstimatedTime': instance.estimatedTime,
       'NeedApprove': instance.needApprove,
     };
+
+_$AdditionalWeekPlanResponseImpl _$$AdditionalWeekPlanResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AdditionalWeekPlanResponseImpl(
+      projectTaskId: (json['ProjectTaskID'] as num?)?.toInt(),
+      description: json['Description'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+      id: (json['ID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$AdditionalWeekPlanResponseImplToJson(
+        _$AdditionalWeekPlanResponseImpl instance) =>
+    <String, dynamic>{
+      'ProjectTaskID': instance.projectTaskId,
+      'Description': instance.description,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'IsDeleted': instance.isDeleted,
+      'ID': instance.id,
+    };

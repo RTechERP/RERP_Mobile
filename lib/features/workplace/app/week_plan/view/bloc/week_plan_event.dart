@@ -183,6 +183,9 @@ class WeekPlanEvent with _$WeekPlanEvent {
 
   const factory WeekPlanEvent.removeIncident(int index) = _RemoveIncident;
 
+  const factory WeekPlanEvent.toggleIncidentExpand(int index) =
+      _ToggleIncidentExpand;
+
   // Submit
   const factory WeekPlanEvent.createTask() = _CreateTask;
 

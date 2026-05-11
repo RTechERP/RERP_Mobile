@@ -129,6 +129,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         updateIncident: (index, incident) =>
             _onUpdateIncident(emit, index, incident),
         removeIncident: (index) => _onRemoveIncident(emit, index),
+        toggleIncidentExpand: (index) => _onToggleIncidentExpand(emit, index),
         createTask: () => _onCreateTask(emit),
         clearSubmitState: () => _onClearSubmitState(emit),
         clearCheckInState: () => _onClearCheckInState(emit),
@@ -987,8 +988,17 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
           ...state.incidents,
           WeekPlanIncidentItem(reportedAt: DateTime.now()),
         ],
+        expandedIncidentIndex: state.incidents.length,
       ),
     );
+  }
+
+  Future<void> _onToggleIncidentExpand(
+    Emitter<WeekPlanState> emit,
+    int index,
+  ) async {
+    final newIndex = state.expandedIncidentIndex == index ? -1 : index;
+    emit(state.copyWith(expandedIncidentIndex: newIndex));
   }
 
   Future<void> _onUpdateIncident(
@@ -1187,6 +1197,47 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             }
             _log.logI('All links saved for task ID: ${data.id}');
           }
+
+          // Gọi ngầm saveProjectTaskAdditional cho từng sự phát sinh.
+          _log.logI('Incidents state count: ${state.incidents.length}');
+          for (int i = 0; i < state.incidents.length; i++) {
+            _log.logI(
+              'Incident[$i] description: "${state.incidents[i].description}"',
+            );
+          }
+          final incidents = state.incidents
+              .where((i) => i.description?.isNotEmpty == true)
+              .toList();
+          _log.logI(
+            'Incidents with description: ${incidents.length}, taskID: ${data.id}',
+          );
+          if (incidents.isNotEmpty && data.id != null) {
+            for (final incident in incidents) {
+              final additionalPayload = {
+                'ID': incident.id ?? 0,
+                'ProjectTaskID': data.id,
+                'Description': incident.description ?? '',
+                'IsDeleted': false,
+              };
+              _log.logI('Saving additional: "${incident.description}"');
+
+              // ignore: invalid_use_of_visible_for_testing_member
+              final additionalRes = await _weekPlanRepo.saveProjectTaskAdditional(
+                payload: additionalPayload,
+              );
+              additionalRes.fold(
+                (err) => _log.logE(
+                  'Additional save failed for "${incident.description}": $err',
+                ),
+                (_) => _log.logI(
+                  'Additional saved: "${incident.description}"',
+                ),
+              );
+            }
+            _log.logI('All additional saved for task ID: ${data.id}');
+          } else {
+            _log.logI('Additional skip: no incidents with description');
+          }
         },
       );
     } finally {
@@ -1249,13 +1300,6 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     'TaskComplexity': s.complexity ?? 1,
     'ProjectTaskTypeID': s.taskCategory ?? state.headerTaskCategory ?? 0,
     'IsDeletedFromParent': false,
-  };
-
-  Map<String, dynamic> _incidentToPayload(WeekPlanIncidentItem i) => {
-    if (i.id != null) 'ID': i.id,
-    'Description': i.description ?? '',
-    if (i.type != null) 'Type': i.type,
-    if (i.severity != null) 'Severity': i.severity,
   };
 
   Future<void> _onClearSubmitState(Emitter<WeekPlanState> emit) async {

@@ -69,7 +69,7 @@ class WeekPlanStatusCard extends StatelessWidget {
                       child: Text(
                         labels[i],
                         style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 11,
                           fontWeight: FontWeight.w600,
                           color: isSelected
                               ? Colors.white

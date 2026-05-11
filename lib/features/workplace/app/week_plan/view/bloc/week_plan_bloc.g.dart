@@ -128,6 +128,8 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState incidents(List<WeekPlanIncidentItem> incidents);
 
+  WeekPlanState expandedIncidentIndex(int expandedIncidentIndex);
+
   WeekPlanState currentStep(int currentStep);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -196,6 +198,7 @@ abstract class _$WeekPlanStateCWProxy {
     List<UploadAttachmentResponse>? uploadedAttachmentFiles,
     List<WeekPlanLinkItem>? links,
     List<WeekPlanIncidentItem>? incidents,
+    int? expandedIncidentIndex,
     int? currentStep,
   });
 }
@@ -438,6 +441,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(incidents: incidents);
 
   @override
+  WeekPlanState expandedIncidentIndex(int expandedIncidentIndex) =>
+      this(expandedIncidentIndex: expandedIncidentIndex);
+
+  @override
   WeekPlanState currentStep(int currentStep) => this(currentStep: currentStep);
 
   @override
@@ -508,6 +515,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? uploadedAttachmentFiles = const $CopyWithPlaceholder(),
     Object? links = const $CopyWithPlaceholder(),
     Object? incidents = const $CopyWithPlaceholder(),
+    Object? expandedIncidentIndex = const $CopyWithPlaceholder(),
     Object? currentStep = const $CopyWithPlaceholder(),
   }) {
     return WeekPlanState(
@@ -771,6 +779,12 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.incidents
           // ignore: cast_nullable_to_non_nullable
           : incidents as List<WeekPlanIncidentItem>,
+      expandedIncidentIndex:
+          expandedIncidentIndex == const $CopyWithPlaceholder() ||
+                  expandedIncidentIndex == null
+              ? _value.expandedIncidentIndex
+              // ignore: cast_nullable_to_non_nullable
+              : expandedIncidentIndex as int,
       currentStep:
           currentStep == const $CopyWithPlaceholder() || currentStep == null
               ? _value.currentStep

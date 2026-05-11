@@ -94,6 +94,8 @@ class WeekPlanState extends BaseBlocState {
 
   // Step 8: Phát sinh
   final List<WeekPlanIncidentItem> incidents;
+  /// Index cua incident dang duoc expand (-1 = tat ca collapsed).
+  final int expandedIncidentIndex;
 
   // Add screen step tracking
   final int currentStep;
@@ -168,6 +170,7 @@ class WeekPlanState extends BaseBlocState {
     this.links = const [],
     // Step 8
     this.incidents = const [],
+    this.expandedIncidentIndex = -1,
     // Step tracking
     this.currentStep = 0,
   });
@@ -207,6 +210,7 @@ class WeekPlanState extends BaseBlocState {
         uploadedAttachmentFiles: [],
         links: [],
         incidents: [],
+        expandedIncidentIndex: -1,
         currentStep: 0,
       );
 
@@ -280,6 +284,7 @@ class WeekPlanState extends BaseBlocState {
         links,
         // Step 8
         incidents,
+        expandedIncidentIndex,
         // Step tracking
         currentStep,
       ];

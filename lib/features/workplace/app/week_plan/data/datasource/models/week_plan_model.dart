@@ -475,3 +475,22 @@ class SubTaskWeekPlan with _$SubTaskWeekPlan {
   factory SubTaskWeekPlan.fromJson(Map<String, dynamic> json) =>
       _$SubTaskWeekPlanFromJson(json);
 }
+
+@freezed
+class AdditionalWeekPlanResponse with _$AdditionalWeekPlanResponse {
+  const factory AdditionalWeekPlanResponse({
+    @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+    @JsonKey(name: 'Description') String? description,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'ID') int? id,
+  }) = _AdditionalWeekPlanResponse;
+
+  factory AdditionalWeekPlanResponse.fromJson(
+      Map<String, dynamic> json,
+      ) =>
+      _$AdditionalWeekPlanResponseFromJson(json);
+}

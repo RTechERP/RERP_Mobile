@@ -293,4 +293,21 @@ class WeekPlanService extends DioBaseApiService {
       ),
     );
   }
+
+  /// POST /ProjectTask/Additional - Lưu công việc phát sinh sau khi tạo task.
+  ///
+  /// Payload: { ID, ProjectTaskID, Description, IsDeleted }
+  /// Response: { status: 1, data: AdditionalWeekPlanResponse }
+  Future<BaseData<AdditionalWeekPlanResponse>> saveProjectTaskAdditional({
+    required Map<String, dynamic> payload,
+  }) async {
+    return post<BaseData<AdditionalWeekPlanResponse>>(
+      ApiEndPoint.projectTaskAdditional,
+      body: payload,
+      parser: (json) => BaseData<AdditionalWeekPlanResponse>.fromJson(
+        json,
+        (data) => AdditionalWeekPlanResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
 }

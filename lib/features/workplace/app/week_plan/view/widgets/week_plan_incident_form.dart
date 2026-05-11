@@ -1,30 +1,25 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../../common/app_theme/index.dart';
-import '../../../../../../common/widgets/form/index.dart';
+import '../../../../../../common/app_theme/index.dart';
 import '../../data/datasource/models/week_plan_model.dart';
 
-class _SeverityLevel {
-  const _SeverityLevel(this.id, this.name, this.color);
-  final int id;
-  final String name;
-  final Color color;
-}
-
-/// Widget form cho một sự kiện phát sinh.
 class WeekPlanIncidentForm extends StatefulWidget {
   const WeekPlanIncidentForm({
     super.key,
     required this.index,
     required this.incident,
+    required this.isExpanded,
     required this.onChanged,
     required this.onDelete,
+    required this.onToggleExpand,
   });
 
   final int index;
   final WeekPlanIncidentItem incident;
+  final bool isExpanded;
   final ValueChanged<WeekPlanIncidentItem> onChanged;
   final VoidCallback onDelete;
+  final VoidCallback onToggleExpand;
 
   @override
   State<WeekPlanIncidentForm> createState() => _WeekPlanIncidentFormState();
@@ -32,134 +27,247 @@ class WeekPlanIncidentForm extends StatefulWidget {
 
 class _WeekPlanIncidentFormState extends State<WeekPlanIncidentForm> {
   late TextEditingController _descController;
-  bool _isExpanded = true;
+  late FocusNode _descFocusNode;
+  bool _isTyping = false;
 
-  int? _typeId;
-  String? _typeName;
-  int? _severityId;
-  String? _severityName;
-
-  static const _severityLevels = [
-    _SeverityLevel(1, 'Thấp', Color(0xFF33B469)),
-    _SeverityLevel(2, 'Trung bình', Color(0xFFEBBC2E)),
-    _SeverityLevel(3, 'Cao', Color(0xFFFF9F43)),
-    _SeverityLevel(4, 'Nghiêm trọng', Color(0xFFED3A3A)),
-  ];
+  // Debounce timer to sync text to BLoC without spamming on every keystroke.
+  DateTime? _lastNotifyTime;
+  static const _notifyDebounceMs = Duration(milliseconds: 800);
 
   @override
   void initState() {
     super.initState();
     _descController = TextEditingController(text: widget.incident.description);
-    _typeId = widget.incident.type;
-    _typeName = widget.incident.typeName;
-    _severityId = widget.incident.severity;
-    _severityName = widget.incident.severityName;
+    _descFocusNode = FocusNode();
+
+    _descController.addListener(_onTextChanged);
+    _descFocusNode.addListener(_onFocusChanged);
   }
 
-  void _notifyChange() {
-    widget.onChanged(WeekPlanIncidentItem(
-      id: widget.incident.id,
-      description: _descController.text,
-      type: _typeId,
-      typeName: _typeName,
-      severity: _severityId,
-      severityName: _severityName,
-      reportedAt: widget.incident.reportedAt,
-    ));
+  @override
+  void didUpdateWidget(WeekPlanIncidentForm oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Sync description nếu BLoC cập nhật từ bên ngoài (ví dụ: clear form).
+    if (oldWidget.incident.description != widget.incident.description &&
+        widget.incident.description != _descController.text) {
+      _descController.text = widget.incident.description ?? '';
+    }
+    // Khi card bị collapse: đẩy text hiện tại xuống BLoC ngay.
+    if (oldWidget.isExpanded && !widget.isExpanded) {
+      _notifyChange();
+    }
   }
+
+  void _onTextChanged() {
+    if (!_isTyping && _descController.text.isNotEmpty) {
+      setState(() => _isTyping = true);
+    }
+    // Sync xuống BLoC với debounce — tránh spam event khi đang gõ.
+    _debouncedNotifyChange();
+  }
+
+  void _debouncedNotifyChange() {
+    final now = DateTime.now();
+    final last = _lastNotifyTime;
+    if (last != null && now.difference(last) < _notifyDebounceMs) return;
+    _lastNotifyTime = now;
+    _notifyChange();
+  }
+
+  void _onFocusChanged() {
+    if (!_descFocusNode.hasFocus && _isTyping) {
+      setState(() => _isTyping = false);
+      _notifyChange();
+    }
+  }
+
   @override
   void dispose() {
+    _descController.removeListener(_onTextChanged);
+    _descFocusNode.removeListener(_onFocusChanged);
     _descController.dispose();
+    _descFocusNode.dispose();
     super.dispose();
   }
 
-  Color get _severityColor {
-    for (final s in _severityLevels) {
-      if (s.id == _severityId) return s.color;
-    }
-    return AppColors.hintText;
+  void _notifyChange() {
+    // Chỉ notify khi text thực sự khác với incident hiện tại trong BLoC.
+    final current = widget.incident.description ?? '';
+    if (_descController.text == current) return;
+    widget.onChanged(WeekPlanIncidentItem(
+      id: widget.incident.id,
+      description: _descController.text,
+      type: widget.incident.type,
+      typeName: widget.incident.typeName,
+      severity: widget.incident.severity,
+      severityName: widget.incident.severityName,
+      reportedAt: widget.incident.reportedAt,
+    ));
+  }
+
+  String get _previewText {
+    if (_descController.text.isEmpty) return 'Chưa có nội dung';
+    if (_descController.text.length <= 60) return _descController.text;
+    return '${_descController.text.substring(0, 60)}...';
   }
 
   @override
   Widget build(BuildContext context) {
+    final hasContent = _descController.text.isNotEmpty;
+
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.borderColor),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: hasContent
+              ? AppColors.warning.withValues(alpha: 0.35)
+              : AppColors.borderColor,
+          width: 1.2,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.warning.withValues(alpha: 0.05),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          GestureDetector(
-            onTap: () => setState(() => _isExpanded = !_isExpanded),
+          // Header
+          InkWell(
+            onTap: widget.onToggleExpand,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(14),
+              topRight: Radius.circular(14),
+            ),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
               decoration: BoxDecoration(
-                color: _severityId != null
-                    ? _severityColor.withValues(alpha: 0.1)
-                    : AppColors.warning.withValues(alpha: 0.1),
+                color: hasContent
+                    ? AppColors.warning.withValues(alpha: 0.07)
+                    : AppColors.bgCard,
                 borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
+                  topLeft: Radius.circular(14),
+                  topRight: Radius.circular(14),
                 ),
               ),
               child: Row(
                 children: [
+                  Container(
+                    width: 32,
+                    height: 32,
+                    decoration: BoxDecoration(
+                      color: AppColors.warning.withValues(alpha: 0.12),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Icon(
+                      Icons.edit_note,
+                      size: 18,
+                      color: AppColors.warning,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Phát sinh ${widget.index + 1}',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.heading,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          _previewText,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: AppColors.gray,
+                            fontStyle: hasContent ? FontStyle.normal : FontStyle.italic,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
                   AnimatedRotation(
-                    turns: _isExpanded ? 0.25 : 0,
+                    turns: widget.isExpanded ? 0.25 : 0,
                     duration: const Duration(milliseconds: 200),
-                    child: Icon(Icons.chevron_right, size: 20, color: _severityColor),
+                    child: Icon(Icons.chevron_right, size: 20, color: AppColors.gray),
                   ),
                   const SizedBox(width: 4),
-                  Icon(Icons.warning_amber_outlined, size: 16, color: _severityColor),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Text(
-                      'Phát sinh ${widget.index + 1}',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: _severityColor),
-                    ),
-                  ),
-                  if (_severityId != null)
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: _severityColor.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: Text(
-                        _severityName ?? '',
-                        style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: _severityColor),
+                  InkWell(
+                    onTap: widget.onDelete,
+                    borderRadius: BorderRadius.circular(6),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Icon(
+                        Icons.delete_outline,
+                        size: 20,
+                        color: AppColors.alert.withValues(alpha: 0.8),
                       ),
                     ),
-                  const SizedBox(width: 8),
-                  IconButton(
-                    onPressed: widget.onDelete,
-                    icon: Icon(Icons.delete_outline, size: 20, color: AppColors.alert),
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-                    tooltip: 'Xoá phát sinh',
                   ),
                 ],
               ),
             ),
           ),
+
+          // Expanded content
           AnimatedCrossFade(
             firstChild: Padding(
-              padding: const EdgeInsets.all(12),
-              child: FormInputField(
-                nameForm: 'incident_desc_${widget.index}',
-                nameTextField: 'incident_desc_field_${widget.index}',
-                label: 'Mô tả',
-                icon: Icons.description_outlined,
-                controller: _descController,
-                onChanged: (_) => _notifyChange(),
-                autoExpand: true,
+              padding: const EdgeInsets.all(14),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.bgCard,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: _isTyping
+                        ? AppColors.warning.withValues(alpha: 0.5)
+                        : AppColors.borderColor,
+                    width: _isTyping ? 1.5 : 1,
+                  ),
+                ),
+                child: TextField(
+                  controller: _descController,
+                  focusNode: _descFocusNode,
+                  maxLines: 4,
+                  minLines: 2,
+                  style: const TextStyle(fontSize: 13),
+                  decoration: InputDecoration(
+                    hintText: 'Nhập nội dung phát sinh...',
+                    hintStyle: TextStyle(
+                      fontSize: 13,
+                      color: AppColors.hintText,
+                      fontStyle: FontStyle.italic,
+                    ),
+                    prefixIcon: Icon(
+                      Icons.description_outlined,
+                      size: 18,
+                      color: _isTyping ? AppColors.warning : AppColors.hintText,
+                    ),
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.all(12),
+                    counterText: _descController.text.isEmpty
+                        ? ''
+                        : '${_descController.text.length} ký tự',
+                    counterStyle: TextStyle(fontSize: 10, color: AppColors.hintText),
+                  ),
+                  onChanged: (_) => setState(() {}),
+                ),
               ),
             ),
             secondChild: const SizedBox.shrink(),
-            crossFadeState: _isExpanded ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+            crossFadeState: widget.isExpanded
+                ? CrossFadeState.showFirst
+                : CrossFadeState.showSecond,
             duration: const Duration(milliseconds: 200),
           ),
         ],

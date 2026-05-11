@@ -238,19 +238,6 @@ class _WeekPlanAddScreenState
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-
-          WeekPlanProjectCard(
-            selectedId: state.headerProjectId,
-            projects: state.projects,
-            onChanged: (project) {
-              bloc.add(WeekPlanEvent.updateHeaderProject(
-                projectId: project.id ?? 0,
-                projectName: project.projectName ?? '',
-              ));
-            },
-          ),
-          const SizedBox(height: 10),
-
           FormInputField(
             nameForm: 'task_name',
             nameTextField: 'task_name_field',
@@ -267,6 +254,20 @@ class _WeekPlanAddScreenState
             },
           ),
           const SizedBox(height: 10),
+
+          WeekPlanProjectCard(
+            selectedId: state.headerProjectId,
+            projects: state.projects,
+            onChanged: (project) {
+              bloc.add(WeekPlanEvent.updateHeaderProject(
+                projectId: project.id ?? 0,
+                projectName: project.projectName ?? '',
+              ));
+            },
+          ),
+          const SizedBox(height: 10),
+
+
           WeekPlanTapCard(
             label: 'Công việc cha',
             value: state.headerParentTaskName,
@@ -330,6 +331,40 @@ class _WeekPlanAddScreenState
             onRemove: (id) => bloc.add(WeekPlanEvent.removeRelatedPerson(id)),
             isEmployee: true,
           ),
+
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: WeekPlanProjectTypeCard(
+                  selectedId: state.headerTaskCategory,
+                  projectTypes: state.projectTypes,
+                  onChanged: (pt) {
+                    bloc.add(WeekPlanEvent.updateHeaderTaskCategory(
+                      categoryId: pt.id ?? 0,
+                      categoryName: pt.projectTypeName ?? '',
+                    ));
+                  },
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: WeekPlanTaskTypeCard(
+                  selectedId: state.headerWorkType,
+                  taskTypes: state.taskTypes,
+                  onChanged: (taskType) {
+                    bloc.add(WeekPlanEvent.updateHeaderWorkTypeAndStatus(
+                      workTypeId: taskType.id ?? 0,
+                      workTypeName: taskType.typeName ?? '',
+                      statusId: state.headerStatus ?? 0,
+                      statusName: state.headerStatusName ?? 'Chưa làm',
+                    ));
+                  },
+                ),
+              ),
+            ],
+          ),
+
           const SizedBox(height: 10),
 
           FormCard(
@@ -524,39 +559,6 @@ class _WeekPlanAddScreenState
             onChanged: (v) =>
                 bloc.add(WeekPlanEvent.updateHeaderPersonalTask(v)),
           ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              Expanded(
-                child: WeekPlanProjectTypeCard(
-                  selectedId: state.headerTaskCategory,
-                  projectTypes: state.projectTypes,
-                  onChanged: (pt) {
-                    bloc.add(WeekPlanEvent.updateHeaderTaskCategory(
-                      categoryId: pt.id ?? 0,
-                      categoryName: pt.projectTypeName ?? '',
-                    ));
-                  },
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: WeekPlanTaskTypeCard(
-                  selectedId: state.headerWorkType,
-                  taskTypes: state.taskTypes,
-                  onChanged: (taskType) {
-                    bloc.add(WeekPlanEvent.updateHeaderWorkTypeAndStatus(
-                      workTypeId: taskType.id ?? 0,
-                      workTypeName: taskType.typeName ?? '',
-                      statusId: state.headerStatus ?? 0,
-                      statusName: state.headerStatusName ?? 'Chưa làm',
-                    ));
-                  },
-                ),
-              ),
-            ],
-          ),
-
           const SizedBox(height: 10),
           WeekPlanComplexityRow(
             selected: state.headerComplexity,
@@ -1243,83 +1245,89 @@ class _WeekPlanAddScreenState
 
   //---(_Step: Incident)---//
   Widget _buildIncidentStep(WeekPlanState state) {
+    final hasIncidents = state.incidents.isNotEmpty;
+    final totalIncidents = state.incidents.length;
+
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Header + button
+          // Header
           Row(
             children: [
-              Text(
-                'Danh sách phát sinh',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.heading,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: AppColors.warning.withValues(alpha: 0.12),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(
+                            Icons.add_alert_outlined,
+                            size: 18,
+                            color: AppColors.warning,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Phát sinh',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.heading,
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (hasIncidents) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        '$totalIncidents sự phát sinh được ghi nhận',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: AppColors.gray,
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ),
-              const Spacer(),
-              ElevatedButton.icon(
+              _AddIncidentButton(
                 onPressed: () => bloc.add(const WeekPlanEvent.addIncident()),
-                icon: const Icon(Icons.add, size: 16),
-                label: const Text('Thêm'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.warning,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  elevation: 0,
-                ),
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
 
-          // Empty state
-          if (state.incidents.isEmpty)
-            Container(
-              padding: const EdgeInsets.all(32),
-              child: Column(
-                children: [
-                  Icon(Icons.warning_amber_outlined,
-                      size: 48, color: AppColors.hintText),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Chưa có sự phát sinh nào',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: AppColors.hintText,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Bấm "Thêm" để ghi nhận phát sinh',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: AppColors.hintText,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-          // List
-          ...List.generate(state.incidents.length, (i) {
-            return WeekPlanIncidentForm(
-              key: ValueKey(state.incidents[i].id ?? i),
-              index: i,
-              incident: state.incidents[i],
-              onChanged: (updated) {
-                bloc.add(WeekPlanEvent.updateIncident(i, updated));
-              },
-              onDelete: () {
-                bloc.add(WeekPlanEvent.removeIncident(i));
-              },
-            );
-          }),
+          // List or empty state
+          if (!hasIncidents)
+            _IncidentEmptyState(
+              onAdd: () => bloc.add(const WeekPlanEvent.addIncident()),
+            )
+          else
+            ...List.generate(state.incidents.length, (i) {
+              return WeekPlanIncidentForm(
+                key: ValueKey(state.incidents[i].id ?? i),
+                index: i,
+                incident: state.incidents[i],
+                isExpanded: state.expandedIncidentIndex == i,
+                onChanged: (updated) {
+                  bloc.add(WeekPlanEvent.updateIncident(i, updated));
+                },
+                onDelete: () {
+                  bloc.add(WeekPlanEvent.removeIncident(i));
+                },
+                onToggleExpand: () {
+                  bloc.add(WeekPlanEvent.toggleIncidentExpand(i));
+                },
+              );
+            }),
         ],
       ),
     );
@@ -1528,5 +1536,102 @@ class _WeekPlanAddScreenState
 
     // Trigger create
     bloc.add(const WeekPlanEvent.createTask());
+  }
+}
+
+//---(_Incident Helpers)---//
+
+class _AddIncidentButton extends StatelessWidget {
+  const _AddIncidentButton({required this.onPressed});
+
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton.icon(
+      onPressed: onPressed,
+      icon: const Icon(Icons.add, size: 18),
+      label: const Text('Thêm'),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.warning,
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        elevation: 0,
+      ),
+    );
+  }
+}
+
+class _IncidentEmptyState extends StatelessWidget {
+  const _IncidentEmptyState({required this.onAdd});
+
+  final VoidCallback onAdd;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(32),
+      decoration: BoxDecoration(
+        color: AppColors.bgCard,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppColors.borderColor,
+          width: 1.2,
+          strokeAlign: BorderSide.strokeAlignInside,
+        ),
+      ),
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppColors.warning.withValues(alpha: 0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.add_alert_outlined,
+              size: 36,
+              color: AppColors.warning,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Chưa có sự phát sinh nào',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: AppColors.heading,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'Bấm "Thêm" để ghi nhận các sự cố, rủi ro\nhoặc thay đổi phát sinh trong quá trình thực hiện.',
+            style: TextStyle(
+              fontSize: 13,
+              color: AppColors.gray,
+              height: 1.4,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 20),
+          OutlinedButton.icon(
+            onPressed: onAdd,
+            icon: const Icon(Icons.add, size: 18),
+            label: const Text('Thêm phát sinh đầu tiên'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: AppColors.warning,
+              side: BorderSide(color: AppColors.warning),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
