@@ -108,6 +108,8 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState contentResult(String? contentResult);
 
+  WeekPlanState contentReasonSolution(String? contentReasonSolution);
+
   WeekPlanState selectedAssignees(List<EmployeeTaskItem> selectedAssignees);
 
   WeekPlanState selectedRelatedPersons(
@@ -189,6 +191,7 @@ abstract class _$WeekPlanStateCWProxy {
     DateTime? contentDeadline,
     String? contentDescription,
     String? contentResult,
+    String? contentReasonSolution,
     List<EmployeeTaskItem>? selectedAssignees,
     List<EmployeeTaskItem>? selectedRelatedPersons,
     List<WeekPlanSubTaskItem>? subTasks,
@@ -404,6 +407,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(contentResult: contentResult);
 
   @override
+  WeekPlanState contentReasonSolution(String? contentReasonSolution) =>
+      this(contentReasonSolution: contentReasonSolution);
+
+  @override
   WeekPlanState selectedAssignees(List<EmployeeTaskItem> selectedAssignees) =>
       this(selectedAssignees: selectedAssignees);
 
@@ -506,6 +513,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? contentDeadline = const $CopyWithPlaceholder(),
     Object? contentDescription = const $CopyWithPlaceholder(),
     Object? contentResult = const $CopyWithPlaceholder(),
+    Object? contentReasonSolution = const $CopyWithPlaceholder(),
     Object? selectedAssignees = const $CopyWithPlaceholder(),
     Object? selectedRelatedPersons = const $CopyWithPlaceholder(),
     Object? subTasks = const $CopyWithPlaceholder(),
@@ -735,6 +743,11 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.contentResult
           // ignore: cast_nullable_to_non_nullable
           : contentResult as String?,
+      contentReasonSolution:
+          contentReasonSolution == const $CopyWithPlaceholder()
+              ? _value.contentReasonSolution
+              // ignore: cast_nullable_to_non_nullable
+              : contentReasonSolution as String?,
       selectedAssignees: selectedAssignees == const $CopyWithPlaceholder() ||
               selectedAssignees == null
           ? _value.selectedAssignees

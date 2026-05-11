@@ -70,6 +70,8 @@ mixin _$WeekPlanEvent {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -152,6 +154,7 @@ mixin _$WeekPlanEvent {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -230,6 +233,7 @@ mixin _$WeekPlanEvent {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -307,6 +311,8 @@ mixin _$WeekPlanEvent {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -377,6 +383,8 @@ mixin _$WeekPlanEvent {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -443,6 +451,8 @@ mixin _$WeekPlanEvent {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -582,6 +592,8 @@ class _$InitMenuImpl implements _InitMenu {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -667,6 +679,7 @@ class _$InitMenuImpl implements _InitMenu {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -748,6 +761,7 @@ class _$InitMenuImpl implements _InitMenu {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -831,6 +845,8 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -904,6 +920,8 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -973,6 +991,8 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -1102,6 +1122,8 @@ class _$InitScreenImpl implements _InitScreen {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -1187,6 +1209,7 @@ class _$InitScreenImpl implements _InitScreen {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -1268,6 +1291,7 @@ class _$InitScreenImpl implements _InitScreen {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -1351,6 +1375,8 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -1424,6 +1450,8 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -1493,6 +1521,8 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -1650,6 +1680,8 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -1735,6 +1767,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -1816,6 +1849,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -1899,6 +1933,8 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -1972,6 +2008,8 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -2041,6 +2079,8 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -2203,6 +2243,8 @@ class _$ChangeViewImpl implements _ChangeView {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -2288,6 +2330,7 @@ class _$ChangeViewImpl implements _ChangeView {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -2369,6 +2412,7 @@ class _$ChangeViewImpl implements _ChangeView {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -2452,6 +2496,8 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -2525,6 +2571,8 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -2594,6 +2642,8 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -2728,6 +2778,8 @@ class _$RefreshImpl implements _Refresh {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -2813,6 +2865,7 @@ class _$RefreshImpl implements _Refresh {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -2894,6 +2947,7 @@ class _$RefreshImpl implements _Refresh {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -2977,6 +3031,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -3050,6 +3106,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -3119,6 +3177,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -3274,6 +3334,8 @@ class _$SearchImpl implements _Search {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -3359,6 +3421,7 @@ class _$SearchImpl implements _Search {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -3440,6 +3503,7 @@ class _$SearchImpl implements _Search {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -3523,6 +3587,8 @@ class _$SearchImpl implements _Search {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -3596,6 +3662,8 @@ class _$SearchImpl implements _Search {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -3665,6 +3733,8 @@ class _$SearchImpl implements _Search {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -3799,6 +3869,8 @@ class _$ClearSearchImpl implements _ClearSearch {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -3884,6 +3956,7 @@ class _$ClearSearchImpl implements _ClearSearch {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -3965,6 +4038,7 @@ class _$ClearSearchImpl implements _ClearSearch {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -4048,6 +4122,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -4121,6 +4197,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -4190,6 +4268,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -4346,6 +4426,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -4431,6 +4513,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -4512,6 +4595,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -4595,6 +4679,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -4668,6 +4754,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -4737,6 +4825,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -4871,6 +4961,8 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -4956,6 +5048,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -5037,6 +5130,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -5120,6 +5214,8 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -5193,6 +5289,8 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -5262,6 +5360,8 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -5427,6 +5527,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -5512,6 +5614,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -5593,6 +5696,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -5676,6 +5780,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -5749,6 +5855,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -5818,6 +5926,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -5955,6 +6065,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -6040,6 +6152,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -6121,6 +6234,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -6204,6 +6318,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -6277,6 +6393,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -6346,6 +6464,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -6509,6 +6629,8 @@ class _$CheckInImpl implements _CheckIn {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -6594,6 +6716,7 @@ class _$CheckInImpl implements _CheckIn {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -6675,6 +6798,7 @@ class _$CheckInImpl implements _CheckIn {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -6758,6 +6882,8 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -6831,6 +6957,8 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -6900,6 +7028,8 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -7035,6 +7165,8 @@ class _$InitAddScreenImpl implements _InitAddScreen {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -7120,6 +7252,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -7201,6 +7334,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -7284,6 +7418,8 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -7357,6 +7493,8 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -7426,6 +7564,8 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -7581,6 +7721,8 @@ class _$ChangeStepImpl implements _ChangeStep {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -7666,6 +7808,7 @@ class _$ChangeStepImpl implements _ChangeStep {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -7747,6 +7890,7 @@ class _$ChangeStepImpl implements _ChangeStep {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -7830,6 +7974,8 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -7903,6 +8049,8 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -7972,6 +8120,8 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -8144,6 +8294,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -8229,6 +8381,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -8310,6 +8463,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -8393,6 +8547,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -8466,6 +8622,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -8535,6 +8693,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -8712,6 +8872,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -8797,6 +8959,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -8878,6 +9041,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -8961,6 +9125,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -9034,6 +9200,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -9103,6 +9271,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -9279,6 +9449,8 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -9364,6 +9536,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -9445,6 +9618,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -9528,6 +9702,8 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -9601,6 +9777,8 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -9670,6 +9848,8 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -9837,6 +10017,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -9922,6 +10104,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -10003,6 +10186,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -10086,6 +10270,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -10159,6 +10345,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -10228,6 +10416,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -10393,6 +10583,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -10478,6 +10670,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -10559,6 +10752,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -10642,6 +10836,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -10715,6 +10911,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -10784,6 +10982,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -10948,6 +11148,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -11033,6 +11235,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -11114,6 +11317,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -11197,6 +11401,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -11270,6 +11476,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -11339,6 +11547,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -11512,6 +11722,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -11597,6 +11809,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -11678,6 +11891,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -11761,6 +11975,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -11834,6 +12050,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -11903,6 +12121,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -12070,6 +12290,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -12155,6 +12377,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -12236,6 +12459,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -12319,6 +12543,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -12392,6 +12618,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -12461,6 +12689,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -12636,6 +12866,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -12721,6 +12953,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -12802,6 +13035,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -12885,6 +13119,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -12958,6 +13194,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -13027,6 +13265,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -13230,6 +13470,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -13316,6 +13558,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -13398,6 +13641,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -13482,6 +13726,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -13555,6 +13801,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -13624,6 +13872,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -13766,6 +14016,8 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -13851,6 +14103,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -13932,6 +14185,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -14015,6 +14269,8 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -14088,6 +14344,8 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -14157,6 +14415,8 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -14286,6 +14546,8 @@ class _$FetchProjectsImpl implements _FetchProjects {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -14371,6 +14633,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -14452,6 +14715,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -14535,6 +14799,8 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -14608,6 +14874,8 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -14677,6 +14945,8 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -14806,6 +15076,8 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -14891,6 +15163,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -14972,6 +15245,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -15055,6 +15329,8 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -15128,6 +15404,8 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -15197,6 +15475,8 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -15326,6 +15606,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -15411,6 +15693,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -15492,6 +15775,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -15575,6 +15859,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -15648,6 +15934,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -15717,6 +16005,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -15886,6 +16176,8 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -15971,6 +16263,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -16052,6 +16345,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -16135,6 +16429,8 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -16208,6 +16504,8 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -16277,6 +16575,8 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -16442,6 +16742,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -16527,6 +16829,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -16608,6 +16911,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -16691,6 +16995,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -16764,6 +17070,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -16833,6 +17141,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -17007,6 +17317,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -17092,6 +17404,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -17173,6 +17486,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -17256,6 +17570,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -17329,6 +17645,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -17398,6 +17716,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -17574,6 +17894,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -17659,6 +17981,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -17740,6 +18063,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -17823,6 +18147,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -17896,6 +18222,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -17965,6 +18293,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -18176,6 +18506,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -18262,6 +18594,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -18344,6 +18677,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -18428,6 +18762,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -18501,6 +18837,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -18570,6 +18908,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -18743,6 +19083,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -18828,6 +19170,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -18909,6 +19252,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -18992,6 +19336,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -19065,6 +19411,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -19134,6 +19482,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -19296,6 +19646,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -19381,6 +19733,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -19462,6 +19815,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -19545,6 +19899,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -19618,6 +19974,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -19687,6 +20045,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -19730,6 +20090,573 @@ abstract class _UpdateContentResult implements WeekPlanEvent {
   @JsonKey(ignore: true)
   _$$UpdateContentResultImplCopyWith<_$UpdateContentResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateContentReasonSolutionImplCopyWith<$Res> {
+  factory _$$UpdateContentReasonSolutionImplCopyWith(
+          _$UpdateContentReasonSolutionImpl value,
+          $Res Function(_$UpdateContentReasonSolutionImpl) then) =
+      __$$UpdateContentReasonSolutionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String reasonSolution});
+}
+
+/// @nodoc
+class __$$UpdateContentReasonSolutionImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$UpdateContentReasonSolutionImpl>
+    implements _$$UpdateContentReasonSolutionImplCopyWith<$Res> {
+  __$$UpdateContentReasonSolutionImplCopyWithImpl(
+      _$UpdateContentReasonSolutionImpl _value,
+      $Res Function(_$UpdateContentReasonSolutionImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? reasonSolution = null,
+  }) {
+    return _then(_$UpdateContentReasonSolutionImpl(
+      null == reasonSolution
+          ? _value.reasonSolution
+          : reasonSolution // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateContentReasonSolutionImpl
+    implements _UpdateContentReasonSolution {
+  const _$UpdateContentReasonSolutionImpl(this.reasonSolution);
+
+  @override
+  final String reasonSolution;
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.updateContentReasonSolution(reasonSolution: $reasonSolution)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateContentReasonSolutionImpl &&
+            (identical(other.reasonSolution, reasonSolution) ||
+                other.reasonSolution == reasonSolution));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, reasonSolution);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateContentReasonSolutionImplCopyWith<_$UpdateContentReasonSolutionImpl>
+      get copyWith => __$$UpdateContentReasonSolutionImplCopyWithImpl<
+          _$UpdateContentReasonSolutionImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(String status) filterByStatus,
+    required TResult Function() clearStatusFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId, bool isCheck) checkIn,
+    required TResult Function() initAddScreen,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(int categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
+    required TResult Function() fetchProjectTypes,
+    required TResult Function() fetchEmployees,
+    required TResult Function(int projectId, bool isPersonalProject)
+        fetchParentProjectTasks,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
+    required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
+    required TResult Function(EmployeeTaskItem employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
+    required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTaskWithData,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanLinkItem link) addLink,
+    required TResult Function(int index) removeLink,
+    required TResult Function() addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function(int index) toggleIncidentExpand,
+    required TResult Function() createTask,
+    required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
+    required TResult Function(List<String> filePaths, String subPath)
+        uploadFiles,
+    required TResult Function() clearUploadedFiles,
+  }) {
+    return updateContentReasonSolution(reasonSolution);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(String status)? filterByStatus,
+    TResult? Function()? clearStatusFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
+    TResult? Function()? initAddScreen,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
+    TResult? Function()? fetchProjectTypes,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
+    TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult? Function(EmployeeTaskItem employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanLinkItem link)? addLink,
+    TResult? Function(int index)? removeLink,
+    TResult? Function()? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function(int index)? toggleIncidentExpand,
+    TResult? Function()? createTask,
+    TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
+    TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult? Function()? clearUploadedFiles,
+  }) {
+    return updateContentReasonSolution?.call(reasonSolution);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(String status)? filterByStatus,
+    TResult Function()? clearStatusFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId, bool isCheck)? checkIn,
+    TResult Function()? initAddScreen,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
+    TResult Function()? fetchProjectTypes,
+    TResult Function()? fetchEmployees,
+    TResult Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
+    TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult Function(EmployeeTaskItem employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanLinkItem link)? addLink,
+    TResult Function(int index)? removeLink,
+    TResult Function()? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function(int index)? toggleIncidentExpand,
+    TResult Function()? createTask,
+    TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
+    TResult Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult Function()? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (updateContentReasonSolution != null) {
+      return updateContentReasonSolution(reasonSolution);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearStatusFilter value) clearStatusFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
+    required TResult Function(_FetchProjectTypes value) fetchProjectTypes,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_FetchParentProjectTasks value)
+        fetchParentProjectTasks,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddLink value) addLink,
+    required TResult Function(_RemoveLink value) removeLink,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_ToggleIncidentExpand value) toggleIncidentExpand,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
+  }) {
+    return updateContentReasonSolution(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
+    TResult? Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddLink value)? addLink,
+    TResult? Function(_RemoveLink value)? removeLink,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
+  }) {
+    return updateContentReasonSolution?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
+    TResult Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddLink value)? addLink,
+    TResult Function(_RemoveLink value)? removeLink,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (updateContentReasonSolution != null) {
+      return updateContentReasonSolution(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateContentReasonSolution implements WeekPlanEvent {
+  const factory _UpdateContentReasonSolution(final String reasonSolution) =
+      _$UpdateContentReasonSolutionImpl;
+
+  String get reasonSolution;
+  @JsonKey(ignore: true)
+  _$$UpdateContentReasonSolutionImplCopyWith<_$UpdateContentReasonSolutionImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -19856,6 +20783,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -19941,6 +20870,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -20022,6 +20952,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -20105,6 +21036,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -20178,6 +21111,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -20247,6 +21182,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -20419,6 +21356,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -20504,6 +21443,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -20585,6 +21525,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -20668,6 +21609,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -20741,6 +21684,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -20810,6 +21755,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -20973,6 +21920,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -21058,6 +22007,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -21139,6 +22089,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -21222,6 +22173,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -21295,6 +22248,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -21364,6 +22319,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -21532,6 +22489,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -21617,6 +22576,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -21698,6 +22658,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -21781,6 +22742,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -21854,6 +22817,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -21923,6 +22888,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -22096,6 +23063,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -22181,6 +23150,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -22262,6 +23232,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -22345,6 +23316,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -22418,6 +23391,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -22487,6 +23462,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -22650,6 +23627,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -22735,6 +23714,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -22816,6 +23796,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -22899,6 +23880,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -22972,6 +23955,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -23041,6 +24026,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -23213,6 +24200,8 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -23298,6 +24287,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -23379,6 +24369,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -23462,6 +24453,8 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -23535,6 +24528,8 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -23604,6 +24599,8 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -23783,6 +24780,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -23868,6 +24867,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -23949,6 +24949,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -24032,6 +25033,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -24105,6 +25108,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -24174,6 +25179,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -24336,6 +25343,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -24421,6 +25430,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -24502,6 +25512,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -24585,6 +25596,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -24658,6 +25671,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -24727,6 +25742,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -24888,6 +25905,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -24973,6 +25992,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -25054,6 +26074,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -25137,6 +26158,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -25210,6 +26233,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -25279,6 +26304,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -25448,6 +26475,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -25533,6 +26562,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -25614,6 +26644,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -25697,6 +26728,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -25770,6 +26803,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -25839,6 +26874,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -26002,6 +27039,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -26087,6 +27126,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -26168,6 +27208,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -26251,6 +27292,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -26324,6 +27367,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -26393,6 +27438,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -26555,6 +27602,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -26640,6 +27689,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -26721,6 +27771,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -26804,6 +27855,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -26877,6 +27930,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -26946,6 +28001,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -27118,6 +28175,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -27203,6 +28262,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -27284,6 +28344,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -27367,6 +28428,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -27440,6 +28503,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -27509,6 +28574,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -27671,6 +28738,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -27756,6 +28825,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -27837,6 +28907,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -27920,6 +28991,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -27993,6 +29066,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -28062,6 +29137,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -28232,6 +29309,8 @@ class _$AddLinkImpl implements _AddLink {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -28317,6 +29396,7 @@ class _$AddLinkImpl implements _AddLink {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -28398,6 +29478,7 @@ class _$AddLinkImpl implements _AddLink {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -28481,6 +29562,8 @@ class _$AddLinkImpl implements _AddLink {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -28554,6 +29637,8 @@ class _$AddLinkImpl implements _AddLink {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -28623,6 +29708,8 @@ class _$AddLinkImpl implements _AddLink {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -28783,6 +29870,8 @@ class _$RemoveLinkImpl implements _RemoveLink {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -28868,6 +29957,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -28949,6 +30039,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -29032,6 +30123,8 @@ class _$RemoveLinkImpl implements _RemoveLink {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -29105,6 +30198,8 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -29174,6 +30269,8 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -29308,6 +30405,8 @@ class _$AddIncidentImpl implements _AddIncident {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -29393,6 +30492,7 @@ class _$AddIncidentImpl implements _AddIncident {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -29474,6 +30574,7 @@ class _$AddIncidentImpl implements _AddIncident {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -29557,6 +30658,8 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -29630,6 +30733,8 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -29699,6 +30804,8 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -29874,6 +30981,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -29959,6 +31068,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -30040,6 +31150,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -30123,6 +31234,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -30196,6 +31309,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -30265,6 +31380,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -30429,6 +31546,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -30514,6 +31633,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -30595,6 +31715,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -30678,6 +31799,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -30751,6 +31874,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -30820,6 +31945,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -30982,6 +32109,8 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -31067,6 +32196,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -31148,6 +32278,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -31231,6 +32362,8 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -31304,6 +32437,8 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -31373,6 +32508,8 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -31508,6 +32645,8 @@ class _$CreateTaskImpl implements _CreateTask {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -31593,6 +32732,7 @@ class _$CreateTaskImpl implements _CreateTask {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -31674,6 +32814,7 @@ class _$CreateTaskImpl implements _CreateTask {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -31757,6 +32898,8 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -31830,6 +32973,8 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -31899,6 +33044,8 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -32028,6 +33175,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -32113,6 +33262,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -32194,6 +33344,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -32277,6 +33428,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -32350,6 +33503,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -32419,6 +33574,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -32548,6 +33705,8 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -32633,6 +33792,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -32714,6 +33874,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -32797,6 +33958,8 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -32870,6 +34033,8 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -32939,6 +34104,8 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -33112,6 +34279,8 @@ class _$UploadFilesImpl implements _UploadFiles {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -33197,6 +34366,7 @@ class _$UploadFilesImpl implements _UploadFiles {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -33278,6 +34448,7 @@ class _$UploadFilesImpl implements _UploadFiles {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -33361,6 +34532,8 @@ class _$UploadFilesImpl implements _UploadFiles {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -33434,6 +34607,8 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -33503,6 +34678,8 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,
@@ -33640,6 +34817,8 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
         updateContentDates,
     required TResult Function(String description) updateContentDescription,
     required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
     required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
     required TResult Function(EmployeeTaskItem employee) addAssignee,
     required TResult Function(int employeeId) removeAssignee,
@@ -33725,6 +34904,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
         updateContentDates,
     TResult? Function(String description)? updateContentDescription,
     TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
     TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult? Function(EmployeeTaskItem employee)? addAssignee,
     TResult? Function(int employeeId)? removeAssignee,
@@ -33806,6 +34986,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
         updateContentDates,
     TResult Function(String description)? updateContentDescription,
     TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
     TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
     TResult Function(EmployeeTaskItem employee)? addAssignee,
     TResult Function(int employeeId)? removeAssignee,
@@ -33889,6 +35070,8 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     required TResult Function(_UpdateContentDescription value)
         updateContentDescription,
     required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
     required TResult Function(_SetAssignees value) setAssignees,
     required TResult Function(_AddAssignee value) addAssignee,
     required TResult Function(_RemoveAssignee value) removeAssignee,
@@ -33962,6 +35145,8 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult? Function(_UpdateContentDescription value)?
         updateContentDescription,
     TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult? Function(_SetAssignees value)? setAssignees,
     TResult? Function(_AddAssignee value)? addAssignee,
     TResult? Function(_RemoveAssignee value)? removeAssignee,
@@ -34031,6 +35216,8 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult Function(_UpdateContentDates value)? updateContentDates,
     TResult Function(_UpdateContentDescription value)? updateContentDescription,
     TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
     TResult Function(_SetAssignees value)? setAssignees,
     TResult Function(_AddAssignee value)? addAssignee,
     TResult Function(_RemoveAssignee value)? removeAssignee,

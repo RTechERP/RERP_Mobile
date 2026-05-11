@@ -122,6 +122,9 @@ class WeekPlanEvent with _$WeekPlanEvent {
   const factory WeekPlanEvent.updateContentResult(String result) =
       _UpdateContentResult;
 
+  const factory WeekPlanEvent.updateContentReasonSolution(String reasonSolution) =
+      _UpdateContentReasonSolution;
+
   // Step 3: Người thực hiện (multi-select)
   const factory WeekPlanEvent.setAssignees(List<EmployeeTaskItem> assignees) =
       _SetAssignees;

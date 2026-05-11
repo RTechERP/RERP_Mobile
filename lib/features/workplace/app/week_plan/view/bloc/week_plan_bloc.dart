@@ -105,6 +105,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         updateContentDescription: (description) =>
             _onUpdateContentDescription(emit, description),
         updateContentResult: (result) => _onUpdateContentResult(emit, result),
+        updateContentReasonSolution: (reasonSolution) =>
+            _onUpdateContentReasonSolution(emit, reasonSolution),
         setAssignees: (assignees) => _onSetAssignees(emit, assignees),
         addAssignee: (employee) => _onAddAssignee(emit, employee),
         removeAssignee: (employeeId) => _onRemoveAssignee(emit, employeeId),
@@ -455,6 +457,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         contentDeadline: null,
         contentDescription: null,
         contentResult: null,
+        contentReasonSolution: null,
         selectedAssignees: const [],
         selectedRelatedPersons: const [],
         subTasks: const [],
@@ -464,6 +467,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         uploadedAttachmentFiles: const [],
         links: const [],
         incidents: const [],
+        // projectTypes và taskTypes KHÔNG reset — là dữ liệu tĩnh, không phải form field.
       ),
     );
 
@@ -796,6 +800,18 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     String result,
   ) async {
     emit(state.copyWith(contentResult: result));
+  }
+
+  Future<void> _onUpdateContentReasonSolution(
+    Emitter<WeekPlanState> emit,
+    String reasonSolution,
+  ) async {
+    emit(state.copyWith(contentReasonSolution: reasonSolution));
+  }
+
+  // Bug: projectTaskTypeID == 2 (1=Task, 2=Bug, 3=Issue Log).
+  bool _isBugTaskType(WeekPlanState s) {
+    return s.headerWorkType == 2;
   }
 
   //---(Assignees)---//
@@ -1262,7 +1278,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       'PlanStartDate': state.contentStartDate?.toIso8601String(),
       'PlanEndDate': state.contentEndDate?.toIso8601String(),
       'EmployeeIDRequest': state.headerAssignerId ?? userId,
-      'TypeProjectItem': state.headerWorkType ?? 0,
+      'TypeProjectItem': state.headerTaskCategory ?? 0,
       'Employee': employeeIds,
       'Status': state.headerStatus ?? 0,
       'ProjectID': state.headerProjectId ?? 0,
@@ -1271,11 +1287,12 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       'EmployeeRelate': employeeRelateIds,
       'IsPersonalProject': state.headerIsPersonalTask,
       'ParentID': state.headerParentTaskId,
-      'ProjectTaskTypeID': state.headerTaskCategory ?? 0,
+      'ProjectTaskTypeID': state.headerWorkType ?? 0,
       'Priority': state.headerPriority > 0 ? state.headerPriority : 1,
       'EstimatedTime': state.headerTimeEstimate,
       'NeedApprove': !state.headerIsPersonalTask,
       'Description': state.contentDescription ?? '',
+      if (_isBugTaskType(state)) 'DescriptionSolution': state.contentReasonSolution ?? '',
       'ProjectTaskChecklists': <int>[],
       'Links': <int>[],
       'Files': <int>[],

@@ -48,9 +48,28 @@ class WeekPlanAddScreen extends StatefulWidget {
 
 class _WeekPlanAddScreenState
     extends
-        BaseState<WeekPlanAddScreen, WeekPlanEvent, WeekPlanState, WeekPlanBloc> {
+        BaseState<
+          WeekPlanAddScreen,
+          WeekPlanEvent,
+          WeekPlanState,
+          WeekPlanBloc
+        > {
   final _formKey = GlobalKey<FormBuilderState>();
   int _currentStep = 0;
+
+  /// Kiểm tra loại công việc có phải "bug" hay không.
+  /// Check cả name (hiển thị) lẫn id (giá trị) để đảm bảo chính xác.
+  bool _isBugTask(WeekPlanState s) {
+    final name = s.headerWorkTypeName?.toLowerCase() ?? '';
+    return s.headerWorkType == 2 || name.contains('bug');
+  }
+
+  /// Tổng số step hiện tại (6 hoặc 7).
+  int _totalSteps(WeekPlanState s) => _isBugTask(s) ? 7 : 6;
+
+  /// Tổng labels cho stepper.
+  List<String> _stepLabels(WeekPlanState s) =>
+      WeekPlanAddStep.stepLabels(isTTChung: _isBugTask(s));
 
   @override
   void initState() {
@@ -59,6 +78,7 @@ class _WeekPlanAddScreenState
       if (!mounted) return;
 
       // Merge data từ route extra (được pass từ FAB WeekPlanScreen).
+      // Luôn fetch projectTypes/taskTypes vì _isBugTask phụ thuộc vào projectTypes.isNotEmpty.
       final extra = widget.extra;
       if (extra is WeekPlanAddExtra) {
         if (extra.projects.isNotEmpty) {
@@ -73,6 +93,12 @@ class _WeekPlanAddScreenState
         if (extra.employees.isNotEmpty) {
           bloc.add(const WeekPlanEvent.fetchEmployees());
         }
+      } else {
+        // Không có extra → fetch tất cả.
+        bloc.add(const WeekPlanEvent.fetchProjects());
+        bloc.add(const WeekPlanEvent.fetchTaskTypes());
+        bloc.add(const WeekPlanEvent.fetchProjectTypes());
+        bloc.add(const WeekPlanEvent.fetchEmployees());
       }
 
       bloc.add(const WeekPlanEvent.initAddScreen());
@@ -105,14 +131,16 @@ class _WeekPlanAddScreenState
           title: const Text('Tạo công việc'),
           onBackTap: () => context.pop(),
         ),
-        body: Column(
-          children: [
-            SizedBox(height: 100, child: _buildStepper()),
-            Expanded(
-              child: FormBuilder(key: _formKey, child: _buildStepContent()),
-            ),
-            _buildBottomActions(),
-          ],
+        body: BlocBuilder<WeekPlanBloc, WeekPlanState>(
+          builder: (context, state) => Column(
+            children: [
+              SizedBox(height: 100, child: _buildStepper(state)),
+              Expanded(
+                child: FormBuilder(key: _formKey, child: _buildStepContent()),
+              ),
+              _buildBottomActions(),
+            ],
+          ),
         ),
       ),
     );
@@ -121,8 +149,9 @@ class _WeekPlanAddScreenState
   //===============================================================
   // STEP 1: STEPPER
   //===============================================================
-  Widget _buildStepper() {
-    const steps = WeekPlanAddStep.values;
+  Widget _buildStepper(WeekPlanState state) {
+    final totalSteps = _totalSteps(state);
+    final labels = _stepLabels(state);
     return Container(
       color: AppColors.white,
       padding: EdgeInsets.all(10),
@@ -156,43 +185,65 @@ class _WeekPlanAddScreenState
         showStepBorder: true,
         enableStepTapping: true,
         showScrollbar: false,
-        steps: steps.map((s) {
+        steps: List.generate(totalSteps, (idx) {
           return EasyStep(
-            icon: Icon(_stepIcon(s), size: 16),
+            icon: Icon(_stepIconByIndex(idx, state), size: 16),
             customTitle: Text(
-              s.label,
+              labels[idx],
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 10,
-                color: _currentStep == s.step
+                color: _currentStep == idx
                     ? AppColors.primaryERP
                     : AppColors.hintText,
-                fontWeight: _currentStep == s.step
+                fontWeight: _currentStep == idx
                     ? FontWeight.w700
                     : FontWeight.w400,
               ),
             ),
           );
-        }).toList(),
+        }),
         onStepReached: _goToStep,
       ),
     );
   }
 
-  IconData _stepIcon(WeekPlanAddStep step) {
-    switch (step) {
-      case WeekPlanAddStep.projectInfo:
+  IconData _stepIconByIndex(int idx, WeekPlanState state) {
+    if (_isBugTask(state)) {
+      switch (idx) {
+        case 0:
+          return Icons.folder_outlined;
+        case 1:
+          return Icons.lightbulb_outline;
+        case 2:
+          return Icons.assignment_outlined;
+        case 3:
+          return Icons.playlist_add_check_outlined;
+        case 4:
+          return Icons.checklist_outlined;
+        case 5:
+          return Icons.attach_file_outlined;
+        case 6:
+          return Icons.warning_outlined;
+        default:
+          return Icons.circle;
+      }
+    }
+    switch (idx) {
+      case 0:
         return Icons.folder_outlined;
-      case WeekPlanAddStep.content:
+      case 1:
         return Icons.assignment_outlined;
-      case WeekPlanAddStep.subTask:
+      case 2:
         return Icons.playlist_add_check_outlined;
-      case WeekPlanAddStep.checklist:
+      case 3:
         return Icons.checklist_outlined;
-      case WeekPlanAddStep.attachment:
+      case 4:
         return Icons.attach_file_outlined;
-      case WeekPlanAddStep.incident:
+      case 5:
         return Icons.warning_outlined;
+      default:
+        return Icons.circle;
     }
   }
 
@@ -202,16 +253,48 @@ class _WeekPlanAddScreenState
   Widget _buildStepContent() {
     return BlocBuilder<WeekPlanBloc, WeekPlanState>(
       builder: (context, state) {
-        return switch (WeekPlanAddStep.values[_currentStep]) {
-          WeekPlanAddStep.projectInfo => _buildProjectInfoStep(state),
-          WeekPlanAddStep.content => _buildContentStep(state),
-          WeekPlanAddStep.subTask => _buildSubTaskStep(state),
-          WeekPlanAddStep.checklist => _buildChecklistStep(state),
-          WeekPlanAddStep.attachment => _buildAttachmentStep(state),
-          WeekPlanAddStep.incident => _buildIncidentStep(state),
-        };
+        return _buildStepContentByIndex(_currentStep, state);
       },
     );
+  }
+
+  Widget _buildStepContentByIndex(int step, WeekPlanState state) {
+    if (_isBugTask(state)) {
+      switch (step) {
+        case 0:
+          return _buildProjectInfoStep(state);
+        case 1:
+          return _buildReasonSolutionStep(state);
+        case 2:
+          return _buildContentStep(state);
+        case 3:
+          return _buildSubTaskStep(state);
+        case 4:
+          return _buildChecklistStep(state);
+        case 5:
+          return _buildAttachmentStep(state);
+        case 6:
+          return _buildIncidentStep(state);
+        default:
+          return const SizedBox.shrink();
+      }
+    }
+    switch (step) {
+      case 0:
+        return _buildProjectInfoStep(state);
+      case 1:
+        return _buildContentStep(state);
+      case 2:
+        return _buildSubTaskStep(state);
+      case 3:
+        return _buildChecklistStep(state);
+      case 4:
+        return _buildAttachmentStep(state);
+      case 5:
+        return _buildIncidentStep(state);
+      default:
+        return const SizedBox.shrink();
+    }
   }
 
   //===============================================================
@@ -259,23 +342,21 @@ class _WeekPlanAddScreenState
             selectedId: state.headerProjectId,
             projects: state.projects,
             onChanged: (project) {
-              bloc.add(WeekPlanEvent.updateHeaderProject(
-                projectId: project.id ?? 0,
-                projectName: project.projectName ?? '',
-              ));
+              bloc.add(
+                WeekPlanEvent.updateHeaderProject(
+                  projectId: project.id ?? 0,
+                  projectName: project.projectName ?? '',
+                ),
+              );
             },
           ),
           const SizedBox(height: 10),
-
 
           WeekPlanTapCard(
             label: 'Công việc cha',
             value: state.headerParentTaskName,
             icon: Icons.account_tree_outlined,
-            onTap: () => _showParentTaskPicker(
-              context,
-              state,
-            ),
+            onTap: () => _showParentTaskPicker(context, state),
           ),
           const SizedBox(height: 10),
           WeekPlanMultiSelectChips<EmployeeTaskItem>(
@@ -306,10 +387,13 @@ class _WeekPlanAddScreenState
               selectedId: state.headerAssignerId,
               onConfirm: (employee) {
                 if (employee != null) {
-                  bloc.add(WeekPlanEvent.updateHeaderAssigner(
-                    assignerId: employee.id ?? 0,
-                    assignerName: '${employee.code ?? ''} - ${employee.fullName ?? ''}',
-                  ));
+                  bloc.add(
+                    WeekPlanEvent.updateHeaderAssigner(
+                      assignerId: employee.id ?? 0,
+                      assignerName:
+                          '${employee.code ?? ''} - ${employee.fullName ?? ''}',
+                    ),
+                  );
                 }
               },
             ),
@@ -340,10 +424,12 @@ class _WeekPlanAddScreenState
                   selectedId: state.headerTaskCategory,
                   projectTypes: state.projectTypes,
                   onChanged: (pt) {
-                    bloc.add(WeekPlanEvent.updateHeaderTaskCategory(
-                      categoryId: pt.id ?? 0,
-                      categoryName: pt.projectTypeName ?? '',
-                    ));
+                    bloc.add(
+                      WeekPlanEvent.updateHeaderTaskCategory(
+                        categoryId: pt.id ?? 0,
+                        categoryName: pt.projectTypeName ?? '',
+                      ),
+                    );
                   },
                 ),
               ),
@@ -353,12 +439,14 @@ class _WeekPlanAddScreenState
                   selectedId: state.headerWorkType,
                   taskTypes: state.taskTypes,
                   onChanged: (taskType) {
-                    bloc.add(WeekPlanEvent.updateHeaderWorkTypeAndStatus(
-                      workTypeId: taskType.id ?? 0,
-                      workTypeName: taskType.typeName ?? '',
-                      statusId: state.headerStatus ?? 0,
-                      statusName: state.headerStatusName ?? 'Chưa làm',
-                    ));
+                    bloc.add(
+                      WeekPlanEvent.updateHeaderWorkTypeAndStatus(
+                        workTypeId: taskType.id ?? 0,
+                        workTypeName: taskType.typeName ?? '',
+                        statusId: state.headerStatus ?? 0,
+                        statusName: state.headerStatusName ?? 'Chưa làm',
+                      ),
+                    );
                   },
                 ),
               ),
@@ -382,13 +470,15 @@ class _WeekPlanAddScreenState
                         inputType: InputType.date,
                         format: DateFormat('dd/MM/yyyy'),
                         onChanged: (value) {
-                          bloc.add(WeekPlanEvent.updateContentDates(
-                            startDate: value,
-                            endDate: state.contentEndDate,
-                            actualStartDate: state.contentActualStartDate,
-                            actualEndDate: state.contentActualEndDate,
-                            deadline: state.contentDeadline,
-                          ));
+                          bloc.add(
+                            WeekPlanEvent.updateContentDates(
+                              startDate: value,
+                              endDate: state.contentEndDate,
+                              actualStartDate: state.contentActualStartDate,
+                              actualEndDate: state.contentActualEndDate,
+                              deadline: state.contentDeadline,
+                            ),
+                          );
                         },
                       ),
                     ),
@@ -402,13 +492,15 @@ class _WeekPlanAddScreenState
                         inputType: InputType.date,
                         format: DateFormat('dd/MM/yyyy'),
                         onChanged: (value) {
-                          bloc.add(WeekPlanEvent.updateContentDates(
-                            startDate: state.contentStartDate,
-                            endDate: value,
-                            actualStartDate: state.contentActualStartDate,
-                            actualEndDate: state.contentActualEndDate,
-                            deadline: state.contentDeadline,
-                          ));
+                          bloc.add(
+                            WeekPlanEvent.updateContentDates(
+                              startDate: state.contentStartDate,
+                              endDate: value,
+                              actualStartDate: state.contentActualStartDate,
+                              actualEndDate: state.contentActualEndDate,
+                              deadline: state.contentDeadline,
+                            ),
+                          );
                         },
                       ),
                     ),
@@ -425,8 +517,12 @@ class _WeekPlanAddScreenState
                         icon: Icons.access_time,
                         keyboardType: TextInputType.number,
                         onChanged: (value) {
-                          final hours = double.tryParse(value?.toString() ?? '');
-                          bloc.add(WeekPlanEvent.updateHeaderTimeEstimate(hours));
+                          final hours = double.tryParse(
+                            value?.toString() ?? '',
+                          );
+                          bloc.add(
+                            WeekPlanEvent.updateHeaderTimeEstimate(hours),
+                          );
                         },
                       ),
                     ),
@@ -440,13 +536,15 @@ class _WeekPlanAddScreenState
                         inputType: InputType.date,
                         format: DateFormat('dd/MM/yyyy'),
                         onChanged: (value) {
-                          bloc.add(WeekPlanEvent.updateContentDates(
-                            startDate: state.contentStartDate,
-                            endDate: state.contentEndDate,
-                            actualStartDate: state.contentActualStartDate,
-                            actualEndDate: state.contentActualEndDate,
-                            deadline: value,
-                          ));
+                          bloc.add(
+                            WeekPlanEvent.updateContentDates(
+                              startDate: state.contentStartDate,
+                              endDate: state.contentEndDate,
+                              actualStartDate: state.contentActualStartDate,
+                              actualEndDate: state.contentActualEndDate,
+                              deadline: value,
+                            ),
+                          );
                         },
                       ),
                     ),
@@ -469,13 +567,15 @@ class _WeekPlanAddScreenState
                     inputType: InputType.date,
                     format: DateFormat('dd/MM/yyyy'),
                     onChanged: (value) {
-                      bloc.add(WeekPlanEvent.updateContentDates(
-                        startDate: state.contentStartDate,
-                        endDate: state.contentEndDate,
-                        actualStartDate: value,
-                        actualEndDate: state.contentActualEndDate,
-                        deadline: state.contentDeadline,
-                      ));
+                      bloc.add(
+                        WeekPlanEvent.updateContentDates(
+                          startDate: state.contentStartDate,
+                          endDate: state.contentEndDate,
+                          actualStartDate: value,
+                          actualEndDate: state.contentActualEndDate,
+                          deadline: state.contentDeadline,
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -489,21 +589,34 @@ class _WeekPlanAddScreenState
                     inputType: InputType.date,
                     format: DateFormat('dd/MM/yyyy'),
                     onChanged: (value) {
-                      bloc.add(WeekPlanEvent.updateContentDates(
-                        startDate: state.contentStartDate,
-                        endDate: state.contentEndDate,
-                        actualStartDate: state.contentActualStartDate,
-                        actualEndDate: value,
-                        deadline: state.contentDeadline,
-                      ));
+                      bloc.add(
+                        WeekPlanEvent.updateContentDates(
+                          startDate: state.contentStartDate,
+                          endDate: state.contentEndDate,
+                          actualStartDate: state.contentActualStartDate,
+                          actualEndDate: value,
+                          deadline: state.contentDeadline,
+                        ),
+                      );
                     },
                   ),
                 ),
               ],
             ),
           ),
-
         ],
+      ),
+    );
+  }
+
+  //---(_Step: Reason Solution)---//
+  Widget _buildReasonSolutionStep(WeekPlanState state) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+      child: _IncidentCardWidget(
+        initialValue: state.contentReasonSolution ?? '',
+        onChanged: (v) =>
+            bloc.add(WeekPlanEvent.updateContentReasonSolution(v)),
       ),
     );
   }
@@ -526,7 +639,11 @@ class _WeekPlanAddScreenState
                   keyboardType: TextInputType.multiline,
                   onChanged: (value) {
                     if (value != null) {
-                      bloc.add(WeekPlanEvent.updateContentDescription(value.toString()));
+                      bloc.add(
+                        WeekPlanEvent.updateContentDescription(
+                          value.toString(),
+                        ),
+                      );
                     }
                   },
                 ),
@@ -541,7 +658,9 @@ class _WeekPlanAddScreenState
                   autoExpand: true,
                   onChanged: (value) {
                     if (value != null) {
-                      bloc.add(WeekPlanEvent.updateContentResult(value.toString()));
+                      bloc.add(
+                        WeekPlanEvent.updateContentResult(value.toString()),
+                      );
                     }
                   },
                 ),
@@ -629,7 +748,10 @@ class _WeekPlanAddScreenState
               if (state.subTasks.isNotEmpty) ...[
                 const SizedBox(width: 8),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 2,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.primaryERP.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(10),
@@ -669,8 +791,7 @@ class _WeekPlanAddScreenState
               padding: const EdgeInsets.all(32),
               child: Column(
                 children: [
-                  Icon(Icons.playlist_add,
-                      size: 48, color: AppColors.hintText),
+                  Icon(Icons.playlist_add, size: 48, color: AppColors.hintText),
                   const SizedBox(height: 8),
                   Text(
                     'Chưa có công việc con nào',
@@ -683,10 +804,7 @@ class _WeekPlanAddScreenState
                   const SizedBox(height: 4),
                   Text(
                     'Bấm "Thêm" để tạo công việc con',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: AppColors.hintText,
-                    ),
+                    style: TextStyle(fontSize: 12, color: AppColors.hintText),
                   ),
                 ],
               ),
@@ -710,9 +828,7 @@ class _WeekPlanAddScreenState
   //---(_Step: Checklist)---//
   Widget _buildChecklistStep(WeekPlanState state) {
     final total = state.checklistItems.length;
-    final done = total > 0
-        ? state.checklistDone.where((d) => d).length
-        : 0;
+    final done = total > 0 ? state.checklistDone.where((d) => d).length : 0;
     final progress = total > 0 ? done / total : 0.0;
 
     return SingleChildScrollView(
@@ -772,16 +888,16 @@ class _WeekPlanAddScreenState
                   const SizedBox(height: 4),
                   Align(
                     alignment: Alignment.centerRight,
-                    child:                       Text(
-                        '${(progress * 100).toStringAsFixed(0)}%',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: progress >= 1.0
-                              ? AppColors.stateSuccessColor
-                              : AppColors.gray,
-                        ),
+                    child: Text(
+                      '${(progress * 100).toStringAsFixed(0)}%',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: progress >= 1.0
+                            ? AppColors.stateSuccessColor
+                            : AppColors.gray,
                       ),
+                    ),
                   ),
                 ],
               ),
@@ -836,10 +952,7 @@ class _WeekPlanAddScreenState
                   const SizedBox(height: 4),
                   Text(
                     'Bấm "Thêm" để tạo checklist',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: AppColors.hintText,
-                    ),
+                    style: TextStyle(fontSize: 12, color: AppColors.hintText),
                   ),
                 ],
               ),
@@ -854,7 +967,8 @@ class _WeekPlanAddScreenState
               onToggle: () {
                 bloc.add(WeekPlanEvent.toggleChecklistDone(i));
               },
-              onEdit: () => _showEditChecklistDialog(context, i, state.checklistItems[i]),
+              onEdit: () =>
+                  _showEditChecklistDialog(context, i, state.checklistItems[i]),
               onDelete: () {
                 bloc.add(WeekPlanEvent.removeChecklistItem(i));
               },
@@ -894,7 +1008,8 @@ class _WeekPlanAddScreenState
             onPressed: () {
               if (formKey.currentState?.validate() ?? false) {
                 final vals = formKey.currentState?.value;
-                final text = vals?['checklist_content']?.toString().trim() ?? '';
+                final text =
+                    vals?['checklist_content']?.toString().trim() ?? '';
                 bloc.add(WeekPlanEvent.addChecklistItem(text));
                 Navigator.pop(ctx);
               }
@@ -910,7 +1025,11 @@ class _WeekPlanAddScreenState
     );
   }
 
-  void _showEditChecklistDialog(BuildContext context, int index, String current) {
+  void _showEditChecklistDialog(
+    BuildContext context,
+    int index,
+    String current,
+  ) {
     final formKey = GlobalKey<FormBuilderState>();
 
     showDialog(
@@ -940,7 +1059,8 @@ class _WeekPlanAddScreenState
             onPressed: () {
               if (formKey.currentState?.validate() ?? false) {
                 final vals = formKey.currentState?.value;
-                final text = vals?['checklist_content']?.toString().trim() ?? '';
+                final text =
+                    vals?['checklist_content']?.toString().trim() ?? '';
                 bloc.add(WeekPlanEvent.updateChecklistItem(index, text));
                 Navigator.pop(ctx);
               }
@@ -977,7 +1097,7 @@ class _WeekPlanAddScreenState
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withValues(alpha:0.05),
+                    color: Colors.black.withValues(alpha: 0.05),
                     blurRadius: 4,
                     offset: const Offset(0, 1),
                   ),
@@ -1000,10 +1120,7 @@ class _WeekPlanAddScreenState
           ),
           Expanded(
             child: TabBarView(
-              children: [
-                _buildFileTab(state),
-                _buildLinkTab(state),
-              ],
+              children: [_buildFileTab(state), _buildLinkTab(state)],
             ),
           ),
         ],
@@ -1149,10 +1266,7 @@ class _WeekPlanAddScreenState
           const SizedBox(height: 4),
           Text(
             subtitle,
-            style: TextStyle(
-              fontSize: 12,
-              color: AppColors.hintText,
-            ),
+            style: TextStyle(fontSize: 12, color: AppColors.hintText),
           ),
         ],
       ),
@@ -1160,20 +1274,20 @@ class _WeekPlanAddScreenState
   }
 
   Future<void> _pickFiles(BuildContext context) async {
-    final result = await FilePicker.platform.pickFiles(
-      allowMultiple: true,
-    );
+    final result = await FilePicker.platform.pickFiles(allowMultiple: true);
     if (result != null && result.files.isNotEmpty) {
       for (final file in result.files) {
         if (file.path != null) {
-          bloc.add(WeekPlanEvent.addAttachment(
-            WeekPlanAttachmentItem(
-              id: 0,
-              fileName: file.name,
-              filePath: file.path,
-              fileSize: file.size,
+          bloc.add(
+            WeekPlanEvent.addAttachment(
+              WeekPlanAttachmentItem(
+                id: 0,
+                fileName: file.name,
+                filePath: file.path,
+                fileSize: file.size,
+              ),
             ),
-          ));
+          );
         }
       }
     }
@@ -1223,12 +1337,11 @@ class _WeekPlanAddScreenState
                 final vals = formKey.currentState?.value;
                 final name = vals?['link_name']?.toString().trim() ?? '';
                 final url = vals?['link_url']?.toString().trim() ?? '';
-                bloc.add(WeekPlanEvent.addLink(
-                  WeekPlanLinkItem(
-                    fileName: name,
-                    filePath: url,
+                bloc.add(
+                  WeekPlanEvent.addLink(
+                    WeekPlanLinkItem(fileName: name, filePath: url),
                   ),
-                ));
+                );
                 Navigator.pop(ctx);
               }
             },
@@ -1289,10 +1402,7 @@ class _WeekPlanAddScreenState
                       const SizedBox(height: 4),
                       Text(
                         '$totalIncidents sự phát sinh được ghi nhận',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: AppColors.gray,
-                        ),
+                        style: TextStyle(fontSize: 12, color: AppColors.gray),
                       ),
                     ],
                   ],
@@ -1334,21 +1444,30 @@ class _WeekPlanAddScreenState
   }
 
   Future<void> _showParentTaskPicker(
-    BuildContext context, WeekPlanState state,
+    BuildContext context,
+    WeekPlanState state,
   ) async {
     if (state.headerProjectId == null || state.headerProjectId == 0) {
-      showMessage(context, 'Vui lòng chọn dự án trước', type: SnackBarType.info);
+      showMessage(
+        context,
+        'Vui lòng chọn dự án trước',
+        type: SnackBarType.info,
+      );
       return;
     }
     if (state.parentProjectTasks.isEmpty) {
-      showMessage(context, 'Danh sách công việc cha trống', type: SnackBarType.info);
+      showMessage(
+        context,
+        'Danh sách công việc cha trống',
+        type: SnackBarType.info,
+      );
       return;
     }
 
     final initialSelected = state.headerParentTaskId != null
         ? state.parentProjectTasks
-            .where((p) => p.id == state.headerParentTaskId)
-            .firstOrNull
+              .where((p) => p.id == state.headerParentTaskId)
+              .firstOrNull
         : null;
 
     await openSelectBottomSheet<ParentProjectTaskItem>(
@@ -1357,10 +1476,12 @@ class _WeekPlanAddScreenState
       items: state.parentProjectTasks,
       displayText: (p) => '${p.code ?? ''} - ${p.mission ?? ''}',
       onSelected: (parent) {
-        bloc.add(WeekPlanEvent.updateHeaderParentTask(
-          parentTaskId: parent.id ?? 0,
-          parentTaskName: '${parent.code ?? ''} - ${parent.mission ?? ''}',
-        ));
+        bloc.add(
+          WeekPlanEvent.updateHeaderParentTask(
+            parentTaskId: parent.id ?? 0,
+            parentTaskName: '${parent.code ?? ''} - ${parent.mission ?? ''}',
+          ),
+        );
       },
       initialSelectedItem: initialSelected,
     );
@@ -1374,7 +1495,11 @@ class _WeekPlanAddScreenState
     required void Function(List<EmployeeTaskItem>) onConfirm,
   }) async {
     if (allEmployees.isEmpty) {
-      showMessage(context, 'Danh sách nhân viên trống', type: SnackBarType.info);
+      showMessage(
+        context,
+        'Danh sách nhân viên trống',
+        type: SnackBarType.info,
+      );
       return;
     }
     await openMultiSelectEmployeeSheet(
@@ -1394,7 +1519,11 @@ class _WeekPlanAddScreenState
     required void Function(EmployeeTaskItem?) onConfirm,
   }) async {
     if (allEmployees.isEmpty) {
-      showMessage(context, 'Danh sách nhân viên trống', type: SnackBarType.info);
+      showMessage(
+        context,
+        'Danh sách nhân viên trống',
+        type: SnackBarType.info,
+      );
       return;
     }
     final initialSelected = selectedId != null
@@ -1416,7 +1545,7 @@ class _WeekPlanAddScreenState
   Widget _buildBottomActions() {
     return BlocBuilder<WeekPlanBloc, WeekPlanState>(
       builder: (context, state) {
-    final isLastStep = _currentStep == WeekPlanAddStep.values.length - 1;
+        final isLastStep = _currentStep == _totalSteps(state) - 1;
 
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -1462,8 +1591,8 @@ class _WeekPlanAddScreenState
                     onPressed: state.isSubmitting
                         ? null
                         : () => isLastStep
-                            ? _saveFormAndCreate()
-                            : _goToStep(_currentStep + 1),
+                              ? _saveFormAndCreate()
+                              : _goToStep(_currentStep + 1),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryERP,
                       foregroundColor: Colors.white,
@@ -1502,7 +1631,8 @@ class _WeekPlanAddScreenState
   }
 
   void _goToStep(int step) {
-    if (step >= 0 && step < WeekPlanAddStep.values.length) {
+    final total = _totalSteps(bloc.state);
+    if (step >= 0 && step < total) {
       bloc.add(WeekPlanEvent.changeStep(step));
       setState(() => _currentStep = step);
     }
@@ -1518,21 +1648,32 @@ class _WeekPlanAddScreenState
     final vals = formState.value;
 
     // Step 1 fields
-    bloc.add(WeekPlanEvent.updateContentTaskName(
-      vals['task_name']?.toString() ?? '',
-    ));
+    bloc.add(
+      WeekPlanEvent.updateContentTaskName(vals['task_name']?.toString() ?? ''),
+    );
 
     final hoursStr = vals['expected_hours']?.toString() ?? '';
     final hours = double.tryParse(hoursStr);
     bloc.add(WeekPlanEvent.updateHeaderTimeEstimate(hours));
 
     // Step 2 fields
-    bloc.add(WeekPlanEvent.updateContentDescription(
-      vals['description']?.toString() ?? '',
-    ));
-    bloc.add(WeekPlanEvent.updateContentResult(
-      vals['expected_result']?.toString() ?? '',
-    ));
+    bloc.add(
+      WeekPlanEvent.updateContentDescription(
+        vals['description']?.toString() ?? '',
+      ),
+    );
+    bloc.add(
+      WeekPlanEvent.updateContentResult(
+        vals['expected_result']?.toString() ?? '',
+      ),
+    );
+
+    // Sự cố & Khắc phục
+    bloc.add(
+      WeekPlanEvent.updateContentReasonSolution(
+        bloc.state.contentReasonSolution ?? '',
+      ),
+    );
 
     // Trigger create
     bloc.add(const WeekPlanEvent.createTask());
@@ -1556,9 +1697,7 @@ class _AddIncidentButton extends StatelessWidget {
         backgroundColor: AppColors.warning,
         foregroundColor: Colors.white,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         elevation: 0,
       ),
     );
@@ -1609,11 +1748,7 @@ class _IncidentEmptyState extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             'Bấm "Thêm" để ghi nhận các sự cố, rủi ro\nhoặc thay đổi phát sinh trong quá trình thực hiện.',
-            style: TextStyle(
-              fontSize: 13,
-              color: AppColors.gray,
-              height: 1.4,
-            ),
+            style: TextStyle(fontSize: 13, color: AppColors.gray, height: 1.4),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
@@ -1627,6 +1762,120 @@ class _IncidentEmptyState extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//---(_Incident Widgets)---//
+
+class _IncidentCardWidget extends StatefulWidget {
+  const _IncidentCardWidget({
+    required this.initialValue,
+    required this.onChanged,
+  });
+
+  final String initialValue;
+  final ValueChanged<String> onChanged;
+
+  @override
+  State<_IncidentCardWidget> createState() => _IncidentCardWidgetState();
+}
+
+class _IncidentCardWidgetState extends State<_IncidentCardWidget> {
+  late TextEditingController _controller;
+  bool _isInit = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.initialValue);
+  }
+
+  @override
+  void didUpdateWidget(_IncidentCardWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!_isInit &&
+        widget.initialValue != oldWidget.initialValue &&
+        widget.initialValue != _controller.text) {
+      _controller.text = widget.initialValue;
+    }
+    _isInit = true;
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    const borderColor = Color(0xFFD92B46);
+
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border(left: BorderSide(color: borderColor, width: 4)),
+        boxShadow: [
+          BoxShadow(
+            color: borderColor.withValues(alpha: 0.08),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: borderColor.withValues(alpha: 0.06),
+              borderRadius: const BorderRadius.only(topRight: Radius.circular(16)),
+            ),
+            child: const Text(
+              'Sự cố / Khắc phục',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: borderColor,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(14),
+            child: Container(
+              decoration: BoxDecoration(
+                color: borderColor.withValues(alpha: 0.04),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: borderColor.withValues(alpha: 0.2),
+                  width: 1.2,
+                ),
+              ),
+              child: TextField(
+                controller: _controller,
+                maxLines: 6,
+                minLines: 4,
+                style: const TextStyle(fontSize: 13, height: 1.5),
+                decoration: InputDecoration(
+                  hintText: 'Mô tả sự cố và phương án khắc phục...',
+                  hintStyle: TextStyle(
+                    fontSize: 12,
+                    color: AppColors.hintText,
+                    fontStyle: FontStyle.italic,
+                  ),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.all(12),
+                ),
+                onChanged: widget.onChanged,
               ),
             ),
           ),
