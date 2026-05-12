@@ -172,4 +172,11 @@ class RouteNames {
 
   // More - Settings
   static const notificationSettings = '/more/notification_settings';
+
+  // Salary
+  static const salaryMenu = '/salary';
+  static const salarySummary = '/salary/summary';
+  static const salaryFingerprint = '/salary/fingerprint';
+  static const salaryAttendance = '/salary/attendance';
+  static const salaryPayslip = '/salary/payslip';
 }

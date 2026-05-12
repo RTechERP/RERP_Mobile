@@ -96,6 +96,16 @@ class AppItemRegistry {
     //   route: '/regwork/sum-personal',
     //   imageUrl: AppImages.app_sum_personal,
     // ),
+
+    AppItemModel(
+      id: 'reg_work:sum_salary',
+      name: 'reg_work.sum_salary'.tr(),
+      iconCodePoint: Icons.person_outline.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_work',
+      route: RouteNames.salaryMenu,
+      imageUrl: AppImages.app_sum_personal,
+    ),
   ];
 
   static final List<AppItemModel> reggeneral = [

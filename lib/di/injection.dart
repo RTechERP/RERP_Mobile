@@ -79,6 +79,10 @@ import '../features/workplace/app/week_plan/data/datasource/service/week_plan_se
 import '../features/workplace/app/week_plan/data/repository/week_plan_repo.dart';
 import '../features/workplace/app/week_plan/data/repository/week_plan_repo_impl.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/data/datasource/service/salary_service.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/data/repository/salary_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/data/repository/salary_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/salary_bloc.dart';
 import '../features/workplace/view/bloc/workspace_bloc.dart';
 
 final getIt = GetIt.instance;
@@ -176,6 +180,10 @@ void configureDependencies() {
     () => WeekPlanService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<SalaryService>(
+    () => SalaryService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -245,6 +253,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<WeekPlanRepo>(
     () => WeekPlanRepoImpl(getIt<WeekPlanService>()),
+  );
+
+  getIt.registerLazySingleton<SalaryRepo>(
+    () => SalaryRepoImpl(getIt<SalaryService>()),
   );
 
   /// ===== BLOCS =====
@@ -374,6 +386,14 @@ void configureDependencies() {
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
       getIt<LocalStorage>(),
+    ),
+  );
+
+  getIt.registerFactory<SalaryBloc>(
+    () => SalaryBloc(
+      getIt<SalaryRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
     ),
   );
 }

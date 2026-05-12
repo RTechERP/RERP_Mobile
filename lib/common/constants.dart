@@ -309,4 +309,6 @@ class ApiEndPoint {
   static const String projectTaskEmployee = '/ProjectTask/employee';
 
   static const String getEmployees = '/Employee';
+
+  static const String getSalary = '/Salary';
 }

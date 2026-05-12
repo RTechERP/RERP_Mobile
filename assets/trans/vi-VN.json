@@ -62,13 +62,14 @@
   "reg_work": {
     "lunch": "Cơm ca",
     "leave": "Đăng ký nghỉ",
-    "in_out": "Đi muộn - về sớm",
+    "in_out": "Đ.muộn - v.sớm",
     "overtime": "Làm thêm",
     "overnight": "Làm đêm",
     "work_trip": "Công tác",
     "wfh": "WFH",
-    "missed": "Quên chấm công",
-    "sum_personal": "Tổng hợp cá nhân"
+    "missed": "Q.chấm công",
+    "sum_personal": "Tổng hợp cá nhân",
+    "sum_salary": "T.H công lương"
   },
   "reg_general": {
     "meeting_room": "Phòng họp",

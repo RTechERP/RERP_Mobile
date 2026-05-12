@@ -81,6 +81,9 @@ import '../features/workplace/app/reg_work/view/pages/work_trip/data/datasource/
 import '../features/workplace/app/reg_work/view/pages/work_trip/view/bloc/work_trip_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/work_trip/view/pages/work_trip_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/work_trip/view/pages/work_trip_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/salary_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_menu_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_screen.dart';
 import '../features/workplace/app/reports/data/datasource/models/report_model.dart';
 import '../features/workplace/app/reports/view/ad/view/bloc/ad_bloc.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_add_screen.dart';
@@ -392,6 +395,35 @@ class AppRouter {
           GoRoute(
             path: RouteNames.regworkOvernightAdd,
             builder: (context, state) => const OvernightAddScreen(),
+          ),
+        ],
+      ),
+
+      //---(Salary)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<SalaryBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.salaryMenu,
+            builder: (context, state) => const SalaryMenuScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.salaryPayslip,
+            builder: (context, state) => const SalaryScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.salarySummary,
+            builder: (context, state) => const SalaryScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.salaryFingerprint,
+            builder: (context, state) => const SalaryScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.salaryAttendance,
+            builder: (context, state) => const SalaryScreen(),
           ),
         ],
       ),
