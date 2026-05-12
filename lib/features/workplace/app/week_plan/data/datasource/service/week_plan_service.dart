@@ -297,7 +297,10 @@ class WeekPlanService extends DioBaseApiService {
   /// POST /ProjectTask/Additional - Lưu công việc phát sinh sau khi tạo task.
   ///
   /// Payload: { ID, ProjectTaskID, Description, IsDeleted }
-  /// Response: { status: 1, data: AdditionalWeekPlanResponse }
+  /// GET /ProjectTask/{id}
+  ///
+  /// Response: { status: 1, data: WeekPlanDetailResponse }
+
   Future<BaseData<AdditionalWeekPlanResponse>> saveProjectTaskAdditional({
     required Map<String, dynamic> payload,
   }) async {
@@ -306,8 +309,44 @@ class WeekPlanService extends DioBaseApiService {
       body: payload,
       parser: (json) => BaseData<AdditionalWeekPlanResponse>.fromJson(
         json,
-        (data) => AdditionalWeekPlanResponse.fromJson(data as Map<String, dynamic>),
+            (data) => AdditionalWeekPlanResponse.fromJson(data as Map<String, dynamic>),
       ),
     );
   }
+
+  Future<BaseData<WeekPlanDetailResponse>> getProjectTaskDetail({
+    required int id,
+  }) async {
+    return get<BaseData<WeekPlanDetailResponse>>(
+      '${ApiEndPoint.projectTaskDetail}/$id',
+      parser: (json) => BaseData<WeekPlanDetailResponse>.fromJson(
+        json,
+        (data) => WeekPlanDetailResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  /// GET /ProjectTask/employee/{id}?typeEmployee=1 (người thực hiện) hoặc 2 (người liên quan)
+  ///
+  /// Response: { status: 1, data: [ WeekPlanTypeEmployeeDetailResponse, ... ] }
+  Future<BaseData<List<WeekPlanTypeEmployeeDetailResponse>>> getEmployeeByType({
+    required int id,
+    required int typeEmployee,
+  }) async {
+    return get<BaseData<List<WeekPlanTypeEmployeeDetailResponse>>>(
+      '${ApiEndPoint.projectTaskEmployee}/$id',
+      query: {'typeEmployee': typeEmployee},
+      parser: (json) => BaseData<List<WeekPlanTypeEmployeeDetailResponse>>.fromJson(
+        json,
+        (data) {
+          final list = data as List?;
+          return (list ?? [])
+              .map((e) =>
+                  WeekPlanTypeEmployeeDetailResponse.fromJson(e as Map<String, dynamic>))
+              .toList();
+        },
+      ),
+    );
+  }
+
 }

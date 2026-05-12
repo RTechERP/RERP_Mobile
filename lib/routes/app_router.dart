@@ -124,6 +124,7 @@ import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_add_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_all_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_assigned_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_detail_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_menu_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_my_task_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_related_screen.dart';
@@ -955,8 +956,26 @@ class AppRouter {
           GoRoute(
             path: RouteNames.weekplanAdd,
             builder: (context, state) => WeekPlanAddScreen(
-              extra: state.extra as Object?,
+              extra: state.extra,
             ),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanDetail,
+            builder: (context, state) {
+              final extra = state.extra;
+              int taskId = 0;
+              Object? addExtra;
+              if (extra is Map) {
+                taskId = extra['taskId'] as int? ?? 0;
+                addExtra = extra['addExtra'];
+              } else if (extra is int) {
+                taskId = extra;
+              }
+              return WeekPlanDetailScreen(
+                taskId: taskId,
+                extra: addExtra,
+              );
+            },
           ),
           // Legacy route - redirect to menu
           GoRoute(

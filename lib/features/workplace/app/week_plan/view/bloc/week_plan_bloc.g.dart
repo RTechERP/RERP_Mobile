@@ -134,6 +134,8 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState currentStep(int currentStep);
 
+  WeekPlanState detailTaskId(int? detailTaskId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -203,6 +205,7 @@ abstract class _$WeekPlanStateCWProxy {
     List<WeekPlanIncidentItem>? incidents,
     int? expandedIncidentIndex,
     int? currentStep,
+    int? detailTaskId,
   });
 }
 
@@ -455,6 +458,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
   WeekPlanState currentStep(int currentStep) => this(currentStep: currentStep);
 
   @override
+  WeekPlanState detailTaskId(int? detailTaskId) =>
+      this(detailTaskId: detailTaskId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -525,6 +532,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? incidents = const $CopyWithPlaceholder(),
     Object? expandedIncidentIndex = const $CopyWithPlaceholder(),
     Object? currentStep = const $CopyWithPlaceholder(),
+    Object? detailTaskId = const $CopyWithPlaceholder(),
   }) {
     return WeekPlanState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -803,6 +811,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
               ? _value.currentStep
               // ignore: cast_nullable_to_non_nullable
               : currentStep as int,
+      detailTaskId: detailTaskId == const $CopyWithPlaceholder()
+          ? _value.detailTaskId
+          // ignore: cast_nullable_to_non_nullable
+          : detailTaskId as int?,
     );
   }
 }

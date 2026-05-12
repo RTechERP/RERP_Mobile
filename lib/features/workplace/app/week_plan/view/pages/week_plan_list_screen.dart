@@ -18,6 +18,7 @@ import '../../data/datasource/models/week_plan_model.dart';
 import '../bloc/week_plan_bloc.dart';
 import '../week_plan_helper.dart';
 import '../widgets/week_plan_card.dart';
+import '../../week_plan_extra.dart';
 
 /// Danh sách filter trạng thái công việc.
 const _kStatusFilters = [
@@ -27,19 +28,6 @@ const _kStatusFilters = [
   'Hoàn thành',
 ];
 
-class _WeekPlanAddExtra {
-  const _WeekPlanAddExtra({
-    required this.projects,
-    required this.taskTypes,
-  });
-
-  final List<ProjectTaskItem> projects;
-  final List<TaskTypeItem> taskTypes;
-}
-
-/// Widget base hiển thị 1 danh sách công việc - không có TabBar.
-///
-/// Dùng chung cho 4 màn: Công việc, Liên quan, Giao việc, Tổng công việc.
 class WeekPlanListScreen extends StatefulWidget {
   const WeekPlanListScreen({
     super.key,
@@ -196,16 +184,20 @@ class _WeekPlanListScreenState extends BaseState<
       floatingActionButton: BlocBuilder<WeekPlanBloc, WeekPlanState>(
         buildWhen: (prev, curr) =>
             prev.projects.length != curr.projects.length ||
-            prev.taskTypes.length != curr.taskTypes.length,
+            prev.taskTypes.length != curr.taskTypes.length ||
+            prev.projectTypes.length != curr.projectTypes.length ||
+            prev.employees.length != curr.employees.length,
         builder: (context, state) {
           if (widget.viewNumber == 1 || widget.viewNumber == 3) {
             return FloatingActionButton(
               onPressed: () async {
                 final result = await context.push<bool>(
                   RouteNames.weekplanAdd,
-                  extra: _WeekPlanAddExtra(
+                  extra: WeekPlanAddExtra(
                     projects: state.projects,
                     taskTypes: state.taskTypes,
+                    projectTypes: state.projectTypes,
+                    employees: state.employees,
                   ),
                 );
                 if (result == true) {
@@ -276,7 +268,23 @@ class _WeekPlanListScreenState extends BaseState<
                     return WeekPlanCard(
                       task: task,
                       isAssigned: widget.isAssigned,
-                      onTap: () {},
+                      onTap: () async {
+                        final result = await context.push<bool>(
+                          RouteNames.weekplanDetail,
+                          extra: {
+                            'taskId': task.id,
+                            'addExtra': WeekPlanAddExtra(
+                              projects: state.projects,
+                              taskTypes: state.taskTypes,
+                              projectTypes: state.projectTypes,
+                              employees: state.employees,
+                            ),
+                          },
+                        );
+                        if (result == true) {
+                          bloc.add(const WeekPlanEvent.refresh());
+                        }
+                      },
                     );
                   },
                 ),

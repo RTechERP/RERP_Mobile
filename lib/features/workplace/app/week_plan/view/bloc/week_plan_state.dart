@@ -99,8 +99,11 @@ class WeekPlanState extends BaseBlocState {
   /// Index cua incident dang duoc expand (-1 = tat ca collapsed).
   final int expandedIncidentIndex;
 
-  // Add screen step tracking
+  // Add/Detail screen step tracking
   final int currentStep;
+
+  /// Task ID đang xem chi tiết. Null = màn add mới.
+  final int? detailTaskId;
 
   const WeekPlanState({
     required super.status,
@@ -176,6 +179,8 @@ class WeekPlanState extends BaseBlocState {
     this.expandedIncidentIndex = -1,
     // Step tracking
     this.currentStep = 0,
+    // Detail mode
+    this.detailTaskId,
   });
 
   factory WeekPlanState.init() => const WeekPlanState(
@@ -296,5 +301,7 @@ class WeekPlanState extends BaseBlocState {
         expandedIncidentIndex,
         // Step tracking
         currentStep,
+        // Detail mode
+        detailTaskId,
       ];
 }

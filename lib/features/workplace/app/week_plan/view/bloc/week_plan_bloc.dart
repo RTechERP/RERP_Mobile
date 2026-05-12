@@ -53,6 +53,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         clearDateFilter: () => _onClearDateFilter(emit),
         checkIn: (taskId, isCheck) => _onCheckIn(emit, taskId, isCheck),
         initAddScreen: () => _onInitAddScreen(emit),
+        initDetailScreen: (taskId) => _onInitDetailScreen(emit, taskId),
         changeStep: (step) => _onChangeStep(emit, step),
         updateHeaderProject: (projectId, projectName) =>
             _onUpdateHeaderProject(emit, projectId, projectName),
@@ -505,6 +506,146 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         );
       },
     );
+  }
+
+  /// Init detail screen — gọi API GET /ProjectTask/{id} để lấy dữ liệu chi tiết.
+  Future<void> _onInitDetailScreen(
+    Emitter<WeekPlanState> emit,
+    int taskId,
+  ) async {
+    emit(state.copyWith(
+      status: BaseStateStatus.loading,
+      isSubmitting: false,
+      submitSuccess: false,
+      message: null,
+    ));
+
+    final detailRes = await _weekPlanRepo.getTaskDetail(id: taskId);
+
+    await detailRes.fold(
+      (err) async {
+        _log.logE('initDetailScreen: get task detail failed: $err');
+        emit(state.copyWith(
+          status: BaseStateStatus.failed,
+          message: err.getErrorMessage,
+        ));
+      },
+      (detail) async {
+        _log.logI('initDetailScreen: task loaded, ID=${detail.id}, Mission=${detail.mission}');
+
+        // Fetch employees list nếu chưa có
+        List<EmployeeTaskItem> allEmployees = state.employees;
+        if (allEmployees.isEmpty) {
+          final empRes = await _weekPlanRepo.getEmployees();
+          empRes.fold((_) {}, (data) { allEmployees = data; });
+        }
+
+        // Fetch người thực hiện (typeEmployee=1)
+        List<EmployeeTaskItem> assignees = [];
+        final assigneeRes = await _weekPlanRepo.getEmployeeByType(
+          id: detail.id ?? taskId,
+          typeEmployee: 1,
+        );
+        assigneeRes.fold((_) {}, (assigneeItems) {
+          for (final item in assigneeItems) {
+            final emp = allEmployees.where((e) => e.id == item.employeeId).firstOrNull;
+            if (emp != null) assignees.add(emp);
+          }
+        });
+
+        // Fetch người liên quan (typeEmployee=2)
+        List<EmployeeTaskItem> relatedPersons = [];
+        final relatedRes = await _weekPlanRepo.getEmployeeByType(
+          id: detail.id ?? taskId,
+          typeEmployee: 2,
+        );
+        relatedRes.fold((_) {}, (relatedItems) {
+          for (final item in relatedItems) {
+            final emp = allEmployees.where((e) => e.id == item.employeeId).firstOrNull;
+            if (emp != null) relatedPersons.add(emp);
+          }
+        });
+
+        // Fetch projects nếu chưa có để lookup name
+        List<ProjectTaskItem> projects = state.projects;
+        if (projects.isEmpty) {
+          final projRes = await _weekPlanRepo.getProjects();
+          projRes.fold((_) {}, (data) { projects = data; });
+        }
+
+        // Lookup project name
+        String? projectName;
+        for (final p in projects) {
+          if (p.id == detail.projectId) { projectName = p.projectName; break; }
+        }
+
+        // Lookup work type name
+        String? workTypeName;
+        for (final t in state.taskTypes) {
+          if (t.id == detail.projectTaskTypeID) { workTypeName = t.typeName; break; }
+        }
+
+        // Lookup task category name
+        String? categoryName;
+        for (final c in state.projectTypes) {
+          if (c.id == detail.typeProjectItem) { categoryName = c.projectTypeName; break; }
+        }
+
+        // Lookup người giao việc
+        String? assignerName;
+        for (final emp in allEmployees) {
+          if (emp.id == detail.employeeIdRequest) { assignerName = emp.fullName; break; }
+        }
+
+        emit(state.copyWith(
+          status: BaseStateStatus.success,
+          detailTaskId: detail.id,
+          employees: allEmployees,
+          // Header fields
+          headerProjectId: detail.projectId,
+          headerProjectName: projectName,
+          headerTaskCategory: detail.typeProjectItem,
+          headerTaskCategoryName: categoryName,
+          headerWorkType: detail.projectTaskTypeID,
+          headerWorkTypeName: workTypeName,
+          headerStatus: detail.status,
+          headerStatusName: _statusText(detail.status),
+          headerPriority: detail.priority ?? 0,
+          headerTimeEstimate: detail.estimatedTime,
+          headerIsPersonalTask: detail.isPersonalProject ?? false,
+          headerComplexity: detail.taskComplexity ?? 1,
+          headerParentTaskId: detail.parentId,
+          // Content fields
+          taskName: detail.mission,
+          contentDescription: detail.description,
+          contentResult: detail.projectTaskResult,
+          contentReasonSolution: detail.descriptionSolution,
+          contentStartDate: detail.planStartDate,
+          contentEndDate: detail.planEndDate,
+          contentActualStartDate: detail.actualStartDate,
+          contentActualEndDate: detail.actualEndDate,
+          contentDeadline: detail.deadline,
+          // Người giao / thực hiện
+          headerAssignerId: detail.employeeIdRequest,
+          headerAssignerName: assignerName,
+          contentAssignerId: detail.employeeIdRequest,
+          contentAssignerName: assignerName,
+          // Người thực hiện & người liên quan
+          selectedAssignees: assignees,
+          selectedRelatedPersons: relatedPersons,
+        ));
+      },
+    );
+  }
+
+  String _statusText(int? status) {
+    switch (status) {
+      case 0: return 'Chưa làm';
+      case 1: return 'Đang làm';
+      case 2: return 'Hoàn thành';
+      case 3: return 'Tạm hoãn';
+      default: return 'Chưa làm';
+    }
   }
 
   Future<void> _onChangeStep(Emitter<WeekPlanState> emit, int step) async {

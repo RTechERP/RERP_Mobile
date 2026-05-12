@@ -1,6 +1,7 @@
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -20,23 +21,9 @@ import '../../data/datasource/models/week_plan_model.dart';
 import '../bloc/week_plan_bloc.dart';
 import '../week_plan_tab_enum.dart';
 import '../widgets/index.dart';
+import '../../week_plan_extra.dart';
 
-/// Data truyền từ WeekPlanScreen qua route extra.
-/// Chứa projects/taskTypes/employees đã fetch sẵn để dùng ngay trên màn add.
-class WeekPlanAddExtra {
-  const WeekPlanAddExtra({
-    required this.projects,
-    required this.taskTypes,
-    required this.employees,
-    this.projectTypes = const [],
-  });
-
-  final List<ProjectTaskItem> projects;
-  final List<TaskTypeItem> taskTypes;
-  final List<EmployeeTaskItem> employees;
-  final List<ProjectTypeItem> projectTypes;
-}
-
+/// Màn hình tạo công việc mới.
 class WeekPlanAddScreen extends StatefulWidget {
   const WeekPlanAddScreen({super.key, this.extra});
 

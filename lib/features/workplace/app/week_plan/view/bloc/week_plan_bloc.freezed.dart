@@ -32,6 +32,7 @@ mixin _$WeekPlanEvent {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -118,6 +119,7 @@ mixin _$WeekPlanEvent {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -198,6 +200,7 @@ mixin _$WeekPlanEvent {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -278,6 +281,7 @@ mixin _$WeekPlanEvent {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -356,6 +360,7 @@ mixin _$WeekPlanEvent {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -428,6 +433,7 @@ mixin _$WeekPlanEvent {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -554,6 +560,7 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -643,6 +650,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -726,6 +734,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -812,6 +821,7 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -893,6 +903,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -968,6 +979,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -1084,6 +1096,7 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -1173,6 +1186,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -1256,6 +1270,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -1342,6 +1357,7 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -1423,6 +1439,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -1498,6 +1515,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -1642,6 +1660,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -1731,6 +1750,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -1814,6 +1834,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -1900,6 +1921,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -1981,6 +2003,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -2056,6 +2079,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -2205,6 +2229,7 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -2294,6 +2319,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -2377,6 +2403,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -2463,6 +2490,7 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -2544,6 +2572,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -2619,6 +2648,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -2740,6 +2770,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -2829,6 +2860,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -2912,6 +2944,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -2998,6 +3031,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -3079,6 +3113,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -3154,6 +3189,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -3296,6 +3332,7 @@ class _$SearchImpl implements _Search {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -3385,6 +3422,7 @@ class _$SearchImpl implements _Search {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -3468,6 +3506,7 @@ class _$SearchImpl implements _Search {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -3554,6 +3593,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -3635,6 +3675,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -3710,6 +3751,7 @@ class _$SearchImpl implements _Search {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -3831,6 +3873,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -3920,6 +3963,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -4003,6 +4047,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -4089,6 +4134,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -4170,6 +4216,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -4245,6 +4292,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -4388,6 +4436,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -4477,6 +4526,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -4560,6 +4610,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -4646,6 +4697,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -4727,6 +4779,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -4802,6 +4855,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -4923,6 +4977,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -5012,6 +5067,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -5095,6 +5151,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -5181,6 +5238,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -5262,6 +5320,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -5337,6 +5396,7 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -5489,6 +5549,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -5578,6 +5639,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -5661,6 +5723,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -5747,6 +5810,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -5828,6 +5892,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -5903,6 +5968,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -6027,6 +6093,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -6116,6 +6183,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -6199,6 +6267,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -6285,6 +6354,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -6366,6 +6436,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -6441,6 +6512,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -6591,6 +6663,7 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -6680,6 +6753,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -6763,6 +6837,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -6849,6 +6924,7 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -6930,6 +7006,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -7005,6 +7082,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -7127,6 +7205,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -7216,6 +7295,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -7299,6 +7379,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -7385,6 +7466,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -7466,6 +7548,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -7541,6 +7624,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -7603,6 +7687,575 @@ class _$InitAddScreenImpl implements _InitAddScreen {
 
 abstract class _InitAddScreen implements WeekPlanEvent {
   const factory _InitAddScreen() = _$InitAddScreenImpl;
+}
+
+/// @nodoc
+abstract class _$$InitDetailScreenImplCopyWith<$Res> {
+  factory _$$InitDetailScreenImplCopyWith(_$InitDetailScreenImpl value,
+          $Res Function(_$InitDetailScreenImpl) then) =
+      __$$InitDetailScreenImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int taskId});
+}
+
+/// @nodoc
+class __$$InitDetailScreenImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$InitDetailScreenImpl>
+    implements _$$InitDetailScreenImplCopyWith<$Res> {
+  __$$InitDetailScreenImplCopyWithImpl(_$InitDetailScreenImpl _value,
+      $Res Function(_$InitDetailScreenImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? taskId = null,
+  }) {
+    return _then(_$InitDetailScreenImpl(
+      taskId: null == taskId
+          ? _value.taskId
+          : taskId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitDetailScreenImpl implements _InitDetailScreen {
+  const _$InitDetailScreenImpl({required this.taskId});
+
+  @override
+  final int taskId;
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.initDetailScreen(taskId: $taskId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitDetailScreenImpl &&
+            (identical(other.taskId, taskId) || other.taskId == taskId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, taskId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitDetailScreenImplCopyWith<_$InitDetailScreenImpl> get copyWith =>
+      __$$InitDetailScreenImplCopyWithImpl<_$InitDetailScreenImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(String status) filterByStatus,
+    required TResult Function() clearStatusFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId, bool isCheck) checkIn,
+    required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(int categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
+    required TResult Function() fetchProjectTypes,
+    required TResult Function() fetchEmployees,
+    required TResult Function(int projectId, bool isPersonalProject)
+        fetchParentProjectTasks,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
+    required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
+    required TResult Function(EmployeeTaskItem employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
+    required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTaskWithData,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanLinkItem link) addLink,
+    required TResult Function(int index) removeLink,
+    required TResult Function() addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function(int index) toggleIncidentExpand,
+    required TResult Function() createTask,
+    required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
+    required TResult Function(List<String> filePaths, String subPath)
+        uploadFiles,
+    required TResult Function() clearUploadedFiles,
+  }) {
+    return initDetailScreen(taskId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(String status)? filterByStatus,
+    TResult? Function()? clearStatusFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
+    TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
+    TResult? Function()? fetchProjectTypes,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
+    TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult? Function(EmployeeTaskItem employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanLinkItem link)? addLink,
+    TResult? Function(int index)? removeLink,
+    TResult? Function()? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function(int index)? toggleIncidentExpand,
+    TResult? Function()? createTask,
+    TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
+    TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult? Function()? clearUploadedFiles,
+  }) {
+    return initDetailScreen?.call(taskId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(String status)? filterByStatus,
+    TResult Function()? clearStatusFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId, bool isCheck)? checkIn,
+    TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
+    TResult Function()? fetchProjectTypes,
+    TResult Function()? fetchEmployees,
+    TResult Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
+    TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult Function(EmployeeTaskItem employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanLinkItem link)? addLink,
+    TResult Function(int index)? removeLink,
+    TResult Function()? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function(int index)? toggleIncidentExpand,
+    TResult Function()? createTask,
+    TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
+    TResult Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult Function()? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (initDetailScreen != null) {
+      return initDetailScreen(taskId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearStatusFilter value) clearStatusFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
+    required TResult Function(_FetchProjectTypes value) fetchProjectTypes,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_FetchParentProjectTasks value)
+        fetchParentProjectTasks,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddLink value) addLink,
+    required TResult Function(_RemoveLink value) removeLink,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_ToggleIncidentExpand value) toggleIncidentExpand,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
+  }) {
+    return initDetailScreen(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
+    TResult? Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddLink value)? addLink,
+    TResult? Function(_RemoveLink value)? removeLink,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
+  }) {
+    return initDetailScreen?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
+    TResult Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddLink value)? addLink,
+    TResult Function(_RemoveLink value)? removeLink,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (initDetailScreen != null) {
+      return initDetailScreen(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitDetailScreen implements WeekPlanEvent {
+  const factory _InitDetailScreen({required final int taskId}) =
+      _$InitDetailScreenImpl;
+
+  int get taskId;
+  @JsonKey(ignore: true)
+  _$$InitDetailScreenImplCopyWith<_$InitDetailScreenImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -7683,6 +8336,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -7772,6 +8426,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -7855,6 +8510,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -7941,6 +8597,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -8022,6 +8679,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -8097,6 +8755,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -8256,6 +8915,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -8345,6 +9005,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -8428,6 +9089,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -8514,6 +9176,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -8595,6 +9258,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -8670,6 +9334,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -8834,6 +9499,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -8923,6 +9589,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -9006,6 +9673,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -9092,6 +9760,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -9173,6 +9842,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -9248,6 +9918,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -9411,6 +10082,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -9500,6 +10172,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -9583,6 +10256,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -9669,6 +10343,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -9750,6 +10425,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -9825,6 +10501,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -9979,6 +10656,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -10068,6 +10746,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -10151,6 +10830,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -10237,6 +10917,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -10318,6 +10999,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -10393,6 +11075,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -10545,6 +11228,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -10634,6 +11318,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -10717,6 +11402,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -10803,6 +11489,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -10884,6 +11571,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -10959,6 +11647,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -11110,6 +11799,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -11199,6 +11889,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -11282,6 +11973,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -11368,6 +12060,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -11449,6 +12142,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -11524,6 +12218,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -11684,6 +12379,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -11773,6 +12469,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -11856,6 +12553,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -11942,6 +12640,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -12023,6 +12722,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -12098,6 +12798,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -12252,6 +12953,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -12341,6 +13043,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -12424,6 +13127,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -12510,6 +13214,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -12591,6 +13296,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -12666,6 +13372,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -12828,6 +13535,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -12917,6 +13625,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -13000,6 +13709,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -13086,6 +13796,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -13167,6 +13878,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -13242,6 +13954,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -13432,6 +14145,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -13522,6 +14236,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -13606,6 +14321,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -13693,6 +14409,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -13774,6 +14491,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -13849,6 +14567,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -13978,6 +14697,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -14067,6 +14787,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -14150,6 +14871,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -14236,6 +14958,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -14317,6 +15040,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -14392,6 +15116,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -14508,6 +15233,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -14597,6 +15323,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -14680,6 +15407,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -14766,6 +15494,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -14847,6 +15576,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -14922,6 +15652,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -15038,6 +15769,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -15127,6 +15859,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -15210,6 +15943,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -15296,6 +16030,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -15377,6 +16112,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -15452,6 +16188,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -15568,6 +16305,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -15657,6 +16395,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -15740,6 +16479,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -15826,6 +16566,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -15907,6 +16648,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -15982,6 +16724,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -16138,6 +16881,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -16227,6 +16971,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -16310,6 +17055,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -16396,6 +17142,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -16477,6 +17224,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -16552,6 +17300,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -16704,6 +17453,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -16793,6 +17543,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -16876,6 +17627,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -16962,6 +17714,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -17043,6 +17796,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -17118,6 +17872,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -17279,6 +18034,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -17368,6 +18124,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -17451,6 +18208,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -17537,6 +18295,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -17618,6 +18377,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -17693,6 +18453,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -17856,6 +18617,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -17945,6 +18707,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -18028,6 +18791,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -18114,6 +18878,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -18195,6 +18960,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -18270,6 +19036,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -18468,6 +19235,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -18558,6 +19326,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -18642,6 +19411,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -18729,6 +19499,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -18810,6 +19581,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -18885,6 +19657,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -19045,6 +19818,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -19134,6 +19908,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -19217,6 +19992,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -19303,6 +20079,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -19384,6 +20161,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -19459,6 +20237,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -19608,6 +20387,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -19697,6 +20477,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -19780,6 +20561,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -19866,6 +20648,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -19947,6 +20730,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -20022,6 +20806,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -20175,6 +20960,7 @@ class _$UpdateContentReasonSolutionImpl
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -20264,6 +21050,7 @@ class _$UpdateContentReasonSolutionImpl
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -20347,6 +21134,7 @@ class _$UpdateContentReasonSolutionImpl
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -20433,6 +21221,7 @@ class _$UpdateContentReasonSolutionImpl
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -20514,6 +21303,7 @@ class _$UpdateContentReasonSolutionImpl
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -20589,6 +21379,7 @@ class _$UpdateContentReasonSolutionImpl
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -20745,6 +21536,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -20834,6 +21626,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -20917,6 +21710,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -21003,6 +21797,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -21084,6 +21879,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -21159,6 +21955,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -21318,6 +22115,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -21407,6 +22205,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -21490,6 +22289,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -21576,6 +22376,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -21657,6 +22458,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -21732,6 +22534,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -21882,6 +22685,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -21971,6 +22775,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -22054,6 +22859,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -22140,6 +22946,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -22221,6 +23028,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -22296,6 +23104,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -22451,6 +23260,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -22540,6 +23350,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -22623,6 +23434,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -22709,6 +23521,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -22790,6 +23603,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -22865,6 +23679,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -23025,6 +23840,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -23114,6 +23930,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -23197,6 +24014,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -23283,6 +24101,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -23364,6 +24183,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -23439,6 +24259,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -23589,6 +24410,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -23678,6 +24500,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -23761,6 +24584,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -23847,6 +24671,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -23928,6 +24753,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -24003,6 +24829,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -24162,6 +24989,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -24251,6 +25079,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -24334,6 +25163,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -24420,6 +25250,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -24501,6 +25332,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -24576,6 +25408,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -24742,6 +25575,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -24831,6 +25665,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -24914,6 +25749,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -25000,6 +25836,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -25081,6 +25918,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -25156,6 +25994,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -25305,6 +26144,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -25394,6 +26234,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -25477,6 +26318,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -25563,6 +26405,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -25644,6 +26487,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -25719,6 +26563,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -25867,6 +26712,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -25956,6 +26802,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -26039,6 +26886,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -26125,6 +26973,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -26206,6 +27055,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -26281,6 +27131,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -26437,6 +27288,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -26526,6 +27378,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -26609,6 +27462,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -26695,6 +27549,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -26776,6 +27631,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -26851,6 +27707,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -27001,6 +27858,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -27090,6 +27948,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -27173,6 +28032,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -27259,6 +28119,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -27340,6 +28201,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -27415,6 +28277,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -27564,6 +28427,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -27653,6 +28517,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -27736,6 +28601,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -27822,6 +28688,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -27903,6 +28770,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -27978,6 +28846,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -28137,6 +29006,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -28226,6 +29096,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -28309,6 +29180,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -28395,6 +29267,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -28476,6 +29349,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -28551,6 +29425,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -28700,6 +29575,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -28789,6 +29665,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -28872,6 +29749,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -28958,6 +29836,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -29039,6 +29918,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -29114,6 +29994,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -29271,6 +30152,7 @@ class _$AddLinkImpl implements _AddLink {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -29360,6 +30242,7 @@ class _$AddLinkImpl implements _AddLink {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -29443,6 +30326,7 @@ class _$AddLinkImpl implements _AddLink {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -29529,6 +30413,7 @@ class _$AddLinkImpl implements _AddLink {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -29610,6 +30495,7 @@ class _$AddLinkImpl implements _AddLink {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -29685,6 +30571,7 @@ class _$AddLinkImpl implements _AddLink {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -29832,6 +30719,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -29921,6 +30809,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -30004,6 +30893,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -30090,6 +30980,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -30171,6 +31062,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -30246,6 +31138,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -30367,6 +31260,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -30456,6 +31350,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -30539,6 +31434,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -30625,6 +31521,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -30706,6 +31603,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -30781,6 +31679,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -30943,6 +31842,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -31032,6 +31932,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -31115,6 +32016,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -31201,6 +32103,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -31282,6 +32185,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -31357,6 +32261,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -31508,6 +32413,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -31597,6 +32503,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -31680,6 +32587,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -31766,6 +32674,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -31847,6 +32756,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -31922,6 +32832,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -32071,6 +32982,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -32160,6 +33072,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -32243,6 +33156,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -32329,6 +33243,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -32410,6 +33325,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -32485,6 +33401,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -32607,6 +33524,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -32696,6 +33614,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -32779,6 +33698,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -32865,6 +33785,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -32946,6 +33867,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -33021,6 +33943,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -33137,6 +34060,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -33226,6 +34150,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -33309,6 +34234,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -33395,6 +34321,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -33476,6 +34403,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -33551,6 +34479,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -33667,6 +34596,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -33756,6 +34686,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -33839,6 +34770,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -33925,6 +34857,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -34006,6 +34939,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -34081,6 +35015,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -34241,6 +35176,7 @@ class _$UploadFilesImpl implements _UploadFiles {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -34330,6 +35266,7 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -34413,6 +35350,7 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -34499,6 +35437,7 @@ class _$UploadFilesImpl implements _UploadFiles {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -34580,6 +35519,7 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -34655,6 +35595,7 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -34779,6 +35720,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     required TResult Function() clearDateFilter,
     required TResult Function(int taskId, bool isCheck) checkIn,
     required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
     required TResult Function(int step) changeStep,
     required TResult Function(int projectId, String projectName)
         updateHeaderProject,
@@ -34868,6 +35810,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
     TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
     TResult? Function(int step)? changeStep,
     TResult? Function(int projectId, String projectName)? updateHeaderProject,
     TResult? Function(int parentTaskId, String parentTaskName)?
@@ -34951,6 +35894,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
     TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
     TResult Function(int step)? changeStep,
     TResult Function(int projectId, String projectName)? updateHeaderProject,
     TResult Function(int parentTaskId, String parentTaskName)?
@@ -35037,6 +35981,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
     required TResult Function(_ChangeStep value) changeStep,
     required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
     required TResult Function(_UpdateHeaderParentTask value)
@@ -35118,6 +36063,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
     TResult? Function(_ChangeStep value)? changeStep,
     TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
@@ -35193,6 +36139,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
     TResult Function(_ChangeStep value)? changeStep,
     TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
     TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,

@@ -34,6 +34,8 @@ class WeekPlanEvent with _$WeekPlanEvent {
   //---(Add Screen)---//
   const factory WeekPlanEvent.initAddScreen() = _InitAddScreen;
 
+  const factory WeekPlanEvent.initDetailScreen({required int taskId}) = _InitDetailScreen;
+
   const factory WeekPlanEvent.changeStep(int step) = _ChangeStep;
 
   // Step 1: Thông tin dự án

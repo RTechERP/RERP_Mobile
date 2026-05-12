@@ -68,5 +68,13 @@ abstract class WeekPlanRepo {
   Future<Either<BaseError, AdditionalWeekPlanResponse>> saveProjectTaskAdditional({
     required Map<String, dynamic> payload,
   });
+
+  Future<Either<BaseError, WeekPlanDetailResponse>> getTaskDetail({required int id});
+
+  Future<Either<BaseError, List<WeekPlanTypeEmployeeDetailResponse>>> getEmployeeByType({
+    required int id,
+    required int typeEmployee,
+  });
+
 }
 

@@ -26,6 +26,7 @@ class RouteNames {
   static const weekplanAssigned = '/week_plan/assigned';
   static const weekplanAll = '/week_plan/all';
   static const weekplanAdd = '/week_plan/add';
+  static const weekplanDetail = '/week_plan/detail';
   static const stock = '/stock';
 
   static const regworkLunch = '/regwork/lunch';
