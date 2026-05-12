@@ -82,8 +82,10 @@ import '../features/workplace/app/reg_work/view/pages/work_trip/view/bloc/work_t
 import '../features/workplace/app/reg_work/view/pages/work_trip/view/pages/work_trip_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/work_trip/view/pages/work_trip_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/salary_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/timekeeping_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_menu_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/timekeeping_screen.dart';
 import '../features/workplace/app/reports/data/datasource/models/report_model.dart';
 import '../features/workplace/app/reports/view/ad/view/bloc/ad_bloc.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_add_screen.dart';
@@ -402,7 +404,13 @@ class AppRouter {
       //---(Salary)---//
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(value: getIt<SalaryBloc>(), child: child);
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider.value(value: getIt<SalaryBloc>()),
+              BlocProvider.value(value: getIt<TimekeepingBloc>()),
+            ],
+            child: child,
+          );
         },
         routes: [
           GoRoute(
@@ -423,7 +431,7 @@ class AppRouter {
           ),
           GoRoute(
             path: RouteNames.salaryAttendance,
-            builder: (context, state) => const SalaryScreen(),
+            builder: (context, state) => const TimekeepingScreen(),
           ),
         ],
       ),

@@ -311,4 +311,8 @@ class ApiEndPoint {
   static const String getEmployees = '/Employee';
 
   static const String getSalary = '/Salary';
+
+  // Timekeeping
+  static const String getTimekeeping = '/ChamCong';
+  static const String getTimekeepingDays = '/ChamCong/get-days';
 }
