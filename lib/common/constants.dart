@@ -310,7 +310,14 @@ class ApiEndPoint {
 
   static const String getEmployees = '/Employee';
 
+  // Salary
   static const String getSalary = '/Salary';
+
+  // PIN
+  static const String checkPin = '/PinAuth/check-pin-status';
+  static const String setPin = '/Account/set-pin';
+  static const String verifyPin = '/PinAuth/verify-pin';
+  static const String requestPin = '/Account/request-pin';
 
   // Timekeeping
   static const String getTimekeeping = '/ChamCong';

@@ -80,8 +80,11 @@ import '../features/workplace/app/week_plan/data/repository/week_plan_repo.dart'
 import '../features/workplace/app/week_plan/data/repository/week_plan_repo_impl.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/data/datasource/service/salary_service.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/data/datasource/service/salary_pin_service.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/data/repository/salary_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/data/repository/salary_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/data/repository/salary_pin_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/data/repository/salary_pin_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/salary_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/data/datasource/service/timekeeping_service.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/data/repository/timekeeping_repo.dart';
@@ -401,9 +404,17 @@ void configureDependencies() {
     ),
   );
 
+  getIt.registerLazySingleton<SalaryPinService>(
+    () => SalaryPinService(getIt<Dio>()),
+  );
+  getIt.registerLazySingleton<SalaryPinRepo>(
+    () => SalaryPinRepoImpl(getIt<SalaryPinService>()),
+  );
+
   getIt.registerFactory<SalaryBloc>(
     () => SalaryBloc(
       getIt<SalaryRepo>(),
+      getIt<SalaryPinRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

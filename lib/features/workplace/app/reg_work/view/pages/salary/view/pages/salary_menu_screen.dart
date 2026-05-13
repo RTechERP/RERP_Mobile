@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
-
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/services/custom_toast.dart';
+import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../bloc/salary_bloc.dart';
@@ -18,6 +20,9 @@ class SalaryMenuScreen extends StatefulWidget {
 
 class _SalaryMenuScreenState
     extends BaseState<SalaryMenuScreen, SalaryEvent, SalaryState, SalaryBloc> {
+  bool _pinChecked = false;
+  bool _pinVerified = false;
+
   @override
   void initState() {
     super.initState();
@@ -28,75 +33,141 @@ class _SalaryMenuScreenState
 
   @override
   Widget renderUI(BuildContext context) {
-    return BaseScaffold(
-      appBar: AppBarCommon(
-        title: Text('Tổng hợp công lương', style: AppStyles.headingTitle2),
-        onBackTap: () => onBack(context),
+    return BlocListener<SalaryBloc, SalaryState>(
+      listenWhen: (prev, curr) =>
+          prev.isVerifyingPin != curr.isVerifyingPin ||
+          prev.hasPin != curr.hasPin ||
+          prev.pinVerified != curr.pinVerified ||
+          prev.pinError != curr.pinError,
+      listener: (context, state) {
+        if (_pinChecked) return;
+
+        if (!state.isVerifyingPin && state.hasPin && !state.pinVerified) {
+          _pinChecked = true;
+          _showPinDialog(context);
+        } else if (!state.isVerifyingPin && !state.hasPin) {
+          _pinVerified = true;
+          _pinChecked = true;
+        }
+      },
+      child: BaseScaffold(
+        appBar: AppBarCommon(
+          title: Text('Tổng hợp công - lương', style: AppStyles.headingTitle2),
+          onBackTap: () => onBack(context),
+        ),
+        body: _buildBody(context),
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    return BlocBuilder<SalaryBloc, SalaryState>(
+      buildWhen: (prev, curr) => prev.isVerifyingPin != curr.isVerifyingPin,
+      builder: (context, state) {
+        if (state.isVerifyingPin && !_pinChecked) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (!_pinVerified && !state.isVerifyingPin) {
+          return Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Lương',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.heading,
-                  ),
+                Icon(
+                  Icons.lock_outline,
+                  size: 64,
+                  color: AppColors.gray,
                 ),
-                const SizedBox(height: 12),
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: AppColors.borderColor),
-                  ),
-                  child: GridView.count(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 4,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                    childAspectRatio: 0.85,
-                    children: [
-                      _MenuTile(
-                        icon: Icons.summarize_outlined,
-                        title: 'Tổng hợp',
-                        color: AppColors.stateInfoColor,
-                        onTap: () => context.push(RouteNames.salarySummary),
-                      ),
-                      _MenuTile(
-                        icon: Icons.fingerprint,
-                        title: 'Vân tay',
-                        color: AppColors.purpleA500,
-                        onTap: () => context.push(RouteNames.salaryFingerprint),
-                      ),
-                      _MenuTile(
-                        icon: Icons.access_time_filled_outlined,
-                        title: 'Chấm công',
-                        color: AppColors.orangeA500,
-                        onTap: () => context.push(RouteNames.salaryAttendance),
-                      ),
-                      _MenuTile(
-                        icon: Icons.payments_outlined,
-                        title: 'Bảng lương',
-                        color: AppColors.greenA500,
-                        onTap: () => context.push(RouteNames.salaryPayslip),
-                      ),
-                    ],
-                  ),
+                SizedBox(height: 16),
+                Text(
+                  'Dang xac thuc ma PIN...',
+                  style: AppStyles.body2.copyWith(color: AppColors.gray),
                 ),
               ],
             ),
+          );
+        }
+
+        return _buildMenuContent(context);
+      },
+    );
+  }
+
+  Widget _buildMenuContent(BuildContext context) {
+    return SingleChildScrollView(
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: AppColors.borderColor),
+                ),
+                child: GridView.count(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: 4,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                  childAspectRatio: 0.85,
+                  children: [
+                    _MenuTile(
+                      icon: Icons.summarize_outlined,
+                      title: 'Tổng hợp',
+                      color: AppColors.stateInfoColor,
+                      onTap: () => _navigateWithPinCheck(context, RouteNames.salarySummary),
+                    ),
+                    _MenuTile(
+                      icon: Icons.fingerprint,
+                      title: 'Vân tay',
+                      color: AppColors.purpleA500,
+                      onTap: () => _navigateWithPinCheck(context, RouteNames.salaryFingerprint),
+                    ),
+                    _MenuTile(
+                      icon: Icons.access_time_filled_outlined,
+                      title: 'Chấm công',
+                      color: AppColors.orangeA500,
+                      onTap: () => _navigateWithPinCheck(context, RouteNames.salaryAttendance),
+                    ),
+                    _MenuTile(
+                      icon: Icons.payments_outlined,
+                      title: 'Bảng lương',
+                      color: AppColors.greenA500,
+                      onTap: () => _navigateWithPinCheck(context, RouteNames.salaryPayslip),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
+  }
+
+  void _navigateWithPinCheck(BuildContext context, String route) {
+    if (!_pinVerified) {
+      CustomToast.showToastWithoutAppIcon(
+        context: context,
+        message: 'Vui long xac thuc ma PIN truoc',
+      );
+      return;
+    }
+    context.push(route);
+  }
+
+  Future<void> _showPinDialog(BuildContext context) async {
+    final verified = await DialogService.showPinDialog(context: context);
+    if (verified) {
+      setState(() => _pinVerified = true);
+    } else {
+      if (mounted) onBack(context);
+    }
   }
 }
 

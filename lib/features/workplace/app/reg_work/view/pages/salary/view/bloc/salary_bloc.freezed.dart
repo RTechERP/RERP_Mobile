@@ -22,6 +22,10 @@ mixin _$SalaryEvent {
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +34,10 @@ mixin _$SalaryEvent {
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +46,10 @@ mixin _$SalaryEvent {
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +59,10 @@ mixin _$SalaryEvent {
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +71,10 @@ mixin _$SalaryEvent {
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +83,10 @@ mixin _$SalaryEvent {
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,6 +151,10 @@ class _$InitImpl implements _Init {
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
   }) {
     return init();
   }
@@ -138,6 +166,10 @@ class _$InitImpl implements _Init {
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
   }) {
     return init?.call();
   }
@@ -149,6 +181,10 @@ class _$InitImpl implements _Init {
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -164,6 +200,10 @@ class _$InitImpl implements _Init {
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
   }) {
     return init(this);
   }
@@ -175,6 +215,10 @@ class _$InitImpl implements _Init {
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
   }) {
     return init?.call(this);
   }
@@ -186,6 +230,10 @@ class _$InitImpl implements _Init {
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -241,6 +289,10 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
   }) {
     return initMenu();
   }
@@ -252,6 +304,10 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
   }) {
     return initMenu?.call();
   }
@@ -263,6 +319,10 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
     required TResult orElse(),
   }) {
     if (initMenu != null) {
@@ -278,6 +338,10 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
   }) {
     return initMenu(this);
   }
@@ -289,6 +353,10 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
   }) {
     return initMenu?.call(this);
   }
@@ -300,6 +368,10 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
     required TResult orElse(),
   }) {
     if (initMenu != null) {
@@ -355,6 +427,10 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
   }) {
     return refresh();
   }
@@ -366,6 +442,10 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
   }) {
     return refresh?.call();
   }
@@ -377,6 +457,10 @@ class _$RefreshImpl implements _Refresh {
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -392,6 +476,10 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
   }) {
     return refresh(this);
   }
@@ -403,6 +491,10 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
   }) {
     return refresh?.call(this);
   }
@@ -414,6 +506,10 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -495,6 +591,10 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
   }) {
     return changeMonth(month);
   }
@@ -506,6 +606,10 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
   }) {
     return changeMonth?.call(month);
   }
@@ -517,6 +621,10 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
     required TResult orElse(),
   }) {
     if (changeMonth != null) {
@@ -532,6 +640,10 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
   }) {
     return changeMonth(this);
   }
@@ -543,6 +655,10 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
   }) {
     return changeMonth?.call(this);
   }
@@ -554,6 +670,10 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
     required TResult orElse(),
   }) {
     if (changeMonth != null) {
@@ -570,4 +690,618 @@ abstract class _ChangeMonth implements SalaryEvent {
   @JsonKey(ignore: true)
   _$$ChangeMonthImplCopyWith<_$ChangeMonthImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CheckPinImplCopyWith<$Res> {
+  factory _$$CheckPinImplCopyWith(
+          _$CheckPinImpl value, $Res Function(_$CheckPinImpl) then) =
+      __$$CheckPinImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CheckPinImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$CheckPinImpl>
+    implements _$$CheckPinImplCopyWith<$Res> {
+  __$$CheckPinImplCopyWithImpl(
+      _$CheckPinImpl _value, $Res Function(_$CheckPinImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$CheckPinImpl implements _CheckPin {
+  const _$CheckPinImpl();
+
+  @override
+  String toString() {
+    return 'SalaryEvent.checkPin()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CheckPinImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+  }) {
+    return checkPin();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+  }) {
+    return checkPin?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    required TResult orElse(),
+  }) {
+    if (checkPin != null) {
+      return checkPin();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+  }) {
+    return checkPin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+  }) {
+    return checkPin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    required TResult orElse(),
+  }) {
+    if (checkPin != null) {
+      return checkPin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CheckPin implements SalaryEvent {
+  const factory _CheckPin() = _$CheckPinImpl;
+}
+
+/// @nodoc
+abstract class _$$VerifyPinImplCopyWith<$Res> {
+  factory _$$VerifyPinImplCopyWith(
+          _$VerifyPinImpl value, $Res Function(_$VerifyPinImpl) then) =
+      __$$VerifyPinImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String pin});
+}
+
+/// @nodoc
+class __$$VerifyPinImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$VerifyPinImpl>
+    implements _$$VerifyPinImplCopyWith<$Res> {
+  __$$VerifyPinImplCopyWithImpl(
+      _$VerifyPinImpl _value, $Res Function(_$VerifyPinImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pin = null,
+  }) {
+    return _then(_$VerifyPinImpl(
+      null == pin
+          ? _value.pin
+          : pin // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$VerifyPinImpl implements _VerifyPin {
+  const _$VerifyPinImpl(this.pin);
+
+  @override
+  final String pin;
+
+  @override
+  String toString() {
+    return 'SalaryEvent.verifyPin(pin: $pin)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$VerifyPinImpl &&
+            (identical(other.pin, pin) || other.pin == pin));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, pin);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$VerifyPinImplCopyWith<_$VerifyPinImpl> get copyWith =>
+      __$$VerifyPinImplCopyWithImpl<_$VerifyPinImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+  }) {
+    return verifyPin(pin);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+  }) {
+    return verifyPin?.call(pin);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    required TResult orElse(),
+  }) {
+    if (verifyPin != null) {
+      return verifyPin(pin);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+  }) {
+    return verifyPin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+  }) {
+    return verifyPin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    required TResult orElse(),
+  }) {
+    if (verifyPin != null) {
+      return verifyPin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _VerifyPin implements SalaryEvent {
+  const factory _VerifyPin(final String pin) = _$VerifyPinImpl;
+
+  String get pin;
+  @JsonKey(ignore: true)
+  _$$VerifyPinImplCopyWith<_$VerifyPinImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetPinImplCopyWith<$Res> {
+  factory _$$SetPinImplCopyWith(
+          _$SetPinImpl value, $Res Function(_$SetPinImpl) then) =
+      __$$SetPinImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String pin});
+}
+
+/// @nodoc
+class __$$SetPinImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$SetPinImpl>
+    implements _$$SetPinImplCopyWith<$Res> {
+  __$$SetPinImplCopyWithImpl(
+      _$SetPinImpl _value, $Res Function(_$SetPinImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pin = null,
+  }) {
+    return _then(_$SetPinImpl(
+      null == pin
+          ? _value.pin
+          : pin // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetPinImpl implements _SetPin {
+  const _$SetPinImpl(this.pin);
+
+  @override
+  final String pin;
+
+  @override
+  String toString() {
+    return 'SalaryEvent.setPin(pin: $pin)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetPinImpl &&
+            (identical(other.pin, pin) || other.pin == pin));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, pin);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetPinImplCopyWith<_$SetPinImpl> get copyWith =>
+      __$$SetPinImplCopyWithImpl<_$SetPinImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+  }) {
+    return setPin(pin);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+  }) {
+    return setPin?.call(pin);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    required TResult orElse(),
+  }) {
+    if (setPin != null) {
+      return setPin(pin);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+  }) {
+    return setPin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+  }) {
+    return setPin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    required TResult orElse(),
+  }) {
+    if (setPin != null) {
+      return setPin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetPin implements SalaryEvent {
+  const factory _SetPin(final String pin) = _$SetPinImpl;
+
+  String get pin;
+  @JsonKey(ignore: true)
+  _$$SetPinImplCopyWith<_$SetPinImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetPinVerifiedImplCopyWith<$Res> {
+  factory _$$SetPinVerifiedImplCopyWith(_$SetPinVerifiedImpl value,
+          $Res Function(_$SetPinVerifiedImpl) then) =
+      __$$SetPinVerifiedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SetPinVerifiedImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$SetPinVerifiedImpl>
+    implements _$$SetPinVerifiedImplCopyWith<$Res> {
+  __$$SetPinVerifiedImplCopyWithImpl(
+      _$SetPinVerifiedImpl _value, $Res Function(_$SetPinVerifiedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SetPinVerifiedImpl implements _SetPinVerified {
+  const _$SetPinVerifiedImpl();
+
+  @override
+  String toString() {
+    return 'SalaryEvent.setPinVerified()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SetPinVerifiedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+  }) {
+    return setPinVerified();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+  }) {
+    return setPinVerified?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    required TResult orElse(),
+  }) {
+    if (setPinVerified != null) {
+      return setPinVerified();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+  }) {
+    return setPinVerified(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+  }) {
+    return setPinVerified?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    required TResult orElse(),
+  }) {
+    if (setPinVerified != null) {
+      return setPinVerified(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetPinVerified implements SalaryEvent {
+  const factory _SetPinVerified() = _$SetPinVerifiedImpl;
 }

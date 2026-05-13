@@ -4,8 +4,10 @@ import 'package:injectable/injectable.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
+import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
+import '../../data/repository/salary_pin_repo.dart';
 import '../../data/repository/salary_repo.dart';
 
 
@@ -17,10 +19,13 @@ part 'salary_bloc.freezed.dart';
 @injectable
 class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
   final SalaryRepo _salaryRepo;
+  final SalaryPinRepo _salaryPinRepo;
   final AuthRepo _authRepo;
   final LogUtils _log;
 
-  SalaryBloc(this._salaryRepo, this._authRepo, this._log)
+  bool _isPinVerified = false;
+
+  SalaryBloc(this._salaryRepo, this._salaryPinRepo, this._authRepo, this._log)
       : super(SalaryState.init()) {
     on<SalaryEvent>((event, emit) async {
       await event.when(
@@ -28,12 +33,118 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
         initMenu: () => _onInitMenu(emit),
         refresh: () => _onRefresh(emit),
         changeMonth: (month) => _onChangeMonth(emit, month),
+        checkPin: () => _onCheckPin(emit),
+        verifyPin: (pin) => _onVerifyPin(emit, pin),
+        setPin: (pin) => _onSetPin(emit, pin),
+        setPinVerified: () => _onSetPinVerified(emit),
       );
     });
   }
 
   //---(Init)---//
-  Future<void> _onInitMenu(Emitter<SalaryState> emit) async {}
+  Future<void> _onInitMenu(Emitter<SalaryState> emit) async {
+    emit(state.copyWith(isVerifyingPin: true, pinError: null, pinVerified: false));
+    final res = await _salaryPinRepo.checkPin();
+    res.fold(
+      (err) {
+        _log.logE('Check PIN failed: $err');
+        emit(state.copyWith(
+          isVerifyingPin: false,
+          hasPin: false,
+          pinVerified: true,
+          pinError: null,
+        ));
+      },
+      (hasPin) {
+        _log.logI('Check PIN success - hasPin: $hasPin');
+        emit(state.copyWith(
+          isVerifyingPin: false,
+          hasPin: hasPin,
+          pinVerified: !hasPin,
+          pinError: hasPin ? null : 'Vui long nhap ma PIN',
+        ));
+      },
+    );
+  }
+
+  //---(PIN)---//
+  Future<void> _onCheckPin(Emitter<SalaryState> emit) async {
+    emit(state.copyWith(isVerifyingPin: true, pinError: null));
+    final res = await _salaryPinRepo.checkPin();
+    res.fold(
+      (err) {
+        _log.logE('Check PIN failed: $err');
+        emit(state.copyWith(isVerifyingPin: false, hasPin: false));
+      },
+      (hasPin) {
+        emit(state.copyWith(isVerifyingPin: false, hasPin: hasPin));
+      },
+    );
+  }
+
+  Future<void> _onVerifyPin(Emitter<SalaryState> emit, String pin) async {
+    emit(state.copyWith(isVerifyingPin: true, pinError: null));
+    final res = await _salaryPinRepo.verifyPin(pin: pin);
+    res.fold(
+      (err) {
+        _log.logE('Verify PIN failed: $err');
+        emit(state.copyWith(
+          isVerifyingPin: false,
+          pinVerified: false,
+          pinError: err.getErrorMessage,
+        ));
+      },
+      (verified) {
+        _log.logI('Verify PIN result: $verified');
+        if (verified) {
+          _isPinVerified = true;
+          emit(state.copyWith(
+            isVerifyingPin: false,
+            pinVerified: true,
+            pinError: null,
+          ));
+        } else {
+          emit(state.copyWith(
+            isVerifyingPin: false,
+            pinVerified: false,
+            pinError: 'Ma PIN khong dung. Vui long thu lai.',
+          ));
+        }
+      },
+    );
+  }
+
+  Future<void> _onSetPin(Emitter<SalaryState> emit, String pin) async {
+    emit(state.copyWith(isVerifyingPin: true, pinError: null));
+    final res = await _salaryPinRepo.setPin(pin: pin);
+    res.fold(
+      (err) {
+        _log.logE('Set PIN failed: $err');
+        emit(state.copyWith(
+          isVerifyingPin: false,
+          pinVerified: false,
+          pinError: err.getErrorMessage,
+        ));
+      },
+      (_) {
+        _log.logI('Set PIN success');
+        _isPinVerified = true;
+        emit(state.copyWith(
+          isVerifyingPin: false,
+          hasPin: true,
+          pinVerified: true,
+          pinError: null,
+        ));
+      },
+    );
+  }
+
+   _onSetPinVerified(Emitter<SalaryState> emit) {
+    _isPinVerified = true;
+    emit(state.copyWith(pinVerified: true, pinError: null));
+  }
+
+  //---(Data)---//
 
   Future<void> _onInit(Emitter<SalaryState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));

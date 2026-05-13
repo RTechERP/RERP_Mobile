@@ -113,6 +113,14 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState note(String? note);
 
+  SalaryState hasPin(bool hasPin);
+
+  SalaryState pinVerified(bool pinVerified);
+
+  SalaryState isVerifyingPin(bool isVerifyingPin);
+
+  SalaryState pinError(String? pinError);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -173,6 +181,10 @@ abstract class _$SalaryStateCWProxy {
     double? incomeTax,
     double? netSalary,
     String? note,
+    bool? hasPin,
+    bool? pinVerified,
+    bool? isVerifyingPin,
+    String? pinError,
   });
 }
 
@@ -383,6 +395,19 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
   SalaryState note(String? note) => this(note: note);
 
   @override
+  SalaryState hasPin(bool hasPin) => this(hasPin: hasPin);
+
+  @override
+  SalaryState pinVerified(bool pinVerified) => this(pinVerified: pinVerified);
+
+  @override
+  SalaryState isVerifyingPin(bool isVerifyingPin) =>
+      this(isVerifyingPin: isVerifyingPin);
+
+  @override
+  SalaryState pinError(String? pinError) => this(pinError: pinError);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -444,6 +469,10 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? incomeTax = const $CopyWithPlaceholder(),
     Object? netSalary = const $CopyWithPlaceholder(),
     Object? note = const $CopyWithPlaceholder(),
+    Object? hasPin = const $CopyWithPlaceholder(),
+    Object? pinVerified = const $CopyWithPlaceholder(),
+    Object? isVerifyingPin = const $CopyWithPlaceholder(),
+    Object? pinError = const $CopyWithPlaceholder(),
   }) {
     return SalaryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -706,6 +735,24 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
           ? _value.note
           // ignore: cast_nullable_to_non_nullable
           : note as String?,
+      hasPin: hasPin == const $CopyWithPlaceholder() || hasPin == null
+          ? _value.hasPin
+          // ignore: cast_nullable_to_non_nullable
+          : hasPin as bool,
+      pinVerified:
+          pinVerified == const $CopyWithPlaceholder() || pinVerified == null
+              ? _value.pinVerified
+              // ignore: cast_nullable_to_non_nullable
+              : pinVerified as bool,
+      isVerifyingPin: isVerifyingPin == const $CopyWithPlaceholder() ||
+              isVerifyingPin == null
+          ? _value.isVerifyingPin
+          // ignore: cast_nullable_to_non_nullable
+          : isVerifyingPin as bool,
+      pinError: pinError == const $CopyWithPlaceholder()
+          ? _value.pinError
+          // ignore: cast_nullable_to_non_nullable
+          : pinError as String?,
     );
   }
 }

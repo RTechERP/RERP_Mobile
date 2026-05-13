@@ -12,6 +12,9 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../di/injection.dart';
+import '../../../features/workplace/app/reg_work/view/pages/salary/view/bloc/salary_bloc.dart';
+
 import '../../../features/workplace/app/reg_work/view/pages/work_trip/data/datasource/models/work_trip_model.dart';
 import '../../../features/workplace/app/reg_work/view/pages/work_trip/view/widgets/work_trip_add_constants.dart';
 import '../../../features/workplace/app/reg_work/view/pages/work_trip/view/widgets/work_trip_vehicle_dialog.dart';
@@ -25,10 +28,58 @@ import '../../widgets/form/index.dart';
 import '../navigation/navigation_utils.dart';
 import 'base_dialog/base_dialog.dart';
 import '../../../features/workplace/app/reg_general/view/pages/work_category/view/widgets/work_problem_dialog.dart';
+import '../../../features/workplace/app/reg_work/view/pages/salary/pincode/pincode.dart';
 
 class DialogService {
   static DateTime? _lastToastTime;
   static const int _toastCooldownSeconds = 3;
+
+  static Future<bool> showPinDialog({
+    required BuildContext context,
+    bool isLoading = false,
+    String? errorMessage,
+  }) async {
+    bool confirmed = false;
+
+    final controller = PinInputController();
+
+    await showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext) {
+        return BlocProvider(
+          create: (_) => getIt<SalaryBloc>(),
+          child: BlocConsumer<SalaryBloc, SalaryState>(
+            listenWhen: (prev, curr) =>
+                prev.pinVerified != curr.pinVerified ||
+                prev.pinError != curr.pinError ||
+                prev.isVerifyingPin != curr.isVerifyingPin,
+            listener: (blocContext, state) {
+              if (state.pinVerified) {
+                confirmed = true;
+                Navigator.of(dialogContext).pop(true);
+              }
+              if (state.pinError != null && !state.isVerifyingPin) {
+                controller.setError();
+              }
+            },
+            builder: (blocContext, state) {
+              return PinDialogWidget(
+                controller: controller,
+                state: state,
+                onSubmit: (pin) {
+                  blocContext.read<SalaryBloc>().add(SalaryEvent.verifyPin(pin));
+                },
+                onCancel: () => Navigator.of(dialogContext).pop(false),
+              );
+            },
+          ),
+        );
+      },
+    );
+
+    return confirmed;
+  }
 
   /// Toast error
   static void showToastFailed({

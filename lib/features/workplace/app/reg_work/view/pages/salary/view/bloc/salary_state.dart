@@ -72,6 +72,12 @@ class SalaryState extends BaseBlocState {
   final double netSalary;                 // (48) = (28)-(30)-(38)-(45)
   final String? note;                     // (49) Ghi chú
 
+  // PIN verification
+  final bool hasPin;
+  final bool pinVerified;
+  final bool isVerifyingPin;
+  final String? pinError;
+
   const SalaryState({
     required super.status,
     super.message,
@@ -129,6 +135,10 @@ class SalaryState extends BaseBlocState {
     // Thực lĩnh & Ghi chú
     this.netSalary = 0,
     this.note,
+    this.hasPin = false,
+    this.pinVerified = false,
+    this.isVerifyingPin = false,
+    this.pinError,
   });
 
   factory SalaryState.init() => const SalaryState(
@@ -193,5 +203,9 @@ class SalaryState extends BaseBlocState {
         // Thực lĩnh & Ghi chú
         netSalary,
         note,
+        hasPin,
+        pinVerified,
+        isVerifyingPin,
+        pinError,
       ];
 }
