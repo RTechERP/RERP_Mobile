@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
 
@@ -10,26 +9,30 @@ class SalaryCard extends StatefulWidget {
     required this.title,
     required this.icon,
     required this.child,
-    this.initiallyExpanded = true,
+    this.formula,
+    this.formulaDesc,
+    this.collapsed = false,
   });
 
   final Color accentColor;
   final String title;
   final IconData icon;
   final Widget child;
-  final bool initiallyExpanded;
+  final String? formula;
+  final String? formulaDesc;
+  final bool collapsed;
 
   @override
   State<SalaryCard> createState() => _SalaryCardState();
 }
 
 class _SalaryCardState extends State<SalaryCard> {
-  late bool _isExpanded;
+  late bool _isCollapsed;
 
   @override
   void initState() {
     super.initState();
-    _isExpanded = widget.initiallyExpanded;
+    _isCollapsed = widget.collapsed;
   }
 
   @override
@@ -37,7 +40,7 @@ class _SalaryCardState extends State<SalaryCard> {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.borderColor),
         boxShadow: [
           BoxShadow(
@@ -54,13 +57,16 @@ class _SalaryCardState extends State<SalaryCard> {
             accentColor: widget.accentColor,
             icon: widget.icon,
             title: widget.title,
-            isExpanded: _isExpanded,
-            onToggle: () => setState(() => _isExpanded = !_isExpanded),
+            formula: widget.formula,
+            formulaDesc: widget.formulaDesc,
+            isCollapsed: _isCollapsed,
+            onToggle: () => setState(() => _isCollapsed = !_isCollapsed),
           ),
           AnimatedCrossFade(
             duration: const Duration(milliseconds: 200),
-            crossFadeState:
-                _isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+            crossFadeState: _isCollapsed
+                ? CrossFadeState.showFirst
+                : CrossFadeState.showSecond,
             firstChild: const SizedBox.shrink(),
             secondChild: Padding(
               padding: const EdgeInsets.all(16),
@@ -78,63 +84,125 @@ class _CardHeader extends StatelessWidget {
     required this.accentColor,
     required this.icon,
     required this.title,
-    required this.isExpanded,
+    required this.isCollapsed,
     required this.onToggle,
+    this.formula,
+    this.formulaDesc,
   });
 
   final Color accentColor;
   final IconData icon;
   final String title;
-  final bool isExpanded;
+  final bool isCollapsed;
   final VoidCallback onToggle;
+  final String? formula;
+  final String? formulaDesc;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onToggle,
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
           color: accentColor.withValues(alpha: 0.06),
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
           border: Border(
-            top: BorderSide(color: accentColor, width: 2),
-            left: BorderSide(color: accentColor, width: 2),
-            right: BorderSide(color: accentColor, width: 2),
-            bottom: BorderSide.none,
+            bottom: BorderSide(color: accentColor, width: 1.5),
           ),
         ),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(
-                color: accentColor.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Icon(icon, color: accentColor, size: 18),
+            Row(
+              children: [
+                Container(
+                  width: 32,
+                  height: 32,
+                  decoration: BoxDecoration(
+                    color: accentColor.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(icon, color: accentColor, size: 18),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  flex: 10,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Text(
+                          title,
+                          style: AppStyles.subtitle3.copyWith(
+                            color: AppColors.heading,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      if (formula != null)
+                        Expanded(
+                          flex: 4,
+                          child: Text(
+                            formula!,
+                            textAlign: TextAlign.end,
+                            style: AppStyles.body2.copyWith(
+                              color: accentColor,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 11,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 8),
+                AnimatedRotation(
+                  turns: isCollapsed ? -0.25 : 0,
+                  duration: const Duration(milliseconds: 200),
+                  child: Icon(
+                    Icons.keyboard_arrow_down,
+                    color: accentColor,
+                    size: 22,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Text(
-                title,
-                style: AppStyles.subtitle3.copyWith(
-                  color: AppColors.heading,
-                  fontWeight: FontWeight.w600,
+            if (formulaDesc != null) ...[
+              const SizedBox(height: 8),
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: accentColor.withValues(alpha: 0.06),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: accentColor.withValues(alpha: 0.15),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.calculate_outlined,
+                      color: accentColor,
+                      size: 16,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        formulaDesc!,
+                        softWrap: true,
+                        style: AppStyles.caption2.copyWith(
+                          color: AppColors.gray,
+                          fontSize: 11,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-            AnimatedRotation(
-              turns: isExpanded ? 0 : -0.25,
-              duration: const Duration(milliseconds: 200),
-              child: Icon(
-                Icons.keyboard_arrow_down,
-                color: accentColor,
-                size: 22,
-              ),
-            ),
+            ],
           ],
         ),
       ),
@@ -168,11 +236,13 @@ class SalaryInfoRow extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Expanded(
-            child: Text(
-              label,
-              style: AppStyles.body2.copyWith(
-                color: AppColors.gray,
-                fontSize: 12,
+            child: Center(
+              child: Text(
+                label,
+                style: AppStyles.body2.copyWith(
+                  color: AppColors.gray,
+                  fontSize: 12,
+                ),
               ),
             ),
           ),
@@ -190,200 +260,156 @@ class SalaryInfoRow extends StatelessWidget {
   }
 }
 
-class SalaryCalcRow extends StatelessWidget {
-  const SalaryCalcRow({
+class SalaryRow extends StatelessWidget {
+  const SalaryRow({
     super.key,
-    required this.label,
-    required this.value,
-    required this.formula,
-    this.isBold = false,
-  });
-
-  final String label;
-  final String value;
-  final String formula;
-  final bool isBold;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              label,
-              style: AppStyles.body2.copyWith(
-                color: AppColors.gray,
-                fontWeight: isBold ? FontWeight.w600 : FontWeight.w400,
-              ),
-            ),
-          ),
-          if (formula.isNotEmpty)
-            Container(
-              margin: const EdgeInsets.only(right: 8),
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-              decoration: BoxDecoration(
-                color: AppColors.gray.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Text(
-                formula,
-                style: AppStyles.caption2.copyWith(
-                  color: AppColors.gray,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          Text(
-            '$value đ',
-            style: AppStyles.body2.copyWith(
-              color: isBold ? AppColors.heading : AppColors.gray,
-              fontWeight: isBold ? FontWeight.w600 : FontWeight.w400,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class SalaryOvertimeRow extends StatelessWidget {
-  const SalaryOvertimeRow({
-    super.key,
-    required this.label,
-    required this.hours,
-    required this.amount,
-    required this.multiplier,
-    required this.formula,
-    required this.nf,
+    required this.items,
     required this.color,
+    this.highlightFirstColumn = false,
+    this.highlightMiddleColumn = false,
+    this.highlightLastColumn = true,
   });
 
-  final String label;
-  final double hours;
-  final double amount;
-  final String multiplier;
-  final String formula;
-  final NumberFormat nf;
+  final List<SalaryRowItem> items;
   final Color color;
+  final bool highlightFirstColumn;
+  final bool highlightMiddleColumn;
+  final bool highlightLastColumn;
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: 8,
-          height: 8,
-          decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          flex: 2,
-          child: Text(
-            label,
-            style: AppStyles.body2.copyWith(
-              color: AppColors.gray,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-        _SalaryOvertimeChip(
-          label: 'Số giờ',
-          value: '${nf.format(hours.round())}h',
-          formula: formula.split(',')[0],
-          color: color,
-        ),
-        const SizedBox(width: 8),
-        _SalaryOvertimeChip(
-          label: 'Thành tiền',
-          value: '${nf.format(amount.round())} đ',
-          formula: formula.split(',').length > 1
-              ? formula.split(',')[1].trim()
-              : formula,
-          multiplier: multiplier,
-          color: color,
-          isAmount: true,
-        ),
-      ],
-    );
+  bool _isHighlighted(int index) {
+    final isFirst = index == 0;
+    final isLast = index == items.length - 1;
+    final isMiddle = !isFirst && !isLast;
+    return (highlightFirstColumn && isFirst) ||
+        (highlightMiddleColumn && isMiddle) ||
+        (highlightLastColumn && isLast);
   }
-}
-
-class _SalaryOvertimeChip extends StatelessWidget {
-  const _SalaryOvertimeChip({
-    required this.label,
-    required this.value,
-    required this.formula,
-    required this.color,
-    this.multiplier,
-    this.isAmount = false,
-  });
-
-  final String label;
-  final String value;
-  final String formula;
-  final Color color;
-  final String? multiplier;
-  final bool isAmount;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.06),
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Column(
-        crossAxisAlignment:
-            isAmount ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: AppStyles.caption2.copyWith(
-              color: AppColors.gray,
-              fontSize: 10,
-            ),
-          ),
-          const SizedBox(height: 1),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                formula,
-                style: AppStyles.caption2.copyWith(
-                  color: color.withValues(alpha: 0.7),
-                  fontWeight: FontWeight.w600,
-                  fontSize: 10,
-                ),
-              ),
-              if (multiplier != null)
-                Container(
-                  margin: const EdgeInsets.only(left: 3),
-                  padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 0),
-                  decoration: BoxDecoration(
-                    color: color.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(3),
+      child: Row(
+        children: items.asMap().entries.map((entry) {
+          final index = entry.key;
+          final item = entry.value;
+          final isColHighlighted = _isHighlighted(index);
+          final showBg = isColHighlighted && item.highlightBg;
+
+          return Expanded(
+            child: Row(
+              children: [
+                if (index > 0)
+                  Container(
+                    width: 1,
+                    height: 24,
+                    color: AppColors.borderColor,
                   ),
-                  child: Text(
-                    multiplier!,
-                    style: AppStyles.caption2.copyWith(
-                      color: color,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 9,
+                Expanded(
+                  child: Container(
+                    color: showBg ? color.withValues(alpha: 0.06) : null,
+                    padding: EdgeInsets.symmetric(vertical: showBg ? 4 : 0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 28,
+                          child: Center(
+                            child: Text(
+                              item.label,
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppStyles.caption2.copyWith(
+                                color: AppColors.gray,
+                                fontSize: 10,
+                                height: 1.3,
+                              ),
+                            ),
+                          ),
+                        ),
+                        if (item.formula != null)
+                          Container(
+                            margin: const EdgeInsets.symmetric(vertical: 3),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 4, vertical: 2),
+                            child: Text(
+                              item.formula!,
+                              textAlign: TextAlign.center,
+                              style: AppStyles.caption2.copyWith(
+                                color: isColHighlighted ? color : AppColors.gray,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 9,
+                              ),
+                            ),
+                          )
+                        else
+                          const SizedBox(height: 19),
+                        Text(
+                          item.value,
+                          style: AppStyles.body2.copyWith(
+                            color: showBg ? color : AppColors.heading,
+                            fontWeight:
+                                showBg ? FontWeight.w700 : FontWeight.w600,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-            ],
-          ),
-          const SizedBox(height: 1),
+              ],
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+}
+
+class SalaryRowItem {
+  const SalaryRowItem({
+    required this.label,
+    required this.value,
+    this.formula,
+    this.highlightBg = true,
+  });
+
+  final String label;
+  final String value;
+  final String? formula;
+  final bool highlightBg;
+}
+
+class _SalarySectionDivider extends StatelessWidget {
+  const _SalarySectionDivider({required this.color});
+
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.06),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: color.withValues(alpha: 0.15)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.calculate_outlined, color: color, size: 14),
+          const SizedBox(width: 6),
           Text(
-            value,
-            style: AppStyles.body2.copyWith(
+            'Tổng',
+            style: AppStyles.caption2.copyWith(
               color: color,
-              fontWeight: FontWeight.w600,
-              fontSize: 12,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ],
