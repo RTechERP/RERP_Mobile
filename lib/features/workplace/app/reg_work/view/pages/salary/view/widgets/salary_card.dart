@@ -108,9 +108,7 @@ class _CardHeader extends StatelessWidget {
         decoration: BoxDecoration(
           color: accentColor.withValues(alpha: 0.06),
           borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-          border: Border(
-            bottom: BorderSide(color: accentColor, width: 1.5),
-          ),
+          border: Border(bottom: BorderSide(color: accentColor, width: 1.5)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,11 +209,7 @@ class _CardHeader extends StatelessWidget {
 }
 
 class SalaryInfoRow extends StatelessWidget {
-  const SalaryInfoRow({
-    super.key,
-    required this.label,
-    required this.value,
-  });
+  const SalaryInfoRow({super.key, required this.label, required this.value});
 
   final String label;
   final String value;
@@ -287,85 +281,97 @@ class SalaryRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        children: items.asMap().entries.map((entry) {
-          final index = entry.key;
-          final item = entry.value;
-          final isColHighlighted = _isHighlighted(index);
-          final showBg = isColHighlighted && item.highlightBg;
-
-          return Expanded(
-            child: Row(
-              children: [
-                if (index > 0)
-                  Container(
-                    width: 1,
-                    height: 24,
-                    color: AppColors.borderColor,
-                  ),
-                Expanded(
-                  child: Container(
-                    color: showBg ? color.withValues(alpha: 0.06) : null,
-                    padding: EdgeInsets.symmetric(vertical: showBg ? 4 : 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 28,
-                          child: Center(
-                            child: Text(
-                              item.label,
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: AppStyles.caption2.copyWith(
-                                color: AppColors.gray,
-                                fontSize: 10,
-                                height: 1.3,
-                              ),
-                            ),
-                          ),
-                        ),
-                        if (item.formula != null)
-                          Container(
-                            margin: const EdgeInsets.symmetric(vertical: 3),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 4, vertical: 2),
-                            child: Text(
-                              item.formula!,
-                              textAlign: TextAlign.center,
-                              style: AppStyles.caption2.copyWith(
-                                color: isColHighlighted ? color : AppColors.gray,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 9,
-                              ),
-                            ),
-                          )
-                        else
-                          const SizedBox(height: 19),
-                        Text(
-                          item.value,
-                          style: AppStyles.body2.copyWith(
-                            color: showBg ? color : AppColors.heading,
-                            fontWeight:
-                                showBg ? FontWeight.w700 : FontWeight.w600,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            for (int i = 0; i < items.length; i++) ...[
+              if (i > 0)
+                Container(width: 1, color: AppColors.borderColor),
+              Expanded(
+                child: _SalaryCell(
+                  item: items[i],
+                  color: color,
+                  isHighlighted: _isHighlighted(i),
                 ),
-              ],
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _SalaryCell extends StatelessWidget {
+  const _SalaryCell({
+    required this.item,
+    required this.color,
+    required this.isHighlighted,
+  });
+
+  final SalaryRowItem item;
+  final Color color;
+  final bool isHighlighted;
+
+  @override
+  Widget build(BuildContext context) {
+    final showBg = isHighlighted && item.highlightBg;
+
+    return Container(
+      color: showBg ? color.withValues(alpha: 0.06) : null,
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _buildLabel(),
+          if (item.formula != null) ...[
+            const SizedBox(height: 3),
+            Text(
+              item.formula!,
+              textAlign: TextAlign.center,
+              style: AppStyles.caption2.copyWith(
+                color: isHighlighted ? color : AppColors.gray,
+                fontWeight: FontWeight.w700,
+                fontSize: 9,
+                height: 1.2,
+              ),
             ),
-          );
-        }).toList(),
+          ],
+          const SizedBox(height: 2),
+          Text(
+            item.value,
+            textAlign: TextAlign.center,
+            style: AppStyles.body2.copyWith(
+              color: showBg ? color : AppColors.heading,
+              fontWeight: showBg ? FontWeight.w700 : FontWeight.w600,
+              fontSize: 12,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Label luôn chiếm không gian cố định để formula 2 cột đồng đều nhau.
+  Widget _buildLabel() {
+    return SizedBox(
+      height: 28,
+      child: Center(
+        child: Text(
+          item.label,
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: AppStyles.caption2.copyWith(
+            color: AppColors.gray,
+            fontSize: 10,
+            height: 1.3,
+          ),
+        ),
       ),
     );
   }
@@ -383,37 +389,4 @@ class SalaryRowItem {
   final String value;
   final String? formula;
   final bool highlightBg;
-}
-
-class _SalarySectionDivider extends StatelessWidget {
-  const _SalarySectionDivider({required this.color});
-
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.06),
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: color.withValues(alpha: 0.15)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.calculate_outlined, color: color, size: 14),
-          const SizedBox(width: 6),
-          Text(
-            'Tổng',
-            style: AppStyles.caption2.copyWith(
-              color: color,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }

@@ -127,7 +127,7 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
             highlightLastColumn: false,
             items: [
               SalaryRowItem(
-                label: 'Các k.cộng khác',
+                label: 'Các khoản cộng khác',
                 value: f(state.totalOtherAdditions),
                 formula: '(25)',
                 highlightBg: false,

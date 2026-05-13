@@ -50,7 +50,7 @@ class SalaryAllowanceCard extends StatelessWidget {
               SalaryRowItem(
                 label: 'Tổng phụ cấp',
                 value: f(state.totalAllowance),
-                formula: '(19) = (16)+(17)+(18)',
+                formula: '(19) = (17)+(18)',
               ),
             ],
           ),

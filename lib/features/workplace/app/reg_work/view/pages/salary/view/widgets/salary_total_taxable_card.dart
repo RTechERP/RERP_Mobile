@@ -37,7 +37,7 @@ class SalaryTotalTaxableCard extends StatelessWidget {
             highlightMiddleColumn: true,
             items: [
               SalaryRowItem(
-                label: 'Tổng các khoản giảm trừ thuế TNCN',
+                label: 'Tổng khoản giảm trừ thuế TNCN',
                 value: f(state.taxableIncome),
                 formula: '(45)',
                 highlightBg: false,
