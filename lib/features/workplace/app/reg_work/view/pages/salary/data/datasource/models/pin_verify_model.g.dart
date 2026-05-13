@@ -33,12 +33,16 @@ _$VerifiedPinResponseImpl _$$VerifiedPinResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$VerifiedPinResponseImpl(
       verified: json['verified'] as bool?,
+      message: json['message'] as String?,
+      attemptsLeft: (json['attemptsLeft'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$VerifiedPinResponseImplToJson(
         _$VerifiedPinResponseImpl instance) =>
     <String, dynamic>{
       'verified': instance.verified,
+      'message': instance.message,
+      'attemptsLeft': instance.attemptsLeft,
     };
 
 _$RequestPinResponseImpl _$$RequestPinResponseImplFromJson(

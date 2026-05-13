@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
+import '../datasource/models/pin_verify_model.dart';
 import '../datasource/service/salary_pin_service.dart';
 import 'salary_pin_repo.dart';
 
@@ -43,11 +44,11 @@ class SalaryPinRepoImpl implements SalaryPinRepo {
   }
 
   @override
-  Future<Either<BaseError, bool>> verifyPin({required String pin}) async {
+  Future<Either<BaseError, VerifiedPinResponse>> verifyPin({required String pin}) async {
     try {
       final res = await _service.verifyPin(pin: pin);
       if (res.status == 1 && res.data != null) {
-        return right(res.data!.verified ?? false);
+        return right(res.data!);
       }
       return left(
         BaseError.httpInternalServerError(res.message ?? 'Co loi xay ra'),

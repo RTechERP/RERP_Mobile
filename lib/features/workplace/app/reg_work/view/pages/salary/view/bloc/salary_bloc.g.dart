@@ -121,6 +121,10 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState pinError(String? pinError);
 
+  SalaryState pinRetryCount(int pinRetryCount);
+
+  SalaryState isPinLocked(bool isPinLocked);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -185,6 +189,8 @@ abstract class _$SalaryStateCWProxy {
     bool? pinVerified,
     bool? isVerifyingPin,
     String? pinError,
+    int? pinRetryCount,
+    bool? isPinLocked,
   });
 }
 
@@ -408,6 +414,13 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
   SalaryState pinError(String? pinError) => this(pinError: pinError);
 
   @override
+  SalaryState pinRetryCount(int pinRetryCount) =>
+      this(pinRetryCount: pinRetryCount);
+
+  @override
+  SalaryState isPinLocked(bool isPinLocked) => this(isPinLocked: isPinLocked);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -473,6 +486,8 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? pinVerified = const $CopyWithPlaceholder(),
     Object? isVerifyingPin = const $CopyWithPlaceholder(),
     Object? pinError = const $CopyWithPlaceholder(),
+    Object? pinRetryCount = const $CopyWithPlaceholder(),
+    Object? isPinLocked = const $CopyWithPlaceholder(),
   }) {
     return SalaryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -753,6 +768,16 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
           ? _value.pinError
           // ignore: cast_nullable_to_non_nullable
           : pinError as String?,
+      pinRetryCount:
+          pinRetryCount == const $CopyWithPlaceholder() || pinRetryCount == null
+              ? _value.pinRetryCount
+              // ignore: cast_nullable_to_non_nullable
+              : pinRetryCount as int,
+      isPinLocked:
+          isPinLocked == const $CopyWithPlaceholder() || isPinLocked == null
+              ? _value.isPinLocked
+              // ignore: cast_nullable_to_non_nullable
+              : isPinLocked as bool,
     );
   }
 }

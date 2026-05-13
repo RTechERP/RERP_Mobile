@@ -33,6 +33,12 @@ import '../../../features/workplace/app/reg_work/view/pages/salary/pincode/pinco
 class DialogService {
   static DateTime? _lastToastTime;
   static const int _toastCooldownSeconds = 3;
+  static const int _maxPinRetry = 3;
+  static int _pinFailedCount = 0;
+
+  static void resetPinFailedCount() {
+    _pinFailedCount = 0;
+  }
 
   static Future<bool> showPinDialog({
     required BuildContext context,
@@ -42,6 +48,8 @@ class DialogService {
     bool confirmed = false;
 
     final controller = PinInputController();
+    int currentRetryCount = _pinFailedCount;
+    bool isLocked = _pinFailedCount >= _maxPinRetry;
 
     await showDialog<bool>(
       context: context,
@@ -57,9 +65,14 @@ class DialogService {
             listener: (blocContext, state) {
               if (state.pinVerified) {
                 confirmed = true;
+                _pinFailedCount = 0;
                 Navigator.of(dialogContext).pop(true);
+                return;
               }
               if (state.pinError != null && !state.isVerifyingPin) {
+                currentRetryCount = _pinFailedCount + 1;
+                _pinFailedCount = currentRetryCount;
+                isLocked = _pinFailedCount >= _maxPinRetry;
                 controller.setError();
               }
             },
@@ -67,10 +80,16 @@ class DialogService {
               return PinDialogWidget(
                 controller: controller,
                 state: state,
+                pinRetryCount: currentRetryCount,
+                isPinLocked: isLocked,
                 onSubmit: (pin) {
+                  if (isLocked) return;
                   blocContext.read<SalaryBloc>().add(SalaryEvent.verifyPin(pin));
                 },
-                onCancel: () => Navigator.of(dialogContext).pop(false),
+                onCancel: () {
+                  _pinFailedCount = 0;
+                  Navigator.of(dialogContext).pop(false);
+                },
               );
             },
           ),

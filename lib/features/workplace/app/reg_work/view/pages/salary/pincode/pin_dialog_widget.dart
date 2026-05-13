@@ -15,12 +15,16 @@ class PinDialogWidget extends StatefulWidget {
     required this.state,
     required this.onSubmit,
     required this.onCancel,
+    this.pinRetryCount = 0,
+    this.isPinLocked = false,
   });
 
   final PinInputController controller;
   final SalaryState state;
   final void Function(String pin) onSubmit;
   final VoidCallback onCancel;
+  final int pinRetryCount;
+  final bool isPinLocked;
 
   @override
   State<PinDialogWidget> createState() => _PinDialogWidgetState();
@@ -99,20 +103,22 @@ class _PinDialogWidgetState extends State<PinDialogWidget>
               ),
             ],
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _buildHeader(),
-              SizedBox(height: 28.h),
-              _buildPinInput(),
-              if (widget.state.pinError != null) ...[
-                SizedBox(height: 14.h),
-                _buildError(),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _buildHeader(),
+                SizedBox(height: 28.h),
+                _buildPinInput(),
+                if (widget.state.pinError != null) ...[
+                  SizedBox(height: 14.h),
+                  _buildError(),
+                ],
+                SizedBox(height: 24.h),
+                _buildActions(),
+                SizedBox(height: 20.h),
               ],
-              SizedBox(height: 24.h),
-              _buildActions(),
-              SizedBox(height: 20.h),
-            ],
+            ),
           ),
         ),
       ),
@@ -120,6 +126,7 @@ class _PinDialogWidgetState extends State<PinDialogWidget>
   }
 
   Widget _buildHeader() {
+    final isLocked = widget.isPinLocked;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.only(
@@ -132,7 +139,13 @@ class _PinDialogWidgetState extends State<PinDialogWidget>
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
+          colors: isLocked
+              ? [
+            AppColors.alert,
+            AppColors.alert.withValues(alpha: 0.85),
+            const Color(0xFFE74C3C),
+          ]
+              : [
             AppColors.primaryERP,
             AppColors.primaryERP.withValues(alpha: 0.85),
             AppColors.secondaryERP,
@@ -154,34 +167,35 @@ class _PinDialogWidgetState extends State<PinDialogWidget>
               alignment: Alignment.center,
               children: [
                 Icon(
-                  Icons.lock_rounded,
+                  isLocked ? Icons.lock_clock_rounded : Icons.lock_rounded,
                   size: 28,
                   color: AppColors.white,
                 ),
-                Positioned(
-                  bottom: 10,
-                  right: 10,
-                  child: Container(
-                    width: 18,
-                    height: 18,
-                    decoration: BoxDecoration(
-                      color: AppColors.success,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: AppColors.white, width: 2),
-                    ),
-                    child: Icon(
-                      Icons.check_rounded,
-                      size: 10,
-                      color: AppColors.white,
+                if (!isLocked)
+                  Positioned(
+                    bottom: 10,
+                    right: 10,
+                    child: Container(
+                      width: 18,
+                      height: 18,
+                      decoration: BoxDecoration(
+                        color: AppColors.success,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: AppColors.white, width: 2),
+                      ),
+                      child: Icon(
+                        Icons.check_rounded,
+                        size: 10,
+                        color: AppColors.white,
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
           ),
           SizedBox(height: 14.h),
           Text(
-            'Xác thực bảo mật',
+            isLocked ? 'Đã bị khóa' : 'Xác thực bảo mật',
             style: AppStyles.headingTitle5.copyWith(
               color: AppColors.white,
               fontWeight: FontWeight.w700,
@@ -189,7 +203,9 @@ class _PinDialogWidgetState extends State<PinDialogWidget>
           ),
           SizedBox(height: 4.h),
           Text(
-            'Nhập mã PIN để tiếp tục',
+            isLocked
+                ? 'Bạn đã nhập sai quá nhiều lần'
+                : 'Nhập mã PIN để tiếp tục',
             style: AppStyles.body2.copyWith(
               color: AppColors.white.withValues(alpha: 0.82),
               fontWeight: FontWeight.w400,
@@ -202,6 +218,54 @@ class _PinDialogWidgetState extends State<PinDialogWidget>
   }
 
   Widget _buildPinInput() {
+    final isLocked = widget.isPinLocked;
+
+    if (isLocked) {
+      return Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: Container(
+          padding: EdgeInsets.all(20.w),
+          decoration: BoxDecoration(
+            color: AppColors.alert.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(14.r),
+            border: Border.all(
+              color: AppColors.alert.withValues(alpha: 0.2),
+            ),
+          ),
+          child: Column(
+            children: [
+              Icon(
+                Icons.warning_amber_rounded,
+                size: 40,
+                color: AppColors.alert,
+              ),
+              SizedBox(height: 10.h),
+              Text(
+                'Đã nhập sai ${widget.pinRetryCount} lần',
+                style: AppStyles.body1.copyWith(
+                  color: AppColors.alert,
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 6.h),
+              Text(
+                'Vui lòng liên hệ HR hoặc thử lại',
+                style: AppStyles.body2.copyWith(
+                  color: AppColors.alert.withValues(alpha: 0.8),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return _buildPinInputContent();
+  }
+
+  Widget _buildPinInputContent() {
     final defaultPinTheme = PinTheme(
       width: 44.w,
       height: 52.h,
@@ -293,26 +357,54 @@ class _PinDialogWidgetState extends State<PinDialogWidget>
             },
           ),
           SizedBox(height: 12.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.info_outline_rounded,
-                size: 13,
-                color: AppColors.gray,
-              ),
-              SizedBox(width: 4.w),
-              Text(
-                'Mã PIN gồm 6 chữ số',
-                style: AppStyles.caption1.copyWith(
-                  color: AppColors.gray,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
+          _buildRetryHint(),
         ],
       ),
+    );
+  }
+
+  Widget _buildRetryHint() {
+    final remaining = 3 - widget.pinRetryCount;
+    if (remaining <= 0) return const SizedBox.shrink();
+
+    if (remaining == 1) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.warning_amber_rounded,
+            size: 13,
+            color: AppColors.alert,
+          ),
+          SizedBox(width: 4.w),
+          Text(
+            'Còn $remaining lần nhập',
+            style: AppStyles.caption1.copyWith(
+              color: AppColors.alert,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ],
+      );
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.info_outline_rounded,
+          size: 13,
+          color: AppColors.gray,
+        ),
+        SizedBox(width: 4.w),
+        Text(
+          'Còn $remaining lần nhập',
+          style: AppStyles.caption1.copyWith(
+            color: AppColors.gray,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ],
     );
   }
 
@@ -338,7 +430,9 @@ class _PinDialogWidgetState extends State<PinDialogWidget>
               shape: BoxShape.circle,
             ),
             child: Icon(
-              Icons.error_outline_rounded,
+              widget.isPinLocked
+                  ? Icons.lock_clock_rounded
+                  : Icons.error_outline_rounded,
               size: 12,
               color: AppColors.alert,
             ),
@@ -346,7 +440,10 @@ class _PinDialogWidgetState extends State<PinDialogWidget>
           SizedBox(width: 8.w),
           Expanded(
             child: Text(
-              widget.state.pinError!,
+              widget.isPinLocked
+                  ? 'Đã nhập sai ${widget
+                  .pinRetryCount} lần. Vui lòng liên hệ HR hoặc thử lại sau.'
+                  : widget.state.pinError ?? '',
               style: AppStyles.body2.copyWith(
                 color: AppColors.alert,
                 fontWeight: FontWeight.w500,
@@ -360,9 +457,21 @@ class _PinDialogWidgetState extends State<PinDialogWidget>
   }
 
   Widget _buildActions() {
+    final isLocked = widget.isPinLocked;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
-      child: Row(
+      child: isLocked
+          ? SizedBox(
+        width: double.infinity,
+        height: 46.h,
+        child: _ActionButton(
+          label: 'Đóng',
+          onTap: widget.onCancel,
+          isPrimary: true,
+        ),
+      )
+          : Row(
         children: [
           Expanded(
             child: _ActionButton(
@@ -395,12 +504,14 @@ class _ActionButton extends StatelessWidget {
     required this.onTap,
     required this.isPrimary,
     this.isLoading = false,
+    this.isLocked = false,
   });
 
   final String label;
   final VoidCallback? onTap;
   final bool isPrimary;
   final bool isLoading;
+  final bool isLocked;
 
   @override
   Widget build(BuildContext context) {
@@ -408,10 +519,19 @@ class _ActionButton extends StatelessWidget {
       return Container(
         height: 46.h,
         decoration: BoxDecoration(
-          gradient: onTap != null ? AppColors.gradientERP : null,
-          color: onTap == null ? AppColors.disableBorderButton : null,
+          gradient: isLocked
+              ? LinearGradient(
+                  colors: [
+                    AppColors.alert,
+                    AppColors.alert.withValues(alpha: 0.85),
+                  ],
+                )
+              : onTap != null
+                  ? AppColors.gradientERP
+                  : null,
+          color: onTap == null && !isLocked ? AppColors.disableBorderButton : null,
           borderRadius: BorderRadius.circular(12.r),
-          boxShadow: onTap != null
+          boxShadow: onTap != null && !isLocked
               ? [
                   BoxShadow(
                     color: AppColors.primaryERP.withValues(alpha: 0.3),
@@ -439,23 +559,28 @@ class _ActionButton extends StatelessWidget {
                   : Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          label,
-                          style: AppStyles.button1.copyWith(
-                            color: onTap != null
-                                ? AppColors.white
-                                : AppColors.textTertiaryColor,
-                            fontWeight: FontWeight.w600,
+                        if (isLocked) ...[
+                          Icon(
+                            Icons.close_rounded,
+                            size: 16,
+                            color: AppColors.white,
                           ),
-                        ),
-                        if (onTap != null) ...[
-                          SizedBox(width: 4.w),
+                          SizedBox(width: 6.w),
+                        ] else if (onTap != null) ...[
                           Icon(
                             Icons.arrow_forward_rounded,
                             size: 16,
                             color: AppColors.white,
                           ),
+                          SizedBox(width: 4.w),
                         ],
+                        Text(
+                          label,
+                          style: AppStyles.button1.copyWith(
+                            color: AppColors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ],
                     ),
             ),

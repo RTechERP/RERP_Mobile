@@ -27,6 +27,8 @@ class SetPinResponse with _$SetPinResponse {
 class VerifiedPinResponse with _$VerifiedPinResponse {
   const factory VerifiedPinResponse({
     @JsonKey(name: 'verified') bool? verified,
+    @JsonKey(name: 'message') String? message,
+    @JsonKey(name: 'attemptsLeft') int? attemptsLeft,
   }) = _VerifiedPinResponse;
 
   factory VerifiedPinResponse.fromJson(Map<String, dynamic> json) =>

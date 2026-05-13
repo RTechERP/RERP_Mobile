@@ -305,6 +305,10 @@ VerifiedPinResponse _$VerifiedPinResponseFromJson(Map<String, dynamic> json) {
 mixin _$VerifiedPinResponse {
   @JsonKey(name: 'verified')
   bool? get verified => throw _privateConstructorUsedError;
+  @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+  @JsonKey(name: 'attemptsLeft')
+  int? get attemptsLeft => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -318,7 +322,10 @@ abstract class $VerifiedPinResponseCopyWith<$Res> {
           VerifiedPinResponse value, $Res Function(VerifiedPinResponse) then) =
       _$VerifiedPinResponseCopyWithImpl<$Res, VerifiedPinResponse>;
   @useResult
-  $Res call({@JsonKey(name: 'verified') bool? verified});
+  $Res call(
+      {@JsonKey(name: 'verified') bool? verified,
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'attemptsLeft') int? attemptsLeft});
 }
 
 /// @nodoc
@@ -335,12 +342,22 @@ class _$VerifiedPinResponseCopyWithImpl<$Res, $Val extends VerifiedPinResponse>
   @override
   $Res call({
     Object? verified = freezed,
+    Object? message = freezed,
+    Object? attemptsLeft = freezed,
   }) {
     return _then(_value.copyWith(
       verified: freezed == verified
           ? _value.verified
           : verified // ignore: cast_nullable_to_non_nullable
               as bool?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      attemptsLeft: freezed == attemptsLeft
+          ? _value.attemptsLeft
+          : attemptsLeft // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -353,7 +370,10 @@ abstract class _$$VerifiedPinResponseImplCopyWith<$Res>
       __$$VerifiedPinResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'verified') bool? verified});
+  $Res call(
+      {@JsonKey(name: 'verified') bool? verified,
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'attemptsLeft') int? attemptsLeft});
 }
 
 /// @nodoc
@@ -368,12 +388,22 @@ class __$$VerifiedPinResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? verified = freezed,
+    Object? message = freezed,
+    Object? attemptsLeft = freezed,
   }) {
     return _then(_$VerifiedPinResponseImpl(
       verified: freezed == verified
           ? _value.verified
           : verified // ignore: cast_nullable_to_non_nullable
               as bool?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      attemptsLeft: freezed == attemptsLeft
+          ? _value.attemptsLeft
+          : attemptsLeft // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -381,7 +411,10 @@ class __$$VerifiedPinResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$VerifiedPinResponseImpl implements _VerifiedPinResponse {
-  const _$VerifiedPinResponseImpl({@JsonKey(name: 'verified') this.verified});
+  const _$VerifiedPinResponseImpl(
+      {@JsonKey(name: 'verified') this.verified,
+      @JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'attemptsLeft') this.attemptsLeft});
 
   factory _$VerifiedPinResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$VerifiedPinResponseImplFromJson(json);
@@ -389,10 +422,16 @@ class _$VerifiedPinResponseImpl implements _VerifiedPinResponse {
   @override
   @JsonKey(name: 'verified')
   final bool? verified;
+  @override
+  @JsonKey(name: 'message')
+  final String? message;
+  @override
+  @JsonKey(name: 'attemptsLeft')
+  final int? attemptsLeft;
 
   @override
   String toString() {
-    return 'VerifiedPinResponse(verified: $verified)';
+    return 'VerifiedPinResponse(verified: $verified, message: $message, attemptsLeft: $attemptsLeft)';
   }
 
   @override
@@ -401,12 +440,15 @@ class _$VerifiedPinResponseImpl implements _VerifiedPinResponse {
         (other.runtimeType == runtimeType &&
             other is _$VerifiedPinResponseImpl &&
             (identical(other.verified, verified) ||
-                other.verified == verified));
+                other.verified == verified) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.attemptsLeft, attemptsLeft) ||
+                other.attemptsLeft == attemptsLeft));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, verified);
+  int get hashCode => Object.hash(runtimeType, verified, message, attemptsLeft);
 
   @JsonKey(ignore: true)
   @override
@@ -425,7 +467,9 @@ class _$VerifiedPinResponseImpl implements _VerifiedPinResponse {
 
 abstract class _VerifiedPinResponse implements VerifiedPinResponse {
   const factory _VerifiedPinResponse(
-          {@JsonKey(name: 'verified') final bool? verified}) =
+          {@JsonKey(name: 'verified') final bool? verified,
+          @JsonKey(name: 'message') final String? message,
+          @JsonKey(name: 'attemptsLeft') final int? attemptsLeft}) =
       _$VerifiedPinResponseImpl;
 
   factory _VerifiedPinResponse.fromJson(Map<String, dynamic> json) =
@@ -434,6 +478,12 @@ abstract class _VerifiedPinResponse implements VerifiedPinResponse {
   @override
   @JsonKey(name: 'verified')
   bool? get verified;
+  @override
+  @JsonKey(name: 'message')
+  String? get message;
+  @override
+  @JsonKey(name: 'attemptsLeft')
+  int? get attemptsLeft;
   @override
   @JsonKey(ignore: true)
   _$$VerifiedPinResponseImplCopyWith<_$VerifiedPinResponseImpl> get copyWith =>

@@ -77,6 +77,8 @@ class SalaryState extends BaseBlocState {
   final bool pinVerified;
   final bool isVerifyingPin;
   final String? pinError;
+  final int pinRetryCount;
+  final bool isPinLocked;
 
   const SalaryState({
     required super.status,
@@ -139,6 +141,8 @@ class SalaryState extends BaseBlocState {
     this.pinVerified = false,
     this.isVerifyingPin = false,
     this.pinError,
+    this.pinRetryCount = 0,
+    this.isPinLocked = false,
   });
 
   factory SalaryState.init() => const SalaryState(
@@ -207,5 +211,7 @@ class SalaryState extends BaseBlocState {
         pinVerified,
         isVerifyingPin,
         pinError,
+        pinRetryCount,
+        isPinLocked,
       ];
 }

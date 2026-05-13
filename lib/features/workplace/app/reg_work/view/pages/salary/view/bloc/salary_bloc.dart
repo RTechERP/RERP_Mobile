@@ -43,7 +43,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
 
   //---(Init)---//
   Future<void> _onInitMenu(Emitter<SalaryState> emit) async {
-    emit(state.copyWith(isVerifyingPin: true, pinError: null, pinVerified: false));
+    emit(state.copyWith(isVerifyingPin: true, pinError: null, pinVerified: false, pinRetryCount: 0, isPinLocked: false));
     final res = await _salaryPinRepo.checkPin();
     res.fold(
       (err) {
@@ -82,32 +82,61 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
     );
   }
 
+  static const int _maxPinRetry = 3;
+
   Future<void> _onVerifyPin(Emitter<SalaryState> emit, String pin) async {
     emit(state.copyWith(isVerifyingPin: true, pinError: null));
     final res = await _salaryPinRepo.verifyPin(pin: pin);
     res.fold(
       (err) {
         _log.logE('Verify PIN failed: $err');
-        emit(state.copyWith(
-          isVerifyingPin: false,
-          pinVerified: false,
-          pinError: err.getErrorMessage,
-        ));
-      },
-      (verified) {
-        _log.logI('Verify PIN result: $verified');
-        if (verified) {
-          _isPinVerified = true;
+        final msg = err.getErrorMessage;
+        final isLocked = msg.contains('khóa') ||
+                         msg.contains('quá 3 lần') ||
+                         msg.contains('3 lần') ||
+                         msg.contains('thử lại sau');
+
+        if (isLocked) {
           emit(state.copyWith(
             isVerifyingPin: false,
-            pinVerified: true,
-            pinError: null,
+            pinVerified: false,
+            pinError: msg,
+            pinRetryCount: _maxPinRetry,
+            isPinLocked: true,
           ));
         } else {
           emit(state.copyWith(
             isVerifyingPin: false,
             pinVerified: false,
-            pinError: 'Ma PIN khong dung. Vui long thu lai.',
+            pinError: msg,
+            pinRetryCount: state.pinRetryCount + 1,
+            isPinLocked: state.pinRetryCount + 1 >= _maxPinRetry,
+          ));
+        }
+      },
+      (data) {
+        _log.logI('Verify PIN: verified=${data.verified}, msg=${data.message}, attemptsLeft=${data.attemptsLeft}');
+
+        if (data.verified == true) {
+          _isPinVerified = true;
+          emit(state.copyWith(
+            isVerifyingPin: false,
+            pinVerified: true,
+            pinError: null,
+            pinRetryCount: 0,
+            isPinLocked: false,
+          ));
+        } else {
+          final attemptsLeft = data.attemptsLeft ?? 0;
+          final newRetryCount = _maxPinRetry - attemptsLeft;
+          final isLocked = attemptsLeft <= 0;
+
+          emit(state.copyWith(
+            isVerifyingPin: false,
+            pinVerified: false,
+            pinError: data.message ?? 'Ma PIN khong dung.',
+            pinRetryCount: newRetryCount,
+            isPinLocked: isLocked,
           ));
         }
       },
