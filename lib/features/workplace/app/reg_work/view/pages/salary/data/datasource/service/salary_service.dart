@@ -7,28 +7,6 @@ import '../models/salary_model.dart';
 @injectable
 class SalaryService extends DioBaseApiService {
   SalaryService(super.dio);
-
-  Future<BaseData<List<SalaryItem>>> getSalary() async {
-    return get<BaseData<List<SalaryItem>>>(
-      ApiEndPoint.getSalary,
-      parser: (json) => BaseData<List<SalaryItem>>.fromJson(
-        json,
-        (data) {
-          if (data is List) {
-            return data
-                .map((e) => SalaryItem.fromJson(e as Map<String, dynamic>))
-                .toList();
-          }
-          final list =
-              (data as Map<String, dynamic>?)?['data'] as List? ?? [];
-          return list
-              .map((e) => SalaryItem.fromJson(e as Map<String, dynamic>))
-              .toList();
-        },
-      ),
-    );
-  }
-
   Future<BaseData<SummarySalaryResponse>> getPersonalSyntheticByMonth({
     required int year,
     required int month,

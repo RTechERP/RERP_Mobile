@@ -306,27 +306,26 @@ class SalaryPayrollItem with _$SalaryPayrollItem {
       _$SalaryPayrollItemFromJson(json);
 }
 
-//---(SalaryItem - existing)---//
+//---(TimekeepingDayItem)---//
 
 @freezed
-class SalaryItem with _$SalaryItem {
-  const factory SalaryItem({
+class TimekeepingDayItem with _$TimekeepingDayItem {
+  const factory TimekeepingDayItem({
     @JsonKey(name: 'ID') int? id,
     @JsonKey(name: 'EmployeeID') int? employeeId,
-    @JsonKey(name: 'EmployeeName') String? employeeName,
-    @JsonKey(name: 'EmployeeCode') String? employeeCode,
-    @JsonKey(name: 'BasicSalary') double? basicSalary,
-    @JsonKey(name: 'Allowance') double? allowance,
-    @JsonKey(name: 'Deduction') double? deduction,
-    @JsonKey(name: 'GrossSalary') double? grossSalary,
-    @JsonKey(name: 'Tax') double? tax,
-    @JsonKey(name: 'Insurance') double? insurance,
-    @JsonKey(name: 'NetSalary') double? netSalary,
-    @JsonKey(name: 'Month') int? month,
-    @JsonKey(name: 'Year') int? year,
-    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
-  }) = _SalaryItem;
+    @JsonKey(name: 'Date') DateTime? date,
+    @JsonKey(name: 'DayOfWeek') int? dayOfWeek,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'StatusText') String? statusText,
+    @JsonKey(name: 'CheckIn') String? checkIn,
+    @JsonKey(name: 'CheckOut') String? checkOut,
+    @JsonKey(name: 'WorkHours') double? workHours,
+    @JsonKey(name: 'OvertimeHours') double? overtimeHours,
+    @JsonKey(name: 'IsLate') bool? isLate,
+    @JsonKey(name: 'IsEarlyLeave') bool? isEarlyLeave,
+    @JsonKey(name: 'Note') String? note,
+  }) = _TimekeepingDayItem;
 
-  factory SalaryItem.fromJson(Map<String, dynamic> json) =>
-      _$SalaryItemFromJson(json);
+  factory TimekeepingDayItem.fromJson(Map<String, dynamic> json) =>
+      _$TimekeepingDayItemFromJson(json);
 }

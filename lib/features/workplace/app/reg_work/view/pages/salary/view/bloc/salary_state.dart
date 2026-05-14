@@ -85,6 +85,7 @@ class SalaryState extends BaseBlocState {
 
   // Payroll data
   final List<SalaryPayrollItem> payroll;
+  final SalaryListChamCong? listChamcong;
 
   const SalaryState({
     required super.status,
@@ -149,6 +150,7 @@ class SalaryState extends BaseBlocState {
     this.forgotEmailMessage,
     this.otpToken,
     this.payroll = const [],
+    this.listChamcong,
   });
 
   factory SalaryState.init() => const SalaryState(
@@ -219,5 +221,6 @@ class SalaryState extends BaseBlocState {
         forgotEmailMessage,
         otpToken,
         payroll,
+        listChamcong,
       ];
 }

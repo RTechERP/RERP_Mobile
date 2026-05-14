@@ -19,29 +19,32 @@ abstract class _$TimekeepingStateCWProxy {
 
   TimekeepingState selectedMonth(DateTime? selectedMonth);
 
-  TimekeepingState actualWorkDays(double actualWorkDays);
-
-  TimekeepingState holidayDays(double holidayDays);
-
-  TimekeepingState tetDays(double tetDays);
-
-  TimekeepingState leaveDays(double leaveDays);
-
-  TimekeepingState privatePaidDays(double privatePaidDays);
-
-  TimekeepingState wfhDays(double wfhDays);
-
-  TimekeepingState paidWorkDays(double paidWorkDays);
-
-  TimekeepingState unpaidLeaveDays(double unpaidLeaveDays);
-
-  TimekeepingState totalDays(double totalDays);
-
-  TimekeepingState days(List<TimekeepingDayItem> days);
-
   TimekeepingState firstDayOfMonth(DateTime? firstDayOfMonth);
 
   TimekeepingState lastDayOfMonth(DateTime? lastDayOfMonth);
+
+  TimekeepingState chamCongData(SalaryListChamCongData? chamCongData);
+
+  TimekeepingState chamCongDetails(
+      List<SalaryListChamCongDetail>? chamCongDetails);
+
+  TimekeepingState days(List<TimekeepingDayItem> days);
+
+  TimekeepingState totalDayActual(int? totalDayActual);
+
+  TimekeepingState totalHoliday(double? totalHoliday);
+
+  TimekeepingState totalDayOnleave1(double? totalDayOnleave1);
+
+  TimekeepingState totalDayOnleave2(double? totalDayOnleave2);
+
+  TimekeepingState totalDayOnleave3(double? totalDayOnleave3);
+
+  TimekeepingState totalDayWfh(double? totalDayWfh);
+
+  TimekeepingState totalDayGet(double? totalDayGet);
+
+  TimekeepingState totalDay(double? totalDay);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TimekeepingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -56,18 +59,19 @@ abstract class _$TimekeepingStateCWProxy {
     String? employeeCode,
     String? departmentName,
     DateTime? selectedMonth,
-    double? actualWorkDays,
-    double? holidayDays,
-    double? tetDays,
-    double? leaveDays,
-    double? privatePaidDays,
-    double? wfhDays,
-    double? paidWorkDays,
-    double? unpaidLeaveDays,
-    double? totalDays,
-    List<TimekeepingDayItem>? days,
     DateTime? firstDayOfMonth,
     DateTime? lastDayOfMonth,
+    SalaryListChamCongData? chamCongData,
+    List<SalaryListChamCongDetail>? chamCongDetails,
+    List<TimekeepingDayItem>? days,
+    int? totalDayActual,
+    double? totalHoliday,
+    double? totalDayOnleave1,
+    double? totalDayOnleave2,
+    double? totalDayOnleave3,
+    double? totalDayWfh,
+    double? totalDayGet,
+    double? totalDay,
   });
 }
 
@@ -100,47 +104,55 @@ class _$TimekeepingStateCWProxyImpl implements _$TimekeepingStateCWProxy {
       this(selectedMonth: selectedMonth);
 
   @override
-  TimekeepingState actualWorkDays(double actualWorkDays) =>
-      this(actualWorkDays: actualWorkDays);
-
-  @override
-  TimekeepingState holidayDays(double holidayDays) =>
-      this(holidayDays: holidayDays);
-
-  @override
-  TimekeepingState tetDays(double tetDays) => this(tetDays: tetDays);
-
-  @override
-  TimekeepingState leaveDays(double leaveDays) => this(leaveDays: leaveDays);
-
-  @override
-  TimekeepingState privatePaidDays(double privatePaidDays) =>
-      this(privatePaidDays: privatePaidDays);
-
-  @override
-  TimekeepingState wfhDays(double wfhDays) => this(wfhDays: wfhDays);
-
-  @override
-  TimekeepingState paidWorkDays(double paidWorkDays) =>
-      this(paidWorkDays: paidWorkDays);
-
-  @override
-  TimekeepingState unpaidLeaveDays(double unpaidLeaveDays) =>
-      this(unpaidLeaveDays: unpaidLeaveDays);
-
-  @override
-  TimekeepingState totalDays(double totalDays) => this(totalDays: totalDays);
-
-  @override
-  TimekeepingState days(List<TimekeepingDayItem> days) => this(days: days);
-
-  @override
   TimekeepingState firstDayOfMonth(DateTime? firstDayOfMonth) =>
       this(firstDayOfMonth: firstDayOfMonth);
 
   @override
   TimekeepingState lastDayOfMonth(DateTime? lastDayOfMonth) =>
       this(lastDayOfMonth: lastDayOfMonth);
+
+  @override
+  TimekeepingState chamCongData(SalaryListChamCongData? chamCongData) =>
+      this(chamCongData: chamCongData);
+
+  @override
+  TimekeepingState chamCongDetails(
+          List<SalaryListChamCongDetail>? chamCongDetails) =>
+      this(chamCongDetails: chamCongDetails);
+
+  @override
+  TimekeepingState days(List<TimekeepingDayItem> days) => this(days: days);
+
+  @override
+  TimekeepingState totalDayActual(int? totalDayActual) =>
+      this(totalDayActual: totalDayActual);
+
+  @override
+  TimekeepingState totalHoliday(double? totalHoliday) =>
+      this(totalHoliday: totalHoliday);
+
+  @override
+  TimekeepingState totalDayOnleave1(double? totalDayOnleave1) =>
+      this(totalDayOnleave1: totalDayOnleave1);
+
+  @override
+  TimekeepingState totalDayOnleave2(double? totalDayOnleave2) =>
+      this(totalDayOnleave2: totalDayOnleave2);
+
+  @override
+  TimekeepingState totalDayOnleave3(double? totalDayOnleave3) =>
+      this(totalDayOnleave3: totalDayOnleave3);
+
+  @override
+  TimekeepingState totalDayWfh(double? totalDayWfh) =>
+      this(totalDayWfh: totalDayWfh);
+
+  @override
+  TimekeepingState totalDayGet(double? totalDayGet) =>
+      this(totalDayGet: totalDayGet);
+
+  @override
+  TimekeepingState totalDay(double? totalDay) => this(totalDay: totalDay);
 
   @override
 
@@ -157,18 +169,19 @@ class _$TimekeepingStateCWProxyImpl implements _$TimekeepingStateCWProxy {
     Object? employeeCode = const $CopyWithPlaceholder(),
     Object? departmentName = const $CopyWithPlaceholder(),
     Object? selectedMonth = const $CopyWithPlaceholder(),
-    Object? actualWorkDays = const $CopyWithPlaceholder(),
-    Object? holidayDays = const $CopyWithPlaceholder(),
-    Object? tetDays = const $CopyWithPlaceholder(),
-    Object? leaveDays = const $CopyWithPlaceholder(),
-    Object? privatePaidDays = const $CopyWithPlaceholder(),
-    Object? wfhDays = const $CopyWithPlaceholder(),
-    Object? paidWorkDays = const $CopyWithPlaceholder(),
-    Object? unpaidLeaveDays = const $CopyWithPlaceholder(),
-    Object? totalDays = const $CopyWithPlaceholder(),
-    Object? days = const $CopyWithPlaceholder(),
     Object? firstDayOfMonth = const $CopyWithPlaceholder(),
     Object? lastDayOfMonth = const $CopyWithPlaceholder(),
+    Object? chamCongData = const $CopyWithPlaceholder(),
+    Object? chamCongDetails = const $CopyWithPlaceholder(),
+    Object? days = const $CopyWithPlaceholder(),
+    Object? totalDayActual = const $CopyWithPlaceholder(),
+    Object? totalHoliday = const $CopyWithPlaceholder(),
+    Object? totalDayOnleave1 = const $CopyWithPlaceholder(),
+    Object? totalDayOnleave2 = const $CopyWithPlaceholder(),
+    Object? totalDayOnleave3 = const $CopyWithPlaceholder(),
+    Object? totalDayWfh = const $CopyWithPlaceholder(),
+    Object? totalDayGet = const $CopyWithPlaceholder(),
+    Object? totalDay = const $CopyWithPlaceholder(),
   }) {
     return TimekeepingState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -195,51 +208,6 @@ class _$TimekeepingStateCWProxyImpl implements _$TimekeepingStateCWProxy {
           ? _value.selectedMonth
           // ignore: cast_nullable_to_non_nullable
           : selectedMonth as DateTime?,
-      actualWorkDays: actualWorkDays == const $CopyWithPlaceholder() ||
-              actualWorkDays == null
-          ? _value.actualWorkDays
-          // ignore: cast_nullable_to_non_nullable
-          : actualWorkDays as double,
-      holidayDays:
-          holidayDays == const $CopyWithPlaceholder() || holidayDays == null
-              ? _value.holidayDays
-              // ignore: cast_nullable_to_non_nullable
-              : holidayDays as double,
-      tetDays: tetDays == const $CopyWithPlaceholder() || tetDays == null
-          ? _value.tetDays
-          // ignore: cast_nullable_to_non_nullable
-          : tetDays as double,
-      leaveDays: leaveDays == const $CopyWithPlaceholder() || leaveDays == null
-          ? _value.leaveDays
-          // ignore: cast_nullable_to_non_nullable
-          : leaveDays as double,
-      privatePaidDays: privatePaidDays == const $CopyWithPlaceholder() ||
-              privatePaidDays == null
-          ? _value.privatePaidDays
-          // ignore: cast_nullable_to_non_nullable
-          : privatePaidDays as double,
-      wfhDays: wfhDays == const $CopyWithPlaceholder() || wfhDays == null
-          ? _value.wfhDays
-          // ignore: cast_nullable_to_non_nullable
-          : wfhDays as double,
-      paidWorkDays:
-          paidWorkDays == const $CopyWithPlaceholder() || paidWorkDays == null
-              ? _value.paidWorkDays
-              // ignore: cast_nullable_to_non_nullable
-              : paidWorkDays as double,
-      unpaidLeaveDays: unpaidLeaveDays == const $CopyWithPlaceholder() ||
-              unpaidLeaveDays == null
-          ? _value.unpaidLeaveDays
-          // ignore: cast_nullable_to_non_nullable
-          : unpaidLeaveDays as double,
-      totalDays: totalDays == const $CopyWithPlaceholder() || totalDays == null
-          ? _value.totalDays
-          // ignore: cast_nullable_to_non_nullable
-          : totalDays as double,
-      days: days == const $CopyWithPlaceholder() || days == null
-          ? _value.days
-          // ignore: cast_nullable_to_non_nullable
-          : days as List<TimekeepingDayItem>,
       firstDayOfMonth: firstDayOfMonth == const $CopyWithPlaceholder()
           ? _value.firstDayOfMonth
           // ignore: cast_nullable_to_non_nullable
@@ -248,6 +216,50 @@ class _$TimekeepingStateCWProxyImpl implements _$TimekeepingStateCWProxy {
           ? _value.lastDayOfMonth
           // ignore: cast_nullable_to_non_nullable
           : lastDayOfMonth as DateTime?,
+      chamCongData: chamCongData == const $CopyWithPlaceholder()
+          ? _value.chamCongData
+          // ignore: cast_nullable_to_non_nullable
+          : chamCongData as SalaryListChamCongData?,
+      chamCongDetails: chamCongDetails == const $CopyWithPlaceholder()
+          ? _value.chamCongDetails
+          // ignore: cast_nullable_to_non_nullable
+          : chamCongDetails as List<SalaryListChamCongDetail>?,
+      days: days == const $CopyWithPlaceholder() || days == null
+          ? _value.days
+          // ignore: cast_nullable_to_non_nullable
+          : days as List<TimekeepingDayItem>,
+      totalDayActual: totalDayActual == const $CopyWithPlaceholder()
+          ? _value.totalDayActual
+          // ignore: cast_nullable_to_non_nullable
+          : totalDayActual as int?,
+      totalHoliday: totalHoliday == const $CopyWithPlaceholder()
+          ? _value.totalHoliday
+          // ignore: cast_nullable_to_non_nullable
+          : totalHoliday as double?,
+      totalDayOnleave1: totalDayOnleave1 == const $CopyWithPlaceholder()
+          ? _value.totalDayOnleave1
+          // ignore: cast_nullable_to_non_nullable
+          : totalDayOnleave1 as double?,
+      totalDayOnleave2: totalDayOnleave2 == const $CopyWithPlaceholder()
+          ? _value.totalDayOnleave2
+          // ignore: cast_nullable_to_non_nullable
+          : totalDayOnleave2 as double?,
+      totalDayOnleave3: totalDayOnleave3 == const $CopyWithPlaceholder()
+          ? _value.totalDayOnleave3
+          // ignore: cast_nullable_to_non_nullable
+          : totalDayOnleave3 as double?,
+      totalDayWfh: totalDayWfh == const $CopyWithPlaceholder()
+          ? _value.totalDayWfh
+          // ignore: cast_nullable_to_non_nullable
+          : totalDayWfh as double?,
+      totalDayGet: totalDayGet == const $CopyWithPlaceholder()
+          ? _value.totalDayGet
+          // ignore: cast_nullable_to_non_nullable
+          : totalDayGet as double?,
+      totalDay: totalDay == const $CopyWithPlaceholder()
+          ? _value.totalDay
+          // ignore: cast_nullable_to_non_nullable
+          : totalDay as double?,
     );
   }
 }

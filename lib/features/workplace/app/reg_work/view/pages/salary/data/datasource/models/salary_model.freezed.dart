@@ -6167,74 +6167,71 @@ abstract class _SalaryPayrollItem implements SalaryPayrollItem {
       throw _privateConstructorUsedError;
 }
 
-SalaryItem _$SalaryItemFromJson(Map<String, dynamic> json) {
-  return _SalaryItem.fromJson(json);
+TimekeepingDayItem _$TimekeepingDayItemFromJson(Map<String, dynamic> json) {
+  return _TimekeepingDayItem.fromJson(json);
 }
 
 /// @nodoc
-mixin _$SalaryItem {
+mixin _$TimekeepingDayItem {
   @JsonKey(name: 'ID')
   int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'EmployeeID')
   int? get employeeId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'EmployeeName')
-  String? get employeeName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'EmployeeCode')
-  String? get employeeCode => throw _privateConstructorUsedError;
-  @JsonKey(name: 'BasicSalary')
-  double? get basicSalary => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Allowance')
-  double? get allowance => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Deduction')
-  double? get deduction => throw _privateConstructorUsedError;
-  @JsonKey(name: 'GrossSalary')
-  double? get grossSalary => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Tax')
-  double? get tax => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Insurance')
-  double? get insurance => throw _privateConstructorUsedError;
-  @JsonKey(name: 'NetSalary')
-  double? get netSalary => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Month')
-  int? get month => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Year')
-  int? get year => throw _privateConstructorUsedError;
-  @JsonKey(name: 'CreatedDate')
-  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Date')
+  DateTime? get date => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DayOfWeek')
+  int? get dayOfWeek => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Status')
+  int? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StatusText')
+  String? get statusText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CheckIn')
+  String? get checkIn => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CheckOut')
+  String? get checkOut => throw _privateConstructorUsedError;
+  @JsonKey(name: 'WorkHours')
+  double? get workHours => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OvertimeHours')
+  double? get overtimeHours => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsLate')
+  bool? get isLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsEarlyLeave')
+  bool? get isEarlyLeave => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SalaryItemCopyWith<SalaryItem> get copyWith =>
+  $TimekeepingDayItemCopyWith<TimekeepingDayItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SalaryItemCopyWith<$Res> {
-  factory $SalaryItemCopyWith(
-          SalaryItem value, $Res Function(SalaryItem) then) =
-      _$SalaryItemCopyWithImpl<$Res, SalaryItem>;
+abstract class $TimekeepingDayItemCopyWith<$Res> {
+  factory $TimekeepingDayItemCopyWith(
+          TimekeepingDayItem value, $Res Function(TimekeepingDayItem) then) =
+      _$TimekeepingDayItemCopyWithImpl<$Res, TimekeepingDayItem>;
   @useResult
   $Res call(
       {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'EmployeeID') int? employeeId,
-      @JsonKey(name: 'EmployeeName') String? employeeName,
-      @JsonKey(name: 'EmployeeCode') String? employeeCode,
-      @JsonKey(name: 'BasicSalary') double? basicSalary,
-      @JsonKey(name: 'Allowance') double? allowance,
-      @JsonKey(name: 'Deduction') double? deduction,
-      @JsonKey(name: 'GrossSalary') double? grossSalary,
-      @JsonKey(name: 'Tax') double? tax,
-      @JsonKey(name: 'Insurance') double? insurance,
-      @JsonKey(name: 'NetSalary') double? netSalary,
-      @JsonKey(name: 'Month') int? month,
-      @JsonKey(name: 'Year') int? year,
-      @JsonKey(name: 'CreatedDate') DateTime? createdDate});
+      @JsonKey(name: 'Date') DateTime? date,
+      @JsonKey(name: 'DayOfWeek') int? dayOfWeek,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'StatusText') String? statusText,
+      @JsonKey(name: 'CheckIn') String? checkIn,
+      @JsonKey(name: 'CheckOut') String? checkOut,
+      @JsonKey(name: 'WorkHours') double? workHours,
+      @JsonKey(name: 'OvertimeHours') double? overtimeHours,
+      @JsonKey(name: 'IsLate') bool? isLate,
+      @JsonKey(name: 'IsEarlyLeave') bool? isEarlyLeave,
+      @JsonKey(name: 'Note') String? note});
 }
 
 /// @nodoc
-class _$SalaryItemCopyWithImpl<$Res, $Val extends SalaryItem>
-    implements $SalaryItemCopyWith<$Res> {
-  _$SalaryItemCopyWithImpl(this._value, this._then);
+class _$TimekeepingDayItemCopyWithImpl<$Res, $Val extends TimekeepingDayItem>
+    implements $TimekeepingDayItemCopyWith<$Res> {
+  _$TimekeepingDayItemCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -6246,18 +6243,17 @@ class _$SalaryItemCopyWithImpl<$Res, $Val extends SalaryItem>
   $Res call({
     Object? id = freezed,
     Object? employeeId = freezed,
-    Object? employeeName = freezed,
-    Object? employeeCode = freezed,
-    Object? basicSalary = freezed,
-    Object? allowance = freezed,
-    Object? deduction = freezed,
-    Object? grossSalary = freezed,
-    Object? tax = freezed,
-    Object? insurance = freezed,
-    Object? netSalary = freezed,
-    Object? month = freezed,
-    Object? year = freezed,
-    Object? createdDate = freezed,
+    Object? date = freezed,
+    Object? dayOfWeek = freezed,
+    Object? status = freezed,
+    Object? statusText = freezed,
+    Object? checkIn = freezed,
+    Object? checkOut = freezed,
+    Object? workHours = freezed,
+    Object? overtimeHours = freezed,
+    Object? isLate = freezed,
+    Object? isEarlyLeave = freezed,
+    Object? note = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -6268,89 +6264,84 @@ class _$SalaryItemCopyWithImpl<$Res, $Val extends SalaryItem>
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
               as int?,
-      employeeName: freezed == employeeName
-          ? _value.employeeName
-          : employeeName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      employeeCode: freezed == employeeCode
-          ? _value.employeeCode
-          : employeeCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      basicSalary: freezed == basicSalary
-          ? _value.basicSalary
-          : basicSalary // ignore: cast_nullable_to_non_nullable
-              as double?,
-      allowance: freezed == allowance
-          ? _value.allowance
-          : allowance // ignore: cast_nullable_to_non_nullable
-              as double?,
-      deduction: freezed == deduction
-          ? _value.deduction
-          : deduction // ignore: cast_nullable_to_non_nullable
-              as double?,
-      grossSalary: freezed == grossSalary
-          ? _value.grossSalary
-          : grossSalary // ignore: cast_nullable_to_non_nullable
-              as double?,
-      tax: freezed == tax
-          ? _value.tax
-          : tax // ignore: cast_nullable_to_non_nullable
-              as double?,
-      insurance: freezed == insurance
-          ? _value.insurance
-          : insurance // ignore: cast_nullable_to_non_nullable
-              as double?,
-      netSalary: freezed == netSalary
-          ? _value.netSalary
-          : netSalary // ignore: cast_nullable_to_non_nullable
-              as double?,
-      month: freezed == month
-          ? _value.month
-          : month // ignore: cast_nullable_to_non_nullable
-              as int?,
-      year: freezed == year
-          ? _value.year
-          : year // ignore: cast_nullable_to_non_nullable
-              as int?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      dayOfWeek: freezed == dayOfWeek
+          ? _value.dayOfWeek
+          : dayOfWeek // ignore: cast_nullable_to_non_nullable
+              as int?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      statusText: freezed == statusText
+          ? _value.statusText
+          : statusText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkIn: freezed == checkIn
+          ? _value.checkIn
+          : checkIn // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkOut: freezed == checkOut
+          ? _value.checkOut
+          : checkOut // ignore: cast_nullable_to_non_nullable
+              as String?,
+      workHours: freezed == workHours
+          ? _value.workHours
+          : workHours // ignore: cast_nullable_to_non_nullable
+              as double?,
+      overtimeHours: freezed == overtimeHours
+          ? _value.overtimeHours
+          : overtimeHours // ignore: cast_nullable_to_non_nullable
+              as double?,
+      isLate: freezed == isLate
+          ? _value.isLate
+          : isLate // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isEarlyLeave: freezed == isEarlyLeave
+          ? _value.isEarlyLeave
+          : isEarlyLeave // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$SalaryItemImplCopyWith<$Res>
-    implements $SalaryItemCopyWith<$Res> {
-  factory _$$SalaryItemImplCopyWith(
-          _$SalaryItemImpl value, $Res Function(_$SalaryItemImpl) then) =
-      __$$SalaryItemImplCopyWithImpl<$Res>;
+abstract class _$$TimekeepingDayItemImplCopyWith<$Res>
+    implements $TimekeepingDayItemCopyWith<$Res> {
+  factory _$$TimekeepingDayItemImplCopyWith(_$TimekeepingDayItemImpl value,
+          $Res Function(_$TimekeepingDayItemImpl) then) =
+      __$$TimekeepingDayItemImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'EmployeeID') int? employeeId,
-      @JsonKey(name: 'EmployeeName') String? employeeName,
-      @JsonKey(name: 'EmployeeCode') String? employeeCode,
-      @JsonKey(name: 'BasicSalary') double? basicSalary,
-      @JsonKey(name: 'Allowance') double? allowance,
-      @JsonKey(name: 'Deduction') double? deduction,
-      @JsonKey(name: 'GrossSalary') double? grossSalary,
-      @JsonKey(name: 'Tax') double? tax,
-      @JsonKey(name: 'Insurance') double? insurance,
-      @JsonKey(name: 'NetSalary') double? netSalary,
-      @JsonKey(name: 'Month') int? month,
-      @JsonKey(name: 'Year') int? year,
-      @JsonKey(name: 'CreatedDate') DateTime? createdDate});
+      @JsonKey(name: 'Date') DateTime? date,
+      @JsonKey(name: 'DayOfWeek') int? dayOfWeek,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'StatusText') String? statusText,
+      @JsonKey(name: 'CheckIn') String? checkIn,
+      @JsonKey(name: 'CheckOut') String? checkOut,
+      @JsonKey(name: 'WorkHours') double? workHours,
+      @JsonKey(name: 'OvertimeHours') double? overtimeHours,
+      @JsonKey(name: 'IsLate') bool? isLate,
+      @JsonKey(name: 'IsEarlyLeave') bool? isEarlyLeave,
+      @JsonKey(name: 'Note') String? note});
 }
 
 /// @nodoc
-class __$$SalaryItemImplCopyWithImpl<$Res>
-    extends _$SalaryItemCopyWithImpl<$Res, _$SalaryItemImpl>
-    implements _$$SalaryItemImplCopyWith<$Res> {
-  __$$SalaryItemImplCopyWithImpl(
-      _$SalaryItemImpl _value, $Res Function(_$SalaryItemImpl) _then)
+class __$$TimekeepingDayItemImplCopyWithImpl<$Res>
+    extends _$TimekeepingDayItemCopyWithImpl<$Res, _$TimekeepingDayItemImpl>
+    implements _$$TimekeepingDayItemImplCopyWith<$Res> {
+  __$$TimekeepingDayItemImplCopyWithImpl(_$TimekeepingDayItemImpl _value,
+      $Res Function(_$TimekeepingDayItemImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -6358,20 +6349,19 @@ class __$$SalaryItemImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? employeeId = freezed,
-    Object? employeeName = freezed,
-    Object? employeeCode = freezed,
-    Object? basicSalary = freezed,
-    Object? allowance = freezed,
-    Object? deduction = freezed,
-    Object? grossSalary = freezed,
-    Object? tax = freezed,
-    Object? insurance = freezed,
-    Object? netSalary = freezed,
-    Object? month = freezed,
-    Object? year = freezed,
-    Object? createdDate = freezed,
+    Object? date = freezed,
+    Object? dayOfWeek = freezed,
+    Object? status = freezed,
+    Object? statusText = freezed,
+    Object? checkIn = freezed,
+    Object? checkOut = freezed,
+    Object? workHours = freezed,
+    Object? overtimeHours = freezed,
+    Object? isLate = freezed,
+    Object? isEarlyLeave = freezed,
+    Object? note = freezed,
   }) {
-    return _then(_$SalaryItemImpl(
+    return _then(_$TimekeepingDayItemImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -6380,79 +6370,74 @@ class __$$SalaryItemImplCopyWithImpl<$Res>
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
               as int?,
-      employeeName: freezed == employeeName
-          ? _value.employeeName
-          : employeeName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      employeeCode: freezed == employeeCode
-          ? _value.employeeCode
-          : employeeCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      basicSalary: freezed == basicSalary
-          ? _value.basicSalary
-          : basicSalary // ignore: cast_nullable_to_non_nullable
-              as double?,
-      allowance: freezed == allowance
-          ? _value.allowance
-          : allowance // ignore: cast_nullable_to_non_nullable
-              as double?,
-      deduction: freezed == deduction
-          ? _value.deduction
-          : deduction // ignore: cast_nullable_to_non_nullable
-              as double?,
-      grossSalary: freezed == grossSalary
-          ? _value.grossSalary
-          : grossSalary // ignore: cast_nullable_to_non_nullable
-              as double?,
-      tax: freezed == tax
-          ? _value.tax
-          : tax // ignore: cast_nullable_to_non_nullable
-              as double?,
-      insurance: freezed == insurance
-          ? _value.insurance
-          : insurance // ignore: cast_nullable_to_non_nullable
-              as double?,
-      netSalary: freezed == netSalary
-          ? _value.netSalary
-          : netSalary // ignore: cast_nullable_to_non_nullable
-              as double?,
-      month: freezed == month
-          ? _value.month
-          : month // ignore: cast_nullable_to_non_nullable
-              as int?,
-      year: freezed == year
-          ? _value.year
-          : year // ignore: cast_nullable_to_non_nullable
-              as int?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      dayOfWeek: freezed == dayOfWeek
+          ? _value.dayOfWeek
+          : dayOfWeek // ignore: cast_nullable_to_non_nullable
+              as int?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      statusText: freezed == statusText
+          ? _value.statusText
+          : statusText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkIn: freezed == checkIn
+          ? _value.checkIn
+          : checkIn // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkOut: freezed == checkOut
+          ? _value.checkOut
+          : checkOut // ignore: cast_nullable_to_non_nullable
+              as String?,
+      workHours: freezed == workHours
+          ? _value.workHours
+          : workHours // ignore: cast_nullable_to_non_nullable
+              as double?,
+      overtimeHours: freezed == overtimeHours
+          ? _value.overtimeHours
+          : overtimeHours // ignore: cast_nullable_to_non_nullable
+              as double?,
+      isLate: freezed == isLate
+          ? _value.isLate
+          : isLate // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isEarlyLeave: freezed == isEarlyLeave
+          ? _value.isEarlyLeave
+          : isEarlyLeave // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SalaryItemImpl implements _SalaryItem {
-  const _$SalaryItemImpl(
+class _$TimekeepingDayItemImpl implements _TimekeepingDayItem {
+  const _$TimekeepingDayItemImpl(
       {@JsonKey(name: 'ID') this.id,
       @JsonKey(name: 'EmployeeID') this.employeeId,
-      @JsonKey(name: 'EmployeeName') this.employeeName,
-      @JsonKey(name: 'EmployeeCode') this.employeeCode,
-      @JsonKey(name: 'BasicSalary') this.basicSalary,
-      @JsonKey(name: 'Allowance') this.allowance,
-      @JsonKey(name: 'Deduction') this.deduction,
-      @JsonKey(name: 'GrossSalary') this.grossSalary,
-      @JsonKey(name: 'Tax') this.tax,
-      @JsonKey(name: 'Insurance') this.insurance,
-      @JsonKey(name: 'NetSalary') this.netSalary,
-      @JsonKey(name: 'Month') this.month,
-      @JsonKey(name: 'Year') this.year,
-      @JsonKey(name: 'CreatedDate') this.createdDate});
+      @JsonKey(name: 'Date') this.date,
+      @JsonKey(name: 'DayOfWeek') this.dayOfWeek,
+      @JsonKey(name: 'Status') this.status,
+      @JsonKey(name: 'StatusText') this.statusText,
+      @JsonKey(name: 'CheckIn') this.checkIn,
+      @JsonKey(name: 'CheckOut') this.checkOut,
+      @JsonKey(name: 'WorkHours') this.workHours,
+      @JsonKey(name: 'OvertimeHours') this.overtimeHours,
+      @JsonKey(name: 'IsLate') this.isLate,
+      @JsonKey(name: 'IsEarlyLeave') this.isEarlyLeave,
+      @JsonKey(name: 'Note') this.note});
 
-  factory _$SalaryItemImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SalaryItemImplFromJson(json);
+  factory _$TimekeepingDayItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TimekeepingDayItemImplFromJson(json);
 
   @override
   @JsonKey(name: 'ID')
@@ -6461,76 +6446,69 @@ class _$SalaryItemImpl implements _SalaryItem {
   @JsonKey(name: 'EmployeeID')
   final int? employeeId;
   @override
-  @JsonKey(name: 'EmployeeName')
-  final String? employeeName;
+  @JsonKey(name: 'Date')
+  final DateTime? date;
   @override
-  @JsonKey(name: 'EmployeeCode')
-  final String? employeeCode;
+  @JsonKey(name: 'DayOfWeek')
+  final int? dayOfWeek;
   @override
-  @JsonKey(name: 'BasicSalary')
-  final double? basicSalary;
+  @JsonKey(name: 'Status')
+  final int? status;
   @override
-  @JsonKey(name: 'Allowance')
-  final double? allowance;
+  @JsonKey(name: 'StatusText')
+  final String? statusText;
   @override
-  @JsonKey(name: 'Deduction')
-  final double? deduction;
+  @JsonKey(name: 'CheckIn')
+  final String? checkIn;
   @override
-  @JsonKey(name: 'GrossSalary')
-  final double? grossSalary;
+  @JsonKey(name: 'CheckOut')
+  final String? checkOut;
   @override
-  @JsonKey(name: 'Tax')
-  final double? tax;
+  @JsonKey(name: 'WorkHours')
+  final double? workHours;
   @override
-  @JsonKey(name: 'Insurance')
-  final double? insurance;
+  @JsonKey(name: 'OvertimeHours')
+  final double? overtimeHours;
   @override
-  @JsonKey(name: 'NetSalary')
-  final double? netSalary;
+  @JsonKey(name: 'IsLate')
+  final bool? isLate;
   @override
-  @JsonKey(name: 'Month')
-  final int? month;
+  @JsonKey(name: 'IsEarlyLeave')
+  final bool? isEarlyLeave;
   @override
-  @JsonKey(name: 'Year')
-  final int? year;
-  @override
-  @JsonKey(name: 'CreatedDate')
-  final DateTime? createdDate;
+  @JsonKey(name: 'Note')
+  final String? note;
 
   @override
   String toString() {
-    return 'SalaryItem(id: $id, employeeId: $employeeId, employeeName: $employeeName, employeeCode: $employeeCode, basicSalary: $basicSalary, allowance: $allowance, deduction: $deduction, grossSalary: $grossSalary, tax: $tax, insurance: $insurance, netSalary: $netSalary, month: $month, year: $year, createdDate: $createdDate)';
+    return 'TimekeepingDayItem(id: $id, employeeId: $employeeId, date: $date, dayOfWeek: $dayOfWeek, status: $status, statusText: $statusText, checkIn: $checkIn, checkOut: $checkOut, workHours: $workHours, overtimeHours: $overtimeHours, isLate: $isLate, isEarlyLeave: $isEarlyLeave, note: $note)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SalaryItemImpl &&
+            other is _$TimekeepingDayItemImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.employeeId, employeeId) ||
                 other.employeeId == employeeId) &&
-            (identical(other.employeeName, employeeName) ||
-                other.employeeName == employeeName) &&
-            (identical(other.employeeCode, employeeCode) ||
-                other.employeeCode == employeeCode) &&
-            (identical(other.basicSalary, basicSalary) ||
-                other.basicSalary == basicSalary) &&
-            (identical(other.allowance, allowance) ||
-                other.allowance == allowance) &&
-            (identical(other.deduction, deduction) ||
-                other.deduction == deduction) &&
-            (identical(other.grossSalary, grossSalary) ||
-                other.grossSalary == grossSalary) &&
-            (identical(other.tax, tax) || other.tax == tax) &&
-            (identical(other.insurance, insurance) ||
-                other.insurance == insurance) &&
-            (identical(other.netSalary, netSalary) ||
-                other.netSalary == netSalary) &&
-            (identical(other.month, month) || other.month == month) &&
-            (identical(other.year, year) || other.year == year) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate));
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.dayOfWeek, dayOfWeek) ||
+                other.dayOfWeek == dayOfWeek) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.statusText, statusText) ||
+                other.statusText == statusText) &&
+            (identical(other.checkIn, checkIn) || other.checkIn == checkIn) &&
+            (identical(other.checkOut, checkOut) ||
+                other.checkOut == checkOut) &&
+            (identical(other.workHours, workHours) ||
+                other.workHours == workHours) &&
+            (identical(other.overtimeHours, overtimeHours) ||
+                other.overtimeHours == overtimeHours) &&
+            (identical(other.isLate, isLate) || other.isLate == isLate) &&
+            (identical(other.isEarlyLeave, isEarlyLeave) ||
+                other.isEarlyLeave == isEarlyLeave) &&
+            (identical(other.note, note) || other.note == note));
   }
 
   @JsonKey(ignore: true)
@@ -6539,53 +6517,51 @@ class _$SalaryItemImpl implements _SalaryItem {
       runtimeType,
       id,
       employeeId,
-      employeeName,
-      employeeCode,
-      basicSalary,
-      allowance,
-      deduction,
-      grossSalary,
-      tax,
-      insurance,
-      netSalary,
-      month,
-      year,
-      createdDate);
+      date,
+      dayOfWeek,
+      status,
+      statusText,
+      checkIn,
+      checkOut,
+      workHours,
+      overtimeHours,
+      isLate,
+      isEarlyLeave,
+      note);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SalaryItemImplCopyWith<_$SalaryItemImpl> get copyWith =>
-      __$$SalaryItemImplCopyWithImpl<_$SalaryItemImpl>(this, _$identity);
+  _$$TimekeepingDayItemImplCopyWith<_$TimekeepingDayItemImpl> get copyWith =>
+      __$$TimekeepingDayItemImplCopyWithImpl<_$TimekeepingDayItemImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SalaryItemImplToJson(
+    return _$$TimekeepingDayItemImplToJson(
       this,
     );
   }
 }
 
-abstract class _SalaryItem implements SalaryItem {
-  const factory _SalaryItem(
-          {@JsonKey(name: 'ID') final int? id,
-          @JsonKey(name: 'EmployeeID') final int? employeeId,
-          @JsonKey(name: 'EmployeeName') final String? employeeName,
-          @JsonKey(name: 'EmployeeCode') final String? employeeCode,
-          @JsonKey(name: 'BasicSalary') final double? basicSalary,
-          @JsonKey(name: 'Allowance') final double? allowance,
-          @JsonKey(name: 'Deduction') final double? deduction,
-          @JsonKey(name: 'GrossSalary') final double? grossSalary,
-          @JsonKey(name: 'Tax') final double? tax,
-          @JsonKey(name: 'Insurance') final double? insurance,
-          @JsonKey(name: 'NetSalary') final double? netSalary,
-          @JsonKey(name: 'Month') final int? month,
-          @JsonKey(name: 'Year') final int? year,
-          @JsonKey(name: 'CreatedDate') final DateTime? createdDate}) =
-      _$SalaryItemImpl;
+abstract class _TimekeepingDayItem implements TimekeepingDayItem {
+  const factory _TimekeepingDayItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'EmployeeID') final int? employeeId,
+      @JsonKey(name: 'Date') final DateTime? date,
+      @JsonKey(name: 'DayOfWeek') final int? dayOfWeek,
+      @JsonKey(name: 'Status') final int? status,
+      @JsonKey(name: 'StatusText') final String? statusText,
+      @JsonKey(name: 'CheckIn') final String? checkIn,
+      @JsonKey(name: 'CheckOut') final String? checkOut,
+      @JsonKey(name: 'WorkHours') final double? workHours,
+      @JsonKey(name: 'OvertimeHours') final double? overtimeHours,
+      @JsonKey(name: 'IsLate') final bool? isLate,
+      @JsonKey(name: 'IsEarlyLeave') final bool? isEarlyLeave,
+      @JsonKey(name: 'Note') final String? note}) = _$TimekeepingDayItemImpl;
 
-  factory _SalaryItem.fromJson(Map<String, dynamic> json) =
-      _$SalaryItemImpl.fromJson;
+  factory _TimekeepingDayItem.fromJson(Map<String, dynamic> json) =
+      _$TimekeepingDayItemImpl.fromJson;
 
   @override
   @JsonKey(name: 'ID')
@@ -6594,43 +6570,40 @@ abstract class _SalaryItem implements SalaryItem {
   @JsonKey(name: 'EmployeeID')
   int? get employeeId;
   @override
-  @JsonKey(name: 'EmployeeName')
-  String? get employeeName;
+  @JsonKey(name: 'Date')
+  DateTime? get date;
   @override
-  @JsonKey(name: 'EmployeeCode')
-  String? get employeeCode;
+  @JsonKey(name: 'DayOfWeek')
+  int? get dayOfWeek;
   @override
-  @JsonKey(name: 'BasicSalary')
-  double? get basicSalary;
+  @JsonKey(name: 'Status')
+  int? get status;
   @override
-  @JsonKey(name: 'Allowance')
-  double? get allowance;
+  @JsonKey(name: 'StatusText')
+  String? get statusText;
   @override
-  @JsonKey(name: 'Deduction')
-  double? get deduction;
+  @JsonKey(name: 'CheckIn')
+  String? get checkIn;
   @override
-  @JsonKey(name: 'GrossSalary')
-  double? get grossSalary;
+  @JsonKey(name: 'CheckOut')
+  String? get checkOut;
   @override
-  @JsonKey(name: 'Tax')
-  double? get tax;
+  @JsonKey(name: 'WorkHours')
+  double? get workHours;
   @override
-  @JsonKey(name: 'Insurance')
-  double? get insurance;
+  @JsonKey(name: 'OvertimeHours')
+  double? get overtimeHours;
   @override
-  @JsonKey(name: 'NetSalary')
-  double? get netSalary;
+  @JsonKey(name: 'IsLate')
+  bool? get isLate;
   @override
-  @JsonKey(name: 'Month')
-  int? get month;
+  @JsonKey(name: 'IsEarlyLeave')
+  bool? get isEarlyLeave;
   @override
-  @JsonKey(name: 'Year')
-  int? get year;
-  @override
-  @JsonKey(name: 'CreatedDate')
-  DateTime? get createdDate;
+  @JsonKey(name: 'Note')
+  String? get note;
   @override
   @JsonKey(ignore: true)
-  _$$SalaryItemImplCopyWith<_$SalaryItemImpl> get copyWith =>
+  _$$TimekeepingDayItemImplCopyWith<_$TimekeepingDayItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

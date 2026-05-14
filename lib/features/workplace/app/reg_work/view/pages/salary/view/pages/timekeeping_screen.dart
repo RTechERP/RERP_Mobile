@@ -7,7 +7,7 @@ import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
-import '../../data/datasource/models/timekeeping_model.dart';
+import '../../data/datasource/models/salary_model.dart';
 import '../bloc/timekeeping_bloc.dart';
 import 'widgets/timekeeping_month_picker.dart';
 import 'widgets/timekeeping_day_cell.dart';
@@ -80,7 +80,7 @@ class _TimekeepingScreenState
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-          color: AppColors.bgCard,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: AppColors.borderColor),
         ),
@@ -115,7 +115,7 @@ class _TimekeepingScreenState
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
-                '${state.actualWorkDays.toInt()} công',
+                '${state.totalDayActual ?? 0} công',
                 style: AppStyles.body2.copyWith(
                   color: AppColors.primaryERP,
                   fontWeight: FontWeight.w700,
@@ -151,7 +151,7 @@ class _TimekeepingScreenState
                 ),
                 const Spacer(),
                 Text(
-                  '${state.totalDays.toInt()} ngày',
+                  '${state.totalDay?.toInt() ?? 0} ngày',
                   style: AppStyles.subtitle3.copyWith(
                     color: AppColors.primaryERP,
                     fontWeight: FontWeight.w800,
@@ -161,12 +161,12 @@ class _TimekeepingScreenState
             ),
           ),
           const Divider(height: 1, indent: 16, endIndent: 16),
-          _buildStatRow('Đi làm thực tế', state.actualWorkDays, AppColors.stateSuccessColor),
-          _buildStatRow('Nghỉ lễ, Tết', state.holidayDays + state.tetDays, AppColors.warning),
-          _buildStatRow('Nghỉ phép', state.leaveDays, AppColors.secondaryERP),
-          _buildStatRow('Việc riêng có lương', state.privatePaidDays, AppColors.primaryERP),
-          _buildStatRow('WFH', state.wfhDays, AppColors.stateInfoColor),
-          _buildStatRow('Nghỉ không lương', state.unpaidLeaveDays, AppColors.alert),
+          _buildStatRow('Đi làm thực tế', state.totalDayActual?.toDouble() ?? 0, AppColors.stateSuccessColor),
+          _buildStatRow('Nghỉ lễ, Tết', state.totalHoliday?.toDouble() ?? 0, AppColors.warning),
+          _buildStatRow('Nghỉ phép', state.totalDayOnleave2 ?? 0, AppColors.secondaryERP),
+          _buildStatRow('Việc riêng có lương', state.totalDayOnleave3 ?? 0, AppColors.primaryERP),
+          _buildStatRow('WFH', state.totalDayWfh ?? 0, AppColors.stateInfoColor),
+          _buildStatRow('Nghỉ không lương', state.totalDayOnleave1 ?? 0, AppColors.alert),
           const Divider(height: 1, indent: 16, endIndent: 16),
           Container(
             color: AppColors.stateSuccessColor.withValues(alpha: 0.07),
@@ -182,7 +182,7 @@ class _TimekeepingScreenState
                 ),
                 const Spacer(),
                 Text(
-                  '${state.paidWorkDays.toInt()} ngày',
+                  '${state.totalDayGet?.toInt() ?? 0} ngày',
                   style: AppStyles.subtitle3.copyWith(
                     color: AppColors.stateSuccessColor,
                     fontWeight: FontWeight.w800,
@@ -253,7 +253,7 @@ class _TimekeepingScreenState
                 ),
                 const Spacer(),
                 Text(
-                  '${totalDays} ngày',
+                  '$totalDays ngày',
                   style: AppStyles.body2.copyWith(
                     color: AppColors.secondaryERP,
                     fontWeight: FontWeight.w600,
@@ -287,7 +287,7 @@ class _TimekeepingScreenState
         padding: const EdgeInsets.only(bottom: 6),
         child: Row(
           children: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'].map((d) {
-            final isWeekend = d == 'T6' || d == 'CN';
+            final isWeekend = d == 'T7' || d == 'CN';
             return Expanded(
               child: Center(
                 child: Text(

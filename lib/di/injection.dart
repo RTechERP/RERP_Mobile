@@ -86,9 +86,6 @@ import '../features/workplace/app/reg_work/view/pages/salary/data/repository/sal
 import '../features/workplace/app/reg_work/view/pages/salary/data/repository/salary_pin_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/data/repository/salary_pin_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/salary_bloc.dart';
-import '../features/workplace/app/reg_work/view/pages/salary/data/datasource/service/timekeeping_service.dart';
-import '../features/workplace/app/reg_work/view/pages/salary/data/repository/timekeeping_repo.dart';
-import '../features/workplace/app/reg_work/view/pages/salary/data/repository/timekeeping_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/timekeeping_bloc.dart';
 import '../features/workplace/view/bloc/workspace_bloc.dart';
 
@@ -191,10 +188,6 @@ void configureDependencies() {
     () => SalaryService(getIt<Dio>()),
   );
 
-  getIt.registerLazySingleton<TimekeepingService>(
-    () => TimekeepingService(getIt<Dio>()),
-  );
-
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -268,10 +261,6 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<SalaryRepo>(
     () => SalaryRepoImpl(getIt<SalaryService>()),
-  );
-
-  getIt.registerLazySingleton<TimekeepingRepo>(
-    () => TimekeepingRepoImpl(getIt<TimekeepingService>()),
   );
 
   /// ===== BLOCS =====
@@ -422,7 +411,7 @@ void configureDependencies() {
 
   getIt.registerFactory<TimekeepingBloc>(
     () => TimekeepingBloc(
-      getIt<TimekeepingRepo>(),
+      getIt<SalaryRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

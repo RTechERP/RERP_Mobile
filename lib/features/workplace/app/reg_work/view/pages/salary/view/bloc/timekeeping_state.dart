@@ -2,29 +2,23 @@ part of 'timekeeping_bloc.dart';
 
 @CopyWith()
 class TimekeepingState extends BaseBlocState {
-  // Employee info
   final String? employeeName;
   final String? employeeCode;
   final String? departmentName;
   final DateTime? selectedMonth;
-
-  // Summary totals
-  final double actualWorkDays;
-  final double holidayDays;
-  final double tetDays;
-  final double leaveDays;
-  final double privatePaidDays;
-  final double wfhDays;
-  final double paidWorkDays;
-  final double unpaidLeaveDays;
-  final double totalDays;
-
-  // Daily timekeeping
-  final List<TimekeepingDayItem> days;
-
-  // First/last day of month
   final DateTime? firstDayOfMonth;
   final DateTime? lastDayOfMonth;
+  final SalaryListChamCongData? chamCongData;
+  final List<SalaryListChamCongDetail>? chamCongDetails;
+  final List<TimekeepingDayItem> days;
+  final int? totalDayActual;
+  final double? totalHoliday;
+  final double? totalDayOnleave1;
+  final double? totalDayOnleave2;
+  final double? totalDayOnleave3;
+  final double? totalDayWfh;
+  final double? totalDayGet;
+  final double? totalDay;
 
   const TimekeepingState({
     required super.status,
@@ -33,22 +27,24 @@ class TimekeepingState extends BaseBlocState {
     this.employeeCode,
     this.departmentName,
     this.selectedMonth,
-    this.actualWorkDays = 0,
-    this.holidayDays = 0,
-    this.tetDays = 0,
-    this.leaveDays = 0,
-    this.privatePaidDays = 0,
-    this.wfhDays = 0,
-    this.paidWorkDays = 0,
-    this.unpaidLeaveDays = 0,
-    this.totalDays = 0,
-    this.days = const [],
     this.firstDayOfMonth,
     this.lastDayOfMonth,
+    this.chamCongData,
+    this.chamCongDetails,
+    this.days = const [],
+    this.totalDayActual,
+    this.totalHoliday,
+    this.totalDayOnleave1,
+    this.totalDayOnleave2,
+    this.totalDayOnleave3,
+    this.totalDayWfh,
+    this.totalDayGet,
+    this.totalDay,
   });
 
-  factory TimekeepingState.init() => TimekeepingState(
+  factory TimekeepingState.init() => const TimekeepingState(
         status: BaseStateStatus.init,
+        days: [],
       );
 
   @override
@@ -59,17 +55,18 @@ class TimekeepingState extends BaseBlocState {
         employeeCode,
         departmentName,
         selectedMonth,
-        actualWorkDays,
-        holidayDays,
-        tetDays,
-        leaveDays,
-        privatePaidDays,
-        wfhDays,
-        paidWorkDays,
-        unpaidLeaveDays,
-        totalDays,
-        days,
         firstDayOfMonth,
         lastDayOfMonth,
+        chamCongData,
+        chamCongDetails,
+        days,
+        totalDayActual,
+        totalHoliday,
+        totalDayOnleave1,
+        totalDayOnleave2,
+        totalDayOnleave3,
+        totalDayWfh,
+        totalDayGet,
+        totalDay,
       ];
 }

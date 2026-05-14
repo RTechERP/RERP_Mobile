@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../../../common/app_theme/index.dart';
-import '../../../data/datasource/models/timekeeping_model.dart';
+import '../../../data/datasource/models/salary_model.dart';
 
 class TimekeepingDayCell extends StatelessWidget {
   const TimekeepingDayCell({
@@ -18,20 +18,25 @@ class TimekeepingDayCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final checkIn = dayItem?.checkIn;
-    final hasCheckIn = checkIn != null && checkIn.isNotEmpty;
+    final isX = checkIn == 'X';
+    final isP = checkIn == 'P';
     final isWeekend = date.weekday == DateTime.saturday || date.weekday == DateTime.sunday;
 
-    final Color bgColor = isWeekend
-        ? AppColors.alert.withValues(alpha: 0.06)
-        : hasCheckIn
-            ? AppColors.stateSuccessColor.withValues(alpha: 0.12)
-            : AppColors.white;
+    final Color bgColor = isX
+        ? AppColors.stateSuccessColor.withValues(alpha: 0.12)
+        : isP
+            ? AppColors.warning.withValues(alpha: 0.15)
+            : isWeekend
+                ? AppColors.alert.withValues(alpha: 0.06)
+                : AppColors.white;
 
-    final Color textColor = isWeekend
-        ? AppColors.alert
-        : hasCheckIn
-            ? AppColors.stateSuccessColor
-            : AppColors.text;
+    final Color textColor = isX
+        ? AppColors.stateSuccessColor
+        : isP
+            ? AppColors.warning
+            : isWeekend
+                ? AppColors.alert
+                : AppColors.text;
 
     return Container(
       height: 52,

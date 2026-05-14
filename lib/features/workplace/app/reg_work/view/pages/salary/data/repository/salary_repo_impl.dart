@@ -14,21 +14,6 @@ class SalaryRepoImpl implements SalaryRepo {
   final SalaryService _service;
 
   @override
-  Future<Either<BaseError, List<SalaryItem>>> getSalary() async {
-    try {
-      final res = await _service.getSalary();
-      if (res.status == 1 && res.data != null) {
-        return right(res.data!);
-      }
-      return left(
-        BaseError.httpInternalServerError(res.message ?? 'Co loi xay ra'),
-      );
-    } on DioException catch (e) {
-      return left(e.baseError);
-    }
-  }
-
-  @override
   Future<Either<BaseError, SummarySalaryResponse>> getPersonalSyntheticByMonth({
     required int year,
     required int month,

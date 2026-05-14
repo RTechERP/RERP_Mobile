@@ -379,6 +379,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           // Thực lĩnh & Ghi chú
           netSalary: p?.actualAmountReceived ?? p?.realSalary ?? 0,
           note: p?.note,
+          listChamcong: data.listChamcong,
         ));
       },
     );
@@ -406,7 +407,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           selectedMonth: now,
         ));
 
-        await _onFetchPayroll(emit, now.year, now.month - 1);
+        await _onFetchPayroll(emit, now.year, now.month);
 
         emit(state.copyWith(status: BaseStateStatus.success));
       },
@@ -424,7 +425,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
       selectedMonth: month,
     ));
 
-    await _onFetchPayroll(emit, month.year, month.month - 1);
+    await _onFetchPayroll(emit, month.year, month.month);
 
     emit(state.copyWith(status: BaseStateStatus.success));
   }

@@ -131,6 +131,8 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState payroll(List<SalaryPayrollItem> payroll);
 
+  SalaryState listChamcong(SalaryListChamCong? listChamcong);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -200,6 +202,7 @@ abstract class _$SalaryStateCWProxy {
     String? forgotEmailMessage,
     String? otpToken,
     List<SalaryPayrollItem>? payroll,
+    SalaryListChamCong? listChamcong,
   });
 }
 
@@ -430,6 +433,10 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
       this(payroll: payroll);
 
   @override
+  SalaryState listChamcong(SalaryListChamCong? listChamcong) =>
+      this(listChamcong: listChamcong);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -500,6 +507,7 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? forgotEmailMessage = const $CopyWithPlaceholder(),
     Object? otpToken = const $CopyWithPlaceholder(),
     Object? payroll = const $CopyWithPlaceholder(),
+    Object? listChamcong = const $CopyWithPlaceholder(),
   }) {
     return SalaryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -788,6 +796,10 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
           ? _value.payroll
           // ignore: cast_nullable_to_non_nullable
           : payroll as List<SalaryPayrollItem>,
+      listChamcong: listChamcong == const $CopyWithPlaceholder()
+          ? _value.listChamcong
+          // ignore: cast_nullable_to_non_nullable
+          : listChamcong as SalaryListChamCong?,
     );
   }
 }

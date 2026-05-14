@@ -85,7 +85,7 @@ class _SalaryScreenState
                       // Card thực lĩnh
                       SalaryNetSalaryCard(state: state),
                       const SizedBox(height: 12),
-// Card ghi chú       // Card ghi chú
+                      // Card ghi chú
                       SalaryNoteCard(state: state),
                     ],
                   ),
@@ -114,7 +114,7 @@ class _SalaryScreenState
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-          color: AppColors.bgCard,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: AppColors.borderColor),
         ),
@@ -163,6 +163,6 @@ class _SalaryScreenState
   }
 
   String _formatCurrency(int value) {
-    return NumberFormat('#,##0', 'vi_VN').format(value);
+    return '${NumberFormat('#,##0', 'vi_VN').format(value)} đ';
   }
 }

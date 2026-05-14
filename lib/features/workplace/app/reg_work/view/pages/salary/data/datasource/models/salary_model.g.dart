@@ -529,40 +529,39 @@ Map<String, dynamic> _$$SalaryPayrollItemImplToJson(
       'ActualAmountReceived': instance.actualAmountReceived,
     };
 
-_$SalaryItemImpl _$$SalaryItemImplFromJson(Map<String, dynamic> json) =>
-    _$SalaryItemImpl(
+_$TimekeepingDayItemImpl _$$TimekeepingDayItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TimekeepingDayItemImpl(
       id: (json['ID'] as num?)?.toInt(),
       employeeId: (json['EmployeeID'] as num?)?.toInt(),
-      employeeName: json['EmployeeName'] as String?,
-      employeeCode: json['EmployeeCode'] as String?,
-      basicSalary: (json['BasicSalary'] as num?)?.toDouble(),
-      allowance: (json['Allowance'] as num?)?.toDouble(),
-      deduction: (json['Deduction'] as num?)?.toDouble(),
-      grossSalary: (json['GrossSalary'] as num?)?.toDouble(),
-      tax: (json['Tax'] as num?)?.toDouble(),
-      insurance: (json['Insurance'] as num?)?.toDouble(),
-      netSalary: (json['NetSalary'] as num?)?.toDouble(),
-      month: (json['Month'] as num?)?.toInt(),
-      year: (json['Year'] as num?)?.toInt(),
-      createdDate: json['CreatedDate'] == null
-          ? null
-          : DateTime.parse(json['CreatedDate'] as String),
+      date:
+          json['Date'] == null ? null : DateTime.parse(json['Date'] as String),
+      dayOfWeek: (json['DayOfWeek'] as num?)?.toInt(),
+      status: (json['Status'] as num?)?.toInt(),
+      statusText: json['StatusText'] as String?,
+      checkIn: json['CheckIn'] as String?,
+      checkOut: json['CheckOut'] as String?,
+      workHours: (json['WorkHours'] as num?)?.toDouble(),
+      overtimeHours: (json['OvertimeHours'] as num?)?.toDouble(),
+      isLate: json['IsLate'] as bool?,
+      isEarlyLeave: json['IsEarlyLeave'] as bool?,
+      note: json['Note'] as String?,
     );
 
-Map<String, dynamic> _$$SalaryItemImplToJson(_$SalaryItemImpl instance) =>
+Map<String, dynamic> _$$TimekeepingDayItemImplToJson(
+        _$TimekeepingDayItemImpl instance) =>
     <String, dynamic>{
       'ID': instance.id,
       'EmployeeID': instance.employeeId,
-      'EmployeeName': instance.employeeName,
-      'EmployeeCode': instance.employeeCode,
-      'BasicSalary': instance.basicSalary,
-      'Allowance': instance.allowance,
-      'Deduction': instance.deduction,
-      'GrossSalary': instance.grossSalary,
-      'Tax': instance.tax,
-      'Insurance': instance.insurance,
-      'NetSalary': instance.netSalary,
-      'Month': instance.month,
-      'Year': instance.year,
-      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'Date': instance.date?.toIso8601String(),
+      'DayOfWeek': instance.dayOfWeek,
+      'Status': instance.status,
+      'StatusText': instance.statusText,
+      'CheckIn': instance.checkIn,
+      'CheckOut': instance.checkOut,
+      'WorkHours': instance.workHours,
+      'OvertimeHours': instance.overtimeHours,
+      'IsLate': instance.isLate,
+      'IsEarlyLeave': instance.isEarlyLeave,
+      'Note': instance.note,
     };
