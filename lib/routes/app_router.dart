@@ -73,6 +73,7 @@ import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overti
 import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/data/datasource/models/overtime_model.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/finger_print_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/bloc/wfh_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_detail_screen.dart';
@@ -409,6 +410,8 @@ class AppRouter {
             providers: [
               BlocProvider.value(value: getIt<SalaryBloc>()),
               BlocProvider.value(value: getIt<TimekeepingBloc>()),
+              // BlocProvider.value(value: getIt<FingerPrintBloc>()),
+
             ],
             child: child,
           );
@@ -428,7 +431,7 @@ class AppRouter {
           ),
           GoRoute(
             path: RouteNames.salaryFingerprint,
-            builder: (context, state) => const SalaryScreen(),
+            builder: (context, state) => const FingerPrintScreen(),
           ),
           GoRoute(
             path: RouteNames.salaryAttendance,

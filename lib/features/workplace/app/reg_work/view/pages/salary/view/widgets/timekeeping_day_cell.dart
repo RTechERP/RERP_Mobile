@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../../../common/app_theme/index.dart';
-import '../../../data/datasource/models/salary_model.dart';
+import '../../../../../../../../../common/app_theme/index.dart';
+import '../../data/datasource/models/salary_model.dart';
 
 class TimekeepingDayCell extends StatelessWidget {
   const TimekeepingDayCell({

@@ -87,6 +87,13 @@ class SalaryState extends BaseBlocState {
   final List<SalaryPayrollItem> payroll;
   final SalaryListChamCong? listChamcong;
 
+  // Fingerprint data
+  final SalaryFingers? fingers;
+  final SalaryFingerData? fingerData;
+  final List<SalaryFingerDetail> fingerDetails;
+  final int? selectedFingerMonth;
+  final DateTime? selectedFingerMonthDt;
+
   const SalaryState({
     required super.status,
     super.message,
@@ -151,6 +158,11 @@ class SalaryState extends BaseBlocState {
     this.otpToken,
     this.payroll = const [],
     this.listChamcong,
+    this.fingers,
+    this.fingerData,
+    this.fingerDetails = const [],
+    this.selectedFingerMonth,
+    this.selectedFingerMonthDt,
   });
 
   factory SalaryState.init() => const SalaryState(
@@ -222,5 +234,10 @@ class SalaryState extends BaseBlocState {
         otpToken,
         payroll,
         listChamcong,
+        fingers,
+        fingerData,
+        fingerDetails,
+        selectedFingerMonth,
+        selectedFingerMonthDt,
       ];
 }

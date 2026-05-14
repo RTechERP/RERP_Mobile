@@ -9,8 +9,8 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../data/datasource/models/salary_model.dart';
 import '../bloc/timekeeping_bloc.dart';
-import 'widgets/timekeeping_month_picker.dart';
-import 'widgets/timekeeping_day_cell.dart';
+import '../widgets/timekeeping_month_picker.dart';
+import '../widgets/timekeeping_day_cell.dart';
 
 class TimekeepingScreen extends StatefulWidget {
   const TimekeepingScreen({super.key});

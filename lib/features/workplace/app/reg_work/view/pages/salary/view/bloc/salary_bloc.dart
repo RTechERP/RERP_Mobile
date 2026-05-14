@@ -380,6 +380,9 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           netSalary: p?.actualAmountReceived ?? p?.realSalary ?? 0,
           note: p?.note,
           listChamcong: data.listChamcong,
+          fingers: data.fingers,
+          fingerData: data.fingers?.data,
+          fingerDetails: data.fingers?.details ?? [],
         ));
       },
     );

@@ -133,6 +133,16 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState listChamcong(SalaryListChamCong? listChamcong);
 
+  SalaryState fingers(SalaryFingers? fingers);
+
+  SalaryState fingerData(SalaryFingerData? fingerData);
+
+  SalaryState fingerDetails(List<SalaryFingerDetail> fingerDetails);
+
+  SalaryState selectedFingerMonth(int? selectedFingerMonth);
+
+  SalaryState selectedFingerMonthDt(DateTime? selectedFingerMonthDt);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -203,6 +213,11 @@ abstract class _$SalaryStateCWProxy {
     String? otpToken,
     List<SalaryPayrollItem>? payroll,
     SalaryListChamCong? listChamcong,
+    SalaryFingers? fingers,
+    SalaryFingerData? fingerData,
+    List<SalaryFingerDetail>? fingerDetails,
+    int? selectedFingerMonth,
+    DateTime? selectedFingerMonthDt,
   });
 }
 
@@ -437,6 +452,25 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
       this(listChamcong: listChamcong);
 
   @override
+  SalaryState fingers(SalaryFingers? fingers) => this(fingers: fingers);
+
+  @override
+  SalaryState fingerData(SalaryFingerData? fingerData) =>
+      this(fingerData: fingerData);
+
+  @override
+  SalaryState fingerDetails(List<SalaryFingerDetail> fingerDetails) =>
+      this(fingerDetails: fingerDetails);
+
+  @override
+  SalaryState selectedFingerMonth(int? selectedFingerMonth) =>
+      this(selectedFingerMonth: selectedFingerMonth);
+
+  @override
+  SalaryState selectedFingerMonthDt(DateTime? selectedFingerMonthDt) =>
+      this(selectedFingerMonthDt: selectedFingerMonthDt);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -508,6 +542,11 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? otpToken = const $CopyWithPlaceholder(),
     Object? payroll = const $CopyWithPlaceholder(),
     Object? listChamcong = const $CopyWithPlaceholder(),
+    Object? fingers = const $CopyWithPlaceholder(),
+    Object? fingerData = const $CopyWithPlaceholder(),
+    Object? fingerDetails = const $CopyWithPlaceholder(),
+    Object? selectedFingerMonth = const $CopyWithPlaceholder(),
+    Object? selectedFingerMonthDt = const $CopyWithPlaceholder(),
   }) {
     return SalaryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -800,6 +839,28 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
           ? _value.listChamcong
           // ignore: cast_nullable_to_non_nullable
           : listChamcong as SalaryListChamCong?,
+      fingers: fingers == const $CopyWithPlaceholder()
+          ? _value.fingers
+          // ignore: cast_nullable_to_non_nullable
+          : fingers as SalaryFingers?,
+      fingerData: fingerData == const $CopyWithPlaceholder()
+          ? _value.fingerData
+          // ignore: cast_nullable_to_non_nullable
+          : fingerData as SalaryFingerData?,
+      fingerDetails:
+          fingerDetails == const $CopyWithPlaceholder() || fingerDetails == null
+              ? _value.fingerDetails
+              // ignore: cast_nullable_to_non_nullable
+              : fingerDetails as List<SalaryFingerDetail>,
+      selectedFingerMonth: selectedFingerMonth == const $CopyWithPlaceholder()
+          ? _value.selectedFingerMonth
+          // ignore: cast_nullable_to_non_nullable
+          : selectedFingerMonth as int?,
+      selectedFingerMonthDt:
+          selectedFingerMonthDt == const $CopyWithPlaceholder()
+              ? _value.selectedFingerMonthDt
+              // ignore: cast_nullable_to_non_nullable
+              : selectedFingerMonthDt as DateTime?,
     );
   }
 }
