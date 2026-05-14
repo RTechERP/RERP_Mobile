@@ -44,7 +44,6 @@ class RequestPinResponse with _$RequestPinResponse {
   factory RequestPinResponse.fromJson(Map<String, dynamic> json) =>
       _$RequestPinResponseFromJson(json);
 }
-
 @freezed
 class ValidateTokenResponse with _$ValidateTokenResponse {
   const factory ValidateTokenResponse({

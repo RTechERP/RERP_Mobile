@@ -86,6 +86,7 @@ import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/timekeepi
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_menu_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/timekeeping_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/forgot_pin_screen.dart';
 import '../features/workplace/app/reports/data/datasource/models/report_model.dart';
 import '../features/workplace/app/reports/view/ad/view/bloc/ad_bloc.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_add_screen.dart';
@@ -432,6 +433,10 @@ class AppRouter {
           GoRoute(
             path: RouteNames.salaryAttendance,
             builder: (context, state) => const TimekeepingScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.salaryForgotPin,
+            builder: (context, state) => const ForgotPinScreen(),
           ),
         ],
       ),

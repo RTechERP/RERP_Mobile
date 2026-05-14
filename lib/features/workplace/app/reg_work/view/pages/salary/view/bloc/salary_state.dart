@@ -80,6 +80,13 @@ class SalaryState extends BaseBlocState {
   final int pinRetryCount;
   final bool isPinLocked;
 
+  // Forgot PIN flow
+  final int forgotStep;
+  final bool forgotIsLoading;
+  final String? forgotError;
+  final String? forgotEmailMessage;
+  final String? otpToken;
+
   const SalaryState({
     required super.status,
     super.message,
@@ -143,6 +150,11 @@ class SalaryState extends BaseBlocState {
     this.pinError,
     this.pinRetryCount = 0,
     this.isPinLocked = false,
+    this.forgotStep = 0,
+    this.forgotIsLoading = false,
+    this.forgotError,
+    this.forgotEmailMessage,
+    this.otpToken,
   });
 
   factory SalaryState.init() => const SalaryState(
@@ -213,5 +225,10 @@ class SalaryState extends BaseBlocState {
         pinError,
         pinRetryCount,
         isPinLocked,
+        forgotStep,
+        forgotIsLoading,
+        forgotError,
+        forgotEmailMessage,
+        otpToken,
       ];
 }

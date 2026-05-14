@@ -49,4 +49,42 @@ class SalaryPinService extends DioBaseApiService {
       ),
     );
   }
+
+  Future<BaseData<RequestPinResponse>> requestResetPin() async {
+    return post<BaseData<RequestPinResponse>>(
+      ApiEndPoint.requestResetPin,
+      parser: (json) => BaseData<RequestPinResponse>.fromJson(
+        json,
+        (data) => RequestPinResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  Future<BaseData<ValidateTokenResponse>> validateToken({
+    required String token,
+  }) async {
+    return post<BaseData<ValidateTokenResponse>>(
+      ApiEndPoint.validateToken,
+      body: '"$token"',
+      parser: (json) => BaseData<ValidateTokenResponse>.fromJson(
+        json,
+        (data) => ValidateTokenResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  Future<BaseData<ResetPinResponse>> resetPin({
+    required String newPin,
+    required String confirmPin,
+    required String token,
+  }) async {
+    return post<BaseData<ResetPinResponse>>(
+      ApiEndPoint.resetPin,
+      body: {'newPin': newPin, 'confirmPin': confirmPin, 'token': token},
+      parser: (json) => BaseData<ResetPinResponse>.fromJson(
+        json,
+        (data) => ResetPinResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
 }

@@ -1,9 +1,12 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 
+import '../../../../../../../../../routes/route_names.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../view/bloc/salary_bloc.dart';
 import 'pin_input_controller.dart';
@@ -110,10 +113,6 @@ class _PinDialogWidgetState extends State<PinDialogWidget>
                 _buildHeader(),
                 SizedBox(height: 28.h),
                 _buildPinInput(),
-                if (widget.state.pinError != null) ...[
-                  SizedBox(height: 14.h),
-                  _buildError(),
-                ],
                 SizedBox(height: 24.h),
                 _buildActions(),
                 SizedBox(height: 20.h),
@@ -407,92 +406,95 @@ class _PinDialogWidgetState extends State<PinDialogWidget>
       ],
     );
   }
-
-  Widget _buildError() {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w),
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
-      decoration: BoxDecoration(
-        color: AppColors.alert.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(10.r),
-        border: Border.all(
-          color: AppColors.alert.withValues(alpha: 0.3),
-          width: 1,
-        ),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 20,
-            height: 20,
-            decoration: BoxDecoration(
-              color: AppColors.alert.withValues(alpha: 0.15),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              widget.isPinLocked
-                  ? Icons.lock_clock_rounded
-                  : Icons.error_outline_rounded,
-              size: 12,
-              color: AppColors.alert,
-            ),
-          ),
-          SizedBox(width: 8.w),
-          Expanded(
-            child: Text(
-              widget.isPinLocked
-                  ? 'Đã nhập sai ${widget
-                  .pinRetryCount} lần. Vui lòng liên hệ HR hoặc thử lại sau.'
-                  : widget.state.pinError ?? '',
-              style: AppStyles.body2.copyWith(
-                color: AppColors.alert,
-                fontWeight: FontWeight.w500,
-                fontSize: 12.sp,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildActions() {
     final isLocked = widget.isPinLocked;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: isLocked
-          ? SizedBox(
+          ? Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 46.h,
+                  child: _ActionButton(
+                    label: 'Đóng',
+                    onTap: widget.onCancel,
+                    isPrimary: true,
+                  ),
+                ),
+                SizedBox(height: 8.h),
+                _buildForgotPinLink(),
+              ],
+            )
+          : Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: _ActionButton(
+                        label: 'Huỷ',
+                        onTap: widget.onCancel,
+                        isPrimary: false,
+                      ),
+                    ),
+                    SizedBox(width: 10.w),
+                    Expanded(
+                      flex: 2,
+                      child: _ActionButton(
+                        label: 'Xác nhận',
+                        onTap: _pinputController.text.length == 6
+                            ? () => widget.onSubmit(_pinputController.text)
+                            : null,
+                        isPrimary: true,
+                        isLoading: widget.state.isVerifyingPin,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10.h),
+                _buildForgotPinLink(),
+              ],
+            ),
+    );
+  }
+
+  Widget _buildForgotPinLink() {
+    return GestureDetector(
+      onTap: () {
+        widget.onCancel();
+        context.push(RouteNames.salaryForgotPin);
+      },
+      child: Container(
         width: double.infinity,
-        height: 46.h,
-        child: _ActionButton(
-          label: 'Đóng',
-          onTap: widget.onCancel,
-          isPrimary: true,
+        padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
+        decoration: BoxDecoration(
+          color: AppColors.secondaryERP.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(10.r),
+          border: Border.all(
+            color: AppColors.secondaryERP.withValues(alpha: 0.2),
+            width: 1,
+          ),
         ),
-      )
-          : Row(
-        children: [
-          Expanded(
-            child: _ActionButton(
-              label: 'Huỷ',
-              onTap: widget.onCancel,
-              isPrimary: false,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.help_outline_rounded,
+              size: 16.sp,
+              color: AppColors.secondaryERP,
             ),
-          ),
-          SizedBox(width: 10.w),
-          Expanded(
-            flex: 2,
-            child: _ActionButton(
-              label: 'Xác nhận',
-              onTap: _pinputController.text.length == 6
-                  ? () => widget.onSubmit(_pinputController.text)
-                  : null,
-              isPrimary: true,
-              isLoading: widget.state.isVerifyingPin,
+            SizedBox(width: 6.w),
+            Text(
+              'Quên mã PIN?',
+              style: AppStyles.body2.copyWith(
+                color: AppColors.secondaryERP,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

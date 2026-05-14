@@ -37,13 +37,29 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
         verifyPin: (pin) => _onVerifyPin(emit, pin),
         setPin: (pin) => _onSetPin(emit, pin),
         setPinVerified: () => _onSetPinVerified(emit),
+        // Forgot PIN
+        forgotRequestOtp: () => _onForgotRequestOtp(emit),
+        forgotValidateOtp: (otp) => _onForgotValidateOtp(emit, otp),
+        forgotResendOtp: () => _onForgotResendOtp(emit),
+        forgotResetPin: (newPin, confirmPin) =>
+            _onForgotResetPin(emit, newPin, confirmPin),
+        forgotUpdateStep: (step) => _onForgotUpdateStep(emit, step),
+        clearForgotState: () => _onClearForgotState(emit),
       );
     });
   }
 
   //---(Init)---//
   Future<void> _onInitMenu(Emitter<SalaryState> emit) async {
-    emit(state.copyWith(isVerifyingPin: true, pinError: null, pinVerified: false, pinRetryCount: 0, isPinLocked: false));
+    _isPinVerified = false;
+    emit(state.copyWith(
+      isVerifyingPin: true,
+      pinError: null,
+      pinVerified: false,
+      pinRetryCount: 0,
+      isPinLocked: false,
+      hasPin: false,
+    ));
     final res = await _salaryPinRepo.checkPin();
     res.fold(
       (err) {
@@ -171,6 +187,122 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
    _onSetPinVerified(Emitter<SalaryState> emit) {
     _isPinVerified = true;
     emit(state.copyWith(pinVerified: true, pinError: null));
+  }
+
+  //---(Forgot PIN)---//
+  Future<void> _onForgotRequestOtp(Emitter<SalaryState> emit) async {
+    emit(state.copyWith(forgotIsLoading: true, forgotError: null));
+
+    final res = await _salaryPinRepo.requestResetPin();
+    res.fold(
+      (err) {
+        _log.logE('Request OTP failed: $err');
+        emit(state.copyWith(
+          forgotIsLoading: false,
+          forgotError: err.getErrorMessage,
+        ));
+      },
+      (message) {
+        _log.logI('Request OTP success: $message');
+        emit(state.copyWith(
+          forgotIsLoading: false,
+          forgotStep: 1,
+          forgotEmailMessage: message,
+        ));
+      },
+    );
+  }
+
+  Future<void> _onForgotValidateOtp(Emitter<SalaryState> emit, String otp) async {
+    emit(state.copyWith(forgotIsLoading: true, forgotError: null));
+
+    final res = await _salaryPinRepo.validateToken(token: otp);
+    await res.fold(
+      (err) async {
+        _log.logE('Validate OTP failed: $err');
+        emit(state.copyWith(
+          forgotIsLoading: false,
+          forgotError: err.getErrorMessage,
+        ));
+      },
+      (_) async {
+        _log.logI('Validate OTP success');
+        emit(state.copyWith(
+          forgotIsLoading: false,
+          forgotStep: 2,
+          forgotError: null,
+          otpToken: otp,
+        ));
+      },
+    );
+  }
+
+  Future<void> _onForgotResendOtp(Emitter<SalaryState> emit) async {
+    emit(state.copyWith(forgotIsLoading: true, forgotError: null));
+
+    final res = await _salaryPinRepo.requestResetPin();
+    res.fold(
+      (err) {
+        _log.logE('Resend OTP failed: $err');
+        emit(state.copyWith(
+          forgotIsLoading: false,
+          forgotError: err.getErrorMessage,
+        ));
+      },
+      (message) {
+        _log.logI('Resend OTP success: $message');
+        emit(state.copyWith(
+          forgotIsLoading: false,
+          forgotEmailMessage: message,
+          forgotError: null,
+        ));
+      },
+    );
+  }
+
+  Future<void> _onForgotResetPin(
+    Emitter<SalaryState> emit,
+    String newPin,
+    String confirmPin,
+  ) async {
+    emit(state.copyWith(forgotIsLoading: true, forgotError: null));
+
+    final res = await _salaryPinRepo.resetPin(
+      newPin: newPin,
+      confirmPin: confirmPin,
+      token: state.otpToken ?? '',
+    );
+    await res.fold(
+      (err) async {
+        _log.logE('Reset PIN failed: $err');
+        emit(state.copyWith(
+          forgotIsLoading: false,
+          forgotError: err.getErrorMessage,
+        ));
+      },
+      (_) async {
+        _log.logI('Reset PIN success');
+        emit(state.copyWith(
+          forgotIsLoading: false,
+          forgotError: null,
+          forgotStep: -1,
+        ));
+      },
+    );
+  }
+
+   _onForgotUpdateStep(Emitter<SalaryState> emit, int step) {
+    emit(state.copyWith(forgotStep: step, forgotError: null));
+  }
+
+  _onClearForgotState(Emitter<SalaryState> emit) {
+    emit(state.copyWith(
+      forgotStep: 0,
+      forgotIsLoading: false,
+      forgotError: null,
+      forgotEmailMessage: null,
+      otpToken: null,
+    ));
   }
 
   //---(Data)---//

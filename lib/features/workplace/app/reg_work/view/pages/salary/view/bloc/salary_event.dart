@@ -10,4 +10,14 @@ class SalaryEvent with _$SalaryEvent {
   const factory SalaryEvent.verifyPin(String pin) = _VerifyPin;
   const factory SalaryEvent.setPin(String pin) = _SetPin;
   const factory SalaryEvent.setPinVerified() = _SetPinVerified;
+  // Forgot PIN
+  const factory SalaryEvent.forgotRequestOtp() = _ForgotRequestOtp;
+  const factory SalaryEvent.forgotValidateOtp(String otp) = _ForgotValidateOtp;
+  const factory SalaryEvent.forgotResendOtp() = _ForgotResendOtp;
+  const factory SalaryEvent.forgotResetPin({
+    required String newPin,
+    required String confirmPin,
+  }) = _ForgotResetPin;
+  const factory SalaryEvent.forgotUpdateStep(int step) = _ForgotUpdateStep;
+  const factory SalaryEvent.clearForgotState() = _ClearForgotState;
 }

@@ -179,4 +179,5 @@ class RouteNames {
   static const salaryFingerprint = '/salary/fingerprint';
   static const salaryAttendance = '/salary/attendance';
   static const salaryPayslip = '/salary/payslip';
+  static const salaryForgotPin = '/salary/forgot_pin';
 }

@@ -26,6 +26,12 @@ mixin _$SalaryEvent {
     required TResult Function(String pin) verifyPin,
     required TResult Function(String pin) setPin,
     required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +44,12 @@ mixin _$SalaryEvent {
     TResult? Function(String pin)? verifyPin,
     TResult? Function(String pin)? setPin,
     TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +62,12 @@ mixin _$SalaryEvent {
     TResult Function(String pin)? verifyPin,
     TResult Function(String pin)? setPin,
     TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,6 +81,12 @@ mixin _$SalaryEvent {
     required TResult Function(_VerifyPin value) verifyPin,
     required TResult Function(_SetPin value) setPin,
     required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +99,12 @@ mixin _$SalaryEvent {
     TResult? Function(_VerifyPin value)? verifyPin,
     TResult? Function(_SetPin value)? setPin,
     TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +117,12 @@ mixin _$SalaryEvent {
     TResult Function(_VerifyPin value)? verifyPin,
     TResult Function(_SetPin value)? setPin,
     TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -155,6 +191,12 @@ class _$InitImpl implements _Init {
     required TResult Function(String pin) verifyPin,
     required TResult Function(String pin) setPin,
     required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
   }) {
     return init();
   }
@@ -170,6 +212,12 @@ class _$InitImpl implements _Init {
     TResult? Function(String pin)? verifyPin,
     TResult? Function(String pin)? setPin,
     TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
   }) {
     return init?.call();
   }
@@ -185,6 +233,12 @@ class _$InitImpl implements _Init {
     TResult Function(String pin)? verifyPin,
     TResult Function(String pin)? setPin,
     TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -204,6 +258,12 @@ class _$InitImpl implements _Init {
     required TResult Function(_VerifyPin value) verifyPin,
     required TResult Function(_SetPin value) setPin,
     required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
   }) {
     return init(this);
   }
@@ -219,6 +279,12 @@ class _$InitImpl implements _Init {
     TResult? Function(_VerifyPin value)? verifyPin,
     TResult? Function(_SetPin value)? setPin,
     TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
   }) {
     return init?.call(this);
   }
@@ -234,6 +300,12 @@ class _$InitImpl implements _Init {
     TResult Function(_VerifyPin value)? verifyPin,
     TResult Function(_SetPin value)? setPin,
     TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -293,6 +365,12 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(String pin) verifyPin,
     required TResult Function(String pin) setPin,
     required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
   }) {
     return initMenu();
   }
@@ -308,6 +386,12 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(String pin)? verifyPin,
     TResult? Function(String pin)? setPin,
     TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
   }) {
     return initMenu?.call();
   }
@@ -323,6 +407,12 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(String pin)? verifyPin,
     TResult Function(String pin)? setPin,
     TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
     required TResult orElse(),
   }) {
     if (initMenu != null) {
@@ -342,6 +432,12 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(_VerifyPin value) verifyPin,
     required TResult Function(_SetPin value) setPin,
     required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
   }) {
     return initMenu(this);
   }
@@ -357,6 +453,12 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(_VerifyPin value)? verifyPin,
     TResult? Function(_SetPin value)? setPin,
     TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
   }) {
     return initMenu?.call(this);
   }
@@ -372,6 +474,12 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(_VerifyPin value)? verifyPin,
     TResult Function(_SetPin value)? setPin,
     TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
     required TResult orElse(),
   }) {
     if (initMenu != null) {
@@ -431,6 +539,12 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(String pin) verifyPin,
     required TResult Function(String pin) setPin,
     required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
   }) {
     return refresh();
   }
@@ -446,6 +560,12 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(String pin)? verifyPin,
     TResult? Function(String pin)? setPin,
     TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
   }) {
     return refresh?.call();
   }
@@ -461,6 +581,12 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(String pin)? verifyPin,
     TResult Function(String pin)? setPin,
     TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -480,6 +606,12 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_VerifyPin value) verifyPin,
     required TResult Function(_SetPin value) setPin,
     required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
   }) {
     return refresh(this);
   }
@@ -495,6 +627,12 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_VerifyPin value)? verifyPin,
     TResult? Function(_SetPin value)? setPin,
     TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
   }) {
     return refresh?.call(this);
   }
@@ -510,6 +648,12 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_VerifyPin value)? verifyPin,
     TResult Function(_SetPin value)? setPin,
     TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -595,6 +739,12 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     required TResult Function(String pin) verifyPin,
     required TResult Function(String pin) setPin,
     required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
   }) {
     return changeMonth(month);
   }
@@ -610,6 +760,12 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     TResult? Function(String pin)? verifyPin,
     TResult? Function(String pin)? setPin,
     TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
   }) {
     return changeMonth?.call(month);
   }
@@ -625,6 +781,12 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     TResult Function(String pin)? verifyPin,
     TResult Function(String pin)? setPin,
     TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
     required TResult orElse(),
   }) {
     if (changeMonth != null) {
@@ -644,6 +806,12 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     required TResult Function(_VerifyPin value) verifyPin,
     required TResult Function(_SetPin value) setPin,
     required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
   }) {
     return changeMonth(this);
   }
@@ -659,6 +827,12 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     TResult? Function(_VerifyPin value)? verifyPin,
     TResult? Function(_SetPin value)? setPin,
     TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
   }) {
     return changeMonth?.call(this);
   }
@@ -674,6 +848,12 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     TResult Function(_VerifyPin value)? verifyPin,
     TResult Function(_SetPin value)? setPin,
     TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
     required TResult orElse(),
   }) {
     if (changeMonth != null) {
@@ -738,6 +918,12 @@ class _$CheckPinImpl implements _CheckPin {
     required TResult Function(String pin) verifyPin,
     required TResult Function(String pin) setPin,
     required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
   }) {
     return checkPin();
   }
@@ -753,6 +939,12 @@ class _$CheckPinImpl implements _CheckPin {
     TResult? Function(String pin)? verifyPin,
     TResult? Function(String pin)? setPin,
     TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
   }) {
     return checkPin?.call();
   }
@@ -768,6 +960,12 @@ class _$CheckPinImpl implements _CheckPin {
     TResult Function(String pin)? verifyPin,
     TResult Function(String pin)? setPin,
     TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
     required TResult orElse(),
   }) {
     if (checkPin != null) {
@@ -787,6 +985,12 @@ class _$CheckPinImpl implements _CheckPin {
     required TResult Function(_VerifyPin value) verifyPin,
     required TResult Function(_SetPin value) setPin,
     required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
   }) {
     return checkPin(this);
   }
@@ -802,6 +1006,12 @@ class _$CheckPinImpl implements _CheckPin {
     TResult? Function(_VerifyPin value)? verifyPin,
     TResult? Function(_SetPin value)? setPin,
     TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
   }) {
     return checkPin?.call(this);
   }
@@ -817,6 +1027,12 @@ class _$CheckPinImpl implements _CheckPin {
     TResult Function(_VerifyPin value)? verifyPin,
     TResult Function(_SetPin value)? setPin,
     TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
     required TResult orElse(),
   }) {
     if (checkPin != null) {
@@ -902,6 +1118,12 @@ class _$VerifyPinImpl implements _VerifyPin {
     required TResult Function(String pin) verifyPin,
     required TResult Function(String pin) setPin,
     required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
   }) {
     return verifyPin(pin);
   }
@@ -917,6 +1139,12 @@ class _$VerifyPinImpl implements _VerifyPin {
     TResult? Function(String pin)? verifyPin,
     TResult? Function(String pin)? setPin,
     TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
   }) {
     return verifyPin?.call(pin);
   }
@@ -932,6 +1160,12 @@ class _$VerifyPinImpl implements _VerifyPin {
     TResult Function(String pin)? verifyPin,
     TResult Function(String pin)? setPin,
     TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
     required TResult orElse(),
   }) {
     if (verifyPin != null) {
@@ -951,6 +1185,12 @@ class _$VerifyPinImpl implements _VerifyPin {
     required TResult Function(_VerifyPin value) verifyPin,
     required TResult Function(_SetPin value) setPin,
     required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
   }) {
     return verifyPin(this);
   }
@@ -966,6 +1206,12 @@ class _$VerifyPinImpl implements _VerifyPin {
     TResult? Function(_VerifyPin value)? verifyPin,
     TResult? Function(_SetPin value)? setPin,
     TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
   }) {
     return verifyPin?.call(this);
   }
@@ -981,6 +1227,12 @@ class _$VerifyPinImpl implements _VerifyPin {
     TResult Function(_VerifyPin value)? verifyPin,
     TResult Function(_SetPin value)? setPin,
     TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
     required TResult orElse(),
   }) {
     if (verifyPin != null) {
@@ -1071,6 +1323,12 @@ class _$SetPinImpl implements _SetPin {
     required TResult Function(String pin) verifyPin,
     required TResult Function(String pin) setPin,
     required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
   }) {
     return setPin(pin);
   }
@@ -1086,6 +1344,12 @@ class _$SetPinImpl implements _SetPin {
     TResult? Function(String pin)? verifyPin,
     TResult? Function(String pin)? setPin,
     TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
   }) {
     return setPin?.call(pin);
   }
@@ -1101,6 +1365,12 @@ class _$SetPinImpl implements _SetPin {
     TResult Function(String pin)? verifyPin,
     TResult Function(String pin)? setPin,
     TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
     required TResult orElse(),
   }) {
     if (setPin != null) {
@@ -1120,6 +1390,12 @@ class _$SetPinImpl implements _SetPin {
     required TResult Function(_VerifyPin value) verifyPin,
     required TResult Function(_SetPin value) setPin,
     required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
   }) {
     return setPin(this);
   }
@@ -1135,6 +1411,12 @@ class _$SetPinImpl implements _SetPin {
     TResult? Function(_VerifyPin value)? verifyPin,
     TResult? Function(_SetPin value)? setPin,
     TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
   }) {
     return setPin?.call(this);
   }
@@ -1150,6 +1432,12 @@ class _$SetPinImpl implements _SetPin {
     TResult Function(_VerifyPin value)? verifyPin,
     TResult Function(_SetPin value)? setPin,
     TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
     required TResult orElse(),
   }) {
     if (setPin != null) {
@@ -1214,6 +1502,12 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
     required TResult Function(String pin) verifyPin,
     required TResult Function(String pin) setPin,
     required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
   }) {
     return setPinVerified();
   }
@@ -1229,6 +1523,12 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
     TResult? Function(String pin)? verifyPin,
     TResult? Function(String pin)? setPin,
     TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
   }) {
     return setPinVerified?.call();
   }
@@ -1244,6 +1544,12 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
     TResult Function(String pin)? verifyPin,
     TResult Function(String pin)? setPin,
     TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
     required TResult orElse(),
   }) {
     if (setPinVerified != null) {
@@ -1263,6 +1569,12 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
     required TResult Function(_VerifyPin value) verifyPin,
     required TResult Function(_SetPin value) setPin,
     required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
   }) {
     return setPinVerified(this);
   }
@@ -1278,6 +1590,12 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
     TResult? Function(_VerifyPin value)? verifyPin,
     TResult? Function(_SetPin value)? setPin,
     TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
   }) {
     return setPinVerified?.call(this);
   }
@@ -1293,6 +1611,12 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
     TResult Function(_VerifyPin value)? verifyPin,
     TResult Function(_SetPin value)? setPin,
     TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
     required TResult orElse(),
   }) {
     if (setPinVerified != null) {
@@ -1304,4 +1628,1156 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
 
 abstract class _SetPinVerified implements SalaryEvent {
   const factory _SetPinVerified() = _$SetPinVerifiedImpl;
+}
+
+/// @nodoc
+abstract class _$$ForgotRequestOtpImplCopyWith<$Res> {
+  factory _$$ForgotRequestOtpImplCopyWith(_$ForgotRequestOtpImpl value,
+          $Res Function(_$ForgotRequestOtpImpl) then) =
+      __$$ForgotRequestOtpImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ForgotRequestOtpImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$ForgotRequestOtpImpl>
+    implements _$$ForgotRequestOtpImplCopyWith<$Res> {
+  __$$ForgotRequestOtpImplCopyWithImpl(_$ForgotRequestOtpImpl _value,
+      $Res Function(_$ForgotRequestOtpImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ForgotRequestOtpImpl implements _ForgotRequestOtp {
+  const _$ForgotRequestOtpImpl();
+
+  @override
+  String toString() {
+    return 'SalaryEvent.forgotRequestOtp()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ForgotRequestOtpImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
+  }) {
+    return forgotRequestOtp();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
+  }) {
+    return forgotRequestOtp?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (forgotRequestOtp != null) {
+      return forgotRequestOtp();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
+  }) {
+    return forgotRequestOtp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
+  }) {
+    return forgotRequestOtp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (forgotRequestOtp != null) {
+      return forgotRequestOtp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ForgotRequestOtp implements SalaryEvent {
+  const factory _ForgotRequestOtp() = _$ForgotRequestOtpImpl;
+}
+
+/// @nodoc
+abstract class _$$ForgotValidateOtpImplCopyWith<$Res> {
+  factory _$$ForgotValidateOtpImplCopyWith(_$ForgotValidateOtpImpl value,
+          $Res Function(_$ForgotValidateOtpImpl) then) =
+      __$$ForgotValidateOtpImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String otp});
+}
+
+/// @nodoc
+class __$$ForgotValidateOtpImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$ForgotValidateOtpImpl>
+    implements _$$ForgotValidateOtpImplCopyWith<$Res> {
+  __$$ForgotValidateOtpImplCopyWithImpl(_$ForgotValidateOtpImpl _value,
+      $Res Function(_$ForgotValidateOtpImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? otp = null,
+  }) {
+    return _then(_$ForgotValidateOtpImpl(
+      null == otp
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ForgotValidateOtpImpl implements _ForgotValidateOtp {
+  const _$ForgotValidateOtpImpl(this.otp);
+
+  @override
+  final String otp;
+
+  @override
+  String toString() {
+    return 'SalaryEvent.forgotValidateOtp(otp: $otp)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ForgotValidateOtpImpl &&
+            (identical(other.otp, otp) || other.otp == otp));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, otp);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ForgotValidateOtpImplCopyWith<_$ForgotValidateOtpImpl> get copyWith =>
+      __$$ForgotValidateOtpImplCopyWithImpl<_$ForgotValidateOtpImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
+  }) {
+    return forgotValidateOtp(otp);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
+  }) {
+    return forgotValidateOtp?.call(otp);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (forgotValidateOtp != null) {
+      return forgotValidateOtp(otp);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
+  }) {
+    return forgotValidateOtp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
+  }) {
+    return forgotValidateOtp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (forgotValidateOtp != null) {
+      return forgotValidateOtp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ForgotValidateOtp implements SalaryEvent {
+  const factory _ForgotValidateOtp(final String otp) = _$ForgotValidateOtpImpl;
+
+  String get otp;
+  @JsonKey(ignore: true)
+  _$$ForgotValidateOtpImplCopyWith<_$ForgotValidateOtpImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ForgotResendOtpImplCopyWith<$Res> {
+  factory _$$ForgotResendOtpImplCopyWith(_$ForgotResendOtpImpl value,
+          $Res Function(_$ForgotResendOtpImpl) then) =
+      __$$ForgotResendOtpImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ForgotResendOtpImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$ForgotResendOtpImpl>
+    implements _$$ForgotResendOtpImplCopyWith<$Res> {
+  __$$ForgotResendOtpImplCopyWithImpl(
+      _$ForgotResendOtpImpl _value, $Res Function(_$ForgotResendOtpImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ForgotResendOtpImpl implements _ForgotResendOtp {
+  const _$ForgotResendOtpImpl();
+
+  @override
+  String toString() {
+    return 'SalaryEvent.forgotResendOtp()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ForgotResendOtpImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
+  }) {
+    return forgotResendOtp();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
+  }) {
+    return forgotResendOtp?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (forgotResendOtp != null) {
+      return forgotResendOtp();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
+  }) {
+    return forgotResendOtp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
+  }) {
+    return forgotResendOtp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (forgotResendOtp != null) {
+      return forgotResendOtp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ForgotResendOtp implements SalaryEvent {
+  const factory _ForgotResendOtp() = _$ForgotResendOtpImpl;
+}
+
+/// @nodoc
+abstract class _$$ForgotResetPinImplCopyWith<$Res> {
+  factory _$$ForgotResetPinImplCopyWith(_$ForgotResetPinImpl value,
+          $Res Function(_$ForgotResetPinImpl) then) =
+      __$$ForgotResetPinImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String newPin, String confirmPin});
+}
+
+/// @nodoc
+class __$$ForgotResetPinImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$ForgotResetPinImpl>
+    implements _$$ForgotResetPinImplCopyWith<$Res> {
+  __$$ForgotResetPinImplCopyWithImpl(
+      _$ForgotResetPinImpl _value, $Res Function(_$ForgotResetPinImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newPin = null,
+    Object? confirmPin = null,
+  }) {
+    return _then(_$ForgotResetPinImpl(
+      newPin: null == newPin
+          ? _value.newPin
+          : newPin // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmPin: null == confirmPin
+          ? _value.confirmPin
+          : confirmPin // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ForgotResetPinImpl implements _ForgotResetPin {
+  const _$ForgotResetPinImpl({required this.newPin, required this.confirmPin});
+
+  @override
+  final String newPin;
+  @override
+  final String confirmPin;
+
+  @override
+  String toString() {
+    return 'SalaryEvent.forgotResetPin(newPin: $newPin, confirmPin: $confirmPin)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ForgotResetPinImpl &&
+            (identical(other.newPin, newPin) || other.newPin == newPin) &&
+            (identical(other.confirmPin, confirmPin) ||
+                other.confirmPin == confirmPin));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, newPin, confirmPin);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ForgotResetPinImplCopyWith<_$ForgotResetPinImpl> get copyWith =>
+      __$$ForgotResetPinImplCopyWithImpl<_$ForgotResetPinImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
+  }) {
+    return forgotResetPin(newPin, confirmPin);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
+  }) {
+    return forgotResetPin?.call(newPin, confirmPin);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (forgotResetPin != null) {
+      return forgotResetPin(newPin, confirmPin);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
+  }) {
+    return forgotResetPin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
+  }) {
+    return forgotResetPin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (forgotResetPin != null) {
+      return forgotResetPin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ForgotResetPin implements SalaryEvent {
+  const factory _ForgotResetPin(
+      {required final String newPin,
+      required final String confirmPin}) = _$ForgotResetPinImpl;
+
+  String get newPin;
+  String get confirmPin;
+  @JsonKey(ignore: true)
+  _$$ForgotResetPinImplCopyWith<_$ForgotResetPinImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ForgotUpdateStepImplCopyWith<$Res> {
+  factory _$$ForgotUpdateStepImplCopyWith(_$ForgotUpdateStepImpl value,
+          $Res Function(_$ForgotUpdateStepImpl) then) =
+      __$$ForgotUpdateStepImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int step});
+}
+
+/// @nodoc
+class __$$ForgotUpdateStepImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$ForgotUpdateStepImpl>
+    implements _$$ForgotUpdateStepImplCopyWith<$Res> {
+  __$$ForgotUpdateStepImplCopyWithImpl(_$ForgotUpdateStepImpl _value,
+      $Res Function(_$ForgotUpdateStepImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? step = null,
+  }) {
+    return _then(_$ForgotUpdateStepImpl(
+      null == step
+          ? _value.step
+          : step // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ForgotUpdateStepImpl implements _ForgotUpdateStep {
+  const _$ForgotUpdateStepImpl(this.step);
+
+  @override
+  final int step;
+
+  @override
+  String toString() {
+    return 'SalaryEvent.forgotUpdateStep(step: $step)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ForgotUpdateStepImpl &&
+            (identical(other.step, step) || other.step == step));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, step);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ForgotUpdateStepImplCopyWith<_$ForgotUpdateStepImpl> get copyWith =>
+      __$$ForgotUpdateStepImplCopyWithImpl<_$ForgotUpdateStepImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
+  }) {
+    return forgotUpdateStep(step);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
+  }) {
+    return forgotUpdateStep?.call(step);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (forgotUpdateStep != null) {
+      return forgotUpdateStep(step);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
+  }) {
+    return forgotUpdateStep(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
+  }) {
+    return forgotUpdateStep?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (forgotUpdateStep != null) {
+      return forgotUpdateStep(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ForgotUpdateStep implements SalaryEvent {
+  const factory _ForgotUpdateStep(final int step) = _$ForgotUpdateStepImpl;
+
+  int get step;
+  @JsonKey(ignore: true)
+  _$$ForgotUpdateStepImplCopyWith<_$ForgotUpdateStepImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearForgotStateImplCopyWith<$Res> {
+  factory _$$ClearForgotStateImplCopyWith(_$ClearForgotStateImpl value,
+          $Res Function(_$ClearForgotStateImpl) then) =
+      __$$ClearForgotStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearForgotStateImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$ClearForgotStateImpl>
+    implements _$$ClearForgotStateImplCopyWith<$Res> {
+  __$$ClearForgotStateImplCopyWithImpl(_$ClearForgotStateImpl _value,
+      $Res Function(_$ClearForgotStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearForgotStateImpl implements _ClearForgotState {
+  const _$ClearForgotStateImpl();
+
+  @override
+  String toString() {
+    return 'SalaryEvent.clearForgotState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearForgotStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
+  }) {
+    return clearForgotState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
+  }) {
+    return clearForgotState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (clearForgotState != null) {
+      return clearForgotState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
+  }) {
+    return clearForgotState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
+  }) {
+    return clearForgotState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (clearForgotState != null) {
+      return clearForgotState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearForgotState implements SalaryEvent {
+  const factory _ClearForgotState() = _$ClearForgotStateImpl;
 }

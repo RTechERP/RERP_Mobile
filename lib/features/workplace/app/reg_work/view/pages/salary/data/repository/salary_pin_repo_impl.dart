@@ -72,4 +72,57 @@ class SalaryPinRepoImpl implements SalaryPinRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, String>> requestResetPin() async {
+    try {
+      final res = await _service.requestResetPin();
+      if (res.status == 1) {
+        return right(res.message ?? '');
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Co loi xay ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, void>> validateToken({required String token}) async {
+    try {
+      final res = await _service.validateToken(token: token);
+      if (res.status == 1) {
+        return right(null);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Co loi xay ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, void>> resetPin({
+    required String newPin,
+    required String confirmPin,
+    required String token,
+  }) async {
+    try {
+      final res = await _service.resetPin(
+        newPin: newPin,
+        confirmPin: confirmPin,
+        token: token,
+      );
+      if (res.status == 1) {
+        return right(null);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Co loi xay ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

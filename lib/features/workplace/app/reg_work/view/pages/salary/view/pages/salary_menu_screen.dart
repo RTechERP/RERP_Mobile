@@ -33,29 +33,41 @@ class _SalaryMenuScreenState
 
   @override
   Widget renderUI(BuildContext context) {
-    return BlocListener<SalaryBloc, SalaryState>(
-      listenWhen: (prev, curr) =>
-          prev.isVerifyingPin != curr.isVerifyingPin ||
-          prev.hasPin != curr.hasPin ||
-          prev.pinVerified != curr.pinVerified ||
-          prev.pinError != curr.pinError,
-      listener: (context, state) {
-        if (_pinChecked) return;
-
-        if (!state.isVerifyingPin && state.hasPin && !state.pinVerified) {
-          _pinChecked = true;
-          _showPinDialog(context);
-        } else if (!state.isVerifyingPin && !state.hasPin) {
-          _pinVerified = true;
-          _pinChecked = true;
+    return PopScope(
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        if (result == true) {
+          setState(() {
+            _pinChecked = false;
+            _pinVerified = false;
+          });
+          bloc.add(const SalaryEvent.initMenu());
         }
       },
-      child: BaseScaffold(
-        appBar: AppBarCommon(
-          title: Text('Tổng hợp công - lương', style: AppStyles.headingTitle2),
-          onBackTap: () => onBack(context),
+      child: BlocListener<SalaryBloc, SalaryState>(
+        listenWhen: (prev, curr) =>
+            prev.isVerifyingPin != curr.isVerifyingPin ||
+            prev.hasPin != curr.hasPin ||
+            prev.pinVerified != curr.pinVerified ||
+            prev.pinError != curr.pinError,
+        listener: (context, state) {
+          if (_pinChecked) return;
+
+          if (!state.isVerifyingPin && state.hasPin && !state.pinVerified) {
+            _pinChecked = true;
+            _showPinDialog(context);
+          } else if (!state.isVerifyingPin && !state.hasPin) {
+            _pinVerified = true;
+            _pinChecked = true;
+          }
+        },
+        child: BaseScaffold(
+          appBar: AppBarCommon(
+            title: Text('Tổng hợp công - lương', style: AppStyles.headingTitle2),
+            onBackTap: () => onBack(context),
+          ),
+          body: _buildBody(context),
         ),
-        body: _buildBody(context),
       ),
     );
   }
@@ -80,7 +92,7 @@ class _SalaryMenuScreenState
                 ),
                 SizedBox(height: 16),
                 Text(
-                  'Dang xac thuc ma PIN...',
+                  'Đang xác thực mã PIN...',
                   style: AppStyles.body2.copyWith(color: AppColors.gray),
                 ),
               ],
@@ -162,12 +174,21 @@ class _SalaryMenuScreenState
   }
 
   Future<void> _showPinDialog(BuildContext context) async {
-    final verified = await DialogService.showPinDialog(context: context);
-    if (verified) {
+    final result = await DialogService.showPinDialog(context: context);
+    if (result == true) {
       setState(() => _pinVerified = true);
     } else {
       if (mounted) onBack(context);
     }
+  }
+
+  Future<void> _onShowPinDialog(BuildContext context) async {
+    setState(() {
+      _pinChecked = false;
+      _pinVerified = false;
+    });
+    bloc.add(const SalaryEvent.initMenu());
+    await _showPinDialog(context);
   }
 }
 

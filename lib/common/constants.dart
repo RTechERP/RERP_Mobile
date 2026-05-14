@@ -318,6 +318,9 @@ class ApiEndPoint {
   static const String setPin = '/Account/set-pin';
   static const String verifyPin = '/PinAuth/verify-pin';
   static const String requestPin = '/Account/request-pin';
+  static const String requestResetPin = '/PinAuth/request-reset-pin';
+  static const String validateToken = '/PinAuth/validate-token';
+  static const String resetPin = '/PinAuth/reset-pin';
 
   // Timekeeping
   static const String getTimekeeping = '/ChamCong';

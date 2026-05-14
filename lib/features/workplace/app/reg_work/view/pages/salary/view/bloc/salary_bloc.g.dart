@@ -125,6 +125,16 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState isPinLocked(bool isPinLocked);
 
+  SalaryState forgotStep(int forgotStep);
+
+  SalaryState forgotIsLoading(bool forgotIsLoading);
+
+  SalaryState forgotError(String? forgotError);
+
+  SalaryState forgotEmailMessage(String? forgotEmailMessage);
+
+  SalaryState otpToken(String? otpToken);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -191,6 +201,11 @@ abstract class _$SalaryStateCWProxy {
     String? pinError,
     int? pinRetryCount,
     bool? isPinLocked,
+    int? forgotStep,
+    bool? forgotIsLoading,
+    String? forgotError,
+    String? forgotEmailMessage,
+    String? otpToken,
   });
 }
 
@@ -421,6 +436,24 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
   SalaryState isPinLocked(bool isPinLocked) => this(isPinLocked: isPinLocked);
 
   @override
+  SalaryState forgotStep(int forgotStep) => this(forgotStep: forgotStep);
+
+  @override
+  SalaryState forgotIsLoading(bool forgotIsLoading) =>
+      this(forgotIsLoading: forgotIsLoading);
+
+  @override
+  SalaryState forgotError(String? forgotError) =>
+      this(forgotError: forgotError);
+
+  @override
+  SalaryState forgotEmailMessage(String? forgotEmailMessage) =>
+      this(forgotEmailMessage: forgotEmailMessage);
+
+  @override
+  SalaryState otpToken(String? otpToken) => this(otpToken: otpToken);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -488,6 +521,11 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? pinError = const $CopyWithPlaceholder(),
     Object? pinRetryCount = const $CopyWithPlaceholder(),
     Object? isPinLocked = const $CopyWithPlaceholder(),
+    Object? forgotStep = const $CopyWithPlaceholder(),
+    Object? forgotIsLoading = const $CopyWithPlaceholder(),
+    Object? forgotError = const $CopyWithPlaceholder(),
+    Object? forgotEmailMessage = const $CopyWithPlaceholder(),
+    Object? otpToken = const $CopyWithPlaceholder(),
   }) {
     return SalaryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -778,6 +816,28 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
               ? _value.isPinLocked
               // ignore: cast_nullable_to_non_nullable
               : isPinLocked as bool,
+      forgotStep:
+          forgotStep == const $CopyWithPlaceholder() || forgotStep == null
+              ? _value.forgotStep
+              // ignore: cast_nullable_to_non_nullable
+              : forgotStep as int,
+      forgotIsLoading: forgotIsLoading == const $CopyWithPlaceholder() ||
+              forgotIsLoading == null
+          ? _value.forgotIsLoading
+          // ignore: cast_nullable_to_non_nullable
+          : forgotIsLoading as bool,
+      forgotError: forgotError == const $CopyWithPlaceholder()
+          ? _value.forgotError
+          // ignore: cast_nullable_to_non_nullable
+          : forgotError as String?,
+      forgotEmailMessage: forgotEmailMessage == const $CopyWithPlaceholder()
+          ? _value.forgotEmailMessage
+          // ignore: cast_nullable_to_non_nullable
+          : forgotEmailMessage as String?,
+      otpToken: otpToken == const $CopyWithPlaceholder()
+          ? _value.otpToken
+          // ignore: cast_nullable_to_non_nullable
+          : otpToken as String?,
     );
   }
 }
