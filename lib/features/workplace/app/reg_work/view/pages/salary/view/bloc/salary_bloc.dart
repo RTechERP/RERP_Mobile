@@ -9,6 +9,7 @@ import '../../../../../../../../../common/logger/index.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../data/repository/salary_pin_repo.dart';
 import '../../data/repository/salary_repo.dart';
+import '../../data/datasource/models/salary_model.dart';
 
 
 part 'salary_event.dart';
@@ -30,6 +31,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
     on<SalaryEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
+        fetchPayroll: (year, month) => _onFetchPayroll(emit, year, month),
         initMenu: () => _onInitMenu(emit),
         refresh: () => _onRefresh(emit),
         changeMonth: (month) => _onChangeMonth(emit, month),
@@ -307,8 +309,83 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
 
   //---(Data)---//
 
+  Future<void> _onFetchPayroll(Emitter<SalaryState> emit, int year, int month) async {
+    final res = await _salaryRepo.getPersonalSyntheticByMonth(
+      year: year,
+      month: month,
+    );
+
+    await res.fold(
+      (err) async {
+        _log.logE('Get payroll failed: $err');
+      },
+      (data) async {
+        _log.logI('Get payroll success - payroll count: ${data.payroll?.length}');
+        final payrollList = data.payroll ?? [];
+        final p = payrollList.isNotEmpty ? payrollList.first : null;
+
+        emit(state.copyWith(
+          payroll: payrollList,
+          // Card thu nhập tiêu chuẩn
+          basicSalary: p?.basicSalary ?? 0,
+          totalWorkday: p?.totalWorkday ?? 0,
+          totalMerit: p?.totalMerit ?? 0,
+          totalSalaryByDay: p?.totalSalaryByDay ?? 0,
+          salaryOneHour: p?.salaryOneHour ?? 0,
+          // Card làm thêm
+          otHourWD: p?.otHourWD ?? 0,
+          otMoneyWD: p?.otMoneyWD ?? 0,
+          otHourWK: p?.otHourWK ?? 0,
+          otMoneyWK: p?.otMoneyWK ?? 0,
+          otHourHD: p?.otHourHD ?? 0,
+          otMoneyHD: p?.otMoneyHD ?? 0,
+          otTotalSalary: p?.otTotalSalary ?? 0,
+          // Card phụ cấp
+          allowanceMeal: p?.allowanceMeal ?? 0,
+          allowanceOTEarly: p?.allowanceOTEarly ?? 0,
+          totalAllowance: p?.totalAllowance ?? 0,
+          // Card các khoản cộng khác
+          bussinessMoney: p?.bussinessMoney ?? 0,
+          nightShiftMoney: p?.nightShiftMoney ?? 0,
+          costVehicleBussiness: p?.costVehicleBussiness ?? 0,
+          bonus: p?.bonus ?? 0,
+          other: p?.other ?? 0,
+          totalBonus: p?.totalBonus ?? 0,
+          // Card tổng thu nhập
+          totalTaxableIncome: (p?.totalSalaryByDay ?? 0) +
+              (p?.otTotalSalary ?? 0) +
+              (p?.totalAllowance ?? 0) +
+              (p?.totalBonus ?? 0),
+          // Card các khoản phải trừ
+          socialInsurance: p?.socialInsurance ?? 0,
+          insurances: p?.insurances ?? 0,
+          unionFees: p?.unionFees ?? 0,
+          advancePayment: p?.advancePayment ?? 0,
+          departmentalFees: p?.departmentalFees ?? 0,
+          parkingMoney: p?.parkingMoney ?? 0,
+          punish5S: p?.punish5S ?? 0,
+          mealUse: p?.mealUse ?? 0,
+          otherDeduction: p?.otherDeduction ?? 0,
+          totalDeduction: p?.totalDeduction ?? 0,
+          // Card giảm trừ thuế
+          taxSalaryOT: p?.taxSalaryOT ?? 0,
+          taxSalaryMeal: p?.taxSalaryMeal ?? 0,
+          taxSalaryPhone: p?.taxSalaryPhone ?? 0,
+          taxPersonalDeduction: p?.taxPersonalDeduction ?? 0,
+          taxDependentsDeduction: p?.taxDependentsDeduction ?? 0,
+          totalTaxDeduction: p?.totalTaxDeduction ?? 0,
+          taxAbleIncome: p?.taxAbleIncome ?? 0,
+          taxDeduction: p?.taxDeduction ?? 0,
+          // Thực lĩnh & Ghi chú
+          netSalary: p?.actualAmountReceived ?? p?.realSalary ?? 0,
+          note: p?.note,
+        ));
+      },
+    );
+  }
+
   Future<void> _onInit(Emitter<SalaryState> emit) async {
-    emit(state.copyWith(status: BaseStateStatus.loading));
+    emit(state.copyWith(status: BaseStateStatus.loading, selectedMonth: DateTime.now()));
 
     final userRes = await _authRepo.getCurrentUser();
 
@@ -318,68 +395,20 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
         emit(state.copyWith(status: BaseStateStatus.failed));
       },
       (user) async {
+        final now = DateTime.now();
         emit(state.copyWith(
-          status: BaseStateStatus.success,
+          status: BaseStateStatus.loading,
           employeeName: user?.fullName ?? 'Nguyễn Văn A',
           employeeCode: user?.code ?? 'NV001',
           position: user?.positionName ?? 'Nhân viên',
           contractType: 'Hợp đồng không xác định thời hạn',
           joinDate: DateTime(2023, 6, 15),
-          selectedMonth: DateTime.now(),
-          // Card thu nhập tiêu chuẩn
-          refIncome: 15000000,
-          actualWorkDays: 22,
-          leaveDays: 2,
-          totalWorkDays: 24,
-          standardSalary: 15000000,
-          hourlyRate: 85227,
-          // Card làm thêm
-          weekdayHours: 8,
-          weekdayOvertimePay: 1022724,
-          weekendHours: 0,
-          weekendOvertimePay: 0,
-          holidayHours: 0,
-          holidayOvertimePay: 0,
-          totalOvertime: 1022724,
-          // Card phụ cấp
-          mealAllowance: 200000,
-          earlyShiftAllowance: 300000,
-          totalAllowance: 500000,
-          // Card cộng khác
-          travelAllowance: 500000,
-          nightWorkPay: 0,
-          transportCost: 0,
-          kpiBonus: 1500000,
-          otherAddition: 0,
-          totalOtherAdditions: 2000000,
-          // Card tổng
-          totalTaxableIncome: 17522724,
-          // Card các khoản phải trừ
-          socialInsuranceRate: 10.5,
-          socialInsuranceAmount: 1575000,
-          unionFundRate: 1.0,
-          unionFundAmount: 150000,
-          salaryAdvance: 0,
-          deptCollection: 0,
-          carParking: 0,
-          fiveSParking: 0,
-          mealDeduction: 0,
-          otherDeduction: 0,
-          totalDeductions: 150000,
-          // Card giảm trừ thuế
-          taxableSocialInsurance: 1575000,
-          taxableOvertime: 1022724,
-          taxableMealAllowance: 200000,
-          taxablePhoneAllowance: 200000,
-          taxablePersonalDeduction: 11000000,
-          taxableDependentDeduction: 0,
-          totalTaxDeductions: 13997724,
-          taxableIncome: 3522724,
-          incomeTax: 0,
-          // Thực lĩnh & Ghi chú
-          netSalary: 15972724,
-          note: 'Tháng lương 05/2026',
+          selectedMonth: now,
         ));
+
+        await _onFetchPayroll(emit, now.year, now.month - 1);
+
+        emit(state.copyWith(status: BaseStateStatus.success));
       },
     );
   }
@@ -395,56 +424,8 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
       selectedMonth: month,
     ));
 
-    emit(state.copyWith(
-      status: BaseStateStatus.success,
-      refIncome: 15000000,
-      actualWorkDays: 22,
-      leaveDays: 2,
-      totalWorkDays: 24,
-      standardSalary: 15000000,
-      hourlyRate: 85227,
-      weekdayHours: 8,
-      weekdayOvertimePay: 1022724,
-      weekendHours: 0,
-      weekendOvertimePay: 0,
-      holidayHours: 0,
-      holidayOvertimePay: 0,
-      totalOvertime: 1022724,
-      mealAllowance: 200000,
-      earlyShiftAllowance: 300000,
-      totalAllowance: 500000,
-      travelAllowance: 500000,
-      nightWorkPay: 0,
-      transportCost: 0,
-      kpiBonus: 1500000,
-      otherAddition: 0,
-      totalOtherAdditions: 2000000,
-      totalTaxableIncome: 17522724,
-      // Card các khoản phải trừ
-      socialInsuranceRate: 10.5,
-      socialInsuranceAmount: 1575000,
-      unionFundRate: 1.0,
-      unionFundAmount: 150000,
-      salaryAdvance: 0,
-      deptCollection: 0,
-      carParking: 0,
-      fiveSParking: 0,
-      mealDeduction: 0,
-      otherDeduction: 0,
-      totalDeductions: 150000,
-      // Card giảm trừ thuế
-      taxableSocialInsurance: 1575000,
-      taxableOvertime: 1022724,
-      taxableMealAllowance: 200000,
-      taxablePhoneAllowance: 200000,
-      taxablePersonalDeduction: 11000000,
-      taxableDependentDeduction: 0,
-      totalTaxDeductions: 13997724,
-      taxableIncome: 3522724,
-      incomeTax: 0,
-      // Thực lĩnh & Ghi chú
-      netSalary: 15972724,
-      note: 'Tháng lương 05/2026',
-    ));
+    await _onFetchPayroll(emit, month.year, month.month - 1);
+
+    emit(state.copyWith(status: BaseStateStatus.success));
   }
 }

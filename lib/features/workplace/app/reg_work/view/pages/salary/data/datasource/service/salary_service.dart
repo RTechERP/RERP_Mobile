@@ -28,4 +28,18 @@ class SalaryService extends DioBaseApiService {
       ),
     );
   }
+
+  Future<BaseData<SummarySalaryResponse>> getPersonalSyntheticByMonth({
+    required int year,
+    required int month,
+  }) async {
+    return get<BaseData<SummarySalaryResponse>>(
+      ApiEndPoint.getPersonalSyntheticByMonth,
+      query: {'Year': year, 'Month': month},
+      parser: (json) => BaseData<SummarySalaryResponse>.fromJson(
+        json,
+        (data) => SummarySalaryResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
 }

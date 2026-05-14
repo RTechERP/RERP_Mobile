@@ -25,24 +25,20 @@ class SalaryOvertimeCard extends StatelessWidget {
       formula: '(8) → (14)',
       child: Column(
         children: [
-          // Số giờ & Thành tiền
           SalaryRow(
             color: AppColors.warning,
             highlightMiddleColumn: true,
             items: [
-              SalaryRowItem(
-                label: 'Ngày thường',
-                value: '',
-              ),
+              const SalaryRowItem(label: 'Ngày thường', value: ''),
               SalaryRowItem(
                 label: 'Số giờ',
-                value: f(state.weekdayHours),
+                value: f(state.otHourWD),
                 formula: '(8)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Thành tiền',
-                value: f(state.weekdayHours),
+                value: f(state.otMoneyWD),
                 formula: '(9) = (8)*(7)*1,5',
                 highlightBg: false,
               ),
@@ -52,19 +48,16 @@ class SalaryOvertimeCard extends StatelessWidget {
             color: AppColors.warning,
             highlightMiddleColumn: true,
             items: [
-              SalaryRowItem(
-                label: 'Cuối tuần',
-                value: '',
-              ),
+              const SalaryRowItem(label: 'Cuối tuần', value: ''),
               SalaryRowItem(
                 label: 'Số giờ',
-                value: f(state.weekdayHours),
+                value: f(state.otHourWK),
                 formula: '(10)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Thành tiền',
-                value: f(state.weekdayHours),
+                value: f(state.otMoneyWK),
                 formula: '(11) = (10)*(7)*2',
                 highlightBg: false,
               ),
@@ -74,31 +67,27 @@ class SalaryOvertimeCard extends StatelessWidget {
             color: AppColors.warning,
             highlightMiddleColumn: true,
             items: [
-              SalaryRowItem(
-                label: 'Lễ, Tết',
-                value: '',
-              ),
+              const SalaryRowItem(label: 'Lễ, Tết', value: ''),
               SalaryRowItem(
                 label: 'Số giờ',
-                value: f(state.weekdayHours),
+                value: f(state.otHourHD),
                 formula: '(12)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Thành tiền',
-                value: f(state.weekdayHours),
+                value: f(state.otMoneyHD),
                 formula: '(13) = (12)*(7)*3',
                 highlightBg: false,
               ),
             ],
           ),
-          // Tổng
           SalaryRow(
             color: AppColors.warning,
             items: [
               SalaryRowItem(
                 label: 'Tổng làm thêm',
-                value: f(state.totalOvertime),
+                value: f(state.otTotalSalary),
                 formula: '(14) = (9)+(11)+(13)',
               ),
             ],

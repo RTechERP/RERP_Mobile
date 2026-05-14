@@ -29,19 +29,19 @@ class SalaryDeductionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Mức đóng BHXH',
-                value: '${state.socialInsuranceRate}%',
+                value: f(state.socialInsurance),
                 formula: '(29)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Phải thu BHXH',
-                value: f(state.socialInsuranceAmount),
+                value: f(state.insurances),
                 formula: '(30) = 10,5%*(27)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Quỹ BĐS',
-                value: f(state.unionFundAmount),
+                value: f(state.unionFees),
                 formula: '(31) = 1%*(27)',
                 highlightBg: false,
               ),
@@ -55,19 +55,19 @@ class SalaryDeductionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Ứng lương',
-                value: f(state.salaryAdvance),
+                value: f(state.advancePayment),
                 formula: '(32)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Thu hộ phòng ban',
-                value: f(state.deptCollection),
+                value: f(state.departmentalFees),
                 formula: '(33)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Gửi xe ô tô',
-                value: f(state.carParking),
+                value: f(state.parkingMoney),
                 formula: '(34)',
                 highlightBg: false,
               ),
@@ -81,13 +81,13 @@ class SalaryDeductionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: '5s',
-                value: f(state.fiveSParking),
+                value: f(state.punish5S),
                 formula: '(35)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Cơm ca tại VP',
-                value: f(state.mealDeduction),
+                value: f(state.mealUse),
                 formula: '(36)',
                 highlightBg: false,
               ),
@@ -105,7 +105,7 @@ class SalaryDeductionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Tổng các khoản trừ',
-                value: f(state.totalDeductions),
+                value: f(state.totalDeduction),
                 formula: '(38) = (31)+(32)+(33)+(34)+(35)+(36)+(37)',
               ),
             ],

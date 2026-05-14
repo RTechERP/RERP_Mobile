@@ -19,6 +19,7 @@ mixin _$SalaryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -37,6 +38,7 @@ mixin _$SalaryEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -55,6 +57,7 @@ mixin _$SalaryEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -74,6 +77,7 @@ mixin _$SalaryEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -92,6 +96,7 @@ mixin _$SalaryEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -110,6 +115,7 @@ mixin _$SalaryEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -184,6 +190,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -205,6 +212,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -226,6 +234,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -251,6 +260,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -272,6 +282,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -293,6 +304,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -317,6 +329,227 @@ class _$InitImpl implements _Init {
 
 abstract class _Init implements SalaryEvent {
   const factory _Init() = _$InitImpl;
+}
+
+/// @nodoc
+abstract class _$$FetchPayrollImplCopyWith<$Res> {
+  factory _$$FetchPayrollImplCopyWith(
+          _$FetchPayrollImpl value, $Res Function(_$FetchPayrollImpl) then) =
+      __$$FetchPayrollImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int year, int month});
+}
+
+/// @nodoc
+class __$$FetchPayrollImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$FetchPayrollImpl>
+    implements _$$FetchPayrollImplCopyWith<$Res> {
+  __$$FetchPayrollImplCopyWithImpl(
+      _$FetchPayrollImpl _value, $Res Function(_$FetchPayrollImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? year = null,
+    Object? month = null,
+  }) {
+    return _then(_$FetchPayrollImpl(
+      null == year
+          ? _value.year
+          : year // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == month
+          ? _value.month
+          : month // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchPayrollImpl implements _FetchPayroll {
+  const _$FetchPayrollImpl(this.year, this.month);
+
+  @override
+  final int year;
+  @override
+  final int month;
+
+  @override
+  String toString() {
+    return 'SalaryEvent.fetchPayroll(year: $year, month: $month)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchPayrollImpl &&
+            (identical(other.year, year) || other.year == year) &&
+            (identical(other.month, month) || other.month == month));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, year, month);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchPayrollImplCopyWith<_$FetchPayrollImpl> get copyWith =>
+      __$$FetchPayrollImplCopyWithImpl<_$FetchPayrollImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
+  }) {
+    return fetchPayroll(year, month);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
+  }) {
+    return fetchPayroll?.call(year, month);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (fetchPayroll != null) {
+      return fetchPayroll(year, month);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
+  }) {
+    return fetchPayroll(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
+  }) {
+    return fetchPayroll?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
+    required TResult orElse(),
+  }) {
+    if (fetchPayroll != null) {
+      return fetchPayroll(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchPayroll implements SalaryEvent {
+  const factory _FetchPayroll(final int year, final int month) =
+      _$FetchPayrollImpl;
+
+  int get year;
+  int get month;
+  @JsonKey(ignore: true)
+  _$$FetchPayrollImplCopyWith<_$FetchPayrollImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -358,6 +591,7 @@ class _$InitMenuImpl implements _InitMenu {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -379,6 +613,7 @@ class _$InitMenuImpl implements _InitMenu {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -400,6 +635,7 @@ class _$InitMenuImpl implements _InitMenu {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -425,6 +661,7 @@ class _$InitMenuImpl implements _InitMenu {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -446,6 +683,7 @@ class _$InitMenuImpl implements _InitMenu {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -467,6 +705,7 @@ class _$InitMenuImpl implements _InitMenu {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -532,6 +771,7 @@ class _$RefreshImpl implements _Refresh {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -553,6 +793,7 @@ class _$RefreshImpl implements _Refresh {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -574,6 +815,7 @@ class _$RefreshImpl implements _Refresh {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -599,6 +841,7 @@ class _$RefreshImpl implements _Refresh {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -620,6 +863,7 @@ class _$RefreshImpl implements _Refresh {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -641,6 +885,7 @@ class _$RefreshImpl implements _Refresh {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -732,6 +977,7 @@ class _$ChangeMonthImpl implements _ChangeMonth {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -753,6 +999,7 @@ class _$ChangeMonthImpl implements _ChangeMonth {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -774,6 +1021,7 @@ class _$ChangeMonthImpl implements _ChangeMonth {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -799,6 +1047,7 @@ class _$ChangeMonthImpl implements _ChangeMonth {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -820,6 +1069,7 @@ class _$ChangeMonthImpl implements _ChangeMonth {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -841,6 +1091,7 @@ class _$ChangeMonthImpl implements _ChangeMonth {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -911,6 +1162,7 @@ class _$CheckPinImpl implements _CheckPin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -932,6 +1184,7 @@ class _$CheckPinImpl implements _CheckPin {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -953,6 +1206,7 @@ class _$CheckPinImpl implements _CheckPin {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -978,6 +1232,7 @@ class _$CheckPinImpl implements _CheckPin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -999,6 +1254,7 @@ class _$CheckPinImpl implements _CheckPin {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -1020,6 +1276,7 @@ class _$CheckPinImpl implements _CheckPin {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -1111,6 +1368,7 @@ class _$VerifyPinImpl implements _VerifyPin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -1132,6 +1390,7 @@ class _$VerifyPinImpl implements _VerifyPin {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -1153,6 +1412,7 @@ class _$VerifyPinImpl implements _VerifyPin {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -1178,6 +1438,7 @@ class _$VerifyPinImpl implements _VerifyPin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -1199,6 +1460,7 @@ class _$VerifyPinImpl implements _VerifyPin {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -1220,6 +1482,7 @@ class _$VerifyPinImpl implements _VerifyPin {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -1316,6 +1579,7 @@ class _$SetPinImpl implements _SetPin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -1337,6 +1601,7 @@ class _$SetPinImpl implements _SetPin {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -1358,6 +1623,7 @@ class _$SetPinImpl implements _SetPin {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -1383,6 +1649,7 @@ class _$SetPinImpl implements _SetPin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -1404,6 +1671,7 @@ class _$SetPinImpl implements _SetPin {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -1425,6 +1693,7 @@ class _$SetPinImpl implements _SetPin {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -1495,6 +1764,7 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -1516,6 +1786,7 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -1537,6 +1808,7 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -1562,6 +1834,7 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -1583,6 +1856,7 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -1604,6 +1878,7 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -1669,6 +1944,7 @@ class _$ForgotRequestOtpImpl implements _ForgotRequestOtp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -1690,6 +1966,7 @@ class _$ForgotRequestOtpImpl implements _ForgotRequestOtp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -1711,6 +1988,7 @@ class _$ForgotRequestOtpImpl implements _ForgotRequestOtp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -1736,6 +2014,7 @@ class _$ForgotRequestOtpImpl implements _ForgotRequestOtp {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -1757,6 +2036,7 @@ class _$ForgotRequestOtpImpl implements _ForgotRequestOtp {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -1778,6 +2058,7 @@ class _$ForgotRequestOtpImpl implements _ForgotRequestOtp {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -1870,6 +2151,7 @@ class _$ForgotValidateOtpImpl implements _ForgotValidateOtp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -1891,6 +2173,7 @@ class _$ForgotValidateOtpImpl implements _ForgotValidateOtp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -1912,6 +2195,7 @@ class _$ForgotValidateOtpImpl implements _ForgotValidateOtp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -1937,6 +2221,7 @@ class _$ForgotValidateOtpImpl implements _ForgotValidateOtp {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -1958,6 +2243,7 @@ class _$ForgotValidateOtpImpl implements _ForgotValidateOtp {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -1979,6 +2265,7 @@ class _$ForgotValidateOtpImpl implements _ForgotValidateOtp {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -2049,6 +2336,7 @@ class _$ForgotResendOtpImpl implements _ForgotResendOtp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -2070,6 +2358,7 @@ class _$ForgotResendOtpImpl implements _ForgotResendOtp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -2091,6 +2380,7 @@ class _$ForgotResendOtpImpl implements _ForgotResendOtp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -2116,6 +2406,7 @@ class _$ForgotResendOtpImpl implements _ForgotResendOtp {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -2137,6 +2428,7 @@ class _$ForgotResendOtpImpl implements _ForgotResendOtp {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -2158,6 +2450,7 @@ class _$ForgotResendOtpImpl implements _ForgotResendOtp {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -2259,6 +2552,7 @@ class _$ForgotResetPinImpl implements _ForgotResetPin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -2280,6 +2574,7 @@ class _$ForgotResetPinImpl implements _ForgotResetPin {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -2301,6 +2596,7 @@ class _$ForgotResetPinImpl implements _ForgotResetPin {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -2326,6 +2622,7 @@ class _$ForgotResetPinImpl implements _ForgotResetPin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -2347,6 +2644,7 @@ class _$ForgotResetPinImpl implements _ForgotResetPin {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -2368,6 +2666,7 @@ class _$ForgotResetPinImpl implements _ForgotResetPin {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -2468,6 +2767,7 @@ class _$ForgotUpdateStepImpl implements _ForgotUpdateStep {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -2489,6 +2789,7 @@ class _$ForgotUpdateStepImpl implements _ForgotUpdateStep {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -2510,6 +2811,7 @@ class _$ForgotUpdateStepImpl implements _ForgotUpdateStep {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -2535,6 +2837,7 @@ class _$ForgotUpdateStepImpl implements _ForgotUpdateStep {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -2556,6 +2859,7 @@ class _$ForgotUpdateStepImpl implements _ForgotUpdateStep {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -2577,6 +2881,7 @@ class _$ForgotUpdateStepImpl implements _ForgotUpdateStep {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,
@@ -2647,6 +2952,7 @@ class _$ClearForgotStateImpl implements _ClearForgotState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
     required TResult Function() initMenu,
     required TResult Function() refresh,
     required TResult Function(DateTime month) changeMonth,
@@ -2668,6 +2974,7 @@ class _$ClearForgotStateImpl implements _ClearForgotState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
     TResult? Function()? initMenu,
     TResult? Function()? refresh,
     TResult? Function(DateTime month)? changeMonth,
@@ -2689,6 +2996,7 @@ class _$ClearForgotStateImpl implements _ClearForgotState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
     TResult Function()? initMenu,
     TResult Function()? refresh,
     TResult Function(DateTime month)? changeMonth,
@@ -2714,6 +3022,7 @@ class _$ClearForgotStateImpl implements _ClearForgotState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeMonth value) changeMonth,
@@ -2735,6 +3044,7 @@ class _$ClearForgotStateImpl implements _ClearForgotState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeMonth value)? changeMonth,
@@ -2756,6 +3066,7 @@ class _$ClearForgotStateImpl implements _ClearForgotState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeMonth value)? changeMonth,

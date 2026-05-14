@@ -37,19 +37,19 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Công tác phí',
-                value: f(state.travelAllowance),
+                value: f(state.bussinessMoney),
                 formula: '(20)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Làm đêm',
-                value: f(state.nightWorkPay),
+                value: f(state.nightShiftMoney),
                 formula: '(21)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Phương tiện công tác',
-                value: f(state.transportCost),
+                value: f(state.costVehicleBussiness),
                 formula: '(22)',
                 highlightBg: false,
               ),
@@ -64,13 +64,13 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'KPIs / doanh số',
-                value: f(state.kpiBonus),
+                value: f(state.bonus),
                 formula: '(23)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Khác',
-                value: f(state.otherAddition),
+                value: f(state.other),
                 formula: '(24)',
                 highlightBg: false,
               ),
@@ -83,8 +83,8 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Tổng phụ cấp',
-                value: f(state.totalAllowance),
-                formula: '(19) = (16) + (17) + (18)',
+                value: f(state.totalBonus),
+                formula: '(25) = (20) + (21) + (22) + (23) + (24)',
               ),
             ],
           ),
@@ -102,13 +102,13 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Lương',
-                value: f(state.standardSalary),
+                value: f(state.totalSalaryByDay),
                 formula: '(6)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Tổng làm thêm',
-                value: f(state.totalOvertime),
+                value: f(state.otTotalSalary),
                 formula: '(14)',
                 highlightBg: false,
               ),
@@ -128,7 +128,7 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Các khoản cộng khác',
-                value: f(state.totalOtherAdditions),
+                value: f(state.totalBonus),
                 formula: '(25)',
                 highlightBg: false,
               ),
@@ -142,9 +142,9 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
             color: AppColors.primaryERP,
             items: [
               SalaryRowItem(
-                label: 'Tổng thu nhập',
+                label: 'Tổng thu nhập tính thuế',
                 value: f(state.totalTaxableIncome),
-                formula: '(26)=(6)+(14)+(19)+(25)',
+                formula: '(26) = (6) + (14) + (19) + (25)',
               ),
             ],
           ),

@@ -38,19 +38,19 @@ class SalaryTotalTaxableCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Tổng khoản giảm trừ thuế TNCN',
-                value: f(state.taxableIncome),
+                value: f(state.totalTaxDeduction),
                 formula: '(45)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Thu nhập tính thuế',
-                value: f(state.incomeTax),
+                value: f(state.taxAbleIncome),
                 formula: '(46)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Khấu trừ Thuế TNCN',
-                value: f(state.netSalary),
+                value: f(state.taxDeduction),
                 formula: '(47)',
                 highlightBg: false,
               ),

@@ -149,7 +149,7 @@ class _SalaryScreenState
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
-                _formatCurrency(state.totalTaxableIncome.round()),
+                _formatCurrency(state.netSalary.round()),
                 style: AppStyles.body2.copyWith(
                   color: AppColors.primaryERP,
                   fontWeight: FontWeight.w700,

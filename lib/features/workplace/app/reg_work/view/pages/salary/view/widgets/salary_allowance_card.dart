@@ -30,13 +30,13 @@ class SalaryAllowanceCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Cơm ca sau 20H/theo loại công tác',
-                value: f(state.mealAllowance),
+                value: f(state.allowanceMeal),
                 formula: '(17)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Đi làm trước 7h15',
-                value: f(state.earlyShiftAllowance),
+                value: f(state.allowanceOTEarly),
                 formula: '(18)',
                 highlightBg: false,
               ),

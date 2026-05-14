@@ -23,91 +23,85 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState selectedMonth(DateTime? selectedMonth);
 
-  SalaryState refIncome(double refIncome);
+  SalaryState basicSalary(double basicSalary);
 
-  SalaryState actualWorkDays(double actualWorkDays);
+  SalaryState totalWorkday(double totalWorkday);
 
-  SalaryState leaveDays(double leaveDays);
+  SalaryState totalMerit(double totalMerit);
 
-  SalaryState totalWorkDays(double totalWorkDays);
+  SalaryState totalSalaryByDay(double totalSalaryByDay);
 
-  SalaryState standardSalary(double standardSalary);
+  SalaryState salaryOneHour(double salaryOneHour);
 
-  SalaryState hourlyRate(double hourlyRate);
+  SalaryState otHourWD(double otHourWD);
 
-  SalaryState weekdayHours(double weekdayHours);
+  SalaryState otMoneyWD(double otMoneyWD);
 
-  SalaryState weekdayOvertimePay(double weekdayOvertimePay);
+  SalaryState otHourWK(double otHourWK);
 
-  SalaryState weekendHours(double weekendHours);
+  SalaryState otMoneyWK(double otMoneyWK);
 
-  SalaryState weekendOvertimePay(double weekendOvertimePay);
+  SalaryState otHourHD(double otHourHD);
 
-  SalaryState holidayHours(double holidayHours);
+  SalaryState otMoneyHD(double otMoneyHD);
 
-  SalaryState holidayOvertimePay(double holidayOvertimePay);
+  SalaryState otTotalSalary(double otTotalSalary);
 
-  SalaryState totalOvertime(double totalOvertime);
+  SalaryState allowanceMeal(double allowanceMeal);
 
-  SalaryState mealAllowance(double mealAllowance);
-
-  SalaryState earlyShiftAllowance(double earlyShiftAllowance);
+  SalaryState allowanceOTEarly(double allowanceOTEarly);
 
   SalaryState totalAllowance(double totalAllowance);
 
-  SalaryState travelAllowance(double travelAllowance);
+  SalaryState bussinessMoney(double bussinessMoney);
 
-  SalaryState nightWorkPay(double nightWorkPay);
+  SalaryState nightShiftMoney(double nightShiftMoney);
 
-  SalaryState transportCost(double transportCost);
+  SalaryState costVehicleBussiness(double costVehicleBussiness);
 
-  SalaryState kpiBonus(double kpiBonus);
+  SalaryState bonus(double bonus);
 
-  SalaryState otherAddition(double otherAddition);
+  SalaryState other(double other);
 
-  SalaryState totalOtherAdditions(double totalOtherAdditions);
+  SalaryState totalBonus(double totalBonus);
 
   SalaryState totalTaxableIncome(double totalTaxableIncome);
 
-  SalaryState socialInsuranceRate(double socialInsuranceRate);
+  SalaryState socialInsurance(double socialInsurance);
 
-  SalaryState socialInsuranceAmount(double socialInsuranceAmount);
+  SalaryState insurances(double insurances);
 
-  SalaryState unionFundRate(double unionFundRate);
+  SalaryState unionFees(double unionFees);
 
-  SalaryState unionFundAmount(double unionFundAmount);
+  SalaryState advancePayment(double advancePayment);
 
-  SalaryState salaryAdvance(double salaryAdvance);
+  SalaryState departmentalFees(double departmentalFees);
 
-  SalaryState deptCollection(double deptCollection);
+  SalaryState parkingMoney(double parkingMoney);
 
-  SalaryState carParking(double carParking);
+  SalaryState punish5S(double punish5S);
 
-  SalaryState fiveSParking(double fiveSParking);
-
-  SalaryState mealDeduction(double mealDeduction);
+  SalaryState mealUse(int mealUse);
 
   SalaryState otherDeduction(double otherDeduction);
 
-  SalaryState totalDeductions(double totalDeductions);
+  SalaryState totalDeduction(double totalDeduction);
 
-  SalaryState taxableSocialInsurance(double taxableSocialInsurance);
+  SalaryState taxSalaryOT(double taxSalaryOT);
 
-  SalaryState taxableOvertime(double taxableOvertime);
+  SalaryState taxSalaryMeal(double taxSalaryMeal);
 
-  SalaryState taxableMealAllowance(double taxableMealAllowance);
+  SalaryState taxSalaryPhone(double taxSalaryPhone);
 
-  SalaryState taxablePhoneAllowance(double taxablePhoneAllowance);
+  SalaryState taxPersonalDeduction(double taxPersonalDeduction);
 
-  SalaryState taxablePersonalDeduction(double taxablePersonalDeduction);
+  SalaryState taxDependentsDeduction(double taxDependentsDeduction);
 
-  SalaryState taxableDependentDeduction(double taxableDependentDeduction);
+  SalaryState totalTaxDeduction(double totalTaxDeduction);
 
-  SalaryState totalTaxDeductions(double totalTaxDeductions);
+  SalaryState taxAbleIncome(double taxAbleIncome);
 
-  SalaryState taxableIncome(double taxableIncome);
-
-  SalaryState incomeTax(double incomeTax);
+  SalaryState taxDeduction(double taxDeduction);
 
   SalaryState netSalary(double netSalary);
 
@@ -135,6 +129,8 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState otpToken(String? otpToken);
 
+  SalaryState payroll(List<SalaryPayrollItem> payroll);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -150,49 +146,46 @@ abstract class _$SalaryStateCWProxy {
     String? contractType,
     DateTime? joinDate,
     DateTime? selectedMonth,
-    double? refIncome,
-    double? actualWorkDays,
-    double? leaveDays,
-    double? totalWorkDays,
-    double? standardSalary,
-    double? hourlyRate,
-    double? weekdayHours,
-    double? weekdayOvertimePay,
-    double? weekendHours,
-    double? weekendOvertimePay,
-    double? holidayHours,
-    double? holidayOvertimePay,
-    double? totalOvertime,
-    double? mealAllowance,
-    double? earlyShiftAllowance,
+    double? basicSalary,
+    double? totalWorkday,
+    double? totalMerit,
+    double? totalSalaryByDay,
+    double? salaryOneHour,
+    double? otHourWD,
+    double? otMoneyWD,
+    double? otHourWK,
+    double? otMoneyWK,
+    double? otHourHD,
+    double? otMoneyHD,
+    double? otTotalSalary,
+    double? allowanceMeal,
+    double? allowanceOTEarly,
     double? totalAllowance,
-    double? travelAllowance,
-    double? nightWorkPay,
-    double? transportCost,
-    double? kpiBonus,
-    double? otherAddition,
-    double? totalOtherAdditions,
+    double? bussinessMoney,
+    double? nightShiftMoney,
+    double? costVehicleBussiness,
+    double? bonus,
+    double? other,
+    double? totalBonus,
     double? totalTaxableIncome,
-    double? socialInsuranceRate,
-    double? socialInsuranceAmount,
-    double? unionFundRate,
-    double? unionFundAmount,
-    double? salaryAdvance,
-    double? deptCollection,
-    double? carParking,
-    double? fiveSParking,
-    double? mealDeduction,
+    double? socialInsurance,
+    double? insurances,
+    double? unionFees,
+    double? advancePayment,
+    double? departmentalFees,
+    double? parkingMoney,
+    double? punish5S,
+    int? mealUse,
     double? otherDeduction,
-    double? totalDeductions,
-    double? taxableSocialInsurance,
-    double? taxableOvertime,
-    double? taxableMealAllowance,
-    double? taxablePhoneAllowance,
-    double? taxablePersonalDeduction,
-    double? taxableDependentDeduction,
-    double? totalTaxDeductions,
-    double? taxableIncome,
-    double? incomeTax,
+    double? totalDeduction,
+    double? taxSalaryOT,
+    double? taxSalaryMeal,
+    double? taxSalaryPhone,
+    double? taxPersonalDeduction,
+    double? taxDependentsDeduction,
+    double? totalTaxDeduction,
+    double? taxAbleIncome,
+    double? taxDeduction,
     double? netSalary,
     String? note,
     bool? hasPin,
@@ -206,6 +199,7 @@ abstract class _$SalaryStateCWProxy {
     String? forgotError,
     String? forgotEmailMessage,
     String? otpToken,
+    List<SalaryPayrollItem>? payroll,
   });
 }
 
@@ -244,170 +238,148 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
       this(selectedMonth: selectedMonth);
 
   @override
-  SalaryState refIncome(double refIncome) => this(refIncome: refIncome);
+  SalaryState basicSalary(double basicSalary) => this(basicSalary: basicSalary);
 
   @override
-  SalaryState actualWorkDays(double actualWorkDays) =>
-      this(actualWorkDays: actualWorkDays);
+  SalaryState totalWorkday(double totalWorkday) =>
+      this(totalWorkday: totalWorkday);
 
   @override
-  SalaryState leaveDays(double leaveDays) => this(leaveDays: leaveDays);
+  SalaryState totalMerit(double totalMerit) => this(totalMerit: totalMerit);
 
   @override
-  SalaryState totalWorkDays(double totalWorkDays) =>
-      this(totalWorkDays: totalWorkDays);
+  SalaryState totalSalaryByDay(double totalSalaryByDay) =>
+      this(totalSalaryByDay: totalSalaryByDay);
 
   @override
-  SalaryState standardSalary(double standardSalary) =>
-      this(standardSalary: standardSalary);
+  SalaryState salaryOneHour(double salaryOneHour) =>
+      this(salaryOneHour: salaryOneHour);
 
   @override
-  SalaryState hourlyRate(double hourlyRate) => this(hourlyRate: hourlyRate);
+  SalaryState otHourWD(double otHourWD) => this(otHourWD: otHourWD);
 
   @override
-  SalaryState weekdayHours(double weekdayHours) =>
-      this(weekdayHours: weekdayHours);
+  SalaryState otMoneyWD(double otMoneyWD) => this(otMoneyWD: otMoneyWD);
 
   @override
-  SalaryState weekdayOvertimePay(double weekdayOvertimePay) =>
-      this(weekdayOvertimePay: weekdayOvertimePay);
+  SalaryState otHourWK(double otHourWK) => this(otHourWK: otHourWK);
 
   @override
-  SalaryState weekendHours(double weekendHours) =>
-      this(weekendHours: weekendHours);
+  SalaryState otMoneyWK(double otMoneyWK) => this(otMoneyWK: otMoneyWK);
 
   @override
-  SalaryState weekendOvertimePay(double weekendOvertimePay) =>
-      this(weekendOvertimePay: weekendOvertimePay);
+  SalaryState otHourHD(double otHourHD) => this(otHourHD: otHourHD);
 
   @override
-  SalaryState holidayHours(double holidayHours) =>
-      this(holidayHours: holidayHours);
+  SalaryState otMoneyHD(double otMoneyHD) => this(otMoneyHD: otMoneyHD);
 
   @override
-  SalaryState holidayOvertimePay(double holidayOvertimePay) =>
-      this(holidayOvertimePay: holidayOvertimePay);
+  SalaryState otTotalSalary(double otTotalSalary) =>
+      this(otTotalSalary: otTotalSalary);
 
   @override
-  SalaryState totalOvertime(double totalOvertime) =>
-      this(totalOvertime: totalOvertime);
+  SalaryState allowanceMeal(double allowanceMeal) =>
+      this(allowanceMeal: allowanceMeal);
 
   @override
-  SalaryState mealAllowance(double mealAllowance) =>
-      this(mealAllowance: mealAllowance);
-
-  @override
-  SalaryState earlyShiftAllowance(double earlyShiftAllowance) =>
-      this(earlyShiftAllowance: earlyShiftAllowance);
+  SalaryState allowanceOTEarly(double allowanceOTEarly) =>
+      this(allowanceOTEarly: allowanceOTEarly);
 
   @override
   SalaryState totalAllowance(double totalAllowance) =>
       this(totalAllowance: totalAllowance);
 
   @override
-  SalaryState travelAllowance(double travelAllowance) =>
-      this(travelAllowance: travelAllowance);
+  SalaryState bussinessMoney(double bussinessMoney) =>
+      this(bussinessMoney: bussinessMoney);
 
   @override
-  SalaryState nightWorkPay(double nightWorkPay) =>
-      this(nightWorkPay: nightWorkPay);
+  SalaryState nightShiftMoney(double nightShiftMoney) =>
+      this(nightShiftMoney: nightShiftMoney);
 
   @override
-  SalaryState transportCost(double transportCost) =>
-      this(transportCost: transportCost);
+  SalaryState costVehicleBussiness(double costVehicleBussiness) =>
+      this(costVehicleBussiness: costVehicleBussiness);
 
   @override
-  SalaryState kpiBonus(double kpiBonus) => this(kpiBonus: kpiBonus);
+  SalaryState bonus(double bonus) => this(bonus: bonus);
 
   @override
-  SalaryState otherAddition(double otherAddition) =>
-      this(otherAddition: otherAddition);
+  SalaryState other(double other) => this(other: other);
 
   @override
-  SalaryState totalOtherAdditions(double totalOtherAdditions) =>
-      this(totalOtherAdditions: totalOtherAdditions);
+  SalaryState totalBonus(double totalBonus) => this(totalBonus: totalBonus);
 
   @override
   SalaryState totalTaxableIncome(double totalTaxableIncome) =>
       this(totalTaxableIncome: totalTaxableIncome);
 
   @override
-  SalaryState socialInsuranceRate(double socialInsuranceRate) =>
-      this(socialInsuranceRate: socialInsuranceRate);
+  SalaryState socialInsurance(double socialInsurance) =>
+      this(socialInsurance: socialInsurance);
 
   @override
-  SalaryState socialInsuranceAmount(double socialInsuranceAmount) =>
-      this(socialInsuranceAmount: socialInsuranceAmount);
+  SalaryState insurances(double insurances) => this(insurances: insurances);
 
   @override
-  SalaryState unionFundRate(double unionFundRate) =>
-      this(unionFundRate: unionFundRate);
+  SalaryState unionFees(double unionFees) => this(unionFees: unionFees);
 
   @override
-  SalaryState unionFundAmount(double unionFundAmount) =>
-      this(unionFundAmount: unionFundAmount);
+  SalaryState advancePayment(double advancePayment) =>
+      this(advancePayment: advancePayment);
 
   @override
-  SalaryState salaryAdvance(double salaryAdvance) =>
-      this(salaryAdvance: salaryAdvance);
+  SalaryState departmentalFees(double departmentalFees) =>
+      this(departmentalFees: departmentalFees);
 
   @override
-  SalaryState deptCollection(double deptCollection) =>
-      this(deptCollection: deptCollection);
+  SalaryState parkingMoney(double parkingMoney) =>
+      this(parkingMoney: parkingMoney);
 
   @override
-  SalaryState carParking(double carParking) => this(carParking: carParking);
+  SalaryState punish5S(double punish5S) => this(punish5S: punish5S);
 
   @override
-  SalaryState fiveSParking(double fiveSParking) =>
-      this(fiveSParking: fiveSParking);
-
-  @override
-  SalaryState mealDeduction(double mealDeduction) =>
-      this(mealDeduction: mealDeduction);
+  SalaryState mealUse(int mealUse) => this(mealUse: mealUse);
 
   @override
   SalaryState otherDeduction(double otherDeduction) =>
       this(otherDeduction: otherDeduction);
 
   @override
-  SalaryState totalDeductions(double totalDeductions) =>
-      this(totalDeductions: totalDeductions);
+  SalaryState totalDeduction(double totalDeduction) =>
+      this(totalDeduction: totalDeduction);
 
   @override
-  SalaryState taxableSocialInsurance(double taxableSocialInsurance) =>
-      this(taxableSocialInsurance: taxableSocialInsurance);
+  SalaryState taxSalaryOT(double taxSalaryOT) => this(taxSalaryOT: taxSalaryOT);
 
   @override
-  SalaryState taxableOvertime(double taxableOvertime) =>
-      this(taxableOvertime: taxableOvertime);
+  SalaryState taxSalaryMeal(double taxSalaryMeal) =>
+      this(taxSalaryMeal: taxSalaryMeal);
 
   @override
-  SalaryState taxableMealAllowance(double taxableMealAllowance) =>
-      this(taxableMealAllowance: taxableMealAllowance);
+  SalaryState taxSalaryPhone(double taxSalaryPhone) =>
+      this(taxSalaryPhone: taxSalaryPhone);
 
   @override
-  SalaryState taxablePhoneAllowance(double taxablePhoneAllowance) =>
-      this(taxablePhoneAllowance: taxablePhoneAllowance);
+  SalaryState taxPersonalDeduction(double taxPersonalDeduction) =>
+      this(taxPersonalDeduction: taxPersonalDeduction);
 
   @override
-  SalaryState taxablePersonalDeduction(double taxablePersonalDeduction) =>
-      this(taxablePersonalDeduction: taxablePersonalDeduction);
+  SalaryState taxDependentsDeduction(double taxDependentsDeduction) =>
+      this(taxDependentsDeduction: taxDependentsDeduction);
 
   @override
-  SalaryState taxableDependentDeduction(double taxableDependentDeduction) =>
-      this(taxableDependentDeduction: taxableDependentDeduction);
+  SalaryState totalTaxDeduction(double totalTaxDeduction) =>
+      this(totalTaxDeduction: totalTaxDeduction);
 
   @override
-  SalaryState totalTaxDeductions(double totalTaxDeductions) =>
-      this(totalTaxDeductions: totalTaxDeductions);
+  SalaryState taxAbleIncome(double taxAbleIncome) =>
+      this(taxAbleIncome: taxAbleIncome);
 
   @override
-  SalaryState taxableIncome(double taxableIncome) =>
-      this(taxableIncome: taxableIncome);
-
-  @override
-  SalaryState incomeTax(double incomeTax) => this(incomeTax: incomeTax);
+  SalaryState taxDeduction(double taxDeduction) =>
+      this(taxDeduction: taxDeduction);
 
   @override
   SalaryState netSalary(double netSalary) => this(netSalary: netSalary);
@@ -454,6 +426,10 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
   SalaryState otpToken(String? otpToken) => this(otpToken: otpToken);
 
   @override
+  SalaryState payroll(List<SalaryPayrollItem> payroll) =>
+      this(payroll: payroll);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -470,49 +446,46 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? contractType = const $CopyWithPlaceholder(),
     Object? joinDate = const $CopyWithPlaceholder(),
     Object? selectedMonth = const $CopyWithPlaceholder(),
-    Object? refIncome = const $CopyWithPlaceholder(),
-    Object? actualWorkDays = const $CopyWithPlaceholder(),
-    Object? leaveDays = const $CopyWithPlaceholder(),
-    Object? totalWorkDays = const $CopyWithPlaceholder(),
-    Object? standardSalary = const $CopyWithPlaceholder(),
-    Object? hourlyRate = const $CopyWithPlaceholder(),
-    Object? weekdayHours = const $CopyWithPlaceholder(),
-    Object? weekdayOvertimePay = const $CopyWithPlaceholder(),
-    Object? weekendHours = const $CopyWithPlaceholder(),
-    Object? weekendOvertimePay = const $CopyWithPlaceholder(),
-    Object? holidayHours = const $CopyWithPlaceholder(),
-    Object? holidayOvertimePay = const $CopyWithPlaceholder(),
-    Object? totalOvertime = const $CopyWithPlaceholder(),
-    Object? mealAllowance = const $CopyWithPlaceholder(),
-    Object? earlyShiftAllowance = const $CopyWithPlaceholder(),
+    Object? basicSalary = const $CopyWithPlaceholder(),
+    Object? totalWorkday = const $CopyWithPlaceholder(),
+    Object? totalMerit = const $CopyWithPlaceholder(),
+    Object? totalSalaryByDay = const $CopyWithPlaceholder(),
+    Object? salaryOneHour = const $CopyWithPlaceholder(),
+    Object? otHourWD = const $CopyWithPlaceholder(),
+    Object? otMoneyWD = const $CopyWithPlaceholder(),
+    Object? otHourWK = const $CopyWithPlaceholder(),
+    Object? otMoneyWK = const $CopyWithPlaceholder(),
+    Object? otHourHD = const $CopyWithPlaceholder(),
+    Object? otMoneyHD = const $CopyWithPlaceholder(),
+    Object? otTotalSalary = const $CopyWithPlaceholder(),
+    Object? allowanceMeal = const $CopyWithPlaceholder(),
+    Object? allowanceOTEarly = const $CopyWithPlaceholder(),
     Object? totalAllowance = const $CopyWithPlaceholder(),
-    Object? travelAllowance = const $CopyWithPlaceholder(),
-    Object? nightWorkPay = const $CopyWithPlaceholder(),
-    Object? transportCost = const $CopyWithPlaceholder(),
-    Object? kpiBonus = const $CopyWithPlaceholder(),
-    Object? otherAddition = const $CopyWithPlaceholder(),
-    Object? totalOtherAdditions = const $CopyWithPlaceholder(),
+    Object? bussinessMoney = const $CopyWithPlaceholder(),
+    Object? nightShiftMoney = const $CopyWithPlaceholder(),
+    Object? costVehicleBussiness = const $CopyWithPlaceholder(),
+    Object? bonus = const $CopyWithPlaceholder(),
+    Object? other = const $CopyWithPlaceholder(),
+    Object? totalBonus = const $CopyWithPlaceholder(),
     Object? totalTaxableIncome = const $CopyWithPlaceholder(),
-    Object? socialInsuranceRate = const $CopyWithPlaceholder(),
-    Object? socialInsuranceAmount = const $CopyWithPlaceholder(),
-    Object? unionFundRate = const $CopyWithPlaceholder(),
-    Object? unionFundAmount = const $CopyWithPlaceholder(),
-    Object? salaryAdvance = const $CopyWithPlaceholder(),
-    Object? deptCollection = const $CopyWithPlaceholder(),
-    Object? carParking = const $CopyWithPlaceholder(),
-    Object? fiveSParking = const $CopyWithPlaceholder(),
-    Object? mealDeduction = const $CopyWithPlaceholder(),
+    Object? socialInsurance = const $CopyWithPlaceholder(),
+    Object? insurances = const $CopyWithPlaceholder(),
+    Object? unionFees = const $CopyWithPlaceholder(),
+    Object? advancePayment = const $CopyWithPlaceholder(),
+    Object? departmentalFees = const $CopyWithPlaceholder(),
+    Object? parkingMoney = const $CopyWithPlaceholder(),
+    Object? punish5S = const $CopyWithPlaceholder(),
+    Object? mealUse = const $CopyWithPlaceholder(),
     Object? otherDeduction = const $CopyWithPlaceholder(),
-    Object? totalDeductions = const $CopyWithPlaceholder(),
-    Object? taxableSocialInsurance = const $CopyWithPlaceholder(),
-    Object? taxableOvertime = const $CopyWithPlaceholder(),
-    Object? taxableMealAllowance = const $CopyWithPlaceholder(),
-    Object? taxablePhoneAllowance = const $CopyWithPlaceholder(),
-    Object? taxablePersonalDeduction = const $CopyWithPlaceholder(),
-    Object? taxableDependentDeduction = const $CopyWithPlaceholder(),
-    Object? totalTaxDeductions = const $CopyWithPlaceholder(),
-    Object? taxableIncome = const $CopyWithPlaceholder(),
-    Object? incomeTax = const $CopyWithPlaceholder(),
+    Object? totalDeduction = const $CopyWithPlaceholder(),
+    Object? taxSalaryOT = const $CopyWithPlaceholder(),
+    Object? taxSalaryMeal = const $CopyWithPlaceholder(),
+    Object? taxSalaryPhone = const $CopyWithPlaceholder(),
+    Object? taxPersonalDeduction = const $CopyWithPlaceholder(),
+    Object? taxDependentsDeduction = const $CopyWithPlaceholder(),
+    Object? totalTaxDeduction = const $CopyWithPlaceholder(),
+    Object? taxAbleIncome = const $CopyWithPlaceholder(),
+    Object? taxDeduction = const $CopyWithPlaceholder(),
     Object? netSalary = const $CopyWithPlaceholder(),
     Object? note = const $CopyWithPlaceholder(),
     Object? hasPin = const $CopyWithPlaceholder(),
@@ -526,6 +499,7 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? forgotError = const $CopyWithPlaceholder(),
     Object? forgotEmailMessage = const $CopyWithPlaceholder(),
     Object? otpToken = const $CopyWithPlaceholder(),
+    Object? payroll = const $CopyWithPlaceholder(),
   }) {
     return SalaryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -560,226 +534,198 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
           ? _value.selectedMonth
           // ignore: cast_nullable_to_non_nullable
           : selectedMonth as DateTime?,
-      refIncome: refIncome == const $CopyWithPlaceholder() || refIncome == null
-          ? _value.refIncome
+      basicSalary:
+          basicSalary == const $CopyWithPlaceholder() || basicSalary == null
+              ? _value.basicSalary
+              // ignore: cast_nullable_to_non_nullable
+              : basicSalary as double,
+      totalWorkday:
+          totalWorkday == const $CopyWithPlaceholder() || totalWorkday == null
+              ? _value.totalWorkday
+              // ignore: cast_nullable_to_non_nullable
+              : totalWorkday as double,
+      totalMerit:
+          totalMerit == const $CopyWithPlaceholder() || totalMerit == null
+              ? _value.totalMerit
+              // ignore: cast_nullable_to_non_nullable
+              : totalMerit as double,
+      totalSalaryByDay: totalSalaryByDay == const $CopyWithPlaceholder() ||
+              totalSalaryByDay == null
+          ? _value.totalSalaryByDay
           // ignore: cast_nullable_to_non_nullable
-          : refIncome as double,
-      actualWorkDays: actualWorkDays == const $CopyWithPlaceholder() ||
-              actualWorkDays == null
-          ? _value.actualWorkDays
+          : totalSalaryByDay as double,
+      salaryOneHour:
+          salaryOneHour == const $CopyWithPlaceholder() || salaryOneHour == null
+              ? _value.salaryOneHour
+              // ignore: cast_nullable_to_non_nullable
+              : salaryOneHour as double,
+      otHourWD: otHourWD == const $CopyWithPlaceholder() || otHourWD == null
+          ? _value.otHourWD
           // ignore: cast_nullable_to_non_nullable
-          : actualWorkDays as double,
-      leaveDays: leaveDays == const $CopyWithPlaceholder() || leaveDays == null
-          ? _value.leaveDays
+          : otHourWD as double,
+      otMoneyWD: otMoneyWD == const $CopyWithPlaceholder() || otMoneyWD == null
+          ? _value.otMoneyWD
           // ignore: cast_nullable_to_non_nullable
-          : leaveDays as double,
-      totalWorkDays:
-          totalWorkDays == const $CopyWithPlaceholder() || totalWorkDays == null
-              ? _value.totalWorkDays
-              // ignore: cast_nullable_to_non_nullable
-              : totalWorkDays as double,
-      standardSalary: standardSalary == const $CopyWithPlaceholder() ||
-              standardSalary == null
-          ? _value.standardSalary
+          : otMoneyWD as double,
+      otHourWK: otHourWK == const $CopyWithPlaceholder() || otHourWK == null
+          ? _value.otHourWK
           // ignore: cast_nullable_to_non_nullable
-          : standardSalary as double,
-      hourlyRate:
-          hourlyRate == const $CopyWithPlaceholder() || hourlyRate == null
-              ? _value.hourlyRate
-              // ignore: cast_nullable_to_non_nullable
-              : hourlyRate as double,
-      weekdayHours:
-          weekdayHours == const $CopyWithPlaceholder() || weekdayHours == null
-              ? _value.weekdayHours
-              // ignore: cast_nullable_to_non_nullable
-              : weekdayHours as double,
-      weekdayOvertimePay: weekdayOvertimePay == const $CopyWithPlaceholder() ||
-              weekdayOvertimePay == null
-          ? _value.weekdayOvertimePay
+          : otHourWK as double,
+      otMoneyWK: otMoneyWK == const $CopyWithPlaceholder() || otMoneyWK == null
+          ? _value.otMoneyWK
           // ignore: cast_nullable_to_non_nullable
-          : weekdayOvertimePay as double,
-      weekendHours:
-          weekendHours == const $CopyWithPlaceholder() || weekendHours == null
-              ? _value.weekendHours
-              // ignore: cast_nullable_to_non_nullable
-              : weekendHours as double,
-      weekendOvertimePay: weekendOvertimePay == const $CopyWithPlaceholder() ||
-              weekendOvertimePay == null
-          ? _value.weekendOvertimePay
+          : otMoneyWK as double,
+      otHourHD: otHourHD == const $CopyWithPlaceholder() || otHourHD == null
+          ? _value.otHourHD
           // ignore: cast_nullable_to_non_nullable
-          : weekendOvertimePay as double,
-      holidayHours:
-          holidayHours == const $CopyWithPlaceholder() || holidayHours == null
-              ? _value.holidayHours
-              // ignore: cast_nullable_to_non_nullable
-              : holidayHours as double,
-      holidayOvertimePay: holidayOvertimePay == const $CopyWithPlaceholder() ||
-              holidayOvertimePay == null
-          ? _value.holidayOvertimePay
+          : otHourHD as double,
+      otMoneyHD: otMoneyHD == const $CopyWithPlaceholder() || otMoneyHD == null
+          ? _value.otMoneyHD
           // ignore: cast_nullable_to_non_nullable
-          : holidayOvertimePay as double,
-      totalOvertime:
-          totalOvertime == const $CopyWithPlaceholder() || totalOvertime == null
-              ? _value.totalOvertime
+          : otMoneyHD as double,
+      otTotalSalary:
+          otTotalSalary == const $CopyWithPlaceholder() || otTotalSalary == null
+              ? _value.otTotalSalary
               // ignore: cast_nullable_to_non_nullable
-              : totalOvertime as double,
-      mealAllowance:
-          mealAllowance == const $CopyWithPlaceholder() || mealAllowance == null
-              ? _value.mealAllowance
+              : otTotalSalary as double,
+      allowanceMeal:
+          allowanceMeal == const $CopyWithPlaceholder() || allowanceMeal == null
+              ? _value.allowanceMeal
               // ignore: cast_nullable_to_non_nullable
-              : mealAllowance as double,
-      earlyShiftAllowance:
-          earlyShiftAllowance == const $CopyWithPlaceholder() ||
-                  earlyShiftAllowance == null
-              ? _value.earlyShiftAllowance
-              // ignore: cast_nullable_to_non_nullable
-              : earlyShiftAllowance as double,
+              : allowanceMeal as double,
+      allowanceOTEarly: allowanceOTEarly == const $CopyWithPlaceholder() ||
+              allowanceOTEarly == null
+          ? _value.allowanceOTEarly
+          // ignore: cast_nullable_to_non_nullable
+          : allowanceOTEarly as double,
       totalAllowance: totalAllowance == const $CopyWithPlaceholder() ||
               totalAllowance == null
           ? _value.totalAllowance
           // ignore: cast_nullable_to_non_nullable
           : totalAllowance as double,
-      travelAllowance: travelAllowance == const $CopyWithPlaceholder() ||
-              travelAllowance == null
-          ? _value.travelAllowance
+      bussinessMoney: bussinessMoney == const $CopyWithPlaceholder() ||
+              bussinessMoney == null
+          ? _value.bussinessMoney
           // ignore: cast_nullable_to_non_nullable
-          : travelAllowance as double,
-      nightWorkPay:
-          nightWorkPay == const $CopyWithPlaceholder() || nightWorkPay == null
-              ? _value.nightWorkPay
-              // ignore: cast_nullable_to_non_nullable
-              : nightWorkPay as double,
-      transportCost:
-          transportCost == const $CopyWithPlaceholder() || transportCost == null
-              ? _value.transportCost
-              // ignore: cast_nullable_to_non_nullable
-              : transportCost as double,
-      kpiBonus: kpiBonus == const $CopyWithPlaceholder() || kpiBonus == null
-          ? _value.kpiBonus
+          : bussinessMoney as double,
+      nightShiftMoney: nightShiftMoney == const $CopyWithPlaceholder() ||
+              nightShiftMoney == null
+          ? _value.nightShiftMoney
           // ignore: cast_nullable_to_non_nullable
-          : kpiBonus as double,
-      otherAddition:
-          otherAddition == const $CopyWithPlaceholder() || otherAddition == null
-              ? _value.otherAddition
+          : nightShiftMoney as double,
+      costVehicleBussiness:
+          costVehicleBussiness == const $CopyWithPlaceholder() ||
+                  costVehicleBussiness == null
+              ? _value.costVehicleBussiness
               // ignore: cast_nullable_to_non_nullable
-              : otherAddition as double,
-      totalOtherAdditions:
-          totalOtherAdditions == const $CopyWithPlaceholder() ||
-                  totalOtherAdditions == null
-              ? _value.totalOtherAdditions
+              : costVehicleBussiness as double,
+      bonus: bonus == const $CopyWithPlaceholder() || bonus == null
+          ? _value.bonus
+          // ignore: cast_nullable_to_non_nullable
+          : bonus as double,
+      other: other == const $CopyWithPlaceholder() || other == null
+          ? _value.other
+          // ignore: cast_nullable_to_non_nullable
+          : other as double,
+      totalBonus:
+          totalBonus == const $CopyWithPlaceholder() || totalBonus == null
+              ? _value.totalBonus
               // ignore: cast_nullable_to_non_nullable
-              : totalOtherAdditions as double,
+              : totalBonus as double,
       totalTaxableIncome: totalTaxableIncome == const $CopyWithPlaceholder() ||
               totalTaxableIncome == null
           ? _value.totalTaxableIncome
           // ignore: cast_nullable_to_non_nullable
           : totalTaxableIncome as double,
-      socialInsuranceRate:
-          socialInsuranceRate == const $CopyWithPlaceholder() ||
-                  socialInsuranceRate == null
-              ? _value.socialInsuranceRate
-              // ignore: cast_nullable_to_non_nullable
-              : socialInsuranceRate as double,
-      socialInsuranceAmount:
-          socialInsuranceAmount == const $CopyWithPlaceholder() ||
-                  socialInsuranceAmount == null
-              ? _value.socialInsuranceAmount
-              // ignore: cast_nullable_to_non_nullable
-              : socialInsuranceAmount as double,
-      unionFundRate:
-          unionFundRate == const $CopyWithPlaceholder() || unionFundRate == null
-              ? _value.unionFundRate
-              // ignore: cast_nullable_to_non_nullable
-              : unionFundRate as double,
-      unionFundAmount: unionFundAmount == const $CopyWithPlaceholder() ||
-              unionFundAmount == null
-          ? _value.unionFundAmount
+      socialInsurance: socialInsurance == const $CopyWithPlaceholder() ||
+              socialInsurance == null
+          ? _value.socialInsurance
           // ignore: cast_nullable_to_non_nullable
-          : unionFundAmount as double,
-      salaryAdvance:
-          salaryAdvance == const $CopyWithPlaceholder() || salaryAdvance == null
-              ? _value.salaryAdvance
+          : socialInsurance as double,
+      insurances:
+          insurances == const $CopyWithPlaceholder() || insurances == null
+              ? _value.insurances
               // ignore: cast_nullable_to_non_nullable
-              : salaryAdvance as double,
-      deptCollection: deptCollection == const $CopyWithPlaceholder() ||
-              deptCollection == null
-          ? _value.deptCollection
+              : insurances as double,
+      unionFees: unionFees == const $CopyWithPlaceholder() || unionFees == null
+          ? _value.unionFees
           // ignore: cast_nullable_to_non_nullable
-          : deptCollection as double,
-      carParking:
-          carParking == const $CopyWithPlaceholder() || carParking == null
-              ? _value.carParking
+          : unionFees as double,
+      advancePayment: advancePayment == const $CopyWithPlaceholder() ||
+              advancePayment == null
+          ? _value.advancePayment
+          // ignore: cast_nullable_to_non_nullable
+          : advancePayment as double,
+      departmentalFees: departmentalFees == const $CopyWithPlaceholder() ||
+              departmentalFees == null
+          ? _value.departmentalFees
+          // ignore: cast_nullable_to_non_nullable
+          : departmentalFees as double,
+      parkingMoney:
+          parkingMoney == const $CopyWithPlaceholder() || parkingMoney == null
+              ? _value.parkingMoney
               // ignore: cast_nullable_to_non_nullable
-              : carParking as double,
-      fiveSParking:
-          fiveSParking == const $CopyWithPlaceholder() || fiveSParking == null
-              ? _value.fiveSParking
-              // ignore: cast_nullable_to_non_nullable
-              : fiveSParking as double,
-      mealDeduction:
-          mealDeduction == const $CopyWithPlaceholder() || mealDeduction == null
-              ? _value.mealDeduction
-              // ignore: cast_nullable_to_non_nullable
-              : mealDeduction as double,
+              : parkingMoney as double,
+      punish5S: punish5S == const $CopyWithPlaceholder() || punish5S == null
+          ? _value.punish5S
+          // ignore: cast_nullable_to_non_nullable
+          : punish5S as double,
+      mealUse: mealUse == const $CopyWithPlaceholder() || mealUse == null
+          ? _value.mealUse
+          // ignore: cast_nullable_to_non_nullable
+          : mealUse as int,
       otherDeduction: otherDeduction == const $CopyWithPlaceholder() ||
               otherDeduction == null
           ? _value.otherDeduction
           // ignore: cast_nullable_to_non_nullable
           : otherDeduction as double,
-      totalDeductions: totalDeductions == const $CopyWithPlaceholder() ||
-              totalDeductions == null
-          ? _value.totalDeductions
+      totalDeduction: totalDeduction == const $CopyWithPlaceholder() ||
+              totalDeduction == null
+          ? _value.totalDeduction
           // ignore: cast_nullable_to_non_nullable
-          : totalDeductions as double,
-      taxableSocialInsurance:
-          taxableSocialInsurance == const $CopyWithPlaceholder() ||
-                  taxableSocialInsurance == null
-              ? _value.taxableSocialInsurance
+          : totalDeduction as double,
+      taxSalaryOT:
+          taxSalaryOT == const $CopyWithPlaceholder() || taxSalaryOT == null
+              ? _value.taxSalaryOT
               // ignore: cast_nullable_to_non_nullable
-              : taxableSocialInsurance as double,
-      taxableOvertime: taxableOvertime == const $CopyWithPlaceholder() ||
-              taxableOvertime == null
-          ? _value.taxableOvertime
+              : taxSalaryOT as double,
+      taxSalaryMeal:
+          taxSalaryMeal == const $CopyWithPlaceholder() || taxSalaryMeal == null
+              ? _value.taxSalaryMeal
+              // ignore: cast_nullable_to_non_nullable
+              : taxSalaryMeal as double,
+      taxSalaryPhone: taxSalaryPhone == const $CopyWithPlaceholder() ||
+              taxSalaryPhone == null
+          ? _value.taxSalaryPhone
           // ignore: cast_nullable_to_non_nullable
-          : taxableOvertime as double,
-      taxableMealAllowance:
-          taxableMealAllowance == const $CopyWithPlaceholder() ||
-                  taxableMealAllowance == null
-              ? _value.taxableMealAllowance
+          : taxSalaryPhone as double,
+      taxPersonalDeduction:
+          taxPersonalDeduction == const $CopyWithPlaceholder() ||
+                  taxPersonalDeduction == null
+              ? _value.taxPersonalDeduction
               // ignore: cast_nullable_to_non_nullable
-              : taxableMealAllowance as double,
-      taxablePhoneAllowance:
-          taxablePhoneAllowance == const $CopyWithPlaceholder() ||
-                  taxablePhoneAllowance == null
-              ? _value.taxablePhoneAllowance
+              : taxPersonalDeduction as double,
+      taxDependentsDeduction:
+          taxDependentsDeduction == const $CopyWithPlaceholder() ||
+                  taxDependentsDeduction == null
+              ? _value.taxDependentsDeduction
               // ignore: cast_nullable_to_non_nullable
-              : taxablePhoneAllowance as double,
-      taxablePersonalDeduction:
-          taxablePersonalDeduction == const $CopyWithPlaceholder() ||
-                  taxablePersonalDeduction == null
-              ? _value.taxablePersonalDeduction
-              // ignore: cast_nullable_to_non_nullable
-              : taxablePersonalDeduction as double,
-      taxableDependentDeduction:
-          taxableDependentDeduction == const $CopyWithPlaceholder() ||
-                  taxableDependentDeduction == null
-              ? _value.taxableDependentDeduction
-              // ignore: cast_nullable_to_non_nullable
-              : taxableDependentDeduction as double,
-      totalTaxDeductions: totalTaxDeductions == const $CopyWithPlaceholder() ||
-              totalTaxDeductions == null
-          ? _value.totalTaxDeductions
+              : taxDependentsDeduction as double,
+      totalTaxDeduction: totalTaxDeduction == const $CopyWithPlaceholder() ||
+              totalTaxDeduction == null
+          ? _value.totalTaxDeduction
           // ignore: cast_nullable_to_non_nullable
-          : totalTaxDeductions as double,
-      taxableIncome:
-          taxableIncome == const $CopyWithPlaceholder() || taxableIncome == null
-              ? _value.taxableIncome
+          : totalTaxDeduction as double,
+      taxAbleIncome:
+          taxAbleIncome == const $CopyWithPlaceholder() || taxAbleIncome == null
+              ? _value.taxAbleIncome
               // ignore: cast_nullable_to_non_nullable
-              : taxableIncome as double,
-      incomeTax: incomeTax == const $CopyWithPlaceholder() || incomeTax == null
-          ? _value.incomeTax
-          // ignore: cast_nullable_to_non_nullable
-          : incomeTax as double,
+              : taxAbleIncome as double,
+      taxDeduction:
+          taxDeduction == const $CopyWithPlaceholder() || taxDeduction == null
+              ? _value.taxDeduction
+              // ignore: cast_nullable_to_non_nullable
+              : taxDeduction as double,
       netSalary: netSalary == const $CopyWithPlaceholder() || netSalary == null
           ? _value.netSalary
           // ignore: cast_nullable_to_non_nullable
@@ -838,6 +784,10 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
           ? _value.otpToken
           // ignore: cast_nullable_to_non_nullable
           : otpToken as String?,
+      payroll: payroll == const $CopyWithPlaceholder() || payroll == null
+          ? _value.payroll
+          // ignore: cast_nullable_to_non_nullable
+          : payroll as List<SalaryPayrollItem>,
     );
   }
 }

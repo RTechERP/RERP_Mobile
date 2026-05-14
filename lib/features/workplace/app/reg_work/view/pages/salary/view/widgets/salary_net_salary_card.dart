@@ -30,8 +30,8 @@ class SalaryNetSalaryCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Thực lĩnh',
-                value: f(state.totalTaxDeductions),
-                formula: '(48) = (28)-(30)-(38)-(45)',
+                value: f(state.netSalary),
+                formula: '(48) = (28) - (30) - (38) - (45)',
               ),
             ],
           ),

@@ -11,66 +11,62 @@ class SalaryState extends BaseBlocState {
   final DateTime? selectedMonth;
 
   // Card thu nhập tiêu chuẩn
-  final double refIncome;         // (4) Thu nhập tiêu chuẩn tham chiếu
-  final double actualWorkDays;    // (5) Công thực tế
-  final double leaveDays;         // (5b) Phép
-  final double totalWorkDays;     // (5a) Tổng công (actualWorkDays + leaveDays)
-  final double standardSalary;    // (6) Thu nhập thực lĩnh = (4) / F4 * (5)
-  final double hourlyRate;        // (7) Đơn giá/giờ = (4) / F4 / 8
+  final double basicSalary;         // (4) Lương cơ bản
+  final double totalWorkday;        // (5) Tổng công
+  final double totalMerit;          // (5b) Công thưởng/phạt
+  final double totalSalaryByDay;    // (6) Lương theo ngày công
+  final double salaryOneHour;       // (7) Lương 1 giờ
 
   // Card làm thêm
-  final double weekdayHours;          // (8) Giờ ngày thường
-  final double weekdayOvertimePay;    // (9) = (8) * (7) * 1.5
-  final double weekendHours;          // (10) Giờ cuối tuần
-  final double weekendOvertimePay;    // (11) = (10) * (7) * 2
-  final double holidayHours;          // (12) Giờ ngày lễ/Tết
-  final double holidayOvertimePay;     // (13) = (12) * (7) * 3
-  final double totalOvertime;         // (14) Tổng làm thêm = (9)+(11)+(13)
+  final double otHourWD;           // (8) Giờ ngày thường
+  final double otMoneyWD;           // (9) Tiền OT ngày thường
+  final double otHourWK;           // (10) Giờ cuối tuần
+  final double otMoneyWK;          // (11) Tiền OT cuối tuần
+  final double otHourHD;           // (12) Giờ ngày lễ/Tết
+  final double otMoneyHD;          // (13) Tiền OT ngày lễ/Tết
+  final double otTotalSalary;      // (14) Tổng tiền OT
 
   // Card phụ cấp
-  final double mealAllowance;      // (17) Cơm ca sau 20H/theo loại ca tác
-  final double earlyShiftAllowance; // (18) Đi làm trước 7h15
-  final double totalAllowance;     // (19) = (16)+(17)+(18)
+  final double allowanceMeal;      // (17) Phụ cấp cơm ca
+  final double allowanceOTEarly;     // (18) Phụ cấp đi sớm
+  final double totalAllowance;      // (19) Tổng phụ cấp
 
   // Card các khoản cộng khác
-  final double travelAllowance;   // (20) Công tác phí
-  final double nightWorkPay;      // (21) Làm đêm
-  final double transportCost;     // (22) Chi phí phương tiện công tác
-  final double kpiBonus;         // (23) Thưởng KPIs/doanh số
-  final double otherAddition;    // (24) Khác
-  final double totalOtherAdditions; // (25) = (20)+(21)+(22)+(23)+(24)
+  final double bussinessMoney;     // (20) Công tác phí
+  final double nightShiftMoney;     // (21) Làm đêm
+  final double costVehicleBussiness; // (22) Chi phí phương tiện
+  final double bonus;              // (23) Thưởng KPIs/doanh số
+  final double other;              // (24) Khác
+  final double totalBonus;         // (25) Tổng các khoản cộng khác
 
   // Card Tổng thu nhập
-  final double totalTaxableIncome; // (26) = (6)+(14)+(19)+(25)
+  final double totalTaxableIncome;  // (26) Tổng thu nhập chịu thuế
 
   // Card các khoản phải trừ
-  final double socialInsuranceRate;      // (29a) Mức đóng BHXH, BHYT, BHTN
-  final double socialInsuranceAmount;   // (29) = 10.5% * (27)
-  final double unionFundRate;            // (30a) Mức đóng Quỹ BĐS
-  final double unionFundAmount;          // (31) = 1% * (27)
-  final double salaryAdvance;            // (32) Ứng lương
-  final double deptCollection;            // (33) Thu hộ phòng ban
-  final double carParking;               // (34) Gửi xe ô tô
-  final double fiveSParking;             // (35) 5S
-  final double mealDeduction;            // (36) Cơm ca tại VP
-  final double otherDeduction;           // (37) Khác
-  final double totalDeductions;          // (38) = (31)+(32)+(33)+(34)+(35)+(36)+(37)
+  final double socialInsurance;     // (29) Mức đống BHXH, BHYT, BHTN
+  final double insurances;          // (30) Phải thu BHXH
+  final double unionFees;           // (31) Quỹ BĐS
+  final double advancePayment;      // (32) Ứng lương
+  final double departmentalFees;    // (33) Thu hộ phòng ban
+  final double parkingMoney;       // (34) Gửi xe ô tô
+  final double punish5S;           // (35) 5S
+  final int mealUse;            // (36) Cơm ca tại VP
+  final double otherDeduction;     // (37) Khác
+  final double totalDeduction;     // (38) Tổng các khoản trừ
 
-  // Card tổng thu nhập tính thuế (card lớn, collapsible)
-  // Card con: Giảm trừ thuế TNCN
-  final double taxableSocialInsurance;     // (39) Lương BHXH 10.5%
-  final double taxableOvertime;           // (40) = (14)+(21)
-  final double taxableMealAllowance;      // (41) PC cơm ca
-  final double taxablePhoneAllowance;      // (42) PC điện thoại
-  final double taxablePersonalDeduction;   // (43) Giảm trừ bản thân
-  final double taxableDependentDeduction;  // (44) Giảm trừ người phụ thuộc
-  final double totalTaxDeductions;        // (45) = (39)+(40)+(41)+(42)+(43)+(44)
-  final double taxableIncome;             // (46) = (26)-(30)-(44)
-  final double incomeTax;                 // (47) Khấu trừ Thuế TNCN
+  // Card giảm trừ thuế TNCN
+  final double taxSalaryOT;         // (40) Thu nhập OT chịu thuế
+  final double taxSalaryMeal;      // (41) PC cơm ca chịu thuế
+  final double taxSalaryPhone;     // (42) PC điện thoại chịu thuế
+  final double taxPersonalDeduction; // (43) Giảm trừ bản thân
+  final double taxDependentsDeduction; // (44) Giảm trừ người phụ thuộc
+  final double totalTaxDeduction;  // (45) Tổng giảm trừ thuế
+  final double taxAbleIncome;      // (46) Thu nhập tính thuế
+  final double taxDeduction;       // (47) Thuế TNCN
 
   // Thực lĩnh & Ghi chú
-  final double netSalary;                 // (48) = (28)-(30)-(38)-(45)
-  final String? note;                     // (49) Ghi chú
+  final double netSalary;           // (48) Thực lĩnh
+  final String? note;              // (49) Ghi chú
 
   // PIN verification
   final bool hasPin;
@@ -87,6 +83,9 @@ class SalaryState extends BaseBlocState {
   final String? forgotEmailMessage;
   final String? otpToken;
 
+  // Payroll data
+  final List<SalaryPayrollItem> payroll;
+
   const SalaryState({
     required super.status,
     super.message,
@@ -96,52 +95,46 @@ class SalaryState extends BaseBlocState {
     this.contractType,
     this.joinDate,
     this.selectedMonth,
-    this.refIncome = 0,
-    this.actualWorkDays = 0,
-    this.leaveDays = 0,
-    this.totalWorkDays = 0,
-    this.standardSalary = 0,
-    this.hourlyRate = 0,
-    this.weekdayHours = 0,
-    this.weekdayOvertimePay = 0,
-    this.weekendHours = 0,
-    this.weekendOvertimePay = 0,
-    this.holidayHours = 0,
-    this.holidayOvertimePay = 0,
-    this.totalOvertime = 0,
-    this.mealAllowance = 0,
-    this.earlyShiftAllowance = 0,
+    this.basicSalary = 0,
+    this.totalWorkday = 0,
+    this.totalMerit = 0,
+    this.totalSalaryByDay = 0,
+    this.salaryOneHour = 0,
+    this.otHourWD = 0,
+    this.otMoneyWD = 0,
+    this.otHourWK = 0,
+    this.otMoneyWK = 0,
+    this.otHourHD = 0,
+    this.otMoneyHD = 0,
+    this.otTotalSalary = 0,
+    this.allowanceMeal = 0,
+    this.allowanceOTEarly = 0,
     this.totalAllowance = 0,
-    this.travelAllowance = 0,
-    this.nightWorkPay = 0,
-    this.transportCost = 0,
-    this.kpiBonus = 0,
-    this.otherAddition = 0,
-    this.totalOtherAdditions = 0,
+    this.bussinessMoney = 0,
+    this.nightShiftMoney = 0,
+    this.costVehicleBussiness = 0,
+    this.bonus = 0,
+    this.other = 0,
+    this.totalBonus = 0,
     this.totalTaxableIncome = 0,
-    // Card các khoản phải trừ
-    this.socialInsuranceRate = 0,
-    this.socialInsuranceAmount = 0,
-    this.unionFundRate = 0,
-    this.unionFundAmount = 0,
-    this.salaryAdvance = 0,
-    this.deptCollection = 0,
-    this.carParking = 0,
-    this.fiveSParking = 0,
-    this.mealDeduction = 0,
+    this.socialInsurance = 0,
+    this.insurances = 0,
+    this.unionFees = 0,
+    this.advancePayment = 0,
+    this.departmentalFees = 0,
+    this.parkingMoney = 0,
+    this.punish5S = 0,
+    this.mealUse = 0,
     this.otherDeduction = 0,
-    this.totalDeductions = 0,
-    // Card giảm trừ thuế
-    this.taxableSocialInsurance = 0,
-    this.taxableOvertime = 0,
-    this.taxableMealAllowance = 0,
-    this.taxablePhoneAllowance = 0,
-    this.taxablePersonalDeduction = 0,
-    this.taxableDependentDeduction = 0,
-    this.totalTaxDeductions = 0,
-    this.taxableIncome = 0,
-    this.incomeTax = 0,
-    // Thực lĩnh & Ghi chú
+    this.totalDeduction = 0,
+    this.taxSalaryOT = 0,
+    this.taxSalaryMeal = 0,
+    this.taxSalaryPhone = 0,
+    this.taxPersonalDeduction = 0,
+    this.taxDependentsDeduction = 0,
+    this.totalTaxDeduction = 0,
+    this.taxAbleIncome = 0,
+    this.taxDeduction = 0,
     this.netSalary = 0,
     this.note,
     this.hasPin = false,
@@ -155,6 +148,7 @@ class SalaryState extends BaseBlocState {
     this.forgotError,
     this.forgotEmailMessage,
     this.otpToken,
+    this.payroll = const [],
   });
 
   factory SalaryState.init() => const SalaryState(
@@ -171,52 +165,46 @@ class SalaryState extends BaseBlocState {
         contractType,
         joinDate,
         selectedMonth,
-        refIncome,
-        actualWorkDays,
-        leaveDays,
-        totalWorkDays,
-        standardSalary,
-        hourlyRate,
-        weekdayHours,
-        weekdayOvertimePay,
-        weekendHours,
-        weekendOvertimePay,
-        holidayHours,
-        holidayOvertimePay,
-        totalOvertime,
-        mealAllowance,
-        earlyShiftAllowance,
+        basicSalary,
+        totalWorkday,
+        totalMerit,
+        totalSalaryByDay,
+        salaryOneHour,
+        otHourWD,
+        otMoneyWD,
+        otHourWK,
+        otMoneyWK,
+        otHourHD,
+        otMoneyHD,
+        otTotalSalary,
+        allowanceMeal,
+        allowanceOTEarly,
         totalAllowance,
-        travelAllowance,
-        nightWorkPay,
-        transportCost,
-        kpiBonus,
-        otherAddition,
-        totalOtherAdditions,
+        bussinessMoney,
+        nightShiftMoney,
+        costVehicleBussiness,
+        bonus,
+        other,
+        totalBonus,
         totalTaxableIncome,
-        // Card các khoản phải trừ
-        socialInsuranceRate,
-        socialInsuranceAmount,
-        unionFundRate,
-        unionFundAmount,
-        salaryAdvance,
-        deptCollection,
-        carParking,
-        fiveSParking,
-        mealDeduction,
+        socialInsurance,
+        insurances,
+        unionFees,
+        advancePayment,
+        departmentalFees,
+        parkingMoney,
+        punish5S,
+        mealUse,
         otherDeduction,
-        totalDeductions,
-        // Card giảm trừ thuế
-        taxableSocialInsurance,
-        taxableOvertime,
-        taxableMealAllowance,
-        taxablePhoneAllowance,
-        taxablePersonalDeduction,
-        taxableDependentDeduction,
-        totalTaxDeductions,
-        taxableIncome,
-        incomeTax,
-        // Thực lĩnh & Ghi chú
+        totalDeduction,
+        taxSalaryOT,
+        taxSalaryMeal,
+        taxSalaryPhone,
+        taxPersonalDeduction,
+        taxDependentsDeduction,
+        totalTaxDeduction,
+        taxAbleIncome,
+        taxDeduction,
         netSalary,
         note,
         hasPin,
@@ -230,5 +218,6 @@ class SalaryState extends BaseBlocState {
         forgotError,
         forgotEmailMessage,
         otpToken,
+        payroll,
       ];
 }

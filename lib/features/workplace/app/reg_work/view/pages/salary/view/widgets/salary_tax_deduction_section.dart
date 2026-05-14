@@ -92,7 +92,7 @@ class _SalaryTaxDeductionSectionState extends State<SalaryTaxDeductionSection> {
                         Expanded(
                           flex: 4,
                           child: Text(
-                            '(39) → (44)',
+                            '(40) → (44)',
                             textAlign: TextAlign.end,
                             style: AppStyles.body2.copyWith(
                               color: AppColors.stateInfoColor,
@@ -137,22 +137,23 @@ class _SalaryTaxDeductionSectionState extends State<SalaryTaxDeductionSection> {
                           items: [
                             SalaryRowItem(
                               label: 'Lương BHXH (10.5%)',
-                              value: f(state.taxableSocialInsurance),
+                              value: f(state.insurances),
                               formula: '(39)',
                               highlightBg: false,
                             ),
                             SalaryRowItem(
                               label: 'Lương làm thêm',
-                              value: f(state.taxableOvertime),
+                              value: f(state.taxSalaryOT),
                               formula: '(40)',
                               highlightBg: false,
                             ),
                             SalaryRowItem(
                               label: 'PC cơm ca',
-                              value: f(state.taxableMealAllowance),
+                              value: f(state.taxSalaryMeal),
                               formula: '(41)',
                               highlightBg: false,
                             ),
+
                           ],
                         ),
                         const SizedBox(height: 6),
@@ -164,19 +165,19 @@ class _SalaryTaxDeductionSectionState extends State<SalaryTaxDeductionSection> {
                           items: [
                             SalaryRowItem(
                               label: 'PC điện thoại',
-                              value: f(state.taxablePhoneAllowance),
+                              value: f(state.taxSalaryPhone),
                               formula: '(42)',
                               highlightBg: false,
                             ),
                             SalaryRowItem(
                               label: 'Giảm trừ bản thân',
-                              value: f(state.taxablePersonalDeduction),
+                              value: f(state.taxPersonalDeduction),
                               formula: '(43)',
                               highlightBg: false,
                             ),
                             SalaryRowItem(
                               label: 'Giảm trừ người phụ thuộc',
-                              value: f(state.taxableDependentDeduction),
+                              value: f(state.taxDependentsDeduction),
                               formula: '(44)',
                               highlightBg: false,
                             ),

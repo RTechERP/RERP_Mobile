@@ -4591,32 +4591,122 @@ SalaryPayrollItem _$SalaryPayrollItemFromJson(Map<String, dynamic> json) {
 mixin _$SalaryPayrollItem {
   @JsonKey(name: 'ID')
   int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Sign')
+  bool? get sign => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PayrollID')
+  int? get payrollId => throw _privateConstructorUsedError;
   @JsonKey(name: 'EmployeeID')
   int? get employeeId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'EmployeeName')
-  String? get employeeName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'EmployeeCode')
-  String? get employeeCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentSTT')
+  int? get departmentSTT => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PriorityOrder')
+  int? get priorityOrder => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PositionName')
+  String? get positionName => throw _privateConstructorUsedError;
   @JsonKey(name: 'BasicSalary')
   double? get basicSalary => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Allowance')
-  double? get allowance => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Deduction')
-  double? get deduction => throw _privateConstructorUsedError;
-  @JsonKey(name: 'GrossSalary')
-  double? get grossSalary => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Tax')
-  double? get tax => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Insurance')
-  double? get insurance => throw _privateConstructorUsedError;
-  @JsonKey(name: 'NetSalary')
-  double? get netSalary => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Month')
-  int? get month => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Year')
-  int? get year => throw _privateConstructorUsedError;
-  @JsonKey(name: 'CreatedDate')
-  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalWorkday')
+  double? get totalWorkday => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalMerit')
+  double? get totalMerit => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalSalaryByDay')
+  double? get totalSalaryByDay => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SalaryOneHour')
+  double? get salaryOneHour => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OT_Hour_WD')
+  double? get otHourWD => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OT_Money_WD')
+  double? get otMoneyWD => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OT_Hour_WK')
+  double? get otHourWK => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OT_Money_WK')
+  double? get otMoneyWK => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OT_Hour_HD')
+  double? get otHourHD => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OT_Money_HD')
+  double? get otMoneyHD => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OT_TotalSalary')
+  double? get otTotalSalary => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReferenceIndustry')
+  double? get referenceIndustry => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RealIndustry')
+  double? get realIndustry => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AllowanceMeal')
+  double? get allowanceMeal => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Allowance_OT_Early')
+  double? get allowanceOTEarly => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalAllowance')
+  double? get totalAllowance => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BussinessMoney')
+  double? get bussinessMoney => throw _privateConstructorUsedError;
+  @JsonKey(name: 'NightShiftMoney')
+  double? get nightShiftMoney => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CostVehicleBussiness')
+  double? get costVehicleBussiness => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Bonus')
+  double? get bonus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Other')
+  double? get other => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalBonus')
+  double? get totalBonus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SocialInsurance')
+  double? get socialInsurance => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Insurances')
+  double? get insurances => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UnionFees')
+  double? get unionFees => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvancePayment')
+  double? get advancePayment => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentalFees')
+  double? get departmentalFees => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ParkingMoney')
+  double? get parkingMoney => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Punish5S')
+  double? get punish5S => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OtherDeduction')
+  double? get otherDeduction => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalDeduction')
+  double? get totalDeduction => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsPublish')
+  bool? get isPublish => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StartWorking')
+  DateTime? get startWorking => throw _privateConstructorUsedError;
+  @JsonKey(name: 'MealUse')
+  int? get mealUse => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxSalaryOT')
+  double? get taxSalaryOT => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxSalaryMeal')
+  double? get taxSalaryMeal => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxSalaryPhone')
+  double? get taxSalaryPhone => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxPersonalDeduction')
+  double? get taxPersonalDeduction => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxDependentsDeduction')
+  double? get taxDependentsDeduction => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalTaxDeduction')
+  double? get totalTaxDeduction => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxAbleIncome')
+  double? get taxAbleIncome => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxCompanyName')
+  String? get taxCompanyName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StatusContract')
+  String? get statusContract => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxDeduction')
+  double? get taxDeduction => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RealSalary')
+  double? get realSalary => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ActualAmountReceived')
+  double? get actualAmountReceived => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4632,19 +4722,64 @@ abstract class $SalaryPayrollItemCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Sign') bool? sign,
+      @JsonKey(name: 'PayrollID') int? payrollId,
       @JsonKey(name: 'EmployeeID') int? employeeId,
-      @JsonKey(name: 'EmployeeName') String? employeeName,
-      @JsonKey(name: 'EmployeeCode') String? employeeCode,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentSTT') int? departmentSTT,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'PriorityOrder') int? priorityOrder,
+      @JsonKey(name: 'PositionName') String? positionName,
       @JsonKey(name: 'BasicSalary') double? basicSalary,
-      @JsonKey(name: 'Allowance') double? allowance,
-      @JsonKey(name: 'Deduction') double? deduction,
-      @JsonKey(name: 'GrossSalary') double? grossSalary,
-      @JsonKey(name: 'Tax') double? tax,
-      @JsonKey(name: 'Insurance') double? insurance,
-      @JsonKey(name: 'NetSalary') double? netSalary,
-      @JsonKey(name: 'Month') int? month,
-      @JsonKey(name: 'Year') int? year,
-      @JsonKey(name: 'CreatedDate') DateTime? createdDate});
+      @JsonKey(name: 'TotalWorkday') double? totalWorkday,
+      @JsonKey(name: 'TotalMerit') double? totalMerit,
+      @JsonKey(name: 'TotalSalaryByDay') double? totalSalaryByDay,
+      @JsonKey(name: 'SalaryOneHour') double? salaryOneHour,
+      @JsonKey(name: 'OT_Hour_WD') double? otHourWD,
+      @JsonKey(name: 'OT_Money_WD') double? otMoneyWD,
+      @JsonKey(name: 'OT_Hour_WK') double? otHourWK,
+      @JsonKey(name: 'OT_Money_WK') double? otMoneyWK,
+      @JsonKey(name: 'OT_Hour_HD') double? otHourHD,
+      @JsonKey(name: 'OT_Money_HD') double? otMoneyHD,
+      @JsonKey(name: 'OT_TotalSalary') double? otTotalSalary,
+      @JsonKey(name: 'ReferenceIndustry') double? referenceIndustry,
+      @JsonKey(name: 'RealIndustry') double? realIndustry,
+      @JsonKey(name: 'AllowanceMeal') double? allowanceMeal,
+      @JsonKey(name: 'Allowance_OT_Early') double? allowanceOTEarly,
+      @JsonKey(name: 'TotalAllowance') double? totalAllowance,
+      @JsonKey(name: 'BussinessMoney') double? bussinessMoney,
+      @JsonKey(name: 'NightShiftMoney') double? nightShiftMoney,
+      @JsonKey(name: 'CostVehicleBussiness') double? costVehicleBussiness,
+      @JsonKey(name: 'Bonus') double? bonus,
+      @JsonKey(name: 'Other') double? other,
+      @JsonKey(name: 'TotalBonus') double? totalBonus,
+      @JsonKey(name: 'SocialInsurance') double? socialInsurance,
+      @JsonKey(name: 'Insurances') double? insurances,
+      @JsonKey(name: 'UnionFees') double? unionFees,
+      @JsonKey(name: 'AdvancePayment') double? advancePayment,
+      @JsonKey(name: 'DepartmentalFees') double? departmentalFees,
+      @JsonKey(name: 'ParkingMoney') double? parkingMoney,
+      @JsonKey(name: 'Punish5S') double? punish5S,
+      @JsonKey(name: 'OtherDeduction') double? otherDeduction,
+      @JsonKey(name: 'TotalDeduction') double? totalDeduction,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'IsPublish') bool? isPublish,
+      @JsonKey(name: 'StartWorking') DateTime? startWorking,
+      @JsonKey(name: 'MealUse') int? mealUse,
+      @JsonKey(name: 'TaxSalaryOT') double? taxSalaryOT,
+      @JsonKey(name: 'TaxSalaryMeal') double? taxSalaryMeal,
+      @JsonKey(name: 'TaxSalaryPhone') double? taxSalaryPhone,
+      @JsonKey(name: 'TaxPersonalDeduction') double? taxPersonalDeduction,
+      @JsonKey(name: 'TaxDependentsDeduction') double? taxDependentsDeduction,
+      @JsonKey(name: 'TotalTaxDeduction') double? totalTaxDeduction,
+      @JsonKey(name: 'TaxAbleIncome') double? taxAbleIncome,
+      @JsonKey(name: 'TaxCompanyName') String? taxCompanyName,
+      @JsonKey(name: 'StatusContract') String? statusContract,
+      @JsonKey(name: 'TaxDeduction') double? taxDeduction,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'RealSalary') double? realSalary,
+      @JsonKey(name: 'ActualAmountReceived') double? actualAmountReceived});
 }
 
 /// @nodoc
@@ -4661,77 +4796,302 @@ class _$SalaryPayrollItemCopyWithImpl<$Res, $Val extends SalaryPayrollItem>
   @override
   $Res call({
     Object? id = freezed,
+    Object? sign = freezed,
+    Object? payrollId = freezed,
     Object? employeeId = freezed,
-    Object? employeeName = freezed,
-    Object? employeeCode = freezed,
+    Object? code = freezed,
+    Object? fullName = freezed,
+    Object? departmentSTT = freezed,
+    Object? departmentName = freezed,
+    Object? priorityOrder = freezed,
+    Object? positionName = freezed,
     Object? basicSalary = freezed,
-    Object? allowance = freezed,
-    Object? deduction = freezed,
-    Object? grossSalary = freezed,
-    Object? tax = freezed,
-    Object? insurance = freezed,
-    Object? netSalary = freezed,
-    Object? month = freezed,
-    Object? year = freezed,
-    Object? createdDate = freezed,
+    Object? totalWorkday = freezed,
+    Object? totalMerit = freezed,
+    Object? totalSalaryByDay = freezed,
+    Object? salaryOneHour = freezed,
+    Object? otHourWD = freezed,
+    Object? otMoneyWD = freezed,
+    Object? otHourWK = freezed,
+    Object? otMoneyWK = freezed,
+    Object? otHourHD = freezed,
+    Object? otMoneyHD = freezed,
+    Object? otTotalSalary = freezed,
+    Object? referenceIndustry = freezed,
+    Object? realIndustry = freezed,
+    Object? allowanceMeal = freezed,
+    Object? allowanceOTEarly = freezed,
+    Object? totalAllowance = freezed,
+    Object? bussinessMoney = freezed,
+    Object? nightShiftMoney = freezed,
+    Object? costVehicleBussiness = freezed,
+    Object? bonus = freezed,
+    Object? other = freezed,
+    Object? totalBonus = freezed,
+    Object? socialInsurance = freezed,
+    Object? insurances = freezed,
+    Object? unionFees = freezed,
+    Object? advancePayment = freezed,
+    Object? departmentalFees = freezed,
+    Object? parkingMoney = freezed,
+    Object? punish5S = freezed,
+    Object? otherDeduction = freezed,
+    Object? totalDeduction = freezed,
+    Object? note = freezed,
+    Object? isPublish = freezed,
+    Object? startWorking = freezed,
+    Object? mealUse = freezed,
+    Object? taxSalaryOT = freezed,
+    Object? taxSalaryMeal = freezed,
+    Object? taxSalaryPhone = freezed,
+    Object? taxPersonalDeduction = freezed,
+    Object? taxDependentsDeduction = freezed,
+    Object? totalTaxDeduction = freezed,
+    Object? taxAbleIncome = freezed,
+    Object? taxCompanyName = freezed,
+    Object? statusContract = freezed,
+    Object? taxDeduction = freezed,
+    Object? stt = freezed,
+    Object? realSalary = freezed,
+    Object? actualAmountReceived = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      sign: freezed == sign
+          ? _value.sign
+          : sign // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      payrollId: freezed == payrollId
+          ? _value.payrollId
+          : payrollId // ignore: cast_nullable_to_non_nullable
+              as int?,
       employeeId: freezed == employeeId
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
               as int?,
-      employeeName: freezed == employeeName
-          ? _value.employeeName
-          : employeeName // ignore: cast_nullable_to_non_nullable
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String?,
-      employeeCode: freezed == employeeCode
-          ? _value.employeeCode
-          : employeeCode // ignore: cast_nullable_to_non_nullable
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentSTT: freezed == departmentSTT
+          ? _value.departmentSTT
+          : departmentSTT // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      priorityOrder: freezed == priorityOrder
+          ? _value.priorityOrder
+          : priorityOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
+      positionName: freezed == positionName
+          ? _value.positionName
+          : positionName // ignore: cast_nullable_to_non_nullable
               as String?,
       basicSalary: freezed == basicSalary
           ? _value.basicSalary
           : basicSalary // ignore: cast_nullable_to_non_nullable
               as double?,
-      allowance: freezed == allowance
-          ? _value.allowance
-          : allowance // ignore: cast_nullable_to_non_nullable
+      totalWorkday: freezed == totalWorkday
+          ? _value.totalWorkday
+          : totalWorkday // ignore: cast_nullable_to_non_nullable
               as double?,
-      deduction: freezed == deduction
-          ? _value.deduction
-          : deduction // ignore: cast_nullable_to_non_nullable
+      totalMerit: freezed == totalMerit
+          ? _value.totalMerit
+          : totalMerit // ignore: cast_nullable_to_non_nullable
               as double?,
-      grossSalary: freezed == grossSalary
-          ? _value.grossSalary
-          : grossSalary // ignore: cast_nullable_to_non_nullable
+      totalSalaryByDay: freezed == totalSalaryByDay
+          ? _value.totalSalaryByDay
+          : totalSalaryByDay // ignore: cast_nullable_to_non_nullable
               as double?,
-      tax: freezed == tax
-          ? _value.tax
-          : tax // ignore: cast_nullable_to_non_nullable
+      salaryOneHour: freezed == salaryOneHour
+          ? _value.salaryOneHour
+          : salaryOneHour // ignore: cast_nullable_to_non_nullable
               as double?,
-      insurance: freezed == insurance
-          ? _value.insurance
-          : insurance // ignore: cast_nullable_to_non_nullable
+      otHourWD: freezed == otHourWD
+          ? _value.otHourWD
+          : otHourWD // ignore: cast_nullable_to_non_nullable
               as double?,
-      netSalary: freezed == netSalary
-          ? _value.netSalary
-          : netSalary // ignore: cast_nullable_to_non_nullable
+      otMoneyWD: freezed == otMoneyWD
+          ? _value.otMoneyWD
+          : otMoneyWD // ignore: cast_nullable_to_non_nullable
               as double?,
-      month: freezed == month
-          ? _value.month
-          : month // ignore: cast_nullable_to_non_nullable
-              as int?,
-      year: freezed == year
-          ? _value.year
-          : year // ignore: cast_nullable_to_non_nullable
-              as int?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
+      otHourWK: freezed == otHourWK
+          ? _value.otHourWK
+          : otHourWK // ignore: cast_nullable_to_non_nullable
+              as double?,
+      otMoneyWK: freezed == otMoneyWK
+          ? _value.otMoneyWK
+          : otMoneyWK // ignore: cast_nullable_to_non_nullable
+              as double?,
+      otHourHD: freezed == otHourHD
+          ? _value.otHourHD
+          : otHourHD // ignore: cast_nullable_to_non_nullable
+              as double?,
+      otMoneyHD: freezed == otMoneyHD
+          ? _value.otMoneyHD
+          : otMoneyHD // ignore: cast_nullable_to_non_nullable
+              as double?,
+      otTotalSalary: freezed == otTotalSalary
+          ? _value.otTotalSalary
+          : otTotalSalary // ignore: cast_nullable_to_non_nullable
+              as double?,
+      referenceIndustry: freezed == referenceIndustry
+          ? _value.referenceIndustry
+          : referenceIndustry // ignore: cast_nullable_to_non_nullable
+              as double?,
+      realIndustry: freezed == realIndustry
+          ? _value.realIndustry
+          : realIndustry // ignore: cast_nullable_to_non_nullable
+              as double?,
+      allowanceMeal: freezed == allowanceMeal
+          ? _value.allowanceMeal
+          : allowanceMeal // ignore: cast_nullable_to_non_nullable
+              as double?,
+      allowanceOTEarly: freezed == allowanceOTEarly
+          ? _value.allowanceOTEarly
+          : allowanceOTEarly // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalAllowance: freezed == totalAllowance
+          ? _value.totalAllowance
+          : totalAllowance // ignore: cast_nullable_to_non_nullable
+              as double?,
+      bussinessMoney: freezed == bussinessMoney
+          ? _value.bussinessMoney
+          : bussinessMoney // ignore: cast_nullable_to_non_nullable
+              as double?,
+      nightShiftMoney: freezed == nightShiftMoney
+          ? _value.nightShiftMoney
+          : nightShiftMoney // ignore: cast_nullable_to_non_nullable
+              as double?,
+      costVehicleBussiness: freezed == costVehicleBussiness
+          ? _value.costVehicleBussiness
+          : costVehicleBussiness // ignore: cast_nullable_to_non_nullable
+              as double?,
+      bonus: freezed == bonus
+          ? _value.bonus
+          : bonus // ignore: cast_nullable_to_non_nullable
+              as double?,
+      other: freezed == other
+          ? _value.other
+          : other // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalBonus: freezed == totalBonus
+          ? _value.totalBonus
+          : totalBonus // ignore: cast_nullable_to_non_nullable
+              as double?,
+      socialInsurance: freezed == socialInsurance
+          ? _value.socialInsurance
+          : socialInsurance // ignore: cast_nullable_to_non_nullable
+              as double?,
+      insurances: freezed == insurances
+          ? _value.insurances
+          : insurances // ignore: cast_nullable_to_non_nullable
+              as double?,
+      unionFees: freezed == unionFees
+          ? _value.unionFees
+          : unionFees // ignore: cast_nullable_to_non_nullable
+              as double?,
+      advancePayment: freezed == advancePayment
+          ? _value.advancePayment
+          : advancePayment // ignore: cast_nullable_to_non_nullable
+              as double?,
+      departmentalFees: freezed == departmentalFees
+          ? _value.departmentalFees
+          : departmentalFees // ignore: cast_nullable_to_non_nullable
+              as double?,
+      parkingMoney: freezed == parkingMoney
+          ? _value.parkingMoney
+          : parkingMoney // ignore: cast_nullable_to_non_nullable
+              as double?,
+      punish5S: freezed == punish5S
+          ? _value.punish5S
+          : punish5S // ignore: cast_nullable_to_non_nullable
+              as double?,
+      otherDeduction: freezed == otherDeduction
+          ? _value.otherDeduction
+          : otherDeduction // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalDeduction: freezed == totalDeduction
+          ? _value.totalDeduction
+          : totalDeduction // ignore: cast_nullable_to_non_nullable
+              as double?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isPublish: freezed == isPublish
+          ? _value.isPublish
+          : isPublish // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      startWorking: freezed == startWorking
+          ? _value.startWorking
+          : startWorking // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      mealUse: freezed == mealUse
+          ? _value.mealUse
+          : mealUse // ignore: cast_nullable_to_non_nullable
+              as int?,
+      taxSalaryOT: freezed == taxSalaryOT
+          ? _value.taxSalaryOT
+          : taxSalaryOT // ignore: cast_nullable_to_non_nullable
+              as double?,
+      taxSalaryMeal: freezed == taxSalaryMeal
+          ? _value.taxSalaryMeal
+          : taxSalaryMeal // ignore: cast_nullable_to_non_nullable
+              as double?,
+      taxSalaryPhone: freezed == taxSalaryPhone
+          ? _value.taxSalaryPhone
+          : taxSalaryPhone // ignore: cast_nullable_to_non_nullable
+              as double?,
+      taxPersonalDeduction: freezed == taxPersonalDeduction
+          ? _value.taxPersonalDeduction
+          : taxPersonalDeduction // ignore: cast_nullable_to_non_nullable
+              as double?,
+      taxDependentsDeduction: freezed == taxDependentsDeduction
+          ? _value.taxDependentsDeduction
+          : taxDependentsDeduction // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalTaxDeduction: freezed == totalTaxDeduction
+          ? _value.totalTaxDeduction
+          : totalTaxDeduction // ignore: cast_nullable_to_non_nullable
+              as double?,
+      taxAbleIncome: freezed == taxAbleIncome
+          ? _value.taxAbleIncome
+          : taxAbleIncome // ignore: cast_nullable_to_non_nullable
+              as double?,
+      taxCompanyName: freezed == taxCompanyName
+          ? _value.taxCompanyName
+          : taxCompanyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusContract: freezed == statusContract
+          ? _value.statusContract
+          : statusContract // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxDeduction: freezed == taxDeduction
+          ? _value.taxDeduction
+          : taxDeduction // ignore: cast_nullable_to_non_nullable
+              as double?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      realSalary: freezed == realSalary
+          ? _value.realSalary
+          : realSalary // ignore: cast_nullable_to_non_nullable
+              as double?,
+      actualAmountReceived: freezed == actualAmountReceived
+          ? _value.actualAmountReceived
+          : actualAmountReceived // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 }
@@ -4746,19 +5106,64 @@ abstract class _$$SalaryPayrollItemImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Sign') bool? sign,
+      @JsonKey(name: 'PayrollID') int? payrollId,
       @JsonKey(name: 'EmployeeID') int? employeeId,
-      @JsonKey(name: 'EmployeeName') String? employeeName,
-      @JsonKey(name: 'EmployeeCode') String? employeeCode,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentSTT') int? departmentSTT,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'PriorityOrder') int? priorityOrder,
+      @JsonKey(name: 'PositionName') String? positionName,
       @JsonKey(name: 'BasicSalary') double? basicSalary,
-      @JsonKey(name: 'Allowance') double? allowance,
-      @JsonKey(name: 'Deduction') double? deduction,
-      @JsonKey(name: 'GrossSalary') double? grossSalary,
-      @JsonKey(name: 'Tax') double? tax,
-      @JsonKey(name: 'Insurance') double? insurance,
-      @JsonKey(name: 'NetSalary') double? netSalary,
-      @JsonKey(name: 'Month') int? month,
-      @JsonKey(name: 'Year') int? year,
-      @JsonKey(name: 'CreatedDate') DateTime? createdDate});
+      @JsonKey(name: 'TotalWorkday') double? totalWorkday,
+      @JsonKey(name: 'TotalMerit') double? totalMerit,
+      @JsonKey(name: 'TotalSalaryByDay') double? totalSalaryByDay,
+      @JsonKey(name: 'SalaryOneHour') double? salaryOneHour,
+      @JsonKey(name: 'OT_Hour_WD') double? otHourWD,
+      @JsonKey(name: 'OT_Money_WD') double? otMoneyWD,
+      @JsonKey(name: 'OT_Hour_WK') double? otHourWK,
+      @JsonKey(name: 'OT_Money_WK') double? otMoneyWK,
+      @JsonKey(name: 'OT_Hour_HD') double? otHourHD,
+      @JsonKey(name: 'OT_Money_HD') double? otMoneyHD,
+      @JsonKey(name: 'OT_TotalSalary') double? otTotalSalary,
+      @JsonKey(name: 'ReferenceIndustry') double? referenceIndustry,
+      @JsonKey(name: 'RealIndustry') double? realIndustry,
+      @JsonKey(name: 'AllowanceMeal') double? allowanceMeal,
+      @JsonKey(name: 'Allowance_OT_Early') double? allowanceOTEarly,
+      @JsonKey(name: 'TotalAllowance') double? totalAllowance,
+      @JsonKey(name: 'BussinessMoney') double? bussinessMoney,
+      @JsonKey(name: 'NightShiftMoney') double? nightShiftMoney,
+      @JsonKey(name: 'CostVehicleBussiness') double? costVehicleBussiness,
+      @JsonKey(name: 'Bonus') double? bonus,
+      @JsonKey(name: 'Other') double? other,
+      @JsonKey(name: 'TotalBonus') double? totalBonus,
+      @JsonKey(name: 'SocialInsurance') double? socialInsurance,
+      @JsonKey(name: 'Insurances') double? insurances,
+      @JsonKey(name: 'UnionFees') double? unionFees,
+      @JsonKey(name: 'AdvancePayment') double? advancePayment,
+      @JsonKey(name: 'DepartmentalFees') double? departmentalFees,
+      @JsonKey(name: 'ParkingMoney') double? parkingMoney,
+      @JsonKey(name: 'Punish5S') double? punish5S,
+      @JsonKey(name: 'OtherDeduction') double? otherDeduction,
+      @JsonKey(name: 'TotalDeduction') double? totalDeduction,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'IsPublish') bool? isPublish,
+      @JsonKey(name: 'StartWorking') DateTime? startWorking,
+      @JsonKey(name: 'MealUse') int? mealUse,
+      @JsonKey(name: 'TaxSalaryOT') double? taxSalaryOT,
+      @JsonKey(name: 'TaxSalaryMeal') double? taxSalaryMeal,
+      @JsonKey(name: 'TaxSalaryPhone') double? taxSalaryPhone,
+      @JsonKey(name: 'TaxPersonalDeduction') double? taxPersonalDeduction,
+      @JsonKey(name: 'TaxDependentsDeduction') double? taxDependentsDeduction,
+      @JsonKey(name: 'TotalTaxDeduction') double? totalTaxDeduction,
+      @JsonKey(name: 'TaxAbleIncome') double? taxAbleIncome,
+      @JsonKey(name: 'TaxCompanyName') String? taxCompanyName,
+      @JsonKey(name: 'StatusContract') String? statusContract,
+      @JsonKey(name: 'TaxDeduction') double? taxDeduction,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'RealSalary') double? realSalary,
+      @JsonKey(name: 'ActualAmountReceived') double? actualAmountReceived});
 }
 
 /// @nodoc
@@ -4773,77 +5178,302 @@ class __$$SalaryPayrollItemImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? sign = freezed,
+    Object? payrollId = freezed,
     Object? employeeId = freezed,
-    Object? employeeName = freezed,
-    Object? employeeCode = freezed,
+    Object? code = freezed,
+    Object? fullName = freezed,
+    Object? departmentSTT = freezed,
+    Object? departmentName = freezed,
+    Object? priorityOrder = freezed,
+    Object? positionName = freezed,
     Object? basicSalary = freezed,
-    Object? allowance = freezed,
-    Object? deduction = freezed,
-    Object? grossSalary = freezed,
-    Object? tax = freezed,
-    Object? insurance = freezed,
-    Object? netSalary = freezed,
-    Object? month = freezed,
-    Object? year = freezed,
-    Object? createdDate = freezed,
+    Object? totalWorkday = freezed,
+    Object? totalMerit = freezed,
+    Object? totalSalaryByDay = freezed,
+    Object? salaryOneHour = freezed,
+    Object? otHourWD = freezed,
+    Object? otMoneyWD = freezed,
+    Object? otHourWK = freezed,
+    Object? otMoneyWK = freezed,
+    Object? otHourHD = freezed,
+    Object? otMoneyHD = freezed,
+    Object? otTotalSalary = freezed,
+    Object? referenceIndustry = freezed,
+    Object? realIndustry = freezed,
+    Object? allowanceMeal = freezed,
+    Object? allowanceOTEarly = freezed,
+    Object? totalAllowance = freezed,
+    Object? bussinessMoney = freezed,
+    Object? nightShiftMoney = freezed,
+    Object? costVehicleBussiness = freezed,
+    Object? bonus = freezed,
+    Object? other = freezed,
+    Object? totalBonus = freezed,
+    Object? socialInsurance = freezed,
+    Object? insurances = freezed,
+    Object? unionFees = freezed,
+    Object? advancePayment = freezed,
+    Object? departmentalFees = freezed,
+    Object? parkingMoney = freezed,
+    Object? punish5S = freezed,
+    Object? otherDeduction = freezed,
+    Object? totalDeduction = freezed,
+    Object? note = freezed,
+    Object? isPublish = freezed,
+    Object? startWorking = freezed,
+    Object? mealUse = freezed,
+    Object? taxSalaryOT = freezed,
+    Object? taxSalaryMeal = freezed,
+    Object? taxSalaryPhone = freezed,
+    Object? taxPersonalDeduction = freezed,
+    Object? taxDependentsDeduction = freezed,
+    Object? totalTaxDeduction = freezed,
+    Object? taxAbleIncome = freezed,
+    Object? taxCompanyName = freezed,
+    Object? statusContract = freezed,
+    Object? taxDeduction = freezed,
+    Object? stt = freezed,
+    Object? realSalary = freezed,
+    Object? actualAmountReceived = freezed,
   }) {
     return _then(_$SalaryPayrollItemImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      sign: freezed == sign
+          ? _value.sign
+          : sign // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      payrollId: freezed == payrollId
+          ? _value.payrollId
+          : payrollId // ignore: cast_nullable_to_non_nullable
+              as int?,
       employeeId: freezed == employeeId
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
               as int?,
-      employeeName: freezed == employeeName
-          ? _value.employeeName
-          : employeeName // ignore: cast_nullable_to_non_nullable
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String?,
-      employeeCode: freezed == employeeCode
-          ? _value.employeeCode
-          : employeeCode // ignore: cast_nullable_to_non_nullable
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentSTT: freezed == departmentSTT
+          ? _value.departmentSTT
+          : departmentSTT // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      priorityOrder: freezed == priorityOrder
+          ? _value.priorityOrder
+          : priorityOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
+      positionName: freezed == positionName
+          ? _value.positionName
+          : positionName // ignore: cast_nullable_to_non_nullable
               as String?,
       basicSalary: freezed == basicSalary
           ? _value.basicSalary
           : basicSalary // ignore: cast_nullable_to_non_nullable
               as double?,
-      allowance: freezed == allowance
-          ? _value.allowance
-          : allowance // ignore: cast_nullable_to_non_nullable
+      totalWorkday: freezed == totalWorkday
+          ? _value.totalWorkday
+          : totalWorkday // ignore: cast_nullable_to_non_nullable
               as double?,
-      deduction: freezed == deduction
-          ? _value.deduction
-          : deduction // ignore: cast_nullable_to_non_nullable
+      totalMerit: freezed == totalMerit
+          ? _value.totalMerit
+          : totalMerit // ignore: cast_nullable_to_non_nullable
               as double?,
-      grossSalary: freezed == grossSalary
-          ? _value.grossSalary
-          : grossSalary // ignore: cast_nullable_to_non_nullable
+      totalSalaryByDay: freezed == totalSalaryByDay
+          ? _value.totalSalaryByDay
+          : totalSalaryByDay // ignore: cast_nullable_to_non_nullable
               as double?,
-      tax: freezed == tax
-          ? _value.tax
-          : tax // ignore: cast_nullable_to_non_nullable
+      salaryOneHour: freezed == salaryOneHour
+          ? _value.salaryOneHour
+          : salaryOneHour // ignore: cast_nullable_to_non_nullable
               as double?,
-      insurance: freezed == insurance
-          ? _value.insurance
-          : insurance // ignore: cast_nullable_to_non_nullable
+      otHourWD: freezed == otHourWD
+          ? _value.otHourWD
+          : otHourWD // ignore: cast_nullable_to_non_nullable
               as double?,
-      netSalary: freezed == netSalary
-          ? _value.netSalary
-          : netSalary // ignore: cast_nullable_to_non_nullable
+      otMoneyWD: freezed == otMoneyWD
+          ? _value.otMoneyWD
+          : otMoneyWD // ignore: cast_nullable_to_non_nullable
               as double?,
-      month: freezed == month
-          ? _value.month
-          : month // ignore: cast_nullable_to_non_nullable
-              as int?,
-      year: freezed == year
-          ? _value.year
-          : year // ignore: cast_nullable_to_non_nullable
-              as int?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
+      otHourWK: freezed == otHourWK
+          ? _value.otHourWK
+          : otHourWK // ignore: cast_nullable_to_non_nullable
+              as double?,
+      otMoneyWK: freezed == otMoneyWK
+          ? _value.otMoneyWK
+          : otMoneyWK // ignore: cast_nullable_to_non_nullable
+              as double?,
+      otHourHD: freezed == otHourHD
+          ? _value.otHourHD
+          : otHourHD // ignore: cast_nullable_to_non_nullable
+              as double?,
+      otMoneyHD: freezed == otMoneyHD
+          ? _value.otMoneyHD
+          : otMoneyHD // ignore: cast_nullable_to_non_nullable
+              as double?,
+      otTotalSalary: freezed == otTotalSalary
+          ? _value.otTotalSalary
+          : otTotalSalary // ignore: cast_nullable_to_non_nullable
+              as double?,
+      referenceIndustry: freezed == referenceIndustry
+          ? _value.referenceIndustry
+          : referenceIndustry // ignore: cast_nullable_to_non_nullable
+              as double?,
+      realIndustry: freezed == realIndustry
+          ? _value.realIndustry
+          : realIndustry // ignore: cast_nullable_to_non_nullable
+              as double?,
+      allowanceMeal: freezed == allowanceMeal
+          ? _value.allowanceMeal
+          : allowanceMeal // ignore: cast_nullable_to_non_nullable
+              as double?,
+      allowanceOTEarly: freezed == allowanceOTEarly
+          ? _value.allowanceOTEarly
+          : allowanceOTEarly // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalAllowance: freezed == totalAllowance
+          ? _value.totalAllowance
+          : totalAllowance // ignore: cast_nullable_to_non_nullable
+              as double?,
+      bussinessMoney: freezed == bussinessMoney
+          ? _value.bussinessMoney
+          : bussinessMoney // ignore: cast_nullable_to_non_nullable
+              as double?,
+      nightShiftMoney: freezed == nightShiftMoney
+          ? _value.nightShiftMoney
+          : nightShiftMoney // ignore: cast_nullable_to_non_nullable
+              as double?,
+      costVehicleBussiness: freezed == costVehicleBussiness
+          ? _value.costVehicleBussiness
+          : costVehicleBussiness // ignore: cast_nullable_to_non_nullable
+              as double?,
+      bonus: freezed == bonus
+          ? _value.bonus
+          : bonus // ignore: cast_nullable_to_non_nullable
+              as double?,
+      other: freezed == other
+          ? _value.other
+          : other // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalBonus: freezed == totalBonus
+          ? _value.totalBonus
+          : totalBonus // ignore: cast_nullable_to_non_nullable
+              as double?,
+      socialInsurance: freezed == socialInsurance
+          ? _value.socialInsurance
+          : socialInsurance // ignore: cast_nullable_to_non_nullable
+              as double?,
+      insurances: freezed == insurances
+          ? _value.insurances
+          : insurances // ignore: cast_nullable_to_non_nullable
+              as double?,
+      unionFees: freezed == unionFees
+          ? _value.unionFees
+          : unionFees // ignore: cast_nullable_to_non_nullable
+              as double?,
+      advancePayment: freezed == advancePayment
+          ? _value.advancePayment
+          : advancePayment // ignore: cast_nullable_to_non_nullable
+              as double?,
+      departmentalFees: freezed == departmentalFees
+          ? _value.departmentalFees
+          : departmentalFees // ignore: cast_nullable_to_non_nullable
+              as double?,
+      parkingMoney: freezed == parkingMoney
+          ? _value.parkingMoney
+          : parkingMoney // ignore: cast_nullable_to_non_nullable
+              as double?,
+      punish5S: freezed == punish5S
+          ? _value.punish5S
+          : punish5S // ignore: cast_nullable_to_non_nullable
+              as double?,
+      otherDeduction: freezed == otherDeduction
+          ? _value.otherDeduction
+          : otherDeduction // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalDeduction: freezed == totalDeduction
+          ? _value.totalDeduction
+          : totalDeduction // ignore: cast_nullable_to_non_nullable
+              as double?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isPublish: freezed == isPublish
+          ? _value.isPublish
+          : isPublish // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      startWorking: freezed == startWorking
+          ? _value.startWorking
+          : startWorking // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      mealUse: freezed == mealUse
+          ? _value.mealUse
+          : mealUse // ignore: cast_nullable_to_non_nullable
+              as int?,
+      taxSalaryOT: freezed == taxSalaryOT
+          ? _value.taxSalaryOT
+          : taxSalaryOT // ignore: cast_nullable_to_non_nullable
+              as double?,
+      taxSalaryMeal: freezed == taxSalaryMeal
+          ? _value.taxSalaryMeal
+          : taxSalaryMeal // ignore: cast_nullable_to_non_nullable
+              as double?,
+      taxSalaryPhone: freezed == taxSalaryPhone
+          ? _value.taxSalaryPhone
+          : taxSalaryPhone // ignore: cast_nullable_to_non_nullable
+              as double?,
+      taxPersonalDeduction: freezed == taxPersonalDeduction
+          ? _value.taxPersonalDeduction
+          : taxPersonalDeduction // ignore: cast_nullable_to_non_nullable
+              as double?,
+      taxDependentsDeduction: freezed == taxDependentsDeduction
+          ? _value.taxDependentsDeduction
+          : taxDependentsDeduction // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalTaxDeduction: freezed == totalTaxDeduction
+          ? _value.totalTaxDeduction
+          : totalTaxDeduction // ignore: cast_nullable_to_non_nullable
+              as double?,
+      taxAbleIncome: freezed == taxAbleIncome
+          ? _value.taxAbleIncome
+          : taxAbleIncome // ignore: cast_nullable_to_non_nullable
+              as double?,
+      taxCompanyName: freezed == taxCompanyName
+          ? _value.taxCompanyName
+          : taxCompanyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusContract: freezed == statusContract
+          ? _value.statusContract
+          : statusContract // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxDeduction: freezed == taxDeduction
+          ? _value.taxDeduction
+          : taxDeduction // ignore: cast_nullable_to_non_nullable
+              as double?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      realSalary: freezed == realSalary
+          ? _value.realSalary
+          : realSalary // ignore: cast_nullable_to_non_nullable
+              as double?,
+      actualAmountReceived: freezed == actualAmountReceived
+          ? _value.actualAmountReceived
+          : actualAmountReceived // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -4853,19 +5483,64 @@ class __$$SalaryPayrollItemImplCopyWithImpl<$Res>
 class _$SalaryPayrollItemImpl implements _SalaryPayrollItem {
   const _$SalaryPayrollItemImpl(
       {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Sign') this.sign,
+      @JsonKey(name: 'PayrollID') this.payrollId,
       @JsonKey(name: 'EmployeeID') this.employeeId,
-      @JsonKey(name: 'EmployeeName') this.employeeName,
-      @JsonKey(name: 'EmployeeCode') this.employeeCode,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'DepartmentSTT') this.departmentSTT,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'PriorityOrder') this.priorityOrder,
+      @JsonKey(name: 'PositionName') this.positionName,
       @JsonKey(name: 'BasicSalary') this.basicSalary,
-      @JsonKey(name: 'Allowance') this.allowance,
-      @JsonKey(name: 'Deduction') this.deduction,
-      @JsonKey(name: 'GrossSalary') this.grossSalary,
-      @JsonKey(name: 'Tax') this.tax,
-      @JsonKey(name: 'Insurance') this.insurance,
-      @JsonKey(name: 'NetSalary') this.netSalary,
-      @JsonKey(name: 'Month') this.month,
-      @JsonKey(name: 'Year') this.year,
-      @JsonKey(name: 'CreatedDate') this.createdDate});
+      @JsonKey(name: 'TotalWorkday') this.totalWorkday,
+      @JsonKey(name: 'TotalMerit') this.totalMerit,
+      @JsonKey(name: 'TotalSalaryByDay') this.totalSalaryByDay,
+      @JsonKey(name: 'SalaryOneHour') this.salaryOneHour,
+      @JsonKey(name: 'OT_Hour_WD') this.otHourWD,
+      @JsonKey(name: 'OT_Money_WD') this.otMoneyWD,
+      @JsonKey(name: 'OT_Hour_WK') this.otHourWK,
+      @JsonKey(name: 'OT_Money_WK') this.otMoneyWK,
+      @JsonKey(name: 'OT_Hour_HD') this.otHourHD,
+      @JsonKey(name: 'OT_Money_HD') this.otMoneyHD,
+      @JsonKey(name: 'OT_TotalSalary') this.otTotalSalary,
+      @JsonKey(name: 'ReferenceIndustry') this.referenceIndustry,
+      @JsonKey(name: 'RealIndustry') this.realIndustry,
+      @JsonKey(name: 'AllowanceMeal') this.allowanceMeal,
+      @JsonKey(name: 'Allowance_OT_Early') this.allowanceOTEarly,
+      @JsonKey(name: 'TotalAllowance') this.totalAllowance,
+      @JsonKey(name: 'BussinessMoney') this.bussinessMoney,
+      @JsonKey(name: 'NightShiftMoney') this.nightShiftMoney,
+      @JsonKey(name: 'CostVehicleBussiness') this.costVehicleBussiness,
+      @JsonKey(name: 'Bonus') this.bonus,
+      @JsonKey(name: 'Other') this.other,
+      @JsonKey(name: 'TotalBonus') this.totalBonus,
+      @JsonKey(name: 'SocialInsurance') this.socialInsurance,
+      @JsonKey(name: 'Insurances') this.insurances,
+      @JsonKey(name: 'UnionFees') this.unionFees,
+      @JsonKey(name: 'AdvancePayment') this.advancePayment,
+      @JsonKey(name: 'DepartmentalFees') this.departmentalFees,
+      @JsonKey(name: 'ParkingMoney') this.parkingMoney,
+      @JsonKey(name: 'Punish5S') this.punish5S,
+      @JsonKey(name: 'OtherDeduction') this.otherDeduction,
+      @JsonKey(name: 'TotalDeduction') this.totalDeduction,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'IsPublish') this.isPublish,
+      @JsonKey(name: 'StartWorking') this.startWorking,
+      @JsonKey(name: 'MealUse') this.mealUse,
+      @JsonKey(name: 'TaxSalaryOT') this.taxSalaryOT,
+      @JsonKey(name: 'TaxSalaryMeal') this.taxSalaryMeal,
+      @JsonKey(name: 'TaxSalaryPhone') this.taxSalaryPhone,
+      @JsonKey(name: 'TaxPersonalDeduction') this.taxPersonalDeduction,
+      @JsonKey(name: 'TaxDependentsDeduction') this.taxDependentsDeduction,
+      @JsonKey(name: 'TotalTaxDeduction') this.totalTaxDeduction,
+      @JsonKey(name: 'TaxAbleIncome') this.taxAbleIncome,
+      @JsonKey(name: 'TaxCompanyName') this.taxCompanyName,
+      @JsonKey(name: 'StatusContract') this.statusContract,
+      @JsonKey(name: 'TaxDeduction') this.taxDeduction,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'RealSalary') this.realSalary,
+      @JsonKey(name: 'ActualAmountReceived') this.actualAmountReceived});
 
   factory _$SalaryPayrollItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$SalaryPayrollItemImplFromJson(json);
@@ -4874,48 +5549,183 @@ class _$SalaryPayrollItemImpl implements _SalaryPayrollItem {
   @JsonKey(name: 'ID')
   final int? id;
   @override
+  @JsonKey(name: 'Sign')
+  final bool? sign;
+  @override
+  @JsonKey(name: 'PayrollID')
+  final int? payrollId;
+  @override
   @JsonKey(name: 'EmployeeID')
   final int? employeeId;
   @override
-  @JsonKey(name: 'EmployeeName')
-  final String? employeeName;
+  @JsonKey(name: 'Code')
+  final String? code;
   @override
-  @JsonKey(name: 'EmployeeCode')
-  final String? employeeCode;
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'DepartmentSTT')
+  final int? departmentSTT;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'PriorityOrder')
+  final int? priorityOrder;
+  @override
+  @JsonKey(name: 'PositionName')
+  final String? positionName;
   @override
   @JsonKey(name: 'BasicSalary')
   final double? basicSalary;
   @override
-  @JsonKey(name: 'Allowance')
-  final double? allowance;
+  @JsonKey(name: 'TotalWorkday')
+  final double? totalWorkday;
   @override
-  @JsonKey(name: 'Deduction')
-  final double? deduction;
+  @JsonKey(name: 'TotalMerit')
+  final double? totalMerit;
   @override
-  @JsonKey(name: 'GrossSalary')
-  final double? grossSalary;
+  @JsonKey(name: 'TotalSalaryByDay')
+  final double? totalSalaryByDay;
   @override
-  @JsonKey(name: 'Tax')
-  final double? tax;
+  @JsonKey(name: 'SalaryOneHour')
+  final double? salaryOneHour;
   @override
-  @JsonKey(name: 'Insurance')
-  final double? insurance;
+  @JsonKey(name: 'OT_Hour_WD')
+  final double? otHourWD;
   @override
-  @JsonKey(name: 'NetSalary')
-  final double? netSalary;
+  @JsonKey(name: 'OT_Money_WD')
+  final double? otMoneyWD;
   @override
-  @JsonKey(name: 'Month')
-  final int? month;
+  @JsonKey(name: 'OT_Hour_WK')
+  final double? otHourWK;
   @override
-  @JsonKey(name: 'Year')
-  final int? year;
+  @JsonKey(name: 'OT_Money_WK')
+  final double? otMoneyWK;
   @override
-  @JsonKey(name: 'CreatedDate')
-  final DateTime? createdDate;
+  @JsonKey(name: 'OT_Hour_HD')
+  final double? otHourHD;
+  @override
+  @JsonKey(name: 'OT_Money_HD')
+  final double? otMoneyHD;
+  @override
+  @JsonKey(name: 'OT_TotalSalary')
+  final double? otTotalSalary;
+  @override
+  @JsonKey(name: 'ReferenceIndustry')
+  final double? referenceIndustry;
+  @override
+  @JsonKey(name: 'RealIndustry')
+  final double? realIndustry;
+  @override
+  @JsonKey(name: 'AllowanceMeal')
+  final double? allowanceMeal;
+  @override
+  @JsonKey(name: 'Allowance_OT_Early')
+  final double? allowanceOTEarly;
+  @override
+  @JsonKey(name: 'TotalAllowance')
+  final double? totalAllowance;
+  @override
+  @JsonKey(name: 'BussinessMoney')
+  final double? bussinessMoney;
+  @override
+  @JsonKey(name: 'NightShiftMoney')
+  final double? nightShiftMoney;
+  @override
+  @JsonKey(name: 'CostVehicleBussiness')
+  final double? costVehicleBussiness;
+  @override
+  @JsonKey(name: 'Bonus')
+  final double? bonus;
+  @override
+  @JsonKey(name: 'Other')
+  final double? other;
+  @override
+  @JsonKey(name: 'TotalBonus')
+  final double? totalBonus;
+  @override
+  @JsonKey(name: 'SocialInsurance')
+  final double? socialInsurance;
+  @override
+  @JsonKey(name: 'Insurances')
+  final double? insurances;
+  @override
+  @JsonKey(name: 'UnionFees')
+  final double? unionFees;
+  @override
+  @JsonKey(name: 'AdvancePayment')
+  final double? advancePayment;
+  @override
+  @JsonKey(name: 'DepartmentalFees')
+  final double? departmentalFees;
+  @override
+  @JsonKey(name: 'ParkingMoney')
+  final double? parkingMoney;
+  @override
+  @JsonKey(name: 'Punish5S')
+  final double? punish5S;
+  @override
+  @JsonKey(name: 'OtherDeduction')
+  final double? otherDeduction;
+  @override
+  @JsonKey(name: 'TotalDeduction')
+  final double? totalDeduction;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'IsPublish')
+  final bool? isPublish;
+  @override
+  @JsonKey(name: 'StartWorking')
+  final DateTime? startWorking;
+  @override
+  @JsonKey(name: 'MealUse')
+  final int? mealUse;
+  @override
+  @JsonKey(name: 'TaxSalaryOT')
+  final double? taxSalaryOT;
+  @override
+  @JsonKey(name: 'TaxSalaryMeal')
+  final double? taxSalaryMeal;
+  @override
+  @JsonKey(name: 'TaxSalaryPhone')
+  final double? taxSalaryPhone;
+  @override
+  @JsonKey(name: 'TaxPersonalDeduction')
+  final double? taxPersonalDeduction;
+  @override
+  @JsonKey(name: 'TaxDependentsDeduction')
+  final double? taxDependentsDeduction;
+  @override
+  @JsonKey(name: 'TotalTaxDeduction')
+  final double? totalTaxDeduction;
+  @override
+  @JsonKey(name: 'TaxAbleIncome')
+  final double? taxAbleIncome;
+  @override
+  @JsonKey(name: 'TaxCompanyName')
+  final String? taxCompanyName;
+  @override
+  @JsonKey(name: 'StatusContract')
+  final String? statusContract;
+  @override
+  @JsonKey(name: 'TaxDeduction')
+  final double? taxDeduction;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'RealSalary')
+  final double? realSalary;
+  @override
+  @JsonKey(name: 'ActualAmountReceived')
+  final double? actualAmountReceived;
 
   @override
   String toString() {
-    return 'SalaryPayrollItem(id: $id, employeeId: $employeeId, employeeName: $employeeName, employeeCode: $employeeCode, basicSalary: $basicSalary, allowance: $allowance, deduction: $deduction, grossSalary: $grossSalary, tax: $tax, insurance: $insurance, netSalary: $netSalary, month: $month, year: $year, createdDate: $createdDate)';
+    return 'SalaryPayrollItem(id: $id, sign: $sign, payrollId: $payrollId, employeeId: $employeeId, code: $code, fullName: $fullName, departmentSTT: $departmentSTT, departmentName: $departmentName, priorityOrder: $priorityOrder, positionName: $positionName, basicSalary: $basicSalary, totalWorkday: $totalWorkday, totalMerit: $totalMerit, totalSalaryByDay: $totalSalaryByDay, salaryOneHour: $salaryOneHour, otHourWD: $otHourWD, otMoneyWD: $otMoneyWD, otHourWK: $otHourWK, otMoneyWK: $otMoneyWK, otHourHD: $otHourHD, otMoneyHD: $otMoneyHD, otTotalSalary: $otTotalSalary, referenceIndustry: $referenceIndustry, realIndustry: $realIndustry, allowanceMeal: $allowanceMeal, allowanceOTEarly: $allowanceOTEarly, totalAllowance: $totalAllowance, bussinessMoney: $bussinessMoney, nightShiftMoney: $nightShiftMoney, costVehicleBussiness: $costVehicleBussiness, bonus: $bonus, other: $other, totalBonus: $totalBonus, socialInsurance: $socialInsurance, insurances: $insurances, unionFees: $unionFees, advancePayment: $advancePayment, departmentalFees: $departmentalFees, parkingMoney: $parkingMoney, punish5S: $punish5S, otherDeduction: $otherDeduction, totalDeduction: $totalDeduction, note: $note, isPublish: $isPublish, startWorking: $startWorking, mealUse: $mealUse, taxSalaryOT: $taxSalaryOT, taxSalaryMeal: $taxSalaryMeal, taxSalaryPhone: $taxSalaryPhone, taxPersonalDeduction: $taxPersonalDeduction, taxDependentsDeduction: $taxDependentsDeduction, totalTaxDeduction: $totalTaxDeduction, taxAbleIncome: $taxAbleIncome, taxCompanyName: $taxCompanyName, statusContract: $statusContract, taxDeduction: $taxDeduction, stt: $stt, realSalary: $realSalary, actualAmountReceived: $actualAmountReceived)';
   }
 
   @override
@@ -4924,49 +5734,173 @@ class _$SalaryPayrollItemImpl implements _SalaryPayrollItem {
         (other.runtimeType == runtimeType &&
             other is _$SalaryPayrollItemImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.sign, sign) || other.sign == sign) &&
+            (identical(other.payrollId, payrollId) ||
+                other.payrollId == payrollId) &&
             (identical(other.employeeId, employeeId) ||
                 other.employeeId == employeeId) &&
-            (identical(other.employeeName, employeeName) ||
-                other.employeeName == employeeName) &&
-            (identical(other.employeeCode, employeeCode) ||
-                other.employeeCode == employeeCode) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.departmentSTT, departmentSTT) ||
+                other.departmentSTT == departmentSTT) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.priorityOrder, priorityOrder) ||
+                other.priorityOrder == priorityOrder) &&
+            (identical(other.positionName, positionName) ||
+                other.positionName == positionName) &&
             (identical(other.basicSalary, basicSalary) ||
                 other.basicSalary == basicSalary) &&
-            (identical(other.allowance, allowance) ||
-                other.allowance == allowance) &&
-            (identical(other.deduction, deduction) ||
-                other.deduction == deduction) &&
-            (identical(other.grossSalary, grossSalary) ||
-                other.grossSalary == grossSalary) &&
-            (identical(other.tax, tax) || other.tax == tax) &&
-            (identical(other.insurance, insurance) ||
-                other.insurance == insurance) &&
-            (identical(other.netSalary, netSalary) ||
-                other.netSalary == netSalary) &&
-            (identical(other.month, month) || other.month == month) &&
-            (identical(other.year, year) || other.year == year) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate));
+            (identical(other.totalWorkday, totalWorkday) ||
+                other.totalWorkday == totalWorkday) &&
+            (identical(other.totalMerit, totalMerit) ||
+                other.totalMerit == totalMerit) &&
+            (identical(other.totalSalaryByDay, totalSalaryByDay) ||
+                other.totalSalaryByDay == totalSalaryByDay) &&
+            (identical(other.salaryOneHour, salaryOneHour) ||
+                other.salaryOneHour == salaryOneHour) &&
+            (identical(other.otHourWD, otHourWD) ||
+                other.otHourWD == otHourWD) &&
+            (identical(other.otMoneyWD, otMoneyWD) ||
+                other.otMoneyWD == otMoneyWD) &&
+            (identical(other.otHourWK, otHourWK) ||
+                other.otHourWK == otHourWK) &&
+            (identical(other.otMoneyWK, otMoneyWK) ||
+                other.otMoneyWK == otMoneyWK) &&
+            (identical(other.otHourHD, otHourHD) ||
+                other.otHourHD == otHourHD) &&
+            (identical(other.otMoneyHD, otMoneyHD) ||
+                other.otMoneyHD == otMoneyHD) &&
+            (identical(other.otTotalSalary, otTotalSalary) ||
+                other.otTotalSalary == otTotalSalary) &&
+            (identical(other.referenceIndustry, referenceIndustry) ||
+                other.referenceIndustry == referenceIndustry) &&
+            (identical(other.realIndustry, realIndustry) ||
+                other.realIndustry == realIndustry) &&
+            (identical(other.allowanceMeal, allowanceMeal) ||
+                other.allowanceMeal == allowanceMeal) &&
+            (identical(other.allowanceOTEarly, allowanceOTEarly) ||
+                other.allowanceOTEarly == allowanceOTEarly) &&
+            (identical(other.totalAllowance, totalAllowance) ||
+                other.totalAllowance == totalAllowance) &&
+            (identical(other.bussinessMoney, bussinessMoney) ||
+                other.bussinessMoney == bussinessMoney) &&
+            (identical(other.nightShiftMoney, nightShiftMoney) ||
+                other.nightShiftMoney == nightShiftMoney) &&
+            (identical(other.costVehicleBussiness, costVehicleBussiness) ||
+                other.costVehicleBussiness == costVehicleBussiness) &&
+            (identical(other.bonus, bonus) || other.bonus == bonus) &&
+            (identical(other.other, this.other) || other.other == this.other) &&
+            (identical(other.totalBonus, totalBonus) ||
+                other.totalBonus == totalBonus) &&
+            (identical(other.socialInsurance, socialInsurance) ||
+                other.socialInsurance == socialInsurance) &&
+            (identical(other.insurances, insurances) ||
+                other.insurances == insurances) &&
+            (identical(other.unionFees, unionFees) ||
+                other.unionFees == unionFees) &&
+            (identical(other.advancePayment, advancePayment) ||
+                other.advancePayment == advancePayment) &&
+            (identical(other.departmentalFees, departmentalFees) ||
+                other.departmentalFees == departmentalFees) &&
+            (identical(other.parkingMoney, parkingMoney) ||
+                other.parkingMoney == parkingMoney) &&
+            (identical(other.punish5S, punish5S) ||
+                other.punish5S == punish5S) &&
+            (identical(other.otherDeduction, otherDeduction) ||
+                other.otherDeduction == otherDeduction) &&
+            (identical(other.totalDeduction, totalDeduction) ||
+                other.totalDeduction == totalDeduction) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.isPublish, isPublish) ||
+                other.isPublish == isPublish) &&
+            (identical(other.startWorking, startWorking) ||
+                other.startWorking == startWorking) &&
+            (identical(other.mealUse, mealUse) || other.mealUse == mealUse) &&
+            (identical(other.taxSalaryOT, taxSalaryOT) ||
+                other.taxSalaryOT == taxSalaryOT) &&
+            (identical(other.taxSalaryMeal, taxSalaryMeal) ||
+                other.taxSalaryMeal == taxSalaryMeal) &&
+            (identical(other.taxSalaryPhone, taxSalaryPhone) ||
+                other.taxSalaryPhone == taxSalaryPhone) &&
+            (identical(other.taxPersonalDeduction, taxPersonalDeduction) ||
+                other.taxPersonalDeduction == taxPersonalDeduction) &&
+            (identical(other.taxDependentsDeduction, taxDependentsDeduction) || other.taxDependentsDeduction == taxDependentsDeduction) &&
+            (identical(other.totalTaxDeduction, totalTaxDeduction) || other.totalTaxDeduction == totalTaxDeduction) &&
+            (identical(other.taxAbleIncome, taxAbleIncome) || other.taxAbleIncome == taxAbleIncome) &&
+            (identical(other.taxCompanyName, taxCompanyName) || other.taxCompanyName == taxCompanyName) &&
+            (identical(other.statusContract, statusContract) || other.statusContract == statusContract) &&
+            (identical(other.taxDeduction, taxDeduction) || other.taxDeduction == taxDeduction) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.realSalary, realSalary) || other.realSalary == realSalary) &&
+            (identical(other.actualAmountReceived, actualAmountReceived) || other.actualAmountReceived == actualAmountReceived));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      employeeId,
-      employeeName,
-      employeeCode,
-      basicSalary,
-      allowance,
-      deduction,
-      grossSalary,
-      tax,
-      insurance,
-      netSalary,
-      month,
-      year,
-      createdDate);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        sign,
+        payrollId,
+        employeeId,
+        code,
+        fullName,
+        departmentSTT,
+        departmentName,
+        priorityOrder,
+        positionName,
+        basicSalary,
+        totalWorkday,
+        totalMerit,
+        totalSalaryByDay,
+        salaryOneHour,
+        otHourWD,
+        otMoneyWD,
+        otHourWK,
+        otMoneyWK,
+        otHourHD,
+        otMoneyHD,
+        otTotalSalary,
+        referenceIndustry,
+        realIndustry,
+        allowanceMeal,
+        allowanceOTEarly,
+        totalAllowance,
+        bussinessMoney,
+        nightShiftMoney,
+        costVehicleBussiness,
+        bonus,
+        other,
+        totalBonus,
+        socialInsurance,
+        insurances,
+        unionFees,
+        advancePayment,
+        departmentalFees,
+        parkingMoney,
+        punish5S,
+        otherDeduction,
+        totalDeduction,
+        note,
+        isPublish,
+        startWorking,
+        mealUse,
+        taxSalaryOT,
+        taxSalaryMeal,
+        taxSalaryPhone,
+        taxPersonalDeduction,
+        taxDependentsDeduction,
+        totalTaxDeduction,
+        taxAbleIncome,
+        taxCompanyName,
+        statusContract,
+        taxDeduction,
+        stt,
+        realSalary,
+        actualAmountReceived
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -4985,21 +5919,67 @@ class _$SalaryPayrollItemImpl implements _SalaryPayrollItem {
 
 abstract class _SalaryPayrollItem implements SalaryPayrollItem {
   const factory _SalaryPayrollItem(
-          {@JsonKey(name: 'ID') final int? id,
-          @JsonKey(name: 'EmployeeID') final int? employeeId,
-          @JsonKey(name: 'EmployeeName') final String? employeeName,
-          @JsonKey(name: 'EmployeeCode') final String? employeeCode,
-          @JsonKey(name: 'BasicSalary') final double? basicSalary,
-          @JsonKey(name: 'Allowance') final double? allowance,
-          @JsonKey(name: 'Deduction') final double? deduction,
-          @JsonKey(name: 'GrossSalary') final double? grossSalary,
-          @JsonKey(name: 'Tax') final double? tax,
-          @JsonKey(name: 'Insurance') final double? insurance,
-          @JsonKey(name: 'NetSalary') final double? netSalary,
-          @JsonKey(name: 'Month') final int? month,
-          @JsonKey(name: 'Year') final int? year,
-          @JsonKey(name: 'CreatedDate') final DateTime? createdDate}) =
-      _$SalaryPayrollItemImpl;
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'Sign') final bool? sign,
+      @JsonKey(name: 'PayrollID') final int? payrollId,
+      @JsonKey(name: 'EmployeeID') final int? employeeId,
+      @JsonKey(name: 'Code') final String? code,
+      @JsonKey(name: 'FullName') final String? fullName,
+      @JsonKey(name: 'DepartmentSTT') final int? departmentSTT,
+      @JsonKey(name: 'DepartmentName') final String? departmentName,
+      @JsonKey(name: 'PriorityOrder') final int? priorityOrder,
+      @JsonKey(name: 'PositionName') final String? positionName,
+      @JsonKey(name: 'BasicSalary') final double? basicSalary,
+      @JsonKey(name: 'TotalWorkday') final double? totalWorkday,
+      @JsonKey(name: 'TotalMerit') final double? totalMerit,
+      @JsonKey(name: 'TotalSalaryByDay') final double? totalSalaryByDay,
+      @JsonKey(name: 'SalaryOneHour') final double? salaryOneHour,
+      @JsonKey(name: 'OT_Hour_WD') final double? otHourWD,
+      @JsonKey(name: 'OT_Money_WD') final double? otMoneyWD,
+      @JsonKey(name: 'OT_Hour_WK') final double? otHourWK,
+      @JsonKey(name: 'OT_Money_WK') final double? otMoneyWK,
+      @JsonKey(name: 'OT_Hour_HD') final double? otHourHD,
+      @JsonKey(name: 'OT_Money_HD') final double? otMoneyHD,
+      @JsonKey(name: 'OT_TotalSalary') final double? otTotalSalary,
+      @JsonKey(name: 'ReferenceIndustry') final double? referenceIndustry,
+      @JsonKey(name: 'RealIndustry') final double? realIndustry,
+      @JsonKey(name: 'AllowanceMeal') final double? allowanceMeal,
+      @JsonKey(name: 'Allowance_OT_Early') final double? allowanceOTEarly,
+      @JsonKey(name: 'TotalAllowance') final double? totalAllowance,
+      @JsonKey(name: 'BussinessMoney') final double? bussinessMoney,
+      @JsonKey(name: 'NightShiftMoney') final double? nightShiftMoney,
+      @JsonKey(name: 'CostVehicleBussiness') final double? costVehicleBussiness,
+      @JsonKey(name: 'Bonus') final double? bonus,
+      @JsonKey(name: 'Other') final double? other,
+      @JsonKey(name: 'TotalBonus') final double? totalBonus,
+      @JsonKey(name: 'SocialInsurance') final double? socialInsurance,
+      @JsonKey(name: 'Insurances') final double? insurances,
+      @JsonKey(name: 'UnionFees') final double? unionFees,
+      @JsonKey(name: 'AdvancePayment') final double? advancePayment,
+      @JsonKey(name: 'DepartmentalFees') final double? departmentalFees,
+      @JsonKey(name: 'ParkingMoney') final double? parkingMoney,
+      @JsonKey(name: 'Punish5S') final double? punish5S,
+      @JsonKey(name: 'OtherDeduction') final double? otherDeduction,
+      @JsonKey(name: 'TotalDeduction') final double? totalDeduction,
+      @JsonKey(name: 'Note') final String? note,
+      @JsonKey(name: 'IsPublish') final bool? isPublish,
+      @JsonKey(name: 'StartWorking') final DateTime? startWorking,
+      @JsonKey(name: 'MealUse') final int? mealUse,
+      @JsonKey(name: 'TaxSalaryOT') final double? taxSalaryOT,
+      @JsonKey(name: 'TaxSalaryMeal') final double? taxSalaryMeal,
+      @JsonKey(name: 'TaxSalaryPhone') final double? taxSalaryPhone,
+      @JsonKey(name: 'TaxPersonalDeduction') final double? taxPersonalDeduction,
+      @JsonKey(name: 'TaxDependentsDeduction')
+      final double? taxDependentsDeduction,
+      @JsonKey(name: 'TotalTaxDeduction') final double? totalTaxDeduction,
+      @JsonKey(name: 'TaxAbleIncome') final double? taxAbleIncome,
+      @JsonKey(name: 'TaxCompanyName') final String? taxCompanyName,
+      @JsonKey(name: 'StatusContract') final String? statusContract,
+      @JsonKey(name: 'TaxDeduction') final double? taxDeduction,
+      @JsonKey(name: 'STT') final int? stt,
+      @JsonKey(name: 'RealSalary') final double? realSalary,
+      @JsonKey(name: 'ActualAmountReceived')
+      final double? actualAmountReceived}) = _$SalaryPayrollItemImpl;
 
   factory _SalaryPayrollItem.fromJson(Map<String, dynamic> json) =
       _$SalaryPayrollItemImpl.fromJson;
@@ -5008,44 +5988,179 @@ abstract class _SalaryPayrollItem implements SalaryPayrollItem {
   @JsonKey(name: 'ID')
   int? get id;
   @override
+  @JsonKey(name: 'Sign')
+  bool? get sign;
+  @override
+  @JsonKey(name: 'PayrollID')
+  int? get payrollId;
+  @override
   @JsonKey(name: 'EmployeeID')
   int? get employeeId;
   @override
-  @JsonKey(name: 'EmployeeName')
-  String? get employeeName;
+  @JsonKey(name: 'Code')
+  String? get code;
   @override
-  @JsonKey(name: 'EmployeeCode')
-  String? get employeeCode;
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'DepartmentSTT')
+  int? get departmentSTT;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'PriorityOrder')
+  int? get priorityOrder;
+  @override
+  @JsonKey(name: 'PositionName')
+  String? get positionName;
   @override
   @JsonKey(name: 'BasicSalary')
   double? get basicSalary;
   @override
-  @JsonKey(name: 'Allowance')
-  double? get allowance;
+  @JsonKey(name: 'TotalWorkday')
+  double? get totalWorkday;
   @override
-  @JsonKey(name: 'Deduction')
-  double? get deduction;
+  @JsonKey(name: 'TotalMerit')
+  double? get totalMerit;
   @override
-  @JsonKey(name: 'GrossSalary')
-  double? get grossSalary;
+  @JsonKey(name: 'TotalSalaryByDay')
+  double? get totalSalaryByDay;
   @override
-  @JsonKey(name: 'Tax')
-  double? get tax;
+  @JsonKey(name: 'SalaryOneHour')
+  double? get salaryOneHour;
   @override
-  @JsonKey(name: 'Insurance')
-  double? get insurance;
+  @JsonKey(name: 'OT_Hour_WD')
+  double? get otHourWD;
   @override
-  @JsonKey(name: 'NetSalary')
-  double? get netSalary;
+  @JsonKey(name: 'OT_Money_WD')
+  double? get otMoneyWD;
   @override
-  @JsonKey(name: 'Month')
-  int? get month;
+  @JsonKey(name: 'OT_Hour_WK')
+  double? get otHourWK;
   @override
-  @JsonKey(name: 'Year')
-  int? get year;
+  @JsonKey(name: 'OT_Money_WK')
+  double? get otMoneyWK;
   @override
-  @JsonKey(name: 'CreatedDate')
-  DateTime? get createdDate;
+  @JsonKey(name: 'OT_Hour_HD')
+  double? get otHourHD;
+  @override
+  @JsonKey(name: 'OT_Money_HD')
+  double? get otMoneyHD;
+  @override
+  @JsonKey(name: 'OT_TotalSalary')
+  double? get otTotalSalary;
+  @override
+  @JsonKey(name: 'ReferenceIndustry')
+  double? get referenceIndustry;
+  @override
+  @JsonKey(name: 'RealIndustry')
+  double? get realIndustry;
+  @override
+  @JsonKey(name: 'AllowanceMeal')
+  double? get allowanceMeal;
+  @override
+  @JsonKey(name: 'Allowance_OT_Early')
+  double? get allowanceOTEarly;
+  @override
+  @JsonKey(name: 'TotalAllowance')
+  double? get totalAllowance;
+  @override
+  @JsonKey(name: 'BussinessMoney')
+  double? get bussinessMoney;
+  @override
+  @JsonKey(name: 'NightShiftMoney')
+  double? get nightShiftMoney;
+  @override
+  @JsonKey(name: 'CostVehicleBussiness')
+  double? get costVehicleBussiness;
+  @override
+  @JsonKey(name: 'Bonus')
+  double? get bonus;
+  @override
+  @JsonKey(name: 'Other')
+  double? get other;
+  @override
+  @JsonKey(name: 'TotalBonus')
+  double? get totalBonus;
+  @override
+  @JsonKey(name: 'SocialInsurance')
+  double? get socialInsurance;
+  @override
+  @JsonKey(name: 'Insurances')
+  double? get insurances;
+  @override
+  @JsonKey(name: 'UnionFees')
+  double? get unionFees;
+  @override
+  @JsonKey(name: 'AdvancePayment')
+  double? get advancePayment;
+  @override
+  @JsonKey(name: 'DepartmentalFees')
+  double? get departmentalFees;
+  @override
+  @JsonKey(name: 'ParkingMoney')
+  double? get parkingMoney;
+  @override
+  @JsonKey(name: 'Punish5S')
+  double? get punish5S;
+  @override
+  @JsonKey(name: 'OtherDeduction')
+  double? get otherDeduction;
+  @override
+  @JsonKey(name: 'TotalDeduction')
+  double? get totalDeduction;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'IsPublish')
+  bool? get isPublish;
+  @override
+  @JsonKey(name: 'StartWorking')
+  DateTime? get startWorking;
+  @override
+  @JsonKey(name: 'MealUse')
+  int? get mealUse;
+  @override
+  @JsonKey(name: 'TaxSalaryOT')
+  double? get taxSalaryOT;
+  @override
+  @JsonKey(name: 'TaxSalaryMeal')
+  double? get taxSalaryMeal;
+  @override
+  @JsonKey(name: 'TaxSalaryPhone')
+  double? get taxSalaryPhone;
+  @override
+  @JsonKey(name: 'TaxPersonalDeduction')
+  double? get taxPersonalDeduction;
+  @override
+  @JsonKey(name: 'TaxDependentsDeduction')
+  double? get taxDependentsDeduction;
+  @override
+  @JsonKey(name: 'TotalTaxDeduction')
+  double? get totalTaxDeduction;
+  @override
+  @JsonKey(name: 'TaxAbleIncome')
+  double? get taxAbleIncome;
+  @override
+  @JsonKey(name: 'TaxCompanyName')
+  String? get taxCompanyName;
+  @override
+  @JsonKey(name: 'StatusContract')
+  String? get statusContract;
+  @override
+  @JsonKey(name: 'TaxDeduction')
+  double? get taxDeduction;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'RealSalary')
+  double? get realSalary;
+  @override
+  @JsonKey(name: 'ActualAmountReceived')
+  double? get actualAmountReceived;
   @override
   @JsonKey(ignore: true)
   _$$SalaryPayrollItemImplCopyWith<_$SalaryPayrollItemImpl> get copyWith =>

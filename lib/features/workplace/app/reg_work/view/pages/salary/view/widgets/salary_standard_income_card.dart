@@ -15,6 +15,18 @@ class SalaryStandardIncomeCard extends StatelessWidget {
     final nf = NumberFormat('#,##0', 'vi_VN');
     String f(num n) => '${nf.format(n.round())}đ';
 
+    String fDecimal(num n) {
+      final fixed = n.toStringAsFixed(2);
+      final parts = fixed.split('.');
+      final intPart = parts[0];
+      final decPart = parts[1];
+      final formatted = intPart.replaceAllMapped(
+        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+        (match) => '${match[1]},',
+      );
+      return '${formatted}.$decPart đ';
+    }
+
     return SalaryCard(
       accentColor: AppColors.stateInfoColor,
       title: 'Thu nhập tiêu chuẩn',
@@ -28,7 +40,7 @@ class SalaryStandardIncomeCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Thu nhập tiêu chuẩn tham chiếu',
-                value: f(state.refIncome),
+                value: f(state.basicSalary),
                 formula: '(4)',
                 highlightBg: false,
               ),
@@ -41,19 +53,19 @@ class SalaryStandardIncomeCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Công',
-                value: f(state.totalWorkDays),
+                value: state.totalWorkday.toInt().toString(),
                 formula: '(5) = CTT+Phép',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Lương',
-                value: f(state.standardSalary),
+                value: f(state.totalSalaryByDay),
                 formula: '(6) = (4)/F4*(5)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Đơn giá/giờ',
-                value: f(state.hourlyRate),
+                value: fDecimal(state.salaryOneHour),
                 formula: '(7) = (4)/F4/8',
                 highlightBg: false,
               ),
