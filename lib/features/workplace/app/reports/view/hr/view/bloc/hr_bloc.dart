@@ -206,8 +206,8 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
         );
 
         final now = DateTime.now();
-        final start = now;
-        final end = DateTime(now.year, now.month, now.day + 1);
+        final start = DateTime(now.year, now.month, now.day-1);
+        final end = DateTime(now.year, now.month, now.day);
 
         await _loadDailyHRReport(start: start, end: end, emit: emit);
       },
@@ -893,9 +893,9 @@ class HrBloc extends BaseBloc<HrEvent, HrState> {
     final result = await _reportRepo.copyHrReport(
       dateStart: dateStart,
       dateEnd: dateEnd,
+      keyword: keyword,
       teamId: teamId,
       userId: userId,
-      keyword: keyword,
       departmentId: departmentId,
     );
 

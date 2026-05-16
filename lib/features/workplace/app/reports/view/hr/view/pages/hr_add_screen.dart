@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
@@ -70,7 +71,7 @@ class _HrAddScreenState
               child: AbsorbPointer(
                 absorbing: true,
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha:0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',
@@ -165,7 +166,11 @@ class _HrAddAdminViewState extends State<_HrAddAdminView> {
                         nameForm: 'hr_admin_add_content',
                         nameTextField: 'content',
                         label: 'Nội dung công việc',
-                        maxLines: 3,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập nội dung công việc',
+                        ),
+                        autoExpand: true,
                         keyboardType: TextInputType.multiline,
                         textInputAction:
                             TextInputAction.newline, // ⬅ Enter xuống dòng
@@ -185,7 +190,11 @@ class _HrAddAdminViewState extends State<_HrAddAdminView> {
                         nameForm: 'hr_admin_add_result',
                         nameTextField: 'result',
                         label: 'Kết quả đạt được',
-                        maxLines: 3,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập kết quả công việc',
+                        ),
+                        autoExpand: true,
                         keyboardType: TextInputType.multiline,
                         textInputAction:
                             TextInputAction.newline, // ⬅ Enter xuống dòng
@@ -205,7 +214,11 @@ class _HrAddAdminViewState extends State<_HrAddAdminView> {
                         nameForm: 'hr_admin_add_next_plan',
                         nameTextField: 'next_plan',
                         label: 'Kế hoạch ngày tiếp theo',
-                        maxLines: 3,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập kế hoạch tiếp theo',
+                        ),
+                        autoExpand: true,
                         keyboardType: TextInputType.multiline,
                         textInputAction:
                             TextInputAction.newline, // ⬅ Enter xuống dòng
@@ -261,7 +274,7 @@ class _HrAddAdminViewState extends State<_HrAddAdminView> {
                               nameForm: 'hr_admin_add_blocking',
                               nameTextField: 'blocking',
                               label: 'Tồn đọng (nếu có)',
-                              maxLines: 2,
+                              autoExpand: true,
                               keyboardType: TextInputType.multiline,
                               textInputAction:
                                   TextInputAction.newline, // ⬅ Enter xuống dòng
@@ -276,7 +289,7 @@ class _HrAddAdminViewState extends State<_HrAddAdminView> {
                               nameForm: 'hr_admin__blocking_reason',
                               nameTextField: 'blocking_reason',
                               label: 'Ghi chú / Lý do tồn đọng',
-                              maxLines: 2,
+                              autoExpand: true,
                               keyboardType: TextInputType.multiline,
                               textInputAction:
                                   TextInputAction.newline, // ⬅ Enter xuống dòng
@@ -725,21 +738,21 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
 
     final values = formState.value;
 
-    final error = ValidateHelper.validateCpReport(
-      date: values['cp_add_date'] as DateTime?,
-      works: state.works,
-
-      getFilmId: (w) => w.filmManagementDetailId,
-      getQuantity: (w) => w.quantity,
-      getActualTime: (w) => w.timeActual,
-      getPerformanceActual: (w) => w.performanceActual,
-      getPercentage: (w) => w.percentage,
-    );
-
-    if (error != null) {
-      context.showMessage(error, type: SnackBarType.error);
-      return;
-    }
+    // final error = ValidateHelper.validateCpReport(
+    //   date: values['cp_add_date'] as DateTime?,
+    //   works: state.works,
+    //
+    //   getFilmId: (w) => w.filmManagementDetailId,
+    //   getQuantity: (w) => w.quantity,
+    //   getActualTime: (w) => w.timeActual,
+    //   getPerformanceActual: (w) => w.performanceActual,
+    //   getPercentage: (w) => w.percentage,
+    // );
+    //
+    // if (error != null) {
+    //   context.showMessage(error, type: SnackBarType.error);
+    //   return;
+    // }
 
     final pickedDate = values['cp_add_date'] as DateTime?;
     if (pickedDate == null) return;

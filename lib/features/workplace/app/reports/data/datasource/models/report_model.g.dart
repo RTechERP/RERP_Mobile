@@ -516,8 +516,8 @@ _$DetailReportNullResponseImpl _$$DetailReportNullResponseImplFromJson(
       projectId: (json['ProjectID'] as num).toInt(),
       content: json['Content'] as String,
       results: json['Results'] as String,
-      problem: json['Problem'] as String,
-      problemSolve: json['ProblemSolve'] as String,
+      problem: json['Problem'] as String?,
+      problemSolve: json['ProblemSolve'] as String?,
       planNextDay: json['PlanNextDay'] as String,
       note: json['Note'] as String,
       confirm: json['Confirm'] as bool,
@@ -536,7 +536,7 @@ _$DetailReportNullResponseImpl _$$DetailReportNullResponseImplFromJson(
       projectItemId: (json['ProjectItemID'] as num?)?.toInt(),
       percentComplete: (json['PercentComplete'] as num?)?.toInt(),
       totalHourOT: (json['TotalHourOT'] as num).toDouble(),
-      location: json['Location'] as String,
+      location: json['Location'] as String?,
     );
 
 Map<String, dynamic> _$$DetailReportNullResponseImplToJson(

@@ -5959,9 +5959,9 @@ mixin _$DetailReportNullResponse {
   @JsonKey(name: 'Results')
   String get results => throw _privateConstructorUsedError;
   @JsonKey(name: 'Problem')
-  String get problem => throw _privateConstructorUsedError;
+  String? get problem => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProblemSolve')
-  String get problemSolve => throw _privateConstructorUsedError;
+  String? get problemSolve => throw _privateConstructorUsedError;
   @JsonKey(name: 'PlanNextDay')
   String get planNextDay => throw _privateConstructorUsedError;
   @JsonKey(name: 'Note')
@@ -5999,7 +5999,7 @@ mixin _$DetailReportNullResponse {
   @JsonKey(name: 'TotalHourOT')
   double get totalHourOT => throw _privateConstructorUsedError;
   @JsonKey(name: 'Location')
-  String get location => throw _privateConstructorUsedError;
+  String? get location => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -6021,8 +6021,8 @@ abstract class $DetailReportNullResponseCopyWith<$Res> {
       @JsonKey(name: 'ProjectID') int projectId,
       @JsonKey(name: 'Content') String content,
       @JsonKey(name: 'Results') String results,
-      @JsonKey(name: 'Problem') String problem,
-      @JsonKey(name: 'ProblemSolve') String problemSolve,
+      @JsonKey(name: 'Problem') String? problem,
+      @JsonKey(name: 'ProblemSolve') String? problemSolve,
       @JsonKey(name: 'PlanNextDay') String planNextDay,
       @JsonKey(name: 'Note') String note,
       @JsonKey(name: 'Confirm') bool confirm,
@@ -6041,7 +6041,7 @@ abstract class $DetailReportNullResponseCopyWith<$Res> {
       @JsonKey(name: 'ProjectItemID') int? projectItemId,
       @JsonKey(name: 'PercentComplete') int? percentComplete,
       @JsonKey(name: 'TotalHourOT') double totalHourOT,
-      @JsonKey(name: 'Location') String location});
+      @JsonKey(name: 'Location') String? location});
 }
 
 /// @nodoc
@@ -6065,8 +6065,8 @@ class _$DetailReportNullResponseCopyWithImpl<$Res,
     Object? projectId = null,
     Object? content = null,
     Object? results = null,
-    Object? problem = null,
-    Object? problemSolve = null,
+    Object? problem = freezed,
+    Object? problemSolve = freezed,
     Object? planNextDay = null,
     Object? note = null,
     Object? confirm = null,
@@ -6085,7 +6085,7 @@ class _$DetailReportNullResponseCopyWithImpl<$Res,
     Object? projectItemId = freezed,
     Object? percentComplete = freezed,
     Object? totalHourOT = null,
-    Object? location = null,
+    Object? location = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -6116,14 +6116,14 @@ class _$DetailReportNullResponseCopyWithImpl<$Res,
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
               as String,
-      problem: null == problem
+      problem: freezed == problem
           ? _value.problem
           : problem // ignore: cast_nullable_to_non_nullable
-              as String,
-      problemSolve: null == problemSolve
+              as String?,
+      problemSolve: freezed == problemSolve
           ? _value.problemSolve
           : problemSolve // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       planNextDay: null == planNextDay
           ? _value.planNextDay
           : planNextDay // ignore: cast_nullable_to_non_nullable
@@ -6196,10 +6196,10 @@ class _$DetailReportNullResponseCopyWithImpl<$Res,
           ? _value.totalHourOT
           : totalHourOT // ignore: cast_nullable_to_non_nullable
               as double,
-      location: null == location
+      location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -6221,8 +6221,8 @@ abstract class _$$DetailReportNullResponseImplCopyWith<$Res>
       @JsonKey(name: 'ProjectID') int projectId,
       @JsonKey(name: 'Content') String content,
       @JsonKey(name: 'Results') String results,
-      @JsonKey(name: 'Problem') String problem,
-      @JsonKey(name: 'ProblemSolve') String problemSolve,
+      @JsonKey(name: 'Problem') String? problem,
+      @JsonKey(name: 'ProblemSolve') String? problemSolve,
       @JsonKey(name: 'PlanNextDay') String planNextDay,
       @JsonKey(name: 'Note') String note,
       @JsonKey(name: 'Confirm') bool confirm,
@@ -6241,7 +6241,7 @@ abstract class _$$DetailReportNullResponseImplCopyWith<$Res>
       @JsonKey(name: 'ProjectItemID') int? projectItemId,
       @JsonKey(name: 'PercentComplete') int? percentComplete,
       @JsonKey(name: 'TotalHourOT') double totalHourOT,
-      @JsonKey(name: 'Location') String location});
+      @JsonKey(name: 'Location') String? location});
 }
 
 /// @nodoc
@@ -6264,8 +6264,8 @@ class __$$DetailReportNullResponseImplCopyWithImpl<$Res>
     Object? projectId = null,
     Object? content = null,
     Object? results = null,
-    Object? problem = null,
-    Object? problemSolve = null,
+    Object? problem = freezed,
+    Object? problemSolve = freezed,
     Object? planNextDay = null,
     Object? note = null,
     Object? confirm = null,
@@ -6284,7 +6284,7 @@ class __$$DetailReportNullResponseImplCopyWithImpl<$Res>
     Object? projectItemId = freezed,
     Object? percentComplete = freezed,
     Object? totalHourOT = null,
-    Object? location = null,
+    Object? location = freezed,
   }) {
     return _then(_$DetailReportNullResponseImpl(
       id: null == id
@@ -6315,14 +6315,14 @@ class __$$DetailReportNullResponseImplCopyWithImpl<$Res>
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
               as String,
-      problem: null == problem
+      problem: freezed == problem
           ? _value.problem
           : problem // ignore: cast_nullable_to_non_nullable
-              as String,
-      problemSolve: null == problemSolve
+              as String?,
+      problemSolve: freezed == problemSolve
           ? _value.problemSolve
           : problemSolve // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       planNextDay: null == planNextDay
           ? _value.planNextDay
           : planNextDay // ignore: cast_nullable_to_non_nullable
@@ -6395,10 +6395,10 @@ class __$$DetailReportNullResponseImplCopyWithImpl<$Res>
           ? _value.totalHourOT
           : totalHourOT // ignore: cast_nullable_to_non_nullable
               as double,
-      location: null == location
+      location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -6414,8 +6414,8 @@ class _$DetailReportNullResponseImpl implements _DetailReportNullResponse {
       @JsonKey(name: 'ProjectID') required this.projectId,
       @JsonKey(name: 'Content') required this.content,
       @JsonKey(name: 'Results') required this.results,
-      @JsonKey(name: 'Problem') required this.problem,
-      @JsonKey(name: 'ProblemSolve') required this.problemSolve,
+      @JsonKey(name: 'Problem') this.problem,
+      @JsonKey(name: 'ProblemSolve') this.problemSolve,
       @JsonKey(name: 'PlanNextDay') required this.planNextDay,
       @JsonKey(name: 'Note') required this.note,
       @JsonKey(name: 'Confirm') required this.confirm,
@@ -6434,7 +6434,7 @@ class _$DetailReportNullResponseImpl implements _DetailReportNullResponse {
       @JsonKey(name: 'ProjectItemID') this.projectItemId,
       @JsonKey(name: 'PercentComplete') this.percentComplete,
       @JsonKey(name: 'TotalHourOT') required this.totalHourOT,
-      @JsonKey(name: 'Location') required this.location});
+      @JsonKey(name: 'Location') this.location});
 
   factory _$DetailReportNullResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$DetailReportNullResponseImplFromJson(json);
@@ -6462,10 +6462,10 @@ class _$DetailReportNullResponseImpl implements _DetailReportNullResponse {
   final String results;
   @override
   @JsonKey(name: 'Problem')
-  final String problem;
+  final String? problem;
   @override
   @JsonKey(name: 'ProblemSolve')
-  final String problemSolve;
+  final String? problemSolve;
   @override
   @JsonKey(name: 'PlanNextDay')
   final String planNextDay;
@@ -6522,7 +6522,7 @@ class _$DetailReportNullResponseImpl implements _DetailReportNullResponse {
   final double totalHourOT;
   @override
   @JsonKey(name: 'Location')
-  final String location;
+  final String? location;
 
   @override
   String toString() {
@@ -6642,8 +6642,8 @@ abstract class _DetailReportNullResponse implements DetailReportNullResponse {
       @JsonKey(name: 'ProjectID') required final int projectId,
       @JsonKey(name: 'Content') required final String content,
       @JsonKey(name: 'Results') required final String results,
-      @JsonKey(name: 'Problem') required final String problem,
-      @JsonKey(name: 'ProblemSolve') required final String problemSolve,
+      @JsonKey(name: 'Problem') final String? problem,
+      @JsonKey(name: 'ProblemSolve') final String? problemSolve,
       @JsonKey(name: 'PlanNextDay') required final String planNextDay,
       @JsonKey(name: 'Note') required final String note,
       @JsonKey(name: 'Confirm') required final bool confirm,
@@ -6663,7 +6663,7 @@ abstract class _DetailReportNullResponse implements DetailReportNullResponse {
       @JsonKey(name: 'PercentComplete') final int? percentComplete,
       @JsonKey(name: 'TotalHourOT') required final double totalHourOT,
       @JsonKey(name: 'Location')
-      required final String location}) = _$DetailReportNullResponseImpl;
+      final String? location}) = _$DetailReportNullResponseImpl;
 
   factory _DetailReportNullResponse.fromJson(Map<String, dynamic> json) =
       _$DetailReportNullResponseImpl.fromJson;
@@ -6691,10 +6691,10 @@ abstract class _DetailReportNullResponse implements DetailReportNullResponse {
   String get results;
   @override
   @JsonKey(name: 'Problem')
-  String get problem;
+  String? get problem;
   @override
   @JsonKey(name: 'ProblemSolve')
-  String get problemSolve;
+  String? get problemSolve;
   @override
   @JsonKey(name: 'PlanNextDay')
   String get planNextDay;
@@ -6751,7 +6751,7 @@ abstract class _DetailReportNullResponse implements DetailReportNullResponse {
   double get totalHourOT;
   @override
   @JsonKey(name: 'Location')
-  String get location;
+  String? get location;
   @override
   @JsonKey(ignore: true)
   _$$DetailReportNullResponseImplCopyWith<_$DetailReportNullResponseImpl>

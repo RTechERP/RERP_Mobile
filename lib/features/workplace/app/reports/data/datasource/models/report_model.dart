@@ -341,8 +341,8 @@ class DetailReportNullResponse with _$DetailReportNullResponse {
     @JsonKey(name: 'ProjectID') required int projectId,
     @JsonKey(name: 'Content') required String content,
     @JsonKey(name: 'Results') required String results,
-    @JsonKey(name: 'Problem') required String problem,
-    @JsonKey(name: 'ProblemSolve') required String problemSolve,
+    @JsonKey(name: 'Problem') String? problem,
+    @JsonKey(name: 'ProblemSolve') String? problemSolve,
     @JsonKey(name: 'PlanNextDay') required String planNextDay,
     @JsonKey(name: 'Note') required String note,
     @JsonKey(name: 'Confirm') required bool confirm,
@@ -361,7 +361,7 @@ class DetailReportNullResponse with _$DetailReportNullResponse {
     @JsonKey(name: 'ProjectItemID') int? projectItemId,
     @JsonKey(name: 'PercentComplete') int? percentComplete,
     @JsonKey(name: 'TotalHourOT') required double totalHourOT,
-    @JsonKey(name: 'Location') required String location,
+    @JsonKey(name: 'Location') String? location,
   }) = _DetailReportNullResponse;
 
   factory DetailReportNullResponse.fromJson(Map<String, dynamic> json) =>
