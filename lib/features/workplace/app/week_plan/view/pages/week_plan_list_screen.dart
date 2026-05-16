@@ -26,6 +26,9 @@ const _kStatusFilters = [
   'Chưa làm',
   'Đang làm',
   'Hoàn thành',
+  'Chưa làm quá hạn',
+  'Đang làm quá hạn',
+  'Hoàn thành quá hạn',
 ];
 
 class WeekPlanListScreen extends StatefulWidget {
@@ -247,6 +250,7 @@ class _WeekPlanListScreenState extends BaseState<
             ),
           ),
         _buildActiveFilters(state),
+        _buildSummaryBar(tasks),
         Expanded(
           child: filtered.isEmpty
               ? Center(
@@ -348,6 +352,76 @@ class _WeekPlanListScreenState extends BaseState<
     return result;
   }
 
+  //---(_Screen)---//
+  Widget _buildSummaryBar(List<WeekPlanTaskItem> tasks) {
+    final total = tasks.length;
+
+    int countByStatus(int status) =>
+        tasks.where((t) => t.status == status && !weekPlanIsOverdue(t)).length;
+
+    int countOverdueByStatus(int status) =>
+        tasks.where((t) => t.status == status && weekPlanIsOverdue(t)).length;
+
+    final chuaLam = countByStatus(0);
+    final chuaLamQuaHan = countOverdueByStatus(0);
+    final dangLam = countByStatus(1);
+    final dangLamQuaHan = countOverdueByStatus(1);
+    final hoanThanh = countByStatus(2);
+    final hoanThanhQuaHan = countOverdueByStatus(2);
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
+      child: Wrap(
+        spacing: 6,
+        runSpacing: 6,
+        children: [
+          _SummaryPill(
+            label: 'Tất cả',
+            count: total,
+            color: AppColors.primaryERP,
+          ),
+          if (chuaLam > 0)
+            _SummaryPill(
+              label: 'Chưa làm',
+              count: chuaLam,
+              color: AppColors.gray,
+            ),
+          if (chuaLamQuaHan > 0)
+            _SummaryPill(
+              label: 'Chưa làm QH',
+              count: chuaLamQuaHan,
+              color: AppColors.alert,
+            ),
+          if (dangLam > 0)
+            _SummaryPill(
+              label: 'Đang làm',
+              count: dangLam,
+              color: AppColors.stateInfoColor,
+            ),
+          if (dangLamQuaHan > 0)
+            _SummaryPill(
+              label: 'Đang làm QH',
+              count: dangLamQuaHan,
+              color: AppColors.alert,
+            ),
+          if (hoanThanh > 0)
+            _SummaryPill(
+              label: 'Hoàn thành',
+              count: hoanThanh,
+              color: AppColors.stateSuccessColor,
+            ),
+          if (hoanThanhQuaHan > 0)
+            _SummaryPill(
+              label: 'Hoàn thành QH',
+              count: hoanThanhQuaHan,
+              color: AppColors.alert,
+            ),
+        ],
+      ),
+    );
+  }
+
   //---(_ActiveFilters)---//
   Widget _buildActiveFilters(WeekPlanState state) {
     final hasSearch = state.searchKeyword.isNotEmpty;
@@ -439,6 +513,9 @@ class _WeekPlanListScreenState extends BaseState<
       context: context,
       backgroundColor: Colors.transparent,
       builder: (_) => Container(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.6,
+        ),
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -466,44 +543,49 @@ class _WeekPlanListScreenState extends BaseState<
                 ),
               ),
               const SizedBox(height: 8),
-              ..._kStatusFilters.map(
-                (s) => ListTile(
-                  onTap: () {
-                    bloc.add(WeekPlanEvent.filterByStatus(s));
-                    Navigator.pop(context);
-                  },
-                  leading: Container(
-                    width: 24,
-                    height: 24,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: bloc.state.selectedStatus == s
-                            ? AppColors.primaryERP
-                            : AppColors.borderColor,
-                        width: 2,
+              Flexible(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: _kStatusFilters.map(
+                    (s) => ListTile(
+                      onTap: () {
+                        bloc.add(WeekPlanEvent.filterByStatus(s));
+                        Navigator.pop(context);
+                      },
+                      leading: Container(
+                        width: 24,
+                        height: 24,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: bloc.state.selectedStatus == s
+                                ? AppColors.primaryERP
+                                : AppColors.borderColor,
+                            width: 2,
+                          ),
+                          color: bloc.state.selectedStatus == s
+                              ? AppColors.primaryERP
+                              : Colors.transparent,
+                        ),
+                        child: bloc.state.selectedStatus == s
+                            ? const Icon(Icons.check,
+                                size: 14, color: Colors.white)
+                            : null,
                       ),
-                      color: bloc.state.selectedStatus == s
-                          ? AppColors.primaryERP
-                          : Colors.transparent,
+                      title: Text(
+                        s,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: bloc.state.selectedStatus == s
+                              ? FontWeight.w600
+                              : FontWeight.w400,
+                          color: bloc.state.selectedStatus == s
+                              ? AppColors.primaryERP
+                              : AppColors.heading,
+                        ),
+                      ),
                     ),
-                    child: bloc.state.selectedStatus == s
-                        ? const Icon(Icons.check,
-                            size: 14, color: Colors.white)
-                        : null,
-                  ),
-                  title: Text(
-                    s,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: bloc.state.selectedStatus == s
-                          ? FontWeight.w600
-                          : FontWeight.w400,
-                      color: bloc.state.selectedStatus == s
-                          ? AppColors.primaryERP
-                          : AppColors.heading,
-                    ),
-                  ),
+                  ).toList(),
                 ),
               ),
               const SizedBox(height: 8),
@@ -537,14 +619,71 @@ class _WeekPlanListScreenState extends BaseState<
   Color _statusColor(String status) {
     switch (status) {
       case 'Hoàn thành':
+      case 'Hoàn thành quá hạn':
         return AppColors.stateSuccessColor;
       case 'Đang làm':
+      case 'Đang làm quá hạn':
         return AppColors.stateInfoColor;
       case 'Chưa làm':
+      case 'Chưa làm quá hạn':
         return AppColors.gray;
       default:
         return AppColors.warning;
     }
+  }
+}
+
+//---(_SummaryPill)---//
+class _SummaryPill extends StatelessWidget {
+  const _SummaryPill({
+    required this.label,
+    required this.count,
+    required this.color,
+  });
+
+  final String label;
+  final int count;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: color,
+            ),
+          ),
+          const SizedBox(width: 5),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(
+              '$count',
+              style: const TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 

@@ -314,6 +314,7 @@ class _WeekPlanAddScreenState
             label: 'Tên công việc',
             icon: Icons.assignment_outlined,
             isRequired: true,
+            autoExpand: true,
             validator: FormBuilderValidators.required(
               errorText: 'Vui lòng nhập tên công việc',
             ),

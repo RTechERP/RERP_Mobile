@@ -3,16 +3,28 @@ import 'package:flutter/material.dart';
 import '../../../../../common/app_theme/index.dart';
 import '../data/datasource/models/week_plan_model.dart';
 
+/// Kiểm tra task có quá hạn không.
+///
+/// So sánh effectiveEndDate với PlanEndDate:
+/// - actualEndDate nếu có, không thì DateTime.now()
+/// vs PlanEndDate (hoặc DateTime.now() nếu null).
+///
+/// Nếu effectiveEndDate > PlanEndDate → quá hạn.
+bool weekPlanIsOverdue(WeekPlanTaskItem task) {
+  final effectiveEnd = task.actualEndDate ?? DateTime.now();
+  final planEnd = task.planEndDate ?? DateTime.now();
+  return effectiveEnd.isAfter(planEnd);
+}
 
 /// Lấy màu border trái / badge theo trạng thái.
 Color weekPlanStatusColor(WeekPlanTaskItem task) {
-  final isOverdue = task.deadline != null &&
-      DateTime.now().isAfter(task.deadline!) &&
-      task.status != 2;
+  final isOverdue = weekPlanIsOverdue(task);
 
   switch (task.status) {
     case 2:
-      return AppColors.stateSuccessColor;
+      return isOverdue
+          ? AppColors.primaryERP.withValues(alpha: 0.8)
+          : AppColors.stateSuccessColor;
     case 1:
       return isOverdue ? AppColors.alert : AppColors.stateInfoColor;
     case 3:
@@ -22,12 +34,6 @@ Color weekPlanStatusColor(WeekPlanTaskItem task) {
     default:
       return AppColors.gray;
   }
-}
-
-/// Kiểm tra task có quá hạn không.
-bool weekPlanIsOverdue(WeekPlanTaskItem task) {
-  if (task.deadline == null) return false;
-  return DateTime.now().isAfter(task.deadline!) && task.status != 2;
 }
 
 /// Lấy màu badge theo loại công việc (Bug, Task, Issue Log, Improvement, ...).
@@ -52,14 +58,18 @@ Color weekPlanTypeColor(WeekPlanTaskItem task) {
 }
 
 /// Lấy nhãn trạng thái hiển thị cho task.
+///
+/// Quá hạn = ActualEndDate > effectiveEndDate (PlanEndDate hoặc DateTime.now()).
 String weekPlanStatusLabel(WeekPlanTaskItem task) {
+  final isOverdue = weekPlanIsOverdue(task);
+
   switch (task.status) {
     case 0:
-      return 'Chưa làm';
+      return isOverdue ? 'Chưa làm quá hạn' : 'Chưa làm';
     case 1:
-      return 'Đang làm';
+      return isOverdue ? 'Đang làm quá hạn' : 'Đang làm';
     case 2:
-      return 'Hoàn thành';
+      return isOverdue ? 'Hoàn thành quá hạn' : 'Hoàn thành';
     case 3:
       return 'Pending';
     default:
