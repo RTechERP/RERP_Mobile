@@ -133,6 +133,8 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState listChamcong(SalaryListChamCong? listChamcong);
 
+  SalaryState listSummary(List<List<SalarySummaryItem>>? listSummary);
+
   SalaryState fingers(SalaryFingers? fingers);
 
   SalaryState fingerData(SalaryFingerData? fingerData);
@@ -213,6 +215,7 @@ abstract class _$SalaryStateCWProxy {
     String? otpToken,
     List<SalaryPayrollItem>? payroll,
     SalaryListChamCong? listChamcong,
+    List<List<SalarySummaryItem>>? listSummary,
     SalaryFingers? fingers,
     SalaryFingerData? fingerData,
     List<SalaryFingerDetail>? fingerDetails,
@@ -452,6 +455,10 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
       this(listChamcong: listChamcong);
 
   @override
+  SalaryState listSummary(List<List<SalarySummaryItem>>? listSummary) =>
+      this(listSummary: listSummary);
+
+  @override
   SalaryState fingers(SalaryFingers? fingers) => this(fingers: fingers);
 
   @override
@@ -542,6 +549,7 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? otpToken = const $CopyWithPlaceholder(),
     Object? payroll = const $CopyWithPlaceholder(),
     Object? listChamcong = const $CopyWithPlaceholder(),
+    Object? listSummary = const $CopyWithPlaceholder(),
     Object? fingers = const $CopyWithPlaceholder(),
     Object? fingerData = const $CopyWithPlaceholder(),
     Object? fingerDetails = const $CopyWithPlaceholder(),
@@ -839,6 +847,10 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
           ? _value.listChamcong
           // ignore: cast_nullable_to_non_nullable
           : listChamcong as SalaryListChamCong?,
+      listSummary: listSummary == const $CopyWithPlaceholder()
+          ? _value.listSummary
+          // ignore: cast_nullable_to_non_nullable
+          : listSummary as List<List<SalarySummaryItem>>?,
       fingers: fingers == const $CopyWithPlaceholder()
           ? _value.fingers
           // ignore: cast_nullable_to_non_nullable

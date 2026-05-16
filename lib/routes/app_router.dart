@@ -74,6 +74,7 @@ import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overti
 import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/data/datasource/models/overtime_model.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/finger_print_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/overview_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/bloc/wfh_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_detail_screen.dart';
@@ -427,7 +428,7 @@ class AppRouter {
           ),
           GoRoute(
             path: RouteNames.salarySummary,
-            builder: (context, state) => const SalaryScreen(),
+            builder: (context, state) => const SalaryOverviewScreen(),
           ),
           GoRoute(
             path: RouteNames.salaryFingerprint,

@@ -11,7 +11,6 @@ import '../../data/repository/salary_pin_repo.dart';
 import '../../data/repository/salary_repo.dart';
 import '../../data/datasource/models/salary_model.dart';
 
-
 part 'salary_event.dart';
 part 'salary_state.dart';
 part 'salary_bloc.g.dart';
@@ -323,6 +322,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
         _log.logI('Get payroll success - payroll count: ${data.payroll?.length}');
         final payrollList = data.payroll ?? [];
         final p = payrollList.isNotEmpty ? payrollList.first : null;
+        final summaryList = data.listSummary ?? [];
 
         emit(state.copyWith(
           payroll: payrollList,
@@ -380,6 +380,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           netSalary: p?.actualAmountReceived ?? p?.realSalary ?? 0,
           note: p?.note,
           listChamcong: data.listChamcong,
+          listSummary: summaryList,
           fingers: data.fingers,
           fingerData: data.fingers?.data,
           fingerDetails: data.fingers?.details ?? [],

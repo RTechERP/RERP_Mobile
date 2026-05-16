@@ -86,6 +86,7 @@ class SalaryState extends BaseBlocState {
   // Payroll data
   final List<SalaryPayrollItem> payroll;
   final SalaryListChamCong? listChamcong;
+  final List<List<SalarySummaryItem>>? listSummary;
 
   // Fingerprint data
   final SalaryFingers? fingers;
@@ -158,6 +159,7 @@ class SalaryState extends BaseBlocState {
     this.otpToken,
     this.payroll = const [],
     this.listChamcong,
+    this.listSummary,
     this.fingers,
     this.fingerData,
     this.fingerDetails = const [],
@@ -234,6 +236,7 @@ class SalaryState extends BaseBlocState {
         otpToken,
         payroll,
         listChamcong,
+        listSummary,
         fingers,
         fingerData,
         fingerDetails,
