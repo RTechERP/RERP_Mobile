@@ -40,6 +40,9 @@ class FormInputField extends StatefulWidget {
   /// Khi true → maxLines = null, TextField tự mở rộng theo nội dung.
   final bool autoExpand;
 
+  /// Giới hạn số ký tự. Hiển thị counter bên dưới field khi có giá trị.
+  final int? maxLength;
+
   const FormInputField({
     super.key,
     required this.nameForm,
@@ -63,6 +66,7 @@ class FormInputField extends StatefulWidget {
     this.onFieldCreated,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.autoExpand = false,
+    this.maxLength,
   });
 
   @override
@@ -151,6 +155,7 @@ class _FormInputFieldState extends State<FormInputField> {
           autovalidateMode: widget.autovalidateMode,
           onSubmitted: widget.onSubmitted,
           maxLines: effectiveMaxLines,
+          maxLength: widget.maxLength,
           decoration: formInputDecoration(
             context,
             label: widget.label,

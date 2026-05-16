@@ -136,6 +136,8 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState detailTaskId(int? detailTaskId);
 
+  WeekPlanState pauseReason(String? pauseReason);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -206,6 +208,7 @@ abstract class _$WeekPlanStateCWProxy {
     int? expandedIncidentIndex,
     int? currentStep,
     int? detailTaskId,
+    String? pauseReason,
   });
 }
 
@@ -462,6 +465,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(detailTaskId: detailTaskId);
 
   @override
+  WeekPlanState pauseReason(String? pauseReason) =>
+      this(pauseReason: pauseReason);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -533,6 +540,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? expandedIncidentIndex = const $CopyWithPlaceholder(),
     Object? currentStep = const $CopyWithPlaceholder(),
     Object? detailTaskId = const $CopyWithPlaceholder(),
+    Object? pauseReason = const $CopyWithPlaceholder(),
   }) {
     return WeekPlanState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -815,6 +823,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.detailTaskId
           // ignore: cast_nullable_to_non_nullable
           : detailTaskId as int?,
+      pauseReason: pauseReason == const $CopyWithPlaceholder()
+          ? _value.pauseReason
+          // ignore: cast_nullable_to_non_nullable
+          : pauseReason as String?,
     );
   }
 }

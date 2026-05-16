@@ -191,6 +191,10 @@ class WeekPlanEvent with _$WeekPlanEvent {
   const factory WeekPlanEvent.toggleIncidentExpand(int index) =
       _ToggleIncidentExpand;
 
+  // Pause
+  const factory WeekPlanEvent.updatePauseReason(String? reason) =
+      _UpdatePauseReason;
+
   // Submit
   const factory WeekPlanEvent.createTask() = _CreateTask;
 

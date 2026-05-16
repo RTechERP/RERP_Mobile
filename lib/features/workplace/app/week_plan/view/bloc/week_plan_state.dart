@@ -105,6 +105,9 @@ class WeekPlanState extends BaseBlocState {
   /// Task ID đang xem chi tiết. Null = màn add mới.
   final int? detailTaskId;
 
+  /// Lý do tạm dừng — bắt buộc nhập khi chuyển status = 3 (Pending).
+  final String? pauseReason;
+
   const WeekPlanState({
     required super.status,
     super.message,
@@ -181,6 +184,7 @@ class WeekPlanState extends BaseBlocState {
     this.currentStep = 0,
     // Detail mode
     this.detailTaskId,
+    this.pauseReason,
   });
 
   factory WeekPlanState.init() => const WeekPlanState(
@@ -225,6 +229,7 @@ class WeekPlanState extends BaseBlocState {
         incidents: [],
         expandedIncidentIndex: -1,
         currentStep: 0,
+        pauseReason: null,
       );
 
   @override
@@ -303,5 +308,6 @@ class WeekPlanState extends BaseBlocState {
         currentStep,
         // Detail mode
         detailTaskId,
+        pauseReason,
       ];
 }

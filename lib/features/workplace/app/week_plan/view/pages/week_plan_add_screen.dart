@@ -315,9 +315,16 @@ class _WeekPlanAddScreenState
             icon: Icons.assignment_outlined,
             isRequired: true,
             autoExpand: true,
-            validator: FormBuilderValidators.required(
-              errorText: 'Vui lòng nhập tên công việc',
-            ),
+            maxLength: 150,
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.required(
+                errorText: 'Vui lòng nhập tên công việc',
+              ),
+              FormBuilderValidators.maxLength(
+                150,
+                errorText: 'Tên công việc không được vượt quá 150 ký tự',
+              ),
+            ]),
             onChanged: (value) {
               if (value != null) {
                 bloc.add(WeekPlanEvent.updateContentTaskName(value.toString()));
@@ -679,12 +686,7 @@ class _WeekPlanAddScreenState
           const SizedBox(height: 10),
           WeekPlanStatusCard(
             selected: state.headerStatus ?? 0,
-            onChanged: (v) => bloc.add(
-              WeekPlanEvent.updateHeaderStatus(
-                statusId: v,
-                statusName: WeekPlanStatusCard.labels[v],
-              ),
-            ),
+            onChanged: (v) => _onStatusChanged(context, state, v),
           ),
         ],
       ),
@@ -994,6 +996,7 @@ class _WeekPlanAddScreenState
           ),
           ElevatedButton(
             onPressed: () {
+              formKey.currentState?.save();
               if (formKey.currentState?.validate() ?? false) {
                 final vals = formKey.currentState?.value;
                 final text =
@@ -1045,6 +1048,7 @@ class _WeekPlanAddScreenState
           ),
           ElevatedButton(
             onPressed: () {
+              formKey.currentState?.save();
               if (formKey.currentState?.validate() ?? false) {
                 final vals = formKey.currentState?.value;
                 final text =
@@ -1321,6 +1325,7 @@ class _WeekPlanAddScreenState
           ),
           ElevatedButton(
             onPressed: () {
+              formKey.currentState?.save();
               if (formKey.currentState?.validate() ?? false) {
                 final vals = formKey.currentState?.value;
                 final name = vals?['link_name']?.toString().trim() ?? '';
@@ -1580,7 +1585,7 @@ class _WeekPlanAddScreenState
                         ? null
                         : () => isLastStep
                               ? _saveFormAndCreate()
-                              : _goToStep(_currentStep + 1),
+                              : _goToNextStep(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryERP,
                       foregroundColor: Colors.white,
@@ -1626,12 +1631,48 @@ class _WeekPlanAddScreenState
     }
   }
 
+  /// Chuyển step tiếp theo (không có validate riêng).
+  void _goToNextStep() {
+    _goToStep(_currentStep + 1);
+  }
+
   void _saveFormAndCreate() {
     final formState = _formKey.currentState;
     if (formState == null) return;
 
     formState.save();
     if (!formState.validate()) return;
+
+    // Validate checklist 100%
+    final total = bloc.state.checklistItems.length;
+    if (total > 0) {
+      final done = bloc.state.checklistDone.where((d) => d).length;
+      if (done < total) {
+        showMessage(
+          context,
+          'Vui lòng hoàn thành tất cả checklist trước khi lưu',
+          type: SnackBarType.error,
+        );
+        final checklistStep = _isBugTask(bloc.state) ? 4 : 3;
+        _goToStep(checklistStep);
+        return;
+      }
+    }
+
+    // Validate Sự cố & Khắc phục khi là bug task (Bug: step1=ReasonSolution)
+    if (_isBugTask(bloc.state)) {
+      final rs = bloc.state.contentReasonSolution ?? '';
+      final charCount = rs.replaceAll(' ', '').length;
+      if (charCount < 10) {
+        showMessage(
+          context,
+          'Vui lòng nhập nguyên nhân và phương án xử lý (tối thiểu 10 ký tự)',
+          type: SnackBarType.error,
+        );
+        _goToStep(1); // step Sự cố & Khắc phục
+        return;
+      }
+    }
 
     final vals = formState.value;
 
@@ -1665,6 +1706,117 @@ class _WeekPlanAddScreenState
 
     // Trigger create
     bloc.add(const WeekPlanEvent.createTask());
+  }
+
+  //===============================================================
+  // STATUS VALIDATION
+  //===============================================================
+
+  /// Xử lý thay đổi trạng thái với các rule nghiệp vụ:
+  /// - Status = 2 (Hoàn thành): checklist phải 100%
+  /// - Bug + Status = 2: contentReasonSolution >= 10 ký tự (không space)
+  /// - Status = 3 (Pending): bắt buộc nhập lý do tạm dừng
+  Future<void> _onStatusChanged(
+    BuildContext context,
+    WeekPlanState state,
+    int newStatus,
+  ) async {
+    if (newStatus == 3) {
+      // Status = 3: Pending — bắt buộc nhập lý do tạm dừng
+      final reason = await _showPauseReasonDialog(context);
+      if (reason == null) return;
+      bloc.add(WeekPlanEvent.updatePauseReason(reason));
+      bloc.add(
+        WeekPlanEvent.updateHeaderStatus(
+          statusId: 3,
+          statusName: WeekPlanStatusCard.labels[3],
+        ),
+      );
+      return;
+    }
+
+    if (newStatus == 2) {
+      // Status = 2: Hoàn thành — checklist phải 100%
+      final total = state.checklistItems.length;
+      if (total > 0) {
+        final doneCount = state.checklistDone.where((d) => d).length;
+        if (doneCount < total) {
+          showMessage(
+            context,
+            'Vui lòng hoàn thành tất cả checklist trước khi đặt trạng thái Hoàn thành',
+            type: SnackBarType.error,
+          );
+          // Tự động chuyển sang tab Checklist
+          final checklistStep = _isBugTask(state) ? 4 : 3;
+          _goToStep(checklistStep);
+          return;
+        }
+      }
+
+      // Bug + Status = 2: contentReasonSolution >= 10 ký tự (không tính space)
+      if (_isBugTask(state)) {
+        final rs = state.contentReasonSolution ?? '';
+        final charCount = rs.replaceAll(' ', '').length;
+        if (charCount < 10) {
+          showMessage(
+            context,
+            'Vui lòng nhập nguyên nhân và phương án xử lý (tối thiểu 10 ký tự)',
+            type: SnackBarType.error,
+          );
+          _goToStep(1); // step Sự cố & Khắc phục (Bug: step1=ReasonSolution)
+          return;
+        }
+      }
+    }
+
+    bloc.add(
+      WeekPlanEvent.updateHeaderStatus(
+        statusId: newStatus,
+        statusName: WeekPlanStatusCard.labels[newStatus],
+      ),
+    );
+  }
+
+  /// Modal nhập lý do tạm dừng (status = 3).
+  Future<String?> _showPauseReasonDialog(BuildContext context) async {
+    final controller = TextEditingController();
+    return showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Lý do tạm dừng'),
+        content: TextField(
+          controller: controller,
+          maxLines: 4,
+          minLines: 2,
+          autofocus: true,
+          decoration: InputDecoration(
+            hintText: 'Nhập lý do tạm dừng công việc...',
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+            contentPadding: const EdgeInsets.all(12),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, null),
+            child: const Text('Huỷ'),
+          ),
+          ValueListenableBuilder<TextEditingValue>(
+            valueListenable: controller,
+            builder: (ctx, value, _) => ElevatedButton(
+              onPressed: value.text.trim().isEmpty
+                  ? null
+                  : () => Navigator.pop(ctx, controller.text.trim()),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.warning,
+                foregroundColor: Colors.white,
+              ),
+              child: const Text('Xác nhận'),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -1826,7 +1978,9 @@ class _IncidentCardWidgetState extends State<_IncidentCardWidget> {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
               color: borderColor.withValues(alpha: 0.06),
-              borderRadius: const BorderRadius.only(topRight: Radius.circular(16)),
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(16),
+              ),
             ),
             child: const Text(
               'Sự cố / Khắc phục',

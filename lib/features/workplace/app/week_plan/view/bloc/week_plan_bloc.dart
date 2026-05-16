@@ -133,6 +133,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             _onUpdateIncident(emit, index, incident),
         removeIncident: (index) => _onRemoveIncident(emit, index),
         toggleIncidentExpand: (index) => _onToggleIncidentExpand(emit, index),
+        updatePauseReason: (reason) => _onUpdatePauseReason(emit, reason),
         createTask: () => _onCreateTask(emit),
         clearSubmitState: () => _onClearSubmitState(emit),
         clearCheckInState: () => _onClearCheckInState(emit),
@@ -1158,6 +1159,13 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     emit(state.copyWith(expandedIncidentIndex: newIndex));
   }
 
+  Future<void> _onUpdatePauseReason(
+    Emitter<WeekPlanState> emit,
+    String? reason,
+  ) async {
+    emit(state.copyWith(pauseReason: reason));
+  }
+
   Future<void> _onUpdateIncident(
     Emitter<WeekPlanState> emit,
     int index,
@@ -1434,6 +1442,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       'NeedApprove': !state.headerIsPersonalTask,
       'Description': state.contentDescription ?? '',
       if (_isBugTaskType(state)) 'DescriptionSolution': state.contentReasonSolution ?? '',
+      'PauseReason': state.pauseReason,
       'ProjectTaskChecklists': <int>[],
       'Links': <int>[],
       'Files': <int>[],
