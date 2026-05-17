@@ -81,9 +81,15 @@ class WeekPlanState extends BaseBlocState {
   // Step 5: Công việc con
   final List<WeekPlanSubTaskItem> subTasks;
 
-  // Step 6: Checklist (tạm thời stub)
+  // Step 6: Checklist (form — local list)
   final List<String> checklistItems;
   final List<bool> checklistDone;
+
+  /// Checklist tu API GET /ProjectTask/{taskId}/Checklists — dung o step Checklist cua detail screen.
+  final List<ChecklistWeekPlanResponse> detailChecklists;
+
+  /// Danh sach ID cua checklist da bi xoa boi user — se goi DELETE /ProjectTask/Checklists/{id} sau khi submit thanh cong.
+  final List<int> deletedChecklistIds;
 
   // Step 7: Tệp đính kèm
   final List<WeekPlanAttachmentItem> attachments;
@@ -171,6 +177,8 @@ class WeekPlanState extends BaseBlocState {
     // Step 6
     this.checklistItems = const [],
     this.checklistDone = const [],
+    this.detailChecklists = const [],
+    this.deletedChecklistIds = const [],
     // Step 7
     this.attachments = const [],
     // Danh sách file đã upload lên server
@@ -223,6 +231,8 @@ class WeekPlanState extends BaseBlocState {
         subTasks: [],
         checklistItems: [],
         checklistDone: [],
+        detailChecklists: const [],
+        deletedChecklistIds: const [],
         attachments: [],
         uploadedAttachmentFiles: [],
         links: [],
@@ -296,6 +306,8 @@ class WeekPlanState extends BaseBlocState {
         // Step 6
         checklistItems,
         checklistDone,
+        detailChecklists,
+        deletedChecklistIds,
         // Step 7
         attachments,
         uploadedAttachmentFiles,

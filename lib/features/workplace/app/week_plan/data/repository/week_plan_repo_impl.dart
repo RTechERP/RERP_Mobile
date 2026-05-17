@@ -239,11 +239,75 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
   }
 
   @override
+  Future<Either<BaseError, List<ChecklistWeekPlanResponse>>> getProjectTaskChecklists({
+    required int taskId,
+  }) async {
+    try {
+      final res = await _service.getProjectTaskChecklists(taskId: taskId);
+
+      if (res.status == 1) {
+        return right(res.data ?? []);
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
   Future<Either<BaseError, ChecklistWeekPlanResponse>> saveProjectTaskChecklists({
     required Map<String, dynamic> payload,
   }) async {
     try {
       final res = await _service.saveProjectTaskChecklists(payload: payload);
+
+      if (res.status == 1) {
+        return right(res.data ?? const ChecklistWeekPlanResponse());
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, ChecklistWeekPlanResponse>> updateProjectTaskChecklists({
+    required int id,
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.updateProjectTaskChecklists(id: id, payload: payload);
+
+      if (res.status == 1) {
+        return right(res.data ?? const ChecklistWeekPlanResponse());
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, ChecklistWeekPlanResponse>> deleteProjectTaskChecklists({
+    required int id,
+  }) async {
+    try {
+      final res = await _service.deleteProjectTaskChecklists(id: id);
 
       if (res.status == 1) {
         return right(res.data ?? const ChecklistWeekPlanResponse());

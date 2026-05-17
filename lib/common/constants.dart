@@ -299,6 +299,8 @@ class ApiEndPoint {
   static const String saveProjectTask = '/ProjectTask/SaveData';
   static const String projectTaskFiles = '/ProjectTask/Files';
   static const String projectTaskChecklists = '/ProjectTask/Checklists';
+  static const String projectTaskChecklistsGet = '/ProjectTask/{taskId}/Checklists';
+  static const String projectTaskChecklistsUpdate = '/ProjectTask/Checklists/{id}';
   static const String projectTaskLinks = '/ProjectTask/Links';
   static const String projectTaskChild = '/ProjectTask/project-task-child';
   static const String projectTaskAdditional = '/ProjectTask/Additional';

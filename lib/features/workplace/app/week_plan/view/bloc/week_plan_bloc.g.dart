@@ -121,6 +121,11 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState checklistDone(List<bool> checklistDone);
 
+  WeekPlanState detailChecklists(
+      List<ChecklistWeekPlanResponse> detailChecklists);
+
+  WeekPlanState deletedChecklistIds(List<int> deletedChecklistIds);
+
   WeekPlanState attachments(List<WeekPlanAttachmentItem> attachments);
 
   WeekPlanState uploadedAttachmentFiles(
@@ -201,6 +206,8 @@ abstract class _$WeekPlanStateCWProxy {
     List<WeekPlanSubTaskItem>? subTasks,
     List<String>? checklistItems,
     List<bool>? checklistDone,
+    List<ChecklistWeekPlanResponse>? detailChecklists,
+    List<int>? deletedChecklistIds,
     List<WeekPlanAttachmentItem>? attachments,
     List<UploadAttachmentResponse>? uploadedAttachmentFiles,
     List<WeekPlanLinkItem>? links,
@@ -438,6 +445,15 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(checklistDone: checklistDone);
 
   @override
+  WeekPlanState detailChecklists(
+          List<ChecklistWeekPlanResponse> detailChecklists) =>
+      this(detailChecklists: detailChecklists);
+
+  @override
+  WeekPlanState deletedChecklistIds(List<int> deletedChecklistIds) =>
+      this(deletedChecklistIds: deletedChecklistIds);
+
+  @override
   WeekPlanState attachments(List<WeekPlanAttachmentItem> attachments) =>
       this(attachments: attachments);
 
@@ -533,6 +549,8 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? subTasks = const $CopyWithPlaceholder(),
     Object? checklistItems = const $CopyWithPlaceholder(),
     Object? checklistDone = const $CopyWithPlaceholder(),
+    Object? detailChecklists = const $CopyWithPlaceholder(),
+    Object? deletedChecklistIds = const $CopyWithPlaceholder(),
     Object? attachments = const $CopyWithPlaceholder(),
     Object? uploadedAttachmentFiles = const $CopyWithPlaceholder(),
     Object? links = const $CopyWithPlaceholder(),
@@ -789,6 +807,17 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
               ? _value.checklistDone
               // ignore: cast_nullable_to_non_nullable
               : checklistDone as List<bool>,
+      detailChecklists: detailChecklists == const $CopyWithPlaceholder() ||
+              detailChecklists == null
+          ? _value.detailChecklists
+          // ignore: cast_nullable_to_non_nullable
+          : detailChecklists as List<ChecklistWeekPlanResponse>,
+      deletedChecklistIds:
+          deletedChecklistIds == const $CopyWithPlaceholder() ||
+                  deletedChecklistIds == null
+              ? _value.deletedChecklistIds
+              // ignore: cast_nullable_to_non_nullable
+              : deletedChecklistIds as List<int>,
       attachments:
           attachments == const $CopyWithPlaceholder() || attachments == null
               ? _value.attachments

@@ -157,6 +157,24 @@ class WeekPlanEvent with _$WeekPlanEvent {
   const factory WeekPlanEvent.removeSubTask(int index) = _RemoveSubTask;
 
   // Step 6: Checklist
+  const factory WeekPlanEvent.fetchChecklists({required int taskId}) = _FetchChecklists;
+
+  /// Cap nhat local state cua detail checklist (toggle/edit) — chi update
+  /// state, khong goi API. API chi duoc goi khi bam nut "Cap nhat".
+  const factory WeekPlanEvent.updateDetailChecklistItem({
+    required int checklistId,
+    String? checklistTitle,
+    int? orderIndex,
+    bool? isDone,
+  }) = _UpdateDetailChecklistItem;
+
+  const factory WeekPlanEvent.updateChecklistItemOnServer({
+    required int checklistId,
+    required String checklistTitle,
+    required int orderIndex,
+    required bool isDone,
+  }) = _UpdateChecklistItemOnServer;
+
   const factory WeekPlanEvent.addChecklistItem(String item) = _AddChecklistItem;
 
   const factory WeekPlanEvent.updateChecklistItem(int index, String item) =
@@ -167,6 +185,10 @@ class WeekPlanEvent with _$WeekPlanEvent {
 
   const factory WeekPlanEvent.removeChecklistItem(int index) =
       _RemoveChecklistItem;
+
+  const factory WeekPlanEvent.markChecklistDeleted({
+    required int checklistId,
+  }) = _MarkChecklistDeleted;
 
   // Step 7: Tệp đính kèm
   const factory WeekPlanEvent.addAttachment(WeekPlanAttachmentItem attachment) =

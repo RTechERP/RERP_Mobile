@@ -258,6 +258,27 @@ class WeekPlanService extends DioBaseApiService {
     );
   }
 
+  /// GET /ProjectTask/{taskId}/Checklists - Lấy checklist theo task ID.
+  ///
+  /// Response: { status: 1, data: [ ChecklistWeekPlanResponse, ... ] }
+  Future<BaseData<List<ChecklistWeekPlanResponse>>> getProjectTaskChecklists({
+    required int taskId,
+  }) async {
+    return get<BaseData<List<ChecklistWeekPlanResponse>>>(
+      '${ApiEndPoint.projectTaskChecklistsGet}'.replaceFirst('{taskId}', '$taskId'),
+      parser: (json) => BaseData<List<ChecklistWeekPlanResponse>>.fromJson(
+        json,
+        (data) {
+          final list = data as List?;
+          return (list ?? [])
+              .map((e) =>
+                  ChecklistWeekPlanResponse.fromJson(e as Map<String, dynamic>))
+              .toList();
+        },
+      ),
+    );
+  }
+
   /// POST /ProjectTask/Checklists - Lưu checklist sau khi tạo task.
   ///
   /// Payload: { ID, ProjectTaskID, ChecklistTitle, OrderIndex, IsDone, IsDeleted, CreatedBy, UpdatedBy }
@@ -268,6 +289,39 @@ class WeekPlanService extends DioBaseApiService {
     return post<BaseData<ChecklistWeekPlanResponse>>(
       ApiEndPoint.projectTaskChecklists,
       body: payload,
+      parser: (json) => BaseData<ChecklistWeekPlanResponse>.fromJson(
+        json,
+        (data) => ChecklistWeekPlanResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  /// PUT /ProjectTask/Checklists/{id} - Cap nhat checklist.
+  ///
+  /// Payload: { ID, ProjectTaskID, ChecklistTitle, OrderIndex, IsDone, IsDeleted, CreatedBy, UpdatedBy }
+  /// Response: { status: 1, data: ChecklistWeekPlanResponse }
+  Future<BaseData<ChecklistWeekPlanResponse>> updateProjectTaskChecklists({
+    required int id,
+    required Map<String, dynamic> payload,
+  }) async {
+    return put<BaseData<ChecklistWeekPlanResponse>>(
+      '${ApiEndPoint.projectTaskChecklistsUpdate}'.replaceFirst('{id}', '$id'),
+      body: payload,
+      parser: (json) => BaseData<ChecklistWeekPlanResponse>.fromJson(
+        json,
+        (data) => ChecklistWeekPlanResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  /// DELETE /ProjectTask/Checklists/{id} - Xoa checklist.
+  ///
+  /// Response: { status: 1, data: ChecklistWeekPlanResponse }
+  Future<BaseData<ChecklistWeekPlanResponse>> deleteProjectTaskChecklists({
+    required int id,
+  }) async {
+    return delete<BaseData<ChecklistWeekPlanResponse>>(
+      '${ApiEndPoint.projectTaskChecklistsUpdate}'.replaceFirst('{id}', '$id'),
       parser: (json) => BaseData<ChecklistWeekPlanResponse>.fromJson(
         json,
         (data) => ChecklistWeekPlanResponse.fromJson(data as Map<String, dynamic>),

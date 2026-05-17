@@ -83,10 +83,18 @@ mixin _$WeekPlanEvent {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -167,10 +175,18 @@ mixin _$WeekPlanEvent {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -248,10 +264,18 @@ mixin _$WeekPlanEvent {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -329,10 +353,16 @@ mixin _$WeekPlanEvent {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -403,10 +433,16 @@ mixin _$WeekPlanEvent {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -473,10 +509,16 @@ mixin _$WeekPlanEvent {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -617,10 +659,18 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -704,10 +754,18 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -788,10 +846,18 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -875,10 +941,16 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -952,10 +1024,16 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -1025,10 +1103,16 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -1159,10 +1243,18 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -1246,10 +1338,18 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -1330,10 +1430,18 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -1417,10 +1525,16 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -1494,10 +1608,16 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -1567,10 +1687,16 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -1729,10 +1855,18 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -1816,10 +1950,18 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -1900,10 +2042,18 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -1987,10 +2137,16 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -2064,10 +2220,16 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -2137,10 +2299,16 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -2304,10 +2472,18 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -2391,10 +2567,18 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -2475,10 +2659,18 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -2562,10 +2754,16 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -2639,10 +2837,16 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -2712,10 +2916,16 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -2851,10 +3061,18 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -2938,10 +3156,18 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -3022,10 +3248,18 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -3109,10 +3343,16 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -3186,10 +3426,16 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -3259,10 +3505,16 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -3419,10 +3671,18 @@ class _$SearchImpl implements _Search {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -3506,10 +3766,18 @@ class _$SearchImpl implements _Search {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -3590,10 +3858,18 @@ class _$SearchImpl implements _Search {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -3677,10 +3953,16 @@ class _$SearchImpl implements _Search {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -3754,10 +4036,16 @@ class _$SearchImpl implements _Search {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -3827,10 +4115,16 @@ class _$SearchImpl implements _Search {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -3966,10 +4260,18 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -4053,10 +4355,18 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -4137,10 +4447,18 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -4224,10 +4542,16 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -4301,10 +4625,16 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -4374,10 +4704,16 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -4535,10 +4871,18 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -4622,10 +4966,18 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -4706,10 +5058,18 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -4793,10 +5153,16 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -4870,10 +5236,16 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -4943,10 +5315,16 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -5082,10 +5460,18 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -5169,10 +5555,18 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -5253,10 +5647,18 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -5340,10 +5742,16 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -5417,10 +5825,16 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -5490,10 +5904,16 @@ class _$ClearStatusFilterImpl implements _ClearStatusFilter {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -5660,10 +6080,18 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -5747,10 +6175,18 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -5831,10 +6267,18 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -5918,10 +6362,16 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -5995,10 +6445,16 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -6068,10 +6524,16 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -6210,10 +6672,18 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -6297,10 +6767,18 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -6381,10 +6859,18 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -6468,10 +6954,16 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -6545,10 +7037,16 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -6618,10 +7116,16 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -6786,10 +7290,18 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -6873,10 +7385,18 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -6957,10 +7477,18 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -7044,10 +7572,16 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -7121,10 +7655,16 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -7194,10 +7734,16 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -7334,10 +7880,18 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -7421,10 +7975,18 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -7505,10 +8067,18 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -7592,10 +8162,16 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -7669,10 +8245,16 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -7742,10 +8324,16 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -7903,10 +8491,18 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -7990,10 +8586,18 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -8074,10 +8678,18 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -8161,10 +8773,16 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -8238,10 +8856,16 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -8311,10 +8935,16 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -8477,10 +9107,18 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -8564,10 +9202,18 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -8648,10 +9294,18 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -8735,10 +9389,16 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -8812,10 +9472,16 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -8885,10 +9551,16 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -9062,10 +9734,18 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -9149,10 +9829,18 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -9233,10 +9921,18 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -9320,10 +10016,16 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -9397,10 +10099,16 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -9470,10 +10178,16 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -9652,10 +10366,18 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -9739,10 +10461,18 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -9823,10 +10553,18 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -9910,10 +10648,16 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -9987,10 +10731,16 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -10060,10 +10810,16 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -10241,10 +10997,18 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -10328,10 +11092,18 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -10412,10 +11184,18 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -10499,10 +11279,16 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -10576,10 +11362,16 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -10649,10 +11441,16 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -10821,10 +11619,18 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -10908,10 +11714,18 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -10992,10 +11806,18 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -11079,10 +11901,16 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -11156,10 +11984,16 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -11229,10 +12063,16 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -11399,10 +12239,18 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -11486,10 +12334,18 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -11570,10 +12426,18 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -11657,10 +12521,16 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -11734,10 +12604,16 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -11807,10 +12683,16 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -11976,10 +12858,18 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -12063,10 +12953,18 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -12147,10 +13045,18 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -12234,10 +13140,16 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -12311,10 +13223,16 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -12384,10 +13302,16 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -12562,10 +13486,18 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -12649,10 +13581,18 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -12733,10 +13673,18 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -12820,10 +13768,16 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -12897,10 +13851,16 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -12970,10 +13930,16 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -13142,10 +14108,18 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -13229,10 +14203,18 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -13313,10 +14295,18 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -13400,10 +14390,16 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -13477,10 +14473,16 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -13550,10 +14552,16 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -13730,10 +14738,18 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -13817,10 +14833,18 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -13901,10 +14925,18 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -13988,10 +15020,16 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -14065,10 +15103,16 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -14138,10 +15182,16 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -14346,10 +15396,18 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -14434,10 +15492,18 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -14519,10 +15585,18 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -14607,10 +15681,16 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -14684,10 +15764,16 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -14757,10 +15843,16 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -14904,10 +15996,18 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -14991,10 +16091,18 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -15075,10 +16183,18 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -15162,10 +16278,16 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -15239,10 +16361,16 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -15312,10 +16440,16 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -15446,10 +16580,18 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -15533,10 +16675,18 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -15617,10 +16767,18 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -15704,10 +16862,16 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -15781,10 +16945,16 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -15854,10 +17024,16 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -15988,10 +17164,18 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -16075,10 +17259,18 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -16159,10 +17351,18 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -16246,10 +17446,16 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -16323,10 +17529,16 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -16396,10 +17608,16 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -16530,10 +17748,18 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -16617,10 +17843,18 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -16701,10 +17935,18 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -16788,10 +18030,16 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -16865,10 +18113,16 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -16938,10 +18192,16 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -17112,10 +18372,18 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -17199,10 +18467,18 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -17283,10 +18559,18 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -17370,10 +18654,16 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -17447,10 +18737,16 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -17520,10 +18816,16 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -17690,10 +18992,18 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -17777,10 +19087,18 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -17861,10 +19179,18 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -17948,10 +19274,16 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -18025,10 +19357,16 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -18098,10 +19436,16 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -18277,10 +19621,18 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -18364,10 +19716,18 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -18448,10 +19808,18 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -18535,10 +19903,16 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -18612,10 +19986,16 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -18685,10 +20065,16 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -18866,10 +20252,18 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -18953,10 +20347,18 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -19037,10 +20439,18 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -19124,10 +20534,16 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -19201,10 +20617,16 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -19274,10 +20696,16 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -19490,10 +20918,18 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -19578,10 +21014,18 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -19663,10 +21107,18 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -19751,10 +21203,16 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -19828,10 +21286,16 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -19901,10 +21365,16 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -20079,10 +21549,18 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -20166,10 +21644,18 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -20250,10 +21736,18 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -20337,10 +21831,16 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -20414,10 +21914,16 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -20487,10 +21993,16 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -20654,10 +22166,18 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -20741,10 +22261,18 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -20825,10 +22353,18 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -20912,10 +22448,16 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -20989,10 +22531,16 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -21062,10 +22610,16 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -21233,10 +22787,18 @@ class _$UpdateContentReasonSolutionImpl
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -21320,10 +22882,18 @@ class _$UpdateContentReasonSolutionImpl
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -21404,10 +22974,18 @@ class _$UpdateContentReasonSolutionImpl
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -21491,10 +23069,16 @@ class _$UpdateContentReasonSolutionImpl
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -21568,10 +23152,16 @@ class _$UpdateContentReasonSolutionImpl
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -21641,10 +23231,16 @@ class _$UpdateContentReasonSolutionImpl
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -21815,10 +23411,18 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -21902,10 +23506,18 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -21986,10 +23598,18 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -22073,10 +23693,16 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -22150,10 +23776,16 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -22223,10 +23855,16 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -22400,10 +24038,18 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -22487,10 +24133,18 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -22571,10 +24225,18 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -22658,10 +24320,16 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -22735,10 +24403,16 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -22808,10 +24482,16 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -22976,10 +24656,18 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -23063,10 +24751,18 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -23147,10 +24843,18 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -23234,10 +24938,16 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -23311,10 +25021,16 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -23384,10 +25100,16 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -23557,10 +25279,18 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -23644,10 +25374,18 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -23728,10 +25466,18 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -23815,10 +25561,16 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -23892,10 +25644,16 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -23965,10 +25723,16 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -24143,10 +25907,18 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -24230,10 +26002,18 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -24314,10 +26094,18 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -24401,10 +26189,16 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -24478,10 +26272,16 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -24551,10 +26351,16 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -24719,10 +26525,18 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -24806,10 +26620,18 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -24890,10 +26712,18 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -24977,10 +26807,16 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -25054,10 +26890,16 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -25127,10 +26969,16 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -25304,10 +27152,18 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -25391,10 +27247,18 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -25475,10 +27339,18 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -25562,10 +27434,16 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -25639,10 +27517,16 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -25712,10 +27596,16 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -25896,10 +27786,18 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -25983,10 +27881,18 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -26067,10 +27973,18 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -26154,10 +28068,16 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -26231,10 +28151,16 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -26304,10 +28230,16 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -26471,10 +28403,18 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -26558,10 +28498,18 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -26642,10 +28590,18 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -26729,10 +28685,16 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -26806,10 +28768,16 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -26879,10 +28847,16 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -26913,6 +28887,1946 @@ abstract class _RemoveSubTask implements WeekPlanEvent {
   @JsonKey(ignore: true)
   _$$RemoveSubTaskImplCopyWith<_$RemoveSubTaskImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchChecklistsImplCopyWith<$Res> {
+  factory _$$FetchChecklistsImplCopyWith(_$FetchChecklistsImpl value,
+          $Res Function(_$FetchChecklistsImpl) then) =
+      __$$FetchChecklistsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int taskId});
+}
+
+/// @nodoc
+class __$$FetchChecklistsImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$FetchChecklistsImpl>
+    implements _$$FetchChecklistsImplCopyWith<$Res> {
+  __$$FetchChecklistsImplCopyWithImpl(
+      _$FetchChecklistsImpl _value, $Res Function(_$FetchChecklistsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? taskId = null,
+  }) {
+    return _then(_$FetchChecklistsImpl(
+      taskId: null == taskId
+          ? _value.taskId
+          : taskId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchChecklistsImpl implements _FetchChecklists {
+  const _$FetchChecklistsImpl({required this.taskId});
+
+  @override
+  final int taskId;
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.fetchChecklists(taskId: $taskId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchChecklistsImpl &&
+            (identical(other.taskId, taskId) || other.taskId == taskId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, taskId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchChecklistsImplCopyWith<_$FetchChecklistsImpl> get copyWith =>
+      __$$FetchChecklistsImplCopyWithImpl<_$FetchChecklistsImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(String status) filterByStatus,
+    required TResult Function() clearStatusFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId, bool isCheck) checkIn,
+    required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(int categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
+    required TResult Function() fetchProjectTypes,
+    required TResult Function() fetchEmployees,
+    required TResult Function(int projectId, bool isPersonalProject)
+        fetchParentProjectTasks,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
+    required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
+    required TResult Function(EmployeeTaskItem employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
+    required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTaskWithData,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanLinkItem link) addLink,
+    required TResult Function(int index) removeLink,
+    required TResult Function() addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function(int index) toggleIncidentExpand,
+    required TResult Function(String? reason) updatePauseReason,
+    required TResult Function() createTask,
+    required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
+    required TResult Function(List<String> filePaths, String subPath)
+        uploadFiles,
+    required TResult Function() clearUploadedFiles,
+  }) {
+    return fetchChecklists(taskId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(String status)? filterByStatus,
+    TResult? Function()? clearStatusFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
+    TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
+    TResult? Function()? fetchProjectTypes,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
+    TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult? Function(EmployeeTaskItem employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanLinkItem link)? addLink,
+    TResult? Function(int index)? removeLink,
+    TResult? Function()? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function(int index)? toggleIncidentExpand,
+    TResult? Function(String? reason)? updatePauseReason,
+    TResult? Function()? createTask,
+    TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
+    TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult? Function()? clearUploadedFiles,
+  }) {
+    return fetchChecklists?.call(taskId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(String status)? filterByStatus,
+    TResult Function()? clearStatusFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId, bool isCheck)? checkIn,
+    TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
+    TResult Function()? fetchProjectTypes,
+    TResult Function()? fetchEmployees,
+    TResult Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
+    TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult Function(EmployeeTaskItem employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanLinkItem link)? addLink,
+    TResult Function(int index)? removeLink,
+    TResult Function()? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function(int index)? toggleIncidentExpand,
+    TResult Function(String? reason)? updatePauseReason,
+    TResult Function()? createTask,
+    TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
+    TResult Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult Function()? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (fetchChecklists != null) {
+      return fetchChecklists(taskId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearStatusFilter value) clearStatusFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
+    required TResult Function(_FetchProjectTypes value) fetchProjectTypes,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_FetchParentProjectTasks value)
+        fetchParentProjectTasks,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddLink value) addLink,
+    required TResult Function(_RemoveLink value) removeLink,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_ToggleIncidentExpand value) toggleIncidentExpand,
+    required TResult Function(_UpdatePauseReason value) updatePauseReason,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
+  }) {
+    return fetchChecklists(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
+    TResult? Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddLink value)? addLink,
+    TResult? Function(_RemoveLink value)? removeLink,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult? Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
+  }) {
+    return fetchChecklists?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
+    TResult Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddLink value)? addLink,
+    TResult Function(_RemoveLink value)? removeLink,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (fetchChecklists != null) {
+      return fetchChecklists(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchChecklists implements WeekPlanEvent {
+  const factory _FetchChecklists({required final int taskId}) =
+      _$FetchChecklistsImpl;
+
+  int get taskId;
+  @JsonKey(ignore: true)
+  _$$FetchChecklistsImplCopyWith<_$FetchChecklistsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateDetailChecklistItemImplCopyWith<$Res> {
+  factory _$$UpdateDetailChecklistItemImplCopyWith(
+          _$UpdateDetailChecklistItemImpl value,
+          $Res Function(_$UpdateDetailChecklistItemImpl) then) =
+      __$$UpdateDetailChecklistItemImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int checklistId, String? checklistTitle, int? orderIndex, bool? isDone});
+}
+
+/// @nodoc
+class __$$UpdateDetailChecklistItemImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$UpdateDetailChecklistItemImpl>
+    implements _$$UpdateDetailChecklistItemImplCopyWith<$Res> {
+  __$$UpdateDetailChecklistItemImplCopyWithImpl(
+      _$UpdateDetailChecklistItemImpl _value,
+      $Res Function(_$UpdateDetailChecklistItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? checklistId = null,
+    Object? checklistTitle = freezed,
+    Object? orderIndex = freezed,
+    Object? isDone = freezed,
+  }) {
+    return _then(_$UpdateDetailChecklistItemImpl(
+      checklistId: null == checklistId
+          ? _value.checklistId
+          : checklistId // ignore: cast_nullable_to_non_nullable
+              as int,
+      checklistTitle: freezed == checklistTitle
+          ? _value.checklistTitle
+          : checklistTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      orderIndex: freezed == orderIndex
+          ? _value.orderIndex
+          : orderIndex // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDone: freezed == isDone
+          ? _value.isDone
+          : isDone // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
+  const _$UpdateDetailChecklistItemImpl(
+      {required this.checklistId,
+      this.checklistTitle,
+      this.orderIndex,
+      this.isDone});
+
+  @override
+  final int checklistId;
+  @override
+  final String? checklistTitle;
+  @override
+  final int? orderIndex;
+  @override
+  final bool? isDone;
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.updateDetailChecklistItem(checklistId: $checklistId, checklistTitle: $checklistTitle, orderIndex: $orderIndex, isDone: $isDone)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateDetailChecklistItemImpl &&
+            (identical(other.checklistId, checklistId) ||
+                other.checklistId == checklistId) &&
+            (identical(other.checklistTitle, checklistTitle) ||
+                other.checklistTitle == checklistTitle) &&
+            (identical(other.orderIndex, orderIndex) ||
+                other.orderIndex == orderIndex) &&
+            (identical(other.isDone, isDone) || other.isDone == isDone));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, checklistId, checklistTitle, orderIndex, isDone);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateDetailChecklistItemImplCopyWith<_$UpdateDetailChecklistItemImpl>
+      get copyWith => __$$UpdateDetailChecklistItemImplCopyWithImpl<
+          _$UpdateDetailChecklistItemImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(String status) filterByStatus,
+    required TResult Function() clearStatusFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId, bool isCheck) checkIn,
+    required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(int categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
+    required TResult Function() fetchProjectTypes,
+    required TResult Function() fetchEmployees,
+    required TResult Function(int projectId, bool isPersonalProject)
+        fetchParentProjectTasks,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
+    required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
+    required TResult Function(EmployeeTaskItem employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
+    required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTaskWithData,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanLinkItem link) addLink,
+    required TResult Function(int index) removeLink,
+    required TResult Function() addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function(int index) toggleIncidentExpand,
+    required TResult Function(String? reason) updatePauseReason,
+    required TResult Function() createTask,
+    required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
+    required TResult Function(List<String> filePaths, String subPath)
+        uploadFiles,
+    required TResult Function() clearUploadedFiles,
+  }) {
+    return updateDetailChecklistItem(
+        checklistId, checklistTitle, orderIndex, isDone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(String status)? filterByStatus,
+    TResult? Function()? clearStatusFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
+    TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
+    TResult? Function()? fetchProjectTypes,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
+    TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult? Function(EmployeeTaskItem employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanLinkItem link)? addLink,
+    TResult? Function(int index)? removeLink,
+    TResult? Function()? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function(int index)? toggleIncidentExpand,
+    TResult? Function(String? reason)? updatePauseReason,
+    TResult? Function()? createTask,
+    TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
+    TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult? Function()? clearUploadedFiles,
+  }) {
+    return updateDetailChecklistItem?.call(
+        checklistId, checklistTitle, orderIndex, isDone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(String status)? filterByStatus,
+    TResult Function()? clearStatusFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId, bool isCheck)? checkIn,
+    TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
+    TResult Function()? fetchProjectTypes,
+    TResult Function()? fetchEmployees,
+    TResult Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
+    TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult Function(EmployeeTaskItem employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanLinkItem link)? addLink,
+    TResult Function(int index)? removeLink,
+    TResult Function()? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function(int index)? toggleIncidentExpand,
+    TResult Function(String? reason)? updatePauseReason,
+    TResult Function()? createTask,
+    TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
+    TResult Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult Function()? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (updateDetailChecklistItem != null) {
+      return updateDetailChecklistItem(
+          checklistId, checklistTitle, orderIndex, isDone);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearStatusFilter value) clearStatusFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
+    required TResult Function(_FetchProjectTypes value) fetchProjectTypes,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_FetchParentProjectTasks value)
+        fetchParentProjectTasks,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddLink value) addLink,
+    required TResult Function(_RemoveLink value) removeLink,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_ToggleIncidentExpand value) toggleIncidentExpand,
+    required TResult Function(_UpdatePauseReason value) updatePauseReason,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
+  }) {
+    return updateDetailChecklistItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
+    TResult? Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddLink value)? addLink,
+    TResult? Function(_RemoveLink value)? removeLink,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult? Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
+  }) {
+    return updateDetailChecklistItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
+    TResult Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddLink value)? addLink,
+    TResult Function(_RemoveLink value)? removeLink,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (updateDetailChecklistItem != null) {
+      return updateDetailChecklistItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateDetailChecklistItem implements WeekPlanEvent {
+  const factory _UpdateDetailChecklistItem(
+      {required final int checklistId,
+      final String? checklistTitle,
+      final int? orderIndex,
+      final bool? isDone}) = _$UpdateDetailChecklistItemImpl;
+
+  int get checklistId;
+  String? get checklistTitle;
+  int? get orderIndex;
+  bool? get isDone;
+  @JsonKey(ignore: true)
+  _$$UpdateDetailChecklistItemImplCopyWith<_$UpdateDetailChecklistItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateChecklistItemOnServerImplCopyWith<$Res> {
+  factory _$$UpdateChecklistItemOnServerImplCopyWith(
+          _$UpdateChecklistItemOnServerImpl value,
+          $Res Function(_$UpdateChecklistItemOnServerImpl) then) =
+      __$$UpdateChecklistItemOnServerImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int checklistId, String checklistTitle, int orderIndex, bool isDone});
+}
+
+/// @nodoc
+class __$$UpdateChecklistItemOnServerImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$UpdateChecklistItemOnServerImpl>
+    implements _$$UpdateChecklistItemOnServerImplCopyWith<$Res> {
+  __$$UpdateChecklistItemOnServerImplCopyWithImpl(
+      _$UpdateChecklistItemOnServerImpl _value,
+      $Res Function(_$UpdateChecklistItemOnServerImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? checklistId = null,
+    Object? checklistTitle = null,
+    Object? orderIndex = null,
+    Object? isDone = null,
+  }) {
+    return _then(_$UpdateChecklistItemOnServerImpl(
+      checklistId: null == checklistId
+          ? _value.checklistId
+          : checklistId // ignore: cast_nullable_to_non_nullable
+              as int,
+      checklistTitle: null == checklistTitle
+          ? _value.checklistTitle
+          : checklistTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      orderIndex: null == orderIndex
+          ? _value.orderIndex
+          : orderIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      isDone: null == isDone
+          ? _value.isDone
+          : isDone // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateChecklistItemOnServerImpl
+    implements _UpdateChecklistItemOnServer {
+  const _$UpdateChecklistItemOnServerImpl(
+      {required this.checklistId,
+      required this.checklistTitle,
+      required this.orderIndex,
+      required this.isDone});
+
+  @override
+  final int checklistId;
+  @override
+  final String checklistTitle;
+  @override
+  final int orderIndex;
+  @override
+  final bool isDone;
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.updateChecklistItemOnServer(checklistId: $checklistId, checklistTitle: $checklistTitle, orderIndex: $orderIndex, isDone: $isDone)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateChecklistItemOnServerImpl &&
+            (identical(other.checklistId, checklistId) ||
+                other.checklistId == checklistId) &&
+            (identical(other.checklistTitle, checklistTitle) ||
+                other.checklistTitle == checklistTitle) &&
+            (identical(other.orderIndex, orderIndex) ||
+                other.orderIndex == orderIndex) &&
+            (identical(other.isDone, isDone) || other.isDone == isDone));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, checklistId, checklistTitle, orderIndex, isDone);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateChecklistItemOnServerImplCopyWith<_$UpdateChecklistItemOnServerImpl>
+      get copyWith => __$$UpdateChecklistItemOnServerImplCopyWithImpl<
+          _$UpdateChecklistItemOnServerImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(String status) filterByStatus,
+    required TResult Function() clearStatusFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId, bool isCheck) checkIn,
+    required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(int categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
+    required TResult Function() fetchProjectTypes,
+    required TResult Function() fetchEmployees,
+    required TResult Function(int projectId, bool isPersonalProject)
+        fetchParentProjectTasks,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
+    required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
+    required TResult Function(EmployeeTaskItem employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
+    required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTaskWithData,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanLinkItem link) addLink,
+    required TResult Function(int index) removeLink,
+    required TResult Function() addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function(int index) toggleIncidentExpand,
+    required TResult Function(String? reason) updatePauseReason,
+    required TResult Function() createTask,
+    required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
+    required TResult Function(List<String> filePaths, String subPath)
+        uploadFiles,
+    required TResult Function() clearUploadedFiles,
+  }) {
+    return updateChecklistItemOnServer(
+        checklistId, checklistTitle, orderIndex, isDone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(String status)? filterByStatus,
+    TResult? Function()? clearStatusFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
+    TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
+    TResult? Function()? fetchProjectTypes,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
+    TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult? Function(EmployeeTaskItem employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanLinkItem link)? addLink,
+    TResult? Function(int index)? removeLink,
+    TResult? Function()? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function(int index)? toggleIncidentExpand,
+    TResult? Function(String? reason)? updatePauseReason,
+    TResult? Function()? createTask,
+    TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
+    TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult? Function()? clearUploadedFiles,
+  }) {
+    return updateChecklistItemOnServer?.call(
+        checklistId, checklistTitle, orderIndex, isDone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(String status)? filterByStatus,
+    TResult Function()? clearStatusFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId, bool isCheck)? checkIn,
+    TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
+    TResult Function()? fetchProjectTypes,
+    TResult Function()? fetchEmployees,
+    TResult Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
+    TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult Function(EmployeeTaskItem employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanLinkItem link)? addLink,
+    TResult Function(int index)? removeLink,
+    TResult Function()? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function(int index)? toggleIncidentExpand,
+    TResult Function(String? reason)? updatePauseReason,
+    TResult Function()? createTask,
+    TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
+    TResult Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult Function()? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (updateChecklistItemOnServer != null) {
+      return updateChecklistItemOnServer(
+          checklistId, checklistTitle, orderIndex, isDone);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearStatusFilter value) clearStatusFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
+    required TResult Function(_FetchProjectTypes value) fetchProjectTypes,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_FetchParentProjectTasks value)
+        fetchParentProjectTasks,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddLink value) addLink,
+    required TResult Function(_RemoveLink value) removeLink,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_ToggleIncidentExpand value) toggleIncidentExpand,
+    required TResult Function(_UpdatePauseReason value) updatePauseReason,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
+  }) {
+    return updateChecklistItemOnServer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
+    TResult? Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddLink value)? addLink,
+    TResult? Function(_RemoveLink value)? removeLink,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult? Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
+  }) {
+    return updateChecklistItemOnServer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
+    TResult Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddLink value)? addLink,
+    TResult Function(_RemoveLink value)? removeLink,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (updateChecklistItemOnServer != null) {
+      return updateChecklistItemOnServer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateChecklistItemOnServer implements WeekPlanEvent {
+  const factory _UpdateChecklistItemOnServer(
+      {required final int checklistId,
+      required final String checklistTitle,
+      required final int orderIndex,
+      required final bool isDone}) = _$UpdateChecklistItemOnServerImpl;
+
+  int get checklistId;
+  String get checklistTitle;
+  int get orderIndex;
+  bool get isDone;
+  @JsonKey(ignore: true)
+  _$$UpdateChecklistItemOnServerImplCopyWith<_$UpdateChecklistItemOnServerImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -27045,10 +30959,18 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -27132,10 +31054,18 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -27216,10 +31146,18 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -27303,10 +31241,16 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -27380,10 +31324,16 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -27453,10 +31403,16 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -27627,10 +31583,18 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -27714,10 +31678,18 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -27798,10 +31770,18 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -27885,10 +31865,16 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -27962,10 +31948,16 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -28035,10 +32027,16 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -28203,10 +32201,18 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -28290,10 +32296,18 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -28374,10 +32388,18 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -28461,10 +32483,16 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -28538,10 +32566,16 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -28611,10 +32645,16 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -28778,10 +32818,18 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -28865,10 +32913,18 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -28949,10 +33005,18 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -29036,10 +33100,16 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -29113,10 +33183,16 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -29186,10 +33262,16 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -29221,6 +33303,625 @@ abstract class _RemoveChecklistItem implements WeekPlanEvent {
   @JsonKey(ignore: true)
   _$$RemoveChecklistItemImplCopyWith<_$RemoveChecklistItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MarkChecklistDeletedImplCopyWith<$Res> {
+  factory _$$MarkChecklistDeletedImplCopyWith(_$MarkChecklistDeletedImpl value,
+          $Res Function(_$MarkChecklistDeletedImpl) then) =
+      __$$MarkChecklistDeletedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int checklistId});
+}
+
+/// @nodoc
+class __$$MarkChecklistDeletedImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$MarkChecklistDeletedImpl>
+    implements _$$MarkChecklistDeletedImplCopyWith<$Res> {
+  __$$MarkChecklistDeletedImplCopyWithImpl(_$MarkChecklistDeletedImpl _value,
+      $Res Function(_$MarkChecklistDeletedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? checklistId = null,
+  }) {
+    return _then(_$MarkChecklistDeletedImpl(
+      checklistId: null == checklistId
+          ? _value.checklistId
+          : checklistId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
+  const _$MarkChecklistDeletedImpl({required this.checklistId});
+
+  @override
+  final int checklistId;
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.markChecklistDeleted(checklistId: $checklistId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MarkChecklistDeletedImpl &&
+            (identical(other.checklistId, checklistId) ||
+                other.checklistId == checklistId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, checklistId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MarkChecklistDeletedImplCopyWith<_$MarkChecklistDeletedImpl>
+      get copyWith =>
+          __$$MarkChecklistDeletedImplCopyWithImpl<_$MarkChecklistDeletedImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function(int viewNumber) initScreenWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(String status) filterByStatus,
+    required TResult Function() clearStatusFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId, bool isCheck) checkIn,
+    required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(int categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
+    required TResult Function() fetchProjectTypes,
+    required TResult Function() fetchEmployees,
+    required TResult Function(int projectId, bool isPersonalProject)
+        fetchParentProjectTasks,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
+    required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
+    required TResult Function(EmployeeTaskItem employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
+    required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTaskWithData,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanLinkItem link) addLink,
+    required TResult Function(int index) removeLink,
+    required TResult Function() addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function(int index) toggleIncidentExpand,
+    required TResult Function(String? reason) updatePauseReason,
+    required TResult Function() createTask,
+    required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
+    required TResult Function(List<String> filePaths, String subPath)
+        uploadFiles,
+    required TResult Function() clearUploadedFiles,
+  }) {
+    return markChecklistDeleted(checklistId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function(int viewNumber)? initScreenWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(String status)? filterByStatus,
+    TResult? Function()? clearStatusFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
+    TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
+    TResult? Function()? fetchProjectTypes,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
+    TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult? Function(EmployeeTaskItem employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanLinkItem link)? addLink,
+    TResult? Function(int index)? removeLink,
+    TResult? Function()? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function(int index)? toggleIncidentExpand,
+    TResult? Function(String? reason)? updatePauseReason,
+    TResult? Function()? createTask,
+    TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
+    TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult? Function()? clearUploadedFiles,
+  }) {
+    return markChecklistDeleted?.call(checklistId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function(int viewNumber)? initScreenWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(String status)? filterByStatus,
+    TResult Function()? clearStatusFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId, bool isCheck)? checkIn,
+    TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
+    TResult Function()? fetchProjectTypes,
+    TResult Function()? fetchEmployees,
+    TResult Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
+    TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult Function(EmployeeTaskItem employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanLinkItem link)? addLink,
+    TResult Function(int index)? removeLink,
+    TResult Function()? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function(int index)? toggleIncidentExpand,
+    TResult Function(String? reason)? updatePauseReason,
+    TResult Function()? createTask,
+    TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
+    TResult Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult Function()? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (markChecklistDeleted != null) {
+      return markChecklistDeleted(checklistId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearStatusFilter value) clearStatusFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
+    required TResult Function(_FetchProjectTypes value) fetchProjectTypes,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_FetchParentProjectTasks value)
+        fetchParentProjectTasks,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddLink value) addLink,
+    required TResult Function(_RemoveLink value) removeLink,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_ToggleIncidentExpand value) toggleIncidentExpand,
+    required TResult Function(_UpdatePauseReason value) updatePauseReason,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
+  }) {
+    return markChecklistDeleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
+    TResult? Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddLink value)? addLink,
+    TResult? Function(_RemoveLink value)? removeLink,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult? Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
+  }) {
+    return markChecklistDeleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearStatusFilter value)? clearStatusFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
+    TResult Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddLink value)? addLink,
+    TResult Function(_RemoveLink value)? removeLink,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (markChecklistDeleted != null) {
+      return markChecklistDeleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MarkChecklistDeleted implements WeekPlanEvent {
+  const factory _MarkChecklistDeleted({required final int checklistId}) =
+      _$MarkChecklistDeletedImpl;
+
+  int get checklistId;
+  @JsonKey(ignore: true)
+  _$$MarkChecklistDeletedImplCopyWith<_$MarkChecklistDeletedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -29363,10 +34064,18 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -29450,10 +34159,18 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -29534,10 +34251,18 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -29621,10 +34346,16 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -29698,10 +34429,16 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -29771,10 +34508,16 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -29938,10 +34681,18 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -30025,10 +34776,18 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -30109,10 +34868,18 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -30196,10 +34963,16 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -30273,10 +35046,16 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -30346,10 +35125,16 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -30521,10 +35306,18 @@ class _$AddLinkImpl implements _AddLink {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -30608,10 +35401,18 @@ class _$AddLinkImpl implements _AddLink {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -30692,10 +35493,18 @@ class _$AddLinkImpl implements _AddLink {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -30779,10 +35588,16 @@ class _$AddLinkImpl implements _AddLink {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -30856,10 +35671,16 @@ class _$AddLinkImpl implements _AddLink {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -30929,10 +35750,16 @@ class _$AddLinkImpl implements _AddLink {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -31094,10 +35921,18 @@ class _$RemoveLinkImpl implements _RemoveLink {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -31181,10 +36016,18 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -31265,10 +36108,18 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -31352,10 +36203,16 @@ class _$RemoveLinkImpl implements _RemoveLink {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -31429,10 +36286,16 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -31502,10 +36365,16 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -31641,10 +36510,18 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -31728,10 +36605,18 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -31812,10 +36697,18 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -31899,10 +36792,16 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -31976,10 +36875,16 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -32049,10 +36954,16 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -32229,10 +37140,18 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -32316,10 +37235,18 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -32400,10 +37327,18 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -32487,10 +37422,16 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -32564,10 +37505,16 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -32637,10 +37584,16 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -32806,10 +37759,18 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -32893,10 +37854,18 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -32977,10 +37946,18 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -33064,10 +38041,16 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -33141,10 +38124,16 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -33214,10 +38203,16 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -33381,10 +38376,18 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -33468,10 +38471,18 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -33552,10 +38563,18 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -33639,10 +38658,16 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -33716,10 +38741,16 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -33789,10 +38820,16 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -33956,10 +38993,18 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -34043,10 +39088,18 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -34127,10 +39180,18 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -34214,10 +39275,16 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -34291,10 +39358,16 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -34364,10 +39437,16 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -34504,10 +39583,18 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -34591,10 +39678,18 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -34675,10 +39770,18 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -34762,10 +39865,16 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -34839,10 +39948,16 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -34912,10 +40027,16 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -35046,10 +40167,18 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -35133,10 +40262,18 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -35217,10 +40354,18 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -35304,10 +40449,16 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -35381,10 +40532,16 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -35454,10 +40611,16 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -35588,10 +40751,18 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -35675,10 +40846,18 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -35759,10 +40938,18 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -35846,10 +41033,16 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -35923,10 +41116,16 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -35996,10 +41195,16 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -36174,10 +41379,18 @@ class _$UploadFilesImpl implements _UploadFiles {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -36261,10 +41474,18 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -36345,10 +41566,18 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -36432,10 +41661,16 @@ class _$UploadFilesImpl implements _UploadFiles {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -36509,10 +41744,16 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -36582,10 +41823,16 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,
@@ -36724,10 +41971,18 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     required TResult Function(int index, WeekPlanSubTaskItem subTask)
         updateSubTask,
     required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
     required TResult Function(String item) addChecklistItem,
     required TResult Function(int index, String item) updateChecklistItem,
     required TResult Function(int index) toggleChecklistDone,
     required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
     required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
     required TResult Function(int index) removeAttachment,
     required TResult Function(WeekPlanLinkItem link) addLink,
@@ -36811,10 +42066,18 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult? Function(String item)? addChecklistItem,
     TResult? Function(int index, String item)? updateChecklistItem,
     TResult? Function(int index)? toggleChecklistDone,
     TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
     TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult? Function(int index)? removeAttachment,
     TResult? Function(WeekPlanLinkItem link)? addLink,
@@ -36895,10 +42158,18 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
     TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
     TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
     TResult Function(String item)? addChecklistItem,
     TResult Function(int index, String item)? updateChecklistItem,
     TResult Function(int index)? toggleChecklistDone,
     TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
     TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
     TResult Function(int index)? removeAttachment,
     TResult Function(WeekPlanLinkItem link)? addLink,
@@ -36982,10 +42253,16 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
     required TResult Function(_UpdateSubTask value) updateSubTask,
     required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
     required TResult Function(_AddChecklistItem value) addChecklistItem,
     required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
     required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
     required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
     required TResult Function(_AddAttachment value) addAttachment,
     required TResult Function(_RemoveAttachment value) removeAttachment,
     required TResult Function(_AddLink value) addLink,
@@ -37059,10 +42336,16 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult? Function(_UpdateSubTask value)? updateSubTask,
     TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult? Function(_AddChecklistItem value)? addChecklistItem,
     TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult? Function(_AddAttachment value)? addAttachment,
     TResult? Function(_RemoveAttachment value)? removeAttachment,
     TResult? Function(_AddLink value)? addLink,
@@ -37132,10 +42415,16 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
     TResult Function(_UpdateSubTask value)? updateSubTask,
     TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
     TResult Function(_AddChecklistItem value)? addChecklistItem,
     TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
     TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
     TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
     TResult Function(_AddAttachment value)? addAttachment,
     TResult Function(_RemoveAttachment value)? removeAttachment,
     TResult Function(_AddLink value)? addLink,

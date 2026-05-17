@@ -634,17 +634,31 @@ class _WeekPlanDetailScreenState
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       child: Column(
         children: [
-          if (state.checklistItems.isEmpty)
+          if (state.detailChecklists.isEmpty)
             _emptyState(icon: Icons.checklist, title: 'Chưa có checklist nào')
           else
-            ...List.generate(state.checklistItems.length, (i) {
+            ...List.generate(state.detailChecklists.length, (i) {
+              final item = state.detailChecklists[i];
               return WeekPlanChecklistItem(
                 index: i,
-                content: state.checklistItems[i],
-                isDone: i < state.checklistDone.length && state.checklistDone[i],
-                onToggle: () => bloc.add(WeekPlanEvent.toggleChecklistDone(i)),
-                onEdit: () {},
-                onDelete: () {},
+                content: item.checklistTitle ?? '',
+                isDone: item.isDone ?? false,
+                onToggle: () {
+                  bloc.add(WeekPlanEvent.updateDetailChecklistItem(
+                    checklistId: item.id ?? 0,
+                    checklistTitle: item.checklistTitle ?? '',
+                    orderIndex: item.orderIndex ?? (i + 1),
+                    isDone: !(item.isDone ?? false),
+                  ));
+                },
+                onEdit: () => _showEditDetailChecklistDialog(context, item, i),
+                onDelete: () {
+                  if (item.id != null) {
+                    bloc.add(WeekPlanEvent.markChecklistDeleted(
+                      checklistId: item.id!,
+                    ));
+                  }
+                },
               );
             }),
         ],
@@ -742,6 +756,67 @@ class _WeekPlanDetailScreenState
           Icon(icon, size: 48, color: AppColors.hintText),
           const SizedBox(height: 8),
           Text(title, style: TextStyle(fontSize: 14, color: AppColors.hintText)),
+        ],
+      ),
+    );
+  }
+
+  void _showEditDetailChecklistDialog(
+    BuildContext context,
+    ChecklistWeekPlanResponse item,
+    int index,
+  ) {
+    final formKey = GlobalKey<FormBuilderState>();
+    final controller = TextEditingController(text: item.checklistTitle ?? '');
+
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Chỉnh sửa checklist'),
+        content: FormBuilder(
+          key: formKey,
+          child: FormInputField(
+            nameForm: 'checklist_content',
+            nameTextField: 'checklist_content_field',
+            label: 'Nội dung checklist',
+            icon: Icons.check_box_outlined,
+            initialValue: item.checklistTitle ?? '',
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập nội dung',
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              controller.dispose();
+              Navigator.pop(ctx);
+            },
+            child: const Text('Huỷ'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              formKey.currentState?.save();
+              if (formKey.currentState?.validate() ?? false) {
+                final vals = formKey.currentState?.value;
+                final text = vals?['checklist_content']?.toString().trim() ?? '';
+                bloc.add(WeekPlanEvent.updateDetailChecklistItem(
+                  checklistId: item.id ?? 0,
+                  checklistTitle: text,
+                  orderIndex: item.orderIndex ?? (index + 1),
+                  isDone: item.isDone,
+                ));
+                controller.dispose();
+                Navigator.pop(ctx);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primaryERP,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text('Lưu'),
+          ),
         ],
       ),
     );

@@ -120,10 +120,38 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         removeSubTask: (index) => _onRemoveSubTask(emit, index),
         addSubTaskWithData: (subTask) => _onAddSubTaskWithData(emit, subTask),
         addChecklistItem: (item) => _onAddChecklistItem(emit, item),
+        fetchChecklists: (taskId) => _onFetchChecklists(emit, taskId),
+        updateDetailChecklistItem: (
+          checklistId,
+          checklistTitle,
+          orderIndex,
+          isDone,
+        ) =>
+            _onUpdateDetailChecklistItem(
+              emit,
+              checklistId: checklistId,
+              checklistTitle: checklistTitle,
+              orderIndex: orderIndex,
+              isDone: isDone,
+            ),
         updateChecklistItem: (index, item) =>
             _onUpdateChecklistItem(emit, index, item),
         toggleChecklistDone: (index) => _onToggleChecklistDone(emit, index),
+        updateChecklistItemOnServer: (
+          checklistId,
+          checklistTitle,
+          orderIndex,
+          isDone,
+        ) =>
+            _onUpdateChecklistItemOnServer(
+              emit,
+              checklistId: checklistId,
+              checklistTitle: checklistTitle,
+              orderIndex: orderIndex,
+              isDone: isDone,
+            ),
         removeChecklistItem: (index) => _onRemoveChecklistItem(emit, index),
+        markChecklistDeleted: (checklistId) => _onMarkChecklistDeleted(emit, checklistId),
         addAttachment: (attachment) => _onAddAttachment(emit, attachment),
         removeAttachment: (index) => _onRemoveAttachment(emit, index),
         addLink: (link) => _onAddLink(emit, link),
@@ -598,6 +626,13 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
           if (emp.id == detail.employeeIdRequest) { assignerName = emp.fullName; break; }
         }
 
+        // Fetch checklists từ API
+        List<ChecklistWeekPlanResponse> checklists = [];
+        final checklistRes = await _weekPlanRepo.getProjectTaskChecklists(
+          taskId: detail.id ?? taskId,
+        );
+        checklistRes.fold((_) {}, (data) { checklists = data; });
+
         emit(state.copyWith(
           status: BaseStateStatus.success,
           detailTaskId: detail.id,
@@ -634,6 +669,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
           // Người thực hiện & người liên quan
           selectedAssignees: assignees,
           selectedRelatedPersons: relatedPersons,
+          detailChecklists: checklists,
         ));
       },
     );
@@ -863,6 +899,55 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         emit(state.copyWith(employees: employees));
       },
     );
+  }
+
+  //---(Fetch Checklists)---//
+  Future<void> _onFetchChecklists(
+    Emitter<WeekPlanState> emit,
+    int taskId,
+  ) async {
+    final res = await _weekPlanRepo.getProjectTaskChecklists(taskId: taskId);
+
+    await res.fold(
+      (err) async {
+        _log.logE('Fetch checklists failed: $err');
+        emit(state.copyWith(detailChecklists: const []));
+      },
+      (checklists) async {
+        _log.logI('Fetch checklists success: ${checklists.length}');
+        emit(state.copyWith(detailChecklists: checklists));
+      },
+    );
+  }
+
+  /// Cap nhat local state cua detail checklist (toggle/edit).
+  /// Chi cap nhat state, KHONG goi API.
+  /// API chi duoc goi khi nguoi bam nut "Cap nhat" trong _onCreateTask.
+  Future<void> _onUpdateDetailChecklistItem(
+    Emitter<WeekPlanState> emit, {
+    required int checklistId,
+    String? checklistTitle,
+    int? orderIndex,
+    bool? isDone,
+  }) async {
+    final list = List<ChecklistWeekPlanResponse>.from(state.detailChecklists);
+    final idx = list.indexWhere((c) => c.id == checklistId);
+    if (idx < 0) return;
+
+    final current = list[idx];
+    list[idx] = ChecklistWeekPlanResponse(
+      id: current.id,
+      projectTaskId: current.projectTaskId,
+      checklistTitle: checklistTitle ?? current.checklistTitle,
+      orderIndex: orderIndex ?? current.orderIndex,
+      isDone: isDone ?? current.isDone,
+      createdBy: current.createdBy,
+      createdDate: current.createdDate,
+      updatedBy: current.updatedBy,
+      updatedDate: current.updatedDate,
+      isDeleted: current.isDeleted,
+    );
+    emit(state.copyWith(detailChecklists: list));
   }
 
   /// Load cached projects from SharedPreferences, return empty list if none.
@@ -1101,6 +1186,53 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       if (index < done.length) done.removeAt(index);
       emit(state.copyWith(checklistItems: items, checklistDone: done));
     }
+  }
+
+  Future<void> _onMarkChecklistDeleted(
+    Emitter<WeekPlanState> emit,
+    int checklistId,
+  ) async {
+    if (state.deletedChecklistIds.contains(checklistId)) return;
+    final deleted = [...state.deletedChecklistIds, checklistId];
+    final remaining =
+        state.detailChecklists.where((c) => c.id != checklistId).toList();
+    emit(state.copyWith(
+      deletedChecklistIds: deleted,
+      detailChecklists: remaining,
+    ));
+  }
+
+  Future<void> _onUpdateChecklistItemOnServer(
+    Emitter<WeekPlanState> emit, {
+    required int checklistId,
+    required String checklistTitle,
+    required int orderIndex,
+    required bool isDone,
+  }) async {
+    final checklistRes = await _weekPlanRepo.updateProjectTaskChecklists(
+      id: checklistId,
+      payload: {
+        'ID': checklistId,
+        'ChecklistTitle': checklistTitle,
+        'OrderIndex': orderIndex,
+        'IsDone': isDone,
+      },
+    );
+
+    await checklistRes.fold(
+      (err) async {
+        _log.logE('Update checklist failed: $err');
+      },
+      (data) async {
+        _log.logI('Update checklist success: $checklistTitle, isDone=$isDone');
+        final list = List<ChecklistWeekPlanResponse>.from(state.detailChecklists);
+        final idx = list.indexWhere((c) => c.id == checklistId);
+        if (idx >= 0) {
+          list[idx] = data;
+          emit(state.copyWith(detailChecklists: list));
+        }
+      },
+    );
   }
 
   //---(Attachments)---//
@@ -1345,6 +1477,33 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             _log.logI('All checklists saved for task ID: ${data.id}');
           }
 
+          // Sync cac thay doi local (toggle/edit) cua detail checklists.
+          for (final item in state.detailChecklists) {
+            if (item.id == null || item.id == 0) continue;
+
+            _log.logI('Syncing checklist ID=${item.id}: "${item.checklistTitle}", isDone=${item.isDone}');
+            // ignore: invalid_use_of_visible_for_testing_member
+            await _weekPlanRepo.updateProjectTaskChecklists(
+              id: item.id!,
+              payload: {
+                'ID': item.id,
+                'ChecklistTitle': item.checklistTitle ?? '',
+                'OrderIndex': item.orderIndex ?? 1,
+                'IsDone': item.isDone ?? false,
+              },
+            );
+          }
+          _log.logI('All detail checklists synced for task ID: ${data.id}');
+
+          // Xoa checklist da duoc mark xoa boi user.
+          for (final checklistId in state.deletedChecklistIds) {
+            _log.logI('Deleting checklist ID: $checklistId');
+            // ignore: invalid_use_of_visible_for_testing_member
+            await _weekPlanRepo.deleteProjectTaskChecklists(id: checklistId);
+          }
+          _log.logI('All deleted checklists removed for task ID: ${data.id}');
+          emit(state.copyWith(deletedChecklistIds: const []));
+
           // Gọi ngầm saveProjectTaskLinks cho từng link đã nhập.
           if (state.links.isNotEmpty && data.id != null) {
             for (final link in state.links) {
@@ -1422,7 +1581,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         .toList();
 
     return {
-      'ID': 0,
+      'ID': state.detailTaskId ?? 0,
       'Mission': state.taskName ?? '',
       'PlanStartDate': state.contentStartDate?.toIso8601String(),
       'PlanEndDate': state.contentEndDate?.toIso8601String(),
