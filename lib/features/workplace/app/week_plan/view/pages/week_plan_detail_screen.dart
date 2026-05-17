@@ -1,6 +1,6 @@
 import 'package:easy_stepper/easy_stepper.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -608,10 +608,60 @@ class _WeekPlanDetailScreenState
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       child: Column(
         children: [
+          // Header + button
+          Row(
+            children: [
+              Text(
+                'Danh sách công việc con',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.heading,
+                ),
+              ),
+              if (state.subTasks.isNotEmpty) ...[
+                const SizedBox(width: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryERP.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    '${state.subTasks.length}',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.primaryERP,
+                    ),
+                  ),
+                ),
+              ],
+              const Spacer(),
+              ElevatedButton.icon(
+                onPressed: () => _showSubTaskSheet(null, state),
+                icon: const Icon(Icons.add, size: 16),
+                label: const Text('Thêm'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primaryERP,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 0,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Empty state
           if (state.subTasks.isEmpty)
-            _emptyState(
+            _buildEmptyState(
               icon: Icons.playlist_add,
               title: 'Chưa có công việc con nào',
+              subtitle: 'Bấm "Thêm" để tạo công việc con',
             )
           else
             ...List.generate(state.subTasks.length, (i) {
@@ -619,7 +669,7 @@ class _WeekPlanDetailScreenState
                 key: ValueKey(state.subTasks[i].id ?? i),
                 index: i,
                 subTask: state.subTasks[i],
-                onTap: () {},
+                onTap: () => _showSubTaskSheet(i, state),
                 onDelete: () => bloc.add(WeekPlanEvent.removeSubTask(i)),
               );
             }),
@@ -630,12 +680,119 @@ class _WeekPlanDetailScreenState
 
   //---(_Step: Checklist)---//
   Widget _buildChecklistStep(WeekPlanState state) {
+    final total = state.detailChecklists.length;
+    final done = total > 0 ? state.detailChecklists.where((d) => d.isDone ?? false).length : 0;
+    final progress = total > 0 ? done / total : 0.0;
+
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       child: Column(
         children: [
+          // Progress indicator
+          if (state.detailChecklists.isNotEmpty)
+            Container(
+              margin: const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: AppColors.borderColor, width: 1),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Tiến độ hoàn thành',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.heading,
+                        ),
+                      ),
+                      Text(
+                        '$done / $total',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: progress >= 1.0
+                              ? AppColors.stateSuccessColor
+                              : AppColors.primaryERP,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
+                    child: LinearProgressIndicator(
+                      value: progress,
+                      minHeight: 8,
+                      backgroundColor: AppColors.bgCard,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        progress >= 1.0
+                            ? AppColors.stateSuccessColor
+                            : AppColors.primaryERP,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      '${(progress * 100).toStringAsFixed(0)}%',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: progress >= 1.0
+                            ? AppColors.stateSuccessColor
+                            : AppColors.gray,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+          // Header + button
+          Row(
+            children: [
+              Text(
+                'Danh sách checklist',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.heading,
+                ),
+              ),
+              const Spacer(),
+              ElevatedButton.icon(
+                onPressed: () => _showAddChecklistDialog(context),
+                icon: const Icon(Icons.add, size: 16),
+                label: const Text('Thêm'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primaryERP,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 0,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Empty state
           if (state.detailChecklists.isEmpty)
-            _emptyState(icon: Icons.checklist, title: 'Chưa có checklist nào')
+            _buildEmptyState(
+              icon: Icons.checklist,
+              title: 'Chưa có checklist nào',
+              subtitle: 'Bấm "Thêm" để tạo checklist',
+            )
           else
             ...List.generate(state.detailChecklists.length, (i) {
               final item = state.detailChecklists[i];
@@ -713,14 +870,49 @@ class _WeekPlanDetailScreenState
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
+          // Header + button
+          Row(
+            children: [
+              Text(
+                'Tệp đính kèm',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.heading,
+                ),
+              ),
+              const Spacer(),
+              ElevatedButton.icon(
+                onPressed: () => _pickFiles(context),
+                icon: const Icon(Icons.attach_file, size: 16),
+                label: const Text('Chọn tệp'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primaryERP,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 0,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Empty state
           if (state.attachments.isEmpty)
-            _emptyState(icon: Icons.attachment, title: 'Chưa có tệp đính kèm')
+            _buildEmptyState(
+              icon: Icons.attachment,
+              title: 'Chưa có tệp đính kèm',
+              subtitle: 'Bấm "Chọn tệp" để thêm đính kèm',
+            )
           else
             ...List.generate(state.attachments.length, (i) {
               return WeekPlanAttachmentCard(
                 index: i,
                 attachment: state.attachments[i],
-                onDelete: () {},
+                onDelete: () => bloc.add(WeekPlanEvent.removeAttachment(i)),
               );
             }),
         ],
@@ -733,14 +925,49 @@ class _WeekPlanDetailScreenState
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
+          // Header + button
+          Row(
+            children: [
+              Text(
+                'Link đính kèm',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.heading,
+                ),
+              ),
+              const Spacer(),
+              ElevatedButton.icon(
+                onPressed: () => _showAddLinkDialog(context),
+                icon: const Icon(Icons.link, size: 16),
+                label: const Text('Thêm Link'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.secondaryERP,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 0,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Empty state
           if (state.links.isEmpty)
-            _emptyState(icon: Icons.link_off, title: 'Chưa có link đính kèm')
+            _buildEmptyState(
+              icon: Icons.link_off,
+              title: 'Chưa có link đính kèm',
+              subtitle: 'Bấm "Thêm Link" để gắn liên kết',
+            )
           else
             ...List.generate(state.links.length, (i) {
               return WeekPlanLinkCard(
                 index: i,
                 link: state.links[i],
-                onDelete: () {},
+                onDelete: () => bloc.add(WeekPlanEvent.removeLink(i)),
               );
             }),
         ],
@@ -748,7 +975,11 @@ class _WeekPlanDetailScreenState
     );
   }
 
-  Widget _emptyState({required IconData icon, required String title}) {
+  Widget _buildEmptyState({
+    required IconData icon,
+    required String title,
+    String? subtitle,
+  }) {
     return Container(
       padding: const EdgeInsets.all(32),
       child: Column(
@@ -756,6 +987,10 @@ class _WeekPlanDetailScreenState
           Icon(icon, size: 48, color: AppColors.hintText),
           const SizedBox(height: 8),
           Text(title, style: TextStyle(fontSize: 14, color: AppColors.hintText)),
+          if (subtitle != null) ...[
+            const SizedBox(height: 4),
+            Text(subtitle, style: TextStyle(fontSize: 12, color: AppColors.hintText)),
+          ],
         ],
       ),
     );
@@ -822,41 +1057,225 @@ class _WeekPlanDetailScreenState
     );
   }
 
+  Future<void> _showSubTaskSheet(int? editIndex, WeekPlanState state) async {
+    final subTask = editIndex != null ? state.subTasks[editIndex] : null;
+
+    final result = await WeekPlanSubTaskBottomSheet.show(
+      context: context,
+      subTask: subTask,
+      taskTypes: state.taskTypes,
+      projectTypes: state.projectTypes,
+      employees: state.employees,
+      defaultComplexity: state.headerComplexity,
+      defaultWorkType: state.headerWorkType,
+      defaultWorkTypeName: state.headerWorkTypeName,
+      defaultTaskCategory: state.headerTaskCategory,
+      defaultTaskCategoryName: state.headerTaskCategoryName,
+    );
+
+    if (result == null) return;
+
+    if (editIndex != null) {
+      bloc.add(WeekPlanEvent.updateSubTask(editIndex, result));
+    } else {
+      bloc.add(WeekPlanEvent.addSubTaskWithData(result));
+    }
+  }
+
+  void _showAddChecklistDialog(BuildContext context) {
+    final formKey = GlobalKey<FormBuilderState>();
+
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Thêm checklist'),
+        content: FormBuilder(
+          key: formKey,
+          child: FormInputField(
+            nameForm: 'checklist_content',
+            nameTextField: 'checklist_content_field',
+            label: 'Nội dung',
+            icon: Icons.check_box_outlined,
+            isRequired: true,
+            validator: FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập nội dung',
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Huỷ'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              formKey.currentState?.save();
+              if (formKey.currentState?.validate() ?? false) {
+                final vals = formKey.currentState?.value;
+                final text = vals?['checklist_content']?.toString().trim() ?? '';
+                bloc.add(WeekPlanEvent.addChecklistItem(text));
+                Navigator.pop(ctx);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primaryERP,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text('Xác nhận'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _pickFiles(BuildContext context) async {
+    final result = await FilePicker.platform.pickFiles(allowMultiple: true);
+    if (result != null && result.files.isNotEmpty) {
+      for (final file in result.files) {
+        if (file.path != null) {
+          bloc.add(
+            WeekPlanEvent.addAttachment(
+              WeekPlanAttachmentItem(
+                id: 0,
+                fileName: file.name,
+                filePath: file.path,
+                fileSize: file.size,
+              ),
+            ),
+          );
+        }
+      }
+    }
+  }
+
+  void _showAddLinkDialog(BuildContext context) {
+    final formKey = GlobalKey<FormBuilderState>();
+
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Thêm Link'),
+        content: FormBuilder(
+          key: formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              FormInputField(
+                nameForm: 'link_name',
+                nameTextField: 'link_name_field',
+                label: 'Tên Link',
+                icon: Icons.text_fields,
+              ),
+              const SizedBox(height: 12),
+              FormInputField(
+                nameForm: 'link_url',
+                nameTextField: 'link_url_field',
+                label: 'URL',
+                icon: Icons.link,
+                isRequired: true,
+                keyboardType: TextInputType.url,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng nhập URL',
+                ),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Huỷ'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              formKey.currentState?.save();
+              if (formKey.currentState?.validate() ?? false) {
+                final vals = formKey.currentState?.value;
+                final name = vals?['link_name']?.toString().trim() ?? '';
+                final url = vals?['link_url']?.toString().trim() ?? '';
+                bloc.add(
+                  WeekPlanEvent.addLink(
+                    WeekPlanLinkItem(fileName: name, filePath: url),
+                  ),
+                );
+                Navigator.pop(ctx);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primaryERP,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text('Xác nhận'),
+          ),
+        ],
+      ),
+    );
+  }
+
   //---(_Step: Incident)---//
   Widget _buildIncidentStep(WeekPlanState state) {
+    final hasIncidents = state.incidents.isNotEmpty;
+    final totalIncidents = state.incidents.length;
+
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // Header
           Row(
             children: [
               Expanded(
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        color: AppColors.warning.withValues(alpha: 0.12),
-                        borderRadius: BorderRadius.circular(8),
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: AppColors.warning.withValues(alpha: 0.12),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(
+                            Icons.add_alert_outlined,
+                            size: 18,
+                            color: AppColors.warning,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Phát sinh',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.heading,
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (hasIncidents) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        '$totalIncidents sự phát sinh được ghi nhận',
+                        style: TextStyle(fontSize: 12, color: AppColors.gray),
                       ),
-                      child: Icon(Icons.add_alert_outlined,
-                          size: 18, color: AppColors.warning),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Phát sinh',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700,
-                          color: AppColors.heading),
-                    ),
+                    ],
                   ],
                 ),
+              ),
+              _AddIncidentButton(
+                onPressed: () => bloc.add(const WeekPlanEvent.addIncident()),
               ),
             ],
           ),
           const SizedBox(height: 16),
-          if (state.incidents.isEmpty)
-            _emptyState(icon: Icons.add_alert_outlined, title: 'Không có sự phát sinh nào')
+
+          // List or empty state
+          if (!hasIncidents)
+            _IncidentEmptyState(
+              onAdd: () => bloc.add(const WeekPlanEvent.addIncident()),
+            )
           else
             ...List.generate(state.incidents.length, (i) {
               return WeekPlanIncidentForm(
@@ -865,7 +1284,7 @@ class _WeekPlanDetailScreenState
                 incident: state.incidents[i],
                 isExpanded: state.expandedIncidentIndex == i,
                 onChanged: (updated) => bloc.add(WeekPlanEvent.updateIncident(i, updated)),
-                onDelete: () {},
+                onDelete: () => bloc.add(WeekPlanEvent.removeIncident(i)),
                 onToggleExpand: () => bloc.add(WeekPlanEvent.toggleIncidentExpand(i)),
               );
             }),
@@ -873,6 +1292,10 @@ class _WeekPlanDetailScreenState
       ),
     );
   }
+
+  //===============================================================
+  // INCIDENT WIDGETS
+  //===============================================================
 
   //===============================================================
   // PICKERS
@@ -1048,6 +1471,97 @@ class _WeekPlanDetailScreenState
 
     // Trigger update — createTask với ID của task hiện tại
     bloc.add(const WeekPlanEvent.createTask());
+  }
+}
+
+//---(_Incident Helper Classes)---//
+
+class _AddIncidentButton extends StatelessWidget {
+  const _AddIncidentButton({required this.onPressed});
+
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton.icon(
+      onPressed: onPressed,
+      icon: const Icon(Icons.add, size: 18),
+      label: const Text('Thêm'),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.warning,
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        elevation: 0,
+      ),
+    );
+  }
+}
+
+class _IncidentEmptyState extends StatelessWidget {
+  const _IncidentEmptyState({required this.onAdd});
+
+  final VoidCallback onAdd;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(32),
+      decoration: BoxDecoration(
+        color: AppColors.bgCard,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppColors.borderColor,
+          width: 1.2,
+          strokeAlign: BorderSide.strokeAlignInside,
+        ),
+      ),
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppColors.warning.withValues(alpha: 0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.add_alert_outlined,
+              size: 36,
+              color: AppColors.warning,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Chưa có sự phát sinh nào',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: AppColors.heading,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'Bấm "Thêm" để ghi nhận các sự cố, rủi ro\nhoặc thay đổi phát sinh trong quá trình thực hiện.',
+            style: TextStyle(fontSize: 13, color: AppColors.gray, height: 1.4),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 20),
+          OutlinedButton.icon(
+            onPressed: onAdd,
+            icon: const Icon(Icons.add, size: 18),
+            label: const Text('Thêm phát sinh đầu tiên'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: AppColors.warning,
+              side: BorderSide(color: AppColors.warning),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
