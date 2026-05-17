@@ -12,7 +12,7 @@ class WeekPlanState extends BaseBlocState {
   final List<WeekPlanTaskItem> allTasks;
 
   final String searchKeyword;
-  final String selectedStatus;
+  final List<String> selectedStatuses;
   final DateTime? dateStart;
   final DateTime? dateEnd;
 
@@ -123,7 +123,7 @@ class WeekPlanState extends BaseBlocState {
     this.assignedTasks = const [],
     this.allTasks = const [],
     this.searchKeyword = '',
-    this.selectedStatus = 'Tất cả',
+    this.selectedStatuses = const ['Chưa làm', 'Đang làm'],
     this.dateStart,
     this.dateEnd,
     this.employeeId,
@@ -203,7 +203,7 @@ class WeekPlanState extends BaseBlocState {
         assignedTasks: [],
         allTasks: [],
         searchKeyword: '',
-        selectedStatus: 'Tất cả',
+        selectedStatuses: const ['Chưa làm', 'Đang làm'],
         isSubmitting: false,
         submitSuccess: false,
         checkInSuccess: false,
@@ -252,7 +252,7 @@ class WeekPlanState extends BaseBlocState {
         assignedTasks,
         allTasks,
         searchKeyword,
-        selectedStatus,
+        selectedStatuses,
         dateStart,
         dateEnd,
         employeeId,

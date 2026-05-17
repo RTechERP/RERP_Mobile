@@ -12,7 +12,7 @@ _$WeekPlanTaskItemImpl _$$WeekPlanTaskItemImplFromJson(
       id: (json['ID'] as num?)?.toInt(),
       status: (json['Status'] as num?)?.toInt(),
       statusText: json['StatusText'] as String?,
-      stt: (json['STT'] as num?)?.toInt(),
+      stt: json['STT'] as String?,
       userId: (json['UserID'] as num?)?.toInt(),
       projectId: (json['ProjectID'] as num?)?.toInt(),
       projectCode: json['ProjectCode'] as String?,
@@ -95,7 +95,7 @@ _$WeekPlanTaskItemImpl _$$WeekPlanTaskItemImplFromJson(
           ? null
           : DateTime.parse(json['Deadline'] as String),
       projectTaskTypeId: (json['ProjectTaskTypeID'] as num?)?.toInt(),
-      approvalStatus: (json['ApprovalStatus'] as num?)?.toInt(),
+      approvalStatus: json['ApprovalStatus'] as bool?,
       priority: (json['Priority'] as num?)?.toInt(),
       priorityText: json['PriorityText'] as String?,
       estimatedTime: (json['EstimatedTime'] as num?)?.toDouble(),

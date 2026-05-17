@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
@@ -22,13 +21,15 @@ import '../../week_plan_extra.dart';
 
 /// Danh sách filter trạng thái công việc.
 const _kStatusFilters = [
-  'Tất cả',
+  // 'Tất cả',
   'Chưa làm',
   'Đang làm',
   'Hoàn thành',
   'Chưa làm quá hạn',
   'Đang làm quá hạn',
   'Hoàn thành quá hạn',
+  'Đã duyệt',
+  'Chưa duyệt',
 ];
 
 class WeekPlanListScreen extends StatefulWidget {
@@ -117,12 +118,13 @@ class _WeekPlanListScreenState extends BaseState<
           ),
           BlocBuilder<WeekPlanBloc, WeekPlanState>(
             buildWhen: (prev, curr) =>
-                prev.selectedStatus != curr.selectedStatus,
+                prev.selectedStatuses != curr.selectedStatuses,
             builder: (context, s) => IconButton(
               icon: Stack(
                 children: [
                   const Icon(Icons.filter_list),
-                  if (s.selectedStatus != 'Tất cả')
+                  if (s.selectedStatuses.isEmpty ||
+                      s.selectedStatuses.contains('Tất cả') == false)
                     Positioned(
                       right: 0,
                       top: 0,
@@ -178,10 +180,14 @@ class _WeekPlanListScreenState extends BaseState<
             prev.relatedTasks.length != curr.relatedTasks.length ||
             prev.assignedTasks.length != curr.assignedTasks.length ||
             prev.allTasks.length != curr.allTasks.length ||
-            prev.selectedStatus != curr.selectedStatus ||
+            prev.selectedStatuses.length != curr.selectedStatuses.length ||
             prev.searchKeyword != curr.searchKeyword ||
             prev.dateStart != curr.dateStart ||
-            prev.dateEnd != curr.dateEnd,
+            prev.dateEnd != curr.dateEnd ||
+            prev.projects.length != curr.projects.length ||
+            prev.taskTypes.length != curr.taskTypes.length ||
+            prev.projectTypes.length != curr.projectTypes.length ||
+            prev.employees.length != curr.employees.length,
         builder: (context, state) => _buildBody(context, state),
       ),
       floatingActionButton: BlocBuilder<WeekPlanBloc, WeekPlanState>(
@@ -241,16 +247,14 @@ class _WeekPlanListScreenState extends BaseState<
 
     return Column(
       children: [
-        if (state.dateStart != null || state.dateEnd != null)
-          Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: DateHeader(
-              dateStart: state.dateStart,
-              dateEnd: state.dateEnd,
-            ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+          child: DateHeader(
+            dateStart: state.dateStart,
+            dateEnd: state.dateEnd,
           ),
-        _buildActiveFilters(state),
-        _buildSummaryBar(tasks),
+        ),
+        // _buildSummaryBar(tasks),
         Expanded(
           child: filtered.isEmpty
               ? Center(
@@ -272,6 +276,7 @@ class _WeekPlanListScreenState extends BaseState<
                     return WeekPlanCard(
                       task: task,
                       isAssigned: widget.isAssigned,
+                      showCheckIn: widget.viewNumber != 2 && widget.viewNumber != 3,
                       onTap: () async {
                         final result = await context.push<bool>(
                           RouteNames.weekplanDetail,
@@ -330,11 +335,16 @@ class _WeekPlanListScreenState extends BaseState<
           .toList();
     }
 
-    if (state.selectedStatus != 'Tất cả') {
-      final status = state.selectedStatus;
+    if (state.selectedStatuses.isNotEmpty &&
+        !state.selectedStatuses.contains('Tất cả')) {
       result = result.where((t) {
+        if (state.selectedStatuses.contains('Đã duyệt') &&
+            t.approvalStatus == true) return true;
+        if (state.selectedStatuses.contains('Chưa duyệt') &&
+            t.approvalStatus == false) return true;
         final label = weekPlanStatusLabel(t);
-        return label == status;
+        if (state.selectedStatuses.contains(label)) return true;
+        return false;
       }).toList();
     }
 
@@ -350,117 +360,6 @@ class _WeekPlanListScreenState extends BaseState<
     }
 
     return result;
-  }
-
-  //---(_Screen)---//
-  Widget _buildSummaryBar(List<WeekPlanTaskItem> tasks) {
-    final total = tasks.length;
-
-    int countByStatus(int status) =>
-        tasks.where((t) => t.status == status && !weekPlanIsOverdue(t)).length;
-
-    int countOverdueByStatus(int status) =>
-        tasks.where((t) => t.status == status && weekPlanIsOverdue(t)).length;
-
-    final chuaLam = countByStatus(0);
-    final chuaLamQuaHan = countOverdueByStatus(0);
-    final dangLam = countByStatus(1);
-    final dangLamQuaHan = countOverdueByStatus(1);
-    final hoanThanh = countByStatus(2);
-    final hoanThanhQuaHan = countOverdueByStatus(2);
-
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
-      child: Wrap(
-        spacing: 6,
-        runSpacing: 6,
-        children: [
-          _SummaryPill(
-            label: 'Tất cả',
-            count: total,
-            color: AppColors.primaryERP,
-          ),
-          if (chuaLam > 0)
-            _SummaryPill(
-              label: 'Chưa làm',
-              count: chuaLam,
-              color: AppColors.gray,
-            ),
-          if (chuaLamQuaHan > 0)
-            _SummaryPill(
-              label: 'Chưa làm QH',
-              count: chuaLamQuaHan,
-              color: AppColors.alert,
-            ),
-          if (dangLam > 0)
-            _SummaryPill(
-              label: 'Đang làm',
-              count: dangLam,
-              color: AppColors.stateInfoColor,
-            ),
-          if (dangLamQuaHan > 0)
-            _SummaryPill(
-              label: 'Đang làm QH',
-              count: dangLamQuaHan,
-              color: AppColors.alert,
-            ),
-          if (hoanThanh > 0)
-            _SummaryPill(
-              label: 'Hoàn thành',
-              count: hoanThanh,
-              color: AppColors.stateSuccessColor,
-            ),
-          if (hoanThanhQuaHan > 0)
-            _SummaryPill(
-              label: 'Hoàn thành QH',
-              count: hoanThanhQuaHan,
-              color: AppColors.alert,
-            ),
-        ],
-      ),
-    );
-  }
-
-  //---(_ActiveFilters)---//
-  Widget _buildActiveFilters(WeekPlanState state) {
-    final hasSearch = state.searchKeyword.isNotEmpty;
-    final hasStatus = state.selectedStatus != 'Tất cả';
-    final hasDate = state.dateStart != null || state.dateEnd != null;
-    if (!hasSearch && !hasStatus && !hasDate) {
-      return const SizedBox.shrink();
-    }
-
-    return Container(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-      child: Wrap(
-        spacing: 8,
-        runSpacing: 4,
-        children: [
-          if (hasSearch)
-            _FilterChip(
-              label: 'Tìm: "${state.searchKeyword}"',
-              onClear: () =>
-                  bloc.add(const WeekPlanEvent.clearSearch()),
-            ),
-          if (hasStatus)
-            _FilterChip(
-              label: state.selectedStatus,
-              color: _statusColor(state.selectedStatus),
-              onClear: () =>
-                  bloc.add(const WeekPlanEvent.clearStatusFilter()),
-            ),
-          if (hasDate)
-            _FilterChip(
-              label:
-                  '${state.dateStart != null ? DateFormat('dd/MM').format(state.dateStart!) : ''}'
-                  '${state.dateEnd != null ? ' - ${DateFormat('dd/MM').format(state.dateEnd!)}' : ''}',
-              onClear: () =>
-                  bloc.add(const WeekPlanEvent.clearDateFilter()),
-            ),
-        ],
-      ),
-    );
   }
 
   //---(_Dialogs)---//
@@ -509,87 +408,142 @@ class _WeekPlanListScreenState extends BaseState<
 
   //---(_Dialogs)---//
   void _showStatusFilter() {
+    final selected = List<String>.from(bloc.state.selectedStatuses);
+
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (_) => Container(
-        constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height * 0.6,
-        ),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        child: SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: 8),
-              Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: AppColors.borderColor,
-                  borderRadius: BorderRadius.circular(2),
+      builder: (_) => StatefulBuilder(
+        builder: (ctx, setSheetState) => Container(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.6,
+          ),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          ),
+          child: SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(height: 8),
+                Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: AppColors.borderColor,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                'Lọc theo trạng thái',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.heading,
+                const SizedBox(height: 16),
+                const Text(
+                  'Lọc theo trạng thái',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.heading,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Flexible(
-                child: ListView(
-                  shrinkWrap: true,
-                  children: _kStatusFilters.map(
-                    (s) => ListTile(
-                      onTap: () {
-                        bloc.add(WeekPlanEvent.filterByStatus(s));
-                        Navigator.pop(context);
-                      },
-                      leading: Container(
-                        width: 24,
-                        height: 24,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: bloc.state.selectedStatus == s
+                const SizedBox(height: 8),
+                Flexible(
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: _kStatusFilters.map(
+                      (s) => ListTile(
+                        onTap: () {
+                          setSheetState(() {
+                            if (s == 'Tất cả') {
+                              selected.clear();
+                            } else {
+                              if (selected.contains(s)) {
+                                selected.remove(s);
+                              } else {
+                                selected.add(s);
+                              }
+                            }
+                          });
+                        },
+                        leading: Container(
+                          width: 24,
+                          height: 24,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: selected.contains(s)
+                                  ? AppColors.primaryERP
+                                  : AppColors.borderColor,
+                              width: 2,
+                            ),
+                            color: selected.contains(s)
                                 ? AppColors.primaryERP
-                                : AppColors.borderColor,
-                            width: 2,
+                                : Colors.transparent,
                           ),
-                          color: bloc.state.selectedStatus == s
-                              ? AppColors.primaryERP
-                              : Colors.transparent,
+                          child: selected.contains(s)
+                              ? const Icon(Icons.check,
+                                  size: 14, color: Colors.white)
+                              : null,
                         ),
-                        child: bloc.state.selectedStatus == s
-                            ? const Icon(Icons.check,
-                                size: 14, color: Colors.white)
-                            : null,
-                      ),
-                      title: Text(
-                        s,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: bloc.state.selectedStatus == s
-                              ? FontWeight.w600
-                              : FontWeight.w400,
-                          color: bloc.state.selectedStatus == s
-                              ? AppColors.primaryERP
-                              : AppColors.heading,
+                        title: Text(
+                          s,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: selected.contains(s)
+                                ? FontWeight.w600
+                                : FontWeight.w400,
+                            color: selected.contains(s)
+                                ? AppColors.primaryERP
+                                : AppColors.heading,
+                          ),
                         ),
                       ),
-                    ),
-                  ).toList(),
+                    ).toList(),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-            ],
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: () {
+                            bloc.add(const WeekPlanEvent
+                                .filterByStatuses(['Chưa làm', 'Đang làm']));
+                            Navigator.pop(ctx);
+                          },
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: AppColors.primaryERP,
+                            side: const BorderSide(color: AppColors.primaryERP),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: const Text('Mặc định'),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            bloc.add(WeekPlanEvent.filterByStatuses(selected));
+                            Navigator.pop(ctx);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primaryERP,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: const Text('Áp dụng',style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -602,132 +556,25 @@ class _WeekPlanListScreenState extends BaseState<
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => DateRangePicker(
-        initialStart: bloc.state.dateStart,
-        initialEnd: bloc.state.dateEnd,
-        onApply: (start, end) {
-          bloc.add(WeekPlanEvent.changeDateRange(
-            dateStart: start,
-            dateEnd: end,
-          ));
-        },
+      builder: (_) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        child: SafeArea(
+          child: DateRangePicker(
+            initialStart: bloc.state.dateStart,
+            initialEnd: bloc.state.dateEnd,
+            onApply: (start, end) {
+              bloc.add(WeekPlanEvent.changeDateRange(
+                dateStart: start,
+                dateEnd: end,
+              ));
+            },
+          ),
+        ),
       ),
     );
   }
 
-  //---(_Helper)---//
-  Color _statusColor(String status) {
-    switch (status) {
-      case 'Hoàn thành':
-      case 'Hoàn thành quá hạn':
-        return AppColors.stateSuccessColor;
-      case 'Đang làm':
-      case 'Đang làm quá hạn':
-        return AppColors.stateInfoColor;
-      case 'Chưa làm':
-      case 'Chưa làm quá hạn':
-        return AppColors.gray;
-      default:
-        return AppColors.warning;
-    }
-  }
-}
-
-//---(_SummaryPill)---//
-class _SummaryPill extends StatelessWidget {
-  const _SummaryPill({
-    required this.label,
-    required this.count,
-    required this.color,
-  });
-
-  final String label;
-  final int count;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: color.withValues(alpha: 0.3)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: color,
-            ),
-          ),
-          const SizedBox(width: 5),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Text(
-              '$count',
-              style: const TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-//---(_FilterChip)---//
-class _FilterChip extends StatelessWidget {
-  const _FilterChip({
-    required this.label,
-    this.color,
-    required this.onClear,
-  });
-
-  final String label;
-  final Color? color;
-  final VoidCallback onClear;
-
-  @override
-  Widget build(BuildContext context) {
-    final effectiveColor = color ?? AppColors.primaryERP;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
-        color: effectiveColor.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: effectiveColor.withValues(alpha: 0.3)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: effectiveColor,
-            ),
-          ),
-          const SizedBox(width: 4),
-          GestureDetector(
-            onTap: onClear,
-            child: Icon(Icons.close, size: 14, color: effectiveColor),
-          ),
-        ],
-      ),
-    );
-  }
 }

@@ -23,7 +23,7 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState searchKeyword(String searchKeyword);
 
-  WeekPlanState selectedStatus(String selectedStatus);
+  WeekPlanState selectedStatuses(List<String> selectedStatuses);
 
   WeekPlanState dateStart(DateTime? dateStart);
 
@@ -158,7 +158,7 @@ abstract class _$WeekPlanStateCWProxy {
     List<WeekPlanTaskItem>? assignedTasks,
     List<WeekPlanTaskItem>? allTasks,
     String? searchKeyword,
-    String? selectedStatus,
+    List<String>? selectedStatuses,
     DateTime? dateStart,
     DateTime? dateEnd,
     int? employeeId,
@@ -255,8 +255,8 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(searchKeyword: searchKeyword);
 
   @override
-  WeekPlanState selectedStatus(String selectedStatus) =>
-      this(selectedStatus: selectedStatus);
+  WeekPlanState selectedStatuses(List<String> selectedStatuses) =>
+      this(selectedStatuses: selectedStatuses);
 
   @override
   WeekPlanState dateStart(DateTime? dateStart) => this(dateStart: dateStart);
@@ -501,7 +501,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? assignedTasks = const $CopyWithPlaceholder(),
     Object? allTasks = const $CopyWithPlaceholder(),
     Object? searchKeyword = const $CopyWithPlaceholder(),
-    Object? selectedStatus = const $CopyWithPlaceholder(),
+    Object? selectedStatuses = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? employeeId = const $CopyWithPlaceholder(),
@@ -597,11 +597,11 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
               ? _value.searchKeyword
               // ignore: cast_nullable_to_non_nullable
               : searchKeyword as String,
-      selectedStatus: selectedStatus == const $CopyWithPlaceholder() ||
-              selectedStatus == null
-          ? _value.selectedStatus
+      selectedStatuses: selectedStatuses == const $CopyWithPlaceholder() ||
+              selectedStatuses == null
+          ? _value.selectedStatuses
           // ignore: cast_nullable_to_non_nullable
-          : selectedStatus as String,
+          : selectedStatuses as List<String>,
       dateStart: dateStart == const $CopyWithPlaceholder()
           ? _value.dateStart
           // ignore: cast_nullable_to_non_nullable

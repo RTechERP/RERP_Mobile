@@ -27,7 +27,7 @@ mixin _$WeekPlanTaskItem {
   @JsonKey(name: 'StatusText')
   String? get statusText => throw _privateConstructorUsedError;
   @JsonKey(name: 'STT')
-  int? get stt => throw _privateConstructorUsedError;
+  String? get stt => throw _privateConstructorUsedError;
   @JsonKey(name: 'UserID')
   int? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProjectID')
@@ -147,7 +147,7 @@ mixin _$WeekPlanTaskItem {
   @JsonKey(name: 'ProjectTaskTypeID')
   int? get projectTaskTypeId => throw _privateConstructorUsedError;
   @JsonKey(name: 'ApprovalStatus')
-  int? get approvalStatus => throw _privateConstructorUsedError;
+  bool? get approvalStatus => throw _privateConstructorUsedError;
   @JsonKey(name: 'Priority')
   int? get priority => throw _privateConstructorUsedError;
   @JsonKey(name: 'PriorityText')
@@ -173,7 +173,7 @@ abstract class $WeekPlanTaskItemCopyWith<$Res> {
       {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'Status') int? status,
       @JsonKey(name: 'StatusText') String? statusText,
-      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'STT') String? stt,
       @JsonKey(name: 'UserID') int? userId,
       @JsonKey(name: 'ProjectID') int? projectId,
       @JsonKey(name: 'ProjectCode') String? projectCode,
@@ -233,7 +233,7 @@ abstract class $WeekPlanTaskItemCopyWith<$Res> {
       @JsonKey(name: 'IsCheck') bool? isCheck,
       @JsonKey(name: 'Deadline') DateTime? deadline,
       @JsonKey(name: 'ProjectTaskTypeID') int? projectTaskTypeId,
-      @JsonKey(name: 'ApprovalStatus') int? approvalStatus,
+      @JsonKey(name: 'ApprovalStatus') bool? approvalStatus,
       @JsonKey(name: 'Priority') int? priority,
       @JsonKey(name: 'PriorityText') String? priorityText,
       @JsonKey(name: 'EstimatedTime') double? estimatedTime,
@@ -338,7 +338,7 @@ class _$WeekPlanTaskItemCopyWithImpl<$Res, $Val extends WeekPlanTaskItem>
       stt: freezed == stt
           ? _value.stt
           : stt // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -578,7 +578,7 @@ class _$WeekPlanTaskItemCopyWithImpl<$Res, $Val extends WeekPlanTaskItem>
       approvalStatus: freezed == approvalStatus
           ? _value.approvalStatus
           : approvalStatus // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as bool?,
       priority: freezed == priority
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
@@ -611,7 +611,7 @@ abstract class _$$WeekPlanTaskItemImplCopyWith<$Res>
       {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'Status') int? status,
       @JsonKey(name: 'StatusText') String? statusText,
-      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'STT') String? stt,
       @JsonKey(name: 'UserID') int? userId,
       @JsonKey(name: 'ProjectID') int? projectId,
       @JsonKey(name: 'ProjectCode') String? projectCode,
@@ -671,7 +671,7 @@ abstract class _$$WeekPlanTaskItemImplCopyWith<$Res>
       @JsonKey(name: 'IsCheck') bool? isCheck,
       @JsonKey(name: 'Deadline') DateTime? deadline,
       @JsonKey(name: 'ProjectTaskTypeID') int? projectTaskTypeId,
-      @JsonKey(name: 'ApprovalStatus') int? approvalStatus,
+      @JsonKey(name: 'ApprovalStatus') bool? approvalStatus,
       @JsonKey(name: 'Priority') int? priority,
       @JsonKey(name: 'PriorityText') String? priorityText,
       @JsonKey(name: 'EstimatedTime') double? estimatedTime,
@@ -774,7 +774,7 @@ class __$$WeekPlanTaskItemImplCopyWithImpl<$Res>
       stt: freezed == stt
           ? _value.stt
           : stt // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -1014,7 +1014,7 @@ class __$$WeekPlanTaskItemImplCopyWithImpl<$Res>
       approvalStatus: freezed == approvalStatus
           ? _value.approvalStatus
           : approvalStatus // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as bool?,
       priority: freezed == priority
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
@@ -1122,7 +1122,7 @@ class _$WeekPlanTaskItemImpl implements _WeekPlanTaskItem {
   final String? statusText;
   @override
   @JsonKey(name: 'STT')
-  final int? stt;
+  final String? stt;
   @override
   @JsonKey(name: 'UserID')
   final int? userId;
@@ -1302,7 +1302,7 @@ class _$WeekPlanTaskItemImpl implements _WeekPlanTaskItem {
   final int? projectTaskTypeId;
   @override
   @JsonKey(name: 'ApprovalStatus')
-  final int? approvalStatus;
+  final bool? approvalStatus;
   @override
   @JsonKey(name: 'Priority')
   final int? priority;
@@ -1531,7 +1531,7 @@ abstract class _WeekPlanTaskItem implements WeekPlanTaskItem {
       {@JsonKey(name: 'ID') final int? id,
       @JsonKey(name: 'Status') final int? status,
       @JsonKey(name: 'StatusText') final String? statusText,
-      @JsonKey(name: 'STT') final int? stt,
+      @JsonKey(name: 'STT') final String? stt,
       @JsonKey(name: 'UserID') final int? userId,
       @JsonKey(name: 'ProjectID') final int? projectId,
       @JsonKey(name: 'ProjectCode') final String? projectCode,
@@ -1596,7 +1596,7 @@ abstract class _WeekPlanTaskItem implements WeekPlanTaskItem {
       @JsonKey(name: 'IsCheck') final bool? isCheck,
       @JsonKey(name: 'Deadline') final DateTime? deadline,
       @JsonKey(name: 'ProjectTaskTypeID') final int? projectTaskTypeId,
-      @JsonKey(name: 'ApprovalStatus') final int? approvalStatus,
+      @JsonKey(name: 'ApprovalStatus') final bool? approvalStatus,
       @JsonKey(name: 'Priority') final int? priority,
       @JsonKey(name: 'PriorityText') final String? priorityText,
       @JsonKey(name: 'EstimatedTime') final double? estimatedTime,
@@ -1617,7 +1617,7 @@ abstract class _WeekPlanTaskItem implements WeekPlanTaskItem {
   String? get statusText;
   @override
   @JsonKey(name: 'STT')
-  int? get stt;
+  String? get stt;
   @override
   @JsonKey(name: 'UserID')
   int? get userId;
@@ -1797,7 +1797,7 @@ abstract class _WeekPlanTaskItem implements WeekPlanTaskItem {
   int? get projectTaskTypeId;
   @override
   @JsonKey(name: 'ApprovalStatus')
-  int? get approvalStatus;
+  bool? get approvalStatus;
   @override
   @JsonKey(name: 'Priority')
   int? get priority;

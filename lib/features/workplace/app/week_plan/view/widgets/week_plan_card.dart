@@ -18,11 +18,13 @@ class WeekPlanCard extends StatelessWidget {
     super.key,
     required this.task,
     this.isAssigned = false,
+    this.showCheckIn = true,
     this.onTap,
   });
 
   final WeekPlanTaskItem task;
   final bool isAssigned;
+  final bool showCheckIn;
   final VoidCallback? onTap;
 
   static final DateFormat _df = DateFormat('dd/MM/yyyy');
@@ -47,8 +49,16 @@ class WeekPlanCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _buildTopBar(statusColor, statusLabel, typeColor, typeName, isCheckedIn),
-          if ((task.projectCode ?? '').isNotEmpty || (task.projectName ?? '').isNotEmpty) ...[
+          _buildTopBar(
+            statusColor,
+            statusLabel,
+            typeColor,
+            typeName,
+            isCheckedIn,
+            showCheckIn,
+          ),
+          if ((task.projectCode ?? '').isNotEmpty ||
+              (task.projectName ?? '').isNotEmpty) ...[
             const SizedBox(height: 6),
             _buildProjectInfo(),
           ],
@@ -84,19 +94,32 @@ class WeekPlanCard extends StatelessWidget {
     Color typeColor,
     String typeName,
     bool isCheckedIn,
+    bool showCheckIn,
   ) {
-    return Row(
+    final approvalStatus = task.approvalStatus;
+
+    return Column(
       children: [
-        // Status chip
-        _StatusChip(color: statusColor, label: statusLabel),
-        const SizedBox(width: 8),
-        // Type badge
-        if (typeName.isNotEmpty) ...[
-          _TypeBadge(text: typeName, color: typeColor),
-          const SizedBox(width: 8),
-        ],
-        const Spacer(),
-        _CheckinButton(task: task, isCheckedIn: isCheckedIn),
+        Row(
+          children: [
+            _StatusChip(color: statusColor, label: statusLabel),
+            const SizedBox(width: 4),
+            if (typeName.isNotEmpty)
+              _TypeBadge(text: typeName, color: typeColor),
+            const Spacer(),
+            if (showCheckIn)
+              _CheckinButton(task: task, isCheckedIn: isCheckedIn),
+          ],
+        ),
+        const SizedBox(height: 6),
+        Row(
+          children: [
+            if (approvalStatus != null) ...[
+              _ApprovalChip(isApproved: approvalStatus),
+              const SizedBox(width: 8),
+            ],
+          ],
+        ),
       ],
     );
   }
@@ -234,10 +257,7 @@ class _StatusChip extends StatelessWidget {
           Container(
             width: 6,
             height: 6,
-            decoration: BoxDecoration(
-              color: color,
-              shape: BoxShape.circle,
-            ),
+            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
           ),
           const SizedBox(width: 5),
           Text(
@@ -281,6 +301,46 @@ class _TypeBadge extends StatelessWidget {
   }
 }
 
+//---(_ApprovalChip)---//
+class _ApprovalChip extends StatelessWidget {
+  const _ApprovalChip({required this.isApproved});
+
+  final bool isApproved;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = isApproved ? AppColors.stateSuccessColor : AppColors.warning;
+    final label = isApproved ? 'Đã duyệt' : 'Chưa duyệt';
+    final icon = isApproved
+        ? Icons.check_circle_outline
+        : Icons.pending_outlined;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 12, color: color),
+          const SizedBox(width: 4),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: color,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 //---(_CheckinButton)---//
 class _CheckinButton extends StatelessWidget {
   const _CheckinButton({required this.task, required this.isCheckedIn});
@@ -302,8 +362,8 @@ class _CheckinButton extends StatelessWidget {
           color: isPending
               ? AppColors.stateWarningColor.withValues(alpha: 0.1)
               : isActive
-                  ? AppColors.stateSuccessColor.withValues(alpha: 0.1)
-                  : AppColors.primaryERP,
+              ? AppColors.stateSuccessColor.withValues(alpha: 0.1)
+              : AppColors.primaryERP,
           borderRadius: BorderRadius.circular(16),
           boxShadow: isPending || isActive
               ? null
@@ -319,18 +379,18 @@ class _CheckinButton extends StatelessWidget {
           isCheckedIn
               ? 'Đã điểm danh'
               : isPending
-                  ? 'Tạm hoãn'
-                  : isDone
-                      ? 'Hoàn thành'
-                      : 'Điểm danh',
+              ? 'Tạm hoãn'
+              : isDone
+              ? 'Hoàn thành'
+              : 'Điểm danh',
           style: TextStyle(
             fontSize: 11,
             fontWeight: FontWeight.w600,
             color: isPending
                 ? AppColors.stateWarningColor
                 : isActive
-                    ? AppColors.stateSuccessColor
-                    : Colors.white,
+                ? AppColors.stateSuccessColor
+                : Colors.white,
           ),
         ),
       ),
@@ -339,6 +399,8 @@ class _CheckinButton extends StatelessWidget {
 
   void _onCheckIn(BuildContext context) {
     if (task.id == null) return;
-    context.read<WeekPlanBloc>().add(WeekPlanEvent.checkIn(task.id!, !isCheckedIn));
+    context.read<WeekPlanBloc>().add(
+      WeekPlanEvent.checkIn(task.id!, !isCheckedIn),
+    );
   }
 }

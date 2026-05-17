@@ -18,9 +18,7 @@ class WeekPlanEvent with _$WeekPlanEvent {
 
   const factory WeekPlanEvent.clearSearch() = _ClearSearch;
 
-  const factory WeekPlanEvent.filterByStatus(String status) = _FilterByStatus;
-
-  const factory WeekPlanEvent.clearStatusFilter() = _ClearStatusFilter;
+  const factory WeekPlanEvent.filterByStatuses(List<String> statuses) = _FilterByStatuses;
 
   const factory WeekPlanEvent.changeDateRange({
     required DateTime dateStart,

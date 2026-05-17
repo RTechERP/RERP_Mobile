@@ -46,8 +46,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         refresh: () => _onRefresh(emit),
         search: (keyword) => _onSearch(emit, keyword),
         clearSearch: () => _onClearSearch(emit),
-        filterByStatus: (status) => _onFilterByStatus(emit, status),
-        clearStatusFilter: () => _onClearStatusFilter(emit),
+        filterByStatuses: (statuses) => _onFilterByStatuses(emit, statuses),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(emit, dateStart, dateEnd),
         clearDateFilter: () => _onClearDateFilter(emit),
@@ -121,37 +120,30 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         addSubTaskWithData: (subTask) => _onAddSubTaskWithData(emit, subTask),
         addChecklistItem: (item) => _onAddChecklistItem(emit, item),
         fetchChecklists: (taskId) => _onFetchChecklists(emit, taskId),
-        updateDetailChecklistItem: (
-          checklistId,
-          checklistTitle,
-          orderIndex,
-          isDone,
-        ) =>
-            _onUpdateDetailChecklistItem(
-              emit,
-              checklistId: checklistId,
-              checklistTitle: checklistTitle,
-              orderIndex: orderIndex,
-              isDone: isDone,
-            ),
+        updateDetailChecklistItem:
+            (checklistId, checklistTitle, orderIndex, isDone) =>
+                _onUpdateDetailChecklistItem(
+                  emit,
+                  checklistId: checklistId,
+                  checklistTitle: checklistTitle,
+                  orderIndex: orderIndex,
+                  isDone: isDone,
+                ),
         updateChecklistItem: (index, item) =>
             _onUpdateChecklistItem(emit, index, item),
         toggleChecklistDone: (index) => _onToggleChecklistDone(emit, index),
-        updateChecklistItemOnServer: (
-          checklistId,
-          checklistTitle,
-          orderIndex,
-          isDone,
-        ) =>
-            _onUpdateChecklistItemOnServer(
-              emit,
-              checklistId: checklistId,
-              checklistTitle: checklistTitle,
-              orderIndex: orderIndex,
-              isDone: isDone,
-            ),
+        updateChecklistItemOnServer:
+            (checklistId, checklistTitle, orderIndex, isDone) =>
+                _onUpdateChecklistItemOnServer(
+                  emit,
+                  checklistId: checklistId,
+                  checklistTitle: checklistTitle,
+                  orderIndex: orderIndex,
+                  isDone: isDone,
+                ),
         removeChecklistItem: (index) => _onRemoveChecklistItem(emit, index),
-        markChecklistDeleted: (checklistId) => _onMarkChecklistDeleted(emit, checklistId),
+        markChecklistDeleted: (checklistId) =>
+            _onMarkChecklistDeleted(emit, checklistId),
         addAttachment: (attachment) => _onAddAttachment(emit, attachment),
         removeAttachment: (index) => _onRemoveAttachment(emit, index),
         addLink: (link) => _onAddLink(emit, link),
@@ -250,9 +242,11 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
 
           final employeeId = user?.employeeId ?? 0;
           final now = DateTime.now();
-          final dateStart = state.dateStart ?? DateTime(now.year, now.month, 1);
-          final dateEnd = state.dateEnd ?? DateTime(now.year, now.month + 1, 0);
-          final statusFilter = _statusToApiStatus(state.selectedStatus);
+          final monthStart = DateTime(now.year, now.month, 1);
+          final monthEnd = DateTime(now.year, now.month + 1, 0);
+          final dateStart = state.dateStart ?? monthStart;
+          final dateEnd = state.dateEnd ?? monthEnd;
+          final statusFilter = -1; // API fetch all; UI multi-select filter handled by _filterTasks client-side
 
           List<WeekPlanTaskItem> myTasks = state.myTasks;
           List<WeekPlanTaskItem> relatedTasks = state.relatedTasks;
@@ -317,6 +311,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
               projects: projects,
               taskTypes: taskTypes,
               employees: employees,
+              dateStart: dateStart,
+              dateEnd: dateEnd,
               myTasks: myTasks,
               relatedTasks: relatedTasks,
               assignedTasks: assignedTasks,
@@ -368,17 +364,11 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     await _onInitScreen(emit);
   }
 
-  Future<void> _onFilterByStatus(
+  Future<void> _onFilterByStatuses(
     Emitter<WeekPlanState> emit,
-    String status,
+    List<String> statuses,
   ) async {
-    emit(state.copyWith(selectedStatus: status));
-    await _onInitScreen(emit);
-  }
-
-  Future<void> _onClearStatusFilter(Emitter<WeekPlanState> emit) async {
-    emit(state.copyWith(selectedStatus: 'Tất cả'));
-    await _onInitScreen(emit);
+    emit(state.copyWith(selectedStatuses: statuses));
   }
 
   Future<void> _onChangeDateRange(
@@ -542,31 +532,39 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     Emitter<WeekPlanState> emit,
     int taskId,
   ) async {
-    emit(state.copyWith(
-      status: BaseStateStatus.loading,
-      isSubmitting: false,
-      submitSuccess: false,
-      message: null,
-    ));
+    emit(
+      state.copyWith(
+        status: BaseStateStatus.loading,
+        isSubmitting: false,
+        submitSuccess: false,
+        message: null,
+      ),
+    );
 
     final detailRes = await _weekPlanRepo.getTaskDetail(id: taskId);
 
     await detailRes.fold(
       (err) async {
         _log.logE('initDetailScreen: get task detail failed: $err');
-        emit(state.copyWith(
-          status: BaseStateStatus.failed,
-          message: err.getErrorMessage,
-        ));
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ),
+        );
       },
       (detail) async {
-        _log.logI('initDetailScreen: task loaded, ID=${detail.id}, Mission=${detail.mission}');
+        _log.logI(
+          'initDetailScreen: task loaded, ID=${detail.id}, Mission=${detail.mission}',
+        );
 
         // Fetch employees list nếu chưa có
         List<EmployeeTaskItem> allEmployees = state.employees;
         if (allEmployees.isEmpty) {
           final empRes = await _weekPlanRepo.getEmployees();
-          empRes.fold((_) {}, (data) { allEmployees = data; });
+          empRes.fold((_) {}, (data) {
+            allEmployees = data;
+          });
         }
 
         // Fetch người thực hiện (typeEmployee=1)
@@ -577,7 +575,9 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         );
         assigneeRes.fold((_) {}, (assigneeItems) {
           for (final item in assigneeItems) {
-            final emp = allEmployees.where((e) => e.id == item.employeeId).firstOrNull;
+            final emp = allEmployees
+                .where((e) => e.id == item.employeeId)
+                .firstOrNull;
             if (emp != null) assignees.add(emp);
           }
         });
@@ -590,7 +590,9 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         );
         relatedRes.fold((_) {}, (relatedItems) {
           for (final item in relatedItems) {
-            final emp = allEmployees.where((e) => e.id == item.employeeId).firstOrNull;
+            final emp = allEmployees
+                .where((e) => e.id == item.employeeId)
+                .firstOrNull;
             if (emp != null) relatedPersons.add(emp);
           }
         });
@@ -599,31 +601,45 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         List<ProjectTaskItem> projects = state.projects;
         if (projects.isEmpty) {
           final projRes = await _weekPlanRepo.getProjects();
-          projRes.fold((_) {}, (data) { projects = data; });
+          projRes.fold((_) {}, (data) {
+            projects = data;
+          });
         }
 
         // Lookup project name
         String? projectName;
         for (final p in projects) {
-          if (p.id == detail.projectId) { projectName = p.projectName; break; }
+          if (p.id == detail.projectId) {
+            projectName = p.projectName;
+            break;
+          }
         }
 
         // Lookup work type name
         String? workTypeName;
         for (final t in state.taskTypes) {
-          if (t.id == detail.projectTaskTypeID) { workTypeName = t.typeName; break; }
+          if (t.id == detail.projectTaskTypeID) {
+            workTypeName = t.typeName;
+            break;
+          }
         }
 
         // Lookup task category name
         String? categoryName;
         for (final c in state.projectTypes) {
-          if (c.id == detail.typeProjectItem) { categoryName = c.projectTypeName; break; }
+          if (c.id == detail.typeProjectItem) {
+            categoryName = c.projectTypeName;
+            break;
+          }
         }
 
         // Lookup người giao việc
         String? assignerName;
         for (final emp in allEmployees) {
-          if (emp.id == detail.employeeIdRequest) { assignerName = emp.fullName; break; }
+          if (emp.id == detail.employeeIdRequest) {
+            assignerName = emp.fullName;
+            break;
+          }
         }
 
         // Fetch checklists từ API
@@ -631,57 +647,66 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         final checklistRes = await _weekPlanRepo.getProjectTaskChecklists(
           taskId: detail.id ?? taskId,
         );
-        checklistRes.fold((_) {}, (data) { checklists = data; });
+        checklistRes.fold((_) {}, (data) {
+          checklists = data;
+        });
 
-        emit(state.copyWith(
-          status: BaseStateStatus.success,
-          detailTaskId: detail.id,
-          employees: allEmployees,
-          // Header fields
-          headerProjectId: detail.projectId,
-          headerProjectName: projectName,
-          headerTaskCategory: detail.typeProjectItem,
-          headerTaskCategoryName: categoryName,
-          headerWorkType: detail.projectTaskTypeID,
-          headerWorkTypeName: workTypeName,
-          headerStatus: detail.status,
-          headerStatusName: _statusText(detail.status),
-          headerPriority: detail.priority ?? 0,
-          headerTimeEstimate: detail.estimatedTime,
-          headerIsPersonalTask: detail.isPersonalProject ?? false,
-          headerComplexity: detail.taskComplexity ?? 1,
-          headerParentTaskId: detail.parentId,
-          // Content fields
-          taskName: detail.mission,
-          contentDescription: detail.description,
-          contentResult: detail.projectTaskResult,
-          contentReasonSolution: detail.descriptionSolution,
-          contentStartDate: detail.planStartDate,
-          contentEndDate: detail.planEndDate,
-          contentActualStartDate: detail.actualStartDate,
-          contentActualEndDate: detail.actualEndDate,
-          contentDeadline: detail.deadline,
-          // Người giao / thực hiện
-          headerAssignerId: detail.employeeIdRequest,
-          headerAssignerName: assignerName,
-          contentAssignerId: detail.employeeIdRequest,
-          contentAssignerName: assignerName,
-          // Người thực hiện & người liên quan
-          selectedAssignees: assignees,
-          selectedRelatedPersons: relatedPersons,
-          detailChecklists: checklists,
-        ));
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.success,
+            detailTaskId: detail.id,
+            employees: allEmployees,
+            // Header fields
+            headerProjectId: detail.projectId,
+            headerProjectName: projectName,
+            headerTaskCategory: detail.typeProjectItem,
+            headerTaskCategoryName: categoryName,
+            headerWorkType: detail.projectTaskTypeID,
+            headerWorkTypeName: workTypeName,
+            headerStatus: detail.status,
+            headerStatusName: _statusText(detail.status),
+            headerPriority: detail.priority ?? 0,
+            headerTimeEstimate: detail.estimatedTime,
+            headerIsPersonalTask: detail.isPersonalProject ?? false,
+            headerComplexity: detail.taskComplexity ?? 1,
+            headerParentTaskId: detail.parentId,
+            // Content fields
+            taskName: detail.mission,
+            contentDescription: detail.description,
+            contentResult: detail.projectTaskResult,
+            contentReasonSolution: detail.descriptionSolution,
+            contentStartDate: detail.planStartDate,
+            contentEndDate: detail.planEndDate,
+            contentActualStartDate: detail.actualStartDate,
+            contentActualEndDate: detail.actualEndDate,
+            contentDeadline: detail.deadline,
+            // Người giao / thực hiện
+            headerAssignerId: detail.employeeIdRequest,
+            headerAssignerName: assignerName,
+            contentAssignerId: detail.employeeIdRequest,
+            contentAssignerName: assignerName,
+            // Người thực hiện & người liên quan
+            selectedAssignees: assignees,
+            selectedRelatedPersons: relatedPersons,
+            detailChecklists: checklists,
+          ),
+        );
       },
     );
   }
 
   String _statusText(int? status) {
     switch (status) {
-      case 0: return 'Chưa làm';
-      case 1: return 'Đang làm';
-      case 2: return 'Hoàn thành';
-      case 3: return 'Tạm hoãn';
-      default: return 'Chưa làm';
+      case 0:
+        return 'Chưa làm';
+      case 1:
+        return 'Đang làm';
+      case 2:
+        return 'Hoàn thành';
+      case 3:
+        return 'Tạm hoãn';
+      default:
+        return 'Chưa làm';
     }
   }
 
@@ -1194,12 +1219,12 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
   ) async {
     if (state.deletedChecklistIds.contains(checklistId)) return;
     final deleted = [...state.deletedChecklistIds, checklistId];
-    final remaining =
-        state.detailChecklists.where((c) => c.id != checklistId).toList();
-    emit(state.copyWith(
-      deletedChecklistIds: deleted,
-      detailChecklists: remaining,
-    ));
+    final remaining = state.detailChecklists
+        .where((c) => c.id != checklistId)
+        .toList();
+    emit(
+      state.copyWith(deletedChecklistIds: deleted, detailChecklists: remaining),
+    );
   }
 
   Future<void> _onUpdateChecklistItemOnServer(
@@ -1225,7 +1250,9 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       },
       (data) async {
         _log.logI('Update checklist success: $checklistTitle, isDone=$isDone');
-        final list = List<ChecklistWeekPlanResponse>.from(state.detailChecklists);
+        final list = List<ChecklistWeekPlanResponse>.from(
+          state.detailChecklists,
+        );
         final idx = list.indexWhere((c) => c.id == checklistId);
         if (idx >= 0) {
           list[idx] = data;
@@ -1481,7 +1508,9 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
           for (final item in state.detailChecklists) {
             if (item.id == null || item.id == 0) continue;
 
-            _log.logI('Syncing checklist ID=${item.id}: "${item.checklistTitle}", isDone=${item.isDone}');
+            _log.logI(
+              'Syncing checklist ID=${item.id}: "${item.checklistTitle}", isDone=${item.isDone}',
+            );
             // ignore: invalid_use_of_visible_for_testing_member
             await _weekPlanRepo.updateProjectTaskChecklists(
               id: item.id!,
@@ -1546,16 +1575,13 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
               _log.logI('Saving additional: "${incident.description}"');
 
               // ignore: invalid_use_of_visible_for_testing_member
-              final additionalRes = await _weekPlanRepo.saveProjectTaskAdditional(
-                payload: additionalPayload,
-              );
+              final additionalRes = await _weekPlanRepo
+                  .saveProjectTaskAdditional(payload: additionalPayload);
               additionalRes.fold(
                 (err) => _log.logE(
                   'Additional save failed for "${incident.description}": $err',
                 ),
-                (_) => _log.logI(
-                  'Additional saved: "${incident.description}"',
-                ),
+                (_) => _log.logI('Additional saved: "${incident.description}"'),
               );
             }
             _log.logI('All additional saved for task ID: ${data.id}');
@@ -1600,7 +1626,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       'EstimatedTime': state.headerTimeEstimate,
       'NeedApprove': !state.headerIsPersonalTask,
       'Description': state.contentDescription ?? '',
-      if (_isBugTaskType(state)) 'DescriptionSolution': state.contentReasonSolution ?? '',
+      if (_isBugTaskType(state))
+        'DescriptionSolution': state.contentReasonSolution ?? '',
       'PauseReason': state.pauseReason,
       'ProjectTaskChecklists': <int>[],
       'Links': <int>[],
