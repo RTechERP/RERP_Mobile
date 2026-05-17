@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
@@ -66,7 +67,7 @@ class _HrLxcpEditScreenState
               child: AbsorbPointer(
                 absorbing: true,
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha:0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',
@@ -172,6 +173,10 @@ class _HrEditLXViewState extends State<_HrEditLXView> {
                         nameTimePicker: 'date_picker',
                         label: 'Ngày báo cáo',
                         inputType: InputType.date,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng chọn ngày báo cáo',
+                        ),
                         format: DateFormat('dd/MM/yyyy'),
                         initialValue: _parseDate(detail.dateReport),
                       ),
@@ -186,6 +191,11 @@ class _HrEditLXViewState extends State<_HrEditLXView> {
                         icon: Icons.add_road_outlined,
                         nameForm: 'lx_edit_km',
                         nameTextField: 'km_field',
+                        isRequired: true,
+                        autoExpand: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập số Km',
+                        ),
                         controller: kmController,
                         keyboardType: TextInputType.number,
                         onChanged: (v) => context.read<HrBloc>().add(
@@ -206,6 +216,11 @@ class _HrEditLXViewState extends State<_HrEditLXView> {
                         icon: Icons.car_crash_outlined,
                         nameForm: 'lx_edit_late',
                         nameTextField: 'late_field',
+                        isRequired: true,
+                        autoExpand: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập số cuốc xe muộn',
+                        ),
                         controller: lateController,
                         keyboardType: TextInputType.number,
                         onChanged: (v) => context.read<HrBloc>().add(
@@ -226,6 +241,11 @@ class _HrEditLXViewState extends State<_HrEditLXView> {
                         icon: Icons.access_time_outlined,
                         nameForm: 'lx_edit_minute',
                         nameTextField: 'minute_field',
+                        isRequired: true,
+                        autoExpand: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập tổng phút chậm',
+                        ),
                         controller: minuteController,
                         keyboardType: TextInputType.number,
                         onChanged: (v) => context.read<HrBloc>().add(
@@ -247,7 +267,8 @@ class _HrEditLXViewState extends State<_HrEditLXView> {
                         nameForm: 'lx_edit_reason',
                         nameTextField: 'reason_field',
                         controller: reasonController,
-                        maxLines: 3,
+                        isRequired: true,
+                        autoExpand: true,
                         onChanged: (v) => context.read<HrBloc>().add(
                           HrEvent.lxcpUpdateWork(index: 0, reasonLate: v),
                         ),
@@ -264,7 +285,7 @@ class _HrEditLXViewState extends State<_HrEditLXView> {
                         nameForm: 'lx_edit_status',
                         nameTextField: 'status_field',
                         controller: statusController,
-                        maxLines: 3,
+                        autoExpand: true,
                         onChanged: (v) => context.read<HrBloc>().add(
                           HrEvent.lxcpUpdateWork(index: 0, statusVehicle: v),
                         ),
@@ -281,7 +302,7 @@ class _HrEditLXViewState extends State<_HrEditLXView> {
                         nameForm: 'lx_edit_propose',
                         nameTextField: 'propose_field',
                         controller: proposeController,
-                        maxLines: 3,
+                        autoExpand: true,
                         onChanged: (v) => context.read<HrBloc>().add(
                           HrEvent.lxcpUpdateWork(index: 0, propose: v),
                         ),
@@ -312,17 +333,17 @@ class _HrEditLXViewState extends State<_HrEditLXView> {
                   final late = int.tryParse(lateController.text);
                   final minute = int.tryParse(minuteController.text);
 
-                  final error = ValidateHelper.validateLxReport(
-                    date: pickedDate,
-                    kmNumber: km,
-                    totalLate: late,
-                    totalTimeLate: minute,
-                  );
-
-                  if (error != null) {
-                    context.showMessage(error, type: SnackBarType.error);
-                    return;
-                  }
+                  // final error = ValidateHelper.validateLxReport(
+                  //   date: pickedDate,
+                  //   kmNumber: km,
+                  //   totalLate: late,
+                  //   totalTimeLate: minute,
+                  // );
+                  //
+                  // if (error != null) {
+                  //   context.showMessage(error, type: SnackBarType.error);
+                  //   return;
+                  // }
 
                   context.read<HrBloc>().add(
                     HrEvent.submitLXCPEditReport(pickedDate!, widget.dailyId),

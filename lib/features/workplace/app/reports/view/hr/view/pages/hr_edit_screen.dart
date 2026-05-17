@@ -6,14 +6,11 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/app_bar_common.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/enums/index.dart';
-import '../../../../../../../../common/helpers/index.dart';
-import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../bloc/hr_bloc.dart';
 
@@ -162,6 +159,10 @@ class _HrEditAdminViewState extends State<_HrEditAdminView> {
                         nameForm: 'hr_edit_date',
                         nameTimePicker: 'date_time',
                         label: 'Ngày báo cáo',
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng chọn ngày báo cáo',
+                        ),
                         inputType: InputType.date,
                         format: DateFormat('dd/MM/yyyy'),
                         initialValue: DateTime.tryParse(detail.dateReport),
@@ -310,17 +311,17 @@ class _HrEditAdminViewState extends State<_HrEditAdminView> {
                   if (pickedDate == null) return;
 
                   /// VALIDATE BUSINESS
-                  final error = ValidateHelper.validateMarketingReport(
-                    date: pickedDate,
-                    content: state.content ?? '',
-                    result: state.results ?? '',
-                    planNextDay: state.planNextDay ?? '',
-                  );
-
-                  if (error != null) {
-                    context.showMessage(error, type: SnackBarType.error);
-                    return;
-                  }
+                  // final error = ValidateHelper.validateMarketingReport(
+                  //   date: pickedDate,
+                  //   content: state.content ?? '',
+                  //   result: state.results ?? '',
+                  //   planNextDay: state.planNextDay ?? '',
+                  // );
+                  //
+                  // if (error != null) {
+                  //   context.showMessage(error, type: SnackBarType.error);
+                  //   return;
+                  // }
 
                   bloc.add(
                     HrEvent.submitEditReport(pickedDate, widget.dailyId),
