@@ -450,154 +450,149 @@ class _WeekPlanAddScreenState
 
           const SizedBox(height: 10),
 
-          FormCard(
-            title: 'Lịch trình dự kiến',
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: FormDateTimePicker(
-                        nameForm: 'plan_start_date',
-                        nameTimePicker: 'plan_start_date_picker',
-                        label: 'Bắt đầu',
-                        icon: Icons.calendar_today,
-                        inputType: InputType.date,
-                        format: DateFormat('dd/MM/yyyy'),
-                        onChanged: (value) {
-                          bloc.add(
-                            WeekPlanEvent.updateContentDates(
-                              startDate: value,
-                              endDate: state.contentEndDate,
-                              actualStartDate: state.contentActualStartDate,
-                              actualEndDate: state.contentActualEndDate,
-                              deadline: state.contentDeadline,
-                            ),
-                          );
-                        },
-                      ),
+          Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: FormDateTimePicker(
+                      nameForm: 'plan_start_date',
+                      nameTimePicker: 'plan_start_date_picker',
+                      label: 'Dự kiến BĐ',
+                      icon: Icons.calendar_today,
+                      inputType: InputType.date,
+                      format: DateFormat('dd/MM/yyyy'),
+                      onChanged: (value) {
+                        bloc.add(
+                          WeekPlanEvent.updateContentDates(
+                            startDate: value,
+                            endDate: state.contentEndDate,
+                            actualStartDate: state.contentActualStartDate,
+                            actualEndDate: state.contentActualEndDate,
+                            deadline: state.contentDeadline,
+                          ),
+                        );
+                        _autoFillExpectedHours(value, null);
+                      },
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: FormDateTimePicker(
-                        nameForm: 'plan_end_date',
-                        nameTimePicker: 'plan_end_date_picker',
-                        label: 'Kết thúc',
-                        icon: Icons.event,
-                        inputType: InputType.date,
-                        format: DateFormat('dd/MM/yyyy'),
-                        onChanged: (value) {
-                          bloc.add(
-                            WeekPlanEvent.updateContentDates(
-                              startDate: state.contentStartDate,
-                              endDate: value,
-                              actualStartDate: state.contentActualStartDate,
-                              actualEndDate: state.contentActualEndDate,
-                              deadline: state.contentDeadline,
-                            ),
-                          );
-                        },
-                      ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: FormDateTimePicker(
+                      nameForm: 'plan_end_date',
+                      nameTimePicker: 'plan_end_date_picker',
+                      label: 'Dự kiến KT',
+                      icon: Icons.event,
+                      inputType: InputType.date,
+                      format: DateFormat('dd/MM/yyyy'),
+                      firstDate: state.contentStartDate,
+                      onChanged: (value) {
+                        bloc.add(
+                          WeekPlanEvent.updateContentDates(
+                            startDate: state.contentStartDate,
+                            endDate: value,
+                            actualStartDate: state.contentActualStartDate,
+                            actualEndDate: state.contentActualEndDate,
+                            deadline: state.contentDeadline,
+                          ),
+                        );
+                        _autoFillExpectedHours(null, value);
+                      },
                     ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Expanded(
-                      child: FormInputField(
-                        nameForm: 'expected_hours',
-                        nameTextField: 'expected_hours_field',
-                        label: 'Dự kiến (giờ)',
-                        icon: Icons.access_time,
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {
-                          final hours = double.tryParse(
-                            value?.toString() ?? '',
-                          );
-                          bloc.add(
-                            WeekPlanEvent.updateHeaderTimeEstimate(hours),
-                          );
-                        },
-                      ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: FormInputField(
+                      nameForm: 'expected_hours',
+                      nameTextField: 'expected_hours_field',
+                      label: 'Dự kiến (giờ)',
+                      icon: Icons.access_time,
+                      keyboardType: TextInputType.number,
+                      onChanged: (value) {
+                        final hours = double.tryParse(value?.toString() ?? '');
+                        bloc.add(WeekPlanEvent.updateHeaderTimeEstimate(hours));
+                      },
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: FormDateTimePicker(
-                        nameForm: 'deadline',
-                        nameTimePicker: 'deadline_picker',
-                        label: 'Thời hạn',
-                        icon: Icons.flag_outlined,
-                        inputType: InputType.date,
-                        format: DateFormat('dd/MM/yyyy'),
-                        onChanged: (value) {
-                          bloc.add(
-                            WeekPlanEvent.updateContentDates(
-                              startDate: state.contentStartDate,
-                              endDate: state.contentEndDate,
-                              actualStartDate: state.contentActualStartDate,
-                              actualEndDate: state.contentActualEndDate,
-                              deadline: value,
-                            ),
-                          );
-                        },
-                      ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: FormDateTimePicker(
+                      nameForm: 'deadline',
+                      nameTimePicker: 'deadline_picker',
+                      label: 'Thời hạn',
+                      icon: Icons.flag_outlined,
+                      inputType: InputType.date,
+                      format: DateFormat('dd/MM/yyyy'),
+                      onChanged: (value) {
+                        bloc.add(
+                          WeekPlanEvent.updateContentDates(
+                            startDate: state.contentStartDate,
+                            endDate: state.contentEndDate,
+                            actualStartDate: state.contentActualStartDate,
+                            actualEndDate: state.contentActualEndDate,
+                            deadline: value,
+                          ),
+                        );
+                      },
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
+
           const SizedBox(height: 12),
-          FormCard(
-            title: 'Thực tế thực hiện',
-            child: Row(
-              children: [
-                Expanded(
-                  child: FormDateTimePicker(
-                    nameForm: 'actual_start_date',
-                    nameTimePicker: 'actual_start_date_picker',
-                    label: 'Bắt đầu',
-                    icon: Icons.play_arrow_outlined,
-                    inputType: InputType.date,
-                    format: DateFormat('dd/MM/yyyy'),
-                    onChanged: (value) {
-                      bloc.add(
-                        WeekPlanEvent.updateContentDates(
-                          startDate: state.contentStartDate,
-                          endDate: state.contentEndDate,
-                          actualStartDate: value,
-                          actualEndDate: state.contentActualEndDate,
-                          deadline: state.contentDeadline,
-                        ),
-                      );
-                    },
-                  ),
+          Row(
+            children: [
+              Expanded(
+                child: FormDateTimePicker(
+                  nameForm: 'actual_start_date',
+                  nameTimePicker: 'actual_start_date_picker',
+                  label: 'Thực tế BĐ',
+                  icon: Icons.play_arrow_outlined,
+                  inputType: InputType.date,
+                  format: DateFormat('dd/MM/yyyy'),
+                  onChanged: (value) {
+                    bloc.add(
+                      WeekPlanEvent.updateContentDates(
+                        startDate: state.contentStartDate,
+                        endDate: state.contentEndDate,
+                        actualStartDate: value,
+                        actualEndDate: state.contentActualEndDate,
+                        deadline: state.contentDeadline,
+                      ),
+                    );
+                  },
                 ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: FormDateTimePicker(
-                    nameForm: 'actual_end_date',
-                    nameTimePicker: 'actual_end_date_picker',
-                    label: 'Kết thúc',
-                    icon: Icons.stop_outlined,
-                    inputType: InputType.date,
-                    format: DateFormat('dd/MM/yyyy'),
-                    onChanged: (value) {
-                      bloc.add(
-                        WeekPlanEvent.updateContentDates(
-                          startDate: state.contentStartDate,
-                          endDate: state.contentEndDate,
-                          actualStartDate: state.contentActualStartDate,
-                          actualEndDate: value,
-                          deadline: state.contentDeadline,
-                        ),
-                      );
-                    },
-                  ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: FormDateTimePicker(
+                  nameForm: 'actual_end_date',
+                  nameTimePicker: 'actual_end_date_picker',
+                  label: 'Thực tế KT',
+                  icon: Icons.stop_outlined,
+                  inputType: InputType.date,
+                  format: DateFormat('dd/MM/yyyy'),
+                  firstDate: state.contentActualStartDate,
+                  onChanged: (value) {
+                    bloc.add(
+                      WeekPlanEvent.updateContentDates(
+                        startDate: state.contentStartDate,
+                        endDate: state.contentEndDate,
+                        actualStartDate: state.contentActualStartDate,
+                        actualEndDate: value,
+                        deadline: state.contentDeadline,
+                      ),
+                    );
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
@@ -1349,6 +1344,28 @@ class _WeekPlanAddScreenState
     );
   }
 
+  /// Tự động tính expected_hours = số ngày × 8 giờ khi BĐ/KT dự kiến thay đổi.
+  void _autoFillExpectedHours(DateTime? newStart, DateTime? newEnd) {
+    final start = newStart ?? bloc.state.contentStartDate;
+    final end = newEnd ?? bloc.state.contentEndDate;
+    if (start == null || end == null) return;
+
+    final startDate = DateTime(start.year, start.month, start.day);
+    final endDate = DateTime(end.year, end.month, end.day);
+    if (endDate.isBefore(startDate)) return;
+
+    final days = endDate.difference(startDate).inDays + 1;
+    final hours = days * 8.0;
+
+    // Update BLoC state
+    bloc.add(WeekPlanEvent.updateHeaderTimeEstimate(hours));
+
+    // Update form field để hiển thị và submit đúng giá trị
+    _formKey.currentState?.patchValue({
+      'expected_hours': hours.toInt().toString(),
+    });
+  }
+
   //---(_Step: Incident)---//
   Widget _buildIncidentStep(WeekPlanState state) {
     final hasIncidents = state.incidents.isNotEmpty;
@@ -1672,6 +1689,32 @@ class _WeekPlanAddScreenState
         _goToStep(1); // step Sự cố & Khắc phục
         return;
       }
+    }
+
+    // Validate ngày tháng: KT dự kiến >= BĐ dự kiến
+    final planStart = bloc.state.contentStartDate;
+    final planEnd = bloc.state.contentEndDate;
+    if (planStart != null && planEnd != null && planEnd.isBefore(planStart)) {
+      showMessage(
+        context,
+        'Ngày kết thúc dự kiến phải lớn hơn hoặc bằng ngày bắt đầu dự kiến',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    // Validate ngày thực tế: KT thực tế >= BĐ thực tế
+    final actualStart = bloc.state.contentActualStartDate;
+    final actualEnd = bloc.state.contentActualEndDate;
+    if (actualStart != null &&
+        actualEnd != null &&
+        actualEnd.isBefore(actualStart)) {
+      showMessage(
+        context,
+        'Ngày kết thúc thực tế phải lớn hơn hoặc bằng ngày bắt đầu thực tế',
+        type: SnackBarType.error,
+      );
+      return;
     }
 
     final vals = formState.value;

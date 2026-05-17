@@ -412,6 +412,7 @@ class _WeekPlanDetailScreenState
                       inputType: InputType.date,
                       format: DateFormat('dd/MM/yyyy'),
                       initialValue: state.contentEndDate,
+                      firstDate: state.contentStartDate,
                       onChanged: (value) {
                         bloc.add(WeekPlanEvent.updateContentDates(
                           startDate: state.contentStartDate,
@@ -500,6 +501,7 @@ class _WeekPlanDetailScreenState
                   inputType: InputType.date,
                   format: DateFormat('dd/MM/yyyy'),
                   initialValue: state.contentActualEndDate,
+                  firstDate: state.contentActualStartDate,
                   onChanged: (value) {
                     bloc.add(WeekPlanEvent.updateContentDates(
                       startDate: state.contentStartDate,
@@ -1462,6 +1464,61 @@ class _WeekPlanDetailScreenState
 
     formState.save();
     if (!formState.validate()) return;
+
+    // Validate checklist 100%
+    final total = bloc.state.detailChecklists.length;
+    if (total > 0) {
+      final done = bloc.state.detailChecklists.where((d) => d.isDone ?? false).length;
+      if (done < total) {
+        showMessage(
+          context,
+          'Vui lòng hoàn thành tất cả checklist trước khi cập nhật',
+          type: SnackBarType.error,
+        );
+        final checklistStep = _isBugTask(bloc.state) ? 4 : 3;
+        _goToStep(checklistStep);
+        return;
+      }
+    }
+
+    // Validate Sự cố & Khắc phục khi là bug task
+    if (_isBugTask(bloc.state)) {
+      final rs = bloc.state.contentReasonSolution ?? '';
+      final charCount = rs.replaceAll(' ', '').length;
+      if (charCount < 10) {
+        showMessage(
+          context,
+          'Vui lòng nhập nguyên nhân và phương án xử lý (tối thiểu 10 ký tự)',
+          type: SnackBarType.error,
+        );
+        _goToStep(1);
+        return;
+      }
+    }
+
+    // Validate ngày dự kiến: KT >= BĐ
+    final planStart = bloc.state.contentStartDate;
+    final planEnd = bloc.state.contentEndDate;
+    if (planStart != null && planEnd != null && planEnd.isBefore(planStart)) {
+      showMessage(
+        context,
+        'Ngày kết thúc dự kiến phải lớn hơn hoặc bằng ngày bắt đầu dự kiến',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    // Validate ngày thực tế: KT >= BĐ
+    final actualStart = bloc.state.contentActualStartDate;
+    final actualEnd = bloc.state.contentActualEndDate;
+    if (actualStart != null && actualEnd != null && actualEnd.isBefore(actualStart)) {
+      showMessage(
+        context,
+        'Ngày kết thúc thực tế phải lớn hơn hoặc bằng ngày bắt đầu thực tế',
+        type: SnackBarType.error,
+      );
+      return;
+    }
 
     final vals = formState.value;
 
