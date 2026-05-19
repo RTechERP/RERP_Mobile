@@ -9,6 +9,7 @@ class PersonalAssetState extends BaseBlocState {
   final bool isDetailLoading;
   final int propertyCategoryFilter;
   final String assetSearchQuery;
+  final int? departmentId;
 
   const PersonalAssetState({
     required super.status,
@@ -20,6 +21,7 @@ class PersonalAssetState extends BaseBlocState {
     this.isDetailLoading = false,
     this.propertyCategoryFilter = -1,
     this.assetSearchQuery = '',
+    this.departmentId,
   });
 
   factory PersonalAssetState.init() => const PersonalAssetState(
@@ -31,6 +33,7 @@ class PersonalAssetState extends BaseBlocState {
         isDetailLoading: false,
         propertyCategoryFilter: -1,
         assetSearchQuery: '',
+        departmentId: null,
       );
 
   @override
@@ -44,5 +47,6 @@ class PersonalAssetState extends BaseBlocState {
         isDetailLoading,
         propertyCategoryFilter,
         assetSearchQuery,
+        departmentId,
       ];
 }

@@ -91,6 +91,7 @@ class _PersonalPropertyDetailScreenState
                 _HeaderCard(
                   item: widget.item,
                   headerStatus: _headerStatus(),
+                  departmentId: state.departmentId,
                   onApprove: (approveType) {
                     context.read<PersonalAssetBloc>().add(
                           PersonalAssetEvent.approveProperty(
@@ -129,12 +130,14 @@ class _HeaderCard extends StatelessWidget {
     required this.headerStatus,
     required this.onApprove,
     required this.isApproving,
+    required this.departmentId,
   });
 
   final PersonalPropertyItem item;
   final _ApproveStatus headerStatus;
   final void Function(int approveType) onApprove;
   final bool isApproving;
+  final int? departmentId;
 
   static final _dateFmt = DateFormat('dd/MM/yyyy');
 
@@ -301,20 +304,24 @@ class _HeaderCard extends StatelessWidget {
                       label: 'Bản thân',
                       isApproved: item.isApprovedPersonalProperty ?? false,
                       isApproving: isApproving,
+                      showButton: !(item.isApprovedPersonalProperty ?? false),
                       onApprove: () => onApprove(1),
+                    ),
+                    const SizedBox(width: 10),
+                    _ApproveChip(
+                      label: 'HR',
+                      isApproved: item.isApproved ?? false,
+                      isApproving: isApproving,
+                      showButton: departmentId == 6 && !(item.isApproved ?? false),
+                      onApprove: () => onApprove(3),
                     ),
                     const SizedBox(width: 10),
                     _ApproveChip(
                       label: 'Kế toán',
                       isApproved: item.isApproveAccountant ?? false,
                       isApproving: isApproving,
-                      onApprove: () => onApprove(2),
-                    ),
-                    const SizedBox(width: 10),
-                    _ApproveChip(
-                      label: 'Hr',
-                      isApproved: item.isApproved ?? false,
-                      isApproving: isApproving,
+                      showButton:
+                          departmentId == 5 && !(item.isApproveAccountant ?? false),
                       onApprove: () => onApprove(2),
                     ),
                   ],
@@ -337,19 +344,21 @@ class _ApproveChip extends StatelessWidget {
     required this.label,
     required this.isApproved,
     required this.isApproving,
+    required this.showButton,
     required this.onApprove,
   });
 
   final String label;
   final bool isApproved;
   final bool isApproving;
+  final bool showButton;
   final VoidCallback onApprove;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
         decoration: BoxDecoration(
           color: isApproved
               ? AppColors.stateSuccessColor.withValues(alpha: 0.08)
@@ -362,32 +371,42 @@ class _ApproveChip extends StatelessWidget {
             width: 1,
           ),
         ),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              isApproved ? Icons.check_circle : Icons.pending_outlined,
-              size: 18,
-              color: isApproved ? AppColors.stateSuccessColor : AppColors.gray,
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Text(
-                label,
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                  color:
-                      isApproved ? AppColors.stateSuccessColor : AppColors.heading,
+            Row(
+              children: [
+                Icon(
+                  isApproved ? Icons.check_circle : Icons.pending_outlined,
+                  size: 16,
+                  color: isApproved ? AppColors.stateSuccessColor : AppColors.gray,
                 ),
-              ),
+                const SizedBox(width: 6),
+                Flexible(
+                  child: Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color:
+                          isApproved ? AppColors.stateSuccessColor : AppColors.heading,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
             ),
-            if (!isApproved)
+            if (showButton) ...[
+              const SizedBox(height: 6),
               SizedBox(
                 height: 26,
+                width: double.infinity,
                 child: OutlinedButton(
                   onPressed: isApproving ? null : onApprove,
                   style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
                     minimumSize: Size.zero,
                     side:
                         const BorderSide(color: AppColors.primaryERP, width: 1),
@@ -414,6 +433,7 @@ class _ApproveChip extends StatelessWidget {
                         ),
                 ),
               ),
+            ],
           ],
         ),
       ),

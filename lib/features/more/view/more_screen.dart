@@ -82,12 +82,12 @@ class MoreScreen extends StatelessWidget {
                   title: 'Cài đặt',
                   icon: Icons.settings_outlined,
                   children: [
-                    _SettingsTile(
-                      icon: Icons.tune_outlined,
-                      title: 'Cài đặt chung',
-                      subtitle: 'Ngôn ngữ, giao diện, đơn vị',
-                      onTap: () {},
-                    ),
+                    // _SettingsTile(
+                    //   icon: Icons.tune_outlined,
+                    //   title: 'Cài đặt chung',
+                    //   subtitle: 'Ngôn ngữ, giao diện, đơn vị',
+                    //   onTap: () {},
+                    // ),
                     _SettingsTile(
                       icon: Icons.notifications_outlined,
                       title: 'Thông báo',
@@ -96,13 +96,13 @@ class MoreScreen extends StatelessWidget {
                         context.push(RouteNames.notificationSettings);
                       },
                     ),
-                    _SettingsTile(
-                      icon: Icons.lock_outline,
-                      title: 'Bảo mật & quyền riêng tư',
-                      subtitle: 'Đổi mật khẩu, xác thực',
-                      onTap: () {},
-                      showDivider: false,
-                    ),
+                    // _SettingsTile(
+                    //   icon: Icons.lock_outline,
+                    //   title: 'Bảo mật & quyền riêng tư',
+                    //   subtitle: 'Đổi mật khẩu, xác thực',
+                    //   onTap: () {},
+                    //   showDivider: false,
+                    // ),
                   ],
                 ),
 
@@ -114,12 +114,12 @@ class MoreScreen extends StatelessWidget {
                   title: 'Hỗ trợ',
                   icon: Icons.help_outline,
                   children: [
-                    _SettingsTile(
-                      icon: Icons.menu_book_outlined,
-                      title: 'Hướng dẫn sử dụng',
-                      subtitle: 'Tìm hiểu các tính năng',
-                      onTap: () {},
-                    ),
+                    // _SettingsTile(
+                    //   icon: Icons.menu_book_outlined,
+                    //   title: 'Hướng dẫn sử dụng',
+                    //   subtitle: 'Tìm hiểu các tính năng',
+                    //   onTap: () {},
+                    // ),
                     _SettingsTile(
                       icon: Icons.chat_bubble_outline_outlined,
                       title: 'Liên hệ hỗ trợ',
@@ -255,24 +255,6 @@ class _ProfileCard extends StatelessWidget {
                   ],
                 ),
               ],
-            ),
-          ),
-
-          // Nút chỉnh sửa
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              width: 36,
-              height: 36,
-              decoration: BoxDecoration(
-                color: AppColors.bgCard,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Icon(
-                Icons.edit_outlined,
-                color: AppColors.heading,
-                size: 18,
-              ),
             ),
           ),
         ],
@@ -448,11 +430,11 @@ class _SettingsTile extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Icon(
-                  Icons.chevron_right,
-                  color: AppColors.gray,
-                  size: 22,
-                ),
+                // const Icon(
+                //   Icons.chevron_right,
+                //   color: AppColors.gray,
+                //   size: 22,
+                // ),
               ],
             ),
           ),

@@ -10,8 +10,6 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../common/utils/bottom_bar.dart';
 import '../../../routes/route_names.dart';
 import '../../auth/view/bloc/auth_bloc.dart';
-import '../../contact/view/contact_screen.dart';
-import '../../message/view/message_screen.dart';
 import '../../more/view/more_screen.dart';
 import '../../workplace/view/workspace_screen.dart';
 import 'newsfeed/newsfeed_screen.dart';
@@ -34,7 +32,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    _tabController = PersistentTabController(initialIndex: 2);
+    _tabController = PersistentTabController(initialIndex: 1);
   }
 
   @override
@@ -51,16 +49,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
         context: context,
         controller: _tabController,
         screens: const [
-          MessageScreen(),
-          WorkPlaceScreen(),
+          // MessageScreen(),
           NewsFeedScreen(),
-          ContactScreen(),
+          WorkPlaceScreen(),
+          // ContactScreen(),
           MoreScreen(),
         ],
         items: [
+          // navItem(
+          //   Icons.message_outlined,
+          //   'dashboard.chat'.tr(),
+          //   activeColorPrimary: Colors.deepOrange,
+          // ),
           navItem(
-            Icons.message_outlined,
-            'dashboard.chat'.tr(),
+            Icons.dashboard,
+            'dashboard.feeds'.tr(),
             activeColorPrimary: Colors.deepOrange,
           ),
           navItem(
@@ -68,16 +71,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
             'dashboard.workplace'.tr(),
             activeColorPrimary: Colors.deepOrange,
           ),
-          navItem(
-            Icons.dashboard,
-            'dashboard.feeds'.tr(),
-            activeColorPrimary: Colors.deepOrange,
-          ),
-          navItem(
-            Icons.contact_phone_outlined,
-            'dashboard.contacts'.tr(),
-            activeColorPrimary: Colors.deepOrange,
-          ),
+          // navItem(
+          //   Icons.contact_phone_outlined,
+          //   'dashboard.contacts'.tr(),
+          //   activeColorPrimary: Colors.deepOrange,
+          // ),
           navItem(
             Icons.person,
             'dashboard.personal'.tr(),

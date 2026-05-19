@@ -44,27 +44,27 @@ class NewsFeedScreen extends StatelessWidget {
             ),
           ],
         ),
-        actions: [
-          Stack(
-            clipBehavior: Clip.none,
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.notifications_none_outlined,
-                  color: AppColors.heading,
-                  size: 26,
-                ),
-                onPressed: () {},
-              ),
-              const Positioned(
-                right: 4,
-                top: 8,
-                child: _NotificationDot(),
-              ),
-            ],
-          ),
-          const SizedBox(width: 4),
-        ],
+        // actions: [
+        //   Stack(
+        //     clipBehavior: Clip.none,
+        //     children: [
+        //       IconButton(
+        //         icon: const Icon(
+        //           Icons.notifications_none_outlined,
+        //           color: AppColors.heading,
+        //           size: 26,
+        //         ),
+        //         onPressed: () {},
+        //       ),
+        //       const Positioned(
+        //         right: 4,
+        //         top: 8,
+        //         child: _NotificationDot(),
+        //       ),
+        //     ],
+        //   ),
+        //   const SizedBox(width: 4),
+        // ],
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -152,22 +152,22 @@ class _SectionHeader extends StatelessWidget {
             color: AppColors.heading,
           ),
         ),
-        TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.zero,
-            minimumSize: const Size(0, 0),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          ),
-          child: const Text(
-            'Xem tất cả',
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-              color: AppColors.primaryERP,
-            ),
-          ),
-        ),
+        // TextButton(
+        //   onPressed: () {},
+        //   style: TextButton.styleFrom(
+        //     padding: EdgeInsets.zero,
+        //     minimumSize: const Size(0, 0),
+        //     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        //   ),
+        //   child: const Text(
+        //     'Xem tất cả',
+        //     style: TextStyle(
+        //       fontSize: 13,
+        //       fontWeight: FontWeight.w600,
+        //       color: AppColors.primaryERP,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
@@ -386,42 +386,42 @@ class _FeedCardContent extends StatelessWidget {
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 5,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: const Color(0xFFE0E0E8), width: 1),
-                ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'Xem chi tiết',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.heading,
-                      ),
-                    ),
-                    SizedBox(width: 3),
-                    Icon(
-                      Icons.arrow_forward,
-                      size: 13,
-                      color: AppColors.heading,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          // const SizedBox(height: 12),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.end,
+          //   children: [
+          //     Container(
+          //       padding: const EdgeInsets.symmetric(
+          //         horizontal: 10,
+          //         vertical: 5,
+          //       ),
+          //       decoration: BoxDecoration(
+          //         color: AppColors.white,
+          //         borderRadius: BorderRadius.circular(20),
+          //         border: Border.all(color: const Color(0xFFE0E0E8), width: 1),
+          //       ),
+          //       child: const Row(
+          //         mainAxisSize: MainAxisSize.min,
+          //         children: [
+          //           Text(
+          //             'Xem chi tiết',
+          //             style: TextStyle(
+          //               fontSize: 12,
+          //               fontWeight: FontWeight.w600,
+          //               color: AppColors.heading,
+          //             ),
+          //           ),
+          //           SizedBox(width: 3),
+          //           Icon(
+          //             Icons.arrow_forward,
+          //             size: 13,
+          //             color: AppColors.heading,
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );
