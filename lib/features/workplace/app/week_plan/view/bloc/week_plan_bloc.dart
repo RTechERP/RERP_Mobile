@@ -1416,6 +1416,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
 
       await res.fold(
         (err) async {
+          _log.logE('SaveTask error: $err | Payload: $payload');
           emit(
             state.copyWith(
               isSubmitting: false,
@@ -1614,21 +1615,27 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       'EmployeeIDRequest': state.headerAssignerId ?? userId,
       'TypeProjectItem': state.headerTaskCategory ?? 0,
       'Employee': employeeIds,
+      'AssignedToEmployeeID': state.contentAssigneeId ?? userId,
       'Status': state.headerStatus ?? 0,
       'ProjectID': state.headerProjectId ?? 0,
       'ActualStartDate': state.contentActualStartDate?.toIso8601String(),
       'ActualEndDate': state.contentActualEndDate?.toIso8601String(),
       'EmployeeRelate': employeeRelateIds,
       'IsPersonalProject': state.headerIsPersonalTask,
-      'ParentID': state.headerParentTaskId,
+      'ParentID': state.headerParentTaskId ?? 0,
       'ProjectTaskTypeID': state.headerWorkType ?? 0,
       'Priority': state.headerPriority > 0 ? state.headerPriority : 1,
       'EstimatedTime': state.headerTimeEstimate,
       'NeedApprove': !state.headerIsPersonalTask,
+      'Deadline': state.contentDeadline?.toIso8601String(),
+      'TaskComplexity': state.headerComplexity,
+      'IsAdditional': false,
+      'ProjectTaskResult': state.contentResult ?? '',
       'Description': state.contentDescription ?? '',
       if (_isBugTaskType(state))
         'DescriptionSolution': state.contentReasonSolution ?? '',
-      'PauseReason': state.pauseReason,
+      if (state.pauseReason != null)
+        'PauseReason': state.pauseReason,
       'ProjectTaskChecklists': <int>[],
       'Links': <int>[],
       'Files': <int>[],
