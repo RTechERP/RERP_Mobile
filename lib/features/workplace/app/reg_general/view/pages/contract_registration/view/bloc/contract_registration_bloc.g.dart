@@ -1,0 +1,117 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'contract_registration_bloc.dart';
+
+// **************************************************************************
+// CopyWithGenerator
+// **************************************************************************
+
+abstract class _$ContractRegistrationStateCWProxy {
+  ContractRegistrationState status(BaseStateStatus status);
+
+  ContractRegistrationState message(String? message);
+
+  ContractRegistrationState contracts(List<ContractResponseItem> contracts);
+
+  ContractRegistrationState keyword(String? keyword);
+
+  ContractRegistrationState dateStart(DateTime? dateStart);
+
+  ContractRegistrationState dateEnd(DateTime? dateEnd);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContractRegistrationState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ContractRegistrationState(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ContractRegistrationState call({
+    BaseStateStatus? status,
+    String? message,
+    List<ContractResponseItem>? contracts,
+    String? keyword,
+    DateTime? dateStart,
+    DateTime? dateEnd,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfContractRegistrationState.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfContractRegistrationState.copyWith.fieldName(...)`
+class _$ContractRegistrationStateCWProxyImpl
+    implements _$ContractRegistrationStateCWProxy {
+  const _$ContractRegistrationStateCWProxyImpl(this._value);
+
+  final ContractRegistrationState _value;
+
+  @override
+  ContractRegistrationState status(BaseStateStatus status) =>
+      this(status: status);
+
+  @override
+  ContractRegistrationState message(String? message) => this(message: message);
+
+  @override
+  ContractRegistrationState contracts(List<ContractResponseItem> contracts) =>
+      this(contracts: contracts);
+
+  @override
+  ContractRegistrationState keyword(String? keyword) => this(keyword: keyword);
+
+  @override
+  ContractRegistrationState dateStart(DateTime? dateStart) =>
+      this(dateStart: dateStart);
+
+  @override
+  ContractRegistrationState dateEnd(DateTime? dateEnd) =>
+      this(dateEnd: dateEnd);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContractRegistrationState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ContractRegistrationState(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ContractRegistrationState call({
+    Object? status = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+    Object? contracts = const $CopyWithPlaceholder(),
+    Object? keyword = const $CopyWithPlaceholder(),
+    Object? dateStart = const $CopyWithPlaceholder(),
+    Object? dateEnd = const $CopyWithPlaceholder(),
+  }) {
+    return ContractRegistrationState(
+      status: status == const $CopyWithPlaceholder() || status == null
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as BaseStateStatus,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+      contracts: contracts == const $CopyWithPlaceholder() || contracts == null
+          ? _value.contracts
+          // ignore: cast_nullable_to_non_nullable
+          : contracts as List<ContractResponseItem>,
+      keyword: keyword == const $CopyWithPlaceholder()
+          ? _value.keyword
+          // ignore: cast_nullable_to_non_nullable
+          : keyword as String?,
+      dateStart: dateStart == const $CopyWithPlaceholder()
+          ? _value.dateStart
+          // ignore: cast_nullable_to_non_nullable
+          : dateStart as DateTime?,
+      dateEnd: dateEnd == const $CopyWithPlaceholder()
+          ? _value.dateEnd
+          // ignore: cast_nullable_to_non_nullable
+          : dateEnd as DateTime?,
+    );
+  }
+}
+
+extension $ContractRegistrationStateCopyWith on ContractRegistrationState {
+  /// Returns a callable class that can be used as follows: `instanceOfContractRegistrationState.copyWith(...)` or like so:`instanceOfContractRegistrationState.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ContractRegistrationStateCWProxy get copyWith =>
+      _$ContractRegistrationStateCWProxyImpl(this);
+}

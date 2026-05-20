@@ -18,6 +18,10 @@ import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/da
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/contract_registration/data/datasource/service/contract_registration_service.dart';
+import '../features/workplace/app/reg_general/view/pages/contract_registration/data/repository/contract_registration_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/contract_registration/data/repository/contract_registration_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/contract_registration/view/bloc/contract_registration_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/datasource/service/meeting_room_service.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo_impl.dart';
@@ -180,6 +184,10 @@ void configureDependencies() {
     () => StationeryService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<ContractRegistrationService>(
+    () => ContractRegistrationService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<WeekPlanService>(
     () => WeekPlanService(getIt<Dio>()),
   );
@@ -253,6 +261,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<StationeryRepo>(
     () => StationeryRepoImpl(getIt<StationeryService>()),
+  );
+
+  getIt.registerLazySingleton<ContractRegistrationRepo>(
+    () => ContractRegistrationRepoImpl(getIt<ContractRegistrationService>()),
   );
 
   getIt.registerLazySingleton<WeekPlanRepo>(
@@ -379,6 +391,14 @@ void configureDependencies() {
   getIt.registerFactory<StationeryBloc>(
     () => StationeryBloc(
       getIt<StationeryRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<ContractRegistrationBloc>(
+    () => ContractRegistrationBloc(
+      getIt<ContractRegistrationRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

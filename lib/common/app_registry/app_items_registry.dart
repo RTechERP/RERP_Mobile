@@ -170,15 +170,15 @@ class AppItemRegistry {
     //   imageUrl: AppImages.reg_general_idea,
     // ),
     //
-    // AppItemModel(
-    //   id: 'reg_general:contract',
-    //   name: 'reg_general.contract'.tr(),
-    //   iconCodePoint: Icons.description_outlined.codePoint,
-    //   iconFontFamily: 'MaterialIcons',
-    //   tab: 'reg_general',
-    //   route: '',
-    //   imageUrl: AppImages.reg_general_contract,
-    // ),
+    AppItemModel(
+      id: 'reg_general:contract',
+      name: 'reg_general.contract'.tr(),
+      iconCodePoint: Icons.description_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_general',
+      route: RouteNames.contractRegistration,
+      imageUrl: AppImages.reg_general_contract,
+    ),
 
     AppItemModel(
       id: 'reg_general:stationery',

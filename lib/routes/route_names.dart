@@ -170,6 +170,9 @@ class RouteNames {
   static const stationeryDetail = '/reg_general/stationery/detail';
   static const stationeryEdit = '/reg_general/stationery/edit';
 
+  // Contract Registration
+  static const contractRegistration = '/reg_general/contract_registration';
+
   // More - Settings
   static const notificationSettings = '/more/notification_settings';
 

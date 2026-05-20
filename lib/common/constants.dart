@@ -327,4 +327,7 @@ class ApiEndPoint {
   // Timekeeping
   static const String getTimekeeping = '/ChamCong';
   static const String getTimekeepingDays = '/ChamCong/get-days';
+
+  // Contract
+  static const String getContract = '/RegisterContract/get-all-data';
 }

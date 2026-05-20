@@ -4,6 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/bloc/contract_registration_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/pages/contract_registration_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
@@ -969,6 +971,22 @@ class AppRouter {
                 body: const Center(child: Text('Không có dữ liệu VPP.')),
               );
             },
+          ),
+        ],
+      ),
+
+      //---(ContractRegistration)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<ContractRegistrationBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.contractRegistration,
+            builder: (context, state) => const ContractRegistrationScreen(),
           ),
         ],
       ),
