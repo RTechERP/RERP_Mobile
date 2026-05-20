@@ -15,6 +15,8 @@ class ContractRegistrationState extends BaseBlocState {
   final bool updateSuccess;
   final bool isDetailLoading;
   final DetailContractResponseItem? detail;
+  final bool isDeleting;
+  final bool deleteSuccess;
 
   const ContractRegistrationState({
     required super.status,
@@ -32,6 +34,8 @@ class ContractRegistrationState extends BaseBlocState {
     this.updateSuccess = false,
     this.isDetailLoading = false,
     this.detail,
+    this.isDeleting = false,
+    this.deleteSuccess = false,
   });
 
   factory ContractRegistrationState.init() => const ContractRegistrationState(
@@ -49,6 +53,8 @@ class ContractRegistrationState extends BaseBlocState {
     updateSuccess: false,
     isDetailLoading: false,
     detail: null,
+    isDeleting: false,
+    deleteSuccess: false,
   );
 
   @override
@@ -68,5 +74,7 @@ class ContractRegistrationState extends BaseBlocState {
     updateSuccess,
     isDetailLoading,
     detail,
+    isDeleting,
+    deleteSuccess,
   ];
 }

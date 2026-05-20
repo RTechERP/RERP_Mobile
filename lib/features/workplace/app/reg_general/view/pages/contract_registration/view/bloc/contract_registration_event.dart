@@ -49,4 +49,11 @@ class ContractRegistrationEvent with _$ContractRegistrationEvent {
     required bool isScan,
     String? folderPath,
   }) = _UpdateContract;
+
+  const factory ContractRegistrationEvent.deleteContract({
+    required int id,
+  }) = _DeleteContract;
+
+  const factory ContractRegistrationEvent.clearDeleteSuccess() =
+      _ClearDeleteSuccess;
 }

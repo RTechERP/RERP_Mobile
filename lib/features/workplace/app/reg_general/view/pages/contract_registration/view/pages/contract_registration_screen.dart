@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
@@ -10,6 +11,7 @@ import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
+import '../../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
@@ -17,6 +19,7 @@ import '../../../booking_vehicle/view/widgets/date_header.dart';
 import '../../../booking_vehicle/view/widgets/date_range_picker.dart';
 import '../bloc/contract_registration_bloc.dart';
 import '../widgets/contract_registration_card.dart';
+import '../../data/datasource/models/contract_registration_model.dart';
 
 class ContractRegistrationScreen extends StatefulWidget {
   const ContractRegistrationScreen({super.key});
@@ -97,14 +100,32 @@ class _ContractRegistrationScreenState
     setState(() => _isSearchActive = false);
   }
 
+  Future<void> _openDetail(BuildContext context, ContractResponseItem item) async {
+    final edited = await context.push<bool>(
+      RouteNames.contractRegistrationDetail,
+      extra: item,
+    );
+    if (!context.mounted) return;
+    if (edited == true) {
+      bloc.add(const ContractRegistrationEvent.init());
+    }
+  }
+
   @override
   Widget renderUI(BuildContext context) {
     return BlocListener<ContractRegistrationBloc, ContractRegistrationState>(
       listenWhen: (prev, curr) =>
-          prev.status != curr.status || prev.message != curr.message,
+          prev.status != curr.status ||
+          prev.message != curr.message ||
+          prev.deleteSuccess != curr.deleteSuccess,
       listener: (context, state) {
         if (state.status == BaseStateStatus.failed && state.message != null) {
           context.showMessage(state.message!, type: SnackBarType.error);
+        }
+        if (state.deleteSuccess) {
+          context.showMessage(state.message ?? 'Xoá thành công', type: SnackBarType.success);
+          bloc.add(const ContractRegistrationEvent.init());
+          bloc.add(const ContractRegistrationEvent.clearDeleteSuccess());
         }
       },
       child: BlocBuilder<ContractRegistrationBloc, ContractRegistrationState>(
@@ -252,18 +273,49 @@ class _ContractRegistrationScreenState
         separatorBuilder: (_, __) => const SizedBox(height: 10),
         itemBuilder: (context, index) {
           final item = state.contracts[index];
-          return ContractRegistrationCard(
-            item: item,
-            onTap: () async {
-              final edited = await context.push<bool>(
-                RouteNames.contractRegistrationDetail,
-                extra: item,
-              );
-              if (!context.mounted) return;
-              if (edited == true) {
-                bloc.add(const ContractRegistrationEvent.init());
-              }
-            },
+          final canDelete = item.status != 1 && item.status != 2 && item.status != 3;
+
+          if (!canDelete) {
+            return ContractRegistrationCard(
+              item: item,
+              onTap: () => _openDetail(context, item),
+            );
+          }
+
+          return Slidable(
+            key: ValueKey('contract_${item.id}'),
+            groupTag: 'contract_slidable',
+            endActionPane: ActionPane(
+              motion: const DrawerMotion(),
+              extentRatio: 0.28,
+              children: [
+                SlidableAction(
+                  onPressed: (actionContext) async {
+                    Slidable.of(actionContext)?.close();
+                    final confirmed = await DialogService.showConfirmDelete(
+                      context: context,
+                    );
+                    if (!context.mounted) return;
+                    if (confirmed) {
+                      bloc.add(ContractRegistrationEvent.deleteContract(id: item.id ?? 0));
+                    }
+                  },
+                  backgroundColor: AppColors.alert,
+                  foregroundColor: Colors.white,
+                  icon: Icons.delete_outline,
+                  label: 'Xoá',
+                ),
+              ],
+            ),
+            child: Builder(
+              builder: (slidableCtx) => ContractRegistrationCard(
+                item: item,
+                onTap: () {
+                  Slidable.of(slidableCtx)?.close();
+                  _openDetail(context, item);
+                },
+              ),
+            ),
           );
         },
       ),

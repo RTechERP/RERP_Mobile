@@ -39,6 +39,10 @@ abstract class _$ContractRegistrationStateCWProxy {
 
   ContractRegistrationState detail(DetailContractResponseItem? detail);
 
+  ContractRegistrationState isDeleting(bool isDeleting);
+
+  ContractRegistrationState deleteSuccess(bool deleteSuccess);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContractRegistrationState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -61,6 +65,8 @@ abstract class _$ContractRegistrationStateCWProxy {
     bool? updateSuccess,
     bool? isDetailLoading,
     DetailContractResponseItem? detail,
+    bool? isDeleting,
+    bool? deleteSuccess,
   });
 }
 
@@ -132,6 +138,14 @@ class _$ContractRegistrationStateCWProxyImpl
       this(detail: detail);
 
   @override
+  ContractRegistrationState isDeleting(bool isDeleting) =>
+      this(isDeleting: isDeleting);
+
+  @override
+  ContractRegistrationState deleteSuccess(bool deleteSuccess) =>
+      this(deleteSuccess: deleteSuccess);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContractRegistrationState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -155,6 +169,8 @@ class _$ContractRegistrationStateCWProxyImpl
     Object? updateSuccess = const $CopyWithPlaceholder(),
     Object? isDetailLoading = const $CopyWithPlaceholder(),
     Object? detail = const $CopyWithPlaceholder(),
+    Object? isDeleting = const $CopyWithPlaceholder(),
+    Object? deleteSuccess = const $CopyWithPlaceholder(),
   }) {
     return ContractRegistrationState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -224,6 +240,16 @@ class _$ContractRegistrationStateCWProxyImpl
           ? _value.detail
           // ignore: cast_nullable_to_non_nullable
           : detail as DetailContractResponseItem?,
+      isDeleting:
+          isDeleting == const $CopyWithPlaceholder() || isDeleting == null
+              ? _value.isDeleting
+              // ignore: cast_nullable_to_non_nullable
+              : isDeleting as bool,
+      deleteSuccess:
+          deleteSuccess == const $CopyWithPlaceholder() || deleteSuccess == null
+              ? _value.deleteSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : deleteSuccess as bool,
     );
   }
 }

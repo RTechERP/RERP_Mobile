@@ -84,6 +84,8 @@ class ContractRegistrationBloc
               isScan: isScan,
               folderPath: folderPath,
             ),
+        deleteContract: (id) => _onDeleteContract(emit, id: id),
+        clearDeleteSuccess: () => _onClearDeleteSuccess(emit),
       );
     });
   }
@@ -468,5 +470,50 @@ class ContractRegistrationBloc
         ));
       },
     );
+  }
+
+  //---(DeleteContract)---//
+  Future<void> _onDeleteContract(
+    Emitter<ContractRegistrationState> emit, {
+    required int id,
+  }) async {
+    emit(state.copyWith(isDeleting: true, deleteSuccess: false, message: null));
+
+    final payload = <String, dynamic>{
+      "ID": id,
+      "IsDeleted": true,
+    };
+
+    _log.logI('Delete contract payload: $payload');
+
+    final res = await _repo.saveContract(payload: payload);
+
+    await res.fold(
+      (err) async {
+        _log.logE('Delete contract failed: $err');
+        emit(state.copyWith(
+          isDeleting: false,
+          deleteSuccess: false,
+          status: BaseStateStatus.failed,
+          message: err.getErrorMessage,
+        ));
+      },
+      (data) async {
+        _log.logI('Delete contract success');
+        emit(state.copyWith(
+          isDeleting: false,
+          deleteSuccess: true,
+          status: BaseStateStatus.success,
+          message: 'Xoá hợp đồng thành công',
+        ));
+      },
+    );
+  }
+
+  //---(ClearDeleteSuccess)---//
+  Future<void> _onClearDeleteSuccess(
+    Emitter<ContractRegistrationState> emit,
+  ) async {
+    emit(state.copyWith(deleteSuccess: false));
   }
 }
