@@ -19,6 +19,18 @@ abstract class _$ContractRegistrationStateCWProxy {
 
   ContractRegistrationState dateEnd(DateTime? dateEnd);
 
+  ContractRegistrationState documentTypes(
+      List<TypeDocumentResponseItem> documentTypes);
+
+  ContractRegistrationState taxCompanies(
+      List<TaxCompanyResponseItem> taxCompanies);
+
+  ContractRegistrationState receivers(List<UserResponse> receivers);
+
+  ContractRegistrationState isSubmitting(bool isSubmitting);
+
+  ContractRegistrationState submitSuccess(bool submitSuccess);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContractRegistrationState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -32,6 +44,11 @@ abstract class _$ContractRegistrationStateCWProxy {
     String? keyword,
     DateTime? dateStart,
     DateTime? dateEnd,
+    List<TypeDocumentResponseItem>? documentTypes,
+    List<TaxCompanyResponseItem>? taxCompanies,
+    List<UserResponse>? receivers,
+    bool? isSubmitting,
+    bool? submitSuccess,
   });
 }
 
@@ -65,6 +82,28 @@ class _$ContractRegistrationStateCWProxyImpl
       this(dateEnd: dateEnd);
 
   @override
+  ContractRegistrationState documentTypes(
+          List<TypeDocumentResponseItem> documentTypes) =>
+      this(documentTypes: documentTypes);
+
+  @override
+  ContractRegistrationState taxCompanies(
+          List<TaxCompanyResponseItem> taxCompanies) =>
+      this(taxCompanies: taxCompanies);
+
+  @override
+  ContractRegistrationState receivers(List<UserResponse> receivers) =>
+      this(receivers: receivers);
+
+  @override
+  ContractRegistrationState isSubmitting(bool isSubmitting) =>
+      this(isSubmitting: isSubmitting);
+
+  @override
+  ContractRegistrationState submitSuccess(bool submitSuccess) =>
+      this(submitSuccess: submitSuccess);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContractRegistrationState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -79,6 +118,11 @@ class _$ContractRegistrationStateCWProxyImpl
     Object? keyword = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
+    Object? documentTypes = const $CopyWithPlaceholder(),
+    Object? taxCompanies = const $CopyWithPlaceholder(),
+    Object? receivers = const $CopyWithPlaceholder(),
+    Object? isSubmitting = const $CopyWithPlaceholder(),
+    Object? submitSuccess = const $CopyWithPlaceholder(),
   }) {
     return ContractRegistrationState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -105,6 +149,30 @@ class _$ContractRegistrationStateCWProxyImpl
           ? _value.dateEnd
           // ignore: cast_nullable_to_non_nullable
           : dateEnd as DateTime?,
+      documentTypes:
+          documentTypes == const $CopyWithPlaceholder() || documentTypes == null
+              ? _value.documentTypes
+              // ignore: cast_nullable_to_non_nullable
+              : documentTypes as List<TypeDocumentResponseItem>,
+      taxCompanies:
+          taxCompanies == const $CopyWithPlaceholder() || taxCompanies == null
+              ? _value.taxCompanies
+              // ignore: cast_nullable_to_non_nullable
+              : taxCompanies as List<TaxCompanyResponseItem>,
+      receivers: receivers == const $CopyWithPlaceholder() || receivers == null
+          ? _value.receivers
+          // ignore: cast_nullable_to_non_nullable
+          : receivers as List<UserResponse>,
+      isSubmitting:
+          isSubmitting == const $CopyWithPlaceholder() || isSubmitting == null
+              ? _value.isSubmitting
+              // ignore: cast_nullable_to_non_nullable
+              : isSubmitting as bool,
+      submitSuccess:
+          submitSuccess == const $CopyWithPlaceholder() || submitSuccess == null
+              ? _value.submitSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : submitSuccess as bool,
     );
   }
 }

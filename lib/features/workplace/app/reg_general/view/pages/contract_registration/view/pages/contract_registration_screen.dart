@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
@@ -10,6 +11,7 @@ import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
+import '../../../../../../../../../routes/route_names.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../booking_vehicle/view/widgets/date_header.dart';
 import '../../../booking_vehicle/view/widgets/date_range_picker.dart';
@@ -161,7 +163,13 @@ class _ContractRegistrationScreenState
             floatingActionButton: FloatingActionButton(
               backgroundColor: AppColors.primaryERP,
               foregroundColor: Colors.white,
-              onPressed: () {
+              onPressed: () async {
+                final result = await context.push<bool>(
+                  RouteNames.contractRegistrationAdd,
+                );
+                if (result == true) {
+                  bloc.add(const ContractRegistrationEvent.init());
+                }
               },
               child: const Icon(Icons.add),
             ),

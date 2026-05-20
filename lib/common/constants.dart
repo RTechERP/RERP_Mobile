@@ -330,4 +330,7 @@ class ApiEndPoint {
 
   // Contract
   static const String getContract = '/RegisterContract/get-all-data';
+  static const String getDocumentType = '/RegisterContract/get-document-type';
+  static const String getTaxCompany = '/RegisterContract/get-tax-company';
+  static const String saveContract = '/registercontract/save-data';
 }

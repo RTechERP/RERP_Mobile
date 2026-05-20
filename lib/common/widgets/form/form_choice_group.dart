@@ -169,7 +169,11 @@ class _FormChoiceGroupState<T> extends State<FormChoiceGroup<T>> {
           onChanged: widget.onChanged,
           onReset: () {},
           builder: (field) {
-            // Dùng trực tiếp field.value — didChange đã cập nhật rồi.
+            if (field.value == null && widget.initialValue != null) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                field.didChange(widget.initialValue);
+              });
+            }
             final displayValue = _resolveDisplayValue(field.value);
             WidgetsBinding.instance.addPostFrameCallback((_) {
               widget.onFieldCreated?.call(field);

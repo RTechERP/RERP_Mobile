@@ -172,6 +172,7 @@ class RouteNames {
 
   // Contract Registration
   static const contractRegistration = '/reg_general/contract_registration';
+  static const contractRegistrationAdd = '/reg_general/contract_registration/add';
 
   // More - Settings
   static const notificationSettings = '/more/notification_settings';

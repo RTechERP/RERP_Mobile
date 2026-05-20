@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../../../../../../base/network/dio/dio_base_api_service.dart';
 import '../../../../../../../../../../base/network/models/base_data.dart';
 import '../../../../../../../../../../common/constants.dart';
+import '../../../../../../../../../../features/workplace/app/reports/data/datasource/models/report_model.dart';
 import '../models/contract_registration_model.dart';
 
 @injectable
@@ -18,6 +19,52 @@ class ContractRegistrationService extends DioBaseApiService {
       parser: (json) => _parseList<ContractResponseItem>(
         json,
         ContractResponseItem.fromJson,
+      ),
+    );
+  }
+
+  Future<BaseData<List<TypeDocumentResponseItem>>> getDocumentType({
+    required Map<String, dynamic> payload,
+  }) async {
+    return get<BaseData<List<TypeDocumentResponseItem>>>(
+      ApiEndPoint.getDocumentType,
+      parser: (json) => _parseList<TypeDocumentResponseItem>(
+        json,
+        TypeDocumentResponseItem.fromJson,
+      ),
+    );
+  }
+
+  Future<Map<String, dynamic>> saveContract({
+    required Map<String, dynamic> payload,
+  }) async {
+    final res = await dio.post(
+      ApiEndPoint.saveContract,
+      data: payload,
+    );
+    return res.data as Map<String, dynamic>;
+  }
+
+  Future<BaseData<List<TaxCompanyResponseItem>>> getTaxCompany({
+    required Map<String, dynamic> payload,
+  }) async {
+    return get<BaseData<List<TaxCompanyResponseItem>>>(
+      ApiEndPoint.getTaxCompany,
+      parser: (json) => _parseList<TaxCompanyResponseItem>(
+        json,
+        TaxCompanyResponseItem.fromJson,
+      ),
+    );
+  }
+
+  Future<BaseData<List<UserResponse>>> getReceiver() {
+    return get<BaseData<List<UserResponse>>>(
+      ApiEndPoint.getUserMeetingRoom,
+      parser: (json) => BaseData<List<UserResponse>>.fromJson(
+        json,
+        (data) => (data as List)
+            .map((e) => UserResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
     );
   }

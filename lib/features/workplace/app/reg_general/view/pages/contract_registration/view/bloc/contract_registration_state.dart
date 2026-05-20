@@ -6,6 +6,11 @@ class ContractRegistrationState extends BaseBlocState {
   final String? keyword;
   final DateTime? dateStart;
   final DateTime? dateEnd;
+  final List<TypeDocumentResponseItem> documentTypes;
+  final List<TaxCompanyResponseItem> taxCompanies;
+  final List<UserResponse> receivers;
+  final bool isSubmitting;
+  final bool submitSuccess;
 
   const ContractRegistrationState({
     required super.status,
@@ -14,6 +19,11 @@ class ContractRegistrationState extends BaseBlocState {
     this.keyword,
     this.dateStart,
     this.dateEnd,
+    this.documentTypes = const [],
+    this.taxCompanies = const [],
+    this.receivers = const [],
+    this.isSubmitting = false,
+    this.submitSuccess = false,
   });
 
   factory ContractRegistrationState.init() => const ContractRegistrationState(
@@ -22,6 +32,11 @@ class ContractRegistrationState extends BaseBlocState {
     keyword: null,
     dateStart: null,
     dateEnd: null,
+    documentTypes: [],
+    taxCompanies: [],
+    receivers: [],
+    isSubmitting: false,
+    submitSuccess: false,
   );
 
   @override
@@ -32,5 +47,10 @@ class ContractRegistrationState extends BaseBlocState {
     keyword,
     dateStart,
     dateEnd,
+    documentTypes,
+    taxCompanies,
+    receivers,
+    isSubmitting,
+    submitSuccess,
   ];
 }
