@@ -90,6 +90,13 @@ class ContractRegistrationBloc
           emit,
           registerContractId: registerContractId,
         ),
+        approveOrCancel: (id, status, reasonCancel) =>             _onApproveOrCancel(
+          emit,
+          id: id,
+          status: status,
+          reasonCancel: reasonCancel,
+        ),
+        clearApproveSuccess: () => _onClearApproveSuccess(emit),
       );
     });
   }
@@ -140,7 +147,11 @@ class ContractRegistrationBloc
       },
       (data) async {
         _log.logI('Get contracts success - total: ${data.length}');
-        emit(state.copyWith(status: BaseStateStatus.success, contracts: data));
+        emit(state.copyWith(
+          status: BaseStateStatus.success,
+          contracts: data,
+          currentUserId: employeeId,
+        ));
 
         if (reloadForEmail && data.isNotEmpty) {
           final latestId = data.first.id;
@@ -194,7 +205,11 @@ class ContractRegistrationBloc
       },
       (data) async {
         _log.logI('ChangeDateRange success - total: ${data.length}');
-        emit(state.copyWith(status: BaseStateStatus.success, contracts: data));
+        emit(state.copyWith(
+          status: BaseStateStatus.success,
+          contracts: data,
+          currentUserId: employeeId,
+        ));
       },
     );
   }
@@ -243,7 +258,11 @@ class ContractRegistrationBloc
       },
       (data) async {
         _log.logI('Search contracts success - total: ${data.length}');
-        emit(state.copyWith(status: BaseStateStatus.success, contracts: data));
+        emit(state.copyWith(
+          status: BaseStateStatus.success,
+          contracts: data,
+          currentUserId: employeeId,
+        ));
       },
     );
   }
@@ -530,6 +549,13 @@ class ContractRegistrationBloc
     emit(state.copyWith(deleteSuccess: false));
   }
 
+  //---(ClearApproveSuccess)---//
+  Future<void> _onClearApproveSuccess(
+    Emitter<ContractRegistrationState> emit,
+  ) async {
+    emit(state.copyWith(approveSuccess: false));
+  }
+
   //---(SendEmailAfterSubmit)---//
   Future<void> _onSendEmailAfterSubmit(
     Emitter<ContractRegistrationState> emit, {
@@ -551,6 +577,51 @@ class ContractRegistrationBloc
       (message) {
         _log.logI('Send email success: $message');
         emit(state.copyWith(isSendingEmail: false, message: message));
+      },
+    );
+  }
+
+  //---(ApproveOrCancel)---//
+  Future<void> _onApproveOrCancel(
+    Emitter<ContractRegistrationState> emit, {
+    required int id,
+    required int status,
+    required String reasonCancel,
+  }) async {
+    emit(
+      state.copyWith(isApproving: true, approveSuccess: false, message: null),
+    );
+
+    _log.logI('ApproveOrCancel id=$id, status=$status');
+
+    final res = await _repo.approveOrCancel(
+      id: id,
+      status: status,
+      reasonCancel: reasonCancel,
+    );
+
+    await res.fold(
+      (err) async {
+        _log.logE('ApproveOrCancel failed: $err');
+        emit(
+          state.copyWith(
+            isApproving: false,
+            approveSuccess: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ),
+        );
+      },
+      (message) async {
+        _log.logI('ApproveOrCancel success: $message');
+        emit(
+          state.copyWith(
+            isApproving: false,
+            approveSuccess: true,
+            status: BaseStateStatus.success,
+            message: message,
+          ),
+        );
       },
     );
   }

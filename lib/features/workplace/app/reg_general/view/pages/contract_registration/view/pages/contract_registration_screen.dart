@@ -19,6 +19,7 @@ import '../../../booking_vehicle/view/widgets/date_header.dart';
 import '../../../booking_vehicle/view/widgets/date_range_picker.dart';
 import '../bloc/contract_registration_bloc.dart';
 import '../widgets/contract_registration_card.dart';
+import '../widgets/contract_approval_sheet.dart';
 import '../../data/datasource/models/contract_registration_model.dart';
 
 class ContractRegistrationScreen extends StatefulWidget {
@@ -100,6 +101,87 @@ class _ContractRegistrationScreenState
     setState(() => _isSearchActive = false);
   }
 
+  void _openApprovalSheet(BuildContext context, ContractResponseItem item) {
+    if (item.employeeReciveId != bloc.state.currentUserId) return;
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => BlocProvider.value(
+        value: bloc,
+        child: ContractApprovalSheet(item: item),
+      ),
+    );
+  }
+
+  Future<void> _showRejectDialog(
+      BuildContext context, ContractResponseItem item) async {
+    final reasonController = TextEditingController();
+    final formKey = GlobalKey<FormState>();
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogCtx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: const Text(
+          'Từ chối duyệt',
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            color: AppColors.heading,
+            fontSize: 18,
+          ),
+        ),
+        content: Form(
+          key: formKey,
+          child: TextFormField(
+            controller: reasonController,
+            maxLines: 3,
+            decoration: InputDecoration(
+              labelText: 'Lý do từ chối',
+              hintText: 'Nhập lý do...',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(
+                    color: AppColors.primaryERP, width: 1.4),
+              ),
+            ),
+            validator: (value) {
+              if (value == null || value.trim().isEmpty) {
+                return 'Vui lòng nhập lý do từ chối';
+              }
+              return null;
+            },
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogCtx).pop(false),
+            child: Text('Huỷ', style: TextStyle(color: AppColors.gray)),
+          ),
+          FilledButton(
+            onPressed: () {
+              if (formKey.currentState?.validate() ?? false) {
+                Navigator.of(dialogCtx).pop(true);
+              }
+            },
+            style: FilledButton.styleFrom(backgroundColor: AppColors.alert),
+            child: const Text('Từ chối'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true && context.mounted) {
+      bloc.add(ContractRegistrationEvent.approveOrCancel(
+        id: item.id ?? 0,
+        status: 2,
+        reasonCancel: reasonController.text.trim(),
+      ));
+    }
+  }
+
   Future<void> _openDetail(BuildContext context, ContractResponseItem item) async {
     final edited = await context.push<bool>(
       RouteNames.contractRegistrationDetail,
@@ -117,7 +199,8 @@ class _ContractRegistrationScreenState
       listenWhen: (prev, curr) =>
           prev.status != curr.status ||
           prev.message != curr.message ||
-          prev.deleteSuccess != curr.deleteSuccess,
+          prev.deleteSuccess != curr.deleteSuccess ||
+          prev.approveSuccess != curr.approveSuccess,
       listener: (context, state) {
         if (state.status == BaseStateStatus.failed && state.message != null) {
           context.showMessage(state.message!, type: SnackBarType.error);
@@ -127,11 +210,17 @@ class _ContractRegistrationScreenState
           bloc.add(const ContractRegistrationEvent.init());
           bloc.add(const ContractRegistrationEvent.clearDeleteSuccess());
         }
+        if (state.approveSuccess) {
+          context.showMessage(state.message ?? 'Thao tác thành công', type: SnackBarType.success);
+          bloc.add(const ContractRegistrationEvent.init());
+          bloc.add(const ContractRegistrationEvent.clearApproveSuccess());
+        }
       },
       child: BlocBuilder<ContractRegistrationBloc, ContractRegistrationState>(
         buildWhen: (prev, curr) =>
             prev.status != curr.status ||
-            prev.contracts.length != curr.contracts.length,
+            prev.contracts.length != curr.contracts.length ||
+            prev.currentUserId != curr.currentUserId,
         builder: (context, state) {
           return BaseScaffold(
             appBar: AppBarCommon(
@@ -273,40 +362,69 @@ class _ContractRegistrationScreenState
         separatorBuilder: (_, __) => const SizedBox(height: 10),
         itemBuilder: (context, index) {
           final item = state.contracts[index];
-          final canDelete = item.status != 1 && item.status != 2 && item.status != 3;
-
-          if (!canDelete) {
-            return ContractRegistrationCard(
-              item: item,
-              onTap: () => _openDetail(context, item),
-            );
-          }
+          final isPending = item.status != 1 && item.status != 2 && item.status != 3;
+          final isReceiver = item.employeeReciveId == state.currentUserId;
+          final isRegister = item.employeeId == state.currentUserId;
+          final canApprove = isPending && isReceiver;
+          final canDelete = isPending && isRegister;
+          final canSlide = canDelete || canApprove;
 
           return Slidable(
             key: ValueKey('contract_${item.id}'),
             groupTag: 'contract_slidable',
-            endActionPane: ActionPane(
-              motion: const DrawerMotion(),
-              extentRatio: 0.28,
-              children: [
-                SlidableAction(
-                  onPressed: (actionContext) async {
-                    Slidable.of(actionContext)?.close();
-                    final confirmed = await DialogService.showConfirmDelete(
-                      context: context,
-                    );
-                    if (!context.mounted) return;
-                    if (confirmed) {
-                      bloc.add(ContractRegistrationEvent.deleteContract(id: item.id ?? 0));
-                    }
-                  },
-                  backgroundColor: AppColors.alert,
-                  foregroundColor: Colors.white,
-                  icon: Icons.delete_outline,
-                  label: 'Xoá',
-                ),
-              ],
-            ),
+            enabled: canSlide,
+            startActionPane: canDelete
+                ? ActionPane(
+                    motion: const DrawerMotion(),
+                    extentRatio: 0.22,
+                    children: [
+                      SlidableAction(
+                        onPressed: (_) async {
+                          Slidable.of(context)?.close();
+                          final confirmed =
+                              await DialogService.showConfirmDelete(context: context);
+                          if (!context.mounted) return;
+                          if (confirmed) {
+                            bloc.add(ContractRegistrationEvent.deleteContract(
+                                id: item.id ?? 0));
+                          }
+                        },
+                        backgroundColor: AppColors.alert,
+                        foregroundColor: Colors.white,
+                        icon: Icons.delete_outline,
+                        label: 'Xoá',
+                      ),
+                    ],
+                  )
+                : null,
+            endActionPane: canApprove
+                ? ActionPane(
+                    motion: const DrawerMotion(),
+                    extentRatio: 0.44,
+                    children: [
+                      SlidableAction(
+                        onPressed: (_) {
+                          Slidable.of(context)?.close();
+                          _openApprovalSheet(context, item);
+                        },
+                        backgroundColor: AppColors.stateSuccessColor,
+                        foregroundColor: Colors.white,
+                        icon: Icons.check_circle_outline,
+                        label: 'Duyệt',
+                      ),
+                      SlidableAction(
+                        onPressed: (_) async {
+                          Slidable.of(context)?.close();
+                          await _showRejectDialog(context, item);
+                        },
+                        backgroundColor: AppColors.alert,
+                        foregroundColor: Colors.white,
+                        icon: Icons.cancel_outlined,
+                        label: 'Từ chối',
+                      ),
+                    ],
+                  )
+                : null,
             child: Builder(
               builder: (slidableCtx) => ContractRegistrationCard(
                 item: item,

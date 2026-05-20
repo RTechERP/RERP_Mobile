@@ -148,7 +148,12 @@ class _ContractRegistrationDetailScreenState
     }
   }
 
-  bool get _canEdit => widget.item.status != 1;
+  bool get _canEdit {
+    if (widget.item.status == 1) return false;
+    final currentUserId = bloc.state.currentUserId;
+    final isReceiver = widget.item.employeeReciveId == currentUserId;
+    return !isReceiver;
+  }
 
   @override
   Widget renderUI(BuildContext context) {

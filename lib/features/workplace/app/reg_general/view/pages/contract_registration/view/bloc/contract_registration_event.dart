@@ -62,4 +62,13 @@ class ContractRegistrationEvent with _$ContractRegistrationEvent {
   const factory ContractRegistrationEvent.sendEmailAfterSubmit({
     required int registerContractId,
   }) = _SendEmailAfterSubmit;
+
+  const factory ContractRegistrationEvent.approveOrCancel({
+    required int id,
+    required int status,
+    required String reasonCancel,
+  }) = _ApproveOrCancel;
+
+  const factory ContractRegistrationEvent.clearApproveSuccess() =
+      _ClearApproveSuccess;
 }

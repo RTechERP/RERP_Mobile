@@ -146,4 +146,32 @@ class ContractRegistrationRepoImpl implements ContractRegistrationRepo {
       return left(BaseError.httpUnknownError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, String>> approveOrCancel({
+    required int id,
+    required int status,
+    required String reasonCancel,
+  }) async {
+    try {
+      final res = await _service.approveOrCancel(
+        id: id,
+        status: status,
+        reasonCancel: reasonCancel,
+      );
+
+      final statusCode = res['status'] ?? 0;
+      if (statusCode == 1) {
+        return right(res['message'] ?? 'Thao tác thành công');
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res['message'] ?? res['msg'] ?? 'Thao tác thất bại',
+        ),
+      );
+    } catch (e) {
+      return left(BaseError.httpUnknownError(e.toString()));
+    }
+  }
 }

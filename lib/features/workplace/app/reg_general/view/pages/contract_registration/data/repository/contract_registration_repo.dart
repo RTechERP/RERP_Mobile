@@ -30,4 +30,10 @@ abstract class ContractRegistrationRepo {
   Future<Either<BaseError, String>> sendEmailNewContract({
     required int registerContractId,
   });
+
+  Future<Either<BaseError, String>> approveOrCancel({
+    required int id,
+    required int status,
+    required String reasonCancel,
+  });
 }

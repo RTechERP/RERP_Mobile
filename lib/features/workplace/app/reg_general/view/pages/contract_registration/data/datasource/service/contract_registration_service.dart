@@ -55,6 +55,22 @@ class ContractRegistrationService extends DioBaseApiService {
     return res.data as Map<String, dynamic>;
   }
 
+  Future<Map<String, dynamic>> approveOrCancel({
+    required int id,
+    required int status,
+    required String reasonCancel,
+  }) async {
+    final res = await dio.post(
+      ApiEndPoint.approveOrCancel,
+      data: {
+        'ID': id,
+        'Status': status,
+        'ReasonCancel': reasonCancel,
+      },
+    );
+    return res.data as Map<String, dynamic>;
+  }
+
   Future<BaseData<List<TaxCompanyResponseItem>>> getTaxCompany({
     required Map<String, dynamic> payload,
   }) async {

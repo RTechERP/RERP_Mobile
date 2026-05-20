@@ -52,6 +52,9 @@ mixin _$ContractRegistrationEvent {
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
     required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -89,6 +92,8 @@ mixin _$ContractRegistrationEvent {
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
     TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -126,6 +131,8 @@ mixin _$ContractRegistrationEvent {
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
     TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -143,6 +150,8 @@ mixin _$ContractRegistrationEvent {
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
     required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -159,6 +168,8 @@ mixin _$ContractRegistrationEvent {
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -175,6 +186,8 @@ mixin _$ContractRegistrationEvent {
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -298,6 +311,9 @@ class _$InitImpl implements _Init {
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
     required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
   }) {
     return init(reloadForEmail);
   }
@@ -338,6 +354,8 @@ class _$InitImpl implements _Init {
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
     TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
   }) {
     return init?.call(reloadForEmail);
   }
@@ -378,6 +396,8 @@ class _$InitImpl implements _Init {
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
     TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -401,6 +421,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
     required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
   }) {
     return init(this);
   }
@@ -420,6 +442,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
   }) {
     return init?.call(this);
   }
@@ -439,6 +463,8 @@ class _$InitImpl implements _Init {
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -565,6 +591,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
     required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -605,6 +634,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
     TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -645,6 +676,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
     TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -668,6 +701,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
     required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
   }) {
     return changeDateRange(this);
   }
@@ -687,6 +722,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
   }) {
     return changeDateRange?.call(this);
   }
@@ -706,6 +743,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -826,6 +865,9 @@ class _$SearchContractsImpl implements _SearchContracts {
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
     required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
   }) {
     return searchContracts(keyword);
   }
@@ -866,6 +908,8 @@ class _$SearchContractsImpl implements _SearchContracts {
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
     TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
   }) {
     return searchContracts?.call(keyword);
   }
@@ -906,6 +950,8 @@ class _$SearchContractsImpl implements _SearchContracts {
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
     TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (searchContracts != null) {
@@ -929,6 +975,8 @@ class _$SearchContractsImpl implements _SearchContracts {
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
     required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
   }) {
     return searchContracts(this);
   }
@@ -948,6 +996,8 @@ class _$SearchContractsImpl implements _SearchContracts {
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
   }) {
     return searchContracts?.call(this);
   }
@@ -967,6 +1017,8 @@ class _$SearchContractsImpl implements _SearchContracts {
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (searchContracts != null) {
@@ -1058,6 +1110,9 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
     required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
   }) {
     return initAdd();
   }
@@ -1098,6 +1153,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
     TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
   }) {
     return initAdd?.call();
   }
@@ -1138,6 +1195,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
     TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -1161,6 +1220,8 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
     required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
   }) {
     return initAdd(this);
   }
@@ -1180,6 +1241,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
   }) {
     return initAdd?.call(this);
   }
@@ -1199,6 +1262,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -1285,6 +1350,9 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
     required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
   }) {
     return clearSubmitResult();
   }
@@ -1325,6 +1393,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
     TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
   }) {
     return clearSubmitResult?.call();
   }
@@ -1365,6 +1435,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
     TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (clearSubmitResult != null) {
@@ -1388,6 +1460,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
     required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
   }) {
     return clearSubmitResult(this);
   }
@@ -1407,6 +1481,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
   }) {
     return clearSubmitResult?.call(this);
   }
@@ -1426,6 +1502,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (clearSubmitResult != null) {
@@ -1511,6 +1589,9 @@ class _$FetchReceiversImpl implements _FetchReceivers {
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
     required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
   }) {
     return fetchReceivers();
   }
@@ -1551,6 +1632,8 @@ class _$FetchReceiversImpl implements _FetchReceivers {
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
     TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
   }) {
     return fetchReceivers?.call();
   }
@@ -1591,6 +1674,8 @@ class _$FetchReceiversImpl implements _FetchReceivers {
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
     TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (fetchReceivers != null) {
@@ -1614,6 +1699,8 @@ class _$FetchReceiversImpl implements _FetchReceivers {
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
     required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
   }) {
     return fetchReceivers(this);
   }
@@ -1633,6 +1720,8 @@ class _$FetchReceiversImpl implements _FetchReceivers {
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
   }) {
     return fetchReceivers?.call(this);
   }
@@ -1652,6 +1741,8 @@ class _$FetchReceiversImpl implements _FetchReceivers {
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (fetchReceivers != null) {
@@ -1864,6 +1955,9 @@ class _$SubmitContractImpl implements _SubmitContract {
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
     required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
   }) {
     return submitContract(
         registedDate,
@@ -1913,6 +2007,8 @@ class _$SubmitContractImpl implements _SubmitContract {
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
     TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
   }) {
     return submitContract?.call(
         registedDate,
@@ -1962,6 +2058,8 @@ class _$SubmitContractImpl implements _SubmitContract {
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
     TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (submitContract != null) {
@@ -1994,6 +2092,8 @@ class _$SubmitContractImpl implements _SubmitContract {
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
     required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
   }) {
     return submitContract(this);
   }
@@ -2013,6 +2113,8 @@ class _$SubmitContractImpl implements _SubmitContract {
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
   }) {
     return submitContract?.call(this);
   }
@@ -2032,6 +2134,8 @@ class _$SubmitContractImpl implements _SubmitContract {
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (submitContract != null) {
@@ -2165,6 +2269,9 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
     required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
   }) {
     return initDetail(id);
   }
@@ -2205,6 +2312,8 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
     TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
   }) {
     return initDetail?.call(id);
   }
@@ -2245,6 +2354,8 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
     TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (initDetail != null) {
@@ -2268,6 +2379,8 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
     required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
   }) {
     return initDetail(this);
   }
@@ -2287,6 +2400,8 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
   }) {
     return initDetail?.call(this);
   }
@@ -2306,6 +2421,8 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (initDetail != null) {
@@ -2534,6 +2651,9 @@ class _$UpdateContractImpl implements _UpdateContract {
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
     required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
   }) {
     return updateContract(
         id,
@@ -2584,6 +2704,8 @@ class _$UpdateContractImpl implements _UpdateContract {
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
     TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
   }) {
     return updateContract?.call(
         id,
@@ -2634,6 +2756,8 @@ class _$UpdateContractImpl implements _UpdateContract {
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
     TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (updateContract != null) {
@@ -2667,6 +2791,8 @@ class _$UpdateContractImpl implements _UpdateContract {
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
     required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
   }) {
     return updateContract(this);
   }
@@ -2686,6 +2812,8 @@ class _$UpdateContractImpl implements _UpdateContract {
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
   }) {
     return updateContract?.call(this);
   }
@@ -2705,6 +2833,8 @@ class _$UpdateContractImpl implements _UpdateContract {
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (updateContract != null) {
@@ -2841,6 +2971,9 @@ class _$DeleteContractImpl implements _DeleteContract {
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
     required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
   }) {
     return deleteContract(id);
   }
@@ -2881,6 +3014,8 @@ class _$DeleteContractImpl implements _DeleteContract {
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
     TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
   }) {
     return deleteContract?.call(id);
   }
@@ -2921,6 +3056,8 @@ class _$DeleteContractImpl implements _DeleteContract {
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
     TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (deleteContract != null) {
@@ -2944,6 +3081,8 @@ class _$DeleteContractImpl implements _DeleteContract {
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
     required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
   }) {
     return deleteContract(this);
   }
@@ -2963,6 +3102,8 @@ class _$DeleteContractImpl implements _DeleteContract {
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
   }) {
     return deleteContract?.call(this);
   }
@@ -2982,6 +3123,8 @@ class _$DeleteContractImpl implements _DeleteContract {
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (deleteContract != null) {
@@ -3073,6 +3216,9 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
     required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
   }) {
     return clearDeleteSuccess();
   }
@@ -3113,6 +3259,8 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
     TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
   }) {
     return clearDeleteSuccess?.call();
   }
@@ -3153,6 +3301,8 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
     TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (clearDeleteSuccess != null) {
@@ -3176,6 +3326,8 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
     required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
   }) {
     return clearDeleteSuccess(this);
   }
@@ -3195,6 +3347,8 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
   }) {
     return clearDeleteSuccess?.call(this);
   }
@@ -3214,6 +3368,8 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (clearDeleteSuccess != null) {
@@ -3329,6 +3485,9 @@ class _$SendEmailAfterSubmitImpl implements _SendEmailAfterSubmit {
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
     required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
   }) {
     return sendEmailAfterSubmit(registerContractId);
   }
@@ -3369,6 +3528,8 @@ class _$SendEmailAfterSubmitImpl implements _SendEmailAfterSubmit {
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
     TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
   }) {
     return sendEmailAfterSubmit?.call(registerContractId);
   }
@@ -3409,6 +3570,8 @@ class _$SendEmailAfterSubmitImpl implements _SendEmailAfterSubmit {
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
     TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (sendEmailAfterSubmit != null) {
@@ -3432,6 +3595,8 @@ class _$SendEmailAfterSubmitImpl implements _SendEmailAfterSubmit {
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
     required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
   }) {
     return sendEmailAfterSubmit(this);
   }
@@ -3451,6 +3616,8 @@ class _$SendEmailAfterSubmitImpl implements _SendEmailAfterSubmit {
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
   }) {
     return sendEmailAfterSubmit?.call(this);
   }
@@ -3470,6 +3637,8 @@ class _$SendEmailAfterSubmitImpl implements _SendEmailAfterSubmit {
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
     required TResult orElse(),
   }) {
     if (sendEmailAfterSubmit != null) {
@@ -3487,4 +3656,539 @@ abstract class _SendEmailAfterSubmit implements ContractRegistrationEvent {
   @JsonKey(ignore: true)
   _$$SendEmailAfterSubmitImplCopyWith<_$SendEmailAfterSubmitImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ApproveOrCancelImplCopyWith<$Res> {
+  factory _$$ApproveOrCancelImplCopyWith(_$ApproveOrCancelImpl value,
+          $Res Function(_$ApproveOrCancelImpl) then) =
+      __$$ApproveOrCancelImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id, int status, String reasonCancel});
+}
+
+/// @nodoc
+class __$$ApproveOrCancelImplCopyWithImpl<$Res>
+    extends _$ContractRegistrationEventCopyWithImpl<$Res, _$ApproveOrCancelImpl>
+    implements _$$ApproveOrCancelImplCopyWith<$Res> {
+  __$$ApproveOrCancelImplCopyWithImpl(
+      _$ApproveOrCancelImpl _value, $Res Function(_$ApproveOrCancelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? status = null,
+    Object? reasonCancel = null,
+  }) {
+    return _then(_$ApproveOrCancelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int,
+      reasonCancel: null == reasonCancel
+          ? _value.reasonCancel
+          : reasonCancel // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ApproveOrCancelImpl implements _ApproveOrCancel {
+  const _$ApproveOrCancelImpl(
+      {required this.id, required this.status, required this.reasonCancel});
+
+  @override
+  final int id;
+  @override
+  final int status;
+  @override
+  final String reasonCancel;
+
+  @override
+  String toString() {
+    return 'ContractRegistrationEvent.approveOrCancel(id: $id, status: $status, reasonCancel: $reasonCancel)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApproveOrCancelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.reasonCancel, reasonCancel) ||
+                other.reasonCancel == reasonCancel));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, status, reasonCancel);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApproveOrCancelImplCopyWith<_$ApproveOrCancelImpl> get copyWith =>
+      __$$ApproveOrCancelImplCopyWithImpl<_$ApproveOrCancelImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool reloadForEmail) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String? keyword) searchContracts,
+    required TResult Function() initAdd,
+    required TResult Function() clearSubmitResult,
+    required TResult Function() fetchReceivers,
+    required TResult Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        submitContract,
+    required TResult Function(int id) initDetail,
+    required TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        updateContract,
+    required TResult Function(int id) deleteContract,
+    required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
+  }) {
+    return approveOrCancel(id, status, reasonCancel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool reloadForEmail)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String? keyword)? searchContracts,
+    TResult? Function()? initAdd,
+    TResult? Function()? clearSubmitResult,
+    TResult? Function()? fetchReceivers,
+    TResult? Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        submitContract,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
+    TResult? Function(int id)? deleteContract,
+    TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
+  }) {
+    return approveOrCancel?.call(id, status, reasonCancel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool reloadForEmail)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String? keyword)? searchContracts,
+    TResult Function()? initAdd,
+    TResult Function()? clearSubmitResult,
+    TResult Function()? fetchReceivers,
+    TResult Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        submitContract,
+    TResult Function(int id)? initDetail,
+    TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
+    TResult Function(int id)? deleteContract,
+    TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
+    required TResult orElse(),
+  }) {
+    if (approveOrCancel != null) {
+      return approveOrCancel(id, status, reasonCancel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SearchContracts value) searchContracts,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_FetchReceivers value) fetchReceivers,
+    required TResult Function(_SubmitContract value) submitContract,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_UpdateContract value) updateContract,
+    required TResult Function(_DeleteContract value) deleteContract,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
+  }) {
+    return approveOrCancel(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SearchContracts value)? searchContracts,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_FetchReceivers value)? fetchReceivers,
+    TResult? Function(_SubmitContract value)? submitContract,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_UpdateContract value)? updateContract,
+    TResult? Function(_DeleteContract value)? deleteContract,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
+  }) {
+    return approveOrCancel?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SearchContracts value)? searchContracts,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_FetchReceivers value)? fetchReceivers,
+    TResult Function(_SubmitContract value)? submitContract,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_UpdateContract value)? updateContract,
+    TResult Function(_DeleteContract value)? deleteContract,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
+    required TResult orElse(),
+  }) {
+    if (approveOrCancel != null) {
+      return approveOrCancel(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApproveOrCancel implements ContractRegistrationEvent {
+  const factory _ApproveOrCancel(
+      {required final int id,
+      required final int status,
+      required final String reasonCancel}) = _$ApproveOrCancelImpl;
+
+  int get id;
+  int get status;
+  String get reasonCancel;
+  @JsonKey(ignore: true)
+  _$$ApproveOrCancelImplCopyWith<_$ApproveOrCancelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearApproveSuccessImplCopyWith<$Res> {
+  factory _$$ClearApproveSuccessImplCopyWith(_$ClearApproveSuccessImpl value,
+          $Res Function(_$ClearApproveSuccessImpl) then) =
+      __$$ClearApproveSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearApproveSuccessImplCopyWithImpl<$Res>
+    extends _$ContractRegistrationEventCopyWithImpl<$Res,
+        _$ClearApproveSuccessImpl>
+    implements _$$ClearApproveSuccessImplCopyWith<$Res> {
+  __$$ClearApproveSuccessImplCopyWithImpl(_$ClearApproveSuccessImpl _value,
+      $Res Function(_$ClearApproveSuccessImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearApproveSuccessImpl implements _ClearApproveSuccess {
+  const _$ClearApproveSuccessImpl();
+
+  @override
+  String toString() {
+    return 'ContractRegistrationEvent.clearApproveSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearApproveSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool reloadForEmail) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String? keyword) searchContracts,
+    required TResult Function() initAdd,
+    required TResult Function() clearSubmitResult,
+    required TResult Function() fetchReceivers,
+    required TResult Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        submitContract,
+    required TResult Function(int id) initDetail,
+    required TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        updateContract,
+    required TResult Function(int id) deleteContract,
+    required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
+    required TResult Function(int id, int status, String reasonCancel)
+        approveOrCancel,
+    required TResult Function() clearApproveSuccess,
+  }) {
+    return clearApproveSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool reloadForEmail)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String? keyword)? searchContracts,
+    TResult? Function()? initAdd,
+    TResult? Function()? clearSubmitResult,
+    TResult? Function()? fetchReceivers,
+    TResult? Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        submitContract,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
+    TResult? Function(int id)? deleteContract,
+    TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult? Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult? Function()? clearApproveSuccess,
+  }) {
+    return clearApproveSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool reloadForEmail)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String? keyword)? searchContracts,
+    TResult Function()? initAdd,
+    TResult Function()? clearSubmitResult,
+    TResult Function()? fetchReceivers,
+    TResult Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        submitContract,
+    TResult Function(int id)? initDetail,
+    TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
+    TResult Function(int id)? deleteContract,
+    TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    TResult Function(int id, int status, String reasonCancel)? approveOrCancel,
+    TResult Function()? clearApproveSuccess,
+    required TResult orElse(),
+  }) {
+    if (clearApproveSuccess != null) {
+      return clearApproveSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SearchContracts value) searchContracts,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_FetchReceivers value) fetchReceivers,
+    required TResult Function(_SubmitContract value) submitContract,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_UpdateContract value) updateContract,
+    required TResult Function(_DeleteContract value) deleteContract,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+    required TResult Function(_ApproveOrCancel value) approveOrCancel,
+    required TResult Function(_ClearApproveSuccess value) clearApproveSuccess,
+  }) {
+    return clearApproveSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SearchContracts value)? searchContracts,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_FetchReceivers value)? fetchReceivers,
+    TResult? Function(_SubmitContract value)? submitContract,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_UpdateContract value)? updateContract,
+    TResult? Function(_DeleteContract value)? deleteContract,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult? Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult? Function(_ClearApproveSuccess value)? clearApproveSuccess,
+  }) {
+    return clearApproveSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SearchContracts value)? searchContracts,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_FetchReceivers value)? fetchReceivers,
+    TResult Function(_SubmitContract value)? submitContract,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_UpdateContract value)? updateContract,
+    TResult Function(_DeleteContract value)? deleteContract,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    TResult Function(_ApproveOrCancel value)? approveOrCancel,
+    TResult Function(_ClearApproveSuccess value)? clearApproveSuccess,
+    required TResult orElse(),
+  }) {
+    if (clearApproveSuccess != null) {
+      return clearApproveSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearApproveSuccess implements ContractRegistrationEvent {
+  const factory _ClearApproveSuccess() = _$ClearApproveSuccessImpl;
 }

@@ -47,6 +47,12 @@ abstract class _$ContractRegistrationStateCWProxy {
 
   ContractRegistrationState isReloadingForEmail(bool isReloadingForEmail);
 
+  ContractRegistrationState isApproving(bool isApproving);
+
+  ContractRegistrationState approveSuccess(bool approveSuccess);
+
+  ContractRegistrationState currentUserId(int? currentUserId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContractRegistrationState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -73,6 +79,9 @@ abstract class _$ContractRegistrationStateCWProxy {
     bool? deleteSuccess,
     bool? isSendingEmail,
     bool? isReloadingForEmail,
+    bool? isApproving,
+    bool? approveSuccess,
+    int? currentUserId,
   });
 }
 
@@ -160,6 +169,18 @@ class _$ContractRegistrationStateCWProxyImpl
       this(isReloadingForEmail: isReloadingForEmail);
 
   @override
+  ContractRegistrationState isApproving(bool isApproving) =>
+      this(isApproving: isApproving);
+
+  @override
+  ContractRegistrationState approveSuccess(bool approveSuccess) =>
+      this(approveSuccess: approveSuccess);
+
+  @override
+  ContractRegistrationState currentUserId(int? currentUserId) =>
+      this(currentUserId: currentUserId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContractRegistrationState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -187,6 +208,9 @@ class _$ContractRegistrationStateCWProxyImpl
     Object? deleteSuccess = const $CopyWithPlaceholder(),
     Object? isSendingEmail = const $CopyWithPlaceholder(),
     Object? isReloadingForEmail = const $CopyWithPlaceholder(),
+    Object? isApproving = const $CopyWithPlaceholder(),
+    Object? approveSuccess = const $CopyWithPlaceholder(),
+    Object? currentUserId = const $CopyWithPlaceholder(),
   }) {
     return ContractRegistrationState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -277,6 +301,20 @@ class _$ContractRegistrationStateCWProxyImpl
               ? _value.isReloadingForEmail
               // ignore: cast_nullable_to_non_nullable
               : isReloadingForEmail as bool,
+      isApproving:
+          isApproving == const $CopyWithPlaceholder() || isApproving == null
+              ? _value.isApproving
+              // ignore: cast_nullable_to_non_nullable
+              : isApproving as bool,
+      approveSuccess: approveSuccess == const $CopyWithPlaceholder() ||
+              approveSuccess == null
+          ? _value.approveSuccess
+          // ignore: cast_nullable_to_non_nullable
+          : approveSuccess as bool,
+      currentUserId: currentUserId == const $CopyWithPlaceholder()
+          ? _value.currentUserId
+          // ignore: cast_nullable_to_non_nullable
+          : currentUserId as int?,
     );
   }
 }
