@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ContractRegistrationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(bool reloadForEmail) init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(String? keyword) searchContracts,
@@ -51,11 +51,12 @@ mixin _$ContractRegistrationEvent {
         updateContract,
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(bool reloadForEmail)? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String? keyword)? searchContracts,
     TResult? Function()? initAdd,
@@ -87,11 +88,12 @@ mixin _$ContractRegistrationEvent {
         updateContract,
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(bool reloadForEmail)? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String? keyword)? searchContracts,
     TResult Function()? initAdd,
@@ -123,6 +125,7 @@ mixin _$ContractRegistrationEvent {
         updateContract,
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -139,6 +142,7 @@ mixin _$ContractRegistrationEvent {
     required TResult Function(_UpdateContract value) updateContract,
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -154,6 +158,7 @@ mixin _$ContractRegistrationEvent {
     TResult? Function(_UpdateContract value)? updateContract,
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -169,6 +174,7 @@ mixin _$ContractRegistrationEvent {
     TResult Function(_UpdateContract value)? updateContract,
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -198,6 +204,8 @@ abstract class _$$InitImplCopyWith<$Res> {
   factory _$$InitImplCopyWith(
           _$InitImpl value, $Res Function(_$InitImpl) then) =
       __$$InitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool reloadForEmail});
 }
 
 /// @nodoc
@@ -206,31 +214,57 @@ class __$$InitImplCopyWithImpl<$Res>
     implements _$$InitImplCopyWith<$Res> {
   __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? reloadForEmail = null,
+  }) {
+    return _then(_$InitImpl(
+      reloadForEmail: null == reloadForEmail
+          ? _value.reloadForEmail
+          : reloadForEmail // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitImpl implements _Init {
-  const _$InitImpl();
+  const _$InitImpl({this.reloadForEmail = false});
+
+  @override
+  @JsonKey()
+  final bool reloadForEmail;
 
   @override
   String toString() {
-    return 'ContractRegistrationEvent.init()';
+    return 'ContractRegistrationEvent.init(reloadForEmail: $reloadForEmail)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$InitImpl &&
+            (identical(other.reloadForEmail, reloadForEmail) ||
+                other.reloadForEmail == reloadForEmail));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, reloadForEmail);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      __$$InitImplCopyWithImpl<_$InitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(bool reloadForEmail) init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(String? keyword) searchContracts,
@@ -263,14 +297,15 @@ class _$InitImpl implements _Init {
         updateContract,
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
   }) {
-    return init();
+    return init(reloadForEmail);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(bool reloadForEmail)? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String? keyword)? searchContracts,
     TResult? Function()? initAdd,
@@ -302,14 +337,15 @@ class _$InitImpl implements _Init {
         updateContract,
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
   }) {
-    return init?.call();
+    return init?.call(reloadForEmail);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(bool reloadForEmail)? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String? keyword)? searchContracts,
     TResult Function()? initAdd,
@@ -341,10 +377,11 @@ class _$InitImpl implements _Init {
         updateContract,
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init();
+      return init(reloadForEmail);
     }
     return orElse();
   }
@@ -363,6 +400,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_UpdateContract value) updateContract,
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
   }) {
     return init(this);
   }
@@ -381,6 +419,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_UpdateContract value)? updateContract,
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
   }) {
     return init?.call(this);
   }
@@ -399,6 +438,7 @@ class _$InitImpl implements _Init {
     TResult Function(_UpdateContract value)? updateContract,
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -409,7 +449,12 @@ class _$InitImpl implements _Init {
 }
 
 abstract class _Init implements ContractRegistrationEvent {
-  const factory _Init() = _$InitImpl;
+  const factory _Init({final bool reloadForEmail}) = _$InitImpl;
+
+  bool get reloadForEmail;
+  @JsonKey(ignore: true)
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -486,7 +531,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(bool reloadForEmail) init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(String? keyword) searchContracts,
@@ -519,6 +564,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         updateContract,
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -526,7 +572,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(bool reloadForEmail)? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String? keyword)? searchContracts,
     TResult? Function()? initAdd,
@@ -558,6 +604,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         updateContract,
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -565,7 +612,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(bool reloadForEmail)? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String? keyword)? searchContracts,
     TResult Function()? initAdd,
@@ -597,6 +644,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         updateContract,
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -619,6 +667,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_UpdateContract value) updateContract,
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
   }) {
     return changeDateRange(this);
   }
@@ -637,6 +686,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_UpdateContract value)? updateContract,
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
   }) {
     return changeDateRange?.call(this);
   }
@@ -655,6 +705,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_UpdateContract value)? updateContract,
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -741,7 +792,7 @@ class _$SearchContractsImpl implements _SearchContracts {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(bool reloadForEmail) init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(String? keyword) searchContracts,
@@ -774,6 +825,7 @@ class _$SearchContractsImpl implements _SearchContracts {
         updateContract,
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
   }) {
     return searchContracts(keyword);
   }
@@ -781,7 +833,7 @@ class _$SearchContractsImpl implements _SearchContracts {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(bool reloadForEmail)? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String? keyword)? searchContracts,
     TResult? Function()? initAdd,
@@ -813,6 +865,7 @@ class _$SearchContractsImpl implements _SearchContracts {
         updateContract,
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
   }) {
     return searchContracts?.call(keyword);
   }
@@ -820,7 +873,7 @@ class _$SearchContractsImpl implements _SearchContracts {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(bool reloadForEmail)? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String? keyword)? searchContracts,
     TResult Function()? initAdd,
@@ -852,6 +905,7 @@ class _$SearchContractsImpl implements _SearchContracts {
         updateContract,
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (searchContracts != null) {
@@ -874,6 +928,7 @@ class _$SearchContractsImpl implements _SearchContracts {
     required TResult Function(_UpdateContract value) updateContract,
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
   }) {
     return searchContracts(this);
   }
@@ -892,6 +947,7 @@ class _$SearchContractsImpl implements _SearchContracts {
     TResult? Function(_UpdateContract value)? updateContract,
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
   }) {
     return searchContracts?.call(this);
   }
@@ -910,6 +966,7 @@ class _$SearchContractsImpl implements _SearchContracts {
     TResult Function(_UpdateContract value)? updateContract,
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (searchContracts != null) {
@@ -967,7 +1024,7 @@ class _$InitAddImpl implements _InitAdd {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(bool reloadForEmail) init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(String? keyword) searchContracts,
@@ -1000,6 +1057,7 @@ class _$InitAddImpl implements _InitAdd {
         updateContract,
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
   }) {
     return initAdd();
   }
@@ -1007,7 +1065,7 @@ class _$InitAddImpl implements _InitAdd {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(bool reloadForEmail)? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String? keyword)? searchContracts,
     TResult? Function()? initAdd,
@@ -1039,6 +1097,7 @@ class _$InitAddImpl implements _InitAdd {
         updateContract,
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
   }) {
     return initAdd?.call();
   }
@@ -1046,7 +1105,7 @@ class _$InitAddImpl implements _InitAdd {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(bool reloadForEmail)? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String? keyword)? searchContracts,
     TResult Function()? initAdd,
@@ -1078,6 +1137,7 @@ class _$InitAddImpl implements _InitAdd {
         updateContract,
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -1100,6 +1160,7 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_UpdateContract value) updateContract,
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
   }) {
     return initAdd(this);
   }
@@ -1118,6 +1179,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_UpdateContract value)? updateContract,
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
   }) {
     return initAdd?.call(this);
   }
@@ -1136,6 +1198,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_UpdateContract value)? updateContract,
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -1188,7 +1251,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(bool reloadForEmail) init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(String? keyword) searchContracts,
@@ -1221,6 +1284,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
         updateContract,
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
   }) {
     return clearSubmitResult();
   }
@@ -1228,7 +1292,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(bool reloadForEmail)? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String? keyword)? searchContracts,
     TResult? Function()? initAdd,
@@ -1260,6 +1324,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
         updateContract,
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
   }) {
     return clearSubmitResult?.call();
   }
@@ -1267,7 +1332,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(bool reloadForEmail)? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String? keyword)? searchContracts,
     TResult Function()? initAdd,
@@ -1299,6 +1364,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
         updateContract,
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (clearSubmitResult != null) {
@@ -1321,6 +1387,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     required TResult Function(_UpdateContract value) updateContract,
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
   }) {
     return clearSubmitResult(this);
   }
@@ -1339,6 +1406,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult? Function(_UpdateContract value)? updateContract,
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
   }) {
     return clearSubmitResult?.call(this);
   }
@@ -1357,6 +1425,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult Function(_UpdateContract value)? updateContract,
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (clearSubmitResult != null) {
@@ -1408,7 +1477,7 @@ class _$FetchReceiversImpl implements _FetchReceivers {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(bool reloadForEmail) init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(String? keyword) searchContracts,
@@ -1441,6 +1510,7 @@ class _$FetchReceiversImpl implements _FetchReceivers {
         updateContract,
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
   }) {
     return fetchReceivers();
   }
@@ -1448,7 +1518,7 @@ class _$FetchReceiversImpl implements _FetchReceivers {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(bool reloadForEmail)? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String? keyword)? searchContracts,
     TResult? Function()? initAdd,
@@ -1480,6 +1550,7 @@ class _$FetchReceiversImpl implements _FetchReceivers {
         updateContract,
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
   }) {
     return fetchReceivers?.call();
   }
@@ -1487,7 +1558,7 @@ class _$FetchReceiversImpl implements _FetchReceivers {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(bool reloadForEmail)? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String? keyword)? searchContracts,
     TResult Function()? initAdd,
@@ -1519,6 +1590,7 @@ class _$FetchReceiversImpl implements _FetchReceivers {
         updateContract,
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (fetchReceivers != null) {
@@ -1541,6 +1613,7 @@ class _$FetchReceiversImpl implements _FetchReceivers {
     required TResult Function(_UpdateContract value) updateContract,
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
   }) {
     return fetchReceivers(this);
   }
@@ -1559,6 +1632,7 @@ class _$FetchReceiversImpl implements _FetchReceivers {
     TResult? Function(_UpdateContract value)? updateContract,
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
   }) {
     return fetchReceivers?.call(this);
   }
@@ -1577,6 +1651,7 @@ class _$FetchReceiversImpl implements _FetchReceivers {
     TResult Function(_UpdateContract value)? updateContract,
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (fetchReceivers != null) {
@@ -1755,7 +1830,7 @@ class _$SubmitContractImpl implements _SubmitContract {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(bool reloadForEmail) init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(String? keyword) searchContracts,
@@ -1788,6 +1863,7 @@ class _$SubmitContractImpl implements _SubmitContract {
         updateContract,
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
   }) {
     return submitContract(
         registedDate,
@@ -1804,7 +1880,7 @@ class _$SubmitContractImpl implements _SubmitContract {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(bool reloadForEmail)? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String? keyword)? searchContracts,
     TResult? Function()? initAdd,
@@ -1836,6 +1912,7 @@ class _$SubmitContractImpl implements _SubmitContract {
         updateContract,
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
   }) {
     return submitContract?.call(
         registedDate,
@@ -1852,7 +1929,7 @@ class _$SubmitContractImpl implements _SubmitContract {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(bool reloadForEmail)? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String? keyword)? searchContracts,
     TResult Function()? initAdd,
@@ -1884,6 +1961,7 @@ class _$SubmitContractImpl implements _SubmitContract {
         updateContract,
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (submitContract != null) {
@@ -1915,6 +1993,7 @@ class _$SubmitContractImpl implements _SubmitContract {
     required TResult Function(_UpdateContract value) updateContract,
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
   }) {
     return submitContract(this);
   }
@@ -1933,6 +2012,7 @@ class _$SubmitContractImpl implements _SubmitContract {
     TResult? Function(_UpdateContract value)? updateContract,
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
   }) {
     return submitContract?.call(this);
   }
@@ -1951,6 +2031,7 @@ class _$SubmitContractImpl implements _SubmitContract {
     TResult Function(_UpdateContract value)? updateContract,
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (submitContract != null) {
@@ -2050,7 +2131,7 @@ class _$InitDetailImpl implements _InitDetail {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(bool reloadForEmail) init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(String? keyword) searchContracts,
@@ -2083,6 +2164,7 @@ class _$InitDetailImpl implements _InitDetail {
         updateContract,
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
   }) {
     return initDetail(id);
   }
@@ -2090,7 +2172,7 @@ class _$InitDetailImpl implements _InitDetail {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(bool reloadForEmail)? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String? keyword)? searchContracts,
     TResult? Function()? initAdd,
@@ -2122,6 +2204,7 @@ class _$InitDetailImpl implements _InitDetail {
         updateContract,
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
   }) {
     return initDetail?.call(id);
   }
@@ -2129,7 +2212,7 @@ class _$InitDetailImpl implements _InitDetail {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(bool reloadForEmail)? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String? keyword)? searchContracts,
     TResult Function()? initAdd,
@@ -2161,6 +2244,7 @@ class _$InitDetailImpl implements _InitDetail {
         updateContract,
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (initDetail != null) {
@@ -2183,6 +2267,7 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(_UpdateContract value) updateContract,
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
   }) {
     return initDetail(this);
   }
@@ -2201,6 +2286,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(_UpdateContract value)? updateContract,
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
   }) {
     return initDetail?.call(this);
   }
@@ -2219,6 +2305,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(_UpdateContract value)? updateContract,
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (initDetail != null) {
@@ -2413,7 +2500,7 @@ class _$UpdateContractImpl implements _UpdateContract {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(bool reloadForEmail) init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(String? keyword) searchContracts,
@@ -2446,6 +2533,7 @@ class _$UpdateContractImpl implements _UpdateContract {
         updateContract,
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
   }) {
     return updateContract(
         id,
@@ -2463,7 +2551,7 @@ class _$UpdateContractImpl implements _UpdateContract {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(bool reloadForEmail)? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String? keyword)? searchContracts,
     TResult? Function()? initAdd,
@@ -2495,6 +2583,7 @@ class _$UpdateContractImpl implements _UpdateContract {
         updateContract,
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
   }) {
     return updateContract?.call(
         id,
@@ -2512,7 +2601,7 @@ class _$UpdateContractImpl implements _UpdateContract {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(bool reloadForEmail)? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String? keyword)? searchContracts,
     TResult Function()? initAdd,
@@ -2544,6 +2633,7 @@ class _$UpdateContractImpl implements _UpdateContract {
         updateContract,
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (updateContract != null) {
@@ -2576,6 +2666,7 @@ class _$UpdateContractImpl implements _UpdateContract {
     required TResult Function(_UpdateContract value) updateContract,
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
   }) {
     return updateContract(this);
   }
@@ -2594,6 +2685,7 @@ class _$UpdateContractImpl implements _UpdateContract {
     TResult? Function(_UpdateContract value)? updateContract,
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
   }) {
     return updateContract?.call(this);
   }
@@ -2612,6 +2704,7 @@ class _$UpdateContractImpl implements _UpdateContract {
     TResult Function(_UpdateContract value)? updateContract,
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (updateContract != null) {
@@ -2714,7 +2807,7 @@ class _$DeleteContractImpl implements _DeleteContract {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(bool reloadForEmail) init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(String? keyword) searchContracts,
@@ -2747,6 +2840,7 @@ class _$DeleteContractImpl implements _DeleteContract {
         updateContract,
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
   }) {
     return deleteContract(id);
   }
@@ -2754,7 +2848,7 @@ class _$DeleteContractImpl implements _DeleteContract {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(bool reloadForEmail)? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String? keyword)? searchContracts,
     TResult? Function()? initAdd,
@@ -2786,6 +2880,7 @@ class _$DeleteContractImpl implements _DeleteContract {
         updateContract,
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
   }) {
     return deleteContract?.call(id);
   }
@@ -2793,7 +2888,7 @@ class _$DeleteContractImpl implements _DeleteContract {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(bool reloadForEmail)? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String? keyword)? searchContracts,
     TResult Function()? initAdd,
@@ -2825,6 +2920,7 @@ class _$DeleteContractImpl implements _DeleteContract {
         updateContract,
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (deleteContract != null) {
@@ -2847,6 +2943,7 @@ class _$DeleteContractImpl implements _DeleteContract {
     required TResult Function(_UpdateContract value) updateContract,
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
   }) {
     return deleteContract(this);
   }
@@ -2865,6 +2962,7 @@ class _$DeleteContractImpl implements _DeleteContract {
     TResult? Function(_UpdateContract value)? updateContract,
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
   }) {
     return deleteContract?.call(this);
   }
@@ -2883,6 +2981,7 @@ class _$DeleteContractImpl implements _DeleteContract {
     TResult Function(_UpdateContract value)? updateContract,
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (deleteContract != null) {
@@ -2940,7 +3039,7 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(bool reloadForEmail) init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(String? keyword) searchContracts,
@@ -2973,6 +3072,7 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
         updateContract,
     required TResult Function(int id) deleteContract,
     required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
   }) {
     return clearDeleteSuccess();
   }
@@ -2980,7 +3080,7 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(bool reloadForEmail)? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String? keyword)? searchContracts,
     TResult? Function()? initAdd,
@@ -3012,6 +3112,7 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
         updateContract,
     TResult? Function(int id)? deleteContract,
     TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
   }) {
     return clearDeleteSuccess?.call();
   }
@@ -3019,7 +3120,7 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(bool reloadForEmail)? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String? keyword)? searchContracts,
     TResult Function()? initAdd,
@@ -3051,6 +3152,7 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
         updateContract,
     TResult Function(int id)? deleteContract,
     TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (clearDeleteSuccess != null) {
@@ -3073,6 +3175,7 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     required TResult Function(_UpdateContract value) updateContract,
     required TResult Function(_DeleteContract value) deleteContract,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
   }) {
     return clearDeleteSuccess(this);
   }
@@ -3091,6 +3194,7 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     TResult? Function(_UpdateContract value)? updateContract,
     TResult? Function(_DeleteContract value)? deleteContract,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
   }) {
     return clearDeleteSuccess?.call(this);
   }
@@ -3109,6 +3213,7 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     TResult Function(_UpdateContract value)? updateContract,
     TResult Function(_DeleteContract value)? deleteContract,
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
     required TResult orElse(),
   }) {
     if (clearDeleteSuccess != null) {
@@ -3120,4 +3225,266 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
 
 abstract class _ClearDeleteSuccess implements ContractRegistrationEvent {
   const factory _ClearDeleteSuccess() = _$ClearDeleteSuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$SendEmailAfterSubmitImplCopyWith<$Res> {
+  factory _$$SendEmailAfterSubmitImplCopyWith(_$SendEmailAfterSubmitImpl value,
+          $Res Function(_$SendEmailAfterSubmitImpl) then) =
+      __$$SendEmailAfterSubmitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int registerContractId});
+}
+
+/// @nodoc
+class __$$SendEmailAfterSubmitImplCopyWithImpl<$Res>
+    extends _$ContractRegistrationEventCopyWithImpl<$Res,
+        _$SendEmailAfterSubmitImpl>
+    implements _$$SendEmailAfterSubmitImplCopyWith<$Res> {
+  __$$SendEmailAfterSubmitImplCopyWithImpl(_$SendEmailAfterSubmitImpl _value,
+      $Res Function(_$SendEmailAfterSubmitImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? registerContractId = null,
+  }) {
+    return _then(_$SendEmailAfterSubmitImpl(
+      registerContractId: null == registerContractId
+          ? _value.registerContractId
+          : registerContractId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SendEmailAfterSubmitImpl implements _SendEmailAfterSubmit {
+  const _$SendEmailAfterSubmitImpl({required this.registerContractId});
+
+  @override
+  final int registerContractId;
+
+  @override
+  String toString() {
+    return 'ContractRegistrationEvent.sendEmailAfterSubmit(registerContractId: $registerContractId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SendEmailAfterSubmitImpl &&
+            (identical(other.registerContractId, registerContractId) ||
+                other.registerContractId == registerContractId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, registerContractId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SendEmailAfterSubmitImplCopyWith<_$SendEmailAfterSubmitImpl>
+      get copyWith =>
+          __$$SendEmailAfterSubmitImplCopyWithImpl<_$SendEmailAfterSubmitImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool reloadForEmail) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String? keyword) searchContracts,
+    required TResult Function() initAdd,
+    required TResult Function() clearSubmitResult,
+    required TResult Function() fetchReceivers,
+    required TResult Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        submitContract,
+    required TResult Function(int id) initDetail,
+    required TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        updateContract,
+    required TResult Function(int id) deleteContract,
+    required TResult Function() clearDeleteSuccess,
+    required TResult Function(int registerContractId) sendEmailAfterSubmit,
+  }) {
+    return sendEmailAfterSubmit(registerContractId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool reloadForEmail)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String? keyword)? searchContracts,
+    TResult? Function()? initAdd,
+    TResult? Function()? clearSubmitResult,
+    TResult? Function()? fetchReceivers,
+    TResult? Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        submitContract,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
+    TResult? Function(int id)? deleteContract,
+    TResult? Function()? clearDeleteSuccess,
+    TResult? Function(int registerContractId)? sendEmailAfterSubmit,
+  }) {
+    return sendEmailAfterSubmit?.call(registerContractId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool reloadForEmail)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String? keyword)? searchContracts,
+    TResult Function()? initAdd,
+    TResult Function()? clearSubmitResult,
+    TResult Function()? fetchReceivers,
+    TResult Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        submitContract,
+    TResult Function(int id)? initDetail,
+    TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
+    TResult Function(int id)? deleteContract,
+    TResult Function()? clearDeleteSuccess,
+    TResult Function(int registerContractId)? sendEmailAfterSubmit,
+    required TResult orElse(),
+  }) {
+    if (sendEmailAfterSubmit != null) {
+      return sendEmailAfterSubmit(registerContractId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SearchContracts value) searchContracts,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_FetchReceivers value) fetchReceivers,
+    required TResult Function(_SubmitContract value) submitContract,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_UpdateContract value) updateContract,
+    required TResult Function(_DeleteContract value) deleteContract,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+    required TResult Function(_SendEmailAfterSubmit value) sendEmailAfterSubmit,
+  }) {
+    return sendEmailAfterSubmit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SearchContracts value)? searchContracts,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_FetchReceivers value)? fetchReceivers,
+    TResult? Function(_SubmitContract value)? submitContract,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_UpdateContract value)? updateContract,
+    TResult? Function(_DeleteContract value)? deleteContract,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult? Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+  }) {
+    return sendEmailAfterSubmit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SearchContracts value)? searchContracts,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_FetchReceivers value)? fetchReceivers,
+    TResult Function(_SubmitContract value)? submitContract,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_UpdateContract value)? updateContract,
+    TResult Function(_DeleteContract value)? deleteContract,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    TResult Function(_SendEmailAfterSubmit value)? sendEmailAfterSubmit,
+    required TResult orElse(),
+  }) {
+    if (sendEmailAfterSubmit != null) {
+      return sendEmailAfterSubmit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SendEmailAfterSubmit implements ContractRegistrationEvent {
+  const factory _SendEmailAfterSubmit({required final int registerContractId}) =
+      _$SendEmailAfterSubmitImpl;
+
+  int get registerContractId;
+  @JsonKey(ignore: true)
+  _$$SendEmailAfterSubmitImplCopyWith<_$SendEmailAfterSubmitImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

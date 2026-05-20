@@ -43,6 +43,10 @@ abstract class _$ContractRegistrationStateCWProxy {
 
   ContractRegistrationState deleteSuccess(bool deleteSuccess);
 
+  ContractRegistrationState isSendingEmail(bool isSendingEmail);
+
+  ContractRegistrationState isReloadingForEmail(bool isReloadingForEmail);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContractRegistrationState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -67,6 +71,8 @@ abstract class _$ContractRegistrationStateCWProxy {
     DetailContractResponseItem? detail,
     bool? isDeleting,
     bool? deleteSuccess,
+    bool? isSendingEmail,
+    bool? isReloadingForEmail,
   });
 }
 
@@ -146,6 +152,14 @@ class _$ContractRegistrationStateCWProxyImpl
       this(deleteSuccess: deleteSuccess);
 
   @override
+  ContractRegistrationState isSendingEmail(bool isSendingEmail) =>
+      this(isSendingEmail: isSendingEmail);
+
+  @override
+  ContractRegistrationState isReloadingForEmail(bool isReloadingForEmail) =>
+      this(isReloadingForEmail: isReloadingForEmail);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContractRegistrationState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -171,6 +185,8 @@ class _$ContractRegistrationStateCWProxyImpl
     Object? detail = const $CopyWithPlaceholder(),
     Object? isDeleting = const $CopyWithPlaceholder(),
     Object? deleteSuccess = const $CopyWithPlaceholder(),
+    Object? isSendingEmail = const $CopyWithPlaceholder(),
+    Object? isReloadingForEmail = const $CopyWithPlaceholder(),
   }) {
     return ContractRegistrationState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -250,6 +266,17 @@ class _$ContractRegistrationStateCWProxyImpl
               ? _value.deleteSuccess
               // ignore: cast_nullable_to_non_nullable
               : deleteSuccess as bool,
+      isSendingEmail: isSendingEmail == const $CopyWithPlaceholder() ||
+              isSendingEmail == null
+          ? _value.isSendingEmail
+          // ignore: cast_nullable_to_non_nullable
+          : isSendingEmail as bool,
+      isReloadingForEmail:
+          isReloadingForEmail == const $CopyWithPlaceholder() ||
+                  isReloadingForEmail == null
+              ? _value.isReloadingForEmail
+              // ignore: cast_nullable_to_non_nullable
+              : isReloadingForEmail as bool,
     );
   }
 }

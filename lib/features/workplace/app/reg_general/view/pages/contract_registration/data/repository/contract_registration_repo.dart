@@ -26,4 +26,8 @@ abstract class ContractRegistrationRepo {
   Future<Either<BaseError, DetailContractResponseItem>> getContractById({
     required int id,
   });
+
+  Future<Either<BaseError, String>> sendEmailNewContract({
+    required int registerContractId,
+  });
 }

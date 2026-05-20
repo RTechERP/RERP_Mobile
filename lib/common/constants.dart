@@ -334,4 +334,5 @@ class ApiEndPoint {
   static const String getTaxCompany = '/RegisterContract/get-tax-company';
   static const String saveContract = '/registercontract/save-data';
   static const String getContractById = '/registercontract/get-data-by-id';
+  static const String sendEmailNewContract = '/RegisterContract/send-email-new-contract';
 }

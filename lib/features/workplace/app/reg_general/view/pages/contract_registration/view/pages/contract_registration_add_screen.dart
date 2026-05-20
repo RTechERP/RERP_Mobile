@@ -184,23 +184,24 @@ class _ContractRegistrationAddScreenState extends BaseState<
     return Stack(
       children: [
         BlocListener<ContractRegistrationBloc, ContractRegistrationState>(
-          listenWhen: (prev, curr) =>
-              prev.submitSuccess != curr.submitSuccess ||
-              prev.message != curr.message,
-          listener: (context, state) {
-            if ((state.message ?? '').isNotEmpty) {
-              showMessage(
-                context,
-                state.message!,
-                type: state.submitSuccess
-                    ? SnackBarType.success
-                    : SnackBarType.error,
-              );
-            }
-            if (state.submitSuccess) {
-              context.pop(true);
-            }
-          },
+      listenWhen: (prev, curr) =>
+          prev.submitSuccess != curr.submitSuccess ||
+          prev.message != curr.message,
+      listener: (context, state) {
+        if ((state.message ?? '').isNotEmpty) {
+          showMessage(
+            context,
+            state.message!,
+            type: state.submitSuccess
+                ? SnackBarType.success
+                : SnackBarType.error,
+          );
+        }
+        if (state.submitSuccess) {
+          bloc.add(const ContractRegistrationEvent.init(reloadForEmail: true));
+          context.pop(true);
+        }
+      },
           child: BaseScaffold(
             appBar: AppBarCommon(
               title: const Text('Tạo hợp đồng'),

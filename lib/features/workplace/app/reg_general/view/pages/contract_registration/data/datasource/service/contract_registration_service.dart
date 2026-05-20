@@ -45,6 +45,16 @@ class ContractRegistrationService extends DioBaseApiService {
     return res.data as Map<String, dynamic>;
   }
 
+  Future<Map<String, dynamic>> sendEmailNewContract({
+    required int registerContractId,
+  }) async {
+    final res = await dio.post(
+      ApiEndPoint.sendEmailNewContract,
+      data: {'RegisterContractID': registerContractId},
+    );
+    return res.data as Map<String, dynamic>;
+  }
+
   Future<BaseData<List<TaxCompanyResponseItem>>> getTaxCompany({
     required Map<String, dynamic> payload,
   }) async {

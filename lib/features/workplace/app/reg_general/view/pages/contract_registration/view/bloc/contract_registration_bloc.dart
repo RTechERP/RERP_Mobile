@@ -27,7 +27,7 @@ class ContractRegistrationBloc
     : super(ContractRegistrationState.init()) {
     on<ContractRegistrationEvent>((event, emit) async {
       await event.when(
-        init: () => _onInit(emit),
+        init: (reloadForEmail) => _onInit(emit, reloadForEmail: reloadForEmail),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
         searchContracts: (keyword) =>
@@ -86,13 +86,25 @@ class ContractRegistrationBloc
             ),
         deleteContract: (id) => _onDeleteContract(emit, id: id),
         clearDeleteSuccess: () => _onClearDeleteSuccess(emit),
+        sendEmailAfterSubmit: (registerContractId) => _onSendEmailAfterSubmit(
+          emit,
+          registerContractId: registerContractId,
+        ),
       );
     });
   }
 
   //---(Init)---//
-  Future<void> _onInit(Emitter<ContractRegistrationState> emit) async {
-    emit(state.copyWith(status: BaseStateStatus.loading));
+  Future<void> _onInit(
+    Emitter<ContractRegistrationState> emit, {
+    bool reloadForEmail = false,
+  }) async {
+    emit(
+      state.copyWith(
+        status: BaseStateStatus.loading,
+        isReloadingForEmail: reloadForEmail,
+      ),
+    );
 
     final now = DateTime.now();
     final start = DateTime(now.year, now.month, 1);
@@ -129,6 +141,14 @@ class ContractRegistrationBloc
       (data) async {
         _log.logI('Get contracts success - total: ${data.length}');
         emit(state.copyWith(status: BaseStateStatus.success, contracts: data));
+
+        if (reloadForEmail && data.isNotEmpty) {
+          final latestId = data.first.id;
+          if (latestId != null) {
+            _log.logI('Reloading for email, latest contract ID: $latestId');
+            await _onSendEmailAfterSubmit(emit, registerContractId: latestId);
+          }
+        }
       },
     );
   }
@@ -352,20 +372,6 @@ class ContractRegistrationBloc
     }
   }
 
-  // Map loại văn bản int -> string.
-  String _mapContractTypeIdToString(int? id) {
-    switch (id) {
-      case 1:
-        return 'Gốc';
-      case 2:
-        return 'Sao y';
-      case 3:
-        return 'Treo';
-      default:
-        return 'Gốc';
-    }
-  }
-
   /// Load chi tiết hợp đồng theo [id] — gọi từ detail screen.
   void loadDetail(int id) {
     add(ContractRegistrationEvent.initDetail(id: id));
@@ -381,31 +387,37 @@ class ContractRegistrationBloc
     Emitter<ContractRegistrationState> emit, {
     required int id,
   }) async {
-    emit(state.copyWith(
-      isDetailLoading: true,
-      detail: null,
-      updateSuccess: false,
-      message: null,
-    ));
+    emit(
+      state.copyWith(
+        isDetailLoading: true,
+        detail: null,
+        updateSuccess: false,
+        message: null,
+      ),
+    );
 
     final detailRes = await _repo.getContractById(id: id);
 
     await detailRes.fold(
       (err) async {
         _log.logE('InitDetail failed: $err');
-        emit(state.copyWith(
-          isDetailLoading: false,
-          status: BaseStateStatus.failed,
-          message: err.getErrorMessage,
-        ));
+        emit(
+          state.copyWith(
+            isDetailLoading: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ),
+        );
       },
       (detail) async {
         _log.logI('InitDetail success - id: $id');
-        emit(state.copyWith(
-          isDetailLoading: false,
-          status: BaseStateStatus.success,
-          detail: detail,
-        ));
+        emit(
+          state.copyWith(
+            isDetailLoading: false,
+            status: BaseStateStatus.success,
+            detail: detail,
+          ),
+        );
       },
     );
   }
@@ -424,11 +436,7 @@ class ContractRegistrationBloc
     required bool isScan,
     String? folderPath,
   }) async {
-    emit(state.copyWith(
-      isUpdating: true,
-      updateSuccess: false,
-      message: null,
-    ));
+    emit(state.copyWith(isUpdating: true, updateSuccess: false, message: null));
 
     final contractTypeId = _mapContractType(contractType);
 
@@ -454,20 +462,24 @@ class ContractRegistrationBloc
     await res.fold(
       (err) async {
         _log.logE('Update contract failed: $err');
-        emit(state.copyWith(
-          isUpdating: false,
-          status: BaseStateStatus.failed,
-          message: err.getErrorMessage,
-        ));
+        emit(
+          state.copyWith(
+            isUpdating: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ),
+        );
       },
       (data) async {
         _log.logI('Update contract success');
-        emit(state.copyWith(
-          isUpdating: false,
-          updateSuccess: true,
-          status: BaseStateStatus.success,
-          message: 'Cập nhật hợp đồng thành công',
-        ));
+        emit(
+          state.copyWith(
+            isUpdating: false,
+            updateSuccess: true,
+            status: BaseStateStatus.success,
+            message: 'Cập nhật hợp đồng thành công',
+          ),
+        );
       },
     );
   }
@@ -479,10 +491,7 @@ class ContractRegistrationBloc
   }) async {
     emit(state.copyWith(isDeleting: true, deleteSuccess: false, message: null));
 
-    final payload = <String, dynamic>{
-      "ID": id,
-      "IsDeleted": true,
-    };
+    final payload = <String, dynamic>{"ID": id, "IsDeleted": true};
 
     _log.logI('Delete contract payload: $payload');
 
@@ -491,21 +500,25 @@ class ContractRegistrationBloc
     await res.fold(
       (err) async {
         _log.logE('Delete contract failed: $err');
-        emit(state.copyWith(
-          isDeleting: false,
-          deleteSuccess: false,
-          status: BaseStateStatus.failed,
-          message: err.getErrorMessage,
-        ));
+        emit(
+          state.copyWith(
+            isDeleting: false,
+            deleteSuccess: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ),
+        );
       },
       (data) async {
         _log.logI('Delete contract success');
-        emit(state.copyWith(
-          isDeleting: false,
-          deleteSuccess: true,
-          status: BaseStateStatus.success,
-          message: 'Xoá hợp đồng thành công',
-        ));
+        emit(
+          state.copyWith(
+            isDeleting: false,
+            deleteSuccess: true,
+            status: BaseStateStatus.success,
+            message: 'Xoá hợp đồng thành công',
+          ),
+        );
       },
     );
   }
@@ -515,5 +528,30 @@ class ContractRegistrationBloc
     Emitter<ContractRegistrationState> emit,
   ) async {
     emit(state.copyWith(deleteSuccess: false));
+  }
+
+  //---(SendEmailAfterSubmit)---//
+  Future<void> _onSendEmailAfterSubmit(
+    Emitter<ContractRegistrationState> emit, {
+    required int registerContractId,
+  }) async {
+    emit(state.copyWith(isSendingEmail: true));
+
+    final res = await _repo.sendEmailNewContract(
+      registerContractId: registerContractId,
+    );
+
+    res.fold(
+      (err) {
+        _log.logE('Send email failed: $err');
+        emit(
+          state.copyWith(isSendingEmail: false, message: 'Gửi email thất bại'),
+        );
+      },
+      (message) {
+        _log.logI('Send email success: $message');
+        emit(state.copyWith(isSendingEmail: false, message: message));
+      },
+    );
   }
 }

@@ -122,4 +122,28 @@ class ContractRegistrationRepoImpl implements ContractRegistrationRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, String>> sendEmailNewContract({
+    required int registerContractId,
+  }) async {
+    try {
+      final res = await _service.sendEmailNewContract(
+        registerContractId: registerContractId,
+      );
+
+      final status = res['status'] ?? 0;
+      if (status == 1) {
+        return right(res['message'] ?? 'Gửi email thành công');
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res['message'] ?? res['msg'] ?? 'Gửi email thất bại',
+        ),
+      );
+    } catch (e) {
+      return left(BaseError.httpUnknownError(e.toString()));
+    }
+  }
 }
