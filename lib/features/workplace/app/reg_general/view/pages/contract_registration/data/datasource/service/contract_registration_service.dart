@@ -69,6 +69,20 @@ class ContractRegistrationService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<DetailContractResponseItem>> getContractById({
+    required int id,
+  }) {
+    return get<BaseData<DetailContractResponseItem>>(
+      '${ApiEndPoint.getContractById}?id=$id',
+      parser: (json) => BaseData<DetailContractResponseItem>.fromJson(
+        json as Map<String, dynamic>,
+        (data) => DetailContractResponseItem.fromJson(
+          data is Map<String, dynamic> ? data : {},
+        ),
+      ),
+    );
+  }
+
   /// Parse response - hỗ trợ cả khi data là List hoặc Map.
   BaseData<List<T>> _parseList<T>(
     dynamic json,

@@ -58,6 +58,32 @@ class ContractRegistrationBloc
               isScan: isScan,
               folderPath: folderPath,
             ),
+        initDetail: (id) => _onInitDetail(emit, id: id),
+        updateContract:
+            (
+              id,
+              registedDate,
+              taxCompanyId,
+              documentTypeId,
+              contractType,
+              employeeReceiverId,
+              documentQuantity,
+              documentName,
+              isScan,
+              folderPath,
+            ) => _onUpdateContract(
+              emit,
+              id: id,
+              registedDate: registedDate,
+              taxCompanyId: taxCompanyId,
+              documentTypeId: documentTypeId,
+              contractType: contractType,
+              employeeReceiverId: employeeReceiverId,
+              documentQuantity: documentQuantity,
+              documentName: documentName,
+              isScan: isScan,
+              folderPath: folderPath,
+            ),
       );
     });
   }
@@ -322,5 +348,125 @@ class ContractRegistrationBloc
       default:
         return 1;
     }
+  }
+
+  // Map loại văn bản int -> string.
+  String _mapContractTypeIdToString(int? id) {
+    switch (id) {
+      case 1:
+        return 'Gốc';
+      case 2:
+        return 'Sao y';
+      case 3:
+        return 'Treo';
+      default:
+        return 'Gốc';
+    }
+  }
+
+  /// Load chi tiết hợp đồng theo [id] — gọi từ detail screen.
+  void loadDetail(int id) {
+    add(ContractRegistrationEvent.initDetail(id: id));
+  }
+
+  /// Reload danh sách sau khi edit xong — gọi từ detail screen.
+  void reloadList() {
+    add(const ContractRegistrationEvent.init());
+  }
+
+  //---(InitDetail)---//
+  Future<void> _onInitDetail(
+    Emitter<ContractRegistrationState> emit, {
+    required int id,
+  }) async {
+    emit(state.copyWith(
+      isDetailLoading: true,
+      detail: null,
+      updateSuccess: false,
+      message: null,
+    ));
+
+    final detailRes = await _repo.getContractById(id: id);
+
+    await detailRes.fold(
+      (err) async {
+        _log.logE('InitDetail failed: $err');
+        emit(state.copyWith(
+          isDetailLoading: false,
+          status: BaseStateStatus.failed,
+          message: err.getErrorMessage,
+        ));
+      },
+      (detail) async {
+        _log.logI('InitDetail success - id: $id');
+        emit(state.copyWith(
+          isDetailLoading: false,
+          status: BaseStateStatus.success,
+          detail: detail,
+        ));
+      },
+    );
+  }
+
+  //---(UpdateContract)---//
+  Future<void> _onUpdateContract(
+    Emitter<ContractRegistrationState> emit, {
+    required int id,
+    required DateTime registedDate,
+    required int taxCompanyId,
+    required int documentTypeId,
+    required String contractType,
+    required int employeeReceiverId,
+    required int documentQuantity,
+    required String documentName,
+    required bool isScan,
+    String? folderPath,
+  }) async {
+    emit(state.copyWith(
+      isUpdating: true,
+      updateSuccess: false,
+      message: null,
+    ));
+
+    final contractTypeId = _mapContractType(contractType);
+
+    final payload = <String, dynamic>{
+      "ID": id,
+      "EmployeeID": state.detail?.employeeId ?? 0,
+      "EmployeeReciveID": employeeReceiverId,
+      "TaxCompanyID": taxCompanyId,
+      "RegistedDate": registedDate.toIso8601String(),
+      "DocumentTypeID": documentTypeId,
+      "DocumentName": documentName,
+      "DocumentQuantity": documentQuantity,
+      "ContractTypeID": contractTypeId,
+      "FolderPath": isScan ? (folderPath ?? '') : null,
+      "IsScan": isScan,
+      "IsDeleted": false,
+    };
+
+    _log.logI('Update contract payload: $payload');
+
+    final res = await _repo.saveContract(payload: payload);
+
+    await res.fold(
+      (err) async {
+        _log.logE('Update contract failed: $err');
+        emit(state.copyWith(
+          isUpdating: false,
+          status: BaseStateStatus.failed,
+          message: err.getErrorMessage,
+        ));
+      },
+      (data) async {
+        _log.logI('Update contract success');
+        emit(state.copyWith(
+          isUpdating: false,
+          updateSuccess: true,
+          status: BaseStateStatus.success,
+          message: 'Cập nhật hợp đồng thành công',
+        ));
+      },
+    );
   }
 }

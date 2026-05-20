@@ -36,6 +36,19 @@ mixin _$ContractRegistrationEvent {
             bool isScan,
             String? folderPath)
         submitContract,
+    required TResult Function(int id) initDetail,
+    required TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        updateContract,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +70,19 @@ mixin _$ContractRegistrationEvent {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +104,19 @@ mixin _$ContractRegistrationEvent {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult Function(int id)? initDetail,
+    TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -90,6 +129,8 @@ mixin _$ContractRegistrationEvent {
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
     required TResult Function(_FetchReceivers value) fetchReceivers,
     required TResult Function(_SubmitContract value) submitContract,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_UpdateContract value) updateContract,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -101,6 +142,8 @@ mixin _$ContractRegistrationEvent {
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult? Function(_FetchReceivers value)? fetchReceivers,
     TResult? Function(_SubmitContract value)? submitContract,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_UpdateContract value)? updateContract,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -112,6 +155,8 @@ mixin _$ContractRegistrationEvent {
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult Function(_FetchReceivers value)? fetchReceivers,
     TResult Function(_SubmitContract value)? submitContract,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_UpdateContract value)? updateContract,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -191,6 +236,19 @@ class _$InitImpl implements _Init {
             bool isScan,
             String? folderPath)
         submitContract,
+    required TResult Function(int id) initDetail,
+    required TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        updateContract,
   }) {
     return init();
   }
@@ -215,6 +273,19 @@ class _$InitImpl implements _Init {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
   }) {
     return init?.call();
   }
@@ -239,6 +310,19 @@ class _$InitImpl implements _Init {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult Function(int id)? initDetail,
+    TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -257,6 +341,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
     required TResult Function(_FetchReceivers value) fetchReceivers,
     required TResult Function(_SubmitContract value) submitContract,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_UpdateContract value) updateContract,
   }) {
     return init(this);
   }
@@ -271,6 +357,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult? Function(_FetchReceivers value)? fetchReceivers,
     TResult? Function(_SubmitContract value)? submitContract,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_UpdateContract value)? updateContract,
   }) {
     return init?.call(this);
   }
@@ -285,6 +373,8 @@ class _$InitImpl implements _Init {
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult Function(_FetchReceivers value)? fetchReceivers,
     TResult Function(_SubmitContract value)? submitContract,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_UpdateContract value)? updateContract,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -390,6 +480,19 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             bool isScan,
             String? folderPath)
         submitContract,
+    required TResult Function(int id) initDetail,
+    required TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        updateContract,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -414,6 +517,19 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -438,6 +554,19 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult Function(int id)? initDetail,
+    TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -456,6 +585,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
     required TResult Function(_FetchReceivers value) fetchReceivers,
     required TResult Function(_SubmitContract value) submitContract,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_UpdateContract value) updateContract,
   }) {
     return changeDateRange(this);
   }
@@ -470,6 +601,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult? Function(_FetchReceivers value)? fetchReceivers,
     TResult? Function(_SubmitContract value)? submitContract,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_UpdateContract value)? updateContract,
   }) {
     return changeDateRange?.call(this);
   }
@@ -484,6 +617,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult Function(_FetchReceivers value)? fetchReceivers,
     TResult Function(_SubmitContract value)? submitContract,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_UpdateContract value)? updateContract,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -588,6 +723,19 @@ class _$SearchContractsImpl implements _SearchContracts {
             bool isScan,
             String? folderPath)
         submitContract,
+    required TResult Function(int id) initDetail,
+    required TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        updateContract,
   }) {
     return searchContracts(keyword);
   }
@@ -612,6 +760,19 @@ class _$SearchContractsImpl implements _SearchContracts {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
   }) {
     return searchContracts?.call(keyword);
   }
@@ -636,6 +797,19 @@ class _$SearchContractsImpl implements _SearchContracts {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult Function(int id)? initDetail,
+    TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
     required TResult orElse(),
   }) {
     if (searchContracts != null) {
@@ -654,6 +828,8 @@ class _$SearchContractsImpl implements _SearchContracts {
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
     required TResult Function(_FetchReceivers value) fetchReceivers,
     required TResult Function(_SubmitContract value) submitContract,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_UpdateContract value) updateContract,
   }) {
     return searchContracts(this);
   }
@@ -668,6 +844,8 @@ class _$SearchContractsImpl implements _SearchContracts {
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult? Function(_FetchReceivers value)? fetchReceivers,
     TResult? Function(_SubmitContract value)? submitContract,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_UpdateContract value)? updateContract,
   }) {
     return searchContracts?.call(this);
   }
@@ -682,6 +860,8 @@ class _$SearchContractsImpl implements _SearchContracts {
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult Function(_FetchReceivers value)? fetchReceivers,
     TResult Function(_SubmitContract value)? submitContract,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_UpdateContract value)? updateContract,
     required TResult orElse(),
   }) {
     if (searchContracts != null) {
@@ -757,6 +937,19 @@ class _$InitAddImpl implements _InitAdd {
             bool isScan,
             String? folderPath)
         submitContract,
+    required TResult Function(int id) initDetail,
+    required TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        updateContract,
   }) {
     return initAdd();
   }
@@ -781,6 +974,19 @@ class _$InitAddImpl implements _InitAdd {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
   }) {
     return initAdd?.call();
   }
@@ -805,6 +1011,19 @@ class _$InitAddImpl implements _InitAdd {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult Function(int id)? initDetail,
+    TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -823,6 +1042,8 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
     required TResult Function(_FetchReceivers value) fetchReceivers,
     required TResult Function(_SubmitContract value) submitContract,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_UpdateContract value) updateContract,
   }) {
     return initAdd(this);
   }
@@ -837,6 +1058,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult? Function(_FetchReceivers value)? fetchReceivers,
     TResult? Function(_SubmitContract value)? submitContract,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_UpdateContract value)? updateContract,
   }) {
     return initAdd?.call(this);
   }
@@ -851,6 +1074,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult Function(_FetchReceivers value)? fetchReceivers,
     TResult Function(_SubmitContract value)? submitContract,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_UpdateContract value)? updateContract,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -921,6 +1146,19 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
             bool isScan,
             String? folderPath)
         submitContract,
+    required TResult Function(int id) initDetail,
+    required TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        updateContract,
   }) {
     return clearSubmitResult();
   }
@@ -945,6 +1183,19 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
   }) {
     return clearSubmitResult?.call();
   }
@@ -969,6 +1220,19 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult Function(int id)? initDetail,
+    TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
     required TResult orElse(),
   }) {
     if (clearSubmitResult != null) {
@@ -987,6 +1251,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
     required TResult Function(_FetchReceivers value) fetchReceivers,
     required TResult Function(_SubmitContract value) submitContract,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_UpdateContract value) updateContract,
   }) {
     return clearSubmitResult(this);
   }
@@ -1001,6 +1267,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult? Function(_FetchReceivers value)? fetchReceivers,
     TResult? Function(_SubmitContract value)? submitContract,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_UpdateContract value)? updateContract,
   }) {
     return clearSubmitResult?.call(this);
   }
@@ -1015,6 +1283,8 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult Function(_FetchReceivers value)? fetchReceivers,
     TResult Function(_SubmitContract value)? submitContract,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_UpdateContract value)? updateContract,
     required TResult orElse(),
   }) {
     if (clearSubmitResult != null) {
@@ -1084,6 +1354,19 @@ class _$FetchReceiversImpl implements _FetchReceivers {
             bool isScan,
             String? folderPath)
         submitContract,
+    required TResult Function(int id) initDetail,
+    required TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        updateContract,
   }) {
     return fetchReceivers();
   }
@@ -1108,6 +1391,19 @@ class _$FetchReceiversImpl implements _FetchReceivers {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
   }) {
     return fetchReceivers?.call();
   }
@@ -1132,6 +1428,19 @@ class _$FetchReceiversImpl implements _FetchReceivers {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult Function(int id)? initDetail,
+    TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
     required TResult orElse(),
   }) {
     if (fetchReceivers != null) {
@@ -1150,6 +1459,8 @@ class _$FetchReceiversImpl implements _FetchReceivers {
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
     required TResult Function(_FetchReceivers value) fetchReceivers,
     required TResult Function(_SubmitContract value) submitContract,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_UpdateContract value) updateContract,
   }) {
     return fetchReceivers(this);
   }
@@ -1164,6 +1475,8 @@ class _$FetchReceiversImpl implements _FetchReceivers {
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult? Function(_FetchReceivers value)? fetchReceivers,
     TResult? Function(_SubmitContract value)? submitContract,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_UpdateContract value)? updateContract,
   }) {
     return fetchReceivers?.call(this);
   }
@@ -1178,6 +1491,8 @@ class _$FetchReceiversImpl implements _FetchReceivers {
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult Function(_FetchReceivers value)? fetchReceivers,
     TResult Function(_SubmitContract value)? submitContract,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_UpdateContract value)? updateContract,
     required TResult orElse(),
   }) {
     if (fetchReceivers != null) {
@@ -1374,6 +1689,19 @@ class _$SubmitContractImpl implements _SubmitContract {
             bool isScan,
             String? folderPath)
         submitContract,
+    required TResult Function(int id) initDetail,
+    required TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        updateContract,
   }) {
     return submitContract(
         registedDate,
@@ -1407,6 +1735,19 @@ class _$SubmitContractImpl implements _SubmitContract {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
   }) {
     return submitContract?.call(
         registedDate,
@@ -1440,6 +1781,19 @@ class _$SubmitContractImpl implements _SubmitContract {
             bool isScan,
             String? folderPath)?
         submitContract,
+    TResult Function(int id)? initDetail,
+    TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
     required TResult orElse(),
   }) {
     if (submitContract != null) {
@@ -1467,6 +1821,8 @@ class _$SubmitContractImpl implements _SubmitContract {
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
     required TResult Function(_FetchReceivers value) fetchReceivers,
     required TResult Function(_SubmitContract value) submitContract,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_UpdateContract value) updateContract,
   }) {
     return submitContract(this);
   }
@@ -1481,6 +1837,8 @@ class _$SubmitContractImpl implements _SubmitContract {
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult? Function(_FetchReceivers value)? fetchReceivers,
     TResult? Function(_SubmitContract value)? submitContract,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_UpdateContract value)? updateContract,
   }) {
     return submitContract?.call(this);
   }
@@ -1495,6 +1853,8 @@ class _$SubmitContractImpl implements _SubmitContract {
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
     TResult Function(_FetchReceivers value)? fetchReceivers,
     TResult Function(_SubmitContract value)? submitContract,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_UpdateContract value)? updateContract,
     required TResult orElse(),
   }) {
     if (submitContract != null) {
@@ -1527,5 +1887,644 @@ abstract class _SubmitContract implements ContractRegistrationEvent {
   String? get folderPath;
   @JsonKey(ignore: true)
   _$$SubmitContractImplCopyWith<_$SubmitContractImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InitDetailImplCopyWith<$Res> {
+  factory _$$InitDetailImplCopyWith(
+          _$InitDetailImpl value, $Res Function(_$InitDetailImpl) then) =
+      __$$InitDetailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$InitDetailImplCopyWithImpl<$Res>
+    extends _$ContractRegistrationEventCopyWithImpl<$Res, _$InitDetailImpl>
+    implements _$$InitDetailImplCopyWith<$Res> {
+  __$$InitDetailImplCopyWithImpl(
+      _$InitDetailImpl _value, $Res Function(_$InitDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$InitDetailImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitDetailImpl implements _InitDetail {
+  const _$InitDetailImpl({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'ContractRegistrationEvent.initDetail(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitDetailImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitDetailImplCopyWith<_$InitDetailImpl> get copyWith =>
+      __$$InitDetailImplCopyWithImpl<_$InitDetailImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String? keyword) searchContracts,
+    required TResult Function() initAdd,
+    required TResult Function() clearSubmitResult,
+    required TResult Function() fetchReceivers,
+    required TResult Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        submitContract,
+    required TResult Function(int id) initDetail,
+    required TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        updateContract,
+  }) {
+    return initDetail(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String? keyword)? searchContracts,
+    TResult? Function()? initAdd,
+    TResult? Function()? clearSubmitResult,
+    TResult? Function()? fetchReceivers,
+    TResult? Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        submitContract,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
+  }) {
+    return initDetail?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String? keyword)? searchContracts,
+    TResult Function()? initAdd,
+    TResult Function()? clearSubmitResult,
+    TResult Function()? fetchReceivers,
+    TResult Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        submitContract,
+    TResult Function(int id)? initDetail,
+    TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
+    required TResult orElse(),
+  }) {
+    if (initDetail != null) {
+      return initDetail(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SearchContracts value) searchContracts,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_FetchReceivers value) fetchReceivers,
+    required TResult Function(_SubmitContract value) submitContract,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_UpdateContract value) updateContract,
+  }) {
+    return initDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SearchContracts value)? searchContracts,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_FetchReceivers value)? fetchReceivers,
+    TResult? Function(_SubmitContract value)? submitContract,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_UpdateContract value)? updateContract,
+  }) {
+    return initDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SearchContracts value)? searchContracts,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_FetchReceivers value)? fetchReceivers,
+    TResult Function(_SubmitContract value)? submitContract,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_UpdateContract value)? updateContract,
+    required TResult orElse(),
+  }) {
+    if (initDetail != null) {
+      return initDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitDetail implements ContractRegistrationEvent {
+  const factory _InitDetail({required final int id}) = _$InitDetailImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$InitDetailImplCopyWith<_$InitDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateContractImplCopyWith<$Res> {
+  factory _$$UpdateContractImplCopyWith(_$UpdateContractImpl value,
+          $Res Function(_$UpdateContractImpl) then) =
+      __$$UpdateContractImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int id,
+      DateTime registedDate,
+      int taxCompanyId,
+      int documentTypeId,
+      String contractType,
+      int employeeReceiverId,
+      int documentQuantity,
+      String documentName,
+      bool isScan,
+      String? folderPath});
+}
+
+/// @nodoc
+class __$$UpdateContractImplCopyWithImpl<$Res>
+    extends _$ContractRegistrationEventCopyWithImpl<$Res, _$UpdateContractImpl>
+    implements _$$UpdateContractImplCopyWith<$Res> {
+  __$$UpdateContractImplCopyWithImpl(
+      _$UpdateContractImpl _value, $Res Function(_$UpdateContractImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? registedDate = null,
+    Object? taxCompanyId = null,
+    Object? documentTypeId = null,
+    Object? contractType = null,
+    Object? employeeReceiverId = null,
+    Object? documentQuantity = null,
+    Object? documentName = null,
+    Object? isScan = null,
+    Object? folderPath = freezed,
+  }) {
+    return _then(_$UpdateContractImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      registedDate: null == registedDate
+          ? _value.registedDate
+          : registedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      taxCompanyId: null == taxCompanyId
+          ? _value.taxCompanyId
+          : taxCompanyId // ignore: cast_nullable_to_non_nullable
+              as int,
+      documentTypeId: null == documentTypeId
+          ? _value.documentTypeId
+          : documentTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      contractType: null == contractType
+          ? _value.contractType
+          : contractType // ignore: cast_nullable_to_non_nullable
+              as String,
+      employeeReceiverId: null == employeeReceiverId
+          ? _value.employeeReceiverId
+          : employeeReceiverId // ignore: cast_nullable_to_non_nullable
+              as int,
+      documentQuantity: null == documentQuantity
+          ? _value.documentQuantity
+          : documentQuantity // ignore: cast_nullable_to_non_nullable
+              as int,
+      documentName: null == documentName
+          ? _value.documentName
+          : documentName // ignore: cast_nullable_to_non_nullable
+              as String,
+      isScan: null == isScan
+          ? _value.isScan
+          : isScan // ignore: cast_nullable_to_non_nullable
+              as bool,
+      folderPath: freezed == folderPath
+          ? _value.folderPath
+          : folderPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateContractImpl implements _UpdateContract {
+  const _$UpdateContractImpl(
+      {required this.id,
+      required this.registedDate,
+      required this.taxCompanyId,
+      required this.documentTypeId,
+      required this.contractType,
+      required this.employeeReceiverId,
+      required this.documentQuantity,
+      required this.documentName,
+      required this.isScan,
+      this.folderPath});
+
+  @override
+  final int id;
+  @override
+  final DateTime registedDate;
+  @override
+  final int taxCompanyId;
+  @override
+  final int documentTypeId;
+  @override
+  final String contractType;
+  @override
+  final int employeeReceiverId;
+  @override
+  final int documentQuantity;
+  @override
+  final String documentName;
+  @override
+  final bool isScan;
+  @override
+  final String? folderPath;
+
+  @override
+  String toString() {
+    return 'ContractRegistrationEvent.updateContract(id: $id, registedDate: $registedDate, taxCompanyId: $taxCompanyId, documentTypeId: $documentTypeId, contractType: $contractType, employeeReceiverId: $employeeReceiverId, documentQuantity: $documentQuantity, documentName: $documentName, isScan: $isScan, folderPath: $folderPath)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateContractImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.registedDate, registedDate) ||
+                other.registedDate == registedDate) &&
+            (identical(other.taxCompanyId, taxCompanyId) ||
+                other.taxCompanyId == taxCompanyId) &&
+            (identical(other.documentTypeId, documentTypeId) ||
+                other.documentTypeId == documentTypeId) &&
+            (identical(other.contractType, contractType) ||
+                other.contractType == contractType) &&
+            (identical(other.employeeReceiverId, employeeReceiverId) ||
+                other.employeeReceiverId == employeeReceiverId) &&
+            (identical(other.documentQuantity, documentQuantity) ||
+                other.documentQuantity == documentQuantity) &&
+            (identical(other.documentName, documentName) ||
+                other.documentName == documentName) &&
+            (identical(other.isScan, isScan) || other.isScan == isScan) &&
+            (identical(other.folderPath, folderPath) ||
+                other.folderPath == folderPath));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      registedDate,
+      taxCompanyId,
+      documentTypeId,
+      contractType,
+      employeeReceiverId,
+      documentQuantity,
+      documentName,
+      isScan,
+      folderPath);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateContractImplCopyWith<_$UpdateContractImpl> get copyWith =>
+      __$$UpdateContractImplCopyWithImpl<_$UpdateContractImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String? keyword) searchContracts,
+    required TResult Function() initAdd,
+    required TResult Function() clearSubmitResult,
+    required TResult Function() fetchReceivers,
+    required TResult Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        submitContract,
+    required TResult Function(int id) initDetail,
+    required TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)
+        updateContract,
+  }) {
+    return updateContract(
+        id,
+        registedDate,
+        taxCompanyId,
+        documentTypeId,
+        contractType,
+        employeeReceiverId,
+        documentQuantity,
+        documentName,
+        isScan,
+        folderPath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String? keyword)? searchContracts,
+    TResult? Function()? initAdd,
+    TResult? Function()? clearSubmitResult,
+    TResult? Function()? fetchReceivers,
+    TResult? Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        submitContract,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
+  }) {
+    return updateContract?.call(
+        id,
+        registedDate,
+        taxCompanyId,
+        documentTypeId,
+        contractType,
+        employeeReceiverId,
+        documentQuantity,
+        documentName,
+        isScan,
+        folderPath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String? keyword)? searchContracts,
+    TResult Function()? initAdd,
+    TResult Function()? clearSubmitResult,
+    TResult Function()? fetchReceivers,
+    TResult Function(
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        submitContract,
+    TResult Function(int id)? initDetail,
+    TResult Function(
+            int id,
+            DateTime registedDate,
+            int taxCompanyId,
+            int documentTypeId,
+            String contractType,
+            int employeeReceiverId,
+            int documentQuantity,
+            String documentName,
+            bool isScan,
+            String? folderPath)?
+        updateContract,
+    required TResult orElse(),
+  }) {
+    if (updateContract != null) {
+      return updateContract(
+          id,
+          registedDate,
+          taxCompanyId,
+          documentTypeId,
+          contractType,
+          employeeReceiverId,
+          documentQuantity,
+          documentName,
+          isScan,
+          folderPath);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SearchContracts value) searchContracts,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_FetchReceivers value) fetchReceivers,
+    required TResult Function(_SubmitContract value) submitContract,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_UpdateContract value) updateContract,
+  }) {
+    return updateContract(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SearchContracts value)? searchContracts,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_FetchReceivers value)? fetchReceivers,
+    TResult? Function(_SubmitContract value)? submitContract,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_UpdateContract value)? updateContract,
+  }) {
+    return updateContract?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SearchContracts value)? searchContracts,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_FetchReceivers value)? fetchReceivers,
+    TResult Function(_SubmitContract value)? submitContract,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_UpdateContract value)? updateContract,
+    required TResult orElse(),
+  }) {
+    if (updateContract != null) {
+      return updateContract(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateContract implements ContractRegistrationEvent {
+  const factory _UpdateContract(
+      {required final int id,
+      required final DateTime registedDate,
+      required final int taxCompanyId,
+      required final int documentTypeId,
+      required final String contractType,
+      required final int employeeReceiverId,
+      required final int documentQuantity,
+      required final String documentName,
+      required final bool isScan,
+      final String? folderPath}) = _$UpdateContractImpl;
+
+  int get id;
+  DateTime get registedDate;
+  int get taxCompanyId;
+  int get documentTypeId;
+  String get contractType;
+  int get employeeReceiverId;
+  int get documentQuantity;
+  String get documentName;
+  bool get isScan;
+  String? get folderPath;
+  @JsonKey(ignore: true)
+  _$$UpdateContractImplCopyWith<_$UpdateContractImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

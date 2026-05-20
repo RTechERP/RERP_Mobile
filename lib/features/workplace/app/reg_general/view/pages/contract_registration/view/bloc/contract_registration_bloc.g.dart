@@ -31,6 +31,14 @@ abstract class _$ContractRegistrationStateCWProxy {
 
   ContractRegistrationState submitSuccess(bool submitSuccess);
 
+  ContractRegistrationState isUpdating(bool isUpdating);
+
+  ContractRegistrationState updateSuccess(bool updateSuccess);
+
+  ContractRegistrationState isDetailLoading(bool isDetailLoading);
+
+  ContractRegistrationState detail(DetailContractResponseItem? detail);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContractRegistrationState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -49,6 +57,10 @@ abstract class _$ContractRegistrationStateCWProxy {
     List<UserResponse>? receivers,
     bool? isSubmitting,
     bool? submitSuccess,
+    bool? isUpdating,
+    bool? updateSuccess,
+    bool? isDetailLoading,
+    DetailContractResponseItem? detail,
   });
 }
 
@@ -104,6 +116,22 @@ class _$ContractRegistrationStateCWProxyImpl
       this(submitSuccess: submitSuccess);
 
   @override
+  ContractRegistrationState isUpdating(bool isUpdating) =>
+      this(isUpdating: isUpdating);
+
+  @override
+  ContractRegistrationState updateSuccess(bool updateSuccess) =>
+      this(updateSuccess: updateSuccess);
+
+  @override
+  ContractRegistrationState isDetailLoading(bool isDetailLoading) =>
+      this(isDetailLoading: isDetailLoading);
+
+  @override
+  ContractRegistrationState detail(DetailContractResponseItem? detail) =>
+      this(detail: detail);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContractRegistrationState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -123,6 +151,10 @@ class _$ContractRegistrationStateCWProxyImpl
     Object? receivers = const $CopyWithPlaceholder(),
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
+    Object? isUpdating = const $CopyWithPlaceholder(),
+    Object? updateSuccess = const $CopyWithPlaceholder(),
+    Object? isDetailLoading = const $CopyWithPlaceholder(),
+    Object? detail = const $CopyWithPlaceholder(),
   }) {
     return ContractRegistrationState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -173,6 +205,25 @@ class _$ContractRegistrationStateCWProxyImpl
               ? _value.submitSuccess
               // ignore: cast_nullable_to_non_nullable
               : submitSuccess as bool,
+      isUpdating:
+          isUpdating == const $CopyWithPlaceholder() || isUpdating == null
+              ? _value.isUpdating
+              // ignore: cast_nullable_to_non_nullable
+              : isUpdating as bool,
+      updateSuccess:
+          updateSuccess == const $CopyWithPlaceholder() || updateSuccess == null
+              ? _value.updateSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : updateSuccess as bool,
+      isDetailLoading: isDetailLoading == const $CopyWithPlaceholder() ||
+              isDetailLoading == null
+          ? _value.isDetailLoading
+          // ignore: cast_nullable_to_non_nullable
+          : isDetailLoading as bool,
+      detail: detail == const $CopyWithPlaceholder()
+          ? _value.detail
+          // ignore: cast_nullable_to_non_nullable
+          : detail as DetailContractResponseItem?,
     );
   }
 }

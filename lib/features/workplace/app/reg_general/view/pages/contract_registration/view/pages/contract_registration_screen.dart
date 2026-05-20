@@ -254,7 +254,15 @@ class _ContractRegistrationScreenState
           final item = state.contracts[index];
           return ContractRegistrationCard(
             item: item,
-            onTap: () {
+            onTap: () async {
+              final edited = await context.push<bool>(
+                RouteNames.contractRegistrationDetail,
+                extra: item,
+              );
+              if (!context.mounted) return;
+              if (edited == true) {
+                bloc.add(const ContractRegistrationEvent.init());
+              }
             },
           );
         },

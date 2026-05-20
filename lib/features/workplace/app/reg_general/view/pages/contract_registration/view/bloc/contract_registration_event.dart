@@ -32,4 +32,21 @@ class ContractRegistrationEvent with _$ContractRegistrationEvent {
     required bool isScan,
     String? folderPath,
   }) = _SubmitContract;
+
+  const factory ContractRegistrationEvent.initDetail({
+    required int id,
+  }) = _InitDetail;
+
+  const factory ContractRegistrationEvent.updateContract({
+    required int id,
+    required DateTime registedDate,
+    required int taxCompanyId,
+    required int documentTypeId,
+    required String contractType,
+    required int employeeReceiverId,
+    required int documentQuantity,
+    required String documentName,
+    required bool isScan,
+    String? folderPath,
+  }) = _UpdateContract;
 }

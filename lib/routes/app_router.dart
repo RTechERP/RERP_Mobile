@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/bloc/contract_registration_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/pages/contract_registration_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/pages/contract_registration_add_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/pages/contract_registration_detail_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
@@ -32,6 +33,7 @@ import '../features/more/view/settings/notification/page/notification_settings_s
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_edit_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/contract_registration/data/datasource/models/contract_registration_model.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_edit_screen.dart';
@@ -992,6 +994,21 @@ class AppRouter {
           GoRoute(
             path: RouteNames.contractRegistrationAdd,
             builder: (context, state) => const ContractRegistrationAddScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.contractRegistrationDetail,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is ContractResponseItem) {
+                return ContractRegistrationDetailScreen(item: extra);
+              }
+              return Scaffold(
+                appBar: AppBar(title: const Text('Chi tiết hợp đồng')),
+                body: const Center(
+                  child: Text('Không có dữ liệu. Vui lòng mở từ danh sách.'),
+                ),
+              );
+            },
           ),
         ],
       ),

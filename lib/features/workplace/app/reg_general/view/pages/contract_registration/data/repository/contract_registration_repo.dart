@@ -22,4 +22,8 @@ abstract class ContractRegistrationRepo {
   });
 
   Future<Either<BaseError, List<UserResponse>>> getReceiver();
+
+  Future<Either<BaseError, DetailContractResponseItem>> getContractById({
+    required int id,
+  });
 }

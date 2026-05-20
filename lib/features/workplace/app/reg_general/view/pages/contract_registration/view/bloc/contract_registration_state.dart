@@ -11,6 +11,10 @@ class ContractRegistrationState extends BaseBlocState {
   final List<UserResponse> receivers;
   final bool isSubmitting;
   final bool submitSuccess;
+  final bool isUpdating;
+  final bool updateSuccess;
+  final bool isDetailLoading;
+  final DetailContractResponseItem? detail;
 
   const ContractRegistrationState({
     required super.status,
@@ -24,6 +28,10 @@ class ContractRegistrationState extends BaseBlocState {
     this.receivers = const [],
     this.isSubmitting = false,
     this.submitSuccess = false,
+    this.isUpdating = false,
+    this.updateSuccess = false,
+    this.isDetailLoading = false,
+    this.detail,
   });
 
   factory ContractRegistrationState.init() => const ContractRegistrationState(
@@ -37,6 +45,10 @@ class ContractRegistrationState extends BaseBlocState {
     receivers: [],
     isSubmitting: false,
     submitSuccess: false,
+    isUpdating: false,
+    updateSuccess: false,
+    isDetailLoading: false,
+    detail: null,
   );
 
   @override
@@ -52,5 +64,9 @@ class ContractRegistrationState extends BaseBlocState {
     receivers,
     isSubmitting,
     submitSuccess,
+    isUpdating,
+    updateSuccess,
+    isDetailLoading,
+    detail,
   ];
 }
