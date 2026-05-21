@@ -13,9 +13,9 @@ import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../../common/utils/card/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
+import '../../../../../../../../../common/widgets/date_header.dart';
 import '../../../../../../../../../routes/route_names.dart';
-import '../../../../../../reg_general/view/pages/booking_vehicle/view/widgets/date_header.dart';
-import '../../../../../../reg_general/view/pages/booking_vehicle/view/widgets/date_range_picker.dart';
+import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../bloc/lunch_bloc.dart';
 
 class LunchScreen extends StatefulWidget {

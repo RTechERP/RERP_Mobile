@@ -16,7 +16,7 @@ import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../routes/route_names.dart';
-import '../../../booking_vehicle/view/widgets/date_range_picker.dart';
+import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../data/datasource/models/stationery_model.dart';
 import '../bloc/stationery_bloc.dart';
 import '../widgets/stationery_card.dart';

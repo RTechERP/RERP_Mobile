@@ -34,6 +34,10 @@ import '../features/workplace/app/reg_general/view/pages/stationery/data/datasou
 import '../features/workplace/app/reg_general/view/pages/stationery/data/repository/stationery_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/repository/stationery_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/view/bloc/stationery_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/data/datasource/service/work_requirement_service.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/view/bloc/work_requirement_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/datasource/service/work_category_service.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo_impl.dart';
@@ -184,6 +188,10 @@ void configureDependencies() {
     () => StationeryService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<WorkRequirementService>(
+    () => WorkRequirementService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<ContractRegistrationService>(
     () => ContractRegistrationService(getIt<Dio>()),
   );
@@ -261,6 +269,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<StationeryRepo>(
     () => StationeryRepoImpl(getIt<StationeryService>()),
+  );
+
+  getIt.registerLazySingleton<WorkRequirementRepo>(
+    () => WorkRequirementRepoImpl(getIt<WorkRequirementService>()),
   );
 
   getIt.registerLazySingleton<ContractRegistrationRepo>(
@@ -391,6 +403,14 @@ void configureDependencies() {
   getIt.registerFactory<StationeryBloc>(
     () => StationeryBloc(
       getIt<StationeryRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<WorkRequirementBloc>(
+    () => WorkRequirementBloc(
+      getIt<WorkRequirementRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

@@ -11,9 +11,10 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
+import '../../../../../../../../../common/widgets/date_header.dart';
 import '../../../../../../../../../routes/route_names.dart';
-import '../../../../../../reg_general/view/pages/booking_vehicle/view/widgets/date_header.dart';
-import '../../../../../../reg_general/view/pages/booking_vehicle/view/widgets/date_range_picker.dart';
+
+import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../data/datasource/models/in_out_model.dart';
 import '../widgets/in_out_card.dart';
 import '../bloc/in_out_bloc.dart';
