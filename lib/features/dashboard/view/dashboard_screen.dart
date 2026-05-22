@@ -12,7 +12,6 @@ import '../../../routes/route_names.dart';
 import '../../auth/view/bloc/auth_bloc.dart';
 import '../../more/view/more_screen.dart';
 import '../../workplace/view/workspace_screen.dart';
-import 'newsfeed/newsfeed_screen.dart';
 
 /// DashboardScreen là màn hình chính sau khi đăng nhập.
 ///
@@ -32,7 +31,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    _tabController = PersistentTabController(initialIndex: 1);
+    _tabController = PersistentTabController(initialIndex: 0);
   }
 
   @override
@@ -50,7 +49,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         controller: _tabController,
         screens: const [
           // MessageScreen(),
-          NewsFeedScreen(),
+          // NewsFeedScreen(),
           WorkPlaceScreen(),
           // ContactScreen(),
           MoreScreen(),
@@ -61,11 +60,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
           //   'dashboard.chat'.tr(),
           //   activeColorPrimary: Colors.deepOrange,
           // ),
-          navItem(
-            Icons.dashboard,
-            'dashboard.feeds'.tr(),
-            activeColorPrimary: Colors.deepOrange,
-          ),
+          // navItem(
+          //   Icons.dashboard,
+          //   'dashboard.feeds'.tr(),
+          //   activeColorPrimary: Colors.deepOrange,
+          // ),
           navItem(
             Icons.keyboard_command_key_outlined,
             'dashboard.workplace'.tr(),

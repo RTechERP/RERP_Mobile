@@ -221,11 +221,12 @@ class ApiEndPoint {
   static const String getLeaveTime =
       '/employeeonleave/list-summary-employee-on-leave';
 
-  static const String saveMultiLeave= '/EmployeeOnLeave/SaveMultiPhase';
+  static const String saveMultiLeave = '/EmployeeOnLeave/SaveMultiPhase';
 
   static const String getEmployeeLeave = '/Employee';
 
-  static const String getOvertime = '/EmployeeOverTime/get-over-time-by-employee';
+  static const String getOvertime =
+      '/EmployeeOverTime/get-over-time-by-employee';
 
   static const String getOvertimeType = '/EmployeeTypeOverTime';
 
@@ -237,9 +238,10 @@ class ApiEndPoint {
 
   static const String getApproverOvertime = '/EmployeeOverTime/get-approver';
 
-  static const String getWorkTrip = '/EmployeeBussiness/get-employee-bussinesss-person';
+  static const String getWorkTrip =
+      '/EmployeeBussiness/get-employee-bussinesss-person';
 
-  static const String getWorkTripProject ='/project/get-project-modal';
+  static const String getWorkTripProject = '/project/get-project-modal';
 
   static const String getWorkTripTypeBussiness = '/EmployeeTypeBussiness';
 
@@ -249,13 +251,15 @@ class ApiEndPoint {
 
   static const String getWorkTripById = '/EmployeeBussiness/get-by-id';
 
-  static const String getOvernight = '/EmployeeNightShift/get-employee-night-shift';
+  static const String getOvernight =
+      '/EmployeeNightShift/get-employee-night-shift';
 
   static const String saveOvernight = '/EmployeeNightShift/save-data';
 
   // TODO: Thay đường dẫn API thực tế của Backend tại đây
 
-  static const String getWorkCategory = '/projectitemnew/get-project-item-person';
+  static const String getWorkCategory =
+      '/projectitemnew/get-project-item-person';
 
   static const String getWorkProjectType = '/WorkItem/get-type-project-item';
 
@@ -266,9 +270,10 @@ class ApiEndPoint {
   static const String saveWorkCategory = '/projectitemnew/save-data-person';
 
   static const String getWorkCategoryDetail = '/projectitemnew/get-by-id';
-  
-  static const String getWorkCategoryProblem = '/ProjectItem/get-project-item-problem';
-  
+
+  static const String getWorkCategoryProblem =
+      '/ProjectItem/get-project-item-problem';
+
   static const String saveWorkCategoryProblem = '/ProjectItem/save-problem';
 
   static const String getFillAprrover = '/employeeonleave/get-approve-id';
@@ -277,18 +282,22 @@ class ApiEndPoint {
 
   static const String getPersonalProperty = '/Assets/get-personal-properties';
 
-  static const String getPersonalPropertyDetail = '/Assets/get-personal-property-details';
+  static const String getPersonalPropertyDetail =
+      '/Assets/get-personal-property-details';
 
   static const String savePersonalProperty = '/Assets/save-personal-property';
 
-  static const String getTypeNotification = '/notificationtype/get-data-by-userid';
+  static const String getTypeNotification =
+      '/notificationtype/get-data-by-userid';
 
   static const String saveNotificationType = '/notificationtype/save-data';
 
-  static const String getStationery = '/OfficeSupplyRequests/get-office-supply-request';
+  static const String getStationery =
+      '/OfficeSupplyRequests/get-office-supply-request';
   static const String getStationerySupply = '/officesupply/get-office-supply';
 
-  static const String getStationeryDetail = '/OfficeSupplyRequests/get-office-supply-request-detail';
+  static const String getStationeryDetail =
+      '/OfficeSupplyRequests/get-office-supply-request-detail';
 
   static const String saveStationery = '/OfficeSupplyRequests/save-data';
 
@@ -299,8 +308,10 @@ class ApiEndPoint {
   static const String saveProjectTask = '/ProjectTask/SaveData';
   static const String projectTaskFiles = '/ProjectTask/Files';
   static const String projectTaskChecklists = '/ProjectTask/Checklists';
-  static const String projectTaskChecklistsGet = '/ProjectTask/{taskId}/Checklists';
-  static const String projectTaskChecklistsUpdate = '/ProjectTask/Checklists/{id}';
+  static const String projectTaskChecklistsGet =
+      '/ProjectTask/{taskId}/Checklists';
+  static const String projectTaskChecklistsUpdate =
+      '/ProjectTask/Checklists/{id}';
   static const String projectTaskLinks = '/ProjectTask/Links';
   static const String projectTaskChild = '/ProjectTask/project-task-child';
   static const String projectTaskAdditional = '/ProjectTask/Additional';
@@ -313,7 +324,8 @@ class ApiEndPoint {
   static const String getEmployees = '/Employee';
 
   // Salary
-  static const String getPersonalSyntheticByMonth = '/Home/get-personal-synthetic-by-month';
+  static const String getPersonalSyntheticByMonth =
+      '/Home/get-personal-synthetic-by-month';
 
   // PIN
   static const String checkPin = '/PinAuth/check-pin-status';
@@ -334,6 +346,10 @@ class ApiEndPoint {
   static const String getTaxCompany = '/RegisterContract/get-tax-company';
   static const String saveContract = '/registercontract/save-data';
   static const String getContractById = '/registercontract/get-data-by-id';
-  static const String sendEmailNewContract = '/RegisterContract/send-email-new-contract';
+  static const String sendEmailNewContract =
+      '/RegisterContract/send-email-new-contract';
   static const String approveOrCancel = '/RegisterContract/approve-or-cancel';
+
+  static const String getWorkRequirement =
+      '/jobrequirement/get-job-requirement-personal';
 }

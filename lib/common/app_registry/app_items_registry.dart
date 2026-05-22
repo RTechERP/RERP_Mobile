@@ -150,15 +150,15 @@ class AppItemRegistry {
     //   imageUrl: AppImages.reg_general_special_purchase,
     // ),
 
-    // AppItemModel(
-    //   id: 'reg_general:work_request',
-    //   name: 'reg_general.work_request'.tr(),
-    //   iconCodePoint: Icons.assignment_outlined.codePoint,
-    //   iconFontFamily: 'MaterialIcons',
-    //   tab: 'reg_general',
-    //   route: '',
-    //   imageUrl: AppImages.reg_general_work_request,
-    // ),
+    AppItemModel(
+      id: 'reg_general:work_request',
+      name: 'reg_general.work_request'.tr(),
+      iconCodePoint: Icons.assignment_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_general',
+      route: RouteNames.workRequirement,
+      imageUrl: AppImages.reg_general_work_request,
+    ),
     //
     // AppItemModel(
     //   id: 'reg_general:idea',

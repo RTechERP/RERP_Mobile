@@ -1,0 +1,32 @@
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+import 'package:rtc_erp/base/network/errors/error.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo.dart';
+import '../../../../../../../../../base/network/errors/extension.dart';
+import '../datasource/models/work_requirement_model.dart';
+import '../datasource/service/work_requirement_service.dart';
+
+@LazySingleton(as: WorkRequirementRepo)
+class WorkRequirementRepoImpl implements WorkRequirementRepo {
+  final WorkRequirementService _service;
+
+  WorkRequirementRepoImpl(this._service);
+
+  @override
+  Future<Either<BaseError, List<WorkRequirementItem>>> getWorkRequirement({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.getWorkRequirement(payload: payload);
+
+      if (res.data == null || res.data!.isEmpty) {
+        return right([]);
+      }
+
+      return right(res.data!);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+}
