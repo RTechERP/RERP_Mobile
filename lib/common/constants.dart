@@ -352,4 +352,10 @@ class ApiEndPoint {
 
   static const String getWorkRequirement =
       '/jobrequirement/get-job-requirement-personal';
+  static const String saveWorkRequirement =
+      '/jobrequirement/save-data';
+  static const String getWorkRequirementDepartment =
+      '/handover/get-departments';
+  static const String getWorkRequirementApprover =
+      '/EmployeeWFH/get-employee-approver';
 }

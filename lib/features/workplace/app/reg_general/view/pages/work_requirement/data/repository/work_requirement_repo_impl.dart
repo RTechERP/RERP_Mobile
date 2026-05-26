@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
+import '../../../../../../reports/data/datasource/models/report_model.dart';
 import '../datasource/models/work_requirement_model.dart';
 import '../datasource/service/work_requirement_service.dart';
 
@@ -25,6 +26,52 @@ class WorkRequirementRepoImpl implements WorkRequirementRepo {
       }
 
       return right(res.data!);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, WorkRequirementSaveResponse>> saveWorkRequirement({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.saveWorkRequirement(payload: payload);
+
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Luu du lieu that bai',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<DepartResponse>>> getDepartments() async {
+    try {
+      final res = await _service.getDepartments();
+      if (res.data == null || res.data!.isEmpty) {
+        return right([]);
+      }
+      return right(res.data!);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<WorkRequirementApproverItem>>> getApprovers() async {
+    try {
+      final res = await _service.getApprovers();
+      if (res.status == 1) {
+        return right(res.data ?? []);
+      }
+      return right([]);
     } on DioException catch (e) {
       return left(e.baseError);
     }

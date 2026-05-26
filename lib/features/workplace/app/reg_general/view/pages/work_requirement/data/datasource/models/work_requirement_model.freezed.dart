@@ -1180,3 +1180,1751 @@ abstract class _WorkRequirementItem implements WorkRequirementItem {
   _$$WorkRequirementItemImplCopyWith<_$WorkRequirementItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+WorkRequirementDepartmentItem _$WorkRequirementDepartmentItemFromJson(
+    Map<String, dynamic> json) {
+  return _WorkRequirementDepartmentItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WorkRequirementDepartmentItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Name')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WorkRequirementDepartmentItemCopyWith<WorkRequirementDepartmentItem>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WorkRequirementDepartmentItemCopyWith<$Res> {
+  factory $WorkRequirementDepartmentItemCopyWith(
+          WorkRequirementDepartmentItem value,
+          $Res Function(WorkRequirementDepartmentItem) then) =
+      _$WorkRequirementDepartmentItemCopyWithImpl<$Res,
+          WorkRequirementDepartmentItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'Code') String? code});
+}
+
+/// @nodoc
+class _$WorkRequirementDepartmentItemCopyWithImpl<$Res,
+        $Val extends WorkRequirementDepartmentItem>
+    implements $WorkRequirementDepartmentItemCopyWith<$Res> {
+  _$WorkRequirementDepartmentItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? code = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WorkRequirementDepartmentItemImplCopyWith<$Res>
+    implements $WorkRequirementDepartmentItemCopyWith<$Res> {
+  factory _$$WorkRequirementDepartmentItemImplCopyWith(
+          _$WorkRequirementDepartmentItemImpl value,
+          $Res Function(_$WorkRequirementDepartmentItemImpl) then) =
+      __$$WorkRequirementDepartmentItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'Code') String? code});
+}
+
+/// @nodoc
+class __$$WorkRequirementDepartmentItemImplCopyWithImpl<$Res>
+    extends _$WorkRequirementDepartmentItemCopyWithImpl<$Res,
+        _$WorkRequirementDepartmentItemImpl>
+    implements _$$WorkRequirementDepartmentItemImplCopyWith<$Res> {
+  __$$WorkRequirementDepartmentItemImplCopyWithImpl(
+      _$WorkRequirementDepartmentItemImpl _value,
+      $Res Function(_$WorkRequirementDepartmentItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? code = freezed,
+  }) {
+    return _then(_$WorkRequirementDepartmentItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WorkRequirementDepartmentItemImpl
+    implements _WorkRequirementDepartmentItem {
+  const _$WorkRequirementDepartmentItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Name') this.name,
+      @JsonKey(name: 'Code') this.code});
+
+  factory _$WorkRequirementDepartmentItemImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$WorkRequirementDepartmentItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Name')
+  final String? name;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+
+  @override
+  String toString() {
+    return 'WorkRequirementDepartmentItem(id: $id, name: $name, code: $code)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WorkRequirementDepartmentItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.code, code) || other.code == code));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name, code);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WorkRequirementDepartmentItemImplCopyWith<
+          _$WorkRequirementDepartmentItemImpl>
+      get copyWith => __$$WorkRequirementDepartmentItemImplCopyWithImpl<
+          _$WorkRequirementDepartmentItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WorkRequirementDepartmentItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WorkRequirementDepartmentItem
+    implements WorkRequirementDepartmentItem {
+  const factory _WorkRequirementDepartmentItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'Name') final String? name,
+          @JsonKey(name: 'Code') final String? code}) =
+      _$WorkRequirementDepartmentItemImpl;
+
+  factory _WorkRequirementDepartmentItem.fromJson(Map<String, dynamic> json) =
+      _$WorkRequirementDepartmentItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Name')
+  String? get name;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(ignore: true)
+  _$$WorkRequirementDepartmentItemImplCopyWith<
+          _$WorkRequirementDepartmentItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+WorkRequirementApproverItem _$WorkRequirementApproverItemFromJson(
+    Map<String, dynamic> json) {
+  return _WorkRequirementApproverItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WorkRequirementApproverItem {
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WorkRequirementApproverItemCopyWith<WorkRequirementApproverItem>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WorkRequirementApproverItemCopyWith<$Res> {
+  factory $WorkRequirementApproverItemCopyWith(
+          WorkRequirementApproverItem value,
+          $Res Function(WorkRequirementApproverItem) then) =
+      _$WorkRequirementApproverItemCopyWithImpl<$Res,
+          WorkRequirementApproverItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'Code') String? code});
+}
+
+/// @nodoc
+class _$WorkRequirementApproverItemCopyWithImpl<$Res,
+        $Val extends WorkRequirementApproverItem>
+    implements $WorkRequirementApproverItemCopyWith<$Res> {
+  _$WorkRequirementApproverItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? employeeId = freezed,
+    Object? departmentName = freezed,
+    Object? fullName = freezed,
+    Object? code = freezed,
+  }) {
+    return _then(_value.copyWith(
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WorkRequirementApproverItemImplCopyWith<$Res>
+    implements $WorkRequirementApproverItemCopyWith<$Res> {
+  factory _$$WorkRequirementApproverItemImplCopyWith(
+          _$WorkRequirementApproverItemImpl value,
+          $Res Function(_$WorkRequirementApproverItemImpl) then) =
+      __$$WorkRequirementApproverItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'Code') String? code});
+}
+
+/// @nodoc
+class __$$WorkRequirementApproverItemImplCopyWithImpl<$Res>
+    extends _$WorkRequirementApproverItemCopyWithImpl<$Res,
+        _$WorkRequirementApproverItemImpl>
+    implements _$$WorkRequirementApproverItemImplCopyWith<$Res> {
+  __$$WorkRequirementApproverItemImplCopyWithImpl(
+      _$WorkRequirementApproverItemImpl _value,
+      $Res Function(_$WorkRequirementApproverItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? employeeId = freezed,
+    Object? departmentName = freezed,
+    Object? fullName = freezed,
+    Object? code = freezed,
+  }) {
+    return _then(_$WorkRequirementApproverItemImpl(
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WorkRequirementApproverItemImpl
+    implements _WorkRequirementApproverItem {
+  const _$WorkRequirementApproverItemImpl(
+      {@JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'Code') this.code});
+
+  factory _$WorkRequirementApproverItemImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$WorkRequirementApproverItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+
+  @override
+  String toString() {
+    return 'WorkRequirementApproverItem(employeeId: $employeeId, departmentName: $departmentName, fullName: $fullName, code: $code)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WorkRequirementApproverItemImpl &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.code, code) || other.code == code));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, employeeId, departmentName, fullName, code);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WorkRequirementApproverItemImplCopyWith<_$WorkRequirementApproverItemImpl>
+      get copyWith => __$$WorkRequirementApproverItemImplCopyWithImpl<
+          _$WorkRequirementApproverItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WorkRequirementApproverItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WorkRequirementApproverItem
+    implements WorkRequirementApproverItem {
+  const factory _WorkRequirementApproverItem(
+          {@JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'DepartmentName') final String? departmentName,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'Code') final String? code}) =
+      _$WorkRequirementApproverItemImpl;
+
+  factory _WorkRequirementApproverItem.fromJson(Map<String, dynamic> json) =
+      _$WorkRequirementApproverItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(ignore: true)
+  _$$WorkRequirementApproverItemImplCopyWith<_$WorkRequirementApproverItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+WorkRequirementDetailResponse _$WorkRequirementDetailResponseFromJson(
+    Map<String, dynamic> json) {
+  return _WorkRequirementDetailResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WorkRequirementDetailResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'JobRequirementID')
+  int? get jobRequirementId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Category')
+  String? get category => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Description')
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Target')
+  String? get target => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WorkRequirementDetailResponseCopyWith<WorkRequirementDetailResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WorkRequirementDetailResponseCopyWith<$Res> {
+  factory $WorkRequirementDetailResponseCopyWith(
+          WorkRequirementDetailResponse value,
+          $Res Function(WorkRequirementDetailResponse) then) =
+      _$WorkRequirementDetailResponseCopyWithImpl<$Res,
+          WorkRequirementDetailResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'JobRequirementID') int? jobRequirementId,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Category') String? category,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'Target') String? target,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class _$WorkRequirementDetailResponseCopyWithImpl<$Res,
+        $Val extends WorkRequirementDetailResponse>
+    implements $WorkRequirementDetailResponseCopyWith<$Res> {
+  _$WorkRequirementDetailResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? jobRequirementId = freezed,
+    Object? stt = freezed,
+    Object? category = freezed,
+    Object? description = freezed,
+    Object? target = freezed,
+    Object? note = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      jobRequirementId: freezed == jobRequirementId
+          ? _value.jobRequirementId
+          : jobRequirementId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      target: freezed == target
+          ? _value.target
+          : target // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WorkRequirementDetailResponseImplCopyWith<$Res>
+    implements $WorkRequirementDetailResponseCopyWith<$Res> {
+  factory _$$WorkRequirementDetailResponseImplCopyWith(
+          _$WorkRequirementDetailResponseImpl value,
+          $Res Function(_$WorkRequirementDetailResponseImpl) then) =
+      __$$WorkRequirementDetailResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'JobRequirementID') int? jobRequirementId,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Category') String? category,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'Target') String? target,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class __$$WorkRequirementDetailResponseImplCopyWithImpl<$Res>
+    extends _$WorkRequirementDetailResponseCopyWithImpl<$Res,
+        _$WorkRequirementDetailResponseImpl>
+    implements _$$WorkRequirementDetailResponseImplCopyWith<$Res> {
+  __$$WorkRequirementDetailResponseImplCopyWithImpl(
+      _$WorkRequirementDetailResponseImpl _value,
+      $Res Function(_$WorkRequirementDetailResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? jobRequirementId = freezed,
+    Object? stt = freezed,
+    Object? category = freezed,
+    Object? description = freezed,
+    Object? target = freezed,
+    Object? note = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_$WorkRequirementDetailResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      jobRequirementId: freezed == jobRequirementId
+          ? _value.jobRequirementId
+          : jobRequirementId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      target: freezed == target
+          ? _value.target
+          : target // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WorkRequirementDetailResponseImpl
+    implements _WorkRequirementDetailResponse {
+  const _$WorkRequirementDetailResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'JobRequirementID') this.jobRequirementId,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'Category') this.category,
+      @JsonKey(name: 'Description') this.description,
+      @JsonKey(name: 'Target') this.target,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
+
+  factory _$WorkRequirementDetailResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$WorkRequirementDetailResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'JobRequirementID')
+  final int? jobRequirementId;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'Category')
+  final String? category;
+  @override
+  @JsonKey(name: 'Description')
+  final String? description;
+  @override
+  @JsonKey(name: 'Target')
+  final String? target;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  @override
+  String toString() {
+    return 'WorkRequirementDetailResponse(id: $id, jobRequirementId: $jobRequirementId, stt: $stt, category: $category, description: $description, target: $target, note: $note, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WorkRequirementDetailResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.jobRequirementId, jobRequirementId) ||
+                other.jobRequirementId == jobRequirementId) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.target, target) || other.target == target) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      jobRequirementId,
+      stt,
+      category,
+      description,
+      target,
+      note,
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate,
+      isDeleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WorkRequirementDetailResponseImplCopyWith<
+          _$WorkRequirementDetailResponseImpl>
+      get copyWith => __$$WorkRequirementDetailResponseImplCopyWithImpl<
+          _$WorkRequirementDetailResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WorkRequirementDetailResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WorkRequirementDetailResponse
+    implements WorkRequirementDetailResponse {
+  const factory _WorkRequirementDetailResponse(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'JobRequirementID') final int? jobRequirementId,
+          @JsonKey(name: 'STT') final int? stt,
+          @JsonKey(name: 'Category') final String? category,
+          @JsonKey(name: 'Description') final String? description,
+          @JsonKey(name: 'Target') final String? target,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
+      _$WorkRequirementDetailResponseImpl;
+
+  factory _WorkRequirementDetailResponse.fromJson(Map<String, dynamic> json) =
+      _$WorkRequirementDetailResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'JobRequirementID')
+  int? get jobRequirementId;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'Category')
+  String? get category;
+  @override
+  @JsonKey(name: 'Description')
+  String? get description;
+  @override
+  @JsonKey(name: 'Target')
+  String? get target;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$WorkRequirementDetailResponseImplCopyWith<
+          _$WorkRequirementDetailResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+WorkRequirementSaveResponse _$WorkRequirementSaveResponseFromJson(
+    Map<String, dynamic> json) {
+  return _WorkRequirementSaveResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WorkRequirementSaveResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'NumberRequest')
+  String? get numberRequest => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateRequest')
+  DateTime? get dateRequest => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DeadlineRequest')
+  DateTime? get deadlineRequest => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CoordinationDepartmentID')
+  int? get coordinationDepartmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RequiredDepartmentID')
+  int? get requiredDepartmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedTBPID')
+  int? get approvedTBPId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateApprovedTBP')
+  DateTime? get dateApprovedTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedHR')
+  bool? get isApprovedHR => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateApprovedHR')
+  DateTime? get dateApprovedHR => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedHRID')
+  int? get approvedHRId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedBGD')
+  bool? get isApprovedBGD => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateApprovedBGD')
+  DateTime? get dateApprovedBGD => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedBGDID')
+  int? get approvedBGDId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EvaluateCompletion')
+  String? get evaluateCompletion => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsRequestBuy')
+  bool? get isRequestBuy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Status')
+  int? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsRequestBGDApproved')
+  bool? get isRequestBGDApproved => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsRequestPriceQuote')
+  bool? get isRequestPriceQuote => throw _privateConstructorUsedError;
+  @JsonKey(name: 'JobRequirementDetails')
+  List<WorkRequirementDetailResponse>? get jobRequirementDetails =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'JobRequirementFiles')
+  List<dynamic>? get jobRequirementFiles => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WorkRequirementSaveResponseCopyWith<WorkRequirementSaveResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WorkRequirementSaveResponseCopyWith<$Res> {
+  factory $WorkRequirementSaveResponseCopyWith(
+          WorkRequirementSaveResponse value,
+          $Res Function(WorkRequirementSaveResponse) then) =
+      _$WorkRequirementSaveResponseCopyWithImpl<$Res,
+          WorkRequirementSaveResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'NumberRequest') String? numberRequest,
+      @JsonKey(name: 'DateRequest') DateTime? dateRequest,
+      @JsonKey(name: 'DeadlineRequest') DateTime? deadlineRequest,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'CoordinationDepartmentID') int? coordinationDepartmentId,
+      @JsonKey(name: 'RequiredDepartmentID') int? requiredDepartmentId,
+      @JsonKey(name: 'ApprovedTBPID') int? approvedTBPId,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+      @JsonKey(name: 'DateApprovedTBP') DateTime? dateApprovedTBP,
+      @JsonKey(name: 'IsApprovedHR') bool? isApprovedHR,
+      @JsonKey(name: 'DateApprovedHR') DateTime? dateApprovedHR,
+      @JsonKey(name: 'ApprovedHRID') int? approvedHRId,
+      @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBGD,
+      @JsonKey(name: 'DateApprovedBGD') DateTime? dateApprovedBGD,
+      @JsonKey(name: 'ApprovedBGDID') int? approvedBGDId,
+      @JsonKey(name: 'EvaluateCompletion') String? evaluateCompletion,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsRequestBuy') bool? isRequestBuy,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'IsRequestBGDApproved') bool? isRequestBGDApproved,
+      @JsonKey(name: 'IsRequestPriceQuote') bool? isRequestPriceQuote,
+      @JsonKey(name: 'JobRequirementDetails')
+      List<WorkRequirementDetailResponse>? jobRequirementDetails,
+      @JsonKey(name: 'JobRequirementFiles')
+      List<dynamic>? jobRequirementFiles});
+}
+
+/// @nodoc
+class _$WorkRequirementSaveResponseCopyWithImpl<$Res,
+        $Val extends WorkRequirementSaveResponse>
+    implements $WorkRequirementSaveResponseCopyWith<$Res> {
+  _$WorkRequirementSaveResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? numberRequest = freezed,
+    Object? dateRequest = freezed,
+    Object? deadlineRequest = freezed,
+    Object? employeeId = freezed,
+    Object? coordinationDepartmentId = freezed,
+    Object? requiredDepartmentId = freezed,
+    Object? approvedTBPId = freezed,
+    Object? isApprovedTBP = freezed,
+    Object? dateApprovedTBP = freezed,
+    Object? isApprovedHR = freezed,
+    Object? dateApprovedHR = freezed,
+    Object? approvedHRId = freezed,
+    Object? isApprovedBGD = freezed,
+    Object? dateApprovedBGD = freezed,
+    Object? approvedBGDId = freezed,
+    Object? evaluateCompletion = freezed,
+    Object? isDeleted = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isRequestBuy = freezed,
+    Object? status = freezed,
+    Object? note = freezed,
+    Object? isRequestBGDApproved = freezed,
+    Object? isRequestPriceQuote = freezed,
+    Object? jobRequirementDetails = freezed,
+    Object? jobRequirementFiles = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      numberRequest: freezed == numberRequest
+          ? _value.numberRequest
+          : numberRequest // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateRequest: freezed == dateRequest
+          ? _value.dateRequest
+          : dateRequest // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      deadlineRequest: freezed == deadlineRequest
+          ? _value.deadlineRequest
+          : deadlineRequest // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      coordinationDepartmentId: freezed == coordinationDepartmentId
+          ? _value.coordinationDepartmentId
+          : coordinationDepartmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      requiredDepartmentId: freezed == requiredDepartmentId
+          ? _value.requiredDepartmentId
+          : requiredDepartmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedTBPId: freezed == approvedTBPId
+          ? _value.approvedTBPId
+          : approvedTBPId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApprovedTBP: freezed == isApprovedTBP
+          ? _value.isApprovedTBP
+          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedTBP: freezed == dateApprovedTBP
+          ? _value.dateApprovedTBP
+          : dateApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApprovedHR: freezed == isApprovedHR
+          ? _value.isApprovedHR
+          : isApprovedHR // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedHR: freezed == dateApprovedHR
+          ? _value.dateApprovedHR
+          : dateApprovedHR // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedHRId: freezed == approvedHRId
+          ? _value.approvedHRId
+          : approvedHRId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApprovedBGD: freezed == isApprovedBGD
+          ? _value.isApprovedBGD
+          : isApprovedBGD // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedBGD: freezed == dateApprovedBGD
+          ? _value.dateApprovedBGD
+          : dateApprovedBGD // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedBGDId: freezed == approvedBGDId
+          ? _value.approvedBGDId
+          : approvedBGDId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      evaluateCompletion: freezed == evaluateCompletion
+          ? _value.evaluateCompletion
+          : evaluateCompletion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isRequestBuy: freezed == isRequestBuy
+          ? _value.isRequestBuy
+          : isRequestBuy // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isRequestBGDApproved: freezed == isRequestBGDApproved
+          ? _value.isRequestBGDApproved
+          : isRequestBGDApproved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isRequestPriceQuote: freezed == isRequestPriceQuote
+          ? _value.isRequestPriceQuote
+          : isRequestPriceQuote // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      jobRequirementDetails: freezed == jobRequirementDetails
+          ? _value.jobRequirementDetails
+          : jobRequirementDetails // ignore: cast_nullable_to_non_nullable
+              as List<WorkRequirementDetailResponse>?,
+      jobRequirementFiles: freezed == jobRequirementFiles
+          ? _value.jobRequirementFiles
+          : jobRequirementFiles // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WorkRequirementSaveResponseImplCopyWith<$Res>
+    implements $WorkRequirementSaveResponseCopyWith<$Res> {
+  factory _$$WorkRequirementSaveResponseImplCopyWith(
+          _$WorkRequirementSaveResponseImpl value,
+          $Res Function(_$WorkRequirementSaveResponseImpl) then) =
+      __$$WorkRequirementSaveResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'NumberRequest') String? numberRequest,
+      @JsonKey(name: 'DateRequest') DateTime? dateRequest,
+      @JsonKey(name: 'DeadlineRequest') DateTime? deadlineRequest,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'CoordinationDepartmentID') int? coordinationDepartmentId,
+      @JsonKey(name: 'RequiredDepartmentID') int? requiredDepartmentId,
+      @JsonKey(name: 'ApprovedTBPID') int? approvedTBPId,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+      @JsonKey(name: 'DateApprovedTBP') DateTime? dateApprovedTBP,
+      @JsonKey(name: 'IsApprovedHR') bool? isApprovedHR,
+      @JsonKey(name: 'DateApprovedHR') DateTime? dateApprovedHR,
+      @JsonKey(name: 'ApprovedHRID') int? approvedHRId,
+      @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBGD,
+      @JsonKey(name: 'DateApprovedBGD') DateTime? dateApprovedBGD,
+      @JsonKey(name: 'ApprovedBGDID') int? approvedBGDId,
+      @JsonKey(name: 'EvaluateCompletion') String? evaluateCompletion,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsRequestBuy') bool? isRequestBuy,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'IsRequestBGDApproved') bool? isRequestBGDApproved,
+      @JsonKey(name: 'IsRequestPriceQuote') bool? isRequestPriceQuote,
+      @JsonKey(name: 'JobRequirementDetails')
+      List<WorkRequirementDetailResponse>? jobRequirementDetails,
+      @JsonKey(name: 'JobRequirementFiles')
+      List<dynamic>? jobRequirementFiles});
+}
+
+/// @nodoc
+class __$$WorkRequirementSaveResponseImplCopyWithImpl<$Res>
+    extends _$WorkRequirementSaveResponseCopyWithImpl<$Res,
+        _$WorkRequirementSaveResponseImpl>
+    implements _$$WorkRequirementSaveResponseImplCopyWith<$Res> {
+  __$$WorkRequirementSaveResponseImplCopyWithImpl(
+      _$WorkRequirementSaveResponseImpl _value,
+      $Res Function(_$WorkRequirementSaveResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? numberRequest = freezed,
+    Object? dateRequest = freezed,
+    Object? deadlineRequest = freezed,
+    Object? employeeId = freezed,
+    Object? coordinationDepartmentId = freezed,
+    Object? requiredDepartmentId = freezed,
+    Object? approvedTBPId = freezed,
+    Object? isApprovedTBP = freezed,
+    Object? dateApprovedTBP = freezed,
+    Object? isApprovedHR = freezed,
+    Object? dateApprovedHR = freezed,
+    Object? approvedHRId = freezed,
+    Object? isApprovedBGD = freezed,
+    Object? dateApprovedBGD = freezed,
+    Object? approvedBGDId = freezed,
+    Object? evaluateCompletion = freezed,
+    Object? isDeleted = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isRequestBuy = freezed,
+    Object? status = freezed,
+    Object? note = freezed,
+    Object? isRequestBGDApproved = freezed,
+    Object? isRequestPriceQuote = freezed,
+    Object? jobRequirementDetails = freezed,
+    Object? jobRequirementFiles = freezed,
+  }) {
+    return _then(_$WorkRequirementSaveResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      numberRequest: freezed == numberRequest
+          ? _value.numberRequest
+          : numberRequest // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateRequest: freezed == dateRequest
+          ? _value.dateRequest
+          : dateRequest // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      deadlineRequest: freezed == deadlineRequest
+          ? _value.deadlineRequest
+          : deadlineRequest // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      coordinationDepartmentId: freezed == coordinationDepartmentId
+          ? _value.coordinationDepartmentId
+          : coordinationDepartmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      requiredDepartmentId: freezed == requiredDepartmentId
+          ? _value.requiredDepartmentId
+          : requiredDepartmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedTBPId: freezed == approvedTBPId
+          ? _value.approvedTBPId
+          : approvedTBPId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApprovedTBP: freezed == isApprovedTBP
+          ? _value.isApprovedTBP
+          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedTBP: freezed == dateApprovedTBP
+          ? _value.dateApprovedTBP
+          : dateApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApprovedHR: freezed == isApprovedHR
+          ? _value.isApprovedHR
+          : isApprovedHR // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedHR: freezed == dateApprovedHR
+          ? _value.dateApprovedHR
+          : dateApprovedHR // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedHRId: freezed == approvedHRId
+          ? _value.approvedHRId
+          : approvedHRId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApprovedBGD: freezed == isApprovedBGD
+          ? _value.isApprovedBGD
+          : isApprovedBGD // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedBGD: freezed == dateApprovedBGD
+          ? _value.dateApprovedBGD
+          : dateApprovedBGD // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedBGDId: freezed == approvedBGDId
+          ? _value.approvedBGDId
+          : approvedBGDId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      evaluateCompletion: freezed == evaluateCompletion
+          ? _value.evaluateCompletion
+          : evaluateCompletion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isRequestBuy: freezed == isRequestBuy
+          ? _value.isRequestBuy
+          : isRequestBuy // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isRequestBGDApproved: freezed == isRequestBGDApproved
+          ? _value.isRequestBGDApproved
+          : isRequestBGDApproved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isRequestPriceQuote: freezed == isRequestPriceQuote
+          ? _value.isRequestPriceQuote
+          : isRequestPriceQuote // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      jobRequirementDetails: freezed == jobRequirementDetails
+          ? _value._jobRequirementDetails
+          : jobRequirementDetails // ignore: cast_nullable_to_non_nullable
+              as List<WorkRequirementDetailResponse>?,
+      jobRequirementFiles: freezed == jobRequirementFiles
+          ? _value._jobRequirementFiles
+          : jobRequirementFiles // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WorkRequirementSaveResponseImpl
+    implements _WorkRequirementSaveResponse {
+  const _$WorkRequirementSaveResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'NumberRequest') this.numberRequest,
+      @JsonKey(name: 'DateRequest') this.dateRequest,
+      @JsonKey(name: 'DeadlineRequest') this.deadlineRequest,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'CoordinationDepartmentID') this.coordinationDepartmentId,
+      @JsonKey(name: 'RequiredDepartmentID') this.requiredDepartmentId,
+      @JsonKey(name: 'ApprovedTBPID') this.approvedTBPId,
+      @JsonKey(name: 'IsApprovedTBP') this.isApprovedTBP,
+      @JsonKey(name: 'DateApprovedTBP') this.dateApprovedTBP,
+      @JsonKey(name: 'IsApprovedHR') this.isApprovedHR,
+      @JsonKey(name: 'DateApprovedHR') this.dateApprovedHR,
+      @JsonKey(name: 'ApprovedHRID') this.approvedHRId,
+      @JsonKey(name: 'IsApprovedBGD') this.isApprovedBGD,
+      @JsonKey(name: 'DateApprovedBGD') this.dateApprovedBGD,
+      @JsonKey(name: 'ApprovedBGDID') this.approvedBGDId,
+      @JsonKey(name: 'EvaluateCompletion') this.evaluateCompletion,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'IsRequestBuy') this.isRequestBuy,
+      @JsonKey(name: 'Status') this.status,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'IsRequestBGDApproved') this.isRequestBGDApproved,
+      @JsonKey(name: 'IsRequestPriceQuote') this.isRequestPriceQuote,
+      @JsonKey(name: 'JobRequirementDetails')
+      final List<WorkRequirementDetailResponse>? jobRequirementDetails,
+      @JsonKey(name: 'JobRequirementFiles')
+      final List<dynamic>? jobRequirementFiles})
+      : _jobRequirementDetails = jobRequirementDetails,
+        _jobRequirementFiles = jobRequirementFiles;
+
+  factory _$WorkRequirementSaveResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$WorkRequirementSaveResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'NumberRequest')
+  final String? numberRequest;
+  @override
+  @JsonKey(name: 'DateRequest')
+  final DateTime? dateRequest;
+  @override
+  @JsonKey(name: 'DeadlineRequest')
+  final DateTime? deadlineRequest;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'CoordinationDepartmentID')
+  final int? coordinationDepartmentId;
+  @override
+  @JsonKey(name: 'RequiredDepartmentID')
+  final int? requiredDepartmentId;
+  @override
+  @JsonKey(name: 'ApprovedTBPID')
+  final int? approvedTBPId;
+  @override
+  @JsonKey(name: 'IsApprovedTBP')
+  final bool? isApprovedTBP;
+  @override
+  @JsonKey(name: 'DateApprovedTBP')
+  final DateTime? dateApprovedTBP;
+  @override
+  @JsonKey(name: 'IsApprovedHR')
+  final bool? isApprovedHR;
+  @override
+  @JsonKey(name: 'DateApprovedHR')
+  final DateTime? dateApprovedHR;
+  @override
+  @JsonKey(name: 'ApprovedHRID')
+  final int? approvedHRId;
+  @override
+  @JsonKey(name: 'IsApprovedBGD')
+  final bool? isApprovedBGD;
+  @override
+  @JsonKey(name: 'DateApprovedBGD')
+  final DateTime? dateApprovedBGD;
+  @override
+  @JsonKey(name: 'ApprovedBGDID')
+  final int? approvedBGDId;
+  @override
+  @JsonKey(name: 'EvaluateCompletion')
+  final String? evaluateCompletion;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'IsRequestBuy')
+  final bool? isRequestBuy;
+  @override
+  @JsonKey(name: 'Status')
+  final int? status;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'IsRequestBGDApproved')
+  final bool? isRequestBGDApproved;
+  @override
+  @JsonKey(name: 'IsRequestPriceQuote')
+  final bool? isRequestPriceQuote;
+  final List<WorkRequirementDetailResponse>? _jobRequirementDetails;
+  @override
+  @JsonKey(name: 'JobRequirementDetails')
+  List<WorkRequirementDetailResponse>? get jobRequirementDetails {
+    final value = _jobRequirementDetails;
+    if (value == null) return null;
+    if (_jobRequirementDetails is EqualUnmodifiableListView)
+      return _jobRequirementDetails;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<dynamic>? _jobRequirementFiles;
+  @override
+  @JsonKey(name: 'JobRequirementFiles')
+  List<dynamic>? get jobRequirementFiles {
+    final value = _jobRequirementFiles;
+    if (value == null) return null;
+    if (_jobRequirementFiles is EqualUnmodifiableListView)
+      return _jobRequirementFiles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'WorkRequirementSaveResponse(id: $id, numberRequest: $numberRequest, dateRequest: $dateRequest, deadlineRequest: $deadlineRequest, employeeId: $employeeId, coordinationDepartmentId: $coordinationDepartmentId, requiredDepartmentId: $requiredDepartmentId, approvedTBPId: $approvedTBPId, isApprovedTBP: $isApprovedTBP, dateApprovedTBP: $dateApprovedTBP, isApprovedHR: $isApprovedHR, dateApprovedHR: $dateApprovedHR, approvedHRId: $approvedHRId, isApprovedBGD: $isApprovedBGD, dateApprovedBGD: $dateApprovedBGD, approvedBGDId: $approvedBGDId, evaluateCompletion: $evaluateCompletion, isDeleted: $isDeleted, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isRequestBuy: $isRequestBuy, status: $status, note: $note, isRequestBGDApproved: $isRequestBGDApproved, isRequestPriceQuote: $isRequestPriceQuote, jobRequirementDetails: $jobRequirementDetails, jobRequirementFiles: $jobRequirementFiles)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WorkRequirementSaveResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.numberRequest, numberRequest) ||
+                other.numberRequest == numberRequest) &&
+            (identical(other.dateRequest, dateRequest) ||
+                other.dateRequest == dateRequest) &&
+            (identical(other.deadlineRequest, deadlineRequest) ||
+                other.deadlineRequest == deadlineRequest) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(
+                    other.coordinationDepartmentId, coordinationDepartmentId) ||
+                other.coordinationDepartmentId == coordinationDepartmentId) &&
+            (identical(other.requiredDepartmentId, requiredDepartmentId) ||
+                other.requiredDepartmentId == requiredDepartmentId) &&
+            (identical(other.approvedTBPId, approvedTBPId) ||
+                other.approvedTBPId == approvedTBPId) &&
+            (identical(other.isApprovedTBP, isApprovedTBP) ||
+                other.isApprovedTBP == isApprovedTBP) &&
+            (identical(other.dateApprovedTBP, dateApprovedTBP) ||
+                other.dateApprovedTBP == dateApprovedTBP) &&
+            (identical(other.isApprovedHR, isApprovedHR) ||
+                other.isApprovedHR == isApprovedHR) &&
+            (identical(other.dateApprovedHR, dateApprovedHR) ||
+                other.dateApprovedHR == dateApprovedHR) &&
+            (identical(other.approvedHRId, approvedHRId) ||
+                other.approvedHRId == approvedHRId) &&
+            (identical(other.isApprovedBGD, isApprovedBGD) ||
+                other.isApprovedBGD == isApprovedBGD) &&
+            (identical(other.dateApprovedBGD, dateApprovedBGD) ||
+                other.dateApprovedBGD == dateApprovedBGD) &&
+            (identical(other.approvedBGDId, approvedBGDId) ||
+                other.approvedBGDId == approvedBGDId) &&
+            (identical(other.evaluateCompletion, evaluateCompletion) ||
+                other.evaluateCompletion == evaluateCompletion) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.isRequestBuy, isRequestBuy) ||
+                other.isRequestBuy == isRequestBuy) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.isRequestBGDApproved, isRequestBGDApproved) ||
+                other.isRequestBGDApproved == isRequestBGDApproved) &&
+            (identical(other.isRequestPriceQuote, isRequestPriceQuote) ||
+                other.isRequestPriceQuote == isRequestPriceQuote) &&
+            const DeepCollectionEquality()
+                .equals(other._jobRequirementDetails, _jobRequirementDetails) &&
+            const DeepCollectionEquality()
+                .equals(other._jobRequirementFiles, _jobRequirementFiles));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        numberRequest,
+        dateRequest,
+        deadlineRequest,
+        employeeId,
+        coordinationDepartmentId,
+        requiredDepartmentId,
+        approvedTBPId,
+        isApprovedTBP,
+        dateApprovedTBP,
+        isApprovedHR,
+        dateApprovedHR,
+        approvedHRId,
+        isApprovedBGD,
+        dateApprovedBGD,
+        approvedBGDId,
+        evaluateCompletion,
+        isDeleted,
+        createdBy,
+        createdDate,
+        updatedBy,
+        updatedDate,
+        isRequestBuy,
+        status,
+        note,
+        isRequestBGDApproved,
+        isRequestPriceQuote,
+        const DeepCollectionEquality().hash(_jobRequirementDetails),
+        const DeepCollectionEquality().hash(_jobRequirementFiles)
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WorkRequirementSaveResponseImplCopyWith<_$WorkRequirementSaveResponseImpl>
+      get copyWith => __$$WorkRequirementSaveResponseImplCopyWithImpl<
+          _$WorkRequirementSaveResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WorkRequirementSaveResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WorkRequirementSaveResponse
+    implements WorkRequirementSaveResponse {
+  const factory _WorkRequirementSaveResponse(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'NumberRequest') final String? numberRequest,
+      @JsonKey(name: 'DateRequest') final DateTime? dateRequest,
+      @JsonKey(name: 'DeadlineRequest') final DateTime? deadlineRequest,
+      @JsonKey(name: 'EmployeeID') final int? employeeId,
+      @JsonKey(name: 'CoordinationDepartmentID')
+      final int? coordinationDepartmentId,
+      @JsonKey(name: 'RequiredDepartmentID') final int? requiredDepartmentId,
+      @JsonKey(name: 'ApprovedTBPID') final int? approvedTBPId,
+      @JsonKey(name: 'IsApprovedTBP') final bool? isApprovedTBP,
+      @JsonKey(name: 'DateApprovedTBP') final DateTime? dateApprovedTBP,
+      @JsonKey(name: 'IsApprovedHR') final bool? isApprovedHR,
+      @JsonKey(name: 'DateApprovedHR') final DateTime? dateApprovedHR,
+      @JsonKey(name: 'ApprovedHRID') final int? approvedHRId,
+      @JsonKey(name: 'IsApprovedBGD') final bool? isApprovedBGD,
+      @JsonKey(name: 'DateApprovedBGD') final DateTime? dateApprovedBGD,
+      @JsonKey(name: 'ApprovedBGDID') final int? approvedBGDId,
+      @JsonKey(name: 'EvaluateCompletion') final String? evaluateCompletion,
+      @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+      @JsonKey(name: 'CreatedBy') final String? createdBy,
+      @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+      @JsonKey(name: 'IsRequestBuy') final bool? isRequestBuy,
+      @JsonKey(name: 'Status') final int? status,
+      @JsonKey(name: 'Note') final String? note,
+      @JsonKey(name: 'IsRequestBGDApproved') final bool? isRequestBGDApproved,
+      @JsonKey(name: 'IsRequestPriceQuote') final bool? isRequestPriceQuote,
+      @JsonKey(name: 'JobRequirementDetails')
+      final List<WorkRequirementDetailResponse>? jobRequirementDetails,
+      @JsonKey(name: 'JobRequirementFiles')
+      final List<dynamic>?
+          jobRequirementFiles}) = _$WorkRequirementSaveResponseImpl;
+
+  factory _WorkRequirementSaveResponse.fromJson(Map<String, dynamic> json) =
+      _$WorkRequirementSaveResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'NumberRequest')
+  String? get numberRequest;
+  @override
+  @JsonKey(name: 'DateRequest')
+  DateTime? get dateRequest;
+  @override
+  @JsonKey(name: 'DeadlineRequest')
+  DateTime? get deadlineRequest;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'CoordinationDepartmentID')
+  int? get coordinationDepartmentId;
+  @override
+  @JsonKey(name: 'RequiredDepartmentID')
+  int? get requiredDepartmentId;
+  @override
+  @JsonKey(name: 'ApprovedTBPID')
+  int? get approvedTBPId;
+  @override
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTBP;
+  @override
+  @JsonKey(name: 'DateApprovedTBP')
+  DateTime? get dateApprovedTBP;
+  @override
+  @JsonKey(name: 'IsApprovedHR')
+  bool? get isApprovedHR;
+  @override
+  @JsonKey(name: 'DateApprovedHR')
+  DateTime? get dateApprovedHR;
+  @override
+  @JsonKey(name: 'ApprovedHRID')
+  int? get approvedHRId;
+  @override
+  @JsonKey(name: 'IsApprovedBGD')
+  bool? get isApprovedBGD;
+  @override
+  @JsonKey(name: 'DateApprovedBGD')
+  DateTime? get dateApprovedBGD;
+  @override
+  @JsonKey(name: 'ApprovedBGDID')
+  int? get approvedBGDId;
+  @override
+  @JsonKey(name: 'EvaluateCompletion')
+  String? get evaluateCompletion;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'IsRequestBuy')
+  bool? get isRequestBuy;
+  @override
+  @JsonKey(name: 'Status')
+  int? get status;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'IsRequestBGDApproved')
+  bool? get isRequestBGDApproved;
+  @override
+  @JsonKey(name: 'IsRequestPriceQuote')
+  bool? get isRequestPriceQuote;
+  @override
+  @JsonKey(name: 'JobRequirementDetails')
+  List<WorkRequirementDetailResponse>? get jobRequirementDetails;
+  @override
+  @JsonKey(name: 'JobRequirementFiles')
+  List<dynamic>? get jobRequirementFiles;
+  @override
+  @JsonKey(ignore: true)
+  _$$WorkRequirementSaveResponseImplCopyWith<_$WorkRequirementSaveResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

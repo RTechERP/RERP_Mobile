@@ -177,6 +177,7 @@ class RouteNames {
 
   // Work Requirement
   static const workRequirement = '/reg_general/work_requirement';
+  static const workRequirementAdd = '/reg_general/work_requirement/add';
 
   // More - Settings
   static const notificationSettings = '/more/notification_settings';

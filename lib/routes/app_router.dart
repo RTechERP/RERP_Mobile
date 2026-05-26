@@ -54,6 +54,7 @@ import '../features/workplace/app/reg_general/view/pages/work_category/data/data
 import '../features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/view/bloc/work_requirement_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/view/pages/work_requirement_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/view/pages/work_requirement_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_detail_screen.dart';
@@ -1027,6 +1028,10 @@ class AppRouter {
           GoRoute(
             path: RouteNames.workRequirement,
             builder: (context, state) => const WorkRequirementScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.workRequirementAdd,
+            builder: (context, state) => const WorkRequirementAddScreen(),
           ),
         ],
       ),

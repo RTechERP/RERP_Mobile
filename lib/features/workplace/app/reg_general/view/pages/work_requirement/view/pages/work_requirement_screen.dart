@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
@@ -7,9 +8,9 @@ import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
-import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
+import '../../../../../../../../../routes/route_names.dart';
 import '../bloc/work_requirement_bloc.dart';
 import '../widgets/work_requirement_card.dart';
 
@@ -82,7 +83,7 @@ class _WorkRequirementScreenState
           return BaseScaffold(
             appBar: AppBarCommon(
               title: const Text('Yêu cầu công việc'),
-              onBackTap: () => onBack(context),
+              onBackTap: () => context.pop(),
               actions: [
                 IconButton(
                   icon: const Icon(Icons.calendar_month),
@@ -90,6 +91,18 @@ class _WorkRequirementScreenState
                   onPressed: () => _showDateRangePicker(),
                 ),
               ],
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () async {
+                final result = await context.push<bool>(
+                  RouteNames.workRequirementAdd,
+                );
+                if (result == true) {
+                  bloc.add(const WorkRequirementEvent.refresh());
+                }
+              },
+              backgroundColor: AppColors.primaryERP,
+              child: const Icon(Icons.add, color: Colors.white),
             ),
             body: Column(
               children: [
