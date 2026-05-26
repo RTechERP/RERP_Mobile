@@ -96,23 +96,6 @@ class WorkRequirementApproverItem with _$WorkRequirementApproverItem {
       _$WorkRequirementApproverItemFromJson(json);
 }
 
-/// Một đề mục (STT) trong form yêu cầu công việc.
-class WorkRequirementDetailItem {
-  const WorkRequirementDetailItem({
-    required this.rowIndex,
-    required this.title,
-    required this.explanation,
-    required this.target,
-    this.note,
-  });
-
-  final int rowIndex;
-  final String title;
-  final String explanation;
-  final String target;
-  final String? note;
-}
-
 /// Item cho danh sách duyệt trong detail.
 @freezed
 class WorkRequirementApproveItem with _$WorkRequirementApproveItem {

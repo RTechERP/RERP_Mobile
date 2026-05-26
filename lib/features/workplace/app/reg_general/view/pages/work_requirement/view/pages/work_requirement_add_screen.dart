@@ -134,7 +134,7 @@ class _WorkRequirementAddScreenState
     }
 
     // Doc tu state.detailValues thay vi form values
-    final details = <WorkRequirementDetailItem>[];
+    final details = <WorkRequirementDetailResponse>[];
     for (var i = 0; i < _detailMetas.length; i++) {
       final rowData = bloc.state.detailValues[i] ?? {};
       final explanation = rowData['explanation'] ?? '';
@@ -143,20 +143,20 @@ class _WorkRequirementAddScreenState
 
       if (i == 7) {
         details.add(
-          WorkRequirementDetailItem(
-            rowIndex: i + 1,
-            title: _detailMetas[i].title,
-            explanation: DateFormat('dd/MM/yyyy').format(deadline),
+          WorkRequirementDetailResponse(
+            stt: i + 1,
+            category: _detailMetas[i].title,
+            description: DateFormat('dd/MM/yyyy').format(deadline),
             target: target,
             note: note,
           ),
         );
       } else {
         details.add(
-          WorkRequirementDetailItem(
-            rowIndex: i + 1,
-            title: _detailMetas[i].title,
-            explanation: explanation,
+          WorkRequirementDetailResponse(
+            stt: i + 1,
+            category: _detailMetas[i].title,
+            description: explanation,
             target: target,
             note: note,
           ),

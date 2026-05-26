@@ -74,6 +74,7 @@ class WorkRequirementBloc
               requiredDepartmentId,
               details,
               coordinationDepartmentId,
+              numberRequest,
             ) => _onEditSubmit(
               emit,
               id: id,
@@ -82,6 +83,7 @@ class WorkRequirementBloc
               deadlineRequest: deadlineRequest,
               requiredDepartmentId: requiredDepartmentId,
               coordinationDepartmentId: coordinationDepartmentId,
+              numberRequest: numberRequest,
               details: details,
             ),
         deleteRequirement: (ids) => _onDeleteRequirement(emit, ids),
@@ -364,7 +366,7 @@ class WorkRequirementBloc
     required DateTime dateRequest,
     required DateTime deadlineRequest,
     required int requiredDepartmentId,
-    required List<WorkRequirementDetailItem> details,
+    required List<WorkRequirementDetailResponse> details,
     int? coordinationDepartmentId,
   }) async {
     if (_isSubmittingReport) return;
@@ -607,8 +609,9 @@ class WorkRequirementBloc
     required DateTime dateRequest,
     required DateTime deadlineRequest,
     required int requiredDepartmentId,
-    required List<WorkRequirementDetailItem> details,
+    required List<WorkRequirementDetailResponse> details,
     int? coordinationDepartmentId,
+    required String numberRequest,
   }) async {
     if (_isSubmittingReport) return;
     _isSubmittingReport = true;
@@ -641,6 +644,7 @@ class WorkRequirementBloc
         deadlineRequest: deadlineRequest,
         requiredDepartmentId: requiredDepartmentId,
         coordinationDepartmentId: coordinationDepartmentId,
+        numberRequest: numberRequest,
         details: details,
       );
 
@@ -746,16 +750,16 @@ class WorkRequirementBloc
     required DateTime deadlineRequest,
     required int requiredDepartmentId,
     int? coordinationDepartmentId,
-    required List<WorkRequirementDetailItem> details,
+    required List<WorkRequirementDetailResponse> details,
   }) {
     final detailsPayload = <Map<String, dynamic>>[];
     for (final detail in details) {
       detailsPayload.add(<String, dynamic>{
         'ID': 0,
         'JobRequirementID': 0,
-        'STT': detail.rowIndex,
-        'Category': detail.title,
-        'Description': detail.explanation,
+        'STT': detail.stt,
+        'Category': detail.category,
+        'Description': detail.description,
         'Target': detail.target,
         'Note': detail.note ?? '',
         'IsDeleted': false,
@@ -803,16 +807,17 @@ class WorkRequirementBloc
     required DateTime deadlineRequest,
     required int requiredDepartmentId,
     int? coordinationDepartmentId,
-    required List<WorkRequirementDetailItem> details,
+    required String numberRequest,
+    required List<WorkRequirementDetailResponse> details,
   }) {
     final detailsPayload = <Map<String, dynamic>>[];
     for (final detail in details) {
       detailsPayload.add(<String, dynamic>{
-        'ID': 0,
+        'ID': detail.id ?? 0,
         'JobRequirementID': id,
-        'STT': detail.rowIndex,
-        'Category': detail.title,
-        'Description': detail.explanation,
+        'STT': detail.stt,
+        'Category': detail.category,
+        'Description': detail.description,
         'Target': detail.target,
         'Note': detail.note ?? '',
         'IsDeleted': false,
@@ -821,7 +826,7 @@ class WorkRequirementBloc
 
     return <String, dynamic>{
       'ID': id,
-      'NumberRequest': '',
+      'NumberRequest': numberRequest,
       'DateRequest': dateRequest.toIso8601String(),
       'DeadlineRequest': deadlineRequest.toIso8601String(),
       'EmployeeID': user.employeeId ?? 0,
@@ -870,7 +875,13 @@ class WorkRequirementBloc
     for (final d in details) {
       final cat = (d.category ?? '').toLowerCase().trim();
       final idx = categoryIndexMap[cat] ?? ((d.stt ?? 1) - 1);
+      int? parsedId;
+      final rawId = d.id;
+      if (rawId != null) {
+        parsedId = rawId;
+            }
       result[idx] = {
+        'id': parsedId?.toString() ?? '',
         'explanation': d.description ?? '',
         'target': d.target ?? '',
         'note': d.note ?? '',

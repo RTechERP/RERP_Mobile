@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
+import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
@@ -130,13 +131,14 @@ class _EditContent extends StatefulWidget {
 class _EditContentState extends State<_EditContent> {
   late DateTime? _prevDeadline;
   bool _initEditLoaded = false;
+  bool _detailRowsLoaded = false;
 
   @override
   void initState() {
     super.initState();
     _prevDeadline = widget.prevDeadline;
     context.read<WorkRequirementBloc>()
-      ..add(WorkRequirementEvent.initEdit(
+      .add(WorkRequirementEvent.initEdit(
         id: widget.itemId ?? 0,
         item: widget.item!,
       ));
@@ -152,11 +154,11 @@ class _EditContentState extends State<_EditContent> {
     final deadline = values['deadline'] as DateTime?;
 
     if (dateRequest == null) {
-      _showMessage('Vui lòng chọn ngày yêu cầu', SnackBarType.error);
+      context.showMessage('Vui lòng chọn ngày yêu cầu', type:SnackBarType.error);
       return;
     }
     if (deadline == null) {
-      _showMessage('Vui lòng chọn thời gian hoàn thành', SnackBarType.error);
+      context.showMessage('Vui lòng chọn thời gian hoàn thành', type:SnackBarType.error);
       return;
     }
 
@@ -164,15 +166,15 @@ class _EditContentState extends State<_EditContent> {
     final state = bloc.state;
 
     if (state.requiredDepartmentId == null) {
-      _showMessage('Vui lòng chọn bộ phận được yêu cầu', SnackBarType.error);
+      context.showMessage('Vui lòng chọn bộ phận được yêu cầu', type:SnackBarType.error);
       return;
     }
     if (state.approverDisplayName.isNullOrEmpty) {
-      _showMessage('Vui lòng chọn TBP duyệt', SnackBarType.error);
+      context.showMessage('Vui lòng chọn TBP duyệt', type:SnackBarType.error);
       return;
     }
 
-    final details = <WorkRequirementDetailItem>[];
+    final details = <WorkRequirementDetailResponse>[];
     for (var i = 0; i < widget.detailMetas.length; i++) {
       final rowData = state.detailValues[i] ?? {};
       final explanation = rowData['explanation'] ?? '';
@@ -180,18 +182,20 @@ class _EditContentState extends State<_EditContent> {
       final note = rowData['note'];
 
       if (i == 7) {
-        details.add(WorkRequirementDetailItem(
-          rowIndex: i + 1,
-          title: widget.detailMetas[i].title,
-          explanation: DateFormat('dd/MM/yyyy').format(deadline),
+        details.add(WorkRequirementDetailResponse(
+          id: int.tryParse(rowData['id'] ?? ''),
+          stt: i + 1,
+          category: widget.detailMetas[i].title,
+          description: DateFormat('dd/MM/yyyy').format(deadline),
           target: target,
           note: note,
         ));
       } else {
-        details.add(WorkRequirementDetailItem(
-          rowIndex: i + 1,
-          title: widget.detailMetas[i].title,
-          explanation: explanation,
+        details.add(WorkRequirementDetailResponse(
+          id: int.tryParse(rowData['id'] ?? ''),
+          stt: i + 1,
+          category: widget.detailMetas[i].title,
+          description: explanation,
           target: target,
           note: note,
         ));
@@ -209,21 +213,8 @@ class _EditContentState extends State<_EditContent> {
       requiredDepartmentId: state.requiredDepartmentId!,
       coordinationDepartmentId: state.coordinationDepartmentId,
       details: details,
+      numberRequest: editItem.numberRequest ?? '',
     ));
-  }
-
-  void _showMessage(String msg, SnackBarType type) {
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(msg),
-        backgroundColor: type == SnackBarType.error
-            ? AppColors.alert
-            : type == SnackBarType.success
-                ? AppColors.success
-                : null,
-      ),
-    );
   }
 
   Future<void> _pickFiles() async {
@@ -242,7 +233,7 @@ class _EditContentState extends State<_EditContent> {
 
     final items = context.read<WorkRequirementBloc>().state.departments;
     if (items.isEmpty) {
-      _showMessage('Chưa có bộ phận', SnackBarType.error);
+      context.showMessage('Chưa có bộ phận', type:SnackBarType.error);
       return;
     }
 
@@ -269,7 +260,7 @@ class _EditContentState extends State<_EditContent> {
 
     final items = context.read<WorkRequirementBloc>().state.departments;
     if (items.isEmpty) {
-      _showMessage('Chưa có bộ phận', SnackBarType.error);
+      context.showMessage('Chưa có bộ phận', type:SnackBarType.error);
       return;
     }
 
@@ -296,7 +287,7 @@ class _EditContentState extends State<_EditContent> {
 
     final items = context.read<WorkRequirementBloc>().state.approvers;
     if (items.isEmpty) {
-      _showMessage('Chưa có người kiểm duyệt', SnackBarType.error);
+      context.showMessage('Chưa có người kiểm duyệt', type:SnackBarType.error);
       return;
     }
 
@@ -330,20 +321,23 @@ class _EditContentState extends State<_EditContent> {
           prev.submitSuccess != curr.submitSuccess ||
           prev.status != curr.status ||
           prev.message != curr.message ||
-          prev.deadlineRequest != curr.deadlineRequest,
+          prev.deadlineRequest != curr.deadlineRequest ||
+          prev.detailValues != curr.detailValues,
       listener: (ctx, state) {
         if (state.submitSuccess) {
-          _showMessage('Cập nhật yêu cầu công việc thành công',
-              SnackBarType.success);
+          context.showMessage('Cập nhật yêu cầu công việc thành công',
+              type:SnackBarType.success);
           ctx.pop(true);
           return;
         }
         if (state.status == BaseStateStatus.failed &&
             state.message != null) {
-          _showMessage(state.message!, SnackBarType.error);
+          context.showMessage(state.message!, type:SnackBarType.error);
         }
-        // Sau khi initEdit load xong, set giá trị vào từng field
-        if (!_initEditLoaded && !state.isDetailLoading && state.status == BaseStateStatus.success) {
+        // Sau khi dropdowns load xong, set giá trị vào form
+        if (!_initEditLoaded &&
+            !state.isDetailLoading &&
+            state.requiredDepartmentName != null) {
           _initEditLoaded = true;
           WidgetsBinding.instance.addPostFrameCallback((_) {
             final formState = widget.formKey.currentState;
@@ -351,6 +345,44 @@ class _EditContentState extends State<_EditContent> {
             formState.fields['approver']?.didChange(state.approverDisplayName);
             formState.fields['required_department']?.didChange(state.requiredDepartmentName);
             formState.fields['coordination_department']?.didChange(state.coordinationDepartmentName);
+          });
+        }
+        // Sau khi detail rows load xong, set giá trị vào form
+        if (!_detailRowsLoaded &&
+            !state.isDetailLoading &&
+            state.detailValues.isNotEmpty) {
+          _detailRowsLoaded = true;
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            for (var i = 0; i < state.detailValues.length; i++) {
+              final rowData = state.detailValues[i] ?? {};
+              final exp = rowData['explanation'] ?? '';
+              final tgt = rowData['target'] ?? '';
+              final note = rowData['note'];
+              if (exp.isNotEmpty || tgt.isNotEmpty || (note?.isNotEmpty ?? false)) {
+                context.read<WorkRequirementBloc>()
+                    .add(WorkRequirementEvent.updateFormField(
+                  rowIndex: i,
+                  field: 'explanation',
+                  value: exp,
+                ));
+              }
+              if (tgt.isNotEmpty) {
+                context.read<WorkRequirementBloc>()
+                    .add(WorkRequirementEvent.updateFormField(
+                  rowIndex: i,
+                  field: 'target',
+                  value: tgt,
+                ));
+              }
+              if (note?.isNotEmpty == true) {
+                context.read<WorkRequirementBloc>()
+                    .add(WorkRequirementEvent.updateFormField(
+                  rowIndex: i,
+                  field: 'note',
+                  value: note ?? '',
+                ));
+              }
+            }
           });
         }
         if (state.deadlineRequest != null &&

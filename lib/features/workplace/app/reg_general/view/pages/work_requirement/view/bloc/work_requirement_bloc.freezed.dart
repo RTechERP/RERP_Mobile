@@ -37,7 +37,7 @@ mixin _$WorkRequirementEvent {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -49,8 +49,9 @@ mixin _$WorkRequirementEvent {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -75,7 +76,7 @@ mixin _$WorkRequirementEvent {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -87,8 +88,9 @@ mixin _$WorkRequirementEvent {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -112,7 +114,7 @@ mixin _$WorkRequirementEvent {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -124,8 +126,9 @@ mixin _$WorkRequirementEvent {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -281,7 +284,7 @@ class _$InitImpl implements _Init {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -293,8 +296,9 @@ class _$InitImpl implements _Init {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -322,7 +326,7 @@ class _$InitImpl implements _Init {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -334,8 +338,9 @@ class _$InitImpl implements _Init {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -362,7 +367,7 @@ class _$InitImpl implements _Init {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -374,8 +379,9 @@ class _$InitImpl implements _Init {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -569,7 +575,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -581,8 +587,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -610,7 +617,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -622,8 +629,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -650,7 +658,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -662,8 +670,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -829,7 +838,7 @@ class _$RefreshImpl implements _Refresh {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -841,8 +850,9 @@ class _$RefreshImpl implements _Refresh {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -870,7 +880,7 @@ class _$RefreshImpl implements _Refresh {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -882,8 +892,9 @@ class _$RefreshImpl implements _Refresh {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -910,7 +921,7 @@ class _$RefreshImpl implements _Refresh {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -922,8 +933,9 @@ class _$RefreshImpl implements _Refresh {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -1081,7 +1093,7 @@ class _$InitAddImpl implements _InitAdd {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -1093,8 +1105,9 @@ class _$InitAddImpl implements _InitAdd {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -1122,7 +1135,7 @@ class _$InitAddImpl implements _InitAdd {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -1134,8 +1147,9 @@ class _$InitAddImpl implements _InitAdd {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -1162,7 +1176,7 @@ class _$InitAddImpl implements _InitAdd {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -1174,8 +1188,9 @@ class _$InitAddImpl implements _InitAdd {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -1378,7 +1393,7 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -1390,8 +1405,9 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -1419,7 +1435,7 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -1431,8 +1447,9 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -1459,7 +1476,7 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -1471,8 +1488,9 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -1667,7 +1685,7 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -1679,8 +1697,9 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -1708,7 +1727,7 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -1720,8 +1739,9 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -1748,7 +1768,7 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -1760,8 +1780,9 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -1952,7 +1973,7 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -1964,8 +1985,9 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -1993,7 +2015,7 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -2005,8 +2027,9 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -2033,7 +2056,7 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -2045,8 +2068,9 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -2247,7 +2271,7 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -2259,8 +2283,9 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -2288,7 +2313,7 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -2300,8 +2325,9 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -2328,7 +2354,7 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -2340,8 +2366,9 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -2547,7 +2574,7 @@ class _$ChangeCoordinationDepartmentImpl
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -2559,8 +2586,9 @@ class _$ChangeCoordinationDepartmentImpl
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -2588,7 +2616,7 @@ class _$ChangeCoordinationDepartmentImpl
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -2600,8 +2628,9 @@ class _$ChangeCoordinationDepartmentImpl
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -2628,7 +2657,7 @@ class _$ChangeCoordinationDepartmentImpl
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -2640,8 +2669,9 @@ class _$ChangeCoordinationDepartmentImpl
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -2844,7 +2874,7 @@ class _$ChangeApproverImpl implements _ChangeApprover {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -2856,8 +2886,9 @@ class _$ChangeApproverImpl implements _ChangeApprover {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -2885,7 +2916,7 @@ class _$ChangeApproverImpl implements _ChangeApprover {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -2897,8 +2928,9 @@ class _$ChangeApproverImpl implements _ChangeApprover {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -2925,7 +2957,7 @@ class _$ChangeApproverImpl implements _ChangeApprover {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -2937,8 +2969,9 @@ class _$ChangeApproverImpl implements _ChangeApprover {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -3137,7 +3170,7 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -3149,8 +3182,9 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -3178,7 +3212,7 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -3190,8 +3224,9 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -3218,7 +3253,7 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -3230,8 +3265,9 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -3349,7 +3385,7 @@ abstract class _$$SubmitImplCopyWith<$Res> {
       DateTime dateRequest,
       DateTime deadlineRequest,
       int requiredDepartmentId,
-      List<WorkRequirementDetailItem> details,
+      List<WorkRequirementDetailResponse> details,
       int? coordinationDepartmentId});
 }
 
@@ -3391,7 +3427,7 @@ class __$$SubmitImplCopyWithImpl<$Res>
       details: null == details
           ? _value._details
           : details // ignore: cast_nullable_to_non_nullable
-              as List<WorkRequirementDetailItem>,
+              as List<WorkRequirementDetailResponse>,
       coordinationDepartmentId: freezed == coordinationDepartmentId
           ? _value.coordinationDepartmentId
           : coordinationDepartmentId // ignore: cast_nullable_to_non_nullable
@@ -3408,7 +3444,7 @@ class _$SubmitImpl implements _Submit {
       required this.dateRequest,
       required this.deadlineRequest,
       required this.requiredDepartmentId,
-      required final List<WorkRequirementDetailItem> details,
+      required final List<WorkRequirementDetailResponse> details,
       this.coordinationDepartmentId})
       : _details = details;
 
@@ -3420,9 +3456,9 @@ class _$SubmitImpl implements _Submit {
   final DateTime deadlineRequest;
   @override
   final int requiredDepartmentId;
-  final List<WorkRequirementDetailItem> _details;
+  final List<WorkRequirementDetailResponse> _details;
   @override
-  List<WorkRequirementDetailItem> get details {
+  List<WorkRequirementDetailResponse> get details {
     if (_details is EqualUnmodifiableListView) return _details;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_details);
@@ -3493,7 +3529,7 @@ class _$SubmitImpl implements _Submit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -3505,8 +3541,9 @@ class _$SubmitImpl implements _Submit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -3535,7 +3572,7 @@ class _$SubmitImpl implements _Submit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -3547,8 +3584,9 @@ class _$SubmitImpl implements _Submit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -3576,7 +3614,7 @@ class _$SubmitImpl implements _Submit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -3588,8 +3626,9 @@ class _$SubmitImpl implements _Submit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -3693,14 +3732,14 @@ abstract class _Submit implements WorkRequirementEvent {
       required final DateTime dateRequest,
       required final DateTime deadlineRequest,
       required final int requiredDepartmentId,
-      required final List<WorkRequirementDetailItem> details,
+      required final List<WorkRequirementDetailResponse> details,
       final int? coordinationDepartmentId}) = _$SubmitImpl;
 
   int get approvedTBPId;
   DateTime get dateRequest;
   DateTime get deadlineRequest;
   int get requiredDepartmentId;
-  List<WorkRequirementDetailItem> get details;
+  List<WorkRequirementDetailResponse> get details;
   int? get coordinationDepartmentId;
   @JsonKey(ignore: true)
   _$$SubmitImplCopyWith<_$SubmitImpl> get copyWith =>
@@ -3764,7 +3803,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -3776,8 +3815,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -3805,7 +3845,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -3817,8 +3857,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -3845,7 +3886,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -3857,8 +3898,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -4042,7 +4084,7 @@ class _$InitDetailImpl implements _InitDetail {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -4054,8 +4096,9 @@ class _$InitDetailImpl implements _InitDetail {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -4083,7 +4126,7 @@ class _$InitDetailImpl implements _InitDetail {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -4095,8 +4138,9 @@ class _$InitDetailImpl implements _InitDetail {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -4123,7 +4167,7 @@ class _$InitDetailImpl implements _InitDetail {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -4135,8 +4179,9 @@ class _$InitDetailImpl implements _InitDetail {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -4343,7 +4388,7 @@ class _$InitEditImpl implements _InitEdit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -4355,8 +4400,9 @@ class _$InitEditImpl implements _InitEdit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -4384,7 +4430,7 @@ class _$InitEditImpl implements _InitEdit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -4396,8 +4442,9 @@ class _$InitEditImpl implements _InitEdit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -4424,7 +4471,7 @@ class _$InitEditImpl implements _InitEdit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -4436,8 +4483,9 @@ class _$InitEditImpl implements _InitEdit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -4558,8 +4606,9 @@ abstract class _$$EditSubmitImplCopyWith<$Res> {
       DateTime dateRequest,
       DateTime deadlineRequest,
       int requiredDepartmentId,
-      List<WorkRequirementDetailItem> details,
-      int? coordinationDepartmentId});
+      List<WorkRequirementDetailResponse> details,
+      int? coordinationDepartmentId,
+      String numberRequest});
 }
 
 /// @nodoc
@@ -4580,6 +4629,7 @@ class __$$EditSubmitImplCopyWithImpl<$Res>
     Object? requiredDepartmentId = null,
     Object? details = null,
     Object? coordinationDepartmentId = freezed,
+    Object? numberRequest = null,
   }) {
     return _then(_$EditSubmitImpl(
       id: null == id
@@ -4605,11 +4655,15 @@ class __$$EditSubmitImplCopyWithImpl<$Res>
       details: null == details
           ? _value._details
           : details // ignore: cast_nullable_to_non_nullable
-              as List<WorkRequirementDetailItem>,
+              as List<WorkRequirementDetailResponse>,
       coordinationDepartmentId: freezed == coordinationDepartmentId
           ? _value.coordinationDepartmentId
           : coordinationDepartmentId // ignore: cast_nullable_to_non_nullable
               as int?,
+      numberRequest: null == numberRequest
+          ? _value.numberRequest
+          : numberRequest // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -4623,8 +4677,9 @@ class _$EditSubmitImpl implements _EditSubmit {
       required this.dateRequest,
       required this.deadlineRequest,
       required this.requiredDepartmentId,
-      required final List<WorkRequirementDetailItem> details,
-      this.coordinationDepartmentId})
+      required final List<WorkRequirementDetailResponse> details,
+      this.coordinationDepartmentId,
+      required this.numberRequest})
       : _details = details;
 
   @override
@@ -4637,9 +4692,9 @@ class _$EditSubmitImpl implements _EditSubmit {
   final DateTime deadlineRequest;
   @override
   final int requiredDepartmentId;
-  final List<WorkRequirementDetailItem> _details;
+  final List<WorkRequirementDetailResponse> _details;
   @override
-  List<WorkRequirementDetailItem> get details {
+  List<WorkRequirementDetailResponse> get details {
     if (_details is EqualUnmodifiableListView) return _details;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_details);
@@ -4647,10 +4702,12 @@ class _$EditSubmitImpl implements _EditSubmit {
 
   @override
   final int? coordinationDepartmentId;
+  @override
+  final String numberRequest;
 
   @override
   String toString() {
-    return 'WorkRequirementEvent.editSubmit(id: $id, approvedTBPId: $approvedTBPId, dateRequest: $dateRequest, deadlineRequest: $deadlineRequest, requiredDepartmentId: $requiredDepartmentId, details: $details, coordinationDepartmentId: $coordinationDepartmentId)';
+    return 'WorkRequirementEvent.editSubmit(id: $id, approvedTBPId: $approvedTBPId, dateRequest: $dateRequest, deadlineRequest: $deadlineRequest, requiredDepartmentId: $requiredDepartmentId, details: $details, coordinationDepartmentId: $coordinationDepartmentId, numberRequest: $numberRequest)';
   }
 
   @override
@@ -4670,7 +4727,9 @@ class _$EditSubmitImpl implements _EditSubmit {
             const DeepCollectionEquality().equals(other._details, _details) &&
             (identical(
                     other.coordinationDepartmentId, coordinationDepartmentId) ||
-                other.coordinationDepartmentId == coordinationDepartmentId));
+                other.coordinationDepartmentId == coordinationDepartmentId) &&
+            (identical(other.numberRequest, numberRequest) ||
+                other.numberRequest == numberRequest));
   }
 
   @override
@@ -4682,7 +4741,8 @@ class _$EditSubmitImpl implements _EditSubmit {
       deadlineRequest,
       requiredDepartmentId,
       const DeepCollectionEquality().hash(_details),
-      coordinationDepartmentId);
+      coordinationDepartmentId,
+      numberRequest);
 
   @JsonKey(ignore: true)
   @override
@@ -4712,7 +4772,7 @@ class _$EditSubmitImpl implements _EditSubmit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -4724,14 +4784,15 @@ class _$EditSubmitImpl implements _EditSubmit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
   }) {
     return editSubmit(id, approvedTBPId, dateRequest, deadlineRequest,
-        requiredDepartmentId, details, coordinationDepartmentId);
+        requiredDepartmentId, details, coordinationDepartmentId, numberRequest);
   }
 
   @override
@@ -4754,7 +4815,7 @@ class _$EditSubmitImpl implements _EditSubmit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -4766,14 +4827,15 @@ class _$EditSubmitImpl implements _EditSubmit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
   }) {
     return editSubmit?.call(id, approvedTBPId, dateRequest, deadlineRequest,
-        requiredDepartmentId, details, coordinationDepartmentId);
+        requiredDepartmentId, details, coordinationDepartmentId, numberRequest);
   }
 
   @override
@@ -4795,7 +4857,7 @@ class _$EditSubmitImpl implements _EditSubmit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -4807,16 +4869,24 @@ class _$EditSubmitImpl implements _EditSubmit {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (editSubmit != null) {
-      return editSubmit(id, approvedTBPId, dateRequest, deadlineRequest,
-          requiredDepartmentId, details, coordinationDepartmentId);
+      return editSubmit(
+          id,
+          approvedTBPId,
+          dateRequest,
+          deadlineRequest,
+          requiredDepartmentId,
+          details,
+          coordinationDepartmentId,
+          numberRequest);
     }
     return orElse();
   }
@@ -4913,16 +4983,18 @@ abstract class _EditSubmit implements WorkRequirementEvent {
       required final DateTime dateRequest,
       required final DateTime deadlineRequest,
       required final int requiredDepartmentId,
-      required final List<WorkRequirementDetailItem> details,
-      final int? coordinationDepartmentId}) = _$EditSubmitImpl;
+      required final List<WorkRequirementDetailResponse> details,
+      final int? coordinationDepartmentId,
+      required final String numberRequest}) = _$EditSubmitImpl;
 
   int get id;
   int get approvedTBPId;
   DateTime get dateRequest;
   DateTime get deadlineRequest;
   int get requiredDepartmentId;
-  List<WorkRequirementDetailItem> get details;
+  List<WorkRequirementDetailResponse> get details;
   int? get coordinationDepartmentId;
+  String get numberRequest;
   @JsonKey(ignore: true)
   _$$EditSubmitImplCopyWith<_$EditSubmitImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -5018,7 +5090,7 @@ class _$DeleteRequirementImpl implements _DeleteRequirement {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -5030,8 +5102,9 @@ class _$DeleteRequirementImpl implements _DeleteRequirement {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -5059,7 +5132,7 @@ class _$DeleteRequirementImpl implements _DeleteRequirement {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -5071,8 +5144,9 @@ class _$DeleteRequirementImpl implements _DeleteRequirement {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -5099,7 +5173,7 @@ class _$DeleteRequirementImpl implements _DeleteRequirement {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -5111,8 +5185,9 @@ class _$DeleteRequirementImpl implements _DeleteRequirement {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,
@@ -5276,7 +5351,7 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
@@ -5288,8 +5363,9 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
         editSubmit,
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
@@ -5317,7 +5393,7 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
@@ -5329,8 +5405,9 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
@@ -5357,7 +5434,7 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
+            List<WorkRequirementDetailResponse> details,
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
@@ -5369,8 +5446,9 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
             DateTime dateRequest,
             DateTime deadlineRequest,
             int requiredDepartmentId,
-            List<WorkRequirementDetailItem> details,
-            int? coordinationDepartmentId)?
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
         editSubmit,
     TResult Function(List<int> ids)? deleteRequirement,
     TResult Function()? clearDeleteSuccess,

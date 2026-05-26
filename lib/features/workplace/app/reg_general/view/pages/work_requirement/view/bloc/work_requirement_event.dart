@@ -48,7 +48,7 @@ class WorkRequirementEvent with _$WorkRequirementEvent {
     required DateTime dateRequest,
     required DateTime deadlineRequest,
     required int requiredDepartmentId,
-    required List<WorkRequirementDetailItem> details,
+    required List<WorkRequirementDetailResponse> details,
     int? coordinationDepartmentId,
   }) = _Submit;
 
@@ -68,8 +68,9 @@ class WorkRequirementEvent with _$WorkRequirementEvent {
     required DateTime dateRequest,
     required DateTime deadlineRequest,
     required int requiredDepartmentId,
-    required List<WorkRequirementDetailItem> details,
+    required List<WorkRequirementDetailResponse> details,
     int? coordinationDepartmentId,
+    required String numberRequest,
   }) = _EditSubmit;
 
   const factory WorkRequirementEvent.deleteRequirement({
