@@ -110,4 +110,24 @@ class WorkRequirementRepoImpl implements WorkRequirementRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, void>> editWorkRequirement({
+    required int id,
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.editWorkRequirement(id: id, payload: payload);
+      if (res.status == 1) {
+        return right(null);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Cap nhat that bai',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

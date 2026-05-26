@@ -21,4 +21,9 @@ abstract class WorkRequirementRepo {
   Future<Either<BaseError, WorkRequirementDetailData>> getWorkRequirementDetail(int id);
 
   Future<Either<BaseError, void>> deleteWorkRequirement(List<int> ids);
+
+  Future<Either<BaseError, void>> editWorkRequirement({
+    required int id,
+    required Map<String, dynamic> payload,
+  });
 }

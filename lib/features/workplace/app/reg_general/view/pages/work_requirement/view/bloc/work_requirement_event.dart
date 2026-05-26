@@ -57,6 +57,21 @@ class WorkRequirementEvent with _$WorkRequirementEvent {
 
   const factory WorkRequirementEvent.initDetail(int id) = _InitDetail;
 
+  const factory WorkRequirementEvent.initEdit({
+    required int id,
+    required WorkRequirementItem item,
+  }) = _InitEdit;
+
+  const factory WorkRequirementEvent.editSubmit({
+    required int id,
+    required int approvedTBPId,
+    required DateTime dateRequest,
+    required DateTime deadlineRequest,
+    required int requiredDepartmentId,
+    required List<WorkRequirementDetailItem> details,
+    int? coordinationDepartmentId,
+  }) = _EditSubmit;
+
   const factory WorkRequirementEvent.deleteRequirement({
     required List<int> ids,
   }) = _DeleteRequirement;

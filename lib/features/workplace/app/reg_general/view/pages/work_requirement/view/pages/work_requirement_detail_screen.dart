@@ -10,31 +10,43 @@ import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../di/injection.dart';
+import '../../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/work_requirement_model.dart';
 import '../bloc/work_requirement_bloc.dart';
 
 class WorkRequirementDetailScreen extends StatelessWidget {
   const WorkRequirementDetailScreen({
     super.key,
-    required this.itemId,
-  });
+    int? itemId,
+    WorkRequirementItem? item,
+  }) : item = item ?? null,
+       itemId = itemId ?? 0;
 
-  final int itemId;
+  final WorkRequirementItem? item;
+  final int? itemId;
 
   @override
   Widget build(BuildContext context) {
+    final effectiveId = item?.id ?? itemId ?? 0;
     return BlocProvider(
       create: (_) =>
-          getIt<WorkRequirementBloc>()..add(WorkRequirementEvent.initDetail(itemId)),
-      child: _WorkRequirementDetailContent(itemId: itemId),
+          getIt<WorkRequirementBloc>()..add(WorkRequirementEvent.initDetail(effectiveId)),
+      child: _WorkRequirementDetailContent(
+        itemId: effectiveId,
+        item: item,
+      ),
     );
   }
 }
 
 class _WorkRequirementDetailContent extends StatelessWidget {
-  const _WorkRequirementDetailContent({required this.itemId});
+  const _WorkRequirementDetailContent({
+    required this.itemId,
+    required this.item,
+  });
 
   final int itemId;
+  final WorkRequirementItem? item;
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +62,27 @@ class _WorkRequirementDetailContent extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        final canEdit = item != null && item!.isApprovedTBP != true;
         return BaseScaffold(
           appBar: AppBarCommon(
             title: const Text('Chi tiết yêu cầu'),
             onBackTap: () => context.pop(),
+            actions: [
+              if (canEdit)
+                IconButton(
+                  icon: const Icon(Icons.edit_outlined),
+                  tooltip: 'Chỉnh sửa',
+                  onPressed: () async {
+                    final result = await context.push<bool>(
+                      RouteNames.workRequirementEdit,
+                      extra: item,
+                    );
+                    if (result == true && context.mounted) {
+                      context.pop(true);
+                    }
+                  },
+                ),
+            ],
           ),
           body: state.isDetailLoading
               ? const Center(child: CircularProgressIndicator())

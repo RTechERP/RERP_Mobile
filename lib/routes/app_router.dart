@@ -53,9 +53,11 @@ import '../features/workplace/app/reg_general/view/pages/work_category/view/bloc
 import '../features/workplace/app/reg_general/view/pages/work_category/data/datasource/models/work_category_model.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/data/datasource/models/work_requirement_model.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/view/bloc/work_requirement_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/view/pages/work_requirement_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/view/pages/work_requirement_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/view/pages/work_requirement_edit_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/view/pages/work_requirement_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_detail_screen.dart';
@@ -1038,10 +1040,20 @@ class AppRouter {
             path: RouteNames.workRequirementDetail,
             builder: (context, state) {
               final extra = state.extra;
-              if (extra is int) {
-                return WorkRequirementDetailScreen(itemId: extra);
+              if (extra is WorkRequirementItem) {
+                return WorkRequirementDetailScreen(item: extra);
               }
               return const WorkRequirementDetailScreen(itemId: 0);
+            },
+          ),
+          GoRoute(
+            path: RouteNames.workRequirementEdit,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is WorkRequirementItem) {
+                return WorkRequirementEditScreen(item: extra);
+              }
+              return const WorkRequirementEditScreen(itemId: 0);
             },
           ),
         ],

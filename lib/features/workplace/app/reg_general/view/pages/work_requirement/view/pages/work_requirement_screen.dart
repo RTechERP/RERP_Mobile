@@ -225,7 +225,7 @@ class _WorkRequirementScreenState
                   Slidable.of(slidableCtx)?.close();
                   context.push(
                     RouteNames.workRequirementDetail,
-                    extra: item.id,
+                    extra: item,
                   );
                 },
               ),
