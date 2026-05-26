@@ -17,4 +17,6 @@ abstract class WorkRequirementRepo {
   Future<Either<BaseError, List<DepartResponse>>> getDepartments();
 
   Future<Either<BaseError, List<WorkRequirementApproverItem>>> getApprovers();
+
+  Future<Either<BaseError, WorkRequirementDetailData>> getWorkRequirementDetail(int id);
 }

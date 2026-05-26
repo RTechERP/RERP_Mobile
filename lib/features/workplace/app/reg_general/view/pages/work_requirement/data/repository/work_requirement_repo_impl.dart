@@ -76,4 +76,21 @@ class WorkRequirementRepoImpl implements WorkRequirementRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, WorkRequirementDetailData>> getWorkRequirementDetail(int id) async {
+    try {
+      final res = await _service.getWorkRequirementDetail(id);
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Khong lay duoc chi tiet',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

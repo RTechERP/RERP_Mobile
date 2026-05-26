@@ -358,4 +358,6 @@ class ApiEndPoint {
       '/handover/get-departments';
   static const String getWorkRequirementApprover =
       '/EmployeeWFH/get-employee-approver';
+  static const String getWorkRequirementDetail =
+      '/jobrequirement/details';
 }

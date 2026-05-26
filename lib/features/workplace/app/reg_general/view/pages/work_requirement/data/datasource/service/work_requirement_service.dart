@@ -50,6 +50,16 @@ class WorkRequirementService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<WorkRequirementDetailData>> getWorkRequirementDetail(int id) async {
+    return get<BaseData<WorkRequirementDetailData>>(
+      '${ApiEndPoint.getWorkRequirementDetail}/$id',
+      parser: (json) => BaseData<WorkRequirementDetailData>.fromJson(
+        json,
+        (data) => WorkRequirementDetailData.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
   BaseData<List<WorkRequirementApproverItem>> _parseApprovers(dynamic json) {
     if (json is! Map<String, dynamic>) {
       return BaseData<List<WorkRequirementApproverItem>>.fromJson({

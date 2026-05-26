@@ -149,6 +149,142 @@ Map<String, dynamic> _$$WorkRequirementApproverItemImplToJson(
       'Code': instance.code,
     };
 
+_$WorkRequirementApproveItemImpl _$$WorkRequirementApproveItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WorkRequirementApproveItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      jobRequirementId: (json['JobRequirementID'] as num?)?.toInt(),
+      step: (json['Step'] as num?)?.toInt(),
+      stepName: json['StepName'] as String?,
+      isApproved: (json['IsApproved'] as num?)?.toInt(),
+      dateApproved: json['DateApproved'] == null
+          ? null
+          : DateTime.parse(json['DateApproved'] as String),
+      approvedId: (json['ApprovedID'] as num?)?.toInt(),
+      approvedActualId: (json['ApprovedActualID'] as num?)?.toInt(),
+      reasonCancel: json['ReasonCancel'] as String?,
+      contentLog: json['ContentLog'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      isApprovedText: json['IsApprovedText'] as String?,
+      employeeActualName: json['EmployeeActualName'] as String?,
+      employeeName: json['EmployeeName'] as String?,
+    );
+
+Map<String, dynamic> _$$WorkRequirementApproveItemImplToJson(
+        _$WorkRequirementApproveItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'JobRequirementID': instance.jobRequirementId,
+      'Step': instance.step,
+      'StepName': instance.stepName,
+      'IsApproved': instance.isApproved,
+      'DateApproved': instance.dateApproved?.toIso8601String(),
+      'ApprovedID': instance.approvedId,
+      'ApprovedActualID': instance.approvedActualId,
+      'ReasonCancel': instance.reasonCancel,
+      'ContentLog': instance.contentLog,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'IsApprovedText': instance.isApprovedText,
+      'EmployeeActualName': instance.employeeActualName,
+      'EmployeeName': instance.employeeName,
+    };
+
+_$WorkRequirementFileItemImpl _$$WorkRequirementFileItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WorkRequirementFileItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      jobRequirementId: (json['JobRequirementID'] as num?)?.toInt(),
+      fileName: json['FileName'] as String?,
+      filePath: json['FilePath'] as String?,
+      fileType: json['FileType'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+    );
+
+Map<String, dynamic> _$$WorkRequirementFileItemImplToJson(
+        _$WorkRequirementFileItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'JobRequirementID': instance.jobRequirementId,
+      'FileName': instance.fileName,
+      'FilePath': instance.filePath,
+      'FileType': instance.fileType,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+    };
+
+_$WorkRequirementDetailCategoryImpl
+    _$$WorkRequirementDetailCategoryImplFromJson(Map<String, dynamic> json) =>
+        _$WorkRequirementDetailCategoryImpl(
+          jobRequirementId: (json['JobRequirementID'] as num?)?.toInt(),
+          requestContent: json['RequestContent'] as String?,
+          requestedBy: json['RequestedBy'] as String?,
+          reason: json['Reason'] as String?,
+          quantity: json['Quantity'] as String?,
+          quality: json['Quality'] as String?,
+          location: json['Location'] as String?,
+          deadlineDate: json['DeadlineDate'] as String?,
+          unit: json['Unit'] as String?,
+          requestContentNote: json['RequestContentNote'] as String?,
+        );
+
+Map<String, dynamic> _$$WorkRequirementDetailCategoryImplToJson(
+        _$WorkRequirementDetailCategoryImpl instance) =>
+    <String, dynamic>{
+      'JobRequirementID': instance.jobRequirementId,
+      'RequestContent': instance.requestContent,
+      'RequestedBy': instance.requestedBy,
+      'Reason': instance.reason,
+      'Quantity': instance.quantity,
+      'Quality': instance.quality,
+      'Location': instance.location,
+      'DeadlineDate': instance.deadlineDate,
+      'Unit': instance.unit,
+      'RequestContentNote': instance.requestContentNote,
+    };
+
+_$WorkRequirementDetailDataImpl _$$WorkRequirementDetailDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WorkRequirementDetailDataImpl(
+      details: (json['details'] as List<dynamic>?)
+          ?.map((e) =>
+              WorkRequirementDetailResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      approves: (json['approves'] as List<dynamic>?)
+          ?.map((e) =>
+              WorkRequirementApproveItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      files: (json['files'] as List<dynamic>?)
+          ?.map((e) =>
+              WorkRequirementFileItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      detailsCategory: (json['detailsCategory'] as List<dynamic>?)
+          ?.map((e) =>
+              WorkRequirementDetailCategory.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$WorkRequirementDetailDataImplToJson(
+        _$WorkRequirementDetailDataImpl instance) =>
+    <String, dynamic>{
+      'details': instance.details,
+      'approves': instance.approves,
+      'files': instance.files,
+      'detailsCategory': instance.detailsCategory,
+    };
+
 _$WorkRequirementDetailResponseImpl
     _$$WorkRequirementDetailResponseImplFromJson(Map<String, dynamic> json) =>
         _$WorkRequirementDetailResponseImpl(

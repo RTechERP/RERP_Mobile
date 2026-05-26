@@ -181,6 +181,10 @@ class _WorkRequirementScreenState
           return WorkRequirementCard(
             item: item,
             onTap: () {
+              context.push(
+                RouteNames.workRequirementDetail,
+                extra: item.id, // int - ID của yêu cầu công việc
+              );
             },
           );
         },

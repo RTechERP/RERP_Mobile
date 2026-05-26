@@ -54,4 +54,6 @@ class WorkRequirementEvent with _$WorkRequirementEvent {
 
   const factory WorkRequirementEvent.clearSubmitState() =
       _ClearSubmitState;
+
+  const factory WorkRequirementEvent.initDetail(int id) = _InitDetail;
 }

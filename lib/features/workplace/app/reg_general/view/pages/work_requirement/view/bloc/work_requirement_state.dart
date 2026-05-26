@@ -29,6 +29,11 @@ class WorkRequirementState extends BaseBlocState {
 
   final List<String> attachmentNames;
 
+  // --- Detail screen state ---
+  final bool isDetailLoading;
+  final int? detailId;
+  final WorkRequirementDetailData? detailData;
+
   const WorkRequirementState({
     required super.status,
     super.message,
@@ -51,6 +56,9 @@ class WorkRequirementState extends BaseBlocState {
     this.deadlineRequest,
     this.detailValues = const {},
     this.attachmentNames = const [],
+    this.isDetailLoading = false,
+    this.detailId,
+    this.detailData,
   });
 
   factory WorkRequirementState.init() => const WorkRequirementState(
@@ -65,6 +73,9 @@ class WorkRequirementState extends BaseBlocState {
         approverDisplayName: null,
         detailValues: {},
         attachmentNames: [],
+        isDetailLoading: false,
+        detailId: null,
+        detailData: null,
       );
 
   @override
@@ -89,5 +100,8 @@ class WorkRequirementState extends BaseBlocState {
         deadlineRequest,
         detailValues,
         attachmentNames,
+        isDetailLoading,
+        detailId,
+        detailData,
       ];
 }

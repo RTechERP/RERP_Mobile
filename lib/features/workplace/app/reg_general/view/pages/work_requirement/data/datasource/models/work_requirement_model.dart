@@ -113,6 +113,84 @@ class WorkRequirementDetailItem {
   final String? note;
 }
 
+/// Item cho danh sách duyệt trong detail.
+@freezed
+class WorkRequirementApproveItem with _$WorkRequirementApproveItem {
+  const factory WorkRequirementApproveItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'JobRequirementID') int? jobRequirementId,
+    @JsonKey(name: 'Step') int? step,
+    @JsonKey(name: 'StepName') String? stepName,
+    @JsonKey(name: 'IsApproved') int? isApproved,
+    @JsonKey(name: 'DateApproved') DateTime? dateApproved,
+    @JsonKey(name: 'ApprovedID') int? approvedId,
+    @JsonKey(name: 'ApprovedActualID') int? approvedActualId,
+    @JsonKey(name: 'ReasonCancel') String? reasonCancel,
+    @JsonKey(name: 'ContentLog') String? contentLog,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsApprovedText') String? isApprovedText,
+    @JsonKey(name: 'EmployeeActualName') String? employeeActualName,
+    @JsonKey(name: 'EmployeeName') String? employeeName,
+  }) = _WorkRequirementApproveItem;
+
+  factory WorkRequirementApproveItem.fromJson(Map<String, dynamic> json) =>
+      _$WorkRequirementApproveItemFromJson(json);
+}
+
+/// File đính kèm trong detail.
+@freezed
+class WorkRequirementFileItem with _$WorkRequirementFileItem {
+  const factory WorkRequirementFileItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'JobRequirementID') int? jobRequirementId,
+    @JsonKey(name: 'FileName') String? fileName,
+    @JsonKey(name: 'FilePath') String? filePath,
+    @JsonKey(name: 'FileType') String? fileType,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+  }) = _WorkRequirementFileItem;
+
+  factory WorkRequirementFileItem.fromJson(Map<String, dynamic> json) =>
+      _$WorkRequirementFileItemFromJson(json);
+}
+
+/// Chi tiết đề mục trong detail.
+@freezed
+class WorkRequirementDetailCategory with _$WorkRequirementDetailCategory {
+  const factory WorkRequirementDetailCategory({
+    @JsonKey(name: 'JobRequirementID') int? jobRequirementId,
+    @JsonKey(name: 'RequestContent') String? requestContent,
+    @JsonKey(name: 'RequestedBy') String? requestedBy,
+    @JsonKey(name: 'Reason') String? reason,
+    @JsonKey(name: 'Quantity') String? quantity,
+    @JsonKey(name: 'Quality') String? quality,
+    @JsonKey(name: 'Location') String? location,
+    @JsonKey(name: 'DeadlineDate') String? deadlineDate,
+    @JsonKey(name: 'Unit') String? unit,
+    @JsonKey(name: 'RequestContentNote') String? requestContentNote,
+  }) = _WorkRequirementDetailCategory;
+
+  factory WorkRequirementDetailCategory.fromJson(Map<String, dynamic> json) =>
+      _$WorkRequirementDetailCategoryFromJson(json);
+}
+
+/// Response chi tiết từ API /jobrequirement/details/{id}.
+@freezed
+class WorkRequirementDetailData with _$WorkRequirementDetailData {
+  const factory WorkRequirementDetailData({
+    @JsonKey(name: 'details') List<WorkRequirementDetailResponse>? details,
+    @JsonKey(name: 'approves') List<WorkRequirementApproveItem>? approves,
+    @JsonKey(name: 'files') List<WorkRequirementFileItem>? files,
+    @JsonKey(name: 'detailsCategory') List<WorkRequirementDetailCategory>? detailsCategory,
+  }) = _WorkRequirementDetailData;
+
+  factory WorkRequirementDetailData.fromJson(Map<String, dynamic> json) =>
+      _$WorkRequirementDetailDataFromJson(json);
+}
+
 /// Response chi tiết trả về từ API save-data.
 @freezed
 class WorkRequirementDetailResponse with _$WorkRequirementDetailResponse {

@@ -57,9 +57,10 @@ class WorkRequirementBloc extends BaseBloc<WorkRequirementEvent, WorkRequirement
           coordinationDepartmentId: coordinationDepartmentId,
           details: details,
         ),
+        initDetail: (id) => _onInitDetail(emit, id),
         clearSubmitState: () => _onClearSubmitState(emit),
       );
-    });
+  });
   }
 
   //---(Init)---//
@@ -389,6 +390,38 @@ class WorkRequirementBloc extends BaseBloc<WorkRequirementEvent, WorkRequirement
       submitSuccess: false,
       message: null,
     ));
+  }
+
+  //---(InitDetail)---//
+
+  Future<void> _onInitDetail(Emitter<WorkRequirementState> emit, int id) async {
+    emit(state.copyWith(
+      isDetailLoading: true,
+      detailId: id,
+      detailData: null,
+      status: BaseStateStatus.loading,
+    ));
+
+    final res = await _workRequirementRepo.getWorkRequirementDetail(id);
+
+    await res.fold(
+      (err) async {
+        _log.logE('Get work requirement detail failed: $err');
+        emit(state.copyWith(
+          isDetailLoading: false,
+          status: BaseStateStatus.failed,
+          message: err.getErrorMessage,
+        ));
+      },
+      (data) async {
+        _log.logI('Get work requirement detail success');
+        emit(state.copyWith(
+          isDetailLoading: false,
+          detailData: data,
+          status: BaseStateStatus.success,
+        ));
+      },
+    );
   }
 
   //---(Helper)---//

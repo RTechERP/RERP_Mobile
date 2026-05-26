@@ -41,6 +41,7 @@ mixin _$WorkRequirementEvent {
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,6 +67,7 @@ mixin _$WorkRequirementEvent {
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -90,6 +92,7 @@ mixin _$WorkRequirementEvent {
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -110,6 +113,7 @@ mixin _$WorkRequirementEvent {
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -129,6 +133,7 @@ mixin _$WorkRequirementEvent {
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -147,6 +152,7 @@ mixin _$WorkRequirementEvent {
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -231,6 +237,7 @@ class _$InitImpl implements _Init {
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) {
     return init();
   }
@@ -259,6 +266,7 @@ class _$InitImpl implements _Init {
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) {
     return init?.call();
   }
@@ -286,6 +294,7 @@ class _$InitImpl implements _Init {
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -312,6 +321,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return init(this);
   }
@@ -334,6 +344,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return init?.call(this);
   }
@@ -355,6 +366,7 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -465,6 +477,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -493,6 +506,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -520,6 +534,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -546,6 +561,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return changeDateRange(this);
   }
@@ -568,6 +584,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return changeDateRange?.call(this);
   }
@@ -589,6 +606,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -671,6 +689,7 @@ class _$RefreshImpl implements _Refresh {
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) {
     return refresh();
   }
@@ -699,6 +718,7 @@ class _$RefreshImpl implements _Refresh {
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) {
     return refresh?.call();
   }
@@ -726,6 +746,7 @@ class _$RefreshImpl implements _Refresh {
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -752,6 +773,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return refresh(this);
   }
@@ -774,6 +796,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return refresh?.call(this);
   }
@@ -795,6 +818,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -869,6 +893,7 @@ class _$InitAddImpl implements _InitAdd {
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) {
     return initAdd();
   }
@@ -897,6 +922,7 @@ class _$InitAddImpl implements _InitAdd {
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) {
     return initAdd?.call();
   }
@@ -924,6 +950,7 @@ class _$InitAddImpl implements _InitAdd {
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -950,6 +977,7 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return initAdd(this);
   }
@@ -972,6 +1000,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return initAdd?.call(this);
   }
@@ -993,6 +1022,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -1112,6 +1142,7 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) {
     return updateFormField(rowIndex, field, value);
   }
@@ -1140,6 +1171,7 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) {
     return updateFormField?.call(rowIndex, field, value);
   }
@@ -1167,6 +1199,7 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) {
     if (updateFormField != null) {
@@ -1193,6 +1226,7 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return updateFormField(this);
   }
@@ -1215,6 +1249,7 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return updateFormField?.call(this);
   }
@@ -1236,6 +1271,7 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (updateFormField != null) {
@@ -1347,6 +1383,7 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) {
     return changeDateRequest(date);
   }
@@ -1375,6 +1412,7 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) {
     return changeDateRequest?.call(date);
   }
@@ -1402,6 +1440,7 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) {
     if (changeDateRequest != null) {
@@ -1428,6 +1467,7 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return changeDateRequest(this);
   }
@@ -1450,6 +1490,7 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return changeDateRequest?.call(this);
   }
@@ -1471,6 +1512,7 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (changeDateRequest != null) {
@@ -1578,6 +1620,7 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) {
     return changeDeadline(date);
   }
@@ -1606,6 +1649,7 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) {
     return changeDeadline?.call(date);
   }
@@ -1633,6 +1677,7 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) {
     if (changeDeadline != null) {
@@ -1659,6 +1704,7 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return changeDeadline(this);
   }
@@ -1681,6 +1727,7 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return changeDeadline?.call(this);
   }
@@ -1702,6 +1749,7 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (changeDeadline != null) {
@@ -1819,6 +1867,7 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) {
     return changeRequiredDepartment(id, name);
   }
@@ -1847,6 +1896,7 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) {
     return changeRequiredDepartment?.call(id, name);
   }
@@ -1874,6 +1924,7 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) {
     if (changeRequiredDepartment != null) {
@@ -1900,6 +1951,7 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return changeRequiredDepartment(this);
   }
@@ -1922,6 +1974,7 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return changeRequiredDepartment?.call(this);
   }
@@ -1943,6 +1996,7 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (changeRequiredDepartment != null) {
@@ -2065,6 +2119,7 @@ class _$ChangeCoordinationDepartmentImpl
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) {
     return changeCoordinationDepartment(id, name);
   }
@@ -2093,6 +2148,7 @@ class _$ChangeCoordinationDepartmentImpl
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) {
     return changeCoordinationDepartment?.call(id, name);
   }
@@ -2120,6 +2176,7 @@ class _$ChangeCoordinationDepartmentImpl
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) {
     if (changeCoordinationDepartment != null) {
@@ -2146,6 +2203,7 @@ class _$ChangeCoordinationDepartmentImpl
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return changeCoordinationDepartment(this);
   }
@@ -2168,6 +2226,7 @@ class _$ChangeCoordinationDepartmentImpl
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return changeCoordinationDepartment?.call(this);
   }
@@ -2189,6 +2248,7 @@ class _$ChangeCoordinationDepartmentImpl
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (changeCoordinationDepartment != null) {
@@ -2308,6 +2368,7 @@ class _$ChangeApproverImpl implements _ChangeApprover {
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) {
     return changeApprover(id, displayName);
   }
@@ -2336,6 +2397,7 @@ class _$ChangeApproverImpl implements _ChangeApprover {
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) {
     return changeApprover?.call(id, displayName);
   }
@@ -2363,6 +2425,7 @@ class _$ChangeApproverImpl implements _ChangeApprover {
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) {
     if (changeApprover != null) {
@@ -2389,6 +2452,7 @@ class _$ChangeApproverImpl implements _ChangeApprover {
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return changeApprover(this);
   }
@@ -2411,6 +2475,7 @@ class _$ChangeApproverImpl implements _ChangeApprover {
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return changeApprover?.call(this);
   }
@@ -2432,6 +2497,7 @@ class _$ChangeApproverImpl implements _ChangeApprover {
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (changeApprover != null) {
@@ -2547,6 +2613,7 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) {
     return changeAttachments(names);
   }
@@ -2575,6 +2642,7 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) {
     return changeAttachments?.call(names);
   }
@@ -2602,6 +2670,7 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) {
     if (changeAttachments != null) {
@@ -2628,6 +2697,7 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return changeAttachments(this);
   }
@@ -2650,6 +2720,7 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return changeAttachments?.call(this);
   }
@@ -2671,6 +2742,7 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (changeAttachments != null) {
@@ -2849,6 +2921,7 @@ class _$SubmitImpl implements _Submit {
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) {
     return submit(approvedTBPId, dateRequest, deadlineRequest,
         requiredDepartmentId, details, coordinationDepartmentId);
@@ -2878,6 +2951,7 @@ class _$SubmitImpl implements _Submit {
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) {
     return submit?.call(approvedTBPId, dateRequest, deadlineRequest,
         requiredDepartmentId, details, coordinationDepartmentId);
@@ -2906,6 +2980,7 @@ class _$SubmitImpl implements _Submit {
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -2933,6 +3008,7 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return submit(this);
   }
@@ -2955,6 +3031,7 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return submit?.call(this);
   }
@@ -2976,6 +3053,7 @@ class _$SubmitImpl implements _Submit {
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -3066,6 +3144,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             int? coordinationDepartmentId)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
   }) {
     return clearSubmitState();
   }
@@ -3094,6 +3173,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             int? coordinationDepartmentId)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
   }) {
     return clearSubmitState?.call();
   }
@@ -3121,6 +3201,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             int? coordinationDepartmentId)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -3147,6 +3228,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_ChangeAttachments value) changeAttachments,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return clearSubmitState(this);
   }
@@ -3169,6 +3251,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_ChangeAttachments value)? changeAttachments,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return clearSubmitState?.call(this);
   }
@@ -3190,6 +3273,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_ChangeAttachments value)? changeAttachments,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -3201,4 +3285,239 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
 
 abstract class _ClearSubmitState implements WorkRequirementEvent {
   const factory _ClearSubmitState() = _$ClearSubmitStateImpl;
+}
+
+/// @nodoc
+abstract class _$$InitDetailImplCopyWith<$Res> {
+  factory _$$InitDetailImplCopyWith(
+          _$InitDetailImpl value, $Res Function(_$InitDetailImpl) then) =
+      __$$InitDetailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$InitDetailImplCopyWithImpl<$Res>
+    extends _$WorkRequirementEventCopyWithImpl<$Res, _$InitDetailImpl>
+    implements _$$InitDetailImplCopyWith<$Res> {
+  __$$InitDetailImplCopyWithImpl(
+      _$InitDetailImpl _value, $Res Function(_$InitDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$InitDetailImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitDetailImpl implements _InitDetail {
+  const _$InitDetailImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'WorkRequirementEvent.initDetail(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitDetailImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitDetailImplCopyWith<_$InitDetailImpl> get copyWith =>
+      __$$InitDetailImplCopyWithImpl<_$InitDetailImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() refresh,
+    required TResult Function() initAdd,
+    required TResult Function(int rowIndex, String field, String value)
+        updateFormField,
+    required TResult Function(DateTime? date) changeDateRequest,
+    required TResult Function(DateTime? date) changeDeadline,
+    required TResult Function(int? id, String? name) changeRequiredDepartment,
+    required TResult Function(int? id, String? name)
+        changeCoordinationDepartment,
+    required TResult Function(int? id, String? displayName) changeApprover,
+    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailItem> details,
+            int? coordinationDepartmentId)
+        submit,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
+  }) {
+    return initDetail(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? refresh,
+    TResult? Function()? initAdd,
+    TResult? Function(int rowIndex, String field, String value)?
+        updateFormField,
+    TResult? Function(DateTime? date)? changeDateRequest,
+    TResult? Function(DateTime? date)? changeDeadline,
+    TResult? Function(int? id, String? name)? changeRequiredDepartment,
+    TResult? Function(int? id, String? name)? changeCoordinationDepartment,
+    TResult? Function(int? id, String? displayName)? changeApprover,
+    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailItem> details,
+            int? coordinationDepartmentId)?
+        submit,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
+  }) {
+    return initDetail?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? refresh,
+    TResult Function()? initAdd,
+    TResult Function(int rowIndex, String field, String value)? updateFormField,
+    TResult Function(DateTime? date)? changeDateRequest,
+    TResult Function(DateTime? date)? changeDeadline,
+    TResult Function(int? id, String? name)? changeRequiredDepartment,
+    TResult Function(int? id, String? name)? changeCoordinationDepartment,
+    TResult Function(int? id, String? displayName)? changeApprover,
+    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailItem> details,
+            int? coordinationDepartmentId)?
+        submit,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
+    required TResult orElse(),
+  }) {
+    if (initDetail != null) {
+      return initDetail(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateFormField value) updateFormField,
+    required TResult Function(_ChangeDateRequest value) changeDateRequest,
+    required TResult Function(_ChangeDeadline value) changeDeadline,
+    required TResult Function(_ChangeRequiredDepartment value)
+        changeRequiredDepartment,
+    required TResult Function(_ChangeCoordinationDepartment value)
+        changeCoordinationDepartment,
+    required TResult Function(_ChangeApprover value) changeApprover,
+    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
+  }) {
+    return initDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateFormField value)? updateFormField,
+    TResult? Function(_ChangeDateRequest value)? changeDateRequest,
+    TResult? Function(_ChangeDeadline value)? changeDeadline,
+    TResult? Function(_ChangeRequiredDepartment value)?
+        changeRequiredDepartment,
+    TResult? Function(_ChangeCoordinationDepartment value)?
+        changeCoordinationDepartment,
+    TResult? Function(_ChangeApprover value)? changeApprover,
+    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
+  }) {
+    return initDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateFormField value)? updateFormField,
+    TResult Function(_ChangeDateRequest value)? changeDateRequest,
+    TResult Function(_ChangeDeadline value)? changeDeadline,
+    TResult Function(_ChangeRequiredDepartment value)? changeRequiredDepartment,
+    TResult Function(_ChangeCoordinationDepartment value)?
+        changeCoordinationDepartment,
+    TResult Function(_ChangeApprover value)? changeApprover,
+    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
+    required TResult orElse(),
+  }) {
+    if (initDetail != null) {
+      return initDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitDetail implements WorkRequirementEvent {
+  const factory _InitDetail(final int id) = _$InitDetailImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$InitDetailImplCopyWith<_$InitDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

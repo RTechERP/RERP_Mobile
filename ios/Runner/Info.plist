@@ -53,6 +53,13 @@
 		<false/>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>Ứng dụng cần truy cập thư viện ảnh để đính kèm hình ảnh trong báo cáo công việc, đăng ký xe và các đơn đăng ký khác.</string>
+		<key>io.flutter.embedded_views_preview</key>
+		<true/>
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+		</dict>
 		<!-- FCM: Background delivery -->
 		<key>UIBackgroundModes</key>
 		<array>

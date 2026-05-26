@@ -50,6 +50,12 @@ abstract class _$WorkRequirementStateCWProxy {
 
   WorkRequirementState attachmentNames(List<String> attachmentNames);
 
+  WorkRequirementState isDetailLoading(bool isDetailLoading);
+
+  WorkRequirementState detailId(int? detailId);
+
+  WorkRequirementState detailData(WorkRequirementDetailData? detailData);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkRequirementState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -78,6 +84,9 @@ abstract class _$WorkRequirementStateCWProxy {
     DateTime? deadlineRequest,
     Map<int, Map<String, String>>? detailValues,
     List<String>? attachmentNames,
+    bool? isDetailLoading,
+    int? detailId,
+    WorkRequirementDetailData? detailData,
   });
 }
 
@@ -173,6 +182,17 @@ class _$WorkRequirementStateCWProxyImpl
       this(attachmentNames: attachmentNames);
 
   @override
+  WorkRequirementState isDetailLoading(bool isDetailLoading) =>
+      this(isDetailLoading: isDetailLoading);
+
+  @override
+  WorkRequirementState detailId(int? detailId) => this(detailId: detailId);
+
+  @override
+  WorkRequirementState detailData(WorkRequirementDetailData? detailData) =>
+      this(detailData: detailData);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkRequirementState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -202,6 +222,9 @@ class _$WorkRequirementStateCWProxyImpl
     Object? deadlineRequest = const $CopyWithPlaceholder(),
     Object? detailValues = const $CopyWithPlaceholder(),
     Object? attachmentNames = const $CopyWithPlaceholder(),
+    Object? isDetailLoading = const $CopyWithPlaceholder(),
+    Object? detailId = const $CopyWithPlaceholder(),
+    Object? detailData = const $CopyWithPlaceholder(),
   }) {
     return WorkRequirementState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -296,6 +319,19 @@ class _$WorkRequirementStateCWProxyImpl
           ? _value.attachmentNames
           // ignore: cast_nullable_to_non_nullable
           : attachmentNames as List<String>,
+      isDetailLoading: isDetailLoading == const $CopyWithPlaceholder() ||
+              isDetailLoading == null
+          ? _value.isDetailLoading
+          // ignore: cast_nullable_to_non_nullable
+          : isDetailLoading as bool,
+      detailId: detailId == const $CopyWithPlaceholder()
+          ? _value.detailId
+          // ignore: cast_nullable_to_non_nullable
+          : detailId as int?,
+      detailData: detailData == const $CopyWithPlaceholder()
+          ? _value.detailData
+          // ignore: cast_nullable_to_non_nullable
+          : detailData as WorkRequirementDetailData?,
     );
   }
 }
