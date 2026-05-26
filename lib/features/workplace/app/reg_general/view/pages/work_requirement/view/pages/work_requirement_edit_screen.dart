@@ -549,6 +549,7 @@ class _EditContentState extends State<_EditContent> {
           return Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: WorkRequirementDetailAccordion(
+              formKey: widget.formKey,
               meta: meta,
               rowIndex: i,
               isExpanded: widget.expandedDetails.contains(i),

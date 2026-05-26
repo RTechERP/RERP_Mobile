@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../../common/widgets/form/form_input_field.dart';
@@ -16,9 +17,10 @@ class WorkRequirementDetailMeta {
   final IconData icon;
 }
 
-class WorkRequirementDetailAccordion extends StatelessWidget {
-  const   WorkRequirementDetailAccordion({
+class WorkRequirementDetailAccordion extends StatefulWidget {
+  const WorkRequirementDetailAccordion({
     super.key,
+    required this.formKey,
     required this.meta,
     required this.rowIndex,
     required this.isExpanded,
@@ -34,6 +36,7 @@ class WorkRequirementDetailAccordion extends StatelessWidget {
     required this.onNoteChanged,
   });
 
+  final GlobalKey<FormBuilderState> formKey;
   final WorkRequirementDetailMeta meta;
   final int rowIndex;
   final bool isExpanded;
@@ -49,6 +52,65 @@ class WorkRequirementDetailAccordion extends StatelessWidget {
   final ValueChanged<String> onNoteChanged;
 
   @override
+  State<WorkRequirementDetailAccordion> createState() =>
+      _WorkRequirementDetailAccordionState();
+}
+
+class _WorkRequirementDetailAccordionState
+    extends State<WorkRequirementDetailAccordion> {
+  static const _sentinel = '__UNSET__';
+
+  String _lastExplanation = _sentinel;
+  String _lastTarget = _sentinel;
+  String? _lastNote;
+
+  @override
+  void initState() {
+    super.initState();
+    _lastTarget = widget.initialTarget;
+    _lastNote = widget.initialNote;
+  }
+
+  @override
+  void didUpdateWidget(WorkRequirementDetailAccordion oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _syncIfNeeded();
+  }
+
+  void _syncIfNeeded() {
+    if (!widget.isExpanded) return;
+
+    final form = widget.formKey.currentState;
+    if (form == null) return;
+
+    final newExp =
+        widget.isAutoFill ? widget.autoValue : widget.initialExplanation;
+
+    if (_lastExplanation == _sentinel || _lastExplanation != newExp) {
+      _lastExplanation = newExp;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final f = form.fields['detail_${widget.rowIndex}_explanation'];
+        f?.didChange(newExp);
+      });
+    }
+    if (_lastTarget == _sentinel || widget.initialTarget != _lastTarget) {
+      _lastTarget = widget.initialTarget;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final f = form.fields['detail_${widget.rowIndex}_target'];
+        f?.didChange(widget.initialTarget);
+      });
+    }
+    if (_lastNote == null && widget.initialNote != null ||
+        widget.initialNote != _lastNote) {
+      _lastNote = widget.initialNote;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final f = form.fields['detail_${widget.rowIndex}_note'];
+        f?.didChange(widget.initialNote ?? '');
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
@@ -57,14 +119,14 @@ class WorkRequirementDetailAccordion extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isExpanded
+          color: widget.isExpanded
               ? AppColors.primaryERP.withValues(alpha: 0.4)
-              : hasData
+              : widget.hasData
                   ? AppColors.stateSuccessColor.withValues(alpha: 0.3)
                   : AppColors.borderColor,
-          width: isExpanded ? 1.6 : 1.0,
+          width: widget.isExpanded ? 1.6 : 1.0,
         ),
-        boxShadow: isExpanded
+        boxShadow: widget.isExpanded
             ? [
                 BoxShadow(
                   color: AppColors.primaryERP.withValues(alpha: 0.08),
@@ -77,30 +139,31 @@ class WorkRequirementDetailAccordion extends StatelessWidget {
       child: Column(
         children: [
           InkWell(
-            onTap: onToggle,
+            onTap: widget.onToggle,
             borderRadius: BorderRadius.circular(12),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
               child: Row(
                 children: [
                   Container(
                     width: 28,
                     height: 28,
                     decoration: BoxDecoration(
-                      color: isExpanded
+                      color: widget.isExpanded
                           ? AppColors.primaryERP
-                          : hasData
+                          : widget.hasData
                               ? AppColors.stateSuccessColor
                               : AppColors.supportBtn,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      '${meta.index + 1}',
+                      '${widget.meta.index + 1}',
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w700,
-                        color: isExpanded || hasData
+                        color: widget.isExpanded || widget.hasData
                             ? Colors.white
                             : AppColors.gray,
                       ),
@@ -108,11 +171,11 @@ class WorkRequirementDetailAccordion extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Icon(
-                    meta.icon,
+                    widget.meta.icon,
                     size: 20,
-                    color: isExpanded
+                    color: widget.isExpanded
                         ? AppColors.primaryERP
-                        : hasData
+                        : widget.hasData
                             ? AppColors.stateSuccessColor
                             : AppColors.gray,
                   ),
@@ -122,13 +185,13 @@ class WorkRequirementDetailAccordion extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          meta.title,
+                          widget.meta.title,
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: isExpanded
+                            color: widget.isExpanded
                                 ? AppColors.heading
-                                : hasData
+                                : widget.hasData
                                     ? AppColors.stateSuccessColor
                                     : AppColors.gray,
                           ),
@@ -137,12 +200,13 @@ class WorkRequirementDetailAccordion extends StatelessWidget {
                     ),
                   ),
                   AnimatedRotation(
-                    turns: isExpanded ? 0.5 : 0,
+                    turns: widget.isExpanded ? 0.5 : 0,
                     duration: const Duration(milliseconds: 200),
                     child: Icon(
                       Icons.keyboard_arrow_down,
-                      color:
-                          isExpanded ? AppColors.primaryERP : AppColors.gray,
+                      color: widget.isExpanded
+                          ? AppColors.primaryERP
+                          : AppColors.gray,
                     ),
                   ),
                 ],
@@ -152,7 +216,7 @@ class WorkRequirementDetailAccordion extends StatelessWidget {
           AnimatedSize(
             duration: const Duration(milliseconds: 200),
             curve: Curves.easeInOut,
-            child: isExpanded
+            child: widget.isExpanded
                 ? _buildExpandedContent()
                 : const SizedBox.shrink(),
           ),
@@ -170,33 +234,35 @@ class WorkRequirementDetailAccordion extends StatelessWidget {
           const Divider(height: 1),
           const SizedBox(height: 12),
           WorkRequirementDetailFieldColumn(
-            nameForm: 'detail_${rowIndex}_explanation',
-            nameTextField: 'detail_${rowIndex}_explanation_tf',
+            nameForm: 'detail_${widget.rowIndex}_explanation',
+            nameTextField: 'detail_${widget.rowIndex}_explanation_tf',
             label: 'Diễn giải',
-            hint: isAutoFill
+            hint: widget.isAutoFill
                 ? 'Tự động theo thời gian hoàn thành'
                 : 'Nhập nội dung diễn giải...',
-            initialValue: isAutoFill ? autoValue : initialExplanation,
-            readOnly: isAutoFill,
-            onChanged: onExplanationChanged,
+            initialValue: widget.isAutoFill
+                ? widget.autoValue
+                : widget.initialExplanation,
+            readOnly: widget.isAutoFill,
+            onChanged: widget.onExplanationChanged,
           ),
           const SizedBox(height: 10),
           WorkRequirementDetailFieldColumn(
-            nameForm: 'detail_${rowIndex}_target',
-            nameTextField: 'detail_${rowIndex}_target_tf',
+            nameForm: 'detail_${widget.rowIndex}_target',
+            nameTextField: 'detail_${widget.rowIndex}_target_tf',
             label: 'Mục tiêu cần đạt',
             hint: 'Nhập mục tiêu cần đạt...',
-            initialValue: initialTarget,
-            onChanged: onTargetChanged,
+            initialValue: widget.initialTarget,
+            onChanged: widget.onTargetChanged,
           ),
           const SizedBox(height: 10),
           WorkRequirementDetailFieldColumn(
-            nameForm: 'detail_${rowIndex}_note',
-            nameTextField: 'detail_${rowIndex}_note_tf',
+            nameForm: 'detail_${widget.rowIndex}_note',
+            nameTextField: 'detail_${widget.rowIndex}_note_tf',
             label: 'Ghi chú',
             hint: 'Nhập ghi chú (nếu có)...',
-            initialValue: initialNote ?? '',
-            onChanged: onNoteChanged,
+            initialValue: widget.initialNote ?? '',
+            onChanged: widget.onNoteChanged,
           ),
         ],
       ),

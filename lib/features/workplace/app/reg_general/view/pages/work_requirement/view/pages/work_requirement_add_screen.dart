@@ -450,6 +450,7 @@ class _WorkRequirementAddScreenState
           return Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: WorkRequirementDetailAccordion(
+              formKey: _formKey,
               meta: meta,
               rowIndex: i,
               isExpanded: _expandedDetails.contains(i),
