@@ -60,6 +60,14 @@ class WorkRequirementService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<void>> deleteWorkRequirement({required List<int> ids}) async {
+    return post<BaseData<void>>(
+      ApiEndPoint.deleteWorkRequirement,
+      body: ids,
+      parser: (json) => BaseData<void>.fromJson(json, (_) {}),
+    );
+  }
+
   BaseData<List<WorkRequirementApproverItem>> _parseApprovers(dynamic json) {
     if (json is! Map<String, dynamic>) {
       return BaseData<List<WorkRequirementApproverItem>>.fromJson({

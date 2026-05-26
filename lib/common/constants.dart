@@ -360,4 +360,5 @@ class ApiEndPoint {
       '/EmployeeWFH/get-employee-approver';
   static const String getWorkRequirementDetail =
       '/jobrequirement/details';
+  static const String deleteWorkRequirement = '/jobrequirement/delete';
 }

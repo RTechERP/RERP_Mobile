@@ -19,4 +19,6 @@ abstract class WorkRequirementRepo {
   Future<Either<BaseError, List<WorkRequirementApproverItem>>> getApprovers();
 
   Future<Either<BaseError, WorkRequirementDetailData>> getWorkRequirementDetail(int id);
+
+  Future<Either<BaseError, void>> deleteWorkRequirement(List<int> ids);
 }

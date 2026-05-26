@@ -58,6 +58,8 @@ class WorkRequirementBloc extends BaseBloc<WorkRequirementEvent, WorkRequirement
           details: details,
         ),
         initDetail: (id) => _onInitDetail(emit, id),
+        deleteRequirement: (ids) => _onDeleteRequirement(emit, ids),
+        clearDeleteSuccess: () => _onClearDeleteSuccess(emit),
         clearSubmitState: () => _onClearSubmitState(emit),
       );
   });
@@ -419,6 +421,51 @@ class WorkRequirementBloc extends BaseBloc<WorkRequirementEvent, WorkRequirement
           isDetailLoading: false,
           detailData: data,
           status: BaseStateStatus.success,
+        ));
+      },
+    );
+  }
+
+  //---(ClearDelete)---//
+
+  Future<void> _onClearDeleteSuccess(
+      Emitter<WorkRequirementState> emit) async {
+    emit(state.copyWith(
+      isDeleting: false,
+      deleteSuccess: false,
+      message: null,
+    ));
+  }
+
+  //---(Delete)---//
+
+  Future<void> _onDeleteRequirement(
+    Emitter<WorkRequirementState> emit,
+    List<int> ids,
+  ) async {
+    emit(state.copyWith(isDeleting: true, deleteSuccess: false, message: null));
+
+    final res = await _workRequirementRepo.deleteWorkRequirement(ids);
+
+    await res.fold(
+      (err) async {
+        _log.logE('Delete work requirement failed: $err');
+        emit(state.copyWith(
+          isDeleting: false,
+          deleteSuccess: false,
+          status: BaseStateStatus.failed,
+          message: err.getErrorMessage,
+        ));
+      },
+      (_) async {
+        _log.logI('Delete work requirement success - ids: $ids');
+        final updatedItems = state.items.where((e) => !ids.contains(e.id)).toList();
+        emit(state.copyWith(
+          isDeleting: false,
+          deleteSuccess: true,
+          status: BaseStateStatus.success,
+          message: 'Xoa yeu cau thanh cong',
+          items: updatedItems,
         ));
       },
     );

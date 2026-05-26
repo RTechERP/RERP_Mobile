@@ -56,4 +56,11 @@ class WorkRequirementEvent with _$WorkRequirementEvent {
       _ClearSubmitState;
 
   const factory WorkRequirementEvent.initDetail(int id) = _InitDetail;
+
+  const factory WorkRequirementEvent.deleteRequirement({
+    required List<int> ids,
+  }) = _DeleteRequirement;
+
+  const factory WorkRequirementEvent.clearDeleteSuccess() =
+      _ClearDeleteSuccess;
 }

@@ -34,6 +34,10 @@ class WorkRequirementState extends BaseBlocState {
   final int? detailId;
   final WorkRequirementDetailData? detailData;
 
+  // --- Delete state ---
+  final bool isDeleting;
+  final bool deleteSuccess;
+
   const WorkRequirementState({
     required super.status,
     super.message,
@@ -59,6 +63,8 @@ class WorkRequirementState extends BaseBlocState {
     this.isDetailLoading = false,
     this.detailId,
     this.detailData,
+    this.isDeleting = false,
+    this.deleteSuccess = false,
   });
 
   factory WorkRequirementState.init() => const WorkRequirementState(
@@ -76,6 +82,8 @@ class WorkRequirementState extends BaseBlocState {
         isDetailLoading: false,
         detailId: null,
         detailData: null,
+        isDeleting: false,
+        deleteSuccess: false,
       );
 
   @override
@@ -103,5 +111,7 @@ class WorkRequirementState extends BaseBlocState {
         isDetailLoading,
         detailId,
         detailData,
+        isDeleting,
+        deleteSuccess,
       ];
 }

@@ -93,4 +93,21 @@ class WorkRequirementRepoImpl implements WorkRequirementRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, void>> deleteWorkRequirement(List<int> ids) async {
+    try {
+      final res = await _service.deleteWorkRequirement(ids: ids);
+      if (res.status == 1) {
+        return right(null);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Xoa that bai',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

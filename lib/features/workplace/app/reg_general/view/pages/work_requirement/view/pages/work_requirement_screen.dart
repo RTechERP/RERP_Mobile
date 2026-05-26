@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
@@ -8,6 +9,7 @@ import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
+import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../../routes/route_names.dart';
@@ -22,12 +24,13 @@ class WorkRequirementScreen extends StatefulWidget {
 }
 
 class _WorkRequirementScreenState
-    extends BaseState<
-        WorkRequirementScreen,
-        WorkRequirementEvent,
-        WorkRequirementState,
-        WorkRequirementBloc> {
-
+    extends
+        BaseState<
+          WorkRequirementScreen,
+          WorkRequirementEvent,
+          WorkRequirementState,
+          WorkRequirementBloc
+        > {
   @override
   void initState() {
     super.initState();
@@ -54,10 +57,12 @@ class _WorkRequirementScreenState
             initialStart: bloc.state.dateStart,
             initialEnd: bloc.state.dateEnd,
             onApply: (start, end) {
-              bloc.add(WorkRequirementEvent.changeDateRange(
-                dateStart: start,
-                dateEnd: end,
-              ));
+              bloc.add(
+                WorkRequirementEvent.changeDateRange(
+                  dateStart: start,
+                  dateEnd: end,
+                ),
+              );
             },
           ),
         ),
@@ -69,16 +74,25 @@ class _WorkRequirementScreenState
   Widget renderUI(BuildContext context) {
     return BlocListener<WorkRequirementBloc, WorkRequirementState>(
       listenWhen: (prev, curr) =>
-          prev.status != curr.status || prev.message != curr.message,
+          prev.status != curr.status ||
+          prev.message != curr.message ||
+          prev.deleteSuccess != curr.deleteSuccess,
       listener: (context, state) {
-        if (state.status == BaseStateStatus.failed &&
+        if (state.deleteSuccess) {
+          context.showMessage(
+            "Xoá phiếu yêu cầu thành công",
+            type: SnackBarType.success,
+          );
+          bloc.add(const WorkRequirementEvent.clearDeleteSuccess());
+        } else if (state.status == BaseStateStatus.failed &&
             state.message != null) {
           context.showMessage(state.message!, type: SnackBarType.error);
         }
       },
       child: BlocBuilder<WorkRequirementBloc, WorkRequirementState>(
         buildWhen: (prev, curr) =>
-            prev.status != curr.status || prev.items.length != curr.items.length,
+            prev.status != curr.status ||
+            prev.items.length != curr.items.length,
         builder: (context, state) {
           return BaseScaffold(
             appBar: AppBarCommon(
@@ -178,14 +192,44 @@ class _WorkRequirementScreenState
         separatorBuilder: (_, __) => const SizedBox(height: 10),
         itemBuilder: (context, index) {
           final item = state.items[index];
-          return WorkRequirementCard(
-            item: item,
-            onTap: () {
-              context.push(
-                RouteNames.workRequirementDetail,
-                extra: item.id, // int - ID của yêu cầu công việc
-              );
-            },
+          return Slidable(
+            key: ValueKey('wr_${item.id}'),
+            endActionPane: ActionPane(
+              motion: const DrawerMotion(),
+              extentRatio: 0.22,
+              children: [
+                SlidableAction(
+                  onPressed: (_) async {
+                    Slidable.of(context)?.close();
+                    final confirmed = await DialogService.showConfirmDelete(
+                      context: context,
+                    );
+                    if (!context.mounted) return;
+                    if (confirmed && item.id != null && item.id! > 0) {
+                      bloc.add(
+                        WorkRequirementEvent.deleteRequirement(ids: [item.id!]),
+                      );
+                    }
+                  },
+                  backgroundColor: AppColors.alert,
+                  foregroundColor: Colors.white,
+                  icon: Icons.delete_outline,
+                  label: 'Xoá',
+                ),
+              ],
+            ),
+            child: Builder(
+              builder: (slidableCtx) => WorkRequirementCard(
+                item: item,
+                onTap: () {
+                  Slidable.of(slidableCtx)?.close();
+                  context.push(
+                    RouteNames.workRequirementDetail,
+                    extra: item.id,
+                  );
+                },
+              ),
+            ),
           );
         },
       ),
