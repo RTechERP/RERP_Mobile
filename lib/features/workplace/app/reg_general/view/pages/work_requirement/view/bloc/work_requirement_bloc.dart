@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -27,7 +29,7 @@ class WorkRequirementBloc
   bool _isSubmittingReport = false;
 
   WorkRequirementBloc(this._workRequirementRepo, this._authRepo, this._log)
-    : super(WorkRequirementState.init()) {
+      : super(WorkRequirementState.init()) {
     on<WorkRequirementEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
@@ -45,47 +47,44 @@ class WorkRequirementBloc
             _onChangeCoordinationDepartment(emit, id, name),
         changeApprover: (id, displayName) =>
             _onChangeApprover(emit, id, displayName),
-        changeAttachments: (names) => _onChangeAttachments(emit, names),
-        submit:
-            (
-              approvedTBPId,
-              dateRequest,
-              deadlineRequest,
-              requiredDepartmentId,
-              details,
-              coordinationDepartmentId,
-            ) => _onSubmit(
-              emit,
-              approvedTBPId: approvedTBPId,
-              dateRequest: dateRequest,
-              deadlineRequest: deadlineRequest,
-              requiredDepartmentId: requiredDepartmentId,
-              coordinationDepartmentId: coordinationDepartmentId,
-              details: details,
-            ),
+        uploadFiles: (files, dateRequest) =>
+            _onUploadFiles(emit, files: files, dateRequest: dateRequest),
+        setLocalFiles: (files) => _onSetLocalFiles(emit, files: files),
+        removeLocalFile: (file) => _onRemoveLocalFile(emit, file: file),
+        markDeletedFile: (fileId) => _onMarkDeletedFile(emit, fileId: fileId),
+        submit: (approvedTBPId, dateRequest, deadlineRequest,
+                requiredDepartmentId, details, coordinationDepartmentId) =>
+            _onSubmit(
+          emit,
+          approvedTBPId: approvedTBPId,
+          dateRequest: dateRequest,
+          deadlineRequest: deadlineRequest,
+          requiredDepartmentId: requiredDepartmentId,
+          coordinationDepartmentId: coordinationDepartmentId,
+          details: details,
+        ),
         initDetail: (id) => _onInitDetail(emit, id),
         initEdit: (id, item) => _onInitEdit(emit, id: id, item: item),
-        editSubmit:
-            (
-              id,
-              approvedTBPId,
-              dateRequest,
-              deadlineRequest,
-              requiredDepartmentId,
-              details,
-              coordinationDepartmentId,
-              numberRequest,
-            ) => _onEditSubmit(
-              emit,
-              id: id,
-              approvedTBPId: approvedTBPId,
-              dateRequest: dateRequest,
-              deadlineRequest: deadlineRequest,
-              requiredDepartmentId: requiredDepartmentId,
-              coordinationDepartmentId: coordinationDepartmentId,
-              numberRequest: numberRequest,
-              details: details,
-            ),
+        editSubmit: (
+                id,
+                approvedTBPId,
+                dateRequest,
+                deadlineRequest,
+                requiredDepartmentId,
+                details,
+                coordinationDepartmentId,
+                numberRequest) =>
+            _onEditSubmit(
+          emit,
+          id: id,
+          approvedTBPId: approvedTBPId,
+          dateRequest: dateRequest,
+          deadlineRequest: deadlineRequest,
+          requiredDepartmentId: requiredDepartmentId,
+          coordinationDepartmentId: coordinationDepartmentId,
+          numberRequest: numberRequest,
+          details: details,
+        ),
         deleteRequirement: (ids) => _onDeleteRequirement(emit, ids),
         clearDeleteSuccess: () => _onClearDeleteSuccess(emit),
         clearSubmitState: () => _onClearSubmitState(emit),
@@ -236,7 +235,11 @@ class WorkRequirementBloc
         dateRequest: DateTime.now(),
         deadlineRequest: initialDeadline,
         detailValues: initialDetailValues,
-        attachmentNames: [],
+        isUploadingFile: false,
+        uploadSuccess: false,
+        files: [],
+        localFiles: [],
+        deletedFileIds: [],
       ),
     );
 
@@ -349,15 +352,6 @@ class WorkRequirementBloc
     emit(state.copyWith(approvedTBPId: id, approverDisplayName: displayName));
   }
 
-  //---(Attachments)---//
-
-  Future<void> _onChangeAttachments(
-    Emitter<WorkRequirementState> emit,
-    List<String> names,
-  ) async {
-    emit(state.copyWith(attachmentNames: names));
-  }
-
   //---(Submit)---//
 
   Future<void> _onSubmit(
@@ -400,6 +394,7 @@ class WorkRequirementBloc
         requiredDepartmentId: requiredDepartmentId,
         coordinationDepartmentId: coordinationDepartmentId,
         details: details,
+        files: state.files,
       );
 
       _log.logI('payload: $payload');
@@ -501,16 +496,12 @@ class WorkRequirementBloc
     required int id,
     required WorkRequirementItem item,
   }) async {
-    // TBP Duyệt: build display name từ fullNameApprovedTBP
     final approverDisplay = (item.fullNameApprovedTBP?.isNotEmpty == true)
         ? item.fullNameApprovedTBP!
         : null;
 
-    // Bộ phận được yêu cầu
     final requiredDeptId = item.requiredDepartmentID;
     final requiredDeptName = item.requiredDepartment;
-
-    // Bộ phận phối hợp
     final coordinationDeptId = item.coordinationDepartmentID;
     final coordinationDeptName = item.coordinationDepartment;
 
@@ -531,7 +522,9 @@ class WorkRequirementBloc
         dateRequest: item.dateRequest,
         deadlineRequest: item.deadlineRequest,
         detailValues: {},
-        attachmentNames: [],
+        files: [],
+        localFiles: [],
+        deletedFileIds: [],
       ),
     );
 
@@ -564,10 +557,10 @@ class WorkRequirementBloc
       (detailData) async {
         final detailValues = _parseDetailValues(detailData.details ?? []);
 
-        // Override row 1 (Người yêu cầu) với requestedBy từ detailsCategory
-        final requestedBy = detailData.detailsCategory?.isNotEmpty == true
-            ? detailData.detailsCategory!.first.requestedBy
-            : null;
+        final requestedBy =
+            detailData.detailsCategory?.isNotEmpty == true
+                ? detailData.detailsCategory!.first.requestedBy
+                : null;
         if (requestedBy != null && requestedBy.isNotEmpty) {
           detailValues[1] = {
             ...(detailValues[1] ?? {}),
@@ -575,9 +568,10 @@ class WorkRequirementBloc
           };
         }
 
-        final deadlineDateStr = detailData.detailsCategory?.isNotEmpty == true
-            ? detailData.detailsCategory!.first.deadlineDate
-            : null;
+        final deadlineDateStr =
+            detailData.detailsCategory?.isNotEmpty == true
+                ? detailData.detailsCategory!.first.deadlineDate
+                : null;
         DateTime? parsedDeadline;
         if (deadlineDateStr != null) {
           try {
@@ -587,6 +581,20 @@ class WorkRequirementBloc
           }
         }
 
+        // Load existing files from detail
+        final existingFiles = (detailData.files ?? [])
+            .map(
+              (f) => WorkRequirementFileRequest(
+                id: f.id ?? 0,
+                fileName: f.fileName ?? '',
+                fileNameOrigin: f.fileName ?? '',
+                filePath: f.filePath ?? '',
+                extension: f.fileType ?? '',
+                jobRequirementId: f.jobRequirementId ?? id,
+              ),
+            )
+            .toList();
+
         emit(
           state.copyWith(
             isDetailLoading: false,
@@ -594,6 +602,7 @@ class WorkRequirementBloc
             dateRequest: parsedDeadline ?? state.dateRequest,
             deadlineRequest: parsedDeadline ?? item.deadlineRequest,
             detailValues: detailValues,
+            files: existingFiles,
           ),
         );
       },
@@ -646,6 +655,8 @@ class WorkRequirementBloc
         coordinationDepartmentId: coordinationDepartmentId,
         numberRequest: numberRequest,
         details: details,
+        files: state.files,
+        deletedFileIds: state.deletedFileIds,
       );
 
       _log.logI('Edit payload: $payload');
@@ -695,7 +706,8 @@ class WorkRequirementBloc
 
   //---(ClearDelete)---//
 
-  Future<void> _onClearDeleteSuccess(Emitter<WorkRequirementState> emit) async {
+  Future<void> _onClearDeleteSuccess(
+      Emitter<WorkRequirementState> emit) async {
     emit(
       state.copyWith(isDeleting: false, deleteSuccess: false, message: null),
     );
@@ -725,9 +737,7 @@ class WorkRequirementBloc
       },
       (_) async {
         _log.logI('Delete work requirement success - ids: $ids');
-        final updatedItems = state.items
-            .where((e) => !ids.contains(e.id))
-            .toList();
+        final updatedItems = state.items.where((e) => !ids.contains(e.id)).toList();
         emit(
           state.copyWith(
             isDeleting: false,
@@ -741,6 +751,109 @@ class WorkRequirementBloc
     );
   }
 
+  //---(Upload)---//
+
+  Future<void> _onUploadFiles(
+    Emitter<WorkRequirementState> emit, {
+    required List<File> files,
+    required DateTime dateRequest,
+  }) async {
+    if (files.isEmpty) return;
+
+    emit(
+      state.copyWith(
+        isUploadingFile: true,
+        uploadSuccess: false,
+      ),
+    );
+
+    try {
+      final subPath = _buildUploadSubPath(dateRequest);
+      _log.logI('Upload files - subPath: $subPath, count: ${files.length}');
+
+      final uploadRes = await _workRequirementRepo.uploadFile(
+        files: files,
+        key: 'PathJobRequirement',
+        subPath: subPath,
+      );
+
+      uploadRes.fold(
+        (err) async {
+          _log.logE('Upload files failed: $err');
+          emit(state.copyWith(
+            isUploadingFile: false,
+            uploadSuccess: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ));
+        },
+        (uploadedFiles) async {
+          _log.logI('Upload files success - count: ${uploadedFiles.length}');
+
+          final mapped = uploadedFiles.map((f) {
+            final extension = f.originalFileName.contains('.')
+                ? '.${f.originalFileName.split('.').last}'
+                : '';
+
+            return WorkRequirementFileRequest(
+              id: 0,
+              fileName: f.savedFileName,
+              fileNameOrigin: f.originalFileName,
+              filePath: f.filePath.replaceAll(r'\', r'\\'),
+              extension: extension,
+              jobRequirementId: 0,
+            );
+          }).toList();
+
+          emit(state.copyWith(
+            isUploadingFile: false,
+            uploadSuccess: true,
+            files: [...state.files, ...mapped],
+            localFiles: [],
+          ));
+        },
+      );
+    } catch (e) {
+      _log.logE('Upload files exception: $e');
+      emit(state.copyWith(isUploadingFile: false, uploadSuccess: false));
+    }
+  }
+
+  //---(LocalFiles)---//
+
+  Future<void> _onSetLocalFiles(
+    Emitter<WorkRequirementState> emit, {
+    required List<File> files,
+  }) async {
+    final current = state.localFiles;
+
+    // Merge + tranh duplicate theo path
+    final merged = [...current, ...files];
+    final unique = <String, File>{for (var f in merged) f.path: f}.values.toList();
+
+    emit(state.copyWith(
+      localFiles: unique,
+      uploadSuccess: false,
+    ));
+  }
+
+   _onRemoveLocalFile(
+    Emitter<WorkRequirementState> emit, {
+    required File file,
+  }) {
+    final updated = state.localFiles.where((f) => f.path != file.path).toList();
+    emit(state.copyWith(localFiles: updated));
+  }
+
+   _onMarkDeletedFile(
+    Emitter<WorkRequirementState> emit, {
+    required int fileId,
+  }) {
+    emit(state.copyWith(
+      deletedFileIds: [...state.deletedFileIds, fileId],
+    ));
+  }
+
   //---(Helper)---//
 
   Map<String, dynamic> _buildSubmitPayload({
@@ -751,6 +864,7 @@ class WorkRequirementBloc
     required int requiredDepartmentId,
     int? coordinationDepartmentId,
     required List<WorkRequirementDetailResponse> details,
+    required List<WorkRequirementFileRequest> files,
   }) {
     final detailsPayload = <Map<String, dynamic>>[];
     for (final detail in details) {
@@ -765,6 +879,8 @@ class WorkRequirementBloc
         'IsDeleted': false,
       });
     }
+
+    final filesPayload = files.map((f) => f.toJson()).toList();
 
     return <String, dynamic>{
       'ID': 0,
@@ -795,7 +911,7 @@ class WorkRequirementBloc
       'IsRequestBGDApproved': false,
       'IsRequestPriceQuote': false,
       'JobRequirementDetails': detailsPayload,
-      'JobRequirementFiles': <dynamic>[],
+      'JobRequirementFiles': filesPayload,
     };
   }
 
@@ -809,6 +925,8 @@ class WorkRequirementBloc
     int? coordinationDepartmentId,
     required String numberRequest,
     required List<WorkRequirementDetailResponse> details,
+    required List<WorkRequirementFileRequest> files,
+    List<int> deletedFileIds = const [],
   }) {
     final detailsPayload = <Map<String, dynamic>>[];
     for (final detail in details) {
@@ -823,6 +941,19 @@ class WorkRequirementBloc
         'IsDeleted': false,
       });
     }
+
+    final filesPayload = files.map((f) => f.toJson()).toList();
+
+    // File da xoa: ID > 0 & ID ton tai trong deletedFileIds
+    final deletedFilesPayload = deletedFileIds
+        .map(
+          (fid) => <String, dynamic>{
+            'ID': fid,
+            'JobRequirementID': id,
+            'IsDeleted': true,
+          },
+        )
+        .toList();
 
     return <String, dynamic>{
       'ID': id,
@@ -853,7 +984,7 @@ class WorkRequirementBloc
       'IsRequestBGDApproved': false,
       'IsRequestPriceQuote': false,
       'JobRequirementDetails': detailsPayload,
-      'JobRequirementFiles': <dynamic>[],
+      'JobRequirementFiles': [...filesPayload, ...deletedFilesPayload],
     };
   }
 
@@ -861,7 +992,6 @@ class WorkRequirementBloc
     List<WorkRequirementDetailResponse> details,
   ) {
     final result = <int, Map<String, String>>{};
-    // Map category name -> row index (0-based) matching _detailMetas order
     const categoryIndexMap = {
       'noi dung yeu cau': 0,
       'nguoi yeu cau': 1,
@@ -879,7 +1009,7 @@ class WorkRequirementBloc
       final rawId = d.id;
       if (rawId != null) {
         parsedId = rawId;
-            }
+      }
       result[idx] = {
         'id': parsedId?.toString() ?? '',
         'explanation': d.description ?? '',
@@ -888,5 +1018,13 @@ class WorkRequirementBloc
       };
     }
     return result;
+  }
+
+  String _buildUploadSubPath(DateTime dateRequest) {
+    final year = dateRequest.year.toString();
+    final month = dateRequest.month.toString();
+    final day = dateRequest.day.toString();
+    return '$year\\YÊU CẦU CÔNG VIỆC\\THÁNG $month.${dateRequest.year}\\'
+        'DD.$day.$month.${dateRequest.year}\\NEW';
   }
 }

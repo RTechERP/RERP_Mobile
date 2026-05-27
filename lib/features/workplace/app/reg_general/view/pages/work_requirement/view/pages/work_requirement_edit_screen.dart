@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -220,9 +222,22 @@ class _EditContentState extends State<_EditContent> {
   Future<void> _pickFiles() async {
     final result = await FilePicker.platform.pickFiles(allowMultiple: true);
     if (result != null && result.files.isNotEmpty) {
-      final names = result.files.map((f) => f.name).toList();
-      context.read<WorkRequirementBloc>()
-        .add(WorkRequirementEvent.changeAttachments(names));
+      final dateReq =
+          widget.formKey.currentState?.value['date_request'] ?? DateTime.now();
+      final files = <File>[];
+      for (final file in result.files) {
+        if (file.path != null) {
+          files.add(File(file.path!));
+        }
+      }
+      if (files.isNotEmpty) {
+        context.read<WorkRequirementBloc>()
+          ..add(WorkRequirementEvent.setLocalFiles(files))
+          ..add(WorkRequirementEvent.uploadFiles(
+            files: files,
+            dateRequest: dateReq,
+          ));
+      }
     }
   }
 
@@ -421,7 +436,9 @@ class _EditContentState extends State<_EditContent> {
                     prev.dateRequest != curr.dateRequest ||
                     prev.deadlineRequest != curr.deadlineRequest ||
                     prev.detailValues != curr.detailValues ||
-                    prev.attachmentNames != curr.attachmentNames ||
+                    prev.files != curr.files ||
+                    prev.localFiles != curr.localFiles ||
+                    prev.isUploadingFile != curr.isUploadingFile ||
                     prev.requiredDepartmentId != curr.requiredDepartmentId ||
                     prev.requiredDepartmentName != curr.requiredDepartmentName ||
                     prev.coordinationDepartmentId != curr.coordinationDepartmentId ||
@@ -465,14 +482,27 @@ class _EditContentState extends State<_EditContent> {
                               _buildDetailsSection(state),
                               const SizedBox(height: 16),
                               WorkRequirementAttachmentCard(
-                                attachmentNames: state.attachmentNames,
+                                uploadedFiles: state.files,
+                                localFiles: state.localFiles,
+                                isUploading: state.isUploadingFile,
                                 onPickFiles: _pickFiles,
-                                onRemoveFile: (name) {
-                                  final updated = state.attachmentNames
-                                      .where((n) => n != name)
-                                      .toList();
+                                onRemoveUploadedFile: (fileId) {
+                                  final bloc = context.read<WorkRequirementBloc>();
+                                  if (fileId == 0) {
+                                    // File moi upload trong session nay: xoa khoi files
+                                    final updated = state.files
+                                        .where((f) => f.id != 0)
+                                        .toList();
+                                    // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+                                    bloc.emit(bloc.state.copyWith(files: updated));
+                                  } else {
+                                    // File cu da ton tai: danh dau xoa bang ID
+                                    bloc.add(WorkRequirementEvent.markDeletedFile(fileId as int));
+                                  }
+                                },
+                                onRemoveLocalFile: (file) {
                                   context.read<WorkRequirementBloc>()
-                                    .add(WorkRequirementEvent.changeAttachments(updated));
+                                    .add(WorkRequirementEvent.removeLocalFile(file));
                                 },
                               ),
                             ],

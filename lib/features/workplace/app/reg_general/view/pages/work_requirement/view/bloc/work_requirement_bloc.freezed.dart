@@ -31,7 +31,11 @@ mixin _$WorkRequirementEvent {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -70,7 +74,10 @@ mixin _$WorkRequirementEvent {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -108,7 +115,10 @@ mixin _$WorkRequirementEvent {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -149,7 +159,10 @@ mixin _$WorkRequirementEvent {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -173,7 +186,10 @@ mixin _$WorkRequirementEvent {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -196,7 +212,10 @@ mixin _$WorkRequirementEvent {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -278,7 +297,11 @@ class _$InitImpl implements _Init {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -320,7 +343,10 @@ class _$InitImpl implements _Init {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -361,7 +387,10 @@ class _$InitImpl implements _Init {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -408,7 +437,10 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -435,7 +467,10 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -461,7 +496,10 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -569,7 +607,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -611,7 +653,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -652,7 +697,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -699,7 +747,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -726,7 +777,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -752,7 +806,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -832,7 +889,11 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -874,7 +935,10 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -915,7 +979,10 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -962,7 +1029,10 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -989,7 +1059,10 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -1015,7 +1088,10 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -1087,7 +1163,11 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -1129,7 +1209,10 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -1170,7 +1253,10 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -1217,7 +1303,10 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -1244,7 +1333,10 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -1270,7 +1362,10 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -1387,7 +1482,11 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -1429,7 +1528,10 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -1470,7 +1572,10 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -1517,7 +1622,10 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -1544,7 +1652,10 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -1570,7 +1681,10 @@ class _$UpdateFormFieldImpl implements _UpdateFormField {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -1679,7 +1793,11 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -1721,7 +1839,10 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -1762,7 +1883,10 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -1809,7 +1933,10 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -1836,7 +1963,10 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -1862,7 +1992,10 @@ class _$ChangeDateRequestImpl implements _ChangeDateRequest {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -1967,7 +2100,11 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -2009,7 +2146,10 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -2050,7 +2190,10 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -2097,7 +2240,10 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -2124,7 +2270,10 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -2150,7 +2299,10 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -2265,7 +2417,11 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -2307,7 +2463,10 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -2348,7 +2507,10 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -2395,7 +2557,10 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -2422,7 +2587,10 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -2448,7 +2616,10 @@ class _$ChangeRequiredDepartmentImpl implements _ChangeRequiredDepartment {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -2568,7 +2739,11 @@ class _$ChangeCoordinationDepartmentImpl
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -2610,7 +2785,10 @@ class _$ChangeCoordinationDepartmentImpl
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -2651,7 +2829,10 @@ class _$ChangeCoordinationDepartmentImpl
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -2698,7 +2879,10 @@ class _$ChangeCoordinationDepartmentImpl
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -2725,7 +2909,10 @@ class _$ChangeCoordinationDepartmentImpl
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -2751,7 +2938,10 @@ class _$ChangeCoordinationDepartmentImpl
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -2868,7 +3058,11 @@ class _$ChangeApproverImpl implements _ChangeApprover {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -2910,7 +3104,10 @@ class _$ChangeApproverImpl implements _ChangeApprover {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -2951,7 +3148,10 @@ class _$ChangeApproverImpl implements _ChangeApprover {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -2998,7 +3198,10 @@ class _$ChangeApproverImpl implements _ChangeApprover {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -3025,7 +3228,10 @@ class _$ChangeApproverImpl implements _ChangeApprover {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -3051,7 +3257,10 @@ class _$ChangeApproverImpl implements _ChangeApprover {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -3081,72 +3290,83 @@ abstract class _ChangeApprover implements WorkRequirementEvent {
 }
 
 /// @nodoc
-abstract class _$$ChangeAttachmentsImplCopyWith<$Res> {
-  factory _$$ChangeAttachmentsImplCopyWith(_$ChangeAttachmentsImpl value,
-          $Res Function(_$ChangeAttachmentsImpl) then) =
-      __$$ChangeAttachmentsImplCopyWithImpl<$Res>;
+abstract class _$$UploadFilesImplCopyWith<$Res> {
+  factory _$$UploadFilesImplCopyWith(
+          _$UploadFilesImpl value, $Res Function(_$UploadFilesImpl) then) =
+      __$$UploadFilesImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<String> names});
+  $Res call({List<File> files, DateTime dateRequest});
 }
 
 /// @nodoc
-class __$$ChangeAttachmentsImplCopyWithImpl<$Res>
-    extends _$WorkRequirementEventCopyWithImpl<$Res, _$ChangeAttachmentsImpl>
-    implements _$$ChangeAttachmentsImplCopyWith<$Res> {
-  __$$ChangeAttachmentsImplCopyWithImpl(_$ChangeAttachmentsImpl _value,
-      $Res Function(_$ChangeAttachmentsImpl) _then)
+class __$$UploadFilesImplCopyWithImpl<$Res>
+    extends _$WorkRequirementEventCopyWithImpl<$Res, _$UploadFilesImpl>
+    implements _$$UploadFilesImplCopyWith<$Res> {
+  __$$UploadFilesImplCopyWithImpl(
+      _$UploadFilesImpl _value, $Res Function(_$UploadFilesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? names = null,
+    Object? files = null,
+    Object? dateRequest = null,
   }) {
-    return _then(_$ChangeAttachmentsImpl(
-      null == names
-          ? _value._names
-          : names // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+    return _then(_$UploadFilesImpl(
+      files: null == files
+          ? _value._files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<File>,
+      dateRequest: null == dateRequest
+          ? _value.dateRequest
+          : dateRequest // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ChangeAttachmentsImpl implements _ChangeAttachments {
-  const _$ChangeAttachmentsImpl(final List<String> names) : _names = names;
+class _$UploadFilesImpl implements _UploadFiles {
+  const _$UploadFilesImpl(
+      {required final List<File> files, required this.dateRequest})
+      : _files = files;
 
-  final List<String> _names;
+  final List<File> _files;
   @override
-  List<String> get names {
-    if (_names is EqualUnmodifiableListView) return _names;
+  List<File> get files {
+    if (_files is EqualUnmodifiableListView) return _files;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_names);
+    return EqualUnmodifiableListView(_files);
   }
 
   @override
+  final DateTime dateRequest;
+
+  @override
   String toString() {
-    return 'WorkRequirementEvent.changeAttachments(names: $names)';
+    return 'WorkRequirementEvent.uploadFiles(files: $files, dateRequest: $dateRequest)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ChangeAttachmentsImpl &&
-            const DeepCollectionEquality().equals(other._names, _names));
+            other is _$UploadFilesImpl &&
+            const DeepCollectionEquality().equals(other._files, _files) &&
+            (identical(other.dateRequest, dateRequest) ||
+                other.dateRequest == dateRequest));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_names));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_files), dateRequest);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ChangeAttachmentsImplCopyWith<_$ChangeAttachmentsImpl> get copyWith =>
-      __$$ChangeAttachmentsImplCopyWithImpl<_$ChangeAttachmentsImpl>(
-          this, _$identity);
+  _$$UploadFilesImplCopyWith<_$UploadFilesImpl> get copyWith =>
+      __$$UploadFilesImplCopyWithImpl<_$UploadFilesImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -3164,7 +3384,11 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -3189,7 +3413,7 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     required TResult Function(List<int> ids) deleteRequirement,
     required TResult Function() clearDeleteSuccess,
   }) {
-    return changeAttachments(names);
+    return uploadFiles(files, dateRequest);
   }
 
   @override
@@ -3206,7 +3430,10 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -3231,7 +3458,7 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     TResult? Function(List<int> ids)? deleteRequirement,
     TResult? Function()? clearDeleteSuccess,
   }) {
-    return changeAttachments?.call(names);
+    return uploadFiles?.call(files, dateRequest);
   }
 
   @override
@@ -3247,7 +3474,10 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -3273,8 +3503,8 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) {
-    if (changeAttachments != null) {
-      return changeAttachments(names);
+    if (uploadFiles != null) {
+      return uploadFiles(files, dateRequest);
     }
     return orElse();
   }
@@ -3294,7 +3524,10 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -3303,7 +3536,7 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     required TResult Function(_DeleteRequirement value) deleteRequirement,
     required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
   }) {
-    return changeAttachments(this);
+    return uploadFiles(this);
   }
 
   @override
@@ -3321,7 +3554,10 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -3330,7 +3566,7 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     TResult? Function(_DeleteRequirement value)? deleteRequirement,
     TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
   }) {
-    return changeAttachments?.call(this);
+    return uploadFiles?.call(this);
   }
 
   @override
@@ -3347,7 +3583,10 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -3357,20 +3596,945 @@ class _$ChangeAttachmentsImpl implements _ChangeAttachments {
     TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     required TResult orElse(),
   }) {
-    if (changeAttachments != null) {
-      return changeAttachments(this);
+    if (uploadFiles != null) {
+      return uploadFiles(this);
     }
     return orElse();
   }
 }
 
-abstract class _ChangeAttachments implements WorkRequirementEvent {
-  const factory _ChangeAttachments(final List<String> names) =
-      _$ChangeAttachmentsImpl;
+abstract class _UploadFiles implements WorkRequirementEvent {
+  const factory _UploadFiles(
+      {required final List<File> files,
+      required final DateTime dateRequest}) = _$UploadFilesImpl;
 
-  List<String> get names;
+  List<File> get files;
+  DateTime get dateRequest;
   @JsonKey(ignore: true)
-  _$$ChangeAttachmentsImplCopyWith<_$ChangeAttachmentsImpl> get copyWith =>
+  _$$UploadFilesImplCopyWith<_$UploadFilesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetLocalFilesImplCopyWith<$Res> {
+  factory _$$SetLocalFilesImplCopyWith(
+          _$SetLocalFilesImpl value, $Res Function(_$SetLocalFilesImpl) then) =
+      __$$SetLocalFilesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<File> files});
+}
+
+/// @nodoc
+class __$$SetLocalFilesImplCopyWithImpl<$Res>
+    extends _$WorkRequirementEventCopyWithImpl<$Res, _$SetLocalFilesImpl>
+    implements _$$SetLocalFilesImplCopyWith<$Res> {
+  __$$SetLocalFilesImplCopyWithImpl(
+      _$SetLocalFilesImpl _value, $Res Function(_$SetLocalFilesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? files = null,
+  }) {
+    return _then(_$SetLocalFilesImpl(
+      null == files
+          ? _value._files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<File>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetLocalFilesImpl implements _SetLocalFiles {
+  const _$SetLocalFilesImpl(final List<File> files) : _files = files;
+
+  final List<File> _files;
+  @override
+  List<File> get files {
+    if (_files is EqualUnmodifiableListView) return _files;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_files);
+  }
+
+  @override
+  String toString() {
+    return 'WorkRequirementEvent.setLocalFiles(files: $files)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetLocalFilesImpl &&
+            const DeepCollectionEquality().equals(other._files, _files));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_files));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetLocalFilesImplCopyWith<_$SetLocalFilesImpl> get copyWith =>
+      __$$SetLocalFilesImplCopyWithImpl<_$SetLocalFilesImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() refresh,
+    required TResult Function() initAdd,
+    required TResult Function(int rowIndex, String field, String value)
+        updateFormField,
+    required TResult Function(DateTime? date) changeDateRequest,
+    required TResult Function(DateTime? date) changeDeadline,
+    required TResult Function(int? id, String? name) changeRequiredDepartment,
+    required TResult Function(int? id, String? name)
+        changeCoordinationDepartment,
+    required TResult Function(int? id, String? displayName) changeApprover,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
+    required TResult Function(
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId)
+        submit,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
+    required TResult Function(int id, WorkRequirementItem item) initEdit,
+    required TResult Function(
+            int id,
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
+        editSubmit,
+    required TResult Function(List<int> ids) deleteRequirement,
+    required TResult Function() clearDeleteSuccess,
+  }) {
+    return setLocalFiles(files);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? refresh,
+    TResult? Function()? initAdd,
+    TResult? Function(int rowIndex, String field, String value)?
+        updateFormField,
+    TResult? Function(DateTime? date)? changeDateRequest,
+    TResult? Function(DateTime? date)? changeDeadline,
+    TResult? Function(int? id, String? name)? changeRequiredDepartment,
+    TResult? Function(int? id, String? name)? changeCoordinationDepartment,
+    TResult? Function(int? id, String? displayName)? changeApprover,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
+    TResult? Function(
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId)?
+        submit,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(int id, WorkRequirementItem item)? initEdit,
+    TResult? Function(
+            int id,
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
+        editSubmit,
+    TResult? Function(List<int> ids)? deleteRequirement,
+    TResult? Function()? clearDeleteSuccess,
+  }) {
+    return setLocalFiles?.call(files);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? refresh,
+    TResult Function()? initAdd,
+    TResult Function(int rowIndex, String field, String value)? updateFormField,
+    TResult Function(DateTime? date)? changeDateRequest,
+    TResult Function(DateTime? date)? changeDeadline,
+    TResult Function(int? id, String? name)? changeRequiredDepartment,
+    TResult Function(int? id, String? name)? changeCoordinationDepartment,
+    TResult Function(int? id, String? displayName)? changeApprover,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
+    TResult Function(
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId)?
+        submit,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
+    TResult Function(int id, WorkRequirementItem item)? initEdit,
+    TResult Function(
+            int id,
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
+        editSubmit,
+    TResult Function(List<int> ids)? deleteRequirement,
+    TResult Function()? clearDeleteSuccess,
+    required TResult orElse(),
+  }) {
+    if (setLocalFiles != null) {
+      return setLocalFiles(files);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateFormField value) updateFormField,
+    required TResult Function(_ChangeDateRequest value) changeDateRequest,
+    required TResult Function(_ChangeDeadline value) changeDeadline,
+    required TResult Function(_ChangeRequiredDepartment value)
+        changeRequiredDepartment,
+    required TResult Function(_ChangeCoordinationDepartment value)
+        changeCoordinationDepartment,
+    required TResult Function(_ChangeApprover value) changeApprover,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_DeleteRequirement value) deleteRequirement,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+  }) {
+    return setLocalFiles(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateFormField value)? updateFormField,
+    TResult? Function(_ChangeDateRequest value)? changeDateRequest,
+    TResult? Function(_ChangeDeadline value)? changeDeadline,
+    TResult? Function(_ChangeRequiredDepartment value)?
+        changeRequiredDepartment,
+    TResult? Function(_ChangeCoordinationDepartment value)?
+        changeCoordinationDepartment,
+    TResult? Function(_ChangeApprover value)? changeApprover,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_DeleteRequirement value)? deleteRequirement,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+  }) {
+    return setLocalFiles?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateFormField value)? updateFormField,
+    TResult Function(_ChangeDateRequest value)? changeDateRequest,
+    TResult Function(_ChangeDeadline value)? changeDeadline,
+    TResult Function(_ChangeRequiredDepartment value)? changeRequiredDepartment,
+    TResult Function(_ChangeCoordinationDepartment value)?
+        changeCoordinationDepartment,
+    TResult Function(_ChangeApprover value)? changeApprover,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_DeleteRequirement value)? deleteRequirement,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    required TResult orElse(),
+  }) {
+    if (setLocalFiles != null) {
+      return setLocalFiles(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetLocalFiles implements WorkRequirementEvent {
+  const factory _SetLocalFiles(final List<File> files) = _$SetLocalFilesImpl;
+
+  List<File> get files;
+  @JsonKey(ignore: true)
+  _$$SetLocalFilesImplCopyWith<_$SetLocalFilesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RemoveLocalFileImplCopyWith<$Res> {
+  factory _$$RemoveLocalFileImplCopyWith(_$RemoveLocalFileImpl value,
+          $Res Function(_$RemoveLocalFileImpl) then) =
+      __$$RemoveLocalFileImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({File file});
+}
+
+/// @nodoc
+class __$$RemoveLocalFileImplCopyWithImpl<$Res>
+    extends _$WorkRequirementEventCopyWithImpl<$Res, _$RemoveLocalFileImpl>
+    implements _$$RemoveLocalFileImplCopyWith<$Res> {
+  __$$RemoveLocalFileImplCopyWithImpl(
+      _$RemoveLocalFileImpl _value, $Res Function(_$RemoveLocalFileImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? file = null,
+  }) {
+    return _then(_$RemoveLocalFileImpl(
+      null == file
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as File,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RemoveLocalFileImpl implements _RemoveLocalFile {
+  const _$RemoveLocalFileImpl(this.file);
+
+  @override
+  final File file;
+
+  @override
+  String toString() {
+    return 'WorkRequirementEvent.removeLocalFile(file: $file)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemoveLocalFileImpl &&
+            (identical(other.file, file) || other.file == file));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, file);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoveLocalFileImplCopyWith<_$RemoveLocalFileImpl> get copyWith =>
+      __$$RemoveLocalFileImplCopyWithImpl<_$RemoveLocalFileImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() refresh,
+    required TResult Function() initAdd,
+    required TResult Function(int rowIndex, String field, String value)
+        updateFormField,
+    required TResult Function(DateTime? date) changeDateRequest,
+    required TResult Function(DateTime? date) changeDeadline,
+    required TResult Function(int? id, String? name) changeRequiredDepartment,
+    required TResult Function(int? id, String? name)
+        changeCoordinationDepartment,
+    required TResult Function(int? id, String? displayName) changeApprover,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
+    required TResult Function(
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId)
+        submit,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
+    required TResult Function(int id, WorkRequirementItem item) initEdit,
+    required TResult Function(
+            int id,
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
+        editSubmit,
+    required TResult Function(List<int> ids) deleteRequirement,
+    required TResult Function() clearDeleteSuccess,
+  }) {
+    return removeLocalFile(file);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? refresh,
+    TResult? Function()? initAdd,
+    TResult? Function(int rowIndex, String field, String value)?
+        updateFormField,
+    TResult? Function(DateTime? date)? changeDateRequest,
+    TResult? Function(DateTime? date)? changeDeadline,
+    TResult? Function(int? id, String? name)? changeRequiredDepartment,
+    TResult? Function(int? id, String? name)? changeCoordinationDepartment,
+    TResult? Function(int? id, String? displayName)? changeApprover,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
+    TResult? Function(
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId)?
+        submit,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(int id, WorkRequirementItem item)? initEdit,
+    TResult? Function(
+            int id,
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
+        editSubmit,
+    TResult? Function(List<int> ids)? deleteRequirement,
+    TResult? Function()? clearDeleteSuccess,
+  }) {
+    return removeLocalFile?.call(file);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? refresh,
+    TResult Function()? initAdd,
+    TResult Function(int rowIndex, String field, String value)? updateFormField,
+    TResult Function(DateTime? date)? changeDateRequest,
+    TResult Function(DateTime? date)? changeDeadline,
+    TResult Function(int? id, String? name)? changeRequiredDepartment,
+    TResult Function(int? id, String? name)? changeCoordinationDepartment,
+    TResult Function(int? id, String? displayName)? changeApprover,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
+    TResult Function(
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId)?
+        submit,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
+    TResult Function(int id, WorkRequirementItem item)? initEdit,
+    TResult Function(
+            int id,
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
+        editSubmit,
+    TResult Function(List<int> ids)? deleteRequirement,
+    TResult Function()? clearDeleteSuccess,
+    required TResult orElse(),
+  }) {
+    if (removeLocalFile != null) {
+      return removeLocalFile(file);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateFormField value) updateFormField,
+    required TResult Function(_ChangeDateRequest value) changeDateRequest,
+    required TResult Function(_ChangeDeadline value) changeDeadline,
+    required TResult Function(_ChangeRequiredDepartment value)
+        changeRequiredDepartment,
+    required TResult Function(_ChangeCoordinationDepartment value)
+        changeCoordinationDepartment,
+    required TResult Function(_ChangeApprover value) changeApprover,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_DeleteRequirement value) deleteRequirement,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+  }) {
+    return removeLocalFile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateFormField value)? updateFormField,
+    TResult? Function(_ChangeDateRequest value)? changeDateRequest,
+    TResult? Function(_ChangeDeadline value)? changeDeadline,
+    TResult? Function(_ChangeRequiredDepartment value)?
+        changeRequiredDepartment,
+    TResult? Function(_ChangeCoordinationDepartment value)?
+        changeCoordinationDepartment,
+    TResult? Function(_ChangeApprover value)? changeApprover,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_DeleteRequirement value)? deleteRequirement,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+  }) {
+    return removeLocalFile?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateFormField value)? updateFormField,
+    TResult Function(_ChangeDateRequest value)? changeDateRequest,
+    TResult Function(_ChangeDeadline value)? changeDeadline,
+    TResult Function(_ChangeRequiredDepartment value)? changeRequiredDepartment,
+    TResult Function(_ChangeCoordinationDepartment value)?
+        changeCoordinationDepartment,
+    TResult Function(_ChangeApprover value)? changeApprover,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_DeleteRequirement value)? deleteRequirement,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    required TResult orElse(),
+  }) {
+    if (removeLocalFile != null) {
+      return removeLocalFile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveLocalFile implements WorkRequirementEvent {
+  const factory _RemoveLocalFile(final File file) = _$RemoveLocalFileImpl;
+
+  File get file;
+  @JsonKey(ignore: true)
+  _$$RemoveLocalFileImplCopyWith<_$RemoveLocalFileImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MarkDeletedFileImplCopyWith<$Res> {
+  factory _$$MarkDeletedFileImplCopyWith(_$MarkDeletedFileImpl value,
+          $Res Function(_$MarkDeletedFileImpl) then) =
+      __$$MarkDeletedFileImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int fileId});
+}
+
+/// @nodoc
+class __$$MarkDeletedFileImplCopyWithImpl<$Res>
+    extends _$WorkRequirementEventCopyWithImpl<$Res, _$MarkDeletedFileImpl>
+    implements _$$MarkDeletedFileImplCopyWith<$Res> {
+  __$$MarkDeletedFileImplCopyWithImpl(
+      _$MarkDeletedFileImpl _value, $Res Function(_$MarkDeletedFileImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fileId = null,
+  }) {
+    return _then(_$MarkDeletedFileImpl(
+      null == fileId
+          ? _value.fileId
+          : fileId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MarkDeletedFileImpl implements _MarkDeletedFile {
+  const _$MarkDeletedFileImpl(this.fileId);
+
+  @override
+  final int fileId;
+
+  @override
+  String toString() {
+    return 'WorkRequirementEvent.markDeletedFile(fileId: $fileId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MarkDeletedFileImpl &&
+            (identical(other.fileId, fileId) || other.fileId == fileId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, fileId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MarkDeletedFileImplCopyWith<_$MarkDeletedFileImpl> get copyWith =>
+      __$$MarkDeletedFileImplCopyWithImpl<_$MarkDeletedFileImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() refresh,
+    required TResult Function() initAdd,
+    required TResult Function(int rowIndex, String field, String value)
+        updateFormField,
+    required TResult Function(DateTime? date) changeDateRequest,
+    required TResult Function(DateTime? date) changeDeadline,
+    required TResult Function(int? id, String? name) changeRequiredDepartment,
+    required TResult Function(int? id, String? name)
+        changeCoordinationDepartment,
+    required TResult Function(int? id, String? displayName) changeApprover,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
+    required TResult Function(
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId)
+        submit,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) initDetail,
+    required TResult Function(int id, WorkRequirementItem item) initEdit,
+    required TResult Function(
+            int id,
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)
+        editSubmit,
+    required TResult Function(List<int> ids) deleteRequirement,
+    required TResult Function() clearDeleteSuccess,
+  }) {
+    return markDeletedFile(fileId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? refresh,
+    TResult? Function()? initAdd,
+    TResult? Function(int rowIndex, String field, String value)?
+        updateFormField,
+    TResult? Function(DateTime? date)? changeDateRequest,
+    TResult? Function(DateTime? date)? changeDeadline,
+    TResult? Function(int? id, String? name)? changeRequiredDepartment,
+    TResult? Function(int? id, String? name)? changeCoordinationDepartment,
+    TResult? Function(int? id, String? displayName)? changeApprover,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
+    TResult? Function(
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId)?
+        submit,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(int id, WorkRequirementItem item)? initEdit,
+    TResult? Function(
+            int id,
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
+        editSubmit,
+    TResult? Function(List<int> ids)? deleteRequirement,
+    TResult? Function()? clearDeleteSuccess,
+  }) {
+    return markDeletedFile?.call(fileId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? refresh,
+    TResult Function()? initAdd,
+    TResult Function(int rowIndex, String field, String value)? updateFormField,
+    TResult Function(DateTime? date)? changeDateRequest,
+    TResult Function(DateTime? date)? changeDeadline,
+    TResult Function(int? id, String? name)? changeRequiredDepartment,
+    TResult Function(int? id, String? name)? changeCoordinationDepartment,
+    TResult Function(int? id, String? displayName)? changeApprover,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
+    TResult Function(
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId)?
+        submit,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? initDetail,
+    TResult Function(int id, WorkRequirementItem item)? initEdit,
+    TResult Function(
+            int id,
+            int approvedTBPId,
+            DateTime dateRequest,
+            DateTime deadlineRequest,
+            int requiredDepartmentId,
+            List<WorkRequirementDetailResponse> details,
+            int? coordinationDepartmentId,
+            String numberRequest)?
+        editSubmit,
+    TResult Function(List<int> ids)? deleteRequirement,
+    TResult Function()? clearDeleteSuccess,
+    required TResult orElse(),
+  }) {
+    if (markDeletedFile != null) {
+      return markDeletedFile(fileId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateFormField value) updateFormField,
+    required TResult Function(_ChangeDateRequest value) changeDateRequest,
+    required TResult Function(_ChangeDeadline value) changeDeadline,
+    required TResult Function(_ChangeRequiredDepartment value)
+        changeRequiredDepartment,
+    required TResult Function(_ChangeCoordinationDepartment value)
+        changeCoordinationDepartment,
+    required TResult Function(_ChangeApprover value) changeApprover,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_DeleteRequirement value) deleteRequirement,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+  }) {
+    return markDeletedFile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateFormField value)? updateFormField,
+    TResult? Function(_ChangeDateRequest value)? changeDateRequest,
+    TResult? Function(_ChangeDeadline value)? changeDeadline,
+    TResult? Function(_ChangeRequiredDepartment value)?
+        changeRequiredDepartment,
+    TResult? Function(_ChangeCoordinationDepartment value)?
+        changeCoordinationDepartment,
+    TResult? Function(_ChangeApprover value)? changeApprover,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_DeleteRequirement value)? deleteRequirement,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+  }) {
+    return markDeletedFile?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateFormField value)? updateFormField,
+    TResult Function(_ChangeDateRequest value)? changeDateRequest,
+    TResult Function(_ChangeDeadline value)? changeDeadline,
+    TResult Function(_ChangeRequiredDepartment value)? changeRequiredDepartment,
+    TResult Function(_ChangeCoordinationDepartment value)?
+        changeCoordinationDepartment,
+    TResult Function(_ChangeApprover value)? changeApprover,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_DeleteRequirement value)? deleteRequirement,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    required TResult orElse(),
+  }) {
+    if (markDeletedFile != null) {
+      return markDeletedFile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MarkDeletedFile implements WorkRequirementEvent {
+  const factory _MarkDeletedFile(final int fileId) = _$MarkDeletedFileImpl;
+
+  int get fileId;
+  @JsonKey(ignore: true)
+  _$$MarkDeletedFileImplCopyWith<_$MarkDeletedFileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3523,7 +4687,11 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -3566,7 +4734,10 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -3608,7 +4779,10 @@ class _$SubmitImpl implements _Submit {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -3656,7 +4830,10 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -3683,7 +4860,10 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -3709,7 +4889,10 @@ class _$SubmitImpl implements _Submit {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -3797,7 +4980,11 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -3839,7 +5026,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -3880,7 +5070,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -3927,7 +5120,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -3954,7 +5150,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -3980,7 +5179,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -4078,7 +5280,11 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -4120,7 +5326,10 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -4161,7 +5370,10 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -4208,7 +5420,10 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -4235,7 +5450,10 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -4261,7 +5479,10 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -4382,7 +5603,11 @@ class _$InitEditImpl implements _InitEdit {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -4424,7 +5649,10 @@ class _$InitEditImpl implements _InitEdit {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -4465,7 +5693,10 @@ class _$InitEditImpl implements _InitEdit {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -4512,7 +5743,10 @@ class _$InitEditImpl implements _InitEdit {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -4539,7 +5773,10 @@ class _$InitEditImpl implements _InitEdit {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -4565,7 +5802,10 @@ class _$InitEditImpl implements _InitEdit {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -4766,7 +6006,11 @@ class _$EditSubmitImpl implements _EditSubmit {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -4809,7 +6053,10 @@ class _$EditSubmitImpl implements _EditSubmit {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -4851,7 +6098,10 @@ class _$EditSubmitImpl implements _EditSubmit {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -4906,7 +6156,10 @@ class _$EditSubmitImpl implements _EditSubmit {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -4933,7 +6186,10 @@ class _$EditSubmitImpl implements _EditSubmit {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -4959,7 +6215,10 @@ class _$EditSubmitImpl implements _EditSubmit {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -5084,7 +6343,11 @@ class _$DeleteRequirementImpl implements _DeleteRequirement {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -5126,7 +6389,10 @@ class _$DeleteRequirementImpl implements _DeleteRequirement {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -5167,7 +6433,10 @@ class _$DeleteRequirementImpl implements _DeleteRequirement {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -5214,7 +6483,10 @@ class _$DeleteRequirementImpl implements _DeleteRequirement {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -5241,7 +6513,10 @@ class _$DeleteRequirementImpl implements _DeleteRequirement {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -5267,7 +6542,10 @@ class _$DeleteRequirementImpl implements _DeleteRequirement {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,
@@ -5345,7 +6623,11 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     required TResult Function(int? id, String? name)
         changeCoordinationDepartment,
     required TResult Function(int? id, String? displayName) changeApprover,
-    required TResult Function(List<String> names) changeAttachments,
+    required TResult Function(List<File> files, DateTime dateRequest)
+        uploadFiles,
+    required TResult Function(List<File> files) setLocalFiles,
+    required TResult Function(File file) removeLocalFile,
+    required TResult Function(int fileId) markDeletedFile,
     required TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -5387,7 +6669,10 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     TResult? Function(int? id, String? name)? changeRequiredDepartment,
     TResult? Function(int? id, String? name)? changeCoordinationDepartment,
     TResult? Function(int? id, String? displayName)? changeApprover,
-    TResult? Function(List<String> names)? changeAttachments,
+    TResult? Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult? Function(List<File> files)? setLocalFiles,
+    TResult? Function(File file)? removeLocalFile,
+    TResult? Function(int fileId)? markDeletedFile,
     TResult? Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -5428,7 +6713,10 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     TResult Function(int? id, String? name)? changeRequiredDepartment,
     TResult Function(int? id, String? name)? changeCoordinationDepartment,
     TResult Function(int? id, String? displayName)? changeApprover,
-    TResult Function(List<String> names)? changeAttachments,
+    TResult Function(List<File> files, DateTime dateRequest)? uploadFiles,
+    TResult Function(List<File> files)? setLocalFiles,
+    TResult Function(File file)? removeLocalFile,
+    TResult Function(int fileId)? markDeletedFile,
     TResult Function(
             int approvedTBPId,
             DateTime dateRequest,
@@ -5475,7 +6763,10 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     required TResult Function(_ChangeCoordinationDepartment value)
         changeCoordinationDepartment,
     required TResult Function(_ChangeApprover value) changeApprover,
-    required TResult Function(_ChangeAttachments value) changeAttachments,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_SetLocalFiles value) setLocalFiles,
+    required TResult Function(_RemoveLocalFile value) removeLocalFile,
+    required TResult Function(_MarkDeletedFile value) markDeletedFile,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_InitDetail value) initDetail,
@@ -5502,7 +6793,10 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     TResult? Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult? Function(_ChangeApprover value)? changeApprover,
-    TResult? Function(_ChangeAttachments value)? changeAttachments,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_SetLocalFiles value)? setLocalFiles,
+    TResult? Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult? Function(_MarkDeletedFile value)? markDeletedFile,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_InitDetail value)? initDetail,
@@ -5528,7 +6822,10 @@ class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
     TResult Function(_ChangeCoordinationDepartment value)?
         changeCoordinationDepartment,
     TResult Function(_ChangeApprover value)? changeApprover,
-    TResult Function(_ChangeAttachments value)? changeAttachments,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_SetLocalFiles value)? setLocalFiles,
+    TResult Function(_RemoveLocalFile value)? removeLocalFile,
+    TResult Function(_MarkDeletedFile value)? markDeletedFile,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_InitDetail value)? initDetail,

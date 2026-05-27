@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../../../../../base/network/dio/dio_base_api_service.dart';
@@ -76,6 +79,42 @@ class WorkRequirementService extends DioBaseApiService {
       ApiEndPoint.saveWorkRequirement,
       body: payload,
       parser: (json) => BaseData<void>.fromJson(json, (_) {}),
+    );
+  }
+
+  Future<BaseData<List<UploadFileResponse>>> uploadFile({
+    required List<File> files,
+    required String key,
+    required String subPath,
+  }) async {
+    final formData = FormData();
+
+    for (final file in files) {
+      formData.files.add(
+        MapEntry(
+          'files',
+          await MultipartFile.fromFile(
+            file.path,
+            filename: file.path.split('/').last,
+          ),
+        ),
+      );
+    }
+
+    formData.fields.addAll([
+      MapEntry('key', key),
+      MapEntry('subPath', subPath),
+    ]);
+
+    return post<BaseData<List<UploadFileResponse>>>(
+      ApiEndPoint.marketing_upload,
+      body: formData,
+      options: Options(contentType: 'multipart/form-data'),
+      parser: (json) => BaseData<List<UploadFileResponse>>.fromJson(
+        json,
+        (data) =>
+            (data as List).map((e) => UploadFileResponse.fromJson(e)).toList(),
+      ),
     );
   }
 

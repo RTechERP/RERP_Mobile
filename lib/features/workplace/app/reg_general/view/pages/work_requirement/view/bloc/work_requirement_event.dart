@@ -40,9 +40,22 @@ class WorkRequirementEvent with _$WorkRequirementEvent {
     String? displayName,
   }) = _ChangeApprover;
 
-  const factory WorkRequirementEvent.changeAttachments(List<String> names) =
-      _ChangeAttachments;
+  // --- File events ---
+  const factory WorkRequirementEvent.uploadFiles({
+    required List<File> files,
+    required DateTime dateRequest,
+  }) = _UploadFiles;
 
+  const factory WorkRequirementEvent.setLocalFiles(List<File> files) =
+      _SetLocalFiles;
+
+  const factory WorkRequirementEvent.removeLocalFile(File file) =
+      _RemoveLocalFile;
+
+  const factory WorkRequirementEvent.markDeletedFile(int fileId) =
+      _MarkDeletedFile;
+
+  // --- Submit ---
   const factory WorkRequirementEvent.submit({
     required int approvedTBPId,
     required DateTime dateRequest,

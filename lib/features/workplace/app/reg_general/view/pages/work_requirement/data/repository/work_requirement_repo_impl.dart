@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -130,4 +132,31 @@ class WorkRequirementRepoImpl implements WorkRequirementRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<UploadFileResponse>>> uploadFile({
+    required List<File> files,
+    required String key,
+    required String subPath,
+  }) async {
+    try {
+      final res = await _service.uploadFile(
+        files: files,
+        key: key,
+        subPath: subPath,
+      );
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Tai file that bai',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }
+
+

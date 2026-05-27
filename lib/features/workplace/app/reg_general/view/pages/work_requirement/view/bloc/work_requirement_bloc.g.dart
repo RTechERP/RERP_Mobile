@@ -48,7 +48,15 @@ abstract class _$WorkRequirementStateCWProxy {
 
   WorkRequirementState detailValues(Map<int, Map<String, String>> detailValues);
 
-  WorkRequirementState attachmentNames(List<String> attachmentNames);
+  WorkRequirementState isUploadingFile(bool isUploadingFile);
+
+  WorkRequirementState uploadSuccess(bool uploadSuccess);
+
+  WorkRequirementState files(List<WorkRequirementFileRequest> files);
+
+  WorkRequirementState localFiles(List<File> localFiles);
+
+  WorkRequirementState deletedFileIds(List<int> deletedFileIds);
 
   WorkRequirementState isDetailLoading(bool isDetailLoading);
 
@@ -87,7 +95,11 @@ abstract class _$WorkRequirementStateCWProxy {
     DateTime? dateRequest,
     DateTime? deadlineRequest,
     Map<int, Map<String, String>>? detailValues,
-    List<String>? attachmentNames,
+    bool? isUploadingFile,
+    bool? uploadSuccess,
+    List<WorkRequirementFileRequest>? files,
+    List<File>? localFiles,
+    List<int>? deletedFileIds,
     bool? isDetailLoading,
     int? detailId,
     WorkRequirementDetailData? detailData,
@@ -184,8 +196,24 @@ class _$WorkRequirementStateCWProxyImpl
       this(detailValues: detailValues);
 
   @override
-  WorkRequirementState attachmentNames(List<String> attachmentNames) =>
-      this(attachmentNames: attachmentNames);
+  WorkRequirementState isUploadingFile(bool isUploadingFile) =>
+      this(isUploadingFile: isUploadingFile);
+
+  @override
+  WorkRequirementState uploadSuccess(bool uploadSuccess) =>
+      this(uploadSuccess: uploadSuccess);
+
+  @override
+  WorkRequirementState files(List<WorkRequirementFileRequest> files) =>
+      this(files: files);
+
+  @override
+  WorkRequirementState localFiles(List<File> localFiles) =>
+      this(localFiles: localFiles);
+
+  @override
+  WorkRequirementState deletedFileIds(List<int> deletedFileIds) =>
+      this(deletedFileIds: deletedFileIds);
 
   @override
   WorkRequirementState isDetailLoading(bool isDetailLoading) =>
@@ -235,7 +263,11 @@ class _$WorkRequirementStateCWProxyImpl
     Object? dateRequest = const $CopyWithPlaceholder(),
     Object? deadlineRequest = const $CopyWithPlaceholder(),
     Object? detailValues = const $CopyWithPlaceholder(),
-    Object? attachmentNames = const $CopyWithPlaceholder(),
+    Object? isUploadingFile = const $CopyWithPlaceholder(),
+    Object? uploadSuccess = const $CopyWithPlaceholder(),
+    Object? files = const $CopyWithPlaceholder(),
+    Object? localFiles = const $CopyWithPlaceholder(),
+    Object? deletedFileIds = const $CopyWithPlaceholder(),
     Object? isDetailLoading = const $CopyWithPlaceholder(),
     Object? detailId = const $CopyWithPlaceholder(),
     Object? detailData = const $CopyWithPlaceholder(),
@@ -330,11 +362,30 @@ class _$WorkRequirementStateCWProxyImpl
               ? _value.detailValues
               // ignore: cast_nullable_to_non_nullable
               : detailValues as Map<int, Map<String, String>>,
-      attachmentNames: attachmentNames == const $CopyWithPlaceholder() ||
-              attachmentNames == null
-          ? _value.attachmentNames
+      isUploadingFile: isUploadingFile == const $CopyWithPlaceholder() ||
+              isUploadingFile == null
+          ? _value.isUploadingFile
           // ignore: cast_nullable_to_non_nullable
-          : attachmentNames as List<String>,
+          : isUploadingFile as bool,
+      uploadSuccess:
+          uploadSuccess == const $CopyWithPlaceholder() || uploadSuccess == null
+              ? _value.uploadSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : uploadSuccess as bool,
+      files: files == const $CopyWithPlaceholder() || files == null
+          ? _value.files
+          // ignore: cast_nullable_to_non_nullable
+          : files as List<WorkRequirementFileRequest>,
+      localFiles:
+          localFiles == const $CopyWithPlaceholder() || localFiles == null
+              ? _value.localFiles
+              // ignore: cast_nullable_to_non_nullable
+              : localFiles as List<File>,
+      deletedFileIds: deletedFileIds == const $CopyWithPlaceholder() ||
+              deletedFileIds == null
+          ? _value.deletedFileIds
+          // ignore: cast_nullable_to_non_nullable
+          : deletedFileIds as List<int>,
       isDetailLoading: isDetailLoading == const $CopyWithPlaceholder() ||
               isDetailLoading == null
           ? _value.isDetailLoading

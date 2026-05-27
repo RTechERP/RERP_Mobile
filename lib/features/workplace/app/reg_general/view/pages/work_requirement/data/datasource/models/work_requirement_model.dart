@@ -140,6 +140,34 @@ class WorkRequirementFileItem with _$WorkRequirementFileItem {
       _$WorkRequirementFileItemFromJson(json);
 }
 
+/// File request dùng khi submit (tương tự MarketingFileRequest).
+/// ID=0: file mới upload; ID>0: file đã tồn tại trên server.
+class WorkRequirementFileRequest {
+  const WorkRequirementFileRequest({
+    required this.id,
+    required this.fileName,
+    required this.fileNameOrigin,
+    required this.filePath,
+    required this.extension,
+    required this.jobRequirementId,
+  });
+
+  final int id;
+  final String fileName;
+  final String fileNameOrigin;
+  final String filePath;
+  final String extension;
+  final int jobRequirementId;
+
+  Map<String, dynamic> toJson() => {
+        'ID': id,
+        'FileName': fileName,
+        'FilePath': filePath,
+        'FileType': extension,
+        'JobRequirementID': jobRequirementId,
+      };
+}
+
 /// Chi tiết đề mục trong detail.
 @freezed
 class WorkRequirementDetailCategory with _$WorkRequirementDetailCategory {

@@ -1,9 +1,10 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 
 import '../../../../../../../../../base/network/errors/error.dart';
 import '../../../../../../reports/data/datasource/models/report_model.dart';
 import '../datasource/models/work_requirement_model.dart';
-
 
 abstract class WorkRequirementRepo {
   Future<Either<BaseError, List<WorkRequirementItem>>> getWorkRequirement({
@@ -25,5 +26,11 @@ abstract class WorkRequirementRepo {
   Future<Either<BaseError, void>> editWorkRequirement({
     required int id,
     required Map<String, dynamic> payload,
+  });
+
+  Future<Either<BaseError, List<UploadFileResponse>>> uploadFile({
+    required List<File> files,
+    required String key,
+    required String subPath,
   });
 }

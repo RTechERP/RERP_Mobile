@@ -27,7 +27,18 @@ class WorkRequirementState extends BaseBlocState {
   /// Key: tên field (title, explanation, target, note), Value: giá trị string.
   final Map<int, Map<String, String>> detailValues;
 
-  final List<String> attachmentNames;
+  // --- File state ---
+  final bool isUploadingFile;
+  final bool uploadSuccess;
+
+  /// Files đã upload lên server (dùng để submit).
+  final List<WorkRequirementFileRequest> files;
+
+  /// Files local chưa upload (pending).
+  final List<File> localFiles;
+
+  /// ID của các file đã xoá (dùng trong edit mode).
+  final List<int> deletedFileIds;
 
   // --- Detail screen state ---
   final bool isDetailLoading;
@@ -59,7 +70,11 @@ class WorkRequirementState extends BaseBlocState {
     this.dateRequest,
     this.deadlineRequest,
     this.detailValues = const {},
-    this.attachmentNames = const [],
+    this.isUploadingFile = false,
+    this.uploadSuccess = false,
+    this.files = const [],
+    this.localFiles = const [],
+    this.deletedFileIds = const [],
     this.isDetailLoading = false,
     this.detailId,
     this.detailData,
@@ -78,7 +93,11 @@ class WorkRequirementState extends BaseBlocState {
         coordinationDepartmentName: null,
         approverDisplayName: null,
         detailValues: {},
-        attachmentNames: [],
+        isUploadingFile: false,
+        uploadSuccess: false,
+        files: [],
+        localFiles: [],
+        deletedFileIds: [],
         isDetailLoading: false,
         detailId: null,
         detailData: null,
@@ -107,7 +126,11 @@ class WorkRequirementState extends BaseBlocState {
         dateRequest,
         deadlineRequest,
         detailValues,
-        attachmentNames,
+        isUploadingFile,
+        uploadSuccess,
+        files,
+        localFiles,
+        deletedFileIds,
         isDetailLoading,
         detailId,
         detailData,
