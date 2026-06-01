@@ -13,10 +13,8 @@ class WorkRequirementItem with _$WorkRequirementItem {
     @JsonKey(name: 'DateRequest') DateTime? dateRequest,
     @JsonKey(name: 'DeadlineRequest') DateTime? deadlineRequest,
     @JsonKey(name: 'EmployeeID') int? employeeId,
-    @JsonKey(name: 'CoordinationDepartmentID')
-    int? coordinationDepartmentID,
-    @JsonKey(name: 'RequiredDepartmentID')
-    int? requiredDepartmentID,
+    @JsonKey(name: 'CoordinationDepartmentID') int? coordinationDepartmentID,
+    @JsonKey(name: 'RequiredDepartmentID') int? requiredDepartmentID,
     @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
     @JsonKey(name: 'DateApprovedTBP') DateTime? dateApprovedTBP,
     @JsonKey(name: 'ApprovedTBPID') int? approvedTBPID,
@@ -26,8 +24,7 @@ class WorkRequirementItem with _$WorkRequirementItem {
     @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBGD,
     @JsonKey(name: 'DateApprovedBGD') DateTime? dateApprovedBGD,
     @JsonKey(name: 'ApprovedBGDID') int? approvedBGDID,
-    @JsonKey(name: 'EvaluateCompletion')
-    String? evaluateCompletion,
+    @JsonKey(name: 'EvaluateCompletion') String? evaluateCompletion,
     @JsonKey(name: 'IsDeleted') bool? isDeleted,
     @JsonKey(name: 'CreatedBy') String? createdBy,
     @JsonKey(name: 'CreatedDate') DateTime? createdDate,
@@ -35,33 +32,26 @@ class WorkRequirementItem with _$WorkRequirementItem {
     @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
     @JsonKey(name: 'IsRequestBuy') bool? isRequestBuy,
     @JsonKey(name: 'Status') int? status,
-    @JsonKey(name: 'IsRequestBGDApproved')
-    bool? isRequestBGDApproved,
-    @JsonKey(name: 'CoordinationDepartment')
-    String? coordinationDepartment,
+    @JsonKey(name: 'IsRequestBGDApproved') bool? isRequestBGDApproved,
+    @JsonKey(name: 'CoordinationDepartment') String? coordinationDepartment,
     @JsonKey(name: 'RequiredDepartment') String? requiredDepartment,
     @JsonKey(name: 'EmployeeName') String? employeeName,
-    @JsonKey(name: 'EmployeeDepartment')
-    String? employeeDepartment,
+    @JsonKey(name: 'EmployeeDepartment') String? employeeDepartment,
     @JsonKey(name: 'Step') int? step,
     @JsonKey(name: 'StepApproved') int? stepApproved,
     @JsonKey(name: 'IsApproved') int? isApproved,
     @JsonKey(name: 'IsApprovedText') String? isApprovedText,
     @JsonKey(name: 'StatusText') String? statusText,
     @JsonKey(name: 'Note') String? note,
-    @JsonKey(name: 'FullNameApprovedTBP')
-    String? fullNameApprovedTBP,
+    @JsonKey(name: 'FullNameApprovedTBP') String? fullNameApprovedTBP,
     @JsonKey(name: 'ReasonCancel') String? reasonCancel,
-    @JsonKey(name: 'IsRequestPriceQuote')
-    bool? isRequestPriceQuote,
+    @JsonKey(name: 'IsRequestPriceQuote') bool? isRequestPriceQuote,
     @JsonKey(name: 'DepartmentID') int? departmentID,
     @JsonKey(name: 'ChucVuHDID') int? chucVuHDID,
     @JsonKey(name: 'ChucVu') String? chucVu,
   }) = _WorkRequirementItem;
 
-  factory WorkRequirementItem.fromJson(
-      Map<String, dynamic> json,
-      ) =>
+  factory WorkRequirementItem.fromJson(Map<String, dynamic> json) =>
       _$WorkRequirementItemFromJson(json);
 }
 
@@ -74,9 +64,7 @@ class WorkRequirementDepartmentItem with _$WorkRequirementDepartmentItem {
     @JsonKey(name: 'Code') String? code,
   }) = _WorkRequirementDepartmentItem;
 
-  factory WorkRequirementDepartmentItem.fromJson(
-      Map<String, dynamic> json,
-      ) =>
+  factory WorkRequirementDepartmentItem.fromJson(Map<String, dynamic> json) =>
       _$WorkRequirementDepartmentItemFromJson(json);
 }
 
@@ -90,9 +78,7 @@ class WorkRequirementApproverItem with _$WorkRequirementApproverItem {
     @JsonKey(name: 'Code') String? code,
   }) = _WorkRequirementApproverItem;
 
-  factory WorkRequirementApproverItem.fromJson(
-      Map<String, dynamic> json,
-      ) =>
+  factory WorkRequirementApproverItem.fromJson(Map<String, dynamic> json) =>
       _$WorkRequirementApproverItemFromJson(json);
 }
 
@@ -160,12 +146,12 @@ class WorkRequirementFileRequest {
   final int jobRequirementId;
 
   Map<String, dynamic> toJson() => {
-        'ID': id,
-        'FileName': fileName,
-        'FilePath': filePath,
-        'FileType': extension,
-        'JobRequirementID': jobRequirementId,
-      };
+    'ID': id,
+    'FileName': fileName,
+    'FilePath': filePath,
+    'FileType': extension,
+    'JobRequirementID': jobRequirementId,
+  };
 }
 
 /// Chi tiết đề mục trong detail.
@@ -195,7 +181,8 @@ class WorkRequirementDetailData with _$WorkRequirementDetailData {
     @JsonKey(name: 'details') List<WorkRequirementDetailResponse>? details,
     @JsonKey(name: 'approves') List<WorkRequirementApproveItem>? approves,
     @JsonKey(name: 'files') List<WorkRequirementFileItem>? files,
-    @JsonKey(name: 'detailsCategory') List<WorkRequirementDetailCategory>? detailsCategory,
+    @JsonKey(name: 'detailsCategory')
+    List<WorkRequirementDetailCategory>? detailsCategory,
   }) = _WorkRequirementDetailData;
 
   factory WorkRequirementDetailData.fromJson(Map<String, dynamic> json) =>
@@ -256,10 +243,168 @@ class WorkRequirementSaveResponse with _$WorkRequirementSaveResponse {
     @JsonKey(name: 'IsRequestBGDApproved') bool? isRequestBGDApproved,
     @JsonKey(name: 'IsRequestPriceQuote') bool? isRequestPriceQuote,
     @JsonKey(name: 'JobRequirementDetails')
-        List<WorkRequirementDetailResponse>? jobRequirementDetails,
+    List<WorkRequirementDetailResponse>? jobRequirementDetails,
     @JsonKey(name: 'JobRequirementFiles') List<dynamic>? jobRequirementFiles,
   }) = _WorkRequirementSaveResponse;
 
   factory WorkRequirementSaveResponse.fromJson(Map<String, dynamic> json) =>
       _$WorkRequirementSaveResponseFromJson(json);
+}
+
+@freezed
+class IdeaDetailItem with _$IdeaDetailItem {
+  const factory IdeaDetailItem({
+    @JsonKey(name: 'em') List<IdeaEmployeeItem>? employees,
+
+    @JsonKey(name: 'de') List<IdeaDepartmentItem>? departments,
+
+    @JsonKey(name: 'rgt') IdeaRegisterItem? register,
+
+    @JsonKey(name: 'rgtd') List<IdeaRegisterDetailItem>? registerDetails,
+
+    @JsonKey(name: 'rgts') List<IdeaScoreItem>? registerScores,
+
+    @JsonKey(name: 'rgtf') List<IdeaFileItem>? registerFiles,
+  }) = _IdeaDetailItem;
+
+  factory IdeaDetailItem.fromJson(Map<String, dynamic> json) =>
+      _$IdeaDetailItemFromJson(json);
+}
+
+@freezed
+class IdeaEmployeeItem with _$IdeaEmployeeItem {
+  const factory IdeaEmployeeItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+  }) = _IdeaEmployeeItem;
+
+  factory IdeaEmployeeItem.fromJson(Map<String, dynamic> json) =>
+      _$IdeaEmployeeItemFromJson(json);
+}
+
+@freezed
+class IdeaDepartmentItem with _$IdeaDepartmentItem {
+  const factory IdeaDepartmentItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Name') String? name,
+    @JsonKey(name: 'Description') String? description,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'Email') String? email,
+    @JsonKey(name: 'HeadofDepartment') int? headofDepartment,
+    @JsonKey(name: 'IsShowHotline') bool? isShowHotline,
+    @JsonKey(name: 'PId') String? pId,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'ParentID') int? parentId,
+  }) = _IdeaDepartmentItem;
+
+  factory IdeaDepartmentItem.fromJson(Map<String, dynamic> json) =>
+      _$IdeaDepartmentItemFromJson(json);
+}
+
+@freezed
+class IdeaRegisterItem with _$IdeaRegisterItem {
+  const factory IdeaRegisterItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'DateRegister') DateTime? dateRegister,
+    @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+    @JsonKey(name: 'DateApprovedTBP') DateTime? dateApprovedTBP,
+    @JsonKey(name: 'ApprovedTBPID') int? approvedTBPID,
+    @JsonKey(name: 'IsApproved') bool? isApproved,
+    @JsonKey(name: 'DateApproved') DateTime? dateApproved,
+    @JsonKey(name: 'ApprovedID') int? approvedID,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'RegisterIdeaTypeID') int? registerIdeaTypeID,
+    @JsonKey(name: 'DepartmentOrganizationID') int? departmentOrganizationID,
+    @JsonKey(name: 'CourseID') int? courseID,
+  }) = _IdeaRegisterItem;
+
+  factory IdeaRegisterItem.fromJson(Map<String, dynamic> json) =>
+      _$IdeaRegisterItemFromJson(json);
+}
+
+@freezed
+class IdeaRegisterDetailItem with _$IdeaRegisterDetailItem {
+  const factory IdeaRegisterDetailItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'RegisterIdeaID') int? registerIdeaID,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'Category') String? category,
+    @JsonKey(name: 'Description') String? description,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'DateStart') DateTime? dateStart,
+    @JsonKey(name: 'DateEnd') DateTime? dateEnd,
+  }) = _IdeaRegisterDetailItem;
+
+  factory IdeaRegisterDetailItem.fromJson(Map<String, dynamic> json) =>
+      _$IdeaRegisterDetailItemFromJson(json);
+}
+
+@freezed
+class IdeaScoreItem with _$IdeaScoreItem {
+  const factory IdeaScoreItem({
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+    @JsonKey(name: 'TBPName') String? tbpName,
+    @JsonKey(name: 'ScoreNew') String? scoreNew,
+    @JsonKey(name: 'EmployeeId') int? employeeId,
+    @JsonKey(name: 'LsDepartmentId') int? lsDepartmentId,
+    @JsonKey(name: 'tbpCheck') bool? tbpCheck,
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'RegisterIdeaID') int? registerIdeaID,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+    @JsonKey(name: 'Score') double? score,
+    @JsonKey(name: 'IsTBP') bool? isTBP,
+    @JsonKey(name: 'IsBGD') bool? isBGD,
+    @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+    @JsonKey(name: 'DateApprovedTBP') DateTime? dateApprovedTBP,
+    @JsonKey(name: 'ApprovedTBPID') int? approvedTBPID,
+    @JsonKey(name: 'IsApproved') bool? isApproved,
+    @JsonKey(name: 'DateApproved') DateTime? dateApproved,
+    @JsonKey(name: 'ApprovedID') int? approvedID,
+    @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBGD,
+    @JsonKey(name: 'DateApprovedBGD') DateTime? dateApprovedBGD,
+    @JsonKey(name: 'ApprovedBGDID') int? approvedBGDID,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'ScoreRating') String? scoreRating,
+  }) = _IdeaScoreItem;
+
+  factory IdeaScoreItem.fromJson(Map<String, dynamic> json) =>
+      _$IdeaScoreItemFromJson(json);
+}
+
+@freezed
+class IdeaFileItem with _$IdeaFileItem {
+  const factory IdeaFileItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'RegisterIdeaID') int? registerIdeaID,
+    @JsonKey(name: 'FileName') String? fileName,
+    @JsonKey(name: 'OriginPath') String? originPath,
+    @JsonKey(name: 'ServerPath') String? serverPath,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+  }) = _IdeaFileItem;
+
+  factory IdeaFileItem.fromJson(Map<String, dynamic> json) =>
+      _$IdeaFileItemFromJson(json);
 }

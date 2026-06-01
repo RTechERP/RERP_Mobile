@@ -181,6 +181,10 @@ class RouteNames {
   static const workRequirementDetail = '/reg_general/work_requirement/detail';
   static const workRequirementEdit = '/reg_general/work_requirement/edit';
 
+  // Idea Registration
+  static const ideaRegistration = '/reg_general/idea_registration';
+  static const ideaRegistrationAdd = '/reg_general/idea_registration/add';
+
   // More - Settings
   static const notificationSettings = '/more/notification_settings';
 

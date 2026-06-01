@@ -4431,3 +4431,3151 @@ abstract class _WorkRequirementSaveResponse
   _$$WorkRequirementSaveResponseImplCopyWith<_$WorkRequirementSaveResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+IdeaDetailItem _$IdeaDetailItemFromJson(Map<String, dynamic> json) {
+  return _IdeaDetailItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$IdeaDetailItem {
+  @JsonKey(name: 'em')
+  List<IdeaEmployeeItem>? get employees => throw _privateConstructorUsedError;
+  @JsonKey(name: 'de')
+  List<IdeaDepartmentItem>? get departments =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'rgt')
+  IdeaRegisterItem? get register => throw _privateConstructorUsedError;
+  @JsonKey(name: 'rgtd')
+  List<IdeaRegisterDetailItem>? get registerDetails =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'rgts')
+  List<IdeaScoreItem>? get registerScores => throw _privateConstructorUsedError;
+  @JsonKey(name: 'rgtf')
+  List<IdeaFileItem>? get registerFiles => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $IdeaDetailItemCopyWith<IdeaDetailItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $IdeaDetailItemCopyWith<$Res> {
+  factory $IdeaDetailItemCopyWith(
+          IdeaDetailItem value, $Res Function(IdeaDetailItem) then) =
+      _$IdeaDetailItemCopyWithImpl<$Res, IdeaDetailItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'em') List<IdeaEmployeeItem>? employees,
+      @JsonKey(name: 'de') List<IdeaDepartmentItem>? departments,
+      @JsonKey(name: 'rgt') IdeaRegisterItem? register,
+      @JsonKey(name: 'rgtd') List<IdeaRegisterDetailItem>? registerDetails,
+      @JsonKey(name: 'rgts') List<IdeaScoreItem>? registerScores,
+      @JsonKey(name: 'rgtf') List<IdeaFileItem>? registerFiles});
+
+  $IdeaRegisterItemCopyWith<$Res>? get register;
+}
+
+/// @nodoc
+class _$IdeaDetailItemCopyWithImpl<$Res, $Val extends IdeaDetailItem>
+    implements $IdeaDetailItemCopyWith<$Res> {
+  _$IdeaDetailItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? employees = freezed,
+    Object? departments = freezed,
+    Object? register = freezed,
+    Object? registerDetails = freezed,
+    Object? registerScores = freezed,
+    Object? registerFiles = freezed,
+  }) {
+    return _then(_value.copyWith(
+      employees: freezed == employees
+          ? _value.employees
+          : employees // ignore: cast_nullable_to_non_nullable
+              as List<IdeaEmployeeItem>?,
+      departments: freezed == departments
+          ? _value.departments
+          : departments // ignore: cast_nullable_to_non_nullable
+              as List<IdeaDepartmentItem>?,
+      register: freezed == register
+          ? _value.register
+          : register // ignore: cast_nullable_to_non_nullable
+              as IdeaRegisterItem?,
+      registerDetails: freezed == registerDetails
+          ? _value.registerDetails
+          : registerDetails // ignore: cast_nullable_to_non_nullable
+              as List<IdeaRegisterDetailItem>?,
+      registerScores: freezed == registerScores
+          ? _value.registerScores
+          : registerScores // ignore: cast_nullable_to_non_nullable
+              as List<IdeaScoreItem>?,
+      registerFiles: freezed == registerFiles
+          ? _value.registerFiles
+          : registerFiles // ignore: cast_nullable_to_non_nullable
+              as List<IdeaFileItem>?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $IdeaRegisterItemCopyWith<$Res>? get register {
+    if (_value.register == null) {
+      return null;
+    }
+
+    return $IdeaRegisterItemCopyWith<$Res>(_value.register!, (value) {
+      return _then(_value.copyWith(register: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$IdeaDetailItemImplCopyWith<$Res>
+    implements $IdeaDetailItemCopyWith<$Res> {
+  factory _$$IdeaDetailItemImplCopyWith(_$IdeaDetailItemImpl value,
+          $Res Function(_$IdeaDetailItemImpl) then) =
+      __$$IdeaDetailItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'em') List<IdeaEmployeeItem>? employees,
+      @JsonKey(name: 'de') List<IdeaDepartmentItem>? departments,
+      @JsonKey(name: 'rgt') IdeaRegisterItem? register,
+      @JsonKey(name: 'rgtd') List<IdeaRegisterDetailItem>? registerDetails,
+      @JsonKey(name: 'rgts') List<IdeaScoreItem>? registerScores,
+      @JsonKey(name: 'rgtf') List<IdeaFileItem>? registerFiles});
+
+  @override
+  $IdeaRegisterItemCopyWith<$Res>? get register;
+}
+
+/// @nodoc
+class __$$IdeaDetailItemImplCopyWithImpl<$Res>
+    extends _$IdeaDetailItemCopyWithImpl<$Res, _$IdeaDetailItemImpl>
+    implements _$$IdeaDetailItemImplCopyWith<$Res> {
+  __$$IdeaDetailItemImplCopyWithImpl(
+      _$IdeaDetailItemImpl _value, $Res Function(_$IdeaDetailItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? employees = freezed,
+    Object? departments = freezed,
+    Object? register = freezed,
+    Object? registerDetails = freezed,
+    Object? registerScores = freezed,
+    Object? registerFiles = freezed,
+  }) {
+    return _then(_$IdeaDetailItemImpl(
+      employees: freezed == employees
+          ? _value._employees
+          : employees // ignore: cast_nullable_to_non_nullable
+              as List<IdeaEmployeeItem>?,
+      departments: freezed == departments
+          ? _value._departments
+          : departments // ignore: cast_nullable_to_non_nullable
+              as List<IdeaDepartmentItem>?,
+      register: freezed == register
+          ? _value.register
+          : register // ignore: cast_nullable_to_non_nullable
+              as IdeaRegisterItem?,
+      registerDetails: freezed == registerDetails
+          ? _value._registerDetails
+          : registerDetails // ignore: cast_nullable_to_non_nullable
+              as List<IdeaRegisterDetailItem>?,
+      registerScores: freezed == registerScores
+          ? _value._registerScores
+          : registerScores // ignore: cast_nullable_to_non_nullable
+              as List<IdeaScoreItem>?,
+      registerFiles: freezed == registerFiles
+          ? _value._registerFiles
+          : registerFiles // ignore: cast_nullable_to_non_nullable
+              as List<IdeaFileItem>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$IdeaDetailItemImpl implements _IdeaDetailItem {
+  const _$IdeaDetailItemImpl(
+      {@JsonKey(name: 'em') final List<IdeaEmployeeItem>? employees,
+      @JsonKey(name: 'de') final List<IdeaDepartmentItem>? departments,
+      @JsonKey(name: 'rgt') this.register,
+      @JsonKey(name: 'rgtd')
+      final List<IdeaRegisterDetailItem>? registerDetails,
+      @JsonKey(name: 'rgts') final List<IdeaScoreItem>? registerScores,
+      @JsonKey(name: 'rgtf') final List<IdeaFileItem>? registerFiles})
+      : _employees = employees,
+        _departments = departments,
+        _registerDetails = registerDetails,
+        _registerScores = registerScores,
+        _registerFiles = registerFiles;
+
+  factory _$IdeaDetailItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IdeaDetailItemImplFromJson(json);
+
+  final List<IdeaEmployeeItem>? _employees;
+  @override
+  @JsonKey(name: 'em')
+  List<IdeaEmployeeItem>? get employees {
+    final value = _employees;
+    if (value == null) return null;
+    if (_employees is EqualUnmodifiableListView) return _employees;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<IdeaDepartmentItem>? _departments;
+  @override
+  @JsonKey(name: 'de')
+  List<IdeaDepartmentItem>? get departments {
+    final value = _departments;
+    if (value == null) return null;
+    if (_departments is EqualUnmodifiableListView) return _departments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'rgt')
+  final IdeaRegisterItem? register;
+  final List<IdeaRegisterDetailItem>? _registerDetails;
+  @override
+  @JsonKey(name: 'rgtd')
+  List<IdeaRegisterDetailItem>? get registerDetails {
+    final value = _registerDetails;
+    if (value == null) return null;
+    if (_registerDetails is EqualUnmodifiableListView) return _registerDetails;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<IdeaScoreItem>? _registerScores;
+  @override
+  @JsonKey(name: 'rgts')
+  List<IdeaScoreItem>? get registerScores {
+    final value = _registerScores;
+    if (value == null) return null;
+    if (_registerScores is EqualUnmodifiableListView) return _registerScores;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<IdeaFileItem>? _registerFiles;
+  @override
+  @JsonKey(name: 'rgtf')
+  List<IdeaFileItem>? get registerFiles {
+    final value = _registerFiles;
+    if (value == null) return null;
+    if (_registerFiles is EqualUnmodifiableListView) return _registerFiles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'IdeaDetailItem(employees: $employees, departments: $departments, register: $register, registerDetails: $registerDetails, registerScores: $registerScores, registerFiles: $registerFiles)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$IdeaDetailItemImpl &&
+            const DeepCollectionEquality()
+                .equals(other._employees, _employees) &&
+            const DeepCollectionEquality()
+                .equals(other._departments, _departments) &&
+            (identical(other.register, register) ||
+                other.register == register) &&
+            const DeepCollectionEquality()
+                .equals(other._registerDetails, _registerDetails) &&
+            const DeepCollectionEquality()
+                .equals(other._registerScores, _registerScores) &&
+            const DeepCollectionEquality()
+                .equals(other._registerFiles, _registerFiles));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_employees),
+      const DeepCollectionEquality().hash(_departments),
+      register,
+      const DeepCollectionEquality().hash(_registerDetails),
+      const DeepCollectionEquality().hash(_registerScores),
+      const DeepCollectionEquality().hash(_registerFiles));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$IdeaDetailItemImplCopyWith<_$IdeaDetailItemImpl> get copyWith =>
+      __$$IdeaDetailItemImplCopyWithImpl<_$IdeaDetailItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$IdeaDetailItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _IdeaDetailItem implements IdeaDetailItem {
+  const factory _IdeaDetailItem(
+          {@JsonKey(name: 'em') final List<IdeaEmployeeItem>? employees,
+          @JsonKey(name: 'de') final List<IdeaDepartmentItem>? departments,
+          @JsonKey(name: 'rgt') final IdeaRegisterItem? register,
+          @JsonKey(name: 'rgtd')
+          final List<IdeaRegisterDetailItem>? registerDetails,
+          @JsonKey(name: 'rgts') final List<IdeaScoreItem>? registerScores,
+          @JsonKey(name: 'rgtf') final List<IdeaFileItem>? registerFiles}) =
+      _$IdeaDetailItemImpl;
+
+  factory _IdeaDetailItem.fromJson(Map<String, dynamic> json) =
+      _$IdeaDetailItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'em')
+  List<IdeaEmployeeItem>? get employees;
+  @override
+  @JsonKey(name: 'de')
+  List<IdeaDepartmentItem>? get departments;
+  @override
+  @JsonKey(name: 'rgt')
+  IdeaRegisterItem? get register;
+  @override
+  @JsonKey(name: 'rgtd')
+  List<IdeaRegisterDetailItem>? get registerDetails;
+  @override
+  @JsonKey(name: 'rgts')
+  List<IdeaScoreItem>? get registerScores;
+  @override
+  @JsonKey(name: 'rgtf')
+  List<IdeaFileItem>? get registerFiles;
+  @override
+  @JsonKey(ignore: true)
+  _$$IdeaDetailItemImplCopyWith<_$IdeaDetailItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+IdeaEmployeeItem _$IdeaEmployeeItemFromJson(Map<String, dynamic> json) {
+  return _IdeaEmployeeItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$IdeaEmployeeItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $IdeaEmployeeItemCopyWith<IdeaEmployeeItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $IdeaEmployeeItemCopyWith<$Res> {
+  factory $IdeaEmployeeItemCopyWith(
+          IdeaEmployeeItem value, $Res Function(IdeaEmployeeItem) then) =
+      _$IdeaEmployeeItemCopyWithImpl<$Res, IdeaEmployeeItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId});
+}
+
+/// @nodoc
+class _$IdeaEmployeeItemCopyWithImpl<$Res, $Val extends IdeaEmployeeItem>
+    implements $IdeaEmployeeItemCopyWith<$Res> {
+  _$IdeaEmployeeItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? fullName = freezed,
+    Object? departmentId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$IdeaEmployeeItemImplCopyWith<$Res>
+    implements $IdeaEmployeeItemCopyWith<$Res> {
+  factory _$$IdeaEmployeeItemImplCopyWith(_$IdeaEmployeeItemImpl value,
+          $Res Function(_$IdeaEmployeeItemImpl) then) =
+      __$$IdeaEmployeeItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId});
+}
+
+/// @nodoc
+class __$$IdeaEmployeeItemImplCopyWithImpl<$Res>
+    extends _$IdeaEmployeeItemCopyWithImpl<$Res, _$IdeaEmployeeItemImpl>
+    implements _$$IdeaEmployeeItemImplCopyWith<$Res> {
+  __$$IdeaEmployeeItemImplCopyWithImpl(_$IdeaEmployeeItemImpl _value,
+      $Res Function(_$IdeaEmployeeItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? fullName = freezed,
+    Object? departmentId = freezed,
+  }) {
+    return _then(_$IdeaEmployeeItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$IdeaEmployeeItemImpl implements _IdeaEmployeeItem {
+  const _$IdeaEmployeeItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'DepartmentID') this.departmentId});
+
+  factory _$IdeaEmployeeItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IdeaEmployeeItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+
+  @override
+  String toString() {
+    return 'IdeaEmployeeItem(id: $id, fullName: $fullName, departmentId: $departmentId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$IdeaEmployeeItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, fullName, departmentId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$IdeaEmployeeItemImplCopyWith<_$IdeaEmployeeItemImpl> get copyWith =>
+      __$$IdeaEmployeeItemImplCopyWithImpl<_$IdeaEmployeeItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$IdeaEmployeeItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _IdeaEmployeeItem implements IdeaEmployeeItem {
+  const factory _IdeaEmployeeItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'DepartmentID') final int? departmentId}) =
+      _$IdeaEmployeeItemImpl;
+
+  factory _IdeaEmployeeItem.fromJson(Map<String, dynamic> json) =
+      _$IdeaEmployeeItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(ignore: true)
+  _$$IdeaEmployeeItemImplCopyWith<_$IdeaEmployeeItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+IdeaDepartmentItem _$IdeaDepartmentItemFromJson(Map<String, dynamic> json) {
+  return _IdeaDepartmentItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$IdeaDepartmentItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Name')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Description')
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Status')
+  int? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Email')
+  String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: 'HeadofDepartment')
+  int? get headofDepartment => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsShowHotline')
+  bool? get isShowHotline => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PId')
+  String? get pId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ParentID')
+  int? get parentId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $IdeaDepartmentItemCopyWith<IdeaDepartmentItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $IdeaDepartmentItemCopyWith<$Res> {
+  factory $IdeaDepartmentItemCopyWith(
+          IdeaDepartmentItem value, $Res Function(IdeaDepartmentItem) then) =
+      _$IdeaDepartmentItemCopyWithImpl<$Res, IdeaDepartmentItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'Email') String? email,
+      @JsonKey(name: 'HeadofDepartment') int? headofDepartment,
+      @JsonKey(name: 'IsShowHotline') bool? isShowHotline,
+      @JsonKey(name: 'PId') String? pId,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'ParentID') int? parentId});
+}
+
+/// @nodoc
+class _$IdeaDepartmentItemCopyWithImpl<$Res, $Val extends IdeaDepartmentItem>
+    implements $IdeaDepartmentItemCopyWith<$Res> {
+  _$IdeaDepartmentItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? status = freezed,
+    Object? email = freezed,
+    Object? headofDepartment = freezed,
+    Object? isShowHotline = freezed,
+    Object? pId = freezed,
+    Object? stt = freezed,
+    Object? isDeleted = freezed,
+    Object? parentId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      headofDepartment: freezed == headofDepartment
+          ? _value.headofDepartment
+          : headofDepartment // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isShowHotline: freezed == isShowHotline
+          ? _value.isShowHotline
+          : isShowHotline // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      pId: freezed == pId
+          ? _value.pId
+          : pId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      parentId: freezed == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$IdeaDepartmentItemImplCopyWith<$Res>
+    implements $IdeaDepartmentItemCopyWith<$Res> {
+  factory _$$IdeaDepartmentItemImplCopyWith(_$IdeaDepartmentItemImpl value,
+          $Res Function(_$IdeaDepartmentItemImpl) then) =
+      __$$IdeaDepartmentItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'Email') String? email,
+      @JsonKey(name: 'HeadofDepartment') int? headofDepartment,
+      @JsonKey(name: 'IsShowHotline') bool? isShowHotline,
+      @JsonKey(name: 'PId') String? pId,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'ParentID') int? parentId});
+}
+
+/// @nodoc
+class __$$IdeaDepartmentItemImplCopyWithImpl<$Res>
+    extends _$IdeaDepartmentItemCopyWithImpl<$Res, _$IdeaDepartmentItemImpl>
+    implements _$$IdeaDepartmentItemImplCopyWith<$Res> {
+  __$$IdeaDepartmentItemImplCopyWithImpl(_$IdeaDepartmentItemImpl _value,
+      $Res Function(_$IdeaDepartmentItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? status = freezed,
+    Object? email = freezed,
+    Object? headofDepartment = freezed,
+    Object? isShowHotline = freezed,
+    Object? pId = freezed,
+    Object? stt = freezed,
+    Object? isDeleted = freezed,
+    Object? parentId = freezed,
+  }) {
+    return _then(_$IdeaDepartmentItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      headofDepartment: freezed == headofDepartment
+          ? _value.headofDepartment
+          : headofDepartment // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isShowHotline: freezed == isShowHotline
+          ? _value.isShowHotline
+          : isShowHotline // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      pId: freezed == pId
+          ? _value.pId
+          : pId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      parentId: freezed == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$IdeaDepartmentItemImpl implements _IdeaDepartmentItem {
+  const _$IdeaDepartmentItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'Name') this.name,
+      @JsonKey(name: 'Description') this.description,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'Status') this.status,
+      @JsonKey(name: 'Email') this.email,
+      @JsonKey(name: 'HeadofDepartment') this.headofDepartment,
+      @JsonKey(name: 'IsShowHotline') this.isShowHotline,
+      @JsonKey(name: 'PId') this.pId,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'ParentID') this.parentId});
+
+  factory _$IdeaDepartmentItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IdeaDepartmentItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'Name')
+  final String? name;
+  @override
+  @JsonKey(name: 'Description')
+  final String? description;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'Status')
+  final int? status;
+  @override
+  @JsonKey(name: 'Email')
+  final String? email;
+  @override
+  @JsonKey(name: 'HeadofDepartment')
+  final int? headofDepartment;
+  @override
+  @JsonKey(name: 'IsShowHotline')
+  final bool? isShowHotline;
+  @override
+  @JsonKey(name: 'PId')
+  final String? pId;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'ParentID')
+  final int? parentId;
+
+  @override
+  String toString() {
+    return 'IdeaDepartmentItem(id: $id, code: $code, name: $name, description: $description, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, status: $status, email: $email, headofDepartment: $headofDepartment, isShowHotline: $isShowHotline, pId: $pId, stt: $stt, isDeleted: $isDeleted, parentId: $parentId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$IdeaDepartmentItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.headofDepartment, headofDepartment) ||
+                other.headofDepartment == headofDepartment) &&
+            (identical(other.isShowHotline, isShowHotline) ||
+                other.isShowHotline == isShowHotline) &&
+            (identical(other.pId, pId) || other.pId == pId) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.parentId, parentId) ||
+                other.parentId == parentId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      code,
+      name,
+      description,
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate,
+      status,
+      email,
+      headofDepartment,
+      isShowHotline,
+      pId,
+      stt,
+      isDeleted,
+      parentId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$IdeaDepartmentItemImplCopyWith<_$IdeaDepartmentItemImpl> get copyWith =>
+      __$$IdeaDepartmentItemImplCopyWithImpl<_$IdeaDepartmentItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$IdeaDepartmentItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _IdeaDepartmentItem implements IdeaDepartmentItem {
+  const factory _IdeaDepartmentItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'Name') final String? name,
+          @JsonKey(name: 'Description') final String? description,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'Status') final int? status,
+          @JsonKey(name: 'Email') final String? email,
+          @JsonKey(name: 'HeadofDepartment') final int? headofDepartment,
+          @JsonKey(name: 'IsShowHotline') final bool? isShowHotline,
+          @JsonKey(name: 'PId') final String? pId,
+          @JsonKey(name: 'STT') final int? stt,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+          @JsonKey(name: 'ParentID') final int? parentId}) =
+      _$IdeaDepartmentItemImpl;
+
+  factory _IdeaDepartmentItem.fromJson(Map<String, dynamic> json) =
+      _$IdeaDepartmentItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'Name')
+  String? get name;
+  @override
+  @JsonKey(name: 'Description')
+  String? get description;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'Status')
+  int? get status;
+  @override
+  @JsonKey(name: 'Email')
+  String? get email;
+  @override
+  @JsonKey(name: 'HeadofDepartment')
+  int? get headofDepartment;
+  @override
+  @JsonKey(name: 'IsShowHotline')
+  bool? get isShowHotline;
+  @override
+  @JsonKey(name: 'PId')
+  String? get pId;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'ParentID')
+  int? get parentId;
+  @override
+  @JsonKey(ignore: true)
+  _$$IdeaDepartmentItemImplCopyWith<_$IdeaDepartmentItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+IdeaRegisterItem _$IdeaRegisterItemFromJson(Map<String, dynamic> json) {
+  return _IdeaRegisterItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$IdeaRegisterItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateRegister')
+  DateTime? get dateRegister => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateApprovedTBP')
+  DateTime? get dateApprovedTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedTBPID')
+  int? get approvedTBPID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApproved')
+  bool? get isApproved => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateApproved')
+  DateTime? get dateApproved => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedID')
+  int? get approvedID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RegisterIdeaTypeID')
+  int? get registerIdeaTypeID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentOrganizationID')
+  int? get departmentOrganizationID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CourseID')
+  int? get courseID => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $IdeaRegisterItemCopyWith<IdeaRegisterItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $IdeaRegisterItemCopyWith<$Res> {
+  factory $IdeaRegisterItemCopyWith(
+          IdeaRegisterItem value, $Res Function(IdeaRegisterItem) then) =
+      _$IdeaRegisterItemCopyWithImpl<$Res, IdeaRegisterItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'DateRegister') DateTime? dateRegister,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+      @JsonKey(name: 'DateApprovedTBP') DateTime? dateApprovedTBP,
+      @JsonKey(name: 'ApprovedTBPID') int? approvedTBPID,
+      @JsonKey(name: 'IsApproved') bool? isApproved,
+      @JsonKey(name: 'DateApproved') DateTime? dateApproved,
+      @JsonKey(name: 'ApprovedID') int? approvedID,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'RegisterIdeaTypeID') int? registerIdeaTypeID,
+      @JsonKey(name: 'DepartmentOrganizationID') int? departmentOrganizationID,
+      @JsonKey(name: 'CourseID') int? courseID});
+}
+
+/// @nodoc
+class _$IdeaRegisterItemCopyWithImpl<$Res, $Val extends IdeaRegisterItem>
+    implements $IdeaRegisterItemCopyWith<$Res> {
+  _$IdeaRegisterItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? employeeId = freezed,
+    Object? dateRegister = freezed,
+    Object? isApprovedTBP = freezed,
+    Object? dateApprovedTBP = freezed,
+    Object? approvedTBPID = freezed,
+    Object? isApproved = freezed,
+    Object? dateApproved = freezed,
+    Object? approvedID = freezed,
+    Object? note = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? registerIdeaTypeID = freezed,
+    Object? departmentOrganizationID = freezed,
+    Object? courseID = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dateRegister: freezed == dateRegister
+          ? _value.dateRegister
+          : dateRegister // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApprovedTBP: freezed == isApprovedTBP
+          ? _value.isApprovedTBP
+          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedTBP: freezed == dateApprovedTBP
+          ? _value.dateApprovedTBP
+          : dateApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedTBPID: freezed == approvedTBPID
+          ? _value.approvedTBPID
+          : approvedTBPID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApproved: freezed == isApproved
+          ? _value.isApproved
+          : isApproved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApproved: freezed == dateApproved
+          ? _value.dateApproved
+          : dateApproved // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedID: freezed == approvedID
+          ? _value.approvedID
+          : approvedID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      registerIdeaTypeID: freezed == registerIdeaTypeID
+          ? _value.registerIdeaTypeID
+          : registerIdeaTypeID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentOrganizationID: freezed == departmentOrganizationID
+          ? _value.departmentOrganizationID
+          : departmentOrganizationID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      courseID: freezed == courseID
+          ? _value.courseID
+          : courseID // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$IdeaRegisterItemImplCopyWith<$Res>
+    implements $IdeaRegisterItemCopyWith<$Res> {
+  factory _$$IdeaRegisterItemImplCopyWith(_$IdeaRegisterItemImpl value,
+          $Res Function(_$IdeaRegisterItemImpl) then) =
+      __$$IdeaRegisterItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'DateRegister') DateTime? dateRegister,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+      @JsonKey(name: 'DateApprovedTBP') DateTime? dateApprovedTBP,
+      @JsonKey(name: 'ApprovedTBPID') int? approvedTBPID,
+      @JsonKey(name: 'IsApproved') bool? isApproved,
+      @JsonKey(name: 'DateApproved') DateTime? dateApproved,
+      @JsonKey(name: 'ApprovedID') int? approvedID,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'RegisterIdeaTypeID') int? registerIdeaTypeID,
+      @JsonKey(name: 'DepartmentOrganizationID') int? departmentOrganizationID,
+      @JsonKey(name: 'CourseID') int? courseID});
+}
+
+/// @nodoc
+class __$$IdeaRegisterItemImplCopyWithImpl<$Res>
+    extends _$IdeaRegisterItemCopyWithImpl<$Res, _$IdeaRegisterItemImpl>
+    implements _$$IdeaRegisterItemImplCopyWith<$Res> {
+  __$$IdeaRegisterItemImplCopyWithImpl(_$IdeaRegisterItemImpl _value,
+      $Res Function(_$IdeaRegisterItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? employeeId = freezed,
+    Object? dateRegister = freezed,
+    Object? isApprovedTBP = freezed,
+    Object? dateApprovedTBP = freezed,
+    Object? approvedTBPID = freezed,
+    Object? isApproved = freezed,
+    Object? dateApproved = freezed,
+    Object? approvedID = freezed,
+    Object? note = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? registerIdeaTypeID = freezed,
+    Object? departmentOrganizationID = freezed,
+    Object? courseID = freezed,
+  }) {
+    return _then(_$IdeaRegisterItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dateRegister: freezed == dateRegister
+          ? _value.dateRegister
+          : dateRegister // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApprovedTBP: freezed == isApprovedTBP
+          ? _value.isApprovedTBP
+          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedTBP: freezed == dateApprovedTBP
+          ? _value.dateApprovedTBP
+          : dateApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedTBPID: freezed == approvedTBPID
+          ? _value.approvedTBPID
+          : approvedTBPID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApproved: freezed == isApproved
+          ? _value.isApproved
+          : isApproved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApproved: freezed == dateApproved
+          ? _value.dateApproved
+          : dateApproved // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedID: freezed == approvedID
+          ? _value.approvedID
+          : approvedID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      registerIdeaTypeID: freezed == registerIdeaTypeID
+          ? _value.registerIdeaTypeID
+          : registerIdeaTypeID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentOrganizationID: freezed == departmentOrganizationID
+          ? _value.departmentOrganizationID
+          : departmentOrganizationID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      courseID: freezed == courseID
+          ? _value.courseID
+          : courseID // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$IdeaRegisterItemImpl implements _IdeaRegisterItem {
+  const _$IdeaRegisterItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'DateRegister') this.dateRegister,
+      @JsonKey(name: 'IsApprovedTBP') this.isApprovedTBP,
+      @JsonKey(name: 'DateApprovedTBP') this.dateApprovedTBP,
+      @JsonKey(name: 'ApprovedTBPID') this.approvedTBPID,
+      @JsonKey(name: 'IsApproved') this.isApproved,
+      @JsonKey(name: 'DateApproved') this.dateApproved,
+      @JsonKey(name: 'ApprovedID') this.approvedID,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'RegisterIdeaTypeID') this.registerIdeaTypeID,
+      @JsonKey(name: 'DepartmentOrganizationID') this.departmentOrganizationID,
+      @JsonKey(name: 'CourseID') this.courseID});
+
+  factory _$IdeaRegisterItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IdeaRegisterItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'DateRegister')
+  final DateTime? dateRegister;
+  @override
+  @JsonKey(name: 'IsApprovedTBP')
+  final bool? isApprovedTBP;
+  @override
+  @JsonKey(name: 'DateApprovedTBP')
+  final DateTime? dateApprovedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBPID')
+  final int? approvedTBPID;
+  @override
+  @JsonKey(name: 'IsApproved')
+  final bool? isApproved;
+  @override
+  @JsonKey(name: 'DateApproved')
+  final DateTime? dateApproved;
+  @override
+  @JsonKey(name: 'ApprovedID')
+  final int? approvedID;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'RegisterIdeaTypeID')
+  final int? registerIdeaTypeID;
+  @override
+  @JsonKey(name: 'DepartmentOrganizationID')
+  final int? departmentOrganizationID;
+  @override
+  @JsonKey(name: 'CourseID')
+  final int? courseID;
+
+  @override
+  String toString() {
+    return 'IdeaRegisterItem(id: $id, employeeId: $employeeId, dateRegister: $dateRegister, isApprovedTBP: $isApprovedTBP, dateApprovedTBP: $dateApprovedTBP, approvedTBPID: $approvedTBPID, isApproved: $isApproved, dateApproved: $dateApproved, approvedID: $approvedID, note: $note, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted, registerIdeaTypeID: $registerIdeaTypeID, departmentOrganizationID: $departmentOrganizationID, courseID: $courseID)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$IdeaRegisterItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.dateRegister, dateRegister) ||
+                other.dateRegister == dateRegister) &&
+            (identical(other.isApprovedTBP, isApprovedTBP) ||
+                other.isApprovedTBP == isApprovedTBP) &&
+            (identical(other.dateApprovedTBP, dateApprovedTBP) ||
+                other.dateApprovedTBP == dateApprovedTBP) &&
+            (identical(other.approvedTBPID, approvedTBPID) ||
+                other.approvedTBPID == approvedTBPID) &&
+            (identical(other.isApproved, isApproved) ||
+                other.isApproved == isApproved) &&
+            (identical(other.dateApproved, dateApproved) ||
+                other.dateApproved == dateApproved) &&
+            (identical(other.approvedID, approvedID) ||
+                other.approvedID == approvedID) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.registerIdeaTypeID, registerIdeaTypeID) ||
+                other.registerIdeaTypeID == registerIdeaTypeID) &&
+            (identical(
+                    other.departmentOrganizationID, departmentOrganizationID) ||
+                other.departmentOrganizationID == departmentOrganizationID) &&
+            (identical(other.courseID, courseID) ||
+                other.courseID == courseID));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      employeeId,
+      dateRegister,
+      isApprovedTBP,
+      dateApprovedTBP,
+      approvedTBPID,
+      isApproved,
+      dateApproved,
+      approvedID,
+      note,
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate,
+      isDeleted,
+      registerIdeaTypeID,
+      departmentOrganizationID,
+      courseID);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$IdeaRegisterItemImplCopyWith<_$IdeaRegisterItemImpl> get copyWith =>
+      __$$IdeaRegisterItemImplCopyWithImpl<_$IdeaRegisterItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$IdeaRegisterItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _IdeaRegisterItem implements IdeaRegisterItem {
+  const factory _IdeaRegisterItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'EmployeeID') final int? employeeId,
+      @JsonKey(name: 'DateRegister') final DateTime? dateRegister,
+      @JsonKey(name: 'IsApprovedTBP') final bool? isApprovedTBP,
+      @JsonKey(name: 'DateApprovedTBP') final DateTime? dateApprovedTBP,
+      @JsonKey(name: 'ApprovedTBPID') final int? approvedTBPID,
+      @JsonKey(name: 'IsApproved') final bool? isApproved,
+      @JsonKey(name: 'DateApproved') final DateTime? dateApproved,
+      @JsonKey(name: 'ApprovedID') final int? approvedID,
+      @JsonKey(name: 'Note') final String? note,
+      @JsonKey(name: 'CreatedBy') final String? createdBy,
+      @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+      @JsonKey(name: 'RegisterIdeaTypeID') final int? registerIdeaTypeID,
+      @JsonKey(name: 'DepartmentOrganizationID')
+      final int? departmentOrganizationID,
+      @JsonKey(name: 'CourseID') final int? courseID}) = _$IdeaRegisterItemImpl;
+
+  factory _IdeaRegisterItem.fromJson(Map<String, dynamic> json) =
+      _$IdeaRegisterItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'DateRegister')
+  DateTime? get dateRegister;
+  @override
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTBP;
+  @override
+  @JsonKey(name: 'DateApprovedTBP')
+  DateTime? get dateApprovedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBPID')
+  int? get approvedTBPID;
+  @override
+  @JsonKey(name: 'IsApproved')
+  bool? get isApproved;
+  @override
+  @JsonKey(name: 'DateApproved')
+  DateTime? get dateApproved;
+  @override
+  @JsonKey(name: 'ApprovedID')
+  int? get approvedID;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'RegisterIdeaTypeID')
+  int? get registerIdeaTypeID;
+  @override
+  @JsonKey(name: 'DepartmentOrganizationID')
+  int? get departmentOrganizationID;
+  @override
+  @JsonKey(name: 'CourseID')
+  int? get courseID;
+  @override
+  @JsonKey(ignore: true)
+  _$$IdeaRegisterItemImplCopyWith<_$IdeaRegisterItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+IdeaRegisterDetailItem _$IdeaRegisterDetailItemFromJson(
+    Map<String, dynamic> json) {
+  return _IdeaRegisterDetailItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$IdeaRegisterDetailItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RegisterIdeaID')
+  int? get registerIdeaID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Category')
+  String? get category => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Description')
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateStart')
+  DateTime? get dateStart => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateEnd')
+  DateTime? get dateEnd => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $IdeaRegisterDetailItemCopyWith<IdeaRegisterDetailItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $IdeaRegisterDetailItemCopyWith<$Res> {
+  factory $IdeaRegisterDetailItemCopyWith(IdeaRegisterDetailItem value,
+          $Res Function(IdeaRegisterDetailItem) then) =
+      _$IdeaRegisterDetailItemCopyWithImpl<$Res, IdeaRegisterDetailItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'RegisterIdeaID') int? registerIdeaID,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Category') String? category,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'DateStart') DateTime? dateStart,
+      @JsonKey(name: 'DateEnd') DateTime? dateEnd});
+}
+
+/// @nodoc
+class _$IdeaRegisterDetailItemCopyWithImpl<$Res,
+        $Val extends IdeaRegisterDetailItem>
+    implements $IdeaRegisterDetailItemCopyWith<$Res> {
+  _$IdeaRegisterDetailItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? registerIdeaID = freezed,
+    Object? stt = freezed,
+    Object? category = freezed,
+    Object? description = freezed,
+    Object? note = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? dateStart = freezed,
+    Object? dateEnd = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      registerIdeaID: freezed == registerIdeaID
+          ? _value.registerIdeaID
+          : registerIdeaID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      dateStart: freezed == dateStart
+          ? _value.dateStart
+          : dateStart // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      dateEnd: freezed == dateEnd
+          ? _value.dateEnd
+          : dateEnd // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$IdeaRegisterDetailItemImplCopyWith<$Res>
+    implements $IdeaRegisterDetailItemCopyWith<$Res> {
+  factory _$$IdeaRegisterDetailItemImplCopyWith(
+          _$IdeaRegisterDetailItemImpl value,
+          $Res Function(_$IdeaRegisterDetailItemImpl) then) =
+      __$$IdeaRegisterDetailItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'RegisterIdeaID') int? registerIdeaID,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Category') String? category,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'DateStart') DateTime? dateStart,
+      @JsonKey(name: 'DateEnd') DateTime? dateEnd});
+}
+
+/// @nodoc
+class __$$IdeaRegisterDetailItemImplCopyWithImpl<$Res>
+    extends _$IdeaRegisterDetailItemCopyWithImpl<$Res,
+        _$IdeaRegisterDetailItemImpl>
+    implements _$$IdeaRegisterDetailItemImplCopyWith<$Res> {
+  __$$IdeaRegisterDetailItemImplCopyWithImpl(
+      _$IdeaRegisterDetailItemImpl _value,
+      $Res Function(_$IdeaRegisterDetailItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? registerIdeaID = freezed,
+    Object? stt = freezed,
+    Object? category = freezed,
+    Object? description = freezed,
+    Object? note = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? dateStart = freezed,
+    Object? dateEnd = freezed,
+  }) {
+    return _then(_$IdeaRegisterDetailItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      registerIdeaID: freezed == registerIdeaID
+          ? _value.registerIdeaID
+          : registerIdeaID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      dateStart: freezed == dateStart
+          ? _value.dateStart
+          : dateStart // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      dateEnd: freezed == dateEnd
+          ? _value.dateEnd
+          : dateEnd // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$IdeaRegisterDetailItemImpl implements _IdeaRegisterDetailItem {
+  const _$IdeaRegisterDetailItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'RegisterIdeaID') this.registerIdeaID,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'Category') this.category,
+      @JsonKey(name: 'Description') this.description,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'DateStart') this.dateStart,
+      @JsonKey(name: 'DateEnd') this.dateEnd});
+
+  factory _$IdeaRegisterDetailItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IdeaRegisterDetailItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'RegisterIdeaID')
+  final int? registerIdeaID;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'Category')
+  final String? category;
+  @override
+  @JsonKey(name: 'Description')
+  final String? description;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'DateStart')
+  final DateTime? dateStart;
+  @override
+  @JsonKey(name: 'DateEnd')
+  final DateTime? dateEnd;
+
+  @override
+  String toString() {
+    return 'IdeaRegisterDetailItem(id: $id, registerIdeaID: $registerIdeaID, stt: $stt, category: $category, description: $description, note: $note, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, dateStart: $dateStart, dateEnd: $dateEnd)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$IdeaRegisterDetailItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.registerIdeaID, registerIdeaID) ||
+                other.registerIdeaID == registerIdeaID) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.dateStart, dateStart) ||
+                other.dateStart == dateStart) &&
+            (identical(other.dateEnd, dateEnd) || other.dateEnd == dateEnd));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      registerIdeaID,
+      stt,
+      category,
+      description,
+      note,
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate,
+      dateStart,
+      dateEnd);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$IdeaRegisterDetailItemImplCopyWith<_$IdeaRegisterDetailItemImpl>
+      get copyWith => __$$IdeaRegisterDetailItemImplCopyWithImpl<
+          _$IdeaRegisterDetailItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$IdeaRegisterDetailItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _IdeaRegisterDetailItem implements IdeaRegisterDetailItem {
+  const factory _IdeaRegisterDetailItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'RegisterIdeaID') final int? registerIdeaID,
+          @JsonKey(name: 'STT') final int? stt,
+          @JsonKey(name: 'Category') final String? category,
+          @JsonKey(name: 'Description') final String? description,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'DateStart') final DateTime? dateStart,
+          @JsonKey(name: 'DateEnd') final DateTime? dateEnd}) =
+      _$IdeaRegisterDetailItemImpl;
+
+  factory _IdeaRegisterDetailItem.fromJson(Map<String, dynamic> json) =
+      _$IdeaRegisterDetailItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'RegisterIdeaID')
+  int? get registerIdeaID;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'Category')
+  String? get category;
+  @override
+  @JsonKey(name: 'Description')
+  String? get description;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'DateStart')
+  DateTime? get dateStart;
+  @override
+  @JsonKey(name: 'DateEnd')
+  DateTime? get dateEnd;
+  @override
+  @JsonKey(ignore: true)
+  _$$IdeaRegisterDetailItemImplCopyWith<_$IdeaRegisterDetailItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+IdeaScoreItem _$IdeaScoreItemFromJson(Map<String, dynamic> json) {
+  return _IdeaScoreItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$IdeaScoreItem {
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TBPName')
+  String? get tbpName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ScoreNew')
+  String? get scoreNew => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeId')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'LsDepartmentId')
+  int? get lsDepartmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'tbpCheck')
+  bool? get tbpCheck => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RegisterIdeaID')
+  int? get registerIdeaID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Score')
+  double? get score => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsTBP')
+  bool? get isTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsBGD')
+  bool? get isBGD => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateApprovedTBP')
+  DateTime? get dateApprovedTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedTBPID')
+  int? get approvedTBPID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApproved')
+  bool? get isApproved => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateApproved')
+  DateTime? get dateApproved => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedID')
+  int? get approvedID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedBGD')
+  bool? get isApprovedBGD => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateApprovedBGD')
+  DateTime? get dateApprovedBGD => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedBGDID')
+  int? get approvedBGDID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ScoreRating')
+  String? get scoreRating => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $IdeaScoreItemCopyWith<IdeaScoreItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $IdeaScoreItemCopyWith<$Res> {
+  factory $IdeaScoreItemCopyWith(
+          IdeaScoreItem value, $Res Function(IdeaScoreItem) then) =
+      _$IdeaScoreItemCopyWithImpl<$Res, IdeaScoreItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'TBPName') String? tbpName,
+      @JsonKey(name: 'ScoreNew') String? scoreNew,
+      @JsonKey(name: 'EmployeeId') int? employeeId,
+      @JsonKey(name: 'LsDepartmentId') int? lsDepartmentId,
+      @JsonKey(name: 'tbpCheck') bool? tbpCheck,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'RegisterIdeaID') int? registerIdeaID,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'Score') double? score,
+      @JsonKey(name: 'IsTBP') bool? isTBP,
+      @JsonKey(name: 'IsBGD') bool? isBGD,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+      @JsonKey(name: 'DateApprovedTBP') DateTime? dateApprovedTBP,
+      @JsonKey(name: 'ApprovedTBPID') int? approvedTBPID,
+      @JsonKey(name: 'IsApproved') bool? isApproved,
+      @JsonKey(name: 'DateApproved') DateTime? dateApproved,
+      @JsonKey(name: 'ApprovedID') int? approvedID,
+      @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBGD,
+      @JsonKey(name: 'DateApprovedBGD') DateTime? dateApprovedBGD,
+      @JsonKey(name: 'ApprovedBGDID') int? approvedBGDID,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'ScoreRating') String? scoreRating});
+}
+
+/// @nodoc
+class _$IdeaScoreItemCopyWithImpl<$Res, $Val extends IdeaScoreItem>
+    implements $IdeaScoreItemCopyWith<$Res> {
+  _$IdeaScoreItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? departmentName = freezed,
+    Object? tbpName = freezed,
+    Object? scoreNew = freezed,
+    Object? employeeId = freezed,
+    Object? lsDepartmentId = freezed,
+    Object? tbpCheck = freezed,
+    Object? id = freezed,
+    Object? registerIdeaID = freezed,
+    Object? departmentId = freezed,
+    Object? score = freezed,
+    Object? isTBP = freezed,
+    Object? isBGD = freezed,
+    Object? isApprovedTBP = freezed,
+    Object? dateApprovedTBP = freezed,
+    Object? approvedTBPID = freezed,
+    Object? isApproved = freezed,
+    Object? dateApproved = freezed,
+    Object? approvedID = freezed,
+    Object? isApprovedBGD = freezed,
+    Object? dateApprovedBGD = freezed,
+    Object? approvedBGDID = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? scoreRating = freezed,
+  }) {
+    return _then(_value.copyWith(
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tbpName: freezed == tbpName
+          ? _value.tbpName
+          : tbpName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      scoreNew: freezed == scoreNew
+          ? _value.scoreNew
+          : scoreNew // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      lsDepartmentId: freezed == lsDepartmentId
+          ? _value.lsDepartmentId
+          : lsDepartmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      tbpCheck: freezed == tbpCheck
+          ? _value.tbpCheck
+          : tbpCheck // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      registerIdeaID: freezed == registerIdeaID
+          ? _value.registerIdeaID
+          : registerIdeaID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      score: freezed == score
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as double?,
+      isTBP: freezed == isTBP
+          ? _value.isTBP
+          : isTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isBGD: freezed == isBGD
+          ? _value.isBGD
+          : isBGD // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isApprovedTBP: freezed == isApprovedTBP
+          ? _value.isApprovedTBP
+          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedTBP: freezed == dateApprovedTBP
+          ? _value.dateApprovedTBP
+          : dateApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedTBPID: freezed == approvedTBPID
+          ? _value.approvedTBPID
+          : approvedTBPID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApproved: freezed == isApproved
+          ? _value.isApproved
+          : isApproved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApproved: freezed == dateApproved
+          ? _value.dateApproved
+          : dateApproved // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedID: freezed == approvedID
+          ? _value.approvedID
+          : approvedID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApprovedBGD: freezed == isApprovedBGD
+          ? _value.isApprovedBGD
+          : isApprovedBGD // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedBGD: freezed == dateApprovedBGD
+          ? _value.dateApprovedBGD
+          : dateApprovedBGD // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedBGDID: freezed == approvedBGDID
+          ? _value.approvedBGDID
+          : approvedBGDID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      scoreRating: freezed == scoreRating
+          ? _value.scoreRating
+          : scoreRating // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$IdeaScoreItemImplCopyWith<$Res>
+    implements $IdeaScoreItemCopyWith<$Res> {
+  factory _$$IdeaScoreItemImplCopyWith(
+          _$IdeaScoreItemImpl value, $Res Function(_$IdeaScoreItemImpl) then) =
+      __$$IdeaScoreItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'TBPName') String? tbpName,
+      @JsonKey(name: 'ScoreNew') String? scoreNew,
+      @JsonKey(name: 'EmployeeId') int? employeeId,
+      @JsonKey(name: 'LsDepartmentId') int? lsDepartmentId,
+      @JsonKey(name: 'tbpCheck') bool? tbpCheck,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'RegisterIdeaID') int? registerIdeaID,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'Score') double? score,
+      @JsonKey(name: 'IsTBP') bool? isTBP,
+      @JsonKey(name: 'IsBGD') bool? isBGD,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+      @JsonKey(name: 'DateApprovedTBP') DateTime? dateApprovedTBP,
+      @JsonKey(name: 'ApprovedTBPID') int? approvedTBPID,
+      @JsonKey(name: 'IsApproved') bool? isApproved,
+      @JsonKey(name: 'DateApproved') DateTime? dateApproved,
+      @JsonKey(name: 'ApprovedID') int? approvedID,
+      @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBGD,
+      @JsonKey(name: 'DateApprovedBGD') DateTime? dateApprovedBGD,
+      @JsonKey(name: 'ApprovedBGDID') int? approvedBGDID,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'ScoreRating') String? scoreRating});
+}
+
+/// @nodoc
+class __$$IdeaScoreItemImplCopyWithImpl<$Res>
+    extends _$IdeaScoreItemCopyWithImpl<$Res, _$IdeaScoreItemImpl>
+    implements _$$IdeaScoreItemImplCopyWith<$Res> {
+  __$$IdeaScoreItemImplCopyWithImpl(
+      _$IdeaScoreItemImpl _value, $Res Function(_$IdeaScoreItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? departmentName = freezed,
+    Object? tbpName = freezed,
+    Object? scoreNew = freezed,
+    Object? employeeId = freezed,
+    Object? lsDepartmentId = freezed,
+    Object? tbpCheck = freezed,
+    Object? id = freezed,
+    Object? registerIdeaID = freezed,
+    Object? departmentId = freezed,
+    Object? score = freezed,
+    Object? isTBP = freezed,
+    Object? isBGD = freezed,
+    Object? isApprovedTBP = freezed,
+    Object? dateApprovedTBP = freezed,
+    Object? approvedTBPID = freezed,
+    Object? isApproved = freezed,
+    Object? dateApproved = freezed,
+    Object? approvedID = freezed,
+    Object? isApprovedBGD = freezed,
+    Object? dateApprovedBGD = freezed,
+    Object? approvedBGDID = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? scoreRating = freezed,
+  }) {
+    return _then(_$IdeaScoreItemImpl(
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tbpName: freezed == tbpName
+          ? _value.tbpName
+          : tbpName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      scoreNew: freezed == scoreNew
+          ? _value.scoreNew
+          : scoreNew // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      lsDepartmentId: freezed == lsDepartmentId
+          ? _value.lsDepartmentId
+          : lsDepartmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      tbpCheck: freezed == tbpCheck
+          ? _value.tbpCheck
+          : tbpCheck // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      registerIdeaID: freezed == registerIdeaID
+          ? _value.registerIdeaID
+          : registerIdeaID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      score: freezed == score
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as double?,
+      isTBP: freezed == isTBP
+          ? _value.isTBP
+          : isTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isBGD: freezed == isBGD
+          ? _value.isBGD
+          : isBGD // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isApprovedTBP: freezed == isApprovedTBP
+          ? _value.isApprovedTBP
+          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedTBP: freezed == dateApprovedTBP
+          ? _value.dateApprovedTBP
+          : dateApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedTBPID: freezed == approvedTBPID
+          ? _value.approvedTBPID
+          : approvedTBPID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApproved: freezed == isApproved
+          ? _value.isApproved
+          : isApproved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApproved: freezed == dateApproved
+          ? _value.dateApproved
+          : dateApproved // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedID: freezed == approvedID
+          ? _value.approvedID
+          : approvedID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApprovedBGD: freezed == isApprovedBGD
+          ? _value.isApprovedBGD
+          : isApprovedBGD // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedBGD: freezed == dateApprovedBGD
+          ? _value.dateApprovedBGD
+          : dateApprovedBGD // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approvedBGDID: freezed == approvedBGDID
+          ? _value.approvedBGDID
+          : approvedBGDID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      scoreRating: freezed == scoreRating
+          ? _value.scoreRating
+          : scoreRating // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$IdeaScoreItemImpl implements _IdeaScoreItem {
+  const _$IdeaScoreItemImpl(
+      {@JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'TBPName') this.tbpName,
+      @JsonKey(name: 'ScoreNew') this.scoreNew,
+      @JsonKey(name: 'EmployeeId') this.employeeId,
+      @JsonKey(name: 'LsDepartmentId') this.lsDepartmentId,
+      @JsonKey(name: 'tbpCheck') this.tbpCheck,
+      @JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'RegisterIdeaID') this.registerIdeaID,
+      @JsonKey(name: 'DepartmentID') this.departmentId,
+      @JsonKey(name: 'Score') this.score,
+      @JsonKey(name: 'IsTBP') this.isTBP,
+      @JsonKey(name: 'IsBGD') this.isBGD,
+      @JsonKey(name: 'IsApprovedTBP') this.isApprovedTBP,
+      @JsonKey(name: 'DateApprovedTBP') this.dateApprovedTBP,
+      @JsonKey(name: 'ApprovedTBPID') this.approvedTBPID,
+      @JsonKey(name: 'IsApproved') this.isApproved,
+      @JsonKey(name: 'DateApproved') this.dateApproved,
+      @JsonKey(name: 'ApprovedID') this.approvedID,
+      @JsonKey(name: 'IsApprovedBGD') this.isApprovedBGD,
+      @JsonKey(name: 'DateApprovedBGD') this.dateApprovedBGD,
+      @JsonKey(name: 'ApprovedBGDID') this.approvedBGDID,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'ScoreRating') this.scoreRating});
+
+  factory _$IdeaScoreItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IdeaScoreItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'TBPName')
+  final String? tbpName;
+  @override
+  @JsonKey(name: 'ScoreNew')
+  final String? scoreNew;
+  @override
+  @JsonKey(name: 'EmployeeId')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'LsDepartmentId')
+  final int? lsDepartmentId;
+  @override
+  @JsonKey(name: 'tbpCheck')
+  final bool? tbpCheck;
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'RegisterIdeaID')
+  final int? registerIdeaID;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+  @override
+  @JsonKey(name: 'Score')
+  final double? score;
+  @override
+  @JsonKey(name: 'IsTBP')
+  final bool? isTBP;
+  @override
+  @JsonKey(name: 'IsBGD')
+  final bool? isBGD;
+  @override
+  @JsonKey(name: 'IsApprovedTBP')
+  final bool? isApprovedTBP;
+  @override
+  @JsonKey(name: 'DateApprovedTBP')
+  final DateTime? dateApprovedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBPID')
+  final int? approvedTBPID;
+  @override
+  @JsonKey(name: 'IsApproved')
+  final bool? isApproved;
+  @override
+  @JsonKey(name: 'DateApproved')
+  final DateTime? dateApproved;
+  @override
+  @JsonKey(name: 'ApprovedID')
+  final int? approvedID;
+  @override
+  @JsonKey(name: 'IsApprovedBGD')
+  final bool? isApprovedBGD;
+  @override
+  @JsonKey(name: 'DateApprovedBGD')
+  final DateTime? dateApprovedBGD;
+  @override
+  @JsonKey(name: 'ApprovedBGDID')
+  final int? approvedBGDID;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'ScoreRating')
+  final String? scoreRating;
+
+  @override
+  String toString() {
+    return 'IdeaScoreItem(departmentName: $departmentName, tbpName: $tbpName, scoreNew: $scoreNew, employeeId: $employeeId, lsDepartmentId: $lsDepartmentId, tbpCheck: $tbpCheck, id: $id, registerIdeaID: $registerIdeaID, departmentId: $departmentId, score: $score, isTBP: $isTBP, isBGD: $isBGD, isApprovedTBP: $isApprovedTBP, dateApprovedTBP: $dateApprovedTBP, approvedTBPID: $approvedTBPID, isApproved: $isApproved, dateApproved: $dateApproved, approvedID: $approvedID, isApprovedBGD: $isApprovedBGD, dateApprovedBGD: $dateApprovedBGD, approvedBGDID: $approvedBGDID, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, scoreRating: $scoreRating)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$IdeaScoreItemImpl &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.tbpName, tbpName) || other.tbpName == tbpName) &&
+            (identical(other.scoreNew, scoreNew) ||
+                other.scoreNew == scoreNew) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.lsDepartmentId, lsDepartmentId) ||
+                other.lsDepartmentId == lsDepartmentId) &&
+            (identical(other.tbpCheck, tbpCheck) ||
+                other.tbpCheck == tbpCheck) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.registerIdeaID, registerIdeaID) ||
+                other.registerIdeaID == registerIdeaID) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId) &&
+            (identical(other.score, score) || other.score == score) &&
+            (identical(other.isTBP, isTBP) || other.isTBP == isTBP) &&
+            (identical(other.isBGD, isBGD) || other.isBGD == isBGD) &&
+            (identical(other.isApprovedTBP, isApprovedTBP) ||
+                other.isApprovedTBP == isApprovedTBP) &&
+            (identical(other.dateApprovedTBP, dateApprovedTBP) ||
+                other.dateApprovedTBP == dateApprovedTBP) &&
+            (identical(other.approvedTBPID, approvedTBPID) ||
+                other.approvedTBPID == approvedTBPID) &&
+            (identical(other.isApproved, isApproved) ||
+                other.isApproved == isApproved) &&
+            (identical(other.dateApproved, dateApproved) ||
+                other.dateApproved == dateApproved) &&
+            (identical(other.approvedID, approvedID) ||
+                other.approvedID == approvedID) &&
+            (identical(other.isApprovedBGD, isApprovedBGD) ||
+                other.isApprovedBGD == isApprovedBGD) &&
+            (identical(other.dateApprovedBGD, dateApprovedBGD) ||
+                other.dateApprovedBGD == dateApprovedBGD) &&
+            (identical(other.approvedBGDID, approvedBGDID) ||
+                other.approvedBGDID == approvedBGDID) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.scoreRating, scoreRating) ||
+                other.scoreRating == scoreRating));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        departmentName,
+        tbpName,
+        scoreNew,
+        employeeId,
+        lsDepartmentId,
+        tbpCheck,
+        id,
+        registerIdeaID,
+        departmentId,
+        score,
+        isTBP,
+        isBGD,
+        isApprovedTBP,
+        dateApprovedTBP,
+        approvedTBPID,
+        isApproved,
+        dateApproved,
+        approvedID,
+        isApprovedBGD,
+        dateApprovedBGD,
+        approvedBGDID,
+        createdBy,
+        createdDate,
+        updatedBy,
+        updatedDate,
+        scoreRating
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$IdeaScoreItemImplCopyWith<_$IdeaScoreItemImpl> get copyWith =>
+      __$$IdeaScoreItemImplCopyWithImpl<_$IdeaScoreItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$IdeaScoreItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _IdeaScoreItem implements IdeaScoreItem {
+  const factory _IdeaScoreItem(
+          {@JsonKey(name: 'DepartmentName') final String? departmentName,
+          @JsonKey(name: 'TBPName') final String? tbpName,
+          @JsonKey(name: 'ScoreNew') final String? scoreNew,
+          @JsonKey(name: 'EmployeeId') final int? employeeId,
+          @JsonKey(name: 'LsDepartmentId') final int? lsDepartmentId,
+          @JsonKey(name: 'tbpCheck') final bool? tbpCheck,
+          @JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'RegisterIdeaID') final int? registerIdeaID,
+          @JsonKey(name: 'DepartmentID') final int? departmentId,
+          @JsonKey(name: 'Score') final double? score,
+          @JsonKey(name: 'IsTBP') final bool? isTBP,
+          @JsonKey(name: 'IsBGD') final bool? isBGD,
+          @JsonKey(name: 'IsApprovedTBP') final bool? isApprovedTBP,
+          @JsonKey(name: 'DateApprovedTBP') final DateTime? dateApprovedTBP,
+          @JsonKey(name: 'ApprovedTBPID') final int? approvedTBPID,
+          @JsonKey(name: 'IsApproved') final bool? isApproved,
+          @JsonKey(name: 'DateApproved') final DateTime? dateApproved,
+          @JsonKey(name: 'ApprovedID') final int? approvedID,
+          @JsonKey(name: 'IsApprovedBGD') final bool? isApprovedBGD,
+          @JsonKey(name: 'DateApprovedBGD') final DateTime? dateApprovedBGD,
+          @JsonKey(name: 'ApprovedBGDID') final int? approvedBGDID,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'ScoreRating') final String? scoreRating}) =
+      _$IdeaScoreItemImpl;
+
+  factory _IdeaScoreItem.fromJson(Map<String, dynamic> json) =
+      _$IdeaScoreItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'TBPName')
+  String? get tbpName;
+  @override
+  @JsonKey(name: 'ScoreNew')
+  String? get scoreNew;
+  @override
+  @JsonKey(name: 'EmployeeId')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'LsDepartmentId')
+  int? get lsDepartmentId;
+  @override
+  @JsonKey(name: 'tbpCheck')
+  bool? get tbpCheck;
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'RegisterIdeaID')
+  int? get registerIdeaID;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(name: 'Score')
+  double? get score;
+  @override
+  @JsonKey(name: 'IsTBP')
+  bool? get isTBP;
+  @override
+  @JsonKey(name: 'IsBGD')
+  bool? get isBGD;
+  @override
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTBP;
+  @override
+  @JsonKey(name: 'DateApprovedTBP')
+  DateTime? get dateApprovedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBPID')
+  int? get approvedTBPID;
+  @override
+  @JsonKey(name: 'IsApproved')
+  bool? get isApproved;
+  @override
+  @JsonKey(name: 'DateApproved')
+  DateTime? get dateApproved;
+  @override
+  @JsonKey(name: 'ApprovedID')
+  int? get approvedID;
+  @override
+  @JsonKey(name: 'IsApprovedBGD')
+  bool? get isApprovedBGD;
+  @override
+  @JsonKey(name: 'DateApprovedBGD')
+  DateTime? get dateApprovedBGD;
+  @override
+  @JsonKey(name: 'ApprovedBGDID')
+  int? get approvedBGDID;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'ScoreRating')
+  String? get scoreRating;
+  @override
+  @JsonKey(ignore: true)
+  _$$IdeaScoreItemImplCopyWith<_$IdeaScoreItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+IdeaFileItem _$IdeaFileItemFromJson(Map<String, dynamic> json) {
+  return _IdeaFileItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$IdeaFileItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RegisterIdeaID')
+  int? get registerIdeaID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileName')
+  String? get fileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OriginPath')
+  String? get originPath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ServerPath')
+  String? get serverPath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $IdeaFileItemCopyWith<IdeaFileItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $IdeaFileItemCopyWith<$Res> {
+  factory $IdeaFileItemCopyWith(
+          IdeaFileItem value, $Res Function(IdeaFileItem) then) =
+      _$IdeaFileItemCopyWithImpl<$Res, IdeaFileItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'RegisterIdeaID') int? registerIdeaID,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'OriginPath') String? originPath,
+      @JsonKey(name: 'ServerPath') String? serverPath,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class _$IdeaFileItemCopyWithImpl<$Res, $Val extends IdeaFileItem>
+    implements $IdeaFileItemCopyWith<$Res> {
+  _$IdeaFileItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? registerIdeaID = freezed,
+    Object? fileName = freezed,
+    Object? originPath = freezed,
+    Object? serverPath = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      registerIdeaID: freezed == registerIdeaID
+          ? _value.registerIdeaID
+          : registerIdeaID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      originPath: freezed == originPath
+          ? _value.originPath
+          : originPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serverPath: freezed == serverPath
+          ? _value.serverPath
+          : serverPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$IdeaFileItemImplCopyWith<$Res>
+    implements $IdeaFileItemCopyWith<$Res> {
+  factory _$$IdeaFileItemImplCopyWith(
+          _$IdeaFileItemImpl value, $Res Function(_$IdeaFileItemImpl) then) =
+      __$$IdeaFileItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'RegisterIdeaID') int? registerIdeaID,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'OriginPath') String? originPath,
+      @JsonKey(name: 'ServerPath') String? serverPath,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class __$$IdeaFileItemImplCopyWithImpl<$Res>
+    extends _$IdeaFileItemCopyWithImpl<$Res, _$IdeaFileItemImpl>
+    implements _$$IdeaFileItemImplCopyWith<$Res> {
+  __$$IdeaFileItemImplCopyWithImpl(
+      _$IdeaFileItemImpl _value, $Res Function(_$IdeaFileItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? registerIdeaID = freezed,
+    Object? fileName = freezed,
+    Object? originPath = freezed,
+    Object? serverPath = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_$IdeaFileItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      registerIdeaID: freezed == registerIdeaID
+          ? _value.registerIdeaID
+          : registerIdeaID // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      originPath: freezed == originPath
+          ? _value.originPath
+          : originPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serverPath: freezed == serverPath
+          ? _value.serverPath
+          : serverPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$IdeaFileItemImpl implements _IdeaFileItem {
+  const _$IdeaFileItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'RegisterIdeaID') this.registerIdeaID,
+      @JsonKey(name: 'FileName') this.fileName,
+      @JsonKey(name: 'OriginPath') this.originPath,
+      @JsonKey(name: 'ServerPath') this.serverPath,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate});
+
+  factory _$IdeaFileItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IdeaFileItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'RegisterIdeaID')
+  final int? registerIdeaID;
+  @override
+  @JsonKey(name: 'FileName')
+  final String? fileName;
+  @override
+  @JsonKey(name: 'OriginPath')
+  final String? originPath;
+  @override
+  @JsonKey(name: 'ServerPath')
+  final String? serverPath;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+
+  @override
+  String toString() {
+    return 'IdeaFileItem(id: $id, registerIdeaID: $registerIdeaID, fileName: $fileName, originPath: $originPath, serverPath: $serverPath, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$IdeaFileItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.registerIdeaID, registerIdeaID) ||
+                other.registerIdeaID == registerIdeaID) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
+            (identical(other.originPath, originPath) ||
+                other.originPath == originPath) &&
+            (identical(other.serverPath, serverPath) ||
+                other.serverPath == serverPath) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, registerIdeaID, fileName,
+      originPath, serverPath, createdBy, createdDate, updatedBy, updatedDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$IdeaFileItemImplCopyWith<_$IdeaFileItemImpl> get copyWith =>
+      __$$IdeaFileItemImplCopyWithImpl<_$IdeaFileItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$IdeaFileItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _IdeaFileItem implements IdeaFileItem {
+  const factory _IdeaFileItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'RegisterIdeaID') final int? registerIdeaID,
+          @JsonKey(name: 'FileName') final String? fileName,
+          @JsonKey(name: 'OriginPath') final String? originPath,
+          @JsonKey(name: 'ServerPath') final String? serverPath,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate}) =
+      _$IdeaFileItemImpl;
+
+  factory _IdeaFileItem.fromJson(Map<String, dynamic> json) =
+      _$IdeaFileItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'RegisterIdeaID')
+  int? get registerIdeaID;
+  @override
+  @JsonKey(name: 'FileName')
+  String? get fileName;
+  @override
+  @JsonKey(name: 'OriginPath')
+  String? get originPath;
+  @override
+  @JsonKey(name: 'ServerPath')
+  String? get serverPath;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(ignore: true)
+  _$$IdeaFileItemImplCopyWith<_$IdeaFileItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

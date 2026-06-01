@@ -59,6 +59,9 @@ import '../features/workplace/app/reg_general/view/pages/work_requirement/view/p
 import '../features/workplace/app/reg_general/view/pages/work_requirement/view/pages/work_requirement_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/view/pages/work_requirement_edit_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/view/pages/work_requirement_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/view/bloc/idea_registration_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/view/pages/idea_registration_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/view/pages/idea_registration_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_screen.dart';
@@ -1055,6 +1058,26 @@ class AppRouter {
               }
               return const WorkRequirementEditScreen(itemId: 0);
             },
+          ),
+        ],
+      ),
+
+      //---(IdeaRegistration)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<IdeaRegistrationBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.ideaRegistration,
+            builder: (context, state) => const IdeaRegistrationScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.ideaRegistrationAdd,
+            builder: (context, state) => const IdeaRegistrationAddScreen(),
           ),
         ],
       ),

@@ -350,15 +350,19 @@ class ApiEndPoint {
       '/RegisterContract/send-email-new-contract';
   static const String approveOrCancel = '/RegisterContract/approve-or-cancel';
 
+  // Job requirement
   static const String getWorkRequirement =
       '/jobrequirement/get-job-requirement-personal';
-  static const String saveWorkRequirement =
-      '/jobrequirement/save-data';
+  static const String saveWorkRequirement = '/jobrequirement/save-data';
   static const String getWorkRequirementDepartment =
       '/handover/get-departments';
   static const String getWorkRequirementApprover =
       '/EmployeeWFH/get-employee-approver';
-  static const String getWorkRequirementDetail =
-      '/jobrequirement/details';
+  static const String getWorkRequirementDetail = '/jobrequirement/details';
   static const String deleteWorkRequirement = '/jobrequirement/delete';
+
+  // Idea Registration
+  static const String getIdeaRegistration = '/RegisterIdea/get-ideas';
+  static const String getCourseCatalog = '/RegisterIdea/get-course-catalog';
+  static const String saveIdea = '/RegisterIdea/save-idea';
 }

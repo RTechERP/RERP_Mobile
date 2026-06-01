@@ -110,7 +110,8 @@ class _SelectSheetState<T> extends State<_SelectSheet<T>> {
   void _requestFocusAndScroll() {
     if (!mounted) return;
     if (!widget.items.isEmpty) {
-      _modalFocusScope.requestFocus(_searchFocusNode);
+      // Tạm thời tắt auto-focus search vì ảnh hưởng scroll
+      // _modalFocusScope.requestFocus(_searchFocusNode);
       if (_initialSelectedIndex != null && _filtered.isNotEmpty) {
         final idx = _initialSelectedIndex!;
         final actualIndex = (idx < _filtered.length)
@@ -409,7 +410,8 @@ class _SelectSheetGroupedState<T> extends State<_SelectSheetGrouped<T>> {
   void _requestFocusAndScroll() {
     if (!mounted) return;
     if (!widget.items.isEmpty) {
-      _modalFocusScope.requestFocus(_searchFocusNode);
+      // Tạm thời tắt auto-focus search vì ảnh hưởng scroll
+      // _modalFocusScope.requestFocus(_searchFocusNode);
       if (_initialSelectedIndex != null && _filtered.isNotEmpty) {
         final idx = _initialSelectedIndex!;
         final actualIndex = (idx < _filtered.length)

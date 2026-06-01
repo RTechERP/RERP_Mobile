@@ -408,3 +408,298 @@ Map<String, dynamic> _$$WorkRequirementSaveResponseImplToJson(
       'JobRequirementDetails': instance.jobRequirementDetails,
       'JobRequirementFiles': instance.jobRequirementFiles,
     };
+
+_$IdeaDetailItemImpl _$$IdeaDetailItemImplFromJson(Map<String, dynamic> json) =>
+    _$IdeaDetailItemImpl(
+      employees: (json['em'] as List<dynamic>?)
+          ?.map((e) => IdeaEmployeeItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      departments: (json['de'] as List<dynamic>?)
+          ?.map((e) => IdeaDepartmentItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      register: json['rgt'] == null
+          ? null
+          : IdeaRegisterItem.fromJson(json['rgt'] as Map<String, dynamic>),
+      registerDetails: (json['rgtd'] as List<dynamic>?)
+          ?.map(
+              (e) => IdeaRegisterDetailItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      registerScores: (json['rgts'] as List<dynamic>?)
+          ?.map((e) => IdeaScoreItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      registerFiles: (json['rgtf'] as List<dynamic>?)
+          ?.map((e) => IdeaFileItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$IdeaDetailItemImplToJson(
+        _$IdeaDetailItemImpl instance) =>
+    <String, dynamic>{
+      'em': instance.employees,
+      'de': instance.departments,
+      'rgt': instance.register,
+      'rgtd': instance.registerDetails,
+      'rgts': instance.registerScores,
+      'rgtf': instance.registerFiles,
+    };
+
+_$IdeaEmployeeItemImpl _$$IdeaEmployeeItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$IdeaEmployeeItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      fullName: json['FullName'] as String?,
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$IdeaEmployeeItemImplToJson(
+        _$IdeaEmployeeItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'FullName': instance.fullName,
+      'DepartmentID': instance.departmentId,
+    };
+
+_$IdeaDepartmentItemImpl _$$IdeaDepartmentItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$IdeaDepartmentItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      name: json['Name'] as String?,
+      description: json['Description'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      status: (json['Status'] as num?)?.toInt(),
+      email: json['Email'] as String?,
+      headofDepartment: (json['HeadofDepartment'] as num?)?.toInt(),
+      isShowHotline: json['IsShowHotline'] as bool?,
+      pId: json['PId'] as String?,
+      stt: (json['STT'] as num?)?.toInt(),
+      isDeleted: json['IsDeleted'] as bool?,
+      parentId: (json['ParentID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$IdeaDepartmentItemImplToJson(
+        _$IdeaDepartmentItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'Name': instance.name,
+      'Description': instance.description,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'Status': instance.status,
+      'Email': instance.email,
+      'HeadofDepartment': instance.headofDepartment,
+      'IsShowHotline': instance.isShowHotline,
+      'PId': instance.pId,
+      'STT': instance.stt,
+      'IsDeleted': instance.isDeleted,
+      'ParentID': instance.parentId,
+    };
+
+_$IdeaRegisterItemImpl _$$IdeaRegisterItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$IdeaRegisterItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      dateRegister: json['DateRegister'] == null
+          ? null
+          : DateTime.parse(json['DateRegister'] as String),
+      isApprovedTBP: json['IsApprovedTBP'] as bool?,
+      dateApprovedTBP: json['DateApprovedTBP'] == null
+          ? null
+          : DateTime.parse(json['DateApprovedTBP'] as String),
+      approvedTBPID: (json['ApprovedTBPID'] as num?)?.toInt(),
+      isApproved: json['IsApproved'] as bool?,
+      dateApproved: json['DateApproved'] == null
+          ? null
+          : DateTime.parse(json['DateApproved'] as String),
+      approvedID: (json['ApprovedID'] as num?)?.toInt(),
+      note: json['Note'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      isDeleted: json['IsDeleted'] as bool?,
+      registerIdeaTypeID: (json['RegisterIdeaTypeID'] as num?)?.toInt(),
+      departmentOrganizationID:
+          (json['DepartmentOrganizationID'] as num?)?.toInt(),
+      courseID: (json['CourseID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$IdeaRegisterItemImplToJson(
+        _$IdeaRegisterItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'EmployeeID': instance.employeeId,
+      'DateRegister': instance.dateRegister?.toIso8601String(),
+      'IsApprovedTBP': instance.isApprovedTBP,
+      'DateApprovedTBP': instance.dateApprovedTBP?.toIso8601String(),
+      'ApprovedTBPID': instance.approvedTBPID,
+      'IsApproved': instance.isApproved,
+      'DateApproved': instance.dateApproved?.toIso8601String(),
+      'ApprovedID': instance.approvedID,
+      'Note': instance.note,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'IsDeleted': instance.isDeleted,
+      'RegisterIdeaTypeID': instance.registerIdeaTypeID,
+      'DepartmentOrganizationID': instance.departmentOrganizationID,
+      'CourseID': instance.courseID,
+    };
+
+_$IdeaRegisterDetailItemImpl _$$IdeaRegisterDetailItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$IdeaRegisterDetailItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      registerIdeaID: (json['RegisterIdeaID'] as num?)?.toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
+      category: json['Category'] as String?,
+      description: json['Description'] as String?,
+      note: json['Note'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      dateStart: json['DateStart'] == null
+          ? null
+          : DateTime.parse(json['DateStart'] as String),
+      dateEnd: json['DateEnd'] == null
+          ? null
+          : DateTime.parse(json['DateEnd'] as String),
+    );
+
+Map<String, dynamic> _$$IdeaRegisterDetailItemImplToJson(
+        _$IdeaRegisterDetailItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'RegisterIdeaID': instance.registerIdeaID,
+      'STT': instance.stt,
+      'Category': instance.category,
+      'Description': instance.description,
+      'Note': instance.note,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'DateStart': instance.dateStart?.toIso8601String(),
+      'DateEnd': instance.dateEnd?.toIso8601String(),
+    };
+
+_$IdeaScoreItemImpl _$$IdeaScoreItemImplFromJson(Map<String, dynamic> json) =>
+    _$IdeaScoreItemImpl(
+      departmentName: json['DepartmentName'] as String?,
+      tbpName: json['TBPName'] as String?,
+      scoreNew: json['ScoreNew'] as String?,
+      employeeId: (json['EmployeeId'] as num?)?.toInt(),
+      lsDepartmentId: (json['LsDepartmentId'] as num?)?.toInt(),
+      tbpCheck: json['tbpCheck'] as bool?,
+      id: (json['ID'] as num?)?.toInt(),
+      registerIdeaID: (json['RegisterIdeaID'] as num?)?.toInt(),
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+      score: (json['Score'] as num?)?.toDouble(),
+      isTBP: json['IsTBP'] as bool?,
+      isBGD: json['IsBGD'] as bool?,
+      isApprovedTBP: json['IsApprovedTBP'] as bool?,
+      dateApprovedTBP: json['DateApprovedTBP'] == null
+          ? null
+          : DateTime.parse(json['DateApprovedTBP'] as String),
+      approvedTBPID: (json['ApprovedTBPID'] as num?)?.toInt(),
+      isApproved: json['IsApproved'] as bool?,
+      dateApproved: json['DateApproved'] == null
+          ? null
+          : DateTime.parse(json['DateApproved'] as String),
+      approvedID: (json['ApprovedID'] as num?)?.toInt(),
+      isApprovedBGD: json['IsApprovedBGD'] as bool?,
+      dateApprovedBGD: json['DateApprovedBGD'] == null
+          ? null
+          : DateTime.parse(json['DateApprovedBGD'] as String),
+      approvedBGDID: (json['ApprovedBGDID'] as num?)?.toInt(),
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      scoreRating: json['ScoreRating'] as String?,
+    );
+
+Map<String, dynamic> _$$IdeaScoreItemImplToJson(_$IdeaScoreItemImpl instance) =>
+    <String, dynamic>{
+      'DepartmentName': instance.departmentName,
+      'TBPName': instance.tbpName,
+      'ScoreNew': instance.scoreNew,
+      'EmployeeId': instance.employeeId,
+      'LsDepartmentId': instance.lsDepartmentId,
+      'tbpCheck': instance.tbpCheck,
+      'ID': instance.id,
+      'RegisterIdeaID': instance.registerIdeaID,
+      'DepartmentID': instance.departmentId,
+      'Score': instance.score,
+      'IsTBP': instance.isTBP,
+      'IsBGD': instance.isBGD,
+      'IsApprovedTBP': instance.isApprovedTBP,
+      'DateApprovedTBP': instance.dateApprovedTBP?.toIso8601String(),
+      'ApprovedTBPID': instance.approvedTBPID,
+      'IsApproved': instance.isApproved,
+      'DateApproved': instance.dateApproved?.toIso8601String(),
+      'ApprovedID': instance.approvedID,
+      'IsApprovedBGD': instance.isApprovedBGD,
+      'DateApprovedBGD': instance.dateApprovedBGD?.toIso8601String(),
+      'ApprovedBGDID': instance.approvedBGDID,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'ScoreRating': instance.scoreRating,
+    };
+
+_$IdeaFileItemImpl _$$IdeaFileItemImplFromJson(Map<String, dynamic> json) =>
+    _$IdeaFileItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      registerIdeaID: (json['RegisterIdeaID'] as num?)?.toInt(),
+      fileName: json['FileName'] as String?,
+      originPath: json['OriginPath'] as String?,
+      serverPath: json['ServerPath'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+    );
+
+Map<String, dynamic> _$$IdeaFileItemImplToJson(_$IdeaFileItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'RegisterIdeaID': instance.registerIdeaID,
+      'FileName': instance.fileName,
+      'OriginPath': instance.originPath,
+      'ServerPath': instance.serverPath,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+    };

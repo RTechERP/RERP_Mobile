@@ -38,6 +38,10 @@ import '../features/workplace/app/reg_general/view/pages/work_requirement/data/d
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/view/bloc/work_requirement_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/data/datasource/service/idea_registration_service.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/data/repository/idea_registration_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/data/repository/idea_registration_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/view/bloc/idea_registration_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/datasource/service/work_category_service.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo_impl.dart';
@@ -192,6 +196,10 @@ void configureDependencies() {
     () => WorkRequirementService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<IdeaRegistrationService>(
+    () => IdeaRegistrationService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<ContractRegistrationService>(
     () => ContractRegistrationService(getIt<Dio>()),
   );
@@ -273,6 +281,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<WorkRequirementRepo>(
     () => WorkRequirementRepoImpl(getIt<WorkRequirementService>()),
+  );
+
+  getIt.registerLazySingleton<IdeaRegistrationRepo>(
+    () => IdeaRegistrationRepoImpl(getIt<IdeaRegistrationService>()),
   );
 
   getIt.registerLazySingleton<ContractRegistrationRepo>(
@@ -411,6 +423,14 @@ void configureDependencies() {
   getIt.registerFactory<WorkRequirementBloc>(
     () => WorkRequirementBloc(
       getIt<WorkRequirementRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<IdeaRegistrationBloc>(
+    () => IdeaRegistrationBloc(
+      getIt<IdeaRegistrationRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

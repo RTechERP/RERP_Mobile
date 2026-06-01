@@ -96,7 +96,6 @@ class AppItemRegistry {
     //   route: '/regwork/sum-personal',
     //   imageUrl: AppImages.app_sum_personal,
     // ),
-
     AppItemModel(
       id: 'reg_work:sum_salary',
       name: 'reg_work.sum_salary'.tr(),
@@ -149,7 +148,6 @@ class AppItemRegistry {
     //   route: '/reg-general/special-purchase',
     //   imageUrl: AppImages.reg_general_special_purchase,
     // ),
-
     AppItemModel(
       id: 'reg_general:work_request',
       name: 'reg_general.work_request'.tr(),
@@ -159,17 +157,17 @@ class AppItemRegistry {
       route: RouteNames.workRequirement,
       imageUrl: AppImages.reg_general_work_request,
     ),
-    //
-    // AppItemModel(
-    //   id: 'reg_general:idea',
-    //   name: 'reg_general.idea'.tr(),
-    //   iconCodePoint: Icons.lightbulb_outline.codePoint,
-    //   iconFontFamily: 'MaterialIcons',
-    //   tab: 'reg_general',
-    //   route: '',
-    //   imageUrl: AppImages.reg_general_idea,
-    // ),
-    //
+
+    AppItemModel(
+      id: 'reg_general:idea',
+      name: 'reg_general.idea'.tr(),
+      iconCodePoint: Icons.lightbulb_outline.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_general',
+      route: RouteNames.ideaRegistration,
+      imageUrl: AppImages.reg_general_idea,
+    ),
+
     AppItemModel(
       id: 'reg_general:contract',
       name: 'reg_general.contract'.tr(),
@@ -199,7 +197,6 @@ class AppItemRegistry {
     //   route: RouteNames.workCategory,
     //   imageUrl: AppImages.reg_general_work,
     // ),
-
     AppItemModel(
       id: 'reg_general:personal_asset',
       name: 'reg_general.personal_asset'.tr(),
@@ -278,8 +275,7 @@ class AppItemRegistry {
     ),
   ];
 
-  static final List<AppItemModel> generalforms = [
-  ];
+  static final List<AppItemModel> generalforms = [];
 
   static final List<AppItemModel> reports = [
     /// ================= REPORT =================
