@@ -35,23 +35,27 @@ class DialogService {
   static const int _toastCooldownSeconds = 3;
   static const int _maxPinRetry = 3;
   static int _pinFailedCount = 0;
+  static bool _isPinDialogShown = false;
 
   static void resetPinFailedCount() {
     _pinFailedCount = 0;
   }
 
-  static Future<bool> showPinDialog({
+  static Future<bool?> showPinDialog({
     required BuildContext context,
     bool isLoading = false,
     String? errorMessage,
   }) async {
-    bool confirmed = false;
+    if (_isPinDialogShown) return null;
+    _isPinDialogShown = true;
+
+    bool? confirmed;
 
     final controller = PinInputController();
     int currentRetryCount = _pinFailedCount;
     bool isLocked = _pinFailedCount >= _maxPinRetry;
 
-    await showDialog<bool>(
+    await showDialog<bool?>(
       context: context,
       barrierDismissible: false,
       builder: (dialogContext) {
@@ -84,11 +88,21 @@ class DialogService {
                 isPinLocked: isLocked,
                 onSubmit: (pin) {
                   if (isLocked) return;
-                  blocContext.read<SalaryBloc>().add(SalaryEvent.verifyPin(pin));
+                  blocContext.read<SalaryBloc>().add(
+                    SalaryEvent.verifyPin(pin),
+                  );
                 },
                 onCancel: () {
                   _pinFailedCount = 0;
+                  confirmed = false;
                   Navigator.of(dialogContext).pop(false);
+                  context.pop();
+                },
+                onForgotPin: () {
+                  _pinFailedCount = 0;
+                  confirmed = null;
+                  Navigator.of(dialogContext).pop(null);
+                  context.push(RouteNames.salaryForgotPin);
                 },
               );
             },
@@ -97,6 +111,7 @@ class DialogService {
       },
     );
 
+    _isPinDialogShown = false;
     return confirmed;
   }
 
@@ -163,7 +178,6 @@ class DialogService {
       ),
     );
   }
-
 
   static Future<void> showMailReport({
     required BuildContext context,
@@ -238,16 +252,16 @@ class DialogService {
       final box = context.findRenderObject() as RenderBox?;
       if (box != null) {
         await SharePlus.instance.share(
-            ShareParams(
-              subject: 'Báo cáo công việc',
-              text: text,
-              sharePositionOrigin: Rect.fromLTWH(
-                0,
-                0,
-                MediaQuery.of(context).size.width,
-                MediaQuery.of(context).size.height / 2,
-              ),
+          ShareParams(
+            subject: 'Báo cáo công việc',
+            text: text,
+            sharePositionOrigin: Rect.fromLTWH(
+              0,
+              0,
+              MediaQuery.of(context).size.width,
+              MediaQuery.of(context).size.height / 2,
             ),
+          ),
         );
       }
 
@@ -271,7 +285,8 @@ class DialogService {
 
   /// Chờ sendMailSuccess = true từ bloc.
   static Future<void> waitUntilMailSuccess(TechBloc bloc) async {
-    await bloc.stream.firstWhere((s) => s.sendMailSuccess == true)
+    await bloc.stream
+        .firstWhere((s) => s.sendMailSuccess == true)
         .timeout(const Duration(seconds: 30));
   }
 
@@ -633,12 +648,11 @@ class DialogService {
     required BuildContext context,
     required List<WorkTripTypeVehicle> vehicleTypes,
     List<WorkTripVehicleEntry> initialEntries = const [],
-  }) =>
-      showWorkTripVehicleDialog(
-        context: context,
-        vehicleTypes: vehicleTypes,
-        initialEntries: initialEntries,
-      );
+  }) => showWorkTripVehicleDialog(
+    context: context,
+    vehicleTypes: vehicleTypes,
+    initialEntries: initialEntries,
+  );
 
   static Future<bool> showConfirmDelete({required BuildContext context}) async {
     bool confirmed = false;
@@ -701,11 +715,7 @@ class DialogService {
         borderWidth: 4,
         child: RichText(
           text: const TextSpan(
-            style: TextStyle(
-              fontSize: 13,
-              color: Colors.black87,
-              height: 1.4,
-            ),
+            style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.4),
             children: [
               TextSpan(
                 text: '• Nghỉ phép (P): ',
@@ -713,7 +723,7 @@ class DialogService {
               ),
               TextSpan(
                 text:
-                'Đăng ký trên ứng dụng trước 19h ngày liền trước ngày nghỉ, '
+                    'Đăng ký trên ứng dụng trước 19h ngày liền trước ngày nghỉ, '
                     'quỹ phép phải còn dương tại thời điểm xin nghỉ (không ứng phép). '
                     'Nhân sự đang thử việc được tính phép nhưng chưa được sử dụng, '
                     'không hoàn phép nếu không ký HĐLĐ chính thức.\n\n',
@@ -724,7 +734,7 @@ class DialogService {
               ),
               TextSpan(
                 text:
-                'Xin nghỉ sau 19h của ngày liền trước ngày nghỉ hoặc khi không còn phép.\n\n',
+                    'Xin nghỉ sau 19h của ngày liền trước ngày nghỉ hoặc khi không còn phép.\n\n',
               ),
               TextSpan(
                 text: '• Nghỉ việc riêng có hưởng lương (R): ',
@@ -732,18 +742,14 @@ class DialogService {
               ),
               TextSpan(
                 text:
-                'NLĐ kết hôn (03 ngày); Con NLĐ kết hôn (01 ngày); '
+                    'NLĐ kết hôn (03 ngày); Con NLĐ kết hôn (01 ngày); '
                     'Cha/Mẹ/Vợ/Chồng/Con mất (03 ngày).',
               ),
             ],
           ),
         ),
       ),
-      image: Image.asset(
-        AppImages.logo_login,
-        width: 40,
-        height: 40,
-      ),
+      image: Image.asset(AppImages.logo_login, width: 40, height: 40),
       topButtonFunc: () {
         onBack(context);
         onConfirm?.call();
@@ -768,30 +774,22 @@ class DialogService {
         borderWidth: 4,
         child: RichText(
           text: const TextSpan(
-            style: TextStyle(
-              fontSize: 13,
-              color: Colors.black87,
-              height: 1.4,
-            ),
+            style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.4),
             children: [
               TextSpan(
                 text:
-                '• Thời gian làm thêm không tính thời gian ăn ca, nghỉ giữa giờ, đợi xe, '
-                'ngồi trên xe khi đi công tác (không bao gồm Lái xe).\n\n'
-                '• Thời gian làm thêm tại văn phòng được tính từ 18:00.\n\n'
-                '• Làm thêm đến 20:00 được hưởng phụ cấp ăn tối.\n\n'
-                '• CBNV cần khai báo đúng quy định. Trường hợp quên khai báo công có thể '
-                'khai báo bổ sung. Nếu quên khai báo/chấm công từ 3 lần/tháng sẽ bị trừ 100% PCCC.',
+                    '• Thời gian làm thêm không tính thời gian ăn ca, nghỉ giữa giờ, đợi xe, '
+                    'ngồi trên xe khi đi công tác (không bao gồm Lái xe).\n\n'
+                    '• Thời gian làm thêm tại văn phòng được tính từ 18:00.\n\n'
+                    '• Làm thêm đến 20:00 được hưởng phụ cấp ăn tối.\n\n'
+                    '• CBNV cần khai báo đúng quy định. Trường hợp quên khai báo công có thể '
+                    'khai báo bổ sung. Nếu quên khai báo/chấm công từ 3 lần/tháng sẽ bị trừ 100% PCCC.',
               ),
             ],
           ),
         ),
       ),
-      image: Image.asset(
-        AppImages.logo_login,
-        width: 40,
-        height: 40,
-      ),
+      image: Image.asset(AppImages.logo_login, width: 40, height: 40),
       topButtonFunc: () {
         onBack(context);
         onConfirm?.call();

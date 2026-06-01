@@ -22,6 +22,7 @@ class _SalaryMenuScreenState
     extends BaseState<SalaryMenuScreen, SalaryEvent, SalaryState, SalaryBloc> {
   bool _pinChecked = false;
   bool _pinVerified = false;
+  bool _intentToCancel = false;
 
   @override
   void initState() {
@@ -46,12 +47,13 @@ class _SalaryMenuScreenState
       },
       child: BlocListener<SalaryBloc, SalaryState>(
         listenWhen: (prev, curr) =>
-            prev.isVerifyingPin != curr.isVerifyingPin ||
-            prev.hasPin != curr.hasPin ||
-            prev.pinVerified != curr.pinVerified ||
-            prev.pinError != curr.pinError,
+            !_intentToCancel &&
+            (prev.isVerifyingPin != curr.isVerifyingPin ||
+                prev.hasPin != curr.hasPin ||
+                prev.pinVerified != curr.pinVerified ||
+                prev.pinError != curr.pinError),
         listener: (context, state) {
-          if (_pinChecked) return;
+          if (_pinChecked || _intentToCancel) return;
 
           if (!state.isVerifyingPin && state.hasPin && !state.pinVerified) {
             _pinChecked = true;
@@ -63,7 +65,10 @@ class _SalaryMenuScreenState
         },
         child: BaseScaffold(
           appBar: AppBarCommon(
-            title: Text('Tổng hợp công - lương', style: AppStyles.headingTitle2),
+            title: Text(
+              'Tổng hợp công - lương',
+              style: AppStyles.headingTitle2,
+            ),
             onBackTap: () => onBack(context),
           ),
           body: _buildBody(context),
@@ -85,11 +90,7 @@ class _SalaryMenuScreenState
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.lock_outline,
-                  size: 64,
-                  color: AppColors.gray,
-                ),
+                Icon(Icons.lock_outline, size: 64, color: AppColors.gray),
                 SizedBox(height: 16),
                 Text(
                   'Đang xác thực mã PIN...',
@@ -132,25 +133,37 @@ class _SalaryMenuScreenState
                       icon: Icons.summarize_outlined,
                       title: 'Tổng hợp',
                       color: AppColors.stateInfoColor,
-                      onTap: () => _navigateWithPinCheck(context, RouteNames.salarySummary),
+                      onTap: () => _navigateWithPinCheck(
+                        context,
+                        RouteNames.salarySummary,
+                      ),
                     ),
                     _MenuTile(
                       icon: Icons.fingerprint,
                       title: 'Vân tay',
                       color: AppColors.purpleA500,
-                      onTap: () => _navigateWithPinCheck(context, RouteNames.salaryFingerprint),
+                      onTap: () => _navigateWithPinCheck(
+                        context,
+                        RouteNames.salaryFingerprint,
+                      ),
                     ),
                     _MenuTile(
                       icon: Icons.access_time_filled_outlined,
                       title: 'Chấm công',
                       color: AppColors.orangeA500,
-                      onTap: () => _navigateWithPinCheck(context, RouteNames.salaryAttendance),
+                      onTap: () => _navigateWithPinCheck(
+                        context,
+                        RouteNames.salaryAttendance,
+                      ),
                     ),
                     _MenuTile(
                       icon: Icons.payments_outlined,
                       title: 'Bảng lương',
                       color: AppColors.greenA500,
-                      onTap: () => _navigateWithPinCheck(context, RouteNames.salaryPayslip),
+                      onTap: () => _navigateWithPinCheck(
+                        context,
+                        RouteNames.salaryPayslip,
+                      ),
                     ),
                   ],
                 ),
@@ -176,19 +189,13 @@ class _SalaryMenuScreenState
   Future<void> _showPinDialog(BuildContext context) async {
     final result = await DialogService.showPinDialog(context: context);
     if (result == true) {
-      setState(() => _pinVerified = true);
-    } else {
-      if (mounted) onBack(context);
+      setState(() {
+        _pinVerified = true;
+        _intentToCancel = false;
+      });
+    } else if (result == false) {
+      _intentToCancel = true;
     }
-  }
-
-  Future<void> _onShowPinDialog(BuildContext context) async {
-    setState(() {
-      _pinChecked = false;
-      _pinVerified = false;
-    });
-    bloc.add(const SalaryEvent.initMenu());
-    await _showPinDialog(context);
   }
 }
 

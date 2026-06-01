@@ -3,10 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 
-import '../../../../../../../../../routes/route_names.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../view/bloc/salary_bloc.dart';
 import 'pin_input_controller.dart';
@@ -18,6 +16,7 @@ class PinDialogWidget extends StatefulWidget {
     required this.state,
     required this.onSubmit,
     required this.onCancel,
+    required this.onForgotPin,
     this.pinRetryCount = 0,
     this.isPinLocked = false,
   });
@@ -26,6 +25,7 @@ class PinDialogWidget extends StatefulWidget {
   final SalaryState state;
   final void Function(String pin) onSubmit;
   final VoidCallback onCancel;
+  final VoidCallback onForgotPin;
   final int pinRetryCount;
   final bool isPinLocked;
 
@@ -461,10 +461,7 @@ class _PinDialogWidgetState extends State<PinDialogWidget>
 
   Widget _buildForgotPinLink() {
     return GestureDetector(
-      onTap: () {
-        widget.onCancel();
-        context.push(RouteNames.salaryForgotPin);
-      },
+      onTap: widget.onForgotPin,
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
