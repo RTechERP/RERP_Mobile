@@ -184,6 +184,7 @@ class RouteNames {
   // Idea Registration
   static const ideaRegistration = '/reg_general/idea_registration';
   static const ideaRegistrationAdd = '/reg_general/idea_registration/add';
+  static const ideaRegistrationEdit = '/reg_general/idea_registration/edit';
 
   // More - Settings
   static const notificationSettings = '/more/notification_settings';

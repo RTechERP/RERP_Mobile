@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
@@ -9,7 +8,6 @@ import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
-import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../../routes/route_names.dart';
@@ -187,38 +185,15 @@ class _IdeaRegistrationScreenState
         separatorBuilder: (_, __) => const SizedBox(height: 10),
         itemBuilder: (context, index) {
           final item = state.items[index];
-          return Slidable(
+          return InkWell(
             key: ValueKey('idea_${item.id}'),
-            endActionPane: ActionPane(
-              motion: const DrawerMotion(),
-              extentRatio: 0.22,
-              children: [
-                SlidableAction(
-                  onPressed: (_) async {
-                    Slidable.of(context)?.close();
-                    final confirmed = await DialogService.showConfirmDelete(
-                      context: context,
-                    );
-                    if (!context.mounted) return;
-                    if (confirmed && item.id != null && item.id! > 0) {
-                      bloc.add(IdeaRegistrationEvent.deleteIdea(id: item.id!));
-                    }
-                  },
-                  backgroundColor: AppColors.alert,
-                  foregroundColor: Colors.white,
-                  icon: Icons.delete_outline,
-                  label: 'Xoá',
-                ),
-              ],
-            ),
-            child: Builder(
-              builder: (slidableCtx) => IdeaRegistrationCard(
-                item: item,
-                onTap: () {
-                  Slidable.of(slidableCtx)?.close();
-                },
-              ),
-            ),
+            onTap: () {
+              if (item.id != null) {
+                context.push(RouteNames.ideaRegistrationEdit, extra: item);
+              }
+            },
+            borderRadius: BorderRadius.circular(12),
+            child: IdeaRegistrationCard(item: item),
           );
         },
       ),

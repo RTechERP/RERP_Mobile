@@ -366,4 +366,5 @@ class ApiEndPoint {
   static const String getCourseCatalog = '/RegisterIdea/get-course-catalog';
   static const String saveIdea = '/RegisterIdea/save-idea';
   static const String deleteIdea = '/RegisterIdea/delete-idea';
+  static const String getIdeaDetail = '/RegisterIdea/get-idea-detail';
 }

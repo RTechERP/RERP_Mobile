@@ -34,6 +34,8 @@ class IdeaRegistrationBloc
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(emit, dateStart, dateEnd),
         initAdd: () => _onInitAdd(emit),
+        initDetail: (id) => _onInitDetail(emit, id),
+        initEdit: (id, item) => _onInitEdit(emit, id: id, item: item),
         changeDateStart: (date) => _onChangeDateStart(emit, date),
         changeDateEnd: (date) => _onChangeDateEnd(emit, date),
         changeDepartment: (id, name) =>
@@ -54,6 +56,17 @@ class IdeaRegistrationBloc
               catalogId: catalogId,
               details: details,
             ),
+        editSubmit:
+            (id, dateStart, dateEnd, departmentId, catalogId, details) =>
+                _onEditSubmit(
+                  emit,
+                  id: id,
+                  dateStart: dateStart,
+                  dateEnd: dateEnd,
+                  departmentId: departmentId,
+                  catalogId: catalogId,
+                  details: details,
+                ),
         clearSubmitState: () => _onClearSubmitState(emit),
         deleteIdea: (id) => _onDeleteIdea(emit, id: id),
         clearDeleteSuccess: () => _onClearDeleteSuccess(emit),
@@ -92,15 +105,13 @@ class IdeaRegistrationBloc
           ),
         );
 
-        await Future.wait([
-          _fetchItems(
-            emit,
-            employeeId: user.employeeId,
-            dateStart: startOfMonth,
-            dateEnd: endOfMonth,
-            departmentId: user.departmentId,
-          ),
-        ]);
+        await _fetchItems(
+          emit,
+          employeeId: user.employeeId,
+          dateStart: startOfMonth,
+          dateEnd: endOfMonth,
+          departmentId: user.departmentId,
+        );
       },
     );
   }
@@ -154,10 +165,9 @@ class IdeaRegistrationBloc
     required DateTime? dateStart,
     required DateTime? dateEnd,
     required int? departmentId,
-    int? headOfDepartment,
   }) async {
     final query = <String, dynamic>{
-      'employeeId': headOfDepartment ?? 0, // Chỉnh lại sau khi sửa API
+      'employeeId': 0,
       'dateStart': dateStart?.toIso8601String() ?? '',
       'dateEnd': dateEnd?.toIso8601String() ?? '',
       'keyword': '',
@@ -217,19 +227,18 @@ class IdeaRegistrationBloc
 
   //---(InitAdd)---//
 
-  /// Khoi tao gia tri mac dinh cho man add.
   Future<void> _onInitAdd(Emitter<IdeaRegistrationState> emit) async {
     emit(
       state.copyWith(
         isSubmitting: false,
         submitSuccess: false,
         message: null,
-        departmentId: null,
-        departmentName: null,
         catalogId: null,
         catalogName: null,
-        dateStart: DateTime.now(),
-        dateEnd: DateTime.now().add(const Duration(days: 30)),
+        departmentOrganizationId: null,
+        departmentOrganizationName: null,
+        dateStartForm: DateTime.now(),
+        dateEndForm: DateTime.now().add(const Duration(days: 30)),
         details: List.generate(
           5,
           (_) => const IdeaDetailRow(description: '', note: null),
@@ -242,12 +251,10 @@ class IdeaRegistrationBloc
       (err) async => _log.logE('Get user in initAdd failed: $err'),
       (user) async {
         if (user != null) {
-          final hod = int.tryParse(user.headofDepartment) ?? 0;
           emit(
             state.copyWith(
               employeeId: user.employeeId,
               departmentId: user.departmentId,
-              headOfDepartment: hod > 0 ? hod : null,
             ),
           );
         }
@@ -262,20 +269,140 @@ class IdeaRegistrationBloc
     }
   }
 
+  //---(InitDetail)---//
+
+  Future<void> _onInitDetail(
+    Emitter<IdeaRegistrationState> emit,
+    int id,
+  ) async {
+    emit(
+      state.copyWith(
+        isDetailLoading: true,
+        detailId: id,
+        detailData: null,
+        status: BaseStateStatus.loading,
+      ),
+    );
+
+    final userId =
+        (await _authRepo.getCurrentUser()).getOrElse(() => null)?.employeeId ??
+        0;
+
+    final res = await _repo.getIdeaDetail(
+      id: id,
+      currentUserEmployeeId: userId,
+    );
+
+    await res.fold(
+      (err) async {
+        _log.logE('Get idea detail failed: $err');
+        emit(
+          state.copyWith(
+            isDetailLoading: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ),
+        );
+      },
+      (data) async {
+        _log.logI('Get idea detail success');
+        emit(
+          state.copyWith(
+            isDetailLoading: false,
+            detailData: data,
+            status: BaseStateStatus.success,
+          ),
+        );
+      },
+    );
+  }
+
+  //---(InitEdit)---//
+
+  Future<void> _onInitEdit(
+    Emitter<IdeaRegistrationState> emit, {
+    required int id,
+    required IdeaItem item,
+  }) async {
+    emit(
+      state.copyWith(
+        isDetailLoading: true,
+        isSubmitting: false,
+        submitSuccess: false,
+        message: null,
+        catalogId: item.registerIdeaTypeID,
+        catalogName: item.registerTypeName,
+        departmentOrganizationId: item.departmentOrganizationID,
+        departmentOrganizationName: item.departmentOrganization,
+        dateStartForm: item.dateStart ?? DateTime.now(),
+        dateEndForm:
+            item.dateEnd ?? DateTime.now().add(const Duration(days: 30)),
+        details: List.generate(
+          5,
+          (_) => const IdeaDetailRow(description: '', note: null),
+        ),
+      ),
+    );
+
+    if (state.departments.isEmpty) {
+      await _fetchDepartments(emit);
+    }
+    if (state.catalogs.isEmpty) {
+      await _fetchCatalogs(emit);
+    }
+
+    final userId =
+        (await _authRepo.getCurrentUser()).getOrElse(() => null)?.employeeId ??
+        0;
+
+    final detailRes = await _repo.getIdeaDetail(
+      id: id,
+      currentUserEmployeeId: userId,
+    );
+
+    await detailRes.fold(
+      (err) async {
+        _log.logE('Get edit detail failed: $err');
+        emit(state.copyWith(isDetailLoading: false));
+      },
+      (data) async {
+        final rgtd = data.details ?? [];
+        final mappedDetails = List.generate(5, (i) {
+          final apiRow = i < rgtd.length ? rgtd[i] : null;
+          return IdeaDetailRow(
+            id: apiRow?.id,
+            description: apiRow?.description ?? '',
+            note: apiRow?.note,
+            dateStart: apiRow?.dateStart,
+            dateEnd: apiRow?.dateEnd,
+          );
+        });
+
+        emit(
+          state.copyWith(
+            isDetailLoading: false,
+            detailData: data,
+            details: mappedDetails,
+          ),
+        );
+      },
+    );
+  }
+
   //---(DateChange)---//
 
   Future<void> _onChangeDateStart(
     Emitter<IdeaRegistrationState> emit,
     DateTime? date,
   ) async {
-    emit(state.copyWith(dateStart: date));
+    emit(state.copyWith(dateStartForm: date));
   }
 
   Future<void> _onChangeDateEnd(
     Emitter<IdeaRegistrationState> emit,
     DateTime? date,
   ) async {
-    emit(state.copyWith(dateEnd: date));
+    emit(state.copyWith(dateEndForm: date));
   }
 
   //---(Department)---//
@@ -285,7 +412,12 @@ class IdeaRegistrationBloc
     required int? id,
     String? name,
   }) async {
-    emit(state.copyWith(departmentId: id, departmentName: name));
+    emit(
+      state.copyWith(
+        departmentOrganizationId: id,
+        departmentOrganizationName: name,
+      ),
+    );
   }
 
   //---(Catalog)---//
@@ -334,7 +466,7 @@ class IdeaRegistrationBloc
         state.copyWith(isSubmitting: true, submitSuccess: false, message: null),
       );
 
-      final payload = _buildSavePayload(
+      final payload = _buildSubmitPayload(
         dateStart: dateStart,
         dateEnd: dateEnd,
         departmentId: departmentId,
@@ -384,6 +516,76 @@ class IdeaRegistrationBloc
     }
   }
 
+  //---(EditSubmit)---//
+
+  Future<void> _onEditSubmit(
+    Emitter<IdeaRegistrationState> emit, {
+    required int id,
+    required DateTime? dateStart,
+    required DateTime? dateEnd,
+    required int? departmentId,
+    required int? catalogId,
+    required List<IdeaDetailRow> details,
+  }) async {
+    if (_isSubmitting) return;
+    _isSubmitting = true;
+
+    try {
+      emit(
+        state.copyWith(isSubmitting: true, submitSuccess: false, message: null),
+      );
+
+      final payload = _buildEditPayload(
+        id: id,
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        departmentId: departmentId,
+        catalogId: catalogId,
+        details: details,
+      );
+
+      _log.logI('Idea edit payload: $payload');
+
+      final res = await _repo.saveIdea(payload: payload);
+
+      await res.fold(
+        (err) async {
+          _log.logE('Edit idea failed: $err');
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              submitSuccess: false,
+              status: BaseStateStatus.failed,
+              message: err.getErrorMessage,
+            ),
+          );
+        },
+        (_) async {
+          _log.logI('Edit idea success');
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              submitSuccess: true,
+              status: BaseStateStatus.success,
+              message: 'Cap nhat thanh cong',
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      _log.logE('Edit exception: $e');
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          status: BaseStateStatus.failed,
+          message: 'Co loi xay ra',
+        ),
+      );
+    } finally {
+      _isSubmitting = false;
+    }
+  }
+
   //---(ClearSubmit)---//
 
   Future<void> _onClearSubmitState(Emitter<IdeaRegistrationState> emit) async {
@@ -392,9 +594,75 @@ class IdeaRegistrationBloc
     );
   }
 
+  //---(Delete)---//
+
+  Future<void> _onDeleteIdea(
+    Emitter<IdeaRegistrationState> emit, {
+    required int id,
+  }) async {
+    if (_isSubmitting) return;
+    _isSubmitting = true;
+
+    try {
+      emit(state.copyWith(isDeleting: true, deleteSuccess: false));
+
+      _log.logI('Starting delete idea: $id');
+
+      final res = await _repo.deleteIdea(id: id);
+
+      await res.fold(
+        (err) async {
+          _log.logE('Delete idea failed: $err');
+          emit(
+            state.copyWith(
+              isDeleting: false,
+              deleteSuccess: false,
+              status: BaseStateStatus.failed,
+              message: err.getErrorMessage,
+            ),
+          );
+        },
+        (_) async {
+          _log.logI('Delete idea success');
+          final updatedItems = state.items
+              .where((item) => item.id != id)
+              .toList();
+          emit(
+            state.copyWith(
+              isDeleting: false,
+              deleteSuccess: true,
+              status: BaseStateStatus.success,
+              message: 'Xoa y tuong thanh cong',
+              items: updatedItems,
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      _log.logE('Delete idea exception: $e');
+      emit(
+        state.copyWith(
+          isDeleting: false,
+          deleteSuccess: false,
+          status: BaseStateStatus.failed,
+          message: 'Co loi xay ra',
+        ),
+      );
+    } finally {
+      _isSubmitting = false;
+    }
+  }
+
+  //---(ClearDeleteSuccess)---//
+  Future<void> _onClearDeleteSuccess(
+    Emitter<IdeaRegistrationState> emit,
+  ) async {
+    emit(state.copyWith(deleteSuccess: false));
+  }
+
   //---(Helper)---//
 
-  Map<String, dynamic> _buildSavePayload({
+  Map<String, dynamic> _buildSubmitPayload({
     required DateTime? dateStart,
     required DateTime? dateEnd,
     required int? departmentId,
@@ -419,69 +687,42 @@ class IdeaRegistrationBloc
     return {
       'ID': 0,
       'EmployeeID': state.employeeId ?? 0,
-      'HeadofDepartment': state.headOfDepartment ?? 0,
       'DepartmentOrganizationID': departmentId ?? 0,
       'RegisterIdeaTypeID': catalogId ?? 0,
       'RegisterIdeaDetails': payloadDetails,
-      'deletedFileIds': null,
     };
   }
 
-  //---(Delete)---//
-
-  Future<void> _onDeleteIdea(
-    Emitter<IdeaRegistrationState> emit, {
+  Map<String, dynamic> _buildEditPayload({
     required int id,
-  }) async {
-    if (_isSubmitting) return;
-    _isSubmitting = true;
+    required DateTime? dateStart,
+    required DateTime? dateEnd,
+    required int? departmentId,
+    required int? catalogId,
+    required List<IdeaDetailRow> details,
+  }) {
+    final payloadDetails = <Map<String, dynamic>>[];
+    final now = DateTime.now();
 
-    try {
-      emit(state.copyWith(isDeleting: true, deleteSuccess: false));
-
-      _log.logI('Starting delete idea: $id');
-
-      final res = await _repo.deleteIdea(id: id);
-
-      await res.fold(
-        (err) async {
-          _log.logE('Delete idea failed: $err');
-          emit(state.copyWith(
-            isDeleting: false,
-            deleteSuccess: false,
-            status: BaseStateStatus.failed,
-            message: err.getErrorMessage,
-          ));
-        },
-        (_) async {
-          _log.logI('Delete idea success');
-          final updatedItems =
-              state.items.where((item) => item.id != id).toList();
-          emit(state.copyWith(
-            isDeleting: false,
-            deleteSuccess: true,
-            status: BaseStateStatus.success,
-            message: 'Xoa y tuong thanh cong',
-            items: updatedItems,
-          ));
-        },
-      );
-    } catch (e) {
-      _log.logE('Delete idea exception: $e');
-      emit(state.copyWith(
-        isDeleting: false,
-        deleteSuccess: false,
-        status: BaseStateStatus.failed,
-        message: 'Co loi xay ra',
-      ));
-    } finally {
-      _isSubmitting = false;
+    for (var i = 0; i < details.length; i++) {
+      final detail = details[i];
+      payloadDetails.add({
+        'ID': detail.id ?? 0,
+        'STT': i + 1,
+        'Category': ideaDetailCategories[i],
+        'Description': detail.description,
+        'Note': detail.note ?? '',
+        'DateStart': (detail.dateStart ?? dateStart ?? now).toIso8601String(),
+        'DateEnd': (detail.dateEnd ?? dateEnd ?? now).toIso8601String(),
+      });
     }
-  }
 
-  //---(ClearDeleteSuccess)---//
-  Future<void> _onClearDeleteSuccess(
-      Emitter<IdeaRegistrationState> emit) async {
-    emit(state.copyWith(deleteSuccess: false));
+    return {
+      'ID': id,
+      'EmployeeID': state.detailData?.main?.employeeId ?? state.employeeId ?? 0,
+      'DepartmentOrganizationID': departmentId ?? 0,
+      'RegisterIdeaTypeID': catalogId ?? 0,
+      'RegisterIdeaDetails': payloadDetails,
+    };
   }
 }

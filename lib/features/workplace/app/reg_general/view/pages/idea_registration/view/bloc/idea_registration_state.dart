@@ -3,68 +3,89 @@ part of 'idea_registration_bloc.dart';
 @CopyWith()
 class IdeaRegistrationState extends BaseBlocState {
   final List<IdeaItem> items;
+
+  final int? employeeId;
+  final int? departmentId;
+  final DateTime? dateStart;
+  final DateTime? dateEnd;
+
+  // --- Add/Edit form state ---
+  final bool isSubmitting;
+  final bool submitSuccess;
+
   final List<IdeaCatalogItem> catalogs;
   final List<DepartResponse> departments;
 
-  // Add screen state
-  final bool isSubmitting;
-  final bool submitSuccess;
-  final bool isDeleting;
-  final bool deleteSuccess;
-  final DateTime? dateStart;
-  final DateTime? dateEnd;
-  final int? departmentId;
-  final String? departmentName;
   final int? catalogId;
   final String? catalogName;
+  final int? departmentOrganizationId;
+  final String? departmentOrganizationName;
+  final int? approvedTBPId;
+  final String? approverDisplayName;
+  final DateTime? dateStartForm;
+  final DateTime? dateEndForm;
+
+  /// Key: index (0-4), Value: {description, note}
   final List<IdeaDetailRow> details;
 
-  // User info
-  final int? employeeId;
-  final int? currentDepartmentId;
-  final int? headOfDepartment;
+  // --- Detail screen state ---
+  final bool isDetailLoading;
+  final int? detailId;
+  final IdeaDetail? detailData;
+
+  // --- Delete state ---
+  final bool isDeleting;
+  final bool deleteSuccess;
 
   const IdeaRegistrationState({
     required super.status,
     super.message,
     this.items = const [],
-    this.catalogs = const [],
-    this.departments = const [],
-    this.isSubmitting = false,
-    this.submitSuccess = false,
-    this.isDeleting = false,
-    this.deleteSuccess = false,
+    this.employeeId,
+    this.departmentId,
     this.dateStart,
     this.dateEnd,
-    this.departmentId,
-    this.departmentName,
+    this.isSubmitting = false,
+    this.submitSuccess = false,
+    this.catalogs = const [],
+    this.departments = const [],
     this.catalogId,
     this.catalogName,
+    this.departmentOrganizationId,
+    this.departmentOrganizationName,
+    this.approvedTBPId,
+    this.approverDisplayName,
+    this.dateStartForm,
+    this.dateEndForm,
     this.details = const [],
-    this.employeeId,
-    this.currentDepartmentId,
-    this.headOfDepartment,
+    this.isDetailLoading = false,
+    this.detailId,
+    this.detailData,
+    this.isDeleting = false,
+    this.deleteSuccess = false,
   });
 
   factory IdeaRegistrationState.init() => const IdeaRegistrationState(
         status: BaseStateStatus.init,
         items: [],
-        catalogs: [],
-        departments: [],
         isSubmitting: false,
         submitSuccess: false,
-        isDeleting: false,
-        deleteSuccess: false,
-        dateStart: null,
-        dateEnd: null,
-        departmentId: null,
-        departmentName: null,
+        catalogs: [],
+        departments: [],
         catalogId: null,
         catalogName: null,
+        departmentOrganizationId: null,
+        departmentOrganizationName: null,
+        approvedTBPId: null,
+        approverDisplayName: null,
+        dateStartForm: null,
+        dateEndForm: null,
         details: [],
-        employeeId: null,
-        currentDepartmentId: null,
-        headOfDepartment: null,
+        isDetailLoading: false,
+        detailId: null,
+        detailData: null,
+        isDeleting: false,
+        deleteSuccess: false,
       );
 
   @override
@@ -72,22 +93,28 @@ class IdeaRegistrationState extends BaseBlocState {
         status,
         message,
         items,
-        catalogs,
-        departments,
-        isSubmitting,
-        submitSuccess,
-        isDeleting,
-        deleteSuccess,
+        employeeId,
+        departmentId,
         dateStart,
         dateEnd,
-        departmentId,
-        departmentName,
+        isSubmitting,
+        submitSuccess,
+        catalogs,
+        departments,
         catalogId,
         catalogName,
+        departmentOrganizationId,
+        departmentOrganizationName,
+        approvedTBPId,
+        approverDisplayName,
+        dateStartForm,
+        dateEndForm,
         details,
-        employeeId,
-        currentDepartmentId,
-        headOfDepartment,
+        isDetailLoading,
+        detailId,
+        detailData,
+        isDeleting,
+        deleteSuccess,
       ];
 }
 
@@ -102,18 +129,33 @@ const List<String> ideaDetailCategories = [
 
 /// Một dòng chi tiết ý tưởng: diễn giải + chú thích.
 class IdeaDetailRow {
+  final int? id;
   final String description;
   final String? note;
+  final DateTime? dateStart;
+  final DateTime? dateEnd;
 
   const IdeaDetailRow({
+    this.id,
     required this.description,
     this.note,
+    this.dateStart,
+    this.dateEnd,
   });
 
-  IdeaDetailRow copyWith({String? description, String? note}) {
+  IdeaDetailRow copyWith({
+    int? id,
+    String? description,
+    String? note,
+    DateTime? dateStart,
+    DateTime? dateEnd,
+  }) {
     return IdeaDetailRow(
+      id: id ?? this.id,
       description: description ?? this.description,
       note: note ?? this.note,
+      dateStart: dateStart ?? this.dateStart,
+      dateEnd: dateEnd ?? this.dateEnd,
     );
   }
 }

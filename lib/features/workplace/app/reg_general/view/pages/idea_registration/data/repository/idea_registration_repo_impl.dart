@@ -91,4 +91,26 @@ class IdeaRegistrationRepoImpl implements IdeaRegistrationRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, IdeaDetail>> getIdeaDetail({
+    required int id,
+    required int currentUserEmployeeId,
+  }) async {
+    try {
+      final res = await _service.getIdeaDetail(
+        id: id,
+        currentUserEmployeeId: currentUserEmployeeId,
+      );
+
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Co loi xay ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

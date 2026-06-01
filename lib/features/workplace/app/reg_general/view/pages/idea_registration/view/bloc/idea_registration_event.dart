@@ -13,6 +13,13 @@ class IdeaRegistrationEvent with _$IdeaRegistrationEvent {
 
   const factory IdeaRegistrationEvent.initAdd() = _InitAdd;
 
+  const factory IdeaRegistrationEvent.initDetail(int id) = _InitDetail;
+
+  const factory IdeaRegistrationEvent.initEdit({
+    required int id,
+    required IdeaItem item,
+  }) = _InitEdit;
+
   const factory IdeaRegistrationEvent.changeDateStart(DateTime? date) =
       _ChangeDateStart;
 
@@ -42,6 +49,15 @@ class IdeaRegistrationEvent with _$IdeaRegistrationEvent {
     required int? catalogId,
     required List<IdeaDetailRow> details,
   }) = _Submit;
+
+  const factory IdeaRegistrationEvent.editSubmit({
+    required int id,
+    required DateTime? dateStart,
+    required DateTime? dateEnd,
+    required int? departmentId,
+    required int? catalogId,
+    required List<IdeaDetailRow> details,
+  }) = _EditSubmit;
 
   const factory IdeaRegistrationEvent.clearSubmitState() =
       _ClearSubmitState;

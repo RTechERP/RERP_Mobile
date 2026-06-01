@@ -17,4 +17,9 @@ abstract class IdeaRegistrationRepo {
   });
 
   Future<Either<BaseError, void>> deleteIdea({required int id});
+
+  Future<Either<BaseError, IdeaDetail>> getIdeaDetail({
+    required int id,
+    required int currentUserEmployeeId,
+  });
 }

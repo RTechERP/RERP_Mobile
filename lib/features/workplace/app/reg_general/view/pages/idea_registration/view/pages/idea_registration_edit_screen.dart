@@ -17,21 +17,29 @@ import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/form/form_actions.dart';
 import '../../../../../../../../../common/widgets/form/form_date_time_picker.dart';
 import '../../../../../../../../../common/widgets/form/form_file_picker.dart';
+import '../../data/datasource/models/idea_registration_model.dart';
 import '../bloc/idea_registration_bloc.dart';
 import '../widgets/idea_detail_row_widget.dart';
 
-class IdeaRegistrationAddScreen extends StatefulWidget {
-  const IdeaRegistrationAddScreen({super.key});
+class IdeaRegistrationEditScreen extends StatefulWidget {
+  final int id;
+  final IdeaItem item;
+
+  const IdeaRegistrationEditScreen({
+    super.key,
+    required this.id,
+    required this.item,
+  });
 
   @override
-  State<IdeaRegistrationAddScreen> createState() =>
-      _IdeaRegistrationAddScreenState();
+  State<IdeaRegistrationEditScreen> createState() =>
+      _IdeaRegistrationEditScreenState();
 }
 
-class _IdeaRegistrationAddScreenState
+class _IdeaRegistrationEditScreenState
     extends
         BaseState<
-          IdeaRegistrationAddScreen,
+          IdeaRegistrationEditScreen,
           IdeaRegistrationEvent,
           IdeaRegistrationState,
           IdeaRegistrationBloc
@@ -42,10 +50,10 @@ class _IdeaRegistrationAddScreenState
   @override
   void initState() {
     super.initState();
-    bloc.add(const IdeaRegistrationEvent.initAdd());
+    bloc.add(IdeaRegistrationEvent.initEdit(id: widget.id, item: widget.item));
   }
 
-  void _onSubmit() {
+  void _onSave() {
     FocusScope.of(context).unfocus();
 
     if (!(_formKey.currentState?.saveAndValidate() ?? false)) {
@@ -79,7 +87,8 @@ class _IdeaRegistrationAddScreenState
     }
 
     bloc.add(
-      IdeaRegistrationEvent.submit(
+      IdeaRegistrationEvent.editSubmit(
+        id: widget.id,
         dateStart: dateStart,
         dateEnd: dateEnd,
         departmentId: bloc.state.departmentOrganizationId,
@@ -141,7 +150,7 @@ class _IdeaRegistrationAddScreenState
       listener: (context, state) {
         if (state.submitSuccess) {
           context.showMessage(
-            'Tạo ý tưởng thành công',
+            'Cập nhật ý tưởng thành công',
             type: SnackBarType.success,
           );
           context.pop(true);
@@ -154,41 +163,43 @@ class _IdeaRegistrationAddScreenState
       builder: (context, state) {
         return BaseScaffold(
           appBar: AppBarCommon(
-            title: const Text('Tạo ý tưởng cải tiến'),
+            title: const Text('Chỉnh sửa ý tưởng'),
             onBackTap: () => context.pop(),
           ),
-          body: FormBuilder(
-            key: _formKey,
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    padding: const EdgeInsets.all(16),
+          body: state.isDetailLoading
+              ? const Center(child: CircularProgressIndicator())
+              : FormBuilder(
+                  key: _formKey,
+                  child: Column(
                     children: [
-                      _buildDateSection(state),
-                      const SizedBox(height: 16),
-                      _buildDepartmentAndCatalogSection(state),
-                      const SizedBox(height: 16),
-                      _buildDetailsSection(state),
-                      const SizedBox(height: 16),
-                      _buildFileSection(),
+                      Expanded(
+                        child: ListView(
+                          padding: const EdgeInsets.all(16),
+                          children: [
+                            _buildDateSection(state),
+                            const SizedBox(height: 16),
+                            _buildDepartmentAndCatalogSection(state),
+                            const SizedBox(height: 16),
+                            _buildDetailsSection(state),
+                            const SizedBox(height: 16),
+                            _buildFileSection(),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 8,
+                        ),
+                        child: FormActions(
+                          mode: FormActionMode.edit,
+                          onSave: _onSave,
+                          onCancel: () => context.pop(),
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 8,
-                  ),
-                  child: FormActions(
-                    mode: FormActionMode.add,
-                    submitText: 'Gửi ý tưởng',
-                    onSubmit: _onSubmit,
-                  ),
-                ),
-              ],
-            ),
-          ),
         );
       },
     );
@@ -270,7 +281,6 @@ class _IdeaRegistrationAddScreenState
             ),
           ),
           const SizedBox(height: 12),
-          // Phòng ban phối hợp
           _buildSelectField(
             label: 'Phòng ban phối hợp',
             icon: Icons.business,
@@ -278,7 +288,6 @@ class _IdeaRegistrationAddScreenState
             onTap: _openDepartmentSheet,
           ),
           const SizedBox(height: 12),
-          // Loại đề tài
           _buildSelectField(
             label: 'Loại đề tài',
             icon: Icons.category_outlined,
@@ -291,7 +300,6 @@ class _IdeaRegistrationAddScreenState
     );
   }
 
-  /// Widget chọn đọc trực tiếp từ bloc state — không qua FormBuilderField.
   Widget _buildSelectField({
     required String label,
     required IconData icon,

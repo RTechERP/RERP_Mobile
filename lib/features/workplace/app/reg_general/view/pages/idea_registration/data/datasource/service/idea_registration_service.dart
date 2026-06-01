@@ -86,4 +86,33 @@ class IdeaRegistrationService extends DioBaseApiService {
       return <IdeaItem>[];
     });
   }
+
+  Future<BaseData<IdeaDetail>> getIdeaDetail({
+    required int id,
+    required int currentUserEmployeeId,
+  }) async {
+    return get<BaseData<IdeaDetail>>(
+      ApiEndPoint.getIdeaDetail,
+      query: {
+        'id': id,
+        'currentUserEmployeeId': currentUserEmployeeId,
+      },
+      parser: (json) => _parseIdeaDetail(json),
+    );
+  }
+
+  BaseData<IdeaDetail> _parseIdeaDetail(dynamic json) {
+    if (json is! Map<String, dynamic>) {
+      return BaseData<IdeaDetail>.fromJson({
+        'status': 0,
+        'message': 'Invalid response',
+      }, (_) => const IdeaDetail());
+    }
+    return BaseData<IdeaDetail>.fromJson(json, (data) {
+      if (data is Map<String, dynamic>) {
+        return IdeaDetail.fromJson(data);
+      }
+      return const IdeaDetail();
+    });
+  }
 }

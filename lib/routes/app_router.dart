@@ -62,6 +62,8 @@ import '../features/workplace/app/reg_general/view/pages/work_requirement/view/p
 import '../features/workplace/app/reg_general/view/pages/idea_registration/view/bloc/idea_registration_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/idea_registration/view/pages/idea_registration_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/idea_registration/view/pages/idea_registration_add_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/view/pages/idea_registration_edit_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/data/datasource/models/idea_registration_model.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_screen.dart';
@@ -1078,6 +1080,16 @@ class AppRouter {
           GoRoute(
             path: RouteNames.ideaRegistrationAdd,
             builder: (context, state) => const IdeaRegistrationAddScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.ideaRegistrationEdit,
+            builder: (context, state) {
+              final item = state.extra as IdeaItem?;
+              return IdeaRegistrationEditScreen(
+                id: item?.id ?? 0,
+                item: item ?? const IdeaItem(),
+              );
+            },
           ),
         ],
       ),
