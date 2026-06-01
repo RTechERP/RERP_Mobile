@@ -193,6 +193,7 @@ class _SalaryMenuScreenState
         _pinVerified = true;
         _intentToCancel = false;
       });
+      bloc.add(const SalaryEvent.initMenu());
     } else if (result == false) {
       _intentToCancel = true;
     }

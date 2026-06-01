@@ -50,6 +50,8 @@ class DialogService {
     _isPinDialogShown = true;
 
     bool? confirmed;
+    bool _waitingScreenResult = false;
+    final Completer<bool?> _screenResultCompleter = Completer<bool?>();
 
     final controller = PinInputController();
     int currentRetryCount = _pinFailedCount;
@@ -101,8 +103,16 @@ class DialogService {
                 onForgotPin: () {
                   _pinFailedCount = 0;
                   confirmed = null;
+                  _waitingScreenResult = true;
                   Navigator.of(dialogContext).pop(null);
-                  context.push(RouteNames.salaryForgotPin);
+                  context.push<bool>(RouteNames.salaryForgotPin).then((result) {
+                    confirmed = result == true ? true : false;
+                    _isPinDialogShown = false;
+                    _waitingScreenResult = false;
+                    if (!_screenResultCompleter.isCompleted) {
+                      _screenResultCompleter.complete(confirmed);
+                    }
+                  });
                 },
               );
             },
@@ -110,6 +120,10 @@ class DialogService {
         );
       },
     );
+
+    if (_waitingScreenResult) {
+      return _screenResultCompleter.future;
+    }
 
     _isPinDialogShown = false;
     return confirmed;
