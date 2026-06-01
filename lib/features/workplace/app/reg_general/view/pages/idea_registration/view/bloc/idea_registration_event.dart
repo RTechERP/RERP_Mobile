@@ -45,4 +45,10 @@ class IdeaRegistrationEvent with _$IdeaRegistrationEvent {
 
   const factory IdeaRegistrationEvent.clearSubmitState() =
       _ClearSubmitState;
+
+  const factory IdeaRegistrationEvent.deleteIdea({required int id}) =
+      _DeleteIdea;
+
+  const factory IdeaRegistrationEvent.clearDeleteSuccess() =
+      _ClearDeleteSuccess;
 }

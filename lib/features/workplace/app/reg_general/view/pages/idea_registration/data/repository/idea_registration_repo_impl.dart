@@ -75,4 +75,20 @@ class IdeaRegistrationRepoImpl implements IdeaRegistrationRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, void>> deleteIdea({required int id}) async {
+    try {
+      final res = await _service.deleteIdea(id: id);
+
+      if (res.status == 1) {
+        return right(null);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Co loi xay ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

@@ -33,6 +33,8 @@ mixin _$IdeaRegistrationEvent {
             int? departmentId, int? catalogId, List<IdeaDetailRow> details)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +53,8 @@ mixin _$IdeaRegistrationEvent {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +72,8 @@ mixin _$IdeaRegistrationEvent {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -84,6 +90,8 @@ mixin _$IdeaRegistrationEvent {
     required TResult Function(_UpdateDetail value) updateDetail,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -99,6 +107,8 @@ mixin _$IdeaRegistrationEvent {
     TResult? Function(_UpdateDetail value)? updateDetail,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -114,6 +124,8 @@ mixin _$IdeaRegistrationEvent {
     TResult Function(_UpdateDetail value)? updateDetail,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -190,6 +202,8 @@ class _$InitImpl implements _Init {
             int? departmentId, int? catalogId, List<IdeaDetailRow> details)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
   }) {
     return init();
   }
@@ -211,6 +225,8 @@ class _$InitImpl implements _Init {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
   }) {
     return init?.call();
   }
@@ -231,6 +247,8 @@ class _$InitImpl implements _Init {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -253,6 +271,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_UpdateDetail value) updateDetail,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
   }) {
     return init(this);
   }
@@ -271,6 +291,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_UpdateDetail value)? updateDetail,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
   }) {
     return init?.call(this);
   }
@@ -289,6 +311,8 @@ class _$InitImpl implements _Init {
     TResult Function(_UpdateDetail value)? updateDetail,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -355,6 +379,8 @@ class _$RefreshImpl implements _Refresh {
             int? departmentId, int? catalogId, List<IdeaDetailRow> details)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
   }) {
     return refresh();
   }
@@ -376,6 +402,8 @@ class _$RefreshImpl implements _Refresh {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
   }) {
     return refresh?.call();
   }
@@ -396,6 +424,8 @@ class _$RefreshImpl implements _Refresh {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -418,6 +448,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_UpdateDetail value) updateDetail,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
   }) {
     return refresh(this);
   }
@@ -436,6 +468,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_UpdateDetail value)? updateDetail,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
   }) {
     return refresh?.call(this);
   }
@@ -454,6 +488,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_UpdateDetail value)? updateDetail,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -556,6 +592,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             int? departmentId, int? catalogId, List<IdeaDetailRow> details)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -577,6 +615,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -597,6 +637,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -619,6 +661,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_UpdateDetail value) updateDetail,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
   }) {
     return changeDateRange(this);
   }
@@ -637,6 +681,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_UpdateDetail value)? updateDetail,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
   }) {
     return changeDateRange?.call(this);
   }
@@ -655,6 +701,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_UpdateDetail value)? updateDetail,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -729,6 +777,8 @@ class _$InitAddImpl implements _InitAdd {
             int? departmentId, int? catalogId, List<IdeaDetailRow> details)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
   }) {
     return initAdd();
   }
@@ -750,6 +800,8 @@ class _$InitAddImpl implements _InitAdd {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
   }) {
     return initAdd?.call();
   }
@@ -770,6 +822,8 @@ class _$InitAddImpl implements _InitAdd {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -792,6 +846,8 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_UpdateDetail value) updateDetail,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
   }) {
     return initAdd(this);
   }
@@ -810,6 +866,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_UpdateDetail value)? updateDetail,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
   }) {
     return initAdd?.call(this);
   }
@@ -828,6 +886,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_UpdateDetail value)? updateDetail,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -921,6 +981,8 @@ class _$ChangeDateStartImpl implements _ChangeDateStart {
             int? departmentId, int? catalogId, List<IdeaDetailRow> details)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
   }) {
     return changeDateStart(date);
   }
@@ -942,6 +1004,8 @@ class _$ChangeDateStartImpl implements _ChangeDateStart {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
   }) {
     return changeDateStart?.call(date);
   }
@@ -962,6 +1026,8 @@ class _$ChangeDateStartImpl implements _ChangeDateStart {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (changeDateStart != null) {
@@ -984,6 +1050,8 @@ class _$ChangeDateStartImpl implements _ChangeDateStart {
     required TResult Function(_UpdateDetail value) updateDetail,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
   }) {
     return changeDateStart(this);
   }
@@ -1002,6 +1070,8 @@ class _$ChangeDateStartImpl implements _ChangeDateStart {
     TResult? Function(_UpdateDetail value)? updateDetail,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
   }) {
     return changeDateStart?.call(this);
   }
@@ -1020,6 +1090,8 @@ class _$ChangeDateStartImpl implements _ChangeDateStart {
     TResult Function(_UpdateDetail value)? updateDetail,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (changeDateStart != null) {
@@ -1117,6 +1189,8 @@ class _$ChangeDateEndImpl implements _ChangeDateEnd {
             int? departmentId, int? catalogId, List<IdeaDetailRow> details)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
   }) {
     return changeDateEnd(date);
   }
@@ -1138,6 +1212,8 @@ class _$ChangeDateEndImpl implements _ChangeDateEnd {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
   }) {
     return changeDateEnd?.call(date);
   }
@@ -1158,6 +1234,8 @@ class _$ChangeDateEndImpl implements _ChangeDateEnd {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (changeDateEnd != null) {
@@ -1180,6 +1258,8 @@ class _$ChangeDateEndImpl implements _ChangeDateEnd {
     required TResult Function(_UpdateDetail value) updateDetail,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
   }) {
     return changeDateEnd(this);
   }
@@ -1198,6 +1278,8 @@ class _$ChangeDateEndImpl implements _ChangeDateEnd {
     TResult? Function(_UpdateDetail value)? updateDetail,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
   }) {
     return changeDateEnd?.call(this);
   }
@@ -1216,6 +1298,8 @@ class _$ChangeDateEndImpl implements _ChangeDateEnd {
     TResult Function(_UpdateDetail value)? updateDetail,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (changeDateEnd != null) {
@@ -1322,6 +1406,8 @@ class _$ChangeDepartmentImpl implements _ChangeDepartment {
             int? departmentId, int? catalogId, List<IdeaDetailRow> details)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
   }) {
     return changeDepartment(id, name);
   }
@@ -1343,6 +1429,8 @@ class _$ChangeDepartmentImpl implements _ChangeDepartment {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
   }) {
     return changeDepartment?.call(id, name);
   }
@@ -1363,6 +1451,8 @@ class _$ChangeDepartmentImpl implements _ChangeDepartment {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (changeDepartment != null) {
@@ -1385,6 +1475,8 @@ class _$ChangeDepartmentImpl implements _ChangeDepartment {
     required TResult Function(_UpdateDetail value) updateDetail,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
   }) {
     return changeDepartment(this);
   }
@@ -1403,6 +1495,8 @@ class _$ChangeDepartmentImpl implements _ChangeDepartment {
     TResult? Function(_UpdateDetail value)? updateDetail,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
   }) {
     return changeDepartment?.call(this);
   }
@@ -1421,6 +1515,8 @@ class _$ChangeDepartmentImpl implements _ChangeDepartment {
     TResult Function(_UpdateDetail value)? updateDetail,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (changeDepartment != null) {
@@ -1528,6 +1624,8 @@ class _$ChangeCatalogImpl implements _ChangeCatalog {
             int? departmentId, int? catalogId, List<IdeaDetailRow> details)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
   }) {
     return changeCatalog(id, name);
   }
@@ -1549,6 +1647,8 @@ class _$ChangeCatalogImpl implements _ChangeCatalog {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
   }) {
     return changeCatalog?.call(id, name);
   }
@@ -1569,6 +1669,8 @@ class _$ChangeCatalogImpl implements _ChangeCatalog {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (changeCatalog != null) {
@@ -1591,6 +1693,8 @@ class _$ChangeCatalogImpl implements _ChangeCatalog {
     required TResult Function(_UpdateDetail value) updateDetail,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
   }) {
     return changeCatalog(this);
   }
@@ -1609,6 +1713,8 @@ class _$ChangeCatalogImpl implements _ChangeCatalog {
     TResult? Function(_UpdateDetail value)? updateDetail,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
   }) {
     return changeCatalog?.call(this);
   }
@@ -1627,6 +1733,8 @@ class _$ChangeCatalogImpl implements _ChangeCatalog {
     TResult Function(_UpdateDetail value)? updateDetail,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (changeCatalog != null) {
@@ -1744,6 +1852,8 @@ class _$UpdateDetailImpl implements _UpdateDetail {
             int? departmentId, int? catalogId, List<IdeaDetailRow> details)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
   }) {
     return updateDetail(index, description, note);
   }
@@ -1765,6 +1875,8 @@ class _$UpdateDetailImpl implements _UpdateDetail {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
   }) {
     return updateDetail?.call(index, description, note);
   }
@@ -1785,6 +1897,8 @@ class _$UpdateDetailImpl implements _UpdateDetail {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (updateDetail != null) {
@@ -1807,6 +1921,8 @@ class _$UpdateDetailImpl implements _UpdateDetail {
     required TResult Function(_UpdateDetail value) updateDetail,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
   }) {
     return updateDetail(this);
   }
@@ -1825,6 +1941,8 @@ class _$UpdateDetailImpl implements _UpdateDetail {
     TResult? Function(_UpdateDetail value)? updateDetail,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
   }) {
     return updateDetail?.call(this);
   }
@@ -1843,6 +1961,8 @@ class _$UpdateDetailImpl implements _UpdateDetail {
     TResult Function(_UpdateDetail value)? updateDetail,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (updateDetail != null) {
@@ -1997,6 +2117,8 @@ class _$SubmitImpl implements _Submit {
             int? departmentId, int? catalogId, List<IdeaDetailRow> details)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
   }) {
     return submit(dateStart, dateEnd, departmentId, catalogId, details);
   }
@@ -2018,6 +2140,8 @@ class _$SubmitImpl implements _Submit {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
   }) {
     return submit?.call(dateStart, dateEnd, departmentId, catalogId, details);
   }
@@ -2038,6 +2162,8 @@ class _$SubmitImpl implements _Submit {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -2060,6 +2186,8 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(_UpdateDetail value) updateDetail,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
   }) {
     return submit(this);
   }
@@ -2078,6 +2206,8 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(_UpdateDetail value)? updateDetail,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
   }) {
     return submit?.call(this);
   }
@@ -2096,6 +2226,8 @@ class _$SubmitImpl implements _Submit {
     TResult Function(_UpdateDetail value)? updateDetail,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -2176,6 +2308,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             int? departmentId, int? catalogId, List<IdeaDetailRow> details)
         submit,
     required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
   }) {
     return clearSubmitState();
   }
@@ -2197,6 +2331,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
   }) {
     return clearSubmitState?.call();
   }
@@ -2217,6 +2353,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             int? catalogId, List<IdeaDetailRow> details)?
         submit,
     TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -2239,6 +2377,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_UpdateDetail value) updateDetail,
     required TResult Function(_Submit value) submit,
     required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
   }) {
     return clearSubmitState(this);
   }
@@ -2257,6 +2397,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_UpdateDetail value)? updateDetail,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
   }) {
     return clearSubmitState?.call(this);
   }
@@ -2275,6 +2417,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_UpdateDetail value)? updateDetail,
     TResult Function(_Submit value)? submit,
     TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -2286,4 +2430,389 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
 
 abstract class _ClearSubmitState implements IdeaRegistrationEvent {
   const factory _ClearSubmitState() = _$ClearSubmitStateImpl;
+}
+
+/// @nodoc
+abstract class _$$DeleteIdeaImplCopyWith<$Res> {
+  factory _$$DeleteIdeaImplCopyWith(
+          _$DeleteIdeaImpl value, $Res Function(_$DeleteIdeaImpl) then) =
+      __$$DeleteIdeaImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$DeleteIdeaImplCopyWithImpl<$Res>
+    extends _$IdeaRegistrationEventCopyWithImpl<$Res, _$DeleteIdeaImpl>
+    implements _$$DeleteIdeaImplCopyWith<$Res> {
+  __$$DeleteIdeaImplCopyWithImpl(
+      _$DeleteIdeaImpl _value, $Res Function(_$DeleteIdeaImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$DeleteIdeaImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteIdeaImpl implements _DeleteIdea {
+  const _$DeleteIdeaImpl({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'IdeaRegistrationEvent.deleteIdea(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteIdeaImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteIdeaImplCopyWith<_$DeleteIdeaImpl> get copyWith =>
+      __$$DeleteIdeaImplCopyWithImpl<_$DeleteIdeaImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() initAdd,
+    required TResult Function(DateTime? date) changeDateStart,
+    required TResult Function(DateTime? date) changeDateEnd,
+    required TResult Function(int? id, String? name) changeDepartment,
+    required TResult Function(int? id, String? name) changeCatalog,
+    required TResult Function(int index, String description, String? note)
+        updateDetail,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd,
+            int? departmentId, int? catalogId, List<IdeaDetailRow> details)
+        submit,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
+  }) {
+    return deleteIdea(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? initAdd,
+    TResult? Function(DateTime? date)? changeDateStart,
+    TResult? Function(DateTime? date)? changeDateEnd,
+    TResult? Function(int? id, String? name)? changeDepartment,
+    TResult? Function(int? id, String? name)? changeCatalog,
+    TResult? Function(int index, String description, String? note)?
+        updateDetail,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd, int? departmentId,
+            int? catalogId, List<IdeaDetailRow> details)?
+        submit,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
+  }) {
+    return deleteIdea?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? initAdd,
+    TResult Function(DateTime? date)? changeDateStart,
+    TResult Function(DateTime? date)? changeDateEnd,
+    TResult Function(int? id, String? name)? changeDepartment,
+    TResult Function(int? id, String? name)? changeCatalog,
+    TResult Function(int index, String description, String? note)? updateDetail,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd, int? departmentId,
+            int? catalogId, List<IdeaDetailRow> details)?
+        submit,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
+    required TResult orElse(),
+  }) {
+    if (deleteIdea != null) {
+      return deleteIdea(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_ChangeDateStart value) changeDateStart,
+    required TResult Function(_ChangeDateEnd value) changeDateEnd,
+    required TResult Function(_ChangeDepartment value) changeDepartment,
+    required TResult Function(_ChangeCatalog value) changeCatalog,
+    required TResult Function(_UpdateDetail value) updateDetail,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+  }) {
+    return deleteIdea(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_ChangeDateStart value)? changeDateStart,
+    TResult? Function(_ChangeDateEnd value)? changeDateEnd,
+    TResult? Function(_ChangeDepartment value)? changeDepartment,
+    TResult? Function(_ChangeCatalog value)? changeCatalog,
+    TResult? Function(_UpdateDetail value)? updateDetail,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+  }) {
+    return deleteIdea?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_ChangeDateStart value)? changeDateStart,
+    TResult Function(_ChangeDateEnd value)? changeDateEnd,
+    TResult Function(_ChangeDepartment value)? changeDepartment,
+    TResult Function(_ChangeCatalog value)? changeCatalog,
+    TResult Function(_UpdateDetail value)? updateDetail,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    required TResult orElse(),
+  }) {
+    if (deleteIdea != null) {
+      return deleteIdea(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteIdea implements IdeaRegistrationEvent {
+  const factory _DeleteIdea({required final int id}) = _$DeleteIdeaImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$DeleteIdeaImplCopyWith<_$DeleteIdeaImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearDeleteSuccessImplCopyWith<$Res> {
+  factory _$$ClearDeleteSuccessImplCopyWith(_$ClearDeleteSuccessImpl value,
+          $Res Function(_$ClearDeleteSuccessImpl) then) =
+      __$$ClearDeleteSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearDeleteSuccessImplCopyWithImpl<$Res>
+    extends _$IdeaRegistrationEventCopyWithImpl<$Res, _$ClearDeleteSuccessImpl>
+    implements _$$ClearDeleteSuccessImplCopyWith<$Res> {
+  __$$ClearDeleteSuccessImplCopyWithImpl(_$ClearDeleteSuccessImpl _value,
+      $Res Function(_$ClearDeleteSuccessImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearDeleteSuccessImpl implements _ClearDeleteSuccess {
+  const _$ClearDeleteSuccessImpl();
+
+  @override
+  String toString() {
+    return 'IdeaRegistrationEvent.clearDeleteSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearDeleteSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() initAdd,
+    required TResult Function(DateTime? date) changeDateStart,
+    required TResult Function(DateTime? date) changeDateEnd,
+    required TResult Function(int? id, String? name) changeDepartment,
+    required TResult Function(int? id, String? name) changeCatalog,
+    required TResult Function(int index, String description, String? note)
+        updateDetail,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd,
+            int? departmentId, int? catalogId, List<IdeaDetailRow> details)
+        submit,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteIdea,
+    required TResult Function() clearDeleteSuccess,
+  }) {
+    return clearDeleteSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? initAdd,
+    TResult? Function(DateTime? date)? changeDateStart,
+    TResult? Function(DateTime? date)? changeDateEnd,
+    TResult? Function(int? id, String? name)? changeDepartment,
+    TResult? Function(int? id, String? name)? changeCatalog,
+    TResult? Function(int index, String description, String? note)?
+        updateDetail,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd, int? departmentId,
+            int? catalogId, List<IdeaDetailRow> details)?
+        submit,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteIdea,
+    TResult? Function()? clearDeleteSuccess,
+  }) {
+    return clearDeleteSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? initAdd,
+    TResult Function(DateTime? date)? changeDateStart,
+    TResult Function(DateTime? date)? changeDateEnd,
+    TResult Function(int? id, String? name)? changeDepartment,
+    TResult Function(int? id, String? name)? changeCatalog,
+    TResult Function(int index, String description, String? note)? updateDetail,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd, int? departmentId,
+            int? catalogId, List<IdeaDetailRow> details)?
+        submit,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteIdea,
+    TResult Function()? clearDeleteSuccess,
+    required TResult orElse(),
+  }) {
+    if (clearDeleteSuccess != null) {
+      return clearDeleteSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_ChangeDateStart value) changeDateStart,
+    required TResult Function(_ChangeDateEnd value) changeDateEnd,
+    required TResult Function(_ChangeDepartment value) changeDepartment,
+    required TResult Function(_ChangeCatalog value) changeCatalog,
+    required TResult Function(_UpdateDetail value) updateDetail,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteIdea value) deleteIdea,
+    required TResult Function(_ClearDeleteSuccess value) clearDeleteSuccess,
+  }) {
+    return clearDeleteSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_ChangeDateStart value)? changeDateStart,
+    TResult? Function(_ChangeDateEnd value)? changeDateEnd,
+    TResult? Function(_ChangeDepartment value)? changeDepartment,
+    TResult? Function(_ChangeCatalog value)? changeCatalog,
+    TResult? Function(_UpdateDetail value)? updateDetail,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteIdea value)? deleteIdea,
+    TResult? Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+  }) {
+    return clearDeleteSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_ChangeDateStart value)? changeDateStart,
+    TResult Function(_ChangeDateEnd value)? changeDateEnd,
+    TResult Function(_ChangeDepartment value)? changeDepartment,
+    TResult Function(_ChangeCatalog value)? changeCatalog,
+    TResult Function(_UpdateDetail value)? updateDetail,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteIdea value)? deleteIdea,
+    TResult Function(_ClearDeleteSuccess value)? clearDeleteSuccess,
+    required TResult orElse(),
+  }) {
+    if (clearDeleteSuccess != null) {
+      return clearDeleteSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearDeleteSuccess implements IdeaRegistrationEvent {
+  const factory _ClearDeleteSuccess() = _$ClearDeleteSuccessImpl;
 }

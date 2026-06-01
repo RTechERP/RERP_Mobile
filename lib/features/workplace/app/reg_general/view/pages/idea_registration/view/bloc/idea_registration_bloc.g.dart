@@ -21,6 +21,10 @@ abstract class _$IdeaRegistrationStateCWProxy {
 
   IdeaRegistrationState submitSuccess(bool submitSuccess);
 
+  IdeaRegistrationState isDeleting(bool isDeleting);
+
+  IdeaRegistrationState deleteSuccess(bool deleteSuccess);
+
   IdeaRegistrationState dateStart(DateTime? dateStart);
 
   IdeaRegistrationState dateEnd(DateTime? dateEnd);
@@ -55,6 +59,8 @@ abstract class _$IdeaRegistrationStateCWProxy {
     List<DepartResponse>? departments,
     bool? isSubmitting,
     bool? submitSuccess,
+    bool? isDeleting,
+    bool? deleteSuccess,
     DateTime? dateStart,
     DateTime? dateEnd,
     int? departmentId,
@@ -99,6 +105,14 @@ class _$IdeaRegistrationStateCWProxyImpl
   @override
   IdeaRegistrationState submitSuccess(bool submitSuccess) =>
       this(submitSuccess: submitSuccess);
+
+  @override
+  IdeaRegistrationState isDeleting(bool isDeleting) =>
+      this(isDeleting: isDeleting);
+
+  @override
+  IdeaRegistrationState deleteSuccess(bool deleteSuccess) =>
+      this(deleteSuccess: deleteSuccess);
 
   @override
   IdeaRegistrationState dateStart(DateTime? dateStart) =>
@@ -154,6 +168,8 @@ class _$IdeaRegistrationStateCWProxyImpl
     Object? departments = const $CopyWithPlaceholder(),
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
+    Object? isDeleting = const $CopyWithPlaceholder(),
+    Object? deleteSuccess = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? departmentId = const $CopyWithPlaceholder(),
@@ -197,6 +213,16 @@ class _$IdeaRegistrationStateCWProxyImpl
               ? _value.submitSuccess
               // ignore: cast_nullable_to_non_nullable
               : submitSuccess as bool,
+      isDeleting:
+          isDeleting == const $CopyWithPlaceholder() || isDeleting == null
+              ? _value.isDeleting
+              // ignore: cast_nullable_to_non_nullable
+              : isDeleting as bool,
+      deleteSuccess:
+          deleteSuccess == const $CopyWithPlaceholder() || deleteSuccess == null
+              ? _value.deleteSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : deleteSuccess as bool,
       dateStart: dateStart == const $CopyWithPlaceholder()
           ? _value.dateStart
           // ignore: cast_nullable_to_non_nullable

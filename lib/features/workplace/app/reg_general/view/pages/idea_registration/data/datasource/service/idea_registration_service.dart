@@ -57,6 +57,14 @@ class IdeaRegistrationService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<void>> deleteIdea({required int id}) async {
+    return post<BaseData<void>>(
+      ApiEndPoint.deleteIdea,
+      query: {'id': id},
+      parser: (json) => BaseData<void>.fromJson(json, (_) {}),
+    );
+  }
+
   BaseData<List<IdeaItem>> _parseList(dynamic json) {
     if (json is List) {
       return BaseData<List<IdeaItem>>.fromJson(

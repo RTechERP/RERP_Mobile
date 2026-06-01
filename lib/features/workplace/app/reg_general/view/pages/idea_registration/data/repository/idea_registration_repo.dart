@@ -15,4 +15,6 @@ abstract class IdeaRegistrationRepo {
   Future<Either<BaseError, int>> saveIdea({
     required Map<String, dynamic> payload,
   });
+
+  Future<Either<BaseError, void>> deleteIdea({required int id});
 }

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
-import '../../../../../../../../../common/app_theme/app_bar_common.dart';
-import '../../../../../../../../../common/app_theme/app_colors.dart';
+import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
-import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
+import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
-import '../../../../../../../../../common/widgets/date_header.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../bloc/idea_registration_bloc.dart';
@@ -39,9 +38,10 @@ class _IdeaRegistrationScreenState
   }
 
   void _showDatePicker() {
-    showModalBottomSheet<void>(
+    showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      backgroundColor: Colors.transparent,
       builder: (_) => Container(
         decoration: const BoxDecoration(
           color: Colors.white,
@@ -67,48 +67,70 @@ class _IdeaRegistrationScreenState
 
   @override
   Widget renderUI(BuildContext context) {
-    return BlocConsumer<IdeaRegistrationBloc, IdeaRegistrationState>(
+    return BlocListener<IdeaRegistrationBloc, IdeaRegistrationState>(
       listenWhen: (prev, curr) =>
-          prev.status != curr.status || prev.message != curr.message,
+          prev.status != curr.status ||
+          prev.message != curr.message ||
+          prev.deleteSuccess != curr.deleteSuccess,
       listener: (context, state) {
-        if (state.status == BaseStateStatus.failed && state.message != null) {
+        if (state.deleteSuccess) {
+          context.showMessage(
+            'Xoá ý tưởng thành công',
+            type: SnackBarType.success,
+          );
+          bloc.add(const IdeaRegistrationEvent.clearDeleteSuccess());
+        } else if (state.status == BaseStateStatus.failed &&
+            state.message != null) {
           context.showMessage(state.message!, type: SnackBarType.error);
         }
       },
-      builder: (context, state) {
-        return BaseScaffold(
-          appBar: AppBarCommon(
-            title: const Text('Đăng ký ý tưởng'),
-            onBackTap: () => onBack(context),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.calendar_month),
-                tooltip: 'Chọn ngày',
-                onPressed: _showDatePicker,
-              ),
-            ],
-          ),
-          body: _buildBody(state),
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: AppColors.primaryERP,
-            foregroundColor: Colors.white,
-            onPressed: () async {
-              final result = await context.push<bool>(
-                RouteNames.ideaRegistrationAdd,
-              );
-              if (result == true) {
-                bloc.add(const IdeaRegistrationEvent.refresh());
-              }
-            },
-            child: const Icon(Icons.add),
-          ),
-        );
-      },
+      child: BlocBuilder<IdeaRegistrationBloc, IdeaRegistrationState>(
+        buildWhen: (prev, curr) =>
+            prev.status != curr.status ||
+            prev.items.length != curr.items.length,
+        builder: (context, state) {
+          return BaseScaffold(
+            appBar: AppBarCommon(
+              title: const Text('Đăng ký ý tưởng'),
+              onBackTap: () => context.pop(),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.calendar_month),
+                  tooltip: 'Chọn ngày',
+                  onPressed: () => _showDatePicker(),
+                ),
+              ],
+            ),
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: AppColors.primaryERP,
+              child: const Icon(Icons.add, color: Colors.white),
+              onPressed: () async {
+                final result = await context.push<bool>(
+                  RouteNames.ideaRegistrationAdd,
+                );
+                if (result == true) {
+                  bloc.add(const IdeaRegistrationEvent.refresh());
+                }
+              },
+            ),
+            body: Column(
+              children: [
+                if (state.dateStart != null)
+                  _DateHeader(
+                    dateStart: state.dateStart,
+                    dateEnd: state.dateEnd,
+                  ),
+                Expanded(child: _buildBody(context, state)),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 
   //---(_Body)---//
-  Widget _buildBody(IdeaRegistrationState state) {
+  Widget _buildBody(BuildContext context, IdeaRegistrationState state) {
     if (state.status == BaseStateStatus.loading && state.items.isEmpty) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -118,9 +140,22 @@ class _IdeaRegistrationScreenState
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(AppImages.error, width: 320),
+            Image.asset(AppImages.error, width: 280),
             const SizedBox(height: 12),
-            const Text('Tải dữ liệu thất bại'),
+            Text(
+              state.message ?? 'Tải dữ liệu thất bại',
+              style: const TextStyle(color: AppColors.gray),
+            ),
+            const SizedBox(height: 16),
+            FilledButton(
+              onPressed: () {
+                bloc.add(const IdeaRegistrationEvent.init());
+              },
+              style: FilledButton.styleFrom(
+                backgroundColor: AppColors.primaryERP,
+              ),
+              child: const Text('Thử lại'),
+            ),
           ],
         ),
       );
@@ -131,25 +166,118 @@ class _IdeaRegistrationScreenState
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(AppImages.missing, width: 320),
+            Image.asset(AppImages.missing, width: 280),
             const SizedBox(height: 12),
-            const Text('Chưa có ý tưởng cải tiến nào'),
+            const Text(
+              'Chưa có ý tưởng cải tiến nào',
+              style: TextStyle(color: AppColors.gray),
+            ),
           ],
         ),
       );
     }
 
-    return ListView.separated(
-      padding: const EdgeInsets.only(top: 12, left: 12, right: 12, bottom: 8),
-      itemCount: state.items.length + 1,
-      separatorBuilder: (_, __) => const SizedBox(height: 10),
-      itemBuilder: (context, index) {
-        if (index == 0) {
-          return DateHeader(dateStart: state.dateStart, dateEnd: state.dateEnd);
-        }
-        final item = state.items[index - 1];
-        return IdeaRegistrationCard(item: item, onTap: () {});
-      },
+    return RefreshIndicator(
+      onRefresh: _onRefresh,
+      color: AppColors.primaryERP,
+      child: ListView.separated(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        itemCount: state.items.length,
+        separatorBuilder: (_, __) => const SizedBox(height: 10),
+        itemBuilder: (context, index) {
+          final item = state.items[index];
+          return Slidable(
+            key: ValueKey('idea_${item.id}'),
+            endActionPane: ActionPane(
+              motion: const DrawerMotion(),
+              extentRatio: 0.22,
+              children: [
+                SlidableAction(
+                  onPressed: (_) async {
+                    Slidable.of(context)?.close();
+                    final confirmed = await DialogService.showConfirmDelete(
+                      context: context,
+                    );
+                    if (!context.mounted) return;
+                    if (confirmed && item.id != null && item.id! > 0) {
+                      bloc.add(IdeaRegistrationEvent.deleteIdea(id: item.id!));
+                    }
+                  },
+                  backgroundColor: AppColors.alert,
+                  foregroundColor: Colors.white,
+                  icon: Icons.delete_outline,
+                  label: 'Xoá',
+                ),
+              ],
+            ),
+            child: Builder(
+              builder: (slidableCtx) => IdeaRegistrationCard(
+                item: item,
+                onTap: () {
+                  Slidable.of(slidableCtx)?.close();
+                },
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Future<void> _onRefresh() async {
+    bloc.add(const IdeaRegistrationEvent.refresh());
+    await Future.delayed(const Duration(milliseconds: 500));
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Date Header
+// ---------------------------------------------------------------------------
+
+class _DateHeader extends StatelessWidget {
+  final DateTime? dateStart;
+  final DateTime? dateEnd;
+
+  const _DateHeader({this.dateStart, this.dateEnd});
+
+  String _format(DateTime d) {
+    return '${d.day.toString().padLeft(2, '0')}/'
+        '${d.month.toString().padLeft(2, '0')}/'
+        '${d.year}';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    String text;
+
+    if (dateStart != null && dateEnd != null) {
+      final s = dateStart!;
+      final e = dateEnd!;
+      if (s.year == e.year && s.month == e.month && s.day == e.day) {
+        text = 'Ngày: ${_format(s)}';
+      } else {
+        text = 'Từ: ${_format(s)} - Đến: ${_format(e)}';
+      }
+    } else if (dateStart != null) {
+      text = 'Ngày: ${_format(dateStart!)}';
+    } else {
+      text = 'Tất cả';
+    }
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+      alignment: Alignment.center,
+      color: Colors.white,
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: Colors.black,
+        ),
+      ),
     );
   }
 }

@@ -55,6 +55,8 @@ class IdeaRegistrationBloc
               details: details,
             ),
         clearSubmitState: () => _onClearSubmitState(emit),
+        deleteIdea: (id) => _onDeleteIdea(emit, id: id),
+        clearDeleteSuccess: () => _onClearDeleteSuccess(emit),
       );
     });
   }
@@ -423,5 +425,63 @@ class IdeaRegistrationBloc
       'RegisterIdeaDetails': payloadDetails,
       'deletedFileIds': null,
     };
+  }
+
+  //---(Delete)---//
+
+  Future<void> _onDeleteIdea(
+    Emitter<IdeaRegistrationState> emit, {
+    required int id,
+  }) async {
+    if (_isSubmitting) return;
+    _isSubmitting = true;
+
+    try {
+      emit(state.copyWith(isDeleting: true, deleteSuccess: false));
+
+      _log.logI('Starting delete idea: $id');
+
+      final res = await _repo.deleteIdea(id: id);
+
+      await res.fold(
+        (err) async {
+          _log.logE('Delete idea failed: $err');
+          emit(state.copyWith(
+            isDeleting: false,
+            deleteSuccess: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ));
+        },
+        (_) async {
+          _log.logI('Delete idea success');
+          final updatedItems =
+              state.items.where((item) => item.id != id).toList();
+          emit(state.copyWith(
+            isDeleting: false,
+            deleteSuccess: true,
+            status: BaseStateStatus.success,
+            message: 'Xoa y tuong thanh cong',
+            items: updatedItems,
+          ));
+        },
+      );
+    } catch (e) {
+      _log.logE('Delete idea exception: $e');
+      emit(state.copyWith(
+        isDeleting: false,
+        deleteSuccess: false,
+        status: BaseStateStatus.failed,
+        message: 'Co loi xay ra',
+      ));
+    } finally {
+      _isSubmitting = false;
+    }
+  }
+
+  //---(ClearDeleteSuccess)---//
+  Future<void> _onClearDeleteSuccess(
+      Emitter<IdeaRegistrationState> emit) async {
+    emit(state.copyWith(deleteSuccess: false));
   }
 }

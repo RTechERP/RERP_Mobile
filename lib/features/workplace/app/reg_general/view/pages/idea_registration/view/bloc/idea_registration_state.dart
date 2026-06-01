@@ -9,6 +9,8 @@ class IdeaRegistrationState extends BaseBlocState {
   // Add screen state
   final bool isSubmitting;
   final bool submitSuccess;
+  final bool isDeleting;
+  final bool deleteSuccess;
   final DateTime? dateStart;
   final DateTime? dateEnd;
   final int? departmentId;
@@ -30,6 +32,8 @@ class IdeaRegistrationState extends BaseBlocState {
     this.departments = const [],
     this.isSubmitting = false,
     this.submitSuccess = false,
+    this.isDeleting = false,
+    this.deleteSuccess = false,
     this.dateStart,
     this.dateEnd,
     this.departmentId,
@@ -49,6 +53,8 @@ class IdeaRegistrationState extends BaseBlocState {
         departments: [],
         isSubmitting: false,
         submitSuccess: false,
+        isDeleting: false,
+        deleteSuccess: false,
         dateStart: null,
         dateEnd: null,
         departmentId: null,
@@ -70,6 +76,8 @@ class IdeaRegistrationState extends BaseBlocState {
         departments,
         isSubmitting,
         submitSuccess,
+        isDeleting,
+        deleteSuccess,
         dateStart,
         dateEnd,
         departmentId,
