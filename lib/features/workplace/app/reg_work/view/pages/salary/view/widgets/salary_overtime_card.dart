@@ -6,12 +6,10 @@ import '../bloc/salary_bloc.dart';
 import 'salary_card.dart';
 
 class SalaryOvertimeCard extends StatelessWidget {
-  const SalaryOvertimeCard({
-    super.key,
-    required this.state,
-  });
+  const SalaryOvertimeCard({super.key, required this.state, this.onDetailTap});
 
   final SalaryState state;
+  final VoidCallback? onDetailTap;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +21,7 @@ class SalaryOvertimeCard extends StatelessWidget {
       title: 'Làm thêm',
       icon: Icons.more_time_outlined,
       formula: '(8) → (14)',
+      onDetailTap: onDetailTap,
       child: Column(
         children: [
           SalaryRow(

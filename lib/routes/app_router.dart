@@ -101,10 +101,11 @@ import '../features/workplace/app/reg_work/view/pages/work_trip/view/pages/work_
 import '../features/workplace/app/reg_work/view/pages/work_trip/view/pages/work_trip_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/salary_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/timekeeping_bloc.dart';
-import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_menu_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_menu_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/timekeeping_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/forgot_pin_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_card_detail_screen.dart';
 import '../features/workplace/app/reports/data/datasource/models/report_model.dart';
 import '../features/workplace/app/reports/view/ad/view/bloc/ad_bloc.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_add_screen.dart';
@@ -457,6 +458,22 @@ class AppRouter {
           GoRoute(
             path: RouteNames.salaryForgotPin,
             builder: (context, state) => const ForgotPinScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.salaryCardDetail,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              SalaryCardType? cardType;
+              DateTime? month;
+              if (extra != null) {
+                cardType = extra['cardType'] as SalaryCardType?;
+                month = extra['month'] as DateTime?;
+              }
+              return SalaryCardDetailScreen(
+                cardType: cardType,
+                month: month,
+              );
+            },
           ),
         ],
       ),

@@ -7,6 +7,8 @@ import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
+import '../../../overtime/data/datasource/models/overtime_model.dart';
+import '../../../overtime/data/repository/overtime_repo.dart';
 import '../../data/repository/salary_pin_repo.dart';
 import '../../data/repository/salary_repo.dart';
 import '../../data/datasource/models/salary_model.dart';
@@ -21,12 +23,18 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
   final SalaryRepo _salaryRepo;
   final SalaryPinRepo _salaryPinRepo;
   final AuthRepo _authRepo;
+  final OvertimeRepo _overtimeRepo;
   final LogUtils _log;
 
   bool _isPinVerified = false;
 
-  SalaryBloc(this._salaryRepo, this._salaryPinRepo, this._authRepo, this._log)
-      : super(SalaryState.init()) {
+  SalaryBloc(
+    this._salaryRepo,
+    this._salaryPinRepo,
+    this._authRepo,
+    this._overtimeRepo,
+    this._log,
+  ) : super(SalaryState.init()) {
     on<SalaryEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
@@ -52,7 +60,6 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
 
   //---(Init)---//
   Future<void> _onInitMenu(Emitter<SalaryState> emit) async {
-    _isPinVerified = false;
     emit(state.copyWith(
       isVerifyingPin: true,
       pinError: null,
@@ -324,6 +331,73 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
         final p = payrollList.isNotEmpty ? payrollList.first : null;
         final summaryList = data.listSummary ?? [];
 
+        // Fetch overtime data
+        List<OvertimeItem> overtimeItems = [];
+        try {
+          final dateStart = DateTime(year, month, 1).toUtc();
+          final dateEnd = DateTime.utc(year, month + 1, 0, 23, 59, 59);
+          final payload = <String, dynamic>{
+            'DateStart': dateStart.toIso8601String(),
+            'DateEnd': dateEnd.toIso8601String(),
+            'KeyWord': '',
+            'EmployeeID': 0,
+            'IsApprove': -1,
+            'Type': 0,
+          };
+          _log.logI('Get overtime payload: $payload');
+          final otRes = await _overtimeRepo.getOvertime(payload: payload);
+          await otRes.fold(
+            (err) async {
+              _log.logE('Get overtime failed: $err');
+            },
+            (data) async {
+              overtimeItems = data;
+              _log.logI('Get overtime success - count: ${overtimeItems.length}');
+            },
+          );
+        } catch (e) {
+          _log.logE('Get overtime failed: $e');
+        }
+
+        // Tính OT theo 5 loại từ overtimeItems
+        double calcOtHourWD = 0;
+        double calcOtHourWDNight = 0;
+        double calcOtHourWK = 0;
+        double calcOtHourWKNightWeekend = 0;
+        double calcOtHourHD = 0;
+        double calcOtMoneyWD = 0;
+        double calcOtMoneyWDNight = 0;
+        double calcOtMoneyWK = 0;
+        double calcOtMoneyWKNightWeekend = 0;
+        double calcOtMoneyHD = 0;
+
+        for (final item in overtimeItems) {
+          final typeName = item.typeName ?? '';
+          final hours = item.timeReality ?? 0;
+          final money = item.totalTime ?? 0;
+
+          if (typeName.contains('Ngày thường - Đêm')) {
+            calcOtHourWDNight += hours;
+            calcOtMoneyWDNight += money;
+          } else if (typeName.contains('Ngày thường')) {
+            calcOtHourWD += hours;
+            calcOtMoneyWD += money;
+          } else if (typeName.contains('Cuối tuần - Đêm')) {
+            calcOtHourWKNightWeekend += hours;
+            calcOtMoneyWKNightWeekend += money;
+          } else if (typeName.contains('Cuối tuần')) {
+            calcOtHourWK += hours;
+            calcOtMoneyWK += money;
+          } else if (typeName.contains('Ngày lễ')) {
+            calcOtHourHD += hours;
+            calcOtMoneyHD += money;
+          }
+        }
+
+        // Dùng data từ API nếu có, không thì dùng tính từ overtimeItems
+        final calcOtTotal = calcOtMoneyWD + calcOtMoneyWDNight +
+            calcOtMoneyWK + calcOtMoneyWKNightWeekend + calcOtMoneyHD;
+
         emit(state.copyWith(
           payroll: payrollList,
           // Card thu nhập tiêu chuẩn
@@ -332,14 +406,18 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           totalMerit: p?.totalMerit ?? 0,
           totalSalaryByDay: p?.totalSalaryByDay ?? 0,
           salaryOneHour: p?.salaryOneHour ?? 0,
-          // Card làm thêm
-          otHourWD: p?.otHourWD ?? 0,
-          otMoneyWD: p?.otMoneyWD ?? 0,
-          otHourWK: p?.otHourWK ?? 0,
-          otMoneyWK: p?.otMoneyWK ?? 0,
-          otHourHD: p?.otHourHD ?? 0,
-          otMoneyHD: p?.otMoneyHD ?? 0,
-          otTotalSalary: p?.otTotalSalary ?? 0,
+          // Card làm thêm - 5 loại
+          otHourWD: p?.otHourWD ?? calcOtHourWD,
+          otMoneyWD: p?.otMoneyWD ?? calcOtMoneyWD,
+          otHourWKNight: calcOtHourWDNight,
+          otMoneyWKNight: calcOtMoneyWDNight,
+          otHourWK: p?.otHourWK ?? calcOtHourWK,
+          otMoneyWK: p?.otMoneyWK ?? calcOtMoneyWK,
+          otHourWKNightWeekend: calcOtHourWKNightWeekend,
+          otMoneyWKNightWeekend: calcOtMoneyWKNightWeekend,
+          otHourHD: p?.otHourHD ?? calcOtHourHD,
+          otMoneyHD: p?.otMoneyHD ?? calcOtMoneyHD,
+          otTotalSalary: calcOtTotal,
           // Card phụ cấp
           allowanceMeal: p?.allowanceMeal ?? 0,
           allowanceOTEarly: p?.allowanceOTEarly ?? 0,
@@ -353,7 +431,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           totalBonus: p?.totalBonus ?? 0,
           // Card tổng thu nhập
           totalTaxableIncome: (p?.totalSalaryByDay ?? 0) +
-              (p?.otTotalSalary ?? 0) +
+              calcOtTotal +
               (p?.totalAllowance ?? 0) +
               (p?.totalBonus ?? 0),
           // Card các khoản phải trừ
@@ -384,6 +462,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           fingers: data.fingers,
           fingerData: data.fingers?.data,
           fingerDetails: data.fingers?.details ?? [],
+          overtimeItems: overtimeItems,
         ));
       },
     );

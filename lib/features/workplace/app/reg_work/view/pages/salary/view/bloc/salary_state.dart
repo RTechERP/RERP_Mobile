@@ -20,8 +20,12 @@ class SalaryState extends BaseBlocState {
   // Card làm thêm
   final double otHourWD;           // (8) Giờ ngày thường
   final double otMoneyWD;           // (9) Tiền OT ngày thường
+  final double otHourWKNight;      // Giờ ngày thường - Đêm
+  final double otMoneyWKNight;      // Tiền OT ngày thường - Đêm
   final double otHourWK;           // (10) Giờ cuối tuần
   final double otMoneyWK;          // (11) Tiền OT cuối tuần
+  final double otHourWKNightWeekend; // Giờ cuối tuần - Đêm
+  final double otMoneyWKNightWeekend; // Tiền OT cuối tuần - Đêm
   final double otHourHD;           // (12) Giờ ngày lễ/Tết
   final double otMoneyHD;          // (13) Tiền OT ngày lễ/Tết
   final double otTotalSalary;      // (14) Tổng tiền OT
@@ -95,6 +99,9 @@ class SalaryState extends BaseBlocState {
   final int? selectedFingerMonth;
   final DateTime? selectedFingerMonthDt;
 
+  // Overtime data
+  final List<OvertimeItem> overtimeItems;
+
   const SalaryState({
     required super.status,
     super.message,
@@ -111,8 +118,12 @@ class SalaryState extends BaseBlocState {
     this.salaryOneHour = 0,
     this.otHourWD = 0,
     this.otMoneyWD = 0,
+    this.otHourWKNight = 0,
+    this.otMoneyWKNight = 0,
     this.otHourWK = 0,
     this.otMoneyWK = 0,
+    this.otHourWKNightWeekend = 0,
+    this.otMoneyWKNightWeekend = 0,
     this.otHourHD = 0,
     this.otMoneyHD = 0,
     this.otTotalSalary = 0,
@@ -165,6 +176,7 @@ class SalaryState extends BaseBlocState {
     this.fingerDetails = const [],
     this.selectedFingerMonth,
     this.selectedFingerMonthDt,
+    this.overtimeItems = const [],
   });
 
   factory SalaryState.init() => const SalaryState(
@@ -188,8 +200,12 @@ class SalaryState extends BaseBlocState {
         salaryOneHour,
         otHourWD,
         otMoneyWD,
+        otHourWKNight,
+        otMoneyWKNight,
         otHourWK,
         otMoneyWK,
+        otHourWKNightWeekend,
+        otMoneyWKNightWeekend,
         otHourHD,
         otMoneyHD,
         otTotalSalary,
@@ -242,5 +258,6 @@ class SalaryState extends BaseBlocState {
         fingerDetails,
         selectedFingerMonth,
         selectedFingerMonthDt,
+        overtimeItems,
       ];
 }

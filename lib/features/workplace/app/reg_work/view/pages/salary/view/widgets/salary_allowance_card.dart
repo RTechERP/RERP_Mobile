@@ -6,9 +6,10 @@ import '../bloc/salary_bloc.dart';
 import 'salary_card.dart';
 
 class SalaryAllowanceCard extends StatelessWidget {
-  const SalaryAllowanceCard({super.key, required this.state});
+  const SalaryAllowanceCard({super.key, required this.state, this.onDetailTap});
 
   final SalaryState state;
+  final VoidCallback? onDetailTap;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class SalaryAllowanceCard extends StatelessWidget {
       title: 'Phụ cấp',
       icon: Icons.add_card,
       formula: '(17) → (19)',
+      onDetailTap: onDetailTap,
       child: Column(
         children: [
           SalaryRow(

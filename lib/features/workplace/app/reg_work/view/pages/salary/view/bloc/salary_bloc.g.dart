@@ -37,9 +37,17 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState otMoneyWD(double otMoneyWD);
 
+  SalaryState otHourWKNight(double otHourWKNight);
+
+  SalaryState otMoneyWKNight(double otMoneyWKNight);
+
   SalaryState otHourWK(double otHourWK);
 
   SalaryState otMoneyWK(double otMoneyWK);
+
+  SalaryState otHourWKNightWeekend(double otHourWKNightWeekend);
+
+  SalaryState otMoneyWKNightWeekend(double otMoneyWKNightWeekend);
 
   SalaryState otHourHD(double otHourHD);
 
@@ -145,6 +153,8 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState selectedFingerMonthDt(DateTime? selectedFingerMonthDt);
 
+  SalaryState overtimeItems(List<OvertimeItem> overtimeItems);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -167,8 +177,12 @@ abstract class _$SalaryStateCWProxy {
     double? salaryOneHour,
     double? otHourWD,
     double? otMoneyWD,
+    double? otHourWKNight,
+    double? otMoneyWKNight,
     double? otHourWK,
     double? otMoneyWK,
+    double? otHourWKNightWeekend,
+    double? otMoneyWKNightWeekend,
     double? otHourHD,
     double? otMoneyHD,
     double? otTotalSalary,
@@ -221,6 +235,7 @@ abstract class _$SalaryStateCWProxy {
     List<SalaryFingerDetail>? fingerDetails,
     int? selectedFingerMonth,
     DateTime? selectedFingerMonthDt,
+    List<OvertimeItem>? overtimeItems,
   });
 }
 
@@ -283,10 +298,26 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
   SalaryState otMoneyWD(double otMoneyWD) => this(otMoneyWD: otMoneyWD);
 
   @override
+  SalaryState otHourWKNight(double otHourWKNight) =>
+      this(otHourWKNight: otHourWKNight);
+
+  @override
+  SalaryState otMoneyWKNight(double otMoneyWKNight) =>
+      this(otMoneyWKNight: otMoneyWKNight);
+
+  @override
   SalaryState otHourWK(double otHourWK) => this(otHourWK: otHourWK);
 
   @override
   SalaryState otMoneyWK(double otMoneyWK) => this(otMoneyWK: otMoneyWK);
+
+  @override
+  SalaryState otHourWKNightWeekend(double otHourWKNightWeekend) =>
+      this(otHourWKNightWeekend: otHourWKNightWeekend);
+
+  @override
+  SalaryState otMoneyWKNightWeekend(double otMoneyWKNightWeekend) =>
+      this(otMoneyWKNightWeekend: otMoneyWKNightWeekend);
 
   @override
   SalaryState otHourHD(double otHourHD) => this(otHourHD: otHourHD);
@@ -478,6 +509,10 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
       this(selectedFingerMonthDt: selectedFingerMonthDt);
 
   @override
+  SalaryState overtimeItems(List<OvertimeItem> overtimeItems) =>
+      this(overtimeItems: overtimeItems);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -501,8 +536,12 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? salaryOneHour = const $CopyWithPlaceholder(),
     Object? otHourWD = const $CopyWithPlaceholder(),
     Object? otMoneyWD = const $CopyWithPlaceholder(),
+    Object? otHourWKNight = const $CopyWithPlaceholder(),
+    Object? otMoneyWKNight = const $CopyWithPlaceholder(),
     Object? otHourWK = const $CopyWithPlaceholder(),
     Object? otMoneyWK = const $CopyWithPlaceholder(),
+    Object? otHourWKNightWeekend = const $CopyWithPlaceholder(),
+    Object? otMoneyWKNightWeekend = const $CopyWithPlaceholder(),
     Object? otHourHD = const $CopyWithPlaceholder(),
     Object? otMoneyHD = const $CopyWithPlaceholder(),
     Object? otTotalSalary = const $CopyWithPlaceholder(),
@@ -555,6 +594,7 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? fingerDetails = const $CopyWithPlaceholder(),
     Object? selectedFingerMonth = const $CopyWithPlaceholder(),
     Object? selectedFingerMonthDt = const $CopyWithPlaceholder(),
+    Object? overtimeItems = const $CopyWithPlaceholder(),
   }) {
     return SalaryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -622,6 +662,16 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
           ? _value.otMoneyWD
           // ignore: cast_nullable_to_non_nullable
           : otMoneyWD as double,
+      otHourWKNight:
+          otHourWKNight == const $CopyWithPlaceholder() || otHourWKNight == null
+              ? _value.otHourWKNight
+              // ignore: cast_nullable_to_non_nullable
+              : otHourWKNight as double,
+      otMoneyWKNight: otMoneyWKNight == const $CopyWithPlaceholder() ||
+              otMoneyWKNight == null
+          ? _value.otMoneyWKNight
+          // ignore: cast_nullable_to_non_nullable
+          : otMoneyWKNight as double,
       otHourWK: otHourWK == const $CopyWithPlaceholder() || otHourWK == null
           ? _value.otHourWK
           // ignore: cast_nullable_to_non_nullable
@@ -630,6 +680,18 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
           ? _value.otMoneyWK
           // ignore: cast_nullable_to_non_nullable
           : otMoneyWK as double,
+      otHourWKNightWeekend:
+          otHourWKNightWeekend == const $CopyWithPlaceholder() ||
+                  otHourWKNightWeekend == null
+              ? _value.otHourWKNightWeekend
+              // ignore: cast_nullable_to_non_nullable
+              : otHourWKNightWeekend as double,
+      otMoneyWKNightWeekend:
+          otMoneyWKNightWeekend == const $CopyWithPlaceholder() ||
+                  otMoneyWKNightWeekend == null
+              ? _value.otMoneyWKNightWeekend
+              // ignore: cast_nullable_to_non_nullable
+              : otMoneyWKNightWeekend as double,
       otHourHD: otHourHD == const $CopyWithPlaceholder() || otHourHD == null
           ? _value.otHourHD
           // ignore: cast_nullable_to_non_nullable
@@ -873,6 +935,11 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
               ? _value.selectedFingerMonthDt
               // ignore: cast_nullable_to_non_nullable
               : selectedFingerMonthDt as DateTime?,
+      overtimeItems:
+          overtimeItems == const $CopyWithPlaceholder() || overtimeItems == null
+              ? _value.overtimeItems
+              // ignore: cast_nullable_to_non_nullable
+              : overtimeItems as List<OvertimeItem>,
     );
   }
 }

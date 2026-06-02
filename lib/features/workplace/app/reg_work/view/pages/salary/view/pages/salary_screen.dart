@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
@@ -7,6 +8,7 @@ import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
+import '../../../../../../../../../routes/route_names.dart';
 import '../bloc/salary_bloc.dart';
 import '../widgets/salary_allowance_card.dart';
 import '../widgets/salary_deductions_card.dart';
@@ -17,6 +19,16 @@ import '../widgets/salary_other_additions_card.dart';
 import '../widgets/salary_overtime_card.dart';
 import '../widgets/salary_standard_income_card.dart';
 import '../widgets/salary_total_taxable_card.dart';
+
+enum SalaryCardType {
+  standardIncome,
+  overtime,
+  allowance,
+  otherAdditions,
+  deductions,
+  totalTaxable,
+  netSalary,
+}
 
 class SalaryScreen extends StatefulWidget {
   const SalaryScreen({super.key});
@@ -59,33 +71,39 @@ class _SalaryScreenState
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildHeader(state),
-                      // const SizedBox(height: 12),
-                      // Card thông tin chung
-
-                      // SalaryInfoCard(state: state),
                       const SizedBox(height: 12),
-                      // Card thu nhập
-                      SalaryStandardIncomeCard(state: state),
+                      SalaryStandardIncomeCard(
+                        state: state,
+                      ),
                       const SizedBox(height: 12),
-                      // Card làm thêm
-                      SalaryOvertimeCard(state: state),
+                      SalaryOvertimeCard(
+                        state: state,
+                        onDetailTap: () => _onDetailTap(context, SalaryCardType.overtime, state.selectedMonth),
+                      ),
                       const SizedBox(height: 12),
-                      // Card phụ cấp
-                      SalaryAllowanceCard(state: state),
+                      SalaryAllowanceCard(
+                        state: state,
+                        onDetailTap: () => _onDetailTap(context, SalaryCardType.allowance, state.selectedMonth),
+                      ),
                       const SizedBox(height: 12),
-                      // Card các khoản cộng & tổng thu nhập
-                      SalaryOtherAdditionsCard(state: state),
+                      SalaryOtherAdditionsCard(
+                        state: state,
+                        onDetailTap: () => _onDetailTap(context, SalaryCardType.otherAdditions, state.selectedMonth),
+                      ),
                       const SizedBox(height: 12),
-                      // Card các khoản phải trừ
-                      SalaryDeductionsCard(state: state),
+                      SalaryDeductionsCard(
+                        state: state,
+                        onDetailTap: () => _onDetailTap(context, SalaryCardType.deductions, state.selectedMonth),
+                      ),
                       const SizedBox(height: 12),
-                      // Card tổng thu nhập tính thuế
-                      SalaryTotalTaxableCard(state: state),
+                      SalaryTotalTaxableCard(
+                        state: state,
+                      ),
                       const SizedBox(height: 12),
-                      // Card thực lĩnh
-                      SalaryNetSalaryCard(state: state),
+                      SalaryNetSalaryCard(
+                        state: state,
+                      ),
                       const SizedBox(height: 12),
-                      // Card ghi chú
                       SalaryNoteCard(state: state),
                     ],
                   ),
@@ -120,8 +138,11 @@ class _SalaryScreenState
         ),
         child: Row(
           children: [
-            const Icon(Icons.calendar_month,
-                color: AppColors.primaryERP, size: 22),
+            const Icon(
+              Icons.calendar_month,
+              color: AppColors.primaryERP,
+              size: 22,
+            ),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -164,5 +185,16 @@ class _SalaryScreenState
 
   String _formatCurrency(int value) {
     return '${NumberFormat('#,##0', 'vi_VN').format(value)} đ';
+  }
+
+  void _onDetailTap(BuildContext ctx, SalaryCardType type, DateTime? month) {
+    final selectedMonth = month ?? DateTime.now();
+    ctx.push(
+      RouteNames.salaryCardDetail,
+      extra: {
+        'cardType': type,
+        'month': selectedMonth,
+      },
+    );
   }
 }

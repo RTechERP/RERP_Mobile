@@ -6,9 +6,14 @@ import '../bloc/salary_bloc.dart';
 import 'salary_card.dart';
 
 class SalaryDeductionsCard extends StatelessWidget {
-  const SalaryDeductionsCard({super.key, required this.state});
+  const SalaryDeductionsCard({
+    super.key,
+    required this.state,
+    this.onDetailTap,
+  });
 
   final SalaryState state;
+  final VoidCallback? onDetailTap;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +25,7 @@ class SalaryDeductionsCard extends StatelessWidget {
       title: 'Các khoản phải trừ',
       icon: Icons.remove_circle_outline,
       formula: '(29) → (38)',
+      onDetailTap: onDetailTap,
       child: Column(
         children: [
           SalaryRow(

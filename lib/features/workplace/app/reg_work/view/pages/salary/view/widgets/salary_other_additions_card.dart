@@ -7,9 +7,14 @@ import 'salary_card.dart';
 import 'salary_section_header.dart';
 
 class SalaryOtherAdditionsCard extends StatelessWidget {
-  const SalaryOtherAdditionsCard({super.key, required this.state});
+  const SalaryOtherAdditionsCard({
+    super.key,
+    required this.state,
+    this.onDetailTap,
+  });
 
   final SalaryState state;
+  final VoidCallback? onDetailTap;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +26,7 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
       title: 'Các khoản cộng khác & Tổng thu nhập tính thuế',
       icon: Icons.add_circle_outline,
       formula: '(20) → (26)',
+      onDetailTap: onDetailTap,
       child: Column(
         children: [
           SalarySectionHeader(

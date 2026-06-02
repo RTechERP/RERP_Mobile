@@ -12,6 +12,7 @@ class SalaryCard extends StatefulWidget {
     this.formula,
     this.formulaDesc,
     this.collapsed = false,
+    this.onDetailTap,
   });
 
   final Color accentColor;
@@ -21,6 +22,7 @@ class SalaryCard extends StatefulWidget {
   final String? formula;
   final String? formulaDesc;
   final bool collapsed;
+  final VoidCallback? onDetailTap;
 
   @override
   State<SalaryCard> createState() => _SalaryCardState();
@@ -61,6 +63,7 @@ class _SalaryCardState extends State<SalaryCard> {
             formulaDesc: widget.formulaDesc,
             isCollapsed: _isCollapsed,
             onToggle: () => setState(() => _isCollapsed = !_isCollapsed),
+            onDetailTap: widget.onDetailTap,
           ),
           AnimatedCrossFade(
             duration: const Duration(milliseconds: 200),
@@ -88,6 +91,7 @@ class _CardHeader extends StatelessWidget {
     required this.onToggle,
     this.formula,
     this.formulaDesc,
+    this.onDetailTap,
   });
 
   final Color accentColor;
@@ -97,6 +101,7 @@ class _CardHeader extends StatelessWidget {
   final VoidCallback onToggle;
   final String? formula;
   final String? formulaDesc;
+  final VoidCallback? onDetailTap;
 
   @override
   Widget build(BuildContext context) {
@@ -157,6 +162,22 @@ class _CardHeader extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 8),
+                if (onDetailTap != null)
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(8),
+                      onTap: onDetailTap,
+                      child: Container(
+                        padding: const EdgeInsets.all(4),
+                        child: Icon(
+                          Icons.info_outline,
+                          color: accentColor,
+                          size: 20,
+                        ),
+                      ),
+                    ),
+                  ),
                 AnimatedRotation(
                   turns: isCollapsed ? -0.25 : 0,
                   duration: const Duration(milliseconds: 200),
@@ -288,8 +309,7 @@ class SalaryRow extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             for (int i = 0; i < items.length; i++) ...[
-              if (i > 0)
-                Container(width: 1, color: AppColors.borderColor),
+              if (i > 0) Container(width: 1, color: AppColors.borderColor),
               Expanded(
                 child: _SalaryCell(
                   item: items[i],

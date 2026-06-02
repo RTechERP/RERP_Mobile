@@ -465,6 +465,7 @@ void configureDependencies() {
       getIt<SalaryRepo>(),
       getIt<SalaryPinRepo>(),
       getIt<AuthRepo>(),
+      getIt<OvertimeRepo>(),
       getIt<LogUtils>(),
     ),
   );
