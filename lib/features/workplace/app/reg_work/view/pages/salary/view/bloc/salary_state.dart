@@ -101,6 +101,7 @@ class SalaryState extends BaseBlocState {
 
   // Overtime data
   final List<OvertimeItem> overtimeItems;
+  final List<OvertimeItem> overnightItems;
 
   const SalaryState({
     required super.status,
@@ -177,6 +178,7 @@ class SalaryState extends BaseBlocState {
     this.selectedFingerMonth,
     this.selectedFingerMonthDt,
     this.overtimeItems = const [],
+    this.overnightItems = const [],
   });
 
   factory SalaryState.init() => const SalaryState(
@@ -259,5 +261,6 @@ class SalaryState extends BaseBlocState {
         selectedFingerMonth,
         selectedFingerMonthDt,
         overtimeItems,
+        overnightItems,
       ];
 }

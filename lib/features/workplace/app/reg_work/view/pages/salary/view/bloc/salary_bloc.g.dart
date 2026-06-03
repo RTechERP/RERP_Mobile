@@ -155,6 +155,8 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState overtimeItems(List<OvertimeItem> overtimeItems);
 
+  SalaryState overnightItems(List<OvertimeItem> overnightItems);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -236,6 +238,7 @@ abstract class _$SalaryStateCWProxy {
     int? selectedFingerMonth,
     DateTime? selectedFingerMonthDt,
     List<OvertimeItem>? overtimeItems,
+    List<OvertimeItem>? overnightItems,
   });
 }
 
@@ -513,6 +516,10 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
       this(overtimeItems: overtimeItems);
 
   @override
+  SalaryState overnightItems(List<OvertimeItem> overnightItems) =>
+      this(overnightItems: overnightItems);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -595,6 +602,7 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? selectedFingerMonth = const $CopyWithPlaceholder(),
     Object? selectedFingerMonthDt = const $CopyWithPlaceholder(),
     Object? overtimeItems = const $CopyWithPlaceholder(),
+    Object? overnightItems = const $CopyWithPlaceholder(),
   }) {
     return SalaryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -940,6 +948,11 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
               ? _value.overtimeItems
               // ignore: cast_nullable_to_non_nullable
               : overtimeItems as List<OvertimeItem>,
+      overnightItems: overnightItems == const $CopyWithPlaceholder() ||
+              overnightItems == null
+          ? _value.overnightItems
+          // ignore: cast_nullable_to_non_nullable
+          : overnightItems as List<OvertimeItem>,
     );
   }
 }

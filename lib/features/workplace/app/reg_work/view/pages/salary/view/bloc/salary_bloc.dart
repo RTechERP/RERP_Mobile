@@ -463,6 +463,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           fingerData: data.fingers?.data,
           fingerDetails: data.fingers?.details ?? [],
           overtimeItems: overtimeItems,
+          overnightItems: overtimeItems.where((o) => o.overnight == true).toList(),
         ));
       },
     );

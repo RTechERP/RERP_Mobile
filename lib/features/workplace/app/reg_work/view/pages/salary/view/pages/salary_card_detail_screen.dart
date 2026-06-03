@@ -5,6 +5,7 @@ import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../overtime/data/datasource/models/overtime_model.dart';
 import '../../data/datasource/models/salary_model.dart';
@@ -195,6 +196,7 @@ class _SalaryCardDetailScreenState
   Widget _buildOTContent(SalaryState state) {
     final nf = NumberFormat('#,##0', 'vi_VN');
     final otItems = state.overtimeItems;
+    final overnightItems = state.overnightItems;
 
     if (otItems.isEmpty) return _buildEmptyState();
 
@@ -303,7 +305,17 @@ class _SalaryCardDetailScreenState
     final days = _getFilteredDays(state.fingerDetails);
     final regDays = days.where((d) => d.isLateRegister == true || d.isEarlyRegister == true).toList();
 
-    if (regDays.isEmpty) return _buildEmptyState();
+    // Tính tổng tiền cơm ca qua đêm
+    final overnightTotal = state.overnightItems.fold<double>(
+      0, (sum, o) => sum + (o.costOvernight ?? 0),
+    );
+
+    final hasAllowance = state.allowanceMeal > 0 ||
+        state.allowanceOTEarly > 0 ||
+        overnightTotal > 0;
+    if (regDays.isEmpty && state.overnightItems.isEmpty && !hasAllowance) {
+      return _buildEmptyState();
+    }
 
     // Tách 2 nhóm: cơm ca sau 20h (isLate) và đi trước 7h15 (isEarly)
     final mealDays = regDays.where((d) => d.isLate == true || d.isLateActual == 1).toList();
@@ -312,29 +324,57 @@ class _SalaryCardDetailScreenState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            if (state.allowanceMeal > 0)
-              _buildSummaryChip(
-                'Cơm ca sau 20h',
-                f(state.allowanceMeal),
-                AppColors.purpleA500,
-              ),
-            if (state.allowanceOTEarly > 0)
-              _buildSummaryChip(
-                'Đi trước 7h15',
-                f(state.allowanceOTEarly),
-                AppColors.warning,
-              ),
-          ],
-        ),
-        const SizedBox(height: 16),
-        ..._buildAllowanceSection('Cơm ca sau 20h', mealDays, AppColors.purpleA500),
-        ..._buildAllowanceSection('Đi trước 7h15', earlyDays, AppColors.warning),
+        if (overnightTotal > 0)
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppColors.purpleA500.withValues(alpha: 0.2)),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildSummaryChip(
+                  'Cơm ca đêm:',
+                  f(state.allowanceMeal),
+                  AppColors.purpleA500,
+                ),
+                if (state.overnightItems.isNotEmpty)
+                  ..._buildOvernightRows(state.overnightItems, AppColors.purpleA500),
+              ],
+            ),
+          ),
+        if (state.allowanceOTEarly > 0)
+          _buildSummaryChip(
+            'Đi trước 7h15',
+            f(state.allowanceOTEarly),
+            AppColors.warning,
+          ),
+        if (regDays.isNotEmpty) ...[
+          ..._buildAllowanceSection('Cơm ca sau 20h', mealDays, AppColors.purpleA500),
+          ..._buildAllowanceSection('Đi trước 7h15', earlyDays, AppColors.warning),
+        ],
       ],
     );
+  }
+
+  List<Widget> _buildOvernightRows(List<OvertimeItem> items, Color color) {
+    final sorted = items.toList()
+      ..sort((a, b) {
+        final da = a.dateRegister;
+        final db = b.dateRegister;
+        if (da == null && db == null) return 0;
+        if (da == null) return 1;
+        if (db == null) return -1;
+        return da.compareTo(db);
+      });
+
+    return [
+      const SizedBox(height: 12),
+      _OvernightDateRow(items: sorted, color: AppColors.purpleA500),
+    ];
   }
 
   List<Widget> _buildAllowanceSection(String title, List<SalaryFingerDetail> days, Color color) {
@@ -368,6 +408,8 @@ class _SalaryCardDetailScreenState
   //---(_OtherAdditions)---//
 
   Widget _buildOtherAdditionsContent(SalaryState state) {
+    final nf = NumberFormat('#,##0', 'vi_VN');
+
     final days = _getFilteredDays(state.fingerDetails);
 
     if (days.isEmpty) return _buildEmptyState();
@@ -383,9 +425,35 @@ class _SalaryCardDetailScreenState
       d.isNoCheckIn == 1 || d.isNoCheckOut == 1
     ).toList();
 
+    // Summary chips - tiền từ state
+    final hasStateData = state.bussinessMoney > 0 ||
+        state.nightShiftMoney > 0 ||
+        state.costVehicleBussiness > 0 ||
+        state.bonus > 0 ||
+        state.other > 0;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if (hasStateData) ...[
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              if (state.bussinessMoney > 0)
+                _buildSummaryChip('Công tác', nf.format(state.bussinessMoney.round()), AppColors.secondaryERP),
+              if (state.nightShiftMoney > 0)
+                _buildSummaryChip('Làm đêm', nf.format(state.nightShiftMoney.round()), AppColors.purpleA500),
+              if (state.costVehicleBussiness > 0)
+                _buildSummaryChip('Phương tiện', nf.format(state.costVehicleBussiness.round()), AppColors.stateInfoColor),
+              if (state.bonus > 0)
+                _buildSummaryChip('Thưởng', nf.format(state.bonus.round()), AppColors.stateSuccessColor),
+              if (state.other > 0)
+                _buildSummaryChip('Khác', nf.format(state.other.round()), AppColors.gray),
+            ],
+          ),
+          const SizedBox(height: 16),
+        ],
         // Summary chips - số ngày
         Wrap(
           spacing: 8,
@@ -634,44 +702,151 @@ class _SalaryCardDetailScreenState
   }
 
   Widget _buildEmptyState() {
-    return Container(
-      padding: const EdgeInsets.all(32),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.borderColor),
-      ),
+    return Center(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(AppImages.missing, width: 320),
+          const SizedBox(height: 10),
+          const Text('Không có dữ liệu'),
+        ],
+      ),
+    );
+  }
+}
+
+//---(_OvernightDayRow)---//
+
+class _OvernightDayRow extends StatelessWidget {
+  final OvertimeItem item;
+  final Color color;
+  final bool isEven;
+
+  const _OvernightDayRow({
+    required this.item,
+    required this.color,
+    required this.isEven,
+  });
+
+  static const _weekdayLabels = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+
+  @override
+  Widget build(BuildContext context) {
+    final date = item.dateRegister;
+    final weekdayStr = date != null ? _weekdayLabels[date.weekday - 1] : '--';
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 6),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: isEven ? AppColors.white : AppColors.bgCard,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
+      ),
+      child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(16),
+            width: 44,
+            padding: const EdgeInsets.symmetric(vertical: 6),
             decoration: BoxDecoration(
-              color: AppColors.success.withValues(alpha: 0.1),
-              shape: BoxShape.circle,
+              color: color.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(8),
             ),
-            child: const Icon(
-              Icons.check_circle_outline,
-              color: AppColors.success,
-              size: 48,
+            child: Column(
+              children: [
+                Text(
+                  date?.day.toString() ?? '--',
+                  style: AppStyles.subtitle2.copyWith(
+                    color: color,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                Text(
+                  weekdayStr,
+                  style: AppStyles.caption2.copyWith(
+                    color: color,
+                    fontSize: 9,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 16),
-          Text(
-            'Không có dữ liệu',
-            style: AppStyles.subtitle1.copyWith(
-              color: AppColors.heading,
-              fontWeight: FontWeight.w700,
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              'Cơm ca qua đêm',
+              style: AppStyles.subtitle3.copyWith(
+                color: AppColors.heading,
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            _getCardDescription(),
-            textAlign: TextAlign.center,
-            style: AppStyles.body2.copyWith(color: AppColors.gray),
           ),
         ],
       ),
     );
+  }
+}
+
+//---(_OvernightDateRow)---//
+
+class _OvernightDateRow extends StatelessWidget {
+  final List<OvertimeItem> items;
+  final Color color;
+
+  const _OvernightDateRow({
+    required this.items,
+    required this.color,
+  });
+
+  static const _weekdayLabels = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+
+  @override
+  Widget build(BuildContext context) {
+    final sorted = items.toList()
+      ..sort((a, b) {
+        final da = a.dateRegister;
+        final db = b.dateRegister;
+        if (da == null && db == null) return 0;
+        if (da == null) return 1;
+        if (db == null) return -1;
+        return da.compareTo(db);
+      });
+
+    return Row(
+      children: sorted.map((item) {
+      final date = item.dateRegister;
+      final weekdayStr = date != null ? _weekdayLabels[date.weekday - 1] : '--';
+
+      return Container(
+        width: 44,
+        margin: const EdgeInsets.only(right: 8),
+        padding: const EdgeInsets.symmetric(vertical: 6),
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          children: [
+            Text(
+              date?.day.toString() ?? '--',
+              style: AppStyles.subtitle2.copyWith(
+                color: color,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            Text(
+              weekdayStr,
+              style: AppStyles.caption2.copyWith(
+                color: color,
+                fontSize: 9,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      );
+    }).toList(),
+        );
   }
 }
 
