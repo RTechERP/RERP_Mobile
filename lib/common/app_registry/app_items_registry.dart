@@ -207,15 +207,15 @@ class AppItemRegistry {
       imageUrl: AppImages.reg_general_personal_asset,
     ),
 
-    // AppItemModel(
-    //   id: 'reg_general:stamp',
-    //   name: 'reg_general.stamp'.tr(),
-    //   iconCodePoint: Icons.approval_outlined.codePoint,
-    //   iconFontFamily: 'MaterialIcons',
-    //   tab: 'reg_general',
-    //   route: '',
-    //   imageUrl: AppImages.reg_general_stamp,
-    // ),
+    AppItemModel(
+      id: 'reg_general:stamp',
+      name: 'reg_general.stamp'.tr(),
+      iconCodePoint: Icons.approval_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_general',
+      route: RouteNames.stamp,
+      imageUrl: AppImages.reg_general_stamp,
+    ),
   ];
 
   static final List<AppItemModel> summaryword = [

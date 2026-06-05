@@ -186,6 +186,11 @@ class RouteNames {
   static const ideaRegistrationAdd = '/reg_general/idea_registration/add';
   static const ideaRegistrationEdit = '/reg_general/idea_registration/edit';
 
+  // Stamp Registration
+  static const String stamp = '/reg_general/stamp';
+  static const String stampAdd = '/reg_general/stamp/add';
+  static const String stampDetail = '/reg_general/stamp/detail';
+
   // More - Settings
   static const notificationSettings = '/more/notification_settings';
 

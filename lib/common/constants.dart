@@ -367,4 +367,12 @@ class ApiEndPoint {
   static const String saveIdea = '/RegisterIdea/save-idea';
   static const String deleteIdea = '/RegisterIdea/delete-idea';
   static const String getIdeaDetail = '/RegisterIdea/get-idea-detail';
+
+  // Stamp Registration
+  static const String getStamp = '/TrackingMarks/get-all';
+  static const String saveStamp = '/TrackingMarks/save';
+  static const String getStampEmployees = '/TrackingMarks/get-employees';
+  static const String getStampSealRegulations = '/TrackingMarks/seal-regulations';
+  static const String getStampDocumentTypes = '/TrackingMarks/document-types';
+  static const String getStampTaxCompanies = '/TrackingMarks/tax-companies';
 }

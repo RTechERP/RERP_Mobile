@@ -8,6 +8,11 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_r
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/pages/contract_registration_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/pages/contract_registration_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/pages/contract_registration_detail_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/data/datasource/models/stamp_model.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/bloc/stamp_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_add_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_detail_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
@@ -1106,6 +1111,42 @@ class AppRouter {
                 id: item?.id ?? 0,
                 item: item ?? const IdeaItem(),
               );
+            },
+          ),
+        ],
+      ),
+
+      //---(Stamp)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<StampBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.stamp,
+            builder: (context, state) => const StampScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.stampAdd,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is StampItem) {
+                return StampAddScreen(editItem: extra);
+              }
+              return const StampAddScreen();
+            },
+          ),
+          GoRoute(
+            path: RouteNames.stampDetail,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is StampItem) {
+                return StampDetailScreen(item: extra);
+              }
+              return const StampDetailScreen(item: StampItem());
             },
           ),
         ],

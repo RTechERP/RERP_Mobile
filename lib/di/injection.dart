@@ -34,6 +34,10 @@ import '../features/workplace/app/reg_general/view/pages/stationery/data/datasou
 import '../features/workplace/app/reg_general/view/pages/stationery/data/repository/stationery_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/repository/stationery_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/view/bloc/stationery_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/stamp/data/datasource/service/stamp_service.dart';
+import '../features/workplace/app/reg_general/view/pages/stamp/data/repository/stamp_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/stamp/data/repository/stamp_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/stamp/view/bloc/stamp_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/datasource/service/work_requirement_service.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo_impl.dart';
@@ -192,6 +196,10 @@ void configureDependencies() {
     () => StationeryService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<StampService>(
+    () => StampService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<WorkRequirementService>(
     () => WorkRequirementService(getIt<Dio>()),
   );
@@ -277,6 +285,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<StationeryRepo>(
     () => StationeryRepoImpl(getIt<StationeryService>()),
+  );
+
+  getIt.registerLazySingleton<StampRepo>(
+    () => StampRepoImpl(getIt<StampService>()),
   );
 
   getIt.registerLazySingleton<WorkRequirementRepo>(
@@ -439,6 +451,14 @@ void configureDependencies() {
   getIt.registerFactory<ContractRegistrationBloc>(
     () => ContractRegistrationBloc(
       getIt<ContractRegistrationRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<StampBloc>(
+    () => StampBloc(
+      getIt<StampRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),
