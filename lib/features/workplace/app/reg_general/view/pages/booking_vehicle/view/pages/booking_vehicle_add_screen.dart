@@ -158,13 +158,20 @@ class _BookingVehicleAddScreenState
   }
 
   /// Tính visible của card Người duyệt / Lý do phát sinh từ bloc state.
-  /// Chỉ hiện khi: không phải sửa, không phải người về,
-  /// và time_need_present == hôm nay.
+  /// Add mode: hiện khi không phải người về và time_need_present == hôm nay.
+  /// Edit mode: hiện khi bản ghi đang sửa là case phát sinh sẵn.
   bool _shouldShowProblemRuleCard(BookingVehicleState bvState) {
-    if (_isEditMode) return false;
     if (_bookingTypeGroupEnum(bvState.bookingTypeGroup) ==
-        _BookingVehicleTypeGroup.passengerReturn)
+        _BookingVehicleTypeGroup.passengerReturn) {
       return false;
+    }
+
+    if (_isEditMode) {
+      final item = widget.existingBookingItem;
+      if (item == null) return false;
+      final hasProblemArises = (item.problemArises ?? '').trim().isNotEmpty;
+      return item.isProblemArises == true || hasProblemArises;
+    }
 
     final group = _bookingTypeGroupEnum(bvState.bookingTypeGroup);
     final String needArriveField;
@@ -426,6 +433,12 @@ class _BookingVehicleAddScreenState
 
     print('📋 pre-saveAndValidate project="${formState.value['project']}"');
 
+    final snapshotValues = <String, dynamic>{
+      ...bloc.state.formFieldValues,
+      ...bloc.state.infoFieldValues,
+      ...formState.instantValue,
+    };
+
     if (!formState.saveAndValidate()) {
       print('❌ saveAndValidate FAILED, formState.value now=${formState.value}');
       FormHelper.focusFirstError(
@@ -435,7 +448,10 @@ class _BookingVehicleAddScreenState
       return;
     }
 
-    final savedValues = Map<String, dynamic>.from(formState.value);
+    final savedValues = <String, dynamic>{
+      ...snapshotValues,
+      ...formState.value,
+    };
     print('✅ saveAndValidate OK, saved project="${savedValues['project']}"');
 
     final g = bloc.state.bookingTypeGroup;
@@ -732,19 +748,23 @@ class _BookingVehicleAddScreenState
                                               ),
 
                                               /// --- Lý do phát sinh ---
-                                              /// Chỉ hiện khi thời gian cần đến == hôm nay (add mode).
-                                              if (!_isEditMode)
+                                              if (!_isEditMode ||
+                                                  ((widget.existingBookingItem
+                                                              ?.isProblemArises ==
+                                                          true) ||
+                                                      (widget.existingBookingItem
+                                                              ?.problemArises
+                                                              ?.trim()
+                                                              .isNotEmpty ==
+                                                          true)))
                                                 Column(
                                                   children: [
                                                     const SizedBox(height: 12),
                                                     FormBuilderField<String>(
-                                                      name:
-                                                          'problem_field',
+                                                      name: 'problem_field',
                                                       validator: (value) {
                                                         if (value == null ||
-                                                            value
-                                                                .trim()
-                                                                .isEmpty) {
+                                                            value.trim().isEmpty) {
                                                           return 'Vui lòng nhập lý do phát sinh';
                                                         }
                                                         return null;
