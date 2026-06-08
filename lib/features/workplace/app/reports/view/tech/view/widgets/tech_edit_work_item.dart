@@ -334,6 +334,9 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
               icon: Icons.note_outlined,
               label: 'Nội dung công việc',
               autoExpand: true,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction
+                  .newline,
               controller: _contentController,
               isRequired: true,
               validator: (v) {
@@ -363,6 +366,9 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
               icon: Icons.note_outlined,
               label: 'Kết quả',
               autoExpand: true,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction
+                  .newline,
               controller: _resultController,
               isRequired: true,
               validator: (v) {
